@@ -1,3 +1,13 @@
+package com.eerussianguy.firmalife;
+
+import com.eerussianguy.firmalife.proxy.CommonProxy;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import org.apache.logging.log4j.Logger;
 
 @Mod(modid = FirmaLife.MOD_ID, name = FirmaLife.MODNAME, version = FirmaLife.MODVERSION)
 public class FirmaLife {
@@ -6,7 +16,7 @@ public class FirmaLife {
     public static final String MODNAME = "FirmaLife";
     public static final String MODVERSION= "0.0.1";
 
-    @SidedProxy(clientSide = "mcjty.firmalife.proxy.ClientProxy", serverSide = "mcjty.firmalife.proxy.ServerProxy")
+    @SidedProxy(clientSide = "com.eerussianguy.firmalife.proxy.ClientProxy", serverSide = "com.eerussianguy.firmalife.proxy.ServerProxy")
     public static CommonProxy proxy;
 
     @Mod.Instance
