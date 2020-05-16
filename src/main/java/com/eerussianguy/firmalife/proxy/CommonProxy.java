@@ -1,6 +1,8 @@
 package com.eerussianguy.firmalife.proxy;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -29,8 +31,9 @@ public class CommonProxy {
     public void postInit(FMLPostInitializationEvent e) {
     }
 
+
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
-        
     }
+
 }
