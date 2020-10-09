@@ -1,0 +1,39 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "leaves",
+    "textures": {
+      "all": "firmalife:blocks/cocoa_leaves"
+    }
+  },
+  "variants": {
+    "normal": [
+      {}
+    ],
+    "inventory": {
+      "model": "leaves",
+      "transform": "forge:default-block"
+    },
+    "state": {
+      "normal": {
+        "model": "leaves"
+      },
+      "flowering": {
+        "model": "leaves",
+        "textures": {
+          "all": "firmalife:blocks/cocoa_leaves",
+          "texture": "firmalife:blocks/cocoa_flowers"
+        },
+        "submodel": "tfc:fruit_trees/leaves_overlay"
+      },
+      "fruit": {
+        "model": "leaves",
+        "textures": {
+          "all": "firmalife:blocks/cocoa_leaves",
+          "texture": "firmalife:blocks/cocoa_fruit"
+        },
+        "submodel": "tfc:fruit_trees/leaves_overlay"
+      }
+    }
+  }
+}
