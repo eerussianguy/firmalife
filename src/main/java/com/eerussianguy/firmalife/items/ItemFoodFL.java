@@ -9,7 +9,8 @@ public class ItemFoodFL extends ItemFood implements IItemFoodTFC
 {
     public FoodData data;
 
-    public ItemFoodFL(FoodData data) {
+    public ItemFoodFL(FoodData data)
+    {
         super(0, 0.0F, false);
         this.setMaxDamage(0);
         this.data = data;

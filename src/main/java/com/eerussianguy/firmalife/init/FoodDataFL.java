@@ -1,7 +1,6 @@
 package com.eerussianguy.firmalife.init;
 
 import net.dries007.tfc.api.capability.food.FoodData;
-import net.dries007.tfc.util.agriculture.Food;
 
 public class FoodDataFL
 {

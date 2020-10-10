@@ -32,8 +32,8 @@ public class ClientRegisterEventsFL
             ModelLoader.setCustomModelResourceLocation(i, 0, new ModelResourceLocation(i.getRegistryName().toString()));
         for (ItemBlock ib : ModRegistry.getAllIBs())
             ModelLoader.setCustomModelResourceLocation(ib, 0, new ModelResourceLocation(ib.getRegistryName().toString()));
-
-        ModelLoader.setCustomStateMapper(ModRegistry.COCOA_LEAVES, new StateMap.Builder().ignore(BlockFruitTreeLeaves.DECAYABLE).ignore(BlockFruitTreeLeaves.HARVESTABLE).build());
+        for (BlockFruitTreeLeaves leaves : ModRegistry.getAllFruitLeaves())
+            ModelLoader.setCustomStateMapper(leaves, new StateMap.Builder().ignore(BlockFruitTreeLeaves.DECAYABLE).ignore(BlockFruitTreeLeaves.HARVESTABLE).build());
     }
 
     @SuppressWarnings("deprecation")

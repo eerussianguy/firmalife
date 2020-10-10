@@ -28,17 +28,14 @@ import static net.dries007.tfc.objects.CreativeTabsTFC.*;
 @GameRegistry.ObjectHolder(MOD_ID)
 public class ModRegistry
 {
-    public static final ItemFoodFL CHOCOLATE = Helpers.getNull();
     @GameRegistry.ObjectHolder("cocoa_beans")
     public static final ItemFoodFL COCOA_BEANS = Helpers.getNull();
 
     private static ImmutableList<Item> allEasyItems;
     private static ImmutableList<ItemBlock> allIBs;
 
-    public static final BlockFruitTreeSapling COCOA_SAPLING = Helpers.getNull();
-    public static final BlockFruitTreeLeaves COCOA_LEAVES = Helpers.getNull();
-
     private static ImmutableList<BlockFruitTreeLeaves> allFruitLeaves = Helpers.getNull();
+    private static ImmutableList<BlockFruitTreeSapling> allFruitSaps = Helpers.getNull();
 
     public static ImmutableList<Item> getAllEasyItems()
     {
@@ -55,6 +52,11 @@ public class ModRegistry
         return allFruitLeaves;
     }
 
+    public static ImmutableList<BlockFruitTreeSapling> getAllFruitSaps()
+    {
+        return allFruitSaps;
+    }
+
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         IForgeRegistry<Item> r = event.getRegistry();
@@ -64,14 +66,9 @@ public class ModRegistry
         easyItems.add(register(r, "cocoa_beans", new ItemFoodFL(FoodDataFL.COCOA_BEANS), CT_FOOD));
         allEasyItems = easyItems.build();
 
-        ImmutableList.Builder<ItemBlock> IBs = ImmutableList.builder();
-        for (FruitTreeFL fruitTree : FruitTreeFL.values())
-        {
-            registerIB(r, new ItemBlockTFC(COCOA_LEAVES));
-            registerIB(r, new ItemBlockTFC(COCOA_SAPLING));
-        }
-
-        allIBs = IBs.build();
+        ModRegistry.getAllIBs().forEach((x) -> {
+            registerIB(r, x);
+        });
     }
 
     @SubscribeEvent
@@ -79,15 +76,28 @@ public class ModRegistry
     {
         IForgeRegistry<Block> r = event.getRegistry();
 
+        ImmutableList.Builder<ItemBlock> IBs = ImmutableList.builder();
         ImmutableList.Builder<BlockFruitTreeLeaves> fruitLeaves = ImmutableList.builder();
+        ImmutableList.Builder<BlockFruitTreeSapling> fruitSaps = ImmutableList.builder();
         for (FruitTreeFL fruitTree : FruitTreeFL.values())
         {
-            register(r, "cocoa_branch", new BlockFruitTreeBranch(FruitTreeFL.COCOA), CT_WOOD);
-            fruitLeaves.add(register(r, "cocoa_leaves", new BlockFruitTreeLeaves(FruitTreeFL.COCOA)));
-            register(r, "cocoa_sapling", new BlockFruitTreeSapling(FruitTreeFL.COCOA), CT_WOOD);
-            register(r, "cocoa_trunk", new BlockFruitTreeTrunk(FruitTreeFL.COCOA));
+            String name = fruitTree.getName().toLowerCase();
+            register(r, name + "_branch", new BlockFruitTreeBranch(fruitTree));
+            fruitLeaves.add(register(r, name + "_leaves", new BlockFruitTreeLeaves(fruitTree), CT_WOOD));
+            fruitSaps.add(register(r, name + "_sapling", new BlockFruitTreeSapling(fruitTree), CT_WOOD));
+            register(r, name + "_trunk", new BlockFruitTreeTrunk(fruitTree));
         }
         allFruitLeaves = fruitLeaves.build();
+        allFruitLeaves.forEach((x) -> {
+            IBs.add(new ItemBlockTFC(x));
+        });
+        allFruitSaps = fruitSaps.build();
+        allFruitSaps.forEach((x) -> {
+            IBs.add(new ItemBlockTFC(x));
+        });
+
+
+        allIBs = IBs.build();
     }
 
     private static <T extends Block> T register(IForgeRegistry<Block> r, String name, T block, CreativeTabs ct)

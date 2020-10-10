@@ -1,10 +1,11 @@
 package com.eerussianguy.firmalife.init;
 
+import java.util.function.Supplier;
+
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import com.eerussianguy.firmalife.ModRegistry;
-import com.eerussianguy.firmalife.items.ItemFoodFL;
 import net.dries007.tfc.api.types.IFruitTree;
 import net.dries007.tfc.util.calendar.CalendarTFC;
 import net.dries007.tfc.util.calendar.ICalendar;
@@ -13,17 +14,17 @@ import net.dries007.tfc.world.classic.worldgen.WorldGenFruitTrees;
 
 public enum FruitTreeFL implements IFruitTree
 {
-    COCOA(ModRegistry.COCOA_BEANS, Month.JUNE, 2, Month.SEPTEMBER, 1, 23f, 35f, 280f, 400f,0.33f);
+    COCOA(() -> ModRegistry.COCOA_BEANS, Month.JUNE, 2, Month.SEPTEMBER, 1, 23f, 35f, 280f, 400f,0.33f);
 
     static
     {
-        for (IFruitTree tree : values())
+        for (FruitTreeFL tree : values())
         {
             WorldGenFruitTrees.register(tree);
         }
     }
 
-    private final Item fruit;
+    private final Supplier<Item> fruit;
     private final Month flowerMonthStart;
     private final int floweringMonths;
     private final Month harvestMonthStart;
@@ -34,7 +35,7 @@ public enum FruitTreeFL implements IFruitTree
     private final float minRain;
     private final float maxRain;
 
-    FruitTreeFL(Item fruit, Month flowerMonthStart, int floweringMonths, Month harvestMonthStart, int harvestingMonths, float minTemp, float maxTemp, float minRain, float maxRain, float growthTime)
+    FruitTreeFL(Supplier<Item> fruit, Month flowerMonthStart, int floweringMonths, Month harvestMonthStart, int harvestingMonths, float minTemp, float maxTemp, float minRain, float maxRain, float growthTime)
     {
         this.fruit = fruit;
         this.flowerMonthStart = flowerMonthStart;
@@ -91,15 +92,10 @@ public enum FruitTreeFL implements IFruitTree
         return minTemp < temperature && temperature < maxTemp && minRain < rainfall && rainfall < maxRain;
     }
 
-    public Item getFruit()
-    {
-        return fruit;
-    }
-
     @Override
     public ItemStack getFoodDrop()
     {
-        return new ItemStack(this.getFruit());
+        return new ItemStack(this.fruit.get());
     }
 
     @Override
