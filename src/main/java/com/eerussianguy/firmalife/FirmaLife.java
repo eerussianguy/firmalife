@@ -1,12 +1,21 @@
 package com.eerussianguy.firmalife;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Objects;
+
+import com.eerussianguy.firmalife.init.VeinAdder;
 import com.eerussianguy.firmalife.proxy.CommonProxy;
+import net.dries007.tfc.TerraFirmaCraft;
+import net.dries007.tfc.world.classic.worldgen.vein.VeinRegistry;
+
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.Logger;
 
 @Mod(modid = FirmaLife.MOD_ID, name = FirmaLife.MODNAME, version = FirmaLife.MODVERSION)
@@ -15,6 +24,8 @@ public class FirmaLife {
     public static final String MOD_ID = "firmalife";
     public static final String MODNAME = "FirmaLife";
     public static final String MODVERSION= "0.0.1";
+
+    private static final String ORE_FROM = "assets/firmalife/config/firmalife_ores.json";
 
     @SidedProxy(clientSide = "com.eerussianguy.firmalife.proxy.ClientProxy", serverSide = "com.eerussianguy.firmalife.proxy.ServerProxy")
     public static CommonProxy proxy;
@@ -28,6 +39,8 @@ public class FirmaLife {
     public void preInit(FMLPreInitializationEvent event) {
         logger = event.getModLog();
         proxy.preInit(event);
+
+        VeinAdder.ADDER.addVeins(event.getModConfigurationDirectory());
     }
 
     @Mod.EventHandler

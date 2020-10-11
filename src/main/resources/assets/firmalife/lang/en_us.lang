@@ -1,6 +1,31 @@
 item.firmalife.chocolate.name=Chocolate
 item.firmalife.cocoa_beans.name=Cocoa Beans
+
 tile.firmalife.cocoa_sapling.name=Cocoa Tree Sapling
 tile.firmalife.cocoa_trunk.name=Cocoa Tree Trunk
 tile.firmalife.cocoa_leaves.name=Cocoa Tree Leaves
 tile.firmalife.cocoa_branch.name=Cocoa Tree Branch
+
+item.tfc.ore.halite.name=Halite
+
+tile.tfc.ore.halite.chalk.name=Chalk Halite
+tile.tfc.ore.halite.chert.name=Chert Halite
+tile.tfc.ore.halite.claystone.name=Claystone Halite
+tile.tfc.ore.halite.conglomerate.name=Conglomerate Halite
+tile.tfc.ore.halite.dolomite.name=Dolomite Halite
+tile.tfc.ore.halite.limestone.name=Limestone Halite
+tile.tfc.ore.halite.rocksalt.name=Rocksalt Halite
+tile.tfc.ore.halite.shale.name=Shale Halite
+tile.tfc.ore.halite.gneiss.name=Gneiss Halite
+tile.tfc.ore.halite.marble.name=Marble Halite
+tile.tfc.ore.halite.phyllite.name=Phyllite Halite
+tile.tfc.ore.halite.quartzite.name=Quartzite Halite
+tile.tfc.ore.halite.schist.name=Schist Halite
+tile.tfc.ore.halite.slate.name=Slate Halite
+tile.tfc.ore.halite.andesite.name=Andesite Halite
+tile.tfc.ore.halite.basalt.name=Basalt Halite
+tile.tfc.ore.halite.dacite.name=Dacite Halite
+tile.tfc.ore.halite.rhyolite.name=Rhyolite Halite
+tile.tfc.ore.halite.granite.name=Granite Halite
+tile.tfc.ore.halite.diorite.name=Diorite Halite
+tile.tfc.ore.halite.gabbro.name=Gabbro Halite

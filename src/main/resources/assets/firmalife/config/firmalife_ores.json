@@ -1,0 +1,16 @@
+{
+  "halite": {
+    "ore": "tfc:halite",
+	"loose": "tfc:rock/rocksalt",
+    "width": 40,
+    "height": 20,
+    "shape": "cluster",
+    "rarity": 135,
+    "minimum_height": 50,
+    "maximum_height": 180,
+    "density": 70,
+    "base_rocks": [
+      "tfc:sedimentary"
+    ]
+  }
+}
