@@ -1,32 +1,52 @@
 package com.eerussianguy.firmalife.items;
 
-import com.eerussianguy.firmalife.FirmaLife;
-import net.dries007.tfc.api.capability.size.Size;
-import net.dries007.tfc.api.capability.size.Weight;
-import net.dries007.tfc.objects.CreativeTabsTFC;
-import net.dries007.tfc.objects.items.ItemTFC;
-import net.minecraft.item.ItemStack;
-
 import javax.annotation.Nonnull;
 
-public class ItemMiscFL extends ItemTFC {
-    public ItemMiscFL(String name) {
-        this.setMaxDamage(0);
-        this.setCreativeTab(CreativeTabsTFC.CT_MISC);
-        this.setRegistryName(FirmaLife.MOD_ID, name);
-        this.setTranslationKey(FirmaLife.MOD_ID+"."+name);
-    }
-    @Nonnull
-    @Override
-    public Size getSize(ItemStack stack)
+import net.minecraft.item.ItemStack;
+
+import net.dries007.tfc.api.capability.size.IItemSize;
+import net.dries007.tfc.api.capability.size.Size;
+import net.dries007.tfc.api.capability.size.Weight;
+import net.dries007.tfc.objects.items.ItemTFC;
+import net.dries007.tfc.util.OreDictionaryHelper;
+
+public class ItemMiscFL extends ItemTFC implements IItemSize
+{
+    private final Size size;
+    private final Weight weight;
+
+    //this is a direct ripoff of TFC but I have to do it cause of how oredicts get registered
+    public ItemMiscFL(Size size, Weight weight, Object... oreNameParts)
     {
-        return Size.SMALL;
+        this(size, weight);
+
+        for (Object obj : oreNameParts)
+        {
+            if (obj instanceof Object[])
+                OreDictionaryHelper.register(this, (Object[]) obj);
+            else
+                OreDictionaryHelper.register(this, obj);
+        }
+    }
+
+    public ItemMiscFL(Size size, Weight weight)
+    {
+        this.size = size;
+        this.weight = weight;
     }
 
     @Nonnull
     @Override
-    public Weight getWeight(ItemStack stack)
+    public Size getSize(@Nonnull ItemStack stack)
     {
-        return Weight.LIGHT;
+        return size;
     }
+
+    @Nonnull
+    @Override
+    public Weight getWeight(@Nonnull ItemStack stack)
+    {
+        return weight;
+    }
+
 }

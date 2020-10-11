@@ -6,7 +6,6 @@ import java.util.Objects;
 
 import org.apache.commons.io.FileUtils;
 
-import com.eerussianguy.firmalife.FirmaLife;
 import net.dries007.tfc.TerraFirmaCraft;
 import net.dries007.tfc.world.classic.worldgen.vein.VeinRegistry;
 

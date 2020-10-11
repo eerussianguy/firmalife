@@ -5,7 +5,6 @@ import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -15,14 +14,16 @@ import net.minecraftforge.registries.IForgeRegistry;
 import com.eerussianguy.firmalife.init.FoodDataFL;
 import com.eerussianguy.firmalife.init.FruitTreeFL;
 import com.eerussianguy.firmalife.items.ItemFoodFL;
-import net.dries007.tfc.api.registries.TFCRegistryEvent;
-import net.dries007.tfc.api.types.Ore;
+import net.dries007.tfc.api.capability.size.Size;
+import net.dries007.tfc.api.capability.size.Weight;
 import net.dries007.tfc.objects.blocks.agriculture.BlockFruitTreeBranch;
 import net.dries007.tfc.objects.blocks.agriculture.BlockFruitTreeLeaves;
 import net.dries007.tfc.objects.blocks.agriculture.BlockFruitTreeSapling;
 import net.dries007.tfc.objects.blocks.agriculture.BlockFruitTreeTrunk;
+import net.dries007.tfc.objects.items.ItemMisc;
 import net.dries007.tfc.objects.items.itemblock.ItemBlockTFC;
 import net.dries007.tfc.util.Helpers;
+import net.dries007.tfc.util.OreDictionaryHelper;
 
 import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
 import static net.dries007.tfc.objects.CreativeTabsTFC.*;
@@ -65,8 +66,19 @@ public class ModRegistry
         IForgeRegistry<Item> r = event.getRegistry();
 
         ImmutableList.Builder<Item> easyItems = ImmutableList.builder();
-        easyItems.add(register(r, "chocolate", new ItemFoodFL(FoodDataFL.CHOCOLATE), CT_FOOD));
+        //Foods
+        easyItems.add(register(r, "dark_chocolate", new ItemFoodFL(FoodDataFL.CHOCOLATE), CT_FOOD));
+        easyItems.add(register(r, "milk_chocolate", new ItemFoodFL(FoodDataFL.CHOCOLATE), CT_FOOD));
+        easyItems.add(register(r, "white_chocolate", new ItemFoodFL(FoodDataFL.CHOCOLATE), CT_FOOD));
         easyItems.add(register(r, "cocoa_beans", new ItemFoodFL(FoodDataFL.COCOA_BEANS), CT_FOOD));
+        //Misc Items
+        easyItems.add(register(r, "dried_cocoa_beans", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
+        easyItems.add(register(r, "roasted_cocoa_beans", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
+        easyItems.add(register(r, "cocoa_butter", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
+        easyItems.add(register(r, "cocoa_powder", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
+        easyItems.add(register(r, "dark_chocolate_blend", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
+        easyItems.add(register(r, "milk_chocolate_blend", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
+        easyItems.add(register(r, "white_chocolate_blend", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
         allEasyItems = easyItems.build();
 
         ModRegistry.getAllIBs().forEach((x) -> {

@@ -1,5 +1,14 @@
-item.firmalife.chocolate.name=Chocolate
 item.firmalife.cocoa_beans.name=Cocoa Beans
+item.firmalife.roasted_cocoa_beans.name=Roasted Cocoa Beans
+item.firmalife.dried_cocoa_beans.name=Dried Cocoa Beans
+item.firmalife.dark_chocolate.name=Dark Chocolate
+item.firmalife.white_chocolate.name=White Chocolate
+item.firmalife.milk_chocolate.name=Milk Chocolate
+item.firmalife.dark_chocolate_blend.name=Dark Chocolate Blend
+item.firmalife.white_chocolate_blend.name=White Chocolate Blend
+item.firmalife.milk_chocolate_blend.name=Milk Chocolate Blend
+item.firmalife.cocoa_powder.name=Cocoa Powder
+item.firmalife.cocoa_butter.name=Cocoa Butter
 
 tile.firmalife.cocoa_sapling.name=Cocoa Tree Sapling
 tile.firmalife.cocoa_trunk.name=Cocoa Tree Trunk

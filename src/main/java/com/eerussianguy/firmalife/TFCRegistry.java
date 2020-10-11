@@ -14,7 +14,6 @@ import net.dries007.tfc.api.types.Ore;
 import net.dries007.tfc.objects.Powder;
 import net.dries007.tfc.objects.inventory.ingredient.IIngredient;
 import net.dries007.tfc.objects.items.ItemPowder;
-import net.dries007.tfc.objects.items.metal.ItemOreTFC;
 
 import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
 
