@@ -5,14 +5,18 @@ import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
+import net.minecraftforge.registries.IForgeRegistryEntry;
+import net.minecraftforge.registries.RegistryBuilder;
 
 import com.eerussianguy.firmalife.init.FoodDataFL;
 import com.eerussianguy.firmalife.init.FruitTreeFL;
+import com.eerussianguy.firmalife.init.OvenRecipe;
 import com.eerussianguy.firmalife.items.ItemFoodFL;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
@@ -33,6 +37,10 @@ public class ModRegistry
 {
     @GameRegistry.ObjectHolder("cocoa_beans")
     public static final ItemFoodFL COCOA_BEANS = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_cocoa_beans")
+    public static final ItemMisc DRIED_COCOA_BEANS = Helpers.getNull();
+    @GameRegistry.ObjectHolder("roasted_cocoa_beans")
+    public static final ItemMisc ROASTED_COCOA_BEANS = Helpers.getNull();
 
     private static ImmutableList<Item> allEasyItems;
     private static ImmutableList<ItemBlock> allIBs;
@@ -114,6 +122,12 @@ public class ModRegistry
         allIBs = IBs.build();
     }
 
+    @SubscribeEvent
+    public static void onNewRegistryEvent(RegistryEvent.NewRegistry event)
+    {
+        newRegistry(RegNames.OVEN_RECIPE, OvenRecipe.class);
+    }
+
     private static <T extends Block> T register(IForgeRegistry<Block> r, String name, T block, CreativeTabs ct)
     {
         block.setCreativeTab(ct);
@@ -142,5 +156,10 @@ public class ModRegistry
         item.setRegistryName(item.getBlock().getRegistryName());
         item.setCreativeTab(item.getBlock().getCreativeTab());
         r.register(item);
+    }
+
+    private static <T extends IForgeRegistryEntry<T>> void newRegistry(ResourceLocation name, Class<T> tClass)
+    {
+        IForgeRegistry<T> r = new RegistryBuilder<T>().setName(name).allowModification().setType(tClass).create();
     }
 }
