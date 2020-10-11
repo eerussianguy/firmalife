@@ -1,4 +1,4 @@
-package com.eerussianguy.firmalife;
+package com.eerussianguy.firmalife.registry;
 
 import com.google.common.collect.ImmutableList;
 import net.minecraft.block.Block;
@@ -23,7 +23,6 @@ import net.dries007.tfc.objects.blocks.agriculture.BlockFruitTreeTrunk;
 import net.dries007.tfc.objects.items.ItemMisc;
 import net.dries007.tfc.objects.items.itemblock.ItemBlockTFC;
 import net.dries007.tfc.util.Helpers;
-import net.dries007.tfc.util.OreDictionaryHelper;
 
 import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
 import static net.dries007.tfc.objects.CreativeTabsTFC.*;

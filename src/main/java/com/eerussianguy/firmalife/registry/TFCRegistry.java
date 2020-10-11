@@ -1,4 +1,4 @@
-package com.eerussianguy.firmalife;
+package com.eerussianguy.firmalife.registry;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;

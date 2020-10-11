@@ -5,7 +5,7 @@ import java.util.function.Supplier;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import com.eerussianguy.firmalife.ModRegistry;
+import com.eerussianguy.firmalife.registry.ModRegistry;
 import net.dries007.tfc.api.types.IFruitTree;
 import net.dries007.tfc.util.calendar.CalendarTFC;
 import net.dries007.tfc.util.calendar.ICalendar;
