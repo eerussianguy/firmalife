@@ -43,6 +43,12 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
         this.setDefaultState(this.blockState.getBaseState().withProperty(CURED, false).withProperty(FACING, EnumFacing.NORTH).withProperty(LIT, false));
     }
 
+    /**
+     * Turns all the ovens horizontally either on or off.
+     * @param world
+     * @param center
+     * @param flag
+     */
     public void cascadeLight(World world, BlockPos center, boolean flag)
     {
         if (!world.isRemote)
@@ -83,6 +89,14 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
         }
     }
 
+    /**
+     * This is a local way for an oven to check if it's valid. Does not care about chimneys.
+     * Necessary because !isValid does not work (someone should look into this)
+     * The ifs are nested like that for readability, I know it's not something a real dev would write.
+     * @param world
+     * @param ovenPos
+     * @return If the placement seems valid.
+     */
     private boolean isValidHorizontal(World world, BlockPos ovenPos)
     {
         IBlockState ovenState = world.getBlockState(ovenPos);
@@ -128,6 +142,13 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
         return true;
     }
 
+    /**
+     * Attempts to check if the entire structure is valid. Requires a chimney of 3+ blocks on top of the center block,
+     * as well as properly positioned walls on either side of however many ovens are placed horizontally.
+     * @param world
+     * @param center Must be an oven with a chimney
+     * @return If it's valid or not.
+     */
     public boolean isValid(World world, BlockPos center)
     {
         IBlockState ovenState = world.getBlockState(center);
@@ -142,13 +163,13 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
 
             BlockPos leftCheck = center.offset(left);
             Block leftBlock = world.getBlockState(leftCheck).getBlock();
-            while (leftBlock instanceof BlockOven || leftBlock instanceof BlockOvenWall)
+            while (leftBlock instanceof BlockOven || leftBlock instanceof BlockOvenWall) // walks leftwards until no oven blocks are found
             {
-                if (leftBlock instanceof BlockOvenWall)
+                if (leftBlock instanceof BlockOvenWall) // if it's a wall, make sure it's oriented well
                 {
                     if (world.getBlockState(leftCheck).getValue(FACING) == facing.getOpposite())
                     {
-                        leftFlag = true;
+                        leftFlag = true; // ONLY if it's a correctly oriented wall ending the sequence, can we move on properly
                     }
                     break;
                 }
@@ -159,7 +180,7 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
             {
                 BlockPos rightCheck = center.offset(right);
                 Block rightBlock = world.getBlockState(rightCheck).getBlock();
-                while (rightBlock instanceof BlockOven || rightBlock instanceof BlockOvenWall)
+                while (rightBlock instanceof BlockOven || rightBlock instanceof BlockOvenWall) // same as with the left side
                 {
                     if (rightBlock instanceof BlockOvenWall)
                     {
@@ -178,7 +199,7 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
                     BlockPos upCheck = center.up();
                     Block upBlock = world.getBlockState(upCheck).getBlock();
                     int chimneyCount = 0;
-                    while (upBlock instanceof BlockOvenChimney)
+                    while (upBlock instanceof BlockOvenChimney) // walks upwards, counting how many chimneys it gets
                     {
                         if (world.isAirBlock(upCheck.up()))
                         {
@@ -189,7 +210,7 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
                         upCheck = upCheck.up();
                         upBlock = world.getBlockState(upCheck).getBlock();
                     }
-                    if (upFlag && chimneyCount > 1 && world.canBlockSeeSky(upCheck))
+                    if (upFlag && chimneyCount > 1 && world.canBlockSeeSky(upCheck)) // because of loops, it actually needs 3 chimneys
                     {
                         return true;
                     }
@@ -219,6 +240,10 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
                     // do something
                 }
             }
+            else
+            {
+
+            }
             // if it's lit, you shouldn't be able to do anything
             // however if the recipe is not valid you shouldn't be able to light it
         }
@@ -233,7 +258,19 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
         {
             if (state.getValue(LIT) && !isValidHorizontal(worldIn, pos))
             {
-                worldIn.setBlockState(pos, state.withProperty(LIT, false));
+                cascadeLight(worldIn, pos, false);
+            }
+        }
+    }
+
+    @Override
+    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    {
+        if (state.getValue(LIT))
+        {
+            if (!isValidHorizontal(worldIn, pos))
+            {
+                cascadeLight(worldIn, pos, false);
             }
         }
     }
@@ -244,8 +281,13 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
     {
         if (stateIn.getValue(LIT))
         {
-            worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + rand.nextFloat(), pos.getY() + 1, pos.getZ() + rand.nextFloat(),
-                0f, 0.1f + 0.1f * rand.nextFloat(), 0f);
+            if (worldIn.getBlockState(pos.up()).getBlock() instanceof BlockOvenChimney)
+            {
+                worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + (rand.nextFloat() / 2) + 0.25, pos.getY() + 3, pos.getZ() +  (rand.nextFloat() / 2) + 0.25,
+                    0.05f, 0.2F + rand.nextFloat() / 2, 0.05f);
+            }
+            worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + rand.nextFloat(), pos.getY() + 0.11, pos.getZ() +  rand.nextFloat() / 2,
+                0.02f, 0.05f * rand.nextFloat(), 0.02f);
             if (worldIn.getTotalWorldTime() % 80 == 0)
             {
                 worldIn.playSound((double) pos.getX() + 0.5D, pos.getY(), (double) pos.getZ() + 0.5D, SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.BLOCKS, 0.5F, 0.6F, false);
