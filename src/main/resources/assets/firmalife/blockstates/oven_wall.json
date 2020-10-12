@@ -1,0 +1,44 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"textures": {
+			"cured": "blocks/brick",
+			"particle": "blocks/brick"
+		},
+		"model": "firmalife:oven_wall"
+	},
+	"variants": {
+		"cured": {
+			"true": {
+				"textures": {
+					"particle": "blocks/brick",
+					"cured": "blocks/brick"
+				}
+			},
+			"false": {
+				"textures": {
+					"particle": "firmalife:blocks/unfired_bricks",
+					"cured": "firmalife:blocks/unfired_bricks"
+				}
+			}
+		},
+		"facing": {
+			"north": {
+				"y": 90
+			},
+			"south": {
+				"y": 270
+			},
+			"west": {
+				"y": 0
+			},
+			"east": {
+				"y": 180
+			}
+		},
+		"inventory": [{
+			"transform": "forge:default-block"
+		}],
+		"normal": [{}]
+	}
+}

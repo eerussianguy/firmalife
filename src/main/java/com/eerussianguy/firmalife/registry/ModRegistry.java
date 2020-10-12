@@ -14,6 +14,9 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import net.minecraftforge.registries.RegistryBuilder;
 
+import com.eerussianguy.firmalife.blocks.BlockOven;
+import com.eerussianguy.firmalife.blocks.BlockOvenChimney;
+import com.eerussianguy.firmalife.blocks.BlockOvenWall;
 import com.eerussianguy.firmalife.init.FoodDataFL;
 import com.eerussianguy.firmalife.init.FruitTreeFL;
 import com.eerussianguy.firmalife.init.OvenRecipe;
@@ -45,6 +48,7 @@ public class ModRegistry
     private static ImmutableList<Item> allEasyItems;
     private static ImmutableList<ItemBlock> allIBs;
 
+    private static ImmutableList<Block> allNormalIBs = Helpers.getNull();
     private static ImmutableList<BlockFruitTreeLeaves> allFruitLeaves = Helpers.getNull();
     private static ImmutableList<BlockFruitTreeSapling> allFruitSaps = Helpers.getNull();
 
@@ -57,6 +61,8 @@ public class ModRegistry
     {
         return allIBs;
     }
+
+    public static ImmutableList<Block> getAllNormalIBs() { return allNormalIBs; }
 
     public static ImmutableList<BlockFruitTreeLeaves> getAllFruitLeaves()
     {
@@ -99,6 +105,7 @@ public class ModRegistry
         IForgeRegistry<Block> r = event.getRegistry();
 
         ImmutableList.Builder<ItemBlock> IBs = ImmutableList.builder();
+        ImmutableList.Builder<Block> NormalIBs = ImmutableList.builder();
         ImmutableList.Builder<BlockFruitTreeLeaves> fruitLeaves = ImmutableList.builder();
         ImmutableList.Builder<BlockFruitTreeSapling> fruitSaps = ImmutableList.builder();
         for (FruitTreeFL fruitTree : FruitTreeFL.values())
@@ -109,6 +116,14 @@ public class ModRegistry
             fruitSaps.add(register(r, name + "_sapling", new BlockFruitTreeSapling(fruitTree), CT_WOOD));
             register(r, name + "_trunk", new BlockFruitTreeTrunk(fruitTree));
         }
+        NormalIBs.add(register(r, "oven", new BlockOven(), CT_DECORATIONS));
+        NormalIBs.add(register(r, "oven_wall", new BlockOvenWall(), CT_DECORATIONS));
+        NormalIBs.add(register(r, "oven_chimney", new BlockOvenChimney(), CT_DECORATIONS));
+
+        allNormalIBs = NormalIBs.build();
+        allNormalIBs.forEach((x) -> {
+            IBs.add(new ItemBlockTFC(x));
+        });
         allFruitLeaves = fruitLeaves.build();
         allFruitLeaves.forEach((x) -> {
             IBs.add(new ItemBlockTFC(x));

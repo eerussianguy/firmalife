@@ -14,6 +14,9 @@ tile.firmalife.cocoa_sapling.name=Cocoa Tree Sapling
 tile.firmalife.cocoa_trunk.name=Cocoa Tree Trunk
 tile.firmalife.cocoa_leaves.name=Cocoa Tree Leaves
 tile.firmalife.cocoa_branch.name=Cocoa Tree Branch
+tile.firmalife.oven.name=Oven
+tile.firmalife.oven_wall.name=Oven Wall
+tile.firmalife.oven_chimney.name=Oven Chimney
 
 item.tfc.ore.halite.name=Halite
 
