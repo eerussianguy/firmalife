@@ -9,6 +9,7 @@ item.firmalife.white_chocolate_blend.name=White Chocolate Blend
 item.firmalife.milk_chocolate_blend.name=Milk Chocolate Blend
 item.firmalife.cocoa_powder.name=Cocoa Powder
 item.firmalife.cocoa_butter.name=Cocoa Butter
+item.firmalife.peel.name=Peel
 
 tile.firmalife.cocoa_sapling.name=Cocoa Tree Sapling
 tile.firmalife.cocoa_trunk.name=Cocoa Tree Trunk
@@ -41,3 +42,6 @@ tile.tfc.ore.halite.rhyolite.name=Rhyolite Halite
 tile.tfc.ore.halite.granite.name=Granite Halite
 tile.tfc.ore.halite.diorite.name=Diorite Halite
 tile.tfc.ore.halite.gabbro.name=Gabbro Halite
+
+tooltip.firmalife.hours=hours
+jei.category.firmalife.oven=Oven

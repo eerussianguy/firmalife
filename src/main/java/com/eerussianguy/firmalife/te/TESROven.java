@@ -51,7 +51,7 @@ public class TESROven extends TileEntitySpecialRenderer<TEOven>
                     case 1: //west
                         GlStateManager.translate(1.25f, -0.7f, 0f);
                     case 2: //north
-                        GlStateManager.translate(-0.2f, -0.8f, 0f);
+                        GlStateManager.translate(-0.2f, -0.9f, 0f);
                 }
 
                 ItemStack fuel1 = cap.getStackInSlot(SLOT_FUEL_1);

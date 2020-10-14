@@ -27,6 +27,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 
+import com.eerussianguy.firmalife.registry.ModRegistry;
 import com.eerussianguy.firmalife.te.TEOven;
 import net.dries007.tfc.api.capability.size.IItemSize;
 import net.dries007.tfc.api.capability.size.Size;
@@ -36,6 +37,7 @@ import net.dries007.tfc.objects.advancements.TFCTriggers;
 import net.dries007.tfc.objects.blocks.property.ILightableBlock;
 import net.dries007.tfc.objects.items.ItemFireStarter;
 import net.dries007.tfc.objects.items.ItemsTFC;
+import net.dries007.tfc.util.DamageSourcesTFC;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.fuel.FuelManager;
 
@@ -181,7 +183,7 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
                 }
                 TEOven te = Helpers.getTE(world, pos, TEOven.class);
                 IItemHandler inventory = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
-                if (!player.isSneaking() && inventory != null)
+                if (!player.isSneaking() && inventory != null && !held.isItemEqual(new ItemStack(ModRegistry.PEEL)) && !held.isEmpty())
                 {
                     for (int i = 0; i < 3; i++)
                     {
@@ -205,7 +207,7 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
                     }
                     return true;
                 }
-                else if (player.isSneaking() && inventory != null && held.isEmpty())
+                else if (inventory != null && (held.isEmpty() || held.isItemEqual(new ItemStack(ModRegistry.PEEL))))
                 {
                     for (int i = 2; i >= 0; i--)
                     {
@@ -215,6 +217,8 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
                             ItemStack takeStack = inventory.extractItem(i, 1, false);
                             ItemHandlerHelper.giveItemToPlayer(player, takeStack);
                             te.markForSync();
+                            if (!held.isItemEqual(new ItemStack(ModRegistry.PEEL)) && state.getValue(CURED))
+                                player.attackEntityFrom(DamageSourcesTFC.GRILL, 2.0F);
                             return true;
                         }
                     }

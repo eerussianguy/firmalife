@@ -5,6 +5,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -70,6 +71,7 @@ public class TEOven extends TEInventory implements ITickable
                     else
                     {
                         turnOff();
+                        clear();
                     }
                 }
                 if (inventory.getStackInSlot(SLOT_MAIN).isEmpty())
@@ -186,6 +188,17 @@ public class TEOven extends TEInventory implements ITickable
             turnOff();
         }
     }
+
+    private void clear()
+    {
+        inventory.setStackInSlot(SLOT_MAIN, ItemStack.EMPTY);
+        inventory.setStackInSlot(SLOT_FUEL_1, ItemStack.EMPTY);
+        inventory.setStackInSlot(SLOT_FUEL_2, ItemStack.EMPTY);
+        setAndUpdateSlots(SLOT_MAIN);
+        setAndUpdateSlots(SLOT_FUEL_1);
+        setAndUpdateSlots(SLOT_FUEL_2);
+    }
+
 
     public void turnOff()
     {

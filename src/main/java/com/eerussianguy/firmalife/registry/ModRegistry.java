@@ -46,6 +46,8 @@ public class ModRegistry
     public static final ItemMisc DRIED_COCOA_BEANS = Helpers.getNull();
     @GameRegistry.ObjectHolder("roasted_cocoa_beans")
     public static final ItemMisc ROASTED_COCOA_BEANS = Helpers.getNull();
+    @GameRegistry.ObjectHolder("peel")
+    public static final ItemMisc PEEL = Helpers.getNull();
     @GameRegistry.ObjectHolder("oven")
     public static final BlockOven OVEN = Helpers.getNull();
     @GameRegistry.ObjectHolder("oven_wall")
@@ -100,6 +102,7 @@ public class ModRegistry
         easyItems.add(register(r, "dark_chocolate_blend", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
         easyItems.add(register(r, "milk_chocolate_blend", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
         easyItems.add(register(r, "white_chocolate_blend", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
+        easyItems.add(register(r, "peel", new ItemMisc(Size.LARGE, Weight.VERY_HEAVY), CT_MISC));
         allEasyItems = easyItems.build();
 
         ModRegistry.getAllIBs().forEach((x) -> {

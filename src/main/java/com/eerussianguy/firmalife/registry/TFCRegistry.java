@@ -72,7 +72,7 @@ public class TFCRegistry
             if (recipe != null)
             {
                 modRegistry.remove(recipe.getRegistryName());
-                FirmaLife.logger.info("Removed recipe tfc:{}", name);
+                FirmaLife.logger.info("Removed heating recipe tfc:{}", name);
             }
 
         }
