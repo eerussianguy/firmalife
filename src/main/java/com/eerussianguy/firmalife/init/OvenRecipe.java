@@ -21,6 +21,11 @@ public class OvenRecipe extends IForgeRegistryEntry.Impl<OvenRecipe>
         return RegistriesFL.OVEN.getValuesCollection().stream().filter(x -> x.isValidInput(item)).findFirst().orElse(null);
     }
 
+    public static int getDuration(OvenRecipe recipe)
+    {
+        return recipe.duration;
+    }
+
     public OvenRecipe(IIngredient<ItemStack> input, ItemStack output, int duration)
     {
         this.inputItem = input;

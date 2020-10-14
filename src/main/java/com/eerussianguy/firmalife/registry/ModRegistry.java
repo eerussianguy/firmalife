@@ -5,6 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -21,6 +22,7 @@ import com.eerussianguy.firmalife.init.FoodDataFL;
 import com.eerussianguy.firmalife.init.FruitTreeFL;
 import com.eerussianguy.firmalife.init.OvenRecipe;
 import com.eerussianguy.firmalife.items.ItemFoodFL;
+import com.eerussianguy.firmalife.te.TEOven;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
 import net.dries007.tfc.objects.blocks.agriculture.BlockFruitTreeBranch;
@@ -120,6 +122,8 @@ public class ModRegistry
         NormalIBs.add(register(r, "oven_wall", new BlockOvenWall(), CT_DECORATIONS));
         NormalIBs.add(register(r, "oven_chimney", new BlockOvenChimney(), CT_DECORATIONS));
 
+        register(TEOven.class, "oven");
+
         allNormalIBs = NormalIBs.build();
         allNormalIBs.forEach((x) -> {
             IBs.add(new ItemBlockTFC(x));
@@ -171,6 +175,11 @@ public class ModRegistry
         item.setRegistryName(item.getBlock().getRegistryName());
         item.setCreativeTab(item.getBlock().getCreativeTab());
         r.register(item);
+    }
+
+    private static <T extends TileEntity> void register(Class<T> te, String name)
+    {
+        TileEntity.register(MOD_ID + ":" + name, te);
     }
 
     private static <T extends IForgeRegistryEntry<T>> void newRegistry(ResourceLocation name, Class<T> tClass)

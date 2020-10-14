@@ -2,8 +2,8 @@
 	"forge_marker": 1,
 	"defaults": {
 		"textures": {
-			"cured": "blocks/brick",
-			"particle": "blocks/brick"
+			"cured": "firmalife:blocks/unfired_bricks",
+			"particle": "firmalife:blocks/unfired_bricks"
 		},
 		"model": "firmalife:oven_chimney"
 	},
@@ -23,8 +23,10 @@
 			}
 		},
 		"inventory": [{
-			"transform": "forge:default-block"
 		}],
-		"normal": [{}]
+		"normal": [{
+		   "transform": "forge:default-block",
+		   "model": "firmalife:oven_chimney"
+		}]
 	}
 }

@@ -7,6 +7,8 @@ import java.util.Objects;
 import com.eerussianguy.firmalife.init.VeinAdder;
 import com.eerussianguy.firmalife.proxy.CommonProxy;
 import net.dries007.tfc.TerraFirmaCraft;
+import net.dries007.tfc.api.recipes.heat.HeatRecipe;
+import net.dries007.tfc.api.registries.TFCRegistries;
 import net.dries007.tfc.world.classic.worldgen.vein.VeinRegistry;
 
 import net.minecraftforge.fml.common.Mod;
@@ -15,8 +17,10 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.registries.IForgeRegistryModifiable;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.Logger;
+import net.minecraft.util.ResourceLocation;
 
 @Mod(modid = FirmaLife.MOD_ID, name = FirmaLife.MODNAME, version = FirmaLife.MODVERSION)
 public class FirmaLife {

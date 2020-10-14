@@ -11,12 +11,15 @@ import net.minecraft.item.ItemBlock;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import com.eerussianguy.firmalife.FirmaLife;
+import com.eerussianguy.firmalife.te.TEOven;
+import com.eerussianguy.firmalife.te.TESROven;
 import net.dries007.tfc.client.GrassColorHandler;
 import net.dries007.tfc.objects.blocks.agriculture.BlockFruitTreeLeaves;
 
@@ -35,6 +38,8 @@ public class ClientRegisterEventsFL
             ModelLoader.setCustomModelResourceLocation(ib, 0, new ModelResourceLocation(ib.getRegistryName().toString()));
         for (BlockFruitTreeLeaves leaves : ModRegistry.getAllFruitLeaves())
             ModelLoader.setCustomStateMapper(leaves, new StateMap.Builder().ignore(BlockFruitTreeLeaves.DECAYABLE).ignore(BlockFruitTreeLeaves.HARVESTABLE).build());
+
+        ClientRegistry.bindTileEntitySpecialRenderer(TEOven.class, new TESROven());
     }
 
     @SuppressWarnings("deprecation")

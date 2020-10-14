@@ -2,6 +2,7 @@ package com.eerussianguy.firmalife.blocks;
 
 import java.util.Random;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
@@ -13,6 +14,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -20,13 +22,20 @@ import net.minecraft.world.World;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemHandlerHelper;
 
+import com.eerussianguy.firmalife.te.TEOven;
 import net.dries007.tfc.api.capability.size.IItemSize;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
+import net.dries007.tfc.client.particle.TFCParticles;
 import net.dries007.tfc.objects.advancements.TFCTriggers;
 import net.dries007.tfc.objects.blocks.property.ILightableBlock;
 import net.dries007.tfc.objects.items.ItemFireStarter;
+import net.dries007.tfc.util.Helpers;
+import net.dries007.tfc.util.fuel.FuelManager;
 
 import static com.eerussianguy.firmalife.init.StatePropertiesFL.CURED;
 import static net.minecraft.block.BlockHorizontal.FACING;
@@ -44,60 +53,14 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
     }
 
     /**
-     * Turns all the ovens horizontally either on or off.
-     * @param world
-     * @param center
-     * @param flag
-     */
-    public void cascadeLight(World world, BlockPos center, boolean flag)
-    {
-        if (!world.isRemote)
-        {
-            IBlockState ovenState = world.getBlockState(center);
-            if (ovenState.getBlock() instanceof BlockOven)
-            {
-                world.setBlockState(center, ovenState.withProperty(LIT, flag));
-
-                EnumFacing facing = ovenState.getValue(FACING);
-                EnumFacing left = facing.rotateYCCW();
-                EnumFacing right = facing.rotateY();
-
-                BlockPos leftCheck = center.offset(left);
-                IBlockState leftState = world.getBlockState(leftCheck);
-                Block leftBlock = leftState.getBlock();
-                while (leftBlock instanceof BlockOven)
-                {
-                    world.setBlockState(leftCheck, leftState.withProperty(LIT, flag));
-
-                    leftCheck = leftCheck.offset(left);
-                    leftState = world.getBlockState(leftCheck);
-                    leftBlock = leftState.getBlock();
-                }
-
-                BlockPos rightCheck = center.offset(right);
-                IBlockState rightState = world.getBlockState(rightCheck);
-                Block rightBlock = rightState.getBlock();
-                while (rightBlock instanceof BlockOven)
-                {
-                    world.setBlockState(rightCheck, rightState.withProperty(LIT, flag));
-
-                    rightCheck = rightCheck.offset(right);
-                    rightState = world.getBlockState(rightCheck);
-                    rightBlock = rightState.getBlock();
-                }
-            }
-        }
-    }
-
-    /**
      * This is a local way for an oven to check if it's valid. Does not care about chimneys.
-     * Necessary because !isValid does not work (someone should look into this)
      * The ifs are nested like that for readability, I know it's not something a real dev would write.
-     * @param world
-     * @param ovenPos
-     * @return If the placement seems valid.
+     * @param world The world! What more did you want
+     * @param ovenPos The oven
+     * @param needsCure Does it need to be cured to return true?
+     * @return If there's correctly placed ovens or walls on either side
      */
-    private boolean isValidHorizontal(World world, BlockPos ovenPos)
+    public boolean isValidHorizontal(World world, BlockPos ovenPos, boolean needsCure)
     {
         IBlockState ovenState = world.getBlockState(ovenPos);
         EnumFacing facing = ovenState.getValue(FACING);
@@ -109,6 +72,10 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
 
         for (IBlockState state : checkStates)
         {
+            if (needsCure && !isCuredBlock(state))
+            {
+                return false;
+            }
             Block b = state.getBlock();
             if(!(b instanceof BlockOven || b instanceof BlockOvenWall))
             {
@@ -143,79 +110,46 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
     }
 
     /**
-     * Attempts to check if the entire structure is valid. Requires a chimney of 3+ blocks on top of the center block,
-     * as well as properly positioned walls on either side of however many ovens are placed horizontally.
-     * @param world
-     * @param center Must be an oven with a chimney
-     * @return If it's valid or not.
+     * Checks if there's a chimney. Two blocks to each side. Needs three blocks of chimney
+     * @param world The world
+     * @param ovenPos The oven
+     * @return A boolean saying if it's good or not
      */
-    public boolean isValid(World world, BlockPos center)
+    public boolean hasChimney(World world, BlockPos ovenPos)
     {
-        IBlockState ovenState = world.getBlockState(center);
-        if (ovenState.getBlock() instanceof BlockOven)
+        IBlockState ovenState = world.getBlockState(ovenPos);
+        EnumFacing facing = ovenState.getValue(FACING);
+        EnumFacing left = facing.rotateYCCW();
+        EnumFacing right = facing.rotateY();
+
+        BlockPos[] checkPositions = {ovenPos.up(), ovenPos.offset(left).up(), ovenPos.offset(left, 2).up(), ovenPos.offset(right).up(), ovenPos.offset(right, 2).up()};
+        boolean noChimneys = true;
+        for (BlockPos pos : checkPositions)
         {
-            EnumFacing facing = ovenState.getValue(FACING);
-            EnumFacing left = facing.rotateYCCW();
-            EnumFacing right = facing.rotateY();
-
-            boolean leftFlag = false;
-            boolean rightFlag = false;
-
-            BlockPos leftCheck = center.offset(left);
-            Block leftBlock = world.getBlockState(leftCheck).getBlock();
-            while (leftBlock instanceof BlockOven || leftBlock instanceof BlockOvenWall) // walks leftwards until no oven blocks are found
+            if (world.getBlockState(pos).getBlock() instanceof BlockOvenChimney)
             {
-                if (leftBlock instanceof BlockOvenWall) // if it's a wall, make sure it's oriented well
+                noChimneys = false;
+                for (int i = 0; i < 3; i++)
                 {
-                    if (world.getBlockState(leftCheck).getValue(FACING) == facing.getOpposite())
-                    {
-                        leftFlag = true; // ONLY if it's a correctly oriented wall ending the sequence, can we move on properly
-                    }
-                    break;
-                }
-                leftCheck = leftCheck.offset(left);
-                leftBlock = world.getBlockState(leftCheck).getBlock();
-            }
-            if (leftFlag)
-            {
-                BlockPos rightCheck = center.offset(right);
-                Block rightBlock = world.getBlockState(rightCheck).getBlock();
-                while (rightBlock instanceof BlockOven || rightBlock instanceof BlockOvenWall) // same as with the left side
-                {
-                    if (rightBlock instanceof BlockOvenWall)
-                    {
-                        if (world.getBlockState(rightCheck).getValue(FACING) == facing)
-                        {
-                            rightFlag = true;
-                        }
-                        break;
-                    }
-                    rightCheck = rightCheck.offset(right);
-                    rightBlock = world.getBlockState(rightCheck).getBlock();
-                }
-                if (rightFlag)
-                {
-                    boolean upFlag = false;
-                    BlockPos upCheck = center.up();
-                    Block upBlock = world.getBlockState(upCheck).getBlock();
-                    int chimneyCount = 0;
-                    while (upBlock instanceof BlockOvenChimney) // walks upwards, counting how many chimneys it gets
-                    {
-                        if (world.isAirBlock(upCheck.up()))
-                        {
-                            upFlag = true;
-                            break;
-                        }
-                        chimneyCount++;
-                        upCheck = upCheck.up();
-                        upBlock = world.getBlockState(upCheck).getBlock();
-                    }
-                    if (upFlag && chimneyCount > 1 && world.canBlockSeeSky(upCheck)) // because of loops, it actually needs 3 chimneys
-                    {
-                        return true;
-                    }
+                    BlockPos chimPos = pos.offset(EnumFacing.UP, i);
+                    if (!(world.getBlockState(chimPos).getBlock() instanceof BlockOvenChimney))
+                        return false;
                 }
             }
+        }
+        return !noChimneys;
+    }
+
+    /**
+     * Tests if it's a cured block
+     * @param state the block you want to test
+     * @return false if it's not cured, or if it's not an oven block
+     */
+    private boolean isCuredBlock(IBlockState state)
+    {
+        if ((state.getBlock() instanceof BlockOven || state.getBlock() instanceof BlockOvenChimney) || state.getBlock() instanceof BlockOvenWall)
+        {
+            return state.getValue(CURED);
         }
         return false;
     }
@@ -228,24 +162,61 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
             if (!state.getValue(LIT))
             {
                 ItemStack held = player.getHeldItem(hand);
-                if (isValid(world, pos) && ItemFireStarter.onIgnition(held))
+                if (isValidHorizontal(world, pos, false) && hasChimney(world, pos) && ItemFireStarter.onIgnition(held))
                 {
-                    TFCTriggers.LIT_TRIGGER.trigger((EntityPlayerMP) player, state.getBlock()); // Trigger lit block
-                    cascadeLight(world, pos, true);
-                    //handle TE
+                    if (ItemFireStarter.onIgnition(held))
+                    {
+                        TFCTriggers.LIT_TRIGGER.trigger((EntityPlayerMP) player, state.getBlock()); // Trigger lit block
+                        TEOven te = Helpers.getTE(world, pos, TEOven.class);
+                        if (te != null)
+                        {
+                            world.setBlockState(pos, state.withProperty(LIT, true));
+                            te.light();
+                        }
+                    }
                     return true;
                 }
-                if (!player.isSneaking())
+                TEOven te = Helpers.getTE(world, pos, TEOven.class);
+                IItemHandler inventory = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+                if (!player.isSneaking() && inventory != null)
                 {
-                    // do something
+                    for (int i = 0; i < 3; i++)
+                    {
+                        ItemStack slotStack = inventory.getStackInSlot(i);
+                        if (i < 2 && FuelManager.isItemFuel(held) && slotStack.isEmpty())
+                        {
+                            inventory.insertItem(i, held, false);
+                            if (!player.isCreative())
+                                held.shrink(1);
+                            te.markForSync();
+                            return true;
+                        }
+                        else if (i == 2 && slotStack.isEmpty())
+                        {
+                            inventory.insertItem(i, held, false);
+                            if (!player.isCreative())
+                                held.shrink(1);
+                            te.markForSync();
+                            return true;
+                        }
+                    }
+                    return true;
+                }
+                else if (player.isSneaking() && inventory != null && held.isEmpty())
+                {
+                    for (int i = 2; i >= 0; i--)
+                    {
+                        ItemStack slotStack = inventory.getStackInSlot(i);
+                        if (!slotStack.isEmpty())
+                        {
+                            ItemStack takeStack = inventory.extractItem(i, 1, false);
+                            ItemHandlerHelper.giveItemToPlayer(player, takeStack);
+                            te.markForSync();
+                            return true;
+                        }
+                    }
                 }
             }
-            else
-            {
-
-            }
-            // if it's lit, you shouldn't be able to do anything
-            // however if the recipe is not valid you shouldn't be able to light it
         }
         return true;
     }
@@ -256,9 +227,13 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
     {
         if (!worldIn.isRemote)
         {
-            if (state.getValue(LIT) && !isValidHorizontal(worldIn, pos))
+            if (state.getValue(LIT) && !isValidHorizontal(worldIn, pos, false))
             {
-                cascadeLight(worldIn, pos, false);
+                TEOven te = Helpers.getTE(worldIn, pos, TEOven.class);
+                if (te != null)
+                {
+                    te.turnOff();
+                }
             }
         }
     }
@@ -268,9 +243,13 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
     {
         if (state.getValue(LIT))
         {
-            if (!isValidHorizontal(worldIn, pos))
+            if (!isValidHorizontal(worldIn, pos, false))
             {
-                cascadeLight(worldIn, pos, false);
+                TEOven te = Helpers.getTE(worldIn, pos, TEOven.class);
+                if (te != null)
+                {
+                    te.turnOff();
+                }
             }
         }
     }
@@ -283,10 +262,22 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
         {
             if (worldIn.getBlockState(pos.up()).getBlock() instanceof BlockOvenChimney)
             {
-                worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + (rand.nextFloat() / 2) + 0.25, pos.getY() + 3, pos.getZ() +  (rand.nextFloat() / 2) + 0.25,
-                    0.05f, 0.2F + rand.nextFloat() / 2, 0.05f);
+                TFCParticles particle = TFCParticles.FIRE_PIT_SMOKE1;
+                //chimney particles
+                switch (rand.nextInt(3))
+                {
+                    case 0:
+                        particle = TFCParticles.FIRE_PIT_SMOKE2;
+                    case 1:
+                        particle = TFCParticles.FIRE_PIT_SMOKE3;
+                }
+                particle.spawn(worldIn, pos.getX() + (rand.nextFloat() / 2) + 0.25, pos.getY() + 3, pos.getZ() +  (rand.nextFloat() / 2) + 0.25,
+                    0f, 0.2F + rand.nextFloat() / 2, 0f, 110);
             }
+            // inside the oven
             worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + rand.nextFloat(), pos.getY() + 0.11, pos.getZ() +  rand.nextFloat() / 2,
+                0.02f, 0.05f * rand.nextFloat(), 0.02f);
+            worldIn.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + rand.nextFloat(), pos.getY() + 0.11, pos.getZ() +  rand.nextFloat() / 2,
                 0.02f, 0.05f * rand.nextFloat(), 0.02f);
             if (worldIn.getTotalWorldTime() % 80 == 0)
             {
@@ -333,6 +324,17 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
     }
 
     @Override
+    public void breakBlock(World world, BlockPos pos, IBlockState state)
+    {
+        TEOven te = Helpers.getTE(world, pos, TEOven.class);
+        if (te != null)
+        {
+            te.onBreakBlock(world, pos, state);
+        }
+        super.breakBlock(world, pos, state);
+    }
+
+    @Override
     public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos)
     {
         return state.getValue(LIT) ? 15 : 0;
@@ -372,5 +374,18 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
     public EnumBlockRenderType getRenderType(IBlockState state)
     {
         return EnumBlockRenderType.MODEL;
+    }
+
+    @Override
+    public boolean hasTileEntity(IBlockState state)
+    {
+        return true;
+    }
+
+    @Nullable
+    @Override
+    public TileEntity createTileEntity(World world, IBlockState state)
+    {
+        return new TEOven();
     }
 }
