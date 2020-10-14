@@ -13,6 +13,9 @@ import net.minecraftforge.registries.IForgeRegistryModifiable;
 import com.eerussianguy.firmalife.FirmaLife;
 import net.dries007.tfc.TerraFirmaCraft;
 import net.dries007.tfc.api.recipes.heat.HeatRecipe;
+import net.dries007.tfc.api.recipes.knapping.KnappingRecipe;
+import net.dries007.tfc.api.recipes.knapping.KnappingRecipeSimple;
+import net.dries007.tfc.api.recipes.knapping.KnappingType;
 import net.dries007.tfc.api.recipes.quern.QuernRecipe;
 import net.dries007.tfc.api.registries.TFCRegistries;
 import net.dries007.tfc.api.registries.TFCRegistryEvent;
@@ -43,6 +46,16 @@ public class TFCRegistry
         IForgeRegistry<QuernRecipe> r = event.getRegistry();
 
         r.register(new QuernRecipe(IIngredient.of("gemHalite"), new ItemStack(ItemPowder.get(Powder.SALT), 2)).setRegistryName("halite"));
+    }
+
+    @SubscribeEvent
+    public static void onRegisterKnappingRecipeEvent(RegistryEvent.Register<KnappingRecipe> event)
+    {
+        event.getRegistry().registerAll(
+            new KnappingRecipeSimple(KnappingType.CLAY, true, new ItemStack(ModRegistry.OVEN), "XXXXX","X   X","X   X","X   X","XXXXX").setRegistryName("clay_oven"),
+            new KnappingRecipeSimple(KnappingType.CLAY, true, new ItemStack(ModRegistry.OVEN_CHIMNEY), "XX XX","X   X","X   X","X   X","X   X").setRegistryName("clay_oven_chimney"),
+            new KnappingRecipeSimple(KnappingType.CLAY, true, new ItemStack(ModRegistry.OVEN_WALL), "    X","   XX","   XX","  XXX","  XXX").setRegistryName("clay_oven_wall")
+        );
     }
 
     @SubscribeEvent

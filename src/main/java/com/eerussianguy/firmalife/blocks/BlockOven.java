@@ -12,6 +12,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -34,10 +35,12 @@ import net.dries007.tfc.client.particle.TFCParticles;
 import net.dries007.tfc.objects.advancements.TFCTriggers;
 import net.dries007.tfc.objects.blocks.property.ILightableBlock;
 import net.dries007.tfc.objects.items.ItemFireStarter;
+import net.dries007.tfc.objects.items.ItemsTFC;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.fuel.FuelManager;
 
 import static com.eerussianguy.firmalife.init.StatePropertiesFL.CURED;
+import static net.dries007.tfc.Constants.RNG;
 import static net.minecraft.block.BlockHorizontal.FACING;
 
 public class BlockOven extends Block implements ILightableBlock, IItemSize
@@ -332,6 +335,19 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
             te.onBreakBlock(world, pos, state);
         }
         super.breakBlock(world, pos, state);
+    }
+
+    @Override
+    public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
+    {
+        if (state.getValue(CURED))
+        {
+            drops.add(new ItemStack(Items.BRICK, 3 + RNG.nextInt(3)));
+        }
+        else
+        {
+            drops.add(new ItemStack(Items.CLAY_BALL, 3 + RNG.nextInt(3)));
+        }
     }
 
     @Override

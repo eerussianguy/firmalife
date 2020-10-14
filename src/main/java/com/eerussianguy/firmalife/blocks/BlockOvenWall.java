@@ -8,9 +8,11 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -21,6 +23,7 @@ import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
 
 import static com.eerussianguy.firmalife.init.StatePropertiesFL.CURED;
+import static net.dries007.tfc.Constants.RNG;
 import static net.minecraft.block.BlockHorizontal.FACING;
 
 public class BlockOvenWall extends Block implements IItemSize
@@ -110,6 +113,19 @@ public class BlockOvenWall extends Block implements IItemSize
                 return OVEN_WALL_WEST;
             case EAST:
                 return OVEN_WALL_EAST;
+        }
+    }
+
+    @Override
+    public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
+    {
+        if (state.getValue(CURED))
+        {
+            drops.add(new ItemStack(Items.BRICK, 3 + RNG.nextInt(3)));
+        }
+        else
+        {
+            drops.add(new ItemStack(Items.CLAY_BALL, 3 + RNG.nextInt(3)));
         }
     }
 

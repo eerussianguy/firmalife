@@ -46,6 +46,12 @@ public class ModRegistry
     public static final ItemMisc DRIED_COCOA_BEANS = Helpers.getNull();
     @GameRegistry.ObjectHolder("roasted_cocoa_beans")
     public static final ItemMisc ROASTED_COCOA_BEANS = Helpers.getNull();
+    @GameRegistry.ObjectHolder("oven")
+    public static final BlockOven OVEN = Helpers.getNull();
+    @GameRegistry.ObjectHolder("oven_wall")
+    public static final BlockOvenWall OVEN_WALL = Helpers.getNull();
+    @GameRegistry.ObjectHolder("oven_chimney")
+    public static final BlockOvenChimney OVEN_CHIMNEY = Helpers.getNull();
 
     private static ImmutableList<Item> allEasyItems;
     private static ImmutableList<ItemBlock> allIBs;
