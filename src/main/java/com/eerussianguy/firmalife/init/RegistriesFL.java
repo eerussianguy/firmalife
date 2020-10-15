@@ -9,4 +9,5 @@ import net.minecraftforge.registries.IForgeRegistry;
 public class RegistriesFL
 {
     public static final IForgeRegistry<OvenRecipe> OVEN = GameRegistry.findRegistry(OvenRecipe.class);
+    public static final IForgeRegistry<DryingRecipe> DRYING = GameRegistry.findRegistry(DryingRecipe.class);
 }

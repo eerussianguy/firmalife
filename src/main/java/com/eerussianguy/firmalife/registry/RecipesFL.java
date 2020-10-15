@@ -6,6 +6,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
+import com.eerussianguy.firmalife.init.DryingRecipe;
 import com.eerussianguy.firmalife.init.OvenRecipe;
 import net.dries007.tfc.objects.inventory.ingredient.IIngredient;
 import net.dries007.tfc.objects.items.ItemsTFC;
@@ -37,5 +38,15 @@ public class RecipesFL
             new OvenRecipe(IIngredient.of(ItemFoodTFC.get(Food.WHEAT_DOUGH)), new ItemStack(ItemFoodTFC.get(Food.WHEAT_BREAD)), 4 * hour).setRegistryName("wheat_dough")
         );
 
+    }
+
+    @SubscribeEvent
+    public static void onRegisterDryingRecipeEvent(RegistryEvent.Register<DryingRecipe> event)
+    {
+        IForgeRegistry<DryingRecipe> r = event.getRegistry();
+        int day = ICalendar.TICKS_IN_DAY;
+        r.registerAll(
+            new DryingRecipe(IIngredient.of(new ItemStack(ModRegistry.COCOA_BEANS)), new ItemStack(ModRegistry.DRIED_COCOA_BEANS), day * 5).setRegistryName("cocoa_beans")
+        );
     }
 }

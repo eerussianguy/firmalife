@@ -19,6 +19,7 @@ import com.eerussianguy.firmalife.blocks.BlockLeafMat;
 import com.eerussianguy.firmalife.blocks.BlockOven;
 import com.eerussianguy.firmalife.blocks.BlockOvenChimney;
 import com.eerussianguy.firmalife.blocks.BlockOvenWall;
+import com.eerussianguy.firmalife.init.DryingRecipe;
 import com.eerussianguy.firmalife.init.FoodDataFL;
 import com.eerussianguy.firmalife.init.FruitTreeFL;
 import com.eerussianguy.firmalife.init.OvenRecipe;
@@ -57,6 +58,8 @@ public class ModRegistry
     public static final BlockOvenWall OVEN_WALL = Helpers.getNull();
     @GameRegistry.ObjectHolder("oven_chimney")
     public static final BlockOvenChimney OVEN_CHIMNEY = Helpers.getNull();
+    @GameRegistry.ObjectHolder("leaf_mat")
+    public static final BlockLeafMat LEAF_MAT = Helpers.getNull();
 
     private static ImmutableList<Item> allEasyItems;
     private static ImmutableList<ItemBlock> allIBs;
@@ -159,6 +162,7 @@ public class ModRegistry
     public static void onNewRegistryEvent(RegistryEvent.NewRegistry event)
     {
         newRegistry(RegNames.OVEN_RECIPE, OvenRecipe.class);
+        newRegistry(RegNames.DRYING_RECIPE, DryingRecipe.class);
     }
 
     private static <T extends Block> T register(IForgeRegistry<Block> r, String name, T block, CreativeTabs ct)
