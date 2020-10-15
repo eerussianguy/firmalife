@@ -11,7 +11,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.dries007.tfc.Constants;
 import net.dries007.tfc.objects.blocks.agriculture.BlockFruitTreeLeaves;
 
-import static net.dries007.tfc.TerraFirmaCraft.MOD_ID;
+import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
 
 @Mod.EventBusSubscriber(modid = MOD_ID)
 public class CommonEventHandlerFL
