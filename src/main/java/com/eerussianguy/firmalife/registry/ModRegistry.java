@@ -15,6 +15,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import net.minecraftforge.registries.RegistryBuilder;
 
+import com.eerussianguy.firmalife.blocks.BlockLeafMat;
 import com.eerussianguy.firmalife.blocks.BlockOven;
 import com.eerussianguy.firmalife.blocks.BlockOvenChimney;
 import com.eerussianguy.firmalife.blocks.BlockOvenWall;
@@ -48,6 +49,8 @@ public class ModRegistry
     public static final ItemMisc ROASTED_COCOA_BEANS = Helpers.getNull();
     @GameRegistry.ObjectHolder("peel")
     public static final ItemMisc PEEL = Helpers.getNull();
+    @GameRegistry.ObjectHolder("fruit_leaf")
+    public static final ItemMisc FRUIT_LEAF = Helpers.getNull();
     @GameRegistry.ObjectHolder("oven")
     public static final BlockOven OVEN = Helpers.getNull();
     @GameRegistry.ObjectHolder("oven_wall")
@@ -103,6 +106,7 @@ public class ModRegistry
         easyItems.add(register(r, "milk_chocolate_blend", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
         easyItems.add(register(r, "white_chocolate_blend", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
         easyItems.add(register(r, "peel", new ItemMisc(Size.LARGE, Weight.VERY_HEAVY), CT_MISC));
+        easyItems.add(register(r, "fruit_leaf", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
         allEasyItems = easyItems.build();
 
         ModRegistry.getAllIBs().forEach((x) -> {
@@ -130,6 +134,7 @@ public class ModRegistry
         NormalIBs.add(register(r, "oven", new BlockOven(), CT_DECORATIONS));
         NormalIBs.add(register(r, "oven_wall", new BlockOvenWall(), CT_DECORATIONS));
         NormalIBs.add(register(r, "oven_chimney", new BlockOvenChimney(), CT_DECORATIONS));
+        NormalIBs.add(register(r, "leaf_mat", new BlockLeafMat(), CT_DECORATIONS));
 
         register(TEOven.class, "oven");
 
