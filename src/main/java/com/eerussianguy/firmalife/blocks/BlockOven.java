@@ -166,7 +166,7 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
         {
             if (!state.getValue(LIT))
             {
-                ItemStack held = player.getHeldItem(hand);
+                ItemStack held = player.getHeldItem(hand); // in order to light, it doesn't need to be cured, but the structure should exist
                 if (isValidHorizontal(world, pos, false) && hasChimney(world, pos) && ItemFireStarter.onIgnition(held))
                 {
                     if (ItemFireStarter.onIgnition(held))
@@ -185,10 +185,10 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
                 IItemHandler inventory = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
                 if (!player.isSneaking() && inventory != null && !held.isItemEqual(new ItemStack(ModRegistry.PEEL)) && !held.isEmpty())
                 {
-                    for (int i = 0; i < 3; i++)
+                    for (int i = 0; i < 3; i++) // put stuff in the oven, will try every slot
                     {
                         ItemStack slotStack = inventory.getStackInSlot(i);
-                        if (i < 2 && FuelManager.isItemFuel(held) && slotStack.isEmpty())
+                        if (i < 2 && FuelManager.isItemFuel(held) && slotStack.isEmpty()) // fuel slots
                         {
                             inventory.insertItem(i, held, false);
                             if (!player.isCreative())
@@ -196,7 +196,7 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
                             te.markForSync();
                             return true;
                         }
-                        else if (i == 2 && slotStack.isEmpty())
+                        else if (i == 2 && slotStack.isEmpty()) // this is the recipe slot
                         {
                             inventory.insertItem(i, held, false);
                             if (!player.isCreative())
@@ -209,7 +209,7 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
                 }
                 else if (inventory != null && (held.isEmpty() || held.isItemEqual(new ItemStack(ModRegistry.PEEL))))
                 {
-                    for (int i = 2; i >= 0; i--)
+                    for (int i = 2; i >= 0; i--) // take stuff out. starts with the main slot and cycles backwards
                     {
                         ItemStack slotStack = inventory.getStackInSlot(i);
                         if (!slotStack.isEmpty())
@@ -218,7 +218,7 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
                             ItemHandlerHelper.giveItemToPlayer(player, takeStack);
                             te.markForSync();
                             if (!held.isItemEqual(new ItemStack(ModRegistry.PEEL)) && state.getValue(CURED))
-                                player.attackEntityFrom(DamageSourcesTFC.GRILL, 2.0F);
+                                player.attackEntityFrom(DamageSourcesTFC.GRILL, 2.0F); // damage player if they don't use peel
                             return true;
                         }
                     }
