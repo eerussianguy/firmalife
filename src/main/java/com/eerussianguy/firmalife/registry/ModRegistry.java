@@ -24,6 +24,7 @@ import com.eerussianguy.firmalife.init.FoodDataFL;
 import com.eerussianguy.firmalife.init.FruitTreeFL;
 import com.eerussianguy.firmalife.init.OvenRecipe;
 import com.eerussianguy.firmalife.items.ItemFoodFL;
+import com.eerussianguy.firmalife.items.ItemRoastedCocoaBeans;
 import com.eerussianguy.firmalife.te.TELeafMat;
 import com.eerussianguy.firmalife.te.TEOven;
 import net.dries007.tfc.api.capability.size.Size;
@@ -53,6 +54,8 @@ public class ModRegistry
     public static final ItemMisc PEEL = Helpers.getNull();
     @GameRegistry.ObjectHolder("fruit_leaf")
     public static final ItemMisc FRUIT_LEAF = Helpers.getNull();
+    @GameRegistry.ObjectHolder("cocoa_powder")
+    public static final ItemMisc COCOA_POWDER = Helpers.getNull();
     @GameRegistry.ObjectHolder("oven")
     public static final BlockOven OVEN = Helpers.getNull();
     @GameRegistry.ObjectHolder("oven_wall")
@@ -103,7 +106,7 @@ public class ModRegistry
         easyItems.add(register(r, "cocoa_beans", new ItemFoodFL(FoodDataFL.COCOA_BEANS), CT_FOOD));
         //Misc Items
         easyItems.add(register(r, "dried_cocoa_beans", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
-        easyItems.add(register(r, "roasted_cocoa_beans", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
+        easyItems.add(register(r, "roasted_cocoa_beans", new ItemRoastedCocoaBeans(), CT_MISC));
         easyItems.add(register(r, "cocoa_butter", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
         easyItems.add(register(r, "cocoa_powder", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
         easyItems.add(register(r, "dark_chocolate_blend", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));

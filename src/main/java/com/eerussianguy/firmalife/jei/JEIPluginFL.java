@@ -3,6 +3,8 @@ package com.eerussianguy.firmalife.jei;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.xml.soap.Text;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextComponentTranslation;
 
@@ -46,5 +48,6 @@ public class JEIPluginFL implements IModPlugin
         registry.addRecipeCatalyst(new ItemStack(ModRegistry.LEAF_MAT, 1), DRY_ID);
 
         registry.addIngredientInfo(new ItemStack(ModRegistry.FRUIT_LEAF, 1), VanillaTypes.ITEM, new TextComponentTranslation("jei.tooltip.firmalife.fruit_leaf").getFormattedText());
+        registry.addIngredientInfo(new ItemStack(ModRegistry.COCOA_POWDER, 1), VanillaTypes.ITEM, new TextComponentTranslation("jei.tooltip.firmalife.cocoa_powder").getFormattedText());
     }
 }
