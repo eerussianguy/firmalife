@@ -18,7 +18,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import com.eerussianguy.firmalife.FirmaLife;
+import com.eerussianguy.firmalife.te.TELeafMat;
 import com.eerussianguy.firmalife.te.TEOven;
+import com.eerussianguy.firmalife.te.TESRLeafMat;
 import com.eerussianguy.firmalife.te.TESROven;
 import net.dries007.tfc.client.GrassColorHandler;
 import net.dries007.tfc.objects.blocks.agriculture.BlockFruitTreeLeaves;
@@ -40,6 +42,7 @@ public class ClientRegisterEventsFL
             ModelLoader.setCustomStateMapper(leaves, new StateMap.Builder().ignore(BlockFruitTreeLeaves.DECAYABLE).ignore(BlockFruitTreeLeaves.HARVESTABLE).build());
 
         ClientRegistry.bindTileEntitySpecialRenderer(TEOven.class, new TESROven());
+        ClientRegistry.bindTileEntitySpecialRenderer(TELeafMat.class, new TESRLeafMat());
     }
 
     @SuppressWarnings("deprecation")

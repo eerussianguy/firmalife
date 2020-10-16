@@ -24,6 +24,7 @@ import com.eerussianguy.firmalife.init.FoodDataFL;
 import com.eerussianguy.firmalife.init.FruitTreeFL;
 import com.eerussianguy.firmalife.init.OvenRecipe;
 import com.eerussianguy.firmalife.items.ItemFoodFL;
+import com.eerussianguy.firmalife.te.TELeafMat;
 import com.eerussianguy.firmalife.te.TEOven;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
@@ -140,6 +141,7 @@ public class ModRegistry
         NormalIBs.add(register(r, "leaf_mat", new BlockLeafMat(), CT_DECORATIONS));
 
         register(TEOven.class, "oven");
+        register(TELeafMat.class, "leaf_mat");
 
         allNormalIBs = NormalIBs.build();
         allNormalIBs.forEach((x) -> {
