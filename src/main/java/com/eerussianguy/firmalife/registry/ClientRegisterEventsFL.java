@@ -18,11 +18,14 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import com.eerussianguy.firmalife.FirmaLife;
+import com.eerussianguy.firmalife.blocks.BlockPlanter;
+import com.eerussianguy.firmalife.init.StatePropertiesFL;
 import com.eerussianguy.firmalife.te.TELeafMat;
 import com.eerussianguy.firmalife.te.TEOven;
 import com.eerussianguy.firmalife.te.TESRLeafMat;
 import com.eerussianguy.firmalife.te.TESROven;
 import net.dries007.tfc.client.GrassColorHandler;
+import net.dries007.tfc.objects.blocks.BlockPlacedHide;
 import net.dries007.tfc.objects.blocks.agriculture.BlockFruitTreeLeaves;
 
 @SideOnly(Side.CLIENT)
@@ -40,6 +43,8 @@ public class ClientRegisterEventsFL
             ModelLoader.setCustomModelResourceLocation(ib, 0, new ModelResourceLocation(ib.getRegistryName().toString()));
         for (BlockFruitTreeLeaves leaves : ModRegistry.getAllFruitLeaves())
             ModelLoader.setCustomStateMapper(leaves, new StateMap.Builder().ignore(BlockFruitTreeLeaves.DECAYABLE).ignore(BlockFruitTreeLeaves.HARVESTABLE).build());
+        for (BlockPlanter planter : ModRegistry.getAllPlanters())
+            ModelLoader.setCustomStateMapper(planter, new StateMap.Builder().ignore(StatePropertiesFL.CAN_GROW).build());
 
         ClientRegistry.bindTileEntitySpecialRenderer(TEOven.class, new TESROven());
         ClientRegistry.bindTileEntitySpecialRenderer(TELeafMat.class, new TESRLeafMat());

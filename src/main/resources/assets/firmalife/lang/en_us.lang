@@ -11,6 +11,8 @@ item.firmalife.cocoa_powder.name=Cocoa Powder
 item.firmalife.cocoa_butter.name=Cocoa Butter
 item.firmalife.peel.name=Peel
 item.firmalife.fruit_leaf.name=Fruit Leaf
+item.firmalife.planter.name=Planter
+item.firmalife.vanilla.name=Vanilla
 
 tile.firmalife.cocoa_sapling.name=Cocoa Tree Sapling
 tile.firmalife.cocoa_trunk.name=Cocoa Tree Trunk
@@ -20,6 +22,7 @@ tile.firmalife.oven.name=Oven
 tile.firmalife.oven_wall.name=Oven Wall
 tile.firmalife.oven_chimney.name=Oven Chimney
 tile.firmalife.leaf_mat.name=Leaf Mat
+tile.firmalife.vanilla_planter.name=Vanilla Planter
 
 item.tfc.ore.halite.name=Halite
 
@@ -44,6 +47,7 @@ tile.tfc.ore.halite.rhyolite.name=Rhyolite Halite
 tile.tfc.ore.halite.granite.name=Granite Halite
 tile.tfc.ore.halite.diorite.name=Diorite Halite
 tile.tfc.ore.halite.gabbro.name=Gabbro Halite
+tile.tfc.plants.vanilla.name=Wild Vanilla
 
 tooltip.firmalife.hours=hours
 tooltip.firmalife.days=days

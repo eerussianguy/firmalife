@@ -20,6 +20,7 @@ import net.dries007.tfc.api.recipes.quern.QuernRecipe;
 import net.dries007.tfc.api.registries.TFCRegistries;
 import net.dries007.tfc.api.registries.TFCRegistryEvent;
 import net.dries007.tfc.api.types.Ore;
+import net.dries007.tfc.api.types.Plant;
 import net.dries007.tfc.objects.Powder;
 import net.dries007.tfc.objects.inventory.ingredient.IIngredient;
 import net.dries007.tfc.objects.items.ItemPowder;
@@ -29,7 +30,9 @@ import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
 @Mod.EventBusSubscriber(modid = MOD_ID)
 public class TFCRegistry
 {
-    public static final ResourceLocation HALITE = new ResourceLocation(TerraFirmaCraft.MOD_ID, "halite");
+    private static final String TFC_ID = TerraFirmaCraft.MOD_ID;
+    public static final ResourceLocation HALITE = new ResourceLocation(TFC_ID, "halite");
+    public static final ResourceLocation VANILLA = new ResourceLocation(TFC_ID, "vanilla");
 
     @SubscribeEvent
     public static void onPreRegisterOre(TFCRegistryEvent.RegisterPreBlock<Ore> event)
@@ -37,6 +40,14 @@ public class TFCRegistry
         IForgeRegistry<Ore> r = event.getRegistry();
         r.registerAll(
             new Ore(HALITE)
+        );
+    }
+
+    @SubscribeEvent
+    public static void onPreRegisterPlant(TFCRegistryEvent.RegisterPreBlock<Plant> event)
+    {
+        event.getRegistry().registerAll(
+            new Plant(VANILLA, Plant.PlantType.STANDARD, new int[] {1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1}, false, false, 15f, 31f, 18f, 35f, 200f, 500f, 12, 15, 1, 0.9D, "vanilla_wild")
         );
     }
 

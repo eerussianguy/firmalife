@@ -15,10 +15,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import net.minecraftforge.registries.RegistryBuilder;
 
-import com.eerussianguy.firmalife.blocks.BlockLeafMat;
-import com.eerussianguy.firmalife.blocks.BlockOven;
-import com.eerussianguy.firmalife.blocks.BlockOvenChimney;
-import com.eerussianguy.firmalife.blocks.BlockOvenWall;
+import com.eerussianguy.firmalife.blocks.*;
 import com.eerussianguy.firmalife.init.DryingRecipe;
 import com.eerussianguy.firmalife.init.FoodDataFL;
 import com.eerussianguy.firmalife.init.FruitTreeFL;
@@ -56,6 +53,10 @@ public class ModRegistry
     public static final ItemMisc FRUIT_LEAF = Helpers.getNull();
     @GameRegistry.ObjectHolder("cocoa_powder")
     public static final ItemMisc COCOA_POWDER = Helpers.getNull();
+    @GameRegistry.ObjectHolder("vanilla")
+    public static final ItemMisc VANILLA = Helpers.getNull();
+    @GameRegistry.ObjectHolder("planter")
+    public static final ItemMisc PLANTER = Helpers.getNull();
     @GameRegistry.ObjectHolder("oven")
     public static final BlockOven OVEN = Helpers.getNull();
     @GameRegistry.ObjectHolder("oven_wall")
@@ -71,6 +72,7 @@ public class ModRegistry
     private static ImmutableList<Block> allNormalIBs = Helpers.getNull();
     private static ImmutableList<BlockFruitTreeLeaves> allFruitLeaves = Helpers.getNull();
     private static ImmutableList<BlockFruitTreeSapling> allFruitSaps = Helpers.getNull();
+    private static ImmutableList<BlockPlanter> allPlanters = Helpers.getNull();
 
     public static ImmutableList<Item> getAllEasyItems()
     {
@@ -94,6 +96,11 @@ public class ModRegistry
         return allFruitSaps;
     }
 
+    public static ImmutableList<BlockPlanter> getAllPlanters()
+    {
+        return allPlanters;
+    }
+
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         IForgeRegistry<Item> r = event.getRegistry();
@@ -114,6 +121,8 @@ public class ModRegistry
         easyItems.add(register(r, "white_chocolate_blend", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
         easyItems.add(register(r, "peel", new ItemMisc(Size.LARGE, Weight.VERY_HEAVY), CT_MISC));
         easyItems.add(register(r, "fruit_leaf", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
+        easyItems.add(register(r, "planter", new ItemMisc(Size.NORMAL, Weight.MEDIUM), CT_MISC));
+        easyItems.add(register(r, "vanilla", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
         allEasyItems = easyItems.build();
 
         ModRegistry.getAllIBs().forEach((x) -> {
@@ -130,6 +139,7 @@ public class ModRegistry
         ImmutableList.Builder<Block> NormalIBs = ImmutableList.builder();
         ImmutableList.Builder<BlockFruitTreeLeaves> fruitLeaves = ImmutableList.builder();
         ImmutableList.Builder<BlockFruitTreeSapling> fruitSaps = ImmutableList.builder();
+        ImmutableList.Builder<BlockPlanter> planters = ImmutableList.builder();
         for (FruitTreeFL fruitTree : FruitTreeFL.values())
         {
             String name = fruitTree.getName().toLowerCase();
@@ -142,6 +152,7 @@ public class ModRegistry
         NormalIBs.add(register(r, "oven_wall", new BlockOvenWall(), CT_DECORATIONS));
         NormalIBs.add(register(r, "oven_chimney", new BlockOvenChimney(), CT_DECORATIONS));
         NormalIBs.add(register(r, "leaf_mat", new BlockLeafMat(), CT_DECORATIONS));
+        planters.add(register(r, "vanilla_planter", new BlockPlanter(() -> ModRegistry.VANILLA, 1)));
 
         register(TEOven.class, "oven");
         register(TELeafMat.class, "leaf_mat");
@@ -158,7 +169,10 @@ public class ModRegistry
         allFruitSaps.forEach((x) -> {
             IBs.add(new ItemBlockTFC(x));
         });
-
+        allPlanters = planters.build();
+        allPlanters.forEach((x) -> {
+            IBs.add(new ItemBlockTFC(x));
+        });
 
         allIBs = IBs.build();
     }
