@@ -46,7 +46,8 @@ public class RecipesFL
         IForgeRegistry<DryingRecipe> r = event.getRegistry();
         int day = ICalendar.TICKS_IN_DAY;
         r.registerAll(
-            new DryingRecipe(IIngredient.of(new ItemStack(ModRegistry.COCOA_BEANS)), new ItemStack(ModRegistry.DRIED_COCOA_BEANS), day * 5).setRegistryName("cocoa_beans")
+            new DryingRecipe(IIngredient.of(new ItemStack(ModRegistry.COCOA_BEANS)), new ItemStack(ModRegistry.DRIED_COCOA_BEANS), day * 5).setRegistryName("cocoa_beans"),
+            new DryingRecipe(IIngredient.of(new ItemStack(ModRegistry.CINNAMON_BARK)), new ItemStack(ModRegistry.CINNAMON), day).setRegistryName("cinnamon_bark")
         );
     }
 }

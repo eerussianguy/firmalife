@@ -1,7 +1,5 @@
 package com.eerussianguy.firmalife.registry;
 
-import javax.annotation.Resource;
-
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
@@ -11,6 +9,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
 
 import com.eerussianguy.firmalife.FirmaLife;
+import com.eerussianguy.firmalife.init.PlantsFL;
 import net.dries007.tfc.TerraFirmaCraft;
 import net.dries007.tfc.api.recipes.heat.HeatRecipe;
 import net.dries007.tfc.api.recipes.knapping.KnappingRecipe;
@@ -32,7 +31,6 @@ public class TFCRegistry
 {
     private static final String TFC_ID = TerraFirmaCraft.MOD_ID;
     public static final ResourceLocation HALITE = new ResourceLocation(TFC_ID, "halite");
-    public static final ResourceLocation VANILLA = new ResourceLocation(TFC_ID, "vanilla");
 
     @SubscribeEvent
     public static void onPreRegisterOre(TFCRegistryEvent.RegisterPreBlock<Ore> event)
@@ -47,7 +45,7 @@ public class TFCRegistry
     public static void onPreRegisterPlant(TFCRegistryEvent.RegisterPreBlock<Plant> event)
     {
         event.getRegistry().registerAll(
-            new Plant(VANILLA, Plant.PlantType.STANDARD, new int[] {1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1}, false, false, 15f, 31f, 18f, 35f, 200f, 500f, 12, 15, 1, 0.9D, "vanilla_wild")
+            PlantsFL.VANILLA_PLANT
         );
     }
 
@@ -57,6 +55,7 @@ public class TFCRegistry
         IForgeRegistry<QuernRecipe> r = event.getRegistry();
 
         r.register(new QuernRecipe(IIngredient.of("gemHalite"), new ItemStack(ItemPowder.get(Powder.SALT), 2)).setRegistryName("halite"));
+        r.register(new QuernRecipe(IIngredient.of(ModRegistry.CINNAMON), new ItemStack(ModRegistry.GROUND_CINNAMON, 2)).setRegistryName("cinnamon"));
     }
 
     @SubscribeEvent

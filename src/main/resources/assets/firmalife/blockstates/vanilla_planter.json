@@ -3,6 +3,7 @@
 	"defaults": {
 		"textures": {
 			"plant": "tfc:blocks/plants/vanilla/regular",
+			"soil": "firmalife:blocks/potting_soil_dry",
 			"particle": "tfc:blocks/plants/vanilla/regular"
 		},
 		"model": "firmalife:vanilla_planter"
@@ -19,6 +20,18 @@
 				"textures": {
 					"particle": "tfc:blocks/plants/vanilla/regular",
 					"plant": "tfc:blocks/plants/vanilla/regular"
+				}
+			}
+		},
+		"wet": {
+			"true": {
+				"textures": {
+					"soil": "firmalife:blocks/potting_soil_wet"
+				}
+			},
+			"false": {
+				"textures": {
+					"soil": "firmalife:blocks/potting_soil_dry"
 				}
 			}
 		},

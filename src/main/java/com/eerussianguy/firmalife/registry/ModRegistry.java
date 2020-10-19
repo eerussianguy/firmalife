@@ -16,10 +16,7 @@ import net.minecraftforge.registries.IForgeRegistryEntry;
 import net.minecraftforge.registries.RegistryBuilder;
 
 import com.eerussianguy.firmalife.blocks.*;
-import com.eerussianguy.firmalife.init.DryingRecipe;
-import com.eerussianguy.firmalife.init.FoodDataFL;
-import com.eerussianguy.firmalife.init.FruitTreeFL;
-import com.eerussianguy.firmalife.init.OvenRecipe;
+import com.eerussianguy.firmalife.init.*;
 import com.eerussianguy.firmalife.items.ItemFoodFL;
 import com.eerussianguy.firmalife.items.ItemRoastedCocoaBeans;
 import com.eerussianguy.firmalife.te.TELeafMat;
@@ -55,6 +52,12 @@ public class ModRegistry
     public static final ItemMisc COCOA_POWDER = Helpers.getNull();
     @GameRegistry.ObjectHolder("vanilla")
     public static final ItemMisc VANILLA = Helpers.getNull();
+    @GameRegistry.ObjectHolder("cinnamon")
+    public static final ItemMisc CINNAMON = Helpers.getNull();
+    @GameRegistry.ObjectHolder("cinnamon_bark")
+    public static final ItemMisc CINNAMON_BARK = Helpers.getNull();
+    @GameRegistry.ObjectHolder("ground_cinnamon")
+    public static final ItemMisc GROUND_CINNAMON = Helpers.getNull();
     @GameRegistry.ObjectHolder("planter")
     public static final ItemMisc PLANTER = Helpers.getNull();
     @GameRegistry.ObjectHolder("oven")
@@ -65,6 +68,12 @@ public class ModRegistry
     public static final BlockOvenChimney OVEN_CHIMNEY = Helpers.getNull();
     @GameRegistry.ObjectHolder("leaf_mat")
     public static final BlockLeafMat LEAF_MAT = Helpers.getNull();
+    @GameRegistry.ObjectHolder("cinnamon_log")
+    public static final BlockCinnamonLog CINNAMON_LOG = Helpers.getNull();
+    @GameRegistry.ObjectHolder("cinnamon_leaves")
+    public static final BlockCinnamonLeaves CINNAMON_LEAVES = Helpers.getNull();
+    @GameRegistry.ObjectHolder("cinnamon_sapling")
+    public static final BlockCinnamonSapling CINNAMON_SAPLING = Helpers.getNull();
 
     private static ImmutableList<Item> allEasyItems;
     private static ImmutableList<ItemBlock> allIBs;
@@ -123,6 +132,9 @@ public class ModRegistry
         easyItems.add(register(r, "fruit_leaf", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
         easyItems.add(register(r, "planter", new ItemMisc(Size.NORMAL, Weight.MEDIUM), CT_MISC));
         easyItems.add(register(r, "vanilla", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
+        easyItems.add(register(r, "cinnamon_bark", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
+        easyItems.add(register(r, "cinnamon", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
+        easyItems.add(register(r, "ground_cinnamon", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
         allEasyItems = easyItems.build();
 
         ModRegistry.getAllIBs().forEach((x) -> {
@@ -152,7 +164,10 @@ public class ModRegistry
         NormalIBs.add(register(r, "oven_wall", new BlockOvenWall(), CT_DECORATIONS));
         NormalIBs.add(register(r, "oven_chimney", new BlockOvenChimney(), CT_DECORATIONS));
         NormalIBs.add(register(r, "leaf_mat", new BlockLeafMat(), CT_DECORATIONS));
-        planters.add(register(r, "vanilla_planter", new BlockPlanter(() -> ModRegistry.VANILLA, 1)));
+        NormalIBs.add(register(r, "cinnamon_log", new BlockCinnamonLog(), CT_WOOD));
+        NormalIBs.add(register(r, "cinnamon_leaves", new BlockCinnamonLeaves(), CT_WOOD));
+        NormalIBs.add(register(r, "cinnamon_sapling", new BlockCinnamonSapling(), CT_WOOD));
+        planters.add(register(r, "vanilla_planter", new BlockPlanter(() -> ModRegistry.VANILLA, PlantsFL.VANILLA_PLANT, 1), CT_FLORA));
 
         register(TEOven.class, "oven");
         register(TELeafMat.class, "leaf_mat");

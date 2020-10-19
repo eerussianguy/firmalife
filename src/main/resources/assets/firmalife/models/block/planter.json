@@ -3,7 +3,7 @@
 	"textures": {
 		"0": "blocks/hardened_clay",
 		"1": "#plant",
-		"2": "tfc:blocks/stonetypes/dirt/andesite",
+		"2": "#soil",
 		"particle": "blocks/hardened_clay"
 	},
 	"elements": [

@@ -1,6 +1,7 @@
 package com.eerussianguy.firmalife.registry;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockLeaves;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.renderer.color.BlockColors;
@@ -25,8 +26,8 @@ import com.eerussianguy.firmalife.te.TEOven;
 import com.eerussianguy.firmalife.te.TESRLeafMat;
 import com.eerussianguy.firmalife.te.TESROven;
 import net.dries007.tfc.client.GrassColorHandler;
-import net.dries007.tfc.objects.blocks.BlockPlacedHide;
 import net.dries007.tfc.objects.blocks.agriculture.BlockFruitTreeLeaves;
+import net.dries007.tfc.objects.blocks.wood.BlockSaplingTFC;
 
 @SideOnly(Side.CLIENT)
 @Mod.EventBusSubscriber(value = {Side.CLIENT}, modid = FirmaLife.MOD_ID)
@@ -45,6 +46,9 @@ public class ClientRegisterEventsFL
             ModelLoader.setCustomStateMapper(leaves, new StateMap.Builder().ignore(BlockFruitTreeLeaves.DECAYABLE).ignore(BlockFruitTreeLeaves.HARVESTABLE).build());
         for (BlockPlanter planter : ModRegistry.getAllPlanters())
             ModelLoader.setCustomStateMapper(planter, new StateMap.Builder().ignore(StatePropertiesFL.CAN_GROW).build());
+        ModelLoader.setCustomStateMapper(ModRegistry.CINNAMON_LOG, new StateMap.Builder().ignore(StatePropertiesFL.CAN_GROW).build());
+        ModelLoader.setCustomStateMapper(ModRegistry.CINNAMON_LEAVES, new StateMap.Builder().ignore(BlockLeaves.DECAYABLE).build());
+        ModelLoader.setCustomStateMapper(ModRegistry.CINNAMON_SAPLING, new StateMap.Builder().ignore(BlockSaplingTFC.STAGE).build());
 
         ClientRegistry.bindTileEntitySpecialRenderer(TEOven.class, new TESROven());
         ClientRegistry.bindTileEntitySpecialRenderer(TELeafMat.class, new TESRLeafMat());
@@ -61,6 +65,10 @@ public class ClientRegisterEventsFL
                 event.getBlockColors().colorMultiplier(((ItemBlock) stack.getItem()).getBlock().getStateFromMeta(stack.getMetadata()), null, null, tintIndex),
             ModRegistry.getAllFruitLeaves().toArray(new BlockFruitTreeLeaves[0])
         );
+
+        itemColors.registerItemColorHandler((stack, tintIndex) ->
+                event.getBlockColors().colorMultiplier(((ItemBlock) stack.getItem()).getBlock().getStateFromMeta(stack.getMetadata()), null, null, tintIndex),
+            ModRegistry.CINNAMON_LEAVES);
     }
 
     @SubscribeEvent
@@ -71,5 +79,6 @@ public class ClientRegisterEventsFL
         IBlockColor foliageColor = GrassColorHandler::computeGrassColor;
 
         blockColors.registerBlockColorHandler(foliageColor, ModRegistry.getAllFruitLeaves().toArray(new Block[0]));
+        blockColors.registerBlockColorHandler(foliageColor, ModRegistry.CINNAMON_LEAVES);
     }
 }

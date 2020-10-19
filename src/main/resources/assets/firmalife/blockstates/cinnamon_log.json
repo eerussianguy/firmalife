@@ -1,0 +1,39 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"textures": {
+			"side": "firmalife:blocks/cinnamon_log",
+			"top": "firmalife:blocks/cinnamon_log_top",
+			"particle": "firmalife:blocks/cinnamon_log"
+		},
+		"model": "firmalife:log_thin"
+	},
+	"variants": {
+		"grown": {
+			"true": {
+				"textures": {
+					"particle": "firmalife:blocks/cinnamon_log",
+					"side": "firmalife:blocks/cinnamon_log"
+				}
+			},
+			"false": {
+				"textures": {
+					"particle": "firmalife:blocks/cinnamon_log_stripped",
+					"side": "firmalife:blocks/cinnamon_log_stripped"
+				},
+				"model": "firmalife:log_thinner"
+			}
+		},
+		"connected": {
+			"true": {
+				"model": "firmalife:log_connected"
+			},
+			"false": {}
+		},
+		"inventory": [{}],
+		"normal": [{
+			"transform": "forge:default-block",
+			"model": "firmalife:log_thin"
+		}]
+	}
+}

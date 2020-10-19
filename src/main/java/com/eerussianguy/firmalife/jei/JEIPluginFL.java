@@ -3,8 +3,6 @@ package com.eerussianguy.firmalife.jei;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.xml.soap.Text;
-
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextComponentTranslation;
 
