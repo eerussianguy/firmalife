@@ -206,36 +206,43 @@ public class BlockClimateStation extends Block implements IItemSize
         return returnValue;
     }
 
+    public boolean isMultiblockValid(World world, BlockPos pos, IBlockState state)
+    {
+        int arcs = numberOfGoodArcs(world, pos, state);
+        EnumFacing facing = state.getValue(FACING);
+        EnumFacing wallFace = null;
+        BlockPos startPos = null;
+        if (world.getBlockState(pos.offset(facing.rotateY())).getBlock() instanceof BlockGreenhouseWall)
+        {
+            wallFace = facing.rotateY();
+            startPos = pos.offset(facing.rotateY());
+        }
+        else if (world.getBlockState(pos.offset(facing.rotateYCCW())).getBlock() instanceof BlockGreenhouseWall)
+        {
+            wallFace = facing.rotateYCCW();
+            startPos = pos.offset(facing.rotateYCCW());
+        }
+        else
+        {
+            return false;
+        }
+        if (isGoodEndWallSide(world, startPos, wallFace, facing))
+        {
+            if (isGoodEndWallSide(world, startPos.offset(wallFace.getOpposite(), arcs + 1), wallFace.getOpposite(), facing))
+            {
+                return arcs > 1;
+            }
+        }
+        return false;
+    }
+
+
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (!world.isRemote && hand == EnumHand.MAIN_HAND)
         {
-            int arcs = numberOfGoodArcs(world, pos, state);
-            EnumFacing facing = state.getValue(FACING);
-            EnumFacing wallFace = null;
-            BlockPos startPos = null;
-            if (world.getBlockState(pos.offset(facing.rotateY())).getBlock() instanceof BlockGreenhouseWall)
-            {
-                wallFace = facing.rotateY();
-                startPos = pos.offset(facing.rotateY());
-            }
-            else if (world.getBlockState(pos.offset(facing.rotateYCCW())).getBlock() instanceof BlockGreenhouseWall)
-            {
-                wallFace = facing.rotateYCCW();
-                startPos = pos.offset(facing.rotateYCCW());
-            }
-            else
-            {
-                return false;
-            }
-            if (isGoodEndWallSide(world, startPos, wallFace, facing))
-            {
-                if (isGoodEndWallSide(world, startPos.offset(wallFace.getOpposite(), arcs + 1), wallFace.getOpposite(), facing))
-                {
-                    world.setBlockState(pos, state.withProperty(STASIS, arcs > 1));
-                }
-            }
+            world.setBlockState(pos, state.withProperty(STASIS, isMultiblockValid(world, pos, state)));
             return true;
         }
         return false;
