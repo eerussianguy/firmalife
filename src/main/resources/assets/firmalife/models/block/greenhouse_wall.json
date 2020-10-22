@@ -1,9 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "firmalife:blocks/greenhouse_glass",
 		"1": "firmalife:blocks/greenhouse_steel",
-		"particle": "firmalife:blocks/greenhouse_glass"
+		"particle": "firmalife:blocks/greenhouse_steel"
 	},
 	"elements": [
 		{
@@ -30,15 +29,6 @@
 				"west": {"uv": [8, 0, 10, 16], "texture": "#1"},
 				"up": {"uv": [0, 0, 4, 2], "texture": "#1"},
 				"down": {"uv": [0, 0, 4, 2], "texture": "#1"}
-			}
-		},
-		{
-			"from": [1, 0, 2],
-			"to": [3, 16, 14],
-			"rotation": {"angle": 0, "axis": "y", "origin": [9, 8, 10]},
-			"faces": {
-				"east": {"uv": [14, 0, 2, 16], "texture": "#0"},
-				"west": {"uv": [2, 0, 14, 16], "texture": "#0"}
 			}
 		}
 	]

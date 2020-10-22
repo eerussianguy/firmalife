@@ -16,6 +16,7 @@ item.firmalife.vanilla.name=Vanilla
 item.firmalife.cinnamon.name=Cinnamon
 item.firmalife.cinnamon_bark.name=Cinnamon Bark
 item.firmalife.ground_cinnamon.name=Ground Cinnamon
+item.firmalife.greenhouse_door.name=Greenhouse Door
 
 tile.firmalife.cocoa_sapling.name=Cocoa Tree Sapling
 tile.firmalife.cocoa_trunk.name=Cocoa Tree Trunk
@@ -29,6 +30,10 @@ tile.firmalife.vanilla_planter.name=Vanilla Planter
 tile.firmalife.cinnamon_log.name=Cinnamon Log
 tile.firmalife.cinnamon_leaves.name=Cinnamon Leaves
 tile.firmalife.cinnamon_sapling.name=Cinnamon Sapling
+tile.firmalife.greenhouse_wall.name=Greenhouse Wall
+tile.firmalife.greenhouse_door.name=Greenhouse Door
+tile.firmalife.greenhouse_roof.name=Greenhouse Roof
+tile.firmalife.climate_station.name=Climate Station
 
 item.tfc.ore.halite.name=Halite
 

@@ -18,6 +18,7 @@ import net.minecraftforge.registries.RegistryBuilder;
 import com.eerussianguy.firmalife.blocks.*;
 import com.eerussianguy.firmalife.init.*;
 import com.eerussianguy.firmalife.items.ItemFoodFL;
+import com.eerussianguy.firmalife.items.ItemGreenhouseDoor;
 import com.eerussianguy.firmalife.items.ItemRoastedCocoaBeans;
 import com.eerussianguy.firmalife.te.TELeafMat;
 import com.eerussianguy.firmalife.te.TEOven;
@@ -60,6 +61,9 @@ public class ModRegistry
     public static final ItemMisc GROUND_CINNAMON = Helpers.getNull();
     @GameRegistry.ObjectHolder("planter")
     public static final ItemMisc PLANTER = Helpers.getNull();
+    @GameRegistry.ObjectHolder("greenhouse_door")
+    public static final ItemGreenhouseDoor ITEM_GREENHOUSE_DOOR = Helpers.getNull();
+
     @GameRegistry.ObjectHolder("oven")
     public static final BlockOven OVEN = Helpers.getNull();
     @GameRegistry.ObjectHolder("oven_wall")
@@ -82,6 +86,7 @@ public class ModRegistry
     private static ImmutableList<BlockFruitTreeLeaves> allFruitLeaves = Helpers.getNull();
     private static ImmutableList<BlockFruitTreeSapling> allFruitSaps = Helpers.getNull();
     private static ImmutableList<BlockPlanter> allPlanters = Helpers.getNull();
+    private static ImmutableList<BlockGreenhouseDoor> allGreenhouseDoors = Helpers.getNull();
 
     public static ImmutableList<Item> getAllEasyItems()
     {
@@ -110,6 +115,11 @@ public class ModRegistry
         return allPlanters;
     }
 
+    public static ImmutableList<BlockGreenhouseDoor> getAllGreenhouseDoors()
+    {
+        return allGreenhouseDoors;
+    }
+
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         IForgeRegistry<Item> r = event.getRegistry();
@@ -135,6 +145,10 @@ public class ModRegistry
         easyItems.add(register(r, "cinnamon_bark", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
         easyItems.add(register(r, "cinnamon", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
         easyItems.add(register(r, "ground_cinnamon", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
+
+        allGreenhouseDoors.forEach((x) -> {
+            easyItems.add(register(r, "greenhouse_door", new ItemGreenhouseDoor(x), CT_DECORATIONS));
+        });
         allEasyItems = easyItems.build();
 
         ModRegistry.getAllIBs().forEach((x) -> {
@@ -152,6 +166,7 @@ public class ModRegistry
         ImmutableList.Builder<BlockFruitTreeLeaves> fruitLeaves = ImmutableList.builder();
         ImmutableList.Builder<BlockFruitTreeSapling> fruitSaps = ImmutableList.builder();
         ImmutableList.Builder<BlockPlanter> planters = ImmutableList.builder();
+        ImmutableList.Builder<BlockGreenhouseDoor> greenhouseDoor = ImmutableList.builder();
         for (FruitTreeFL fruitTree : FruitTreeFL.values())
         {
             String name = fruitTree.getName().toLowerCase();
@@ -167,7 +182,11 @@ public class ModRegistry
         NormalIBs.add(register(r, "cinnamon_log", new BlockCinnamonLog(), CT_WOOD));
         NormalIBs.add(register(r, "cinnamon_leaves", new BlockCinnamonLeaves(), CT_WOOD));
         NormalIBs.add(register(r, "cinnamon_sapling", new BlockCinnamonSapling(), CT_WOOD));
+        NormalIBs.add(register(r, "greenhouse_wall", new BlockGreenhouseWall(), CT_DECORATIONS));
+        NormalIBs.add(register(r, "greenhouse_roof", new BlockGreenhouseRoof(), CT_DECORATIONS));
+        NormalIBs.add(register(r, "climate_station", new BlockClimateStation(), CT_DECORATIONS));
         planters.add(register(r, "vanilla_planter", new BlockPlanter(() -> ModRegistry.VANILLA, PlantsFL.VANILLA_PLANT, 1), CT_FLORA));
+        greenhouseDoor.add(register(r, "greenhouse_door", new BlockGreenhouseDoor(), CT_DECORATIONS));
 
         register(TEOven.class, "oven");
         register(TELeafMat.class, "leaf_mat");
@@ -188,6 +207,7 @@ public class ModRegistry
         allPlanters.forEach((x) -> {
             IBs.add(new ItemBlockTFC(x));
         });
+        allGreenhouseDoors = greenhouseDoor.build();
 
         allIBs = IBs.build();
     }
