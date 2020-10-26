@@ -8,9 +8,12 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 import com.eerussianguy.firmalife.init.DryingRecipe;
 import com.eerussianguy.firmalife.init.OvenRecipe;
+import com.eerussianguy.firmalife.init.PlanterRegistry;
 import net.dries007.tfc.objects.inventory.ingredient.IIngredient;
+import net.dries007.tfc.objects.items.ItemSeedsTFC;
 import net.dries007.tfc.objects.items.ItemsTFC;
 import net.dries007.tfc.objects.items.food.ItemFoodTFC;
+import net.dries007.tfc.util.agriculture.Crop;
 import net.dries007.tfc.util.agriculture.Food;
 import net.dries007.tfc.util.calendar.ICalendar;
 
@@ -50,4 +53,20 @@ public class RecipesFL
             new DryingRecipe(IIngredient.of(new ItemStack(ModRegistry.CINNAMON_BARK)), new ItemStack(ModRegistry.CINNAMON), day).setRegistryName("cinnamon_bark")
         );
     }
+
+    @SubscribeEvent
+    public static void onRegisterPlanterQuadEvent(RegistryEvent.Register<PlanterRegistry> event)
+    {
+        IForgeRegistry<PlanterRegistry> r = event.getRegistry();
+        r.registerAll(
+            new PlanterRegistry(IIngredient.of(ItemSeedsTFC.get(Crop.BEET)), new ItemStack(ItemFoodTFC.get(Food.BEET)), 6).setRegistryName("beet"),
+            new PlanterRegistry(IIngredient.of(ItemSeedsTFC.get(Crop.CABBAGE)), new ItemStack(ItemFoodTFC.get(Food.CABBAGE)), 5).setRegistryName("cabbage"),
+            new PlanterRegistry(IIngredient.of(ItemSeedsTFC.get(Crop.CARROT)), new ItemStack(ItemFoodTFC.get(Food.CARROT)), 4).setRegistryName("carrot"),
+            new PlanterRegistry(IIngredient.of(ItemSeedsTFC.get(Crop.GARLIC)), new ItemStack(ItemFoodTFC.get(Food.GARLIC)), 4).setRegistryName("garlic"),
+            new PlanterRegistry(IIngredient.of(ItemSeedsTFC.get(Crop.ONION)), new ItemStack(ItemFoodTFC.get(Food.ONION)), 6).setRegistryName("onion"),
+            new PlanterRegistry(IIngredient.of(ItemSeedsTFC.get(Crop.POTATO)), new ItemStack(ItemFoodTFC.get(Food.POTATO)), 6).setRegistryName("potato"),
+            new PlanterRegistry(IIngredient.of(ItemSeedsTFC.get(Crop.SOYBEAN)), new ItemStack(ItemFoodTFC.get(Food.SOYBEAN)), 6).setRegistryName("soybean")
+            );
+    }
+
 }

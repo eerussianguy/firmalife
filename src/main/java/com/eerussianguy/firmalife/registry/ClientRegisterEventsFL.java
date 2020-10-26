@@ -23,10 +23,7 @@ import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.blocks.BlockGreenhouseDoor;
 import com.eerussianguy.firmalife.blocks.BlockPlanter;
 import com.eerussianguy.firmalife.init.StatePropertiesFL;
-import com.eerussianguy.firmalife.te.TELeafMat;
-import com.eerussianguy.firmalife.te.TEOven;
-import com.eerussianguy.firmalife.te.TESRLeafMat;
-import com.eerussianguy.firmalife.te.TESROven;
+import com.eerussianguy.firmalife.te.*;
 import net.dries007.tfc.client.GrassColorHandler;
 import net.dries007.tfc.objects.blocks.agriculture.BlockFruitTreeLeaves;
 import net.dries007.tfc.objects.blocks.wood.BlockSaplingTFC;
@@ -56,6 +53,7 @@ public class ClientRegisterEventsFL
 
         ClientRegistry.bindTileEntitySpecialRenderer(TEOven.class, new TESROven());
         ClientRegistry.bindTileEntitySpecialRenderer(TELeafMat.class, new TESRLeafMat());
+        ClientRegistry.bindTileEntitySpecialRenderer(TEQuadPlanter.class, new TESRQuadPlanter());
     }
 
     @SuppressWarnings("deprecation")

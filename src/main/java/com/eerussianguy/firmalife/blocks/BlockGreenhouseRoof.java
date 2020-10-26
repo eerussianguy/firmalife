@@ -1,14 +1,9 @@
 package com.eerussianguy.firmalife.blocks;
 
-import java.util.List;
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
-import com.google.common.collect.Lists;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -124,28 +119,11 @@ public class BlockGreenhouseRoof extends BlockGreenhouseWall
 
     @Override
     @SuppressWarnings("deprecation")
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean isActualState)
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
     {
-        for (AxisAlignedBB bb : getCollisionBoxList(state))
-            addCollisionBoxToList(pos, entityBox, collidingBoxes, bb);
-    }
-
-    private static List<AxisAlignedBB> getCollisionBoxList(IBlockState state)
-    {
-        List<AxisAlignedBB> list = Lists.newArrayList(BASE);
-        switch (state.getValue(FACING))
-        {
-            case NORTH:
-            default:
-                list.add(ROOF_SHAPE_NORTH);
-            case SOUTH:
-                list.add(ROOF_SHAPE_SOUTH);
-            case WEST:
-                list.add(ROOF_SHAPE_WEST);
-            case EAST:
-                list.add(ROOF_SHAPE_EAST);
-        }
-        return list;
+        if (blockState.getValue(TOP))
+            return BASE;
+        return FULL_BLOCK_AABB;
     }
 
 }

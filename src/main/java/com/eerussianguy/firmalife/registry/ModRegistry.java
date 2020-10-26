@@ -22,6 +22,7 @@ import com.eerussianguy.firmalife.items.ItemGreenhouseDoor;
 import com.eerussianguy.firmalife.items.ItemRoastedCocoaBeans;
 import com.eerussianguy.firmalife.te.TELeafMat;
 import com.eerussianguy.firmalife.te.TEOven;
+import com.eerussianguy.firmalife.te.TEQuadPlanter;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
 import net.dries007.tfc.objects.blocks.agriculture.BlockFruitTreeBranch;
@@ -185,10 +186,12 @@ public class ModRegistry
         NormalIBs.add(register(r, "greenhouse_wall", new BlockGreenhouseWall(), CT_DECORATIONS));
         NormalIBs.add(register(r, "greenhouse_roof", new BlockGreenhouseRoof(), CT_DECORATIONS));
         NormalIBs.add(register(r, "climate_station", new BlockClimateStation(), CT_DECORATIONS));
+        NormalIBs.add(register(r, "quad_planter", new BlockQuadPlanter(), CT_DECORATIONS));
         planters.add(register(r, "vanilla_planter", new BlockPlanter(() -> ModRegistry.VANILLA, PlantsFL.VANILLA_PLANT, 1), CT_FLORA));
         greenhouseDoor.add(register(r, "greenhouse_door", new BlockGreenhouseDoor(), CT_DECORATIONS));
 
         register(TEOven.class, "oven");
+        register(TEQuadPlanter.class, "quad_planter");
         register(TELeafMat.class, "leaf_mat");
 
         allNormalIBs = NormalIBs.build();
@@ -217,6 +220,7 @@ public class ModRegistry
     {
         newRegistry(RegNames.OVEN_RECIPE, OvenRecipe.class);
         newRegistry(RegNames.DRYING_RECIPE, DryingRecipe.class);
+        newRegistry(RegNames.PLANTER_QUAD_REGISTRY, PlanterRegistry.class);
     }
 
     private static <T extends Block> T register(IForgeRegistry<Block> r, String name, T block, CreativeTabs ct)

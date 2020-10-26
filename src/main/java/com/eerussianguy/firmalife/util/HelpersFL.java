@@ -16,5 +16,4 @@ public class HelpersFL
         Set<String> toolClasses = stack.getItem().getToolClasses(stack);
         return toolClasses.contains(toolClass);
     }
-
 }
