@@ -1,0 +1,7 @@
+{
+  "parent": "block/orientable_vertical",
+  "textures": {
+    "front": "blocks/melon_top",
+    "side": "blocks/melon_side"
+  }
+}

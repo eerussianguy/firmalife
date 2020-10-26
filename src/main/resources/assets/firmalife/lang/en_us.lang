@@ -18,6 +18,8 @@ tile.firmalife.cocoa_branch.name=Cocoa Tree Branch
 tile.firmalife.oven.name=Oven
 tile.firmalife.oven_wall.name=Oven Wall
 tile.firmalife.oven_chimney.name=Oven Chimney
+tile.firmalife.pumpkin_fruit.name=Pumpkin
+tile.firmalife.melon_fruit.name=Melon
 
 item.tfc.ore.halite.name=Halite
 
@@ -45,3 +47,6 @@ tile.tfc.ore.halite.gabbro.name=Gabbro Halite
 
 tooltip.firmalife.hours=hours
 jei.category.firmalife.oven=Oven
+
+item.firmalife.crop.seeds.pumpkin.name=Pumpkin Seeds
+item.firmalife.crop.seeds.melon.name=Melon Seeds

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "facing=north": { "model": "firmalife:melon_fruit", "x": 90 },
+    "facing=south": { "model": "firmalife:melon_fruit", "x": 270 },
+    "facing=west":  { "model": "firmalife:melon_fruit", "x": 270, "y": 90 },
+    "facing=east":  { "model": "firmalife:melon_fruit", "x": 90, "y": 90 },
+    "facing=up":    { "model": "firmalife:melon_fruit" },
+    "facing=down":  { "model": "firmalife:melon_fruit", "x": 180 }
+  }
+}
