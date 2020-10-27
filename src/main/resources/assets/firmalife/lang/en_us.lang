@@ -36,6 +36,8 @@ tile.firmalife.greenhouse_roof.name=Greenhouse Roof
 tile.firmalife.climate_station.name=Climate Station
 tile.firmalife.quad_planter.name=Quad Planter
 
+fluid.yeast_starter=Yeast Starter
+
 item.tfc.ore.halite.name=Halite
 
 tile.tfc.ore.halite.chalk.name=Chalk Halite

@@ -1,5 +1,7 @@
 package com.eerussianguy.firmalife.registry;
 
+import javax.annotation.Nonnull;
+
 import com.google.common.collect.ImmutableList;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
@@ -8,6 +10,8 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -23,12 +27,14 @@ import com.eerussianguy.firmalife.items.ItemRoastedCocoaBeans;
 import com.eerussianguy.firmalife.te.TELeafMat;
 import com.eerussianguy.firmalife.te.TEOven;
 import com.eerussianguy.firmalife.te.TEQuadPlanter;
+import net.dries007.tfc.TerraFirmaCraft;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
 import net.dries007.tfc.objects.blocks.agriculture.BlockFruitTreeBranch;
 import net.dries007.tfc.objects.blocks.agriculture.BlockFruitTreeLeaves;
 import net.dries007.tfc.objects.blocks.agriculture.BlockFruitTreeSapling;
 import net.dries007.tfc.objects.blocks.agriculture.BlockFruitTreeTrunk;
+import net.dries007.tfc.objects.fluids.properties.FluidWrapper;
 import net.dries007.tfc.objects.items.ItemMisc;
 import net.dries007.tfc.objects.items.itemblock.ItemBlockTFC;
 import net.dries007.tfc.util.Helpers;
@@ -79,6 +85,9 @@ public class ModRegistry
     public static final BlockCinnamonLeaves CINNAMON_LEAVES = Helpers.getNull();
     @GameRegistry.ObjectHolder("cinnamon_sapling")
     public static final BlockCinnamonSapling CINNAMON_SAPLING = Helpers.getNull();
+
+    private static final ResourceLocation STILL = new ResourceLocation(TerraFirmaCraft.MOD_ID, "blocks/fluid_still");
+    private static final ResourceLocation FLOW = new ResourceLocation(TerraFirmaCraft.MOD_ID, "blocks/fluid_flow");
 
     private static ImmutableList<Item> allEasyItems;
     private static ImmutableList<ItemBlock> allIBs;
@@ -213,6 +222,8 @@ public class ModRegistry
         allGreenhouseDoors = greenhouseDoor.build();
 
         allIBs = IBs.build();
+
+        registerFluid(new Fluid("yeast_starter", STILL, FLOW, 0xFFa79464));
     }
 
     @SubscribeEvent
@@ -261,5 +272,11 @@ public class ModRegistry
     private static <T extends IForgeRegistryEntry<T>> void newRegistry(ResourceLocation name, Class<T> tClass)
     {
         IForgeRegistry<T> r = new RegistryBuilder<T>().setName(name).allowModification().setType(tClass).create();
+    }
+
+    private static void registerFluid(@Nonnull Fluid newFluid)
+    {
+        FluidRegistry.registerFluid(newFluid);
+        FluidRegistry.addBucketForFluid(newFluid);
     }
 }
