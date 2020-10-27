@@ -140,6 +140,27 @@ public class ModRegistry
         easyItems.add(register(r, "milk_chocolate", new ItemFoodFL(FoodDataFL.CHOCOLATE), CT_FOOD));
         easyItems.add(register(r, "white_chocolate", new ItemFoodFL(FoodDataFL.CHOCOLATE), CT_FOOD));
         easyItems.add(register(r, "cocoa_beans", new ItemFoodFL(FoodDataFL.COCOA_BEANS), CT_FOOD));
+        //Dried Berries
+        easyItems.add(register(r,"dried_banana", new ItemFoodFL(FoodDataFL.DRIED_BANANA), CT_FOOD));
+        easyItems.add(register(r,"dried_blackberry", new ItemFoodFL(FoodDataFL.DRIED_BLACKBERRY), CT_FOOD));
+        easyItems.add(register(r,"dried_blueberry", new ItemFoodFL(FoodDataFL.DRIED_BLUEBERRY), CT_FOOD));
+        easyItems.add(register(r,"dried_bunch_berry", new ItemFoodFL(FoodDataFL.DRIED_BUNCH_BERRY), CT_FOOD));
+        easyItems.add(register(r,"dried_cherry", new ItemFoodFL(FoodDataFL.DRIED_CHERRY), CT_FOOD));
+        easyItems.add(register(r,"dried_cloud_berry", new ItemFoodFL(FoodDataFL.DRIED_CLOUD_BERRY), CT_FOOD));
+        easyItems.add(register(r,"dried_cranberry", new ItemFoodFL(FoodDataFL.DRIED_CRANBERRY), CT_FOOD));
+        easyItems.add(register(r,"dried_elderberry", new ItemFoodFL(FoodDataFL.DRIED_ELDERBERRY), CT_FOOD));
+        easyItems.add(register(r,"dried_gooseberry", new ItemFoodFL(FoodDataFL.DRIED_GOOSEBERRY), CT_FOOD));
+        easyItems.add(register(r,"dried_green_apple", new ItemFoodFL(FoodDataFL.DRIED_GREEN_APPLE), CT_FOOD));
+        easyItems.add(register(r,"dried_lemon", new ItemFoodFL(FoodDataFL.DRIED_LEMON), CT_FOOD));
+        easyItems.add(register(r,"dried_olive", new ItemFoodFL(FoodDataFL.DRIED_OLIVE), CT_FOOD));
+        easyItems.add(register(r,"dried_orange", new ItemFoodFL(FoodDataFL.DRIED_ORANGE), CT_FOOD));
+        easyItems.add(register(r,"dried_peach", new ItemFoodFL(FoodDataFL.DRIED_PEACH), CT_FOOD));
+        easyItems.add(register(r,"dried_plum", new ItemFoodFL(FoodDataFL.DRIED_PLUM), CT_FOOD));
+        easyItems.add(register(r,"dried_raspberry", new ItemFoodFL(FoodDataFL.DRIED_RASPBERRY), CT_FOOD));
+        easyItems.add(register(r,"dried_red_apple", new ItemFoodFL(FoodDataFL.DRIED_RED_APPLE), CT_FOOD));
+        easyItems.add(register(r,"dried_snow_berry", new ItemFoodFL(FoodDataFL.DRIED_SNOW_BERRY), CT_FOOD));
+        easyItems.add(register(r,"dried_strawberry", new ItemFoodFL(FoodDataFL.DRIED_STRAWBERRY), CT_FOOD));
+        easyItems.add(register(r,"dried_wintergreen_berry", new ItemFoodFL(FoodDataFL.DRIED_WINTERGREEN_BERRY), CT_FOOD));
         //Misc Items
         easyItems.add(register(r, "dried_cocoa_beans", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
         easyItems.add(register(r, "roasted_cocoa_beans", new ItemRoastedCocoaBeans(), CT_MISC));
