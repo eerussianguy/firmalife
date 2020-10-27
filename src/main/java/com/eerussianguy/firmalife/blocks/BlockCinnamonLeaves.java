@@ -33,7 +33,7 @@ public class BlockCinnamonLeaves extends BlockLeavesTFC
     @Override
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
-        int chance = 5; // this should be config
+        int chance = 10; // this should be config
         if (RANDOM.nextInt(101) < chance)
         {
             drops.add(new ItemStack(ModRegistry.CINNAMON_SAPLING));
@@ -59,7 +59,7 @@ public class BlockCinnamonLeaves extends BlockLeavesTFC
                     return;
             }
         }
-        world.setBlockToAir(pos);
+        world.destroyBlock(pos, true);
     }
 
     @Override
