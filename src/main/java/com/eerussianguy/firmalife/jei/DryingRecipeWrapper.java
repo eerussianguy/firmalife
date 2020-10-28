@@ -22,7 +22,7 @@ public class DryingRecipeWrapper extends SimpleRecipeWrapper
     {
         float x = 60f;
         float y = 4f;
-        String text = (DryingRecipe.getDuration(recipe) / ICalendar.TICKS_IN_HOUR < 24) ?
+        String text = (DryingRecipe.getDuration(recipe) / ICalendar.TICKS_IN_HOUR < 48) ?
                 DryingRecipe.getDuration(recipe) / ICalendar.TICKS_IN_HOUR + " " + I18n.format("tooltip.firmalife.hours") :
                 DryingRecipe.getDuration(recipe) / ICalendar.TICKS_IN_DAY + " " + I18n.format("tooltip.firmalife.days");
 
