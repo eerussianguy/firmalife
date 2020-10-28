@@ -6,4 +6,9 @@ public class FoodDataFL
 {
     public static final FoodData CHOCOLATE = new FoodData(4, 0.0F, 0.2F, 0.0F, 0.0F, 0.0F, 0.0F, 0.2F, 1.1F);
     public static final FoodData COCOA_BEANS = new FoodData(4, 0.0F, 0.1F, 0.1F, 0.0F, 0.0F, 0.1F, 0.0F, 0.5F);
+    public static final FoodData UNCRACKED_NUT = new FoodData(4, 0.0F, 0.1F, 0.1F, 0.0F, 0.0F, 0.0F, 0.0F, 0.4F);
+    public static final FoodData NUT = new FoodData(4, 0.0F, 0.3F, 0.3F, 0.0F, 0.0F, 0.1F, 0.0F, 1.0F);
+    public static final FoodData ROASTED_NUT = new FoodData(4, 0.0F, 0.5F, 0.3F, 0.0F, 0.0F, 0.1F, 0.0F, 1.1F);
+    public static final FoodData DOUGH = new FoodData(4, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 3.0F);
+    public static final FoodData FLOUR = new FoodData(4, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.5F);
 }

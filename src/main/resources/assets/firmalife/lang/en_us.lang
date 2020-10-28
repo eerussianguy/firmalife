@@ -17,6 +17,16 @@ item.firmalife.cinnamon.name=Cinnamon
 item.firmalife.cinnamon_bark.name=Cinnamon Bark
 item.firmalife.ground_cinnamon.name=Ground Cinnamon
 item.firmalife.greenhouse_door.name=Greenhouse Door
+item.firmalife.acorn_fruit.name=Acorn Fruit
+item.firmalife.acorns.name=Acorns
+item.firmalife.chestnuts.name=Chestnuts
+item.firmalife.roasted_chestnuts.name=Roasted Chestnuts
+item.firmalife.chestnut_dough.name=Chestnut Dough
+item.firmalife.chestnut_flour.name=Chestnut Flour
+item.firmalife.pecans.name=Pecans
+item.firmalife.pecan_nuts.name=Pecan Nuts
+item.firmalife.pinecone.name=Pinecone
+item.firmalife.pine_nuts.name=Pine nuts
 
 tile.firmalife.cocoa_sapling.name=Cocoa Tree Sapling
 tile.firmalife.cocoa_trunk.name=Cocoa Tree Trunk
