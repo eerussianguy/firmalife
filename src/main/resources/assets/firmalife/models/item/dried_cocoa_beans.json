@@ -1,6 +1,6 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "firmalife:items/dried_cocoa_beans"
+    "layer0": "firmalife:items/dried/dried_cocoa_beans"
   }
 }

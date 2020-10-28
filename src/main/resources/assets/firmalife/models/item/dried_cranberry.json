@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "firmalife:items/dried/dried_cranberry"
+  }
+}
