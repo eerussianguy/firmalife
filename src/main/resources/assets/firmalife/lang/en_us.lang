@@ -10,6 +10,13 @@ item.firmalife.milk_chocolate_blend.name=Milk Chocolate Blend
 item.firmalife.cocoa_powder.name=Cocoa Powder
 item.firmalife.cocoa_butter.name=Cocoa Butter
 item.firmalife.peel.name=Peel
+item.firmalife.fruit_leaf.name=Fruit Leaf
+item.firmalife.planter.name=Planter
+item.firmalife.vanilla.name=Vanilla
+item.firmalife.cinnamon.name=Cinnamon
+item.firmalife.cinnamon_bark.name=Cinnamon Bark
+item.firmalife.ground_cinnamon.name=Ground Cinnamon
+item.firmalife.greenhouse_door.name=Greenhouse Door
 
 tile.firmalife.cocoa_sapling.name=Cocoa Tree Sapling
 tile.firmalife.cocoa_trunk.name=Cocoa Tree Trunk
@@ -20,6 +27,18 @@ tile.firmalife.oven_wall.name=Oven Wall
 tile.firmalife.oven_chimney.name=Oven Chimney
 tile.firmalife.pumpkin_fruit.name=Pumpkin
 tile.firmalife.melon_fruit.name=Melon
+tile.firmalife.leaf_mat.name=Leaf Mat
+tile.firmalife.vanilla_planter.name=Vanilla Planter
+tile.firmalife.cinnamon_log.name=Cinnamon Log
+tile.firmalife.cinnamon_leaves.name=Cinnamon Leaves
+tile.firmalife.cinnamon_sapling.name=Cinnamon Sapling
+tile.firmalife.greenhouse_wall.name=Greenhouse Wall
+tile.firmalife.greenhouse_door.name=Greenhouse Door
+tile.firmalife.greenhouse_roof.name=Greenhouse Roof
+tile.firmalife.climate_station.name=Climate Station
+tile.firmalife.quad_planter.name=Quad Planter
+
+fluid.yeast_starter=Yeast Starter
 
 item.tfc.ore.halite.name=Halite
 
@@ -44,9 +63,18 @@ tile.tfc.ore.halite.rhyolite.name=Rhyolite Halite
 tile.tfc.ore.halite.granite.name=Granite Halite
 tile.tfc.ore.halite.diorite.name=Diorite Halite
 tile.tfc.ore.halite.gabbro.name=Gabbro Halite
+tile.tfc.plants.vanilla.name=Wild Vanilla
 
 tooltip.firmalife.hours=hours
+tooltip.firmalife.days=days
 jei.category.firmalife.oven=Oven
+<<<<<<< HEAD
 
 item.firmalife.crop.seeds.pumpkin.name=Pumpkin Seeds
 item.firmalife.crop.seeds.melon.name=Melon Seeds
+=======
+jei.category.firmalife.drying=Drying
+jei.tooltip.firmalife.fruit_leaf=Fruit leaves are dropped by breaking any fruit tree's leaves!
+jei.tooltip.firmalife.cocoa_powder=You can get cocoa powder by crafting cocoa butter.
+vein.halite.name=Halite
+>>>>>>> master

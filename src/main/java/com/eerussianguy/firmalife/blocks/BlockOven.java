@@ -20,7 +20,6 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -36,7 +35,6 @@ import net.dries007.tfc.client.particle.TFCParticles;
 import net.dries007.tfc.objects.advancements.TFCTriggers;
 import net.dries007.tfc.objects.blocks.property.ILightableBlock;
 import net.dries007.tfc.objects.items.ItemFireStarter;
-import net.dries007.tfc.objects.items.ItemsTFC;
 import net.dries007.tfc.util.DamageSourcesTFC;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.fuel.FuelManager;

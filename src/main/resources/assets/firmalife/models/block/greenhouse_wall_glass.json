@@ -1,0 +1,18 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "firmalife:blocks/greenhouse_glass",
+		"particle": "firmalife:blocks/greenhouse_glass"
+	},
+	"elements": [
+		{
+			"from": [1, 0, 2],
+			"to": [3, 16, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [9, 8, 10]},
+			"faces": {
+				"east": {"uv": [14, 0, 2, 16], "texture": "#0"},
+				"west": {"uv": [2, 0, 14, 16], "texture": "#0"}
+			}
+		}
+	]
+}

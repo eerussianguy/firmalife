@@ -1,0 +1,44 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "firmalife:greenhouse_wall",
+		"particle": "firmalife:blocks/greenhouse_steel"
+	},
+	"variants": {
+		"glass": {
+			"true": {
+				"submodel": "firmalife:greenhouse_wall_glass"
+			},
+			"false": {
+			}
+		},
+		"top": {
+			"true": {
+				"model": "firmalife:greenhouse_wall_top"
+			},
+			"false": {
+				"model": "firmalife:greenhouse_wall"
+			}
+		},
+		"facing": {
+			"north": {
+				"y": 270
+			},
+			"south": {
+				"y": 90
+			},
+			"west": {
+				"y": 180
+			},
+			"east": {
+				"y": 0
+			}
+		},
+		"inventory": [{
+		}],
+		"normal": [{
+		   "transform": "forge:default-block",
+		   "model": "firmalife:greenhouse_wall"
+		}]
+	}
+}

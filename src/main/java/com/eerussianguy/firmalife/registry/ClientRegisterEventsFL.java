@@ -8,6 +8,8 @@ import net.minecraft.block.BlockStem;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.BlockDoor;
+import net.minecraft.block.BlockLeaves;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
@@ -29,10 +31,13 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import com.eerussianguy.firmalife.FirmaLife;
-import com.eerussianguy.firmalife.te.TEOven;
-import com.eerussianguy.firmalife.te.TESROven;
+import com.eerussianguy.firmalife.blocks.BlockGreenhouseDoor;
+import com.eerussianguy.firmalife.blocks.BlockPlanter;
+import com.eerussianguy.firmalife.init.StatePropertiesFL;
+import com.eerussianguy.firmalife.te.*;
 import net.dries007.tfc.client.GrassColorHandler;
 import net.dries007.tfc.objects.blocks.agriculture.BlockFruitTreeLeaves;
+import net.dries007.tfc.objects.blocks.wood.BlockSaplingTFC;
 
 import java.awt.*;
 import java.util.Arrays;
@@ -58,8 +63,17 @@ public class ClientRegisterEventsFL
         //use vanilla stem rendering for stemcrops
         for (BlockStemCrop block : ModRegistry.getAllCropBlocks())
             ModelLoader.setCustomStateMapper(block, new VanillaStemStateMapper());
+        for (BlockPlanter planter : ModRegistry.getAllPlanters())
+            ModelLoader.setCustomStateMapper(planter, new StateMap.Builder().ignore(StatePropertiesFL.CAN_GROW).build());
+        for (BlockGreenhouseDoor door : ModRegistry.getAllGreenhouseDoors())
+            ModelLoader.setCustomStateMapper(door, new StateMap.Builder().ignore(BlockDoor.POWERED).build());
+        ModelLoader.setCustomStateMapper(ModRegistry.CINNAMON_LOG, new StateMap.Builder().ignore(StatePropertiesFL.CAN_GROW).build());
+        ModelLoader.setCustomStateMapper(ModRegistry.CINNAMON_LEAVES, new StateMap.Builder().ignore(BlockLeaves.DECAYABLE).build());
+        ModelLoader.setCustomStateMapper(ModRegistry.CINNAMON_SAPLING, new StateMap.Builder().ignore(BlockSaplingTFC.STAGE).build());
 
         ClientRegistry.bindTileEntitySpecialRenderer(TEOven.class, new TESROven());
+        ClientRegistry.bindTileEntitySpecialRenderer(TELeafMat.class, new TESRLeafMat());
+        ClientRegistry.bindTileEntitySpecialRenderer(TEQuadPlanter.class, new TESRQuadPlanter());
     }
 
     @SuppressWarnings("deprecation")
@@ -73,6 +87,10 @@ public class ClientRegisterEventsFL
                 event.getBlockColors().colorMultiplier(((ItemBlock) stack.getItem()).getBlock().getStateFromMeta(stack.getMetadata()), null, null, tintIndex),
             ModRegistry.getAllFruitLeaves().toArray(new BlockFruitTreeLeaves[0])
         );
+
+        itemColors.registerItemColorHandler((stack, tintIndex) ->
+                event.getBlockColors().colorMultiplier(((ItemBlock) stack.getItem()).getBlock().getStateFromMeta(stack.getMetadata()), null, null, tintIndex),
+            ModRegistry.CINNAMON_LEAVES);
     }
 
     @SubscribeEvent
@@ -100,5 +118,6 @@ public class ClientRegisterEventsFL
         {
             blockColors.registerBlockColorHandler((state, world, os, tintIndex) -> 0xCC7400 , block);
         }
+        blockColors.registerBlockColorHandler(foliageColor, ModRegistry.CINNAMON_LEAVES);
     }
 }

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "firmalife:roasted_cocoa_beans"
+    }
+  ],
+  "result": {
+    "item": "firmalife:cocoa_butter",
+    "count": 1
+  }
+}

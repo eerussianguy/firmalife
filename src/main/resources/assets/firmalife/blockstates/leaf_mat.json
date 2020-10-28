@@ -1,0 +1,15 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "firmalife:leaf_mat",
+    "textures": {
+      "texture": "firmalife:blocks/leaf_mat",
+	  "particle": "firmalife:blocks/leaf_mat"
+    }
+  },
+  "variants": {
+    "normal": [
+      {}
+    ]
+  }
+}

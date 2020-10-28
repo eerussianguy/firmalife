@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "firmalife:fruit_leaf"
+    }
+  },
+  "result": {
+    "item": "firmalife:leaf_mat",
+    "count": 1
+  }
+}

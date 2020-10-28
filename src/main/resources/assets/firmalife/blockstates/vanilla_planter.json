@@ -1,0 +1,45 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"textures": {
+			"plant": "tfc:blocks/plants/vanilla/regular",
+			"soil": "firmalife:blocks/potting_soil_dry",
+			"particle": "tfc:blocks/plants/vanilla/regular"
+		},
+		"model": "firmalife:vanilla_planter"
+	},
+	"variants": {
+		"grown": {
+			"true": {
+				"textures": {
+					"particle": "tfc:blocks/plants/vanilla/flower",
+					"plant": "tfc:blocks/plants/vanilla/flower"
+				}
+			},
+			"false": {
+				"textures": {
+					"particle": "tfc:blocks/plants/vanilla/regular",
+					"plant": "tfc:blocks/plants/vanilla/regular"
+				}
+			}
+		},
+		"wet": {
+			"true": {
+				"textures": {
+					"soil": "firmalife:blocks/potting_soil_wet"
+				}
+			},
+			"false": {
+				"textures": {
+					"soil": "firmalife:blocks/potting_soil_dry"
+				}
+			}
+		},
+		"inventory": [{
+		}],
+		"normal": [{
+		   "transform": "forge:default-block",
+		   "model": "firmalife:vanilla_planter"
+		}]
+	}
+}

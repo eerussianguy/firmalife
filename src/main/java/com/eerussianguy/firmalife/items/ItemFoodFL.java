@@ -1,9 +1,11 @@
 package com.eerussianguy.firmalife.items;
 
-import net.dries007.tfc.api.capability.food.*;
-
 import net.minecraft.item.ItemFood;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
+
+import net.dries007.tfc.api.capability.food.FoodData;
+import net.dries007.tfc.api.capability.food.FoodHandler;
+import net.dries007.tfc.api.capability.food.IItemFoodTFC;
 
 public class ItemFoodFL extends ItemFood implements IItemFoodTFC
 {
