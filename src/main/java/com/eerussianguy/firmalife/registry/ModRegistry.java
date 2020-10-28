@@ -88,6 +88,8 @@ public class ModRegistry
     public static final BlockStemFruit PUMPKIN_FRUIT = Helpers.getNull();
     @GameRegistry.ObjectHolder("melon_fruit")
     public static final BlockStemFruit MELON_FRUIT = Helpers.getNull();
+    @GameRegistry.ObjectHolder("pumpkin_scooped")
+    public static final ItemFoodFL PUMPKIN_SCOOPED = Helpers.getNull();
     @GameRegistry.ObjectHolder("leaf_mat")
     public static final BlockLeafMat LEAF_MAT = Helpers.getNull();
     @GameRegistry.ObjectHolder("cinnamon_log")
@@ -162,6 +164,7 @@ public class ModRegistry
         easyItems.add(register(r, "milk_chocolate", new ItemFoodFL(FoodDataFL.CHOCOLATE), CT_FOOD));
         easyItems.add(register(r, "white_chocolate", new ItemFoodFL(FoodDataFL.CHOCOLATE), CT_FOOD));
         easyItems.add(register(r, "cocoa_beans", new ItemFoodFL(FoodDataFL.COCOA_BEANS), CT_FOOD));
+        easyItems.add(register(r, "pumpkin_scooped", new ItemFoodFL(FoodDataFL.PUMPKIN), CT_FOOD));
         //Misc Items
         easyItems.add(register(r, "dried_cocoa_beans", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
         easyItems.add(register(r, "roasted_cocoa_beans", new ItemRoastedCocoaBeans(), CT_MISC));
