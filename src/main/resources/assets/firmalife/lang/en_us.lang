@@ -25,6 +25,8 @@ tile.firmalife.cocoa_branch.name=Cocoa Tree Branch
 tile.firmalife.oven.name=Oven
 tile.firmalife.oven_wall.name=Oven Wall
 tile.firmalife.oven_chimney.name=Oven Chimney
+tile.firmalife.pumpkin_fruit.name=Pumpkin
+tile.firmalife.melon_fruit.name=Melon
 tile.firmalife.leaf_mat.name=Leaf Mat
 tile.firmalife.vanilla_planter.name=Vanilla Planter
 tile.firmalife.cinnamon_log.name=Cinnamon Log
@@ -66,7 +68,13 @@ tile.tfc.plants.vanilla.name=Wild Vanilla
 tooltip.firmalife.hours=hours
 tooltip.firmalife.days=days
 jei.category.firmalife.oven=Oven
+<<<<<<< HEAD
+
+item.firmalife.crop.seeds.pumpkin.name=Pumpkin Seeds
+item.firmalife.crop.seeds.melon.name=Melon Seeds
+=======
 jei.category.firmalife.drying=Drying
 jei.tooltip.firmalife.fruit_leaf=Fruit leaves are dropped by breaking any fruit tree's leaves!
 jei.tooltip.firmalife.cocoa_powder=You can get cocoa powder by crafting cocoa butter.
 vein.halite.name=Halite
+>>>>>>> master

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "facing=north": { "model": "firmalife:pumpkin_fruit", "x": 90 },
+    "facing=south": { "model": "firmalife:pumpkin_fruit", "x": 270 },
+    "facing=west":  { "model": "firmalife:pumpkin_fruit", "x": 270, "y": 90 },
+    "facing=east":  { "model": "firmalife:pumpkin_fruit", "x": 90, "y": 90 },
+    "facing=up":    { "model": "firmalife:pumpkin_fruit" },
+    "facing=down":  { "model": "firmalife:pumpkin_fruit", "x": 180 }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "mature=false": { "model": "pumpkin_stem_growth2" },
+    "mature=true": { "model": "pumpkin_stem_growth6" }
+  }
+}

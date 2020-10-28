@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "mature=false": { "model": "melon_stem_growth2" },
+    "mature=true": { "model": "melon_stem_growth6" }
+  }
+}
