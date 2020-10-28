@@ -50,7 +50,27 @@ public class RecipesFL
         int day = ICalendar.TICKS_IN_DAY;
         r.registerAll(
             new DryingRecipe(IIngredient.of(new ItemStack(ModRegistry.COCOA_BEANS)), new ItemStack(ModRegistry.DRIED_COCOA_BEANS), day * 5).setRegistryName("cocoa_beans"),
-            new DryingRecipe(IIngredient.of(new ItemStack(ModRegistry.CINNAMON_BARK)), new ItemStack(ModRegistry.CINNAMON), day).setRegistryName("cinnamon_bark")
+            new DryingRecipe(IIngredient.of(new ItemStack(ModRegistry.CINNAMON_BARK)), new ItemStack(ModRegistry.CINNAMON), day).setRegistryName("cinnamon_bark"),
+            new DryingRecipe(IIngredient.of(new ItemStack(ItemFoodTFC.get(Food.BANANA))), new ItemStack(ModRegistry.DRIED_BANANA), day / 2).setRegistryName("banana"),
+            new DryingRecipe(IIngredient.of(new ItemStack(ItemFoodTFC.get(Food.BLACKBERRY))), new ItemStack(ModRegistry.DRIED_BLACKBERRY), day / 2).setRegistryName("blackberry"),
+            new DryingRecipe(IIngredient.of(new ItemStack(ItemFoodTFC.get(Food.BLUEBERRY))), new ItemStack(ModRegistry.DRIED_BLUEBERRY), day / 2).setRegistryName("blueberry"),
+            new DryingRecipe(IIngredient.of(new ItemStack(ItemFoodTFC.get(Food.BUNCH_BERRY))), new ItemStack(ModRegistry.DRIED_BUNCH_BERRY), day / 2).setRegistryName("bunch_berry"),
+            new DryingRecipe(IIngredient.of(new ItemStack(ItemFoodTFC.get(Food.CHERRY))), new ItemStack(ModRegistry.DRIED_CHERRY), day / 2).setRegistryName("cherry"),
+            new DryingRecipe(IIngredient.of(new ItemStack(ItemFoodTFC.get(Food.CLOUD_BERRY))), new ItemStack(ModRegistry.DRIED_CLOUD_BERRY), day / 2).setRegistryName("cloud_berry"),
+            new DryingRecipe(IIngredient.of(new ItemStack(ItemFoodTFC.get(Food.CRANBERRY))), new ItemStack(ModRegistry.DRIED_CRANBERRY), day / 2).setRegistryName("cranberry"),
+            new DryingRecipe(IIngredient.of(new ItemStack(ItemFoodTFC.get(Food.ELDERBERRY))), new ItemStack(ModRegistry.DRIED_ELDERBERRY), day / 2).setRegistryName("elderberry"),
+            new DryingRecipe(IIngredient.of(new ItemStack(ItemFoodTFC.get(Food.GOOSEBERRY))), new ItemStack(ModRegistry.DRIED_GOOSEBERRY), day / 2).setRegistryName("gooseberry"),
+            new DryingRecipe(IIngredient.of(new ItemStack(ItemFoodTFC.get(Food.GREEN_APPLE))), new ItemStack(ModRegistry.DRIED_GREEN_APPLE), day / 2).setRegistryName("green_apple"),
+            new DryingRecipe(IIngredient.of(new ItemStack(ItemFoodTFC.get(Food.LEMON))), new ItemStack(ModRegistry.DRIED_LEMON), day / 2).setRegistryName("lemon"),
+            new DryingRecipe(IIngredient.of(new ItemStack(ItemFoodTFC.get(Food.OLIVE))), new ItemStack(ModRegistry.DRIED_OLIVE), day / 2).setRegistryName("olive"),
+            new DryingRecipe(IIngredient.of(new ItemStack(ItemFoodTFC.get(Food.ORANGE))), new ItemStack(ModRegistry.DRIED_ORANGE), day / 2).setRegistryName("orange"),
+            new DryingRecipe(IIngredient.of(new ItemStack(ItemFoodTFC.get(Food.PEACH))), new ItemStack(ModRegistry.DRIED_PEACH), day / 2).setRegistryName("peach"),
+            new DryingRecipe(IIngredient.of(new ItemStack(ItemFoodTFC.get(Food.PLUM))), new ItemStack(ModRegistry.DRIED_PLUM), day / 2).setRegistryName("plum"),
+            new DryingRecipe(IIngredient.of(new ItemStack(ItemFoodTFC.get(Food.RASPBERRY))), new ItemStack(ModRegistry.DRIED_RASPBERRY), day / 2).setRegistryName("raspberry"),
+            new DryingRecipe(IIngredient.of(new ItemStack(ItemFoodTFC.get(Food.RED_APPLE))), new ItemStack(ModRegistry.DRIED_RED_APPLE), day / 2).setRegistryName("red_apple"),
+            new DryingRecipe(IIngredient.of(new ItemStack(ItemFoodTFC.get(Food.SNOW_BERRY))), new ItemStack(ModRegistry.DRIED_SNOW_BERRY), day / 2).setRegistryName("snow_berry"),
+            new DryingRecipe(IIngredient.of(new ItemStack(ItemFoodTFC.get(Food.STRAWBERRY))), new ItemStack(ModRegistry.DRIED_STRAWBERRY), day / 2).setRegistryName("strawberry"),
+            new DryingRecipe(IIngredient.of(new ItemStack(ItemFoodTFC.get(Food.WINTERGREEN_BERRY))), new ItemStack(ModRegistry.DRIED_WINTERGREEN_BERRY), day / 2).setRegistryName("wintergreen_berry")
         );
     }
 
