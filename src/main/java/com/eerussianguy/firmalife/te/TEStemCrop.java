@@ -1,5 +1,6 @@
 package com.eerussianguy.firmalife.te;
 
+import net.dries007.tfc.Constants;
 import net.dries007.tfc.objects.te.TEBase;
 import net.dries007.tfc.objects.te.TECropBase;
 import net.dries007.tfc.objects.te.TETickCounter;
@@ -22,7 +23,7 @@ public class TEStemCrop extends TECropBase
 {
     //new Random is bad here, but it breaks if I pass in the block Random
     //and I still don't know why after a day of checking so that's what it is
-    private EnumFacing fruitDirection = EnumFacing.Plane.HORIZONTAL.random(new Random());
+    private EnumFacing fruitDirection = EnumFacing.Plane.HORIZONTAL.random(Constants.RNG);
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound tag)

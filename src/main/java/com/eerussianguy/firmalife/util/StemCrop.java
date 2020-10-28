@@ -11,7 +11,6 @@ import javax.annotation.Nonnull;
 
 import com.eerussianguy.firmalife.registry.ModRegistry;
 import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
 import net.dries007.tfc.api.types.ICrop;
@@ -21,13 +20,15 @@ import net.dries007.tfc.world.classic.worldgen.WorldGenWildCrops;
 
 import java.util.function.Supplier;
 
-public enum CropFL implements ICrop
+public enum StemCrop implements ICrop
 {
+
+
     // temp definitions copied from tfc crops
     // pumpkin is maize
     // melon is sugarcane
-    PUMPKIN(ModRegistry::getPumpkin, 10f, 19f, 40f, 45f, 110f, 140f, 400f, 450f, 6, 0.6f),
-    MELON(ModRegistry::getMelon, 12f, 20f, 38f, 45f, 50f, 160f, 410f, 450f, 8, 0.5f);
+    PUMPKIN(() -> ModRegistry.PUMPKIN_FRUIT, 10f, 19f, 40f, 45f, 110f, 140f, 400f, 450f, 6, 0.6f),
+    MELON(() -> ModRegistry.MELON_FRUIT, 12f, 20f, 38f, 45f, 50f, 160f, 410f, 450f, 8, 0.5f);
 
     static
     {
@@ -47,7 +48,7 @@ public enum CropFL implements ICrop
     private final int growthStages; // the number of blockstates the crop has for growing, ignoring wild state
     private final float growthTime; // Time is measured in % of months, scales with calendar month length
 
-    CropFL(Supplier<Block> cropBlock, float tempMinAlive, float tempMinGrow, float tempMaxGrow, float tempMaxAlive, float rainMinAlive, float rainMinGrow, float rainMaxGrow, float rainMaxAlive, int growthStages, float growthTime)
+    StemCrop(Supplier<Block> cropBlock, float tempMinAlive, float tempMinGrow, float tempMaxGrow, float tempMaxAlive, float rainMinAlive, float rainMinGrow, float rainMaxGrow, float rainMaxAlive, int growthStages, float growthTime)
     {
         this.cropBlock = cropBlock;
 

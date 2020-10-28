@@ -3,16 +3,14 @@ package com.eerussianguy.firmalife.registry;
 import com.eerussianguy.firmalife.blocks.*;
 import com.eerussianguy.firmalife.items.ItemBlockRot;
 import com.eerussianguy.firmalife.te.TEStemCrop;
-import com.eerussianguy.firmalife.util.CropFL;
+import com.eerussianguy.firmalife.util.StemCrop;
 import javax.annotation.Nonnull;
 
 import com.google.common.collect.ImmutableList;
 import net.dries007.tfc.objects.blocks.agriculture.*;
 import net.dries007.tfc.objects.items.ItemSeedsTFC;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.MapColor;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntity;
@@ -30,7 +28,6 @@ import net.minecraftforge.registries.RegistryBuilder;
 import com.eerussianguy.firmalife.init.FoodDataFL;
 import com.eerussianguy.firmalife.init.FruitTreeFL;
 import com.eerussianguy.firmalife.init.OvenRecipe;
-import com.eerussianguy.firmalife.blocks.*;
 import com.eerussianguy.firmalife.init.*;
 import com.eerussianguy.firmalife.items.ItemFoodFL;
 import com.eerussianguy.firmalife.items.ItemGreenhouseDoor;
@@ -45,7 +42,6 @@ import net.dries007.tfc.objects.blocks.agriculture.BlockFruitTreeBranch;
 import net.dries007.tfc.objects.blocks.agriculture.BlockFruitTreeLeaves;
 import net.dries007.tfc.objects.blocks.agriculture.BlockFruitTreeSapling;
 import net.dries007.tfc.objects.blocks.agriculture.BlockFruitTreeTrunk;
-import net.dries007.tfc.objects.fluids.properties.FluidWrapper;
 import net.dries007.tfc.objects.items.ItemMisc;
 import net.dries007.tfc.objects.items.itemblock.ItemBlockTFC;
 import net.dries007.tfc.util.Helpers;
@@ -146,9 +142,6 @@ public class ModRegistry
 
     public static ImmutableList<BlockStemCrop> getAllCropBlocks() { return allCropBlocks; }
 
-    public static BlockStemFruit getPumpkin() { return PUMPKIN_FRUIT; }
-
-    public static BlockStemFruit getMelon() { return MELON_FRUIT; }
     public static ImmutableList<BlockPlanter> getAllPlanters()
     {
         return allPlanters;
@@ -195,15 +188,9 @@ public class ModRegistry
             registerIB(r, x);
         });
 
-        for(CropFL crop : CropFL.values())
+        for(StemCrop crop : StemCrop.values())
         {
-            ItemSeedsTFC item = new ItemSeedsTFC(crop);
-            String name = "crop/seeds/" + crop.name().toLowerCase();
-            item.setRegistryName(MOD_ID, name);
-            item.setCreativeTab(CT_FOOD);
-            item.setTranslationKey(MOD_ID + "." + name.replace('/', '.'));
-            r.register(item);
-            easyItems.add(item);
+            easyItems.add(register(r, "crop/seeds/" + crop.name().toLowerCase(),  new ItemSeedsTFC(crop), CT_FOOD));
         }
         allEasyItems = easyItems.build();
 
@@ -249,22 +236,10 @@ public class ModRegistry
         FoodIBs.add(register(r, "pumpkin_fruit", new BlockStemFruit(), CT_FLORA));
         FoodIBs.add(register(r, "melon_fruit", new BlockStemFruit(), CT_FLORA));
 
-        for(CropFL crop : CropFL.values())
+        for(StemCrop crop : StemCrop.values())
         {
-            String name = "crop/" + crop.name().toLowerCase();
-            String nameDead = "dead_crop/" + crop.name().toLowerCase();
-
-            BlockStemCrop block = BlockStemCrop.create(crop);
-            BlockCropDead blockDead = new BlockCropDead(crop);
-
-            block.setRegistryName(MOD_ID, name);
-            blockDead.setRegistryName(MOD_ID,nameDead);
-            block.setTranslationKey(MOD_ID + "." + name.replace('/', '.'));
-            blockDead.setTranslationKey(MOD_ID + "." + nameDead.replace('/', '.'));
-            r.register(block);
-            r.register(blockDead);
-            deadCrops.add(blockDead);
-            cropBlocks.add(block);
+            deadCrops.add(register(r,"dead_crop/" + crop.name().toLowerCase(), new BlockCropDead(crop)));
+            cropBlocks.add(register(r,"crop/" + crop.name().toLowerCase() , BlockStemCrop.create(crop)));
         }
 
         register(TEOven.class, "oven");

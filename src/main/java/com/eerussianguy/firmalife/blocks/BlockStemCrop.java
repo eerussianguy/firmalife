@@ -1,7 +1,7 @@
 package com.eerussianguy.firmalife.blocks;
 
 import com.eerussianguy.firmalife.te.TEStemCrop;
-import com.eerussianguy.firmalife.util.CropFL;
+import com.eerussianguy.firmalife.util.StemCrop;
 import net.dries007.tfc.objects.blocks.agriculture.BlockCropSimple;
 import net.dries007.tfc.util.Helpers;
 import net.minecraft.block.Block;
@@ -10,16 +10,12 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.ChunkCache;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.Chunk;
 
 import java.util.Random;
 
@@ -31,7 +27,7 @@ public abstract class BlockStemCrop extends BlockCropSimple
     //superconstructor requires getStageProperty to work
     //but we can't set the property until after the superconstructor
     //this is the workaround.
-    public static BlockStemCrop create(CropFL crop)
+    public static BlockStemCrop create(StemCrop crop)
     {
         PropertyInteger property = STAGE_MAP.get(crop.getMaxStage() + 1);
         return new BlockStemCrop(crop)
@@ -45,7 +41,7 @@ public abstract class BlockStemCrop extends BlockCropSimple
     }
 
 
-    public BlockStemCrop(CropFL crop)
+    public BlockStemCrop(StemCrop crop)
     {
         super(crop, false);
         setDefaultState(getDefaultState().withProperty(FACING,EnumFacing.UP));
@@ -76,7 +72,7 @@ public abstract class BlockStemCrop extends BlockCropSimple
                 TEStemCrop te = Helpers.getTE(worldIn, pos, TEStemCrop.class);
                 EnumFacing fruitDirection = te.getFruitDirection();
                 BlockPos targetPos = pos.offset(fruitDirection);
-                CropFL crop = (CropFL) getCrop();
+                StemCrop crop = (StemCrop) getCrop();
                 if(crop.getCropBlock().canPlaceBlockAt(worldIn, targetPos))
                 {
                     worldIn.setBlockState(targetPos, crop.getCropBlock().getDefaultState().withProperty(BlockStemFruit.FACING,fruitDirection.getOpposite()));
@@ -144,7 +140,7 @@ public abstract class BlockStemCrop extends BlockCropSimple
             TEStemCrop te = Helpers.getTE(worldIn, pos, TEStemCrop.class);
             EnumFacing fruitDirection = te.getFruitDirection();
             BlockPos targetPos = pos.offset(fruitDirection);
-            CropFL crop = (CropFL)getCrop();
+            StemCrop crop = (StemCrop)getCrop();
             if(crop.getCropBlock().canPlaceBlockAt(worldIn, targetPos)) //spawn fruit
             {
                 worldIn.setBlockState(targetPos, crop.getCropBlock().getDefaultState().withProperty(BlockStemFruit.FACING, fruitDirection.getOpposite()));
