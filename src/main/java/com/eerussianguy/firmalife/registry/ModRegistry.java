@@ -49,7 +49,47 @@ public class ModRegistry
     @GameRegistry.ObjectHolder("cocoa_beans")
     public static final ItemFoodFL COCOA_BEANS = Helpers.getNull();
     @GameRegistry.ObjectHolder("dried_cocoa_beans")
-    public static final ItemMisc DRIED_COCOA_BEANS = Helpers.getNull();
+    public static final ItemFoodFL DRIED_BANANA = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_blackberry")
+    public static final ItemFoodFL DRIED_BLACKBERRY = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_blueberry")
+    public static final ItemFoodFL DRIED_BLUEBERRY = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_bunch_berry")
+    public static final ItemFoodFL DRIED_BUNCH_BERRY = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_cherry")
+    public static final ItemFoodFL DRIED_CHERRY = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_cloud_berry")
+    public static final ItemFoodFL DRIED_CLOUD_BERRY = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_cranberry")
+    public static final ItemFoodFL DRIED_COCOA_BEANS = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_banana")
+    public static final ItemFoodFL DRIED_CRANBERRY = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_elderberry")
+    public static final ItemFoodFL DRIED_ELDERBERRY = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_gooseberry")
+    public static final ItemFoodFL DRIED_GOOSEBERRY = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_green_apple")
+    public static final ItemFoodFL DRIED_GREEN_APPLE = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_lemon")
+    public static final ItemFoodFL DRIED_LEMON = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_olive")
+    public static final ItemFoodFL DRIED_OLIVE = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_orange")
+    public static final ItemFoodFL DRIED_ORANGE = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_peach")
+    public static final ItemFoodFL DRIED_PEACH = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_plum")
+    public static final ItemFoodFL DRIED_PLUM = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_raspberry")
+    public static final ItemFoodFL DRIED_RASPBERRY = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_red_apple")
+    public static final ItemFoodFL DRIED_RED_APPLE = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_snow_berry")
+    public static final ItemFoodFL DRIED_SNOW_BERRY = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_strawberry")
+    public static final ItemFoodFL DRIED_STRAWBERRY = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_wintergreen_berry")
+    public static final ItemFoodFL DRIED_WINTERGREEN_BERRY = Helpers.getNull();
     @GameRegistry.ObjectHolder("roasted_cocoa_beans")
     public static final ItemMisc ROASTED_COCOA_BEANS = Helpers.getNull();
     @GameRegistry.ObjectHolder("peel")
@@ -147,6 +187,7 @@ public class ModRegistry
         easyItems.add(register(r,"dried_bunch_berry", new ItemFoodFL(FoodDataFL.DRIED_BUNCH_BERRY), CT_FOOD));
         easyItems.add(register(r,"dried_cherry", new ItemFoodFL(FoodDataFL.DRIED_CHERRY), CT_FOOD));
         easyItems.add(register(r,"dried_cloud_berry", new ItemFoodFL(FoodDataFL.DRIED_CLOUD_BERRY), CT_FOOD));
+        easyItems.add(register(r,"dried_cocoa_beans", new ItemFoodFL(FoodDataFL.DRIED_COCOA_BEANS), CT_FOOD));
         easyItems.add(register(r,"dried_cranberry", new ItemFoodFL(FoodDataFL.DRIED_CRANBERRY), CT_FOOD));
         easyItems.add(register(r,"dried_elderberry", new ItemFoodFL(FoodDataFL.DRIED_ELDERBERRY), CT_FOOD));
         easyItems.add(register(r,"dried_gooseberry", new ItemFoodFL(FoodDataFL.DRIED_GOOSEBERRY), CT_FOOD));
@@ -162,7 +203,6 @@ public class ModRegistry
         easyItems.add(register(r,"dried_strawberry", new ItemFoodFL(FoodDataFL.DRIED_STRAWBERRY), CT_FOOD));
         easyItems.add(register(r,"dried_wintergreen_berry", new ItemFoodFL(FoodDataFL.DRIED_WINTERGREEN_BERRY), CT_FOOD));
         //Misc Items
-        easyItems.add(register(r, "dried_cocoa_beans", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
         easyItems.add(register(r, "roasted_cocoa_beans", new ItemRoastedCocoaBeans(), CT_MISC));
         easyItems.add(register(r, "cocoa_butter", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
         easyItems.add(register(r, "cocoa_powder", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
