@@ -26,7 +26,8 @@ item.firmalife.chestnut_flour.name=Chestnut Flour
 item.firmalife.pecans.name=Pecans
 item.firmalife.pecan_nuts.name=Pecan Nuts
 item.firmalife.pinecone.name=Pinecone
-item.firmalife.pine_nuts.name=Pine nuts
+item.firmalife.pine_nuts.name=Pine Nuts
+item.firmalife.nut_hammer.name=Nut Hammer
 
 tile.firmalife.cocoa_sapling.name=Cocoa Tree Sapling
 tile.firmalife.cocoa_trunk.name=Cocoa Tree Trunk
