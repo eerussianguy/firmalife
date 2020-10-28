@@ -21,8 +21,6 @@ import java.util.Random;
 
 public class TEStemCrop extends TECropBase
 {
-    //new Random is bad here, but it breaks if I pass in the block Random
-    //and I still don't know why after a day of checking so that's what it is
     private EnumFacing fruitDirection = EnumFacing.Plane.HORIZONTAL.random(Constants.RNG);
 
     @Override
