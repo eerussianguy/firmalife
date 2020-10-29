@@ -1,5 +1,8 @@
 package com.eerussianguy.firmalife.registry;
 
+import com.eerussianguy.firmalife.util.KnappingFL;
+import net.dries007.tfc.objects.items.ItemsTFC;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
@@ -64,7 +67,10 @@ public class TFCRegistry
         event.getRegistry().registerAll(
             new KnappingRecipeSimple(KnappingType.CLAY, true, new ItemStack(ModRegistry.OVEN), "XXXXX","X   X","X   X","X   X","XXXXX").setRegistryName("clay_oven"),
             new KnappingRecipeSimple(KnappingType.CLAY, true, new ItemStack(ModRegistry.OVEN_CHIMNEY), "XX XX","X   X","X   X","X   X","X   X").setRegistryName("clay_oven_chimney"),
-            new KnappingRecipeSimple(KnappingType.CLAY, true, new ItemStack(ModRegistry.OVEN_WALL), "    X","   XX","   XX","  XXX","  XXX").setRegistryName("clay_oven_wall")
+            new KnappingRecipeSimple(KnappingType.CLAY, true, new ItemStack(ModRegistry.OVEN_WALL), "    X","   XX","   XX","  XXX","  XXX").setRegistryName("clay_oven_wall"),
+
+            new KnappingRecipeSimple(KnappingFL.PUMPKIN, true, new ItemStack(Blocks.LIT_PUMPKIN), "XXXXX", "X X X", "XXXXX", "X   X", "XXXXX").setRegistryName("pumpkin_lantern"),
+            new KnappingRecipeFood(KnappingFL.PUMPKIN, true, new ItemStack(ModRegistry.PUMPKIN_SCOOPED), "XXXXX", "X   X", "X   X", "X   X", "XXXXX").setRegistryName("pumpkin_scoop")
         );
     }
 
