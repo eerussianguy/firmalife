@@ -1,7 +1,7 @@
 package com.eerussianguy.firmalife.registry;
 
 import com.eerussianguy.firmalife.blocks.*;
-import com.eerussianguy.firmalife.items.ItemBlockRot;
+import com.eerussianguy.firmalife.items.*;
 import com.eerussianguy.firmalife.te.TEStemCrop;
 import com.eerussianguy.firmalife.util.StemCrop;
 import javax.annotation.Nonnull;
@@ -29,9 +29,6 @@ import com.eerussianguy.firmalife.init.FoodDataFL;
 import com.eerussianguy.firmalife.init.FruitTreeFL;
 import com.eerussianguy.firmalife.init.OvenRecipe;
 import com.eerussianguy.firmalife.init.*;
-import com.eerussianguy.firmalife.items.ItemFoodFL;
-import com.eerussianguy.firmalife.items.ItemGreenhouseDoor;
-import com.eerussianguy.firmalife.items.ItemRoastedCocoaBeans;
 import com.eerussianguy.firmalife.te.TELeafMat;
 import com.eerussianguy.firmalife.te.TEOven;
 import com.eerussianguy.firmalife.te.TEQuadPlanter;
@@ -97,6 +94,8 @@ public class ModRegistry
     public static final ItemFoodFL DRIED_STRAWBERRY = Helpers.getNull();
     @GameRegistry.ObjectHolder("dried_wintergreen_berry")
     public static final ItemFoodFL DRIED_WINTERGREEN_BERRY = Helpers.getNull();
+    @GameRegistry.ObjectHolder("chestnuts")
+    public static final ItemFoodFL CHESTNUTS = Helpers.getNull();
     @GameRegistry.ObjectHolder("roasted_cocoa_beans")
     public static final ItemMisc ROASTED_COCOA_BEANS = Helpers.getNull();
     @GameRegistry.ObjectHolder("peel")
@@ -244,7 +243,7 @@ public class ModRegistry
         easyItems.add(register(r, "milk_chocolate_blend", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
         easyItems.add(register(r, "white_chocolate_blend", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
         easyItems.add(register(r, "peel", new ItemMisc(Size.LARGE, Weight.VERY_HEAVY), CT_MISC));
-        easyItems.add(register(r, "nut_hammer", new ItemMisc(Size.LARGE, Weight.VERY_HEAVY), CT_MISC));
+        easyItems.add(register(r, "nut_hammer", new ItemNutHammer(), CT_MISC));
 
         easyItems.add(register(r, "fruit_leaf", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
         easyItems.add(register(r, "planter", new ItemMisc(Size.NORMAL, Weight.MEDIUM), CT_MISC));

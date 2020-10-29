@@ -107,6 +107,7 @@ public class TELeafMat extends TEInventory implements ITickable
                 inventory.setStackInSlot(0, CapabilityFood.updateFoodFromPrevious(input, recipe.getOutputItem(input)));
                 clear();
                 setAndUpdateSlots(0);
+                markForSync();
             }
         }
         markDirty();

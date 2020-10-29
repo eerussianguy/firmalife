@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidEvent;
@@ -16,7 +17,11 @@ import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+import com.eerussianguy.firmalife.util.CapPlayerDataFL;
+import com.eerussianguy.firmalife.util.PlayerDataFL;
 import net.dries007.tfc.Constants;
+import net.dries007.tfc.api.capability.player.CapabilityPlayerData;
+import net.dries007.tfc.api.capability.player.PlayerDataHandler;
 import net.dries007.tfc.objects.blocks.agriculture.BlockFruitTreeLeaves;
 import net.dries007.tfc.objects.fluids.FluidsTFC;
 
@@ -39,6 +44,7 @@ public class CommonEventHandlerFL
         }
     }
 
+    // this doesn't work right now -- needs to use ItemRightClick or something to that effect
     @SubscribeEvent
     public static void onFillBucketEvent(FluidEvent.FluidFillingEvent event)
     {
@@ -59,6 +65,19 @@ public class CommonEventHandlerFL
             IFluidTank tank = event.getTank();
             event.setCanceled(true);
             tank.fill(new FluidStack(fluid, Fluid.BUCKET_VOLUME), true);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onAttachEntityCapabilities(AttachCapabilitiesEvent<Entity> event)
+    {
+        if (event.getObject() instanceof EntityPlayer)
+        {
+            EntityPlayer player = (EntityPlayer) event.getObject();
+            if (!player.hasCapability(CapPlayerDataFL.CAPABILITY, null))
+            {
+                event.addCapability(CapPlayerDataFL.NAMESPACE, new PlayerDataFL());
+            }
         }
     }
 }

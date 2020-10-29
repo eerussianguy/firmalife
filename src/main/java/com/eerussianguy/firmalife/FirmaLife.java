@@ -9,6 +9,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 import com.eerussianguy.firmalife.init.VeinAdder;
 import com.eerussianguy.firmalife.proxy.CommonProxy;
+import com.eerussianguy.firmalife.util.CapPlayerDataFL;
 
 @Mod(modid = FirmaLife.MOD_ID, name = FirmaLife.MODNAME, version = FirmaLife.MODVERSION)
 public class FirmaLife {
@@ -33,6 +34,8 @@ public class FirmaLife {
         proxy.preInit(event);
 
         VeinAdder.ADDER.addVeins(event.getModConfigurationDirectory());
+
+        CapPlayerDataFL.preInit();
     }
 
     @Mod.EventHandler

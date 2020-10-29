@@ -48,6 +48,8 @@ item.firmalife.pecan_nuts.name=Pecan Nuts
 item.firmalife.pinecone.name=Pinecone
 item.firmalife.pine_nuts.name=Pine Nuts
 item.firmalife.nut_hammer.name=Nut Hammer
+item.firmalife.crop.seeds.pumpkin.name=Pumpkin Seeds
+item.firmalife.crop.seeds.melon.name=Melon Seeds
 
 tile.firmalife.cocoa_sapling.name=Cocoa Tree Sapling
 tile.firmalife.cocoa_trunk.name=Cocoa Tree Trunk
@@ -98,14 +100,9 @@ tile.tfc.plants.vanilla.name=Wild Vanilla
 
 tooltip.firmalife.hours=hours
 tooltip.firmalife.days=days
+tooltip.firmalife.refractory=You're doing this too often. Take a break.
 jei.category.firmalife.oven=Oven
-<<<<<<< HEAD
-
-item.firmalife.crop.seeds.pumpkin.name=Pumpkin Seeds
-item.firmalife.crop.seeds.melon.name=Melon Seeds
-=======
 jei.category.firmalife.drying=Drying
 jei.tooltip.firmalife.fruit_leaf=Fruit leaves are dropped by breaking any fruit tree's leaves!
 jei.tooltip.firmalife.cocoa_powder=You can get cocoa powder by crafting cocoa butter.
 vein.halite.name=Halite
->>>>>>> master
