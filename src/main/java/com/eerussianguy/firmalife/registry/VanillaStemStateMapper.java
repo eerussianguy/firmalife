@@ -53,10 +53,18 @@ public class VanillaStemStateMapper extends StateMapperBase
         map.remove(block.getStageProperty());
 
         //spoof a vanilla melon's blockstate
-        if(vanillaAge >= 0) {
+        if(vanillaAge >= 0)
+        {
             map.put(BlockStem.AGE, vanillaAge);
             map.remove(BlockStemCrop.FACING); //needed to get correct insertion order
             map.put(BlockStemCrop.FACING, EnumFacing.UP);
+        }
+        else if(map.get(BlockStemCrop.FACING) == EnumFacing.UP)
+        {
+            //this should never happen in reality but it is a possible blockstate
+            //so we have to include something here so that we don't get
+            //missing variant errors
+            map.put(BlockStemCrop.FACING, EnumFacing.NORTH);
         }
         //if vanillaAge is -1, then the crop is fully grown, so it keeps only the FACING property
 
