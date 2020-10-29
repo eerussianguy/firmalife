@@ -56,7 +56,47 @@ public class ModRegistry
     @GameRegistry.ObjectHolder("cocoa_beans")
     public static final ItemFoodFL COCOA_BEANS = Helpers.getNull();
     @GameRegistry.ObjectHolder("dried_cocoa_beans")
-    public static final ItemMisc DRIED_COCOA_BEANS = Helpers.getNull();
+    public static final ItemFoodFL DRIED_BANANA = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_blackberry")
+    public static final ItemFoodFL DRIED_BLACKBERRY = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_blueberry")
+    public static final ItemFoodFL DRIED_BLUEBERRY = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_bunch_berry")
+    public static final ItemFoodFL DRIED_BUNCH_BERRY = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_cherry")
+    public static final ItemFoodFL DRIED_CHERRY = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_cloud_berry")
+    public static final ItemFoodFL DRIED_CLOUD_BERRY = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_cranberry")
+    public static final ItemFoodFL DRIED_COCOA_BEANS = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_banana")
+    public static final ItemFoodFL DRIED_CRANBERRY = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_elderberry")
+    public static final ItemFoodFL DRIED_ELDERBERRY = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_gooseberry")
+    public static final ItemFoodFL DRIED_GOOSEBERRY = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_green_apple")
+    public static final ItemFoodFL DRIED_GREEN_APPLE = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_lemon")
+    public static final ItemFoodFL DRIED_LEMON = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_olive")
+    public static final ItemFoodFL DRIED_OLIVE = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_orange")
+    public static final ItemFoodFL DRIED_ORANGE = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_peach")
+    public static final ItemFoodFL DRIED_PEACH = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_plum")
+    public static final ItemFoodFL DRIED_PLUM = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_raspberry")
+    public static final ItemFoodFL DRIED_RASPBERRY = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_red_apple")
+    public static final ItemFoodFL DRIED_RED_APPLE = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_snow_berry")
+    public static final ItemFoodFL DRIED_SNOW_BERRY = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_strawberry")
+    public static final ItemFoodFL DRIED_STRAWBERRY = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_wintergreen_berry")
+    public static final ItemFoodFL DRIED_WINTERGREEN_BERRY = Helpers.getNull();
     @GameRegistry.ObjectHolder("roasted_cocoa_beans")
     public static final ItemMisc ROASTED_COCOA_BEANS = Helpers.getNull();
     @GameRegistry.ObjectHolder("peel")
@@ -165,8 +205,41 @@ public class ModRegistry
         easyItems.add(register(r, "white_chocolate", new ItemFoodFL(FoodDataFL.CHOCOLATE), CT_FOOD));
         easyItems.add(register(r, "cocoa_beans", new ItemFoodFL(FoodDataFL.COCOA_BEANS), CT_FOOD));
         easyItems.add(register(r, "pumpkin_scooped", new ItemFoodFL(FoodDataFL.PUMPKIN), CT_FOOD));
+        //Dried Berries
+        easyItems.add(register(r,"dried_banana", new ItemFoodFL(FoodDataFL.DRIED_FRUIT_DECAY), CT_FOOD));
+        easyItems.add(register(r,"dried_blackberry", new ItemFoodFL(FoodDataFL.DRIED_FRUIT_CATEGORY), CT_FOOD));
+        easyItems.add(register(r,"dried_blueberry", new ItemFoodFL(FoodDataFL.DRIED_FRUIT_CATEGORY), CT_FOOD));
+        easyItems.add(register(r,"dried_bunch_berry", new ItemFoodFL(FoodDataFL.DRIED_FRUIT_SATURATION), CT_FOOD));
+        easyItems.add(register(r,"dried_cherry", new ItemFoodFL(FoodDataFL.DRIED_FRUIT_CATEGORY), CT_FOOD));
+        easyItems.add(register(r,"dried_cloud_berry", new ItemFoodFL(FoodDataFL.DRIED_FRUIT_SATURATION), CT_FOOD));
+        easyItems.add(register(r,"dried_cocoa_beans", new ItemFoodFL(FoodDataFL.DRIED_COCOA_BEANS), CT_FOOD));
+        easyItems.add(register(r,"dried_cranberry", new ItemFoodFL(FoodDataFL.DRIED_FRUIT_DECAY), CT_FOOD));
+        easyItems.add(register(r,"dried_elderberry", new ItemFoodFL(FoodDataFL.DRIED_FRUIT_CATEGORY), CT_FOOD));
+        easyItems.add(register(r,"dried_gooseberry", new ItemFoodFL(FoodDataFL.DRIED_FRUIT_SATURATION), CT_FOOD));
+        easyItems.add(register(r,"dried_green_apple", new ItemFoodFL(FoodDataFL.DRIED_FRUIT_DECAY), CT_FOOD));
+        easyItems.add(register(r,"dried_lemon", new ItemFoodFL(FoodDataFL.DRIED_FRUIT_DECAY), CT_FOOD));
+        easyItems.add(register(r,"dried_olive", new ItemFoodFL(FoodDataFL.DRIED_FRUIT_DECAY), CT_FOOD));
+        easyItems.add(register(r,"dried_orange", new ItemFoodFL(FoodDataFL.DRIED_FRUIT_DECAY), CT_FOOD));
+        easyItems.add(register(r,"dried_peach", new ItemFoodFL(FoodDataFL.DRIED_FRUIT_SATURATION), CT_FOOD));
+        easyItems.add(register(r,"dried_plum", new ItemFoodFL(FoodDataFL.DRIED_FRUIT_SATURATION), CT_FOOD));
+        easyItems.add(register(r,"dried_raspberry", new ItemFoodFL(FoodDataFL.DRIED_FRUIT_SATURATION), CT_FOOD));
+        easyItems.add(register(r,"dried_red_apple", new ItemFoodFL(FoodDataFL.DRIED_FRUIT_DECAY), CT_FOOD));
+        easyItems.add(register(r,"dried_snow_berry", new ItemFoodFL(FoodDataFL.DRIED_FRUIT_CATEGORY), CT_FOOD));
+        easyItems.add(register(r,"dried_strawberry", new ItemFoodFL(FoodDataFL.DRIED_FRUIT_SATURATION), CT_FOOD));
+        easyItems.add(register(r,"dried_wintergreen_berry", new ItemFoodFL(FoodDataFL.DRIED_FRUIT_CATEGORY), CT_FOOD));
+
+        easyItems.add(register(r, "acorn_fruit", new ItemFoodFL(FoodDataFL.UNCRACKED_NUT), CT_FOOD));
+        easyItems.add(register(r, "acorns", new ItemFoodFL(FoodDataFL.NUT), CT_FOOD));
+        easyItems.add(register(r, "chestnuts", new ItemFoodFL(FoodDataFL.UNCRACKED_NUT), CT_FOOD));
+        easyItems.add(register(r, "roasted_chestnuts", new ItemFoodFL(FoodDataFL.ROASTED_NUT), CT_FOOD));
+        easyItems.add(register(r, "chestnut_dough", new ItemFoodFL(FoodDataFL.DOUGH), CT_FOOD));
+        easyItems.add(register(r, "chestnut_flour", new ItemFoodFL(FoodDataFL.FLOUR), CT_FOOD));
+        easyItems.add(register(r, "pecan_nuts", new ItemFoodFL(FoodDataFL.UNCRACKED_NUT), CT_FOOD));
+        easyItems.add(register(r, "pecans", new ItemFoodFL(FoodDataFL.NUT), CT_FOOD));
+        easyItems.add(register(r, "pinecone", new ItemFoodFL(FoodDataFL.UNCRACKED_NUT), CT_FOOD));
+        easyItems.add(register(r, "pine_nuts", new ItemFoodFL(FoodDataFL.NUT), CT_FOOD));
+
         //Misc Items
-        easyItems.add(register(r, "dried_cocoa_beans", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
         easyItems.add(register(r, "roasted_cocoa_beans", new ItemRoastedCocoaBeans(), CT_MISC));
         easyItems.add(register(r, "cocoa_butter", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
         easyItems.add(register(r, "cocoa_powder", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
@@ -174,6 +247,7 @@ public class ModRegistry
         easyItems.add(register(r, "milk_chocolate_blend", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
         easyItems.add(register(r, "white_chocolate_blend", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
         easyItems.add(register(r, "peel", new ItemMisc(Size.LARGE, Weight.VERY_HEAVY), CT_MISC));
+        easyItems.add(register(r, "nut_hammer", new ItemMisc(Size.LARGE, Weight.VERY_HEAVY), CT_MISC));
 
         easyItems.add(register(r, "fruit_leaf", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
         easyItems.add(register(r, "planter", new ItemMisc(Size.NORMAL, Weight.MEDIUM), CT_MISC));
