@@ -7,12 +7,19 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
 import com.eerussianguy.firmalife.init.DryingRecipe;
+import com.eerussianguy.firmalife.init.NutTrees;
 import com.eerussianguy.firmalife.init.OvenRecipe;
 import com.eerussianguy.firmalife.init.PlanterRegistry;
+import net.dries007.tfc.api.registries.TFCRegistries;
+import net.dries007.tfc.api.types.Tree;
+import net.dries007.tfc.objects.blocks.BlocksTFC;
+import net.dries007.tfc.objects.blocks.wood.BlockLeavesTFC;
+import net.dries007.tfc.objects.blocks.wood.BlockLogTFC;
 import net.dries007.tfc.objects.inventory.ingredient.IIngredient;
 import net.dries007.tfc.objects.items.ItemSeedsTFC;
 import net.dries007.tfc.objects.items.ItemsTFC;
 import net.dries007.tfc.objects.items.food.ItemFoodTFC;
+import net.dries007.tfc.types.DefaultTrees;
 import net.dries007.tfc.util.agriculture.Crop;
 import net.dries007.tfc.util.agriculture.Food;
 import net.dries007.tfc.util.calendar.ICalendar;
@@ -89,4 +96,23 @@ public class RecipesFL
             );
     }
 
+    @SubscribeEvent
+    @SuppressWarnings("ConstantConditions")
+    public static void onRegisterNutTreeEvent(RegistryEvent.Register<NutTrees> event)
+    {
+        IForgeRegistry<NutTrees> r = event.getRegistry();
+        Tree chestnut = TFCRegistries.TREES.getValue(DefaultTrees.CHESTNUT);
+        Tree oak = TFCRegistries.TREES.getValue(DefaultTrees.OAK);
+        Tree hickory = TFCRegistries.TREES.getValue(DefaultTrees.HICKORY);
+        Tree pine = TFCRegistries.TREES.getValue(DefaultTrees.PINE);
+        Tree palm = TFCRegistries.TREES.getValue(DefaultTrees.PALM);
+        r.registerAll(
+            new NutTrees(BlockLogTFC.get(chestnut), BlockLeavesTFC.get(chestnut), new ItemStack(ModRegistry.CHESTNUTS)).setRegistryName("chestnut"),
+            new NutTrees(BlockLogTFC.get(oak), BlockLeavesTFC.get(oak), new ItemStack(ModRegistry.ACORNS)).setRegistryName("oak"),
+            new NutTrees(BlockLogTFC.get(hickory), BlockLeavesTFC.get(hickory), new ItemStack(ModRegistry.PECAN_NUTS)).setRegistryName("hickory"),
+            new NutTrees(BlockLogTFC.get(pine), BlockLeavesTFC.get(pine), new ItemStack(ModRegistry.PINECONE)).setRegistryName("pine"),
+            new NutTrees(BlockLogTFC.get(palm), BlockLeavesTFC.get(palm), new ItemStack(ModRegistry.COCONUT)).setRegistryName("coconut")
+
+            );
+    }
 }

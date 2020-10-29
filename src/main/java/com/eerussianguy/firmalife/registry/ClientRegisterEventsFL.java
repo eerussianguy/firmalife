@@ -38,6 +38,7 @@ import com.eerussianguy.firmalife.te.*;
 import net.dries007.tfc.client.GrassColorHandler;
 import net.dries007.tfc.objects.blocks.agriculture.BlockFruitTreeLeaves;
 import net.dries007.tfc.objects.blocks.wood.BlockSaplingTFC;
+import net.dries007.tfc.objects.items.ItemsTFC;
 
 import java.awt.*;
 import java.util.Arrays;
@@ -60,6 +61,9 @@ public class ClientRegisterEventsFL
             ModelLoader.setCustomModelResourceLocation(ib, 0, new ModelResourceLocation(ib.getRegistryName().toString()));
         for (BlockFruitTreeLeaves leaves : ModRegistry.getAllFruitLeaves())
             ModelLoader.setCustomStateMapper(leaves, new StateMap.Builder().ignore(BlockFruitTreeLeaves.DECAYABLE).ignore(BlockFruitTreeLeaves.HARVESTABLE).build());
+        ModelLoader.setCustomModelResourceLocation(ModRegistry.CRACKED_COCONUT, 0, new ModelResourceLocation(ModRegistry.CRACKED_COCONUT.getRegistryName(), "inventory"));
+
+
         //use vanilla stem rendering for stemcrops
         for (BlockStemCrop block : ModRegistry.getAllCropBlocks())
             ModelLoader.setCustomStateMapper(block, new VanillaStemStateMapper());

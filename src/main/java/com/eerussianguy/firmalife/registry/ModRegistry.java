@@ -41,6 +41,7 @@ import net.dries007.tfc.objects.blocks.agriculture.BlockFruitTreeSapling;
 import net.dries007.tfc.objects.blocks.agriculture.BlockFruitTreeTrunk;
 import net.dries007.tfc.objects.items.ItemMisc;
 import net.dries007.tfc.objects.items.itemblock.ItemBlockTFC;
+import net.dries007.tfc.objects.items.wood.ItemWoodenBucket;
 import net.dries007.tfc.util.Helpers;
 
 import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
@@ -96,6 +97,12 @@ public class ModRegistry
     public static final ItemFoodFL DRIED_WINTERGREEN_BERRY = Helpers.getNull();
     @GameRegistry.ObjectHolder("chestnuts")
     public static final ItemFoodFL CHESTNUTS = Helpers.getNull();
+    @GameRegistry.ObjectHolder("acorns")
+    public static final ItemFoodFL ACORNS = Helpers.getNull();
+    @GameRegistry.ObjectHolder("pinecone")
+    public static final ItemFoodFL PINECONE = Helpers.getNull();
+    @GameRegistry.ObjectHolder("pecan_nuts")
+    public static final ItemFoodFL PECAN_NUTS = Helpers.getNull();
     @GameRegistry.ObjectHolder("roasted_cocoa_beans")
     public static final ItemMisc ROASTED_COCOA_BEANS = Helpers.getNull();
     @GameRegistry.ObjectHolder("peel")
@@ -116,6 +123,10 @@ public class ModRegistry
     public static final ItemMisc PLANTER = Helpers.getNull();
     @GameRegistry.ObjectHolder("greenhouse_door")
     public static final ItemGreenhouseDoor ITEM_GREENHOUSE_DOOR = Helpers.getNull();
+    @GameRegistry.ObjectHolder("cracked_coconut")
+    public static final ItemWoodenBucket CRACKED_COCONUT = Helpers.getNull();
+    @GameRegistry.ObjectHolder("coconut")
+    public static final ItemFoodFL COCONUT = Helpers.getNull();
 
     @GameRegistry.ObjectHolder("oven")
     public static final BlockOven OVEN = Helpers.getNull();
@@ -237,6 +248,7 @@ public class ModRegistry
         easyItems.add(register(r, "pecans", new ItemFoodFL(FoodDataFL.NUT), CT_FOOD));
         easyItems.add(register(r, "pinecone", new ItemFoodFL(FoodDataFL.UNCRACKED_NUT), CT_FOOD));
         easyItems.add(register(r, "pine_nuts", new ItemFoodFL(FoodDataFL.NUT), CT_FOOD));
+        easyItems.add(register(r, "coconut", new ItemFoodFL(FoodDataFL.NUT), CT_FOOD));
 
         //Misc Items
         easyItems.add(register(r, "roasted_cocoa_beans", new ItemRoastedCocoaBeans(), CT_MISC));
@@ -254,6 +266,9 @@ public class ModRegistry
         easyItems.add(register(r, "cinnamon_bark", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
         easyItems.add(register(r, "cinnamon", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
         easyItems.add(register(r, "ground_cinnamon", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
+
+        //uses a separate model loader
+        register(r, "cracked_coconut", new ItemWoodenBucket(), CT_MISC);
 
         allGreenhouseDoors.forEach((x) -> {
             easyItems.add(register(r, "greenhouse_door", new ItemGreenhouseDoor(x), CT_DECORATIONS));
@@ -360,6 +375,7 @@ public class ModRegistry
         newRegistry(RegNames.OVEN_RECIPE, OvenRecipe.class);
         newRegistry(RegNames.DRYING_RECIPE, DryingRecipe.class);
         newRegistry(RegNames.PLANTER_QUAD_REGISTRY, PlanterRegistry.class);
+        newRegistry(RegNames.NUT_TREES_REGISTRY, NutTrees.class);
     }
 
     private static <T extends Block> T register(IForgeRegistry<Block> r, String name, T block, CreativeTabs ct)

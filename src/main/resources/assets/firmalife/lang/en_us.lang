@@ -51,6 +51,9 @@ item.firmalife.pine_nuts.name=Pine Nuts
 item.firmalife.nut_hammer.name=Nut Hammer
 item.firmalife.crop.seeds.pumpkin.name=Pumpkin Seeds
 item.firmalife.crop.seeds.melon.name=Melon Seeds
+item.firmalife.cracked_coconut.name=Empty Coconut
+item.firmalife.cracked_coconut.filled.name=Filled Coconut (%s)
+item.firmalife.coconut.name=Coconut
 
 tile.firmalife.cocoa_sapling.name=Cocoa Tree Sapling
 tile.firmalife.cocoa_trunk.name=Cocoa Tree Trunk
@@ -102,11 +105,10 @@ tile.tfc.plants.vanilla.name=Wild Vanilla
 tooltip.firmalife.hours=hours
 tooltip.firmalife.days=days
 tooltip.firmalife.refractory=You're doing this too often. Take a break.
+tooltip.firmalife.not_fall=Come back in October or November to get nuts.
 jei.category.firmalife.oven=Oven
 
 jei.category.firmalife.knap.pumpkin=Pumpkin Carving
-item.firmalife.crop.seeds.pumpkin.name=Pumpkin Seeds
-item.firmalife.crop.seeds.melon.name=Melon Seeds
 
 jei.category.firmalife.drying=Drying
 jei.tooltip.firmalife.fruit_leaf=Fruit leaves are dropped by breaking any fruit tree's leaves!
