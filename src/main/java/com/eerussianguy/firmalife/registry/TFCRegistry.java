@@ -68,6 +68,7 @@ public class TFCRegistry
             new KnappingRecipeSimple(KnappingType.CLAY, true, new ItemStack(ModRegistry.OVEN), "XXXXX","X   X","X   X","X   X","XXXXX").setRegistryName("clay_oven"),
             new KnappingRecipeSimple(KnappingType.CLAY, true, new ItemStack(ModRegistry.OVEN_CHIMNEY), "XX XX","X   X","X   X","X   X","X   X").setRegistryName("clay_oven_chimney"),
             new KnappingRecipeSimple(KnappingType.CLAY, true, new ItemStack(ModRegistry.OVEN_WALL), "    X","   XX","   XX","  XXX","  XXX").setRegistryName("clay_oven_wall"),
+            new KnappingRecipeSimple(KnappingType.STONE, true, new ItemStack(ModRegistry.NUT_HAMMER_HEAD), "     ","XXXXX","XXX X","     ","     ").setRegistryName("nut_hammer"),
 
             new KnappingRecipeSimple(KnappingFL.PUMPKIN, true, new ItemStack(Blocks.LIT_PUMPKIN), "XXXXX", "X X X", "XXXXX", "X   X", "XXXXX").setRegistryName("pumpkin_lantern"),
             new KnappingRecipeFood(KnappingFL.PUMPKIN, true, new ItemStack(ModRegistry.PUMPKIN_SCOOPED), "XXXXX", "X   X", "X   X", "X   X", "XXXXX").setRegistryName("pumpkin_scoop")

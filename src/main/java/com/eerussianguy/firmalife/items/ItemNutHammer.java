@@ -3,8 +3,6 @@ package com.eerussianguy.firmalife.items;
 import javax.annotation.Nonnull;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockLeaves;
-import net.minecraft.block.BlockLog;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
@@ -21,7 +19,6 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 
 import com.eerussianguy.firmalife.init.NutTrees;
-import com.eerussianguy.firmalife.registry.ModRegistry;
 import com.eerussianguy.firmalife.util.CapPlayerDataFL;
 import com.eerussianguy.firmalife.util.IPlayerDataFL;
 import net.dries007.tfc.Constants;

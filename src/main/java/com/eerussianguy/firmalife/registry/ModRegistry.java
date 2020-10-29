@@ -127,6 +127,8 @@ public class ModRegistry
     public static final ItemWoodenBucket CRACKED_COCONUT = Helpers.getNull();
     @GameRegistry.ObjectHolder("coconut")
     public static final ItemFoodFL COCONUT = Helpers.getNull();
+    @GameRegistry.ObjectHolder("nut_hammer_head")
+    public static final ItemMisc NUT_HAMMER_HEAD = Helpers.getNull();
 
     @GameRegistry.ObjectHolder("oven")
     public static final BlockOven OVEN = Helpers.getNull();
@@ -259,6 +261,7 @@ public class ModRegistry
         easyItems.add(register(r, "white_chocolate_blend", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
         easyItems.add(register(r, "peel", new ItemMisc(Size.LARGE, Weight.VERY_HEAVY), CT_MISC));
         easyItems.add(register(r, "nut_hammer", new ItemNutHammer(), CT_MISC));
+        easyItems.add(register(r, "nut_hammer_head", new ItemMisc(Size.LARGE, Weight.VERY_HEAVY), CT_MISC));
 
         easyItems.add(register(r, "fruit_leaf", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
         easyItems.add(register(r, "planter", new ItemMisc(Size.NORMAL, Weight.MEDIUM), CT_MISC));
