@@ -104,6 +104,7 @@ tooltip.firmalife.days=days
 tooltip.firmalife.refractory=You're doing this too often. Take a break.
 jei.category.firmalife.oven=Oven
 
+jei.category.firmalife.knap.pumpkin=Pumpkin Carving
 item.firmalife.crop.seeds.pumpkin.name=Pumpkin Seeds
 item.firmalife.crop.seeds.melon.name=Melon Seeds
 
