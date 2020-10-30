@@ -1,15 +1,12 @@
 package com.eerussianguy.firmalife.registry;
 
-import com.eerussianguy.firmalife.blocks.BlockStemCrop;
+import com.eerussianguy.firmalife.blocks.*;
 import com.google.common.collect.Maps;
 import net.dries007.tfc.objects.blocks.agriculture.BlockCropDead;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockStem;
+import net.minecraft.block.*;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.block.BlockDoor;
-import net.minecraft.block.BlockLeaves;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
@@ -31,8 +28,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import com.eerussianguy.firmalife.FirmaLife;
-import com.eerussianguy.firmalife.blocks.BlockGreenhouseDoor;
-import com.eerussianguy.firmalife.blocks.BlockPlanter;
 import com.eerussianguy.firmalife.init.StatePropertiesFL;
 import com.eerussianguy.firmalife.te.*;
 import net.dries007.tfc.client.GrassColorHandler;
@@ -65,8 +60,13 @@ public class ClientRegisterEventsFL
             ModelLoader.setCustomStateMapper(block, new VanillaStemStateMapper());
         for (BlockPlanter planter : ModRegistry.getAllPlanters())
             ModelLoader.setCustomStateMapper(planter, new StateMap.Builder().ignore(StatePropertiesFL.CAN_GROW).build());
+        for (BlockFruitDoor door : ModRegistry.getAllFruitDoors())
+            ModelLoader.setCustomStateMapper(door, new StateMap.Builder().ignore(BlockDoor.POWERED).build());
+        for (BlockFruitFenceGate gate : ModRegistry.getAllFruitFenceGates())
+            ModelLoader.setCustomStateMapper(gate, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
         for (BlockGreenhouseDoor door : ModRegistry.getAllGreenhouseDoors())
             ModelLoader.setCustomStateMapper(door, new StateMap.Builder().ignore(BlockDoor.POWERED).build());
+
         ModelLoader.setCustomStateMapper(ModRegistry.CINNAMON_LOG, new StateMap.Builder().ignore(StatePropertiesFL.CAN_GROW).build());
         ModelLoader.setCustomStateMapper(ModRegistry.CINNAMON_LEAVES, new StateMap.Builder().ignore(BlockLeaves.DECAYABLE).build());
         ModelLoader.setCustomStateMapper(ModRegistry.CINNAMON_SAPLING, new StateMap.Builder().ignore(BlockSaplingTFC.STAGE).build());

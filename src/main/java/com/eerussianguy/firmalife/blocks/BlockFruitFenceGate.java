@@ -4,23 +4,23 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.dries007.tfc.api.types.IFruitTree;
-import net.minecraft.block.BlockFence;
-import net.minecraft.block.material.Material;
+import net.minecraft.block.BlockFenceGate;
+import net.minecraft.block.BlockPlanks;
 
-public class BlockFruitFence extends BlockFence {
+public class BlockFruitFenceGate extends BlockFenceGate {
 
-    private static final Map<IFruitTree, BlockFruitFence> MAP = new HashMap<>();
+    private static final Map<IFruitTree, BlockFruitFenceGate> MAP = new HashMap<>();
 
-    public static BlockFruitFence get(IFruitTree tree)
+    public static BlockFruitFenceGate get(IFruitTree tree)
     {
         return MAP.get(tree);
     }
 
     public final IFruitTree tree;
 
-    public BlockFruitFence(IFruitTree tree)
+    public BlockFruitFenceGate(IFruitTree tree)
     {
-        super(Material.WOOD, Material.WOOD.getMaterialMapColor());
+        super(BlockPlanks.EnumType.OAK);
         if (MAP.put(tree, this) != null) throw new IllegalStateException("There can only be one.");
         this.tree = tree;
         setHarvestLevel("axe", 0);
