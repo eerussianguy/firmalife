@@ -38,12 +38,14 @@ import com.eerussianguy.firmalife.te.TEQuadPlanter;
 import net.dries007.tfc.TerraFirmaCraft;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
+import net.dries007.tfc.api.types.IFruitTree;
 import net.dries007.tfc.objects.blocks.agriculture.BlockFruitTreeBranch;
 import net.dries007.tfc.objects.blocks.agriculture.BlockFruitTreeLeaves;
 import net.dries007.tfc.objects.blocks.agriculture.BlockFruitTreeSapling;
 import net.dries007.tfc.objects.blocks.agriculture.BlockFruitTreeTrunk;
 import net.dries007.tfc.objects.items.ItemMisc;
 import net.dries007.tfc.objects.items.itemblock.ItemBlockTFC;
+import net.dries007.tfc.util.agriculture.FruitTree;
 import net.dries007.tfc.util.Helpers;
 
 import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
@@ -128,6 +130,8 @@ public class ModRegistry
     public static final BlockStemFruit PUMPKIN_FRUIT = Helpers.getNull();
     @GameRegistry.ObjectHolder("melon_fruit")
     public static final BlockStemFruit MELON_FRUIT = Helpers.getNull();
+    @GameRegistry.ObjectHolder("pumpkin_scooped")
+    public static final ItemFoodFL PUMPKIN_SCOOPED = Helpers.getNull();
     @GameRegistry.ObjectHolder("leaf_mat")
     public static final BlockLeafMat LEAF_MAT = Helpers.getNull();
     @GameRegistry.ObjectHolder("cinnamon_log")
@@ -136,6 +140,26 @@ public class ModRegistry
     public static final BlockCinnamonLeaves CINNAMON_LEAVES = Helpers.getNull();
     @GameRegistry.ObjectHolder("cinnamon_sapling")
     public static final BlockCinnamonSapling CINNAMON_SAPLING = Helpers.getNull();
+    @GameRegistry.ObjectHolder("banana_pole")
+    public static final ItemMisc BANANA_POLE = Helpers.getNull();
+    @GameRegistry.ObjectHolder("cherry_pole")
+    public static final ItemMisc CHERRY_POLE = Helpers.getNull();
+    @GameRegistry.ObjectHolder("cinnamon_pole")
+    public static final ItemMisc CINNAMON_POLE = Helpers.getNull();
+    @GameRegistry.ObjectHolder("red_apple_pole")
+    public static final ItemMisc RED_APPLE_POLE = Helpers.getNull();
+    @GameRegistry.ObjectHolder("green_apple_pole")
+    public static final ItemMisc GREEN_APPLE_POLE = Helpers.getNull();
+    @GameRegistry.ObjectHolder("lemon_pole")
+    public static final ItemMisc LEMON_POLE = Helpers.getNull();
+    @GameRegistry.ObjectHolder("olive_pole")
+    public static final ItemMisc OLIVE_POLE = Helpers.getNull();
+    @GameRegistry.ObjectHolder("orange_pole")
+    public static final ItemMisc ORANGE_POLE = Helpers.getNull();
+    @GameRegistry.ObjectHolder("peach_pole")
+    public static final ItemMisc PEACH_POLE = Helpers.getNull();
+    @GameRegistry.ObjectHolder("plum_pole")
+    public static final ItemMisc PLUM_POLE = Helpers.getNull();
 
     private static final ResourceLocation STILL = new ResourceLocation(TerraFirmaCraft.MOD_ID, "blocks/fluid_still");
     private static final ResourceLocation FLOW = new ResourceLocation(TerraFirmaCraft.MOD_ID, "blocks/fluid_flow");
@@ -149,6 +173,7 @@ public class ModRegistry
     private static ImmutableList<BlockFruitTreeLeaves> allFruitLeaves = Helpers.getNull();
     private static ImmutableList<BlockFruitTreeSapling> allFruitSaps = Helpers.getNull();
     private static ImmutableList<BlockPlanter> allPlanters = Helpers.getNull();
+    private static ImmutableList<BlockFruitFence> allFruitFences = Helpers.getNull();
     private static ImmutableList<BlockGreenhouseDoor> allGreenhouseDoors = Helpers.getNull();
 
     private static ImmutableList<BlockCropDead> allDeadCrops = Helpers.getNull();
@@ -191,6 +216,8 @@ public class ModRegistry
     {
         return allGreenhouseDoors;
     }
+
+    public static ImmutableList<BlockFruitFence> getAllFruitFences() { return allFruitFences; }
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
@@ -252,6 +279,19 @@ public class ModRegistry
         easyItems.add(register(r, "cinnamon", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
         easyItems.add(register(r, "ground_cinnamon", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
 
+        for (FruitTreeFL fruitTree : FruitTreeFL.values())
+        {
+            String name = fruitTree.getName().toLowerCase();
+            easyItems.add(register(r, name + "_pole", new ItemMisc(Size.SMALL, Weight.MEDIUM), CT_MISC));
+        }
+
+        for (IFruitTree fruitTree : FruitTree.values())
+        {
+            String name = fruitTree.getName().toLowerCase();
+            easyItems.add(register(r, name + "_pole", new ItemMisc(Size.SMALL, Weight.MEDIUM), CT_MISC));
+        }
+
+
         allGreenhouseDoors.forEach((x) -> {
             easyItems.add(register(r, "greenhouse_door", new ItemGreenhouseDoor(x), CT_DECORATIONS));
         });
@@ -282,6 +322,7 @@ public class ModRegistry
         ImmutableList.Builder<BlockCropDead> deadCrops = ImmutableList.builder();
         ImmutableList.Builder<BlockStemCrop> cropBlocks = ImmutableList.builder();
         ImmutableList.Builder<BlockPlanter> planters = ImmutableList.builder();
+        ImmutableList.Builder<BlockFruitFence> fruitFences = ImmutableList.builder();
         ImmutableList.Builder<BlockGreenhouseDoor> greenhouseDoor = ImmutableList.builder();
 
         for (FruitTreeFL fruitTree : FruitTreeFL.values())
@@ -291,7 +332,15 @@ public class ModRegistry
             fruitLeaves.add(register(r, name + "_leaves", new BlockFruitTreeLeaves(fruitTree), CT_WOOD));
             fruitSaps.add(register(r, name + "_sapling", new BlockFruitTreeSapling(fruitTree), CT_WOOD));
             register(r, name + "_trunk", new BlockFruitTreeTrunk(fruitTree));
+            fruitFences.add(register(r, name + "_fence", new BlockFruitFence(fruitTree), CT_DECORATIONS));
         }
+
+        for (IFruitTree fruitTree : FruitTree.values())
+        {
+            String name = fruitTree.getName().toLowerCase();
+            fruitFences.add(register(r, name + "_fence", new BlockFruitFence(fruitTree), CT_DECORATIONS));
+        }
+
         NormalIBs.add(register(r, "oven", new BlockOven(), CT_DECORATIONS));
         NormalIBs.add(register(r, "oven_wall", new BlockOvenWall(), CT_DECORATIONS));
         NormalIBs.add(register(r, "oven_chimney", new BlockOvenChimney(), CT_DECORATIONS));
@@ -337,6 +386,10 @@ public class ModRegistry
         });
         allPlanters = planters.build();
         allPlanters.forEach((x) -> {
+            IBs.add(new ItemBlockTFC(x));
+        });
+        allFruitFences = fruitFences.build();
+        allFruitFences.forEach((x) -> {
             IBs.add(new ItemBlockTFC(x));
         });
         allGreenhouseDoors = greenhouseDoor.build();
