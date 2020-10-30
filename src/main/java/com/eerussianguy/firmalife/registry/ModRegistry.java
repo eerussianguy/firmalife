@@ -7,15 +7,20 @@ import com.eerussianguy.firmalife.util.StemCrop;
 import javax.annotation.Nonnull;
 
 import com.google.common.collect.ImmutableList;
+
+import net.dries007.tfc.objects.blocks.BlockFluidTFC;
 import net.dries007.tfc.objects.blocks.agriculture.*;
+import net.dries007.tfc.objects.fluids.properties.FluidWrapper;
 import net.dries007.tfc.objects.items.ItemSeedsTFC;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
@@ -151,9 +156,6 @@ public class ModRegistry
     @GameRegistry.ObjectHolder("cinnamon_sapling")
     public static final BlockCinnamonSapling CINNAMON_SAPLING = Helpers.getNull();
 
-    private static final ResourceLocation STILL = new ResourceLocation(TerraFirmaCraft.MOD_ID, "blocks/fluid_still");
-    private static final ResourceLocation FLOW = new ResourceLocation(TerraFirmaCraft.MOD_ID, "blocks/fluid_flow");
-
     private static ImmutableList<Item> allEasyItems;
     private static ImmutableList<ItemBlock> allIBs;
     private static ImmutableList<ItemSeedsTFC> allSeeds;
@@ -164,6 +166,7 @@ public class ModRegistry
     private static ImmutableList<BlockFruitTreeSapling> allFruitSaps = Helpers.getNull();
     private static ImmutableList<BlockPlanter> allPlanters = Helpers.getNull();
     private static ImmutableList<BlockGreenhouseDoor> allGreenhouseDoors = Helpers.getNull();
+    private static ImmutableList<BlockFluidBase> allFluidBlocks = Helpers.getNull();
 
     private static ImmutableList<BlockCropDead> allDeadCrops = Helpers.getNull();
     private static ImmutableList<BlockStemCrop> allCropBlocks = Helpers.getNull();
@@ -205,6 +208,12 @@ public class ModRegistry
     {
         return allGreenhouseDoors;
     }
+
+    public static ImmutableList<BlockFluidBase> getAllFluidBlocks()
+    {
+        return allFluidBlocks;
+    }
+
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
@@ -293,6 +302,7 @@ public class ModRegistry
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event)
     {
+        FluidsFL.registerFluids();
         IForgeRegistry<Block> r = event.getRegistry();
 
         ImmutableList.Builder<ItemBlock> IBs = ImmutableList.builder();
@@ -336,6 +346,13 @@ public class ModRegistry
             cropBlocks.add(register(r,"crop/" + crop.name().toLowerCase() , BlockStemCrop.create(crop)));
         }
 
+        ImmutableList.Builder<BlockFluidBase> fluids = ImmutableList.builder();
+        for (FluidWrapper wrapper : FluidsFL.getAllFiniteFluids())
+        {
+            fluids.add(register(r, wrapper.get().getName(), new BlockFluidTFC(wrapper.get(), Material.WATER)));
+        }
+        allFluidBlocks = fluids.build();
+
         register(TEOven.class, "oven");
         register(TEQuadPlanter.class, "quad_planter");
         register(TELeafMat.class, "leaf_mat");
@@ -369,7 +386,8 @@ public class ModRegistry
 
 
         register(TEStemCrop.class, "stem_crop");
-        registerFluid(new Fluid("yeast_starter", STILL, FLOW, 0xFFa79464));
+
+
     }
 
     @SubscribeEvent
@@ -419,11 +437,5 @@ public class ModRegistry
     private static <T extends IForgeRegistryEntry<T>> void newRegistry(ResourceLocation name, Class<T> tClass)
     {
         IForgeRegistry<T> r = new RegistryBuilder<T>().setName(name).allowModification().setType(tClass).create();
-    }
-
-    private static void registerFluid(@Nonnull Fluid newFluid)
-    {
-        FluidRegistry.registerFluid(newFluid);
-        FluidRegistry.addBucketForFluid(newFluid);
     }
 }

@@ -1,8 +1,15 @@
 package com.eerussianguy.firmalife;
 
 import com.eerussianguy.firmalife.gui.FLGuiHandler;
+import com.eerussianguy.firmalife.util.HelpersFL;
+import net.dries007.tfc.ConfigTFC;
 import net.dries007.tfc.TerraFirmaCraft;
 import net.dries007.tfc.client.TFCGuiHandler;
+
+import net.minecraftforge.common.config.Config;
+import net.minecraftforge.common.config.ConfigManager;
+import net.minecraftforge.event.ForgeEventFactory;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import org.apache.logging.log4j.Logger;
 import net.minecraftforge.fml.common.Mod;
@@ -50,6 +57,7 @@ public class FirmaLife {
         VeinAdder.ADDER.addVeins(event.getModConfigurationDirectory());
 
         CapPlayerDataFL.preInit();
+        HelpersFL.insertWhitelist();
     }
 
     @Mod.EventHandler
