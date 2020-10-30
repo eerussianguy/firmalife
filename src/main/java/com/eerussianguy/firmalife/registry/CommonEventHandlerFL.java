@@ -1,5 +1,8 @@
 package com.eerussianguy.firmalife.registry;
 
+
+import net.dries007.tfc.objects.items.ItemMisc;
+import net.dries007.tfc.util.Helpers;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -18,7 +21,11 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import net.dries007.tfc.Constants;
 import net.dries007.tfc.objects.blocks.agriculture.BlockFruitTreeLeaves;
+import net.dries007.tfc.objects.blocks.agriculture.BlockFruitTreeTrunk;
+import net.dries007.tfc.api.types.IFruitTree;
 import net.dries007.tfc.objects.fluids.FluidsTFC;
+
+import java.util.Objects;
 
 import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
 
@@ -36,6 +43,12 @@ public class CommonEventHandlerFL
         if (block instanceof BlockFruitTreeLeaves)
         {
             event.getDrops().add(new ItemStack(ModRegistry.FRUIT_LEAF, 2 + Constants.RNG.nextInt(4)));
+        }
+        else if (block instanceof BlockFruitTreeTrunk)
+        {
+            IFruitTree tree = ((BlockFruitTreeTrunk) block).getTree();
+            String poleName = "firmalife:" + tree.getName().toLowerCase() + "_pole";
+            event.getDrops().add(new ItemStack(ItemMisc.getByNameOrId(poleName)));
         }
     }
 
