@@ -1,6 +1,7 @@
 package com.eerussianguy.firmalife.blocks;
 
 import javax.annotation.Nonnull;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;

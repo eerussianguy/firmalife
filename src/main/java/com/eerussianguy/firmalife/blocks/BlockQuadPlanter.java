@@ -20,7 +20,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
@@ -30,7 +29,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 
-import com.eerussianguy.firmalife.init.PlanterRegistry;
+import com.eerussianguy.firmalife.recipe.PlanterRecipe;
 import com.eerussianguy.firmalife.te.TEQuadPlanter;
 import net.dries007.tfc.api.capability.size.IItemSize;
 import net.dries007.tfc.api.capability.size.Size;
@@ -38,7 +37,7 @@ import net.dries007.tfc.api.capability.size.Weight;
 import net.dries007.tfc.objects.fluids.FluidsTFC;
 import net.dries007.tfc.util.Helpers;
 
-import static com.eerussianguy.firmalife.init.StatePropertiesFL.*;
+import static com.eerussianguy.firmalife.init.StatePropertiesFL.WET;
 
 public class BlockQuadPlanter extends Block implements IItemSize
 {
@@ -95,7 +94,7 @@ public class BlockQuadPlanter extends Block implements IItemSize
                 if (inventory != null)
                 {
                     ItemStack slotStack = inventory.getStackInSlot(slot);
-                    PlanterRegistry recipe = PlanterRegistry.get(held);
+                    PlanterRecipe recipe = PlanterRecipe.get(held);
                     if (slotStack.isEmpty() && recipe != null)
                     {
                         inventory.insertItem(slot, held, false);

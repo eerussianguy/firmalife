@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 import com.eerussianguy.firmalife.blocks.BlockOven;
 import com.eerussianguy.firmalife.blocks.BlockOvenChimney;
 import com.eerussianguy.firmalife.blocks.BlockOvenWall;
-import com.eerussianguy.firmalife.init.OvenRecipe;
+import com.eerussianguy.firmalife.recipe.OvenRecipe;
 import mcp.MethodsReturnNonnullByDefault;
 import net.dries007.tfc.api.capability.food.CapabilityFood;
 import net.dries007.tfc.objects.items.ItemsTFC;
@@ -276,7 +276,7 @@ public class TEOven extends TEInventory implements ITickable
                 return false;
             }
             Block b = state.getBlock();
-            if(!(b instanceof BlockOven || b instanceof BlockOvenWall))
+            if (!(b instanceof BlockOven || b instanceof BlockOvenWall))
             {
                 return false; // return false if it's not an oven or oven wall
             }

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X",
+    "S"
+  ],
+  "key": {
+    "X": {
+      "item": "firmalife:nut_hammer_head"
+    },
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "stickWood"
+    }
+  },
+  "result": {
+    "item": "firmalife:nut_hammer",
+    "count": 1
+  }
+}

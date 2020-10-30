@@ -12,22 +12,27 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import com.eerussianguy.firmalife.world.WorldGeneratorFL;
 
 @Mod.EventBusSubscriber
-public class CommonProxy {
+public class CommonProxy
+{
 
-    public void preInit(FMLPreInitializationEvent e) {
+    public void preInit(FMLPreInitializationEvent e)
+    {
         GameRegistry.registerWorldGenerator(new WorldGeneratorFL(), 0);
     }
 
-    public void init(FMLInitializationEvent e) {
-        
+    public void init(FMLInitializationEvent e)
+    {
+
     }
 
-    public void postInit(FMLPostInitializationEvent e) {
+    public void postInit(FMLPostInitializationEvent e)
+    {
     }
 
 
     @SubscribeEvent
-    public static void registerItems(RegistryEvent.Register<Item> event) {
+    public static void registerItems(RegistryEvent.Register<Item> event)
+    {
     }
 
 }

@@ -296,7 +296,6 @@ public class ModRegistry
             String name = fruitTree.getName().toLowerCase();
             easyItems.add(register(r, name + "_pole", new ItemMisc(Size.SMALL, Weight.MEDIUM), CT_MISC));
         }
-        System.out.println(getAllFruitDoors());
         for (BlockFruitDoor door : getAllFruitDoors())
         {
             easyItems.add(register(r, door.getRegistryName().getPath(), new ItemFruitDoor(door), CT_DECORATIONS));
@@ -321,8 +320,7 @@ public class ModRegistry
     }
 
     @SubscribeEvent
-    public static void registerBlocks(RegistryEvent.Register<Block> event)
-    {
+    public static void registerBlocks(RegistryEvent.Register<Block> event) {
         IForgeRegistry<Block> r = event.getRegistry();
 
         ImmutableList.Builder<ItemBlock> IBs = ImmutableList.builder();
@@ -339,8 +337,7 @@ public class ModRegistry
         ImmutableList.Builder<BlockPlanter> planters = ImmutableList.builder();
         ImmutableList.Builder<BlockGreenhouseDoor> greenhouseDoor = ImmutableList.builder();
 
-        for (FruitTreeFL fruitTree : FruitTreeFL.values())
-        {
+        for (FruitTreeFL fruitTree : FruitTreeFL.values()) {
             String name = fruitTree.getName().toLowerCase();
             register(r, name + "_branch", new BlockFruitTreeBranch(fruitTree));
             fruitLeaves.add(register(r, name + "_leaves", new BlockFruitTreeLeaves(fruitTree), CT_WOOD));
@@ -352,8 +349,7 @@ public class ModRegistry
             fruitTrapdoors.add(register(r, name + "_trapdoor", new BlockFruitTrapDoor(fruitTree), CT_DECORATIONS));
         }
 
-        for (IFruitTree fruitTree : FruitTree.values())
-        {
+        for (IFruitTree fruitTree : FruitTree.values()) {
             String name = fruitTree.getName().toLowerCase();
             fruitFences.add(register(r, name + "_fence", new BlockFruitFence(fruitTree), CT_DECORATIONS));
             fruitFenceGates.add(register(r, name + "_fence_gate", new BlockFruitFenceGate(fruitTree), CT_DECORATIONS));
@@ -378,10 +374,9 @@ public class ModRegistry
         FoodIBs.add(register(r, "pumpkin_fruit", new BlockStemFruit(), CT_FLORA));
         FoodIBs.add(register(r, "melon_fruit", new BlockStemFruit(), CT_FLORA));
 
-        for(StemCrop crop : StemCrop.values())
-        {
-            deadCrops.add(register(r,"dead_crop/" + crop.name().toLowerCase(), new BlockCropDead(crop)));
-            cropBlocks.add(register(r,"crop/" + crop.name().toLowerCase() , BlockStemCrop.create(crop)));
+        for (StemCrop crop : StemCrop.values()) {
+            deadCrops.add(register(r, "dead_crop/" + crop.name().toLowerCase(), new BlockCropDead(crop)));
+            cropBlocks.add(register(r, "crop/" + crop.name().toLowerCase(), BlockStemCrop.create(crop)));
         }
 
         register(TEOven.class, "oven");
@@ -432,14 +427,6 @@ public class ModRegistry
 
         register(TEStemCrop.class, "stem_crop");
         registerFluid(new Fluid("yeast_starter", STILL, FLOW, 0xFFa79464));
-    }
-
-    @SubscribeEvent
-    public static void onNewRegistryEvent(RegistryEvent.NewRegistry event)
-    {
-        newRegistry(RegNames.OVEN_RECIPE, OvenRecipe.class);
-        newRegistry(RegNames.DRYING_RECIPE, DryingRecipe.class);
-        newRegistry(RegNames.PLANTER_QUAD_REGISTRY, PlanterRegistry.class);
     }
 
     private static <T extends Block> T register(IForgeRegistry<Block> r, String name, T block, CreativeTabs ct)

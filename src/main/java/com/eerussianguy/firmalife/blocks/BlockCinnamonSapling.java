@@ -8,7 +8,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import com.eerussianguy.firmalife.init.PlantsFL;
-import com.eerussianguy.firmalife.registry.ModRegistry;
+import com.eerussianguy.firmalife.registry.BlocksFL;
 import net.dries007.tfc.objects.blocks.wood.BlockSaplingTFC;
 
 public class BlockCinnamonSapling extends BlockSaplingTFC
@@ -28,11 +28,11 @@ public class BlockCinnamonSapling extends BlockSaplingTFC
                 return;
         }
         int height = 7 + rand.nextInt(5);
-        IBlockState leaves = ModRegistry.CINNAMON_LEAVES.getDefaultState();
+        IBlockState leaves = BlocksFL.CINNAMON_LEAVES.getDefaultState();
         for (int trunk = 0; trunk < height; trunk++)
         {
             BlockPos trunkPos = pos.offset(EnumFacing.UP, trunk);
-            world.setBlockState(trunkPos, ModRegistry.CINNAMON_LOG.getDefaultState());
+            world.setBlockState(trunkPos, BlocksFL.CINNAMON_LOG.getDefaultState());
             if (trunk < 3)
                 continue;
             for (EnumFacing d : EnumFacing.HORIZONTALS)

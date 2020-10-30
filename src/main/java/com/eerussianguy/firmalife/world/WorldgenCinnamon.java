@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
-import com.eerussianguy.firmalife.registry.ModRegistry;
+import com.eerussianguy.firmalife.registry.BlocksFL;
 import net.dries007.tfc.objects.blocks.BlocksTFC;
 import net.dries007.tfc.world.classic.biomes.BiomeTFC;
 import net.dries007.tfc.world.classic.biomes.BiomesTFC;
@@ -59,11 +59,11 @@ public class WorldgenCinnamon extends WorldGenerator
                     return false;
             }
             int height = 7 + rand.nextInt(5);
-            IBlockState leaves = ModRegistry.CINNAMON_LEAVES.getDefaultState();
+            IBlockState leaves = BlocksFL.CINNAMON_LEAVES.getDefaultState();
             for (int trunk = 0; trunk < height; trunk++)
             {
                 BlockPos trunkPos = pos.offset(EnumFacing.UP, trunk);
-                world.setBlockState(trunkPos, ModRegistry.CINNAMON_LOG.getDefaultState());
+                world.setBlockState(trunkPos, BlocksFL.CINNAMON_LOG.getDefaultState());
                 if (trunk < 3)
                     continue;
                 for (EnumFacing d : EnumFacing.HORIZONTALS)
