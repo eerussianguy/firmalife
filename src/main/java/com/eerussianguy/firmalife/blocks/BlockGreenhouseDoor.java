@@ -15,7 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-import com.eerussianguy.firmalife.registry.ModRegistry;
+import com.eerussianguy.firmalife.registry.ItemsFL;
 
 public class BlockGreenhouseDoor extends BlockDoor
 {
@@ -28,8 +28,9 @@ public class BlockGreenhouseDoor extends BlockDoor
         Blocks.FIRE.setFireInfo(this, 5, 20);
     }
 
-    public Item getItem() {
-        return ModRegistry.ITEM_GREENHOUSE_DOOR;
+    public Item getItem()
+    {
+        return ItemsFL.ITEM_GREENHOUSE_DOOR;
     }
 
     @Override

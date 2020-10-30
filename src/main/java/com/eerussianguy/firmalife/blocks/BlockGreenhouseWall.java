@@ -27,7 +27,8 @@ import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
 import net.dries007.tfc.util.OreDictionaryHelper;
 
-import static com.eerussianguy.firmalife.init.StatePropertiesFL.*;
+import static com.eerussianguy.firmalife.init.StatePropertiesFL.GLASS;
+import static com.eerussianguy.firmalife.init.StatePropertiesFL.TOP;
 import static net.minecraft.block.BlockHorizontal.FACING;
 
 public class BlockGreenhouseWall extends Block implements IItemSize

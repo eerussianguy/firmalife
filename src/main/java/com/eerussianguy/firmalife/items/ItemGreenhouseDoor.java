@@ -18,16 +18,19 @@ public class ItemGreenhouseDoor extends ItemDoor implements IItemSize
     }
 
     @Nonnull
-    public Size getSize(ItemStack stack) {
+    public Size getSize(ItemStack stack)
+    {
         return Size.VERY_LARGE;
     }
 
     @Nonnull
-    public Weight getWeight(ItemStack stack) {
+    public Weight getWeight(ItemStack stack)
+    {
         return Weight.HEAVY;
     }
 
-    public int getItemStackLimit(ItemStack stack) {
+    public int getItemStackLimit(ItemStack stack)
+    {
         return this.getStackSize(stack);
     }
 }

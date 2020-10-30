@@ -28,16 +28,16 @@ public class HelpersFL
     public static void insertWhitelist()
     {
         ConfigManager.sync(TerraFirmaCraft.MOD_ID, Config.Type.INSTANCE);
-        String[] additions = {"yeast_starter","coconut_milk"};
+        String[] additions = {"yeast_starter", "coconut_milk"};
         Set<String> stringSet = new HashSet<>(Arrays.asList(ConfigTFC.General.MISC.woodenBucketWhitelist));
         for (String a : additions)
         {
             if (stringSet.add(a))
             {
-                FirmaLife.logger.info("Added {} to TFC's config", a);
+                FirmaLife.logger.info("Added {} to TFC's wooden bucket fluid whitelist", a);
             }
         }
-        ConfigTFC.General.MISC.woodenBucketWhitelist = stringSet.toArray(new String[]{});
+        ConfigTFC.General.MISC.woodenBucketWhitelist = stringSet.toArray(new String[] {});
     }
 
 }

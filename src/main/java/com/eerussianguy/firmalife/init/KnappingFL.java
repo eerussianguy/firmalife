@@ -1,4 +1,4 @@
-package com.eerussianguy.firmalife.util;
+package com.eerussianguy.firmalife.init;
 
 import net.dries007.tfc.api.recipes.knapping.KnappingType;
 

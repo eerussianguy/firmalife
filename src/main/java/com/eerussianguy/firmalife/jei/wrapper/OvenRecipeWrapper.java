@@ -1,9 +1,9 @@
-package com.eerussianguy.firmalife.jei;
+package com.eerussianguy.firmalife.jei.wrapper;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 
-import com.eerussianguy.firmalife.init.OvenRecipe;
+import com.eerussianguy.firmalife.recipe.OvenRecipe;
 import net.dries007.tfc.compat.jei.wrappers.SimpleRecipeWrapper;
 import net.dries007.tfc.util.calendar.ICalendar;
 
@@ -22,7 +22,7 @@ public class OvenRecipeWrapper extends SimpleRecipeWrapper
     {
         float x = 60f;
         float y = 4f;
-        String text =  OvenRecipe.getDuration(recipe) / ICalendar.TICKS_IN_HOUR + " " + I18n.format("tooltip.firmalife.hours");
+        String text = OvenRecipe.getDuration(recipe) / ICalendar.TICKS_IN_HOUR + " " + I18n.format("tooltip.firmalife.hours");
         x = x - minecraft.fontRenderer.getStringWidth(text) / 2.0f;
         minecraft.fontRenderer.drawString(text, x, y, 0xFFFFFF, false);
     }

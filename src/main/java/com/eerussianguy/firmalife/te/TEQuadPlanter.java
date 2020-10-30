@@ -6,11 +6,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ITickable;
-
 import net.minecraftforge.items.ItemHandlerHelper;
 
-import com.eerussianguy.firmalife.init.PlanterRegistry;
 import com.eerussianguy.firmalife.init.StatePropertiesFL;
+import com.eerussianguy.firmalife.recipe.PlanterRecipe;
 import net.dries007.tfc.Constants;
 import net.dries007.tfc.objects.te.TEInventory;
 import net.dries007.tfc.util.calendar.CalendarTFC;
@@ -36,7 +35,7 @@ public class TEQuadPlanter extends TEInventory implements ITickable
         {
             if (checkIsGrowing(i))
             {
-                float tickDiff =  CalendarTFC.PLAYER_TIME.getTicks() - startTick;
+                float tickDiff = CalendarTFC.PLAYER_TIME.getTicks() - startTick;
                 if (tickDiff > DAYS_TO_GROW)
                 {
                     int growAmount = (int) Math.floor(tickDiff / DAYS_TO_GROW);
@@ -71,10 +70,10 @@ public class TEQuadPlanter extends TEInventory implements ITickable
 
     public void grow(int growAmount, int slot)
     {
-        PlanterRegistry recipe = getRecipe(slot);
+        PlanterRecipe recipe = getRecipe(slot);
         if (recipe != null)
         {
-            stages[slot] = Math.min(PlanterRegistry.getMaxStage(recipe), stages[slot] + growAmount);
+            stages[slot] = Math.min(PlanterRecipe.getMaxStage(recipe), stages[slot] + growAmount);
             startTick = CalendarTFC.PLAYER_TIME.getTicks();
         }
         markForSync();
@@ -82,26 +81,26 @@ public class TEQuadPlanter extends TEInventory implements ITickable
 
     private boolean checkIsGrowing(int slot)
     {
-        PlanterRegistry recipe = getRecipe(slot);
-        return recipe != null && world.getBlockState(pos).getValue(StatePropertiesFL.WET) && stages[slot] < PlanterRegistry.getMaxStage(recipe); //and in a greenhouse
+        PlanterRecipe recipe = getRecipe(slot);
+        return recipe != null && world.getBlockState(pos).getValue(StatePropertiesFL.WET) && stages[slot] < PlanterRecipe.getMaxStage(recipe); //and in a greenhouse
     }
 
 
-    public PlanterRegistry getRecipe(int slot)
+    public PlanterRecipe getRecipe(int slot)
     {
         ItemStack input = inventory.getStackInSlot(slot);
-        PlanterRegistry recipe = null;
+        PlanterRecipe recipe = null;
         if (!input.isEmpty() && !world.isRemote)
         {
-            recipe = PlanterRegistry.get(input);
+            recipe = PlanterRecipe.get(input);
         }
         return recipe;
     }
 
     public void tryHarvest(EntityPlayer player, int slot)
     {
-        PlanterRegistry recipe = getRecipe(slot);
-        if (recipe != null && PlanterRegistry.getMaxStage(recipe) == stages[slot])
+        PlanterRecipe recipe = getRecipe(slot);
+        if (recipe != null && PlanterRecipe.getMaxStage(recipe) == stages[slot])
         {
             ItemStack returnStack = recipe.getOutputItem(inventory.getStackInSlot(slot));
             ItemHandlerHelper.giveItemToPlayer(player, returnStack);

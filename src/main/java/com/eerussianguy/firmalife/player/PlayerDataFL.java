@@ -1,4 +1,4 @@
-package com.eerussianguy.firmalife.util;
+package com.eerussianguy.firmalife.player;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -42,7 +42,7 @@ public class PlayerDataFL implements ICapabilitySerializable<NBTTagCompound>, IP
     @Nullable
     @Override
     @SuppressWarnings("unchecked")
-    public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable  EnumFacing facing)
+    public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing)
     {
         return capability == CapPlayerDataFL.CAPABILITY ? (T) this : null;
     }

@@ -1,9 +1,7 @@
 package com.eerussianguy.firmalife.blocks;
 
-import com.eerussianguy.firmalife.te.TEStemCrop;
-import com.eerussianguy.firmalife.util.StemCrop;
-import net.dries007.tfc.objects.blocks.agriculture.BlockCropSimple;
-import net.dries007.tfc.util.Helpers;
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStem;
 import net.minecraft.block.properties.PropertyDirection;
@@ -17,7 +15,10 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import java.util.Random;
+import com.eerussianguy.firmalife.init.StemCrop;
+import com.eerussianguy.firmalife.te.TEStemCrop;
+import net.dries007.tfc.objects.blocks.agriculture.BlockCropSimple;
+import net.dries007.tfc.util.Helpers;
 
 public abstract class BlockStemCrop extends BlockCropSimple
 {
@@ -44,7 +45,7 @@ public abstract class BlockStemCrop extends BlockCropSimple
     public BlockStemCrop(StemCrop crop)
     {
         super(crop, false);
-        setDefaultState(getDefaultState().withProperty(FACING,EnumFacing.UP));
+        setDefaultState(getDefaultState().withProperty(FACING, EnumFacing.UP));
     }
 
     @Override
@@ -53,8 +54,8 @@ public abstract class BlockStemCrop extends BlockCropSimple
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
     {
         TEStemCrop te = Helpers.getTE(worldIn, pos, TEStemCrop.class);
-        if(te != null)
-            return state.withProperty(FACING,te.getFruitDirection());
+        if (te != null)
+            return state.withProperty(FACING, te.getFruitDirection());
         //even though the existing stemcrops only show direction when fully grown, this is made available
         //so that subclasses can have directionality while growing if they want
         return state;
@@ -67,22 +68,22 @@ public abstract class BlockStemCrop extends BlockCropSimple
         if (!worldIn.isRemote)
         {
             //if penultimate stage
-            if(state.getValue(getStageProperty()) == getCrop().getMaxStage() - 1)
+            if (state.getValue(getStageProperty()) == getCrop().getMaxStage() - 1)
             {
                 TEStemCrop te = Helpers.getTE(worldIn, pos, TEStemCrop.class);
                 EnumFacing fruitDirection = te.getFruitDirection();
                 BlockPos targetPos = pos.offset(fruitDirection);
                 StemCrop crop = (StemCrop) getCrop();
-                if(crop.getCropBlock().canPlaceBlockAt(worldIn, targetPos))
+                if (crop.getCropBlock().canPlaceBlockAt(worldIn, targetPos))
                 {
-                    worldIn.setBlockState(targetPos, crop.getCropBlock().getDefaultState().withProperty(BlockStemFruit.FACING,fruitDirection.getOpposite()));
-                    super.grow(worldIn,pos,state,random);
+                    worldIn.setBlockState(targetPos, crop.getCropBlock().getDefaultState().withProperty(BlockStemFruit.FACING, fruitDirection.getOpposite()));
+                    super.grow(worldIn, pos, state, random);
                     return;
                 }
             }
             else
             {
-                super.grow(worldIn,pos,state,random);
+                super.grow(worldIn, pos, state, random);
             }
         }
     }
@@ -104,13 +105,12 @@ public abstract class BlockStemCrop extends BlockCropSimple
     public abstract PropertyInteger getStageProperty();
 
 
-
     @Override
     public Vec3d getOffset(IBlockState state, IBlockAccess worldIn, BlockPos pos)
     {
         Vec3d offset = super.getOffset(state, worldIn, pos);
         double x = offset.x, z = offset.z;
-        switch(state.getValue(FACING))
+        switch (state.getValue(FACING))
         {
             case EAST:
                 x = Math.abs(x);
@@ -127,7 +127,7 @@ public abstract class BlockStemCrop extends BlockCropSimple
             default:
                 break;
         }
-        return new Vec3d(x,0.0D,z);
+        return new Vec3d(x, 0.0D, z);
     }
 
     @Override
@@ -135,13 +135,13 @@ public abstract class BlockStemCrop extends BlockCropSimple
     {
         super.onBlockAdded(worldIn, pos, state);
         //if adding a fully grown and wild crop
-        if(state.getValue(getStageProperty()) == getCrop().getMaxStage() && state.getValue(WILD))
+        if (state.getValue(getStageProperty()) == getCrop().getMaxStage() && state.getValue(WILD))
         {
             TEStemCrop te = Helpers.getTE(worldIn, pos, TEStemCrop.class);
             EnumFacing fruitDirection = te.getFruitDirection();
             BlockPos targetPos = pos.offset(fruitDirection);
-            StemCrop crop = (StemCrop)getCrop();
-            if(crop.getCropBlock().canPlaceBlockAt(worldIn, targetPos)) //spawn fruit
+            StemCrop crop = (StemCrop) getCrop();
+            if (crop.getCropBlock().canPlaceBlockAt(worldIn, targetPos)) //spawn fruit
             {
                 worldIn.setBlockState(targetPos, crop.getCropBlock().getDefaultState().withProperty(BlockStemFruit.FACING, fruitDirection.getOpposite()));
             }

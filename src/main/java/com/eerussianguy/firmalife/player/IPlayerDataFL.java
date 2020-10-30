@@ -1,4 +1,4 @@
-package com.eerussianguy.firmalife.util;
+package com.eerussianguy.firmalife.player;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.INBTSerializable;
@@ -12,6 +12,7 @@ public interface IPlayerDataFL extends INBTSerializable<NBTTagCompound>
 
     /**
      * Retrieves the time the player last hit a nut tree
+     *
      * @return
      */
     long getNuttedTime();

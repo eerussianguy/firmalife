@@ -1,9 +1,9 @@
-package com.eerussianguy.firmalife.jei;
+package com.eerussianguy.firmalife.jei.wrapper;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 
-import com.eerussianguy.firmalife.init.DryingRecipe;
+import com.eerussianguy.firmalife.recipe.DryingRecipe;
 import net.dries007.tfc.compat.jei.wrappers.SimpleRecipeWrapper;
 import net.dries007.tfc.util.calendar.ICalendar;
 
@@ -23,8 +23,8 @@ public class DryingRecipeWrapper extends SimpleRecipeWrapper
         float x = 60f;
         float y = 4f;
         String text = (DryingRecipe.getDuration(recipe) / ICalendar.TICKS_IN_HOUR < 48) ?
-                DryingRecipe.getDuration(recipe) / ICalendar.TICKS_IN_HOUR + " " + I18n.format("tooltip.firmalife.hours") :
-                DryingRecipe.getDuration(recipe) / ICalendar.TICKS_IN_DAY + " " + I18n.format("tooltip.firmalife.days");
+            DryingRecipe.getDuration(recipe) / ICalendar.TICKS_IN_HOUR + " " + I18n.format("tooltip.firmalife.hours") :
+            DryingRecipe.getDuration(recipe) / ICalendar.TICKS_IN_DAY + " " + I18n.format("tooltip.firmalife.days");
 
         //String text = DryingRecipe.getDuration(recipe) / ICalendar.TICKS_IN_HOUR + " " + I18n.format("tooltip.firmalife.hours");
         x = x - minecraft.fontRenderer.getStringWidth(text) / 2.0f;

@@ -1,6 +1,7 @@
 package com.eerussianguy.firmalife.blocks;
 
-import java.util.*;
+import java.util.List;
+import java.util.Random;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
@@ -15,11 +16,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import com.eerussianguy.firmalife.init.PlantsFL;
-import com.eerussianguy.firmalife.registry.ModRegistry;
-import net.dries007.tfc.client.particle.TFCParticles;
+import com.eerussianguy.firmalife.registry.BlocksFL;
 import net.dries007.tfc.objects.blocks.wood.BlockLeavesTFC;
-
-import static net.dries007.tfc.Constants.RNG;
 
 public class BlockCinnamonLeaves extends BlockLeavesTFC
 {
@@ -36,7 +34,7 @@ public class BlockCinnamonLeaves extends BlockLeavesTFC
         int chance = 10; // this should be config
         if (RANDOM.nextInt(101) < chance)
         {
-            drops.add(new ItemStack(ModRegistry.CINNAMON_SAPLING));
+            drops.add(new ItemStack(BlocksFL.CINNAMON_SAPLING));
         }
     }
 

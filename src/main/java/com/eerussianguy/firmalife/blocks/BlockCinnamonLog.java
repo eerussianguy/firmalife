@@ -23,7 +23,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemHandlerHelper;
 
-import com.eerussianguy.firmalife.registry.ModRegistry;
+import com.eerussianguy.firmalife.registry.ItemsFL;
 import net.dries007.tfc.objects.blocks.BlocksTFC;
 import net.dries007.tfc.util.OreDictionaryHelper;
 import net.dries007.tfc.util.calendar.CalendarTFC;
@@ -112,7 +112,7 @@ public class BlockCinnamonLog extends Block
                 {
                     world.setBlockState(pos, state.withProperty(GROWN, false));
                     held.damageItem(1, player);
-                    ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(ModRegistry.CINNAMON_BARK, 1));
+                    ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(ItemsFL.CINNAMON_BARK, 1));
                 }
 
             }

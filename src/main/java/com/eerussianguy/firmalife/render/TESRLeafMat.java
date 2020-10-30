@@ -1,4 +1,4 @@
-package com.eerussianguy.firmalife.te;
+package com.eerussianguy.firmalife.render;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -8,6 +8,8 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
+
+import com.eerussianguy.firmalife.te.TELeafMat;
 
 public class TESRLeafMat extends TileEntitySpecialRenderer<TELeafMat>
 {

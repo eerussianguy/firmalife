@@ -26,7 +26,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemHandlerHelper;
 
-import com.eerussianguy.firmalife.registry.ModRegistry;
+import com.eerussianguy.firmalife.registry.ItemsFL;
 import net.dries007.tfc.Constants;
 import net.dries007.tfc.api.capability.size.IItemSize;
 import net.dries007.tfc.api.capability.size.Size;
@@ -67,10 +67,7 @@ public class BlockPlanter extends Block implements IItemSize
         {
             if (world.isAirBlock(pos.up()))
             {
-                if (world.getLight(pos.up()) > 10)
-                {
-                    return true;
-                }
+                return world.getLight(pos.up()) > 10;
             }
         }
         return false;
@@ -78,7 +75,8 @@ public class BlockPlanter extends Block implements IItemSize
 
 
     @Override
-    public void randomTick(World world, BlockPos pos, IBlockState state, Random random) {
+    public void randomTick(World world, BlockPos pos, IBlockState state, Random random)
+    {
         if (!world.isRemote)
         {
             if (!state.getValue(GROWN))
@@ -130,7 +128,7 @@ public class BlockPlanter extends Block implements IItemSize
                     }
                 }
                 world.setBlockState(pos, state.withProperty(GROWN, false).withProperty(CAN_GROW, false));
-                ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(drop.get(), 1 ));
+                ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(drop.get(), 1));
             }
         }
         return true;
@@ -140,7 +138,7 @@ public class BlockPlanter extends Block implements IItemSize
     @Override
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
-        drops.add(new ItemStack(ModRegistry.PLANTER));
+        drops.add(new ItemStack(ItemsFL.PLANTER));
         if (state.getValue(GROWN))
             drops.add(new ItemStack(drop.get()));
     }

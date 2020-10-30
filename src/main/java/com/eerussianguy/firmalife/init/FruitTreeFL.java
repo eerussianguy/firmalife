@@ -5,7 +5,7 @@ import java.util.function.Supplier;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import com.eerussianguy.firmalife.registry.ModRegistry;
+import com.eerussianguy.firmalife.registry.ItemsFL;
 import net.dries007.tfc.api.types.IFruitTree;
 import net.dries007.tfc.util.calendar.CalendarTFC;
 import net.dries007.tfc.util.calendar.ICalendar;
@@ -14,7 +14,7 @@ import net.dries007.tfc.world.classic.worldgen.WorldGenFruitTrees;
 
 public enum FruitTreeFL implements IFruitTree
 {
-    COCOA(() -> ModRegistry.COCOA_BEANS, Month.JUNE, 2, Month.SEPTEMBER, 1, 23f, 35f, 280f, 400f,0.33f);
+    COCOA(() -> ItemsFL.COCOA_BEANS, Month.JUNE, 2, Month.SEPTEMBER, 1, 23f, 35f, 280f, 400f, 0.33f);
 
     static
     {

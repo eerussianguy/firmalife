@@ -1,9 +1,8 @@
-package com.eerussianguy.firmalife.util;
+package com.eerussianguy.firmalife.player;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import net.minecraft.util.ResourceLocation;
-
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;

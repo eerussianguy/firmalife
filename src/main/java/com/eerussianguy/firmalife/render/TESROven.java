@@ -1,4 +1,4 @@
-package com.eerussianguy.firmalife.te;
+package com.eerussianguy.firmalife.render;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -12,6 +12,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
+
+import com.eerussianguy.firmalife.te.TEOven;
 
 import static com.eerussianguy.firmalife.init.StatePropertiesFL.CURED;
 import static com.eerussianguy.firmalife.te.TEOven.*;

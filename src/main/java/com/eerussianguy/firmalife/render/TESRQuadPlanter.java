@@ -1,16 +1,14 @@
-package com.eerussianguy.firmalife.te;
+package com.eerussianguy.firmalife.render;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
 
-import com.eerussianguy.firmalife.init.PlanterRegistry;
+import com.eerussianguy.firmalife.te.TEQuadPlanter;
 
 import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
 

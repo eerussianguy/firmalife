@@ -18,9 +18,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 
-import com.eerussianguy.firmalife.init.NutTrees;
-import com.eerussianguy.firmalife.util.CapPlayerDataFL;
-import com.eerussianguy.firmalife.util.IPlayerDataFL;
+import com.eerussianguy.firmalife.player.CapPlayerDataFL;
+import com.eerussianguy.firmalife.player.IPlayerDataFL;
+import com.eerussianguy.firmalife.recipe.NutRecipe;
 import net.dries007.tfc.Constants;
 import net.dries007.tfc.api.capability.size.IItemSize;
 import net.dries007.tfc.api.capability.size.Size;
@@ -57,7 +57,7 @@ public class ItemNutHammer extends Item implements IItemSize
             BlockPos logPos = pos;
             IBlockState logState = worldIn.getBlockState(pos);
             Block logBlock = logState.getBlock();
-            NutTrees entry = NutTrees.get(logBlock);// grabbing the registry to verify you're clicking a nut tree
+            NutRecipe entry = NutRecipe.get(logBlock);// grabbing the registry to verify you're clicking a nut tree
             if (entry == null)
                 return EnumActionResult.FAIL;
 
@@ -126,12 +126,14 @@ public class ItemNutHammer extends Item implements IItemSize
     }
 
     @Nonnull
-    public Size getSize(ItemStack stack) {
+    public Size getSize(ItemStack stack)
+    {
         return Size.VERY_LARGE;
     }
 
     @Nonnull
-    public Weight getWeight(ItemStack stack) {
+    public Weight getWeight(ItemStack stack)
+    {
         return Weight.HEAVY;
     }
 }

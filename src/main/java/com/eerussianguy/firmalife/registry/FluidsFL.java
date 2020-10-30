@@ -1,16 +1,15 @@
-package com.eerussianguy.firmalife.init;
+package com.eerussianguy.firmalife.registry;
 
 import javax.annotation.Nonnull;
 
 import com.google.common.collect.HashBiMap;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.util.ResourceLocation;
-
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 
+import com.eerussianguy.firmalife.init.FoodDataFL;
 import net.dries007.tfc.TerraFirmaCraft;
-import net.dries007.tfc.api.capability.food.FoodData;
 import net.dries007.tfc.api.capability.food.IFoodStatsTFC;
 import net.dries007.tfc.objects.fluids.properties.DrinkableProperty;
 import net.dries007.tfc.objects.fluids.properties.FluidWrapper;
@@ -36,15 +35,15 @@ public final class FluidsFL
     public static void registerFluids()
     {
         allFiniteFluids = ImmutableSet.<FluidWrapper>builder().add(
-        YEAST_STARTER = registerFluid(new Fluid("yeast_starter", STILL, FLOW, 0xFFa79464)),
-        COCONUT_MILK = registerFluid(new Fluid("coconut_milk", STILL, FLOW, 0xFFfcfae2)).with(DrinkableProperty.DRINKABLE, player -> {
-            if (player.getFoodStats() instanceof IFoodStatsTFC)
-            {
-                IFoodStatsTFC foodStats = (IFoodStatsTFC) player.getFoodStats();
-                foodStats.addThirst(10);
-                foodStats.getNutrition().addBuff(FoodDataFL.COCONUT_MILK);
-            }
-        })
+            YEAST_STARTER = registerFluid(new Fluid("yeast_starter", STILL, FLOW, 0xFFa79464)),
+            COCONUT_MILK = registerFluid(new Fluid("coconut_milk", STILL, FLOW, 0xFFfcfae2)).with(DrinkableProperty.DRINKABLE, player -> {
+                if (player.getFoodStats() instanceof IFoodStatsTFC)
+                {
+                    IFoodStatsTFC foodStats = (IFoodStatsTFC) player.getFoodStats();
+                    foodStats.addThirst(10);
+                    foodStats.getNutrition().addBuff(FoodDataFL.COCONUT_MILK);
+                }
+            })
         ).build();
     }
 

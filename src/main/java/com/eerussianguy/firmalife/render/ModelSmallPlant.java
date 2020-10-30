@@ -1,4 +1,4 @@
-package com.eerussianguy.firmalife.te;
+package com.eerussianguy.firmalife.render;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBox;
@@ -12,7 +12,8 @@ public class ModelSmallPlant extends ModelBase
     private final ModelRenderer bone;
     private final ModelRenderer bone2;
 
-    public ModelSmallPlant() {
+    public ModelSmallPlant()
+    {
         textureWidth = 64;
         textureHeight = 64;
 
@@ -27,7 +28,8 @@ public class ModelSmallPlant extends ModelBase
         bone2.cubeList.add(new ModelBox(bone2, 0, 0, 0.0F, -16.0F, -8.0F, 0, 16, 16, 0.0F, false));
     }
 
-    public void render(float f5) {
+    public void render(float f5)
+    {
         bone.render(f5);
         bone2.render(f5);
     }

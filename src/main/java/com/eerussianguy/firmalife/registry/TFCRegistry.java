@@ -1,7 +1,5 @@
 package com.eerussianguy.firmalife.registry;
 
-import com.eerussianguy.firmalife.util.KnappingFL;
-import net.dries007.tfc.objects.items.ItemsTFC;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -12,7 +10,9 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
 
 import com.eerussianguy.firmalife.FirmaLife;
+import com.eerussianguy.firmalife.init.KnappingFL;
 import com.eerussianguy.firmalife.init.PlantsFL;
+import com.eerussianguy.firmalife.recipe.KnappingRecipeFood;
 import net.dries007.tfc.TerraFirmaCraft;
 import net.dries007.tfc.api.recipes.heat.HeatRecipe;
 import net.dries007.tfc.api.recipes.knapping.KnappingRecipe;
@@ -58,20 +58,20 @@ public class TFCRegistry
         IForgeRegistry<QuernRecipe> r = event.getRegistry();
 
         r.register(new QuernRecipe(IIngredient.of("gemHalite"), new ItemStack(ItemPowder.get(Powder.SALT), 2)).setRegistryName("halite"));
-        r.register(new QuernRecipe(IIngredient.of(ModRegistry.CINNAMON), new ItemStack(ModRegistry.GROUND_CINNAMON, 2)).setRegistryName("cinnamon"));
+        r.register(new QuernRecipe(IIngredient.of(ItemsFL.CINNAMON), new ItemStack(ItemsFL.GROUND_CINNAMON, 2)).setRegistryName("cinnamon"));
     }
 
     @SubscribeEvent
     public static void onRegisterKnappingRecipeEvent(RegistryEvent.Register<KnappingRecipe> event)
     {
         event.getRegistry().registerAll(
-            new KnappingRecipeSimple(KnappingType.CLAY, true, new ItemStack(ModRegistry.OVEN), "XXXXX","X   X","X   X","X   X","XXXXX").setRegistryName("clay_oven"),
-            new KnappingRecipeSimple(KnappingType.CLAY, true, new ItemStack(ModRegistry.OVEN_CHIMNEY), "XX XX","X   X","X   X","X   X","X   X").setRegistryName("clay_oven_chimney"),
-            new KnappingRecipeSimple(KnappingType.CLAY, true, new ItemStack(ModRegistry.OVEN_WALL), "    X","   XX","   XX","  XXX","  XXX").setRegistryName("clay_oven_wall"),
-            new KnappingRecipeSimple(KnappingType.STONE, true, new ItemStack(ModRegistry.NUT_HAMMER_HEAD), "     ","XXXXX","XXX X","     ","     ").setRegistryName("nut_hammer"),
+            new KnappingRecipeSimple(KnappingType.CLAY, true, new ItemStack(BlocksFL.OVEN), "XXXXX", "X   X", "X   X", "X   X", "XXXXX").setRegistryName("clay_oven"),
+            new KnappingRecipeSimple(KnappingType.CLAY, true, new ItemStack(BlocksFL.OVEN_CHIMNEY), "XX XX", "X   X", "X   X", "X   X", "X   X").setRegistryName("clay_oven_chimney"),
+            new KnappingRecipeSimple(KnappingType.CLAY, true, new ItemStack(BlocksFL.OVEN_WALL), "    X", "   XX", "   XX", "  XXX", "  XXX").setRegistryName("clay_oven_wall"),
+            new KnappingRecipeSimple(KnappingType.STONE, true, new ItemStack(ItemsFL.NUT_HAMMER_HEAD), "     ", "XXXXX", "XXX X", "     ", "     ").setRegistryName("nut_hammer"),
 
             new KnappingRecipeSimple(KnappingFL.PUMPKIN, true, new ItemStack(Blocks.LIT_PUMPKIN), "XXXXX", "X X X", "XXXXX", "X   X", "XXXXX").setRegistryName("pumpkin_lantern"),
-            new KnappingRecipeFood(KnappingFL.PUMPKIN, true, new ItemStack(ModRegistry.PUMPKIN_SCOOPED), "XXXXX", "X   X", "X   X", "X   X", "XXXXX").setRegistryName("pumpkin_scoop")
+            new KnappingRecipeFood(KnappingFL.PUMPKIN, true, new ItemStack(BlocksFL.PUMPKIN_SCOOPED), "XXXXX", "X   X", "X   X", "X   X", "XXXXX").setRegistryName("pumpkin_scoop")
         );
     }
 
