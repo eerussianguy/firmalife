@@ -118,14 +118,14 @@ public class ItemsFL
     public static final ItemMisc NUT_HAMMER_HEAD = Helpers.getNull();
 
     private static ImmutableList<Item> allEasyItems;
-    private static ImmutableList<ItemMisc> allFruitPoles;
+    private static ImmutableList<Item> allFruitPoles;
 
     public static ImmutableList<Item> getAllEasyItems()
     {
         return allEasyItems;
     }
 
-    public static ImmutableList<ItemMisc> getAllFruitPoles() { return allFruitPoles; }
+    public static ImmutableList<Item> getAllFruitPoles() { return allFruitPoles; }
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event)
@@ -133,7 +133,7 @@ public class ItemsFL
         IForgeRegistry<Item> r = event.getRegistry();
 
         ImmutableList.Builder<Item> easyItems = ImmutableList.builder();
-        ImmutableList.Builder<ItemMisc> fruitPoles = ImmutableList.builder();
+        ImmutableList.Builder<Item> fruitPoles = ImmutableList.builder();
         //Foods
         easyItems.add(register(r, "dark_chocolate", new ItemFoodFL(FoodDataFL.CHOCOLATE), CT_FOOD));
         easyItems.add(register(r, "milk_chocolate", new ItemFoodFL(FoodDataFL.CHOCOLATE), CT_FOOD));

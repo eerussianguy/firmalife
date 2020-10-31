@@ -40,6 +40,7 @@ import com.eerussianguy.firmalife.te.TEQuadPlanter;
 import net.dries007.tfc.client.GrassColorHandler;
 import net.dries007.tfc.objects.blocks.agriculture.BlockFruitTreeLeaves;
 import net.dries007.tfc.objects.blocks.wood.BlockSaplingTFC;
+import net.dries007.tfc.objects.items.ItemMisc;
 
 @SideOnly(Side.CLIENT)
 @Mod.EventBusSubscriber(value = {Side.CLIENT}, modid = FirmaLife.MOD_ID)
@@ -52,6 +53,8 @@ public class ClientRegisterEventsFL
     {
         //Setting the model resource location for items
         for (Item i : ItemsFL.getAllEasyItems())
+            ModelLoader.setCustomModelResourceLocation(i, 0, new ModelResourceLocation(i.getRegistryName().toString()));
+        for (Item i : ItemsFL.getAllFruitPoles())
             ModelLoader.setCustomModelResourceLocation(i, 0, new ModelResourceLocation(i.getRegistryName().toString()));
         for (ItemBlock ib : BlocksFL.getAllIBs())
             ModelLoader.setCustomModelResourceLocation(ib, 0, new ModelResourceLocation(ib.getRegistryName().toString()));

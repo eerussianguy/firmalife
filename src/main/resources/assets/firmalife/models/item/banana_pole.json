@@ -1,6 +1,6 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "firmalife:items/poles/banana_pole"
+    "layer0": "firmalife:items/banana_pole"
   }
 }
