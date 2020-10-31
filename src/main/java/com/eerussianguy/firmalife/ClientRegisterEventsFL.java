@@ -1,12 +1,8 @@
 package com.eerussianguy.firmalife;
 
 import com.eerussianguy.firmalife.blocks.*;
-import com.google.common.collect.Maps;
 import net.dries007.tfc.objects.blocks.agriculture.BlockCropDead;
 import net.minecraft.block.*;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyInteger;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.BlockLeaves;
@@ -29,7 +25,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.blocks.BlockPlanter;
 import com.eerussianguy.firmalife.blocks.BlockStemCrop;
 import com.eerussianguy.firmalife.init.StatePropertiesFL;
@@ -43,7 +38,6 @@ import com.eerussianguy.firmalife.te.TELeafMat;
 import com.eerussianguy.firmalife.te.TEOven;
 import com.eerussianguy.firmalife.te.TEQuadPlanter;
 import net.dries007.tfc.client.GrassColorHandler;
-import net.dries007.tfc.objects.blocks.agriculture.BlockCropDead;
 import net.dries007.tfc.objects.blocks.agriculture.BlockFruitTreeLeaves;
 import net.dries007.tfc.objects.blocks.wood.BlockSaplingTFC;
 
