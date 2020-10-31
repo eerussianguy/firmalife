@@ -1,10 +1,13 @@
 package com.eerussianguy.firmalife.registry;
 
 import com.eerussianguy.firmalife.blocks.BlockFruitDoor;
+import com.eerussianguy.firmalife.blocks.BlockFruitFence;
+import com.eerussianguy.firmalife.blocks.BlockFruitFenceGate;
 import com.eerussianguy.firmalife.init.FruitTreeFL;
 import com.eerussianguy.firmalife.items.*;
 import com.google.common.collect.ImmutableList;
 import net.dries007.tfc.api.types.IFruitTree;
+import net.dries007.tfc.objects.items.itemblock.ItemBlockTFC;
 import net.dries007.tfc.util.agriculture.FruitTree;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -18,7 +21,6 @@ import net.minecraftforge.registries.IForgeRegistry;
 import com.eerussianguy.firmalife.init.FoodDataFL;
 import com.eerussianguy.firmalife.init.StemCrop;
 import com.eerussianguy.firmalife.util.OreDictsFL;
-import com.eerussianguy.firmalife.registry.BlocksFL;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
 import net.dries007.tfc.objects.items.ItemMisc;
@@ -101,6 +103,8 @@ public class ItemsFL
     public static final ItemMisc CINNAMON_BARK = Helpers.getNull();
     @GameRegistry.ObjectHolder("ground_cinnamon")
     public static final ItemMisc GROUND_CINNAMON = Helpers.getNull();
+    @GameRegistry.ObjectHolder("cinnamon_pole")
+    public static final ItemMisc CINNAMON_POLE = Helpers.getNull();
     @GameRegistry.ObjectHolder("planter")
     public static final ItemMisc PLANTER = Helpers.getNull();
     @GameRegistry.ObjectHolder("greenhouse_door")
@@ -113,11 +117,14 @@ public class ItemsFL
     public static final ItemMisc NUT_HAMMER_HEAD = Helpers.getNull();
 
     private static ImmutableList<Item> allEasyItems;
+    private static ImmutableList<ItemMisc> allFruitPoles;
 
     public static ImmutableList<Item> getAllEasyItems()
     {
         return allEasyItems;
     }
+
+    public static ImmutableList<ItemMisc> getAllFruitPoles() { return allFruitPoles; }
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event)
@@ -125,6 +132,7 @@ public class ItemsFL
         IForgeRegistry<Item> r = event.getRegistry();
 
         ImmutableList.Builder<Item> easyItems = ImmutableList.builder();
+        ImmutableList.Builder<ItemMisc> fruitPoles = ImmutableList.builder();
         //Foods
         easyItems.add(register(r, "dark_chocolate", new ItemFoodFL(FoodDataFL.CHOCOLATE), CT_FOOD));
         easyItems.add(register(r, "milk_chocolate", new ItemFoodFL(FoodDataFL.CHOCOLATE), CT_FOOD));
@@ -183,18 +191,19 @@ public class ItemsFL
         easyItems.add(register(r, "cinnamon_bark", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
         easyItems.add(register(r, "cinnamon", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
         easyItems.add(register(r, "ground_cinnamon", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
+        easyItems.add(register(r, "cinnamon_pole", new ItemMisc(Size.SMALL, Weight.MEDIUM), CT_MISC));
         easyItems.add(register(r, "greenhouse_door", new ItemGreenhouseDoor(BlocksFL.BLOCK_GREENHOUSE_DOOR), CT_DECORATIONS));
 
         for (FruitTreeFL fruitTree : FruitTreeFL.values())
         {
             String name = fruitTree.getName().toLowerCase();
-            easyItems.add(register(r, name + "_pole", new ItemMisc(Size.SMALL, Weight.MEDIUM), CT_MISC));
+            fruitPoles.add(register(r, name + "_pole", new ItemMisc(Size.SMALL, Weight.MEDIUM), CT_MISC));
         }
 
         for (IFruitTree fruitTree : FruitTree.values())
         {
             String name = fruitTree.getName().toLowerCase();
-            easyItems.add(register(r, name + "_pole", new ItemMisc(Size.SMALL, Weight.MEDIUM), CT_MISC));
+            fruitPoles.add(register(r, name + "_pole", new ItemMisc(Size.SMALL, Weight.MEDIUM), CT_MISC));
         }
         for (BlockFruitDoor door : BlocksFL.getAllFruitDoors())
         {
@@ -214,6 +223,7 @@ public class ItemsFL
             easyItems.add(register(r, "crop/seeds/" + crop.name().toLowerCase(), new ItemSeedsTFC(crop), CT_FOOD));
         }
         allEasyItems = easyItems.build();
+        allFruitPoles = fruitPoles.build();
     }
 
     private static <T extends Item> T register(IForgeRegistry<Item> r, String name, T item, CreativeTabs ct)

@@ -2,7 +2,7 @@
   "forge_marker": 1,
   "defaults": {
     "textures": {
-      "texture": "firmalife:blocks/cherry_planks"
+      "texture": "firmalife:blocks/cherry_stripped"
     },
     "uvlock": true
   },

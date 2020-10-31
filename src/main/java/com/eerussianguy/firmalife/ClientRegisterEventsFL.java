@@ -75,12 +75,10 @@ public class ClientRegisterEventsFL
             ModelLoader.setCustomStateMapper(door, new StateMap.Builder().ignore(BlockDoor.POWERED).build());
         for (BlockFruitFenceGate gate : BlocksFL.getAllFruitFenceGates())
             ModelLoader.setCustomStateMapper(gate, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
-        for (BlockGreenhouseDoor door : BlocksFL.getAllGreenhouseDoors())
-            ModelLoader.setCustomStateMapper(door, new StateMap.Builder().ignore(BlockDoor.POWERED).build());
 
-        ModelLoader.setCustomStateMapper(ModRegistry.CINNAMON_LOG, new StateMap.Builder().ignore(StatePropertiesFL.CAN_GROW).build());
-        ModelLoader.setCustomStateMapper(ModRegistry.CINNAMON_LEAVES, new StateMap.Builder().ignore(BlockLeaves.DECAYABLE).build());
-        ModelLoader.setCustomStateMapper(ModRegistry.CINNAMON_SAPLING, new StateMap.Builder().ignore(BlockSaplingTFC.STAGE).build());
+        ModelLoader.setCustomStateMapper(BlocksFL.CINNAMON_LOG, new StateMap.Builder().ignore(StatePropertiesFL.CAN_GROW).build());
+        ModelLoader.setCustomStateMapper(BlocksFL.CINNAMON_LEAVES, new StateMap.Builder().ignore(BlockLeaves.DECAYABLE).build());
+        ModelLoader.setCustomStateMapper(BlocksFL.CINNAMON_SAPLING, new StateMap.Builder().ignore(BlockSaplingTFC.STAGE).build());
 
         for (Block block : BlocksFL.getAllFluidBlocks())
             ModelLoader.setCustomStateMapper(block, new StateMap.Builder().ignore(BlockFluidBase.LEVEL).build());

@@ -3,7 +3,7 @@
   "defaults": {
     "model": "fence_post",
     "textures": {
-      "texture": "firmalife:blocks/cocoa_planks"
+      "texture": "firmalife:blocks/cocoa_stripped"
     }
   },
   "variants": {
