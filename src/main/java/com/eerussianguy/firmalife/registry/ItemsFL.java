@@ -5,6 +5,7 @@ import com.eerussianguy.firmalife.init.FruitTreeFL;
 import com.eerussianguy.firmalife.items.*;
 import com.google.common.collect.ImmutableList;
 import net.dries007.tfc.api.types.IFruitTree;
+import net.dries007.tfc.util.OreDictionaryHelper;
 import net.dries007.tfc.util.agriculture.FruitTree;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -13,6 +14,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
 
 import com.eerussianguy.firmalife.init.FoodDataFL;
@@ -204,7 +206,9 @@ public class ItemsFL
         for (IFruitTree fruitTree : FruitTree.values())
         {
             String name = fruitTree.getName().toLowerCase();
-            fruitPoles.add(register(r, name + "_pole", new ItemMisc(Size.SMALL, Weight.MEDIUM), CT_MISC));
+            ItemMisc pole = new ItemMisc(Size.SMALL, Weight.MEDIUM);
+            fruitPoles.add(register(r, name + "_pole", pole, CT_MISC));
+            OreDictionary.registerOre("pole" + name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase(), pole);
         }
         for (BlockFruitDoor door : BlocksFL.getAllFruitDoors())
             easyItems.add(register(r, door.getRegistryName().getPath(), new ItemFruitDoor(door), CT_DECORATIONS));
