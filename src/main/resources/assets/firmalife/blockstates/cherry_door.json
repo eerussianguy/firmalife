@@ -2,8 +2,8 @@
   "forge_marker": 1,
   "defaults": {
     "textures": {
-      "bottom": "firmalife:blocks/cherry_door_lower",
-      "top": "firmalife:blocks/cherry_door_upper"
+      "bottom": "firmalife:blocks/cherry_door_bottom",
+      "top": "firmalife:blocks/cherry_door_top"
     }
   },
   "variants": {

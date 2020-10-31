@@ -1,6 +1,7 @@
 {
   "forge_marker": 1,
   "defaults": {
+    "model": "fence_gate_closed",
     "textures": {
       "texture": "firmalife:blocks/lemon_stripped"
     },
