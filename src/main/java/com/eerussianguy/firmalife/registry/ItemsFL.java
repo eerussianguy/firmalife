@@ -108,6 +108,10 @@ public class ItemsFL
     public static final ItemFoodFL COCONUT = Helpers.getNull();
     @GameRegistry.ObjectHolder("nut_hammer_head")
     public static final ItemMisc NUT_HAMMER_HEAD = Helpers.getNull();
+    @GameRegistry.ObjectHolder("pumpkin_scooped")
+    public static final ItemFoodFL PUMPKIN_SCOOPED = Helpers.getNull();
+    @GameRegistry.ObjectHolder("pumpkin_chunks")
+    public static final ItemFoodFL PUMPKIN_CHUNKS = Helpers.getNull();
 
     private static ImmutableList<Item> allEasyItems;
 
@@ -128,6 +132,7 @@ public class ItemsFL
         easyItems.add(register(r, "white_chocolate", new ItemFoodFL(FoodDataFL.CHOCOLATE), CT_FOOD));
         easyItems.add(register(r, "cocoa_beans", new ItemFoodFL(FoodDataFL.COCOA_BEANS), CT_FOOD));
         easyItems.add(register(r, "pumpkin_scooped", new ItemFoodFL(FoodDataFL.PUMPKIN), CT_FOOD));
+        easyItems.add(register(r, "pumpkin_chunks", new ItemFoodFL(FoodDataFL.PUMPKIN), CT_FOOD));
         //Dried Berries
         easyItems.add(register(r, "dried_banana", new ItemFoodFL(FoodDataFL.DRIED_FRUIT_DECAY), CT_FOOD));
         easyItems.add(register(r, "dried_blackberry", new ItemFoodFL(FoodDataFL.DRIED_FRUIT_CATEGORY), CT_FOOD));

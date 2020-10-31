@@ -46,8 +46,6 @@ public class BlocksFL
     public static final BlockStemFruit PUMPKIN_FRUIT = Helpers.getNull();
     @GameRegistry.ObjectHolder("melon_fruit")
     public static final BlockStemFruit MELON_FRUIT = Helpers.getNull();
-    @GameRegistry.ObjectHolder("pumpkin_scooped")
-    public static final ItemFoodFL PUMPKIN_SCOOPED = Helpers.getNull();
     @GameRegistry.ObjectHolder("leaf_mat")
     public static final BlockLeafMat LEAF_MAT = Helpers.getNull();
     @GameRegistry.ObjectHolder("cinnamon_log")
@@ -68,6 +66,7 @@ public class BlocksFL
     private static ImmutableList<BlockFluidBase> allFluidBlocks = Helpers.getNull();
     private static ImmutableList<BlockCropDead> allDeadCrops = Helpers.getNull();
     private static ImmutableList<BlockStemCrop> allCropBlocks = Helpers.getNull();
+    private static ImmutableList<BlockJackOLantern> allJackOLanterns = Helpers.getNull();
 
     public static ImmutableList<ItemBlock> getAllIBs()
     {
@@ -114,6 +113,12 @@ public class BlocksFL
         return allFluidBlocks;
     }
 
+    public static ImmutableList<BlockJackOLantern> getAllJackOLanterns()
+    {
+        return allJackOLanterns;
+    }
+
+
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event)
     {
@@ -128,6 +133,7 @@ public class BlocksFL
         ImmutableList.Builder<BlockCropDead> deadCrops = ImmutableList.builder();
         ImmutableList.Builder<BlockStemCrop> cropBlocks = ImmutableList.builder();
         ImmutableList.Builder<BlockPlanter> planters = ImmutableList.builder();
+        ImmutableList.Builder<BlockJackOLantern> jackOLanterns = ImmutableList.builder();
 
         for (FruitTreeFL fruitTree : FruitTreeFL.values())
         {
@@ -151,6 +157,11 @@ public class BlocksFL
         planters.add(register(r, "vanilla_planter", new BlockPlanter(() -> ItemsFL.VANILLA, PlantsFL.VANILLA_PLANT, 1), CT_FLORA));
         register(r, "greenhouse_door", new BlockGreenhouseDoor(), CT_DECORATIONS);
 
+        for(BlockJackOLantern.Carving carving : BlockJackOLantern.Carving.values())
+        {
+            jackOLanterns.add(register(r, "lit_pumpkin_"+carving.getName(), new BlockJackOLantern(carving), CT_DECORATIONS));
+        }
+
         foodIBs.add(register(r, "pumpkin_fruit", new BlockStemFruit(), CT_FLORA));
         foodIBs.add(register(r, "melon_fruit", new BlockStemFruit(), CT_FLORA));
 
@@ -173,6 +184,10 @@ public class BlocksFL
         allFoodIBs = foodIBs.build();
         allFoodIBs.forEach((x) -> {
             IBs.add(new ItemBlockRot(x));
+        });
+        allJackOLanterns = jackOLanterns.build();
+        allJackOLanterns.forEach((x) -> {
+            IBs.add(new ItemBlockTFC(x));
         });
         allFruitLeaves = fruitLeaves.build();
         allFruitLeaves.forEach((x) -> {
