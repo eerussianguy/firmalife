@@ -17,6 +17,11 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 import com.eerussianguy.firmalife.init.FoodDataFL;
 import com.eerussianguy.firmalife.init.StemCrop;
+import com.eerussianguy.firmalife.items.ItemFoodFL;
+import com.eerussianguy.firmalife.items.ItemGreenhouseDoor;
+import com.eerussianguy.firmalife.items.ItemNutHammer;
+import com.eerussianguy.firmalife.items.ItemRoastedCocoaBeans;
+
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
 import net.dries007.tfc.objects.items.ItemMisc;
