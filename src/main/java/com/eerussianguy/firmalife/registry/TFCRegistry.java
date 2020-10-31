@@ -3,6 +3,7 @@ package com.eerussianguy.firmalife.registry;
 import com.eerussianguy.firmalife.util.KnappingFL;
 import net.dries007.tfc.objects.items.ItemsTFC;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
@@ -26,6 +27,8 @@ import net.dries007.tfc.api.types.Plant;
 import net.dries007.tfc.objects.Powder;
 import net.dries007.tfc.objects.inventory.ingredient.IIngredient;
 import net.dries007.tfc.objects.items.ItemPowder;
+
+import java.util.ArrayList;
 
 import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
 
@@ -69,9 +72,11 @@ public class TFCRegistry
             new KnappingRecipeSimple(KnappingType.CLAY, true, new ItemStack(ModRegistry.OVEN_CHIMNEY), "XX XX","X   X","X   X","X   X","X   X").setRegistryName("clay_oven_chimney"),
             new KnappingRecipeSimple(KnappingType.CLAY, true, new ItemStack(ModRegistry.OVEN_WALL), "    X","   XX","   XX","  XXX","  XXX").setRegistryName("clay_oven_wall"),
 
-            new KnappingRecipeSimple(KnappingFL.PUMPKIN, true, new ItemStack(Blocks.LIT_PUMPKIN), "XXXXX", "X X X", "XXXXX", "X   X", "XXXXX").setRegistryName("pumpkin_lantern"),
-            new KnappingRecipeFood(KnappingFL.PUMPKIN, true, new ItemStack(ModRegistry.PUMPKIN_SCOOPED), "XXXXX", "X   X", "X   X", "X   X", "XXXXX").setRegistryName("pumpkin_scoop")
+            new KnappingRecipeFood(KnappingFL.PUMPKIN, true, new ItemStack(ModRegistry.PUMPKIN_SCOOPED), "XXXXX", "X   X", "X   X", "X   X", "XXXXX").setRegistryName("pumpkin_scoop"),
+            new KnappingRecipeFood(KnappingFL.PUMPKIN, true, new ItemStack(ModRegistry.PUMPKIN_CHUNKS), "XX XX", "XX XX", "     ", "XX XX", "XX XX").setRegistryName("pumpkin_chunk")
         );
+
+        event.getRegistry().registerAll(ModRegistry.getAllJackOLanterns().stream().map(j -> new KnappingRecipeSimple(KnappingFL.PUMPKIN, true, new ItemStack(Item.getItemFromBlock(j)), j.getCarving().getCraftPattern()).setRegistryName("pumpkin_carve_"+j.getCarving().getName())).toArray(KnappingRecipe[]::new));
     }
 
     @SubscribeEvent

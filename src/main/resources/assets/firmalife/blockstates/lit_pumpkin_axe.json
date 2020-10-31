@@ -1,0 +1,28 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube",
+    "textures": {
+      "particle": "blocks/pumpkin_side",
+      "up": "blocks/pumpkin_top",
+      "north": "firmalife:blocks/unlit_pumpkin_axe",
+      "east": "blocks/pumpkin_side",
+      "south": "blocks/pumpkin_side",
+      "west": "blocks/pumpkin_side",
+      "down": "blocks/pumpkin_side"
+    }
+  },
+  "variants": {
+    "normal": [{}],
+    "lit": {
+      "true": { "textures" : { "north":  "firmalife:blocks/lit_pumpkin_axe" }},
+      "false": {}
+    },
+    "facing": {
+      "north": {},
+      "west": { "y": 270 },
+      "south": { "y": 180 },
+      "east": { "y": 90 }
+    }
+  }
+}

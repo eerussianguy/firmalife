@@ -129,6 +129,8 @@ public class ModRegistry
     public static final BlockStemFruit MELON_FRUIT = Helpers.getNull();
     @GameRegistry.ObjectHolder("pumpkin_scooped")
     public static final ItemFoodFL PUMPKIN_SCOOPED = Helpers.getNull();
+    @GameRegistry.ObjectHolder("pumpkin_chunks")
+    public static final ItemFoodFL PUMPKIN_CHUNKS = Helpers.getNull();
     @GameRegistry.ObjectHolder("leaf_mat")
     public static final BlockLeafMat LEAF_MAT = Helpers.getNull();
     @GameRegistry.ObjectHolder("cinnamon_log")
@@ -147,6 +149,7 @@ public class ModRegistry
 
     private static ImmutableList<Block> allNormalIBs = Helpers.getNull();
     private static ImmutableList<Block> allFoodIBs = Helpers.getNull();
+    private static ImmutableList<BlockJackOLantern> allJackOLanterns = Helpers.getNull();
     private static ImmutableList<BlockFruitTreeLeaves> allFruitLeaves = Helpers.getNull();
     private static ImmutableList<BlockFruitTreeSapling> allFruitSaps = Helpers.getNull();
     private static ImmutableList<BlockPlanter> allPlanters = Helpers.getNull();
@@ -193,6 +196,8 @@ public class ModRegistry
         return allGreenhouseDoors;
     }
 
+    public static ImmutableList<BlockJackOLantern> getAllJackOLanterns() { return allJackOLanterns; }
+
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         IForgeRegistry<Item> r = event.getRegistry();
@@ -204,6 +209,7 @@ public class ModRegistry
         easyItems.add(register(r, "white_chocolate", new ItemFoodFL(FoodDataFL.CHOCOLATE), CT_FOOD));
         easyItems.add(register(r, "cocoa_beans", new ItemFoodFL(FoodDataFL.COCOA_BEANS), CT_FOOD));
         easyItems.add(register(r, "pumpkin_scooped", new ItemFoodFL(FoodDataFL.PUMPKIN), CT_FOOD));
+        easyItems.add(register(r, "pumpkin_chunks", new ItemFoodFL(FoodDataFL.PUMPKIN), CT_FOOD));
         //Dried Berries
         easyItems.add(register(r,"dried_banana", new ItemFoodFL(FoodDataFL.DRIED_FRUIT_DECAY), CT_FOOD));
         easyItems.add(register(r,"dried_blackberry", new ItemFoodFL(FoodDataFL.DRIED_FRUIT_CATEGORY), CT_FOOD));
@@ -286,6 +292,7 @@ public class ModRegistry
         ImmutableList.Builder<BlockStemCrop> cropBlocks = ImmutableList.builder();
         ImmutableList.Builder<BlockPlanter> planters = ImmutableList.builder();
         ImmutableList.Builder<BlockGreenhouseDoor> greenhouseDoor = ImmutableList.builder();
+        ImmutableList.Builder<BlockJackOLantern> jackOLanterns = ImmutableList.builder();
 
         for (FruitTreeFL fruitTree : FruitTreeFL.values())
         {
@@ -306,6 +313,12 @@ public class ModRegistry
         NormalIBs.add(register(r, "greenhouse_roof", new BlockGreenhouseRoof(), CT_DECORATIONS));
         NormalIBs.add(register(r, "climate_station", new BlockClimateStation(), CT_DECORATIONS));
         NormalIBs.add(register(r, "quad_planter", new BlockQuadPlanter(), CT_DECORATIONS));
+
+        for(BlockJackOLantern.Carving carving : BlockJackOLantern.Carving.values())
+        {
+            jackOLanterns.add(register(r, "lit_pumpkin_"+carving.getName(), new BlockJackOLantern(carving), CT_DECORATIONS));
+        }
+
         planters.add(register(r, "vanilla_planter", new BlockPlanter(() -> ModRegistry.VANILLA, PlantsFL.VANILLA_PLANT, 1), CT_FLORA));
         greenhouseDoor.add(register(r, "greenhouse_door", new BlockGreenhouseDoor(), CT_DECORATIONS));
 
@@ -340,6 +353,10 @@ public class ModRegistry
         });
         allPlanters = planters.build();
         allPlanters.forEach((x) -> {
+            IBs.add(new ItemBlockTFC(x));
+        });
+        allJackOLanterns = jackOLanterns.build();
+        allJackOLanterns.forEach((x) -> {
             IBs.add(new ItemBlockTFC(x));
         });
         allGreenhouseDoors = greenhouseDoor.build();

@@ -99,6 +99,14 @@ tile.tfc.ore.halite.diorite.name=Diorite Halite
 tile.tfc.ore.halite.gabbro.name=Gabbro Halite
 tile.tfc.plants.vanilla.name=Wild Vanilla
 
+tile.firmalife.lit_pumpkin_none.name=Jack o'Lantern
+tile.firmalife.lit_pumpkin_circle.name=Jack o'Lantern
+tile.firmalife.lit_pumpkin_face.name=Jack o'Lantern
+tile.firmalife.lit_pumpkin_creeper.name=Jack o'Lantern
+tile.firmalife.lit_pumpkin_axe.name=Jack o'Lantern
+tile.firmalife.lit_pumpkin_hammer.name=Jack o'Lantern
+tile.firmalife.lit_pumpkin_pickaxe.name=Jack o'Lantern
+
 tooltip.firmalife.hours=hours
 tooltip.firmalife.days=days
 tooltip.firmalife.refractory=You're doing this too often. Take a break.

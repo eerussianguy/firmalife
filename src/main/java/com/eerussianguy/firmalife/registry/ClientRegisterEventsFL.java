@@ -1,5 +1,6 @@
 package com.eerussianguy.firmalife.registry;
 
+import com.eerussianguy.firmalife.blocks.BlockJackOLantern;
 import com.eerussianguy.firmalife.blocks.BlockStemCrop;
 import com.google.common.collect.Maps;
 import net.dries007.tfc.objects.blocks.agriculture.BlockCropDead;
