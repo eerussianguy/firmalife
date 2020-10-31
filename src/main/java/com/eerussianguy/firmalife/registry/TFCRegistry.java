@@ -1,6 +1,5 @@
 package com.eerussianguy.firmalife.registry;
 
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -27,8 +26,6 @@ import net.dries007.tfc.api.types.Plant;
 import net.dries007.tfc.objects.Powder;
 import net.dries007.tfc.objects.inventory.ingredient.IIngredient;
 import net.dries007.tfc.objects.items.ItemPowder;
-
-import java.util.ArrayList;
 
 import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
 
