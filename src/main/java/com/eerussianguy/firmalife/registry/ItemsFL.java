@@ -1,13 +1,10 @@
 package com.eerussianguy.firmalife.registry;
 
 import com.eerussianguy.firmalife.blocks.BlockFruitDoor;
-import com.eerussianguy.firmalife.blocks.BlockFruitFence;
-import com.eerussianguy.firmalife.blocks.BlockFruitFenceGate;
 import com.eerussianguy.firmalife.init.FruitTreeFL;
 import com.eerussianguy.firmalife.items.*;
 import com.google.common.collect.ImmutableList;
 import net.dries007.tfc.api.types.IFruitTree;
-import net.dries007.tfc.objects.items.itemblock.ItemBlockTFC;
 import net.dries007.tfc.util.agriculture.FruitTree;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -20,7 +17,6 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 import com.eerussianguy.firmalife.init.FoodDataFL;
 import com.eerussianguy.firmalife.init.StemCrop;
-import com.eerussianguy.firmalife.util.OreDictsFL;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
 import net.dries007.tfc.objects.items.ItemMisc;
@@ -206,9 +202,7 @@ public class ItemsFL
             fruitPoles.add(register(r, name + "_pole", new ItemMisc(Size.SMALL, Weight.MEDIUM), CT_MISC));
         }
         for (BlockFruitDoor door : BlocksFL.getAllFruitDoors())
-        {
             easyItems.add(register(r, door.getRegistryName().getPath(), new ItemFruitDoor(door), CT_DECORATIONS));
-        }
 
         //uses a separate model loader
         register(r, "cracked_coconut", new ItemWoodenBucket(), CT_MISC);
