@@ -1,5 +1,26 @@
 package com.eerussianguy.firmalife.blocks;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockDirectional;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.BlockStateContainer;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.Rotation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import net.minecraftforge.items.ItemHandlerHelper;
+
 import com.eerussianguy.firmalife.te.TEStemCrop;
 import net.dries007.tfc.api.capability.food.CapabilityFood;
 import net.dries007.tfc.api.capability.food.FoodHandler;
@@ -14,27 +35,12 @@ import net.dries007.tfc.util.agriculture.Crop;
 import net.dries007.tfc.util.calendar.CalendarTFC;
 import net.dries007.tfc.util.skills.SimpleSkill;
 import net.dries007.tfc.util.skills.SkillType;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockDirectional;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.state.BlockStateContainer;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
-import net.minecraftforge.items.ItemHandlerHelper;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+public class BlockStemFruit extends BlockDirectional implements IItemSize
+{
 
-public class BlockStemFruit extends BlockDirectional implements IItemSize {
-
-    public BlockStemFruit() {
+    public BlockStemFruit()
+    {
         super(Material.GOURD);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
         this.setHardness(1.0f);
@@ -43,23 +49,28 @@ public class BlockStemFruit extends BlockDirectional implements IItemSize {
     /**
      * Checks if this block can be placed exactly at the given position.
      */
-    public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
+    public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
+    {
         return worldIn.getBlockState(pos).getBlock().isReplaceable(worldIn, pos) && worldIn.isSideSolid(pos.down(), EnumFacing.UP);
     }
 
-    public IBlockState withRotation(IBlockState state, Rotation rot) {
+    public IBlockState withRotation(IBlockState state, Rotation rot)
+    {
         return state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
     }
 
-    public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
+    public IBlockState withMirror(IBlockState state, Mirror mirrorIn)
+    {
         return state.withRotation(mirrorIn.toRotation(state.getValue(FACING)));
     }
 
-    public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+    public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    {
         return this.getDefaultState().withProperty(FACING, EnumFacing.getDirectionFromEntityLiving(pos, placer));
     }
 
-    public IBlockState getStateFromMeta(int meta) {
+    public IBlockState getStateFromMeta(int meta)
+    {
         return this.getDefaultState().withProperty(FACING, EnumFacing.byIndex(meta));
     }
 
@@ -84,10 +95,10 @@ public class BlockStemFruit extends BlockDirectional implements IItemSize {
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
         super.getDrops(drops, world, pos, state, fortune);
-        if(world instanceof World && !((World)world).isRemote)
+        if (world instanceof World && !((World) world).isRemote)
         {
             TETickCounter te = Helpers.getTE(world, pos, TETickCounter.class);
-            if(te != null)
+            if (te != null)
             {
                 long currentTime = CalendarTFC.PLAYER_TIME.getTicks();
                 long foodCreationDate = currentTime - te.getTicksSinceUpdate();
@@ -115,7 +126,7 @@ public class BlockStemFruit extends BlockDirectional implements IItemSize {
     {
         super.harvestBlock(world, player, pos, state, tee, tool);
 
-        if(!world.isRemote)
+        if (!world.isRemote)
         {
             for (EnumFacing neighbor : EnumFacing.Plane.HORIZONTAL)
             {
@@ -130,7 +141,7 @@ public class BlockStemFruit extends BlockDirectional implements IItemSize {
                     {
                         IBlockState cropState = world.getBlockState(cropPos);
                         int cropStage = cropState.getValue(crop.getStageProperty());
-                        if(cropStage == crop.getCrop().getMaxStage())
+                        if (cropStage == crop.getCrop().getMaxStage())
                         {
                             world.setBlockState(cropPos, cropState.withProperty(crop.getStageProperty(), cropStage - 3));
                             SimpleSkill skill = CapabilityPlayerData.getSkill(player, SkillType.AGRICULTURE);
@@ -153,23 +164,27 @@ public class BlockStemFruit extends BlockDirectional implements IItemSize {
     /**
      * Convert the BlockState into the correct metadata value
      */
-    public int getMetaFromState(IBlockState state) {
+    public int getMetaFromState(IBlockState state)
+    {
         return state.getValue(FACING).getIndex();
     }
 
-    protected BlockStateContainer createBlockState() {
+    protected BlockStateContainer createBlockState()
+    {
         return new BlockStateContainer(this, FACING);
     }
 
     @Nonnull
     @Override
-    public Size getSize(@Nonnull ItemStack stack) {
+    public Size getSize(@Nonnull ItemStack stack)
+    {
         return Size.LARGE;
     }
 
     @Nonnull
     @Override
-    public Weight getWeight(@Nonnull ItemStack stack) {
+    public Weight getWeight(@Nonnull ItemStack stack)
+    {
         return Weight.HEAVY;
     }
 }

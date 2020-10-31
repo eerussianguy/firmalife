@@ -92,14 +92,15 @@ public class BlockClimateStation extends Block implements IItemSize
     }
 
     /**
-     *   X
-     *  X X
+     * X
+     * X X
      * X   X
      * X   X
      * X   X
-     * @param world This is my house
+     *
+     * @param world     This is my house
      * @param searchPos My house is a greenhouse
-     * @param inward It is very green
+     * @param inward    It is very green
      * @return a haiku
      */
     private boolean isGoodArc(World world, BlockPos searchPos, EnumFacing inward)

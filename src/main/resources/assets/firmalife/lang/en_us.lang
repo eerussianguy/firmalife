@@ -38,6 +38,7 @@ item.firmalife.cinnamon_bark.name=Cinnamon Bark
 item.firmalife.ground_cinnamon.name=Ground Cinnamon
 item.firmalife.greenhouse_door.name=Greenhouse Door
 item.firmalife.pumpkin_scooped.name=Scooped Pumpkin
+item.firmalife.pumpkin_chunks.name=Pumpkin Chunks
 item.firmalife.acorn_fruit.name=Acorn Fruit
 item.firmalife.acorns.name=Acorns
 item.firmalife.chestnuts.name=Chestnuts
@@ -49,8 +50,12 @@ item.firmalife.pecan_nuts.name=Pecan Nuts
 item.firmalife.pinecone.name=Pinecone
 item.firmalife.pine_nuts.name=Pine Nuts
 item.firmalife.nut_hammer.name=Nut Hammer
+item.firmalife.nut_hammer_head.name=Nut Hammer Head
 item.firmalife.crop.seeds.pumpkin.name=Pumpkin Seeds
 item.firmalife.crop.seeds.melon.name=Melon Seeds
+item.firmalife.cracked_coconut.name=Empty Coconut
+item.firmalife.cracked_coconut.filled.name=Filled Coconut (%s)
+item.firmalife.coconut.name=Coconut
 
 tile.firmalife.cocoa_sapling.name=Cocoa Tree Sapling
 tile.firmalife.cocoa_trunk.name=Cocoa Tree Trunk
@@ -73,6 +78,7 @@ tile.firmalife.climate_station.name=Climate Station
 tile.firmalife.quad_planter.name=Quad Planter
 
 fluid.yeast_starter=Yeast Starter
+fluid.coconut_milk=Coconut Milk
 
 item.tfc.ore.halite.name=Halite
 
@@ -110,11 +116,10 @@ tile.firmalife.lit_pumpkin_pickaxe.name=Jack o'Lantern
 tooltip.firmalife.hours=hours
 tooltip.firmalife.days=days
 tooltip.firmalife.refractory=You're doing this too often. Take a break.
+tooltip.firmalife.not_fall=Come back in October or November to get nuts.
 jei.category.firmalife.oven=Oven
 
 jei.category.firmalife.knap.pumpkin=Pumpkin Carving
-item.firmalife.crop.seeds.pumpkin.name=Pumpkin Seeds
-item.firmalife.crop.seeds.melon.name=Melon Seeds
 
 jei.category.firmalife.drying=Drying
 jei.tooltip.firmalife.fruit_leaf=Fruit leaves are dropped by breaking any fruit tree's leaves!

@@ -23,7 +23,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 
-import com.eerussianguy.firmalife.init.DryingRecipe;
+import com.eerussianguy.firmalife.recipe.DryingRecipe;
 import com.eerussianguy.firmalife.te.TELeafMat;
 import net.dries007.tfc.api.capability.size.IItemSize;
 import net.dries007.tfc.api.capability.size.Size;

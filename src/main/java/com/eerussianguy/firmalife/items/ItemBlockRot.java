@@ -1,23 +1,22 @@
 package com.eerussianguy.firmalife.items;
 
-import net.dries007.tfc.api.capability.food.CapabilityFood;
-import net.dries007.tfc.api.capability.food.FoodHandler;
-import net.dries007.tfc.objects.items.itemblock.ItemBlockTFC;
-import net.dries007.tfc.objects.te.TETickCounter;
-import net.dries007.tfc.util.Helpers;
-import net.dries007.tfc.util.calendar.CalendarTFC;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
+
+import net.dries007.tfc.api.capability.food.CapabilityFood;
+import net.dries007.tfc.api.capability.food.FoodHandler;
+import net.dries007.tfc.objects.items.itemblock.ItemBlockTFC;
+import net.dries007.tfc.objects.te.TETickCounter;
+import net.dries007.tfc.util.Helpers;
+import net.dries007.tfc.util.calendar.CalendarTFC;
 
 public class ItemBlockRot extends ItemBlockTFC
 {
@@ -28,7 +27,8 @@ public class ItemBlockRot extends ItemBlockTFC
 
 
     @Override
-    public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt) {
+    public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt)
+    {
         return new FoodHandler();
     }
 
@@ -36,14 +36,15 @@ public class ItemBlockRot extends ItemBlockTFC
     public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         long foodCreationDate = Long.MIN_VALUE;
-        if(!worldIn.isRemote)
+        if (!worldIn.isRemote)
         {
             ItemStack stack = player.getHeldItem(hand);
             FoodHandler handler = (FoodHandler) stack.getCapability(CapabilityFood.CAPABILITY, null);
             foodCreationDate = handler.getCreationDate();
         }
         EnumActionResult result = super.onItemUse(player, worldIn, pos, hand, facing, hitX, hitY, hitZ);
-        if(!worldIn.isRemote && result == EnumActionResult.SUCCESS) {
+        if (!worldIn.isRemote && result == EnumActionResult.SUCCESS)
+        {
             TETickCounter te = Helpers.getTE(worldIn, pos.offset(facing), TETickCounter.class);
             if (te != null)
             {

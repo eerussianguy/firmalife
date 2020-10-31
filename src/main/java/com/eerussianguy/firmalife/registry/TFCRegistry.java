@@ -1,7 +1,5 @@
 package com.eerussianguy.firmalife.registry;
 
-import com.eerussianguy.firmalife.util.KnappingFL;
-import net.dries007.tfc.objects.items.ItemsTFC;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -13,7 +11,9 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
 
 import com.eerussianguy.firmalife.FirmaLife;
+import com.eerussianguy.firmalife.init.KnappingFL;
 import com.eerussianguy.firmalife.init.PlantsFL;
+import com.eerussianguy.firmalife.recipe.KnappingRecipeFood;
 import net.dries007.tfc.TerraFirmaCraft;
 import net.dries007.tfc.api.recipes.heat.HeatRecipe;
 import net.dries007.tfc.api.recipes.knapping.KnappingRecipe;
@@ -61,22 +61,23 @@ public class TFCRegistry
         IForgeRegistry<QuernRecipe> r = event.getRegistry();
 
         r.register(new QuernRecipe(IIngredient.of("gemHalite"), new ItemStack(ItemPowder.get(Powder.SALT), 2)).setRegistryName("halite"));
-        r.register(new QuernRecipe(IIngredient.of(ModRegistry.CINNAMON), new ItemStack(ModRegistry.GROUND_CINNAMON, 2)).setRegistryName("cinnamon"));
+        r.register(new QuernRecipe(IIngredient.of(ItemsFL.CINNAMON), new ItemStack(ItemsFL.GROUND_CINNAMON, 2)).setRegistryName("cinnamon"));
     }
 
     @SubscribeEvent
     public static void onRegisterKnappingRecipeEvent(RegistryEvent.Register<KnappingRecipe> event)
     {
         event.getRegistry().registerAll(
-            new KnappingRecipeSimple(KnappingType.CLAY, true, new ItemStack(ModRegistry.OVEN), "XXXXX","X   X","X   X","X   X","XXXXX").setRegistryName("clay_oven"),
-            new KnappingRecipeSimple(KnappingType.CLAY, true, new ItemStack(ModRegistry.OVEN_CHIMNEY), "XX XX","X   X","X   X","X   X","X   X").setRegistryName("clay_oven_chimney"),
-            new KnappingRecipeSimple(KnappingType.CLAY, true, new ItemStack(ModRegistry.OVEN_WALL), "    X","   XX","   XX","  XXX","  XXX").setRegistryName("clay_oven_wall"),
+            new KnappingRecipeSimple(KnappingType.CLAY, true, new ItemStack(BlocksFL.OVEN), "XXXXX", "X   X", "X   X", "X   X", "XXXXX").setRegistryName("clay_oven"),
+            new KnappingRecipeSimple(KnappingType.CLAY, true, new ItemStack(BlocksFL.OVEN_CHIMNEY), "XX XX", "X   X", "X   X", "X   X", "X   X").setRegistryName("clay_oven_chimney"),
+            new KnappingRecipeSimple(KnappingType.CLAY, true, new ItemStack(BlocksFL.OVEN_WALL), "    X", "   XX", "   XX", "  XXX", "  XXX").setRegistryName("clay_oven_wall"),
+            new KnappingRecipeSimple(KnappingType.STONE, true, new ItemStack(ItemsFL.NUT_HAMMER_HEAD), "     ", "XXXXX", "XXX X", "     ", "     ").setRegistryName("nut_hammer"),
 
-            new KnappingRecipeFood(KnappingFL.PUMPKIN, true, new ItemStack(ModRegistry.PUMPKIN_SCOOPED), "XXXXX", "X   X", "X   X", "X   X", "XXXXX").setRegistryName("pumpkin_scoop"),
-            new KnappingRecipeFood(KnappingFL.PUMPKIN, true, new ItemStack(ModRegistry.PUMPKIN_CHUNKS), "XX XX", "XX XX", "     ", "XX XX", "XX XX").setRegistryName("pumpkin_chunk")
+            new KnappingRecipeFood(KnappingFL.PUMPKIN, true, new ItemStack(ItemsFL.PUMPKIN_SCOOPED), "XXXXX", "X   X", "X   X", "X   X", "XXXXX").setRegistryName("pumpkin_scoop"),
+            new KnappingRecipeFood(KnappingFL.PUMPKIN, true, new ItemStack(ItemsFL.PUMPKIN_CHUNKS), "XX XX", "XX XX", "     ", "XX XX", "XX XX").setRegistryName("pumpkin_chunk")
         );
 
-        event.getRegistry().registerAll(ModRegistry.getAllJackOLanterns().stream().map(j -> new KnappingRecipeSimple(KnappingFL.PUMPKIN, true, new ItemStack(Item.getItemFromBlock(j)), j.getCarving().getCraftPattern()).setRegistryName("pumpkin_carve_"+j.getCarving().getName())).toArray(KnappingRecipe[]::new));
+        event.getRegistry().registerAll(BlocksFL.getAllJackOLanterns().stream().map(j -> new KnappingRecipeSimple(KnappingFL.PUMPKIN, true, new ItemStack(Item.getItemFromBlock(j)), j.getCarving().getCraftPattern()).setRegistryName("pumpkin_carve_"+j.getCarving().getName())).toArray(KnappingRecipe[]::new));
     }
 
     @SubscribeEvent

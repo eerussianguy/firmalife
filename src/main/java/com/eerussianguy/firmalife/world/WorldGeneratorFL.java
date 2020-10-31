@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 
 public class WorldGeneratorFL implements IWorldGenerator
 {
-    private WorldgenCinnamon cinnamon = new WorldgenCinnamon();
+    private final WorldgenCinnamon cinnamon = new WorldgenCinnamon();
 
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)

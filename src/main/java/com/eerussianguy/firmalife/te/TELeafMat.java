@@ -8,7 +8,7 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import com.eerussianguy.firmalife.init.DryingRecipe;
+import com.eerussianguy.firmalife.recipe.DryingRecipe;
 import net.dries007.tfc.api.capability.food.CapabilityFood;
 import net.dries007.tfc.objects.te.TEInventory;
 import net.dries007.tfc.util.calendar.CalendarTFC;

@@ -26,7 +26,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 
-import com.eerussianguy.firmalife.registry.ModRegistry;
+import com.eerussianguy.firmalife.registry.ItemsFL;
 import com.eerussianguy.firmalife.te.TEOven;
 import net.dries007.tfc.api.capability.size.IItemSize;
 import net.dries007.tfc.api.capability.size.Size;
@@ -37,6 +37,7 @@ import net.dries007.tfc.objects.blocks.property.ILightableBlock;
 import net.dries007.tfc.objects.items.ItemFireStarter;
 import net.dries007.tfc.util.DamageSourcesTFC;
 import net.dries007.tfc.util.Helpers;
+import net.dries007.tfc.util.OreDictionaryHelper;
 import net.dries007.tfc.util.fuel.FuelManager;
 
 import static com.eerussianguy.firmalife.init.StatePropertiesFL.CURED;
@@ -58,8 +59,9 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
     /**
      * This is a local way for an oven to check if it's valid. Does not care about chimneys.
      * The ifs are nested like that for readability, I know it's not something a real dev would write.
-     * @param world The world! What more did you want
-     * @param ovenPos The oven
+     *
+     * @param world     The world! What more did you want
+     * @param ovenPos   The oven
      * @param needsCure Does it need to be cured to return true?
      * @return If there's correctly placed ovens or walls on either side
      */
@@ -80,7 +82,7 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
                 return false;
             }
             Block b = state.getBlock();
-            if(!(b instanceof BlockOven || b instanceof BlockOvenWall))
+            if (!(b instanceof BlockOven || b instanceof BlockOvenWall))
             {
                 return false; // return false if it's not an oven or oven wall
             }
@@ -114,7 +116,8 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
 
     /**
      * Checks if there's a chimney. Two blocks to each side. Needs three blocks of chimney
-     * @param world The world
+     *
+     * @param world   The world
      * @param ovenPos The oven
      * @return A boolean saying if it's good or not
      */
@@ -145,6 +148,7 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
 
     /**
      * Tests if it's a cured block
+     *
      * @param state the block you want to test
      * @return false if it's not cured, or if it's not an oven block
      */
@@ -181,7 +185,7 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
                 }
                 TEOven te = Helpers.getTE(world, pos, TEOven.class);
                 IItemHandler inventory = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
-                if (!player.isSneaking() && inventory != null && !held.isItemEqual(new ItemStack(ModRegistry.PEEL)) && !held.isEmpty())
+                if (!player.isSneaking() && inventory != null && !OreDictionaryHelper.doesStackMatchOre(held, "peel") && !held.isEmpty())
                 {
                     for (int i = 0; i < 3; i++) // put stuff in the oven, will try every slot
                     {
@@ -205,7 +209,7 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
                     }
                     return true;
                 }
-                else if (inventory != null && (held.isEmpty() || held.isItemEqual(new ItemStack(ModRegistry.PEEL))))
+                else if (inventory != null && (held.isEmpty() || OreDictionaryHelper.doesStackMatchOre(held, "peel")))
                 {
                     for (int i = 2; i >= 0; i--) // take stuff out. starts with the main slot and cycles backwards
                     {
@@ -215,7 +219,7 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
                             ItemStack takeStack = inventory.extractItem(i, 1, false);
                             ItemHandlerHelper.giveItemToPlayer(player, takeStack);
                             te.markForSync();
-                            if (!held.isItemEqual(new ItemStack(ModRegistry.PEEL)) && state.getValue(CURED))
+                            if (!OreDictionaryHelper.doesStackMatchOre(held, "peel") && state.getValue(CURED))
                                 player.attackEntityFrom(DamageSourcesTFC.GRILL, 2.0F); // damage player if they don't use peel
                             return true;
                         }
@@ -276,13 +280,13 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
                     case 1:
                         particle = TFCParticles.FIRE_PIT_SMOKE3;
                 }
-                particle.spawn(worldIn, pos.getX() + (rand.nextFloat() / 2) + 0.25, pos.getY() + 3, pos.getZ() +  (rand.nextFloat() / 2) + 0.25,
+                particle.spawn(worldIn, pos.getX() + (rand.nextFloat() / 2) + 0.25, pos.getY() + 3, pos.getZ() + (rand.nextFloat() / 2) + 0.25,
                     0f, 0.2F + rand.nextFloat() / 2, 0f, 110);
             }
             // inside the oven
-            worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + rand.nextFloat(), pos.getY() + 0.11, pos.getZ() +  rand.nextFloat() / 2,
+            worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + rand.nextFloat(), pos.getY() + 0.11, pos.getZ() + rand.nextFloat() / 2,
                 0.02f, 0.05f * rand.nextFloat(), 0.02f);
-            worldIn.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + rand.nextFloat(), pos.getY() + 0.11, pos.getZ() +  rand.nextFloat() / 2,
+            worldIn.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + rand.nextFloat(), pos.getY() + 0.11, pos.getZ() + rand.nextFloat() / 2,
                 0.02f, 0.05f * rand.nextFloat(), 0.02f);
             if (worldIn.getTotalWorldTime() % 80 == 0)
             {
