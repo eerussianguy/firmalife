@@ -60,7 +60,7 @@ public class CommonEventHandlerFL
         else if (block instanceof BlockFruitTreeTrunk)
         {
             IFruitTree tree = ((BlockFruitTreeTrunk) block).getTree();
-            String poleName = "firmalife:" + tree.getName().toLowerCase() + "_pole";
+            String poleName = MOD_ID + tree.getName().toLowerCase() + "_pole";
             event.getDrops().add(new ItemStack(ItemMisc.getByNameOrId(poleName)));
         }
     }
