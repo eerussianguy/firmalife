@@ -160,19 +160,19 @@ public class BlocksFL
             fruitLeaves.add(register(r, name + "_leaves", new BlockFruitTreeLeaves(fruitTree), CT_WOOD));
             fruitSaps.add(register(r, name + "_sapling", new BlockFruitTreeSapling(fruitTree), CT_WOOD));
             register(r, name + "_trunk", new BlockFruitTreeTrunk(fruitTree));
-            fruitFences.add(register(r, name + "_fence", new BlockFruitFence(fruitTree), CT_DECORATIONS));
-            fruitFenceGates.add(register(r, name + "_fence_gate", new BlockFruitFenceGate(fruitTree), CT_DECORATIONS));
+            fruitFences.add(register(r, name + "_fence", new BlockFruitFence(), CT_DECORATIONS));
+            fruitFenceGates.add(register(r, name + "_fence_gate", new BlockFruitFenceGate(), CT_DECORATIONS));
             fruitDoors.add(register(r, name + "_door", new BlockFruitDoor(fruitTree), CT_DECORATIONS));
-            fruitTrapdoors.add(register(r, name + "_trapdoor", new BlockFruitTrapDoor(fruitTree), CT_DECORATIONS));
+            fruitTrapdoors.add(register(r, name + "_trapdoor", new BlockFruitTrapDoor(), CT_DECORATIONS));
         }
 
         for (IFruitTree fruitTree : FruitTree.values())
         {
             String name = fruitTree.getName().toLowerCase();
-            fruitFences.add(register(r, name + "_fence", new BlockFruitFence(fruitTree), CT_DECORATIONS));
-            fruitFenceGates.add(register(r, name + "_fence_gate", new BlockFruitFenceGate(fruitTree), CT_DECORATIONS));
+            fruitFences.add(register(r, name + "_fence", new BlockFruitFence(), CT_DECORATIONS));
+            fruitFenceGates.add(register(r, name + "_fence_gate", new BlockFruitFenceGate(), CT_DECORATIONS));
             fruitDoors.add(register(r, name + "_door", new BlockFruitDoor(fruitTree), CT_DECORATIONS));
-            fruitTrapdoors.add(register(r, name + "_trapdoor", new BlockFruitTrapDoor(fruitTree), CT_DECORATIONS));
+            fruitTrapdoors.add(register(r, name + "_trapdoor", new BlockFruitTrapDoor(), CT_DECORATIONS));
         }
 
         normalIBs.add(register(r, "oven", new BlockOven(), CT_DECORATIONS));
