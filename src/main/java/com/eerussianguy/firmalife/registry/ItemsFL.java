@@ -124,14 +124,11 @@ public class ItemsFL
     public static final ItemFoodFL PUMPKIN_CHUNKS = Helpers.getNull();
 
     private static ImmutableList<Item> allEasyItems;
-    private static ImmutableList<Item> allFruitPoles;
 
     public static ImmutableList<Item> getAllEasyItems()
     {
         return allEasyItems;
     }
-
-    public static ImmutableList<Item> getAllFruitPoles() { return allFruitPoles; }
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event)
@@ -209,7 +206,7 @@ public class ItemsFL
         {
             String name = fruitTree.getName().toLowerCase();
             ItemMisc pole = new ItemMisc(Size.SMALL, Weight.MEDIUM);
-            fruitPoles.add(register(r, name + "_pole", pole, CT_MISC));
+            easyItems.add(register(r, name + "_pole", pole, CT_MISC));
             //todo: Use our OreDict helper
             OreDictionary.registerOre("pole" + name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase(), pole);
         }
@@ -218,7 +215,7 @@ public class ItemsFL
         {
             String name = fruitTree.getName().toLowerCase();
             ItemMisc pole = new ItemMisc(Size.SMALL, Weight.MEDIUM);
-            fruitPoles.add(register(r, name + "_pole", pole, CT_MISC));
+            easyItems.add(register(r, name + "_pole", pole, CT_MISC));
             //todo: Use our OreDict helper
             OreDictionary.registerOre("pole" + name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase(), pole);
         }
@@ -227,7 +224,6 @@ public class ItemsFL
 
         //uses a separate model loader
         register(r, "cracked_coconut", new ItemWoodenBucket(), CT_MISC);
-        allEasyItems = easyItems.build();
 
         BlocksFL.getAllIBs().forEach((x) -> {
             registerIB(r, x);
@@ -238,7 +234,6 @@ public class ItemsFL
             easyItems.add(register(r, "crop/seeds/" + crop.name().toLowerCase(), new ItemSeedsTFC(crop), CT_FOOD));
         }
         allEasyItems = easyItems.build();
-        allFruitPoles = fruitPoles.build();
     }
 
     private static <T extends Item> T register(IForgeRegistry<Item> r, String name, T item, CreativeTabs ct)
