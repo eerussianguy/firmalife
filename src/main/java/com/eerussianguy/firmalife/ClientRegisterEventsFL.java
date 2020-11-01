@@ -55,8 +55,6 @@ public class ClientRegisterEventsFL
         //Setting the model resource location for items
         for (Item i : ItemsFL.getAllEasyItems())
             ModelLoader.setCustomModelResourceLocation(i, 0, new ModelResourceLocation(i.getRegistryName().toString()));
-        for (Item i : ItemsFL.getAllFruitPoles())
-            ModelLoader.setCustomModelResourceLocation(i, 0, new ModelResourceLocation(i.getRegistryName().toString()));
         for (ItemBlock ib : BlocksFL.getAllIBs())
             ModelLoader.setCustomModelResourceLocation(ib, 0, new ModelResourceLocation(ib.getRegistryName().toString()));
         for (BlockFruitTreeLeaves leaves : BlocksFL.getAllFruitLeaves())
