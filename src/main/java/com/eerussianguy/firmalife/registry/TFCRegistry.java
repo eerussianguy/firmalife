@@ -1,6 +1,6 @@
 package com.eerussianguy.firmalife.registry;
 
-import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
@@ -70,9 +70,11 @@ public class TFCRegistry
             new KnappingRecipeSimple(KnappingType.CLAY, true, new ItemStack(BlocksFL.OVEN_WALL), "    X", "   XX", "   XX", "  XXX", "  XXX").setRegistryName("clay_oven_wall"),
             new KnappingRecipeSimple(KnappingType.STONE, true, new ItemStack(ItemsFL.NUT_HAMMER_HEAD), "     ", "XXXXX", "XXX X", "     ", "     ").setRegistryName("nut_hammer"),
 
-            new KnappingRecipeSimple(KnappingFL.PUMPKIN, true, new ItemStack(Blocks.LIT_PUMPKIN), "XXXXX", "X X X", "XXXXX", "X   X", "XXXXX").setRegistryName("pumpkin_lantern"),
-            new KnappingRecipeFood(KnappingFL.PUMPKIN, true, new ItemStack(BlocksFL.PUMPKIN_SCOOPED), "XXXXX", "X   X", "X   X", "X   X", "XXXXX").setRegistryName("pumpkin_scoop")
+            new KnappingRecipeFood(KnappingFL.PUMPKIN, true, new ItemStack(ItemsFL.PUMPKIN_SCOOPED), "XXXXX", "X   X", "X   X", "X   X", "XXXXX").setRegistryName("pumpkin_scoop"),
+            new KnappingRecipeFood(KnappingFL.PUMPKIN, true, new ItemStack(ItemsFL.PUMPKIN_CHUNKS), "XX XX", "XX XX", "     ", "XX XX", "XX XX").setRegistryName("pumpkin_chunk")
         );
+
+        event.getRegistry().registerAll(BlocksFL.getAllJackOLanterns().stream().map(j -> new KnappingRecipeSimple(KnappingFL.PUMPKIN, true, new ItemStack(Item.getItemFromBlock(j)), j.getCarving().getCraftPattern()).setRegistryName("pumpkin_carve_"+j.getCarving().getName())).toArray(KnappingRecipe[]::new));
     }
 
     @SubscribeEvent

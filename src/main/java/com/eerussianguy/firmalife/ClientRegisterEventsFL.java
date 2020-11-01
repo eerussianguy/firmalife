@@ -3,6 +3,8 @@ package com.eerussianguy.firmalife;
 import com.eerussianguy.firmalife.blocks.*;
 import net.dries007.tfc.objects.blocks.agriculture.BlockCropDead;
 import net.minecraft.block.*;
+import com.eerussianguy.firmalife.blocks.BlockStemCrop;
+import net.dries007.tfc.objects.blocks.agriculture.BlockCropDead;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.BlockLeaves;
@@ -26,7 +28,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import com.eerussianguy.firmalife.blocks.BlockPlanter;
-import com.eerussianguy.firmalife.blocks.BlockStemCrop;
 import com.eerussianguy.firmalife.init.StatePropertiesFL;
 import com.eerussianguy.firmalife.registry.BlocksFL;
 import com.eerussianguy.firmalife.registry.ItemsFL;

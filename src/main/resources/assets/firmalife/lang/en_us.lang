@@ -38,6 +38,7 @@ item.firmalife.cinnamon_bark.name=Cinnamon Bark
 item.firmalife.ground_cinnamon.name=Ground Cinnamon
 item.firmalife.greenhouse_door.name=Greenhouse Door
 item.firmalife.pumpkin_scooped.name=Scooped Pumpkin
+item.firmalife.pumpkin_chunks.name=Pumpkin Chunks
 item.firmalife.acorn_fruit.name=Acorn Fruit
 item.firmalife.acorns.name=Acorns
 item.firmalife.chestnuts.name=Chestnuts
@@ -176,6 +177,14 @@ tile.tfc.ore.halite.granite.name=Granite Halite
 tile.tfc.ore.halite.diorite.name=Diorite Halite
 tile.tfc.ore.halite.gabbro.name=Gabbro Halite
 tile.tfc.plants.vanilla.name=Wild Vanilla
+
+tile.firmalife.lit_pumpkin_none.name=Jack o'Lantern
+tile.firmalife.lit_pumpkin_circle.name=Jack o'Lantern
+tile.firmalife.lit_pumpkin_face.name=Jack o'Lantern
+tile.firmalife.lit_pumpkin_creeper.name=Jack o'Lantern
+tile.firmalife.lit_pumpkin_axe.name=Jack o'Lantern
+tile.firmalife.lit_pumpkin_hammer.name=Jack o'Lantern
+tile.firmalife.lit_pumpkin_pickaxe.name=Jack o'Lantern
 
 tooltip.firmalife.hours=hours
 tooltip.firmalife.days=days
