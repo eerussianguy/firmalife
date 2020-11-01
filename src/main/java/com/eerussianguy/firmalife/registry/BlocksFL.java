@@ -162,7 +162,7 @@ public class BlocksFL
             register(r, name + "_trunk", new BlockFruitTreeTrunk(fruitTree));
             fruitFences.add(register(r, name + "_fence", new BlockFruitFence(), CT_DECORATIONS));
             fruitFenceGates.add(register(r, name + "_fence_gate", new BlockFruitFenceGate(), CT_DECORATIONS));
-            fruitDoors.add(register(r, name + "_door", new BlockFruitDoor(fruitTree), CT_DECORATIONS));
+            fruitDoors.add(register(r, name + "_door", new BlockFruitDoor(), CT_DECORATIONS));
             fruitTrapdoors.add(register(r, name + "_trapdoor", new BlockFruitTrapDoor(), CT_DECORATIONS));
         }
 
@@ -171,7 +171,7 @@ public class BlocksFL
             String name = fruitTree.getName().toLowerCase();
             fruitFences.add(register(r, name + "_fence", new BlockFruitFence(), CT_DECORATIONS));
             fruitFenceGates.add(register(r, name + "_fence_gate", new BlockFruitFenceGate(), CT_DECORATIONS));
-            fruitDoors.add(register(r, name + "_door", new BlockFruitDoor(fruitTree), CT_DECORATIONS));
+            fruitDoors.add(register(r, name + "_door", new BlockFruitDoor(), CT_DECORATIONS));
             fruitTrapdoors.add(register(r, name + "_trapdoor", new BlockFruitTrapDoor(), CT_DECORATIONS));
         }
 

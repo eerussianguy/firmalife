@@ -22,17 +22,9 @@ import net.minecraft.item.ItemStack;
 @MethodsReturnNonnullByDefault
 public class ItemFruitDoor extends ItemDoor implements IItemSize {
 
-    private static final Map<IFruitTree, ItemFruitDoor> MAP = new HashMap<>();
-
-    public static ItemFruitDoor get(IFruitTree tree) { return MAP.get(tree); }
-
-    public final IFruitTree tree;
-
     public ItemFruitDoor(BlockFruitDoor block)
     {
         super(block);
-        if (MAP.put(block.tree, this) != null) throw new IllegalStateException("There can only be one.");
-        tree = block.tree;
     }
 
     @Nonnull

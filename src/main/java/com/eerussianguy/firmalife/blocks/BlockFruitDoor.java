@@ -1,10 +1,15 @@
 package com.eerussianguy.firmalife.blocks;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
 
+import org.apache.commons.lang3.ObjectUtils;
+
 import com.eerussianguy.firmalife.items.ItemFruitDoor;
+import com.eerussianguy.firmalife.registry.BlocksFL;
+import com.eerussianguy.firmalife.registry.ItemsFL;
 import net.dries007.tfc.api.types.IFruitTree;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.material.Material;
@@ -19,22 +24,26 @@ import net.minecraft.world.World;
 
 public class BlockFruitDoor extends BlockDoor {
 
-    private static final Map<IFruitTree, BlockFruitDoor> MAP = new HashMap<>();
-
-    public static BlockFruitDoor get(IFruitTree tree) { return MAP.get(tree); }
-
-    public final IFruitTree tree;
-
-    public BlockFruitDoor(IFruitTree tree)
+    public BlockFruitDoor()
     {
         super(Material.WOOD);
-        if (MAP.put(tree, this) != null) throw new IllegalStateException("There can only be one.");
-        this.tree = tree;
         setHardness(3.0F);
         disableStats();
     }
 
-    public Item getItem() { return ItemFruitDoor.get(tree); }
+    public Item getItem() //From the way we build the ImmutableLists these two should always be sorted
+    {
+        Iterator<ItemFruitDoor> ifd = ItemsFL.getAllFruitDoors().iterator();
+        Iterator<BlockFruitDoor> bfd = BlocksFL.getAllFruitDoors().iterator();
+        while (ifd.hasNext() && bfd.hasNext())
+        {
+            ItemFruitDoor i = ifd.next();
+            BlockFruitDoor b = bfd.next();
+            if (this == b)
+                return i;
+        }
+        return null;
+    }
 
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)

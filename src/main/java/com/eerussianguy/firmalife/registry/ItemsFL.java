@@ -130,13 +130,17 @@ public class ItemsFL
         return allEasyItems;
     }
 
+    private static ImmutableList<ItemFruitDoor> allFruitDoors;
+
+    public static ImmutableList<ItemFruitDoor> getAllFruitDoors() { return allFruitDoors; }
+
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event)
     {
         IForgeRegistry<Item> r = event.getRegistry();
 
         ImmutableList.Builder<Item> easyItems = ImmutableList.builder();
-        ImmutableList.Builder<Item> fruitPoles = ImmutableList.builder();
+        ImmutableList.Builder<ItemFruitDoor> fruitDoors = ImmutableList.builder();
         //Foods
         easyItems.add(register(r, "dark_chocolate", new ItemFoodFL(FoodDataFL.CHOCOLATE), CT_FOOD));
         easyItems.add(register(r, "milk_chocolate", new ItemFoodFL(FoodDataFL.CHOCOLATE), CT_FOOD));
@@ -220,7 +224,7 @@ public class ItemsFL
             OreDictionary.registerOre("pole" + name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase(), pole);
         }
         for (BlockFruitDoor door : BlocksFL.getAllFruitDoors())
-            easyItems.add(register(r, door.getRegistryName().getPath(), new ItemFruitDoor(door), CT_DECORATIONS));
+            fruitDoors.add(register(r, door.getRegistryName().getPath(), new ItemFruitDoor(door), CT_DECORATIONS));
 
         //uses a separate model loader
         register(r, "cracked_coconut", new ItemWoodenBucket(), CT_MISC);
@@ -234,6 +238,7 @@ public class ItemsFL
             easyItems.add(register(r, "crop/seeds/" + crop.name().toLowerCase(), new ItemSeedsTFC(crop), CT_FOOD));
         }
         allEasyItems = easyItems.build();
+        allFruitDoors = fruitDoors.build();
     }
 
     private static <T extends Item> T register(IForgeRegistry<Item> r, String name, T item, CreativeTabs ct)

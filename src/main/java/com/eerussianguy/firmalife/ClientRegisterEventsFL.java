@@ -1,6 +1,7 @@
 package com.eerussianguy.firmalife;
 
 import com.eerussianguy.firmalife.blocks.*;
+import com.eerussianguy.firmalife.items.ItemFruitDoor;
 import net.dries007.tfc.objects.blocks.agriculture.BlockCropDead;
 import net.minecraft.block.*;
 import com.eerussianguy.firmalife.blocks.BlockStemCrop;
@@ -54,6 +55,8 @@ public class ClientRegisterEventsFL
     {
         //Setting the model resource location for items
         for (Item i : ItemsFL.getAllEasyItems())
+            ModelLoader.setCustomModelResourceLocation(i, 0, new ModelResourceLocation(i.getRegistryName().toString()));
+        for (ItemFruitDoor i : ItemsFL.getAllFruitDoors())
             ModelLoader.setCustomModelResourceLocation(i, 0, new ModelResourceLocation(i.getRegistryName().toString()));
         for (ItemBlock ib : BlocksFL.getAllIBs())
             ModelLoader.setCustomModelResourceLocation(ib, 0, new ModelResourceLocation(ib.getRegistryName().toString()));
