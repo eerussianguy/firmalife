@@ -56,6 +56,79 @@ item.firmalife.cracked_coconut.name=Empty Coconut
 item.firmalife.cracked_coconut.filled.name=Filled Coconut (%s)
 item.firmalife.coconut.name=Coconut
 
+### WOOD
+item.firmalife.banana_pole.name=Banana Pole
+item.firmalife.cherry_pole.name=Cherry Pole
+item.firmalife.cinnamon_pole.name=Cinnamon Pole
+item.firmalife.cocoa_pole.name=Cocoa Pole
+item.firmalife.green_apple_pole.name=Green Apple Pole
+item.firmalife.lemon_pole.name=Lemon Pole
+item.firmalife.olive_pole.name=Olive Pole
+item.firmalife.orange_pole.name=Orange Pole
+item.firmalife.peach_pole.name=Peach Pole
+item.firmalife.plum_pole.name=Plum Pole
+item.firmalife.red_apple_pole.name=Red Apple Pole
+
+item.firmalife.banana_door.name=Banana Door
+item.firmalife.cherry_door.name=Cherry Door
+item.firmalife.cinnamon_door.name=Cinnamon Door
+item.firmalife.cocoa_door.name=Cocoa Door
+item.firmalife.green_apple_door.name=Green Apple Door
+item.firmalife.lemon_door.name=Lemon Door
+item.firmalife.olive_door.name=Olive Door
+item.firmalife.orange_door.name=Orange Door
+item.firmalife.peach_door.name=Peach Door
+item.firmalife.plum_door.name=Plum Door
+item.firmalife.red_apple_door.name=Red Apple Door
+
+tile.firmalife.banana_door.name=Banana Door
+tile.firmalife.cherry_door.name=Cherry Door
+tile.firmalife.cinnamon_door.name=Cinnamon Door
+tile.firmalife.cocoa_door.name=Cocoa Door
+tile.firmalife.green_apple_door.name=Green Apple Door
+tile.firmalife.lemon_door.name=Lemon Door
+tile.firmalife.olive_door.name=Olive Door
+tile.firmalife.orange_door.name=Orange Door
+tile.firmalife.peach_door.name=Peach Door
+tile.firmalife.plum_door.name=Plum Door
+tile.firmalife.red_apple_door.name=Red Apple Door
+
+tile.firmalife.banana_trapdoor.name=Banana Trapdoor
+tile.firmalife.cherry_trapdoor.name=Cherry Trapdoor
+tile.firmalife.cinnamon_trapdoor.name=Cinnamon Trapdoor
+tile.firmalife.cocoa_trapdoor.name=Cocoa Trapdoor
+tile.firmalife.green_apple_trapdoor.name=Green Apple Trapdoor
+tile.firmalife.lemon_trapdoor.name=Lemon Trapdoor
+tile.firmalife.olive_trapdoor.name=Olive Trapdoor
+tile.firmalife.orange_trapdoor.name=Orange Trapdoor
+tile.firmalife.peach_trapdoor.name=Peach Trapdoor
+tile.firmalife.plum_trapdoor.name=Plum Trapdoor
+tile.firmalife.red_apple_trapdoor.name=Red Apple Trapdoor
+
+tile.firmalife.banana_fence.name=Banana Fence
+tile.firmalife.cherry_fence.name=Cherry Fence
+tile.firmalife.cinnamon_fence.name=Cinnamon Fence
+tile.firmalife.cocoa_fence.name=Cocoa Fence
+tile.firmalife.green_apple_fence.name=Green Apple Fence
+tile.firmalife.lemon_fence.name=Lemon Fence
+tile.firmalife.olive_fence.name=Olive Fence
+tile.firmalife.orange_fence.name=Orange Fence
+tile.firmalife.peach_fence.name=Peach Fence
+tile.firmalife.plum_fence.name=Plum Fence
+tile.firmalife.red_apple_fence.name=Red Apple Fence
+
+tile.firmalife.banana_fence_gate.name=Banana Fence Gate
+tile.firmalife.cherry_fence_gate.name=Cherry Fence Gate
+tile.firmalife.cinnamon_fence_gate.name=Cinnamon Fence Gate
+tile.firmalife.cocoa_fence_gate.name=Cocoa Fence Gate
+tile.firmalife.green_apple_fence_gate.name=Green Apple Fence Gate
+tile.firmalife.lemon_fence_gate.name=Lemon Fence Gate
+tile.firmalife.olive_fence_gate.name=Olive Fence Gate
+tile.firmalife.orange_fence_gate.name=Orange Fence Gate
+tile.firmalife.peach_fence_gate.name=Peach Fence Gate
+tile.firmalife.plum_fence_gate.name=Plum Fence Gate
+tile.firmalife.red_apple_fence_gate.name=Red Apple Fence Gate
+
 tile.firmalife.cocoa_sapling.name=Cocoa Tree Sapling
 tile.firmalife.cocoa_trunk.name=Cocoa Tree Trunk
 tile.firmalife.cocoa_leaves.name=Cocoa Tree Leaves
