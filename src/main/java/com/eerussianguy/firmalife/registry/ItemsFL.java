@@ -200,7 +200,10 @@ public class ItemsFL
         for (FruitTreeFL fruitTree : FruitTreeFL.values())
         {
             String name = fruitTree.getName().toLowerCase();
-            fruitPoles.add(register(r, name + "_pole", new ItemMisc(Size.SMALL, Weight.MEDIUM), CT_MISC));
+            ItemMisc pole = new ItemMisc(Size.SMALL, Weight.MEDIUM);
+            fruitPoles.add(register(r, name + "_pole", pole, CT_MISC));
+            //todo: Use our OreDict helper
+            OreDictionary.registerOre("pole" + name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase(), pole);
         }
 
         for (IFruitTree fruitTree : FruitTree.values())
@@ -208,6 +211,7 @@ public class ItemsFL
             String name = fruitTree.getName().toLowerCase();
             ItemMisc pole = new ItemMisc(Size.SMALL, Weight.MEDIUM);
             fruitPoles.add(register(r, name + "_pole", pole, CT_MISC));
+            //todo: Use our OreDict helper
             OreDictionary.registerOre("pole" + name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase(), pole);
         }
         for (BlockFruitDoor door : BlocksFL.getAllFruitDoors())
