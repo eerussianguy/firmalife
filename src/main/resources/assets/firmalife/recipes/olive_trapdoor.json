@@ -7,11 +7,11 @@
   "key": {
     "X": {
       "type": "forge:ore_dict",
-      "ore" : "poleBanana"
+      "ore" : "poleOlive"
     }
   },
   "result": {
-    "item": "firmalife:banana_trapdoor",
+    "item": "firmalife:olive_trapdoor",
     "count": 2
   }
 }

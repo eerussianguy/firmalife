@@ -1,8 +1,8 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "XBX",
-    "XBX"
+    "BXB",
+    "BXB"
   ],
   "key": {
     "X": {
@@ -15,7 +15,7 @@
     }
   },
   "result": {
-    "item": "firmalife:cherry_fence",
+    "item": "firmalife:cherry_fence_gate",
     "count": 8
   }
 }

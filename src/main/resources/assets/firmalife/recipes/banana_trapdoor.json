@@ -1,18 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "XX",
-    "XX",
-    "XX"
+    "XXX",
+    "XXX"
   ],
   "key": {
     "X": {
       "type": "forge:ore_dict",
-      "ore" : "poleCherry"
+      "ore" : "poleBanana"
     }
   },
   "result": {
-    "item": "firmalife:cherry_door",
-    "count": 1
+    "item": "firmalife:banana_trapdoor",
+    "count": 2
   }
 }

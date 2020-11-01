@@ -7,7 +7,7 @@
   "key": {
     "X": {
       "type": "forge:ore_dict",
-      "ore" : "poleBanana"
+      "ore" : "poleLemon"
     },
     "B": {
       "type": "forge:ore_dict",
@@ -15,7 +15,7 @@
     }
   },
   "result": {
-    "item": "firmalife:banana_fence",
+    "item": "firmalife:lemon_fence",
     "count": 8
   }
 }
