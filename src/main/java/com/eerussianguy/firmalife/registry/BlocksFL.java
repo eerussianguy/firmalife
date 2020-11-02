@@ -166,6 +166,11 @@ public class BlocksFL
             fruitTrapdoors.add(register(r, name + "_trapdoor", new BlockFruitTrapDoor(), CT_DECORATIONS));
         }
 
+        fruitFences.add(register(r, "cinnamon_fence", new BlockFruitFence(), CT_DECORATIONS));
+        fruitFenceGates.add(register(r, "cinnamon_fence_gate", new BlockFruitFenceGate(), CT_DECORATIONS));
+        fruitDoors.add(register(r, "cinnamon_door", new BlockFruitDoor(), CT_DECORATIONS));
+        fruitTrapdoors.add(register(r, "cinnamon_trapdoor", new BlockFruitTrapDoor(), CT_DECORATIONS));
+
         for (IFruitTree fruitTree : FruitTree.values())
         {
             String name = fruitTree.getName().toLowerCase();

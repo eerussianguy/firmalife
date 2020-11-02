@@ -57,7 +57,7 @@ public class CommonEventHandlerFL
         {
             event.getDrops().add(new ItemStack(ItemsFL.FRUIT_LEAF, 2 + Constants.RNG.nextInt(4)));
         }
-        else if (block instanceof BlockFruitTreeTrunk)
+        else if (block instanceof BlockFruitTreeTrunk) //todo: implement this without strings
         {
             IFruitTree tree = ((BlockFruitTreeTrunk) block).getTree();
             String poleName = MOD_ID + tree.getName().toLowerCase() + "_pole";

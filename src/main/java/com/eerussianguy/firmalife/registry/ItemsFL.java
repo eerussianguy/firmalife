@@ -203,8 +203,11 @@ public class ItemsFL
         easyItems.add(register(r, "cinnamon_bark", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
         easyItems.add(register(r, "cinnamon", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
         easyItems.add(register(r, "ground_cinnamon", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
-        easyItems.add(register(r, "cinnamon_pole", new ItemMisc(Size.SMALL, Weight.MEDIUM), CT_MISC));
         easyItems.add(register(r, "greenhouse_door", new ItemGreenhouseDoor(BlocksFL.BLOCK_GREENHOUSE_DOOR), CT_DECORATIONS));
+
+        ItemMisc cpole = new ItemMisc(Size.SMALL, Weight.MEDIUM);
+        easyItems.add(register(r, "cinnamon_pole", cpole, CT_MISC));
+        OreDictionary.registerOre("poleCinnamon", cpole);
 
         for (FruitTreeFL fruitTree : FruitTreeFL.values())
         {
