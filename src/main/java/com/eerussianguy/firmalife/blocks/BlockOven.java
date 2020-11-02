@@ -65,7 +65,7 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
      * @param needsCure Does it need to be cured to return true?
      * @return If there's correctly placed ovens or walls on either side
      */
-    public boolean isValidHorizontal(World world, BlockPos ovenPos, boolean needsCure)
+    public static boolean isValidHorizontal(World world, BlockPos ovenPos, boolean needsCure)
     {
         IBlockState ovenState = world.getBlockState(ovenPos);
         EnumFacing facing = ovenState.getValue(FACING);
@@ -74,6 +74,9 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
         IBlockState leftState = world.getBlockState(ovenPos.offset(left));
         IBlockState rightState = world.getBlockState(ovenPos.offset(right));
         IBlockState[] checkStates = {leftState, rightState};
+
+        if (!isCuredBlock(ovenState) && needsCure)
+            return false;
 
         for (IBlockState state : checkStates)
         {
@@ -121,7 +124,7 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
      * @param ovenPos The oven
      * @return A boolean saying if it's good or not
      */
-    public boolean hasChimney(World world, BlockPos ovenPos)
+    public static boolean hasChimney(World world, BlockPos ovenPos, boolean needsCure)
     {
         IBlockState ovenState = world.getBlockState(ovenPos);
         EnumFacing facing = ovenState.getValue(FACING);
@@ -138,7 +141,10 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
                 for (int i = 0; i < 3; i++)
                 {
                     BlockPos chimPos = pos.offset(EnumFacing.UP, i);
-                    if (!(world.getBlockState(chimPos).getBlock() instanceof BlockOvenChimney))
+                    IBlockState chimState = world.getBlockState(chimPos);
+                    if (!(chimState.getBlock() instanceof BlockOvenChimney))
+                        return false;
+                    if (!isCuredBlock(chimState) && needsCure)
                         return false;
                 }
             }
@@ -152,7 +158,7 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
      * @param state the block you want to test
      * @return false if it's not cured, or if it's not an oven block
      */
-    private boolean isCuredBlock(IBlockState state)
+    private static boolean isCuredBlock(IBlockState state)
     {
         if ((state.getBlock() instanceof BlockOven || state.getBlock() instanceof BlockOvenChimney) || state.getBlock() instanceof BlockOvenWall)
         {
@@ -169,7 +175,7 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
             if (!state.getValue(LIT))
             {
                 ItemStack held = player.getHeldItem(hand); // in order to light, it doesn't need to be cured, but the structure should exist
-                if (isValidHorizontal(world, pos, false) && hasChimney(world, pos) && ItemFireStarter.onIgnition(held))
+                if (isValidHorizontal(world, pos, false) && hasChimney(world, pos, false) && ItemFireStarter.onIgnition(held))
                 {
                     if (ItemFireStarter.onIgnition(held))
                     {
