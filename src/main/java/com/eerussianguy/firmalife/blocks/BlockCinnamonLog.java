@@ -123,7 +123,7 @@ public class BlockCinnamonLog extends Block
     @Override
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
-        drops.add(new ItemStack(Items.STICK, 1));
+        drops.add(new ItemStack(ItemsFL.CINNAMON_POLE, 1));
     }
 
     @Override

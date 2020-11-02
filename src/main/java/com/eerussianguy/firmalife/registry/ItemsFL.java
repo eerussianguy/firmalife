@@ -1,6 +1,12 @@
 package com.eerussianguy.firmalife.registry;
 
+import com.eerussianguy.firmalife.blocks.BlockFruitDoor;
+import com.eerussianguy.firmalife.init.FruitTreeFL;
+import com.eerussianguy.firmalife.items.*;
 import com.google.common.collect.ImmutableList;
+import net.dries007.tfc.api.types.IFruitTree;
+import net.dries007.tfc.util.OreDictionaryHelper;
+import net.dries007.tfc.util.agriculture.FruitTree;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -8,6 +14,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
 
 import com.eerussianguy.firmalife.init.FoodDataFL;
@@ -16,6 +23,7 @@ import com.eerussianguy.firmalife.items.ItemFoodFL;
 import com.eerussianguy.firmalife.items.ItemGreenhouseDoor;
 import com.eerussianguy.firmalife.items.ItemNutHammer;
 import com.eerussianguy.firmalife.items.ItemRoastedCocoaBeans;
+
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
 import net.dries007.tfc.objects.items.ItemMisc;
@@ -98,6 +106,8 @@ public class ItemsFL
     public static final ItemMisc CINNAMON_BARK = Helpers.getNull();
     @GameRegistry.ObjectHolder("ground_cinnamon")
     public static final ItemMisc GROUND_CINNAMON = Helpers.getNull();
+    @GameRegistry.ObjectHolder("cinnamon_pole")
+    public static final ItemMisc CINNAMON_POLE = Helpers.getNull();
     @GameRegistry.ObjectHolder("planter")
     public static final ItemMisc PLANTER = Helpers.getNull();
     @GameRegistry.ObjectHolder("greenhouse_door")
@@ -120,12 +130,17 @@ public class ItemsFL
         return allEasyItems;
     }
 
+    private static ImmutableList<ItemFruitDoor> allFruitDoors;
+
+    public static ImmutableList<ItemFruitDoor> getAllFruitDoors() { return allFruitDoors; }
+
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event)
     {
         IForgeRegistry<Item> r = event.getRegistry();
 
         ImmutableList.Builder<Item> easyItems = ImmutableList.builder();
+        ImmutableList.Builder<ItemFruitDoor> fruitDoors = ImmutableList.builder();
         //Foods
         easyItems.add(register(r, "dark_chocolate", new ItemFoodFL(FoodDataFL.CHOCOLATE), CT_FOOD));
         easyItems.add(register(r, "milk_chocolate", new ItemFoodFL(FoodDataFL.CHOCOLATE), CT_FOOD));
@@ -179,7 +194,10 @@ public class ItemsFL
         easyItems.add(register(r, "nut_hammer", new ItemNutHammer(), CT_MISC));
         easyItems.add(register(r, "nut_hammer_head", new ItemMisc(Size.LARGE, Weight.VERY_HEAVY), CT_MISC));
 
-        easyItems.add(register(r, "fruit_leaf", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
+        ItemMisc fruit_leaf = new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT);
+        easyItems.add(register(r, "fruit_leaf", fruit_leaf, CT_MISC));
+        OreDictionary.registerOre("fruitLeaf", fruit_leaf); //todo: Use our OreDict helper
+
         easyItems.add(register(r, "planter", new ItemMisc(Size.NORMAL, Weight.MEDIUM), CT_MISC));
         easyItems.add(register(r, "vanilla", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
         easyItems.add(register(r, "cinnamon_bark", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
@@ -187,9 +205,32 @@ public class ItemsFL
         easyItems.add(register(r, "ground_cinnamon", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
         easyItems.add(register(r, "greenhouse_door", new ItemGreenhouseDoor(BlocksFL.BLOCK_GREENHOUSE_DOOR), CT_DECORATIONS));
 
+        ItemMisc cpole = new ItemMisc(Size.SMALL, Weight.MEDIUM);
+        easyItems.add(register(r, "cinnamon_pole", cpole, CT_MISC));
+        OreDictionary.registerOre("poleCinnamon", cpole);
+
+        for (FruitTreeFL fruitTree : FruitTreeFL.values())
+        {
+            String name = fruitTree.getName().toLowerCase();
+            ItemMisc pole = new ItemMisc(Size.SMALL, Weight.MEDIUM);
+            easyItems.add(register(r, name + "_pole", pole, CT_MISC));
+            //todo: Use our OreDict helper
+            OreDictionary.registerOre("pole" + name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase(), pole);
+        }
+
+        for (IFruitTree fruitTree : FruitTree.values())
+        {
+            String name = fruitTree.getName().toLowerCase();
+            ItemMisc pole = new ItemMisc(Size.SMALL, Weight.MEDIUM);
+            easyItems.add(register(r, name + "_pole", pole, CT_MISC));
+            //todo: Use our OreDict helper
+            OreDictionary.registerOre("pole" + name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase(), pole);
+        }
+        for (BlockFruitDoor door : BlocksFL.getAllFruitDoors())
+            fruitDoors.add(register(r, door.getRegistryName().getPath(), new ItemFruitDoor(door), CT_DECORATIONS));
+
         //uses a separate model loader
         register(r, "cracked_coconut", new ItemWoodenBucket(), CT_MISC);
-        allEasyItems = easyItems.build();
 
         BlocksFL.getAllIBs().forEach((x) -> {
             registerIB(r, x);
@@ -200,6 +241,7 @@ public class ItemsFL
             easyItems.add(register(r, "crop/seeds/" + crop.name().toLowerCase(), new ItemSeedsTFC(crop), CT_FOOD));
         }
         allEasyItems = easyItems.build();
+        allFruitDoors = fruitDoors.build();
     }
 
     private static <T extends Item> T register(IForgeRegistry<Item> r, String name, T item, CreativeTabs ct)

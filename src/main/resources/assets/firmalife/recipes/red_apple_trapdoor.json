@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "type": "forge:ore_dict",
+      "ore" : "poleRedApple"
+    }
+  },
+  "result": {
+    "item": "firmalife:red_apple_trapdoor",
+    "count": 2
+  }
+}

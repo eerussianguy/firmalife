@@ -1,6 +1,8 @@
 package com.eerussianguy.firmalife.registry;
 
 import com.google.common.collect.ImmutableList;
+import net.dries007.tfc.api.types.IFruitTree;
+import net.dries007.tfc.util.agriculture.FruitTree;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -62,6 +64,10 @@ public class BlocksFL
     private static ImmutableList<Block> allFoodIBs = Helpers.getNull();
     private static ImmutableList<BlockFruitTreeLeaves> allFruitLeaves = Helpers.getNull();
     private static ImmutableList<BlockFruitTreeSapling> allFruitSaps = Helpers.getNull();
+    private static ImmutableList<BlockFruitFence> allFruitFences = Helpers.getNull();
+    private static ImmutableList<BlockFruitFenceGate> allFruitFenceGates = Helpers.getNull();
+    private static ImmutableList<BlockFruitDoor> allFruitDoors = Helpers.getNull();
+    private static ImmutableList<BlockFruitTrapDoor> allFruitTrapDoors = Helpers.getNull();
     private static ImmutableList<BlockPlanter> allPlanters = Helpers.getNull();
     private static ImmutableList<BlockFluidBase> allFluidBlocks = Helpers.getNull();
     private static ImmutableList<BlockCropDead> allDeadCrops = Helpers.getNull();
@@ -92,6 +98,14 @@ public class BlocksFL
     {
         return allFruitSaps;
     }
+
+    public static ImmutableList<BlockFruitFence> getAllFruitFences() { return allFruitFences; }
+
+    public static ImmutableList<BlockFruitFenceGate> getAllFruitFenceGates() { return allFruitFenceGates; }
+
+    public static ImmutableList<BlockFruitDoor> getAllFruitDoors() { return allFruitDoors; }
+
+    public static ImmutableList<BlockFruitTrapDoor> getAllFruitTrapdoors() { return allFruitTrapDoors; }
 
     public static ImmutableList<BlockCropDead> getAllDeadCrops()
     {
@@ -130,6 +144,10 @@ public class BlocksFL
         ImmutableList.Builder<Block> foodIBs = ImmutableList.builder();
         ImmutableList.Builder<BlockFruitTreeLeaves> fruitLeaves = ImmutableList.builder();
         ImmutableList.Builder<BlockFruitTreeSapling> fruitSaps = ImmutableList.builder();
+        ImmutableList.Builder<BlockFruitFence> fruitFences = ImmutableList.builder();
+        ImmutableList.Builder<BlockFruitFenceGate> fruitFenceGates = ImmutableList.builder();
+        ImmutableList.Builder<BlockFruitDoor> fruitDoors = ImmutableList.builder();
+        ImmutableList.Builder<BlockFruitTrapDoor> fruitTrapdoors = ImmutableList.builder();
         ImmutableList.Builder<BlockCropDead> deadCrops = ImmutableList.builder();
         ImmutableList.Builder<BlockStemCrop> cropBlocks = ImmutableList.builder();
         ImmutableList.Builder<BlockPlanter> planters = ImmutableList.builder();
@@ -142,7 +160,26 @@ public class BlocksFL
             fruitLeaves.add(register(r, name + "_leaves", new BlockFruitTreeLeaves(fruitTree), CT_WOOD));
             fruitSaps.add(register(r, name + "_sapling", new BlockFruitTreeSapling(fruitTree), CT_WOOD));
             register(r, name + "_trunk", new BlockFruitTreeTrunk(fruitTree));
+            fruitFences.add(register(r, name + "_fence", new BlockFruitFence(), CT_DECORATIONS));
+            fruitFenceGates.add(register(r, name + "_fence_gate", new BlockFruitFenceGate(), CT_DECORATIONS));
+            fruitDoors.add(register(r, name + "_door", new BlockFruitDoor(), CT_DECORATIONS));
+            fruitTrapdoors.add(register(r, name + "_trapdoor", new BlockFruitTrapDoor(), CT_DECORATIONS));
         }
+
+        fruitFences.add(register(r, "cinnamon_fence", new BlockFruitFence(), CT_DECORATIONS));
+        fruitFenceGates.add(register(r, "cinnamon_fence_gate", new BlockFruitFenceGate(), CT_DECORATIONS));
+        fruitDoors.add(register(r, "cinnamon_door", new BlockFruitDoor(), CT_DECORATIONS));
+        fruitTrapdoors.add(register(r, "cinnamon_trapdoor", new BlockFruitTrapDoor(), CT_DECORATIONS));
+
+        for (IFruitTree fruitTree : FruitTree.values())
+        {
+            String name = fruitTree.getName().toLowerCase();
+            fruitFences.add(register(r, name + "_fence", new BlockFruitFence(), CT_DECORATIONS));
+            fruitFenceGates.add(register(r, name + "_fence_gate", new BlockFruitFenceGate(), CT_DECORATIONS));
+            fruitDoors.add(register(r, name + "_door", new BlockFruitDoor(), CT_DECORATIONS));
+            fruitTrapdoors.add(register(r, name + "_trapdoor", new BlockFruitTrapDoor(), CT_DECORATIONS));
+        }
+
         normalIBs.add(register(r, "oven", new BlockOven(), CT_DECORATIONS));
         normalIBs.add(register(r, "oven_wall", new BlockOvenWall(), CT_DECORATIONS));
         normalIBs.add(register(r, "oven_chimney", new BlockOvenChimney(), CT_DECORATIONS));
@@ -195,6 +232,20 @@ public class BlocksFL
         });
         allFruitSaps = fruitSaps.build();
         allFruitSaps.forEach((x) -> {
+            IBs.add(new ItemBlockTFC(x));
+        });
+        allFruitFences = fruitFences.build();
+        allFruitFences.forEach((x) -> {
+            IBs.add(new ItemBlockTFC(x));
+        });
+        allFruitFenceGates = fruitFenceGates.build();
+        allFruitFenceGates.forEach((x) -> {
+            IBs.add(new ItemBlockTFC(x));
+        });
+        allFruitDoors = fruitDoors.build();
+
+        allFruitTrapDoors = fruitTrapdoors.build();
+        allFruitTrapDoors.forEach((x) -> {
             IBs.add(new ItemBlockTFC(x));
         });
         allPlanters = planters.build();

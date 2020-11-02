@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "type": "forge:ore_dict",
+      "ore" : "poleOlive"
+    }
+  },
+  "result": {
+    "item": "firmalife:olive_trapdoor",
+    "count": 2
+  }
+}

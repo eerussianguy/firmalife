@@ -1,5 +1,9 @@
 package com.eerussianguy.firmalife;
 
+import com.eerussianguy.firmalife.blocks.*;
+import com.eerussianguy.firmalife.items.ItemFruitDoor;
+import net.dries007.tfc.objects.blocks.agriculture.BlockCropDead;
+import net.minecraft.block.*;
 import com.eerussianguy.firmalife.blocks.BlockStemCrop;
 import net.dries007.tfc.objects.blocks.agriculture.BlockCropDead;
 import net.minecraft.block.Block;
@@ -38,6 +42,7 @@ import com.eerussianguy.firmalife.te.TEQuadPlanter;
 import net.dries007.tfc.client.GrassColorHandler;
 import net.dries007.tfc.objects.blocks.agriculture.BlockFruitTreeLeaves;
 import net.dries007.tfc.objects.blocks.wood.BlockSaplingTFC;
+import net.dries007.tfc.objects.items.ItemMisc;
 
 @SideOnly(Side.CLIENT)
 @Mod.EventBusSubscriber(value = {Side.CLIENT}, modid = FirmaLife.MOD_ID)
@@ -51,6 +56,8 @@ public class ClientRegisterEventsFL
         //Setting the model resource location for items
         for (Item i : ItemsFL.getAllEasyItems())
             ModelLoader.setCustomModelResourceLocation(i, 0, new ModelResourceLocation(i.getRegistryName().toString()));
+        for (ItemFruitDoor i : ItemsFL.getAllFruitDoors())
+            ModelLoader.setCustomModelResourceLocation(i, 0, new ModelResourceLocation(i.getRegistryName().toString()));
         for (ItemBlock ib : BlocksFL.getAllIBs())
             ModelLoader.setCustomModelResourceLocation(ib, 0, new ModelResourceLocation(ib.getRegistryName().toString()));
         for (BlockFruitTreeLeaves leaves : BlocksFL.getAllFruitLeaves())
@@ -63,6 +70,15 @@ public class ClientRegisterEventsFL
             ModelLoader.setCustomStateMapper(block, new VanillaStemStateMapper());
         for (BlockPlanter planter : BlocksFL.getAllPlanters())
             ModelLoader.setCustomStateMapper(planter, new StateMap.Builder().ignore(StatePropertiesFL.CAN_GROW).build());
+        for (BlockFruitDoor door : BlocksFL.getAllFruitDoors())
+            ModelLoader.setCustomStateMapper(door, new StateMap.Builder().ignore(BlockDoor.POWERED).build());
+        for (BlockFruitFenceGate gate : BlocksFL.getAllFruitFenceGates())
+            ModelLoader.setCustomStateMapper(gate, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
+
+        ModelLoader.setCustomStateMapper(BlocksFL.CINNAMON_LOG, new StateMap.Builder().ignore(StatePropertiesFL.CAN_GROW).build());
+        ModelLoader.setCustomStateMapper(BlocksFL.CINNAMON_LEAVES, new StateMap.Builder().ignore(BlockLeaves.DECAYABLE).build());
+        ModelLoader.setCustomStateMapper(BlocksFL.CINNAMON_SAPLING, new StateMap.Builder().ignore(BlockSaplingTFC.STAGE).build());
+
         for (Block block : BlocksFL.getAllFluidBlocks())
             ModelLoader.setCustomStateMapper(block, new StateMap.Builder().ignore(BlockFluidBase.LEVEL).build());
         ModelLoader.setCustomStateMapper(BlocksFL.BLOCK_GREENHOUSE_DOOR, new StateMap.Builder().ignore(BlockDoor.POWERED).build());
