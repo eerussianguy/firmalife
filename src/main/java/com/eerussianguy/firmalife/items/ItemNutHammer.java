@@ -18,15 +18,23 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 
+import net.minecraftforge.items.ItemHandlerHelper;
+
 import com.eerussianguy.firmalife.player.CapPlayerDataFL;
 import com.eerussianguy.firmalife.player.IPlayerDataFL;
 import com.eerussianguy.firmalife.recipe.NutRecipe;
+import com.eerussianguy.firmalife.registry.ItemsFL;
 import net.dries007.tfc.Constants;
 import net.dries007.tfc.api.capability.size.IItemSize;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
 import net.dries007.tfc.client.particle.TFCParticles;
+import net.dries007.tfc.objects.blocks.BlockPlacedItem;
+import net.dries007.tfc.objects.blocks.BlockPlacedItemFlat;
+import net.dries007.tfc.objects.items.ItemsTFC;
 import net.dries007.tfc.objects.potioneffects.PotionEffectsTFC;
+import net.dries007.tfc.objects.te.TEPlacedItem;
+import net.dries007.tfc.objects.te.TEPlacedItemFlat;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.calendar.CalendarTFC;
 import net.dries007.tfc.util.calendar.ICalendar;
@@ -53,6 +61,25 @@ public class ItemNutHammer extends Item implements IItemSize
                 worldIn.playSound(null, player.getPosition(), SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.PLAYERS, 0.5f, 1.0f);
                 return EnumActionResult.SUCCESS;
             }
+            if(worldIn.getBlockState(pos).getBlock() instanceof BlockPlacedItemFlat)
+            {
+                TEPlacedItemFlat flat = (TEPlacedItemFlat) worldIn.getTileEntity(pos);
+                {
+                    if(flat.getStack().getItem() == ItemsFL.ACORNS) //todo: generalize
+                    {
+                        if (Constants.RNG.nextInt(2) == 1)
+                        {
+                            ItemHandlerHelper.giveItemToPlayer(player, flat.getStack());
+                        }
+                        flat.setStack(ItemStack.EMPTY);
+                        flat.invalidate();
+
+                        return EnumActionResult.SUCCESS;
+                    }
+                }
+
+            }
+
             BlockPos offsetPos = pos;
             BlockPos logPos = pos;
             IBlockState logState = worldIn.getBlockState(pos);
