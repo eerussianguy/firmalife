@@ -5,6 +5,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -63,7 +64,7 @@ public class TEOven extends TEInventory implements ITickable
                         cook();
                         return;
                     }
-                    if (isValidHorizontal(true) && hasChimney())
+                    if (BlockOven.isValidHorizontal(world, pos, true) && BlockOven.hasChimney(world, pos, true))
                     {
                         cook();
                     }
@@ -71,6 +72,9 @@ public class TEOven extends TEInventory implements ITickable
                     {
                         turnOff();
                         clear();
+                        world.setBlockToAir(pos);
+                        world.setBlockState(pos, Blocks.CLAY.getDefaultState());
+                        return;
                     }
                 }
                 if (inventory.getStackInSlot(SLOT_MAIN).isEmpty())
@@ -255,91 +259,5 @@ public class TEOven extends TEInventory implements ITickable
             world.setBlockState(chimPos, world.getBlockState(chimPos).withProperty(CURED, true));
             chimPos = chimPos.up();
         }
-    }
-
-    // see OvenBlock
-    public boolean isValidHorizontal(boolean needsCure)
-    {
-        BlockPos ovenPos = pos;
-        IBlockState ovenState = world.getBlockState(ovenPos);
-        EnumFacing facing = ovenState.getValue(FACING);
-        EnumFacing left = facing.rotateYCCW();
-        EnumFacing right = facing.rotateY();
-        IBlockState leftState = world.getBlockState(ovenPos.offset(left));
-        IBlockState rightState = world.getBlockState(ovenPos.offset(right));
-        IBlockState[] checkStates = {leftState, rightState};
-
-        for (IBlockState state : checkStates)
-        {
-            if (needsCure && !isCuredBlock(state))
-            {
-                return false;
-            }
-            Block b = state.getBlock();
-            if (!(b instanceof BlockOven || b instanceof BlockOvenWall))
-            {
-                return false; // return false if it's not an oven or oven wall
-            }
-            if (b instanceof BlockOven)
-            {
-                if (state.getValue(FACING) != ovenState.getValue(FACING))
-                {
-                    return false; // if it's an oven, it should face the same way
-                }
-            }
-            if (b instanceof BlockOvenWall)
-            {
-                if (state == leftState)
-                {
-                    if (leftState.getValue(FACING) != facing.getOpposite())
-                    {
-                        return false; // if it's a wall, it should be rotated to touch the oven properly
-                    }
-                }
-                if (state == rightState)
-                {
-                    if (rightState.getValue(FACING) != facing)
-                    {
-                        return false; // see above
-                    }
-                }
-            }
-        }
-        return true;
-    }
-
-    // see BlockOven, sorta
-    public boolean hasChimney()
-    {
-        BlockPos ovenPos = pos;
-        IBlockState ovenState = world.getBlockState(pos);
-        EnumFacing facing = ovenState.getValue(FACING);
-        EnumFacing left = facing.rotateYCCW();
-        EnumFacing right = facing.rotateY();
-
-        BlockPos[] checkPositions = {ovenPos.up(), ovenPos.offset(left).up(), ovenPos.offset(left, 2).up(), ovenPos.offset(right).up(), ovenPos.offset(right, 2).up()};
-        boolean noChimneys = true;
-        for (BlockPos pos : checkPositions)
-        {
-            if (world.getBlockState(pos).getBlock() instanceof BlockOvenChimney)
-            {
-                noChimneys = false;
-                for (int i = 0; i < 3; i++)
-                {
-                    BlockPos chimPos = pos.offset(EnumFacing.UP, i);
-                    IBlockState chimState = world.getBlockState(chimPos);
-                    if (chimState.getBlock() instanceof BlockOvenChimney)
-                    {
-                        if (!chimState.getValue(CURED))
-                            return false;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-            }
-        }
-        return !noChimneys;
     }
 }

@@ -61,7 +61,9 @@ public class CommonEventHandlerFL
         {
             IFruitTree tree = ((BlockFruitTreeTrunk) block).getTree();
             String poleName = MOD_ID + tree.getName().toLowerCase() + "_pole";
-            event.getDrops().add(new ItemStack(ItemMisc.getByNameOrId(poleName)));
+            Item pole = ItemMisc.getByNameOrId(poleName);
+            if (pole != null)
+                event.getDrops().add(new ItemStack(pole));
         }
     }
 

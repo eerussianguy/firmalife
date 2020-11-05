@@ -6,6 +6,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
+import com.eerussianguy.firmalife.init.Fruit;
 import com.eerussianguy.firmalife.recipe.DryingRecipe;
 import com.eerussianguy.firmalife.recipe.NutRecipe;
 import com.eerussianguy.firmalife.recipe.OvenRecipe;
@@ -37,7 +38,7 @@ public class RecipesFL
             // the input being straw makes this a curing recipe
             new OvenRecipe(IIngredient.of(new ItemStack(ItemsTFC.STRAW)), new ItemStack(ItemsTFC.WOOD_ASH), 8 * hour).setRegistryName("cure"),
 
-            new OvenRecipe(IIngredient.of(new ItemStack(ItemsFL.DRIED_COCOA_BEANS)), new ItemStack(ItemsFL.ROASTED_COCOA_BEANS), 4 * hour).setRegistryName("dried_cocoa_beans"),
+            new OvenRecipe(IIngredient.of(new ItemStack(ItemsFL.getDriedFruit(Fruit.COCOA_BEANS))), new ItemStack(ItemsFL.ROASTED_COCOA_BEANS), 4 * hour).setRegistryName("dried_cocoa_beans"),
 
             new OvenRecipe(IIngredient.of(ItemFoodTFC.get(Food.BARLEY_DOUGH)), new ItemStack(ItemFoodTFC.get(Food.BARLEY_BREAD)), 4 * hour).setRegistryName("barley_dough"),
             new OvenRecipe(IIngredient.of(ItemFoodTFC.get(Food.CORNMEAL_DOUGH)), new ItemStack(ItemFoodTFC.get(Food.CORNBREAD)), 4 * hour).setRegistryName("corn_dough"),
@@ -54,29 +55,12 @@ public class RecipesFL
     {
         IForgeRegistry<DryingRecipe> r = event.getRegistry();
         int day = ICalendar.TICKS_IN_DAY;
+        for (Fruit fruit : Fruit.values())
+        {
+            r.register(new DryingRecipe(IIngredient.of(fruit.getFruit()), new ItemStack(ItemsFL.getDriedFruit(fruit)), day / 2).setRegistryName(fruit.name().toLowerCase()));
+        }
         r.registerAll(
-            new DryingRecipe(IIngredient.of(new ItemStack(ItemsFL.COCOA_BEANS)), new ItemStack(ItemsFL.DRIED_COCOA_BEANS), day * 5).setRegistryName("cocoa_beans"),
-            new DryingRecipe(IIngredient.of(new ItemStack(ItemsFL.CINNAMON_BARK)), new ItemStack(ItemsFL.CINNAMON), day).setRegistryName("cinnamon_bark"),
-            new DryingRecipe(IIngredient.of(new ItemStack(ItemFoodTFC.get(Food.BANANA))), new ItemStack(ItemsFL.DRIED_BANANA), day / 2).setRegistryName("banana"),
-            new DryingRecipe(IIngredient.of(new ItemStack(ItemFoodTFC.get(Food.BLACKBERRY))), new ItemStack(ItemsFL.DRIED_BLACKBERRY), day / 2).setRegistryName("blackberry"),
-            new DryingRecipe(IIngredient.of(new ItemStack(ItemFoodTFC.get(Food.BLUEBERRY))), new ItemStack(ItemsFL.DRIED_BLUEBERRY), day / 2).setRegistryName("blueberry"),
-            new DryingRecipe(IIngredient.of(new ItemStack(ItemFoodTFC.get(Food.BUNCH_BERRY))), new ItemStack(ItemsFL.DRIED_BUNCH_BERRY), day / 2).setRegistryName("bunch_berry"),
-            new DryingRecipe(IIngredient.of(new ItemStack(ItemFoodTFC.get(Food.CHERRY))), new ItemStack(ItemsFL.DRIED_CHERRY), day / 2).setRegistryName("cherry"),
-            new DryingRecipe(IIngredient.of(new ItemStack(ItemFoodTFC.get(Food.CLOUD_BERRY))), new ItemStack(ItemsFL.DRIED_CLOUD_BERRY), day / 2).setRegistryName("cloud_berry"),
-            new DryingRecipe(IIngredient.of(new ItemStack(ItemFoodTFC.get(Food.CRANBERRY))), new ItemStack(ItemsFL.DRIED_CRANBERRY), day / 2).setRegistryName("cranberry"),
-            new DryingRecipe(IIngredient.of(new ItemStack(ItemFoodTFC.get(Food.ELDERBERRY))), new ItemStack(ItemsFL.DRIED_ELDERBERRY), day / 2).setRegistryName("elderberry"),
-            new DryingRecipe(IIngredient.of(new ItemStack(ItemFoodTFC.get(Food.GOOSEBERRY))), new ItemStack(ItemsFL.DRIED_GOOSEBERRY), day / 2).setRegistryName("gooseberry"),
-            new DryingRecipe(IIngredient.of(new ItemStack(ItemFoodTFC.get(Food.GREEN_APPLE))), new ItemStack(ItemsFL.DRIED_GREEN_APPLE), day / 2).setRegistryName("green_apple"),
-            new DryingRecipe(IIngredient.of(new ItemStack(ItemFoodTFC.get(Food.LEMON))), new ItemStack(ItemsFL.DRIED_LEMON), day / 2).setRegistryName("lemon"),
-            new DryingRecipe(IIngredient.of(new ItemStack(ItemFoodTFC.get(Food.OLIVE))), new ItemStack(ItemsFL.DRIED_OLIVE), day / 2).setRegistryName("olive"),
-            new DryingRecipe(IIngredient.of(new ItemStack(ItemFoodTFC.get(Food.ORANGE))), new ItemStack(ItemsFL.DRIED_ORANGE), day / 2).setRegistryName("orange"),
-            new DryingRecipe(IIngredient.of(new ItemStack(ItemFoodTFC.get(Food.PEACH))), new ItemStack(ItemsFL.DRIED_PEACH), day / 2).setRegistryName("peach"),
-            new DryingRecipe(IIngredient.of(new ItemStack(ItemFoodTFC.get(Food.PLUM))), new ItemStack(ItemsFL.DRIED_PLUM), day / 2).setRegistryName("plum"),
-            new DryingRecipe(IIngredient.of(new ItemStack(ItemFoodTFC.get(Food.RASPBERRY))), new ItemStack(ItemsFL.DRIED_RASPBERRY), day / 2).setRegistryName("raspberry"),
-            new DryingRecipe(IIngredient.of(new ItemStack(ItemFoodTFC.get(Food.RED_APPLE))), new ItemStack(ItemsFL.DRIED_RED_APPLE), day / 2).setRegistryName("red_apple"),
-            new DryingRecipe(IIngredient.of(new ItemStack(ItemFoodTFC.get(Food.SNOW_BERRY))), new ItemStack(ItemsFL.DRIED_SNOW_BERRY), day / 2).setRegistryName("snow_berry"),
-            new DryingRecipe(IIngredient.of(new ItemStack(ItemFoodTFC.get(Food.STRAWBERRY))), new ItemStack(ItemsFL.DRIED_STRAWBERRY), day / 2).setRegistryName("strawberry"),
-            new DryingRecipe(IIngredient.of(new ItemStack(ItemFoodTFC.get(Food.WINTERGREEN_BERRY))), new ItemStack(ItemsFL.DRIED_WINTERGREEN_BERRY), day / 2).setRegistryName("wintergreen_berry")
+            new DryingRecipe(IIngredient.of(new ItemStack(ItemsFL.CINNAMON_BARK)), new ItemStack(ItemsFL.CINNAMON), day).setRegistryName("cinnamon_bark")
         );
     }
 
