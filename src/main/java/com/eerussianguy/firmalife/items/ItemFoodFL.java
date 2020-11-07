@@ -39,7 +39,7 @@ public class ItemFoodFL extends ItemFood implements IItemFoodTFC
     @Override
     public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-        if(!worldIn.isRemote && hand == EnumHand.MAIN_HAND && worldIn.isAirBlock(pos.offset(EnumFacing.UP)) && worldIn.getBlockState(pos.offset(EnumFacing.DOWN)).isFullBlock())
+        if(!worldIn.isRemote && hand == EnumHand.MAIN_HAND && worldIn.isAirBlock(pos.offset(EnumFacing.UP)) && worldIn.getBlockState(pos).isFullBlock())
         {
             worldIn.setBlockState(pos.offset(EnumFacing.UP), BlocksTFC.PLACED_ITEM_FLAT.getDefaultState(), 2);
             TEPlacedItemFlat te = (TEPlacedItemFlat) worldIn.getTileEntity(pos.offset(EnumFacing.UP));
