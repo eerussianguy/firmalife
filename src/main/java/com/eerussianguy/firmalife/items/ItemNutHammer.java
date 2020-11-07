@@ -21,11 +21,9 @@ import net.minecraftforge.items.ItemHandlerHelper;
 
 import com.eerussianguy.firmalife.player.CapPlayerDataFL;
 import com.eerussianguy.firmalife.player.IPlayerDataFL;
+import com.eerussianguy.firmalife.recipe.CrackingRecipe;
 import com.eerussianguy.firmalife.recipe.NutRecipe;
-import com.eerussianguy.firmalife.registry.ItemsFL;
 import net.dries007.tfc.Constants;
-import net.dries007.tfc.api.capability.food.CapabilityFood;
-import net.dries007.tfc.api.capability.food.IItemFoodTFC;
 import net.dries007.tfc.api.capability.size.IItemSize;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
@@ -63,20 +61,13 @@ public class ItemNutHammer extends Item implements IItemSize
             if(worldIn.getBlockState(pos).getBlock() instanceof BlockPlacedItemFlat)
             {
                 TEPlacedItemFlat tile = (TEPlacedItemFlat) worldIn.getTileEntity(pos);
-                Item item = tile.getStack().getItem();
+                CrackingRecipe entry = CrackingRecipe.get(tile.getStack());
+                if(entry == null)
+                    return EnumActionResult.FAIL;
 
-                if(Constants.RNG.nextInt(2) == 1 && item instanceof IItemFoodTFC) // 50% chance to get a nut
+                if(Constants.RNG.nextInt(100) < entry.getChance())
                 {
-                    if(tile.getStack().getCapability(CapabilityFood.CAPABILITY, null).isRotten()) {} // Do nothing if the food is rotten
-                    else if(item == ItemsFL.ACORN_FRUIT)
-                        ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(ItemsFL.ACORNS));
-                    else if(item == ItemsFL.PINECONE)
-                        ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(ItemsFL.PINE_NUTS));
-                    else if(item == ItemsFL.COCONUT)
-                        ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(ItemsFL.CRACKED_COCONUT));
-                    else if(item == ItemsFL.PECAN_NUTS)
-                        ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(ItemsFL.PECANS));
-
+                    ItemHandlerHelper.giveItemToPlayer(player, entry.getOutputItem(tile.getStack()));
                     worldIn.playSound(null, pos, SoundEvents.BLOCK_WOOD_PLACE, SoundCategory.BLOCKS, 2.0F, 1.0F);
                 }
                 else

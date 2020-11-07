@@ -7,10 +7,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
 import com.eerussianguy.firmalife.init.Fruit;
-import com.eerussianguy.firmalife.recipe.DryingRecipe;
-import com.eerussianguy.firmalife.recipe.NutRecipe;
-import com.eerussianguy.firmalife.recipe.OvenRecipe;
-import com.eerussianguy.firmalife.recipe.PlanterRecipe;
+import com.eerussianguy.firmalife.recipe.*;
 import net.dries007.tfc.api.registries.TFCRegistries;
 import net.dries007.tfc.api.types.Tree;
 import net.dries007.tfc.objects.blocks.wood.BlockLeavesTFC;
@@ -47,7 +44,6 @@ public class RecipesFL
             new OvenRecipe(IIngredient.of(ItemFoodTFC.get(Food.RYE_DOUGH)), new ItemStack(ItemFoodTFC.get(Food.RYE_BREAD)), 4 * hour).setRegistryName("rye_dough"),
             new OvenRecipe(IIngredient.of(ItemFoodTFC.get(Food.WHEAT_DOUGH)), new ItemStack(ItemFoodTFC.get(Food.WHEAT_BREAD)), 4 * hour).setRegistryName("wheat_dough")
         );
-
     }
 
     @SubscribeEvent
@@ -96,6 +92,18 @@ public class RecipesFL
             new NutRecipe(BlockLogTFC.get(pine), BlockLeavesTFC.get(pine), new ItemStack(ItemsFL.PINECONE)).setRegistryName("pine"),
             new NutRecipe(BlockLogTFC.get(palm), BlockLeavesTFC.get(palm), new ItemStack(ItemsFL.COCONUT)).setRegistryName("coconut")
 
+        );
+    }
+
+    @SubscribeEvent
+    public static void onRegisterCrackingRecipeEvent(RegistryEvent.Register<CrackingRecipe> event)
+    {
+        IForgeRegistry<CrackingRecipe> r = event.getRegistry();
+        r.registerAll(
+            new CrackingRecipe(IIngredient.of(ItemsFL.ACORN_FRUIT), new ItemStack(ItemsFL.ACORNS), 0.5f).setRegistryName("acorns"),
+            new CrackingRecipe(IIngredient.of(ItemsFL.PINECONE), new ItemStack(ItemsFL.PINE_NUTS), 0.5f).setRegistryName("pine_nuts"),
+            new CrackingRecipe(IIngredient.of(ItemsFL.PECAN_NUTS), new ItemStack(ItemsFL.PECANS), 0.5f).setRegistryName("pecans"),
+            new CrackingRecipe(IIngredient.of(ItemsFL.COCONUT), new ItemStack(ItemsFL.CRACKED_COCONUT), 0.5f).setRegistryName("cracked_coconut")
         );
     }
 }
