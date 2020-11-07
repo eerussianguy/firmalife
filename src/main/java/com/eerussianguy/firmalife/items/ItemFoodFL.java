@@ -2,20 +2,16 @@ package com.eerussianguy.firmalife.items;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemFood;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.event.world.BlockEvent;
 
 import net.dries007.tfc.api.capability.food.FoodData;
 import net.dries007.tfc.api.capability.food.FoodHandler;
 import net.dries007.tfc.api.capability.food.IItemFoodTFC;
-import net.dries007.tfc.objects.blocks.BlockPlacedItem;
-import net.dries007.tfc.objects.blocks.BlockPlacedItemFlat;
 import net.dries007.tfc.objects.blocks.BlocksTFC;
 import net.dries007.tfc.objects.te.TEPlacedItemFlat;
 

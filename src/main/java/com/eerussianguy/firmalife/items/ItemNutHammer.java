@@ -2,14 +2,12 @@ package com.eerussianguy.firmalife.items;
 
 import javax.annotation.Nonnull;
 
-import org.lwjgl.Sys;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumActionResult;
@@ -19,7 +17,6 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
-
 import net.minecraftforge.items.ItemHandlerHelper;
 
 import com.eerussianguy.firmalife.player.CapPlayerDataFL;
@@ -33,11 +30,8 @@ import net.dries007.tfc.api.capability.size.IItemSize;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
 import net.dries007.tfc.client.particle.TFCParticles;
-import net.dries007.tfc.objects.blocks.BlockPlacedItem;
 import net.dries007.tfc.objects.blocks.BlockPlacedItemFlat;
-import net.dries007.tfc.objects.items.ItemsTFC;
 import net.dries007.tfc.objects.potioneffects.PotionEffectsTFC;
-import net.dries007.tfc.objects.te.TEPlacedItem;
 import net.dries007.tfc.objects.te.TEPlacedItemFlat;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.calendar.CalendarTFC;
