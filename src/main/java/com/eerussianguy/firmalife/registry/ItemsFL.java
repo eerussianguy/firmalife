@@ -46,12 +46,18 @@ public class ItemsFL
     public static final ItemFoodFL COCOA_BEANS = Helpers.getNull();
     @GameRegistry.ObjectHolder("chestnuts")
     public static final ItemFoodFL CHESTNUTS = Helpers.getNull();
+    @GameRegistry.ObjectHolder("acorn_fruit")
+    public static final ItemFoodFL ACORN_FRUIT = Helpers.getNull();
     @GameRegistry.ObjectHolder("acorns")
     public static final ItemFoodFL ACORNS = Helpers.getNull();
     @GameRegistry.ObjectHolder("pinecone")
     public static final ItemFoodFL PINECONE = Helpers.getNull();
+    @GameRegistry.ObjectHolder("pine_nuts")
+    public static final ItemFoodFL PINE_NUTS = Helpers.getNull();
     @GameRegistry.ObjectHolder("pecan_nuts")
     public static final ItemFoodFL PECAN_NUTS = Helpers.getNull();
+    @GameRegistry.ObjectHolder("pecans")
+    public static final ItemFoodFL PECANS = Helpers.getNull();
     @GameRegistry.ObjectHolder("roasted_cocoa_beans")
     public static final ItemMisc ROASTED_COCOA_BEANS = Helpers.getNull();
     @GameRegistry.ObjectHolder("peel")
