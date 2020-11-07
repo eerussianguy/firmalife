@@ -80,6 +80,8 @@ public class ItemNutHammer extends Item implements IItemSize
                         ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(ItemsFL.PINE_NUTS));
                     else if(item == ItemsFL.COCONUT)
                         ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(ItemsFL.CRACKED_COCONUT));
+                    else if(item == ItemsFL.PECAN_NUTS)
+                        ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(ItemsFL.PECANS));
 
                     worldIn.playSound(null, pos, SoundEvents.BLOCK_WOOD_PLACE, SoundCategory.BLOCKS, 2.0F, 1.0F);
                 }
