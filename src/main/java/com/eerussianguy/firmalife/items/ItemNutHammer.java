@@ -2,12 +2,14 @@ package com.eerussianguy.firmalife.items;
 
 import javax.annotation.Nonnull;
 
+import org.lwjgl.Sys;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumActionResult;
@@ -25,6 +27,8 @@ import com.eerussianguy.firmalife.player.IPlayerDataFL;
 import com.eerussianguy.firmalife.recipe.NutRecipe;
 import com.eerussianguy.firmalife.registry.ItemsFL;
 import net.dries007.tfc.Constants;
+import net.dries007.tfc.api.capability.food.CapabilityFood;
+import net.dries007.tfc.api.capability.food.IItemFoodTFC;
 import net.dries007.tfc.api.capability.size.IItemSize;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
@@ -61,22 +65,30 @@ public class ItemNutHammer extends Item implements IItemSize
                 worldIn.playSound(null, player.getPosition(), SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.PLAYERS, 0.5f, 1.0f);
                 return EnumActionResult.SUCCESS;
             }
+
             if(worldIn.getBlockState(pos).getBlock() instanceof BlockPlacedItemFlat)
             {
-                TEPlacedItemFlat flat = (TEPlacedItemFlat) worldIn.getTileEntity(pos);
-                {
-                    if(flat.getStack().getItem() == ItemsFL.ACORNS) //todo: generalize
-                    {
-                        if (Constants.RNG.nextInt(2) == 1)
-                        {
-                            ItemHandlerHelper.giveItemToPlayer(player, flat.getStack());
-                        }
-                        flat.setStack(ItemStack.EMPTY);
-                        flat.invalidate();
+                TEPlacedItemFlat tile = (TEPlacedItemFlat) worldIn.getTileEntity(pos);
+                Item item = tile.getStack().getItem();
 
-                        return EnumActionResult.SUCCESS;
-                    }
+                if(Constants.RNG.nextInt(2) == 1 && item instanceof IItemFoodTFC) // 50% chance to get a nut
+                {
+                    if(tile.getStack().getCapability(CapabilityFood.CAPABILITY, null).isRotten()) {} // Do nothing if the food is rotten
+                    else if(item == ItemsFL.ACORN_FRUIT)
+                        ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(ItemsFL.ACORNS));
+                    else if(item == ItemsFL.PINECONE)
+                        ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(ItemsFL.PINE_NUTS));
+                    else if(item == ItemsFL.COCONUT)
+                        ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(ItemsFL.CRACKED_COCONUT));
+
+                    worldIn.playSound(null, pos, SoundEvents.BLOCK_WOOD_PLACE, SoundCategory.BLOCKS, 2.0F, 1.0F);
                 }
+                else
+                    worldIn.playSound(null, pos, SoundEvents.BLOCK_WOOD_FALL, SoundCategory.BLOCKS, 2.0F, 1.0F);
+
+                tile.setStack(ItemStack.EMPTY);
+                worldIn.setBlockToAir(pos);
+                return EnumActionResult.SUCCESS;
 
             }
 
