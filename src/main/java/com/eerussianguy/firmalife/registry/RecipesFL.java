@@ -100,7 +100,7 @@ public class RecipesFL
     {
         IForgeRegistry<CrackingRecipe> r = event.getRegistry();
         r.registerAll(
-            new CrackingRecipe(IIngredient.of(ItemsFL.ACORN_FRUIT), new ItemStack(ItemsFL.ACORNS), 0.5f).setRegistryName("acorns"),
+            new CrackingRecipe(IIngredient.of(ItemsFL.ACORNS), new ItemStack(ItemsFL.ACORN_FRUIT), 0.5f).setRegistryName("acorn_fruit"),
             new CrackingRecipe(IIngredient.of(ItemsFL.PINECONE), new ItemStack(ItemsFL.PINE_NUTS), 0.5f).setRegistryName("pine_nuts"),
             new CrackingRecipe(IIngredient.of(ItemsFL.PECAN_NUTS), new ItemStack(ItemsFL.PECANS), 0.5f).setRegistryName("pecans"),
             new CrackingRecipe(IIngredient.of(ItemsFL.COCONUT), new ItemStack(ItemsFL.CRACKED_COCONUT), 0.5f).setRegistryName("cracked_coconut")
