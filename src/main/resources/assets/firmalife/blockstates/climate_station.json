@@ -34,10 +34,14 @@
 			}
 		},
 		"inventory": [{
+		   "transform": "forge:default-block",
+		   "model": "firmalife:climate_station",
+		   "y": 180
 		}],
 		"normal": [{
 		   "transform": "forge:default-block",
-		   "model": "firmalife:climate_station"
+		   "model": "firmalife:climate_station",
+		   "y": 180
 		}]
 	}
 }
