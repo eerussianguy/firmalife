@@ -115,13 +115,4 @@ public class CommonEventHandlerFL
             FLGuiHandler.openGui(event.getWorld(), event.getPos(), event.getEntityPlayer(), FLGuiHandler.Type.KNAPPING_PUMPKIN);
         }
     }
-
-    @SubscribeEvent
-    public static void onConfigChangedEvent(ConfigChangedEvent.OnConfigChangedEvent event)
-    {
-        if (event.getModID().equals(TerraFirmaCraft.MOD_ID))
-        {
-            HelpersFL.insertWhitelist();
-        }
-    }
 }

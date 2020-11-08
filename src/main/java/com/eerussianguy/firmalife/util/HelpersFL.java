@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
 
+import com.eerussianguy.firmalife.ConfigFL;
 import com.eerussianguy.firmalife.FirmaLife;
 import net.dries007.tfc.ConfigTFC;
 import net.dries007.tfc.TerraFirmaCraft;
@@ -27,6 +28,8 @@ public class HelpersFL
 
     public static void insertWhitelist()
     {
+        if (!ConfigFL.General.COMPAT.addToWoodenBucket)
+            return;
         ConfigManager.sync(TerraFirmaCraft.MOD_ID, Config.Type.INSTANCE);
         String[] additions = {"yeast_starter", "coconut_milk"};
         Set<String> stringSet = new HashSet<>(Arrays.asList(ConfigTFC.General.MISC.woodenBucketWhitelist));

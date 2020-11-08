@@ -191,10 +191,22 @@ tooltip.firmalife.days=days
 tooltip.firmalife.refractory=You're doing this too often. Take a break.
 tooltip.firmalife.not_fall=Come back in October or November to get nuts.
 jei.category.firmalife.oven=Oven
-
 jei.category.firmalife.knap.pumpkin=Pumpkin Carving
-
 jei.category.firmalife.drying=Drying
 jei.tooltip.firmalife.fruit_leaf=Fruit leaves are dropped by breaking any fruit tree's leaves!
 jei.tooltip.firmalife.cocoa_powder=You can get cocoa powder by crafting cocoa butter.
 vein.halite.name=Halite
+
+config.firmalife.general=General Settings
+config.firmalife.general.tooltip=General configuration for Firmalife
+
+config.firmalife.general.worldgen=Worldgen Settings
+config.firmalife.general.worldgen.tooltip=Worldgen settings for Firmalife
+config.firmalife.general.compat=Compatibility Settings
+config.firmalife.general.compat.tooltip=Stuff that makes Firmalife integrate with other mods (mostly TFC)
+
+config.firmalife.general.worldgen.cinnamonRarity=Cinnamon Tree Rarity
+config.firmalife.general.worldgen.cinnamonRarity.tooltip=Rarity of cinnamon trees in 1/N chunks. Set to 0 to disable.
+
+config.firmalife.general.compat.woodenWhitelist=Add to Wooden Bucket Whitelist?
+config.firmalife.general.compat.woodenWhitelist.tooltip=Allows adding Firmalife's fluids to the wooden bucket whitelist. Disable if you want to configure it yourself.
