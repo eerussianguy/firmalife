@@ -10,6 +10,7 @@ import net.minecraftforge.fluids.FluidRegistry;
 
 import com.eerussianguy.firmalife.init.FoodDataFL;
 import net.dries007.tfc.TerraFirmaCraft;
+import net.dries007.tfc.api.capability.food.FoodData;
 import net.dries007.tfc.api.capability.food.IFoodStatsTFC;
 import net.dries007.tfc.objects.fluids.properties.DrinkableProperty;
 import net.dries007.tfc.objects.fluids.properties.FluidWrapper;
@@ -24,6 +25,9 @@ public final class FluidsFL
 
     public static FluidWrapper YEAST_STARTER;
     public static FluidWrapper COCONUT_MILK;
+    public static FluidWrapper YAK_MILK;
+    public static FluidWrapper GOAT_MILK;
+    public static FluidWrapper ZEBU_MILK;
 
     private static ImmutableSet<FluidWrapper> allFiniteFluids;
 
@@ -34,16 +38,21 @@ public final class FluidsFL
 
     public static void registerFluids()
     {
+        DrinkableProperty milkProperty = player -> {
+            if (player.getFoodStats() instanceof IFoodStatsTFC)
+            {
+                IFoodStatsTFC foodStats = (IFoodStatsTFC) player.getFoodStats();
+                foodStats.addThirst(10);
+                foodStats.getNutrition().addBuff(FoodData.MILK);
+            }
+        };
+
         allFiniteFluids = ImmutableSet.<FluidWrapper>builder().add(
             YEAST_STARTER = registerFluid(new Fluid("yeast_starter", STILL, FLOW, 0xFFa79464)),
-            COCONUT_MILK = registerFluid(new Fluid("coconut_milk", STILL, FLOW, 0xFFfcfae2)).with(DrinkableProperty.DRINKABLE, player -> {
-                if (player.getFoodStats() instanceof IFoodStatsTFC)
-                {
-                    IFoodStatsTFC foodStats = (IFoodStatsTFC) player.getFoodStats();
-                    foodStats.addThirst(10);
-                    foodStats.getNutrition().addBuff(FoodDataFL.COCONUT_MILK);
-                }
-            })
+            COCONUT_MILK = registerFluid(new Fluid("coconut_milk", STILL, FLOW, 0xFFfcfae2)).with(DrinkableProperty.DRINKABLE, milkProperty),
+            YAK_MILK = registerFluid(new Fluid("yak_milk", STILL, FLOW, 0xFFfcfaec)).with(DrinkableProperty.DRINKABLE, milkProperty),
+            GOAT_MILK = registerFluid(new Fluid("goat_milk", STILL, FLOW, 0xFFf6f6eb)).with(DrinkableProperty.DRINKABLE, milkProperty),
+            ZEBU_MILK = registerFluid(new Fluid("zebu_milk", STILL, FLOW, 0xFFefede6)).with(DrinkableProperty.DRINKABLE, milkProperty)
         ).build();
     }
 

@@ -28,19 +28,32 @@ public class HelpersFL
 
     public static void insertWhitelist()
     {
-        if (!ConfigFL.General.COMPAT.addToWoodenBucket)
-            return;
         ConfigManager.sync(TerraFirmaCraft.MOD_ID, Config.Type.INSTANCE);
-        String[] additions = {"yeast_starter", "coconut_milk"};
-        Set<String> stringSet = new HashSet<>(Arrays.asList(ConfigTFC.General.MISC.woodenBucketWhitelist));
-        for (String a : additions)
+        String[] additions = {"yeast_starter", "coconut_milk", "yak_milk", "zebu_milk", "goat_milk"};
+        if (ConfigFL.General.COMPAT.addToWoodenBucket)
         {
-            if (stringSet.add(a))
+            Set<String> woodenBucketSet = new HashSet<>(Arrays.asList(ConfigTFC.General.MISC.woodenBucketWhitelist));
+            for (String a : additions)
             {
-                FirmaLife.logger.info("Added {} to TFC's wooden bucket fluid whitelist", a);
+                if (woodenBucketSet.add(a))
+                {
+                    FirmaLife.logger.info("Added {} to TFC's wooden bucket fluid whitelist", a);
+                }
             }
+            ConfigTFC.General.MISC.woodenBucketWhitelist = woodenBucketSet.toArray(new String[] {});
         }
-        ConfigTFC.General.MISC.woodenBucketWhitelist = stringSet.toArray(new String[] {});
+        if (ConfigFL.General.COMPAT.addToBarrel)
+        {
+            Set<String> barrelSet = new HashSet<>(Arrays.asList(ConfigTFC.Devices.BARREL.fluidWhitelist));
+            for (String a : additions)
+            {
+                if (barrelSet.add(a))
+                {
+                    FirmaLife.logger.info("Added {} to TFC's barrel fluid whitelist", a);
+                }
+            }
+            ConfigTFC.Devices.BARREL.fluidWhitelist = barrelSet.toArray(new String[] {});
+        }
     }
 
 }

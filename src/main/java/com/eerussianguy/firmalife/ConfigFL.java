@@ -51,6 +51,14 @@ public class ConfigFL
             @Config.Comment("Enable adding Firmalife fluids to TFC's wooden bucket whitelist?")
             @Config.LangKey("config." + MOD_ID + "general.compat.woodenWhitelist")
             public boolean addToWoodenBucket = true;
+
+            @Config.Comment("Enable adding Firmalife fluids to TFC's barrel whitelist?")
+            @Config.LangKey("config." + MOD_ID + "general.compat.barrelWhitelist")
+            public boolean addToBarrel = true;
+
+            @Config.Comment("Enable TFC cow variants giving custom milk?")
+            @Config.LangKey("config." + MOD_ID + "general.compat.customMilk")
+            public boolean customMilk = true;
         }
     }
 }
