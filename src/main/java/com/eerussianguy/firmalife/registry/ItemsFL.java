@@ -1,5 +1,6 @@
 package com.eerussianguy.firmalife.registry;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,7 +9,12 @@ import com.eerussianguy.firmalife.init.Fruit;
 import com.eerussianguy.firmalife.init.FruitTreeFL;
 import com.eerussianguy.firmalife.items.*;
 import com.google.common.collect.ImmutableList;
+
+import net.dries007.tfc.api.registries.TFCRegistries;
 import net.dries007.tfc.api.types.IFruitTree;
+import net.dries007.tfc.api.types.Metal;
+import net.dries007.tfc.objects.items.ceramics.ItemMold;
+import net.dries007.tfc.objects.items.ceramics.ItemPottery;
 import net.dries007.tfc.util.OreDictionaryHelper;
 import net.dries007.tfc.util.agriculture.FruitTree;
 import net.minecraft.creativetab.CreativeTabs;
@@ -42,6 +48,10 @@ import static net.dries007.tfc.objects.CreativeTabsTFC.*;
 @GameRegistry.ObjectHolder(MOD_ID)
 public class ItemsFL
 {
+    @GameRegistry.ObjectHolder("unfired_mallet_mold")
+    public static final ItemPottery UNFIRED_MALLET_MOLD = Helpers.getNull();
+    @GameRegistry.ObjectHolder("mallet_mold")
+    public static final ItemMetalMalletMold MALLET_MOLD = Helpers.getNull();
     @GameRegistry.ObjectHolder("cocoa_beans")
     public static final ItemFoodFL COCOA_BEANS = Helpers.getNull();
     @GameRegistry.ObjectHolder("chestnuts")
@@ -102,6 +112,10 @@ public class ItemsFL
 
     public static ImmutableList<ItemFruitDoor> getAllFruitDoors() { return allFruitDoors; }
 
+    private static Map<Metal, ItemMetalMalletHead> malletHeads = new HashMap<>();
+
+    public static ItemMetalMalletHead getMetalMalletHead(Metal metal) { return malletHeads.get(metal); }
+
     private static Map<Fruit, Item> driedFruits = new HashMap<>();
 
     public static Item getDriedFruit(Fruit fruit)
@@ -124,6 +138,19 @@ public class ItemsFL
         easyItems.add(register(r, "cocoa_beans", new ItemFoodFL(FoodDataFL.COCOA_BEANS), CT_FOOD));
         easyItems.add(register(r, "pumpkin_scooped", new ItemFoodFL(FoodDataFL.PUMPKIN), CT_FOOD));
         easyItems.add(register(r, "pumpkin_chunks", new ItemFoodFL(FoodDataFL.PUMPKIN), CT_FOOD));
+
+        easyItems.add(register(r, "unfired_mallet_mold", new ItemPottery(), CT_POTTERY));
+        easyItems.add(register(r, "mallet_mold", new ItemMetalMalletMold("mallet"), CT_POTTERY));
+
+        for(Metal metal : TFCRegistries.METALS.getValuesCollection())
+            if(metal.isToolMetal())
+            {
+                easyItems.add(register(r, metal.toString() + "_mallet", new ItemMetalMallet(metal), CT_METAL));
+                ItemMetalMalletHead head = new ItemMetalMalletHead(metal);
+                easyItems.add(register(r, metal.toString() + "_mallet_head", head, CT_METAL));
+                malletHeads.put(metal, head);
+            }
+
         //Dried Berries
         for (Fruit fruit : Fruit.values())
         {

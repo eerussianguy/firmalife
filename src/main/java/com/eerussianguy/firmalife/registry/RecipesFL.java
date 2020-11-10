@@ -1,9 +1,20 @@
 package com.eerussianguy.firmalife.registry;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.ItemFluidContainer;
+import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStack;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.items.wrapper.PlayerInvWrapper;
 import net.minecraftforge.registries.IForgeRegistry;
 
 import com.eerussianguy.firmalife.init.Fruit;
@@ -12,10 +23,12 @@ import net.dries007.tfc.api.registries.TFCRegistries;
 import net.dries007.tfc.api.types.Tree;
 import net.dries007.tfc.objects.blocks.wood.BlockLeavesTFC;
 import net.dries007.tfc.objects.blocks.wood.BlockLogTFC;
+import net.dries007.tfc.objects.fluids.properties.FluidWrapper;
 import net.dries007.tfc.objects.inventory.ingredient.IIngredient;
 import net.dries007.tfc.objects.items.ItemSeedsTFC;
 import net.dries007.tfc.objects.items.ItemsTFC;
 import net.dries007.tfc.objects.items.food.ItemFoodTFC;
+import net.dries007.tfc.objects.items.wood.ItemWoodenBucket;
 import net.dries007.tfc.types.DefaultTrees;
 import net.dries007.tfc.util.agriculture.Crop;
 import net.dries007.tfc.util.agriculture.Food;
@@ -98,12 +111,17 @@ public class RecipesFL
     @SubscribeEvent
     public static void onRegisterCrackingRecipeEvent(RegistryEvent.Register<CrackingRecipe> event)
     {
+        ItemStack cmilk = new ItemStack(ItemsFL.CRACKED_COCONUT);
+        IFluidHandler cocomilk = cmilk.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null);
+        cocomilk.fill(new FluidStack(FluidsFL.COCONUT_MILK.get(), 1000), true);
+
         IForgeRegistry<CrackingRecipe> r = event.getRegistry();
         r.registerAll(
             new CrackingRecipe(IIngredient.of(ItemsFL.ACORNS), new ItemStack(ItemsFL.ACORN_FRUIT), 0.5f).setRegistryName("acorn_fruit"),
             new CrackingRecipe(IIngredient.of(ItemsFL.PINECONE), new ItemStack(ItemsFL.PINE_NUTS), 0.5f).setRegistryName("pine_nuts"),
             new CrackingRecipe(IIngredient.of(ItemsFL.PECAN_NUTS), new ItemStack(ItemsFL.PECANS), 0.5f).setRegistryName("pecans"),
-            new CrackingRecipe(IIngredient.of(ItemsFL.COCONUT), new ItemStack(ItemsFL.CRACKED_COCONUT), 0.5f).setRegistryName("cracked_coconut")
+            new CrackingRecipe(IIngredient.of(ItemsFL.COCONUT), cmilk, 0.5f).setRegistryName("coconut_milk")
         );
     }
 }
+

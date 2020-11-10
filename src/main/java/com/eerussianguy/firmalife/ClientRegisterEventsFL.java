@@ -1,7 +1,13 @@
 package com.eerussianguy.firmalife;
 
+import javax.annotation.Nonnull;
+
 import com.eerussianguy.firmalife.blocks.*;
 import com.eerussianguy.firmalife.items.ItemFruitDoor;
+import com.eerussianguy.firmalife.items.ItemMetalMalletMold;
+import net.dries007.tfc.api.capability.IMoldHandler;
+import net.dries007.tfc.api.registries.TFCRegistries;
+import net.dries007.tfc.api.types.Metal;
 import net.dries007.tfc.objects.blocks.agriculture.BlockCropDead;
 import net.minecraft.block.*;
 import com.eerussianguy.firmalife.blocks.BlockStemCrop;
@@ -10,6 +16,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockStem;
+import net.minecraft.client.renderer.ItemMeshDefinition;
+import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.renderer.color.BlockColors;
@@ -18,10 +26,13 @@ import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.BlockFluidBase;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -63,6 +74,35 @@ public class ClientRegisterEventsFL
         for (BlockFruitTreeLeaves leaves : BlocksFL.getAllFruitLeaves())
             ModelLoader.setCustomStateMapper(leaves, new StateMap.Builder().ignore(BlockFruitTreeLeaves.DECAYABLE).ignore(BlockFruitTreeLeaves.HARVESTABLE).build());
         ModelLoader.setCustomModelResourceLocation(ItemsFL.CRACKED_COCONUT, 0, new ModelResourceLocation(ItemsFL.CRACKED_COCONUT.getRegistryName(), "inventory"));
+
+        //Mallet mold
+        ItemMetalMalletMold item = ItemsFL.MALLET_MOLD;
+        ModelBakery.registerItemVariants(item, new ModelResourceLocation(item.getRegistryName().toString()));
+        ModelBakery.registerItemVariants(item, TFCRegistries.METALS.getValuesCollection()
+            .stream()
+            .filter(Metal.ItemType.PROPICK_HEAD::hasMold)
+            .map(x -> new ModelResourceLocation(FirmaLife.MOD_ID + ":" + x.getRegistryName().getPath() + "_" + item.getRegistryName().getPath()))
+            .toArray(ModelResourceLocation[]::new));
+        ModelLoader.setCustomMeshDefinition(item, new ItemMeshDefinition()
+        {
+            private final ModelResourceLocation FALLBACK = new ModelResourceLocation(item.getRegistryName().toString());
+
+            @Override
+            @Nonnull
+            public ModelResourceLocation getModelLocation(@Nonnull ItemStack stack)
+            {
+                IFluidHandler cap = stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null);
+                if (cap instanceof IMoldHandler)
+                {
+                    Metal metal = ((IMoldHandler) cap).getMetal();
+                    if (metal != null)
+                    {
+                        return new ModelResourceLocation(FirmaLife.MOD_ID + ":" + metal.getRegistryName().getPath() + "_" + stack.getItem().getRegistryName().getPath());
+                    }
+                }
+                return FALLBACK;
+            }
+        });
 
         //Configuring block states to ignore certain properties / use others
         //use vanilla stem rendering for StemCrops
