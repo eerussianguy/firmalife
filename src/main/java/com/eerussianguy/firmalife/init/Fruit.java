@@ -2,13 +2,15 @@ package com.eerussianguy.firmalife.init;
 
 import net.minecraft.item.Item;
 
-import com.eerussianguy.firmalife.registry.ItemsFL;
 import net.dries007.tfc.api.capability.food.FoodData;
 import net.dries007.tfc.objects.items.food.ItemFoodTFC;
 import net.dries007.tfc.util.agriculture.Food;
 
 import static com.eerussianguy.firmalife.init.FoodDataFL.*;
 
+/**
+ * This is an easy way to wrap all the TFC fruits with our data
+ */
 public enum Fruit
 {
     BANANA(ItemFoodTFC.get(Food.BANANA), true, DRIED_FRUIT_DECAY),
@@ -17,7 +19,6 @@ public enum Fruit
     BUNCH_BERRY(ItemFoodTFC.get(Food.BUNCH_BERRY), true, DRIED_FRUIT_SATURATION),
     CHERRY(ItemFoodTFC.get(Food.BUNCH_BERRY), true, DRIED_COCOA_BEANS),
     CLOUD_BERRY(ItemFoodTFC.get(Food.CLOUD_BERRY), true, DRIED_FRUIT_DECAY),
-    COCOA_BEANS(ItemsFL.COCOA_BEANS, true, DRIED_COCOA_BEANS),
     CRANBERRY(ItemFoodTFC.get(Food.CRANBERRY), true, DRIED_FRUIT_SATURATION),
     ELDERBERRY(ItemFoodTFC.get(Food.ELDERBERRY), true, DRIED_FRUIT_CATEGORY),
     GOOSEBERRY(ItemFoodTFC.get(Food.GOOSEBERRY), true, DRIED_FRUIT_SATURATION),

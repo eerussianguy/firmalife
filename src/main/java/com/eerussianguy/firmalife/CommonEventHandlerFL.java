@@ -1,28 +1,38 @@
 package com.eerussianguy.firmalife;
 
 
+import com.eerussianguy.firmalife.registry.FluidsFL;
+import net.dries007.tfc.objects.entity.animal.EntityCowTFC;
+import net.dries007.tfc.objects.entity.animal.EntityGoatTFC;
+import net.dries007.tfc.objects.entity.animal.EntityYakTFC;
+import net.dries007.tfc.objects.entity.animal.EntityZebuTFC;
 import net.dries007.tfc.objects.items.ItemMisc;
 import net.dries007.tfc.util.Helpers;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidEvent;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.IFluidTank;
+import net.minecraftforge.fluids.*;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.wrapper.PlayerInvWrapper;
 
 import com.eerussianguy.firmalife.gui.FLGuiHandler;
 import com.eerussianguy.firmalife.player.CapPlayerDataFL;
@@ -67,27 +77,54 @@ public class CommonEventHandlerFL
         }
     }
 
-    // this doesn't work right now -- needs to use ItemRightClick or something to that effect
-    @SubscribeEvent
-    public static void onFillBucketEvent(FluidEvent.FluidFillingEvent event)
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onEntityInteract(PlayerInteractEvent.EntityInteract event)
     {
-        World world = event.getWorld();
-        BlockPos pos = event.getPos();
-        Entity entity = world.getEntitiesWithinAABBExcludingEntity(world.getClosestPlayer(pos.getX(), pos.getY(), pos.getZ(), 3, false), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D)).get(0);
-        String name = entity.getName();
-        Fluid fluid = FluidsTFC.MILK.get();
-        boolean foundMilkable = false;
-        switch (name)
+        if (!ConfigFL.General.COMPAT.customMilk)
+            return;
+        if (event.getWorld().isRemote)
+            return;
+        Entity entity = event.getTarget();
+        ItemStack item = event.getItemStack();
+        EntityPlayer player = event.getEntityPlayer();
+        if (!item.isEmpty())
         {
-            case "yaktfc":
-                foundMilkable = true;
-                fluid = FluidsTFC.FRESH_WATER.get();
-        }
-        if (foundMilkable)
-        {
-            IFluidTank tank = event.getTank();
-            event.setCanceled(true);
-            tank.fill(new FluidStack(fluid, Fluid.BUCKET_VOLUME), true);
+            IFluidHandlerItem bucket = item.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null);
+            if (bucket != null)
+            {
+                FluidActionResult fillResult = FluidUtil.tryFillContainer(item, FluidUtil.getFluidHandler(new ItemStack(Items.MILK_BUCKET)),
+                    Fluid.BUCKET_VOLUME, player, false);//checking if it can be filled
+                if (fillResult.isSuccess() && entity instanceof EntityCowTFC)
+                {
+                    EntityCowTFC cow = (EntityCowTFC) entity;//we can just cast the entity to a cow to test familiarity etc
+                    Fluid fluid = FluidsTFC.MILK.get();
+                    boolean foundMilkable = false;
+                    if (entity instanceof EntityYakTFC)//have to check the original entity to get the proper instanceof however
+                    {
+                        foundMilkable = true;
+                        fluid = FluidsFL.YAK_MILK.get();
+                    }
+                    else if (entity instanceof EntityGoatTFC)
+                    {
+                        foundMilkable = true;
+                        fluid = FluidsFL.GOAT_MILK.get();
+                    }
+                    else if (entity instanceof EntityZebuTFC)
+                    {
+                        foundMilkable = true;
+                        fluid = FluidsFL.ZEBU_MILK.get();
+                    }
+                    if (foundMilkable)
+                    {
+                        if (cow.getFamiliarity() > 0.15f && cow.isReadyForAnimalProduct())
+                        {
+                            bucket.drain(1000, true);
+                            bucket.fill(new FluidStack(fluid, 1000), true);
+                        }
+                    }
+                }
+
+            }
         }
     }
 
@@ -113,15 +150,6 @@ public class CommonEventHandlerFL
             !event.getWorld().isRemote)
         {
             FLGuiHandler.openGui(event.getWorld(), event.getPos(), event.getEntityPlayer(), FLGuiHandler.Type.KNAPPING_PUMPKIN);
-        }
-    }
-
-    @SubscribeEvent
-    public static void onConfigChangedEvent(ConfigChangedEvent.OnConfigChangedEvent event)
-    {
-        if (event.getModID().equals(TerraFirmaCraft.MOD_ID))
-        {
-            HelpersFL.insertWhitelist();
         }
     }
 }
