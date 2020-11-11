@@ -76,7 +76,7 @@ public class ClientRegisterEventsFL
         ModelLoader.setCustomModelResourceLocation(ItemsFL.CRACKED_COCONUT, 0, new ModelResourceLocation(ItemsFL.CRACKED_COCONUT.getRegistryName(), "inventory"));
 
         //Mallet mold
-        ItemMetalMalletMold item = ItemsFL.MALLET_MOLD;
+        ItemMetalMalletMold item = ItemsFL.malletMold;
         ModelBakery.registerItemVariants(item, new ModelResourceLocation(item.getRegistryName().toString()));
         ModelBakery.registerItemVariants(item, TFCRegistries.METALS.getValuesCollection()
             .stream()

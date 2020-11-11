@@ -1,22 +1,9 @@
 package com.eerussianguy.firmalife.registry;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.eerussianguy.firmalife.blocks.BlockFruitDoor;
-import com.eerussianguy.firmalife.init.Fruit;
-import com.eerussianguy.firmalife.init.FruitTreeFL;
-import com.eerussianguy.firmalife.items.*;
 import com.google.common.collect.ImmutableList;
-
-import net.dries007.tfc.api.registries.TFCRegistries;
-import net.dries007.tfc.api.types.IFruitTree;
-import net.dries007.tfc.api.types.Metal;
-import net.dries007.tfc.objects.items.ceramics.ItemMold;
-import net.dries007.tfc.objects.items.ceramics.ItemPottery;
-import net.dries007.tfc.util.OreDictionaryHelper;
-import net.dries007.tfc.util.agriculture.FruitTree;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -27,19 +14,23 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
 
+import com.eerussianguy.firmalife.blocks.BlockFruitDoor;
 import com.eerussianguy.firmalife.init.FoodDataFL;
+import com.eerussianguy.firmalife.init.Fruit;
+import com.eerussianguy.firmalife.init.FruitTreeFL;
 import com.eerussianguy.firmalife.init.StemCrop;
-import com.eerussianguy.firmalife.items.ItemFoodFL;
-import com.eerussianguy.firmalife.items.ItemGreenhouseDoor;
-import com.eerussianguy.firmalife.items.ItemNutHammer;
-import com.eerussianguy.firmalife.items.ItemRoastedCocoaBeans;
-
+import com.eerussianguy.firmalife.items.*;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
+import net.dries007.tfc.api.registries.TFCRegistries;
+import net.dries007.tfc.api.types.IFruitTree;
+import net.dries007.tfc.api.types.Metal;
 import net.dries007.tfc.objects.items.ItemMisc;
 import net.dries007.tfc.objects.items.ItemSeedsTFC;
+import net.dries007.tfc.objects.items.ceramics.ItemPottery;
 import net.dries007.tfc.objects.items.wood.ItemWoodenBucket;
 import net.dries007.tfc.util.Helpers;
+import net.dries007.tfc.util.agriculture.FruitTree;
 
 import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
 import static net.dries007.tfc.objects.CreativeTabsTFC.*;
@@ -123,6 +114,8 @@ public class ItemsFL
         return driedFruits.get(fruit);
     }
 
+    public static ItemMetalMalletMold malletMold;
+
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event)
@@ -140,7 +133,7 @@ public class ItemsFL
         easyItems.add(register(r, "pumpkin_chunks", new ItemFoodFL(FoodDataFL.PUMPKIN), CT_FOOD));
 
         easyItems.add(register(r, "unfired_mallet_mold", new ItemPottery(), CT_POTTERY));
-        easyItems.add(register(r, "mallet_mold", new ItemMetalMalletMold("mallet"), CT_POTTERY));
+        malletMold = register(r, "mallet_mold", new ItemMetalMalletMold("mallet"), CT_POTTERY);
 
         for(Metal metal : TFCRegistries.METALS.getValuesCollection())
             if(metal.isToolMetal())

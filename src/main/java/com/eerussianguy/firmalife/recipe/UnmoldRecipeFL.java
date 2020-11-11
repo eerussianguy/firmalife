@@ -190,13 +190,12 @@ public class UnmoldRecipeFL extends IForgeRegistryEntry.Impl<IRecipe> implements
         public IRecipe parse(JsonContext context, JsonObject json) {
             NonNullList<Ingredient> ingredients = RecipeUtils.parseShapeless(context, json);
             String result = JsonUtils.getString(json, "result");
-            String type = result.toLowerCase();
+            String type = result.toLowerCase().split("_")[0];
             String group = JsonUtils.getString(json, "group", "");
             float chance = 0.0F;
             if (JsonUtils.hasField(json, "chance")) {
                 chance = JsonUtils.getFloat(json, "chance");
             }
-
             return new UnmoldRecipeFL(group.isEmpty() ? new ResourceLocation(result) : new ResourceLocation(group), ingredients, type, chance);
         }
     }
