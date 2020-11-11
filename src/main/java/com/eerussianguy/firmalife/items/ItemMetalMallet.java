@@ -13,7 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.Item;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
@@ -25,9 +25,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
-
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.items.ItemHandlerHelper;
 
 import com.eerussianguy.firmalife.player.CapPlayerDataFL;
 import com.eerussianguy.firmalife.player.IPlayerDataFL;
@@ -73,18 +71,6 @@ public class ItemMetalMallet extends ItemTFC implements IMetalItem
     {
         if (!worldIn.isRemote && hand == EnumHand.MAIN_HAND)
         {
-            /**
-             * This logic is outdated if we have different tiers of tools - unless you want to continue using random chance to break instead of durability
-             * let me know.  Should be easy to implement a scaling chance to break based on tool type.
-
-            if (Constants.RNG.nextInt(30) == 2) // breaking the hammer randomly
-            {
-                player.setHeldItem(hand, ItemStack.EMPTY);
-                worldIn.playSound(null, player.getPosition(), SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.PLAYERS, 0.5f, 1.0f);
-                return EnumActionResult.SUCCESS;
-            }
-             **/
-
             if(worldIn.getBlockState(pos).getBlock() instanceof BlockPlacedItemFlat)
             {
                 TEPlacedItemFlat tile = (TEPlacedItemFlat) worldIn.getTileEntity(pos);
@@ -94,7 +80,7 @@ public class ItemMetalMallet extends ItemTFC implements IMetalItem
 
                 if(Constants.RNG.nextInt(100) < entry.getChance())
                 {
-                    ItemHandlerHelper.giveItemToPlayer(player, entry.getOutputItem(tile.getStack()));
+                    InventoryHelper.spawnItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), entry.getOutputItem(tile.getStack()));
                     worldIn.playSound(null, pos, SoundEvents.BLOCK_WOOD_PLACE, SoundCategory.BLOCKS, 2.0F, 1.0F);
                 }
                 else
@@ -104,7 +90,6 @@ public class ItemMetalMallet extends ItemTFC implements IMetalItem
                 worldIn.setBlockToAir(pos);
                 player.getHeldItem(hand).damageItem(1, player);
                 return EnumActionResult.SUCCESS;
-
             }
 
             BlockPos offsetPos = pos;
@@ -179,12 +164,12 @@ public class ItemMetalMallet extends ItemTFC implements IMetalItem
 
         return EnumActionResult.FAIL;
     }
-    //todo: What the fuck is the point of this
+
     public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot slot, ItemStack stack) {
         Multimap<String, AttributeModifier> multimap = HashMultimap.create();
         if (slot == EntityEquipmentSlot.MAINHAND) {
             multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", this.attackDamage, 0));
-            multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", (double)this.attackSpeed, 0));
+            multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", this.attackSpeed, 0));
         }
 
         return multimap;
