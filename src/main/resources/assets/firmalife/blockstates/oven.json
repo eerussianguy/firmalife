@@ -50,10 +50,14 @@
 			}
 		},
 		"inventory": [{
+			"transform": "forge:default-block",
+		    "model": "firmalife:oven",
+		    "y": 180
 		}],
 		"normal": [{
-		   "transform": "forge:default-block",
-		   "model": "firmalife:oven"
+		    "transform": "forge:default-block",
+		    "model": "firmalife:oven",
+		    "y": 180
 		}]
 	}
 }

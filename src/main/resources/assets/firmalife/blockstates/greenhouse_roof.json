@@ -1,4 +1,9 @@
 {
+	"forge_marker": 1,
+	"defaults": {
+		"model": "firmalife:greenhouse_roof",
+		"uvlock": true
+	  },
 	"variants": {
 		"facing=east,glass=false,top=false": { "model": "firmalife:greenhouse_roof", "y": 90, "uvlock": true },
 		"facing=west,glass=false,top=false": { "model": "firmalife:greenhouse_roof", "y": 270, "uvlock": true },
@@ -18,7 +23,7 @@
 		"facing=south,glass=true,top=true": { "model": "firmalife:greenhouse_roof_top_glass", "y": 180, "uvlock": true },
 		"normal": [{
 		   "transform": "forge:default-block",
-		   "model": "firmalife:greenhouse_roof_glass"
+		   "model": "firmalife:greenhouse_roof"
 		}]
 	}
 }
