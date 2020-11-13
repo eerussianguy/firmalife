@@ -45,6 +45,12 @@ public class ItemsFL
     public static final ItemMetalMalletMold MALLET_MOLD = Helpers.getNull();
     @GameRegistry.ObjectHolder("cocoa_beans")
     public static final ItemFoodFL COCOA_BEANS = Helpers.getNull();
+    @GameRegistry.ObjectHolder("cow_milk_curd")
+    public static final ItemFoodFL COW_MILK_CURD = Helpers.getNull();
+    @GameRegistry.ObjectHolder("goat_milk_curd")
+    public static final ItemFoodFL GOAT_MILK_CURD = Helpers.getNull();
+    @GameRegistry.ObjectHolder("yak_milk_curd")
+    public static final ItemFoodFL YAK_MILK_CURD = Helpers.getNull();
     @GameRegistry.ObjectHolder("chestnuts")
     public static final ItemFoodFL CHESTNUTS = Helpers.getNull();
     @GameRegistry.ObjectHolder("acorn_fruit")
@@ -59,6 +65,12 @@ public class ItemsFL
     public static final ItemFoodFL PECAN_NUTS = Helpers.getNull();
     @GameRegistry.ObjectHolder("pecans")
     public static final ItemFoodFL PECANS = Helpers.getNull();
+    @GameRegistry.ObjectHolder("rennet")
+    public static final ItemMisc RENNET = Helpers.getNull();
+    @GameRegistry.ObjectHolder("cheesecloth")
+    public static final ItemMisc CHEESECLOTH = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dirty_cheesecloth")
+    public static final ItemMisc DIRTY_CHEESECLOTH = Helpers.getNull();
     @GameRegistry.ObjectHolder("roasted_cocoa_beans")
     public static final ItemMisc ROASTED_COCOA_BEANS = Helpers.getNull();
     @GameRegistry.ObjectHolder("peel")
@@ -132,6 +144,16 @@ public class ItemsFL
         easyItems.add(register(r, "pumpkin_scooped", new ItemFoodFL(FoodDataFL.PUMPKIN), CT_FOOD));
         easyItems.add(register(r, "pumpkin_chunks", new ItemFoodFL(FoodDataFL.PUMPKIN), CT_FOOD));
 
+        easyItems.add(register(r, "cow_milk_curd", new ItemFoodFL(FoodDataFL.MILK_CURD), CT_FOOD));
+        easyItems.add(register(r, "goat_milk_curd", new ItemFoodFL(FoodDataFL.MILK_CURD), CT_FOOD));
+        easyItems.add(register(r, "yak_milk_curd", new ItemFoodFL(FoodDataFL.MILK_CURD), CT_FOOD));
+        easyItems.add(register(r, "cheddar", new ItemFoodFL(FoodDataFL.CHEESE_SALTED), CT_FOOD));
+        easyItems.add(register(r, "chevre", new ItemFoodFL(FoodDataFL.CHEESE_SALTED), CT_FOOD));
+        easyItems.add(register(r, "rajya_metok", new ItemFoodFL(FoodDataFL.CHEESE_SALTED), CT_FOOD));
+        easyItems.add(register(r, "gouda", new ItemFoodFL(FoodDataFL.CHEESE_BRINED), CT_FOOD));
+        easyItems.add(register(r, "feta", new ItemFoodFL(FoodDataFL.CHEESE_BRINED), CT_FOOD));
+        easyItems.add(register(r, "shosha", new ItemFoodFL(FoodDataFL.CHEESE_BRINED), CT_FOOD));
+
         easyItems.add(register(r, "unfired_mallet_mold", new ItemPottery(), CT_POTTERY));
         malletMold = register(r, "mallet_mold", new ItemMetalMalletMold("mallet"), CT_POTTERY);
 
@@ -169,6 +191,9 @@ public class ItemsFL
         easyItems.add(register(r, "coconut", new ItemFoodFL(FoodDataFL.NUT), CT_FOOD));
 
         //Misc Items
+        easyItems.add(register(r, "rennet", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
+        easyItems.add(register(r, "cheesecloth", new ItemMisc(Size.NORMAL, Weight.VERY_LIGHT), CT_MISC));
+        easyItems.add(register(r, "dirty_cheesecloth", new ItemMisc(Size.NORMAL, Weight.MEDIUM), CT_MISC));
         easyItems.add(register(r, "roasted_cocoa_beans", new ItemRoastedCocoaBeans(), CT_MISC));
         easyItems.add(register(r, "cocoa_butter", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
         easyItems.add(register(r, "cocoa_powder", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));

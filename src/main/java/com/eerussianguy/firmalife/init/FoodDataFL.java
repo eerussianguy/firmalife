@@ -8,6 +8,10 @@ public class FoodDataFL
     public static final FoodData COCOA_BEANS = new FoodData(4, 0.0F, 0.1F, 0.1F, 0.0F, 0.0F, 0.1F, 0.0F, 0.5F);
     public static final FoodData COCONUT_MILK = new FoodData(0, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.7F, 0.0F);
 
+    public static final FoodData MILK_CURD = new FoodData(4, 0f, 1f, 0f, 0f, 0f, 0f, 2f, 1f);
+    public static final FoodData CHEESE_BRINED = new FoodData(4, 0f, 2f, 0f, 0f, 0f, 0f, 3f, 0.3f);
+    public static final FoodData CHEESE_SALTED = new FoodData(4, 0f, 2f, 0f, 0f, 0f, 0f, 3f, 0.3f);
+
     //copied from squash
     public static final FoodData PUMPKIN = new FoodData(4, 1f, 0f, 0f, 1.5f, 0f, 0f, 0f, 1.67f);
 

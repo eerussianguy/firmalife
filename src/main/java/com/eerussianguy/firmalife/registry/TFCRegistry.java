@@ -7,6 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -19,6 +20,7 @@ import com.eerussianguy.firmalife.items.ItemMetalMalletHead;
 import com.eerussianguy.firmalife.recipe.KnappingRecipeFood;
 import net.dries007.tfc.TerraFirmaCraft;
 import net.dries007.tfc.api.recipes.anvil.AnvilRecipe;
+import net.dries007.tfc.api.recipes.barrel.BarrelRecipe;
 import net.dries007.tfc.api.recipes.heat.HeatRecipe;
 import net.dries007.tfc.api.recipes.heat.HeatRecipeSimple;
 import net.dries007.tfc.api.recipes.knapping.KnappingRecipe;
@@ -31,6 +33,7 @@ import net.dries007.tfc.api.types.Metal;
 import net.dries007.tfc.api.types.Ore;
 import net.dries007.tfc.api.types.Plant;
 import net.dries007.tfc.objects.Powder;
+import net.dries007.tfc.objects.fluids.FluidsTFC;
 import net.dries007.tfc.objects.inventory.ingredient.IIngredient;
 import net.dries007.tfc.objects.items.ItemPowder;
 import net.dries007.tfc.objects.items.metal.ItemMetal;
@@ -125,5 +128,29 @@ public class TFCRegistry
                     new ItemStack(ItemsFL.getMetalMalletHead(metal)), metal.getTier(), TOOLS, PUNCH_LAST, PUNCH_SECOND_LAST, SHRINK_THIRD_LAST));
         }
 
+    }
+
+    @SubscribeEvent
+    public static void onRegisterBarrelRecipes(RegistryEvent.Register<BarrelRecipe> event)
+    {
+        //Remove recipes
+        IForgeRegistryModifiable modRegistry = (IForgeRegistryModifiable) TFCRegistries.HEAT;
+        String[] regNames = {"curdled_milk, vinegar_milk, cheese"};
+        for(String name : regNames)
+        {
+            BarrelRecipe recipe = TFCRegistries.BARREL.getValue(new ResourceLocation("tfc", name));
+            if(recipe != null)
+            {
+                modRegistry.remove(recipe.getRegistryName());
+                FirmaLife.logger.info("Removed barrel recipe tfc:{}", name);
+            }
+        }
+
+
+
+        event.getRegistry().registerAll(
+            new BarrelRecipe(IIngredient.of(FluidsTFC.MILK.get(), 500), IIngredient.of(ItemsFL.RENNET), new FluidStack(FluidsTFC.CURDLED_MILK.get(), 500), ItemStack.EMPTY, 4000).setRegistryName("curdled_milk"),
+            new BarrelRecipe(IIngredient.of(FluidsTFC.FRESH_WATER.get(), 125), IIngredient.of(ItemsFL.DIRTY_CHEESECLOTH), (FluidStack)null, new ItemStack(ItemsFL.CHEESECLOTH), 1000).setRegistryName("cheesecloth")
+        );
     }
 }

@@ -79,9 +79,20 @@ public class CommonEventHandlerFL
         boolean foundMilkable = false;
         switch (name)
         {
+            case "cowtfc":
+                foundMilkable = true;
+                fluid = FluidsTFC.BRINE.get();
+                break;
+
+            case "goattfc":
+                foundMilkable = true;
+                fluid = FluidsTFC.SALT_WATER.get();
+                break;
+
             case "yaktfc":
                 foundMilkable = true;
                 fluid = FluidsTFC.FRESH_WATER.get();
+                break;
         }
         if (foundMilkable)
         {
