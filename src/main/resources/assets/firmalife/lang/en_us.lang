@@ -214,10 +214,8 @@ tooltip.firmalife.days=days
 tooltip.firmalife.refractory=You're doing this too often. Take a break.
 tooltip.firmalife.not_fall=Come back in October or November to get nuts.
 jei.category.firmalife.oven=Oven
-<<<<<<< HEAD
+
 jei.category.firmalife.casting=Casting recipes
-=======
->>>>>>> master
 jei.category.firmalife.knap.pumpkin=Pumpkin Carving
 jei.category.firmalife.drying=Drying
 jei.tooltip.firmalife.fruit_leaf=Fruit leaves are dropped by breaking any fruit tree's leaves!
