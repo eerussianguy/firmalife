@@ -1,8 +1,5 @@
 package com.eerussianguy.firmalife.registry;
 
-import java.util.ArrayList;
-import java.util.stream.Collectors;
-
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -15,7 +12,6 @@ import net.minecraftforge.registries.IForgeRegistryModifiable;
 import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.init.KnappingFL;
 import com.eerussianguy.firmalife.init.PlantsFL;
-import com.eerussianguy.firmalife.items.ItemMetalMalletHead;
 import com.eerussianguy.firmalife.recipe.KnappingRecipeFood;
 import net.dries007.tfc.TerraFirmaCraft;
 import net.dries007.tfc.api.recipes.anvil.AnvilRecipe;
@@ -34,13 +30,10 @@ import net.dries007.tfc.objects.Powder;
 import net.dries007.tfc.objects.inventory.ingredient.IIngredient;
 import net.dries007.tfc.objects.items.ItemPowder;
 import net.dries007.tfc.objects.items.metal.ItemMetal;
-import net.dries007.tfc.api.types.Metal;
-import scala.xml.dtd.ANY;
-
-import static net.dries007.tfc.util.forge.ForgeRule.*;
-import static net.dries007.tfc.util.skills.SmithingSkill.Type.*;
 
 import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
+import static net.dries007.tfc.util.forge.ForgeRule.*;
+import static net.dries007.tfc.util.skills.SmithingSkill.Type.TOOLS;
 
 @Mod.EventBusSubscriber(modid = MOD_ID)
 public class TFCRegistry
@@ -81,7 +74,6 @@ public class TFCRegistry
             new KnappingRecipeSimple(KnappingType.CLAY, true, new ItemStack(BlocksFL.OVEN), "XXXXX", "X   X", "X   X", "X   X", "XXXXX").setRegistryName("clay_oven"),
             new KnappingRecipeSimple(KnappingType.CLAY, true, new ItemStack(BlocksFL.OVEN_CHIMNEY), "XX XX", "X   X", "X   X", "X   X", "X   X").setRegistryName("clay_oven_chimney"),
             new KnappingRecipeSimple(KnappingType.CLAY, true, new ItemStack(BlocksFL.OVEN_WALL), "    X", "   XX", "   XX", "  XXX", "  XXX").setRegistryName("clay_oven_wall"),
-            new KnappingRecipeSimple(KnappingType.STONE, true, new ItemStack(ItemsFL.NUT_HAMMER_HEAD), "     ", "XXXXX", "XXX X", "     ", "     ").setRegistryName("nut_hammer"),
             new KnappingRecipeSimple(KnappingType.CLAY, true, new ItemStack(ItemsFL.UNFIRED_MALLET_MOLD), "XXXXX", "     ", "   X ", "XXXXX", "XXXXX").setRegistryName("unfired_mallet_mold"),
 
             new KnappingRecipeFood(KnappingFL.PUMPKIN, true, new ItemStack(ItemsFL.PUMPKIN_SCOOPED), "XXXXX", "X   X", "X   X", "X   X", "XXXXX").setRegistryName("pumpkin_scoop"),

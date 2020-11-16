@@ -85,8 +85,6 @@ public class ItemsFL
     public static final ItemWoodenBucket CRACKED_COCONUT = Helpers.getNull();
     @GameRegistry.ObjectHolder("coconut")
     public static final ItemFoodFL COCONUT = Helpers.getNull();
-    @GameRegistry.ObjectHolder("nut_hammer_head")
-    public static final ItemMisc NUT_HAMMER_HEAD = Helpers.getNull();
     @GameRegistry.ObjectHolder("pumpkin_scooped")
     public static final ItemFoodFL PUMPKIN_SCOOPED = Helpers.getNull();
     @GameRegistry.ObjectHolder("pumpkin_chunks")
@@ -176,8 +174,6 @@ public class ItemsFL
         easyItems.add(register(r, "milk_chocolate_blend", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
         easyItems.add(register(r, "white_chocolate_blend", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
         easyItems.add(register(r, "peel", new ItemMisc(Size.LARGE, Weight.VERY_HEAVY), CT_MISC));
-        easyItems.add(register(r, "nut_hammer", new ItemNutHammer(), CT_MISC));
-        easyItems.add(register(r, "nut_hammer_head", new ItemMisc(Size.LARGE, Weight.VERY_HEAVY), CT_MISC));
 
         ItemMisc fruit_leaf = new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT);
         easyItems.add(register(r, "fruit_leaf", fruit_leaf, CT_MISC));
