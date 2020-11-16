@@ -35,7 +35,10 @@ import net.dries007.tfc.objects.fluids.FluidsTFC;
 import net.dries007.tfc.objects.inventory.ingredient.IIngredient;
 import net.dries007.tfc.objects.items.ItemPowder;
 import net.dries007.tfc.objects.items.metal.ItemMetal;
+<<<<<<< HEAD
 import net.dries007.tfc.util.calendar.ICalendar;
+=======
+>>>>>>> 248a747... Cheese up to curds
 
 import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
 import static net.dries007.tfc.util.forge.ForgeRule.*;
@@ -163,9 +166,21 @@ public class TFCRegistry
     @SubscribeEvent
     public static void onRegisterBarrelRecipes(RegistryEvent.Register<BarrelRecipe> event)
     {
+        event.getRegistry().registerAll(
+            new BarrelRecipe(IIngredient.of(FluidsTFC.MILK.get(), 2000), IIngredient.of(ItemsFL.RENNET), new FluidStack(FluidsTFC.CURDLED_MILK.get(), 2000), ItemStack.EMPTY, 4000).setRegistryName("curdled_milk"),
+            new BarrelRecipe(IIngredient.of(FluidsFL.YAK_MILK.get(), 2000), IIngredient.of(ItemsFL.RENNET), new FluidStack(FluidsFL.CURDLED_YAK_MILK.get(), 2000), ItemStack.EMPTY, 4000).setRegistryName("curdled_yak_milk"),
+            new BarrelRecipe(IIngredient.of(FluidsFL.GOAT_MILK.get(), 2000), IIngredient.of(ItemsFL.RENNET), new FluidStack(FluidsFL.CURDLED_GOAT_MILK.get(), 2000), ItemStack.EMPTY, 4000).setRegistryName("curdled_goat_milk"),
+            new BarrelRecipe(IIngredient.of(FluidsFL.ZEBU_MILK.get(), 2000), IIngredient.of(ItemsFL.RENNET), new FluidStack(FluidsFL.CURDLED_ZEBU_MILK.get(), 2000), ItemStack.EMPTY, 4000).setRegistryName("curdled_zebu_milk"),
+            new BarrelRecipe(IIngredient.of(FluidsTFC.CURDLED_MILK.get(), 1000), IIngredient.of(ItemsFL.CHEESECLOTH), null, new ItemStack(ItemsFL.CURD_CLOTH), 0).setRegistryName("curd_cloth"),
+            new BarrelRecipe(IIngredient.of(FluidsFL.CURDLED_YAK_MILK.get(), 1000), IIngredient.of(ItemsFL.CHEESECLOTH), null, new ItemStack(ItemsFL.YAK_CURD_CLOTH), 0).setRegistryName("yak_curd_cloth"),
+            new BarrelRecipe(IIngredient.of(FluidsFL.CURDLED_GOAT_MILK.get(), 1000), IIngredient.of(ItemsFL.CHEESECLOTH), null, new ItemStack(ItemsFL.GOAT_CURD_CLOTH), 0).setRegistryName("goat_curd_cloth"),
+            new BarrelRecipe(IIngredient.of(FluidsFL.CURDLED_ZEBU_MILK.get(), 1000), IIngredient.of(ItemsFL.CHEESECLOTH), null, new ItemStack(ItemsFL.ZEBU_CURD_CLOTH), 0).setRegistryName("zebu_curd_cloth"),
+            new BarrelRecipe(IIngredient.of(FluidsTFC.FRESH_WATER.get(), 125), IIngredient.of(ItemsFL.DIRTY_CHEESECLOTH), null, new ItemStack(ItemsFL.CHEESECLOTH), 1000).setRegistryName("cheesecloth")
+        );
+
         //Remove recipes
-        IForgeRegistryModifiable modRegistry = (IForgeRegistryModifiable) TFCRegistries.HEAT;
-        String[] regNames = {"curdled_milk, vinegar_milk, cheese"};
+        IForgeRegistryModifiable modRegistry = (IForgeRegistryModifiable) TFCRegistries.BARREL;
+        String[] regNames = {"curdled_milk", "milk_vinegar", "cheese"};
         for(String name : regNames)
         {
             BarrelRecipe recipe = TFCRegistries.BARREL.getValue(new ResourceLocation("tfc", name));
@@ -175,12 +190,5 @@ public class TFCRegistry
                 FirmaLife.logger.info("Removed barrel recipe tfc:{}", name);
             }
         }
-
-
-
-        event.getRegistry().registerAll(
-            new BarrelRecipe(IIngredient.of(FluidsTFC.MILK.get(), 500), IIngredient.of(ItemsFL.RENNET), new FluidStack(FluidsTFC.CURDLED_MILK.get(), 500), ItemStack.EMPTY, 4000).setRegistryName("curdled_milk"),
-            new BarrelRecipe(IIngredient.of(FluidsTFC.FRESH_WATER.get(), 125), IIngredient.of(ItemsFL.DIRTY_CHEESECLOTH), (FluidStack)null, new ItemStack(ItemsFL.CHEESECLOTH), 1000).setRegistryName("cheesecloth")
-        );
     }
 }

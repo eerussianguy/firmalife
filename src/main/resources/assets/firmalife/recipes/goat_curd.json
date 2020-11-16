@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "firmalife:goat_curd_cloth"
+    }
+  ],
+  "result": {
+    "item": "firmalife:goat_curd",
+    "count": 1
+  }
+}

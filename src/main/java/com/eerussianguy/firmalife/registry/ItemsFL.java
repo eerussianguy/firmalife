@@ -45,12 +45,14 @@ public class ItemsFL
     public static final ItemMetalMalletMold MALLET_MOLD = Helpers.getNull();
     @GameRegistry.ObjectHolder("cocoa_beans")
     public static final ItemFoodFL COCOA_BEANS = Helpers.getNull();
-    @GameRegistry.ObjectHolder("cow_milk_curd")
-    public static final ItemFoodFL COW_MILK_CURD = Helpers.getNull();
-    @GameRegistry.ObjectHolder("goat_milk_curd")
-    public static final ItemFoodFL GOAT_MILK_CURD = Helpers.getNull();
-    @GameRegistry.ObjectHolder("yak_milk_curd")
-    public static final ItemFoodFL YAK_MILK_CURD = Helpers.getNull();
+    @GameRegistry.ObjectHolder("curd")
+    public static final ItemFoodFL CURD = Helpers.getNull();
+    @GameRegistry.ObjectHolder("goat_curd")
+    public static final ItemFoodFL GOAT_CURD = Helpers.getNull();
+    @GameRegistry.ObjectHolder("yak_curd")
+    public static final ItemFoodFL YAK_CURD = Helpers.getNull();
+    @GameRegistry.ObjectHolder("zebu_curd")
+    public static final ItemFoodFL ZEBU_CURD = Helpers.getNull();
     @GameRegistry.ObjectHolder("chestnuts")
     public static final ItemFoodFL CHESTNUTS = Helpers.getNull();
     @GameRegistry.ObjectHolder("roasted_chestnuts")
@@ -71,6 +73,14 @@ public class ItemsFL
     public static final ItemMisc RENNET = Helpers.getNull();
     @GameRegistry.ObjectHolder("cheesecloth")
     public static final ItemMisc CHEESECLOTH = Helpers.getNull();
+    @GameRegistry.ObjectHolder("curd_cloth")
+    public static final ItemCheesecloth CURD_CLOTH = Helpers.getNull();
+    @GameRegistry.ObjectHolder("yak_curd_cloth")
+    public static final ItemCheesecloth YAK_CURD_CLOTH = Helpers.getNull();
+    @GameRegistry.ObjectHolder("goat_curd_cloth")
+    public static final ItemCheesecloth GOAT_CURD_CLOTH = Helpers.getNull();
+    @GameRegistry.ObjectHolder("zebu_curd_cloth")
+    public static final ItemCheesecloth ZEBU_CURD_CLOTH = Helpers.getNull();
     @GameRegistry.ObjectHolder("dirty_cheesecloth")
     public static final ItemMisc DIRTY_CHEESECLOTH = Helpers.getNull();
     @GameRegistry.ObjectHolder("roasted_cocoa_beans")
@@ -158,9 +168,10 @@ public class ItemsFL
         easyItems.add(register(r, "pumpkin_scooped", new ItemFoodFL(FoodDataFL.PUMPKIN), CT_FOOD));
         easyItems.add(register(r, "pumpkin_chunks", new ItemFoodFL(FoodDataFL.PUMPKIN), CT_FOOD));
 
-        easyItems.add(register(r, "cow_milk_curd", new ItemFoodFL(FoodDataFL.MILK_CURD), CT_FOOD));
-        easyItems.add(register(r, "goat_milk_curd", new ItemFoodFL(FoodDataFL.MILK_CURD), CT_FOOD));
-        easyItems.add(register(r, "yak_milk_curd", new ItemFoodFL(FoodDataFL.MILK_CURD), CT_FOOD));
+        easyItems.add(register(r, "curd", new ItemFoodFL(FoodDataFL.MILK_CURD), CT_FOOD));
+        easyItems.add(register(r, "goat_curd", new ItemFoodFL(FoodDataFL.MILK_CURD), CT_FOOD));
+        easyItems.add(register(r, "yak_curd", new ItemFoodFL(FoodDataFL.MILK_CURD), CT_FOOD));
+        easyItems.add(register(r, "zebu_curd", new ItemFoodFL(FoodDataFL.MILK_CURD), CT_FOOD));
         easyItems.add(register(r, "cheddar", new ItemFoodFL(FoodDataFL.CHEESE_SALTED), CT_FOOD));
         easyItems.add(register(r, "chevre", new ItemFoodFL(FoodDataFL.CHEESE_SALTED), CT_FOOD));
         easyItems.add(register(r, "rajya_metok", new ItemFoodFL(FoodDataFL.CHEESE_SALTED), CT_FOOD));
@@ -221,6 +232,10 @@ public class ItemsFL
         //Misc Items
         easyItems.add(register(r, "rennet", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
         easyItems.add(register(r, "cheesecloth", new ItemMisc(Size.NORMAL, Weight.VERY_LIGHT), CT_MISC));
+        easyItems.add(register(r, "curd_cloth", new ItemCheesecloth(), CT_MISC));
+        easyItems.add(register(r, "yak_curd_cloth", new ItemCheesecloth(), CT_MISC));
+        easyItems.add(register(r, "goat_curd_cloth", new ItemCheesecloth(), CT_MISC));
+        easyItems.add(register(r, "zebu_curd_cloth", new ItemCheesecloth(), CT_MISC));
         easyItems.add(register(r, "dirty_cheesecloth", new ItemMisc(Size.NORMAL, Weight.MEDIUM), CT_MISC));
         easyItems.add(register(r, "roasted_cocoa_beans", new ItemRoastedCocoaBeans(), CT_MISC));
         easyItems.add(register(r, "cocoa_butter", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
