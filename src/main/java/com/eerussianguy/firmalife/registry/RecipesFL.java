@@ -48,7 +48,7 @@ public class RecipesFL
             // the input being straw makes this a curing recipe
             new OvenRecipe(IIngredient.of(new ItemStack(ItemsTFC.STRAW)), new ItemStack(ItemsTFC.WOOD_ASH), 8 * hour).setRegistryName("cure"),
 
-            new OvenRecipe(IIngredient.of(new ItemStack(ItemsFL.getDriedFruit(Fruit.COCOA_BEANS))), new ItemStack(ItemsFL.ROASTED_COCOA_BEANS), 4 * hour).setRegistryName("dried_cocoa_beans"),
+            new OvenRecipe(IIngredient.of(new ItemStack(ItemsFL.DRIED_COCOA_BEANS)), new ItemStack(ItemsFL.ROASTED_COCOA_BEANS), 4 * hour).setRegistryName("dried_cocoa_beans"),
 
             new OvenRecipe(IIngredient.of(ItemFoodTFC.get(Food.BARLEY_DOUGH)), new ItemStack(ItemFoodTFC.get(Food.BARLEY_BREAD)), 4 * hour).setRegistryName("barley_dough"),
             new OvenRecipe(IIngredient.of(ItemFoodTFC.get(Food.CORNMEAL_DOUGH)), new ItemStack(ItemFoodTFC.get(Food.CORNBREAD)), 4 * hour).setRegistryName("corn_dough"),
@@ -69,7 +69,8 @@ public class RecipesFL
             r.register(new DryingRecipe(IIngredient.of(fruit.getFruit()), new ItemStack(ItemsFL.getDriedFruit(fruit)), day / 2).setRegistryName(fruit.name().toLowerCase()));
         }
         r.registerAll(
-            new DryingRecipe(IIngredient.of(new ItemStack(ItemsFL.CINNAMON_BARK)), new ItemStack(ItemsFL.CINNAMON), day).setRegistryName("cinnamon_bark")
+            new DryingRecipe(IIngredient.of(new ItemStack(ItemsFL.CINNAMON_BARK)), new ItemStack(ItemsFL.CINNAMON), day).setRegistryName("cinnamon_bark"),
+            new DryingRecipe(IIngredient.of(new ItemStack(ItemsFL.COCOA_BEANS)), new ItemStack(ItemsFL.DRIED_COCOA_BEANS), day / 2).setRegistryName("cocoa_beans")
         );
     }
 
