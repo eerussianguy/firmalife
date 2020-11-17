@@ -3,14 +3,7 @@ package com.eerussianguy.firmalife.registry;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.eerussianguy.firmalife.blocks.BlockFruitDoor;
-import com.eerussianguy.firmalife.init.Fruit;
-import com.eerussianguy.firmalife.init.FruitTreeFL;
-import com.eerussianguy.firmalife.items.*;
 import com.google.common.collect.ImmutableList;
-import net.dries007.tfc.api.types.IFruitTree;
-import net.dries007.tfc.util.OreDictionaryHelper;
-import net.dries007.tfc.util.agriculture.FruitTree;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -21,19 +14,23 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
 
+import com.eerussianguy.firmalife.blocks.BlockFruitDoor;
 import com.eerussianguy.firmalife.init.FoodDataFL;
+import com.eerussianguy.firmalife.init.Fruit;
+import com.eerussianguy.firmalife.init.FruitTreeFL;
 import com.eerussianguy.firmalife.init.StemCrop;
-import com.eerussianguy.firmalife.items.ItemFoodFL;
-import com.eerussianguy.firmalife.items.ItemGreenhouseDoor;
-import com.eerussianguy.firmalife.items.ItemNutHammer;
-import com.eerussianguy.firmalife.items.ItemRoastedCocoaBeans;
-
+import com.eerussianguy.firmalife.items.*;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
+import net.dries007.tfc.api.registries.TFCRegistries;
+import net.dries007.tfc.api.types.IFruitTree;
+import net.dries007.tfc.api.types.Metal;
 import net.dries007.tfc.objects.items.ItemMisc;
 import net.dries007.tfc.objects.items.ItemSeedsTFC;
+import net.dries007.tfc.objects.items.ceramics.ItemPottery;
 import net.dries007.tfc.objects.items.wood.ItemWoodenBucket;
 import net.dries007.tfc.util.Helpers;
+import net.dries007.tfc.util.agriculture.FruitTree;
 
 import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
 import static net.dries007.tfc.objects.CreativeTabsTFC.*;
@@ -42,16 +39,26 @@ import static net.dries007.tfc.objects.CreativeTabsTFC.*;
 @GameRegistry.ObjectHolder(MOD_ID)
 public class ItemsFL
 {
+    @GameRegistry.ObjectHolder("unfired_mallet_mold")
+    public static final ItemPottery UNFIRED_MALLET_MOLD = Helpers.getNull();
+    @GameRegistry.ObjectHolder("mallet_mold")
+    public static final ItemMetalMalletMold MALLET_MOLD = Helpers.getNull();
     @GameRegistry.ObjectHolder("cocoa_beans")
     public static final ItemFoodFL COCOA_BEANS = Helpers.getNull();
     @GameRegistry.ObjectHolder("chestnuts")
     public static final ItemFoodFL CHESTNUTS = Helpers.getNull();
+    @GameRegistry.ObjectHolder("acorn_fruit")
+    public static final ItemFoodFL ACORN_FRUIT = Helpers.getNull();
     @GameRegistry.ObjectHolder("acorns")
     public static final ItemFoodFL ACORNS = Helpers.getNull();
     @GameRegistry.ObjectHolder("pinecone")
     public static final ItemFoodFL PINECONE = Helpers.getNull();
+    @GameRegistry.ObjectHolder("pine_nuts")
+    public static final ItemFoodFL PINE_NUTS = Helpers.getNull();
     @GameRegistry.ObjectHolder("pecan_nuts")
     public static final ItemFoodFL PECAN_NUTS = Helpers.getNull();
+    @GameRegistry.ObjectHolder("pecans")
+    public static final ItemFoodFL PECANS = Helpers.getNull();
     @GameRegistry.ObjectHolder("roasted_cocoa_beans")
     public static final ItemMisc ROASTED_COCOA_BEANS = Helpers.getNull();
     @GameRegistry.ObjectHolder("peel")
@@ -78,8 +85,6 @@ public class ItemsFL
     public static final ItemWoodenBucket CRACKED_COCONUT = Helpers.getNull();
     @GameRegistry.ObjectHolder("coconut")
     public static final ItemFoodFL COCONUT = Helpers.getNull();
-    @GameRegistry.ObjectHolder("nut_hammer_head")
-    public static final ItemMisc NUT_HAMMER_HEAD = Helpers.getNull();
     @GameRegistry.ObjectHolder("pumpkin_scooped")
     public static final ItemFoodFL PUMPKIN_SCOOPED = Helpers.getNull();
     @GameRegistry.ObjectHolder("pumpkin_chunks")
@@ -98,12 +103,18 @@ public class ItemsFL
 
     public static ImmutableList<ItemFruitDoor> getAllFruitDoors() { return allFruitDoors; }
 
+    private static Map<Metal, ItemMetalMalletHead> malletHeads = new HashMap<>();
+
+    public static ItemMetalMalletHead getMetalMalletHead(Metal metal) { return malletHeads.get(metal); }
+
     private static Map<Fruit, Item> driedFruits = new HashMap<>();
 
     public static Item getDriedFruit(Fruit fruit)
     {
         return driedFruits.get(fruit);
     }
+
+    public static ItemMetalMalletMold malletMold;
 
 
     @SubscribeEvent
@@ -120,7 +131,21 @@ public class ItemsFL
         easyItems.add(register(r, "cocoa_beans", new ItemFoodFL(FoodDataFL.COCOA_BEANS), CT_FOOD));
         easyItems.add(register(r, "pumpkin_scooped", new ItemFoodFL(FoodDataFL.PUMPKIN), CT_FOOD));
         easyItems.add(register(r, "pumpkin_chunks", new ItemFoodFL(FoodDataFL.PUMPKIN), CT_FOOD));
+
+        easyItems.add(register(r, "unfired_mallet_mold", new ItemPottery(), CT_POTTERY));
+        malletMold = register(r, "mallet_mold", new ItemMetalMalletMold("mallet"), CT_POTTERY);
+
+        for(Metal metal : TFCRegistries.METALS.getValuesCollection())
+            if(metal.isToolMetal())
+            {
+                easyItems.add(register(r, metal.toString() + "_mallet", new ItemMetalMallet(metal), CT_METAL));
+                ItemMetalMalletHead head = new ItemMetalMalletHead(metal);
+                easyItems.add(register(r, metal.toString() + "_mallet_head", head, CT_METAL));
+                malletHeads.put(metal, head);
+            }
+
         easyItems.add(register(r, "dried_cocoa_beans", new ItemFoodFL(FoodDataFL.DRIED_COCOA_BEANS), CT_FOOD));
+
         //Dried Berries
         for (Fruit fruit : Fruit.values())
         {
@@ -153,8 +178,6 @@ public class ItemsFL
         easyItems.add(register(r, "milk_chocolate_blend", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
         easyItems.add(register(r, "white_chocolate_blend", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
         easyItems.add(register(r, "peel", new ItemMisc(Size.LARGE, Weight.VERY_HEAVY), CT_MISC));
-        easyItems.add(register(r, "nut_hammer", new ItemNutHammer(), CT_MISC));
-        easyItems.add(register(r, "nut_hammer_head", new ItemMisc(Size.LARGE, Weight.VERY_HEAVY), CT_MISC));
 
         ItemMisc fruit_leaf = new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT);
         easyItems.add(register(r, "fruit_leaf", fruit_leaf, CT_MISC));

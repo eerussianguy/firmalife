@@ -10,10 +10,7 @@ import net.minecraftforge.registries.IForgeRegistryEntry;
 import net.minecraftforge.registries.RegistryBuilder;
 
 import com.eerussianguy.firmalife.init.RegistryNamesFL;
-import com.eerussianguy.firmalife.recipe.DryingRecipe;
-import com.eerussianguy.firmalife.recipe.NutRecipe;
-import com.eerussianguy.firmalife.recipe.OvenRecipe;
-import com.eerussianguy.firmalife.recipe.PlanterRecipe;
+import com.eerussianguy.firmalife.recipe.*;
 
 import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
 
@@ -28,6 +25,7 @@ public class RegistriesFL
         newRegistry(RegistryNamesFL.DRYING_RECIPE, DryingRecipe.class);
         newRegistry(RegistryNamesFL.PLANTER_QUAD_REGISTRY, PlanterRecipe.class);
         newRegistry(RegistryNamesFL.NUT_TREES_REGISTRY, NutRecipe.class);
+        newRegistry(RegistryNamesFL.CRACKING_RECIPE, CrackingRecipe.class);
     }
 
     private static <T extends IForgeRegistryEntry<T>> void newRegistry(ResourceLocation name, Class<T> tClass)
