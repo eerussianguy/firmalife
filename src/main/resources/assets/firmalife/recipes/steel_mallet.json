@@ -1,0 +1,19 @@
+{
+  "type": "tfc:shaped_skill",
+  "pattern": [
+    "H",
+    "S"
+  ],
+  "key": {
+    "H": {
+      "item": "firmalife:steel_mallet_head"
+    },
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "stickWood"
+    }
+  },
+  "result": {
+    "item": "firmalife:steel_mallet"
+  }
+}

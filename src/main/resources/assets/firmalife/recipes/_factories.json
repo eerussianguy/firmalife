@@ -1,0 +1,5 @@
+{
+  "recipes": {
+    "unmold_recipe": "com.eerussianguy.firmalife.recipe.UnmoldRecipeFL$Factory"
+  }
+}
