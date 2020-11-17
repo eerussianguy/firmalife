@@ -2,6 +2,7 @@ package com.eerussianguy.firmalife.registry;
 
 import com.google.common.collect.ImmutableList;
 import net.dries007.tfc.api.types.IFruitTree;
+import net.dries007.tfc.objects.fluids.FluidsTFC;
 import net.dries007.tfc.util.agriculture.FruitTree;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -260,6 +261,11 @@ public class BlocksFL
         register(TEQuadPlanter.class, "quad_planter");
         register(TELeafMat.class, "leaf_mat");
         register(TEStemCrop.class, "stem_crop");
+        //needs fix
+        FluidsTFC.getWrapper(FluidsFL.COCONUT_MILK.get());
+        FluidsTFC.getWrapper(FluidsFL.YAK_MILK.get());
+        FluidsTFC.getWrapper(FluidsFL.GOAT_MILK.get());
+        FluidsTFC.getWrapper(FluidsFL.ZEBU_MILK.get());
     }
 
     private static <T extends Block> T register(IForgeRegistry<Block> r, String name, T block, CreativeTabs ct)

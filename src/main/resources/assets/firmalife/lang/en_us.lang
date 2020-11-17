@@ -56,6 +56,12 @@ item.firmalife.crop.seeds.melon.name=Melon Seeds
 item.firmalife.cracked_coconut.name=Empty Coconut
 item.firmalife.cracked_coconut.filled.name=Filled Coconut (%s)
 item.firmalife.coconut.name=Coconut
+item.firmalife.barley_flatbread_dough.name=Barley Flatbread Dough
+item.firmalife.oat_flatbread_dough.name=Oat Flatbread Dough
+item.firmalife.corn_flatbread_dough.name=Corn Flatbread Dough
+item.firmalife.wheat_flatbread_dough.name=Wheat Flatbread Dough
+item.firmalife.rye_flatbread_dough.name=Rye Flatbread Dough
+item.firmalife.rice_flatbread_dough.name=Rice Flatbread Dough
 
 ### WOOD
 item.firmalife.banana_pole.name=Banana Pole
@@ -220,3 +226,6 @@ config.firmalife.general.compat.barrelWhitelist.tooltip=Allows adding Firmalife'
 
 config.firmalife.general.compat.customMilk=Enable custom milk?
 config.firmalife.general.compat.customMilk.tooltip=Enables Firmalife intercepting the milking of Zebu, Goat, and Yak to give special milk.
+
+config.firmalife.general.compat.removeTFC=Remove TFC Recipes?
+config.firmalife.general.compat.removeTFC.tooltip=Enables the removal of some TFC recipes that don't make sense in Firmalife. Not recommended to disable.

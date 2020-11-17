@@ -59,6 +59,10 @@ public class ConfigFL
             @Config.Comment("Enable TFC cow variants giving custom milk?")
             @Config.LangKey("config." + MOD_ID + "general.compat.customMilk")
             public boolean customMilk = true;
+
+            @Config.Comment("Remove some TFC crafting recipes??")
+            @Config.LangKey("config." + MOD_ID + "general.compat.removeTFC")
+            public boolean removeTFC = true;
         }
     }
 }

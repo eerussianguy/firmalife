@@ -2,18 +2,22 @@ package com.eerussianguy.firmalife.registry;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
 
+import com.eerussianguy.firmalife.ConfigFL;
 import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.init.KnappingFL;
 import com.eerussianguy.firmalife.init.PlantsFL;
 import com.eerussianguy.firmalife.recipe.KnappingRecipeFood;
 import net.dries007.tfc.TerraFirmaCraft;
+import net.dries007.tfc.api.recipes.barrel.BarrelRecipe;
 import net.dries007.tfc.api.recipes.heat.HeatRecipe;
 import net.dries007.tfc.api.recipes.knapping.KnappingRecipe;
 import net.dries007.tfc.api.recipes.knapping.KnappingRecipeSimple;
@@ -24,8 +28,11 @@ import net.dries007.tfc.api.registries.TFCRegistryEvent;
 import net.dries007.tfc.api.types.Ore;
 import net.dries007.tfc.api.types.Plant;
 import net.dries007.tfc.objects.Powder;
+import net.dries007.tfc.objects.fluids.FluidsTFC;
 import net.dries007.tfc.objects.inventory.ingredient.IIngredient;
 import net.dries007.tfc.objects.items.ItemPowder;
+import net.dries007.tfc.objects.recipes.RecipeUtils;
+import net.dries007.tfc.util.calendar.ICalendar;
 
 import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
 
@@ -78,22 +85,56 @@ public class TFCRegistry
     }
 
     @SubscribeEvent
+    public static void onRegisterBarrelRecipeEvent(RegistryEvent.Register<BarrelRecipe> event)
+    {
+        int hour = ICalendar.TICKS_IN_HOUR;
+        event.getRegistry().registerAll(
+            new BarrelRecipe(IIngredient.of(FluidsTFC.FRESH_WATER.get(), 100), IIngredient.of("fruitDry"), new FluidStack(FluidsFL.YEAST_STARTER.get(), 100), ItemStack.EMPTY, hour * 96).setRegistryName("yeast_from_fruit"),
+            new BarrelRecipe(IIngredient.of(FluidsFL.YEAST_STARTER.get(), 100), IIngredient.of("flour"), new FluidStack(FluidsFL.YEAST_STARTER.get(), 400), ItemStack.EMPTY, hour * 12).setRegistryName("yeast_multiplication")
+        );
+    }
+
+    @SubscribeEvent
     public static void onRegisterHeatRecipeEvent(RegistryEvent.Register<HeatRecipe> event)
     {
         IForgeRegistry<HeatRecipe> r = event.getRegistry();
 
         //Remove recipes
-        IForgeRegistryModifiable modRegistry = (IForgeRegistryModifiable) TFCRegistries.HEAT;
-        String[] regNames = {"barley_bread", "cornbread", "oat_bread", "rice_bread", "rye_bread", "wheat_bread"};
-        for (String name : regNames)
+        if (ConfigFL.General.COMPAT.removeTFC)
         {
-            HeatRecipe recipe = TFCRegistries.HEAT.getValue(new ResourceLocation("tfc", name));
-            if (recipe != null)
+            IForgeRegistryModifiable modRegistry = (IForgeRegistryModifiable) TFCRegistries.HEAT;
+            String[] regNames = {"barley_bread", "cornbread", "oat_bread", "rice_bread", "rye_bread", "wheat_bread"};
+            for (String name : regNames)
             {
-                modRegistry.remove(recipe.getRegistryName());
-                FirmaLife.logger.info("Removed heating recipe tfc:{}", name);
-            }
+                HeatRecipe recipe = TFCRegistries.HEAT.getValue(new ResourceLocation("tfc", name));
+                if (recipe != null)
+                {
+                    modRegistry.remove(recipe.getRegistryName());
+                    FirmaLife.logger.info("Removed heating recipe tfc:{}", name);
+                }
 
+            }
+        }
+
+    }
+
+    @SubscribeEvent
+    public static void onRecipeRegister(RegistryEvent.Register<IRecipe> event)
+    {
+        if (ConfigFL.General.COMPAT.removeTFC)
+        {
+            IForgeRegistryModifiable<IRecipe> registry = (IForgeRegistryModifiable<IRecipe>) event.getRegistry();
+            String[] regNames = {"food/barley/barley_dough", "food/cornmeal/cornmeal_dough", "food/oat/oat_dough", "food/rice/rice_dough", "food/rye/rye_dough", "food/wheat/wheat_dough"};
+            for (String name : regNames)
+            {
+                IRecipe recipe = registry.getValue(new ResourceLocation("tfc", name));
+                if (recipe != null)
+                {
+                    registry.remove(recipe.getRegistryName());
+                    FirmaLife.logger.info("Removed crafting recipe tfc:{}", name);
+                }
+
+            }
         }
     }
 }

@@ -129,6 +129,7 @@ public class ItemsFL
                 ItemFoodFL dried = new ItemFoodFL(fruit.getDriedData());
                 easyItems.add(register(r, "dried_" + fruit.name().toLowerCase(), dried, CT_FOOD));
                 OreDictionary.registerOre("dried_" + fruit.name().toLowerCase(), dried);
+                OreDictionary.registerOre("fruitDry", dried);
                 driedFruits.put(fruit, dried);
             }
         }
@@ -144,6 +145,12 @@ public class ItemsFL
         easyItems.add(register(r, "pinecone", new ItemFoodFL(FoodDataFL.UNCRACKED_NUT), CT_FOOD));
         easyItems.add(register(r, "pine_nuts", new ItemFoodFL(FoodDataFL.NUT), CT_FOOD));
         easyItems.add(register(r, "coconut", new ItemFoodFL(FoodDataFL.NUT), CT_FOOD));
+        for (String grain : new String[] {"barley", "corn", "oat", "rice", "rye", "wheat"})
+        {
+            ItemFoodFL flatbread = new ItemFoodFL(FoodDataFL.DOUGH);
+            easyItems.add(register(r, grain + "_flatbread_dough", flatbread, CT_FOOD));
+            OreDictionary.registerOre("doughFlat", flatbread);
+        }
 
         //Misc Items
         easyItems.add(register(r, "roasted_cocoa_beans", new ItemRoastedCocoaBeans(), CT_MISC));
