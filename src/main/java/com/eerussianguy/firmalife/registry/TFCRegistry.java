@@ -99,6 +99,7 @@ public class TFCRegistry
         );
     }
 
+    @SuppressWarnings("rawtypes")
     @SubscribeEvent
     public static void onRegisterHeatRecipeEvent(RegistryEvent.Register<HeatRecipe> event)
     {

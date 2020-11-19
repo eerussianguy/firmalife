@@ -60,6 +60,12 @@ item.firmalife.corn_flatbread_dough.name=Corn Flatbread Dough
 item.firmalife.wheat_flatbread_dough.name=Wheat Flatbread Dough
 item.firmalife.rye_flatbread_dough.name=Rye Flatbread Dough
 item.firmalife.rice_flatbread_dough.name=Rice Flatbread Dough
+item.firmalife.barley_flatbread.name=Barley Flatbread
+item.firmalife.oat_flatbread.name=Oat Flatbread
+item.firmalife.corn_flatbread.name=Corn Flatbread
+item.firmalife.wheat_flatbread.name=Wheat Flatbread
+item.firmalife.rye_flatbread.name=Rye Flatbread
+item.firmalife.rice_flatbread.name=Rice Flatbread Dough
 
 ### WOOD
 item.firmalife.banana_pole.name=Banana Pole

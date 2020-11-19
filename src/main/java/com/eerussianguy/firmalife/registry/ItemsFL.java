@@ -47,6 +47,8 @@ public class ItemsFL
     public static final ItemFoodFL COCOA_BEANS = Helpers.getNull();
     @GameRegistry.ObjectHolder("chestnuts")
     public static final ItemFoodFL CHESTNUTS = Helpers.getNull();
+    @GameRegistry.ObjectHolder("roasted_chestnuts")
+    public static final ItemFoodFL ROASTED_CHESTNUTS = Helpers.getNull();
     @GameRegistry.ObjectHolder("acorn_fruit")
     public static final ItemFoodFL ACORN_FRUIT = Helpers.getNull();
     @GameRegistry.ObjectHolder("acorns")
@@ -91,6 +93,18 @@ public class ItemsFL
     public static final ItemFoodFL PUMPKIN_CHUNKS = Helpers.getNull();
     @GameRegistry.ObjectHolder("dried_cocoa_beans")
     public static final ItemFoodFL DRIED_COCOA_BEANS = Helpers.getNull();
+    @GameRegistry.ObjectHolder("barley_flatbread")
+    public static final ItemFoodFL BARLEY_FLATBREAD = Helpers.getNull();
+    @GameRegistry.ObjectHolder("corn_flatbread")
+    public static final ItemFoodFL CORN_FLATBREAD = Helpers.getNull();
+    @GameRegistry.ObjectHolder("oat_flatbread")
+    public static final ItemFoodFL OAT_FLATBREAD = Helpers.getNull();
+    @GameRegistry.ObjectHolder("rye_flatbread")
+    public static final ItemFoodFL RYE_FLATBREAD = Helpers.getNull();
+    @GameRegistry.ObjectHolder("rice_flatbread")
+    public static final ItemFoodFL RICE_FLATBREAD = Helpers.getNull();
+    @GameRegistry.ObjectHolder("wheat_flatbread")
+    public static final ItemFoodFL WHEAT_FLATBREAD = Helpers.getNull();
 
     private static ImmutableList<Item> allEasyItems;
 
@@ -172,9 +186,14 @@ public class ItemsFL
         easyItems.add(register(r, "coconut", new ItemFoodFL(FoodDataFL.NUT), CT_FOOD));
         for (String grain : new String[] {"barley", "corn", "oat", "rice", "rye", "wheat"})
         {
-            ItemFoodFL flatbread = new ItemFoodFL(FoodDataFL.DOUGH);
-            easyItems.add(register(r, grain + "_flatbread_dough", flatbread, CT_FOOD));
-            OreDictionary.registerOre("doughFlat", flatbread);
+            ItemFoodFL flatbread_dough = new ItemFoodFL(FoodDataFL.DOUGH);
+            easyItems.add(register(r, grain + "_flatbread_dough", flatbread_dough, CT_FOOD));
+            OreDictionary.registerOre(grain + "_flatbread_dough", flatbread_dough);
+            OreDictionary.registerOre("doughFlat", flatbread_dough);
+
+            ItemFoodFL flatbread = new ItemFoodFL(FoodDataFL.FLATBREAD);
+            easyItems.add(register(r, grain + "_flatbread", flatbread, CT_FOOD));
+            OreDictionary.registerOre("flatbread", flatbread);
         }
 
         //Misc Items
