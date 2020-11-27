@@ -49,13 +49,23 @@ item.firmalife.pecans.name=Pecans
 item.firmalife.pecan_nuts.name=Pecan Nuts
 item.firmalife.pinecone.name=Pinecone
 item.firmalife.pine_nuts.name=Pine Nuts
-item.firmalife.nut_hammer.name=Nut Hammer
-item.firmalife.nut_hammer_head.name=Nut Hammer Head
 item.firmalife.crop.seeds.pumpkin.name=Pumpkin Seeds
 item.firmalife.crop.seeds.melon.name=Melon Seeds
 item.firmalife.cracked_coconut.name=Empty Coconut
 item.firmalife.cracked_coconut.filled.name=Filled Coconut (%s)
 item.firmalife.coconut.name=Coconut
+item.firmalife.barley_flatbread_dough.name=Barley Flatbread Dough
+item.firmalife.oat_flatbread_dough.name=Oat Flatbread Dough
+item.firmalife.corn_flatbread_dough.name=Corn Flatbread Dough
+item.firmalife.wheat_flatbread_dough.name=Wheat Flatbread Dough
+item.firmalife.rye_flatbread_dough.name=Rye Flatbread Dough
+item.firmalife.rice_flatbread_dough.name=Rice Flatbread Dough
+item.firmalife.barley_flatbread.name=Barley Flatbread
+item.firmalife.oat_flatbread.name=Oat Flatbread
+item.firmalife.corn_flatbread.name=Corn Flatbread
+item.firmalife.wheat_flatbread.name=Wheat Flatbread
+item.firmalife.rye_flatbread.name=Rye Flatbread
+item.firmalife.rice_flatbread.name=Rice Flatbread Dough
 
 ### WOOD
 item.firmalife.banana_pole.name=Banana Pole
@@ -216,6 +226,10 @@ tooltip.firmalife.days=days
 tooltip.firmalife.refractory=You're doing this too often. Take a break.
 tooltip.firmalife.not_fall=Come back in October or November to get nuts.
 jei.category.firmalife.oven=Oven
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 jei.category.firmalife.casting=Casting recipes
 jei.category.firmalife.knap.pumpkin=Pumpkin Carving
 jei.category.firmalife.drying=Drying
@@ -242,3 +256,6 @@ config.firmalife.general.compat.barrelWhitelist.tooltip=Allows adding Firmalife'
 
 config.firmalife.general.compat.customMilk=Enable custom milk?
 config.firmalife.general.compat.customMilk.tooltip=Enables Firmalife intercepting the milking of Zebu, Goat, and Yak to give special milk.
+
+config.firmalife.general.compat.removeTFC=Remove TFC Recipes?
+config.firmalife.general.compat.removeTFC.tooltip=Enables the removal of some TFC recipes that don't make sense in Firmalife. Not recommended to disable.

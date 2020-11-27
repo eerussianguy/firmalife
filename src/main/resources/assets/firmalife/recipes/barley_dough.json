@@ -1,0 +1,20 @@
+{
+  "type": "tfc:fluid_food_recipe",
+  "ingredients": [
+    {
+      "type": "tfc:fluid",
+      "fluid": "yeast_starter"
+    },
+    {
+      "item": "firmalife:barley_flatbread_dough"
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "sweetener"
+    }
+  ],
+  "result": {
+    "item": "tfc:food/barley_dough",
+    "count": 1
+  }
+}

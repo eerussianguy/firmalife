@@ -55,6 +55,9 @@ public class ItemsFL
     public static final ItemFoodFL ZEBU_CURD = Helpers.getNull();
     @GameRegistry.ObjectHolder("chestnuts")
     public static final ItemFoodFL CHESTNUTS = Helpers.getNull();
+
+    @GameRegistry.ObjectHolder("roasted_chestnuts")
+    public static final ItemFoodFL ROASTED_CHESTNUTS = Helpers.getNull();
     @GameRegistry.ObjectHolder("acorn_fruit")
     public static final ItemFoodFL ACORN_FRUIT = Helpers.getNull();
     @GameRegistry.ObjectHolder("acorns")
@@ -107,14 +110,24 @@ public class ItemsFL
     public static final ItemWoodenBucket CRACKED_COCONUT = Helpers.getNull();
     @GameRegistry.ObjectHolder("coconut")
     public static final ItemFoodFL COCONUT = Helpers.getNull();
-    @GameRegistry.ObjectHolder("nut_hammer_head")
-    public static final ItemMisc NUT_HAMMER_HEAD = Helpers.getNull();
     @GameRegistry.ObjectHolder("pumpkin_scooped")
     public static final ItemFoodFL PUMPKIN_SCOOPED = Helpers.getNull();
     @GameRegistry.ObjectHolder("pumpkin_chunks")
     public static final ItemFoodFL PUMPKIN_CHUNKS = Helpers.getNull();
     @GameRegistry.ObjectHolder("dried_cocoa_beans")
     public static final ItemFoodFL DRIED_COCOA_BEANS = Helpers.getNull();
+    @GameRegistry.ObjectHolder("barley_flatbread")
+    public static final ItemFoodFL BARLEY_FLATBREAD = Helpers.getNull();
+    @GameRegistry.ObjectHolder("corn_flatbread")
+    public static final ItemFoodFL CORN_FLATBREAD = Helpers.getNull();
+    @GameRegistry.ObjectHolder("oat_flatbread")
+    public static final ItemFoodFL OAT_FLATBREAD = Helpers.getNull();
+    @GameRegistry.ObjectHolder("rye_flatbread")
+    public static final ItemFoodFL RYE_FLATBREAD = Helpers.getNull();
+    @GameRegistry.ObjectHolder("rice_flatbread")
+    public static final ItemFoodFL RICE_FLATBREAD = Helpers.getNull();
+    @GameRegistry.ObjectHolder("wheat_flatbread")
+    public static final ItemFoodFL WHEAT_FLATBREAD = Helpers.getNull();
 
     private static ImmutableList<Item> allEasyItems;
 
@@ -189,6 +202,7 @@ public class ItemsFL
                 ItemFoodFL dried = new ItemFoodFL(fruit.getDriedData());
                 easyItems.add(register(r, "dried_" + fruit.name().toLowerCase(), dried, CT_FOOD));
                 OreDictionary.registerOre("dried_" + fruit.name().toLowerCase(), dried);
+                OreDictionary.registerOre("fruitDry", dried);
                 driedFruits.put(fruit, dried);
             }
         }
@@ -204,6 +218,17 @@ public class ItemsFL
         easyItems.add(register(r, "pinecone", new ItemFoodFL(FoodDataFL.UNCRACKED_NUT), CT_FOOD));
         easyItems.add(register(r, "pine_nuts", new ItemFoodFL(FoodDataFL.NUT), CT_FOOD));
         easyItems.add(register(r, "coconut", new ItemFoodFL(FoodDataFL.NUT), CT_FOOD));
+        for (String grain : new String[] {"barley", "corn", "oat", "rice", "rye", "wheat"})
+        {
+            ItemFoodFL flatbread_dough = new ItemFoodFL(FoodDataFL.DOUGH);
+            easyItems.add(register(r, grain + "_flatbread_dough", flatbread_dough, CT_FOOD));
+            OreDictionary.registerOre(grain + "_flatbread_dough", flatbread_dough);
+            OreDictionary.registerOre("doughFlat", flatbread_dough);
+
+            ItemFoodFL flatbread = new ItemFoodFL(FoodDataFL.FLATBREAD);
+            easyItems.add(register(r, grain + "_flatbread", flatbread, CT_FOOD));
+            OreDictionary.registerOre("flatbread", flatbread);
+        }
 
         //Misc Items
         easyItems.add(register(r, "rennet", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
@@ -220,8 +245,6 @@ public class ItemsFL
         easyItems.add(register(r, "milk_chocolate_blend", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
         easyItems.add(register(r, "white_chocolate_blend", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
         easyItems.add(register(r, "peel", new ItemMisc(Size.LARGE, Weight.VERY_HEAVY), CT_MISC));
-        easyItems.add(register(r, "nut_hammer", new ItemNutHammer(), CT_MISC));
-        easyItems.add(register(r, "nut_hammer_head", new ItemMisc(Size.LARGE, Weight.VERY_HEAVY), CT_MISC));
 
         ItemMisc fruit_leaf = new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT);
         easyItems.add(register(r, "fruit_leaf", fruit_leaf, CT_MISC));
