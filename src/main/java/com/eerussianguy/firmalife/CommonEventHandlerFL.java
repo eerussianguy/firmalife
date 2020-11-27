@@ -80,6 +80,7 @@ public class CommonEventHandlerFL
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onEntityInteract(PlayerInteractEvent.EntityInteract event)
     {
+<<<<<<< HEAD
         if (!ConfigFL.General.COMPAT.customMilk)
             return;
         if (event.getWorld().isRemote)
@@ -88,6 +89,32 @@ public class CommonEventHandlerFL
         ItemStack item = event.getItemStack();
         EntityPlayer player = event.getEntityPlayer();
         if (!item.isEmpty())
+=======
+        World world = event.getWorld();
+        BlockPos pos = event.getPos();
+        Entity entity = world.getEntitiesWithinAABBExcludingEntity(world.getClosestPlayer(pos.getX(), pos.getY(), pos.getZ(), 3, false), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D)).get(0);
+        String name = entity.getName();
+        Fluid fluid = FluidsTFC.MILK.get();
+        boolean foundMilkable = false;
+        switch (name)
+        {
+            case "cowtfc":
+                foundMilkable = true;
+                fluid = FluidsTFC.BRINE.get();
+                break;
+
+            case "goattfc":
+                foundMilkable = true;
+                fluid = FluidsTFC.SALT_WATER.get();
+                break;
+
+            case "yaktfc":
+                foundMilkable = true;
+                fluid = FluidsTFC.FRESH_WATER.get();
+                break;
+        }
+        if (foundMilkable)
+>>>>>>> 5c49bb1... Cheese foundations
         {
             IFluidHandlerItem bucket = item.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null);
             if (bucket != null)

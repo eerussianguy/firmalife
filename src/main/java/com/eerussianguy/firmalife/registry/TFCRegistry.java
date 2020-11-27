@@ -159,4 +159,28 @@ public class TFCRegistry
         }
 
     }
+
+    @SubscribeEvent
+    public static void onRegisterBarrelRecipes(RegistryEvent.Register<BarrelRecipe> event)
+    {
+        //Remove recipes
+        IForgeRegistryModifiable modRegistry = (IForgeRegistryModifiable) TFCRegistries.HEAT;
+        String[] regNames = {"curdled_milk, vinegar_milk, cheese"};
+        for(String name : regNames)
+        {
+            BarrelRecipe recipe = TFCRegistries.BARREL.getValue(new ResourceLocation("tfc", name));
+            if(recipe != null)
+            {
+                modRegistry.remove(recipe.getRegistryName());
+                FirmaLife.logger.info("Removed barrel recipe tfc:{}", name);
+            }
+        }
+
+
+
+        event.getRegistry().registerAll(
+            new BarrelRecipe(IIngredient.of(FluidsTFC.MILK.get(), 500), IIngredient.of(ItemsFL.RENNET), new FluidStack(FluidsTFC.CURDLED_MILK.get(), 500), ItemStack.EMPTY, 4000).setRegistryName("curdled_milk"),
+            new BarrelRecipe(IIngredient.of(FluidsTFC.FRESH_WATER.get(), 125), IIngredient.of(ItemsFL.DIRTY_CHEESECLOTH), (FluidStack)null, new ItemStack(ItemsFL.CHEESECLOTH), 1000).setRegistryName("cheesecloth")
+        );
+    }
 }
