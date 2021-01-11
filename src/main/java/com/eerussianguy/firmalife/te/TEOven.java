@@ -2,7 +2,6 @@ package com.eerussianguy.firmalife.te;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -27,7 +26,6 @@ import net.dries007.tfc.util.fuel.FuelManager;
 
 import static com.eerussianguy.firmalife.init.StatePropertiesFL.CURED;
 import static net.dries007.tfc.objects.blocks.property.ILightableBlock.LIT;
-import static net.minecraft.block.BlockHorizontal.FACING;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault

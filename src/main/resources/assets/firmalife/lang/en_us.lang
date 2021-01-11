@@ -45,6 +45,9 @@ item.firmalife.chestnuts.name=Chestnuts
 item.firmalife.roasted_chestnuts.name=Roasted Chestnuts
 item.firmalife.chestnut_dough.name=Chestnut Dough
 item.firmalife.chestnut_flour.name=Chestnut Flour
+item.firmalife.chestnut_bread.name=Chestnut Bread
+item.firmalife.chestnut_sandwich.name=Chestnut Sandwich
+item.firmalife.chestnut_slice.name=Chestnut Slice
 item.firmalife.pecans.name=Pecans
 item.firmalife.pecan_nuts.name=Pecan Nuts
 item.firmalife.pinecone.name=Pinecone
@@ -54,6 +57,7 @@ item.firmalife.crop.seeds.melon.name=Melon Seeds
 item.firmalife.cracked_coconut.name=Empty Coconut
 item.firmalife.cracked_coconut.filled.name=Filled Coconut (%s)
 item.firmalife.coconut.name=Coconut
+item.firmalife.tomato_sauce.name=Tomato Sauce
 item.firmalife.barley_flatbread_dough.name=Barley Flatbread Dough
 item.firmalife.oat_flatbread_dough.name=Oat Flatbread Dough
 item.firmalife.corn_flatbread_dough.name=Corn Flatbread Dough
@@ -65,7 +69,15 @@ item.firmalife.oat_flatbread.name=Oat Flatbread
 item.firmalife.corn_flatbread.name=Corn Flatbread
 item.firmalife.wheat_flatbread.name=Wheat Flatbread
 item.firmalife.rye_flatbread.name=Rye Flatbread
-item.firmalife.rice_flatbread.name=Rice Flatbread Dough
+item.firmalife.rice_flatbread.name=Rice Flatbread
+item.firmalife.barley_slice.name=Barley Slice
+item.firmalife.oat_slice.name=Oat Slice
+item.firmalife.corn_slice.name=Corn Slice
+item.firmalife.wheat_slice.name=Wheat Slice
+item.firmalife.rye_slice.name=Rye Slice
+item.firmalife.rice_slice.name=Rice Slice
+item.firmalife.garlic_bread.name=Garlic Bread
+item.firmalife.toast.name=Toast
 
 ### WOOD
 item.firmalife.banana_pole.name=Banana Pole
@@ -256,3 +268,6 @@ config.firmalife.general.compat.customMilk.tooltip=Enables Firmalife interceptin
 
 config.firmalife.general.compat.removeTFC=Remove TFC Recipes?
 config.firmalife.general.compat.removeTFC.tooltip=Enables the removal of some TFC recipes that don't make sense in Firmalife. Not recommended to disable.
+
+config.firmalife.general.compat.logging=Enable extra logging?
+config.firmalife.general.compat.logging.tooltip=Enable logging of some actions Firmalife takes (such as recipe removals)

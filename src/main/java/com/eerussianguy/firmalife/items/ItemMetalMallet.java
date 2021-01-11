@@ -56,10 +56,11 @@ public class ItemMetalMallet extends ItemTFC implements IMetalItem
     private final double attackDamage;
     private final float attackSpeed;
 
-    public ItemMetalMallet(Metal metal) {
+    public ItemMetalMallet(Metal metal)
+    {
         this.metal = metal;
         this.material = metal.getToolMetal();
-        this.setMaxDamage((int)((double)material.getMaxUses() / 4));
+        this.setMaxDamage((int) ((double) material.getMaxUses() / 4));
         this.attackDamage = (0.5d * this.material.getAttackDamage());
         this.attackSpeed = -3.0F;
         this.setMaxStackSize(1);
@@ -71,14 +72,14 @@ public class ItemMetalMallet extends ItemTFC implements IMetalItem
     {
         if (!worldIn.isRemote && hand == EnumHand.MAIN_HAND)
         {
-            if(worldIn.getBlockState(pos).getBlock() instanceof BlockPlacedItemFlat)
+            if (worldIn.getBlockState(pos).getBlock() instanceof BlockPlacedItemFlat)
             {
                 TEPlacedItemFlat tile = (TEPlacedItemFlat) worldIn.getTileEntity(pos);
                 CrackingRecipe entry = CrackingRecipe.get(tile.getStack());
-                if(entry == null)
+                if (entry == null)
                     return EnumActionResult.FAIL;
 
-                if(Constants.RNG.nextInt(100) < entry.getChance())
+                if (Constants.RNG.nextInt(100) < entry.getChance())
                 {
                     InventoryHelper.spawnItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), entry.getOutputItem(tile.getStack()));
                     worldIn.playSound(null, pos, SoundEvents.BLOCK_WOOD_PLACE, SoundCategory.BLOCKS, 2.0F, 1.0F);
@@ -165,9 +166,11 @@ public class ItemMetalMallet extends ItemTFC implements IMetalItem
         return EnumActionResult.FAIL;
     }
 
-    public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot slot, ItemStack stack) {
+    public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot slot, ItemStack stack)
+    {
         Multimap<String, AttributeModifier> multimap = HashMultimap.create();
-        if (slot == EntityEquipmentSlot.MAINHAND) {
+        if (slot == EntityEquipmentSlot.MAINHAND)
+        {
             multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", this.attackDamage, 0));
             multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", this.attackSpeed, 0));
         }
@@ -187,7 +190,8 @@ public class ItemMetalMallet extends ItemTFC implements IMetalItem
         return Weight.HEAVY;
     }
 
-    public boolean canStack(ItemStack itemStack) {
+    public boolean canStack(ItemStack itemStack)
+    {
         return false;
     }
 
@@ -201,10 +205,10 @@ public class ItemMetalMallet extends ItemTFC implements IMetalItem
     @Override
     public int getSmeltAmount(ItemStack itemStack)
     {
-        if(this.isDamageable() && itemStack.isItemDamaged())
+        if (this.isDamageable() && itemStack.isItemDamaged())
         {
-            double d = (double)(itemStack.getMaxDamage() - itemStack.getItemDamage()) / (double)itemStack.getMaxDamage() - 0.1D;
-            return d < 0.0D ? 0 : MathHelper.floor((double)100 * d);
+            double d = (double) (itemStack.getMaxDamage() - itemStack.getItemDamage()) / (double) itemStack.getMaxDamage() - 0.1D;
+            return d < 0.0D ? 0 : MathHelper.floor((double) 100 * d);
         }
         else
             return 100;

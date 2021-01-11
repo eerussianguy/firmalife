@@ -26,12 +26,14 @@ public class ItemMetalMalletHead extends ItemTFC implements IMetalItem
     }
 
     @Nonnull
-    public Size getSize(@Nonnull ItemStack itemStack) {
+    public Size getSize(@Nonnull ItemStack itemStack)
+    {
         return Size.LARGE;
     }
 
     @Nonnull
-    public Weight getWeight(@Nonnull ItemStack itemStack) {
+    public Weight getWeight(@Nonnull ItemStack itemStack)
+    {
         return Weight.HEAVY;
     }
 

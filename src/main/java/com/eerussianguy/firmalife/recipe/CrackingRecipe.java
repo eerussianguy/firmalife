@@ -28,16 +28,16 @@ public class CrackingRecipe extends IForgeRegistryEntry.Impl<CrackingRecipe>
         this.outputItem = outputItem;
         this.chance = chance;
 
-        if(inputItem == null || outputItem == null)
+        if (inputItem == null || outputItem == null)
             throw new IllegalArgumentException("Sorry, but you can't have cracking recipes that don't have an input and output");
-        if(chance < 0 || chance > 1)
+        if (chance < 0 || chance > 1)
             throw new IllegalArgumentException("Sorry, the chance to drop must be between 0 and 1");
     }
 
     @Nonnull
     public int getChance()
     {
-        return (int)(chance * 100);
+        return (int) (chance * 100);
     }
 
     public ItemStack getOutputItem(ItemStack stack) { return CapabilityFood.updateFoodFromPrevious(stack, outputItem.copy()); }

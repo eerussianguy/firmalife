@@ -1,26 +1,22 @@
 package com.eerussianguy.firmalife.items;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import com.eerussianguy.firmalife.blocks.BlockFruitDoor;
-
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
-import mcp.MethodsReturnNonnullByDefault;
 
-import net.dries007.tfc.api.capability.size.IItemSize;
-import net.dries007.tfc.api.capability.size.Size;
-import net.dries007.tfc.api.capability.size.Weight;
-import net.dries007.tfc.api.types.IFruitTree;
 import net.minecraft.item.ItemDoor;
 import net.minecraft.item.ItemStack;
 
+import com.eerussianguy.firmalife.blocks.BlockFruitDoor;
+import mcp.MethodsReturnNonnullByDefault;
+import net.dries007.tfc.api.capability.size.IItemSize;
+import net.dries007.tfc.api.capability.size.Size;
+import net.dries007.tfc.api.capability.size.Weight;
 
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class ItemFruitDoor extends ItemDoor implements IItemSize {
+public class ItemFruitDoor extends ItemDoor implements IItemSize
+{
 
     public ItemFruitDoor(BlockFruitDoor block)
     {

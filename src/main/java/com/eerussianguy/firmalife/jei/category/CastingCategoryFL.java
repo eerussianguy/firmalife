@@ -1,10 +1,7 @@
 package com.eerussianguy.firmalife.jei.category;
 
-import java.util.List;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fluids.FluidStack;
 
 import com.eerussianguy.firmalife.jei.wrapper.CastingRecipeWrapperFL;
 import mezz.jei.api.IGuiHelper;

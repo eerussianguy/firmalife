@@ -1,0 +1,16 @@
+{
+  "type": "tfc:damage_item_food_recipe",
+  "ingredients": [
+    {
+      "type": "forge:ore_dict",
+      "ore": "knife"
+    },
+    {
+      "item": "firmalife:chestnut_bread"
+    }
+  ],
+  "result": {
+    "item": "firmalife:chestnut_slice",
+    "count": 2
+  }
+}

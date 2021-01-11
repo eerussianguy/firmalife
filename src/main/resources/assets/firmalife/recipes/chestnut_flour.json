@@ -1,0 +1,24 @@
+{
+  "type": "tfc:fluid_food_recipe",
+  "ingredients": [
+    {
+      "type": "tfc:fluid",
+      "fluid": "fresh_water"
+    },
+    {
+      "item": "firmalife:chestnut_flour"
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "dustSalt"
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "fruitDry"
+    }
+  ],
+  "result": {
+    "item": "firmalife:chestnut_dough",
+    "count": 2
+  }
+}

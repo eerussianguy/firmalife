@@ -1,5 +1,6 @@
 package com.eerussianguy.firmalife.registry;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,6 +29,7 @@ import net.dries007.tfc.api.types.Metal;
 import net.dries007.tfc.objects.items.ItemMisc;
 import net.dries007.tfc.objects.items.ItemSeedsTFC;
 import net.dries007.tfc.objects.items.ceramics.ItemPottery;
+import net.dries007.tfc.objects.items.food.ItemSandwich;
 import net.dries007.tfc.objects.items.wood.ItemWoodenBucket;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.agriculture.FruitTree;
@@ -49,6 +51,14 @@ public class ItemsFL
     public static final ItemFoodFL CHESTNUTS = Helpers.getNull();
     @GameRegistry.ObjectHolder("roasted_chestnuts")
     public static final ItemFoodFL ROASTED_CHESTNUTS = Helpers.getNull();
+    @GameRegistry.ObjectHolder("chestnut_flour")
+    public static final ItemFoodFL CHESTNUT_FLOUR = Helpers.getNull();
+    @GameRegistry.ObjectHolder("chestnut_dough")
+    public static final ItemFoodFL CHESTNUT_DOUGH = Helpers.getNull();
+    @GameRegistry.ObjectHolder("chestnut_bread")
+    public static final ItemFoodFL CHESTNUT_BREAD = Helpers.getNull();
+    @GameRegistry.ObjectHolder("chestnut_slice")
+    public static final ItemHeatableFoodFL CHESTNUT_SLICE = Helpers.getNull();
     @GameRegistry.ObjectHolder("acorn_fruit")
     public static final ItemFoodFL ACORN_FRUIT = Helpers.getNull();
     @GameRegistry.ObjectHolder("acorns")
@@ -105,6 +115,10 @@ public class ItemsFL
     public static final ItemFoodFL RICE_FLATBREAD = Helpers.getNull();
     @GameRegistry.ObjectHolder("wheat_flatbread")
     public static final ItemFoodFL WHEAT_FLATBREAD = Helpers.getNull();
+    @GameRegistry.ObjectHolder("tomato_sauce")
+    public static final ItemFoodFL TOMATO_SAUCE = Helpers.getNull();
+    @GameRegistry.ObjectHolder("toast")
+    public static final ItemFoodFL TOAST = Helpers.getNull();
 
     private static ImmutableList<Item> allEasyItems;
 
@@ -117,11 +131,11 @@ public class ItemsFL
 
     public static ImmutableList<ItemFruitDoor> getAllFruitDoors() { return allFruitDoors; }
 
-    private static Map<Metal, ItemMetalMalletHead> malletHeads = new HashMap<>();
+    private static final Map<Metal, ItemMetalMalletHead> malletHeads = new HashMap<>();
 
     public static ItemMetalMalletHead getMetalMalletHead(Metal metal) { return malletHeads.get(metal); }
 
-    private static Map<Fruit, Item> driedFruits = new HashMap<>();
+    private static final Map<Fruit, Item> driedFruits = new HashMap<>();
 
     public static Item getDriedFruit(Fruit fruit)
     {
@@ -149,8 +163,8 @@ public class ItemsFL
         easyItems.add(register(r, "unfired_mallet_mold", new ItemPottery(), CT_POTTERY));
         malletMold = register(r, "mallet_mold", new ItemMetalMalletMold("mallet"), CT_POTTERY);
 
-        for(Metal metal : TFCRegistries.METALS.getValuesCollection())
-            if(metal.isToolMetal())
+        for (Metal metal : TFCRegistries.METALS.getValuesCollection())
+            if (metal.isToolMetal())
             {
                 easyItems.add(register(r, metal.toString() + "_mallet", new ItemMetalMallet(metal), CT_METAL));
                 ItemMetalMalletHead head = new ItemMetalMalletHead(metal);
@@ -169,6 +183,7 @@ public class ItemsFL
                 easyItems.add(register(r, "dried_" + fruit.name().toLowerCase(), dried, CT_FOOD));
                 OreDictionary.registerOre("dried_" + fruit.name().toLowerCase(), dried);
                 OreDictionary.registerOre("fruitDry", dried);
+                OreDictionary.registerOre("categoryFruit", dried);
                 driedFruits.put(fruit, dried);
             }
         }
@@ -184,6 +199,9 @@ public class ItemsFL
         easyItems.add(register(r, "pinecone", new ItemFoodFL(FoodDataFL.UNCRACKED_NUT), CT_FOOD));
         easyItems.add(register(r, "pine_nuts", new ItemFoodFL(FoodDataFL.NUT), CT_FOOD));
         easyItems.add(register(r, "coconut", new ItemFoodFL(FoodDataFL.NUT), CT_FOOD));
+        easyItems.add(register(r, "tomato_sauce", new ItemFoodFL(FoodDataFL.DOUGH), CT_FOOD));
+        easyItems.add(register(r, "garlic_bread", new ItemFoodFL(FoodDataFL.GARLIC_BREAD), CT_FOOD));
+        easyItems.add(register(r, "toast", new ItemFoodFL(FoodDataFL.TOAST), CT_FOOD));
         for (String grain : new String[] {"barley", "corn", "oat", "rice", "rye", "wheat"})
         {
             ItemFoodFL flatbread_dough = new ItemFoodFL(FoodDataFL.DOUGH);
@@ -194,7 +212,19 @@ public class ItemsFL
             ItemFoodFL flatbread = new ItemFoodFL(FoodDataFL.FLATBREAD);
             easyItems.add(register(r, grain + "_flatbread", flatbread, CT_FOOD));
             OreDictionary.registerOre("flatbread", flatbread);
+            OreDictionary.registerOre("categoryBread", flatbread);
+
+            ItemHeatableFoodFL slice = new ItemHeatableFoodFL(FoodDataFL.SLICE);
+            easyItems.add(register(r, grain + "_slice", slice, CT_FOOD));
+            OreDictionary.registerOre("slice", slice);
+            OreDictionary.registerOre("categoryBread", slice);
         }
+        easyItems.add(register(r, "chestnut_slice", new ItemHeatableFoodFL(FoodDataFL.SLICE), CT_FOOD));
+        ItemSandwichFL sandwich = new ItemSandwichFL(FoodDataFL.SANDWICH);
+        easyItems.add(register(r, "chestnut_sandwich", sandwich, CT_FOOD));
+        OreDictionary.registerOre("sandwich", sandwich);
+        OreDictionary.registerOre("categoryMeal", sandwich);
+        easyItems.add(register(r, "chestnut_bread", new ItemFoodFL(FoodDataFL.FLATBREAD), CT_FOOD));
 
         //Misc Items
         easyItems.add(register(r, "roasted_cocoa_beans", new ItemRoastedCocoaBeans(), CT_MISC));
@@ -226,7 +256,7 @@ public class ItemsFL
             ItemMisc pole = new ItemMisc(Size.SMALL, Weight.MEDIUM);
             easyItems.add(register(r, name + "_pole", pole, CT_MISC));
             //todo: Use our OreDict helper
-            OreDictionary.registerOre("pole" + name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase(), pole);
+            OreDictionary.registerOre("pole" + name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase(), pole);
         }
 
         for (IFruitTree fruitTree : FruitTree.values())
@@ -235,7 +265,7 @@ public class ItemsFL
             ItemMisc pole = new ItemMisc(Size.SMALL, Weight.MEDIUM);
             easyItems.add(register(r, name + "_pole", pole, CT_MISC));
             //todo: Use our OreDict helper
-            OreDictionary.registerOre("pole" + name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase(), pole);
+            OreDictionary.registerOre("pole" + name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase(), pole);
         }
         for (BlockFruitDoor door : BlocksFL.getAllFruitDoors())
             fruitDoors.add(register(r, door.getRegistryName().getPath(), new ItemFruitDoor(door), CT_DECORATIONS));

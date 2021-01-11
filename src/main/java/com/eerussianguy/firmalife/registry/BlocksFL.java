@@ -1,9 +1,6 @@
 package com.eerussianguy.firmalife.registry;
 
 import com.google.common.collect.ImmutableList;
-import net.dries007.tfc.api.types.IFruitTree;
-import net.dries007.tfc.objects.fluids.FluidsTFC;
-import net.dries007.tfc.util.agriculture.FruitTree;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -21,16 +18,18 @@ import com.eerussianguy.firmalife.init.FruitTreeFL;
 import com.eerussianguy.firmalife.init.PlantsFL;
 import com.eerussianguy.firmalife.init.StemCrop;
 import com.eerussianguy.firmalife.items.ItemBlockRot;
-import com.eerussianguy.firmalife.items.ItemFoodFL;
 import com.eerussianguy.firmalife.te.TELeafMat;
 import com.eerussianguy.firmalife.te.TEOven;
 import com.eerussianguy.firmalife.te.TEQuadPlanter;
 import com.eerussianguy.firmalife.te.TEStemCrop;
+import net.dries007.tfc.api.types.IFruitTree;
 import net.dries007.tfc.objects.blocks.BlockFluidTFC;
 import net.dries007.tfc.objects.blocks.agriculture.*;
+import net.dries007.tfc.objects.fluids.FluidsTFC;
 import net.dries007.tfc.objects.fluids.properties.FluidWrapper;
 import net.dries007.tfc.objects.items.itemblock.ItemBlockTFC;
 import net.dries007.tfc.util.Helpers;
+import net.dries007.tfc.util.agriculture.FruitTree;
 
 import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
 import static net.dries007.tfc.objects.CreativeTabsTFC.*;
@@ -195,9 +194,9 @@ public class BlocksFL
         planters.add(register(r, "vanilla_planter", new BlockPlanter(() -> ItemsFL.VANILLA, PlantsFL.VANILLA_PLANT, 1), CT_FLORA));
         register(r, "greenhouse_door", new BlockGreenhouseDoor(), CT_DECORATIONS);
 
-        for(BlockJackOLantern.Carving carving : BlockJackOLantern.Carving.values())
+        for (BlockJackOLantern.Carving carving : BlockJackOLantern.Carving.values())
         {
-            jackOLanterns.add(register(r, "lit_pumpkin_"+carving.getName(), new BlockJackOLantern(carving), CT_DECORATIONS));
+            jackOLanterns.add(register(r, "lit_pumpkin_" + carving.getName(), new BlockJackOLantern(carving), CT_DECORATIONS));
         }
 
         foodIBs.add(register(r, "pumpkin_fruit", new BlockStemFruit(), CT_FLORA));

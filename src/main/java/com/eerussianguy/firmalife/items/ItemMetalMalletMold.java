@@ -100,12 +100,16 @@ public class ItemMetalMalletMold extends ItemPottery
             return fluidTankProperties;
         }
 
-        public int fill(FluidStack resource, boolean doFill) {
-            if (resource != null) {
+        public int fill(FluidStack resource, boolean doFill)
+        {
+            if (resource != null)
+            {
                 Metal metal = FluidsTFC.getMetalFromFluid(resource.getFluid());
-                if (metal != null && Metal.ItemType.PROPICK_HEAD.hasMold(metal)) {
+                if (metal != null && Metal.ItemType.PROPICK_HEAD.hasMold(metal))
+                {
                     int fillAmount = this.tank.fill(resource, doFill);
-                    if (fillAmount == this.tank.getFluidAmount()) {
+                    if (fillAmount == this.tank.getFluidAmount())
+                    {
                         this.updateFluidData();
                     }
 

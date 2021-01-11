@@ -18,17 +18,20 @@ public class CastingRecipeWrapperFL implements IRecipeWrapper
     private final ItemStack mold;
     private final FluidStack input;
 
-    public CastingRecipeWrapperFL(Metal metal, String type) {
+    public CastingRecipeWrapperFL(Metal metal, String type)
+    {
         this.input = new FluidStack(FluidsTFC.getFluidFromMetal(metal), 100);
         this.mold = new ItemStack(ItemsFL.malletMold);
         IFluidHandler cap = this.mold.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null);
-        if (cap instanceof IMoldHandler) {
+        if (cap instanceof IMoldHandler)
+        {
             cap.fill(this.input, true);
         }
 
     }
 
-    public void getIngredients(IIngredients ingredients) {
+    public void getIngredients(IIngredients ingredients)
+    {
         ingredients.setInput(VanillaTypes.FLUID, this.input);
         ingredients.setOutput(VanillaTypes.ITEM, this.mold);
     }

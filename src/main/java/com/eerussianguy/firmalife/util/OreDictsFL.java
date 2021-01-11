@@ -24,5 +24,10 @@ public class OreDictsFL
         OreDictionary.registerOre("doughYeast", ItemFoodTFC.get(Food.RYE_DOUGH));
         OreDictionary.registerOre("doughYeast", ItemFoodTFC.get(Food.WHEAT_DOUGH));
         OreDictionary.registerOre("doughYeast", ItemFoodTFC.get(Food.RICE_DOUGH));
+        OreDictionary.registerOre("cheese", ItemFoodTFC.get(Food.CHEESE)); //todo: remove this
+        OreDictionary.registerOre("categoryBread", ItemsFL.CHESTNUT_BREAD);
+        OreDictionary.registerOre("categoryBread", ItemsFL.CHESTNUT_SLICE);
+        OreDictionary.registerOre("slice", ItemsFL.CHESTNUT_SLICE);
+
     }
 }

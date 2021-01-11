@@ -40,6 +40,7 @@ public class RecipesFL
 
             new OvenRecipe(IIngredient.of(new ItemStack(ItemsFL.DRIED_COCOA_BEANS)), new ItemStack(ItemsFL.ROASTED_COCOA_BEANS), 4 * hour).setRegistryName("dried_cocoa_beans"),
             new OvenRecipe(IIngredient.of(new ItemStack(ItemsFL.CHESTNUTS)), new ItemStack(ItemsFL.ROASTED_CHESTNUTS), hour).setRegistryName("chestnuts"),
+            new OvenRecipe(IIngredient.of(new ItemStack(ItemsFL.CHESTNUT_DOUGH)), new ItemStack(ItemsFL.CHESTNUT_BREAD), 4 * hour).setRegistryName("chestnut_dough"),
 
             new OvenRecipe(IIngredient.of(ItemFoodTFC.get(Food.BARLEY_DOUGH)), new ItemStack(ItemFoodTFC.get(Food.BARLEY_BREAD)), 4 * hour).setRegistryName("barley_dough"),
             new OvenRecipe(IIngredient.of(ItemFoodTFC.get(Food.CORNMEAL_DOUGH)), new ItemStack(ItemFoodTFC.get(Food.CORNBREAD)), 4 * hour).setRegistryName("corn_dough"),
@@ -55,8 +56,7 @@ public class RecipesFL
             new OvenRecipe(IIngredient.of("rye_flatbread_dough"), new ItemStack(ItemsFL.RYE_FLATBREAD), 4 * hour).setRegistryName("rye_flatbread_dough"),
             new OvenRecipe(IIngredient.of("wheat_flatbread_dough"), new ItemStack(ItemsFL.WHEAT_FLATBREAD), 4 * hour).setRegistryName("wheat_flatbread_dough")
 
-            );
-
+        );
     }
 
     @SubscribeEvent

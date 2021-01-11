@@ -71,6 +71,7 @@ public class TFCRegistry
 
         r.register(new QuernRecipe(IIngredient.of("gemHalite"), new ItemStack(ItemPowder.get(Powder.SALT), 2)).setRegistryName("halite"));
         r.register(new QuernRecipe(IIngredient.of(ItemsFL.CINNAMON), new ItemStack(ItemsFL.GROUND_CINNAMON, 2)).setRegistryName("cinnamon"));
+        r.register(new QuernRecipe(IIngredient.of(ItemsFL.ROASTED_CHESTNUTS), new ItemStack(ItemsFL.CHESTNUT_FLOUR)).setRegistryName("roasted_chestnuts"));
     }
 
     @SubscribeEvent
@@ -106,7 +107,8 @@ public class TFCRegistry
         IForgeRegistry<HeatRecipe> r = event.getRegistry();
 
         event.getRegistry().registerAll(
-            new HeatRecipeSimple(IIngredient.of(ItemsFL.UNFIRED_MALLET_MOLD), new ItemStack(ItemsFL.MALLET_MOLD), 1599.0F, Metal.Tier.TIER_I).setRegistryName("mallet_mold")
+            new HeatRecipeSimple(IIngredient.of(ItemsFL.UNFIRED_MALLET_MOLD), new ItemStack(ItemsFL.MALLET_MOLD), 1599.0F, Metal.Tier.TIER_I).setRegistryName("mallet_mold"),
+            new HeatRecipeSimple(IIngredient.of("slice"), new ItemStack(ItemsFL.TOAST), 150, 400).setRegistryName("slice")
         );
 
         //Remove recipes
@@ -120,9 +122,9 @@ public class TFCRegistry
                 if (recipe != null)
                 {
                     modRegistry.remove(recipe.getRegistryName());
-                    FirmaLife.logger.info("Removed heating recipe tfc:{}", name);
+                    if (ConfigFL.General.COMPAT.logging)
+                        FirmaLife.logger.info("Removed heating recipe tfc:{}", name);
                 }
-
             }
         }
 
@@ -134,14 +136,16 @@ public class TFCRegistry
         if (ConfigFL.General.COMPAT.removeTFC)
         {
             IForgeRegistryModifiable<IRecipe> registry = (IForgeRegistryModifiable<IRecipe>) event.getRegistry();
-            String[] regNames = {"food/barley/barley_dough", "food/cornmeal/cornmeal_dough", "food/oat/oat_dough", "food/rice/rice_dough", "food/rye/rye_dough", "food/wheat/wheat_dough"};
+            String[] regNames = {"food/barley/barley_dough", "food/cornmeal/cornmeal_dough", "food/oat/oat_dough", "food/rice/rice_dough", "food/rye/rye_dough", "food/wheat/wheat_dough",
+                "food/barley/barley_bread_sandwich", "food/cornmeal/cornbread_sandwich", "food/oat/oat_bread_sandwich", "food/rice/rice_bread_sandwich", "food/rye/rye_bread_sandwich", "food/wheat/wheat_bread_sandwich"};
             for (String name : regNames)
             {
                 IRecipe recipe = registry.getValue(new ResourceLocation("tfc", name));
                 if (recipe != null)
                 {
                     registry.remove(recipe.getRegistryName());
-                    FirmaLife.logger.info("Removed crafting recipe tfc:{}", name);
+                    if (ConfigFL.General.COMPAT.logging)
+                        FirmaLife.logger.info("Removed crafting recipe tfc:{}", name);
                 }
 
             }

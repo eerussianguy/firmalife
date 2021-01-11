@@ -9,13 +9,13 @@ import java.util.Map;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import com.google.common.collect.Maps;
-import net.dries007.tfc.compat.jei.wrappers.KnappingRecipeWrapper;
 import net.minecraft.util.ResourceLocation;
 
 import com.eerussianguy.firmalife.init.KnappingFL;
 import mezz.jei.api.IGuiHelper;
 import net.dries007.tfc.api.recipes.knapping.KnappingRecipe;
 import net.dries007.tfc.api.recipes.knapping.KnappingType;
+import net.dries007.tfc.compat.jei.wrappers.KnappingRecipeWrapper;
 
 @ParametersAreNonnullByDefault
 public class KnappingRecipeWrapperFL extends KnappingRecipeWrapper

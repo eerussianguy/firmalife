@@ -1,16 +1,8 @@
 package com.eerussianguy.firmalife.blocks;
 
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Random;
 
-import org.apache.commons.lang3.ObjectUtils;
-
-import com.eerussianguy.firmalife.items.ItemFruitDoor;
-import com.eerussianguy.firmalife.registry.BlocksFL;
-import com.eerussianguy.firmalife.registry.ItemsFL;
-import net.dries007.tfc.api.types.IFruitTree;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -22,7 +14,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-public class BlockFruitDoor extends BlockDoor {
+import com.eerussianguy.firmalife.items.ItemFruitDoor;
+import com.eerussianguy.firmalife.registry.BlocksFL;
+import com.eerussianguy.firmalife.registry.ItemsFL;
+
+public class BlockFruitDoor extends BlockDoor
+{
 
     public BlockFruitDoor()
     {

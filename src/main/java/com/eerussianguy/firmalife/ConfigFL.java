@@ -19,7 +19,8 @@ public class ConfigFL
     {
         if (event.getModID().equals(MOD_ID))
         {
-            FirmaLife.logger.warn("Config changed.");
+            if (ConfigFL.General.COMPAT.logging)
+                FirmaLife.logger.warn("Config changed.");
             ConfigManager.sync(TerraFirmaCraft.MOD_ID, Config.Type.INSTANCE);
         }
         if (event.getModID().equals(TerraFirmaCraft.MOD_ID))
@@ -46,6 +47,7 @@ public class ConfigFL
             @Config.LangKey("config." + MOD_ID + ".general.worldgen.cinnamonRarity")
             public int cinnamonRarity = 130;
         }
+
         public static final class CompatCFG
         {
             @Config.Comment("Enable adding Firmalife fluids to TFC's wooden bucket whitelist?")
@@ -63,6 +65,10 @@ public class ConfigFL
             @Config.Comment("Remove some TFC crafting recipes??")
             @Config.LangKey("config." + MOD_ID + "general.compat.removeTFC")
             public boolean removeTFC = true;
+
+            @Config.Comment("Enable logging of some actions Firmalife takes (such as recipe removals)")
+            @Config.LangKey("config." + MOD_ID + "general.compat.logging")
+            public boolean logging = true;
         }
     }
 }

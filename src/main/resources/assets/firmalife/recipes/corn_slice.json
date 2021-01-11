@@ -1,0 +1,16 @@
+{
+  "type": "tfc:damage_item_food_recipe",
+  "ingredients": [
+    {
+      "type": "forge:ore_dict",
+      "ore": "knife"
+    },
+    {
+      "item": "tfc:food/cornbread"
+    }
+  ],
+  "result": {
+    "item": "firmalife:corn_slice",
+    "count": 2
+  }
+}

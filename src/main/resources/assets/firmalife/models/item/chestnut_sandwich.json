@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "texture": "firmalife:items/chestnut_sandwich"
+  }
+}

@@ -35,7 +35,7 @@ public class HelpersFL
             Set<String> woodenBucketSet = new HashSet<>(Arrays.asList(ConfigTFC.General.MISC.woodenBucketWhitelist));
             for (String a : additions)
             {
-                if (woodenBucketSet.add(a))
+                if (woodenBucketSet.add(a) && ConfigFL.General.COMPAT.logging)
                 {
                     FirmaLife.logger.info("Added {} to TFC's wooden bucket fluid whitelist", a);
                 }
@@ -47,7 +47,7 @@ public class HelpersFL
             Set<String> barrelSet = new HashSet<>(Arrays.asList(ConfigTFC.Devices.BARREL.fluidWhitelist));
             for (String a : additions)
             {
-                if (barrelSet.add(a))
+                if (barrelSet.add(a) && ConfigFL.General.COMPAT.logging)
                 {
                     FirmaLife.logger.info("Added {} to TFC's barrel fluid whitelist", a);
                 }

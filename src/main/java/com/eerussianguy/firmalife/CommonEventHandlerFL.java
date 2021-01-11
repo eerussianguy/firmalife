@@ -1,54 +1,43 @@
 package com.eerussianguy.firmalife;
 
 
-import com.eerussianguy.firmalife.registry.FluidsFL;
-import net.dries007.tfc.objects.entity.animal.EntityCowTFC;
-import net.dries007.tfc.objects.entity.animal.EntityGoatTFC;
-import net.dries007.tfc.objects.entity.animal.EntityYakTFC;
-import net.dries007.tfc.objects.entity.animal.EntityZebuTFC;
-import net.dries007.tfc.objects.items.ItemMisc;
-import net.dries007.tfc.util.Helpers;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentTranslation;
-import net.minecraft.world.World;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
-import net.minecraftforge.fluids.*;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidActionResult;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
-import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.wrapper.PlayerInvWrapper;
 
 import com.eerussianguy.firmalife.gui.FLGuiHandler;
 import com.eerussianguy.firmalife.player.CapPlayerDataFL;
 import com.eerussianguy.firmalife.player.PlayerDataFL;
 import com.eerussianguy.firmalife.registry.BlocksFL;
+import com.eerussianguy.firmalife.registry.FluidsFL;
 import com.eerussianguy.firmalife.registry.ItemsFL;
-import com.eerussianguy.firmalife.util.HelpersFL;
 import net.dries007.tfc.Constants;
-import net.dries007.tfc.TerraFirmaCraft;
+import net.dries007.tfc.api.types.IFruitTree;
 import net.dries007.tfc.objects.blocks.agriculture.BlockFruitTreeLeaves;
 import net.dries007.tfc.objects.blocks.agriculture.BlockFruitTreeTrunk;
-import net.dries007.tfc.api.types.IFruitTree;
+import net.dries007.tfc.objects.entity.animal.EntityCowTFC;
+import net.dries007.tfc.objects.entity.animal.EntityGoatTFC;
+import net.dries007.tfc.objects.entity.animal.EntityYakTFC;
+import net.dries007.tfc.objects.entity.animal.EntityZebuTFC;
 import net.dries007.tfc.objects.fluids.FluidsTFC;
+import net.dries007.tfc.objects.items.ItemMisc;
 import net.dries007.tfc.util.Helpers;
-
-import java.util.Objects;
 
 import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
 

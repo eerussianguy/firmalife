@@ -1,15 +1,7 @@
 package com.eerussianguy.firmalife.blocks;
 
-import net.dries007.tfc.ConfigTFC;
-import net.dries007.tfc.api.capability.size.IItemSize;
-import net.dries007.tfc.api.capability.size.Size;
-import net.dries007.tfc.api.capability.size.Weight;
-import net.dries007.tfc.objects.CreativeTabsTFC;
-import net.dries007.tfc.objects.advancements.TFCTriggers;
-import net.dries007.tfc.objects.blocks.BlockTorchTFC;
-import net.dries007.tfc.objects.blocks.property.ILightableBlock;
-import net.dries007.tfc.objects.te.TETickCounter;
-import net.dries007.tfc.util.Helpers;
+import java.util.Random;
+
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
@@ -23,11 +15,21 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import java.util.Random;
+
+import net.dries007.tfc.ConfigTFC;
+import net.dries007.tfc.api.capability.size.IItemSize;
+import net.dries007.tfc.api.capability.size.Size;
+import net.dries007.tfc.api.capability.size.Weight;
+import net.dries007.tfc.objects.CreativeTabsTFC;
+import net.dries007.tfc.objects.advancements.TFCTriggers;
+import net.dries007.tfc.objects.blocks.BlockTorchTFC;
+import net.dries007.tfc.objects.blocks.property.ILightableBlock;
+import net.dries007.tfc.objects.te.TETickCounter;
+import net.dries007.tfc.util.Helpers;
 
 public class BlockJackOLantern extends BlockHorizontal implements IItemSize, ILightableBlock
 {
-    private Carving carving;
+    private final Carving carving;
 
     public BlockJackOLantern(Carving carving)
     {
@@ -42,18 +44,22 @@ public class BlockJackOLantern extends BlockHorizontal implements IItemSize, ILi
     }
 
     @Override
-    public Size getSize(ItemStack stack) {
+    public Size getSize(ItemStack stack)
+    {
         return Size.LARGE;
     }
 
     @Override
-    public Weight getWeight(ItemStack stack) {
+    public Weight getWeight(ItemStack stack)
+    {
         return Weight.HEAVY;
     }
 
-    public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
+    public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
+    {
         return worldIn.getBlockState(pos).getBlock().isReplaceable(worldIn, pos) && worldIn.isSideSolid(pos.down(), EnumFacing.UP);
     }
+
     public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
         return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
@@ -160,11 +166,11 @@ public class BlockJackOLantern extends BlockHorizontal implements IItemSize, ILi
         FACE("face", "XXXXX", "X X X", "XXXXX", "X   X", "XXXXX"),
         CREEPER("creeper", "XXXXX", "X X X", "XX XX", "X   X", "X X X"),
         AXE("axe", "X XXX", "    X", "     ", "    X", "X XXX"),
-        HAMMER("hammer","XXXXX", "     ", "     ", "XX XX", "XXXXX"),
+        HAMMER("hammer", "XXXXX", "     ", "     ", "XX XX", "XXXXX"),
         PICKAXE("pickaxe", "XXXXX", "X   X", " XXX ", "XXXXX", "XXXXX");
 
-        private String name;
-        private String[] craftPattern;
+        private final String name;
+        private final String[] craftPattern;
 
         Carving(String name, String... pattern)
         {
@@ -172,11 +178,13 @@ public class BlockJackOLantern extends BlockHorizontal implements IItemSize, ILi
             this.craftPattern = pattern;
         }
 
-        public String getName() {
+        public String getName()
+        {
             return name;
         }
 
-        public String[] getCraftPattern() {
+        public String[] getCraftPattern()
+        {
             return craftPattern;
         }
     }
