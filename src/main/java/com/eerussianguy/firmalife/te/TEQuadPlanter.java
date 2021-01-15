@@ -10,46 +10,42 @@ import net.minecraftforge.items.ItemHandlerHelper;
 
 import com.eerussianguy.firmalife.init.StatePropertiesFL;
 import com.eerussianguy.firmalife.recipe.PlanterRecipe;
+import net.dries007.tfc.ConfigTFC;
 import net.dries007.tfc.Constants;
 import net.dries007.tfc.objects.te.TEInventory;
 import net.dries007.tfc.util.calendar.CalendarTFC;
 import net.dries007.tfc.util.calendar.ICalendar;
+import net.dries007.tfc.util.calendar.ICalendarTickable;
 
-public class TEQuadPlanter extends TEInventory implements ITickable
+/**
+ * Evil combination of TEInventory and TECropBase because I can't code
+ */
+public class TEQuadPlanter extends TEInventory implements ITickable, ICalendarTickable
 {
     protected int[] stages;
-    private long startTick;
-    private static final int DAYS_TO_GROW = ICalendar.TICKS_IN_DAY;
+    private long lastUpdateTick;
+    private long lastTickCalChecked;
 
     public TEQuadPlanter()
     {
         super(4);
         stages = new int[] {0, 0, 0, 0};
-        startTick = 0;
+        lastUpdateTick = 0;
+        lastTickCalChecked = CalendarTFC.PLAYER_TIME.getTicks();
     }
 
     @Override
     public void update()
     {
-        for (int i = 0; i < 4; i++)
-        {
-            if (checkIsGrowing(i))
-            {
-                float tickDiff = CalendarTFC.PLAYER_TIME.getTicks() - startTick;
-                if (tickDiff > DAYS_TO_GROW)
-                {
-                    int growAmount = (int) Math.floor(tickDiff / DAYS_TO_GROW);
-                    if (growAmount >= 1)
-                        grow(growAmount, i);
-                }
-            }
-        }
+        ICalendarTickable.super.checkForCalendarUpdate();
     }
 
     @Override
     public void readFromNBT(NBTTagCompound nbt)
     {
         stages = nbt.getIntArray("stages");
+        lastUpdateTick = nbt.getLong("tick");
+        lastTickCalChecked = nbt.getLong("lastTickCalChecked");
         super.readFromNBT(nbt);
     }
 
@@ -58,31 +54,82 @@ public class TEQuadPlanter extends TEInventory implements ITickable
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
         nbt.setIntArray("stages", stages);
+        nbt.setLong("tick", lastUpdateTick);
+        nbt.setLong("lastTickCalChecked", lastTickCalChecked);
         return super.writeToNBT(nbt);
+    }
+
+    @Override
+    public int getSlotLimit(int slot)
+    {
+        return 1;
     }
 
     public void onInsert(int slot)
     {
         stages[slot] = 0;
-        startTick = CalendarTFC.PLAYER_TIME.getTicks();
         markForSync();
     }
 
-    public void grow(int growAmount, int slot)
+    public void grow(int slot)
     {
         PlanterRecipe recipe = getRecipe(slot);
-        if (recipe != null)
+        if (recipe != null && getStage(slot) < PlanterRecipe.getMaxStage(recipe))
         {
-            stages[slot] = Math.min(PlanterRecipe.getMaxStage(recipe), stages[slot] + growAmount);
-            startTick = CalendarTFC.PLAYER_TIME.getTicks();
+            stages[slot] = Math.min(PlanterRecipe.getMaxStage(recipe), getStage(slot) + 1);
         }
         markForSync();
     }
 
-    private boolean checkIsGrowing(int slot)
+    public long getTicksSinceUpdate()
+    {
+        return CalendarTFC.PLAYER_TIME.getTicks() - lastUpdateTick;
+    }
+
+    public void resetCounter()
+    {
+        lastUpdateTick = CalendarTFC.PLAYER_TIME.getTicks();
+        markForSync();
+    }
+
+    public void reduceCounter(long amount)
+    {
+        lastUpdateTick += amount;
+        markForSync();
+    }
+
+    @Override
+    public void onCalendarUpdate(long l)
+    {
+        long growthTicks = (long) (ICalendar.TICKS_IN_DAY * ConfigTFC.General.FOOD.cropGrowthTimeModifier);
+        while (getTicksSinceUpdate() > growthTicks)
+        {
+            reduceCounter(growthTicks);
+            int slot = Constants.RNG.nextInt(4);
+            if (canGrow(slot))
+            {
+                grow(slot);
+            }
+        }
+    }
+
+    @Override
+    public long getLastUpdateTick()
+    {
+        return lastTickCalChecked;
+    }
+
+    @Override
+    public void setLastUpdateTick(long l)
+    {
+        lastTickCalChecked = serializeNBT().getLong("lastTickCalChecked");
+        markDirty();
+    }
+
+    private boolean canGrow(int slot)
     {
         PlanterRecipe recipe = getRecipe(slot);
-        return recipe != null && world.getBlockState(pos).getValue(StatePropertiesFL.WET) && stages[slot] < PlanterRecipe.getMaxStage(recipe); //and in a greenhouse
+        return recipe != null && world.getBlockState(pos).getValue(StatePropertiesFL.WET) && getStage(slot) < PlanterRecipe.getMaxStage(recipe); //and in a greenhouse
     }
 
 
@@ -90,31 +137,32 @@ public class TEQuadPlanter extends TEInventory implements ITickable
     {
         ItemStack input = inventory.getStackInSlot(slot);
         PlanterRecipe recipe = null;
-        if (!input.isEmpty() && !world.isRemote)
+        if (!input.isEmpty())
         {
             recipe = PlanterRecipe.get(input);
         }
         return recipe;
     }
 
-    public void tryHarvest(EntityPlayer player, int slot)
+    public boolean tryHarvest(EntityPlayer player, int slot)
     {
         PlanterRecipe recipe = getRecipe(slot);
-        if (recipe != null && PlanterRecipe.getMaxStage(recipe) == stages[slot])
+        if (recipe != null && PlanterRecipe.getMaxStage(recipe) == getStage(slot))
         {
             ItemStack returnStack = recipe.getOutputItem(inventory.getStackInSlot(slot));
             ItemHandlerHelper.giveItemToPlayer(player, returnStack);
             ItemHandlerHelper.giveItemToPlayer(player, inventory.getStackInSlot(slot), 1 + Constants.RNG.nextInt());
             inventory.setStackInSlot(slot, ItemStack.EMPTY);
             stages[slot] = 0;
-            startTick = CalendarTFC.PLAYER_TIME.getTicks();
+            resetCounter();
+            markForSync();
+            return true;
         }
-        markForSync();
+        return false;
     }
 
     public int getStage(int slot)
     {
         return stages[slot];
     }
-
 }

@@ -58,6 +58,8 @@ public class BlocksFL
     public static final BlockCinnamonSapling CINNAMON_SAPLING = Helpers.getNull();
     @GameRegistry.ObjectHolder("greenhouse_door")
     public static final BlockGreenhouseDoor BLOCK_GREENHOUSE_DOOR = Helpers.getNull();
+    @GameRegistry.ObjectHolder("quad_planter")
+    public static final BlockQuadPlanter QUAD_PLANTER = Helpers.getNull();
 
     private static ImmutableList<ItemBlock> allIBs;
     private static ImmutableList<Block> allNormalIBs = Helpers.getNull();

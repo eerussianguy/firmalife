@@ -20,7 +20,6 @@ public class TESRLeafMat extends TileEntitySpecialRenderer<TELeafMat>
 
         if (te.hasWorld())
         {
-            IBlockState state = te.getWorld().getBlockState(te.getPos());
             IItemHandler cap = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
             if (cap != null)
             {

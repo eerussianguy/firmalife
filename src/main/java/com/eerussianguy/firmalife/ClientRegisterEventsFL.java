@@ -4,6 +4,7 @@ import javax.annotation.Nonnull;
 
 import net.minecraft.block.*;
 import net.minecraft.client.renderer.ItemMeshDefinition;
+import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMap;
@@ -14,8 +15,11 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ColorHandlerEvent;
+import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
@@ -25,23 +29,22 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 
 import com.eerussianguy.firmalife.blocks.BlockFruitDoor;
 import com.eerussianguy.firmalife.blocks.BlockFruitFenceGate;
 import com.eerussianguy.firmalife.blocks.BlockPlanter;
 import com.eerussianguy.firmalife.blocks.BlockStemCrop;
+import com.eerussianguy.firmalife.init.RegistriesFL;
 import com.eerussianguy.firmalife.init.StatePropertiesFL;
 import com.eerussianguy.firmalife.items.ItemFruitDoor;
 import com.eerussianguy.firmalife.items.ItemMetalMalletMold;
+import com.eerussianguy.firmalife.recipe.PlanterRecipe;
 import com.eerussianguy.firmalife.registry.BlocksFL;
 import com.eerussianguy.firmalife.registry.ItemsFL;
-import com.eerussianguy.firmalife.render.TESRLeafMat;
-import com.eerussianguy.firmalife.render.TESROven;
-import com.eerussianguy.firmalife.render.TESRQuadPlanter;
-import com.eerussianguy.firmalife.render.VanillaStemStateMapper;
+import com.eerussianguy.firmalife.render.*;
 import com.eerussianguy.firmalife.te.TELeafMat;
 import com.eerussianguy.firmalife.te.TEOven;
-import com.eerussianguy.firmalife.te.TEQuadPlanter;
 import net.dries007.tfc.api.capability.IMoldHandler;
 import net.dries007.tfc.api.registries.TFCRegistries;
 import net.dries007.tfc.api.types.Metal;
@@ -49,6 +52,8 @@ import net.dries007.tfc.client.GrassColorHandler;
 import net.dries007.tfc.objects.blocks.agriculture.BlockCropDead;
 import net.dries007.tfc.objects.blocks.agriculture.BlockFruitTreeLeaves;
 import net.dries007.tfc.objects.blocks.wood.BlockSaplingTFC;
+
+import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
 
 @SideOnly(Side.CLIENT)
 @Mod.EventBusSubscriber(value = {Side.CLIENT}, modid = FirmaLife.MOD_ID)
@@ -121,9 +126,10 @@ public class ClientRegisterEventsFL
         ModelLoader.setCustomStateMapper(BlocksFL.CINNAMON_LEAVES, new StateMap.Builder().ignore(BlockLeaves.DECAYABLE).build());
         ModelLoader.setCustomStateMapper(BlocksFL.CINNAMON_SAPLING, new StateMap.Builder().ignore(BlockSaplingTFC.STAGE).build());
 
+        ModelLoader.setCustomStateMapper(BlocksFL.QUAD_PLANTER, new QuadPlanterStateMapper());
+
         ClientRegistry.bindTileEntitySpecialRenderer(TEOven.class, new TESROven());
         ClientRegistry.bindTileEntitySpecialRenderer(TELeafMat.class, new TESRLeafMat());
-        ClientRegistry.bindTileEntitySpecialRenderer(TEQuadPlanter.class, new TESRQuadPlanter());
     }
 
     @SuppressWarnings("deprecation")
@@ -169,5 +175,26 @@ public class ClientRegisterEventsFL
             blockColors.registerBlockColorHandler((state, world, os, tintIndex) -> 0xCC7400, block);
         }
         blockColors.registerBlockColorHandler(foliageColor, BlocksFL.CINNAMON_LEAVES);
+    }
+
+    @SubscribeEvent
+    public static void onModelBake(ModelBakeEvent event)
+    {
+        event.getModelRegistry().putObject(new ModelResourceLocation(MOD_ID + ":quad_planter"), new QuadPlanterBakedModel());
+    }
+
+    @SubscribeEvent
+    public static void onTextureStitchEvent(TextureStitchEvent.Pre event)
+    {
+        for (PlanterRecipe crop : RegistriesFL.PLANTER_QUAD.getValuesCollection())
+        {
+            if (crop.getRegistryName() != null)
+            {
+                for (int stage = 0; stage <= PlanterRecipe.getMaxStage(crop); stage++)
+                {
+                    event.getMap().registerSprite(new ResourceLocation(MOD_ID, "blocks/crop/" + crop.getRegistryName().getPath() + "_" + stage));
+                }
+            }
+        }
     }
 }

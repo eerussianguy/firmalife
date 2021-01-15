@@ -1,5 +1,6 @@
 package com.eerussianguy.firmalife.recipe;
 
+import java.util.stream.Stream;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
@@ -52,5 +53,28 @@ public class PlanterRecipe extends IForgeRegistryEntry.Impl<PlanterRecipe>
     private boolean isValidInput(ItemStack inputItem)
     {
         return this.inputItem.test(inputItem);
+    }
+
+    @Nullable
+    public static class PlantInfo
+    {
+        private final PlanterRecipe recipe;
+        private final int stage;
+
+        public PlantInfo(PlanterRecipe recipe, int stage)
+        {
+            this.recipe = recipe;
+            this.stage = stage;
+        }
+
+        public PlanterRecipe getRecipe()
+        {
+            return recipe;
+        }
+
+        public int getStage()
+        {
+            return stage;
+        }
     }
 }

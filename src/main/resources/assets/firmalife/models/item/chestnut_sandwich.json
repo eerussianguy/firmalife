@@ -1,6 +1,6 @@
 {
-  "parent": "item/generated",
+  "parent": "item/handheld",
   "textures": {
-    "texture": "firmalife:items/chestnut_sandwich"
+    "layer0": "firmalife:items/chestnut_sandwich"
   }
 }

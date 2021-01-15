@@ -2,6 +2,8 @@ package com.eerussianguy.firmalife.blocks;
 
 import java.util.Random;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -11,6 +13,7 @@ import com.eerussianguy.firmalife.init.PlantsFL;
 import com.eerussianguy.firmalife.registry.BlocksFL;
 import net.dries007.tfc.objects.blocks.wood.BlockSaplingTFC;
 
+@ParametersAreNonnullByDefault
 public class BlockCinnamonSapling extends BlockSaplingTFC
 {
 
