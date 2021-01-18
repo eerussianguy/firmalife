@@ -2,14 +2,21 @@ package com.eerussianguy.firmalife.te;
 
 import javax.annotation.Nonnull;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.items.ItemHandlerHelper;
 
+import com.eerussianguy.firmalife.blocks.BlockGreenhouseRoof;
 import com.eerussianguy.firmalife.init.StatePropertiesFL;
 import com.eerussianguy.firmalife.recipe.PlanterRecipe;
+import com.eerussianguy.firmalife.util.GreenhouseHelpers;
+import com.eerussianguy.firmalife.util.IGreenhouseReceiver;
+import com.eerussianguy.firmalife.util.IWaterable;
 import net.dries007.tfc.ConfigTFC;
 import net.dries007.tfc.Constants;
 import net.dries007.tfc.objects.te.TEInventory;
@@ -20,11 +27,13 @@ import net.dries007.tfc.util.calendar.ICalendarTickable;
 /**
  * Evil combination of TEInventory and TECropBase because I can't code
  */
-public class TEQuadPlanter extends TEInventory implements ITickable, ICalendarTickable
+public class TEQuadPlanter extends TEInventory implements ITickable, ICalendarTickable, IWaterable, IGreenhouseReceiver
 {
     protected int[] stages;
     private long lastUpdateTick;
     private long lastTickCalChecked;
+    private int waterUses;
+    private boolean isClimateValid;
 
     public TEQuadPlanter()
     {
@@ -32,12 +41,19 @@ public class TEQuadPlanter extends TEInventory implements ITickable, ICalendarTi
         stages = new int[] {0, 0, 0, 0};
         lastUpdateTick = 0;
         lastTickCalChecked = CalendarTFC.PLAYER_TIME.getTicks();
+        waterUses = 0;
+        isClimateValid = false;
     }
 
     @Override
     public void update()
     {
         ICalendarTickable.super.checkForCalendarUpdate();
+        if (waterUses < 0)
+        {
+            waterUses = 0;
+            world.setBlockState(pos, world.getBlockState(pos).withProperty(StatePropertiesFL.WET, false));
+        }
     }
 
     @Override
@@ -46,6 +62,8 @@ public class TEQuadPlanter extends TEInventory implements ITickable, ICalendarTi
         stages = nbt.getIntArray("stages");
         lastUpdateTick = nbt.getLong("tick");
         lastTickCalChecked = nbt.getLong("lastTickCalChecked");
+        waterUses = nbt.getInteger("waterUses");
+        isClimateValid = nbt.getBoolean("isClimateValid");
         super.readFromNBT(nbt);
     }
 
@@ -56,6 +74,8 @@ public class TEQuadPlanter extends TEInventory implements ITickable, ICalendarTi
         nbt.setIntArray("stages", stages);
         nbt.setLong("tick", lastUpdateTick);
         nbt.setLong("lastTickCalChecked", lastTickCalChecked);
+        nbt.setInteger("waterUses", waterUses);
+        nbt.setBoolean("isClimateValid", isClimateValid);
         return super.writeToNBT(nbt);
     }
 
@@ -69,6 +89,7 @@ public class TEQuadPlanter extends TEInventory implements ITickable, ICalendarTi
     {
         stages[slot] = 0;
         markForSync();
+        markForBlockUpdate();
     }
 
     public void grow(int slot)
@@ -77,6 +98,7 @@ public class TEQuadPlanter extends TEInventory implements ITickable, ICalendarTi
         if (recipe != null && getStage(slot) < PlanterRecipe.getMaxStage(recipe))
         {
             stages[slot] = Math.min(PlanterRecipe.getMaxStage(recipe), getStage(slot) + 1);
+            waterUses--;
         }
         markForSync();
     }
@@ -126,12 +148,18 @@ public class TEQuadPlanter extends TEInventory implements ITickable, ICalendarTi
         markDirty();
     }
 
+    @Override
+    public void setValidity(boolean approvalStatus)
+    {
+        isClimateValid = approvalStatus;
+    }
+
     private boolean canGrow(int slot)
     {
         PlanterRecipe recipe = getRecipe(slot);
-        return recipe != null && world.getBlockState(pos).getValue(StatePropertiesFL.WET) && getStage(slot) < PlanterRecipe.getMaxStage(recipe); //and in a greenhouse
+        return isClimateValid && recipe != null && getStage(slot) < PlanterRecipe.getMaxStage(recipe) &&
+            world.getBlockState(pos).getValue(StatePropertiesFL.WET) && GreenhouseHelpers.isSkylightValid(world, pos);
     }
-
 
     public PlanterRecipe getRecipe(int slot)
     {
@@ -164,5 +192,11 @@ public class TEQuadPlanter extends TEInventory implements ITickable, ICalendarTi
     public int getStage(int slot)
     {
         return stages[slot];
+    }
+
+    @Override
+    public void addWater(int amount)
+    {
+        waterUses += amount;
     }
 }

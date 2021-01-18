@@ -3,6 +3,9 @@ package com.eerussianguy.firmalife.blocks;
 import java.util.Iterator;
 import java.util.Random;
 
+import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -17,7 +20,10 @@ import net.minecraft.world.World;
 import com.eerussianguy.firmalife.items.ItemFruitDoor;
 import com.eerussianguy.firmalife.registry.BlocksFL;
 import com.eerussianguy.firmalife.registry.ItemsFL;
+import mcp.MethodsReturnNonnullByDefault;
 
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
 public class BlockFruitDoor extends BlockDoor
 {
 
@@ -28,6 +34,7 @@ public class BlockFruitDoor extends BlockDoor
         disableStats();
     }
 
+    @Nullable
     public Item getItem() //From the way we build the ImmutableLists these two should always be sorted
     {
         Iterator<ItemFruitDoor> ifd = ItemsFL.getAllFruitDoors().iterator();

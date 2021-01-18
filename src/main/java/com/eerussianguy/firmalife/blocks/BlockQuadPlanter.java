@@ -40,6 +40,7 @@ import net.minecraftforge.items.IItemHandler;
 import com.eerussianguy.firmalife.recipe.PlanterRecipe;
 import com.eerussianguy.firmalife.render.UnlistedCropProperty;
 import com.eerussianguy.firmalife.te.TEQuadPlanter;
+import com.eerussianguy.firmalife.util.IWaterable;
 import mcp.MethodsReturnNonnullByDefault;
 import net.dries007.tfc.api.capability.size.IItemSize;
 import net.dries007.tfc.api.capability.size.Size;
@@ -91,8 +92,14 @@ public class BlockQuadPlanter extends Block implements IItemSize, IHighlightHand
                     {
                         if (stack.getFluid() == FluidsTFC.FRESH_WATER.get())
                         {
-                            world.setBlockState(pos, state.withProperty(WET, true));
-                            return true;
+                            TEQuadPlanter te = Helpers.getTE(world, pos, TEQuadPlanter.class);
+                            if (te != null)
+                            {
+                                te.addWater(4);
+                                world.setBlockState(pos, state.withProperty(WET, true));
+                                return true;
+                            }
+
                         }
                     }
                 }
@@ -111,12 +118,10 @@ public class BlockQuadPlanter extends Block implements IItemSize, IHighlightHand
                         inventory.insertItem(slot, held, false);
                         if (!player.isCreative()) held.shrink(1);
                         te.onInsert(slot);
-                        player.sendMessage(new TextComponentString("inserted item in slot " + slot));
                     }
                     else if (player.isSneaking() && held.isEmpty() && !slotStack.isEmpty()) // probably not useful but better to cover it
                     {
-                        boolean harvested = te.tryHarvest(player, slot);
-                        player.sendMessage(new TextComponentString((harvested ? "successfully" : "unsuccessfully") + " tried to remove item from slot " + slot));
+                        te.tryHarvest(player, slot);
                     }
 
                 }

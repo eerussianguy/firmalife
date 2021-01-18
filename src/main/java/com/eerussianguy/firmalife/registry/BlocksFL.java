@@ -18,10 +18,7 @@ import com.eerussianguy.firmalife.init.FruitTreeFL;
 import com.eerussianguy.firmalife.init.PlantsFL;
 import com.eerussianguy.firmalife.init.StemCrop;
 import com.eerussianguy.firmalife.items.ItemBlockRot;
-import com.eerussianguy.firmalife.te.TELeafMat;
-import com.eerussianguy.firmalife.te.TEOven;
-import com.eerussianguy.firmalife.te.TEQuadPlanter;
-import com.eerussianguy.firmalife.te.TEStemCrop;
+import com.eerussianguy.firmalife.te.*;
 import net.dries007.tfc.api.types.IFruitTree;
 import net.dries007.tfc.objects.blocks.BlockFluidTFC;
 import net.dries007.tfc.objects.blocks.agriculture.*;
@@ -262,6 +259,7 @@ public class BlocksFL
         register(TEQuadPlanter.class, "quad_planter");
         register(TELeafMat.class, "leaf_mat");
         register(TEStemCrop.class, "stem_crop");
+        register(TEClimateStation.class, "climate_station");
         //needs fix
         FluidsTFC.getWrapper(FluidsFL.COCONUT_MILK.get());
         FluidsTFC.getWrapper(FluidsFL.YAK_MILK.get());

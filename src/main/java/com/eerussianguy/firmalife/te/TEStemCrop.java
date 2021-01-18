@@ -1,5 +1,7 @@
 package com.eerussianguy.firmalife.te;
 
+import javax.annotation.Nonnull;
+
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 
@@ -11,6 +13,7 @@ public class TEStemCrop extends TECropBase
     private EnumFacing fruitDirection = EnumFacing.Plane.HORIZONTAL.random(Constants.RNG);
 
     @Override
+    @Nonnull
     public NBTTagCompound writeToNBT(NBTTagCompound tag)
     {
         tag.setInteger("fruitDirection", fruitDirection.getIndex());
