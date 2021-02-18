@@ -1,6 +1,5 @@
 package com.eerussianguy.firmalife.registry;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,7 +28,6 @@ import net.dries007.tfc.api.types.Metal;
 import net.dries007.tfc.objects.items.ItemMisc;
 import net.dries007.tfc.objects.items.ItemSeedsTFC;
 import net.dries007.tfc.objects.items.ceramics.ItemPottery;
-import net.dries007.tfc.objects.items.food.ItemSandwich;
 import net.dries007.tfc.objects.items.wood.ItemWoodenBucket;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.agriculture.FruitTree;

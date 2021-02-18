@@ -17,23 +17,19 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-import com.eerussianguy.firmalife.init.StatePropertiesFL;
 import com.eerussianguy.firmalife.te.TEClimateStation;
-import com.eerussianguy.firmalife.te.TEQuadPlanter;
 import com.eerussianguy.firmalife.util.GreenhouseHelpers;
 import mcp.MethodsReturnNonnullByDefault;
 import net.dries007.tfc.api.capability.size.IItemSize;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
 import net.dries007.tfc.client.gui.overlay.IHighlightHandler;
-import net.dries007.tfc.util.Helpers;
 
-import static com.eerussianguy.firmalife.init.StatePropertiesFL.*;
+import static com.eerussianguy.firmalife.init.StatePropertiesFL.STASIS;
 import static net.minecraft.block.BlockHorizontal.FACING;
 
 @ParametersAreNonnullByDefault

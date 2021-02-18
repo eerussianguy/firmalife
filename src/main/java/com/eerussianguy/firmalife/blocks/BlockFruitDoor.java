@@ -2,7 +2,6 @@ package com.eerussianguy.firmalife.blocks;
 
 import java.util.Iterator;
 import java.util.Random;
-
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 

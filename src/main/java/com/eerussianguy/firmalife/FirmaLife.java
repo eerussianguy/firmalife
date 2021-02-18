@@ -18,7 +18,6 @@ import com.eerussianguy.firmalife.util.OreDictsFL;
 @Mod(modid = FirmaLife.MOD_ID, name = FirmaLife.MODNAME, version = FirmaLife.MODVERSION)
 public class FirmaLife
 {
-
     public static final String MOD_ID = "firmalife";
     public static final String MODNAME = "FirmaLife";
     public static final String MODVERSION = "0.0.1";

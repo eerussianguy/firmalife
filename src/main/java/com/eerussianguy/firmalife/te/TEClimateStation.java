@@ -30,6 +30,7 @@ public class TEClimateStation extends TEBase
         nbt.setInteger("forward", forward);
         nbt.setInteger("arcs", arcs);
         nbt.setInteger("height", height);
+        nbt.setBoolean("seeded", isSeeded);
         return super.writeToNBT(nbt);
     }
 
@@ -39,6 +40,7 @@ public class TEClimateStation extends TEBase
         forward = nbt.getInteger("forward");
         arcs = nbt.getInteger("arcs");
         height = nbt.getInteger("height");
+        isSeeded = nbt.getBoolean("seeded");
         super.readFromNBT(nbt);
     }
 

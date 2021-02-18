@@ -20,9 +20,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.property.ExtendedBlockState;
@@ -40,7 +37,6 @@ import net.minecraftforge.items.IItemHandler;
 import com.eerussianguy.firmalife.recipe.PlanterRecipe;
 import com.eerussianguy.firmalife.render.UnlistedCropProperty;
 import com.eerussianguy.firmalife.te.TEQuadPlanter;
-import com.eerussianguy.firmalife.util.IWaterable;
 import mcp.MethodsReturnNonnullByDefault;
 import net.dries007.tfc.api.capability.size.IItemSize;
 import net.dries007.tfc.api.capability.size.Size;
@@ -171,8 +167,8 @@ public class BlockQuadPlanter extends Block implements IItemSize, IHighlightHand
     @Override
     protected BlockStateContainer createBlockState()
     {
-        IProperty [] listedProperties = new IProperty[] {WET};
-        IUnlistedProperty [] unlistedProperties = new IUnlistedProperty[] {CROP_1, CROP_2, CROP_3, CROP_4};
+        IProperty[] listedProperties = new IProperty[] {WET};
+        IUnlistedProperty[] unlistedProperties = new IUnlistedProperty[] {CROP_1, CROP_2, CROP_3, CROP_4};
         return new ExtendedBlockState(this, listedProperties, unlistedProperties);
     }
 
@@ -181,7 +177,7 @@ public class BlockQuadPlanter extends Block implements IItemSize, IHighlightHand
     {
         if (state instanceof IExtendedBlockState)
         {
-            IExtendedBlockState extension = (IExtendedBlockState)state;
+            IExtendedBlockState extension = (IExtendedBlockState) state;
             PlanterRecipe.PlantInfo[] plants = getCrops(world, pos);
             extension = extension.withProperty(CROP_1, plants[0]).withProperty(CROP_2, plants[1]).withProperty(CROP_3, plants[2]).withProperty(CROP_4, plants[3]);
             return extension;
@@ -224,13 +220,13 @@ public class BlockQuadPlanter extends Block implements IItemSize, IHighlightHand
     }
 
     @Override
-    public Size getSize( ItemStack stack)
+    public Size getSize(ItemStack stack)
     {
         return Size.NORMAL;
     }
 
     @Override
-    public Weight getWeight( ItemStack stack)
+    public Weight getWeight(ItemStack stack)
     {
         return Weight.HEAVY;
     }

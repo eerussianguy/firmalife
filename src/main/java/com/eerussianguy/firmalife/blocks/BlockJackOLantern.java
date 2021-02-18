@@ -1,7 +1,6 @@
 package com.eerussianguy.firmalife.blocks;
 
 import java.util.Random;
-
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import net.minecraft.block.BlockHorizontal;
