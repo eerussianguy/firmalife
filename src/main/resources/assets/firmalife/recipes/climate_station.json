@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BXB",
+    "OYO",
+	"BXB"
+  ],
+  "key": {
+    "X": {
+      "type": "forge:ore_dict",
+      "ore" : "plankWood"
+    },
+    "O": {
+      "type": "forge:ore_dict",
+      "ore" : "dustRedstone"
+    },
+	"B": {
+      "type": "forge:ore_dict",
+      "ore" : "ingotWroughtIron"
+    },
+	"Y": {
+      "type": "forge:ore_dict",
+      "ore" : "blockGlassBlue"
+    }
+  },
+  "result": {
+    "item": "firmalife:climate_station",
+    "count": 1
+  }
+}

@@ -1,5 +1,8 @@
 package com.eerussianguy.firmalife.te;
 
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
@@ -13,6 +16,7 @@ import net.dries007.tfc.api.capability.food.CapabilityFood;
 import net.dries007.tfc.objects.te.TEInventory;
 import net.dries007.tfc.util.calendar.CalendarTFC;
 
+@ParametersAreNonnullByDefault
 public class TELeafMat extends TEInventory implements ITickable
 {
     private long startTick;
@@ -36,14 +40,6 @@ public class TELeafMat extends TEInventory implements ITickable
     {
         if (!world.isRemote)
         {
-            if (world.isRaining())
-            {
-                if (world.getTotalWorldTime() % 5 == 0)
-                {
-                    tickGoal++;
-                    return;
-                }
-            }
             if ((int) (CalendarTFC.PLAYER_TIME.getTicks() - startTick) > tickGoal)
             {
                 if (recipeExists())
@@ -52,6 +48,11 @@ public class TELeafMat extends TEInventory implements ITickable
                 }
             }
         }
+    }
+
+    public void rain()
+    {
+        tickGoal+= 25;
     }
 
     @Override
@@ -63,6 +64,7 @@ public class TELeafMat extends TEInventory implements ITickable
     }
 
     @Override
+    @Nonnull
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
         nbt.setLong("startTick", startTick);

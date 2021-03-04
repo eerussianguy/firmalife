@@ -31,7 +31,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import com.eerussianguy.firmalife.blocks.BlockFruitDoor;
 import com.eerussianguy.firmalife.blocks.BlockFruitFenceGate;
-import com.eerussianguy.firmalife.blocks.BlockPlanter;
 import com.eerussianguy.firmalife.blocks.BlockStemCrop;
 import com.eerussianguy.firmalife.init.RegistriesFL;
 import com.eerussianguy.firmalife.init.StatePropertiesFL;
@@ -106,8 +105,6 @@ public class ClientRegisterEventsFL
         //use vanilla stem rendering for StemCrops
         for (BlockStemCrop block : BlocksFL.getAllCropBlocks())
             ModelLoader.setCustomStateMapper(block, new VanillaStemStateMapper());
-        for (BlockPlanter planter : BlocksFL.getAllPlanters())
-            ModelLoader.setCustomStateMapper(planter, new StateMap.Builder().ignore(StatePropertiesFL.CAN_GROW).build());
         for (BlockFruitDoor door : BlocksFL.getAllFruitDoors())
             ModelLoader.setCustomStateMapper(door, new StateMap.Builder().ignore(BlockDoor.POWERED).build());
         for (BlockFruitFenceGate gate : BlocksFL.getAllFruitFenceGates())
@@ -119,7 +116,7 @@ public class ClientRegisterEventsFL
 
         for (Block block : BlocksFL.getAllFluidBlocks())
             ModelLoader.setCustomStateMapper(block, new StateMap.Builder().ignore(BlockFluidBase.LEVEL).build());
-        ModelLoader.setCustomStateMapper(BlocksFL.BLOCK_GREENHOUSE_DOOR, new StateMap.Builder().ignore(BlockDoor.POWERED).build());
+        ModelLoader.setCustomStateMapper(BlocksFL.GREENHOUSE_DOOR, new StateMap.Builder().ignore(BlockDoor.POWERED).build());
         ModelLoader.setCustomStateMapper(BlocksFL.CINNAMON_LOG, new StateMap.Builder().ignore(StatePropertiesFL.CAN_GROW).build());
         ModelLoader.setCustomStateMapper(BlocksFL.CINNAMON_LEAVES, new StateMap.Builder().ignore(BlockLeaves.DECAYABLE).build());
         ModelLoader.setCustomStateMapper(BlocksFL.CINNAMON_SAPLING, new StateMap.Builder().ignore(BlockSaplingTFC.STAGE).build());
@@ -194,5 +191,7 @@ public class ClientRegisterEventsFL
                 }
             }
         }
+        event.getMap().registerSprite(new ResourceLocation(MOD_ID, "blocks/potting_soil_wet"));
+        event.getMap().registerSprite(new ResourceLocation(MOD_ID, "blocks/potting_soil_dry"));
     }
 }

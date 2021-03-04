@@ -203,8 +203,8 @@ public class GreenhouseHelpers
     {
         int arcs = getGoodArcs(world, pos, state);
         EnumFacing facing = state.getValue(FACING);
-        EnumFacing wallFace = null;
-        BlockPos startPos = null;
+        EnumFacing wallFace;
+        BlockPos startPos;
         if (world.getBlockState(pos.offset(facing.rotateY())).getBlock() instanceof BlockGreenhouseWall)
         {
             wallFace = facing.rotateY();

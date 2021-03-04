@@ -14,7 +14,6 @@ import net.minecraftforge.registries.IForgeRegistryModifiable;
 import com.eerussianguy.firmalife.ConfigFL;
 import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.init.KnappingFL;
-import com.eerussianguy.firmalife.init.PlantsFL;
 import com.eerussianguy.firmalife.recipe.KnappingRecipeFood;
 import net.dries007.tfc.TerraFirmaCraft;
 import net.dries007.tfc.api.recipes.anvil.AnvilRecipe;
@@ -29,7 +28,6 @@ import net.dries007.tfc.api.registries.TFCRegistries;
 import net.dries007.tfc.api.registries.TFCRegistryEvent;
 import net.dries007.tfc.api.types.Metal;
 import net.dries007.tfc.api.types.Ore;
-import net.dries007.tfc.api.types.Plant;
 import net.dries007.tfc.objects.Powder;
 import net.dries007.tfc.objects.fluids.FluidsTFC;
 import net.dries007.tfc.objects.inventory.ingredient.IIngredient;
@@ -39,6 +37,7 @@ import net.dries007.tfc.util.calendar.ICalendar;
 
 import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
 import static net.dries007.tfc.util.forge.ForgeRule.*;
+import static net.dries007.tfc.util.skills.SmithingSkill.Type.GENERAL;
 import static net.dries007.tfc.util.skills.SmithingSkill.Type.TOOLS;
 
 @Mod.EventBusSubscriber(modid = MOD_ID)
@@ -53,14 +52,6 @@ public class TFCRegistry
         IForgeRegistry<Ore> r = event.getRegistry();
         r.registerAll(
             new Ore(HALITE)
-        );
-    }
-
-    @SubscribeEvent
-    public static void onPreRegisterPlant(TFCRegistryEvent.RegisterPreBlock<Plant> event)
-    {
-        event.getRegistry().registerAll(
-            PlantsFL.VANILLA_PLANT
         );
     }
 
@@ -161,6 +152,11 @@ public class TFCRegistry
                 event.getRegistry().register(new AnvilRecipe(new ResourceLocation(MOD_ID, metal.toString() + "_mallet_head"), IIngredient.of(new ItemStack(ItemMetal.get(metal, Metal.ItemType.INGOT))),
                     new ItemStack(ItemsFL.getMetalMalletHead(metal)), metal.getTier(), TOOLS, PUNCH_LAST, PUNCH_SECOND_LAST, SHRINK_THIRD_LAST));
         }
-
+        event.getRegistry().registerAll(new AnvilRecipe(new ResourceLocation(MOD_ID, "greenhouse_wall"), IIngredient.of(ItemMetal.get(Metal.WROUGHT_IRON, Metal.ItemType.SHEET)),
+            new ItemStack(BlocksFL.GREENHOUSE_WALL, 2), Metal.WROUGHT_IRON.getTier(), GENERAL, HIT_NOT_LAST, PUNCH_NOT_LAST, SHRINK_LAST));
+        event.getRegistry().registerAll(new AnvilRecipe(new ResourceLocation(MOD_ID, "greenhouse_roof"), IIngredient.of(ItemMetal.get(Metal.WROUGHT_IRON, Metal.ItemType.SHEET)),
+            new ItemStack(BlocksFL.GREENHOUSE_ROOF, 2), Metal.WROUGHT_IRON.getTier(), GENERAL, HIT_THIRD_LAST, PUNCH_SECOND_LAST, PUNCH_LAST));
+        event.getRegistry().registerAll(new AnvilRecipe(new ResourceLocation(MOD_ID, "greenhouse_door"), IIngredient.of(ItemMetal.get(Metal.WROUGHT_IRON, Metal.ItemType.SHEET)),
+            new ItemStack(ItemsFL.ITEM_GREENHOUSE_DOOR), Metal.WROUGHT_IRON.getTier(), GENERAL, HIT_NOT_LAST, HIT_NOT_LAST, PUNCH_LAST));
     }
 }

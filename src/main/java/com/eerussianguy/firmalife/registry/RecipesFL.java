@@ -54,8 +54,11 @@ public class RecipesFL
             new OvenRecipe(IIngredient.of("oat_flatbread_dough"), new ItemStack(ItemsFL.OAT_FLATBREAD), 4 * hour).setRegistryName("oat_flatbread_dough"),
             new OvenRecipe(IIngredient.of("rice_flatbread_dough"), new ItemStack(ItemsFL.RICE_FLATBREAD), 4 * hour).setRegistryName("rice_flatbread_dough"),
             new OvenRecipe(IIngredient.of("rye_flatbread_dough"), new ItemStack(ItemsFL.RYE_FLATBREAD), 4 * hour).setRegistryName("rye_flatbread_dough"),
-            new OvenRecipe(IIngredient.of("wheat_flatbread_dough"), new ItemStack(ItemsFL.WHEAT_FLATBREAD), 4 * hour).setRegistryName("wheat_flatbread_dough")
+            new OvenRecipe(IIngredient.of("wheat_flatbread_dough"), new ItemStack(ItemsFL.WHEAT_FLATBREAD), 4 * hour).setRegistryName("wheat_flatbread_dough"),
 
+            new OvenRecipe(IIngredient.of(new ItemStack(ItemsFL.WHITE_BLEND)), new ItemStack(ItemsFL.WHITE_CHOCOLATE), hour).setRegistryName("white_blend"),
+            new OvenRecipe(IIngredient.of(new ItemStack(ItemsFL.DARK_BLEND)), new ItemStack(ItemsFL.DARK_CHOCOLATE), hour).setRegistryName("dark_blend"),
+            new OvenRecipe(IIngredient.of(new ItemStack(ItemsFL.MILK_BLEND)), new ItemStack(ItemsFL.MILK_CHOCOLATE), hour).setRegistryName("milk_blend")
         );
     }
 

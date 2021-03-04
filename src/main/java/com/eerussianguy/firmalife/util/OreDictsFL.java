@@ -28,6 +28,5 @@ public class OreDictsFL
         OreDictionary.registerOre("categoryBread", ItemsFL.CHESTNUT_BREAD);
         OreDictionary.registerOre("categoryBread", ItemsFL.CHESTNUT_SLICE);
         OreDictionary.registerOre("slice", ItemsFL.CHESTNUT_SLICE);
-
     }
 }

@@ -1,8 +1,10 @@
 package com.eerussianguy.firmalife.blocks;
 
 import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
@@ -18,6 +20,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import mcp.MethodsReturnNonnullByDefault;
 import net.dries007.tfc.api.capability.size.IItemSize;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
@@ -26,6 +29,8 @@ import static com.eerussianguy.firmalife.init.StatePropertiesFL.CURED;
 import static net.dries007.tfc.Constants.RNG;
 import static net.minecraft.block.BlockHorizontal.FACING;
 
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
 public class BlockOvenWall extends Block implements IItemSize
 {
     public static final AxisAlignedBB OVEN_WALL_WEST = new AxisAlignedBB(0.0D, 0.0D, 9.0 / 16, 16.0D / 16, 16.0D / 16, 16.0D / 16);
@@ -45,7 +50,6 @@ public class BlockOvenWall extends Block implements IItemSize
 
     @Override
     @SuppressWarnings("deprecation")
-    @Nonnull
     public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
         if (facing.getAxis() == EnumFacing.Axis.Y)
@@ -57,7 +61,6 @@ public class BlockOvenWall extends Block implements IItemSize
 
     @Override
     @SuppressWarnings("deprecation")
-    @Nonnull
     public IBlockState getStateFromMeta(int meta)
     {
         return this.getDefaultState().withProperty(FACING, EnumFacing.byHorizontalIndex(meta)).withProperty(CURED, meta > 3);
@@ -76,22 +79,19 @@ public class BlockOvenWall extends Block implements IItemSize
         return false;
     }
 
-    @Nonnull
     @Override
-    public Size getSize(@Nonnull ItemStack stack)
+    public Size getSize (ItemStack stack)
     {
         return Size.NORMAL;
     }
 
-    @Nonnull
     @Override
-    public Weight getWeight(@Nonnull ItemStack stack)
+    public Weight getWeight (ItemStack stack)
     {
         return Weight.HEAVY;
     }
 
     @Override
-    @Nonnull
     protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, FACING, CURED);
@@ -99,7 +99,6 @@ public class BlockOvenWall extends Block implements IItemSize
 
     @Override
     @SuppressWarnings("deprecation")
-    @Nonnull
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
         switch (state.getValue(FACING))
@@ -131,7 +130,6 @@ public class BlockOvenWall extends Block implements IItemSize
 
     @Override
     @SuppressWarnings("deprecation")
-    @Nonnull
     public EnumBlockRenderType getRenderType(IBlockState state)
     {
         return EnumBlockRenderType.MODEL;

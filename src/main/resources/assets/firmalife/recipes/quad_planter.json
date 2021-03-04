@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X",
+    "Y"
+  ],
+  "key": {
+    "X": {
+      "type": "forge:ore_dict",
+      "ore": "dirt"
+    },
+    "Y": {
+      "item": "minecraft:flower_pot"
+    }
+  },
+  "result": {
+    "item": "firmalife:quad_planter",
+    "count": 1
+  }
+}

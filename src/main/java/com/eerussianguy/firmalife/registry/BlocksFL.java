@@ -15,7 +15,6 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 import com.eerussianguy.firmalife.blocks.*;
 import com.eerussianguy.firmalife.init.FruitTreeFL;
-import com.eerussianguy.firmalife.init.PlantsFL;
 import com.eerussianguy.firmalife.init.StemCrop;
 import com.eerussianguy.firmalife.items.ItemBlockRot;
 import com.eerussianguy.firmalife.te.*;
@@ -54,7 +53,11 @@ public class BlocksFL
     @GameRegistry.ObjectHolder("cinnamon_sapling")
     public static final BlockCinnamonSapling CINNAMON_SAPLING = Helpers.getNull();
     @GameRegistry.ObjectHolder("greenhouse_door")
-    public static final BlockGreenhouseDoor BLOCK_GREENHOUSE_DOOR = Helpers.getNull();
+    public static final BlockGreenhouseDoor GREENHOUSE_DOOR = Helpers.getNull();
+    @GameRegistry.ObjectHolder("greenhouse_roof")
+    public static final BlockGreenhouseRoof GREENHOUSE_ROOF = Helpers.getNull();
+    @GameRegistry.ObjectHolder("greenhouse_wall")
+    public static final BlockGreenhouseWall GREENHOUSE_WALL = Helpers.getNull();
     @GameRegistry.ObjectHolder("quad_planter")
     public static final BlockQuadPlanter QUAD_PLANTER = Helpers.getNull();
 
@@ -67,7 +70,6 @@ public class BlocksFL
     private static ImmutableList<BlockFruitFenceGate> allFruitFenceGates = Helpers.getNull();
     private static ImmutableList<BlockFruitDoor> allFruitDoors = Helpers.getNull();
     private static ImmutableList<BlockFruitTrapDoor> allFruitTrapDoors = Helpers.getNull();
-    private static ImmutableList<BlockPlanter> allPlanters = Helpers.getNull();
     private static ImmutableList<BlockFluidBase> allFluidBlocks = Helpers.getNull();
     private static ImmutableList<BlockCropDead> allDeadCrops = Helpers.getNull();
     private static ImmutableList<BlockStemCrop> allCropBlocks = Helpers.getNull();
@@ -116,11 +118,6 @@ public class BlocksFL
         return allCropBlocks;
     }
 
-    public static ImmutableList<BlockPlanter> getAllPlanters()
-    {
-        return allPlanters;
-    }
-
     public static ImmutableList<BlockFluidBase> getAllFluidBlocks()
     {
         return allFluidBlocks;
@@ -149,7 +146,6 @@ public class BlocksFL
         ImmutableList.Builder<BlockFruitTrapDoor> fruitTrapdoors = ImmutableList.builder();
         ImmutableList.Builder<BlockCropDead> deadCrops = ImmutableList.builder();
         ImmutableList.Builder<BlockStemCrop> cropBlocks = ImmutableList.builder();
-        ImmutableList.Builder<BlockPlanter> planters = ImmutableList.builder();
         ImmutableList.Builder<BlockJackOLantern> jackOLanterns = ImmutableList.builder();
 
         for (FruitTreeFL fruitTree : FruitTreeFL.values())
@@ -190,7 +186,6 @@ public class BlocksFL
         normalIBs.add(register(r, "greenhouse_roof", new BlockGreenhouseRoof(), CT_DECORATIONS));
         normalIBs.add(register(r, "climate_station", new BlockClimateStation(), CT_DECORATIONS));
         normalIBs.add(register(r, "quad_planter", new BlockQuadPlanter(), CT_DECORATIONS));
-        planters.add(register(r, "vanilla_planter", new BlockPlanter(() -> ItemsFL.VANILLA, PlantsFL.VANILLA_PLANT, 1), CT_FLORA));
         register(r, "greenhouse_door", new BlockGreenhouseDoor(), CT_DECORATIONS);
 
         for (BlockJackOLantern.Carving carving : BlockJackOLantern.Carving.values())
@@ -245,10 +240,6 @@ public class BlocksFL
 
         allFruitTrapDoors = fruitTrapdoors.build();
         allFruitTrapDoors.forEach((x) -> {
-            IBs.add(new ItemBlockTFC(x));
-        });
-        allPlanters = planters.build();
-        allPlanters.forEach((x) -> {
             IBs.add(new ItemBlockTFC(x));
         });
         allIBs = IBs.build();

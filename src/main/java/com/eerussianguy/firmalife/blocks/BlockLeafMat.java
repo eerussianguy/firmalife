@@ -1,7 +1,9 @@
 package com.eerussianguy.firmalife.blocks;
 
+import java.util.Random;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -25,14 +27,17 @@ import net.minecraftforge.items.ItemHandlerHelper;
 
 import com.eerussianguy.firmalife.recipe.DryingRecipe;
 import com.eerussianguy.firmalife.te.TELeafMat;
+import mcp.MethodsReturnNonnullByDefault;
 import net.dries007.tfc.api.capability.size.IItemSize;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
 import net.dries007.tfc.util.Helpers;
 
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
 public class BlockLeafMat extends Block implements IItemSize
 {
-    public static final AxisAlignedBB LEAFMAT = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.125D, 1.0D);
+    public static final AxisAlignedBB MAT_SHAPE = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.125D, 1.0D);
 
     public BlockLeafMat()
     {
@@ -41,6 +46,7 @@ public class BlockLeafMat extends Block implements IItemSize
         setResistance(1.0F);
         setLightOpacity(0);
         setSoundType(SoundType.PLANT);
+        setTickRandomly(true);
     }
 
     @Override
@@ -80,6 +86,19 @@ public class BlockLeafMat extends Block implements IItemSize
     }
 
     @Override
+    public void randomTick(World worldIn, BlockPos pos, IBlockState state, Random random)
+    {
+        if (worldIn.isRainingAt(pos.up()))
+        {
+            TELeafMat te = Helpers.getTE(worldIn, pos, TELeafMat.class);
+            if (te != null)
+            {
+                te.rain();
+            }
+        }
+    }
+
+    @Override
     public void breakBlock(World world, BlockPos pos, IBlockState state)
     {
         TELeafMat te = Helpers.getTE(world, pos, TELeafMat.class);
@@ -116,7 +135,7 @@ public class BlockLeafMat extends Block implements IItemSize
     @Nonnull
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        return LEAFMAT;
+        return MAT_SHAPE;
     }
 
     @Override

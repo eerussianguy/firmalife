@@ -180,6 +180,7 @@ public class TEQuadPlanter extends TEInventory implements ITickable, ICalendarTi
             stages[slot] = 0;
             resetCounter();
             markForSync();
+            markForBlockUpdate();
             return true;
         }
         return false;

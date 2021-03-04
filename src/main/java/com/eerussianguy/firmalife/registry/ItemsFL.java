@@ -117,6 +117,18 @@ public class ItemsFL
     public static final ItemFoodFL TOMATO_SAUCE = Helpers.getNull();
     @GameRegistry.ObjectHolder("toast")
     public static final ItemFoodFL TOAST = Helpers.getNull();
+    @GameRegistry.ObjectHolder("white_chocolate_blend")
+    public static final ItemMisc WHITE_BLEND = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dark_chocolate_blend")
+    public static final ItemMisc DARK_BLEND = Helpers.getNull();
+    @GameRegistry.ObjectHolder("milk_chocolate_blend")
+    public static final ItemMisc MILK_BLEND = Helpers.getNull();
+    @GameRegistry.ObjectHolder("white_chocolate")
+    public static final ItemFoodFL WHITE_CHOCOLATE = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dark_chocolate")
+    public static final ItemFoodFL DARK_CHOCOLATE = Helpers.getNull();
+    @GameRegistry.ObjectHolder("milk_chocolate")
+    public static final ItemFoodFL MILK_CHOCOLATE = Helpers.getNull();
 
     private static ImmutableList<Item> allEasyItems;
 
@@ -242,7 +254,7 @@ public class ItemsFL
         easyItems.add(register(r, "cinnamon_bark", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
         easyItems.add(register(r, "cinnamon", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
         easyItems.add(register(r, "ground_cinnamon", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
-        easyItems.add(register(r, "greenhouse_door", new ItemGreenhouseDoor(BlocksFL.BLOCK_GREENHOUSE_DOOR), CT_DECORATIONS));
+        easyItems.add(register(r, "greenhouse_door", new ItemGreenhouseDoor(BlocksFL.GREENHOUSE_DOOR), CT_DECORATIONS));
 
         ItemMisc cpole = new ItemMisc(Size.SMALL, Weight.MEDIUM);
         easyItems.add(register(r, "cinnamon_pole", cpole, CT_MISC));
