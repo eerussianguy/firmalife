@@ -39,6 +39,9 @@ public class ConfigFL
         @Config.Comment("Compatibility Settings")
         @Config.LangKey("config." + MOD_ID + ".general.compat")
         public static final CompatCFG COMPAT = new CompatCFG();
+        @Config.Comment("Balance Settings")
+        @Config.LangKey("config." + MOD_ID + ".general.balance")
+        public static final BalanceCFG BALANCE = new BalanceCFG();
 
         public static final class WorldgenCFG
         {
@@ -69,6 +72,13 @@ public class ConfigFL
             @Config.Comment("Enable logging of some actions Firmalife takes (such as recipe removals)")
             @Config.LangKey("config." + MOD_ID + "general.compat.logging")
             public boolean logging = true;
+        }
+
+        public static final class BalanceCFG
+        {
+            @Config.Comment("Require peel to take stuff out of the oven?")
+            @Config.LangKey("config." + MOD_ID + "general.balance.peelNeeded")
+            public boolean peelNeeded = true;
         }
     }
 }

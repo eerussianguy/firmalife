@@ -271,3 +271,6 @@ config.firmalife.general.compat.removeTFC.tooltip=Enables the removal of some TF
 
 config.firmalife.general.compat.logging=Enable extra logging?
 config.firmalife.general.compat.logging.tooltip=Enable logging of some actions Firmalife takes (such as recipe removals)
+
+config.firmalife.general.balance.peelNeeded=Peel needed?
+config.firmalife.general.balance.peelNeeded.tooltip=Peel needed to take stuff out of the oven?

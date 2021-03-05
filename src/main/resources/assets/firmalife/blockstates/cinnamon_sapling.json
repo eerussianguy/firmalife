@@ -10,13 +10,10 @@
   "variants": {
     "normal": [
       {
-	    "model": "builtin/generated",
-		"transform": "forge:default-item"
 	  }
     ],
     "inventory": {
-      "model": "builtin/generated",
-      "transform": "forge:default-item"
+      "model": "firmalife:item/cinnamon_sapling"
     }
   }
 }

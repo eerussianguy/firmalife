@@ -23,7 +23,7 @@ public enum Fruit
     ELDERBERRY(ItemFoodTFC.get(Food.ELDERBERRY), true, DRIED_FRUIT_CATEGORY),
     GOOSEBERRY(ItemFoodTFC.get(Food.GOOSEBERRY), true, DRIED_FRUIT_SATURATION),
     GREEN_APPLE(ItemFoodTFC.get(Food.GREEN_APPLE), true, DRIED_FRUIT_DECAY),
-    LEMON(ItemFoodTFC.get(Food.GREEN_APPLE), true, DRIED_FRUIT_DECAY),
+    LEMON(ItemFoodTFC.get(Food.LEMON), true, DRIED_FRUIT_DECAY),
     OLIVE(ItemFoodTFC.get(Food.OLIVE), true, DRIED_FRUIT_DECAY),
     ORANGE(ItemFoodTFC.get(Food.ORANGE), true, DRIED_FRUIT_DECAY),
     PEACH(ItemFoodTFC.get(Food.PEACH), true, DRIED_FRUIT_SATURATION),

@@ -3,6 +3,7 @@ package com.eerussianguy.firmalife.blocks;
 import java.util.Random;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
@@ -26,7 +27,9 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 
+import com.eerussianguy.firmalife.ConfigFL;
 import com.eerussianguy.firmalife.te.TEOven;
+import mcp.MethodsReturnNonnullByDefault;
 import net.dries007.tfc.api.capability.size.IItemSize;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
@@ -43,9 +46,10 @@ import static com.eerussianguy.firmalife.init.StatePropertiesFL.CURED;
 import static net.dries007.tfc.Constants.RNG;
 import static net.minecraft.block.BlockHorizontal.FACING;
 
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
 public class BlockOven extends Block implements ILightableBlock, IItemSize
 {
-
     public BlockOven()
     {
         super(Material.ROCK, MapColor.RED_STAINED_HARDENED_CLAY);
@@ -173,48 +177,27 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
         {
             if (!state.getValue(LIT))
             {
-                ItemStack held = player.getHeldItem(hand); // in order to light, it doesn't need to be cured, but the structure should exist
+                ItemStack held = player.getHeldItem(hand);
+                TEOven te = Helpers.getTE(world, pos, TEOven.class);
+                if (te == null) return false;
                 if (isValidHorizontal(world, pos, false) && hasChimney(world, pos, false) && ItemFireStarter.onIgnition(held))
                 {
-                    if (ItemFireStarter.onIgnition(held))
-                    {
-                        TFCTriggers.LIT_TRIGGER.trigger((EntityPlayerMP) player, state.getBlock()); // Trigger lit block
-                        TEOven te = Helpers.getTE(world, pos, TEOven.class);
-                        if (te != null)
-                        {
-                            world.setBlockState(pos, state.withProperty(LIT, true));
-                            te.light();
-                        }
-                    }
+                    TFCTriggers.LIT_TRIGGER.trigger((EntityPlayerMP) player, state.getBlock()); // Trigger lit block
+                    world.setBlockState(pos, state.withProperty(LIT, true));
+                    te.light();
                     return true;
                 }
-                TEOven te = Helpers.getTE(world, pos, TEOven.class);
                 IItemHandler inventory = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
-                if (!player.isSneaking() && inventory != null && !OreDictionaryHelper.doesStackMatchOre(held, "peel") && !held.isEmpty())
+                if (inventory == null) return false;
+                boolean handEmpty = held.isEmpty();
+                if (!handEmpty && !player.isSneaking() && !OreDictionaryHelper.doesStackMatchOre(held, "peel"))
                 {
-                    for (int i = 0; i < 3; i++) // put stuff in the oven, will try every slot
-                    {
-                        ItemStack slotStack = inventory.getStackInSlot(i);
-                        if (i < 2 && FuelManager.isItemFuel(held) && slotStack.isEmpty()) // fuel slots
-                        {
-                            inventory.insertItem(i, held, false);
-                            if (!player.isCreative())
-                                held.shrink(1);
-                            te.markForSync();
-                            return true;
-                        }
-                        else if (i == 2 && slotStack.isEmpty()) // this is the recipe slot
-                        {
-                            inventory.insertItem(i, held, false);
-                            if (!player.isCreative())
-                                held.shrink(1);
-                            te.markForSync();
-                            return true;
-                        }
-                    }
+                    ItemStack leftover = ItemHandlerHelper.insertItem(inventory, held.splitStack(1), false);
+                    ItemHandlerHelper.giveItemToPlayer(player, leftover);
+                    te.markForSync();
                     return true;
                 }
-                else if (inventory != null && (held.isEmpty() || OreDictionaryHelper.doesStackMatchOre(held, "peel")))
+                else if (handEmpty || OreDictionaryHelper.doesStackMatchOre(held, "peel"))
                 {
                     for (int i = 2; i >= 0; i--) // take stuff out. starts with the main slot and cycles backwards
                     {
@@ -224,7 +207,7 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
                             ItemStack takeStack = inventory.extractItem(i, 1, false);
                             ItemHandlerHelper.giveItemToPlayer(player, takeStack);
                             te.markForSync();
-                            if (!OreDictionaryHelper.doesStackMatchOre(held, "peel") && state.getValue(CURED))
+                            if (ConfigFL.General.BALANCE.peelNeeded && !OreDictionaryHelper.doesStackMatchOre(held, "peel") && state.getValue(CURED))
                                 player.attackEntityFrom(DamageSourcesTFC.GRILL, 2.0F); // damage player if they don't use peel
                             return true;
                         }

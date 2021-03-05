@@ -94,11 +94,7 @@ public class TEOven extends TEInventory implements ITickable
     @Override
     public boolean isItemValid(int slot, ItemStack stack)
     {
-        if (slot == SLOT_FUEL_1 || slot == SLOT_FUEL_2)
-        {
-            return FuelManager.isItemFuel(stack);
-        }
-        return true;
+        return (slot < SLOT_MAIN) == FuelManager.isItemFuel(stack);
     }
 
     @Override

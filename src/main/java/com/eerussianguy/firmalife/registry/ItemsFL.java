@@ -129,6 +129,10 @@ public class ItemsFL
     public static final ItemFoodFL DARK_CHOCOLATE = Helpers.getNull();
     @GameRegistry.ObjectHolder("milk_chocolate")
     public static final ItemFoodFL MILK_CHOCOLATE = Helpers.getNull();
+    @GameRegistry.ObjectHolder("quad_planter")
+    public static final ItemBlock ITEM_QUAD_PLANTER = Helpers.getNull();
+    @GameRegistry.ObjectHolder("cinnamon_sapling")
+    public static final ItemBlock ITEM_CINNAMON_SAPLING = Helpers.getNull();
 
     private static ImmutableList<Item> allEasyItems;
 
@@ -249,12 +253,13 @@ public class ItemsFL
         easyItems.add(register(r, "fruit_leaf", fruit_leaf, CT_MISC));
         OreDictionary.registerOre("fruitLeaf", fruit_leaf); //todo: Use our OreDict helper
 
-        easyItems.add(register(r, "planter", new ItemMisc(Size.NORMAL, Weight.MEDIUM), CT_MISC));
         easyItems.add(register(r, "vanilla", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
         easyItems.add(register(r, "cinnamon_bark", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
         easyItems.add(register(r, "cinnamon", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
         easyItems.add(register(r, "ground_cinnamon", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
         easyItems.add(register(r, "greenhouse_door", new ItemGreenhouseDoor(BlocksFL.GREENHOUSE_DOOR), CT_DECORATIONS));
+        easyItems.add(register(r, "quad_planter", new ItemBlock(BlocksFL.QUAD_PLANTER), CT_DECORATIONS));
+        easyItems.add(register(r, "cinnamon_sapling", new ItemBlock(BlocksFL.CINNAMON_SAPLING), CT_DECORATIONS));
 
         ItemMisc cpole = new ItemMisc(Size.SMALL, Weight.MEDIUM);
         easyItems.add(register(r, "cinnamon_pole", cpole, CT_MISC));

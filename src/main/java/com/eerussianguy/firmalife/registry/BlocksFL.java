@@ -74,6 +74,7 @@ public class BlocksFL
     private static ImmutableList<BlockCropDead> allDeadCrops = Helpers.getNull();
     private static ImmutableList<BlockStemCrop> allCropBlocks = Helpers.getNull();
     private static ImmutableList<BlockJackOLantern> allJackOLanterns = Helpers.getNull();
+    private static ImmutableList<ItemBlock> allInventoryIBs = Helpers.getNull();
 
     public static ImmutableList<ItemBlock> getAllIBs()
     {
@@ -128,6 +129,10 @@ public class BlocksFL
         return allJackOLanterns;
     }
 
+    public static ImmutableList<ItemBlock> getAllInventoryIBs()
+    {
+        return allInventoryIBs;
+    }
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event)
@@ -147,6 +152,7 @@ public class BlocksFL
         ImmutableList.Builder<BlockCropDead> deadCrops = ImmutableList.builder();
         ImmutableList.Builder<BlockStemCrop> cropBlocks = ImmutableList.builder();
         ImmutableList.Builder<BlockJackOLantern> jackOLanterns = ImmutableList.builder();
+        ImmutableList.Builder<ItemBlock> invIBs = ImmutableList.builder();
 
         for (FruitTreeFL fruitTree : FruitTreeFL.values())
         {
@@ -181,11 +187,11 @@ public class BlocksFL
         normalIBs.add(register(r, "leaf_mat", new BlockLeafMat(), CT_DECORATIONS));
         normalIBs.add(register(r, "cinnamon_log", new BlockCinnamonLog(), CT_WOOD));
         normalIBs.add(register(r, "cinnamon_leaves", new BlockCinnamonLeaves(), CT_WOOD));
-        normalIBs.add(register(r, "cinnamon_sapling", new BlockCinnamonSapling(), CT_WOOD));
+        register(r, "cinnamon_sapling", new BlockCinnamonSapling(), CT_WOOD);
         normalIBs.add(register(r, "greenhouse_wall", new BlockGreenhouseWall(), CT_DECORATIONS));
         normalIBs.add(register(r, "greenhouse_roof", new BlockGreenhouseRoof(), CT_DECORATIONS));
         normalIBs.add(register(r, "climate_station", new BlockClimateStation(), CT_DECORATIONS));
-        normalIBs.add(register(r, "quad_planter", new BlockQuadPlanter(), CT_DECORATIONS));
+        register(r, "quad_planter", new BlockQuadPlanter(), CT_DECORATIONS);
         register(r, "greenhouse_door", new BlockGreenhouseDoor(), CT_DECORATIONS);
 
         for (BlockJackOLantern.Carving carving : BlockJackOLantern.Carving.values())
@@ -212,6 +218,7 @@ public class BlocksFL
         allNormalIBs.forEach((x) -> {
             IBs.add(new ItemBlockTFC(x));
         });
+        allInventoryIBs = invIBs.build();
         allFoodIBs = foodIBs.build();
         allFoodIBs.forEach((x) -> {
             IBs.add(new ItemBlockRot(x));
@@ -226,7 +233,9 @@ public class BlocksFL
         });
         allFruitSaps = fruitSaps.build();
         allFruitSaps.forEach((x) -> {
-            IBs.add(new ItemBlockTFC(x));
+            ItemBlock ib = new ItemBlockTFC(x);
+            IBs.add(ib);
+            invIBs.add(ib);
         });
         allFruitFences = fruitFences.build();
         allFruitFences.forEach((x) -> {

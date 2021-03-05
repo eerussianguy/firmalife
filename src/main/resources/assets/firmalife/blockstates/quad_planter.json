@@ -20,6 +20,7 @@
 			}
 		},
 		"inventory": [{
+			"model": "firmalife:item/quad_planter"
 		}],
 		"normal": [{
 		   "transform": "forge:default-block",
