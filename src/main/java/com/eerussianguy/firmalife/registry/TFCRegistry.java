@@ -87,7 +87,7 @@ public class TFCRegistry
         int hour = ICalendar.TICKS_IN_HOUR;
         event.getRegistry().registerAll(
             new BarrelRecipe(IIngredient.of(FluidsTFC.FRESH_WATER.get(), 100), IIngredient.of("fruitDry"), new FluidStack(FluidsFL.YEAST_STARTER.get(), 100), ItemStack.EMPTY, hour * 96).setRegistryName("yeast_from_fruit"),
-            new BarrelRecipe(IIngredient.of(FluidsFL.YEAST_STARTER.get(), 100), IIngredient.of("flour"), new FluidStack(FluidsFL.YEAST_STARTER.get(), 400), ItemStack.EMPTY, hour * 12).setRegistryName("yeast_multiplication")
+            new BarrelRecipe(IIngredient.of(FluidsFL.YEAST_STARTER.get(), 100), IIngredient.of("flour"), new FluidStack(FluidsFL.YEAST_STARTER.get(), 600), ItemStack.EMPTY, hour * 12).setRegistryName("yeast_multiplication")
         );
     }
 
