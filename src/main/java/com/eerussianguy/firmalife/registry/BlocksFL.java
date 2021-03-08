@@ -195,7 +195,9 @@ public class BlocksFL
         register(r, "quad_planter", new BlockQuadPlanter(), CT_DECORATIONS);
         register(r, "greenhouse_door", new BlockGreenhouseDoor(), CT_DECORATIONS);
 
-        normalIBs.add(register(r, "pineapple_bush", new BlockBerryBush(BushFL.PINEAPPLE), CT_FLORA));
+        for(BushFL bushFL: BushFL.values()) {
+            normalIBs.add(register(r, bushFL.name().toLowerCase()+"_bush", new BlockBerryBush(bushFL), CT_FLORA));
+        }
 
         for (BlockJackOLantern.Carving carving : BlockJackOLantern.Carving.values())
         {
