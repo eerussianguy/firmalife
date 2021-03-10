@@ -6,9 +6,10 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-@Mod.EventBusSubscriber(Side.CLIENT)
+@Mod.EventBusSubscriber(Side.SERVER)
+@SideOnly(Side.SERVER)
 @SuppressWarnings("unused")
-public class ClientProxy extends CommonProxy
+public class ServerProxy extends CommonProxy
 {
     @Override
     public void preInit(FMLPreInitializationEvent e)

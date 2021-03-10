@@ -149,7 +149,7 @@ public class TEOven extends TEInventory implements ITickable
 
     private boolean hasFuel()
     {
-        return !inventory.getStackInSlot(SLOT_FUEL_1).isEmpty() && !inventory.getStackInSlot(SLOT_FUEL_2).isEmpty();
+        return FuelManager.isItemFuel(inventory.getStackInSlot(SLOT_FUEL_1)) && FuelManager.isItemFuel(inventory.getStackInSlot(SLOT_FUEL_2));
     }
 
     private void setDuration()
