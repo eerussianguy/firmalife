@@ -2,7 +2,6 @@ package com.eerussianguy.firmalife.compat.crafttweaker;
 
 import com.blamejared.mtlib.helpers.InputHelper;
 import com.eerussianguy.firmalife.init.RegistriesFL;
-import com.eerussianguy.firmalife.recipe.CrackingRecipe;
 import com.eerussianguy.firmalife.recipe.DryingRecipe;
 import crafttweaker.CraftTweakerAPI;
 import crafttweaker.IAction;
