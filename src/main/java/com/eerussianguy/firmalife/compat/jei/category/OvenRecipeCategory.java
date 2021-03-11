@@ -1,4 +1,4 @@
-package com.eerussianguy.firmalife.jei.category;
+package com.eerussianguy.firmalife.compat.jei.category;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;

@@ -1,4 +1,4 @@
-package com.eerussianguy.firmalife.jei;
+package com.eerussianguy.firmalife.compat.jei;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,10 +9,10 @@ import net.minecraft.util.text.TextComponentTranslation;
 
 import com.eerussianguy.firmalife.init.KnappingFL;
 import com.eerussianguy.firmalife.init.RegistriesFL;
-import com.eerussianguy.firmalife.jei.category.CastingCategoryFL;
-import com.eerussianguy.firmalife.jei.category.DryingRecipeCategory;
-import com.eerussianguy.firmalife.jei.category.OvenRecipeCategory;
-import com.eerussianguy.firmalife.jei.wrapper.*;
+import com.eerussianguy.firmalife.compat.jei.category.CastingCategoryFL;
+import com.eerussianguy.firmalife.compat.jei.category.DryingRecipeCategory;
+import com.eerussianguy.firmalife.compat.jei.category.OvenRecipeCategory;
+import com.eerussianguy.firmalife.compat.jei.wrapper.*;
 import com.eerussianguy.firmalife.registry.BlocksFL;
 import com.eerussianguy.firmalife.registry.ItemsFL;
 import mezz.jei.api.IModPlugin;

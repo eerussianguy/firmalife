@@ -60,7 +60,10 @@ public class CommonEventHandlerFL
         }
         else if(block instanceof BlockBerryBush) {
             if(((BlockBerryBush)block).getBush() == BushFL.PINEAPPLE) { // check if it's a pineapple bush
-                event.getDrops().add(new ItemStack(ItemsFL.PINEAPPLE, Constants.RNG.nextInt(3)));
+                // add the drop if it's fruiting
+                if(block.getDefaultState().getValue(BlockBerryBush.FRUITING)) {
+                    event.getDrops().add(new ItemStack(ItemsFL.PINEAPPLE_FIBER, 1+Constants.RNG.nextInt(3)));
+                }
             }
         }
         else if (block instanceof BlockFruitTreeTrunk) //todo: implement this without strings
