@@ -42,18 +42,20 @@ public class CTCracking {
 
         CrackingRecipe recipe = RegistriesFL.CRACKING.getValue(new ResourceLocation(recipe_name));
 
-        CraftTweakerAPI.apply(new IAction() {
-            @Override
-            public void apply() {
-                IForgeRegistryModifiable<CrackingRecipe> CRACKING = (IForgeRegistryModifiable<CrackingRecipe>) RegistriesFL.CRACKING;
-                CRACKING.remove(recipe.getRegistryName());
-            }
+        if(recipe != null) {
+            CraftTweakerAPI.apply(new IAction() {
+                @Override
+                public void apply() {
+                    IForgeRegistryModifiable<CrackingRecipe> CRACKING = (IForgeRegistryModifiable<CrackingRecipe>) RegistriesFL.CRACKING;
+                    CRACKING.remove(recipe.getRegistryName());
+                }
 
-            @Override
-            public String describe() {
-                return "Removing Cracking recipe " + recipe_name;
-            }
-        });
+                @Override
+                public String describe() {
+                    return "Removing Cracking recipe " + recipe_name;
+                }
+            });
+        }
     }
 
     @ZenMethod
@@ -76,7 +78,7 @@ public class CTCracking {
 
                 @Override
                 public String describe() {
-                    return "Removing recipe for " + output.getDisplayName();
+                    return "Removing recipe with output " + output.getDisplayName();
                 }
             });
         }
