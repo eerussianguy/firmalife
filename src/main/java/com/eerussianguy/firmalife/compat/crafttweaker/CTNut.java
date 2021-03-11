@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class CTNut {
 
     @ZenMethod
-    public static void addRecipe(IItemStack log, IItemStack leave, IItemStack output) {
+    public static void addRecipe(String recipe_name, IItemStack log, IItemStack leave, IItemStack output) {
 
         if (!(InputHelper.isABlock(log) && InputHelper.isABlock(leave))) throw new IllegalArgumentException("Input is not a block!");
 
@@ -34,7 +34,7 @@ public class CTNut {
             Block log_block = ((ItemBlock) log_stack.getItem()).getBlock();
             Block leave_block = ((ItemBlock) leave_stack.getItem()).getBlock();
 
-            NutRecipe recipe = new NutRecipe(log_block, leave_block, InputHelper.toStack(output));
+            NutRecipe recipe = new NutRecipe(log_block, leave_block, InputHelper.toStack(output)).setRegistryName(recipe_name);
             CraftTweakerAPI.apply(new IAction() {
                 @Override
                 public void apply() {

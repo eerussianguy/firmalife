@@ -22,8 +22,8 @@ import java.util.ArrayList;
 public class CTDrying {
 
     @ZenMethod
-    public static void addRecipe(IIngredient input, IItemStack output, int duration) {
-        DryingRecipe recipe = new DryingRecipe(CTHelper.getInternalIngredient(input), InputHelper.toStack(output), duration);
+    public static void addRecipe(String recipe_name, IIngredient input, IItemStack output, int duration) {
+        DryingRecipe recipe = new DryingRecipe(CTHelper.getInternalIngredient(input), InputHelper.toStack(output), duration).setRegistryName(recipe_name);
         CraftTweakerAPI.apply(new IAction() {
             @Override
             public void apply() {

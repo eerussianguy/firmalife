@@ -3,6 +3,8 @@ package com.eerussianguy.firmalife.compat.crafttweaker;
 import com.blamejared.mtlib.helpers.InputHelper;
 import com.eerussianguy.firmalife.init.RegistriesFL;
 import com.eerussianguy.firmalife.recipe.CrackingRecipe;
+import com.eerussianguy.firmalife.recipe.DryingRecipe;
+import com.eerussianguy.firmalife.recipe.OvenRecipe;
 import crafttweaker.CraftTweakerAPI;
 import crafttweaker.IAction;
 import crafttweaker.annotations.ZenRegister;
@@ -17,22 +19,22 @@ import stanhebben.zenscript.annotations.ZenMethod;
 
 import java.util.ArrayList;
 
-@ZenClass("mods.firmalife.Cracking")
+@ZenClass("mods.firmalife.Oven")
 @ZenRegister
-public class CTCracking {
+public class CTOven {
 
     @ZenMethod
-    public static void addRecipe(String recipe_name, IIngredient input, IItemStack output, float chance) {
-        CrackingRecipe recipe = new CrackingRecipe(CTHelper.getInternalIngredient(input), InputHelper.toStack(output), chance).setRegistryName(recipe_name);
+    public static void addRecipe(String recipe_name,IIngredient input, IItemStack output, int duration) {
+        OvenRecipe recipe = new OvenRecipe(CTHelper.getInternalIngredient(input), InputHelper.toStack(output), duration).setRegistryName(recipe_name);
         CraftTweakerAPI.apply(new IAction() {
             @Override
             public void apply() {
-                RegistriesFL.CRACKING.register(recipe);
+                RegistriesFL.OVEN.register(recipe);
             }
 
             @Override
             public String describe() {
-                return "Adding Cracking recipe " +recipe.getRegistryName().toString();
+                return "Adding Oven recipe " + recipe_name;
             }
         });
     }
@@ -40,19 +42,19 @@ public class CTCracking {
     @ZenMethod
     public static void removeRecipe(String recipe_name) {
 
-        CrackingRecipe recipe = RegistriesFL.CRACKING.getValue(new ResourceLocation(recipe_name));
+        OvenRecipe recipe = RegistriesFL.OVEN.getValue(new ResourceLocation(recipe_name));
 
         if(recipe != null) {
             CraftTweakerAPI.apply(new IAction() {
                 @Override
                 public void apply() {
-                    IForgeRegistryModifiable<CrackingRecipe> CRACKING = (IForgeRegistryModifiable<CrackingRecipe>) RegistriesFL.CRACKING;
-                    CRACKING.remove(recipe.getRegistryName());
+                    IForgeRegistryModifiable<OvenRecipe> Oven = (IForgeRegistryModifiable<OvenRecipe>) RegistriesFL.OVEN;
+                    Oven.remove(recipe.getRegistryName());
                 }
 
                 @Override
                 public String describe() {
-                    return "Removing Cracking recipe " + recipe_name;
+                    return "Removing Oven recipe " + recipe_name;
                 }
             });
         }
@@ -61,24 +63,24 @@ public class CTCracking {
     @ZenMethod
     public static void removeRecipe(IItemStack output) {
         if (output == null) throw new IllegalArgumentException("Output not allowed to be empty");
-        ArrayList<CrackingRecipe> removeList = new ArrayList<>();
+        ArrayList<OvenRecipe> removeList = new ArrayList<>();
 
-        RegistriesFL.CRACKING.getValuesCollection()
+        RegistriesFL.OVEN.getValuesCollection()
                 .stream()
                 .filter(x -> x.getOutputItem(ItemStack.EMPTY).isItemEqual(InputHelper.toStack(output)))
                 .forEach(removeList::add);
 
-        for(CrackingRecipe recipe : removeList) {
+        for(OvenRecipe recipe : removeList) {
             CraftTweakerAPI.apply(new IAction() {
                 @Override
                 public void apply() {
-                    IForgeRegistryModifiable<CrackingRecipe> CRACKING = (IForgeRegistryModifiable<CrackingRecipe>) RegistriesFL.CRACKING;
-                    CRACKING.remove(recipe.getRegistryName());
+                    IForgeRegistryModifiable<OvenRecipe> Oven = (IForgeRegistryModifiable<OvenRecipe>) RegistriesFL.OVEN;
+                    Oven.remove(recipe.getRegistryName());
                 }
 
                 @Override
                 public String describe() {
-                    return "Removing Cracking recipe for output " + output.getDisplayName();
+                    return "Removing Oven recipe for output " + output.getDisplayName();
                 }
             });
         }
