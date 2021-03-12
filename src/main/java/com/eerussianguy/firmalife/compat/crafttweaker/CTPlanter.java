@@ -2,9 +2,6 @@ package com.eerussianguy.firmalife.compat.crafttweaker;
 
 import com.blamejared.mtlib.helpers.InputHelper;
 import com.eerussianguy.firmalife.init.RegistriesFL;
-import com.eerussianguy.firmalife.recipe.CrackingRecipe;
-import com.eerussianguy.firmalife.recipe.DryingRecipe;
-import com.eerussianguy.firmalife.recipe.OvenRecipe;
 import com.eerussianguy.firmalife.recipe.PlanterRecipe;
 import crafttweaker.CraftTweakerAPI;
 import crafttweaker.IAction;
@@ -25,8 +22,8 @@ import java.util.ArrayList;
 public class CTPlanter {
 
     @ZenMethod
-    public static void addRecipe(String recipe_name,IIngredient input, IItemStack output, int stage) {
-        PlanterRecipe recipe = new PlanterRecipe(CTHelper.getInternalIngredient(input), InputHelper.toStack(output), stage).setRegistryName(recipe_name);
+    public static void addRecipe(String recipe_name,IIngredient input, IItemStack output, int stage, boolean large) {
+        PlanterRecipe recipe = new PlanterRecipe(CTHelper.getInternalIngredient(input), InputHelper.toStack(output), stage, large).setRegistryName(recipe_name);
         CraftTweakerAPI.apply(new IAction() {
             @Override
             public void apply() {
