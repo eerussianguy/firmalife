@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X",
+    "Y"
+  ],
+  "key": {
+    "X": {
+      "item": "firmalife:quad_planter"
+    },
+    "Y": {
+      "item": "minecraft:flower_pot"
+    }
+  },
+  "result": {
+    "item": "firmalife:large_planter",
+    "count": 1
+  }
+}

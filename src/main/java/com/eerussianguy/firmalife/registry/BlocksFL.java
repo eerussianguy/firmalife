@@ -60,6 +60,8 @@ public class BlocksFL
     public static final BlockGreenhouseWall GREENHOUSE_WALL = Helpers.getNull();
     @GameRegistry.ObjectHolder("quad_planter")
     public static final BlockQuadPlanter QUAD_PLANTER = Helpers.getNull();
+    @GameRegistry.ObjectHolder("large_planter")
+    public static final BlockLargePlanter LARGE_PLANTER = Helpers.getNull();
 
     private static ImmutableList<ItemBlock> allIBs;
     private static ImmutableList<Block> allNormalIBs = Helpers.getNull();
@@ -192,6 +194,7 @@ public class BlocksFL
         normalIBs.add(register(r, "greenhouse_roof", new BlockGreenhouseRoof(), CT_DECORATIONS));
         normalIBs.add(register(r, "climate_station", new BlockClimateStation(), CT_DECORATIONS));
         register(r, "quad_planter", new BlockQuadPlanter(), CT_DECORATIONS);
+        register(r, "large_planter", new BlockLargePlanter(), CT_DECORATIONS);
         register(r, "greenhouse_door", new BlockGreenhouseDoor(), CT_DECORATIONS);
 
         for (BlockJackOLantern.Carving carving : BlockJackOLantern.Carving.values())
@@ -256,7 +259,7 @@ public class BlocksFL
         allCropBlocks = cropBlocks.build();
 
         register(TEOven.class, "oven");
-        register(TEQuadPlanter.class, "quad_planter");
+        register(TEPlanter.class, "quad_planter");
         register(TELeafMat.class, "leaf_mat");
         register(TEStemCrop.class, "stem_crop");
         register(TEClimateStation.class, "climate_station");

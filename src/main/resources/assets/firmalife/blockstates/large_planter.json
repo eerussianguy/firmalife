@@ -1,0 +1,30 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"textures": {
+			"soil": "firmalife:blocks/potting_soil_dry"
+			},
+		"model": "firmalife:large_planter"
+	},
+	"variants": {
+		"wet": {
+			"true": {
+				"textures": {
+					"soil": "firmalife:blocks/potting_soil_wet"
+				}
+			},
+			"false": {
+				"textures": {
+					"soil": "firmalife:blocks/potting_soil_dry"
+				}
+			}
+		},
+		"inventory": [{
+			"model": "firmalife:item/large_planter"
+		}],
+		"normal": [{
+		   "transform": "forge:default-block",
+		   "model": "firmalife:large_planter"
+		}]
+	}
+}

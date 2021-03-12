@@ -1,20 +1,12 @@
 package com.eerussianguy.firmalife.blocks;
 
-import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.material.MapColor;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -29,18 +21,13 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 
 import com.eerussianguy.firmalife.recipe.PlanterRecipe;
 import com.eerussianguy.firmalife.render.UnlistedCropProperty;
-import com.eerussianguy.firmalife.te.TEQuadPlanter;
+import com.eerussianguy.firmalife.te.TEPlanter;
 import mcp.MethodsReturnNonnullByDefault;
-import net.dries007.tfc.api.capability.size.IItemSize;
-import net.dries007.tfc.api.capability.size.Size;
-import net.dries007.tfc.api.capability.size.Weight;
 import net.dries007.tfc.client.gui.overlay.IHighlightHandler;
 import net.dries007.tfc.objects.fluids.FluidsTFC;
 import net.dries007.tfc.util.Helpers;
@@ -49,23 +36,23 @@ import static com.eerussianguy.firmalife.init.StatePropertiesFL.WET;
 
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
-public class BlockQuadPlanter extends Block implements IItemSize, IHighlightHandler
+public class BlockQuadPlanter extends BlockLargePlanter implements IHighlightHandler
 {
     public static final AxisAlignedBB QUAD_SHAPE = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.375D, 1.0D);
+    public static final UnlistedCropProperty CROP_1 = new UnlistedCropProperty(1);
+    public static final UnlistedCropProperty CROP_2 = new UnlistedCropProperty(2);
+    public static final UnlistedCropProperty CROP_3 = new UnlistedCropProperty(3);
+    public static final UnlistedCropProperty CROP_4 = new UnlistedCropProperty(4);
     private static final AxisAlignedBB[] HITBOXES = new AxisAlignedBB[] {
         new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.5D, 0.375D, 0.5D),// < <
         new AxisAlignedBB(0.5D, 0.0D, 0.5D, 1.0D, 0.375D, 1.0D),// > >
         new AxisAlignedBB(0.5D, 0.0D, 0.0D, 1.0D, 0.375D, 0.5D),// > <
         new AxisAlignedBB(0.0D, 0.0D, 0.5D, 0.5D, 0.375D, 1.0D) // < >
     };
-    public static final UnlistedCropProperty CROP_1 = new UnlistedCropProperty(1);
-    public static final UnlistedCropProperty CROP_2 = new UnlistedCropProperty(2);
-    public static final UnlistedCropProperty CROP_3 = new UnlistedCropProperty(3);
-    public static final UnlistedCropProperty CROP_4 = new UnlistedCropProperty(4);
 
     public BlockQuadPlanter()
     {
-        super(Material.PLANTS, MapColor.BROWN);
+        super();
         setHardness(1.0f);
         setResistance(1.0f);
         setLightOpacity(0);
@@ -88,10 +75,10 @@ public class BlockQuadPlanter extends Block implements IItemSize, IHighlightHand
                     {
                         if (stack.getFluid() == FluidsTFC.FRESH_WATER.get())
                         {
-                            TEQuadPlanter te = Helpers.getTE(world, pos, TEQuadPlanter.class);
+                            TEPlanter te = Helpers.getTE(world, pos, TEPlanter.class);
                             if (te != null)
                             {
-                                te.addWater(4);
+                                te.setWater(2);
                                 world.setBlockState(pos, state.withProperty(WET, true));
                                 return true;
                             }
@@ -101,7 +88,7 @@ public class BlockQuadPlanter extends Block implements IItemSize, IHighlightHand
                 }
             }
             int slot = getSlotForHit(hitX, hitZ);
-            TEQuadPlanter te = Helpers.getTE(world, pos, TEQuadPlanter.class);
+            TEPlanter te = Helpers.getTE(world, pos, TEPlanter.class);
             if (te != null)
             {
                 IItemHandler inventory = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
@@ -109,7 +96,7 @@ public class BlockQuadPlanter extends Block implements IItemSize, IHighlightHand
                 {
                     ItemStack slotStack = inventory.getStackInSlot(slot);
                     PlanterRecipe recipe = PlanterRecipe.get(held);
-                    if (slotStack.isEmpty() && !held.isEmpty() && recipe != null)
+                    if (slotStack.isEmpty() && !held.isEmpty() && recipe != null && !recipe.isLarge())
                     {
                         inventory.insertItem(slot, held, false);
                         if (!player.isCreative()) held.shrink(1);
@@ -124,6 +111,27 @@ public class BlockQuadPlanter extends Block implements IItemSize, IHighlightHand
             }
         }
         return true;
+    }
+
+    @Override
+    protected BlockStateContainer createBlockState()
+    {
+        IProperty[] listedProperties = new IProperty[] {WET};
+        IUnlistedProperty[] unlistedProperties = new IUnlistedProperty[] {CROP_1, CROP_2, CROP_3, CROP_4};
+        return new ExtendedBlockState(this, listedProperties, unlistedProperties);
+    }
+
+    @Override
+    public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos)
+    {
+        if (state instanceof IExtendedBlockState)
+        {
+            IExtendedBlockState extension = (IExtendedBlockState) state;
+            PlanterRecipe.PlantInfo[] plants = getCrops(world, pos);
+            extension = extension.withProperty(CROP_1, plants[0]).withProperty(CROP_2, plants[1]).withProperty(CROP_3, plants[2]).withProperty(CROP_4, plants[3]);
+            return extension;
+        }
+        return state;
     }
 
     /**
@@ -164,30 +172,9 @@ public class BlockQuadPlanter extends Block implements IItemSize, IHighlightHand
         }
     }
 
-    @Override
-    protected BlockStateContainer createBlockState()
-    {
-        IProperty[] listedProperties = new IProperty[] {WET};
-        IUnlistedProperty[] unlistedProperties = new IUnlistedProperty[] {CROP_1, CROP_2, CROP_3, CROP_4};
-        return new ExtendedBlockState(this, listedProperties, unlistedProperties);
-    }
-
-    @Override
-    public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos)
-    {
-        if (state instanceof IExtendedBlockState)
-        {
-            IExtendedBlockState extension = (IExtendedBlockState) state;
-            PlanterRecipe.PlantInfo[] plants = getCrops(world, pos);
-            extension = extension.withProperty(CROP_1, plants[0]).withProperty(CROP_2, plants[1]).withProperty(CROP_3, plants[2]).withProperty(CROP_4, plants[3]);
-            return extension;
-        }
-        return state;
-    }
-
     private PlanterRecipe.PlantInfo[] getCrops(IBlockAccess world, BlockPos pos)
     {
-        TEQuadPlanter te = Helpers.getTE(world, pos, TEQuadPlanter.class);
+        TEPlanter te = Helpers.getTE(world, pos, TEPlanter.class);
         PlanterRecipe.PlantInfo[] plants = new PlanterRecipe.PlantInfo[] {null, null, null, null};
         if (te != null)
         {
@@ -200,90 +187,14 @@ public class BlockQuadPlanter extends Block implements IItemSize, IHighlightHand
     }
 
     @Override
-    @SuppressWarnings("deprecation")
-    public IBlockState getStateFromMeta(int meta)
-    {
-        return this.getDefaultState().withProperty(WET, meta == 1);
-    }
-
-    @Override
-    public int getMetaFromState(IBlockState state)
-    {
-        return state.getValue(WET) ? 1 : 0;
-    }
-
-    @Override
-    @SuppressWarnings("deprecation")
-    public boolean isOpaqueCube(IBlockState state)
-    {
-        return false;
-    }
-
-    @Override
-    public Size getSize(ItemStack stack)
-    {
-        return Size.NORMAL;
-    }
-
-    @Override
-    public Weight getWeight(ItemStack stack)
-    {
-        return Weight.HEAVY;
-    }
-
-    @Override
-    @SuppressWarnings("deprecation")
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
         return QUAD_SHAPE;
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
     {
         return QUAD_SHAPE;
-    }
-
-    @Override
-    @SuppressWarnings("deprecation")
-    public EnumBlockRenderType getRenderType(IBlockState state)
-    {
-        return EnumBlockRenderType.MODEL;
-    }
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public BlockRenderLayer getRenderLayer()
-    {
-        return BlockRenderLayer.CUTOUT;
-    }
-
-    @SuppressWarnings("deprecation")
-    @Override
-    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block blockIn, BlockPos fromPos)
-    {
-        if (!canStay(world, pos))
-        {
-            world.destroyBlock(pos, true);
-        }
-    }
-
-    private boolean canStay(IBlockAccess world, BlockPos pos)
-    {
-        return world.getBlockState(pos.down()).getBlockFaceShape(world, pos.down(), EnumFacing.UP) == BlockFaceShape.SOLID;
-    }
-
-    @Override
-    public boolean hasTileEntity(IBlockState state)
-    {
-        return true;
-    }
-
-    @Nullable
-    @Override
-    public TileEntity createTileEntity(World world, IBlockState state)
-    {
-        return new TEQuadPlanter();
     }
 }
