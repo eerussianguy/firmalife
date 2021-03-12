@@ -230,6 +230,8 @@ tile.tfc.ore.halite.diorite.name=Diorite Halite
 tile.tfc.ore.halite.gabbro.name=Gabbro Halite
 tile.tfc.plants.vanilla.name=Wild Vanilla
 
+tile.firmalife.pineapple_bush.name=Pineapple Bush
+
 tile.firmalife.lit_pumpkin_none.name=Jack o'Lantern
 tile.firmalife.lit_pumpkin_circle.name=Jack o'Lantern
 tile.firmalife.lit_pumpkin_face.name=Jack o'Lantern
