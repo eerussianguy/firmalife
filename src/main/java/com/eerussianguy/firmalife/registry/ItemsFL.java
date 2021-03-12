@@ -132,11 +132,11 @@ public class ItemsFL
     @GameRegistry.ObjectHolder("pineapple")
     public static final ItemFoodFL PINEAPPLE = Helpers.getNull();
     @GameRegistry.ObjectHolder("pineapple_leather")
-    public static final ItemFoodFL PINEAPPLE_LEATHER = Helpers.getNull();
+    public static final ItemMisc PINEAPPLE_LEATHER = Helpers.getNull();
     @GameRegistry.ObjectHolder("pineapple_fiber")
-    public static final ItemFoodFL PINEAPPLE_FIBER = Helpers.getNull();
+    public static final ItemMisc PINEAPPLE_FIBER = Helpers.getNull();
     @GameRegistry.ObjectHolder("pineapple_yarn")
-    public static final ItemFoodFL PINEAPPLE_YARN = Helpers.getNull();
+    public static final ItemMisc PINEAPPLE_YARN = Helpers.getNull();
     @GameRegistry.ObjectHolder("quad_planter")
     public static final ItemBlock ITEM_QUAD_PLANTER = Helpers.getNull();
     @GameRegistry.ObjectHolder("cinnamon_sapling")
