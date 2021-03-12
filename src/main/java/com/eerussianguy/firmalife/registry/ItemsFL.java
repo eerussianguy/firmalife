@@ -269,10 +269,6 @@ public class ItemsFL
         easyItems.add(register(r, "quad_planter", new ItemBlock(BlocksFL.QUAD_PLANTER), CT_DECORATIONS));
         easyItems.add(register(r, "cinnamon_sapling", new ItemBlock(BlocksFL.CINNAMON_SAPLING), CT_DECORATIONS));
 
-        ItemMisc cpole = new ItemMisc(Size.SMALL, Weight.MEDIUM);
-        easyItems.add(register(r, "cinnamon_pole", cpole, CT_MISC));
-        OreDictionary.registerOre("poleCinnamon", cpole);
-
         easyItems.add(register(r, "pineapple", new ItemFoodFL(FoodDataFL.PINEAPPLE), CT_FOOD));
         easyItems.add(register(r, "pineapple_leather", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
         //todo: Use our OreDict helper
@@ -281,6 +277,10 @@ public class ItemsFL
         easyItems.add(register(r, "pineapple_yarn", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
         //todo: Use our OreDict helper
         OreDictionary.registerOre("string", PINEAPPLE_YARN);
+
+        ItemMisc cpole = new ItemMisc(Size.SMALL, Weight.MEDIUM);
+        easyItems.add(register(r, "cinnamon_pole", cpole, CT_MISC));
+        OreDictionary.registerOre("poleCinnamon", cpole);
 
         for (FruitTreeFL fruitTree : FruitTreeFL.values())
         {
