@@ -78,6 +78,10 @@ item.firmalife.rye_slice.name=Rye Slice
 item.firmalife.rice_slice.name=Rice Slice
 item.firmalife.garlic_bread.name=Garlic Bread
 item.firmalife.toast.name=Toast
+item.firmalife.pineapple.name=Pineapple
+item.firmalife.pineapple_leather.name=Pineapple Leather
+item.firmalife.pineapple_fiber.name=Pineapple Fiber
+item.firmalife.pineapple_yarn.name=Pineapple Yarn
 
 ### WOOD
 item.firmalife.banana_pole.name=Banana Pole
