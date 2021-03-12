@@ -23,7 +23,7 @@ import net.dries007.tfc.util.calendar.ICalendarTickable;
 /**
  * Evil combination of TEInventory and TECropBase because I can't code
  */
-public class TEQuadPlanter extends TEInventory implements ITickable, ICalendarTickable, IWaterable, IGreenhouseReceiver
+public class TEPlanter extends TEInventory implements ITickable, ICalendarTickable, IWaterable, IGreenhouseReceiver
 {
     protected int[] stages;
     private long lastUpdateTick;
@@ -31,7 +31,7 @@ public class TEQuadPlanter extends TEInventory implements ITickable, ICalendarTi
     private int waterUses;
     private boolean isClimateValid;
 
-    public TEQuadPlanter()
+    public TEPlanter()
     {
         super(4);
         stages = new int[] {0, 0, 0, 0};
@@ -124,6 +124,11 @@ public class TEQuadPlanter extends TEInventory implements ITickable, ICalendarTi
         {
             reduceCounter(growthTicks);
             int slot = Constants.RNG.nextInt(4);
+            if (waterUses < 0)
+            {
+                resetCounter();
+                return;
+            }
             if (canGrow(slot))
             {
                 grow(slot);
@@ -192,8 +197,8 @@ public class TEQuadPlanter extends TEInventory implements ITickable, ICalendarTi
     }
 
     @Override
-    public void addWater(int amount)
+    public void setWater(int amount)
     {
-        waterUses += amount;
+        waterUses = amount;
     }
 }

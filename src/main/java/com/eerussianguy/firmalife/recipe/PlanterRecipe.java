@@ -15,6 +15,7 @@ public class PlanterRecipe extends IForgeRegistryEntry.Impl<PlanterRecipe>
     protected IIngredient<ItemStack> inputItem;
     protected ItemStack outputItem;
     private final int stages;
+    private final boolean large;
 
     @Nullable
     public static PlanterRecipe get(ItemStack item)
@@ -27,11 +28,12 @@ public class PlanterRecipe extends IForgeRegistryEntry.Impl<PlanterRecipe>
         return recipe.stages;
     }
 
-    public PlanterRecipe(IIngredient<ItemStack> input, ItemStack output, int stages)
+    public PlanterRecipe(IIngredient<ItemStack> input, ItemStack output, int stages, boolean large)
     {
         this.inputItem = input;
         this.outputItem = output;
         this.stages = stages;
+        this.large = large;
 
         if (inputItem == null || outputItem == null)
         {
@@ -41,6 +43,11 @@ public class PlanterRecipe extends IForgeRegistryEntry.Impl<PlanterRecipe>
         {
             throw new IllegalArgumentException("Sorry, but crops need have to have stages.");
         }
+    }
+
+    public boolean isLarge()
+    {
+        return large;
     }
 
     @Nonnull

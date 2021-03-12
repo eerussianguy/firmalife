@@ -1,10 +1,15 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
+    "W",
     "X",
     "Y"
   ],
   "key": {
+    "W": {
+      "type": "forge:ore_dict",
+      "ore": "dustFertilizer"
+    },
     "X": {
       "type": "forge:ore_dict",
       "ore": "dirt"

@@ -7,6 +7,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @Mod.EventBusSubscriber(Side.CLIENT)
+@SuppressWarnings("unused")
 public class ClientProxy extends CommonProxy
 {
     @Override

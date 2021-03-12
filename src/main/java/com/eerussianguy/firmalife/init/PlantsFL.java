@@ -11,5 +11,5 @@ import static net.dries007.tfc.TerraFirmaCraft.MOD_ID;
 
 public class PlantsFL
 {
-    public static final Tree CINNAMON_TREE = new Tree(new ResourceLocation(TerraFirmaCraft.MOD_ID, "cinnamon"), new TreeGenSequoia(), 28, 35, 280, 400, 0, 0, 0, 4, 15, 4, false, null, false, 15, 0, 0);
+    public static final Tree CINNAMON_TREE = new Tree(new ResourceLocation(TerraFirmaCraft.MOD_ID, "cinnamon"), new TreeGenSequoia(), 28, 35, 280, 400, 0f, 1f, 0, 4, 15, 4, false, null, false, 15, 0, 0);
 }

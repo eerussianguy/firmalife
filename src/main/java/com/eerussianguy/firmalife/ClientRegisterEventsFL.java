@@ -75,6 +75,7 @@ public class ClientRegisterEventsFL
         ModelLoader.setCustomModelResourceLocation(ItemsFL.CRACKED_COCONUT, 0, new ModelResourceLocation(ItemsFL.CRACKED_COCONUT.getRegistryName(), "inventory"));
         ModelLoader.setCustomModelResourceLocation(ItemsFL.ITEM_CINNAMON_SAPLING, 0, new ModelResourceLocation(ItemsFL.ITEM_CINNAMON_SAPLING.getRegistryName().toString()));
         ModelLoader.setCustomModelResourceLocation(ItemsFL.ITEM_QUAD_PLANTER, 0, new ModelResourceLocation(ItemsFL.ITEM_QUAD_PLANTER.getRegistryName().toString(), "inventory"));
+        ModelLoader.setCustomModelResourceLocation(ItemsFL.ITEM_LARGE_PLANTER, 0, new ModelResourceLocation(ItemsFL.ITEM_LARGE_PLANTER.getRegistryName().toString(), "inventory"));
 
 
         //Mallet mold
@@ -127,6 +128,7 @@ public class ClientRegisterEventsFL
         ModelLoader.setCustomStateMapper(BlocksFL.CINNAMON_SAPLING, new StateMap.Builder().ignore(BlockSaplingTFC.STAGE).build());
 
         ModelLoader.setCustomStateMapper(BlocksFL.QUAD_PLANTER, new QuadPlanterStateMapper());
+        ModelLoader.setCustomStateMapper(BlocksFL.LARGE_PLANTER, new LargePlanterStateMapper());
 
         ClientRegistry.bindTileEntitySpecialRenderer(TEOven.class, new TESROven());
         ClientRegistry.bindTileEntitySpecialRenderer(TELeafMat.class, new TESRLeafMat());
@@ -181,6 +183,7 @@ public class ClientRegisterEventsFL
     public static void onModelBake(ModelBakeEvent event)
     {
         event.getModelRegistry().putObject(new ModelResourceLocation(MOD_ID + ":quad_planter"), new QuadPlanterBakedModel());
+        event.getModelRegistry().putObject(new ModelResourceLocation(MOD_ID + ":large_planter"), new LargePlanterBakedModel());
     }
 
     @SubscribeEvent

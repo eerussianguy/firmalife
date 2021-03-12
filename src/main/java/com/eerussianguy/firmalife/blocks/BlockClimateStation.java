@@ -19,6 +19,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 
 import com.eerussianguy.firmalife.te.TEClimateStation;
@@ -57,7 +58,9 @@ public class BlockClimateStation extends Block implements IItemSize, IHighlightH
     {
         if (!world.isRemote && hand == EnumHand.MAIN_HAND)
         {
-            world.setBlockState(pos, state.withProperty(STASIS, GreenhouseHelpers.isMultiblockValid(world, pos, state)));
+            boolean valid = GreenhouseHelpers.isMultiblockValid(world, pos, state);
+            world.setBlockState(pos, state.withProperty(STASIS, valid));
+            player.sendMessage(new TextComponentTranslation(valid ? "tooltip.firmalife.valid" : "tooltip.firmalife.invalid"));
             return true;
         }
         return false;
@@ -106,7 +109,7 @@ public class BlockClimateStation extends Block implements IItemSize, IHighlightH
         {
             stasis = state.getValue(STASIS);
         }
-        IHighlightHandler.drawBox(Block.FULL_BLOCK_AABB.offset(pos).offset(-dx, -dy, -dz).grow(0.002D), 1.0F, stasis ? 0 : 1.0F, stasis ? 1.0F : 0, 0, 0.4F);
+        IHighlightHandler.drawBox(Block.FULL_BLOCK_AABB.offset(pos).offset(-dx, -dy, -dz).grow(0.002D), 3.0F, stasis ? 0 : 1.0F, stasis ? 1.0F : 0, 0, 0.4F);
         return true;
     }
 

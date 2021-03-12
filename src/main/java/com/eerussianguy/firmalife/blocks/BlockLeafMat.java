@@ -74,7 +74,7 @@ public class BlockLeafMat extends Block implements IItemSize
                     if (held.isEmpty() && player.isSneaking())
                     {
                         ItemStack takeStack = inventory.extractItem(0, 1, false);
-                        ItemHandlerHelper.giveItemToPlayer(player, takeStack);
+                        Helpers.spawnItemStack(world, pos, takeStack);
                         te.deleteSlot();
                         te.clear();
                         te.markForSync();

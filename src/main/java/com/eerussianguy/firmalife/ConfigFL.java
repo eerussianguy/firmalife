@@ -48,7 +48,7 @@ public class ConfigFL
             @Config.Comment("Rarity of the Cinnamon trees in worldgen. Defined by 1/N chunks. Set to zero to disable")
             @Config.RangeInt(min = 0)
             @Config.LangKey("config." + MOD_ID + ".general.worldgen.cinnamonRarity")
-            public int cinnamonRarity = 130;
+            public int cinnamonRarity = 80;
         }
 
         public static final class CompatCFG

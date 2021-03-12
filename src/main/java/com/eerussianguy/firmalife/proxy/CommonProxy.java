@@ -14,7 +14,6 @@ import com.eerussianguy.firmalife.world.WorldGeneratorFL;
 @Mod.EventBusSubscriber
 public class CommonProxy
 {
-
     public void preInit(FMLPreInitializationEvent e)
     {
         GameRegistry.registerWorldGenerator(new WorldGeneratorFL(), 0);
@@ -28,11 +27,4 @@ public class CommonProxy
     public void postInit(FMLPostInitializationEvent e)
     {
     }
-
-
-    @SubscribeEvent
-    public static void registerItems(RegistryEvent.Register<Item> event)
-    {
-    }
-
 }

@@ -1,7 +1,0 @@
-{
-	"parent": "firmalife:block/planter",
-	"textures": {
-		"plant": "#plant",
-		"soil": "#soil"
-	}
-}

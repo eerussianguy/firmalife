@@ -2,6 +2,8 @@ package com.eerussianguy.firmalife.world;
 
 import java.util.Random;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -10,15 +12,16 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 import com.eerussianguy.firmalife.ConfigFL;
+import com.eerussianguy.firmalife.init.PlantsFL;
 import com.eerussianguy.firmalife.registry.BlocksFL;
 import net.dries007.tfc.objects.blocks.BlocksTFC;
 import net.dries007.tfc.world.classic.biomes.BiomeTFC;
 import net.dries007.tfc.world.classic.biomes.BiomesTFC;
 import net.dries007.tfc.world.classic.chunkdata.ChunkDataTFC;
 
+@ParametersAreNonnullByDefault
 public class WorldgenCinnamon extends WorldGenerator
 {
-
     @Override
     public boolean generate(World world, Random rand, BlockPos pos)
     {
@@ -32,24 +35,18 @@ public class WorldgenCinnamon extends WorldGenerator
         if (!(b instanceof BiomeTFC) || b == BiomesTFC.OCEAN || b == BiomesTFC.DEEP_OCEAN)
             return false;
 
-        final float diversity = chunkData.getFloraDiversity();
-        final float density = chunkData.getFloraDensity();
         final float temp = chunkData.getAverageTemp();
         final float rain = chunkData.getRainfall();
+        final float density = chunkData.getFloraDensity();
 
         int x = pos.getX() - 7 + rand.nextInt(14);
         int z = pos.getZ() - 7 + rand.nextInt(14);
         BlockPos genPos = world.getTopSolidOrLiquidBlock(new BlockPos(x, 0, z));
-        if (rain > 300 && temp > 29)
-        {
-            return generateCinnamon(world, rand, genPos);
-        }
+        return PlantsFL.CINNAMON_TREE.isValidLocation(temp, rain, density) && generateCinnamon(world, rand, genPos);
 
-
-        return false;
     }
 
-    private boolean generateCinnamon(World world, Random rand, BlockPos pos)
+    public static boolean generateCinnamon(World world, Random rand, BlockPos pos)
     {
         IBlockState state = world.getBlockState(pos.down());
         if (world.isAirBlock(pos) && state.isSideSolid(world, pos.down(), EnumFacing.UP) && BlocksTFC.isGrowableSoil(state))
@@ -80,10 +77,8 @@ public class WorldgenCinnamon extends WorldGenerator
                 }
             }
             world.setBlockState(pos.offset(EnumFacing.UP, height), leaves);
-
             return true;
         }
         return false;
     }
-
 }

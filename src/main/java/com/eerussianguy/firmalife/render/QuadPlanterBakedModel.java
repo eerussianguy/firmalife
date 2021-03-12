@@ -29,7 +29,7 @@ import mcp.MethodsReturnNonnullByDefault;
 import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
 
 @MethodsReturnNonnullByDefault
-public class QuadPlanterBakedModel implements IBakedModel
+public class QuadPlanterBakedModel extends LargePlanterBakedModel implements IBakedModel
 {
     private static final IModel dummy = ModelLoaderRegistry.getModelOrMissing(new ResourceLocation(MOD_ID, "block/quad_planter"));
 
@@ -55,47 +55,5 @@ public class QuadPlanterBakedModel implements IBakedModel
         IModel newModel = dummy.retexture(ImmutableMap.copyOf(sprites));
         IBakedModel bakedModel = newModel.bake(newModel.getDefaultState(), DefaultVertexFormats.BLOCK, ModelLoader.defaultTextureGetter());
         return bakedModel.getQuads(state, side, rand);
-    }
-
-    private String resolveTexture(IExtendedBlockState state, UnlistedCropProperty property)
-    {
-        PlanterRecipe.PlantInfo info = state.getValue(property);
-        if (info == null || info.getRecipe() == null) return "tfc:blocks/empty";
-        ResourceLocation crop = info.getRecipe().getRegistryName();
-        if (crop != null && !property.valueToString(info).equals("null")) // epic non-null null
-        {
-            return crop.getNamespace() + ":blocks/crop/" + crop.getPath() + "_" + info.getStage();
-        }
-        return "tfc:blocks/empty";
-    }
-
-    @Override
-    public boolean isAmbientOcclusion()
-    {
-        return true;
-    }
-
-    @Override
-    public boolean isGui3d()
-    {
-        return false;
-    }
-
-    @Override
-    public boolean isBuiltInRenderer()
-    {
-        return false;
-    }
-
-    @Override
-    public TextureAtlasSprite getParticleTexture()
-    {
-        return Objects.requireNonNull(Minecraft.getMinecraft().getTextureMapBlocks().getTextureExtry("minecraft:blocks/hardened_clay"));
-    }
-
-    @Override
-    public ItemOverrideList getOverrides()
-    {
-        return ItemOverrideList.NONE;
     }
 }

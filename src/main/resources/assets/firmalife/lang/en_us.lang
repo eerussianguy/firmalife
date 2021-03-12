@@ -175,6 +175,7 @@ tile.firmalife.greenhouse_door.name=Greenhouse Door
 tile.firmalife.greenhouse_roof.name=Greenhouse Roof
 tile.firmalife.climate_station.name=Climate Station
 tile.firmalife.quad_planter.name=Quad Planter
+tile.firmalife.large_planter.name=Large Planter
 
 item.firmalife.unfired_mallet_mold.name=Unfired Mallet Head Mold
 item.firmalife.mallet_mold.name=Mallet Head Mold
@@ -244,6 +245,8 @@ tooltip.firmalife.hours=hours
 tooltip.firmalife.days=days
 tooltip.firmalife.refractory=You're doing this too often. Take a break.
 tooltip.firmalife.not_fall=Come back in October or November to get nuts.
+tooltip.firmalife.valid=Multiblock Valid
+tooltip.firmalife.invalid=Multiblock Invalid
 jei.category.firmalife.oven=Oven
 
 jei.category.firmalife.casting=Casting recipes

@@ -82,13 +82,21 @@ public class RecipesFL
     {
         IForgeRegistry<PlanterRecipe> r = event.getRegistry();
         r.registerAll(
-            new PlanterRecipe(IIngredient.of(ItemSeedsTFC.get(Crop.BEET)), new ItemStack(ItemFoodTFC.get(Food.BEET)), 6).setRegistryName("beet"),
-            new PlanterRecipe(IIngredient.of(ItemSeedsTFC.get(Crop.CABBAGE)), new ItemStack(ItemFoodTFC.get(Food.CABBAGE)), 5).setRegistryName("cabbage"),
-            new PlanterRecipe(IIngredient.of(ItemSeedsTFC.get(Crop.CARROT)), new ItemStack(ItemFoodTFC.get(Food.CARROT)), 4).setRegistryName("carrot"),
-            new PlanterRecipe(IIngredient.of(ItemSeedsTFC.get(Crop.GARLIC)), new ItemStack(ItemFoodTFC.get(Food.GARLIC)), 4).setRegistryName("garlic"),
-            new PlanterRecipe(IIngredient.of(ItemSeedsTFC.get(Crop.ONION)), new ItemStack(ItemFoodTFC.get(Food.ONION)), 6).setRegistryName("onion"),
-            new PlanterRecipe(IIngredient.of(ItemSeedsTFC.get(Crop.POTATO)), new ItemStack(ItemFoodTFC.get(Food.POTATO)), 6).setRegistryName("potato"),
-            new PlanterRecipe(IIngredient.of(ItemSeedsTFC.get(Crop.SOYBEAN)), new ItemStack(ItemFoodTFC.get(Food.SOYBEAN)), 6).setRegistryName("soybean")
+            new PlanterRecipe(IIngredient.of(ItemSeedsTFC.get(Crop.BEET)), new ItemStack(ItemFoodTFC.get(Food.BEET)), 6, false).setRegistryName("beet"),
+            new PlanterRecipe(IIngredient.of(ItemSeedsTFC.get(Crop.CABBAGE)), new ItemStack(ItemFoodTFC.get(Food.CABBAGE)), 5, false).setRegistryName("cabbage"),
+            new PlanterRecipe(IIngredient.of(ItemSeedsTFC.get(Crop.CARROT)), new ItemStack(ItemFoodTFC.get(Food.CARROT)), 4, false).setRegistryName("carrot"),
+            new PlanterRecipe(IIngredient.of(ItemSeedsTFC.get(Crop.GARLIC)), new ItemStack(ItemFoodTFC.get(Food.GARLIC)), 4, false).setRegistryName("garlic"),
+            new PlanterRecipe(IIngredient.of(ItemSeedsTFC.get(Crop.ONION)), new ItemStack(ItemFoodTFC.get(Food.ONION)), 6, false).setRegistryName("onion"),
+            new PlanterRecipe(IIngredient.of(ItemSeedsTFC.get(Crop.POTATO)), new ItemStack(ItemFoodTFC.get(Food.POTATO)), 6, false).setRegistryName("potato"),
+            new PlanterRecipe(IIngredient.of(ItemSeedsTFC.get(Crop.SOYBEAN)), new ItemStack(ItemFoodTFC.get(Food.SOYBEAN)), 6, false).setRegistryName("soybean"),
+
+            new PlanterRecipe(IIngredient.of(ItemSeedsTFC.get(Crop.YELLOW_BELL_PEPPER)), new ItemStack(ItemFoodTFC.get(Food.YELLOW_BELL_PEPPER)), 5, true).setRegistryName("yellow_bell_pepper"),
+            new PlanterRecipe(IIngredient.of(ItemSeedsTFC.get(Crop.SUGARCANE)), new ItemStack(ItemFoodTFC.get(Food.SUGARCANE)), 7, true).setRegistryName("sugarcane"),
+            new PlanterRecipe(IIngredient.of(ItemSeedsTFC.get(Crop.TOMATO)), new ItemStack(ItemFoodTFC.get(Food.TOMATO)), 7, true).setRegistryName("tomato"),
+            new PlanterRecipe(IIngredient.of(ItemSeedsTFC.get(Crop.RED_BELL_PEPPER)), new ItemStack(ItemFoodTFC.get(Food.RED_BELL_PEPPER)), 5, true).setRegistryName("red_bell_pepper"),
+            new PlanterRecipe(IIngredient.of(ItemSeedsTFC.get(Crop.MAIZE)), new ItemStack(ItemFoodTFC.get(Food.MAIZE)), 5, true).setRegistryName("maize"),
+            new PlanterRecipe(IIngredient.of(ItemSeedsTFC.get(Crop.JUTE)), new ItemStack(ItemsTFC.JUTE), 5, true).setRegistryName("jute"),
+            new PlanterRecipe(IIngredient.of(ItemSeedsTFC.get(Crop.GREEN_BEAN)), new ItemStack(ItemFoodTFC.get(Food.GREEN_BEAN)), 6, true).setRegistryName("green_bean")
         );
     }
 
@@ -125,7 +133,7 @@ public class RecipesFL
             new CrackingRecipe(IIngredient.of(ItemsFL.ACORNS), new ItemStack(ItemsFL.ACORN_FRUIT), 0.5f).setRegistryName("acorn_fruit"),
             new CrackingRecipe(IIngredient.of(ItemsFL.PINECONE), new ItemStack(ItemsFL.PINE_NUTS), 0.5f).setRegistryName("pine_nuts"),
             new CrackingRecipe(IIngredient.of(ItemsFL.PECAN_NUTS), new ItemStack(ItemsFL.PECANS), 0.5f).setRegistryName("pecans"),
-            new CrackingRecipe(IIngredient.of(ItemsFL.COCONUT), filled_coconut, 0.5f).setRegistryName("coconut_milk")
+            new CrackingRecipe(IIngredient.of(ItemsFL.COCONUT), filled_coconut.copy(), 0.5f).setRegistryName("coconut_milk")
         );
     }
 }
