@@ -14,6 +14,7 @@ import net.minecraft.world.World;
 import com.eerussianguy.firmalife.recipe.DryingRecipe;
 import net.dries007.tfc.api.capability.food.CapabilityFood;
 import net.dries007.tfc.objects.te.TEInventory;
+import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.calendar.CalendarTFC;
 
 @ParametersAreNonnullByDefault
@@ -50,11 +51,6 @@ public class TELeafMat extends TEInventory implements ITickable
         }
     }
 
-    public void rain()
-    {
-        tickGoal+= 25;
-    }
-
     @Override
     public void readFromNBT(NBTTagCompound nbt)
     {
@@ -70,6 +66,43 @@ public class TELeafMat extends TEInventory implements ITickable
         nbt.setLong("startTick", startTick);
         nbt.setInteger("tickGoal", tickGoal);
         return super.writeToNBT(nbt);
+    }
+
+    public void onBreakBlock(World world, BlockPos pos, IBlockState state)
+    {
+        Helpers.spawnItemStack(world, pos, inventory.getStackInSlot(0));
+    }
+
+    public void clear()
+    {
+        startTick = 0;
+        tickGoal = 0;
+        markDirty();
+    }
+
+    public void deleteSlot()
+    {
+        inventory.setStackInSlot(0, ItemStack.EMPTY);
+    }
+
+    public void start()
+    {
+        if (recipeExists())
+        {
+            startTick = CalendarTFC.PLAYER_TIME.getTicks();
+            setDuration();
+        }
+        else
+        {
+            Helpers.spawnItemStack(world, pos, inventory.getStackInSlot(0));
+            deleteSlot();
+        }
+        markDirty();
+    }
+
+    public void rain()
+    {
+        tickGoal += 25;
     }
 
     private boolean recipeExists()
@@ -107,42 +140,9 @@ public class TELeafMat extends TEInventory implements ITickable
             if (recipe != null && !world.isRemote)
             {
                 inventory.setStackInSlot(0, CapabilityFood.updateFoodFromPrevious(input, recipe.getOutputItem(input)));
-                clear();
                 setAndUpdateSlots(0);
                 markForSync();
             }
-        }
-        markDirty();
-    }
-
-    public void onBreakBlock(World world, BlockPos pos, IBlockState state)
-    {
-        InventoryHelper.spawnItemStack(world, pos.getX(), pos.getY(), pos.getZ(), inventory.getStackInSlot(0));
-    }
-
-    public void clear()
-    {
-        startTick = 0;
-        tickGoal = 0;
-        markDirty();
-    }
-
-    public void deleteSlot()
-    {
-        inventory.setStackInSlot(0, ItemStack.EMPTY);
-    }
-
-    public void start()
-    {
-        if (recipeExists())
-        {
-            startTick = CalendarTFC.PLAYER_TIME.getTicks();
-            setDuration();
-        }
-        else
-        {
-            InventoryHelper.spawnItemStack(world, pos.getX(), pos.getY(), pos.getZ(), inventory.getStackInSlot(0));
-            deleteSlot();
         }
         markDirty();
     }
