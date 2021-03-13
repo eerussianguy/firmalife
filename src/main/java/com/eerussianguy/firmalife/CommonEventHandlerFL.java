@@ -1,6 +1,8 @@
 package com.eerussianguy.firmalife;
 
 
+import com.eerussianguy.firmalife.init.BushFL;
+import net.dries007.tfc.objects.blocks.agriculture.BlockBerryBush;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -55,6 +57,14 @@ public class CommonEventHandlerFL
         if (block instanceof BlockFruitTreeLeaves)
         {
             event.getDrops().add(new ItemStack(ItemsFL.FRUIT_LEAF, 2 + Constants.RNG.nextInt(4)));
+        }
+        else if(block instanceof BlockBerryBush) {
+            if(((BlockBerryBush)block).getBush() == BushFL.PINEAPPLE) { // check if it's a pineapple bush
+                // add the drop if it's fruiting
+                if(block.getDefaultState().getValue(BlockBerryBush.FRUITING)) {
+                    event.getDrops().add(new ItemStack(ItemsFL.PINEAPPLE_FIBER, 1+Constants.RNG.nextInt(3)));
+                }
+            }
         }
         else if (block instanceof BlockFruitTreeTrunk) //todo: implement this without strings
         {

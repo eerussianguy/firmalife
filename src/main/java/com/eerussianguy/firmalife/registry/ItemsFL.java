@@ -129,6 +129,14 @@ public class ItemsFL
     public static final ItemFoodFL DARK_CHOCOLATE = Helpers.getNull();
     @GameRegistry.ObjectHolder("milk_chocolate")
     public static final ItemFoodFL MILK_CHOCOLATE = Helpers.getNull();
+    @GameRegistry.ObjectHolder("pineapple")
+    public static final ItemFoodFL PINEAPPLE = Helpers.getNull();
+    @GameRegistry.ObjectHolder("pineapple_leather")
+    public static final ItemMisc PINEAPPLE_LEATHER = Helpers.getNull();
+    @GameRegistry.ObjectHolder("pineapple_fiber")
+    public static final ItemMisc PINEAPPLE_FIBER = Helpers.getNull();
+    @GameRegistry.ObjectHolder("pineapple_yarn")
+    public static final ItemMisc PINEAPPLE_YARN = Helpers.getNull();
     @GameRegistry.ObjectHolder("quad_planter")
     public static final ItemBlock ITEM_QUAD_PLANTER = Helpers.getNull();
     @GameRegistry.ObjectHolder("large_planter")
@@ -263,6 +271,15 @@ public class ItemsFL
         easyItems.add(register(r, "quad_planter", new ItemBlock(BlocksFL.QUAD_PLANTER), CT_DECORATIONS));
         easyItems.add(register(r, "large_planter", new ItemBlock(BlocksFL.LARGE_PLANTER), CT_DECORATIONS));
         easyItems.add(register(r, "cinnamon_sapling", new ItemBlock(BlocksFL.CINNAMON_SAPLING), CT_DECORATIONS));
+
+        easyItems.add(register(r, "pineapple", new ItemFoodFL(FoodDataFL.PINEAPPLE), CT_FOOD));
+        easyItems.add(register(r, "pineapple_leather", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
+        //todo: Use our OreDict helper
+        OreDictionary.registerOre("leather", PINEAPPLE_LEATHER);
+        easyItems.add(register(r, "pineapple_fiber", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
+        easyItems.add(register(r, "pineapple_yarn", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
+        //todo: Use our OreDict helper
+        OreDictionary.registerOre("string", PINEAPPLE_YARN);
 
         ItemMisc cpole = new ItemMisc(Size.SMALL, Weight.MEDIUM);
         easyItems.add(register(r, "cinnamon_pole", cpole, CT_MISC));

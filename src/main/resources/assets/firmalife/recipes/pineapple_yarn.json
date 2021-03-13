@@ -1,0 +1,16 @@
+{
+  "type": "tfc:damage_item_shapeless",
+  "ingredients": [
+    {
+      "type": "forge:ore_dict",
+      "ore": "spindle"
+    },
+    {
+      "item": "firmalife:pineapple_fiber"
+    }
+  ],
+  "result": {
+    "item": "firmalife:pineapple_yarn",
+    "count": 8
+  }
+}

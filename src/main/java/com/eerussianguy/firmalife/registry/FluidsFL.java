@@ -4,6 +4,8 @@ import javax.annotation.Nonnull;
 
 import com.google.common.collect.HashBiMap;
 import com.google.common.collect.ImmutableSet;
+import net.minecraft.init.MobEffects;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -27,6 +29,7 @@ public final class FluidsFL
     public static FluidWrapper YAK_MILK;
     public static FluidWrapper GOAT_MILK;
     public static FluidWrapper ZEBU_MILK;
+    public static FluidWrapper PINA_COLADA;
 
     private static ImmutableSet<FluidWrapper> allFiniteFluids;
 
@@ -51,7 +54,18 @@ public final class FluidsFL
             COCONUT_MILK = registerFluid(new Fluid("coconut_milk", STILL, FLOW, 0xFFfcfae2)).with(DrinkableProperty.DRINKABLE, milkProperty),
             YAK_MILK = registerFluid(new Fluid("yak_milk", STILL, FLOW, 0xFFfcfaec)).with(DrinkableProperty.DRINKABLE, milkProperty),
             GOAT_MILK = registerFluid(new Fluid("goat_milk", STILL, FLOW, 0xFFf6f6eb)).with(DrinkableProperty.DRINKABLE, milkProperty),
-            ZEBU_MILK = registerFluid(new Fluid("zebu_milk", STILL, FLOW, 0xFFefede6)).with(DrinkableProperty.DRINKABLE, milkProperty)
+            ZEBU_MILK = registerFluid(new Fluid("zebu_milk", STILL, FLOW, 0xFFefede6)).with(DrinkableProperty.DRINKABLE, milkProperty),
+            PINA_COLADA = registerFluid(new Fluid("pina_colada", STILL, FLOW, 0xFFE4C06A)).with(DrinkableProperty.DRINKABLE, player -> {
+                if (player.getFoodStats() instanceof IFoodStatsTFC)
+                {
+                    IFoodStatsTFC foodStats = (IFoodStatsTFC) player.getFoodStats();
+                    foodStats.addThirst(10);
+                    foodStats.getNutrition().addBuff(FoodData.MILK);
+                    foodStats.getNutrition().addBuff(FoodData.GOLDEN_CARROT);
+                    player.addPotionEffect(new PotionEffect(MobEffects.GLOWING, 100, 0));
+                    player.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 200, 0));
+                }
+            })
         ).build();
     }
 

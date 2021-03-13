@@ -1,5 +1,6 @@
 package com.eerussianguy.firmalife.registry;
 
+import com.eerussianguy.firmalife.init.BushFL;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -196,6 +197,10 @@ public class BlocksFL
         register(r, "quad_planter", new BlockQuadPlanter(), CT_DECORATIONS);
         register(r, "large_planter", new BlockLargePlanter(), CT_DECORATIONS);
         register(r, "greenhouse_door", new BlockGreenhouseDoor(), CT_DECORATIONS);
+
+        for(BushFL bushFL: BushFL.values()) {
+            normalIBs.add(register(r, bushFL.name().toLowerCase()+"_bush", new BlockBerryBush(bushFL), CT_FLORA));
+        }
 
         for (BlockJackOLantern.Carving carving : BlockJackOLantern.Carving.values())
         {

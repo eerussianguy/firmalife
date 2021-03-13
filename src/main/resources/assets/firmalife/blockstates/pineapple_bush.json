@@ -1,0 +1,26 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "tfc:berry_bush_large",
+    "textures": {
+      "texture": "firmalife:blocks/bush/pineapple/bush",
+      "particle": "firmalife:blocks/bush/pineapple/bush"
+    }
+  },
+  "variants": {
+    "normal": [
+      {}
+    ],
+    "inventory": {
+      "model": "tfc:berry_bush_large"
+    },
+    "fruiting": {
+      "true": {
+        "textures": {
+          "texture": "firmalife:blocks/bush/pineapple/berry"
+        }
+      },
+      "false": {}
+    }
+  }
+}

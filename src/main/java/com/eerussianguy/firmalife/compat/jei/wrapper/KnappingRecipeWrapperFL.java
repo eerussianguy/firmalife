@@ -3,7 +3,7 @@
  * See the project README.md and LICENSE.txt for more information.
  */
 
-package com.eerussianguy.firmalife.jei.wrapper;
+package com.eerussianguy.firmalife.compat.jei.wrapper;
 
 import java.util.Map;
 import javax.annotation.ParametersAreNonnullByDefault;

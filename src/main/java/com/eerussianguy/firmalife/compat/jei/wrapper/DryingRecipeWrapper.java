@@ -1,4 +1,4 @@
-package com.eerussianguy.firmalife.jei.wrapper;
+package com.eerussianguy.firmalife.compat.jei.wrapper;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
