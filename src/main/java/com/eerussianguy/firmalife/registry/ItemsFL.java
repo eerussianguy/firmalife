@@ -87,8 +87,10 @@ public class ItemsFL
     public static final ItemMisc GROUND_CINNAMON = Helpers.getNull();
     @GameRegistry.ObjectHolder("cinnamon_pole")
     public static final ItemMisc CINNAMON_POLE = Helpers.getNull();
-    @GameRegistry.ObjectHolder("planter")
-    public static final ItemMisc PLANTER = Helpers.getNull();
+    @GameRegistry.ObjectHolder("frothy_coconut")
+    public static final ItemMisc FROTHY_COCONUT = Helpers.getNull();
+    @GameRegistry.ObjectHolder("pineapple_chunks")
+    public static final ItemFoodFL PINEAPPLE_CHUNKS = Helpers.getNull();
     @GameRegistry.ObjectHolder("greenhouse_door")
     public static final ItemGreenhouseDoor ITEM_GREENHOUSE_DOOR = Helpers.getNull();
     @GameRegistry.ObjectHolder("cracked_coconut")
@@ -131,6 +133,8 @@ public class ItemsFL
     public static final ItemFoodFL MILK_CHOCOLATE = Helpers.getNull();
     @GameRegistry.ObjectHolder("pineapple")
     public static final ItemFoodFL PINEAPPLE = Helpers.getNull();
+    @GameRegistry.ObjectHolder("dried_pineapple")
+    public static final ItemDriedPineapple DRIED_PINEAPPLE = Helpers.getNull();
     @GameRegistry.ObjectHolder("pineapple_leather")
     public static final ItemMisc PINEAPPLE_LEATHER = Helpers.getNull();
     @GameRegistry.ObjectHolder("pineapple_fiber")
@@ -197,6 +201,11 @@ public class ItemsFL
             }
 
         easyItems.add(register(r, "dried_cocoa_beans", new ItemFoodFL(FoodDataFL.DRIED_COCOA_BEANS), CT_FOOD));
+        ItemDriedPineapple dryPineapple = new ItemDriedPineapple();
+        easyItems.add(register(r, "dried_pineapple", dryPineapple, CT_FOOD));
+        OreDictionary.registerOre("dried_pineapple", dryPineapple);
+        OreDictionary.registerOre("fruitDry", dryPineapple);
+        OreDictionary.registerOre("categoryFruit", dryPineapple);
 
         //Dried Berries
         for (Fruit fruit : Fruit.values())
@@ -258,6 +267,7 @@ public class ItemsFL
         easyItems.add(register(r, "milk_chocolate_blend", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
         easyItems.add(register(r, "white_chocolate_blend", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
         easyItems.add(register(r, "peel", new ItemMisc(Size.LARGE, Weight.VERY_HEAVY), CT_MISC));
+        easyItems.add(register(r, "frothy_coconut", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
 
         ItemMisc fruit_leaf = new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT);
         easyItems.add(register(r, "fruit_leaf", fruit_leaf, CT_MISC));
@@ -272,14 +282,12 @@ public class ItemsFL
         easyItems.add(register(r, "large_planter", new ItemBlock(BlocksFL.LARGE_PLANTER), CT_DECORATIONS));
         easyItems.add(register(r, "cinnamon_sapling", new ItemBlock(BlocksFL.CINNAMON_SAPLING), CT_DECORATIONS));
 
-        easyItems.add(register(r, "pineapple", new ItemFoodFL(FoodDataFL.PINEAPPLE), CT_FOOD));
+        easyItems.add(register(r, "pineapple", new ItemFoodFL(FoodDataFL.COCOA_BEANS), CT_FOOD));
+        easyItems.add(register(r, "pineapple_chunks", new ItemFoodFL(FoodDataFL.PINEAPPLE), CT_FOOD));
+
         easyItems.add(register(r, "pineapple_leather", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
-        //todo: Use our OreDict helper
-        OreDictionary.registerOre("leather", PINEAPPLE_LEATHER);
         easyItems.add(register(r, "pineapple_fiber", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
         easyItems.add(register(r, "pineapple_yarn", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
-        //todo: Use our OreDict helper
-        OreDictionary.registerOre("string", PINEAPPLE_YARN);
 
         ItemMisc cpole = new ItemMisc(Size.SMALL, Weight.MEDIUM);
         easyItems.add(register(r, "cinnamon_pole", cpole, CT_MISC));

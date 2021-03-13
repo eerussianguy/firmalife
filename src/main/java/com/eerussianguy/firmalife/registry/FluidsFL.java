@@ -13,6 +13,7 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.dries007.tfc.TerraFirmaCraft;
 import net.dries007.tfc.api.capability.food.FoodData;
 import net.dries007.tfc.api.capability.food.IFoodStatsTFC;
+import net.dries007.tfc.objects.fluids.FluidsTFC;
 import net.dries007.tfc.objects.fluids.properties.DrinkableProperty;
 import net.dries007.tfc.objects.fluids.properties.FluidWrapper;
 
@@ -84,8 +85,8 @@ public final class FluidsFL
             FluidRegistry.registerFluid(newFluid);
         }
         FluidRegistry.addBucketForFluid(newFluid);
-        FluidWrapper properties = new FluidWrapper(newFluid, isDefault);
-        WRAPPERS.put(newFluid, properties);
-        return properties;
+        FluidWrapper wrapper = FluidsTFC.getWrapper(newFluid);
+        WRAPPERS.put(newFluid, wrapper);
+        return wrapper;
     }
 }

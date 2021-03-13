@@ -27,6 +27,9 @@ item.firmalife.dried_red_apple.name=Dried Red Apple
 item.firmalife.dried_snow_berry.name=Dried Snow Berry
 item.firmalife.dried_strawberry.name=Dried Strawberry
 item.firmalife.dried_wintergreen_berry.name=Dried Wintergreen Berry
+item.firmalife.dried_pineapple.name=Dried Pineapple
+item.firmalife.pineapple_chunks.name=Pineapple Chunks
+item.firmalife.frothy_coconut.name=Frothy Coconut
 item.firmalife.cocoa_powder.name=Cocoa Powder
 item.firmalife.cocoa_butter.name=Cocoa Butter
 item.firmalife.peel.name=Peel
@@ -254,6 +257,7 @@ jei.category.firmalife.knap.pumpkin=Pumpkin Carving
 jei.category.firmalife.drying=Drying
 jei.tooltip.firmalife.fruit_leaf=Fruit leaves are dropped by breaking any fruit tree's leaves!
 jei.tooltip.firmalife.cocoa_powder=You can get cocoa powder by crafting cocoa butter.
+jei.tooltip.firmalife.pineapple_chunks=You can get pineapple chunks by crafting pineapple fiber.
 vein.halite.name=Halite
 
 config.firmalife.general=General Settings

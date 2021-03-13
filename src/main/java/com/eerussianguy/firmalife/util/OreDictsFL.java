@@ -39,6 +39,7 @@ public class OreDictsFL
         OreDictionary.registerOre("categoryMeat", ItemsFL.PINE_NUTS);
         OreDictionary.registerOre("categoryMeat", ItemsFL.PECANS);
         OreDictionary.registerOre("categoryMeat", ItemsFL.ROASTED_CHESTNUTS);
-
+        OreDictionary.registerOre("leather", ItemsFL.PINEAPPLE_LEATHER);
+        OreDictionary.registerOre("string", ItemsFL.PINEAPPLE_YARN);
     }
 }

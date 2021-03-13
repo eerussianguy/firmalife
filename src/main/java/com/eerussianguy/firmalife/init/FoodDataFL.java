@@ -28,6 +28,6 @@ public class FoodDataFL
 
     public static final FoodData GARLIC_BREAD = new FoodData(4, 0.5F, 0.75F, 0.5F, 0.0F, 2.0F, 0.0F, 0.0F, 0.4F);
 
-    public static final FoodData PINEAPPLE = new FoodData(4, 0.5F, 4.1F, 0.0F, 0.5F, 0.0F, 0.0F, 0.0F, 4.9F);
+    public static final FoodData PINEAPPLE = new FoodData(4, 0.5F, 4.1F, 0.0F, 0.75F, 0.0F, 0.0F, 0.0F, 4.9F);
 }
 

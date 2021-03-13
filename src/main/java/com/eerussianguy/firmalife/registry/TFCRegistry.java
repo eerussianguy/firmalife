@@ -16,6 +16,7 @@ import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.init.KnappingFL;
 import com.eerussianguy.firmalife.recipe.KnappingRecipeFood;
 import net.dries007.tfc.TerraFirmaCraft;
+import net.dries007.tfc.api.recipes.LoomRecipe;
 import net.dries007.tfc.api.recipes.anvil.AnvilRecipe;
 import net.dries007.tfc.api.recipes.barrel.BarrelRecipe;
 import net.dries007.tfc.api.recipes.heat.HeatRecipe;
@@ -56,6 +57,14 @@ public class TFCRegistry
     }
 
     @SubscribeEvent
+    public static void onRegisterLoomRecipeEvent(RegistryEvent.Register<LoomRecipe> event)
+    {
+        IForgeRegistry<LoomRecipe> r = event.getRegistry();
+
+        r.register(new LoomRecipe(new ResourceLocation(MOD_ID, "pineapple_yarn"), IIngredient.of(ItemsFL.PINEAPPLE_YARN, 8), new ItemStack(ItemsFL.PINEAPPLE_LEATHER), 8, new ResourceLocation(MOD_ID, "textures/blocks/pineapple.png")));
+    }
+
+    @SubscribeEvent
     public static void onRegisterQuernRecipeEvent(RegistryEvent.Register<QuernRecipe> event)
     {
         IForgeRegistry<QuernRecipe> r = event.getRegistry();
@@ -87,7 +96,8 @@ public class TFCRegistry
         int hour = ICalendar.TICKS_IN_HOUR;
         event.getRegistry().registerAll(
             new BarrelRecipe(IIngredient.of(FluidsTFC.FRESH_WATER.get(), 100), IIngredient.of("fruitDry"), new FluidStack(FluidsFL.YEAST_STARTER.get(), 100), ItemStack.EMPTY, hour * 96).setRegistryName("yeast_from_fruit"),
-            new BarrelRecipe(IIngredient.of(FluidsFL.YEAST_STARTER.get(), 100), IIngredient.of("flour"), new FluidStack(FluidsFL.YEAST_STARTER.get(), 600), ItemStack.EMPTY, hour * 12).setRegistryName("yeast_multiplication")
+            new BarrelRecipe(IIngredient.of(FluidsFL.YEAST_STARTER.get(), 100), IIngredient.of("flour"), new FluidStack(FluidsFL.YEAST_STARTER.get(), 600), ItemStack.EMPTY, hour * 12).setRegistryName("yeast_multiplication"),
+            new BarrelRecipe(IIngredient.of(FluidsTFC.RUM.get(), 1000), IIngredient.of(ItemsFL.FROTHY_COCONUT), new FluidStack(FluidsFL.PINA_COLADA.get(), 1000), ItemStack.EMPTY, hour).setRegistryName("pina_colada")
         );
     }
 

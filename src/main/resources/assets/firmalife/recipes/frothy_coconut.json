@@ -1,0 +1,16 @@
+{
+  "type": "tfc:fluid_food_recipe",
+  "ingredients": [
+    {
+      "type": "tfc:fluid",
+      "fluid": "coconut_milk"
+    },
+    {
+      "item": "firmalife:pineapple_chunks"
+    }
+  ],
+  "result": {
+    "item": "firmalife:frothy_coconut",
+    "count": 1
+  }
+}

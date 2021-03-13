@@ -65,6 +65,7 @@ public class JEIPluginFL implements IModPlugin
 
         registry.addIngredientInfo(new ItemStack(ItemsFL.FRUIT_LEAF, 1), VanillaTypes.ITEM, new TextComponentTranslation("jei.tooltip.firmalife.fruit_leaf").getFormattedText());
         registry.addIngredientInfo(new ItemStack(ItemsFL.COCOA_POWDER, 1), VanillaTypes.ITEM, new TextComponentTranslation("jei.tooltip.firmalife.cocoa_powder").getFormattedText());
+        registry.addIngredientInfo(new ItemStack(ItemsFL.PINEAPPLE_CHUNKS, 1), VanillaTypes.ITEM, new TextComponentTranslation("jei.tooltip.firmalife.pineapple_chunks").getFormattedText());
 
         // Pumpkin Knapping
         List<KnappingRecipeWrapper> pumpkinknapRecipes = TFCRegistries.KNAPPING.getValuesCollection().stream()

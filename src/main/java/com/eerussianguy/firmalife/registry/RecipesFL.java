@@ -73,12 +73,13 @@ public class RecipesFL
         }
         r.registerAll(
             new DryingRecipe(IIngredient.of(new ItemStack(ItemsFL.CINNAMON_BARK)), new ItemStack(ItemsFL.CINNAMON), day).setRegistryName("cinnamon_bark"),
-            new DryingRecipe(IIngredient.of(new ItemStack(ItemsFL.COCOA_BEANS)), new ItemStack(ItemsFL.DRIED_COCOA_BEANS), day / 2).setRegistryName("cocoa_beans")
+            new DryingRecipe(IIngredient.of(new ItemStack(ItemsFL.COCOA_BEANS)), new ItemStack(ItemsFL.DRIED_COCOA_BEANS), day / 2).setRegistryName("cocoa_beans"),
+            new DryingRecipe(IIngredient.of(new ItemStack(ItemsFL.PINEAPPLE)), new ItemStack(ItemsFL.DRIED_PINEAPPLE), day / 2).setRegistryName("pineapple")
         );
     }
 
     @SubscribeEvent
-    public static void onRegisterPlanterQuadEvent(RegistryEvent.Register<PlanterRecipe> event)
+    public static void onRegisterPlanterEvent(RegistryEvent.Register<PlanterRecipe> event)
     {
         IForgeRegistry<PlanterRecipe> r = event.getRegistry();
         r.registerAll(
