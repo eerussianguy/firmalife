@@ -20,6 +20,7 @@ import java.util.ArrayList;
 
 @ZenClass("mods.firmalife.Nut")
 @ZenRegister
+@SuppressWarnings("unused")
 public class CTNut {
 
     @ZenMethod

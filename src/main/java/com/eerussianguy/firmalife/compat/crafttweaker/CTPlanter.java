@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 @ZenClass("mods.firmalife.Planter")
 @ZenRegister
+@SuppressWarnings("unused")
 public class CTPlanter {
 
     @ZenMethod

@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 @ZenClass("mods.firmalife.Drying")
 @ZenRegister
+@SuppressWarnings("unused")
 public class CTDrying {
 
     @ZenMethod

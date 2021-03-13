@@ -21,6 +21,7 @@ import java.util.ArrayList;
 
 @ZenClass("mods.firmalife.Oven")
 @ZenRegister
+@SuppressWarnings("unused")
 public class CTOven {
 
     @ZenMethod

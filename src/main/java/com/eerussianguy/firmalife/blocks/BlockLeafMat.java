@@ -64,9 +64,8 @@ public class BlockLeafMat extends Block implements IItemSize
                     ItemStack tryStack = new ItemStack(held.getItem(), 1);
                     if (DryingRecipe.get(tryStack) != null && inventory.getStackInSlot(0).isEmpty())
                     {
-                        inventory.insertItem(0, held, false);
-                        if (!player.isCreative())
-                            held.shrink(1);
+                        ItemStack leftover = inventory.insertItem(0, held.splitStack(1), false);
+                        ItemHandlerHelper.giveItemToPlayer(player, leftover);
                         te.start();
                         te.markForSync();
                         return true;

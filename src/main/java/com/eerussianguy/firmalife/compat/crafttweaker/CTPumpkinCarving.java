@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 @ZenClass("mods.firmalife.PumpkinCarving")
 @ZenRegister
+@SuppressWarnings("unused")
 public class CTPumpkinCarving {
 
     @ZenMethod

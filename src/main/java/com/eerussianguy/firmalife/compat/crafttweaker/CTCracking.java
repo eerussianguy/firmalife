@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 @ZenClass("mods.firmalife.Cracking")
 @ZenRegister
+@SuppressWarnings("unused")
 public class CTCracking {
 
     @ZenMethod
