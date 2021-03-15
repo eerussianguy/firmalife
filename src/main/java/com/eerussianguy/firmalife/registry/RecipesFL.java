@@ -9,6 +9,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
+import com.eerussianguy.firmalife.init.FoodFL;
 import com.eerussianguy.firmalife.init.Fruit;
 import com.eerussianguy.firmalife.recipe.*;
 import net.dries007.tfc.api.registries.TFCRegistries;
@@ -38,9 +39,9 @@ public class RecipesFL
             // the input being straw makes this a curing recipe
             new OvenRecipe(IIngredient.of(new ItemStack(ItemsTFC.STRAW)), new ItemStack(ItemsTFC.WOOD_ASH), 8 * hour).setRegistryName("cure"),
 
-            new OvenRecipe(IIngredient.of(new ItemStack(ItemsFL.DRIED_COCOA_BEANS)), new ItemStack(ItemsFL.ROASTED_COCOA_BEANS), 4 * hour).setRegistryName("dried_cocoa_beans"),
-            new OvenRecipe(IIngredient.of(new ItemStack(ItemsFL.CHESTNUTS)), new ItemStack(ItemsFL.ROASTED_CHESTNUTS), hour).setRegistryName("chestnuts"),
-            new OvenRecipe(IIngredient.of(new ItemStack(ItemsFL.CHESTNUT_DOUGH)), new ItemStack(ItemsFL.CHESTNUT_BREAD), 4 * hour).setRegistryName("chestnut_dough"),
+            new OvenRecipe(IIngredient.of(new ItemStack(ItemsFL.getFood(FoodFL.DRIED_COCOA_BEANS))), new ItemStack(ItemsFL.ROASTED_COCOA_BEANS), 4 * hour).setRegistryName("dried_cocoa_beans"),
+            new OvenRecipe(IIngredient.of(new ItemStack(ItemsFL.getFood(FoodFL.CHESTNUTS))), new ItemStack(ItemsFL.getFood(FoodFL.ROASTED_CHESTNUTS)), hour).setRegistryName("chestnuts"),
+            new OvenRecipe(IIngredient.of(new ItemStack(ItemsFL.getFood(FoodFL.CHESTNUT_DOUGH))), new ItemStack(ItemsFL.getFood(FoodFL.CHESTNUT_BREAD)), 4 * hour).setRegistryName("chestnut_dough"),
 
             new OvenRecipe(IIngredient.of(ItemFoodTFC.get(Food.BARLEY_DOUGH)), new ItemStack(ItemFoodTFC.get(Food.BARLEY_BREAD)), 4 * hour).setRegistryName("barley_dough"),
             new OvenRecipe(IIngredient.of(ItemFoodTFC.get(Food.CORNMEAL_DOUGH)), new ItemStack(ItemFoodTFC.get(Food.CORNBREAD)), 4 * hour).setRegistryName("corn_dough"),
@@ -56,9 +57,9 @@ public class RecipesFL
             new OvenRecipe(IIngredient.of("rye_flatbread_dough"), new ItemStack(ItemsFL.RYE_FLATBREAD), 4 * hour).setRegistryName("rye_flatbread_dough"),
             new OvenRecipe(IIngredient.of("wheat_flatbread_dough"), new ItemStack(ItemsFL.WHEAT_FLATBREAD), 4 * hour).setRegistryName("wheat_flatbread_dough"),
 
-            new OvenRecipe(IIngredient.of(new ItemStack(ItemsFL.WHITE_BLEND)), new ItemStack(ItemsFL.WHITE_CHOCOLATE), hour).setRegistryName("white_blend"),
-            new OvenRecipe(IIngredient.of(new ItemStack(ItemsFL.DARK_BLEND)), new ItemStack(ItemsFL.DARK_CHOCOLATE), hour).setRegistryName("dark_blend"),
-            new OvenRecipe(IIngredient.of(new ItemStack(ItemsFL.MILK_BLEND)), new ItemStack(ItemsFL.MILK_CHOCOLATE), hour).setRegistryName("milk_blend")
+            new OvenRecipe(IIngredient.of(new ItemStack(ItemsFL.WHITE_BLEND)), new ItemStack(ItemsFL.getFood(FoodFL.WHITE_CHOCOLATE)), hour).setRegistryName("white_blend"),
+            new OvenRecipe(IIngredient.of(new ItemStack(ItemsFL.DARK_BLEND)), new ItemStack(ItemsFL.getFood(FoodFL.DARK_CHOCOLATE)), hour).setRegistryName("dark_blend"),
+            new OvenRecipe(IIngredient.of(new ItemStack(ItemsFL.MILK_BLEND)), new ItemStack(ItemsFL.getFood(FoodFL.MILK_CHOCOLATE)), hour).setRegistryName("milk_blend")
         );
     }
 
@@ -73,8 +74,8 @@ public class RecipesFL
         }
         r.registerAll(
             new DryingRecipe(IIngredient.of(new ItemStack(ItemsFL.CINNAMON_BARK)), new ItemStack(ItemsFL.CINNAMON), day).setRegistryName("cinnamon_bark"),
-            new DryingRecipe(IIngredient.of(new ItemStack(ItemsFL.COCOA_BEANS)), new ItemStack(ItemsFL.DRIED_COCOA_BEANS), day / 2).setRegistryName("cocoa_beans"),
-            new DryingRecipe(IIngredient.of(new ItemStack(ItemsFL.PINEAPPLE)), new ItemStack(ItemsFL.DRIED_PINEAPPLE), day / 2).setRegistryName("pineapple")
+            new DryingRecipe(IIngredient.of(new ItemStack(ItemsFL.getFood(FoodFL.COCOA_BEANS))), new ItemStack(ItemsFL.getFood(FoodFL.DRIED_COCOA_BEANS)), day / 2).setRegistryName("cocoa_beans"),
+            new DryingRecipe(IIngredient.of(new ItemStack(ItemsFL.getFood(FoodFL.PINEAPPLE))), new ItemStack(ItemsFL.DRIED_PINEAPPLE), day / 2).setRegistryName("pineapple")
         );
     }
 
@@ -112,12 +113,11 @@ public class RecipesFL
         Tree pine = TFCRegistries.TREES.getValue(DefaultTrees.PINE);
         Tree palm = TFCRegistries.TREES.getValue(DefaultTrees.PALM);
         r.registerAll(
-            new NutRecipe(BlockLogTFC.get(chestnut), BlockLeavesTFC.get(chestnut), new ItemStack(ItemsFL.CHESTNUTS)).setRegistryName("chestnut"),
-            new NutRecipe(BlockLogTFC.get(oak), BlockLeavesTFC.get(oak), new ItemStack(ItemsFL.ACORNS)).setRegistryName("oak"),
-            new NutRecipe(BlockLogTFC.get(hickory), BlockLeavesTFC.get(hickory), new ItemStack(ItemsFL.PECAN_NUTS)).setRegistryName("hickory"),
-            new NutRecipe(BlockLogTFC.get(pine), BlockLeavesTFC.get(pine), new ItemStack(ItemsFL.PINECONE)).setRegistryName("pine"),
-            new NutRecipe(BlockLogTFC.get(palm), BlockLeavesTFC.get(palm), new ItemStack(ItemsFL.COCONUT)).setRegistryName("coconut")
-
+            new NutRecipe(BlockLogTFC.get(chestnut), BlockLeavesTFC.get(chestnut), new ItemStack(ItemsFL.getFood(FoodFL.ROASTED_CHESTNUTS))).setRegistryName("chestnut"),
+            new NutRecipe(BlockLogTFC.get(oak), BlockLeavesTFC.get(oak), new ItemStack(ItemsFL.getFood(FoodFL.ACORNS))).setRegistryName("oak"),
+            new NutRecipe(BlockLogTFC.get(hickory), BlockLeavesTFC.get(hickory), new ItemStack(ItemsFL.getFood(FoodFL.PECAN_NUTS))).setRegistryName("hickory"),
+            new NutRecipe(BlockLogTFC.get(pine), BlockLeavesTFC.get(pine), new ItemStack(ItemsFL.getFood(FoodFL.PINECONE))).setRegistryName("pine"),
+            new NutRecipe(BlockLogTFC.get(palm), BlockLeavesTFC.get(palm), new ItemStack(ItemsFL.getFood(FoodFL.COCONUT))).setRegistryName("coconut")
         );
     }
 
@@ -131,10 +131,10 @@ public class RecipesFL
 
         IForgeRegistry<CrackingRecipe> r = event.getRegistry();
         r.registerAll(
-            new CrackingRecipe(IIngredient.of(ItemsFL.ACORNS), new ItemStack(ItemsFL.ACORN_FRUIT), 0.5f).setRegistryName("acorn_fruit"),
-            new CrackingRecipe(IIngredient.of(ItemsFL.PINECONE), new ItemStack(ItemsFL.PINE_NUTS), 0.5f).setRegistryName("pine_nuts"),
-            new CrackingRecipe(IIngredient.of(ItemsFL.PECAN_NUTS), new ItemStack(ItemsFL.PECANS), 0.5f).setRegistryName("pecans"),
-            new CrackingRecipe(IIngredient.of(ItemsFL.COCONUT), filled_coconut.copy(), 0.5f).setRegistryName("coconut_milk")
+            new CrackingRecipe(IIngredient.of(ItemsFL.getFood(FoodFL.ACORNS)), new ItemStack(ItemsFL.getFood(FoodFL.ACORN_FRUIT)), 0.5f).setRegistryName("acorn_fruit"),
+            new CrackingRecipe(IIngredient.of(ItemsFL.getFood(FoodFL.PINECONE)), new ItemStack(ItemsFL.getFood(FoodFL.PINE_NUTS)), 0.5f).setRegistryName("pine_nuts"),
+            new CrackingRecipe(IIngredient.of(ItemsFL.getFood(FoodFL.PINECONE)), new ItemStack(ItemsFL.getFood(FoodFL.PECANS)), 0.5f).setRegistryName("pecans"),
+            new CrackingRecipe(IIngredient.of(ItemsFL.getFood(FoodFL.COCONUT)), filled_coconut.copy(), 0.5f).setRegistryName("coconut_milk")
         );
     }
 }

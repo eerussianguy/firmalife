@@ -5,6 +5,7 @@ import javax.annotation.Nullable;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 
@@ -14,12 +15,13 @@ import net.dries007.tfc.util.calendar.CalendarTFC;
 public class PlayerDataFL implements ICapabilitySerializable<NBTTagCompound>, IPlayerDataFL
 {
     private long nutted;
+    private BlockPos nutPosition;
 
     public PlayerDataFL()
     {
         this.nutted = 0;
+        this.nutPosition = new BlockPos(0, 0, 0);
     }
-
 
     @Override
     public void setNuttedTime()
@@ -31,6 +33,18 @@ public class PlayerDataFL implements ICapabilitySerializable<NBTTagCompound>, IP
     public long getNuttedTime()
     {
         return nutted;
+    }
+
+    @Override
+    public void setNutPosition(BlockPos pos)
+    {
+        nutPosition = pos;
+    }
+
+    @Override
+    public int getNutDistance(BlockPos pos)
+    {
+        return (int) Math.sqrt(nutPosition.distanceSq(pos));
     }
 
     @Override
@@ -52,6 +66,7 @@ public class PlayerDataFL implements ICapabilitySerializable<NBTTagCompound>, IP
     {
         NBTTagCompound nbt = new NBTTagCompound();
         nbt.setLong("nutted", nutted);
+        nbt.setLong("pos", nutPosition.toLong());
         return nbt;
     }
 
@@ -59,6 +74,9 @@ public class PlayerDataFL implements ICapabilitySerializable<NBTTagCompound>, IP
     public void deserializeNBT(NBTTagCompound nbt)
     {
         if (nbt != null)
+        {
             nutted = nbt.getLong("nutted");
+            nutPosition = BlockPos.fromLong(nbt.getLong("pos"));
+        }
     }
 }

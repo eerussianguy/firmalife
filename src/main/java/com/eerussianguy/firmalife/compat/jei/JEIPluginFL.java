@@ -7,6 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextComponentTranslation;
 
+import com.eerussianguy.firmalife.init.FoodFL;
 import com.eerussianguy.firmalife.init.KnappingFL;
 import com.eerussianguy.firmalife.init.RegistriesFL;
 import com.eerussianguy.firmalife.compat.jei.category.CastingCategoryFL;
@@ -65,7 +66,7 @@ public class JEIPluginFL implements IModPlugin
 
         registry.addIngredientInfo(new ItemStack(ItemsFL.FRUIT_LEAF, 1), VanillaTypes.ITEM, new TextComponentTranslation("jei.tooltip.firmalife.fruit_leaf").getFormattedText());
         registry.addIngredientInfo(new ItemStack(ItemsFL.COCOA_POWDER, 1), VanillaTypes.ITEM, new TextComponentTranslation("jei.tooltip.firmalife.cocoa_powder").getFormattedText());
-        registry.addIngredientInfo(new ItemStack(ItemsFL.PINEAPPLE_CHUNKS, 1), VanillaTypes.ITEM, new TextComponentTranslation("jei.tooltip.firmalife.pineapple_chunks").getFormattedText());
+        registry.addIngredientInfo(new ItemStack(ItemsFL.getFood(FoodFL.PINEAPPLE_CHUNKS), 1), VanillaTypes.ITEM, new TextComponentTranslation("jei.tooltip.firmalife.pineapple_chunks").getFormattedText());
 
         // Pumpkin Knapping
         List<KnappingRecipeWrapper> pumpkinknapRecipes = TFCRegistries.KNAPPING.getValuesCollection().stream()

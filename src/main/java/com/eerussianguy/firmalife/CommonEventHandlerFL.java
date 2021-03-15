@@ -1,8 +1,6 @@
 package com.eerussianguy.firmalife;
 
 
-import com.eerussianguy.firmalife.init.BushFL;
-import net.dries007.tfc.objects.blocks.agriculture.BlockBerryBush;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -24,6 +22,8 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import com.eerussianguy.firmalife.gui.FLGuiHandler;
+import com.eerussianguy.firmalife.init.BushFL;
+import com.eerussianguy.firmalife.items.ItemFruitPole;
 import com.eerussianguy.firmalife.player.CapPlayerDataFL;
 import com.eerussianguy.firmalife.player.PlayerDataFL;
 import com.eerussianguy.firmalife.registry.BlocksFL;
@@ -38,7 +38,6 @@ import net.dries007.tfc.objects.entity.animal.EntityGoatTFC;
 import net.dries007.tfc.objects.entity.animal.EntityYakTFC;
 import net.dries007.tfc.objects.entity.animal.EntityZebuTFC;
 import net.dries007.tfc.objects.fluids.FluidsTFC;
-import net.dries007.tfc.objects.items.ItemMisc;
 import net.dries007.tfc.util.Helpers;
 
 import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
@@ -49,8 +48,6 @@ public class CommonEventHandlerFL
     @SubscribeEvent
     public static void onBlockHarvestDrops(BlockEvent.HarvestDropsEvent event)
     {
-        final EntityPlayer player = event.getHarvester();
-        final ItemStack held = player == null ? ItemStack.EMPTY : player.getHeldItemMainhand();
         final IBlockState state = event.getState();
         final Block block = state.getBlock();
 
@@ -58,19 +55,11 @@ public class CommonEventHandlerFL
         {
             event.getDrops().add(new ItemStack(ItemsFL.FRUIT_LEAF, 2 + Constants.RNG.nextInt(4)));
         }
-        else if(block instanceof BlockBerryBush) {
-            if(((BlockBerryBush)block).getBush() == BushFL.PINEAPPLE) { // check if it's a pineapple bush
-                // add the drop if it's fruiting
-                if(block.getDefaultState().getValue(BlockBerryBush.FRUITING)) {
-                    event.getDrops().add(new ItemStack(ItemsFL.PINEAPPLE_FIBER, 1+Constants.RNG.nextInt(3)));
-                }
-            }
-        }
-        else if (block instanceof BlockFruitTreeTrunk) //todo: implement this without strings
+        else if (block instanceof BlockFruitTreeTrunk)
         {
+            if (event.isCanceled()) event.setCanceled(false);
             IFruitTree tree = ((BlockFruitTreeTrunk) block).getTree();
-            String poleName = MOD_ID + tree.getName().toLowerCase() + "_pole";
-            Item pole = ItemMisc.getByNameOrId(poleName);
+            ItemFruitPole pole = ItemFruitPole.get(tree);
             if (pole != null)
                 event.getDrops().add(new ItemStack(pole));
         }

@@ -85,6 +85,8 @@ item.firmalife.pineapple.name=Pineapple
 item.firmalife.pineapple_leather.name=Pineapple Leather
 item.firmalife.pineapple_fiber.name=Pineapple Fiber
 item.firmalife.pineapple_yarn.name=Pineapple Yarn
+item.firmalife.pickled_egg.name=Pickled Egg
+item.firmalife.trail_mix.name=Trail Mix
 
 ### WOOD
 item.firmalife.banana_pole.name=Banana Pole
@@ -247,9 +249,11 @@ tile.firmalife.lit_pumpkin_pickaxe.name=Jack o'Lantern
 tooltip.firmalife.hours=hours
 tooltip.firmalife.days=days
 tooltip.firmalife.refractory=You're doing this too often. Take a break.
+tooltip.firmalife.distance=This part of the forest has no nuts left.
 tooltip.firmalife.not_fall=Come back in October or November to get nuts.
 tooltip.firmalife.valid=Multiblock Valid
 tooltip.firmalife.invalid=Multiblock Invalid
+tfc.tooltip.barrel_recipe_lime=Preserved in Limewater
 jei.category.firmalife.oven=Oven
 
 jei.category.firmalife.casting=Casting recipes
@@ -288,3 +292,9 @@ config.firmalife.general.compat.logging.tooltip=Enable logging of some actions F
 
 config.firmalife.general.balance.peelNeeded=Peel needed?
 config.firmalife.general.balance.peelNeeded.tooltip=Peel needed to take stuff out of the oven?
+
+config.firmalife.general.balance.nutTime=Nut Cooldown
+config.firmalife.general.balance.nutTime.tooltip=Ticks required between two nut hammerings
+
+config.firmalife.general.balance.nutDistance=Nut Distance
+config.firmalife.general.balance.nutDistance.tooltip=Distance required between two nut hammerings

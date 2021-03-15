@@ -79,6 +79,14 @@ public class ConfigFL
             @Config.Comment("Require peel to take stuff out of the oven?")
             @Config.LangKey("config." + MOD_ID + "general.balance.peelNeeded")
             public boolean peelNeeded = true;
+
+            @Config.Comment("Distance required between two nut hammerings")
+            @Config.LangKey("config." + MOD_ID + "general.balance.nutDistance")
+            public int nutDistance = 30;
+
+            @Config.Comment("Ticks required between two nut hammerings")
+            @Config.LangKey("config." + MOD_ID + "general.balance.nutTime")
+            public int nutTime = 2000;
         }
     }
 }

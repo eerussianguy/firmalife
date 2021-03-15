@@ -15,7 +15,7 @@ import static net.dries007.tfc.api.types.IBerryBush.Size.*;
 
 public enum BushFL implements IBerryBush
 {
-    PINEAPPLE(() -> ItemsFL.PINEAPPLE, Month.JANUARY, 12, -5f, 17f, 100f, 400f, 0.8f, LARGE, true);
+    PINEAPPLE(() -> ItemsFL.getFood(FoodFL.PINEAPPLE), Month.JANUARY, 12, -5f, 17f, 100f, 400f, 0.8f, LARGE, true);
 
     static
     {

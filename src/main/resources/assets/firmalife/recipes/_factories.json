@@ -1,5 +1,6 @@
 {
   "recipes": {
-    "unmold_recipe": "com.eerussianguy.firmalife.recipe.UnmoldRecipeFL$Factory"
+    "unmold_recipe": "com.eerussianguy.firmalife.recipe.UnmoldRecipeFL$Factory",
+    "trail_mix": "com.eerussianguy.firmalife.recipe.TrailMixRecipe$Factory"
   }
 }

@@ -1,6 +1,7 @@
 package com.eerussianguy.firmalife.player;
 
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.util.INBTSerializable;
 
 public interface IPlayerDataFL extends INBTSerializable<NBTTagCompound>
@@ -16,4 +17,14 @@ public interface IPlayerDataFL extends INBTSerializable<NBTTagCompound>
      * @return
      */
     long getNuttedTime();
+
+    /**
+     * @param pos The block position of the last hammering
+     */
+    void setNutPosition(BlockPos pos);
+
+    /**
+     * @return Distance in blocks of how far the last hammering was.
+     */
+    int getNutDistance(BlockPos pos);
 }

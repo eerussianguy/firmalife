@@ -3,6 +3,7 @@ package com.eerussianguy.firmalife.registry;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.google.common.base.CaseFormat;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -15,11 +16,9 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
 
 import com.eerussianguy.firmalife.blocks.BlockFruitDoor;
-import com.eerussianguy.firmalife.init.FoodDataFL;
-import com.eerussianguy.firmalife.init.Fruit;
-import com.eerussianguy.firmalife.init.FruitTreeFL;
-import com.eerussianguy.firmalife.init.StemCrop;
+import com.eerussianguy.firmalife.init.*;
 import com.eerussianguy.firmalife.items.*;
+import net.dries007.tfc.api.capability.food.FoodData;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
 import net.dries007.tfc.api.registries.TFCRegistries;
@@ -43,32 +42,8 @@ public class ItemsFL
     public static final ItemPottery UNFIRED_MALLET_MOLD = Helpers.getNull();
     @GameRegistry.ObjectHolder("mallet_mold")
     public static final ItemMetalMalletMold MALLET_MOLD = Helpers.getNull();
-    @GameRegistry.ObjectHolder("cocoa_beans")
-    public static final ItemFoodFL COCOA_BEANS = Helpers.getNull();
-    @GameRegistry.ObjectHolder("chestnuts")
-    public static final ItemFoodFL CHESTNUTS = Helpers.getNull();
-    @GameRegistry.ObjectHolder("roasted_chestnuts")
-    public static final ItemFoodFL ROASTED_CHESTNUTS = Helpers.getNull();
-    @GameRegistry.ObjectHolder("chestnut_flour")
-    public static final ItemFoodFL CHESTNUT_FLOUR = Helpers.getNull();
-    @GameRegistry.ObjectHolder("chestnut_dough")
-    public static final ItemFoodFL CHESTNUT_DOUGH = Helpers.getNull();
-    @GameRegistry.ObjectHolder("chestnut_bread")
-    public static final ItemFoodFL CHESTNUT_BREAD = Helpers.getNull();
     @GameRegistry.ObjectHolder("chestnut_slice")
     public static final ItemHeatableFoodFL CHESTNUT_SLICE = Helpers.getNull();
-    @GameRegistry.ObjectHolder("acorn_fruit")
-    public static final ItemFoodFL ACORN_FRUIT = Helpers.getNull();
-    @GameRegistry.ObjectHolder("acorns")
-    public static final ItemFoodFL ACORNS = Helpers.getNull();
-    @GameRegistry.ObjectHolder("pinecone")
-    public static final ItemFoodFL PINECONE = Helpers.getNull();
-    @GameRegistry.ObjectHolder("pine_nuts")
-    public static final ItemFoodFL PINE_NUTS = Helpers.getNull();
-    @GameRegistry.ObjectHolder("pecan_nuts")
-    public static final ItemFoodFL PECAN_NUTS = Helpers.getNull();
-    @GameRegistry.ObjectHolder("pecans")
-    public static final ItemFoodFL PECANS = Helpers.getNull();
     @GameRegistry.ObjectHolder("roasted_cocoa_beans")
     public static final ItemMisc ROASTED_COCOA_BEANS = Helpers.getNull();
     @GameRegistry.ObjectHolder("peel")
@@ -77,8 +52,6 @@ public class ItemsFL
     public static final ItemMisc FRUIT_LEAF = Helpers.getNull();
     @GameRegistry.ObjectHolder("cocoa_powder")
     public static final ItemMisc COCOA_POWDER = Helpers.getNull();
-    @GameRegistry.ObjectHolder("vanilla")
-    public static final ItemMisc VANILLA = Helpers.getNull();
     @GameRegistry.ObjectHolder("cinnamon")
     public static final ItemMisc CINNAMON = Helpers.getNull();
     @GameRegistry.ObjectHolder("cinnamon_bark")
@@ -89,20 +62,10 @@ public class ItemsFL
     public static final ItemMisc CINNAMON_POLE = Helpers.getNull();
     @GameRegistry.ObjectHolder("frothy_coconut")
     public static final ItemMisc FROTHY_COCONUT = Helpers.getNull();
-    @GameRegistry.ObjectHolder("pineapple_chunks")
-    public static final ItemFoodFL PINEAPPLE_CHUNKS = Helpers.getNull();
     @GameRegistry.ObjectHolder("greenhouse_door")
     public static final ItemGreenhouseDoor ITEM_GREENHOUSE_DOOR = Helpers.getNull();
     @GameRegistry.ObjectHolder("cracked_coconut")
     public static final ItemWoodenBucket CRACKED_COCONUT = Helpers.getNull();
-    @GameRegistry.ObjectHolder("coconut")
-    public static final ItemFoodFL COCONUT = Helpers.getNull();
-    @GameRegistry.ObjectHolder("pumpkin_scooped")
-    public static final ItemFoodFL PUMPKIN_SCOOPED = Helpers.getNull();
-    @GameRegistry.ObjectHolder("pumpkin_chunks")
-    public static final ItemFoodFL PUMPKIN_CHUNKS = Helpers.getNull();
-    @GameRegistry.ObjectHolder("dried_cocoa_beans")
-    public static final ItemFoodFL DRIED_COCOA_BEANS = Helpers.getNull();
     @GameRegistry.ObjectHolder("barley_flatbread")
     public static final ItemFoodFL BARLEY_FLATBREAD = Helpers.getNull();
     @GameRegistry.ObjectHolder("corn_flatbread")
@@ -115,24 +78,12 @@ public class ItemsFL
     public static final ItemFoodFL RICE_FLATBREAD = Helpers.getNull();
     @GameRegistry.ObjectHolder("wheat_flatbread")
     public static final ItemFoodFL WHEAT_FLATBREAD = Helpers.getNull();
-    @GameRegistry.ObjectHolder("tomato_sauce")
-    public static final ItemFoodFL TOMATO_SAUCE = Helpers.getNull();
-    @GameRegistry.ObjectHolder("toast")
-    public static final ItemFoodFL TOAST = Helpers.getNull();
     @GameRegistry.ObjectHolder("white_chocolate_blend")
     public static final ItemMisc WHITE_BLEND = Helpers.getNull();
     @GameRegistry.ObjectHolder("dark_chocolate_blend")
     public static final ItemMisc DARK_BLEND = Helpers.getNull();
     @GameRegistry.ObjectHolder("milk_chocolate_blend")
     public static final ItemMisc MILK_BLEND = Helpers.getNull();
-    @GameRegistry.ObjectHolder("white_chocolate")
-    public static final ItemFoodFL WHITE_CHOCOLATE = Helpers.getNull();
-    @GameRegistry.ObjectHolder("dark_chocolate")
-    public static final ItemFoodFL DARK_CHOCOLATE = Helpers.getNull();
-    @GameRegistry.ObjectHolder("milk_chocolate")
-    public static final ItemFoodFL MILK_CHOCOLATE = Helpers.getNull();
-    @GameRegistry.ObjectHolder("pineapple")
-    public static final ItemFoodFL PINEAPPLE = Helpers.getNull();
     @GameRegistry.ObjectHolder("dried_pineapple")
     public static final ItemDriedPineapple DRIED_PINEAPPLE = Helpers.getNull();
     @GameRegistry.ObjectHolder("pineapple_leather")
@@ -148,29 +99,31 @@ public class ItemsFL
     @GameRegistry.ObjectHolder("cinnamon_sapling")
     public static final ItemBlock ITEM_CINNAMON_SAPLING = Helpers.getNull();
 
+    private static final Map<Metal, ItemMetalMalletHead> malletHeads = new HashMap<>();
+    private static final Map<Fruit, Item> driedFruits = new HashMap<>();
+    private static final Map<FoodFL, ItemFoodFL> foods = new HashMap<>();
+    public static ItemMetalMalletMold malletMold;
     private static ImmutableList<Item> allEasyItems;
+    private static ImmutableList<ItemFruitDoor> allFruitDoors;
 
     public static ImmutableList<Item> getAllEasyItems()
     {
         return allEasyItems;
     }
 
-    private static ImmutableList<ItemFruitDoor> allFruitDoors;
-
     public static ImmutableList<ItemFruitDoor> getAllFruitDoors() { return allFruitDoors; }
 
-    private static final Map<Metal, ItemMetalMalletHead> malletHeads = new HashMap<>();
-
     public static ItemMetalMalletHead getMetalMalletHead(Metal metal) { return malletHeads.get(metal); }
-
-    private static final Map<Fruit, Item> driedFruits = new HashMap<>();
 
     public static Item getDriedFruit(Fruit fruit)
     {
         return driedFruits.get(fruit);
     }
 
-    public static ItemMetalMalletMold malletMold;
+    public static ItemFoodFL getFood(FoodFL food)
+    {
+        return foods.get(food);
+    }
 
 
     @SubscribeEvent
@@ -180,32 +133,38 @@ public class ItemsFL
 
         ImmutableList.Builder<Item> easyItems = ImmutableList.builder();
         ImmutableList.Builder<ItemFruitDoor> fruitDoors = ImmutableList.builder();
-        //Foods
-        easyItems.add(register(r, "dark_chocolate", new ItemFoodFL(FoodDataFL.CHOCOLATE), CT_FOOD));
-        easyItems.add(register(r, "milk_chocolate", new ItemFoodFL(FoodDataFL.CHOCOLATE), CT_FOOD));
-        easyItems.add(register(r, "white_chocolate", new ItemFoodFL(FoodDataFL.CHOCOLATE), CT_FOOD));
-        easyItems.add(register(r, "cocoa_beans", new ItemFoodFL(FoodDataFL.COCOA_BEANS), CT_FOOD));
-        easyItems.add(register(r, "pumpkin_scooped", new ItemFoodFL(FoodDataFL.PUMPKIN), CT_FOOD));
-        easyItems.add(register(r, "pumpkin_chunks", new ItemFoodFL(FoodDataFL.PUMPKIN), CT_FOOD));
+
+        for (FoodFL food : FoodFL.values())
+        {
+            FoodData data = food.getData();
+            ItemFoodFL foodItem = new ItemFoodFL(data);
+            easyItems.add(register(r, food.name().toLowerCase(), foodItem, CT_FOOD));
+            OreDictionary.registerOre(convert(food.name()), foodItem);
+            String[] nameOverrides = food.getNameOverrides();
+            if (nameOverrides != null)
+            {
+                for (String name : nameOverrides)
+                    OreDictionary.registerOre(name, foodItem);
+            }
+            else if (!food.isReplacingOres())
+            {
+                addCategories(foodItem, data);
+            }
+            foods.put(food, foodItem);
+        }
 
         easyItems.add(register(r, "unfired_mallet_mold", new ItemPottery(), CT_POTTERY));
         malletMold = register(r, "mallet_mold", new ItemMetalMalletMold("mallet"), CT_POTTERY);
 
-        for (Metal metal : TFCRegistries.METALS.getValuesCollection())
-            if (metal.isToolMetal())
-            {
-                easyItems.add(register(r, metal.toString() + "_mallet", new ItemMetalMallet(metal), CT_METAL));
-                ItemMetalMalletHead head = new ItemMetalMalletHead(metal);
-                easyItems.add(register(r, metal.toString() + "_mallet_head", head, CT_METAL));
-                malletHeads.put(metal, head);
-            }
-
-        easyItems.add(register(r, "dried_cocoa_beans", new ItemFoodFL(FoodDataFL.DRIED_COCOA_BEANS), CT_FOOD));
         ItemDriedPineapple dryPineapple = new ItemDriedPineapple();
         easyItems.add(register(r, "dried_pineapple", dryPineapple, CT_FOOD));
         OreDictionary.registerOre("dried_pineapple", dryPineapple);
         OreDictionary.registerOre("fruitDry", dryPineapple);
         OreDictionary.registerOre("categoryFruit", dryPineapple);
+
+        ItemTrailMix trailMix = new ItemTrailMix();
+        easyItems.add(register(r, "trail_mix", trailMix, CT_FOOD));
+        OreDictionary.registerOre("categoryMeal", trailMix);
 
         //Dried Berries
         for (Fruit fruit : Fruit.values())
@@ -221,20 +180,6 @@ public class ItemsFL
             }
         }
 
-        easyItems.add(register(r, "acorn_fruit", new ItemFoodFL(FoodDataFL.UNCRACKED_NUT), CT_FOOD));
-        easyItems.add(register(r, "acorns", new ItemFoodFL(FoodDataFL.NUT), CT_FOOD));
-        easyItems.add(register(r, "chestnuts", new ItemFoodFL(FoodDataFL.UNCRACKED_NUT), CT_FOOD));
-        easyItems.add(register(r, "roasted_chestnuts", new ItemFoodFL(FoodDataFL.ROASTED_NUT), CT_FOOD));
-        easyItems.add(register(r, "chestnut_dough", new ItemFoodFL(FoodDataFL.DOUGH), CT_FOOD));
-        easyItems.add(register(r, "chestnut_flour", new ItemFoodFL(FoodDataFL.FLOUR), CT_FOOD));
-        easyItems.add(register(r, "pecan_nuts", new ItemFoodFL(FoodDataFL.UNCRACKED_NUT), CT_FOOD));
-        easyItems.add(register(r, "pecans", new ItemFoodFL(FoodDataFL.NUT), CT_FOOD));
-        easyItems.add(register(r, "pinecone", new ItemFoodFL(FoodDataFL.UNCRACKED_NUT), CT_FOOD));
-        easyItems.add(register(r, "pine_nuts", new ItemFoodFL(FoodDataFL.NUT), CT_FOOD));
-        easyItems.add(register(r, "coconut", new ItemFoodFL(FoodDataFL.NUT), CT_FOOD));
-        easyItems.add(register(r, "tomato_sauce", new ItemFoodFL(FoodDataFL.DOUGH), CT_FOOD));
-        easyItems.add(register(r, "garlic_bread", new ItemFoodFL(FoodDataFL.GARLIC_BREAD), CT_FOOD));
-        easyItems.add(register(r, "toast", new ItemFoodFL(FoodDataFL.TOAST), CT_FOOD));
         for (String grain : new String[] {"barley", "corn", "oat", "rice", "rye", "wheat"})
         {
             ItemFoodFL flatbread_dough = new ItemFoodFL(FoodDataFL.DOUGH);
@@ -257,7 +202,6 @@ public class ItemsFL
         easyItems.add(register(r, "chestnut_sandwich", sandwich, CT_FOOD));
         OreDictionary.registerOre("sandwich", sandwich);
         OreDictionary.registerOre("categoryMeal", sandwich);
-        easyItems.add(register(r, "chestnut_bread", new ItemFoodFL(FoodDataFL.FLATBREAD), CT_FOOD));
 
         //Misc Items
         easyItems.add(register(r, "roasted_cocoa_beans", new ItemRoastedCocoaBeans(), CT_MISC));
@@ -271,7 +215,7 @@ public class ItemsFL
 
         ItemMisc fruit_leaf = new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT);
         easyItems.add(register(r, "fruit_leaf", fruit_leaf, CT_MISC));
-        OreDictionary.registerOre("fruitLeaf", fruit_leaf); //todo: Use our OreDict helper
+        OreDictionary.registerOre("fruitLeaf", fruit_leaf);
 
         easyItems.add(register(r, "vanilla", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
         easyItems.add(register(r, "cinnamon_bark", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
@@ -282,9 +226,6 @@ public class ItemsFL
         easyItems.add(register(r, "large_planter", new ItemBlock(BlocksFL.LARGE_PLANTER), CT_DECORATIONS));
         easyItems.add(register(r, "cinnamon_sapling", new ItemBlock(BlocksFL.CINNAMON_SAPLING), CT_DECORATIONS));
 
-        easyItems.add(register(r, "pineapple", new ItemFoodFL(FoodDataFL.COCOA_BEANS), CT_FOOD));
-        easyItems.add(register(r, "pineapple_chunks", new ItemFoodFL(FoodDataFL.PINEAPPLE), CT_FOOD));
-
         easyItems.add(register(r, "pineapple_leather", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
         easyItems.add(register(r, "pineapple_fiber", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
         easyItems.add(register(r, "pineapple_yarn", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
@@ -294,31 +235,25 @@ public class ItemsFL
         OreDictionary.registerOre("poleCinnamon", cpole);
 
         for (FruitTreeFL fruitTree : FruitTreeFL.values())
-        {
-            String name = fruitTree.getName().toLowerCase();
-            ItemMisc pole = new ItemMisc(Size.SMALL, Weight.MEDIUM);
-            easyItems.add(register(r, name + "_pole", pole, CT_MISC));
-            //todo: Use our OreDict helper
-            OreDictionary.registerOre("pole" + name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase(), pole);
-        }
-
+            easyItems.add(registerPole(r, fruitTree));
         for (IFruitTree fruitTree : FruitTree.values())
-        {
-            String name = fruitTree.getName().toLowerCase();
-            ItemMisc pole = new ItemMisc(Size.SMALL, Weight.MEDIUM);
-            easyItems.add(register(r, name + "_pole", pole, CT_MISC));
-            //todo: Use our OreDict helper
-            OreDictionary.registerOre("pole" + name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase(), pole);
-        }
+            easyItems.add(registerPole(r, fruitTree));
         for (BlockFruitDoor door : BlocksFL.getAllFruitDoors())
             fruitDoors.add(register(r, door.getRegistryName().getPath(), new ItemFruitDoor(door), CT_DECORATIONS));
+
+        for (Metal metal : TFCRegistries.METALS.getValuesCollection())
+            if (metal.isToolMetal())
+            {
+                easyItems.add(register(r, metal.toString() + "_mallet", new ItemMetalMallet(metal), CT_METAL));
+                ItemMetalMalletHead head = new ItemMetalMalletHead(metal);
+                easyItems.add(register(r, metal.toString() + "_mallet_head", head, CT_METAL));
+                malletHeads.put(metal, head);
+            }
 
         //uses a separate model loader
         register(r, "cracked_coconut", new ItemWoodenBucket(), CT_MISC);
 
-        BlocksFL.getAllIBs().forEach((x) -> {
-            registerIB(r, x);
-        });
+        BlocksFL.getAllIBs().forEach((x) -> registerIB(r, x));
 
         for (StemCrop crop : StemCrop.values())
         {
@@ -326,6 +261,33 @@ public class ItemsFL
         }
         allEasyItems = easyItems.build();
         allFruitDoors = fruitDoors.build();
+    }
+
+    private static String convert(String in)
+    {
+        return CaseFormat.UPPER_UNDERSCORE.converterTo(CaseFormat.LOWER_CAMEL).convert(in);
+    }
+
+    private static void addCategories(Item foodItem, FoodData data)
+    {
+        float[] nutrients = data.getNutrients();
+        if (nutrients[0] > 0)
+            OreDictionary.registerOre("categoryGrain", foodItem);
+        if (nutrients[1] > 0)
+            OreDictionary.registerOre("categoryFruit", foodItem);
+        if (nutrients[2] > 0)
+            OreDictionary.registerOre("categoryVegetable", foodItem);
+        if (nutrients[4] > 0)
+            OreDictionary.registerOre("categoryDairy", foodItem);
+    }
+
+    private static ItemFruitPole registerPole(IForgeRegistry<Item> r, IFruitTree fruitTree)
+    {
+        String name = fruitTree.getName().toLowerCase();
+        ItemFruitPole pole = new ItemFruitPole(fruitTree);
+        ItemFruitPole entry = register(r, name + "_pole", pole, CT_MISC);
+        OreDictionary.registerOre("pole" + name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase(), pole);
+        return entry;
     }
 
     private static <T extends Item> T register(IForgeRegistry<Item> r, String name, T item, CreativeTabs ct)

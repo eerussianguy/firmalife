@@ -3,6 +3,7 @@ package com.eerussianguy.firmalife.util;
 import net.minecraft.init.Items;
 import net.minecraftforge.oredict.OreDictionary;
 
+import com.eerussianguy.firmalife.init.FoodFL;
 import com.eerussianguy.firmalife.registry.ItemsFL;
 import net.dries007.tfc.objects.items.food.ItemFoodTFC;
 import net.dries007.tfc.util.agriculture.Food;
@@ -25,20 +26,9 @@ public class OreDictsFL
         OreDictionary.registerOre("doughYeast", ItemFoodTFC.get(Food.WHEAT_DOUGH));
         OreDictionary.registerOre("doughYeast", ItemFoodTFC.get(Food.RICE_DOUGH));
         OreDictionary.registerOre("cheese", ItemFoodTFC.get(Food.CHEESE)); //todo: remove this
-        OreDictionary.registerOre("categoryBread", ItemsFL.CHESTNUT_BREAD);
         OreDictionary.registerOre("categoryBread", ItemsFL.CHESTNUT_SLICE);
         OreDictionary.registerOre("slice", ItemsFL.CHESTNUT_SLICE);
-        OreDictionary.registerOre("categoryGrain", ItemsFL.DRIED_COCOA_BEANS);
         OreDictionary.registerOre("categoryGrain", ItemsFL.ROASTED_COCOA_BEANS);
-        OreDictionary.registerOre("categoryFruit", ItemsFL.PUMPKIN_CHUNKS);
-        OreDictionary.registerOre("categoryFruit", ItemsFL.PUMPKIN_SCOOPED);
-        OreDictionary.registerOre("categoryGrain", ItemsFL.ACORN_FRUIT);
-        OreDictionary.registerOre("categoryGrain", ItemsFL.PINE_NUTS);
-        OreDictionary.registerOre("categoryGrain", ItemsFL.PECANS);
-        OreDictionary.registerOre("categoryMeat", ItemsFL.ACORN_FRUIT);
-        OreDictionary.registerOre("categoryMeat", ItemsFL.PINE_NUTS);
-        OreDictionary.registerOre("categoryMeat", ItemsFL.PECANS);
-        OreDictionary.registerOre("categoryMeat", ItemsFL.ROASTED_CHESTNUTS);
         OreDictionary.registerOre("leather", ItemsFL.PINEAPPLE_LEATHER);
         OreDictionary.registerOre("string", ItemsFL.PINEAPPLE_YARN);
     }

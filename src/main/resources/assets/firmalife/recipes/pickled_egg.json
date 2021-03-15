@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:clay_ball"
+    },
+    {
+      "item": "tfc:wood_ash"
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "dustSalt"
+    },
+    {
+      "item": "tfc:food/cooked_egg"
+    }
+  ],
+  "result": {
+    "item": "firmalife:pickled_egg",
+    "count": 1
+  }
+}

@@ -25,7 +25,7 @@ import net.dries007.tfc.world.classic.worldgen.WorldGenFruitTrees;
 
 public enum FruitTreeFL implements IFruitTree
 {
-    COCOA(() -> ItemsFL.COCOA_BEANS, Month.JUNE, 2, Month.SEPTEMBER, 1, 23f, 35f, 280f, 400f, 0.33f);
+    COCOA(() -> ItemsFL.getFood(FoodFL.COCOA_BEANS), Month.JUNE, 2, Month.SEPTEMBER, 1, 23f, 35f, 280f, 400f, 0.33f);
 
     static
     {

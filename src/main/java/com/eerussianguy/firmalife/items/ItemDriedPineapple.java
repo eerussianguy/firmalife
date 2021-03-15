@@ -5,6 +5,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import net.minecraft.item.ItemStack;
 
 import com.eerussianguy.firmalife.init.FoodDataFL;
+import com.eerussianguy.firmalife.init.FoodFL;
 import com.eerussianguy.firmalife.registry.ItemsFL;
 import mcp.MethodsReturnNonnullByDefault;
 
@@ -20,7 +21,7 @@ public class ItemDriedPineapple extends ItemFoodFL
     @Override
     public ItemStack getContainerItem(ItemStack itemStack)
     {
-        return new ItemStack(ItemsFL.PINEAPPLE_CHUNKS);
+        return new ItemStack(ItemsFL.getFood(FoodFL.PINEAPPLE_CHUNKS));
     }
 
     @Override
