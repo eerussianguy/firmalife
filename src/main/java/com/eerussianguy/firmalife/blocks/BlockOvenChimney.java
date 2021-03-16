@@ -44,7 +44,7 @@ public class BlockOvenChimney extends Block implements IItemSize
         }
         else
         {
-            drops.add(new ItemStack(Items.CLAY_BALL, 3 + RNG.nextInt(3)));
+            super.getDrops(drops, world, pos, state, fortune);
         }
     }
 

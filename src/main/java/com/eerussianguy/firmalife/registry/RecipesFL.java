@@ -39,27 +39,27 @@ public class RecipesFL
             // the input being straw makes this a curing recipe
             new OvenRecipe(IIngredient.of(new ItemStack(ItemsTFC.STRAW)), new ItemStack(ItemsTFC.WOOD_ASH), 8 * hour).setRegistryName("cure"),
 
-            new OvenRecipe(IIngredient.of(new ItemStack(ItemsFL.getFood(FoodFL.DRIED_COCOA_BEANS))), new ItemStack(ItemsFL.ROASTED_COCOA_BEANS), 4 * hour).setRegistryName("dried_cocoa_beans"),
-            new OvenRecipe(IIngredient.of(new ItemStack(ItemsFL.getFood(FoodFL.CHESTNUTS))), new ItemStack(ItemsFL.getFood(FoodFL.ROASTED_CHESTNUTS)), hour).setRegistryName("chestnuts"),
-            new OvenRecipe(IIngredient.of(new ItemStack(ItemsFL.getFood(FoodFL.CHESTNUT_DOUGH))), new ItemStack(ItemsFL.getFood(FoodFL.CHESTNUT_BREAD)), 4 * hour).setRegistryName("chestnut_dough"),
+            new OvenRecipe(IIngredient.of(new ItemStack(ItemsFL.getFood(FoodFL.DRIED_COCOA_BEANS))), new ItemStack(ItemsFL.ROASTED_COCOA_BEANS), 2 * hour).setRegistryName("dried_cocoa_beans"),
+            new OvenRecipe(IIngredient.of(new ItemStack(ItemsFL.getFood(FoodFL.CHESTNUTS))), new ItemStack(ItemsFL.getFood(FoodFL.ROASTED_CHESTNUTS)), 2 * hour).setRegistryName("chestnuts"),
+            new OvenRecipe(IIngredient.of(new ItemStack(ItemsFL.getFood(FoodFL.CHESTNUT_DOUGH))), new ItemStack(ItemsFL.getFood(FoodFL.CHESTNUT_BREAD)), 2 * hour).setRegistryName("chestnut_dough"),
 
-            new OvenRecipe(IIngredient.of(ItemFoodTFC.get(Food.BARLEY_DOUGH)), new ItemStack(ItemFoodTFC.get(Food.BARLEY_BREAD)), 4 * hour).setRegistryName("barley_dough"),
-            new OvenRecipe(IIngredient.of(ItemFoodTFC.get(Food.CORNMEAL_DOUGH)), new ItemStack(ItemFoodTFC.get(Food.CORNBREAD)), 4 * hour).setRegistryName("corn_dough"),
-            new OvenRecipe(IIngredient.of(ItemFoodTFC.get(Food.OAT_DOUGH)), new ItemStack(ItemFoodTFC.get(Food.OAT_BREAD)), 4 * hour).setRegistryName("oat_dough"),
-            new OvenRecipe(IIngredient.of(ItemFoodTFC.get(Food.RICE_DOUGH)), new ItemStack(ItemFoodTFC.get(Food.RICE_BREAD)), 4 * hour).setRegistryName("rice_dough"),
-            new OvenRecipe(IIngredient.of(ItemFoodTFC.get(Food.RYE_DOUGH)), new ItemStack(ItemFoodTFC.get(Food.RYE_BREAD)), 4 * hour).setRegistryName("rye_dough"),
-            new OvenRecipe(IIngredient.of(ItemFoodTFC.get(Food.WHEAT_DOUGH)), new ItemStack(ItemFoodTFC.get(Food.WHEAT_BREAD)), 4 * hour).setRegistryName("wheat_dough"),
+            new OvenRecipe(IIngredient.of(ItemFoodTFC.get(Food.BARLEY_DOUGH)), new ItemStack(ItemFoodTFC.get(Food.BARLEY_BREAD)), 2 * hour).setRegistryName("barley_dough"),
+            new OvenRecipe(IIngredient.of(ItemFoodTFC.get(Food.CORNMEAL_DOUGH)), new ItemStack(ItemFoodTFC.get(Food.CORNBREAD)), 2 * hour).setRegistryName("corn_dough"),
+            new OvenRecipe(IIngredient.of(ItemFoodTFC.get(Food.OAT_DOUGH)), new ItemStack(ItemFoodTFC.get(Food.OAT_BREAD)), 2 * hour).setRegistryName("oat_dough"),
+            new OvenRecipe(IIngredient.of(ItemFoodTFC.get(Food.RICE_DOUGH)), new ItemStack(ItemFoodTFC.get(Food.RICE_BREAD)), 2 * hour).setRegistryName("rice_dough"),
+            new OvenRecipe(IIngredient.of(ItemFoodTFC.get(Food.RYE_DOUGH)), new ItemStack(ItemFoodTFC.get(Food.RYE_BREAD)), 2 * hour).setRegistryName("rye_dough"),
+            new OvenRecipe(IIngredient.of(ItemFoodTFC.get(Food.WHEAT_DOUGH)), new ItemStack(ItemFoodTFC.get(Food.WHEAT_BREAD)), 2 * hour).setRegistryName("wheat_dough"),
 
-            new OvenRecipe(IIngredient.of("barley_flatbread_dough"), new ItemStack(ItemsFL.BARLEY_FLATBREAD), 4 * hour).setRegistryName("barley_flatbread_dough"),
-            new OvenRecipe(IIngredient.of("corn_flatbread_dough"), new ItemStack(ItemsFL.CORN_FLATBREAD), 4 * hour).setRegistryName("corn_flatbread_dough"),
-            new OvenRecipe(IIngredient.of("oat_flatbread_dough"), new ItemStack(ItemsFL.OAT_FLATBREAD), 4 * hour).setRegistryName("oat_flatbread_dough"),
-            new OvenRecipe(IIngredient.of("rice_flatbread_dough"), new ItemStack(ItemsFL.RICE_FLATBREAD), 4 * hour).setRegistryName("rice_flatbread_dough"),
-            new OvenRecipe(IIngredient.of("rye_flatbread_dough"), new ItemStack(ItemsFL.RYE_FLATBREAD), 4 * hour).setRegistryName("rye_flatbread_dough"),
-            new OvenRecipe(IIngredient.of("wheat_flatbread_dough"), new ItemStack(ItemsFL.WHEAT_FLATBREAD), 4 * hour).setRegistryName("wheat_flatbread_dough"),
+            new OvenRecipe(IIngredient.of("barley_flatbread_dough"), new ItemStack(ItemsFL.BARLEY_FLATBREAD), 2 * hour).setRegistryName("barley_flatbread_dough"),
+            new OvenRecipe(IIngredient.of("corn_flatbread_dough"), new ItemStack(ItemsFL.CORN_FLATBREAD), 2 * hour).setRegistryName("corn_flatbread_dough"),
+            new OvenRecipe(IIngredient.of("oat_flatbread_dough"), new ItemStack(ItemsFL.OAT_FLATBREAD), 2 * hour).setRegistryName("oat_flatbread_dough"),
+            new OvenRecipe(IIngredient.of("rice_flatbread_dough"), new ItemStack(ItemsFL.RICE_FLATBREAD), 2 * hour).setRegistryName("rice_flatbread_dough"),
+            new OvenRecipe(IIngredient.of("rye_flatbread_dough"), new ItemStack(ItemsFL.RYE_FLATBREAD), 2 * hour).setRegistryName("rye_flatbread_dough"),
+            new OvenRecipe(IIngredient.of("wheat_flatbread_dough"), new ItemStack(ItemsFL.WHEAT_FLATBREAD), 2 * hour).setRegistryName("wheat_flatbread_dough"),
 
-            new OvenRecipe(IIngredient.of(new ItemStack(ItemsFL.WHITE_BLEND)), new ItemStack(ItemsFL.getFood(FoodFL.WHITE_CHOCOLATE)), hour).setRegistryName("white_blend"),
-            new OvenRecipe(IIngredient.of(new ItemStack(ItemsFL.DARK_BLEND)), new ItemStack(ItemsFL.getFood(FoodFL.DARK_CHOCOLATE)), hour).setRegistryName("dark_blend"),
-            new OvenRecipe(IIngredient.of(new ItemStack(ItemsFL.MILK_BLEND)), new ItemStack(ItemsFL.getFood(FoodFL.MILK_CHOCOLATE)), hour).setRegistryName("milk_blend")
+            new OvenRecipe(IIngredient.of(new ItemStack(ItemsFL.WHITE_BLEND)), new ItemStack(ItemsFL.getFood(FoodFL.WHITE_CHOCOLATE)), 2 * hour).setRegistryName("white_blend"),
+            new OvenRecipe(IIngredient.of(new ItemStack(ItemsFL.DARK_BLEND)), new ItemStack(ItemsFL.getFood(FoodFL.DARK_CHOCOLATE)), 2 * hour).setRegistryName("dark_blend"),
+            new OvenRecipe(IIngredient.of(new ItemStack(ItemsFL.MILK_BLEND)), new ItemStack(ItemsFL.getFood(FoodFL.MILK_CHOCOLATE)), 2 * hour).setRegistryName("milk_blend")
         );
     }
 

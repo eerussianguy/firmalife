@@ -1,10 +1,8 @@
 package com.eerussianguy.firmalife.blocks;
 
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
@@ -37,7 +35,6 @@ public class BlockOvenWall extends Block implements IItemSize
     public static final AxisAlignedBB OVEN_WALL_EAST = new AxisAlignedBB(0.0D, 0.0D, 7.0D / 16, 16.0D / 16, 16.0D / 16, 0.0D);
     public static final AxisAlignedBB OVEN_WALL_NORTH = new AxisAlignedBB(7.0D / 16, 0.0D, 0.0D, 0.0D, 16.0D / 16, 16.0D / 16);
     public static final AxisAlignedBB OVEN_WALL_SOUTH = new AxisAlignedBB(9.0D / 16, 0.0D, 0.0D, 16.0D / 16, 16.0D / 16, 16.0D / 16);
-
 
     public BlockOvenWall()
     {
@@ -75,6 +72,13 @@ public class BlockOvenWall extends Block implements IItemSize
     @Override
     @SuppressWarnings("deprecation")
     public boolean isOpaqueCube(IBlockState state)
+    {
+        return false;
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public boolean isFullCube(IBlockState state)
     {
         return false;
     }
@@ -124,7 +128,7 @@ public class BlockOvenWall extends Block implements IItemSize
         }
         else
         {
-            drops.add(new ItemStack(Items.CLAY_BALL, 3 + RNG.nextInt(3)));
+            super.getDrops(drops, world, pos, state, fortune);
         }
     }
 

@@ -31,5 +31,6 @@ public class OreDictsFL
         OreDictionary.registerOre("categoryGrain", ItemsFL.ROASTED_COCOA_BEANS);
         OreDictionary.registerOre("leather", ItemsFL.PINEAPPLE_LEATHER);
         OreDictionary.registerOre("string", ItemsFL.PINEAPPLE_YARN);
+        OreDictionary.registerOre("tool", ItemsFL.PEEL);
     }
 }

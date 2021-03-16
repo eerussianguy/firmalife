@@ -2,6 +2,7 @@ package com.eerussianguy.firmalife.te;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -17,11 +18,13 @@ import com.eerussianguy.firmalife.blocks.BlockOven;
 import com.eerussianguy.firmalife.blocks.BlockOvenChimney;
 import com.eerussianguy.firmalife.blocks.BlockOvenWall;
 import com.eerussianguy.firmalife.recipe.OvenRecipe;
+import com.eerussianguy.firmalife.registry.BlocksFL;
 import mcp.MethodsReturnNonnullByDefault;
 import net.dries007.tfc.api.capability.food.CapabilityFood;
 import net.dries007.tfc.objects.items.ItemsTFC;
 import net.dries007.tfc.objects.te.TEInventory;
 import net.dries007.tfc.util.calendar.CalendarTFC;
+import net.dries007.tfc.util.calendar.ICalendar;
 import net.dries007.tfc.util.fuel.FuelManager;
 
 import static com.eerussianguy.firmalife.init.StatePropertiesFL.CURED;
@@ -38,6 +41,8 @@ public class TEOven extends TEInventory implements ITickable
     private long startTick;
     private int tickGoal;
     private boolean isBurning;
+    private boolean isWarmed;
+    private long offTick;
 
     public TEOven()
     {
@@ -45,6 +50,8 @@ public class TEOven extends TEInventory implements ITickable
         startTick = 0;
         tickGoal = 0;
         isBurning = false;
+        isWarmed = false;
+        offTick = 0;
     }
 
     @Override
@@ -103,6 +110,8 @@ public class TEOven extends TEInventory implements ITickable
         startTick = nbt.getLong("startTick");
         tickGoal = nbt.getInteger("tickGoal");
         isBurning = nbt.getBoolean("isBurning");
+        isWarmed = nbt.getBoolean("isWarmed");
+        offTick = nbt.getLong("offTick");
         super.readFromNBT(nbt);
     }
 
@@ -112,6 +121,8 @@ public class TEOven extends TEInventory implements ITickable
         nbt.setLong("startTick", startTick);
         nbt.setInteger("tickGoal", tickGoal);
         nbt.setBoolean("isBurning", isBurning);
+        nbt.setBoolean("isWarmed", isWarmed);
+        nbt.setLong("offTick", offTick);
         return super.writeToNBT(nbt);
     }
 
@@ -123,6 +134,12 @@ public class TEOven extends TEInventory implements ITickable
 
     public void light()
     {
+        if (world != null)
+        {
+            Block block = world.getBlockState(pos).getBlock();
+            if (block instanceof BlockOven)
+                world.scheduleBlockUpdate(pos, BlocksFL.OVEN, 1, 1);
+        }
         if (recipeExists() && hasFuel())
         {
             isBurning = true;
@@ -147,9 +164,14 @@ public class TEOven extends TEInventory implements ITickable
         return recipe != null;
     }
 
+    public void setWarmed()
+    {
+        isWarmed = true;
+    }
+
     private boolean hasFuel()
     {
-        return FuelManager.isItemFuel(inventory.getStackInSlot(SLOT_FUEL_1)) && FuelManager.isItemFuel(inventory.getStackInSlot(SLOT_FUEL_2));
+        return isWarmed || (FuelManager.isItemFuel(inventory.getStackInSlot(SLOT_FUEL_1)) && FuelManager.isItemFuel(inventory.getStackInSlot(SLOT_FUEL_2)));
     }
 
     private void setDuration()
@@ -203,7 +225,14 @@ public class TEOven extends TEInventory implements ITickable
         isBurning = false;
         startTick = 0;
         tickGoal = 0;
+        offTick = CalendarTFC.PLAYER_TIME.getTicks();
+        isWarmed = false;
         markDirty();
+    }
+
+    public boolean willDamage()
+    {
+        return (CalendarTFC.PLAYER_TIME.getTicks() - offTick) > (2 * ICalendar.TICKS_IN_HOUR);
     }
 
     public void onBreakBlock(World world, BlockPos pos, IBlockState state)

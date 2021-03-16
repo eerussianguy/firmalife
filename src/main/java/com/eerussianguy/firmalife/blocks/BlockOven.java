@@ -192,10 +192,16 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
                 boolean handEmpty = held.isEmpty();
                 if (!handEmpty && !player.isSneaking() && !OreDictionaryHelper.doesStackMatchOre(held, "peel"))
                 {
-                    ItemStack leftover = ItemHandlerHelper.insertItem(inventory, held.splitStack(1), false);
-                    ItemHandlerHelper.giveItemToPlayer(player, leftover);
-                    te.markForSync();
-                    return true;
+                    for (int i = 2; i >= 0; i--)
+                    {
+                        if (inventory.getStackInSlot(i).isEmpty())
+                        {
+                            ItemStack leftover = inventory.insertItem(i, held.splitStack(1), false);
+                            ItemHandlerHelper.giveItemToPlayer(player, leftover);
+                            te.markForSync();
+                            return true;
+                        }
+                    }
                 }
                 else if (handEmpty || OreDictionaryHelper.doesStackMatchOre(held, "peel"))
                 {
@@ -207,7 +213,7 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
                             ItemStack takeStack = inventory.extractItem(i, 1, false);
                             ItemHandlerHelper.giveItemToPlayer(player, takeStack);
                             te.markForSync();
-                            if (ConfigFL.General.BALANCE.peelNeeded && !OreDictionaryHelper.doesStackMatchOre(held, "peel") && state.getValue(CURED))
+                            if (ConfigFL.General.BALANCE.peelNeeded && te.willDamage() && !OreDictionaryHelper.doesStackMatchOre(held, "peel") && state.getValue(CURED))
                                 player.attackEntityFrom(DamageSourcesTFC.GRILL, 2.0F); // damage player if they don't use peel
                             return true;
                         }
@@ -236,17 +242,40 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
     }
 
     @Override
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
     {
         if (state.getValue(LIT))
         {
-            if (!isValidHorizontal(worldIn, pos, false))
+            if (!isValidHorizontal(world, pos, false))
             {
-                TEOven te = Helpers.getTE(worldIn, pos, TEOven.class);
+                TEOven te = Helpers.getTE(world, pos, TEOven.class);
                 if (te != null)
                 {
                     te.turnOff();
                 }
+            }
+            else
+            {
+                EnumFacing facing = state.getValue(FACING);
+                EnumFacing left = facing.rotateYCCW();
+                EnumFacing right = facing.rotateY();
+                cascadeLight(world, pos.offset(left));
+                cascadeLight(world, pos.offset(right));
+            }
+        }
+    }
+
+    private void cascadeLight(World world, BlockPos checkPos)
+    {
+        IBlockState checkState = world.getBlockState(checkPos);
+        if (checkState.getBlock() instanceof BlockOven && !checkState.getValue(LIT) && isValidHorizontal(world, checkPos, false) && hasChimney(world, checkPos, false))
+        {
+            TEOven te = Helpers.getTE(world, checkPos, TEOven.class);
+            if (te != null)
+            {
+                world.setBlockState(checkPos, checkState.withProperty(LIT, true));
+                te.setWarmed();
+                te.light();
             }
         }
     }
@@ -265,6 +294,7 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
                 {
                     case 0:
                         particle = TFCParticles.FIRE_PIT_SMOKE2;
+                        break;
                     case 1:
                         particle = TFCParticles.FIRE_PIT_SMOKE3;
                 }
@@ -340,7 +370,7 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
         }
         else
         {
-            drops.add(new ItemStack(Items.CLAY_BALL, 3 + RNG.nextInt(3)));
+            super.getDrops(drops, world, pos, state, fortune);
         }
     }
 
