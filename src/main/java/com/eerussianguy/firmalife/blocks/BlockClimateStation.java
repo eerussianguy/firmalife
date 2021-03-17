@@ -61,9 +61,8 @@ public class BlockClimateStation extends Block implements IItemSize, IHighlightH
             boolean valid = GreenhouseHelpers.isMultiblockValid(world, pos, state);
             world.setBlockState(pos, state.withProperty(STASIS, valid));
             player.sendMessage(new TextComponentTranslation(valid ? "tooltip.firmalife.valid" : "tooltip.firmalife.invalid"));
-            return true;
         }
-        return false;
+        return true;
     }
 
     @Override

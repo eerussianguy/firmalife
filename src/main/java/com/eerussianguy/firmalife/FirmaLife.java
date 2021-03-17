@@ -15,12 +15,12 @@ import com.eerussianguy.firmalife.proxy.CommonProxy;
 import com.eerussianguy.firmalife.util.HelpersFL;
 import com.eerussianguy.firmalife.util.OreDictsFL;
 
-@Mod(modid = FirmaLife.MOD_ID, name = FirmaLife.MODNAME, version = FirmaLife.MODVERSION)
+@Mod(modid = FirmaLife.MOD_ID, name = FirmaLife.MODNAME, version = FirmaLife.MODVERSION, dependencies = "required-after:tfc@[1.7.17.175,);")
 public class FirmaLife
 {
     public static final String MOD_ID = "firmalife";
     public static final String MODNAME = "FirmaLife";
-    public static final String MODVERSION = "0.2.2";
+    public static final String MODVERSION = "0.2.3";
 
     @Mod.Instance
     private static FirmaLife INSTANCE = null;

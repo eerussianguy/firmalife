@@ -1,6 +1,7 @@
 package com.eerussianguy.firmalife.blocks;
 
 import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -22,6 +23,7 @@ import static com.eerussianguy.firmalife.init.StatePropertiesFL.GLASS;
 import static com.eerussianguy.firmalife.init.StatePropertiesFL.TOP;
 import static net.minecraft.block.BlockHorizontal.FACING;
 
+@ParametersAreNonnullByDefault
 public class BlockGreenhouseRoof extends BlockGreenhouseWall
 {
     public static final AxisAlignedBB BASE = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D);
@@ -30,14 +32,13 @@ public class BlockGreenhouseRoof extends BlockGreenhouseWall
     public static final AxisAlignedBB ROOF_SHAPE_SOUTH = new AxisAlignedBB(0.0D, 0.5D, 0.0D, 0.5D, 1.0D, 1.0D).union(BASE);
     public static final AxisAlignedBB ROOF_SHAPE_NORTH = new AxisAlignedBB(0.5D, 0.5D, 0.0D, 1.0D, 1.0D, 1.0D).union(BASE);
 
-
     public BlockGreenhouseRoof()
     {
         super();
         setHardness(2.0f);
         setResistance(3.0f);
         setLightOpacity(0);
-        setSoundType(SoundType.GLASS);
+        setSoundType(SoundType.METAL);
         this.setDefaultState(this.blockState.getBaseState().withProperty(GLASS, false).withProperty(FACING, EnumFacing.EAST).withProperty(TOP, false));
     }
 
@@ -74,7 +75,6 @@ public class BlockGreenhouseRoof extends BlockGreenhouseWall
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     @Nonnull
     public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
@@ -82,21 +82,18 @@ public class BlockGreenhouseRoof extends BlockGreenhouseWall
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
     {
         //do nothing, for now
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public boolean isSideSolid(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side)
     {
         return state.getValue(FACING).getOpposite() == side || side == EnumFacing.DOWN;
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     @Nonnull
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {

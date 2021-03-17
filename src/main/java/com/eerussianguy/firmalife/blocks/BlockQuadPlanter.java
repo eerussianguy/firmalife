@@ -23,6 +23,7 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 import com.eerussianguy.firmalife.recipe.PlanterRecipe;
 import com.eerussianguy.firmalife.render.UnlistedCropProperty;
@@ -66,27 +67,6 @@ public class BlockQuadPlanter extends BlockLargePlanter implements IHighlightHan
         if (!world.isRemote)
         {
             ItemStack held = player.getHeldItem(hand);
-            IFluidHandlerItem cap = held.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null);
-            if (cap != null)
-            {
-                FluidStack stack = cap.drain(Fluid.BUCKET_VOLUME, false);
-                {
-                    if (stack != null)
-                    {
-                        if (stack.getFluid() == FluidsTFC.FRESH_WATER.get())
-                        {
-                            TEPlanter te = Helpers.getTE(world, pos, TEPlanter.class);
-                            if (te != null)
-                            {
-                                te.setWater(2);
-                                world.setBlockState(pos, state.withProperty(WET, true));
-                                return true;
-                            }
-
-                        }
-                    }
-                }
-            }
             int slot = getSlotForHit(hitX, hitZ);
             TEPlanter te = Helpers.getTE(world, pos, TEPlanter.class);
             if (te != null)
@@ -98,11 +78,11 @@ public class BlockQuadPlanter extends BlockLargePlanter implements IHighlightHan
                     PlanterRecipe recipe = PlanterRecipe.get(held);
                     if (slotStack.isEmpty() && !held.isEmpty() && recipe != null && !recipe.isLarge())
                     {
-                        inventory.insertItem(slot, held, false);
-                        if (!player.isCreative()) held.shrink(1);
+                        ItemStack leftover = inventory.insertItem(slot, held.splitStack(1), false);
+                        ItemHandlerHelper.giveItemToPlayer(player, leftover);
                         te.onInsert(slot);
                     }
-                    else if (player.isSneaking() && held.isEmpty() && !slotStack.isEmpty()) // probably not useful but better to cover it
+                    else if (player.isSneaking() && held.isEmpty() && !slotStack.isEmpty())
                     {
                         te.tryHarvest(player, slot);
                     }

@@ -217,6 +217,8 @@ public class ItemsFL
         easyItems.add(register(r, "fruit_leaf", fruit_leaf, CT_MISC));
         OreDictionary.registerOre("fruitLeaf", fruit_leaf);
 
+        easyItems.add(register(r, "watering_can", new ItemWateringCan(), CT_MISC));
+
         easyItems.add(register(r, "vanilla", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
         easyItems.add(register(r, "cinnamon_bark", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
         easyItems.add(register(r, "cinnamon", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));

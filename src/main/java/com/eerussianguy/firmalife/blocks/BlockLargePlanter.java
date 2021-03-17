@@ -11,6 +11,7 @@ import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
@@ -32,6 +33,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 import com.eerussianguy.firmalife.recipe.PlanterRecipe;
 import com.eerussianguy.firmalife.render.UnlistedCropProperty;
@@ -65,30 +67,9 @@ public class BlockLargePlanter extends Block implements IItemSize
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
     {
-        if (!world.isRemote)
+        if (!world.isRemote && hand == EnumHand.MAIN_HAND)
         {
             ItemStack held = player.getHeldItem(hand);
-            IFluidHandlerItem cap = held.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null);
-            if (cap != null)
-            {
-                FluidStack stack = cap.drain(Fluid.BUCKET_VOLUME, false);
-                {
-                    if (stack != null)
-                    {
-                        if (stack.getFluid() == FluidsTFC.FRESH_WATER.get())
-                        {
-                            TEPlanter te = Helpers.getTE(world, pos, TEPlanter.class);
-                            if (te != null)
-                            {
-                                te.setWater(2);
-                                world.setBlockState(pos, state.withProperty(WET, true));
-                                return true;
-                            }
-
-                        }
-                    }
-                }
-            }
             TEPlanter te = Helpers.getTE(world, pos, TEPlanter.class);
             if (te != null)
             {
@@ -99,18 +80,20 @@ public class BlockLargePlanter extends Block implements IItemSize
                     PlanterRecipe recipe = PlanterRecipe.get(held);
                     if (slotStack.isEmpty() && !held.isEmpty() && recipe != null && recipe.isLarge())
                     {
-                        inventory.insertItem(0, held, false);
-                        if (!player.isCreative()) held.shrink(1);
+                        ItemStack leftover = inventory.insertItem(0, held.splitStack(1), false);
+                        ItemHandlerHelper.giveItemToPlayer(player, leftover);
                         te.onInsert(0);
+                        return true;
                     }
-                    else if (player.isSneaking() && held.isEmpty() && !slotStack.isEmpty()) // probably not useful but better to cover it
+                    else if (player.isSneaking() && held.isEmpty() && !slotStack.isEmpty())
                     {
                         te.tryHarvest(player, 0);
+                        return true;
                     }
                 }
             }
         }
-        return true;
+        return false;
     }
 
     @Override
@@ -169,6 +152,12 @@ public class BlockLargePlanter extends Block implements IItemSize
     public Weight getWeight(ItemStack stack)
     {
         return Weight.HEAVY;
+    }
+
+    @Override
+    public boolean isReplaceable(IBlockAccess worldIn, BlockPos pos)
+    {
+        return false;
     }
 
     @Override

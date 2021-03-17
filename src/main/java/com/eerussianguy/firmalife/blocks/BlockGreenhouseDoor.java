@@ -2,6 +2,8 @@ package com.eerussianguy.firmalife.blocks;
 
 import java.util.Random;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -16,13 +18,16 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 import com.eerussianguy.firmalife.registry.ItemsFL;
+import mcp.MethodsReturnNonnullByDefault;
 
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
 public class BlockGreenhouseDoor extends BlockDoor
 {
     public BlockGreenhouseDoor()
     {
         super(Material.GLASS);
-        this.setSoundType(SoundType.GLASS);
+        this.setSoundType(SoundType.METAL);
         this.setHardness(3.0F);
         this.disableStats();
         Blocks.FIRE.setFireInfo(this, 5, 20);

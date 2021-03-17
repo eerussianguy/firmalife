@@ -17,7 +17,6 @@ import net.dries007.tfc.api.capability.size.Weight;
 @MethodsReturnNonnullByDefault
 public class ItemFruitDoor extends ItemDoor implements IItemSize
 {
-
     public ItemFruitDoor(BlockFruitDoor block)
     {
         super(block);

@@ -1,6 +1,7 @@
 package com.eerussianguy.firmalife.blocks;
 
 import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -22,6 +23,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import mcp.MethodsReturnNonnullByDefault;
 import net.dries007.tfc.api.capability.size.IItemSize;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
@@ -31,6 +33,8 @@ import static com.eerussianguy.firmalife.init.StatePropertiesFL.GLASS;
 import static com.eerussianguy.firmalife.init.StatePropertiesFL.TOP;
 import static net.minecraft.block.BlockHorizontal.FACING;
 
+@MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
 public class BlockGreenhouseWall extends Block implements IItemSize
 {
     public static final AxisAlignedBB GREEN_WALL_EAST = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.25D, 1.0D, 1.0D);
@@ -44,7 +48,7 @@ public class BlockGreenhouseWall extends Block implements IItemSize
         setHardness(2.0f);
         setResistance(3.0f);
         setLightOpacity(0);
-        setSoundType(SoundType.GLASS);
+        setSoundType(SoundType.METAL);
         this.setDefaultState(this.blockState.getBaseState().withProperty(GLASS, false).withProperty(FACING, EnumFacing.EAST).withProperty(TOP, false));
     }
 
@@ -56,11 +60,27 @@ public class BlockGreenhouseWall extends Block implements IItemSize
             ItemStack held = player.getHeldItem(hand);
             if (!state.getValue(GLASS))
             {
-                if (held.getCount() > 1 && OreDictionaryHelper.doesStackMatchOre(held, "paneGlass"))
+                int count = held.getCount();
+                if (count > 1 && OreDictionaryHelper.doesStackMatchOre(held, "paneGlass"))
                 {
                     world.setBlockState(pos, state.withProperty(GLASS, true));
-                    if (!player.isCreative())
-                        held.shrink(2);
+                    if (!player.isCreative()) held.shrink(2);
+
+                    BlockPos upPos = pos.up();
+                    IBlockState upState = world.getBlockState(upPos);
+                    if (upState.getBlock() instanceof BlockGreenhouseWall && !upState.getValue(GLASS) && count > 3)
+                    {
+                        world.setBlockState(upPos, upState.withProperty(GLASS, true));
+                        if (!player.isCreative()) held.shrink(2);
+
+                        upPos = upPos.up();
+                        upState = world.getBlockState(upPos);
+                        if (upState.getBlock() instanceof BlockGreenhouseWall && !upState.getValue(GLASS) && count > 5)
+                        {
+                            world.setBlockState(upPos, upState.withProperty(GLASS, true));
+                            if (!player.isCreative()) held.shrink(2);
+                        }
+                    }
                     return true;
                 }
             }
@@ -68,6 +88,28 @@ public class BlockGreenhouseWall extends Block implements IItemSize
         return true;
     }
 
+    @Override
+    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+    {
+        if (worldIn.isRemote) return;
+        EnumFacing facing = state.getValue(FACING);
+        if (stack.getCount() > 2 && !(worldIn.getBlockState(pos.down()).getBlock() instanceof BlockGreenhouseWall) && !placer.isSneaking())
+        {
+            if (worldIn.checkNoEntityCollision(new AxisAlignedBB(pos.up())))
+            {
+                worldIn.setBlockState(pos.up(), this.getDefaultState().withProperty(FACING, facing), 3);
+                if (worldIn.checkNoEntityCollision(new AxisAlignedBB(pos.up(2))))
+                {
+                    worldIn.setBlockState(pos.up(2), this.getDefaultState().withProperty(FACING, facing), 3);
+                    stack.shrink(2);
+                }
+                else
+                {
+                    stack.shrink(1);
+                }
+            }
+        }
+    }
 
     @SideOnly(Side.CLIENT)
     @Override
@@ -111,7 +153,8 @@ public class BlockGreenhouseWall extends Block implements IItemSize
         {
             isTop = true;
         }
-        if (worldIn.getBlockState(pos.down()).getBlock() instanceof BlockGreenhouseWall)
+        Block downBlock = worldIn.getBlockState(pos.down()).getBlock();
+        if (downBlock instanceof BlockGreenhouseWall || downBlock instanceof BlockGreenhouseDoor)
         {
             facing = worldIn.getBlockState(pos.down()).getValue(FACING);
         }
@@ -120,20 +163,32 @@ public class BlockGreenhouseWall extends Block implements IItemSize
 
     @Override
     @SuppressWarnings("deprecation")
-    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block blockIn, BlockPos fromPos)
     {
-        if (!worldIn.isRemote)
+        if (!world.isRemote)
         {
-            if (!(worldIn.getBlockState(pos.up()).getBlock() instanceof BlockGreenhouseWall))
+            if (!(world.getBlockState(pos.up()).getBlock() instanceof BlockGreenhouseWall))
             {
-                worldIn.setBlockState(pos, state.withProperty(TOP, true));
+                world.setBlockState(pos, state.withProperty(TOP, true));
             }
             else
             {
-                worldIn.setBlockState(pos, state.withProperty(TOP, false));
+                world.setBlockState(pos, state.withProperty(TOP, false));
+            }
+            if (!canStay(world, pos))
+            {
+                world.destroyBlock(pos, true);
             }
         }
     }
+
+    private boolean canStay(World world, BlockPos pos)
+    {
+        IBlockState down = world.getBlockState(pos.down());
+        Block downBlock = down.getBlock();
+        return downBlock instanceof BlockGreenhouseWall || downBlock instanceof BlockGreenhouseDoor || down.isSideSolid(world, pos, EnumFacing.UP);
+    }
+
 
     @Override
     @SuppressWarnings("deprecation")

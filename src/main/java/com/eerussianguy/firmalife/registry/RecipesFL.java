@@ -133,7 +133,7 @@ public class RecipesFL
         r.registerAll(
             new CrackingRecipe(IIngredient.of(ItemsFL.getFood(FoodFL.ACORNS)), new ItemStack(ItemsFL.getFood(FoodFL.ACORN_FRUIT)), 0.5f).setRegistryName("acorn_fruit"),
             new CrackingRecipe(IIngredient.of(ItemsFL.getFood(FoodFL.PINECONE)), new ItemStack(ItemsFL.getFood(FoodFL.PINE_NUTS)), 0.5f).setRegistryName("pine_nuts"),
-            new CrackingRecipe(IIngredient.of(ItemsFL.getFood(FoodFL.PINECONE)), new ItemStack(ItemsFL.getFood(FoodFL.PECANS)), 0.5f).setRegistryName("pecans"),
+            new CrackingRecipe(IIngredient.of(ItemsFL.getFood(FoodFL.PECAN_NUTS)), new ItemStack(ItemsFL.getFood(FoodFL.PECANS)), 0.5f).setRegistryName("pecans"),
             new CrackingRecipe(IIngredient.of(ItemsFL.getFood(FoodFL.COCONUT)), filled_coconut.copy(), 0.5f).setRegistryName("coconut_milk")
         );
     }
