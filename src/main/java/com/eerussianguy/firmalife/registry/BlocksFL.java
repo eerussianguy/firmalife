@@ -5,6 +5,7 @@ import com.google.common.collect.ImmutableList;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.event.RegistryEvent;
@@ -24,8 +25,12 @@ import net.dries007.tfc.objects.blocks.BlockFluidTFC;
 import net.dries007.tfc.objects.blocks.agriculture.*;
 import net.dries007.tfc.objects.fluids.FluidsTFC;
 import net.dries007.tfc.objects.fluids.properties.FluidWrapper;
+import net.dries007.tfc.objects.items.ItemSeedsTFC;
+import net.dries007.tfc.objects.items.food.ItemFoodTFC;
 import net.dries007.tfc.objects.items.itemblock.ItemBlockTFC;
 import net.dries007.tfc.util.Helpers;
+import net.dries007.tfc.util.agriculture.Crop;
+import net.dries007.tfc.util.agriculture.Food;
 import net.dries007.tfc.util.agriculture.FruitTree;
 
 import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
@@ -77,7 +82,7 @@ public class BlocksFL
     private static ImmutableList<BlockCropDead> allDeadCrops = Helpers.getNull();
     private static ImmutableList<BlockStemCrop> allCropBlocks = Helpers.getNull();
     private static ImmutableList<BlockJackOLantern> allJackOLanterns = Helpers.getNull();
-    private static ImmutableList<ItemBlock> allInventoryIBs = Helpers.getNull();
+    private static ImmutableList<Block> allInventoryIBs = Helpers.getNull();
 
     public static ImmutableList<ItemBlock> getAllIBs()
     {
@@ -132,7 +137,7 @@ public class BlocksFL
         return allJackOLanterns;
     }
 
-    public static ImmutableList<ItemBlock> getAllInventoryIBs()
+    public static ImmutableList<Block> getAllInventoryIBs()
     {
         return allInventoryIBs;
     }
@@ -155,7 +160,7 @@ public class BlocksFL
         ImmutableList.Builder<BlockCropDead> deadCrops = ImmutableList.builder();
         ImmutableList.Builder<BlockStemCrop> cropBlocks = ImmutableList.builder();
         ImmutableList.Builder<BlockJackOLantern> jackOLanterns = ImmutableList.builder();
-        ImmutableList.Builder<ItemBlock> invIBs = ImmutableList.builder();
+        ImmutableList.Builder<Block> invIBs = ImmutableList.builder();
 
         for (FruitTreeFL fruitTree : FruitTreeFL.values())
         {
@@ -193,14 +198,16 @@ public class BlocksFL
         register(r, "cinnamon_sapling", new BlockCinnamonSapling(), CT_WOOD);
         normalIBs.add(register(r, "greenhouse_wall", new BlockGreenhouseWall(), CT_DECORATIONS));
         normalIBs.add(register(r, "greenhouse_roof", new BlockGreenhouseRoof(), CT_DECORATIONS));
+        register(r, "greenhouse_door", new BlockGreenhouseDoor(), CT_DECORATIONS);
         normalIBs.add(register(r, "climate_station", new BlockClimateStation(), CT_DECORATIONS));
         register(r, "quad_planter", new BlockQuadPlanter(), CT_DECORATIONS);
         register(r, "large_planter", new BlockLargePlanter(), CT_DECORATIONS);
-        register(r, "greenhouse_door", new BlockGreenhouseDoor(), CT_DECORATIONS);
+        normalIBs.add(register(r, "pumpkin_hanging_planter", new BlockHangingPlanter(() -> Item.getItemFromBlock(BlocksFL.PUMPKIN_FRUIT), () -> ItemSeedsTFC.get(StemCrop.PUMPKIN)), CT_DECORATIONS));
+        normalIBs.add(register(r, "melon_hanging_planter", new BlockHangingPlanter(() -> Item.getItemFromBlock(BlocksFL.MELON_FRUIT), () -> ItemSeedsTFC.get(StemCrop.MELON)), CT_DECORATIONS));
+        normalIBs.add(register(r, "squash_hanging_planter", new BlockHangingPlanter(() -> ItemFoodTFC.get(Food.SQUASH), () -> ItemSeedsTFC.get(Crop.SQUASH)), CT_DECORATIONS));
 
-        for(BushFL bushFL: BushFL.values()) {
+        for(BushFL bushFL: BushFL.values())
             normalIBs.add(register(r, bushFL.name().toLowerCase()+"_bush", new BlockBerryBush(bushFL), CT_FLORA));
-        }
 
         for (BlockJackOLantern.Carving carving : BlockJackOLantern.Carving.values())
         {
@@ -243,7 +250,6 @@ public class BlocksFL
         allFruitSaps.forEach((x) -> {
             ItemBlock ib = new ItemBlockTFC(x);
             IBs.add(ib);
-            invIBs.add(ib);
         });
         allFruitFences = fruitFences.build();
         allFruitFences.forEach((x) -> {
@@ -266,6 +272,7 @@ public class BlocksFL
         register(TEOven.class, "oven");
         register(TEPlanter.class, "quad_planter");
         register(TELeafMat.class, "leaf_mat");
+        register(TEHangingPlanter.class, "hanging_planter");
         register(TEStemCrop.class, "stem_crop");
         register(TEClimateStation.class, "climate_station");
         //needs fix

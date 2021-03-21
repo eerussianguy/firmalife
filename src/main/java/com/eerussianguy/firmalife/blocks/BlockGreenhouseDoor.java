@@ -26,7 +26,7 @@ public class BlockGreenhouseDoor extends BlockDoor
 {
     public BlockGreenhouseDoor()
     {
-        super(Material.GLASS);
+        super(Material.WOOD);
         this.setSoundType(SoundType.METAL);
         this.setHardness(3.0F);
         this.disableStats();

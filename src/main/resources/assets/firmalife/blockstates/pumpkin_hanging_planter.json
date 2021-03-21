@@ -1,0 +1,48 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "firmalife:hanging_planter",
+		"textures": {
+			"leaves": "firmalife:blocks/crop/hanging_leaves"
+		},
+		"particle": "firmalife:blocks/greenhouse_steel"
+	},
+	"variants": {
+		"stage": {
+			"0": {
+				"model": "firmalife:hanging_planter",
+				"textures": {
+					"leaves": "firmalife:blocks/crop/hanging_leaves_young"
+				}
+			},
+			"1": {
+				"model": "firmalife:hanging_planter",
+				"textures": {
+					"leaves": "firmalife:blocks/crop/hanging_leaves"
+				}
+			},
+			"2": {
+				"model": "firmalife:hanging_planter_fruit",
+				"textures": {
+					"fruit": "firmalife:blocks/unlit_pumpkin_none",
+					"leaves": "firmalife:blocks/crop/hanging_leaves_young"
+				}
+			}
+		},
+		"axis": {
+			"x": {
+			},
+			"z": {
+				"y": 90
+			}
+		},
+		"inventory": [{
+			"transform": "forge:default-block",
+		    "model": "firmalife:hanging_planter"
+		}],
+		"normal": [{
+			"transform": "forge:default-block",
+		    "model": "firmalife:hanging_planter"
+		}]
+	}
+}

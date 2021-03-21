@@ -44,7 +44,7 @@ public class BlockGreenhouseWall extends Block implements IItemSize
 
     public BlockGreenhouseWall()
     {
-        super(Material.GLASS, MapColor.GRAY);
+        super(Material.IRON, MapColor.GRAY);
         setHardness(2.0f);
         setResistance(3.0f);
         setLightOpacity(0);

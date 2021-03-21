@@ -256,6 +256,7 @@ public class ItemsFL
         register(r, "cracked_coconut", new ItemWoodenBucket(), CT_MISC);
 
         BlocksFL.getAllIBs().forEach((x) -> registerIB(r, x));
+        BlocksFL.getAllInventoryIBs().forEach((x) -> easyItems.add(registerIB(r, new ItemBlock(x))));
 
         for (StemCrop crop : StemCrop.values())
         {
@@ -301,10 +302,11 @@ public class ItemsFL
         return item;
     }
 
-    private static void registerIB(IForgeRegistry<Item> r, ItemBlock item)
+    private static <T extends ItemBlock> T registerIB(IForgeRegistry<Item> r, T item)
     {
         item.setRegistryName(item.getBlock().getRegistryName());
         item.setCreativeTab(item.getBlock().getCreativeTab());
         r.register(item);
+        return item;
     }
 }

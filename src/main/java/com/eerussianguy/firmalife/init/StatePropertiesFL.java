@@ -1,6 +1,9 @@
 package com.eerussianguy.firmalife.init;
 
 import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.properties.PropertyInteger;
+import net.minecraft.util.EnumFacing;
 
 public class StatePropertiesFL
 {
@@ -12,4 +15,6 @@ public class StatePropertiesFL
     public static final PropertyBool TOP = PropertyBool.create("top");
     public static final PropertyBool GLASS = PropertyBool.create("glass");
     public static final PropertyBool STASIS = PropertyBool.create("stasis");
+    public static final PropertyEnum<EnumFacing.Axis> XZ = PropertyEnum.create("axis", EnumFacing.Axis.class, EnumFacing.Axis.X, EnumFacing.Axis.Z);
+    public static final PropertyInteger STAGE = PropertyInteger.create("stage", 0, 2);
 }

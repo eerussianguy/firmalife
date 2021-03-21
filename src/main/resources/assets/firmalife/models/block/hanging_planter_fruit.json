@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"0": "firmalife:blocks/greenhouse_steel",
-		"1": "firmalife:blocks/crop/hanging_leaves",
-		"2": "firmalife:blocks/unlit_pumpkin_none",
+		"1": "#leaves",
+		"2": "#fruit",
 		"particle": "firmalife:blocks/greenhouse_steel"
 	},
 	"elements": [

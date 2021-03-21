@@ -182,6 +182,10 @@ tile.firmalife.greenhouse_roof.name=Greenhouse Roof
 tile.firmalife.climate_station.name=Climate Station
 tile.firmalife.quad_planter.name=Quad Planter
 tile.firmalife.large_planter.name=Large Planter
+tile.firmalife.pumpkin_hanging_planter.name=Pumpkin Hanging Planter
+tile.firmalife.melon_hanging_planter.name=Melon Hanging Planter
+tile.firmalife.squash_hanging_planter.name=Squash Hanging Planter
+
 
 item.firmalife.unfired_mallet_mold.name=Unfired Mallet Head Mold
 item.firmalife.mallet_mold.name=Mallet Head Mold

@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"0": "firmalife:blocks/greenhouse_steel",
-		"1": "firmalife:blocks/crop/hanging_leaves",
+		"1": "#leaves",
 		"particle": "firmalife:blocks/greenhouse_steel"
 	},
 	"elements": [
