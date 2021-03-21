@@ -5,6 +5,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -48,6 +49,7 @@ public class BlockGreenhouseRoof extends BlockGreenhouseWall
         if (!world.isRemote)
         {
             ItemStack held = player.getHeldItem(hand);
+            if (OreDictionaryHelper.doesStackMatchOre(held, "greenhouse")) return false;
             if (!state.getValue(GLASS))
             {
                 if (held.getCount() > 1 && OreDictionaryHelper.doesStackMatchOre(held, "paneGlass"))
@@ -69,7 +71,6 @@ public class BlockGreenhouseRoof extends BlockGreenhouseWall
                     world.setBlockState(pos, state.withProperty(FACING, state.getValue(FACING).rotateY()));
                 }
             }
-
         }
         return true;
     }
@@ -119,9 +120,13 @@ public class BlockGreenhouseRoof extends BlockGreenhouseWall
     @SuppressWarnings("deprecation")
     public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
     {
-        if (blockState.getValue(TOP))
-            return BASE;
-        return FULL_BLOCK_AABB;
+        return blockState.getValue(TOP) ? BASE : FULL_BLOCK_AABB;
     }
 
+    @Override
+    @Nonnull
+    public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face)
+    {
+        return (state.getValue(GLASS) && (face == EnumFacing.DOWN || face == state.getValue(FACING).getOpposite())) ? BlockFaceShape.SOLID : BlockFaceShape.UNDEFINED;
+    }
 }

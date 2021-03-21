@@ -48,8 +48,8 @@ public class GreenhouseHelpers
     {
         int length = 0;
         BlockPos checkPos = pos;
-        IBlockState checkState = null;
-        for (int i = 0; i < 100; i++)
+        IBlockState checkState;
+        for (int i = 0; i < 100; i++) // get the length of the end wall
         {
             checkState = world.getBlockState(checkPos.offset(inward, i));
             if (isGoodEndWall(checkState, wallFacing))
@@ -61,25 +61,30 @@ public class GreenhouseHelpers
                 break;
             }
         }
-        if (!(world.getBlockState(pos.offset(inward.getOpposite()).offset(wallFacing.getOpposite())).getBlock() instanceof BlockGreenhouseWall))
-            return false;
-        if (!(world.getBlockState(pos.offset(inward, length).offset(wallFacing.getOpposite())).getBlock() instanceof BlockGreenhouseWall))
-            return false;
-        if (length < 3)
+        if (!(world.getBlockState(pos.offset(inward.getOpposite()).offset(wallFacing.getOpposite())).getBlock() instanceof BlockGreenhouseWall)
+        || !(world.getBlockState(pos.offset(inward, length).offset(wallFacing.getOpposite())).getBlock() instanceof BlockGreenhouseWall)
+        || length < 3)
             return false;
         checkPos = pos.up();
         while (length > 0)
         {
+            boolean willThin = false;
             for (int i = 0; i < length; i++)
             {
                 checkState = world.getBlockState(checkPos.offset(inward, i));
+                if (i == 0 && checkState.getValue(TOP) && isGoodEndWall(checkState, wallFacing))
+                    willThin = true;
                 if (!isGoodEndWall(checkState, wallFacing))
                 {
                     return false;
                 }
             }
-            length -= 2;
-            checkPos = checkPos.up().offset(inward);
+            if (willThin)
+            {
+                length -= 2;
+                checkPos = checkPos.offset(inward);
+            }
+            checkPos = checkPos.up();
         }
         return true;
     }
@@ -123,7 +128,7 @@ public class GreenhouseHelpers
         {
             searchPos = searchPos.up().offset(inward);
             searchState = world.getBlockState(searchPos);
-            if (searchState.getBlock() instanceof BlockGreenhouseRoof && searchState.getValue(TOP) && i > 1)
+            if (searchState.getBlock() instanceof BlockGreenhouseRoof && searchState.getValue(TOP) && i > 0)
             {
                 roofsGood = true;
                 roofSize = i;

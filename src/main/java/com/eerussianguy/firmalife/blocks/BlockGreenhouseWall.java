@@ -61,6 +61,7 @@ public class BlockGreenhouseWall extends Block implements IItemSize
             if (!state.getValue(GLASS))
             {
                 int count = held.getCount();
+                if (OreDictionaryHelper.doesStackMatchOre(held, "greenhouse")) return false;
                 if (count > 1 && OreDictionaryHelper.doesStackMatchOre(held, "paneGlass"))
                 {
                     world.setBlockState(pos, state.withProperty(GLASS, true));
@@ -93,7 +94,8 @@ public class BlockGreenhouseWall extends Block implements IItemSize
     {
         if (worldIn.isRemote) return;
         EnumFacing facing = state.getValue(FACING);
-        if (stack.getCount() > 2 && !(worldIn.getBlockState(pos.down()).getBlock() instanceof BlockGreenhouseWall) && !placer.isSneaking())
+        Block downBlock = worldIn.getBlockState(pos.down()).getBlock();
+        if (stack.getCount() > 2 && !(downBlock instanceof BlockGreenhouseWall || downBlock instanceof BlockGreenhouseDoor) && !placer.isSneaking())
         {
             if (worldIn.checkNoEntityCollision(new AxisAlignedBB(pos.up())))
             {
@@ -245,7 +247,7 @@ public class BlockGreenhouseWall extends Block implements IItemSize
     @SuppressWarnings("deprecation")
     public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face)
     {
-        return BlockFaceShape.UNDEFINED;
+        return (face == state.getValue(FACING).getOpposite() && state.getValue(GLASS)) ? BlockFaceShape.SOLID : BlockFaceShape.UNDEFINED;
     }
 
     @Nonnull

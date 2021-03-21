@@ -4,6 +4,7 @@ import net.minecraft.init.Items;
 import net.minecraftforge.oredict.OreDictionary;
 
 import com.eerussianguy.firmalife.init.FoodFL;
+import com.eerussianguy.firmalife.registry.BlocksFL;
 import com.eerussianguy.firmalife.registry.ItemsFL;
 import net.dries007.tfc.objects.items.food.ItemFoodTFC;
 import net.dries007.tfc.util.agriculture.Food;
@@ -32,5 +33,9 @@ public class OreDictsFL
         OreDictionary.registerOre("leather", ItemsFL.PINEAPPLE_LEATHER);
         OreDictionary.registerOre("string", ItemsFL.PINEAPPLE_YARN);
         OreDictionary.registerOre("tool", ItemsFL.PEEL);
+        OreDictionary.registerOre("greenhouse", BlocksFL.GREENHOUSE_ROOF);
+        OreDictionary.registerOre("greenhouse", BlocksFL.GREENHOUSE_WALL);
+        OreDictionary.registerOre("greenhouse", BlocksFL.GREENHOUSE_DOOR);
+
     }
 }

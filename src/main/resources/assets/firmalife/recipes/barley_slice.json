@@ -6,11 +6,11 @@
       "ore": "knife"
     },
     {
-      "item": "tfc:food/rice_bread"
+      "item": "tfc:food/barley_bread"
     }
   ],
   "result": {
     "item": "firmalife:barley_slice",
-    "count": 2
+    "count": 3
   }
 }
