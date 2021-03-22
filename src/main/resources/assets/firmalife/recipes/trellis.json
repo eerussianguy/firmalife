@@ -5,7 +5,7 @@
       "item": "firmalife:greenhouse_wall"
     },
     {
-      "item": "tfc:crop/seeds/squash"
+      "item": "firmalife:greenhouse_wall"
     },
     {
       "type": "forge:ore_dict",
@@ -13,7 +13,7 @@
     }
   ],
   "result": {
-    "item": "firmalife:squash_hanging_planter",
+    "item": "firmalife:trellis",
     "count": 1
   }
 }

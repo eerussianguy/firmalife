@@ -28,7 +28,10 @@ public enum FoodFL
     PECANS(FoodDataFL.NUT, new String[] {"nut"}, false),
     PINECONE(FoodDataFL.UNCRACKED_NUT),
     PINE_NUTS(FoodDataFL.NUT, new String[] {"nut"}, false),
-    COCONUT(FoodDataFL.UNCRACKED_NUT);
+    COCONUT(FoodDataFL.UNCRACKED_NUT),
+    MELON(FoodDataFL.MELON),
+    TOFU(FoodDataFL.TOFU),
+    GROUND_SOYBEANS(FoodDataFL.GROUND_SOYBEANS);
 
     private final FoodData data;
     private final String[] nameOverrides;

@@ -26,9 +26,11 @@ import net.dries007.tfc.objects.blocks.agriculture.*;
 import net.dries007.tfc.objects.fluids.FluidsTFC;
 import net.dries007.tfc.objects.fluids.properties.FluidWrapper;
 import net.dries007.tfc.objects.items.ItemSeedsTFC;
+import net.dries007.tfc.objects.items.ItemsTFC;
 import net.dries007.tfc.objects.items.food.ItemFoodTFC;
 import net.dries007.tfc.objects.items.itemblock.ItemBlockTFC;
 import net.dries007.tfc.util.Helpers;
+import net.dries007.tfc.util.agriculture.BerryBush;
 import net.dries007.tfc.util.agriculture.Crop;
 import net.dries007.tfc.util.agriculture.Food;
 import net.dries007.tfc.util.agriculture.FruitTree;
@@ -68,6 +70,10 @@ public class BlocksFL
     public static final BlockQuadPlanter QUAD_PLANTER = Helpers.getNull();
     @GameRegistry.ObjectHolder("large_planter")
     public static final BlockLargePlanter LARGE_PLANTER = Helpers.getNull();
+    @GameRegistry.ObjectHolder("wool_string")
+    public static final BlockString WOOL_STRING = Helpers.getNull();
+    @GameRegistry.ObjectHolder("trellis")
+    public static final BlockTrellis TRELLIS = Helpers.getNull();
 
     private static ImmutableList<ItemBlock> allIBs;
     private static ImmutableList<Block> allNormalIBs = Helpers.getNull();
@@ -205,9 +211,19 @@ public class BlocksFL
         normalIBs.add(register(r, "pumpkin_hanging_planter", new BlockHangingPlanter(() -> Item.getItemFromBlock(BlocksFL.PUMPKIN_FRUIT), () -> ItemSeedsTFC.get(StemCrop.PUMPKIN)), CT_DECORATIONS));
         normalIBs.add(register(r, "melon_hanging_planter", new BlockHangingPlanter(() -> Item.getItemFromBlock(BlocksFL.MELON_FRUIT), () -> ItemSeedsTFC.get(StemCrop.MELON)), CT_DECORATIONS));
         normalIBs.add(register(r, "squash_hanging_planter", new BlockHangingPlanter(() -> ItemFoodTFC.get(Food.SQUASH), () -> ItemSeedsTFC.get(Crop.SQUASH)), CT_DECORATIONS));
+        register(r, "wool_string", new BlockString(() -> ItemsTFC.WOOL_YARN));
+        normalIBs.add(register(r, "trellis", new BlockTrellis(), CT_DECORATIONS));
 
-        for(BushFL bushFL: BushFL.values())
-            normalIBs.add(register(r, bushFL.name().toLowerCase()+"_bush", new BlockBerryBush(bushFL), CT_FLORA));
+        for (BerryBush bush : BerryBush.values())
+        {
+            normalIBs.add(register(r, bush.name().toLowerCase() + "_trellis", new BlockBushTrellis(bush), CT_DECORATIONS));
+        }
+
+        for(BushFL bush: BushFL.values())
+        {
+            normalIBs.add(register(r, bush.name().toLowerCase() + "_bush", new BlockBerryBush(bush), CT_FLORA));
+            normalIBs.add(register(r, bush.name().toLowerCase() + "_trellis", new BlockBushTrellis(bush), CT_DECORATIONS));
+        }
 
         for (BlockJackOLantern.Carving carving : BlockJackOLantern.Carving.values())
         {
@@ -273,6 +289,7 @@ public class BlocksFL
         register(TEPlanter.class, "quad_planter");
         register(TELeafMat.class, "leaf_mat");
         register(TEHangingPlanter.class, "hanging_planter");
+        register(TEString.class, "string");
         register(TEStemCrop.class, "stem_crop");
         register(TEClimateStation.class, "climate_station");
         //needs fix

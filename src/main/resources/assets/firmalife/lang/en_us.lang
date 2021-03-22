@@ -88,6 +88,9 @@ item.firmalife.pineapple_yarn.name=Pineapple Yarn
 item.firmalife.pickled_egg.name=Pickled Egg
 item.firmalife.trail_mix.name=Trail Mix
 item.firmalife.watering_can.name=Watering Can
+item.firmalife.melon.name=Melon
+item.firmalife.tofu.name=Tofu
+item.firmalife.ground_soybeans.name=Ground Soybeans
 
 ### WOOD
 item.firmalife.banana_pole.name=Banana Pole
@@ -185,7 +188,23 @@ tile.firmalife.large_planter.name=Large Planter
 tile.firmalife.pumpkin_hanging_planter.name=Pumpkin Hanging Planter
 tile.firmalife.melon_hanging_planter.name=Melon Hanging Planter
 tile.firmalife.squash_hanging_planter.name=Squash Hanging Planter
+tile.firmalife.wool_yarn.name=Wool Yarn
+tile.firmalife.crop.pumpkin=Pumpkin Plant
+tile.firmalife.crop.melon=Melon Plant
 
+tile.firmalife.blackberry_trellis.name=Blackberry Bush Trellis
+tile.firmalife.blueberry_trellis.name=Blueberry Bush Trellis
+tile.firmalife.bunch_berry_trellis.name=Bunchberry Bush Trellis
+tile.firmalife.cloud_berry_trellis.name=Cloudberry Bush Trellis
+tile.firmalife.cranberry_trellis.name=Cranberry Bush Trellis
+tile.firmalife.elderberry_trellis.name=Elderberry Bush Trellis
+tile.firmalife.gooseberry_trellis.name=Gooseberry Bush Trellis
+tile.firmalife.raspberry_trellis.name=Raspberry Bush Trellis
+tile.firmalife.snow_berry_trellis.name=Snowberry Bush Trellis
+tile.firmalife.strawberry_trellis.name=Strawberry Bush Trellis
+tile.firmalife.wintergreen_berry_trellis.name=Wintergreen Berry Bush Trellis
+tile.firmalife.pineapple_trellis.name=Pineapple Trellis
+tile.firmalife.trellis.name= Trellis
 
 item.firmalife.unfired_mallet_mold.name=Unfired Mallet Head Mold
 item.firmalife.mallet_mold.name=Mallet Head Mold

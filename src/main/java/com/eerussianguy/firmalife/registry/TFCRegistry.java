@@ -80,6 +80,7 @@ public class TFCRegistry
         r.register(new QuernRecipe(IIngredient.of("gemHalite"), new ItemStack(ItemPowder.get(Powder.SALT), 2)).setRegistryName("halite"));
         r.register(new QuernRecipe(IIngredient.of(ItemsFL.CINNAMON), new ItemStack(ItemsFL.GROUND_CINNAMON, 2)).setRegistryName("cinnamon"));
         r.register(new QuernRecipe(IIngredient.of(ItemsFL.getFood(FoodFL.ROASTED_CHESTNUTS)), new ItemStack(ItemsFL.getFood(FoodFL.CHESTNUT_FLOUR))).setRegistryName("roasted_chestnuts"));
+        r.register(new QuernRecipe(IIngredient.of(ItemFoodTFC.get(Food.SOYBEAN)), new ItemStack(ItemsFL.getFood(FoodFL.GROUND_SOYBEANS))).setRegistryName("soybean"));
     }
 
     @SubscribeEvent
@@ -107,6 +108,7 @@ public class TFCRegistry
             new BarrelRecipe(IIngredient.of(FluidsFL.YEAST_STARTER.get(), 100), IIngredient.of("flour"), new FluidStack(FluidsFL.YEAST_STARTER.get(), 600), ItemStack.EMPTY, hour * 12).setRegistryName("yeast_multiplication"),
             new BarrelRecipe(IIngredient.of(FluidsTFC.RUM.get(), 1000), IIngredient.of(ItemsFL.FROTHY_COCONUT), new FluidStack(FluidsFL.PINA_COLADA.get(), 1000), ItemStack.EMPTY, hour).setRegistryName("pina_colada"),
             new BarrelRecipe(IIngredient.of(FluidsTFC.HOT_WATER.get(), 250), new IngredientItemFood(IIngredient.of(ItemFoodTFC.get(Food.BEET), 8)), null, new ItemStack(Items.SUGAR), hour * 8).setRegistryName("beet_sugar"),
+            new BarrelRecipe(IIngredient.of(FluidsTFC.FRESH_WATER.get(), 250), new IngredientItemFood(IIngredient.of(ItemsFL.getFood(FoodFL.GROUND_SOYBEANS), 1)), null, new ItemStack(ItemsFL.getFood(FoodFL.TOFU)), hour * 8).setRegistryName("tofu"),
             new BarrelRecipeFoodPreservation(IIngredient.of(FluidsTFC.LIMEWATER.get(), 125), IIngredient.of(new ItemStack(ItemsFL.getFood(FoodFL.PICKLED_EGG))), FoodTrait.PRESERVED, "barrel_recipe_lime").setRegistryName("pickle_egg")
         );
     }

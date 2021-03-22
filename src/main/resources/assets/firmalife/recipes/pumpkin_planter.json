@@ -6,6 +6,10 @@
     },
     {
       "item": "firmalife:crop/seeds/pumpkin"
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "dustFertilizer"
     }
   ],
   "result": {

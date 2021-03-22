@@ -7,7 +7,11 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
@@ -18,9 +22,12 @@ import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+import com.eerussianguy.firmalife.blocks.BlockBushTrellis;
+import com.eerussianguy.firmalife.blocks.BlockTrellis;
 import com.eerussianguy.firmalife.gui.FLGuiHandler;
 import com.eerussianguy.firmalife.init.BushFL;
 import com.eerussianguy.firmalife.items.ItemFruitPole;
@@ -30,14 +37,18 @@ import com.eerussianguy.firmalife.registry.BlocksFL;
 import com.eerussianguy.firmalife.registry.FluidsFL;
 import com.eerussianguy.firmalife.registry.ItemsFL;
 import net.dries007.tfc.Constants;
+import net.dries007.tfc.api.types.IBerryBush;
 import net.dries007.tfc.api.types.IFruitTree;
+import net.dries007.tfc.objects.blocks.agriculture.BlockBerryBush;
 import net.dries007.tfc.objects.blocks.agriculture.BlockFruitTreeLeaves;
 import net.dries007.tfc.objects.blocks.agriculture.BlockFruitTreeTrunk;
+import net.dries007.tfc.objects.blocks.wood.BlockLoom;
 import net.dries007.tfc.objects.entity.animal.EntityCowTFC;
 import net.dries007.tfc.objects.entity.animal.EntityGoatTFC;
 import net.dries007.tfc.objects.entity.animal.EntityYakTFC;
 import net.dries007.tfc.objects.entity.animal.EntityZebuTFC;
 import net.dries007.tfc.objects.fluids.FluidsTFC;
+import net.dries007.tfc.objects.items.ItemsTFC;
 import net.dries007.tfc.util.Helpers;
 
 import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
@@ -133,11 +144,37 @@ public class CommonEventHandlerFL
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onRightClickItem(PlayerInteractEvent.RightClickItem event)
     {
-        if (event.getItemStack().getItem() == Item.getItemFromBlock(BlocksFL.PUMPKIN_FRUIT) &&
-            Helpers.playerHasItemMatchingOre(event.getEntityPlayer().inventory, "knife") &&
-            !event.getWorld().isRemote)
+        World world = event.getWorld();
+        if (world.isRemote) return;
+        Item item = event.getItemStack().getItem();
+
+        EntityPlayer player = event.getEntityPlayer();
+        BlockPos pos = event.getPos();
+        if (item == Item.getItemFromBlock(BlocksFL.PUMPKIN_FRUIT) && Helpers.playerHasItemMatchingOre(player.inventory, "knife"))
         {
-            FLGuiHandler.openGui(event.getWorld(), event.getPos(), event.getEntityPlayer(), FLGuiHandler.Type.KNAPPING_PUMPKIN);
+            FLGuiHandler.openGui(world, pos, player, FLGuiHandler.Type.KNAPPING_PUMPKIN);
+        }
+    }
+
+    @SubscribeEvent(priority = EventPriority.HIGH)
+    public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event)
+    {
+        World world = event.getWorld();
+        if (world.isRemote) return;
+        ItemStack stack = event.getItemStack();
+        Item item = stack.getItem();
+
+        EntityPlayer player = event.getEntityPlayer();
+        BlockPos pos = event.getPos();
+        EnumFacing facing = event.getFace();
+        if (item == ItemsTFC.WOOL_YARN && player.isSneaking() && facing != null)
+        {
+            BlockPos offsetPos = pos.offset(facing);
+            if (world.isAirBlock(offsetPos))
+            {
+                IBlockState string = BlocksFL.WOOL_STRING.getStateForPlacement(world, player, facing, offsetPos);
+                world.setBlockState(offsetPos, string);
+            }
         }
     }
 }

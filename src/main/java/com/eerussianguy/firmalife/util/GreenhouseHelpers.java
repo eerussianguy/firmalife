@@ -28,12 +28,9 @@ public class GreenhouseHelpers
         for (int i = 1; i <= 48; i++) // safer than a while loop
         {
             BlockPos checkPos = pos.up(i);
-            if (!world.isAirBlock(checkPos)) // we bumped into something
+            if (world.getBlockState(checkPos).getBlock() instanceof BlockGreenhouseRoof && world.canSeeSky(checkPos.up()))
             {
-                if (world.getBlockState(checkPos).getBlock() instanceof BlockGreenhouseRoof && world.canSeeSky(checkPos.up()))
-                {
-                    return true; // we found a roof that is seeing sky
-                }
+                return true; // we found a roof that is seeing sky
             }
         }
         return false;

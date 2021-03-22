@@ -2,6 +2,8 @@ package com.eerussianguy.firmalife.blocks;
 
 import java.util.Random;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStem;
 import net.minecraft.block.properties.PropertyDirection;
@@ -17,9 +19,12 @@ import net.minecraft.world.World;
 
 import com.eerussianguy.firmalife.init.StemCrop;
 import com.eerussianguy.firmalife.te.TEStemCrop;
+import mcp.MethodsReturnNonnullByDefault;
 import net.dries007.tfc.objects.blocks.agriculture.BlockCropSimple;
 import net.dries007.tfc.util.Helpers;
 
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
 public abstract class BlockStemCrop extends BlockCropSimple
 {
     public static PropertyDirection FACING = BlockStem.FACING;
@@ -51,6 +56,8 @@ public abstract class BlockStemCrop extends BlockCropSimple
     @Override
     public TileEntity createTileEntity(World world, IBlockState state) { return new TEStemCrop(); }
 
+    @Override
+    @SuppressWarnings("deprecation")
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
     {
         TEStemCrop te = Helpers.getTE(worldIn, pos, TEStemCrop.class);
@@ -78,7 +85,6 @@ public abstract class BlockStemCrop extends BlockCropSimple
                 {
                     worldIn.setBlockState(targetPos, crop.getCropBlock().getDefaultState().withProperty(BlockStemFruit.FACING, fruitDirection.getOpposite()));
                     super.grow(worldIn, pos, state, random);
-                    return;
                 }
             }
             else
@@ -106,6 +112,7 @@ public abstract class BlockStemCrop extends BlockCropSimple
 
 
     @Override
+    @SuppressWarnings("deprecation")
     public Vec3d getOffset(IBlockState state, IBlockAccess worldIn, BlockPos pos)
     {
         Vec3d offset = super.getOffset(state, worldIn, pos);

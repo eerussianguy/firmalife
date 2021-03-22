@@ -9,11 +9,9 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
-import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.properties.PropertyInteger;
-import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -21,15 +19,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import com.eerussianguy.firmalife.init.StatePropertiesFL;
 import com.eerussianguy.firmalife.te.TEHangingPlanter;
@@ -44,7 +39,7 @@ import net.dries007.tfc.util.calendar.ICalendar;
 
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
-public class BlockHangingPlanter extends Block implements IItemSize
+public class BlockHangingPlanter extends BlockNonCube implements IItemSize
 {
     public static final PropertyEnum<EnumFacing.Axis> AXIS = StatePropertiesFL.XZ;
     public static final PropertyInteger STAGE = StatePropertiesFL.STAGE;
@@ -56,7 +51,7 @@ public class BlockHangingPlanter extends Block implements IItemSize
 
     public BlockHangingPlanter(Supplier<? extends Item> fruit, Supplier<? extends Item> seed)
     {
-        super(Material.IRON, MapColor.GRAY);
+        super(Material.IRON);
         setHardness(2.0f);
         setResistance(3.0f);
         setLightOpacity(0);
@@ -89,13 +84,6 @@ public class BlockHangingPlanter extends Block implements IItemSize
         return stage + (axis == EnumFacing.Axis.X ? 3 : 0);
     }
 
-    @SuppressWarnings("deprecation")
-    @Override
-    public boolean isFullCube(IBlockState state)
-    {
-        return false;
-    }
-
     @Override
     @SuppressWarnings("deprecation")
     @Nonnull
@@ -105,27 +93,13 @@ public class BlockHangingPlanter extends Block implements IItemSize
     }
 
     @Override
-    @SuppressWarnings("deprecation")
-    public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face)
-    {
-        return BlockFaceShape.UNDEFINED;
-    }
-
-    @Override
-    @SuppressWarnings("deprecation")
-    public boolean isOpaqueCube(IBlockState state)
-    {
-        return false;
-    }
-
-    @Override
     public void randomTick(World world, BlockPos pos, IBlockState state, Random random)
     {
         if (!world.isRemote)
         {
             TEHangingPlanter te = Helpers.getTE(world, pos, TEHangingPlanter.class);
             int stage = state.getValue(STAGE);
-            if (te != null && te.isClimateValid() && te.getTicksSinceUpdate() >= (ICalendar.TICKS_IN_DAY * 10) && stage < 2)
+            if (te != null && te.isClimateValid() && te.getTicksSinceUpdate() >= (ICalendar.TICKS_IN_DAY * 13) && stage < 2)
             {
                 world.setBlockState(pos, state.withProperty(STAGE, stage + 1));
                 te.reduceCounter(ICalendar.TICKS_IN_DAY * 10);
@@ -148,12 +122,6 @@ public class BlockHangingPlanter extends Block implements IItemSize
         }
     }
 
-    @SideOnly(Side.CLIENT)
-    @Override
-    public BlockRenderLayer getRenderLayer()
-    {
-        return BlockRenderLayer.CUTOUT;
-    }
 
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)

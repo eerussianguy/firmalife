@@ -24,6 +24,6 @@ public class BlockCinnamonSapling extends BlockSaplingTFC
     @Override
     public void grow(World world, Random rand, BlockPos pos, IBlockState blockState)
     {
-        WorldgenCinnamon.generateCinnamon(world, rand, pos);
+        WorldgenCinnamon.generateCinnamon(world, rand, pos, false);
     }
 }

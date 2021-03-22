@@ -113,7 +113,7 @@ public class RecipesFL
         Tree pine = TFCRegistries.TREES.getValue(DefaultTrees.PINE);
         Tree palm = TFCRegistries.TREES.getValue(DefaultTrees.PALM);
         r.registerAll(
-            new NutRecipe(BlockLogTFC.get(chestnut), BlockLeavesTFC.get(chestnut), new ItemStack(ItemsFL.getFood(FoodFL.ROASTED_CHESTNUTS))).setRegistryName("chestnut"),
+            new NutRecipe(BlockLogTFC.get(chestnut), BlockLeavesTFC.get(chestnut), new ItemStack(ItemsFL.getFood(FoodFL.CHESTNUTS))).setRegistryName("chestnut"),
             new NutRecipe(BlockLogTFC.get(oak), BlockLeavesTFC.get(oak), new ItemStack(ItemsFL.getFood(FoodFL.ACORNS))).setRegistryName("oak"),
             new NutRecipe(BlockLogTFC.get(hickory), BlockLeavesTFC.get(hickory), new ItemStack(ItemsFL.getFood(FoodFL.PECAN_NUTS))).setRegistryName("hickory"),
             new NutRecipe(BlockLogTFC.get(pine), BlockLeavesTFC.get(pine), new ItemStack(ItemsFL.getFood(FoodFL.PINECONE))).setRegistryName("pine"),

@@ -1,5 +1,6 @@
 package com.eerussianguy.firmalife.items;
 
+import java.util.List;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -15,13 +16,12 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -29,12 +29,18 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
 import com.eerussianguy.firmalife.ConfigFL;
+import com.eerussianguy.firmalife.blocks.BlockStemFruit;
+import com.eerussianguy.firmalife.init.FoodFL;
 import com.eerussianguy.firmalife.player.CapPlayerDataFL;
 import com.eerussianguy.firmalife.player.IPlayerDataFL;
 import com.eerussianguy.firmalife.recipe.CrackingRecipe;
 import com.eerussianguy.firmalife.recipe.NutRecipe;
+import com.eerussianguy.firmalife.registry.BlocksFL;
+import com.eerussianguy.firmalife.registry.ItemsFL;
 import mcp.MethodsReturnNonnullByDefault;
 import net.dries007.tfc.Constants;
+import net.dries007.tfc.api.capability.food.CapabilityFood;
+import net.dries007.tfc.api.capability.food.IFood;
 import net.dries007.tfc.api.capability.forge.ForgeableHeatableHandler;
 import net.dries007.tfc.api.capability.metal.IMetalItem;
 import net.dries007.tfc.api.capability.size.Size;
@@ -45,6 +51,7 @@ import net.dries007.tfc.objects.blocks.BlockPlacedItemFlat;
 import net.dries007.tfc.objects.items.ItemTFC;
 import net.dries007.tfc.objects.potioneffects.PotionEffectsTFC;
 import net.dries007.tfc.objects.te.TEPlacedItemFlat;
+import net.dries007.tfc.objects.te.TETickCounter;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.calendar.CalendarTFC;
 import net.dries007.tfc.util.calendar.ICalendar;
@@ -73,11 +80,13 @@ public class ItemMetalMallet extends ItemTFC implements IMetalItem
 
     @Override
     @Nonnull
+    @SuppressWarnings("deprecation")
     public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         if (!worldIn.isRemote && hand == EnumHand.MAIN_HAND)
         {
-            if (worldIn.getBlockState(pos).getBlock() instanceof BlockPlacedItemFlat)
+            Block block = worldIn.getBlockState(pos).getBlock();
+            if (block instanceof BlockPlacedItemFlat)
             {
                 TEPlacedItemFlat tile = (TEPlacedItemFlat) worldIn.getTileEntity(pos);
                 if (tile == null) return EnumActionResult.FAIL;
@@ -95,6 +104,27 @@ public class ItemMetalMallet extends ItemTFC implements IMetalItem
                 tile.setStack(ItemStack.EMPTY);
                 worldIn.setBlockToAir(pos);
                 player.getHeldItem(hand).damageItem(1, player);
+                return EnumActionResult.SUCCESS;
+            }
+            else if (block == BlocksFL.MELON_FRUIT)
+            {
+                List<ItemStack> drops = block.getDrops(worldIn, pos, worldIn.getBlockState(pos), 0);
+                ItemStack stack = drops.get(0);
+                if (stack.getItem() == Item.getItemFromBlock(block))
+                {
+                    IFood cap = stack.getCapability(CapabilityFood.CAPABILITY, null);
+                    if (cap != null)
+                    {
+                        if (!cap.isRotten())
+                        {
+                            for (int i = 0; i < 2 + RNG.nextInt(4); i++)
+                                Helpers.spawnItemStack(worldIn, pos, new ItemStack(ItemsFL.getFood(FoodFL.MELON)));
+                        }
+                    }
+                }
+                worldIn.destroyBlock(pos, false);
+
+                worldIn.playSound(null, pos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS, 1.0f, 1.0f);
                 return EnumActionResult.SUCCESS;
             }
 

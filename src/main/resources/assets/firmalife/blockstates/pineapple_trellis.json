@@ -1,0 +1,30 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"textures": {
+			"bush": "firmalife:blocks/bush/pineapple/bush"
+		},
+		"model": "firmalife:trellis_bush"
+	},
+	"variants": {
+		"grown": {
+			"true": {
+				"textures": {
+					"bush": "firmalife:blocks/bush/pineapple/berry"
+				}
+			},
+			"false": {
+			}
+		},
+		"inventory": [{
+		   "transform": "forge:default-block",
+		   "model": "firmalife:trellis_bush",
+		   "y": 180
+		}],
+		"normal": [{
+		   "transform": "forge:default-block",
+		   "model": "firmalife:trellis_bush",
+		   "y": 180
+		}]
+	}
+}

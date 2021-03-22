@@ -42,6 +42,7 @@ import com.eerussianguy.firmalife.registry.ItemsFL;
 import com.eerussianguy.firmalife.render.*;
 import com.eerussianguy.firmalife.te.TELeafMat;
 import com.eerussianguy.firmalife.te.TEOven;
+import com.eerussianguy.firmalife.te.TEString;
 import net.dries007.tfc.api.capability.IMoldHandler;
 import net.dries007.tfc.api.registries.TFCRegistries;
 import net.dries007.tfc.api.types.Metal;
@@ -129,6 +130,7 @@ public class ClientRegisterEventsFL
         ModelLoader.setCustomStateMapper(BlocksFL.LARGE_PLANTER, new LargePlanterStateMapper());
 
         ClientRegistry.bindTileEntitySpecialRenderer(TEOven.class, new TESROven());
+        ClientRegistry.bindTileEntitySpecialRenderer(TEString.class, new TESRString());
         ClientRegistry.bindTileEntitySpecialRenderer(TELeafMat.class, new TESRLeafMat());
     }
 

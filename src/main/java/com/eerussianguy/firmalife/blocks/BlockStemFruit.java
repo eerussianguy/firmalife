@@ -2,6 +2,7 @@ package com.eerussianguy.firmalife.blocks;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
@@ -22,6 +23,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.items.ItemHandlerHelper;
 
 import com.eerussianguy.firmalife.te.TEStemCrop;
+import mcp.MethodsReturnNonnullByDefault;
 import net.dries007.tfc.api.capability.food.CapabilityFood;
 import net.dries007.tfc.api.capability.food.FoodHandler;
 import net.dries007.tfc.api.capability.player.CapabilityPlayerData;
@@ -36,9 +38,10 @@ import net.dries007.tfc.util.calendar.CalendarTFC;
 import net.dries007.tfc.util.skills.SimpleSkill;
 import net.dries007.tfc.util.skills.SkillType;
 
+@MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
 public class BlockStemFruit extends BlockDirectional implements IItemSize
 {
-
     public BlockStemFruit()
     {
         super(Material.GOURD);
@@ -49,26 +52,35 @@ public class BlockStemFruit extends BlockDirectional implements IItemSize
     /**
      * Checks if this block can be placed exactly at the given position.
      */
+    @Override
     public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
     {
         return worldIn.getBlockState(pos).getBlock().isReplaceable(worldIn, pos) && worldIn.isSideSolid(pos.down(), EnumFacing.UP);
     }
 
+    @SuppressWarnings("deprecation")
+    @Override
     public IBlockState withRotation(IBlockState state, Rotation rot)
     {
         return state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
     }
 
+    @SuppressWarnings("deprecation")
+    @Override
     public IBlockState withMirror(IBlockState state, Mirror mirrorIn)
     {
         return state.withRotation(mirrorIn.toRotation(state.getValue(FACING)));
     }
 
+    @SuppressWarnings("deprecation")
+    @Override
     public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
         return this.getDefaultState().withProperty(FACING, EnumFacing.getDirectionFromEntityLiving(pos, placer));
     }
 
+    @SuppressWarnings("deprecation")
+    @Override
     public IBlockState getStateFromMeta(int meta)
     {
         return this.getDefaultState().withProperty(FACING, EnumFacing.byIndex(meta));
@@ -102,16 +114,15 @@ public class BlockStemFruit extends BlockDirectional implements IItemSize
             {
                 long currentTime = CalendarTFC.PLAYER_TIME.getTicks();
                 long foodCreationDate = currentTime - te.getTicksSinceUpdate();
-                drops.forEach(stack ->
-                {
+                drops.forEach(stack -> {
                     FoodHandler handler = (FoodHandler) stack.getCapability(CapabilityFood.CAPABILITY, null);
-                    handler.setCreationDate(foodCreationDate);
+                    if (handler != null)
+                        handler.setCreationDate(foodCreationDate);
                 });
             }
         }
 
     }
-
 
     //Lifted from BlockFlowerPot
 

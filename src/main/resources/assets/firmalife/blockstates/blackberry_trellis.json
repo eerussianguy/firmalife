@@ -1,0 +1,30 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"textures": {
+			"bush": "tfc:blocks/berry_bush/bush/blackberry"
+		},
+		"model": "firmalife:trellis_bush"
+	},
+	"variants": {
+		"grown": {
+			"true": {
+				"textures": {
+					"bush": "tfc:blocks/berry_bush/berry/blackberry"
+				}
+			},
+			"false": {
+			}
+		},
+		"inventory": [{
+		   "transform": "forge:default-block",
+		   "model": "firmalife:trellis_bush",
+		   "y": 180
+		}],
+		"normal": [{
+		   "transform": "forge:default-block",
+		   "model": "firmalife:trellis_bush",
+		   "y": 180
+		}]
+	}
+}

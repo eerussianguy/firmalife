@@ -6,6 +6,10 @@
     },
     {
       "item": "firmalife:crop/seeds/melon"
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "dustFertilizer"
     }
   ],
   "result": {

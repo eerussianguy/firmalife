@@ -5,6 +5,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemStack;
@@ -59,19 +60,20 @@ public class TESROven extends TileEntitySpecialRenderer<TEOven>
                 ItemStack fuel1 = cap.getStackInSlot(SLOT_FUEL_1);
                 ItemStack fuel2 = cap.getStackInSlot(SLOT_FUEL_2);
                 ItemStack main = cap.getStackInSlot(SLOT_MAIN);
+                RenderItem renderer = Minecraft.getMinecraft().getRenderItem();
                 if (!fuel1.isEmpty())
                 {
-                    Minecraft.getMinecraft().getRenderItem().renderItem(fuel1, ItemCameraTransforms.TransformType.FIXED);
+                    renderer.renderItem(fuel1, ItemCameraTransforms.TransformType.FIXED);
                 }
                 GlStateManager.translate(-1f, 0f, 0f);
                 if (!fuel2.isEmpty())
                 {
-                    Minecraft.getMinecraft().getRenderItem().renderItem(fuel2, ItemCameraTransforms.TransformType.FIXED);
+                    renderer.renderItem(fuel2, ItemCameraTransforms.TransformType.FIXED);
                 }
                 GlStateManager.translate(0.5f, 1.8f, 0f);
                 if (!main.isEmpty())
                 {
-                    Minecraft.getMinecraft().getRenderItem().renderItem(main, ItemCameraTransforms.TransformType.FIXED);
+                    renderer.renderItem(main, ItemCameraTransforms.TransformType.FIXED);
                 }
                 GlStateManager.popMatrix();
             }

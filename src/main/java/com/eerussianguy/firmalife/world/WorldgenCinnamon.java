@@ -42,14 +42,15 @@ public class WorldgenCinnamon extends WorldGenerator
         int x = pos.getX() - 7 + rand.nextInt(14);
         int z = pos.getZ() - 7 + rand.nextInt(14);
         BlockPos genPos = world.getTopSolidOrLiquidBlock(new BlockPos(x, 0, z));
-        return PlantsFL.CINNAMON_TREE.isValidLocation(temp, rain, density) && generateCinnamon(world, rand, genPos);
+        return PlantsFL.CINNAMON_TREE.isValidLocation(temp, rain, density) && generateCinnamon(world, rand, genPos, true);
 
     }
 
-    public static boolean generateCinnamon(World world, Random rand, BlockPos pos)
+    public static boolean generateCinnamon(World world, Random rand, BlockPos pos, boolean worldgen)
     {
         IBlockState state = world.getBlockState(pos.down());
-        if (world.isAirBlock(pos) && state.isSideSolid(world, pos.down(), EnumFacing.UP) && BlocksTFC.isGrowableSoil(state))
+        if (worldgen && !world.isAirBlock(pos)) return false;
+        if (state.isSideSolid(world, pos.down(), EnumFacing.UP) && BlocksTFC.isGrowableSoil(state))
         {
             for (int air = 1; air < 15; air++)
             {
