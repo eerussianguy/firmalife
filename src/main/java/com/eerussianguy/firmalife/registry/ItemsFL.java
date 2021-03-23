@@ -98,6 +98,10 @@ public class ItemsFL
     public static final ItemBlock ITEM_LARGE_PLANTER = Helpers.getNull();
     @GameRegistry.ObjectHolder("cinnamon_sapling")
     public static final ItemBlock ITEM_CINNAMON_SAPLING = Helpers.getNull();
+    @GameRegistry.ObjectHolder("honeycomb")
+    public static final ItemMisc HONEYCOMB = Helpers.getNull();
+    @GameRegistry.ObjectHolder("honey_jar")
+    public static final ItemBlockJar HONEY_JAR = Helpers.getNull();
 
     private static final Map<Metal, ItemMetalMalletHead> malletHeads = new HashMap<>();
     private static final Map<Fruit, Item> driedFruits = new HashMap<>();
@@ -231,6 +235,9 @@ public class ItemsFL
         easyItems.add(register(r, "pineapple_leather", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
         easyItems.add(register(r, "pineapple_fiber", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
         easyItems.add(register(r, "pineapple_yarn", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
+        easyItems.add(register(r, "honeycomb", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
+        easyItems.add(register(r, "honey_jar", new ItemBlockJar(BlocksFL.HONEY_JAR), CT_FOOD));
+        easyItems.add(register(r, "jar", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_FOOD));
 
         ItemMisc cpole = new ItemMisc(Size.SMALL, Weight.MEDIUM);
         easyItems.add(register(r, "cinnamon_pole", cpole, CT_MISC));
@@ -249,6 +256,7 @@ public class ItemsFL
                 easyItems.add(register(r, metal.toString() + "_mallet", new ItemMetalMallet(metal), CT_METAL));
                 ItemMetalMalletHead head = new ItemMetalMalletHead(metal);
                 easyItems.add(register(r, metal.toString() + "_mallet_head", head, CT_METAL));
+                OreDictionary.registerOre("tool", head);
                 malletHeads.put(metal, head);
             }
 

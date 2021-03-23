@@ -31,7 +31,8 @@ public enum FoodFL
     COCONUT(FoodDataFL.UNCRACKED_NUT),
     MELON(FoodDataFL.MELON),
     TOFU(FoodDataFL.TOFU),
-    GROUND_SOYBEANS(FoodDataFL.GROUND_SOYBEANS);
+    GROUND_SOYBEANS(FoodDataFL.GROUND_SOYBEANS),
+    RAW_HONEY(FoodDataFL.DOUGH, new String[] {"sweetener"}, false);
 
     private final FoodData data;
     private final String[] nameOverrides;

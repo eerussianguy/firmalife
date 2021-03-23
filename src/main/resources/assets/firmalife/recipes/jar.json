@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " Y ",
+    "X X",
+    " X "
+  ],
+  "key": {
+    "X": [
+      {
+        "type": "forge:ore_dict",
+        "ore": "blockGlass"
+      }
+    ],
+    "Y": [
+      {
+        "type": "forge:ore_dict",
+        "ore": "sheetWroughtIron"
+      }
+    ]
+  },
+  "result": {
+    "item": "firmalife:jar",
+    "count": 16
+  }
+}

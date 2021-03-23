@@ -52,4 +52,11 @@ public class BlockTrellis extends BlockNonCube
         IBlockState state = world.getBlockState(pos.down());
         return state.getBlock() instanceof BlockTrellis || state.getBlockFaceShape(world, pos.down(), EnumFacing.UP) == BlockFaceShape.SOLID;
     }
+
+    @Override
+    public boolean canPlaceBlockOnSide(World worldIn, BlockPos pos, EnumFacing side)
+    {
+        if (!canStay(worldIn, pos)) return false;
+        return super.canPlaceBlockOnSide(worldIn, pos, side);
+    }
 }

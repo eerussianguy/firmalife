@@ -91,6 +91,10 @@ item.firmalife.watering_can.name=Watering Can
 item.firmalife.melon.name=Melon
 item.firmalife.tofu.name=Tofu
 item.firmalife.ground_soybeans.name=Ground Soybeans
+item.firmalife.raw_honey.name=Raw Honey
+item.firmalife.honeycomb.name=Honeycomb
+item.firmalife.honey_jar.name=Honey Jar
+item.firmalife.jar.name=Jar
 
 ### WOOD
 item.firmalife.banana_pole.name=Banana Pole
@@ -191,6 +195,7 @@ tile.firmalife.squash_hanging_planter.name=Squash Hanging Planter
 tile.firmalife.wool_yarn.name=Wool Yarn
 tile.firmalife.crop.pumpkin=Pumpkin Plant
 tile.firmalife.crop.melon=Melon Plant
+tile.firmalife.honey_jar.name=Honey Jars
 
 tile.firmalife.blackberry_trellis.name=Blackberry Bush Trellis
 tile.firmalife.blueberry_trellis.name=Blueberry Bush Trellis
@@ -204,7 +209,8 @@ tile.firmalife.snow_berry_trellis.name=Snowberry Bush Trellis
 tile.firmalife.strawberry_trellis.name=Strawberry Bush Trellis
 tile.firmalife.wintergreen_berry_trellis.name=Wintergreen Berry Bush Trellis
 tile.firmalife.pineapple_trellis.name=Pineapple Trellis
-tile.firmalife.trellis.name= Trellis
+tile.firmalife.trellis.name=Trellis
+tile.firmalife.beehive.name=Beehive
 
 item.firmalife.unfired_mallet_mold.name=Unfired Mallet Head Mold
 item.firmalife.mallet_mold.name=Mallet Head Mold
@@ -287,6 +293,9 @@ jei.tooltip.firmalife.fruit_leaf=Fruit leaves are dropped by breaking any fruit 
 jei.tooltip.firmalife.cocoa_powder=You can get cocoa powder by crafting cocoa butter.
 jei.tooltip.firmalife.pineapple_chunks=You can get pineapple chunks by crafting pineapple fiber.
 vein.halite.name=Halite
+
+death.attack.swarm=%1$s died due to a swarm of bees
+effectFL.swarm=Swarm
 
 config.firmalife.general=General Settings
 config.firmalife.general.tooltip=General configuration for Firmalife

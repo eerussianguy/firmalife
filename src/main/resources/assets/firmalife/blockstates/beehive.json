@@ -1,0 +1,25 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "firmalife:bee_nest"
+	},
+	"variants": {
+		"stage": {
+			"2": {
+				"model": "firmalife:bee_nest_honey"
+			},
+			"1": {
+			},
+			"0": {
+			}
+		},
+		"inventory": [{
+		   "transform": "forge:default-block",
+		   "model": "firmalife:bee_nest"
+		}],
+		"normal": [{
+		   "transform": "forge:default-block",
+		   "model": "firmalife:bee_nest"
+		}]
+	}
+}

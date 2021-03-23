@@ -1,0 +1,22 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "firmalife:jar_1"
+	},
+	"variants": {
+		"jars": {
+			"1": {
+				"model": "firmalife:jar_1"
+			},
+			"2": {
+				"model": "firmalife:jar_2"
+			},
+			"3": {
+				"model": "firmalife:jar_3"
+			},
+			"4": {
+				"model": "firmalife:jar_4"
+			}
+		}
+	}
+}

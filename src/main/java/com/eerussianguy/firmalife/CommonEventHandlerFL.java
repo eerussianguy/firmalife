@@ -174,6 +174,7 @@ public class CommonEventHandlerFL
             {
                 IBlockState string = BlocksFL.WOOL_STRING.getStateForPlacement(world, player, facing, offsetPos);
                 world.setBlockState(offsetPos, string);
+                stack.shrink(1);
             }
         }
     }

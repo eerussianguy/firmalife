@@ -17,4 +17,5 @@ public class StatePropertiesFL
     public static final PropertyBool STASIS = PropertyBool.create("stasis");
     public static final PropertyEnum<EnumFacing.Axis> XZ = PropertyEnum.create("axis", EnumFacing.Axis.class, EnumFacing.Axis.X, EnumFacing.Axis.Z);
     public static final PropertyInteger STAGE = PropertyInteger.create("stage", 0, 2);
+    public static final PropertyInteger JARS = PropertyInteger.create("jars", 1, 4);
 }

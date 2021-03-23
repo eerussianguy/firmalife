@@ -74,6 +74,8 @@ public class BlocksFL
     public static final BlockString WOOL_STRING = Helpers.getNull();
     @GameRegistry.ObjectHolder("trellis")
     public static final BlockTrellis TRELLIS = Helpers.getNull();
+    @GameRegistry.ObjectHolder("honey_jar")
+    public static final BlockJars HONEY_JAR = Helpers.getNull();
 
     private static ImmutableList<ItemBlock> allIBs;
     private static ImmutableList<Block> allNormalIBs = Helpers.getNull();
@@ -213,6 +215,8 @@ public class BlocksFL
         normalIBs.add(register(r, "squash_hanging_planter", new BlockHangingPlanter(() -> ItemFoodTFC.get(Food.SQUASH), () -> ItemSeedsTFC.get(Crop.SQUASH)), CT_DECORATIONS));
         register(r, "wool_string", new BlockString(() -> ItemsTFC.WOOL_YARN));
         normalIBs.add(register(r, "trellis", new BlockTrellis(), CT_DECORATIONS));
+        normalIBs.add(register(r, "beehive", new BlockBeehive(), CT_DECORATIONS));
+        register(r, "honey_jar", new BlockJars(() -> ItemsFL.HONEY_JAR), CT_DECORATIONS);
 
         for (BerryBush bush : BerryBush.values())
         {
