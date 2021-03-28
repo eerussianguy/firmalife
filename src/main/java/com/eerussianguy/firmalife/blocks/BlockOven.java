@@ -178,6 +178,7 @@ public class BlockOven extends Block implements ILightableBlock, IItemSize
             if (!state.getValue(LIT))
             {
                 ItemStack held = player.getHeldItem(hand);
+                if (held.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null)) return false;
                 TEOven te = Helpers.getTE(world, pos, TEOven.class);
                 if (te == null) return false;
                 if (isValidHorizontal(world, pos, false) && hasChimney(world, pos, false) && ItemFireStarter.onIgnition(held))

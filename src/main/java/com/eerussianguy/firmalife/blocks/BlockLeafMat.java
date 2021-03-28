@@ -31,6 +31,7 @@ import mcp.MethodsReturnNonnullByDefault;
 import net.dries007.tfc.api.capability.size.IItemSize;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
+import net.dries007.tfc.objects.items.ceramics.ItemSmallVessel;
 import net.dries007.tfc.util.Helpers;
 
 @ParametersAreNonnullByDefault
@@ -55,6 +56,7 @@ public class BlockLeafMat extends Block implements IItemSize
         if (!world.isRemote)
         {
             ItemStack held = player.getHeldItem(hand);
+            if (held.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null)) return false;
             TELeafMat te = Helpers.getTE(world, pos, TELeafMat.class);
             if (te != null)
             {

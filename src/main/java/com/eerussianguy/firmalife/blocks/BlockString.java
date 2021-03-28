@@ -96,6 +96,7 @@ public class BlockString extends BlockNonCube
             TEString te = Helpers.getTE(world, pos, TEString.class);
             if (te == null) return false;
             ItemStack held = player.getHeldItem(hand);
+            if (held.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null)) return false;
             IItemHandler inv = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
             if (inv == null) return false;
             ItemStack current = inv.getStackInSlot(0);
@@ -109,7 +110,7 @@ public class BlockString extends BlockNonCube
                     if (!traits.contains(FoodDataFL.SMOKED) && isFoodValid)
                     {
                         ItemStack leftover = inv.insertItem(0, held.splitStack(1), false);
-                        Helpers.spawnItemStack(world, pos, leftover);
+                        Helpers.spawnItemStack(world, pos.add(0.5D, 0.5D, 0.5D), leftover);
                         te.markForSync();
                         return true;
                     }
@@ -136,7 +137,7 @@ public class BlockString extends BlockNonCube
         {
             te.resetCounter();
         }
-        else if (te.getTicksSinceUpdate() >= (ICalendar.TICKS_IN_HOUR * 8))
+        else if (te.getTicksSinceUpdate() >= (ICalendar.TICKS_IN_HOUR * 4))
         {
             IItemHandler cap = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
             if (cap != null)

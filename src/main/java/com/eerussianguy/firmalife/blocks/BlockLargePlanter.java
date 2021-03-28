@@ -86,6 +86,13 @@ public class BlockLargePlanter extends Block implements IItemSize
 
     @Override
     @SuppressWarnings("deprecation")
+    public boolean isFullCube(IBlockState state)
+    {
+        return false;
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
         return LARGE_SHAPE;
