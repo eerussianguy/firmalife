@@ -1,0 +1,8 @@
+{
+  "parent": "block/half_slab",
+  "textures": {
+    "bottom": "firmalife:blocks/bumper",
+    "top": "firmalife:blocks/bumper",
+    "side": "firmalife:blocks/bumper"
+  }
+}

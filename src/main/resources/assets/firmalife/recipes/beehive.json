@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "X X",
+    "XXX"
+  ],
+  "key": {
+    "X": [
+      {
+        "item": "firmalife:treated_lumber"
+      }
+    ]
+  },
+  "result": {
+    "item": "firmalife:beehive",
+    "count": 1
+  }
+}

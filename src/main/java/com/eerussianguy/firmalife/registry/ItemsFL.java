@@ -102,6 +102,10 @@ public class ItemsFL
     public static final ItemMisc HONEYCOMB = Helpers.getNull();
     @GameRegistry.ObjectHolder("honey_jar")
     public static final ItemBlockJar HONEY_JAR = Helpers.getNull();
+    @GameRegistry.ObjectHolder("jar")
+    public static final ItemMisc JAR = Helpers.getNull();
+    @GameRegistry.ObjectHolder("treated_lumber")
+    public static final ItemMisc TREATED_LUMBER = Helpers.getNull();
 
     private static final Map<Metal, ItemMetalMalletHead> malletHeads = new HashMap<>();
     private static final Map<Fruit, Item> driedFruits = new HashMap<>();
@@ -238,6 +242,7 @@ public class ItemsFL
         easyItems.add(register(r, "honeycomb", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_MISC));
         easyItems.add(register(r, "honey_jar", new ItemBlockJar(BlocksFL.HONEY_JAR), CT_FOOD));
         easyItems.add(register(r, "jar", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_FOOD));
+        easyItems.add(register(r, "treated_lumber", new ItemMisc(Size.SMALL, Weight.MEDIUM), CT_MISC));
 
         ItemMisc cpole = new ItemMisc(Size.SMALL, Weight.MEDIUM);
         easyItems.add(register(r, "cinnamon_pole", cpole, CT_MISC));

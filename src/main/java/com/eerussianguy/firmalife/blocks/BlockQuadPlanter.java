@@ -54,10 +54,7 @@ public class BlockQuadPlanter extends BlockLargePlanter implements IHighlightHan
     public BlockQuadPlanter()
     {
         super();
-        setHardness(1.0f);
-        setResistance(1.0f);
         setLightOpacity(0);
-        setTickRandomly(true);
         this.setDefaultState(this.blockState.getBaseState().withProperty(WET, false));
     }
 

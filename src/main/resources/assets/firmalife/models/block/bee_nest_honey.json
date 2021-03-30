@@ -3,8 +3,8 @@
   "textures": {
     "top": "firmalife:blocks/bee_nest_top",
     "bottom": "firmalife:blocks/bee_nest_bottom",
-    "side": "firmalife:blocks/bee_nest_side",
+    "side": "firmalife:blocks/bee_nest_front_honey",
     "front": "firmalife:blocks/bee_nest_front_honey",
-    "particle": "firmalife:blocks/bee_nest_side"
+    "particle": "firmalife:blocks/bee_nest_front_honey"
   }
 }

@@ -95,6 +95,7 @@ item.firmalife.raw_honey.name=Raw Honey
 item.firmalife.honeycomb.name=Honeycomb
 item.firmalife.honey_jar.name=Honey Jar
 item.firmalife.jar.name=Jar
+item.firmalife.treated_lumber.name=Treated Lumber
 
 ### WOOD
 item.firmalife.banana_pole.name=Banana Pole
@@ -196,6 +197,7 @@ tile.firmalife.wool_yarn.name=Wool Yarn
 tile.firmalife.crop.pumpkin=Pumpkin Plant
 tile.firmalife.crop.melon=Melon Plant
 tile.firmalife.honey_jar.name=Honey Jars
+tile.firmalife.bumper.name=Bumper
 
 tile.firmalife.blackberry_trellis.name=Blackberry Bush Trellis
 tile.firmalife.blueberry_trellis.name=Blueberry Bush Trellis

@@ -109,7 +109,8 @@ public class TFCRegistry
             new BarrelRecipe(IIngredient.of(FluidsTFC.RUM.get(), 1000), IIngredient.of(ItemsFL.FROTHY_COCONUT), new FluidStack(FluidsFL.PINA_COLADA.get(), 1000), ItemStack.EMPTY, hour).setRegistryName("pina_colada"),
             new BarrelRecipe(IIngredient.of(FluidsTFC.HOT_WATER.get(), 250), new IngredientItemFood(IIngredient.of(ItemFoodTFC.get(Food.BEET), 8)), null, new ItemStack(Items.SUGAR), hour * 8).setRegistryName("beet_sugar"),
             new BarrelRecipe(IIngredient.of(FluidsTFC.FRESH_WATER.get(), 250), new IngredientItemFood(IIngredient.of(ItemsFL.getFood(FoodFL.GROUND_SOYBEANS), 1)), null, new ItemStack(ItemsFL.getFood(FoodFL.TOFU)), hour * 8).setRegistryName("tofu"),
-            new BarrelRecipeFoodPreservation(IIngredient.of(FluidsTFC.LIMEWATER.get(), 125), IIngredient.of(new ItemStack(ItemsFL.getFood(FoodFL.PICKLED_EGG))), FoodTrait.PRESERVED, "barrel_recipe_lime").setRegistryName("pickle_egg")
+            new BarrelRecipeFoodPreservation(IIngredient.of(FluidsTFC.LIMEWATER.get(), 125), IIngredient.of(new ItemStack(ItemsFL.getFood(FoodFL.PICKLED_EGG))), FoodTrait.PRESERVED, "barrel_recipe_lime").setRegistryName("pickle_egg"),
+            new BarrelRecipe(IIngredient.of(FluidsTFC.OLIVE_OIL.get(), 500), IIngredient.of("lumber"), null, new ItemStack(ItemsFL.TREATED_LUMBER), hour * 8).setRegistryName("treat_lumber")
         );
     }
 
