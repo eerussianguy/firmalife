@@ -102,6 +102,16 @@ public class ItemsFL
     public static final ItemMisc HONEYCOMB = Helpers.getNull();
     @GameRegistry.ObjectHolder("honey_jar")
     public static final ItemBlockJar HONEY_JAR = Helpers.getNull();
+    @GameRegistry.ObjectHolder("milk_curd")
+    public static final ItemFoodFL MILK_CURD = Helpers.getNull();
+    @GameRegistry.ObjectHolder("goat_curd")
+    public static final ItemFoodFL GOAT_CURD = Helpers.getNull();
+    @GameRegistry.ObjectHolder("yak_curd")
+    public static final ItemFoodFL YAK_CURD = Helpers.getNull();
+    @GameRegistry.ObjectHolder("rennet")
+    public static final ItemMisc RENNET = Helpers.getNull();
+    @GameRegistry.ObjectHolder("cheesecloth")
+    public static final ItemMisc CHEESECLOTH = Helpers.getNull();
 
     private static final Map<Metal, ItemMetalMalletHead> malletHeads = new HashMap<>();
     private static final Map<Fruit, Item> driedFruits = new HashMap<>();
@@ -208,6 +218,8 @@ public class ItemsFL
         OreDictionary.registerOre("categoryMeal", sandwich);
 
         //Misc Items
+        easyItems.add(register(r, "rennet", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
+        easyItems.add(register(r, "cheesecloth", new ItemMisc(Size.NORMAL, Weight.VERY_LIGHT), CT_MISC));
         easyItems.add(register(r, "roasted_cocoa_beans", new ItemRoastedCocoaBeans(), CT_MISC));
         easyItems.add(register(r, "cocoa_butter", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
         easyItems.add(register(r, "cocoa_powder", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));

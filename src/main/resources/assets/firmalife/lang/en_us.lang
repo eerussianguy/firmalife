@@ -95,6 +95,16 @@ item.firmalife.raw_honey.name=Raw Honey
 item.firmalife.honeycomb.name=Honeycomb
 item.firmalife.honey_jar.name=Honey Jar
 item.firmalife.jar.name=Jar
+item.firmalife.rennet.name=Rennet
+item.firmalife.milk_curd.name=Milk Curd
+item.firmalife.goat_curd.name=Goat Curd
+item.firmalife.yak_curd.name=Yak Curd
+item.firmalife.cheddar.name=Cheddar
+item.firmalife.chevre.name=Chevre
+item.firmalife.rajya_metok.name=Rajya-metok
+item.firmalife.gouda.name=Gouda
+item.firmalife.feta.name=Feta
+item.firmalife.shosha.name=Shosha
 
 ### WOOD
 item.firmalife.banana_pole.name=Banana Pole
@@ -239,6 +249,8 @@ fluid.yak_milk=Yak Milk
 fluid.zebu_milk=Zebu Milk
 fluid.goat_milk=Goat Milk
 fluid.milk=Cow Milk
+fluid.curdled_yak_milk=Curdled Yak Milk
+fluid.curdled_goat_milk=Curdled Goat Milk
 fluid.pina_colada=Piña Colada
 
 item.tfc.ore.halite.name=Halite

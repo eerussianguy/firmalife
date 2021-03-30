@@ -109,7 +109,11 @@ public class TFCRegistry
             new BarrelRecipe(IIngredient.of(FluidsTFC.RUM.get(), 1000), IIngredient.of(ItemsFL.FROTHY_COCONUT), new FluidStack(FluidsFL.PINA_COLADA.get(), 1000), ItemStack.EMPTY, hour).setRegistryName("pina_colada"),
             new BarrelRecipe(IIngredient.of(FluidsTFC.HOT_WATER.get(), 250), new IngredientItemFood(IIngredient.of(ItemFoodTFC.get(Food.BEET), 8)), null, new ItemStack(Items.SUGAR), hour * 8).setRegistryName("beet_sugar"),
             new BarrelRecipe(IIngredient.of(FluidsTFC.FRESH_WATER.get(), 250), new IngredientItemFood(IIngredient.of(ItemsFL.getFood(FoodFL.GROUND_SOYBEANS), 1)), null, new ItemStack(ItemsFL.getFood(FoodFL.TOFU)), hour * 8).setRegistryName("tofu"),
-            new BarrelRecipeFoodPreservation(IIngredient.of(FluidsTFC.LIMEWATER.get(), 125), IIngredient.of(new ItemStack(ItemsFL.getFood(FoodFL.PICKLED_EGG))), FoodTrait.PRESERVED, "barrel_recipe_lime").setRegistryName("pickle_egg")
+            new BarrelRecipeFoodPreservation(IIngredient.of(FluidsTFC.LIMEWATER.get(), 125), IIngredient.of(new ItemStack(ItemsFL.getFood(FoodFL.PICKLED_EGG))), FoodTrait.PRESERVED, "barrel_recipe_lime").setRegistryName("pickle_egg"),
+            new BarrelRecipe(IIngredient.of(FluidsTFC.MILK.get(), 2000), IIngredient.of(ItemsFL.RENNET), new FluidStack(FluidsTFC.CURDLED_MILK.get(), 2000), ItemStack.EMPTY, hour * 4).setRegistryName("curdled_milk"),
+            new BarrelRecipe(IIngredient.of(FluidsFL.YAK_MILK.get(), 2000), IIngredient.of(ItemsFL.RENNET), new FluidStack(FluidsFL.CURDLED_YAK_MILK.get(), 2000), ItemStack.EMPTY, hour * 4).setRegistryName("curdled_yak_milk"),
+            new BarrelRecipe(IIngredient.of(FluidsFL.GOAT_MILK.get(), 2000), IIngredient.of(ItemsFL.RENNET), new FluidStack(FluidsFL.CURDLED_GOAT_MILK.get(), 2000), ItemStack.EMPTY, hour * 4).setRegistryName("curdled_goat_milk"),
+            new BarrelRecipe(IIngredient.of(FluidsFL.ZEBU_MILK.get(), 2000), IIngredient.of(ItemsFL.RENNET), new FluidStack(FluidsTFC.CURDLED_MILK.get(), 2000), ItemStack.EMPTY, hour * 4).setRegistryName("curdled_zebu_milk")
         );
     }
 

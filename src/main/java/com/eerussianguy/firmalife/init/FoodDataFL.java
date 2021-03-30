@@ -12,6 +12,10 @@ public class FoodDataFL
 
     public static final FoodData DRIED_COCOA_BEANS = new FoodData(4, 0.0F, 0.1F, 0.1F, 0.0F, 0.0F, 0.1F, 0.0F, 0.5F);
 
+    public static final FoodData MILK_CURD = new FoodData(4, 0f, 1f, 0f, 0f, 0f, 0f, 2f, 1f);
+    public static final FoodData CHEESE_BRINED = new FoodData(4, 0f, 2f, 0f, 0f, 0f, 0f, 3f, 0.3f);
+    public static final FoodData CHEESE_SALTED = new FoodData(4, 0f, 2f, 0f, 0f, 0f, 0f, 3f, 0.3f);
+
     public static final FoodData DRIED_FRUIT_SATURATION = new FoodData(4, 0F, 0.5F, 0F, 0.75F, 0F, 0F, 0F, 0.8F);
     public static final FoodData DRIED_FRUIT_DECAY = new FoodData(4, 0F, 0.2F, 0F, 1F, 0F, 0F, 0F, 0.8F);
     public static final FoodData DRIED_FRUIT_CATEGORY = new FoodData(4, 0F, 0.2F, 0F, 0.75F, 0F, 0F, 0F, 0.8F);

@@ -32,7 +32,16 @@ public enum FoodFL
     MELON(FoodDataFL.MELON),
     TOFU(FoodDataFL.TOFU),
     GROUND_SOYBEANS(FoodDataFL.GROUND_SOYBEANS),
-    RAW_HONEY(FoodDataFL.DOUGH, new String[] {"sweetener"}, false);
+    RAW_HONEY(FoodDataFL.DOUGH, new String[] {"sweetener"}, false),
+    MILK_CURD(FoodDataFL.MILK_CURD, new String[] {"categoryDairy"}, false),
+    GOAT_CURD(FoodDataFL.MILK_CURD, new String[] {"categoryDairy"}, false),
+    YAK_CURD(FoodDataFL.MILK_CURD, new String[] {"categoryDairy"}, false),
+    CHEDDAR(FoodDataFL.CHEESE_SALTED, new String[] {"categoryDairy"}, true),
+    CHEVRE(FoodDataFL.CHEESE_SALTED, new String[] {"categoryDairy"}, true),
+    RAJYA_METOK(FoodDataFL.CHEESE_SALTED, new String[] {"categoryDairy"}, true),
+    GOUDA(FoodDataFL.CHEESE_BRINED, new String[] {"categoryDairy"}, true),
+    FETA(FoodDataFL.CHEESE_BRINED, new String[] {"categoryDairy"}, true),
+    SHOSHA(FoodDataFL.CHEESE_BRINED, new String[] {"categoryDairy"}, true);
 
     private final FoodData data;
     private final String[] nameOverrides;
