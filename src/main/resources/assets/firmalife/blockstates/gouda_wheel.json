@@ -1,0 +1,42 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "firmalife:cheesewheel_uncut"
+  },
+  "variants": {
+    "normal": {
+      "transform": "forge:default-block",
+      "model": "firmalife:cheesewheel_uncut",
+      "textures": {
+        "surface": "firmalife:blocks/gouda_wheel_surface",
+        "side": "firmalife:blocks/gouda_wheel_side_fresh"
+      }
+    },
+    "wedges": {
+      "0": {"model": "firmalife:cheesewheel_uncut"},
+      "1": {"model": "firmalife:cheesewheel_wedge1"},
+      "2": {"model": "firmalife:cheesewheel_wedge2"},
+      "3": {"model": "firmalife:cheesewheel_wedge3"}
+    },
+    "age": {
+      "fresh": {
+        "textures": {
+          "surface": "firmalife:blocks/gouda_wheel_surface",
+          "side": "firmalife:blocks/gouda_wheel_side_fresh"
+        }
+      },
+      "aged": {
+        "textures": {
+          "surface": "firmalife:blocks/gouda_wheel_surface",
+          "side": "firmalife:blocks/gouda_wheel_side_aged"
+        }
+      },
+      "vintage": {
+        "textures": {
+          "surface": "firmalife:blocks/gouda_wheel_surface",
+          "side": "firmalife:blocks/gouda_wheel_side_vintage"
+        }
+      }
+    }
+  }
+}
