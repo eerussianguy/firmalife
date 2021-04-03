@@ -63,7 +63,7 @@ public class ConfigFL
 
             @Config.Comment("Enable TFC cow variants giving custom milk?")
             @Config.LangKey("config." + MOD_ID + "general.compat.customMilk")
-            public boolean customMilk = true;
+            public boolean customMilk = true; // TODO: Roll the entire Cheesemaking module into this config
 
             @Config.Comment("Remove some TFC crafting recipes??")
             @Config.LangKey("config." + MOD_ID + "general.compat.removeTFC")
@@ -72,6 +72,10 @@ public class ConfigFL
             @Config.Comment("Enable logging of some actions Firmalife takes (such as recipe removals)")
             @Config.LangKey("config." + MOD_ID + "general.compat.logging")
             public boolean logging = true;
+
+            @Config.Comment("List of fluids allowed to be picked up by a cheesecloth")
+            @Config.LangKey("config." + MOD_ID + "general.compat.cheeseclothWhitelist")
+            public String[] cheeseclothWhitelist = new String[] {"milk_curdled", "curdled_goat_milk", "curdled_yak_milk"};
         }
 
         public static final class BalanceCFG

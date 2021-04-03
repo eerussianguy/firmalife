@@ -4,6 +4,7 @@ import net.minecraft.init.Items;
 import net.minecraftforge.oredict.OreDictionary;
 
 import com.eerussianguy.firmalife.init.FoodFL;
+import com.eerussianguy.firmalife.items.ItemFoodFL;
 import com.eerussianguy.firmalife.registry.BlocksFL;
 import com.eerussianguy.firmalife.registry.ItemsFL;
 import net.dries007.tfc.objects.items.food.ItemFoodTFC;
@@ -26,7 +27,12 @@ public class OreDictsFL
         OreDictionary.registerOre("doughYeast", ItemFoodTFC.get(Food.RYE_DOUGH));
         OreDictionary.registerOre("doughYeast", ItemFoodTFC.get(Food.WHEAT_DOUGH));
         OreDictionary.registerOre("doughYeast", ItemFoodTFC.get(Food.RICE_DOUGH));
-        OreDictionary.registerOre("cheese", ItemFoodTFC.get(Food.CHEESE)); //todo: remove this
+        OreDictionary.registerOre("cheese", ItemsFL.CHEDDAR);
+        OreDictionary.registerOre("cheese", ItemsFL.CHEVRE);
+        OreDictionary.registerOre("cheese", ItemsFL.RAJYA_METOK);
+        OreDictionary.registerOre("cheese", ItemsFL.GOUDA);
+        OreDictionary.registerOre("cheese", ItemsFL.FETA);
+        OreDictionary.registerOre("cheese", ItemsFL.SHOSHA);
         OreDictionary.registerOre("categoryBread", ItemsFL.CHESTNUT_SLICE);
         OreDictionary.registerOre("slice", ItemsFL.CHESTNUT_SLICE);
         OreDictionary.registerOre("categoryGrain", ItemsFL.ROASTED_COCOA_BEANS);
