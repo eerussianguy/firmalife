@@ -9,7 +9,8 @@
       "model": "firmalife:cheesewheel_uncut",
       "textures": {
         "surface": "firmalife:blocks/gouda_wheel_surface",
-        "side": "firmalife:blocks/gouda_wheel_side_fresh"
+        "side": "firmalife:blocks/gouda_wheel_side_fresh",
+        "inside": "firmalife:blocks/gouda_wheel_inner"
       }
     },
     "wedges": {
@@ -22,19 +23,22 @@
       "fresh": {
         "textures": {
           "surface": "firmalife:blocks/gouda_wheel_surface",
-          "side": "firmalife:blocks/gouda_wheel_side_fresh"
+          "side": "firmalife:blocks/gouda_wheel_side_fresh",
+          "inside": "firmalife:blocks/gouda_wheel_inner"
         }
       },
       "aged": {
         "textures": {
           "surface": "firmalife:blocks/gouda_wheel_surface",
-          "side": "firmalife:blocks/gouda_wheel_side_aged"
+          "side": "firmalife:blocks/gouda_wheel_side_aged",
+          "inside": "firmalife:blocks/gouda_wheel_inner"
         }
       },
       "vintage": {
         "textures": {
           "surface": "firmalife:blocks/gouda_wheel_surface",
-          "side": "firmalife:blocks/gouda_wheel_side_vintage"
+          "side": "firmalife:blocks/gouda_wheel_side_vintage",
+          "inside": "firmalife:blocks/gouda_wheel_inner"
         }
       }
     }

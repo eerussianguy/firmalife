@@ -262,6 +262,10 @@ fluid.curdled_yak_milk=Curdled Yak Milk
 fluid.curdled_goat_milk=Curdled Goat Milk
 fluid.pina_colada=Piña Colada
 
+tfc.food_traits.fresh=Fresh
+tfc.food_traits.aged=Aged
+tfc.food_traits.vintage=Vintage
+
 item.tfc.ore.halite.name=Halite
 
 tile.tfc.ore.halite.chalk.name=Chalk Halite
