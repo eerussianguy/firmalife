@@ -3,23 +3,23 @@ package com.eerussianguy.firmalife.init;
 import net.minecraft.util.IStringSerializable;
 
 import mcp.MethodsReturnNonnullByDefault;
+import net.dries007.tfc.api.capability.food.FoodTrait;
 
 @MethodsReturnNonnullByDefault
 public enum AgingFL implements IStringSerializable
 {
-    // TODO: Aged foods should probably do something
-    // TODO: Implement this as a FoodModifier
-    // TODO: And maybe move this enum to StatePropertiesFL, ask russian
-    FRESH("fresh", 0),
-    AGED("aged", 4),
-    VINTAGE("vintage", 8);
+    FRESH("fresh", 0, FoodDataFL.FRESH),
+    AGED("aged", 4, FoodDataFL.AGED),
+    VINTAGE("vintage", 8, FoodDataFL.VINTAGE);
 
     private final int ID;
     private final String name;
+    private final FoodTrait trait;
 
-    AgingFL(String name, int ID) {
+    AgingFL(String name, int ID, FoodTrait trait) {
         this.ID = ID;
         this.name = name;
+        this.trait = trait;
     }
 
     @Override
@@ -31,5 +31,9 @@ public enum AgingFL implements IStringSerializable
     public int getID()
     {
         return this.ID;
+    }
+
+    public FoodTrait getTrait() {
+        return this.trait;
     }
 }

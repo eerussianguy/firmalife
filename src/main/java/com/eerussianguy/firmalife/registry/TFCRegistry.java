@@ -37,7 +37,6 @@ import net.dries007.tfc.objects.Powder;
 import net.dries007.tfc.objects.fluids.FluidsTFC;
 import net.dries007.tfc.objects.inventory.ingredient.IIngredient;
 import net.dries007.tfc.objects.inventory.ingredient.IngredientItemFood;
-import net.dries007.tfc.objects.inventory.ingredient.IngredientItemFoodTrait;
 import net.dries007.tfc.objects.items.ItemPowder;
 import net.dries007.tfc.objects.items.food.ItemFoodTFC;
 import net.dries007.tfc.objects.items.metal.ItemMetal;

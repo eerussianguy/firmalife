@@ -26,6 +26,7 @@ public class RegistriesFL
         newRegistry(RegistryNamesFL.PLANTER_QUAD_REGISTRY, PlanterRecipe.class);
         newRegistry(RegistryNamesFL.NUT_TREES_REGISTRY, NutRecipe.class);
         newRegistry(RegistryNamesFL.CRACKING_RECIPE, CrackingRecipe.class);
+        newRegistry(RegistryNamesFL.STRAINING_RECIPE, StrainingRecipe.class);
     }
 
     private static <T extends IForgeRegistryEntry<T>> void newRegistry(ResourceLocation name, Class<T> tClass)

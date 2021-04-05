@@ -63,7 +63,7 @@ public class ConfigFL
 
             @Config.Comment("Enable TFC cow variants giving custom milk?")
             @Config.LangKey("config." + MOD_ID + "general.compat.customMilk")
-            public boolean customMilk = true; // TODO: Roll the entire Cheesemaking module into this config
+            public boolean customMilk = true;
 
             @Config.Comment("Remove some TFC crafting recipes??")
             @Config.LangKey("config." + MOD_ID + "general.compat.removeTFC")
@@ -91,6 +91,14 @@ public class ConfigFL
             @Config.Comment("Ticks required between two nut hammerings")
             @Config.LangKey("config." + MOD_ID + "general.balance.nutTime")
             public int nutTime = 2000;
+
+            @Config.Comment("Ticks required for a cheese to become aged")
+            @Config.LangKey("config." + MOD_ID + "general.balance.cheeseTimeToAged")
+            public int cheeseTimeToAged = 672000; //default 672000 (28 days)
+
+            @Config.Comment("Ticks required for a cheese to become vintage")
+            @Config.LangKey("config." + MOD_ID + "general.balance.cheeseTimeToVintage")
+            public int cheeseTimeToVintage = 2688000; //default 2688000 (112 days)
         }
     }
 }

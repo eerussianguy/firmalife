@@ -41,5 +41,8 @@ public class FoodDataFL
     public static final FoodData MELON = new FoodData(4, 1.5F, 1.0F, 0.0F, 1.0F, 0.0F, 0.0F, 0.0F, 4.9F);
 
     public static final FoodTrait SMOKED = new FoodTrait("smoked", 0.25F);
+    public static final FoodTrait FRESH = new FoodTrait("fresh", 1.4F); // These should eventually do something besides just modifying decay rate, for now they're here as an incomplete feature
+    public static final FoodTrait AGED = new FoodTrait("aged", 1.0F);
+    public static final FoodTrait VINTAGE = new FoodTrait("vintage", 0.6F);
 }
 

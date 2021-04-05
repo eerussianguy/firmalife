@@ -1,5 +1,6 @@
 package com.eerussianguy.firmalife.blocks;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.function.Supplier;
 import javax.annotation.Nonnull;
@@ -11,10 +12,13 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -26,25 +30,32 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemHandlerHelper;
 
+import com.eerussianguy.firmalife.ConfigFL;
 import com.eerussianguy.firmalife.init.AgingFL;
+import com.eerussianguy.firmalife.init.FoodDataFL;
+import com.eerussianguy.firmalife.init.FoodFL;
+import com.eerussianguy.firmalife.init.StatePropertiesFL;
 import mcp.MethodsReturnNonnullByDefault;
+import net.dries007.tfc.ConfigTFC;
+import net.dries007.tfc.api.capability.food.CapabilityFood;
+import net.dries007.tfc.api.capability.food.FoodTrait;
 import net.dries007.tfc.api.capability.size.IItemSize;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
+import net.dries007.tfc.objects.te.TETickCounter;
+import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.OreDictionaryHelper;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class BlockCheesewheel extends Block implements IItemSize
 {
-    public static final PropertyInteger WEDGES = PropertyInteger.create("wedges", 0, 3);
-    public static final PropertyEnum AGE = PropertyEnum.create("age", AgingFL.class);
-    protected static final AxisAlignedBB CHEESEWHEEL_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D);
+    public static final PropertyInteger WEDGES = StatePropertiesFL.WEDGES;
+    public static final PropertyEnum<AgingFL> AGE = StatePropertiesFL.AGE;
+    protected static final AxisAlignedBB CHEESEWHEEL_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D); // This could have a more complex bounding box
 
     private final Supplier<? extends Item> item;
 
-    // TODO: Implement aging process
-    // TODO: Custom model and condensed textures
     public BlockCheesewheel(Supplier<? extends Item> item)
     {
         super(Material.CAKE);
@@ -83,9 +94,14 @@ public class BlockCheesewheel extends Block implements IItemSize
         else
             worldIn.setBlockToAir(pos);
 
-        ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(item.get()));
+        ItemStack output = new ItemStack(item.get());
+        CapabilityFood.applyTrait(output, state.getValue(AGE).getTrait());
+
+        ItemHandlerHelper.giveItemToPlayer(playerIn, output);
         return true;
     }
+
+
 
     public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
         return super.canPlaceBlockAt(worldIn, pos) && this.canBlockStay(worldIn, pos);
@@ -123,6 +139,38 @@ public class BlockCheesewheel extends Block implements IItemSize
         return BlockRenderLayer.CUTOUT;
     }
 
+    public void randomTick(World worldIn, BlockPos pos, IBlockState state, Random random)
+    {
+        TETickCounter te = Helpers.getTE(worldIn, pos, TETickCounter.class);
+        if (te != null)
+        {
+            if (!worldIn.isRemote)
+            {
+                // If the cheese isn't cut and ready to age
+                if(state.getValue(AGE) == AgingFL.FRESH && state.getValue(WEDGES) == 0 && te.getTicksSinceUpdate() > (ConfigFL.General.BALANCE.cheeseTimeToAged))
+                {
+                    worldIn.setBlockState(pos, state.withProperty(AGE, AgingFL.AGED));
+                    te.resetCounter();
+                }
+                else if(state.getValue(AGE) == AgingFL.AGED && state.getValue(WEDGES) == 0 && te.getTicksSinceUpdate() > (ConfigFL.General.BALANCE.cheeseTimeToVintage))
+                {
+                    worldIn.setBlockState(pos, state.withProperty(AGE, AgingFL.VINTAGE));
+                }
+            }
+        }
+    }
+
+    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+    {
+        //taken from BlockJackOLantern which in turn was taken from BlockTorchTFC
+        // Set the initial counter value
+        TETickCounter tile = Helpers.getTE(worldIn, pos, TETickCounter.class);
+        if (tile != null)
+            tile.resetCounter();
+
+        super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
+    }
+
     @SuppressWarnings("deprecation")
     @Override
     public IBlockState getStateFromMeta(int meta) {
@@ -133,8 +181,20 @@ public class BlockCheesewheel extends Block implements IItemSize
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        AgingFL age = (AgingFL) state.getValue(AGE);
+        AgingFL age = state.getValue(AGE);
         return state.getValue(WEDGES) + age.getID();
+    }
+
+    @Override
+    public boolean hasTileEntity(IBlockState state)
+    {
+        return true;
+    }
+
+    @Override
+    public TileEntity createTileEntity(World world, IBlockState state)
+    {
+        return new TETickCounter();
     }
 
     @Override
