@@ -59,7 +59,8 @@ public class ItemCheesecloth extends ItemTFC
         return true;
     }
 
-    private boolean recipeExists(FluidStack inputFluid) {
+    private boolean recipeExists(FluidStack inputFluid)
+    {
         return StrainingRecipe.get(inputFluid) != null;
     }
 
@@ -124,7 +125,7 @@ public class ItemCheesecloth extends ItemTFC
                                 }
                                 catch (IllegalArgumentException ignored) {}
                             }
-                            if(recipeExists(fluidStack))
+                            if (recipeExists(fluidStack))
                             {
                                 ItemStack item = StrainingRecipe.get(fluidStack).getOutputItem();
                                 if (item != null)

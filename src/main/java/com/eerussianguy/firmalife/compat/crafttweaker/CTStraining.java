@@ -34,7 +34,8 @@ public class CTStraining
 
         StrainingRecipe recipe = new StrainingRecipe(CTHelper.getInternalIngredient(inputFluid), _outputItem, _outputFluid);
 
-        CraftTweakerAPI.apply(new IAction() {
+        CraftTweakerAPI.apply(new IAction()
+        {
             @Override
             public void apply()
             {
@@ -50,11 +51,14 @@ public class CTStraining
     }
 
     @ZenMethod
-    public static void removeRecipe(String recipe_name) {
+    public static void removeRecipe(String recipe_name)
+    {
         StrainingRecipe recipe = RegistriesFL.STRAINING.getValue(new ResourceLocation(recipe_name));
 
-        if (recipe != null) {
-            CraftTweakerAPI.apply(new IAction() {
+        if (recipe != null)
+        {
+            CraftTweakerAPI.apply(new IAction()
+            {
                 @Override
                 public void apply()
                 {

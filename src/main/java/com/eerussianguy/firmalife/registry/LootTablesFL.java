@@ -34,7 +34,8 @@ public class LootTablesFL
         }
     }
 
-    private static ResourceLocation register(String id) {
+    private static ResourceLocation register(String id)
+    {
         return LootTableList.register(new ResourceLocation(MOD_ID, id));
     }
 }

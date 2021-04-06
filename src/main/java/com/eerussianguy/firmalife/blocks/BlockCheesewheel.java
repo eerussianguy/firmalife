@@ -96,8 +96,8 @@ public class BlockCheesewheel extends Block implements IItemSize
     }
 
 
-
-    public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
+    public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
+    {
         return super.canPlaceBlockAt(worldIn, pos) && this.canBlockStay(worldIn, pos);
     }
 
@@ -113,23 +113,27 @@ public class BlockCheesewheel extends Block implements IItemSize
 
     @SuppressWarnings("deprecation")
     @Override
-    public boolean isOpaqueCube(IBlockState state) {
+    public boolean isOpaqueCube(IBlockState state)
+    {
         return false;
     }
 
     @SuppressWarnings("deprecation")
     @Override
-    public boolean isFullCube(IBlockState state) {
+    public boolean isFullCube(IBlockState state)
+    {
         return false;
     }
 
-    private boolean canBlockStay(World worldIn, BlockPos pos) {
+    private boolean canBlockStay(World worldIn, BlockPos pos)
+    {
         return worldIn.getBlockState(pos.down()).getMaterial().isSolid();
     }
 
     @SideOnly(Side.CLIENT)
     @Override
-    public BlockRenderLayer getRenderLayer() {
+    public BlockRenderLayer getRenderLayer()
+    {
         return BlockRenderLayer.CUTOUT;
     }
 
@@ -141,12 +145,12 @@ public class BlockCheesewheel extends Block implements IItemSize
             if (!worldIn.isRemote)
             {
                 // If the cheese isn't cut and ready to age
-                if(state.getValue(AGE) == AgingFL.FRESH && state.getValue(WEDGES) == 0 && te.getTicksSinceUpdate() > ConfigFL.General.BALANCE.cheeseTicksToAged)
+                if (state.getValue(AGE) == AgingFL.FRESH && state.getValue(WEDGES) == 0 && te.getTicksSinceUpdate() > ConfigFL.General.BALANCE.cheeseTicksToAged)
                 {
                     worldIn.setBlockState(pos, state.withProperty(AGE, AgingFL.AGED));
                     te.resetCounter();
                 }
-                else if(state.getValue(AGE) == AgingFL.AGED && state.getValue(WEDGES) == 0 && te.getTicksSinceUpdate() > ConfigFL.General.BALANCE.cheeseTicksToVintage)
+                else if (state.getValue(AGE) == AgingFL.AGED && state.getValue(WEDGES) == 0 && te.getTicksSinceUpdate() > ConfigFL.General.BALANCE.cheeseTicksToVintage)
                 {
                     worldIn.setBlockState(pos, state.withProperty(AGE, AgingFL.VINTAGE));
                 }
@@ -167,7 +171,8 @@ public class BlockCheesewheel extends Block implements IItemSize
 
     @SuppressWarnings("deprecation")
     @Override
-    public IBlockState getStateFromMeta(int meta) {
+    public IBlockState getStateFromMeta(int meta)
+    {
         return this.getDefaultState().withProperty(WEDGES, meta % 4).withProperty(AGE, AgingFL.values()[meta / 4]);
     }
 
@@ -192,24 +197,28 @@ public class BlockCheesewheel extends Block implements IItemSize
     }
 
     @Override
-    protected BlockStateContainer createBlockState() {
+    protected BlockStateContainer createBlockState()
+    {
         return new BlockStateContainer(this, WEDGES, AGE);
     }
 
     @Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+    public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    {
         return Items.AIR;
     }
 
     @Override
     @Nonnull
-    public Size getSize(@Nonnull ItemStack stack) {
+    public Size getSize(@Nonnull ItemStack stack)
+    {
         return Size.LARGE;
     }
 
     @Override
     @Nonnull
-    public Weight getWeight(@Nonnull ItemStack stack) {
+    public Weight getWeight(@Nonnull ItemStack stack)
+    {
         return Weight.HEAVY;
     }
 }

@@ -16,7 +16,8 @@ public enum AgingFL implements IStringSerializable
     private final String name;
     private final FoodTrait trait;
 
-    AgingFL(String name, int ID, FoodTrait trait) {
+    AgingFL(String name, int ID, FoodTrait trait)
+    {
         this.ID = ID;
         this.name = name;
         this.trait = trait;
@@ -33,7 +34,8 @@ public enum AgingFL implements IStringSerializable
         return this.ID;
     }
 
-    public FoodTrait getTrait() {
+    public FoodTrait getTrait()
+    {
         return this.trait;
     }
 }

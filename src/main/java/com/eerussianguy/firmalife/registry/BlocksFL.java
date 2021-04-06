@@ -1,6 +1,5 @@
 package com.eerussianguy.firmalife.registry;
 
-import com.eerussianguy.firmalife.init.BushFL;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -16,6 +15,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 
 import com.eerussianguy.firmalife.blocks.*;
+import com.eerussianguy.firmalife.init.BushFL;
 import com.eerussianguy.firmalife.init.FruitTreeFL;
 import com.eerussianguy.firmalife.init.StemCrop;
 import com.eerussianguy.firmalife.items.ItemBlockRot;
@@ -237,7 +237,7 @@ public class BlocksFL
             normalIBs.add(register(r, bush.name().toLowerCase() + "_trellis", new BlockBushTrellis(bush), CT_DECORATIONS));
         }
 
-        for(BushFL bush: BushFL.values())
+        for (BushFL bush : BushFL.values())
         {
             normalIBs.add(register(r, bush.name().toLowerCase() + "_bush", new BlockBerryBush(bush), CT_FLORA));
             normalIBs.add(register(r, bush.name().toLowerCase() + "_trellis", new BlockBushTrellis(bush), CT_DECORATIONS));

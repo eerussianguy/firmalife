@@ -30,12 +30,13 @@ public class StrainingRecipe extends IForgeRegistryEntry.Impl<StrainingRecipe>
         this.outputItem = outputItem;
         this.outputFluid = outputFluid;
 
-        if (inputFluid == null || ( outputItem == null && outputFluid == null))
+        if (inputFluid == null || (outputItem == null && outputFluid == null))
             throw new IllegalArgumentException("Sorry, but you can't have straining recipes that don't have an input and output");
 
     }
 
-    public int getDropAmount() {
+    public int getDropAmount()
+    {
         return Constants.RNG.nextInt(3) + 1;
     }
 

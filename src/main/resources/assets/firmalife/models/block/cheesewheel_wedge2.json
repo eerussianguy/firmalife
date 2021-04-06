@@ -1,9 +1,8 @@
 {
   "textures": {
-    "particle": "firmalife:blocks/cheddar_wheel_surface",
-    "surface": "firmalife:blocks/cheddar_wheel_surface",
-    "side": "firmalife:blocks/cheddar_wheel_side_fresh",
-    "inside": "firmalife:blocks/cheddar_wheel_inner"
+    "particle": "firmalife:blocks/cheddar_wheel_surface_fresh",
+    "surface": "firmalife:blocks/cheddar_wheel_surface_fresh",
+    "inside": "firmalife:blocks/cheddar_wheel_inner_fresh"
   },
   "elements": [
     {
