@@ -6,6 +6,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -13,6 +14,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import com.eerussianguy.firmalife.blocks.BlockJars;
+import com.eerussianguy.firmalife.init.FoodFL;
+import com.eerussianguy.firmalife.registry.ItemsFL;
 import mcp.MethodsReturnNonnullByDefault;
 
 import net.dries007.tfc.objects.items.itemblock.ItemBlockTFC;
@@ -53,5 +56,17 @@ public class ItemBlockJar extends ItemBlockTFC
         {
             return EnumActionResult.FAIL;
         }
+    }
+
+    @Override
+    public ItemStack getContainerItem(ItemStack itemStack)
+    {
+        return new ItemStack(ItemsFL.JAR);
+    }
+
+    @Override
+    public boolean hasContainerItem(ItemStack stack)
+    {
+        return true;
     }
 }

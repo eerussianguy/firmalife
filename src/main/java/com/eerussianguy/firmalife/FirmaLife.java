@@ -21,7 +21,7 @@ public class FirmaLife
 {
     public static final String MOD_ID = "firmalife";
     public static final String MODNAME = "FirmaLife";
-    public static final String MODVERSION = "0.3.0";
+    public static final String MODVERSION = "0.3.1";
 
     @Mod.Instance
     private static FirmaLife INSTANCE = null;

@@ -96,6 +96,7 @@ item.firmalife.honeycomb.name=Honeycomb
 item.firmalife.honey_jar.name=Honey Jar
 item.firmalife.jar.name=Jar
 item.firmalife.rennet.name=Rennet
+item.firmalife.treated_lumber.name=Treated Lumber
 item.firmalife.cheesecloth.name=Cheesecloth
 item.firmalife.cheesecloth.filled.name=%s Cheesecloth
 item.firmalife.milk_curd.name=Milk Curd
@@ -208,6 +209,7 @@ tile.firmalife.wool_yarn.name=Wool Yarn
 tile.firmalife.crop.pumpkin=Pumpkin Plant
 tile.firmalife.crop.melon=Melon Plant
 tile.firmalife.honey_jar.name=Honey Jars
+tile.firmalife.bumper.name=Bumper
 
 tile.firmalife.blackberry_trellis.name=Blackberry Bush Trellis
 tile.firmalife.blueberry_trellis.name=Blueberry Bush Trellis

@@ -222,7 +222,8 @@ public class BlocksFL
         register(r, "wool_string", new BlockString(() -> ItemsTFC.WOOL_YARN));
         normalIBs.add(register(r, "trellis", new BlockTrellis(), CT_DECORATIONS));
         normalIBs.add(register(r, "beehive", new BlockBeehive(), CT_DECORATIONS));
-        register(r, "honey_jar", new BlockJars(() -> ItemsFL.HONEY_JAR), CT_DECORATIONS);
+        register(r, "honey_jar", new BlockJars(() -> ItemsFL.HONEY_JAR), CT_FOOD);
+        normalIBs.add(register(r, "bumper", new BlockBumper(), CT_DECORATIONS));
 
         normalIBs.add(register(r, "cheddar_wheel", new BlockCheesewheel(() -> ItemsFL.CHEDDAR), CT_FOOD));
         normalIBs.add(register(r, "chevre_wheel", new BlockCheesewheel(() -> ItemsFL.CHEVRE), CT_FOOD));

@@ -1,0 +1,22 @@
+{
+  "type": "tfc:damage_item_shaped",
+  "pattern": [
+    "X  ",
+    "BBB",
+    "BBB"
+  ],
+  "key": {
+    "X": {
+      "type": "forge:ore_dict",
+      "ore": "saw"
+    },
+    "B": {
+      "type": "forge:ore_dict",
+      "ore": "lumber"
+    }
+  },
+  "result": {
+    "item": "firmalife:bumper",
+    "count": 8
+  }
+}

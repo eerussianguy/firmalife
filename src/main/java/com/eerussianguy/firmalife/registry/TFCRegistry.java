@@ -127,14 +127,15 @@ public class TFCRegistry
             new BarrelRecipe(IIngredient.of(FluidsTFC.HOT_WATER.get(), 250), new IngredientItemFood(IIngredient.of(ItemFoodTFC.get(Food.BEET), 8)), null, new ItemStack(Items.SUGAR), hour * 8).setRegistryName("beet_sugar"),
             new BarrelRecipe(IIngredient.of(FluidsTFC.FRESH_WATER.get(), 250), new IngredientItemFood(IIngredient.of(ItemsFL.getFood(FoodFL.GROUND_SOYBEANS), 1)), null, new ItemStack(ItemsFL.getFood(FoodFL.TOFU)), hour * 8).setRegistryName("tofu"),
             new BarrelRecipeFoodPreservation(IIngredient.of(FluidsTFC.LIMEWATER.get(), 125), IIngredient.of(new ItemStack(ItemsFL.getFood(FoodFL.PICKLED_EGG))), FoodTrait.PRESERVED, "barrel_recipe_lime").setRegistryName("pickle_egg"),
-
             new BarrelRecipe(IIngredient.of(FluidsTFC.MILK.get(), 2000), IIngredient.of(ItemsFL.RENNET), new FluidStack(FluidsTFC.CURDLED_MILK.get(), 2000), ItemStack.EMPTY, hour * 4).setRegistryName("curdled_milk"),
             new BarrelRecipe(IIngredient.of(FluidsFL.YAK_MILK.get(), 2000), IIngredient.of(ItemsFL.RENNET), new FluidStack(FluidsFL.CURDLED_YAK_MILK.get(), 2000), ItemStack.EMPTY, hour * 4).setRegistryName("curdled_yak_milk"),
             new BarrelRecipe(IIngredient.of(FluidsFL.GOAT_MILK.get(), 2000), IIngredient.of(ItemsFL.RENNET), new FluidStack(FluidsFL.CURDLED_GOAT_MILK.get(), 2000), ItemStack.EMPTY, hour * 4).setRegistryName("curdled_goat_milk"),
             new BarrelRecipe(IIngredient.of(FluidsFL.ZEBU_MILK.get(), 2000), IIngredient.of(ItemsFL.RENNET), new FluidStack(FluidsTFC.CURDLED_MILK.get(), 2000), ItemStack.EMPTY, hour * 4).setRegistryName("curdled_zebu_milk"),
             new BarrelRecipe(IIngredient.of(FluidsTFC.SALT_WATER.get(), 750), new IngredientItemFood(IIngredient.of(ItemsFL.getFood(FoodFL.YAK_CURD), 3)), null, new ItemStack(BlocksFL.SHOSHA_WHEEL), hour * 16).setRegistryName("shosha_wheel"),
             new BarrelRecipe(IIngredient.of(FluidsTFC.SALT_WATER.get(), 750), new IngredientItemFood(IIngredient.of(ItemsFL.getFood(FoodFL.GOAT_CURD), 3)), null, new ItemStack(BlocksFL.FETA_WHEEL), hour * 16).setRegistryName("feta_wheel"),
-            new BarrelRecipe(IIngredient.of(FluidsTFC.SALT_WATER.get(), 750), new IngredientItemFood(IIngredient.of(ItemsFL.getFood(FoodFL.MILK_CURD), 3)), null, new ItemStack(BlocksFL.GOUDA_WHEEL), hour * 16).setRegistryName("gouda_wheel"));
+            new BarrelRecipe(IIngredient.of(FluidsTFC.SALT_WATER.get(), 750), new IngredientItemFood(IIngredient.of(ItemsFL.getFood(FoodFL.MILK_CURD), 3)), null, new ItemStack(BlocksFL.GOUDA_WHEEL), hour * 16).setRegistryName("gouda_wheel"),
+            new BarrelRecipe(IIngredient.of(FluidsTFC.OLIVE_OIL.get(), 500), IIngredient.of("lumber"), null, new ItemStack(ItemsFL.TREATED_LUMBER), hour * 8).setRegistryName("treat_lumber")
+        );
     }
 
     @SuppressWarnings("rawtypes")

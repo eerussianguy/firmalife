@@ -46,7 +46,7 @@ import static com.eerussianguy.firmalife.init.StatePropertiesFL.WET;
 public class BlockLargePlanter extends Block implements IItemSize
 {
     public static final UnlistedCropProperty CROP = new UnlistedCropProperty(1);
-    private static final AxisAlignedBB LARGE_SHAPE = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D);
+    public static final AxisAlignedBB HALF_BLOCK_SHAPE = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D);
 
     public BlockLargePlanter()
     {
@@ -86,9 +86,16 @@ public class BlockLargePlanter extends Block implements IItemSize
 
     @Override
     @SuppressWarnings("deprecation")
+    public boolean isFullCube(IBlockState state)
+    {
+        return false;
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        return LARGE_SHAPE;
+        return HALF_BLOCK_SHAPE;
     }
 
     @Override
@@ -102,7 +109,7 @@ public class BlockLargePlanter extends Block implements IItemSize
     @SuppressWarnings("deprecation")
     public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
     {
-        return LARGE_SHAPE;
+        return HALF_BLOCK_SHAPE;
     }
 
     @Override
