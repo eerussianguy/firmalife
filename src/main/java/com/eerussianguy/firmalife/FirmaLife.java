@@ -12,6 +12,7 @@ import com.eerussianguy.firmalife.gui.FLGuiHandler;
 import com.eerussianguy.firmalife.init.VeinAdder;
 import com.eerussianguy.firmalife.player.CapPlayerDataFL;
 import com.eerussianguy.firmalife.proxy.CommonProxy;
+import com.eerussianguy.firmalife.registry.LootTablesFL;
 import com.eerussianguy.firmalife.util.HelpersFL;
 import com.eerussianguy.firmalife.util.OreDictsFL;
 
@@ -55,6 +56,7 @@ public class FirmaLife
     public void init(FMLInitializationEvent e)
     {
         proxy.init(e);
+        LootTablesFL.init();
     }
 
     @Mod.EventHandler

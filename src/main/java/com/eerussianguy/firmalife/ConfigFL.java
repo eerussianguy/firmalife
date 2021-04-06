@@ -92,13 +92,17 @@ public class ConfigFL
             @Config.LangKey("config." + MOD_ID + "general.balance.nutTime")
             public int nutTime = 2000;
 
+            @Config.Comment("List of animals that drop rennet")
+            @Config.LangKey("config." + MOD_ID + "general.balance.rennetLootTable")
+            public String[] rennetLootTable = new String[] {"animals/cow", "animals/zebu", "animals/sheep", "animals/goat", "animals/deer"};
+
             @Config.Comment("Ticks required for a cheese to become aged")
             @Config.LangKey("config." + MOD_ID + "general.balance.cheeseTimeToAged")
-            public int cheeseTimeToAged = 672000; //default 672000 (28 days)
+            public int cheeseTicksToAged = 672000; //default 672000 (28 days)
 
             @Config.Comment("Ticks required for a cheese to become vintage")
             @Config.LangKey("config." + MOD_ID + "general.balance.cheeseTimeToVintage")
-            public int cheeseTimeToVintage = 2688000; //default 2688000 (112 days)
+            public int cheeseTicksToVintage = 2688000; //default 2688000 (112 days)
         }
     }
 }

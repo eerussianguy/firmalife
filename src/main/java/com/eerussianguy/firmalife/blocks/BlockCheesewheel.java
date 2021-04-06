@@ -1,6 +1,5 @@
 package com.eerussianguy.firmalife.blocks;
 
-import java.util.Arrays;
 import java.util.Random;
 import java.util.function.Supplier;
 import javax.annotation.Nonnull;
@@ -16,7 +15,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
@@ -32,13 +30,9 @@ import net.minecraftforge.items.ItemHandlerHelper;
 
 import com.eerussianguy.firmalife.ConfigFL;
 import com.eerussianguy.firmalife.init.AgingFL;
-import com.eerussianguy.firmalife.init.FoodDataFL;
-import com.eerussianguy.firmalife.init.FoodFL;
 import com.eerussianguy.firmalife.init.StatePropertiesFL;
 import mcp.MethodsReturnNonnullByDefault;
-import net.dries007.tfc.ConfigTFC;
 import net.dries007.tfc.api.capability.food.CapabilityFood;
-import net.dries007.tfc.api.capability.food.FoodTrait;
 import net.dries007.tfc.api.capability.size.IItemSize;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
@@ -147,12 +141,12 @@ public class BlockCheesewheel extends Block implements IItemSize
             if (!worldIn.isRemote)
             {
                 // If the cheese isn't cut and ready to age
-                if(state.getValue(AGE) == AgingFL.FRESH && state.getValue(WEDGES) == 0 && te.getTicksSinceUpdate() > (ConfigFL.General.BALANCE.cheeseTimeToAged))
+                if(state.getValue(AGE) == AgingFL.FRESH && state.getValue(WEDGES) == 0 && te.getTicksSinceUpdate() > ConfigFL.General.BALANCE.cheeseTicksToAged)
                 {
                     worldIn.setBlockState(pos, state.withProperty(AGE, AgingFL.AGED));
                     te.resetCounter();
                 }
-                else if(state.getValue(AGE) == AgingFL.AGED && state.getValue(WEDGES) == 0 && te.getTicksSinceUpdate() > (ConfigFL.General.BALANCE.cheeseTimeToVintage))
+                else if(state.getValue(AGE) == AgingFL.AGED && state.getValue(WEDGES) == 0 && te.getTicksSinceUpdate() > ConfigFL.General.BALANCE.cheeseTicksToVintage)
                 {
                     worldIn.setBlockState(pos, state.withProperty(AGE, AgingFL.VINTAGE));
                 }

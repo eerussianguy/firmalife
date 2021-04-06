@@ -21,7 +21,6 @@ import net.dries007.tfc.objects.inventory.ingredient.IIngredient;
 import net.dries007.tfc.objects.items.ItemSeedsTFC;
 import net.dries007.tfc.objects.items.ItemsTFC;
 import net.dries007.tfc.objects.items.food.ItemFoodTFC;
-import net.dries007.tfc.objects.recipes.ingredients.FluidIngredient;
 import net.dries007.tfc.types.DefaultTrees;
 import net.dries007.tfc.util.agriculture.Crop;
 import net.dries007.tfc.util.agriculture.Food;
@@ -145,9 +144,9 @@ public class RecipesFL
     {
         IForgeRegistry<StrainingRecipe> r = event.getRegistry();
         r.registerAll(
-            new StrainingRecipe(IIngredient.of(FluidsTFC.CURDLED_MILK.get(), 500), new ItemStack(ItemsFL.MILK_CURD), null, 1).setRegistryName("milk_curd"),
-            new StrainingRecipe(IIngredient.of(FluidsFL.CURDLED_GOAT_MILK.get(), 500), new ItemStack(ItemsFL.GOAT_CURD), null, 1).setRegistryName("goat_curd"),
-            new StrainingRecipe(IIngredient.of(FluidsFL.CURDLED_YAK_MILK.get(), 500), new ItemStack(ItemsFL.YAK_CURD), null, 1).setRegistryName("yak_curd")
+            new StrainingRecipe(IIngredient.of(FluidsTFC.CURDLED_MILK.get(), 500), new ItemStack(ItemsFL.MILK_CURD), null).setRegistryName("milk_curd"),
+            new StrainingRecipe(IIngredient.of(FluidsFL.CURDLED_GOAT_MILK.get(), 500), new ItemStack(ItemsFL.GOAT_CURD), null).setRegistryName("goat_curd"),
+            new StrainingRecipe(IIngredient.of(FluidsFL.CURDLED_YAK_MILK.get(), 500), new ItemStack(ItemsFL.YAK_CURD), null).setRegistryName("yak_curd")
         );
     }
 }
