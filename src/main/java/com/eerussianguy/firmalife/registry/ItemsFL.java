@@ -258,7 +258,9 @@ public class ItemsFL
         for (Metal metal : TFCRegistries.METALS.getValuesCollection())
             if (metal.isToolMetal())
             {
-                easyItems.add(register(r, metal.toString() + "_mallet", new ItemMetalMallet(metal), CT_METAL));
+                ItemMetalMallet mallet = register(r, metal.toString() + "_mallet", new ItemMetalMallet(metal), CT_METAL);
+                OreDictionary.registerOre("tool", mallet);
+                easyItems.add(mallet);
                 ItemMetalMalletHead head = new ItemMetalMalletHead(metal);
                 easyItems.add(register(r, metal.toString() + "_mallet_head", head, CT_METAL));
                 OreDictionary.registerOre("tool", head);

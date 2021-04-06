@@ -69,12 +69,9 @@ public class GreenhouseHelpers
             for (int i = 0; i < length; i++)
             {
                 checkState = world.getBlockState(checkPos.offset(inward, i));
-                if (i == 0 && checkState.getValue(TOP) && isGoodEndWall(checkState, wallFacing))
+                if (!isGoodEndWall(checkState, wallFacing)) return false;
+                if (i == 0 && checkState.getValue(TOP))
                     willThin = true;
-                if (!isGoodEndWall(checkState, wallFacing))
-                {
-                    return false;
-                }
             }
             if (willThin)
             {
