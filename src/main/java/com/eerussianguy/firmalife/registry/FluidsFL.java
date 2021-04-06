@@ -30,6 +30,8 @@ public final class FluidsFL
     public static FluidWrapper YAK_MILK;
     public static FluidWrapper GOAT_MILK;
     public static FluidWrapper ZEBU_MILK;
+    public static FluidWrapper CURDLED_YAK_MILK;
+    public static FluidWrapper CURDLED_GOAT_MILK;
     public static FluidWrapper PINA_COLADA;
 
     private static ImmutableSet<FluidWrapper> allFiniteFluids;
@@ -56,6 +58,8 @@ public final class FluidsFL
             YAK_MILK = registerFluid(new Fluid("yak_milk", STILL, FLOW, 0xFFfcfaec)).with(DrinkableProperty.DRINKABLE, milkProperty),
             GOAT_MILK = registerFluid(new Fluid("goat_milk", STILL, FLOW, 0xFFf6f6eb)).with(DrinkableProperty.DRINKABLE, milkProperty),
             ZEBU_MILK = registerFluid(new Fluid("zebu_milk", STILL, FLOW, 0xFFefede6)).with(DrinkableProperty.DRINKABLE, milkProperty),
+            CURDLED_YAK_MILK = registerFluid(new Fluid("curdled_yak_milk", STILL, FLOW, 0xFFf9f4d6)),
+            CURDLED_GOAT_MILK = registerFluid(new Fluid("curdled_goat_milk", STILL, FLOW, 0xFFeeeed9)),
             PINA_COLADA = registerFluid(new Fluid("pina_colada", STILL, FLOW, 0xFFE4C06A)).with(DrinkableProperty.DRINKABLE, player -> {
                 if (player.getFoodStats() instanceof IFoodStatsTFC)
                 {

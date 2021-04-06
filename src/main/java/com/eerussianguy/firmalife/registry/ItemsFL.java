@@ -102,6 +102,28 @@ public class ItemsFL
     public static final ItemMisc HONEYCOMB = Helpers.getNull();
     @GameRegistry.ObjectHolder("honey_jar")
     public static final ItemBlockJar HONEY_JAR = Helpers.getNull();
+    @GameRegistry.ObjectHolder("milk_curd")
+    public static final ItemFoodFL MILK_CURD = Helpers.getNull();
+    @GameRegistry.ObjectHolder("goat_curd")
+    public static final ItemFoodFL GOAT_CURD = Helpers.getNull();
+    @GameRegistry.ObjectHolder("yak_curd")
+    public static final ItemFoodFL YAK_CURD = Helpers.getNull();
+    @GameRegistry.ObjectHolder("rennet")
+    public static final ItemMisc RENNET = Helpers.getNull();
+    @GameRegistry.ObjectHolder("cheesecloth")
+    public static final ItemCheesecloth CHEESECLOTH = Helpers.getNull();
+    @GameRegistry.ObjectHolder("cheddar")
+    public static final ItemFoodFL CHEDDAR = Helpers.getNull();
+    @GameRegistry.ObjectHolder("chevre")
+    public static final ItemFoodFL CHEVRE = Helpers.getNull();
+    @GameRegistry.ObjectHolder("rajya_metok")
+    public static final ItemFoodFL RAJYA_METOK = Helpers.getNull();
+    @GameRegistry.ObjectHolder("gouda")
+    public static final ItemFoodFL GOUDA = Helpers.getNull();
+    @GameRegistry.ObjectHolder("feta")
+    public static final ItemFoodFL FETA = Helpers.getNull();
+    @GameRegistry.ObjectHolder("shosha")
+    public static final ItemFoodFL SHOSHA = Helpers.getNull();
     @GameRegistry.ObjectHolder("jar")
     public static final ItemMisc JAR = Helpers.getNull();
     @GameRegistry.ObjectHolder("treated_lumber")
@@ -212,6 +234,7 @@ public class ItemsFL
         OreDictionary.registerOre("categoryMeal", sandwich);
 
         //Misc Items
+        easyItems.add(register(r, "rennet", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
         easyItems.add(register(r, "roasted_cocoa_beans", new ItemRoastedCocoaBeans(), CT_MISC));
         easyItems.add(register(r, "cocoa_butter", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
         easyItems.add(register(r, "cocoa_powder", new ItemMisc(Size.SMALL, Weight.LIGHT), CT_MISC));
@@ -269,6 +292,7 @@ public class ItemsFL
 
         //uses a separate model loader
         register(r, "cracked_coconut", new ItemWoodenBucket(), CT_MISC);
+        register(r, "cheesecloth", new ItemCheesecloth(), CT_MISC);
 
         BlocksFL.getAllIBs().forEach((x) -> registerIB(r, x));
         BlocksFL.getAllInventoryIBs().forEach((x) -> easyItems.add(registerIB(r, new ItemBlock(x))));

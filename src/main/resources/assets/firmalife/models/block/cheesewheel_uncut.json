@@ -1,0 +1,19 @@
+{
+    "textures": {
+        "particle": "firmalife:blocks/cheddar_wheel_surface_fresh",
+        "surface": "firmalife:blocks/cheddar_wheel_surface_fresh"
+    },
+    "elements": [
+        {   "from": [ 1, 0, 1 ],
+            "to": [ 15, 8, 15 ],
+            "faces": {
+                "down":  { "texture": "#surface", "cullface": "down" },
+                "up":    { "texture": "#surface" },
+                "north": { "texture": "#surface" },
+                "south": { "texture": "#surface" },
+                "west":  { "texture": "#surface" },
+                "east":  { "texture": "#surface" }
+            }
+        }
+    ]
+}

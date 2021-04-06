@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XX"
+  ],
+  "key": {
+    "X": {
+      "type": "forge:ore_dict",
+      "ore": "clothHighQuality"
+    }
+  },
+  "result": {
+    "item": "firmalife:cheesecloth",
+    "count": 1,
+    "data": 0
+  }
+}

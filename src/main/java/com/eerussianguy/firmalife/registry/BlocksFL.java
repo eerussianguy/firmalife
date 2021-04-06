@@ -1,6 +1,5 @@
 package com.eerussianguy.firmalife.registry;
 
-import com.eerussianguy.firmalife.init.BushFL;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -16,6 +15,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 
 import com.eerussianguy.firmalife.blocks.*;
+import com.eerussianguy.firmalife.init.BushFL;
 import com.eerussianguy.firmalife.init.FruitTreeFL;
 import com.eerussianguy.firmalife.init.StemCrop;
 import com.eerussianguy.firmalife.items.ItemBlockRot;
@@ -76,6 +76,12 @@ public class BlocksFL
     public static final BlockTrellis TRELLIS = Helpers.getNull();
     @GameRegistry.ObjectHolder("honey_jar")
     public static final BlockJars HONEY_JAR = Helpers.getNull();
+    @GameRegistry.ObjectHolder("gouda_wheel")
+    public static final BlockCheesewheel GOUDA_WHEEL = Helpers.getNull();
+    @GameRegistry.ObjectHolder("feta_wheel")
+    public static final BlockCheesewheel FETA_WHEEL = Helpers.getNull();
+    @GameRegistry.ObjectHolder("shosha_wheel")
+    public static final BlockCheesewheel SHOSHA_WHEEL = Helpers.getNull();
 
     private static ImmutableList<ItemBlock> allIBs;
     private static ImmutableList<Block> allNormalIBs = Helpers.getNull();
@@ -219,12 +225,19 @@ public class BlocksFL
         register(r, "honey_jar", new BlockJars(() -> ItemsFL.HONEY_JAR), CT_FOOD);
         normalIBs.add(register(r, "bumper", new BlockBumper(), CT_DECORATIONS));
 
+        normalIBs.add(register(r, "cheddar_wheel", new BlockCheesewheel(() -> ItemsFL.CHEDDAR), CT_FOOD));
+        normalIBs.add(register(r, "chevre_wheel", new BlockCheesewheel(() -> ItemsFL.CHEVRE), CT_FOOD));
+        normalIBs.add(register(r, "rajya_metok_wheel", new BlockCheesewheel(() -> ItemsFL.RAJYA_METOK), CT_FOOD));
+        normalIBs.add(register(r, "gouda_wheel", new BlockCheesewheel(() -> ItemsFL.GOUDA), CT_FOOD));
+        normalIBs.add(register(r, "feta_wheel", new BlockCheesewheel(() -> ItemsFL.FETA), CT_FOOD));
+        normalIBs.add(register(r, "shosha_wheel", new BlockCheesewheel(() -> ItemsFL.SHOSHA), CT_FOOD));
+
         for (BerryBush bush : BerryBush.values())
         {
             normalIBs.add(register(r, bush.name().toLowerCase() + "_trellis", new BlockBushTrellis(bush), CT_DECORATIONS));
         }
 
-        for(BushFL bush: BushFL.values())
+        for (BushFL bush : BushFL.values())
         {
             normalIBs.add(register(r, bush.name().toLowerCase() + "_bush", new BlockBerryBush(bush), CT_FLORA));
             normalIBs.add(register(r, bush.name().toLowerCase() + "_trellis", new BlockBushTrellis(bush), CT_DECORATIONS));

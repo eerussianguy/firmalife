@@ -1,0 +1,21 @@
+{
+  "textures": {
+    "particle": "firmalife:blocks/cheddar_wheel_surface_fresh",
+    "surface": "firmalife:blocks/cheddar_wheel_surface_fresh",
+    "inside": "firmalife:blocks/cheddar_wheel_inner_fresh"
+  },
+  "elements": [
+    {
+      "from": [ 8, 0, 1 ],
+      "to": [ 15, 8, 15 ],
+      "faces": {
+        "down":  { "texture": "#surface", "cullface": "down" },
+        "up":    { "texture": "#surface" },
+        "north": { "texture": "#surface" },
+        "south": { "texture": "#surface" },
+        "west":  { "texture": "#inside" },
+        "east":  { "texture": "#surface" }
+      }
+    }
+  ]
+}

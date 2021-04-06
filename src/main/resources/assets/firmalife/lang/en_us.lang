@@ -95,7 +95,19 @@ item.firmalife.raw_honey.name=Raw Honey
 item.firmalife.honeycomb.name=Honeycomb
 item.firmalife.honey_jar.name=Honey Jar
 item.firmalife.jar.name=Jar
+item.firmalife.rennet.name=Rennet
 item.firmalife.treated_lumber.name=Treated Lumber
+item.firmalife.cheesecloth.name=Cheesecloth
+item.firmalife.cheesecloth.filled.name=%s Cheesecloth
+item.firmalife.milk_curd.name=Milk Curd
+item.firmalife.goat_curd.name=Goat Curd
+item.firmalife.yak_curd.name=Yak Curd
+item.firmalife.cheddar.name=Cheddar
+item.firmalife.chevre.name=Chevre
+item.firmalife.rajya_metok.name=Rajya-metok
+item.firmalife.gouda.name=Gouda
+item.firmalife.feta.name=Feta
+item.firmalife.shosha.name=Shosha
 
 ### WOOD
 item.firmalife.banana_pole.name=Banana Pole
@@ -214,6 +226,13 @@ tile.firmalife.pineapple_trellis.name=Pineapple Trellis
 tile.firmalife.trellis.name=Trellis
 tile.firmalife.beehive.name=Beehive
 
+tile.firmalife.cheddar_wheel.name=Cheddar Wheel
+tile.firmalife.chevre_wheel.name=Chevre Wheel
+tile.firmalife.rajya_metok_wheel.name=Rajya-metok Wheel
+tile.firmalife.gouda_wheel.name=Gouda Wheel
+tile.firmalife.feta_wheel.name=Feta Wheel
+tile.firmalife.shosha_wheel.name=Shosha Wheel
+
 item.firmalife.unfired_mallet_mold.name=Unfired Mallet Head Mold
 item.firmalife.mallet_mold.name=Mallet Head Mold
 item.firmalife.bismuth_bronze_mallet_head.name=Bismuth Bronze Mallet Head
@@ -241,7 +260,13 @@ fluid.yak_milk=Yak Milk
 fluid.zebu_milk=Zebu Milk
 fluid.goat_milk=Goat Milk
 fluid.milk=Cow Milk
+fluid.curdled_yak_milk=Curdled Yak Milk
+fluid.curdled_goat_milk=Curdled Goat Milk
 fluid.pina_colada=Piña Colada
+
+tfc.food_traits.fresh=Fresh
+tfc.food_traits.aged=Aged
+tfc.food_traits.vintage=Vintage
 
 item.tfc.ore.halite.name=Halite
 

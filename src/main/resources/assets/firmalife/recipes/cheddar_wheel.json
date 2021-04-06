@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "YYY",
+    "XXX"
+  ],
+  "key": {
+    "Y": {
+      "item": "firmalife:milk_curd"
+    },
+    "X": {
+      "type": "forge:ore_dict",
+      "ore": "dustSalt"
+    }
+  },
+  "result": {
+    "item": "firmalife:cheddar_wheel"
+  }
+}

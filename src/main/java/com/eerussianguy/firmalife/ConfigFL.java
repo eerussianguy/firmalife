@@ -72,6 +72,10 @@ public class ConfigFL
             @Config.Comment("Enable logging of some actions Firmalife takes (such as recipe removals)")
             @Config.LangKey("config." + MOD_ID + "general.compat.logging")
             public boolean logging = true;
+
+            @Config.Comment("List of fluids allowed to be picked up by a cheesecloth")
+            @Config.LangKey("config." + MOD_ID + "general.compat.cheeseclothWhitelist")
+            public String[] cheeseclothWhitelist = new String[] {"milk_curdled", "curdled_goat_milk", "curdled_yak_milk"};
         }
 
         public static final class BalanceCFG
@@ -87,6 +91,18 @@ public class ConfigFL
             @Config.Comment("Ticks required between two nut hammerings")
             @Config.LangKey("config." + MOD_ID + "general.balance.nutTime")
             public int nutTime = 2000;
+
+            @Config.Comment("List of animals that drop rennet")
+            @Config.LangKey("config." + MOD_ID + "general.balance.rennetLootTable")
+            public String[] rennetLootTable = new String[] {"animals/cow", "animals/zebu", "animals/sheep", "animals/goat", "animals/deer"};
+
+            @Config.Comment("Ticks required for a cheese to become aged")
+            @Config.LangKey("config." + MOD_ID + "general.balance.cheeseTimeToAged")
+            public int cheeseTicksToAged = 672000; //default 672000 (28 days)
+
+            @Config.Comment("Ticks required for a cheese to become vintage")
+            @Config.LangKey("config." + MOD_ID + "general.balance.cheeseTimeToVintage")
+            public int cheeseTicksToVintage = 2688000; //default 2688000 (112 days)
         }
     }
 }

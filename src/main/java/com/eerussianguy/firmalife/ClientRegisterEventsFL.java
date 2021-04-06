@@ -71,6 +71,7 @@ public class ClientRegisterEventsFL
             ModelLoader.setCustomModelResourceLocation(ib, 0, new ModelResourceLocation(ib.getRegistryName().toString(), "normal"));
         for (BlockFruitTreeLeaves leaves : BlocksFL.getAllFruitLeaves())
             ModelLoader.setCustomStateMapper(leaves, new StateMap.Builder().ignore(BlockFruitTreeLeaves.DECAYABLE).ignore(BlockFruitTreeLeaves.HARVESTABLE).build());
+        ModelLoader.setCustomModelResourceLocation(ItemsFL.CHEESECLOTH, 0, new ModelResourceLocation(ItemsFL.CHEESECLOTH.getRegistryName(), "inventory"));
         ModelLoader.setCustomModelResourceLocation(ItemsFL.CRACKED_COCONUT, 0, new ModelResourceLocation(ItemsFL.CRACKED_COCONUT.getRegistryName(), "inventory"));
         ModelLoader.setCustomModelResourceLocation(ItemsFL.ITEM_CINNAMON_SAPLING, 0, new ModelResourceLocation(ItemsFL.ITEM_CINNAMON_SAPLING.getRegistryName().toString()));
         ModelLoader.setCustomModelResourceLocation(ItemsFL.ITEM_QUAD_PLANTER, 0, new ModelResourceLocation(ItemsFL.ITEM_QUAD_PLANTER.getRegistryName().toString(), "inventory"));
