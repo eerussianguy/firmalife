@@ -29,10 +29,10 @@ public class CTStraining
         else if (outputItem == null && outputFluid == null)
             throw new IllegalArgumentException("Recipe must have at least one output");
 
-        ItemStack _outputItem = outputItem == null ? ItemStack.EMPTY : (ItemStack) outputItem.getInternal();
-        FluidStack _outputFluid = outputFluid == null ? null : (FluidStack) outputFluid.getInternal();
+        ItemStack outItem = outputItem == null ? ItemStack.EMPTY : (ItemStack) outputItem.getInternal();
+        FluidStack outFluid = outputFluid == null ? null : (FluidStack) outputFluid.getInternal();
 
-        StrainingRecipe recipe = new StrainingRecipe(CTHelper.getInternalIngredient(inputFluid), _outputItem, _outputFluid);
+        StrainingRecipe recipe = new StrainingRecipe(CTHelper.getInternalIngredient(inputFluid), outItem, outFluid);
 
         CraftTweakerAPI.apply(new IAction()
         {

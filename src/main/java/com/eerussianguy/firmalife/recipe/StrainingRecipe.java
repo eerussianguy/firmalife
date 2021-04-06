@@ -51,7 +51,7 @@ public class StrainingRecipe extends IForgeRegistryEntry.Impl<StrainingRecipe>
     public FluidStack getOutputFluid()
     {
         return outputFluid;
-    }// Does doing this cast break anything?  Guess we'll find out later
+    }
 
     private boolean isValidInput(FluidStack inputFluid) { return this.inputFluid.test(inputFluid); }
 }

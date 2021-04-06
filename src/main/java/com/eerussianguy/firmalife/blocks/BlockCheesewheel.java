@@ -33,6 +33,7 @@ import com.eerussianguy.firmalife.init.AgingFL;
 import com.eerussianguy.firmalife.init.StatePropertiesFL;
 import mcp.MethodsReturnNonnullByDefault;
 import net.dries007.tfc.api.capability.food.CapabilityFood;
+import net.dries007.tfc.api.capability.food.FoodTrait;
 import net.dries007.tfc.api.capability.size.IItemSize;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
@@ -82,14 +83,20 @@ public class BlockCheesewheel extends Block implements IItemSize
 
     private boolean cutCheese(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn)
     {
-        int i = state.getValue(WEDGES);
-        if (i < 3)
-            worldIn.setBlockState(pos, state.withProperty(WEDGES, i + 1), 3);
+        int stateWedges = state.getValue(WEDGES);
+        FoodTrait ageTrait = state.getValue(AGE).getTrait();
+
+        if (stateWedges < 3)
+        {
+            worldIn.setBlockState(pos, state.withProperty(WEDGES, stateWedges + 1), 3);
+        }
         else
+        {
             worldIn.setBlockToAir(pos);
+        }
 
         ItemStack output = new ItemStack(item.get());
-        CapabilityFood.applyTrait(output, state.getValue(AGE).getTrait());
+        CapabilityFood.applyTrait(output, ageTrait);
 
         ItemHandlerHelper.giveItemToPlayer(playerIn, output);
         return true;
@@ -144,13 +151,14 @@ public class BlockCheesewheel extends Block implements IItemSize
         {
             if (!worldIn.isRemote)
             {
+                long ticksSinceUpdate = te.getTicksSinceUpdate();
                 // If the cheese isn't cut and ready to age
-                if (state.getValue(AGE) == AgingFL.FRESH && state.getValue(WEDGES) == 0 && te.getTicksSinceUpdate() > ConfigFL.General.BALANCE.cheeseTicksToAged)
+                if (state.getValue(AGE) == AgingFL.FRESH && state.getValue(WEDGES) == 0 && ticksSinceUpdate > ConfigFL.General.BALANCE.cheeseTicksToAged)
                 {
                     worldIn.setBlockState(pos, state.withProperty(AGE, AgingFL.AGED));
                     te.resetCounter();
                 }
-                else if (state.getValue(AGE) == AgingFL.AGED && state.getValue(WEDGES) == 0 && te.getTicksSinceUpdate() > ConfigFL.General.BALANCE.cheeseTicksToVintage)
+                else if (state.getValue(AGE) == AgingFL.AGED && state.getValue(WEDGES) == 0 && ticksSinceUpdate > ConfigFL.General.BALANCE.cheeseTicksToVintage)
                 {
                     worldIn.setBlockState(pos, state.withProperty(AGE, AgingFL.VINTAGE));
                 }
