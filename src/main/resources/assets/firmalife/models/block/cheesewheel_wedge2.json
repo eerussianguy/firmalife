@@ -15,7 +15,7 @@
         "north": { "texture": "#surface" },
         "south": { "texture": "#surface" },
         "west":  { "texture": "#inside" },
-        "east":  { "texture": "#side" }
+        "east":  { "texture": "#surface" }
       }
     }
   ]

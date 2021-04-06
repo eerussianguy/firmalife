@@ -4,9 +4,9 @@
     "inventory": {
       "model": "forge:forgebucket",
       "textures": {
-        "base": "tfc:items/fluids/wooden_bucket_empty",
-        "fluid": "forge:items/bucket_fluid",
-        "cover": "tfc:items/fluids/wooden_bucket_overlay"
+        "base": "firmalife:items/cheesecloth",
+        "fluid": "firmalife:items/cheesecloth_fluid",
+        "cover": "firmalife:items/cheesecloth_filled"
       },
       "transform": "forge:default-item",
       "custom": {

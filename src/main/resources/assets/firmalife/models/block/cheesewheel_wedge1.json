@@ -1,9 +1,8 @@
 {
   "textures": {
-    "particle": "firmalife:blocks/cheddar_wheel_surface",
-    "surface": "firmalife:blocks/cheddar_wheel_surface",
-    "side": "firmalife:blocks/cheddar_wheel_side_fresh",
-    "inside": "firmalife:blocks/cheddar_wheel_inner"
+    "particle": "firmalife:blocks/cheddar_wheel_surface_fresh",
+    "surface": "firmalife:blocks/cheddar_wheel_surface_fresh",
+    "inside": "firmalife:blocks/cheddar_wheel_inner_fresh"
   },
   "elements": [
     {
@@ -12,10 +11,10 @@
       "faces": {
         "down":  { "texture": "#surface", "cullface": "down" },
         "up":    { "texture": "#surface" },
-        "north": { "texture": "#side" },
+        "north": { "texture": "#surface" },
         "south": { "texture": "#inside" },
         "west":  { "texture": "#surface" },
-        "east":  { "texture": "#side" }
+        "east":  { "texture": "#surface" }
       }
     },
     {
@@ -24,10 +23,10 @@
       "faces": {
         "down":  { "texture": "#surface", "cullface": "down" },
         "up":    { "texture": "#surface" },
-        "north": { "texture": "#side" },
+        "north": { "texture": "#surface" },
         "south": { "texture": "#surface" },
         "west":  { "texture": "#inside" },
-        "east":  { "texture": "#side" }
+        "east":  { "texture": "#surface" }
       }
     }
   ]
