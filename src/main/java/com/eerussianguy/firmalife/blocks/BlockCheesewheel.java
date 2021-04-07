@@ -220,7 +220,7 @@ public class BlockCheesewheel extends Block implements IItemSize
     @Nonnull
     public Size getSize(@Nonnull ItemStack stack)
     {
-        return Size.LARGE;
+        return Size.VERY_LARGE;
     }
 
     @Override

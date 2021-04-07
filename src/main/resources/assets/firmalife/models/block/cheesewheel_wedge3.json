@@ -12,9 +12,9 @@
         "down":  { "texture": "#surface", "cullface": "down" },
         "up":    { "texture": "#surface" },
         "north": { "texture": "#inside" },
-        "south": { "texture": "#surface" },
+        "south": { "uv": [1, 7, 15, 15], "texture": "#surface" },
         "west":  { "texture": "#inside" },
-        "east":  { "texture": "#surface" }
+        "east":  { "uv": [1, 7, 15, 15], "texture": "#surface" }
       }
     }
   ]
