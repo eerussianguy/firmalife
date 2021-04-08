@@ -108,6 +108,7 @@ item.firmalife.rajya_metok.name=Rajya-metok
 item.firmalife.gouda.name=Gouda
 item.firmalife.feta.name=Feta
 item.firmalife.shosha.name=Shosha
+item.firmalife.beeswax.name=Beeswax
 
 ### WOOD
 item.firmalife.banana_pole.name=Banana Pole
@@ -210,6 +211,7 @@ tile.firmalife.crop.pumpkin=Pumpkin Plant
 tile.firmalife.crop.melon=Melon Plant
 tile.firmalife.honey_jar.name=Honey Jars
 tile.firmalife.bumper.name=Bumper
+tile.firmalife.bee_nest.name=Bee Nest
 
 tile.firmalife.blackberry_trellis.name=Blackberry Bush Trellis
 tile.firmalife.blueberry_trellis.name=Blueberry Bush Trellis
@@ -294,6 +296,7 @@ tile.tfc.ore.halite.gabbro.name=Gabbro Halite
 tile.tfc.plants.vanilla.name=Wild Vanilla
 
 tile.firmalife.pineapple_bush.name=Pineapple Bush
+tile.firmalife.candle.name=Candle
 
 tile.firmalife.lit_pumpkin_none.name=Jack o'Lantern
 tile.firmalife.lit_pumpkin_circle.name=Jack o'Lantern
@@ -335,6 +338,9 @@ config.firmalife.general.compat.tooltip=Stuff that makes Firmalife integrate wit
 
 config.firmalife.general.worldgen.cinnamonRarity=Cinnamon Tree Rarity
 config.firmalife.general.worldgen.cinnamonRarity.tooltip=Rarity of cinnamon trees in 1/N chunks. Set to 0 to disable.
+
+config.firmalife.general.worldgen.beeRarity=Bee Rarity
+config.firmalife.general.worldgen.beeRarity.tooltip=Rarity of Wild Bees in 1/N chunks. Set to 0 to disable.
 
 config.firmalife.general.compat.woodenWhitelist=Add to Wooden Bucket Whitelist?
 config.firmalife.general.compat.woodenWhitelist.tooltip=Allows adding Firmalife's fluids to the wooden bucket whitelist. Disable if you want to configure it yourself.

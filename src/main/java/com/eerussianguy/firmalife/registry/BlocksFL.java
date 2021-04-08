@@ -22,6 +22,7 @@ import com.eerussianguy.firmalife.items.ItemBlockRot;
 import com.eerussianguy.firmalife.te.*;
 import net.dries007.tfc.api.types.IFruitTree;
 import net.dries007.tfc.objects.blocks.BlockFluidTFC;
+import net.dries007.tfc.objects.blocks.BlockTorchTFC;
 import net.dries007.tfc.objects.blocks.agriculture.*;
 import net.dries007.tfc.objects.fluids.FluidsTFC;
 import net.dries007.tfc.objects.fluids.properties.FluidWrapper;
@@ -82,6 +83,8 @@ public class BlocksFL
     public static final BlockCheesewheel FETA_WHEEL = Helpers.getNull();
     @GameRegistry.ObjectHolder("shosha_wheel")
     public static final BlockCheesewheel SHOSHA_WHEEL = Helpers.getNull();
+    @GameRegistry.ObjectHolder("bee_nest")
+    public static final BlockBeeNest BEE_NEST = Helpers.getNull();
 
     private static ImmutableList<ItemBlock> allIBs;
     private static ImmutableList<Block> allNormalIBs = Helpers.getNull();
@@ -224,6 +227,8 @@ public class BlocksFL
         normalIBs.add(register(r, "beehive", new BlockBeehive(), CT_DECORATIONS));
         register(r, "honey_jar", new BlockJars(() -> ItemsFL.HONEY_JAR), CT_FOOD);
         normalIBs.add(register(r, "bumper", new BlockBumper(), CT_DECORATIONS));
+        normalIBs.add(register(r, "candle", new BlockTorchTFC(), CT_DECORATIONS));
+        register(r, "bee_nest", new BlockBeeNest(), CT_DECORATIONS);
 
         normalIBs.add(register(r, "cheddar_wheel", new BlockCheesewheel(() -> ItemsFL.CHEDDAR), CT_FOOD));
         normalIBs.add(register(r, "chevre_wheel", new BlockCheesewheel(() -> ItemsFL.CHEVRE), CT_FOOD));

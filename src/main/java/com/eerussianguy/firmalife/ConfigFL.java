@@ -49,6 +49,11 @@ public class ConfigFL
             @Config.RangeInt(min = 0)
             @Config.LangKey("config." + MOD_ID + ".general.worldgen.cinnamonRarity")
             public int cinnamonRarity = 80;
+
+            @Config.Comment("Rarity of the Wild Bees in worldgen. Defined by 1/N chunks. Set to zero to disable")
+            @Config.RangeInt(min = 0)
+            @Config.LangKey("config." + MOD_ID + ".general.worldgen.beeRarity")
+            public int beeRarity = 40;
         }
 
         public static final class CompatCFG

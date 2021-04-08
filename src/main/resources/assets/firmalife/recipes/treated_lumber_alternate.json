@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "firmalife:beeswax"
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "lumber"
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "dustSalt"
+    }
+  ],
+  "result": {
+    "item": "firmalife:treated_lumber",
+    "count": 1
+  }
+}

@@ -1,0 +1,11 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "firmalife:wild_bee_nest"
+	},
+    "variants": {
+        "normal": {
+          "model": "firmalife:wild_bee_nest"
+        }
+    }
+}

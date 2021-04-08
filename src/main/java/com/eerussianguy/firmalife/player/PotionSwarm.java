@@ -42,7 +42,7 @@ public class PotionSwarm extends PotionFL
         else
         {
             if (!entity.isWet())
-                entity.attackEntityFrom(SWARM, 2.0f + amplifier);
+                entity.attackEntityFrom(SWARM, 1.0f + amplifier);
         }
 
     }
