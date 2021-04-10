@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 
+import com.eerussianguy.firmalife.compat.ModuleManager;
 import com.eerussianguy.firmalife.gui.FLGuiHandler;
 import com.eerussianguy.firmalife.init.VeinAdder;
 import com.eerussianguy.firmalife.player.CapPlayerDataFL;
@@ -16,17 +17,15 @@ import com.eerussianguy.firmalife.registry.LootTablesFL;
 import com.eerussianguy.firmalife.util.HelpersFL;
 import com.eerussianguy.firmalife.util.OreDictsFL;
 
-@Mod(modid = FirmaLife.MOD_ID, name = FirmaLife.MODNAME, version = FirmaLife.MODVERSION, dependencies = "required-after:tfc@[1.7.17.175,);")
+@Mod(modid = FirmaLife.MOD_ID, name = FirmaLife.MODNAME, version = FirmaLife.MODVERSION, dependencies = "required-after:tfc@[1.7.17.175,);after:dynamictreestfc")
 public class FirmaLife
 {
     public static final String MOD_ID = "firmalife";
     public static final String MODNAME = "FirmaLife";
-    public static final String MODVERSION = "0.3.2";
+    public static final String MODVERSION = "0.3.3";
 
     @Mod.Instance
     private static FirmaLife INSTANCE = null;
-
-    private static final String ORE_FROM = "assets/firmalife/config/firmalife_ores.json";
 
     @SidedProxy(clientSide = "com.eerussianguy.firmalife.proxy.ClientProxy", serverSide = "com.eerussianguy.firmalife.proxy.ServerProxy")
     public static CommonProxy proxy;
@@ -50,19 +49,24 @@ public class FirmaLife
 
         CapPlayerDataFL.preInit();
         HelpersFL.insertWhitelist();
+
+        ModuleManager.initModules();
+        ModuleManager.getModules().forEach(mod -> mod.preInit(event));
     }
 
     @Mod.EventHandler
-    public void init(FMLInitializationEvent e)
+    public void init(FMLInitializationEvent event)
     {
-        proxy.init(e);
+        proxy.init(event);
         LootTablesFL.init();
+        ModuleManager.getModules().forEach(mod -> mod.init(event));
     }
 
     @Mod.EventHandler
-    public void postInit(FMLPostInitializationEvent e)
+    public void postInit(FMLPostInitializationEvent event)
     {
-        proxy.postInit(e);
+        proxy.postInit(event);
         OreDictsFL.addStaticOres();
+        ModuleManager.getModules().forEach(mod -> mod.postInit(event));
     }
 }
