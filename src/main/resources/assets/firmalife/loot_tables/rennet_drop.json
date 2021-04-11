@@ -11,7 +11,7 @@
           "conditions": [
             {
               "condition": "minecraft:random_chance",
-              "chance": 0.3
+              "chance": 1.0
             }
           ],
           "functions": [
