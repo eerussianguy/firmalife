@@ -57,7 +57,6 @@ minecraft {
 dependencies {
     compile fileTree(include: ["*.jar"], dir: "libs")
     compileOnly fileTree(include: ["*.jar"], dir: "libs_compat")// change to compile for testing
-    deobfProvided "mezz.jei:jei_1.12.2:4.15.0.291"
     compile "mezz.jei:jei_1.12.2:4.15.0.291"
     compile "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.626"
     compile "com.blamejared:MTLib:3.0.4.8"

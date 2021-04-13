@@ -41,7 +41,7 @@ public class OreDictsFL
         OreDictionary.registerOre("tool", ItemsFL.PEEL);
         OreDictionary.registerOre("greenhouse", BlocksFL.GREENHOUSE_ROOF);
         OreDictionary.registerOre("greenhouse", BlocksFL.GREENHOUSE_WALL);
-        OreDictionary.registerOre("greenhouse", BlocksFL.GREENHOUSE_DOOR);
+        //OreDictionary.registerOre("greenhouse", BlocksFL.GREENHOUSE_DOOR); broken?
 
     }
 }
