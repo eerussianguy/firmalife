@@ -13,9 +13,13 @@ import com.eerussianguy.firmalife.gui.FLGuiHandler;
 import com.eerussianguy.firmalife.init.VeinAdder;
 import com.eerussianguy.firmalife.player.CapPlayerDataFL;
 import com.eerussianguy.firmalife.proxy.CommonProxy;
+import com.eerussianguy.firmalife.registry.ItemsFL;
 import com.eerussianguy.firmalife.registry.LootTablesFL;
 import com.eerussianguy.firmalife.util.HelpersFL;
 import com.eerussianguy.firmalife.util.OreDictsFL;
+import net.dries007.tfc.api.capability.heat.CapabilityItemHeat;
+import net.dries007.tfc.api.capability.heat.ItemHeatHandler;
+import net.dries007.tfc.objects.inventory.ingredient.IIngredient;
 
 @Mod(modid = FirmaLife.MOD_ID, name = FirmaLife.MODNAME, version = FirmaLife.MODVERSION, dependencies = "required-after:tfc@[1.7.17.175,);after:dynamictreestfc")
 public class FirmaLife
@@ -60,6 +64,8 @@ public class FirmaLife
         proxy.init(event);
         LootTablesFL.init();
         ModuleManager.getModules().forEach(mod -> mod.init(event));
+
+        CapabilityItemHeat.CUSTOM_ITEMS.put(IIngredient.of(ItemsFL.HONEYCOMB), () -> new ItemHeatHandler(null, 1, 600));
     }
 
     @Mod.EventHandler

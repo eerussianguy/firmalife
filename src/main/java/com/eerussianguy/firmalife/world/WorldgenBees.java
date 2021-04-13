@@ -21,10 +21,11 @@ public class WorldgenBees extends WorldGenerator
     @Override
     public boolean generate(World world, Random rand, BlockPos pos)
     {
-        if (ConfigFL.General.WORLDGEN.beeRarity == 0)
+        int beeRarity = ConfigFL.General.WORLDGEN.beeRarity;
+        if (beeRarity == 0)
             return false;
 
-        if (rand.nextInt(ConfigFL.General.WORLDGEN.beeRarity) != 1)
+        if (rand.nextInt(beeRarity) != 1)
             return false;
 
         ChunkDataTFC chunkData = ChunkDataTFC.get(world, pos);

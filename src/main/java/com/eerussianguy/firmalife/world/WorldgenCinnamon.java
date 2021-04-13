@@ -24,10 +24,11 @@ public class WorldgenCinnamon extends WorldGenerator
     @Override
     public boolean generate(World world, Random rand, BlockPos pos)
     {
-        if (ConfigFL.General.WORLDGEN.cinnamonRarity == 0)
+        int cinnamonRarity = ConfigFL.General.WORLDGEN.cinnamonRarity;
+        if (cinnamonRarity == 0)
             return false;
 
-        if (rand.nextInt(ConfigFL.General.WORLDGEN.cinnamonRarity) != 1)
+        if (rand.nextInt(cinnamonRarity) != 1)
             return false;
 
         ChunkDataTFC chunkData = ChunkDataTFC.get(world, pos);
