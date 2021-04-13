@@ -1,7 +1,6 @@
 package com.eerussianguy.firmalife.world;
 
 import java.util.Random;
-
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import net.minecraft.block.state.IBlockState;
@@ -25,6 +24,9 @@ public class WorldgenCinnamon extends WorldGenerator
     @Override
     public boolean generate(World world, Random rand, BlockPos pos)
     {
+        if (ConfigFL.General.WORLDGEN.cinnamonRarity == 0)
+            return false;
+
         if (rand.nextInt(ConfigFL.General.WORLDGEN.cinnamonRarity) != 1)
             return false;
 

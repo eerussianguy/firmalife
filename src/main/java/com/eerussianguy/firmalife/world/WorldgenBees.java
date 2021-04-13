@@ -1,7 +1,6 @@
 package com.eerussianguy.firmalife.world;
 
 import java.util.Random;
-
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import net.minecraft.block.material.Material;
@@ -22,6 +21,9 @@ public class WorldgenBees extends WorldGenerator
     @Override
     public boolean generate(World world, Random rand, BlockPos pos)
     {
+        if (ConfigFL.General.WORLDGEN.beeRarity == 0)
+            return false;
+
         if (rand.nextInt(ConfigFL.General.WORLDGEN.beeRarity) != 1)
             return false;
 
