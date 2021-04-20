@@ -7,22 +7,7 @@
         {
           "type": "item",
           "weight": 1,
-          "name": "firmalife:rennet",
-          "conditions": [
-            {
-              "condition": "minecraft:random_chance",
-              "chance": 1.0
-            }
-          ],
-          "functions": [
-            {
-              "function": "looting_enchant",
-              "count": {
-                "min": 0,
-                "max": 1
-              }
-            }
-          ]
+          "name": "firmalife:rennet"
         }
       ]
     }

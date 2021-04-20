@@ -28,7 +28,7 @@ public class LootTablesFL
     @SubscribeEvent
     public static void onLootTableLoad(LootTableLoadEvent event)
     {
-        if (Arrays.stream(ConfigFL.General.BALANCE.rennetLootTable).anyMatch(x -> x.equals(event.getName().toString())))
+        if (Arrays.stream(ConfigFL.General.BALANCE.rennetLootTable).anyMatch(x -> x.equals(event.getName().getPath())))
         {
             event.getTable().addPool(event.getLootTableManager().getLootTableFromLocation(RENNET_DROP).getPool("rennet_drop"));
         }
