@@ -111,6 +111,7 @@ public class CommonEventHandlerFL
                         {
                             bucket.drain(1000, true);
                             bucket.fill(new FluidStack(fluid, 1000), true);
+                            cow.setProductsCooldown();
                             event.setCanceled(true);
                         }
                     }
