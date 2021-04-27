@@ -2,6 +2,7 @@ package com.eerussianguy.firmalife.blocks;
 
 import java.util.Random;
 
+import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import net.minecraft.block.Block;
@@ -75,7 +76,8 @@ public abstract class BlockStemCrop extends BlockCropSimple
         if (!worldIn.isRemote)
         {
             //if penultimate stage
-            if (state.getValue(getStageProperty()) == getCrop().getMaxStage() - 1)
+            PropertyInteger stageProperty = getStageProperty();
+            if (state.getProperties().containsKey(stageProperty) && state.getValue(stageProperty) == getCrop().getMaxStage() - 1)
             {
                 TEStemCrop te = Helpers.getTE(worldIn, pos, TEStemCrop.class);
                 EnumFacing fruitDirection = te.getFruitDirection();
@@ -83,8 +85,9 @@ public abstract class BlockStemCrop extends BlockCropSimple
                 StemCrop crop = (StemCrop) getCrop();
                 if (crop.getCropBlock().canPlaceBlockAt(worldIn, targetPos))
                 {
-                    worldIn.setBlockState(targetPos, crop.getCropBlock().getDefaultState().withProperty(BlockStemFruit.FACING, fruitDirection.getOpposite()));
-                    super.grow(worldIn, pos, state, random);
+                    IBlockState newState = crop.getCropBlock().getDefaultState().withProperty(BlockStemFruit.FACING, fruitDirection.getOpposite());
+                    worldIn.setBlockState(targetPos, newState);
+                    super.grow(worldIn, pos, newState, random);
                 }
             }
             else
@@ -95,6 +98,7 @@ public abstract class BlockStemCrop extends BlockCropSimple
     }
 
     @Override
+    @Nonnull
     protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, getStageProperty(), WILD, FACING);
