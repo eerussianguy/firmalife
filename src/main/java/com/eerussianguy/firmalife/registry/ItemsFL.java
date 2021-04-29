@@ -272,7 +272,7 @@ public class ItemsFL
 
         ItemMisc cpole = new ItemMisc(Size.SMALL, Weight.MEDIUM);
         easyItems.add(register(r, "cinnamon_pole", cpole, CT_MISC));
-        OreDictionary.registerOre("poleCinnamon", cpole);
+        OreDictionary.registerOre("poleWooden", cpole);
 
         for (FruitTreeFL fruitTree : FruitTreeFL.values())
             easyItems.add(registerPole(r, fruitTree));
@@ -331,7 +331,7 @@ public class ItemsFL
         String name = fruitTree.getName().toLowerCase();
         ItemFruitPole pole = new ItemFruitPole(fruitTree);
         ItemFruitPole entry = register(r, name + "_pole", pole, CT_MISC);
-        OreDictionary.registerOre("pole" + name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase(), pole);
+        OreDictionary.registerOre("poleWooden", pole);
         return entry;
     }
 
