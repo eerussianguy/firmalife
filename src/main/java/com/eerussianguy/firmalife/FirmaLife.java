@@ -7,10 +7,13 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import net.minecraftforge.fml.relauncher.Side;
 
 import com.eerussianguy.firmalife.compat.ModuleManager;
 import com.eerussianguy.firmalife.gui.FLGuiHandler;
 import com.eerussianguy.firmalife.init.VeinAdder;
+import com.eerussianguy.firmalife.network.PacketSpawnVanillaParticle;
 import com.eerussianguy.firmalife.player.CapPlayerDataFL;
 import com.eerussianguy.firmalife.proxy.CommonProxy;
 import com.eerussianguy.firmalife.registry.ItemsFL;
@@ -26,7 +29,7 @@ public class FirmaLife
 {
     public static final String MOD_ID = "firmalife";
     public static final String MODNAME = "FirmaLife";
-    public static final String MODVERSION = "0.3.5";
+    public static final String MODVERSION = "0.3.6";
 
     @Mod.Instance
     private static FirmaLife INSTANCE = null;
@@ -41,6 +44,13 @@ public class FirmaLife
         return INSTANCE;
     }
 
+    public static SimpleNetworkWrapper getNetwork()
+    {
+        return INSTANCE.network;
+    }
+
+    private SimpleNetworkWrapper network;
+
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
@@ -48,6 +58,10 @@ public class FirmaLife
         proxy.preInit(event);
 
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new FLGuiHandler());
+        network = NetworkRegistry.INSTANCE.newSimpleChannel(MOD_ID);
+        int id = 0;
+        // received client side
+        network.registerMessage(new PacketSpawnVanillaParticle.Handler(), PacketSpawnVanillaParticle.class, ++id, Side.CLIENT);
 
         VeinAdder.ADDER.addVeins(event.getModConfigurationDirectory());
 

@@ -85,6 +85,8 @@ public class BlocksFL
     public static final BlockCheesewheel SHOSHA_WHEEL = Helpers.getNull();
     @GameRegistry.ObjectHolder("bee_nest")
     public static final BlockBeeNest BEE_NEST = Helpers.getNull();
+    @GameRegistry.ObjectHolder("spout")
+    public static final BlockSpout SPOUT = Helpers.getNull();
 
     private static ImmutableList<ItemBlock> allIBs;
     private static ImmutableList<Block> allNormalIBs = Helpers.getNull();
@@ -229,6 +231,7 @@ public class BlocksFL
         normalIBs.add(register(r, "bumper", new BlockBumper(), CT_DECORATIONS));
         normalIBs.add(register(r, "candle", new BlockTorchTFC(), CT_DECORATIONS));
         register(r, "bee_nest", new BlockBeeNest(), CT_DECORATIONS);
+        normalIBs.add(register(r, "spout", new BlockSpout(), CT_DECORATIONS));
 
         normalIBs.add(register(r, "cheddar_wheel", new BlockCheesewheel(() -> ItemsFL.CHEDDAR), CT_FOOD));
         normalIBs.add(register(r, "chevre_wheel", new BlockCheesewheel(() -> ItemsFL.CHEVRE), CT_FOOD));
