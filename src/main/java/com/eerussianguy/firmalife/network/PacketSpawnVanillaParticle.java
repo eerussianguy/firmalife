@@ -1,6 +1,7 @@
 package com.eerussianguy.firmalife.network;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -65,14 +66,10 @@ public class PacketSpawnVanillaParticle implements IMessage
             {
                 Minecraft mc = Minecraft.getMinecraft();
                 mc.addScheduledTask(() -> {
-                    EntityPlayer player = mc.player;
-                    if (player != null)
+                    EnumParticleTypes particle = EnumParticleTypes.getParticleFromId(message.particleID);
+                    if (particle != null)
                     {
-                        EnumParticleTypes particle = EnumParticleTypes.getParticleFromId(message.particleID);
-                        if (particle != null)
-                        {
-                            player.getEntityWorld().spawnParticle(particle,  message.x, message.y, message.z, message.speedX, message.speedY, message.speedZ);
-                        }
+                        mc.world.spawnParticle(particle,  message.x, message.y, message.z, message.speedX, message.speedY, message.speedZ);
                     }
                 });
             }
