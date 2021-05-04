@@ -29,7 +29,7 @@ public class FirmaLife
 {
     public static final String MOD_ID = "firmalife";
     public static final String MODNAME = "FirmaLife";
-    public static final String MODVERSION = "0.3.7";
+    public static final String MODVERSION = "0.3.8";
 
     @Mod.Instance
     private static FirmaLife INSTANCE = null;

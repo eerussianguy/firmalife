@@ -71,28 +71,28 @@ public abstract class BlockStemCrop extends BlockCropSimple
 
 
     @Override
-    public void grow(World worldIn, BlockPos pos, IBlockState state, Random random)
+    public void grow(World world, BlockPos cropPos, IBlockState cropState, Random random)
     {
-        if (!worldIn.isRemote)
+        if (!world.isRemote)
         {
             //if penultimate stage
             PropertyInteger stageProperty = getStageProperty();
-            if (state.getProperties().containsKey(stageProperty) && state.getValue(stageProperty) == getCrop().getMaxStage() - 1)
+            if (cropState.getProperties().containsKey(stageProperty) && cropState.getValue(stageProperty) == getCrop().getMaxStage() - 1)
             {
-                TEStemCrop te = Helpers.getTE(worldIn, pos, TEStemCrop.class);
+                TEStemCrop te = Helpers.getTE(world, cropPos, TEStemCrop.class);
                 EnumFacing fruitDirection = te.getFruitDirection();
-                BlockPos targetPos = pos.offset(fruitDirection);
+                BlockPos fruitPos = cropPos.offset(fruitDirection);
                 StemCrop crop = (StemCrop) getCrop();
-                if (crop.getCropBlock().canPlaceBlockAt(worldIn, targetPos))
+                if (crop.getCropBlock().canPlaceBlockAt(world, fruitPos))
                 {
-                    IBlockState newState = crop.getCropBlock().getDefaultState().withProperty(BlockStemFruit.FACING, fruitDirection.getOpposite());
-                    worldIn.setBlockState(targetPos, newState);
-                    super.grow(worldIn, pos, newState, random);
+                    IBlockState fruitState = crop.getCropBlock().getDefaultState().withProperty(BlockStemFruit.FACING, fruitDirection.getOpposite());
+                    world.setBlockState(fruitPos, fruitState);
+                    super.grow(world, cropPos, cropState, random);
                 }
             }
             else
             {
-                super.grow(worldIn, pos, state, random);
+                super.grow(world, cropPos, cropState, random);
             }
         }
     }

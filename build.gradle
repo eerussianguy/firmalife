@@ -38,7 +38,7 @@ repositories {
     }
 }
 
-version = "0.3.7"
+version = "0.3.8"
 group = 'com.eerussianguy.firmalife'
 archivesBaseName = 'firmalife'
 
