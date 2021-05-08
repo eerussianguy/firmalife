@@ -13,13 +13,13 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -56,6 +56,7 @@ public class BlockCheesewheel extends Block implements IItemSize
         super(Material.CAKE);
         this.setDefaultState(this.blockState.getBaseState().withProperty(WEDGES, 0).withProperty(AGE, AgingFL.FRESH));
         this.setTickRandomly(true);
+        this.setHardness(1.0F);
         this.item = item;
     }
 
@@ -211,9 +212,12 @@ public class BlockCheesewheel extends Block implements IItemSize
     }
 
     @Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
-        return Items.AIR;
+        ItemStack cheese = new ItemStack(item.get(), 4 - state.getValue(WEDGES));
+        CapabilityFood.applyTrait(cheese, state.getValue(AGE).getTrait());
+
+        drops.add(cheese);
     }
 
     @Override
