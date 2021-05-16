@@ -14,15 +14,14 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidActionResult;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.*;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
 
 import com.eerussianguy.firmalife.gui.FLGuiHandler;
 import com.eerussianguy.firmalife.items.ItemFruitPole;
@@ -81,10 +80,9 @@ public class CommonEventHandlerFL
         if (!item.isEmpty())
         {
             IFluidHandlerItem bucket = item.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null);
-            if (bucket != null)
+            if (bucket != null) //checking if it can be filled
             {
-                FluidActionResult fillResult = FluidUtil.tryFillContainer(item, FluidUtil.getFluidHandler(new ItemStack(Items.MILK_BUCKET)),
-                    Fluid.BUCKET_VOLUME, player, false);//checking if it can be filled
+                FluidActionResult fillResult = FluidUtil.tryFillContainer(item, FluidUtil.getFluidHandler(new ItemStack(Items.MILK_BUCKET)), Fluid.BUCKET_VOLUME, player, false);
                 if (fillResult.isSuccess() && entity instanceof EntityCowTFC)
                 {
                     EntityCowTFC cow = (EntityCowTFC) entity;//we can just cast the entity to a cow to test familiarity etc
@@ -109,10 +107,14 @@ public class CommonEventHandlerFL
                     {
                         if (cow.getFamiliarity() > 0.15f && cow.isReadyForAnimalProduct())
                         {
-                            bucket.drain(1000, true);
-                            bucket.fill(new FluidStack(fluid, 1000), true);
-                            cow.setProductsCooldown();
-                            event.setCanceled(true);
+                            FluidTank fluidHandler = new FluidTank(fluid, 1000, 1000);
+                            IItemHandler inv = player.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+                            if (inv != null)
+                            {
+                                FluidUtil.tryFillContainerAndStow(item, fluidHandler, inv, Fluid.BUCKET_VOLUME, player, true);
+                                cow.setProductsCooldown();
+                                event.setCanceled(true);
+                            }
                         }
                     }
                 }

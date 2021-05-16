@@ -191,8 +191,6 @@ public class ItemsFL
         ItemDriedPineapple dryPineapple = new ItemDriedPineapple();
         easyItems.add(register(r, "dried_pineapple", dryPineapple, CT_FOOD));
         OreDictionary.registerOre("dried_pineapple", dryPineapple);
-        OreDictionary.registerOre("fruitDry", dryPineapple);
-        OreDictionary.registerOre("categoryFruit", dryPineapple);
 
         ItemTrailMix trailMix = new ItemTrailMix();
         easyItems.add(register(r, "trail_mix", trailMix, CT_FOOD));

@@ -33,6 +33,7 @@ public class OreDictsFL
         OreDictionary.registerOre("cheese", ItemsFL.GOUDA);
         OreDictionary.registerOre("cheese", ItemsFL.FETA);
         OreDictionary.registerOre("cheese", ItemsFL.SHOSHA);
+        OreDictionary.registerOre("cheese", ItemFoodTFC.get(Food.CHEESE)); // for compat, I guess
         OreDictionary.registerOre("categoryBread", ItemsFL.CHESTNUT_SLICE);
         OreDictionary.registerOre("slice", ItemsFL.CHESTNUT_SLICE);
         OreDictionary.registerOre("categoryGrain", ItemsFL.ROASTED_COCOA_BEANS);

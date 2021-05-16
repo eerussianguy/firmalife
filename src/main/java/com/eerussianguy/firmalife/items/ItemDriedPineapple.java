@@ -8,14 +8,17 @@ import com.eerussianguy.firmalife.init.FoodDataFL;
 import com.eerussianguy.firmalife.init.FoodFL;
 import com.eerussianguy.firmalife.registry.ItemsFL;
 import mcp.MethodsReturnNonnullByDefault;
+import net.dries007.tfc.api.capability.size.Size;
+import net.dries007.tfc.api.capability.size.Weight;
+import net.dries007.tfc.objects.items.ItemMisc;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class ItemDriedPineapple extends ItemFoodFL
+public class ItemDriedPineapple extends ItemMisc
 {
     public ItemDriedPineapple()
     {
-        super(FoodDataFL.COCOA_BEANS);
+        super(Size.SMALL, Weight.LIGHT);
     }
 
     @Override
