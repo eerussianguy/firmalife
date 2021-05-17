@@ -4,6 +4,7 @@ package com.eerussianguy.firmalife;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -12,6 +13,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fluids.*;
@@ -23,6 +25,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 
+import com.eerussianguy.firmalife.entity.CombatGreenhouseTask;
 import com.eerussianguy.firmalife.gui.FLGuiHandler;
 import com.eerussianguy.firmalife.items.ItemFruitPole;
 import com.eerussianguy.firmalife.player.CapPlayerDataFL;
@@ -172,6 +175,17 @@ public class CommonEventHandlerFL
                 world.setBlockState(offsetPos, string);
                 stack.shrink(1);
             }
+        }
+    }
+
+    @SubscribeEvent(priority = EventPriority.HIGH)
+    public static void onEntitySpawn(EntityJoinWorldEvent event)
+    {
+        Entity entity = event.getEntity();
+        if (entity instanceof EntityZombie)
+        {
+            EntityZombie zombie = (EntityZombie) entity;
+            zombie.tasks.addTask(4, new CombatGreenhouseTask(zombie));
         }
     }
 }
