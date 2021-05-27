@@ -50,6 +50,12 @@ public class PlanterRecipe extends IForgeRegistryEntry.Impl<PlanterRecipe>
         return large;
     }
 
+    // Using this for HWYLA access
+    @Nonnull
+    public ItemStack getOutputItem() {
+        return outputItem;
+    }
+
     @Nonnull
     public ItemStack getOutputItem(ItemStack stack)
     {

@@ -9,13 +9,19 @@ buildscript {
             name = "sonatype"
             url = "https://oss.sonatype.org/content/repositories/snapshots/"
         }
+        maven {
+            name = "curseforge"
+            url "https://plugins.gradle.org/m2/"
+        }
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        classpath "com.wynprice.cursemaven:CurseMaven:2.1.0"
     }
 }
 
 apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'com.wynprice.cursemaven'
 
 repositories {
     maven {
@@ -32,6 +38,12 @@ repositories {
         name "Crafttweaker Maven"
         url "http://maven.blamejared.com/"
     }
+
+    maven {
+        name = "CurseForge"
+        url = "https://minecraft.curseforge.com/api/maven/"
+    }
+
     removeIf { it instanceof MavenArtifactRepository && it.url.host == 'files.minecraftforge.net' }
     maven {
         url "https://maven.minecraftforge.net/"
@@ -64,6 +76,7 @@ dependencies {
     compile "mezz.jei:jei_1.12.2:4.15.0.291"
     compile "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.626"
     compile "com.blamejared:MTLib:3.0.4.8"
+    compile "curse.maven:hwyla:2568751"
 }
 
 processResources

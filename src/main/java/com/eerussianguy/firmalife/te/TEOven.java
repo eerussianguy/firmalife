@@ -283,4 +283,8 @@ public class TEOven extends TEInventory implements ITickable
             chimPos = chimPos.up();
         }
     }
+
+    public long getTicksRemaining() {
+        return tickGoal - (CalendarTFC.PLAYER_TIME.getTicks() - startTick);
+    }
 }
