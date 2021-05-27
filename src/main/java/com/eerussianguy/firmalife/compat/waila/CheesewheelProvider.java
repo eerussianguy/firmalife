@@ -12,6 +12,7 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 
 import com.eerussianguy.firmalife.blocks.BlockCheesewheel;
+import com.eerussianguy.firmalife.init.AgingFL;
 import com.eerussianguy.firmalife.init.StatePropertiesFL;
 import net.dries007.tfc.compat.waila.interfaces.IWailaBlock;
 
@@ -25,7 +26,8 @@ public class CheesewheelProvider implements IWailaBlock
         IBlockState state = world.getBlockState(pos);
         if (state.getBlock() instanceof BlockCheesewheel)
         {
-            currentTooltip.add(state.getValue(StatePropertiesFL.AGE).getFormat() + new TextComponentTranslation(state.getValue(StatePropertiesFL.AGE).getTranslationKey()).getFormattedText());
+            AgingFL age = state.getValue(StatePropertiesFL.AGE);
+            currentTooltip.add(age.getFormat() + new TextComponentTranslation(age.getTranslationKey()).getFormattedText());
         }
 
         return currentTooltip;
