@@ -196,6 +196,10 @@ public class ItemsFL
         easyItems.add(register(r, "trail_mix", trailMix, CT_FOOD));
         OreDictionary.registerOre("categoryMeal", trailMix);
 
+        ItemPizza pizza = new ItemPizza();
+        easyItems.add(register(r, "finished_pizza", pizza, CT_FOOD));
+        OreDictionary.registerOre("categoryMeal", pizza);
+
         //Dried Berries
         for (Fruit fruit : Fruit.values())
         {

@@ -1,0 +1,8 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "tfc:block/cross",
+  "textures": {
+    "cross": "tfc:blocks/plants/cumin/regular",
+    "particle": "tfc:blocks/plants/cumin/regular"
+  }
+}

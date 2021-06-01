@@ -27,6 +27,7 @@ public class FoodDataFL
     public static final FoodData DOUGH = new FoodData(4, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 3.0F);
     public static final FoodData FLOUR = new FoodData(4, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.5F);
     public static final FoodData FLATBREAD = new FoodData(4, 1.0F, 0.0F, 1.0F, 0.0F, 0.0F, 0.0F, 0.0F, 1.0F);
+    public static final FoodData PIZZA = new FoodData(4, 1.0F, 0.0F, 1.0F, 0.0F, 0.5F, 0.0F, 0.0F, 1.0F);
     public static final FoodData SLICE = new FoodData(4, 0.0F, 0.75F, 1.0F, 0.0F, 0.0F, 0.0F, 0.0F, 1.5F);
     public static final FoodData TOAST = new FoodData(4, 0.0F, 1.5F, 1.0F, 0.0F, 0.0F, 0.0F, 0.0F, 1.8F);
     public static final FoodData SANDWICH = new FoodData(4, 0.0F, 3.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 5F);

@@ -109,6 +109,9 @@ item.firmalife.gouda.name=Gouda
 item.firmalife.feta.name=Feta
 item.firmalife.shosha.name=Shosha
 item.firmalife.beeswax.name=Beeswax
+item.firmalife.pizza_dough.name=Pizza Dough
+item.firmalife.cooked_pizza.name=Cooked Pizza Dough
+item.firmalife.finished_pizza.name=Pizza
 
 ### WOOD
 item.firmalife.banana_pole.name=Banana Pole
@@ -294,7 +297,14 @@ tile.tfc.ore.halite.rhyolite.name=Rhyolite Halite
 tile.tfc.ore.halite.granite.name=Granite Halite
 tile.tfc.ore.halite.diorite.name=Diorite Halite
 tile.tfc.ore.halite.gabbro.name=Gabbro Halite
-tile.tfc.plants.vanilla.name=Wild Vanilla
+tile.tfc.plants.basil.name=Basil
+tile.tfc.plants.bay_laurel.name=Bay Laurel
+tile.tfc.plants.cardamom.name=Cardamom
+tile.tfc.plants.cilantro.name=Cilantro
+tile.tfc.plants.cumin.name=Cumin
+tile.tfc.plants.oregano.name=Oregano
+tile.tfc.plants.pimento.name=Pimento
+tile.tfc.plants.vanilla.name=Vanilla
 
 tile.firmalife.pineapple_bush.name=Pineapple Bush
 tile.firmalife.candle.name=Candle

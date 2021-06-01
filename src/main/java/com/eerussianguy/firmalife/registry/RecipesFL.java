@@ -11,9 +11,11 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 import com.eerussianguy.firmalife.init.FoodFL;
 import com.eerussianguy.firmalife.init.Fruit;
+import com.eerussianguy.firmalife.init.PlantsFL;
 import com.eerussianguy.firmalife.recipe.*;
 import net.dries007.tfc.api.registries.TFCRegistries;
 import net.dries007.tfc.api.types.Tree;
+import net.dries007.tfc.objects.blocks.plants.BlockPlantTFC;
 import net.dries007.tfc.objects.blocks.wood.BlockLeavesTFC;
 import net.dries007.tfc.objects.blocks.wood.BlockLogTFC;
 import net.dries007.tfc.objects.fluids.FluidsTFC;
@@ -43,6 +45,7 @@ public class RecipesFL
             new OvenRecipe(IIngredient.of(new ItemStack(ItemsFL.getFood(FoodFL.DRIED_COCOA_BEANS))), new ItemStack(ItemsFL.ROASTED_COCOA_BEANS), 2 * hour).setRegistryName("dried_cocoa_beans"),
             new OvenRecipe(IIngredient.of(new ItemStack(ItemsFL.getFood(FoodFL.CHESTNUTS))), new ItemStack(ItemsFL.getFood(FoodFL.ROASTED_CHESTNUTS)), 2 * hour).setRegistryName("chestnuts"),
             new OvenRecipe(IIngredient.of(new ItemStack(ItemsFL.getFood(FoodFL.CHESTNUT_DOUGH))), new ItemStack(ItemsFL.getFood(FoodFL.CHESTNUT_BREAD)), 2 * hour).setRegistryName("chestnut_dough"),
+            new OvenRecipe(IIngredient.of(new ItemStack(ItemsFL.getFood(FoodFL.PIZZA_DOUGH))), new ItemStack(ItemsFL.getFood(FoodFL.COOKED_PIZZA)), hour).setRegistryName("pizza_dough"),
 
             new OvenRecipe(IIngredient.of(ItemFoodTFC.get(Food.BARLEY_DOUGH)), new ItemStack(ItemFoodTFC.get(Food.BARLEY_BREAD)), 2 * hour).setRegistryName("barley_dough"),
             new OvenRecipe(IIngredient.of(ItemFoodTFC.get(Food.CORNMEAL_DOUGH)), new ItemStack(ItemFoodTFC.get(Food.CORNBREAD)), 2 * hour).setRegistryName("corn_dough"),
@@ -101,6 +104,12 @@ public class RecipesFL
             new PlanterRecipe(IIngredient.of(ItemSeedsTFC.get(Crop.JUTE)), new ItemStack(ItemsTFC.JUTE), 5, true).setRegistryName("jute"),
             new PlanterRecipe(IIngredient.of(ItemSeedsTFC.get(Crop.GREEN_BEAN)), new ItemStack(ItemFoodTFC.get(Food.GREEN_BEAN)), 6, true).setRegistryName("green_bean")
         );
+
+        // this makes me laugh for some reason...
+        PlantsFL.WRAPPERS.forEach(plant -> {
+            BlockPlantTFC block = BlockPlantTFC.get(plant);
+            r.register(new PlanterRecipe(IIngredient.of(block), new ItemStack(block), 1, false).setRegistryName(plant.getRegistryName().getPath()));
+        });
     }
 
     @SubscribeEvent

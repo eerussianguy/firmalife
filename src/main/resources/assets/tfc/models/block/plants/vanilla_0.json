@@ -1,4 +1,5 @@
 {
+  "__comment__": "This file was automatically created by mcresources",
   "parent": "tfc:block/cross",
   "textures": {
     "cross": "tfc:blocks/plants/vanilla/regular",

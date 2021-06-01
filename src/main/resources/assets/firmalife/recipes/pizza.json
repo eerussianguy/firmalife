@@ -1,0 +1,43 @@
+{
+  "type": "firmalife:pizza",
+  "pattern": [
+    "  K",
+    "AAA",
+    " D "
+  ],
+  "key": {
+    "A": [
+      {
+        "type": "forge:ore_dict",
+        "ore": "categoryFruit"
+      },
+      {
+        "type": "forge:ore_dict",
+        "ore": "categoryVegetable"
+      },
+      {
+        "type": "forge:ore_dict",
+        "ore": "cheese"
+      },
+      {
+        "type": "forge:ore_dict",
+        "ore": "categoryCookedMeat"
+      }
+    ],
+    "D": [
+      {
+        "item": "firmalife:cooked_pizza"
+      }
+    ],
+    "K": [
+      {
+        "type": "forge:ore_dict",
+        "ore": "knife"
+      }
+    ]
+  },
+  "result": {
+    "item": "firmalife:finished_pizza",
+    "count": 1
+  }
+}

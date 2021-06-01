@@ -6,7 +6,7 @@
       },
       "apply": [
         {
-          "model": "tfc:plants/vanilla_0"
+          "model": "tfc:plants/pimento_0"
         }
       ]
     },
@@ -16,7 +16,7 @@
       },
       "apply": [
         {
-          "model": "tfc:plants/vanilla_1"
+          "model": "tfc:plants/pimento_1"
         }
       ]
     }

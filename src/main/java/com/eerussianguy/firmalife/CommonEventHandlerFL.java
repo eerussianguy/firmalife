@@ -24,6 +24,7 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.wrapper.PlayerInvWrapper;
 
 import com.eerussianguy.firmalife.entity.CombatGreenhouseTask;
 import com.eerussianguy.firmalife.gui.FLGuiHandler;
@@ -111,13 +112,9 @@ public class CommonEventHandlerFL
                         if (cow.getFamiliarity() > 0.15f && cow.isReadyForAnimalProduct())
                         {
                             FluidTank fluidHandler = new FluidTank(fluid, 1000, 1000);
-                            IItemHandler inv = player.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
-                            if (inv != null)
-                            {
-                                FluidUtil.tryFillContainerAndStow(item, fluidHandler, inv, Fluid.BUCKET_VOLUME, player, true);
-                                cow.setProductsCooldown();
-                                event.setCanceled(true);
-                            }
+                            player.setHeldItem(player.getActiveHand(), FluidUtil.tryFillContainerAndStow(item, fluidHandler, new PlayerInvWrapper(player.inventory), Fluid.BUCKET_VOLUME, player, true).getResult());
+                            cow.setProductsCooldown();
+                            event.setCanceled(true);
                         }
                     }
                 }

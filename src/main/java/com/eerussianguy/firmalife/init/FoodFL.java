@@ -41,7 +41,9 @@ public enum FoodFL
     RAJYA_METOK(FoodDataFL.CHEESE_SALTED, new String[] {"categoryDairy"}, true),
     GOUDA(FoodDataFL.CHEESE_BRINED, new String[] {"categoryDairy"}, true),
     FETA(FoodDataFL.CHEESE_BRINED, new String[] {"categoryDairy"}, true),
-    SHOSHA(FoodDataFL.CHEESE_BRINED, new String[] {"categoryDairy"}, true);
+    SHOSHA(FoodDataFL.CHEESE_BRINED, new String[] {"categoryDairy"}, true),
+    PIZZA_DOUGH(FoodDataFL.DOUGH),
+    COOKED_PIZZA(FoodDataFL.FLATBREAD);
 
     private final FoodData data;
     private final String[] nameOverrides;
