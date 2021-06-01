@@ -146,4 +146,8 @@ public class TELeafMat extends TEInventory implements ITickable
         }
         markDirty();
     }
+
+    public long getTicksRemaining() {
+        return tickGoal - (CalendarTFC.PLAYER_TIME.getTicks() - startTick);
+    }
 }

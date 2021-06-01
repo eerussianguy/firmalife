@@ -210,7 +210,8 @@ tile.firmalife.pumpkin_hanging_planter.name=Pumpkin Hanging Planter
 tile.firmalife.melon_hanging_planter.name=Melon Hanging Planter
 tile.firmalife.squash_hanging_planter.name=Squash Hanging Planter
 tile.firmalife.wool_yarn.name=Wool Yarn
-tile.firmalife.crop.pumpkin=Pumpkin Plant
+tile.firmalife.crop.pumpkin.name=Pumpkin Plant
+tile.tfc.crop.pumpkin.name=Pumpkin Plant
 tile.firmalife.crop.melon=Melon Plant
 tile.firmalife.honey_jar.name=Honey Jars
 tile.firmalife.bumper.name=Bumper
@@ -270,9 +271,9 @@ fluid.curdled_yak_milk=Curdled Yak Milk
 fluid.curdled_goat_milk=Curdled Goat Milk
 fluid.pina_colada=Piña Colada
 
-tfc.food_traits.fresh=Fresh
-tfc.food_traits.aged=Aged
-tfc.food_traits.vintage=Vintage
+food_trait.firmalife.fresh=Fresh
+food_trait.firmalife.aged=Aged
+food_trait.firmalife.vintage=Vintage
 
 item.tfc.ore.halite.name=Halite
 

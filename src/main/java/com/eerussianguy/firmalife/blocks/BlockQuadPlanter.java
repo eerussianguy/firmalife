@@ -149,7 +149,7 @@ public class BlockQuadPlanter extends BlockLargePlanter implements IHighlightHan
         }
     }
 
-    private PlanterRecipe.PlantInfo[] getCrops(IBlockAccess world, BlockPos pos)
+    public PlanterRecipe.PlantInfo[] getCrops(IBlockAccess world, BlockPos pos)
     {
         TEPlanter te = Helpers.getTE(world, pos, TEPlanter.class);
         PlanterRecipe.PlantInfo[] plants = new PlanterRecipe.PlantInfo[] {null, null, null, null};

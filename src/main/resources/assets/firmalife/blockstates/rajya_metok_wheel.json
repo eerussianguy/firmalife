@@ -8,6 +8,7 @@
       "transform": "forge:default-block",
       "model": "firmalife:cheesewheel_uncut",
       "textures": {
+        "particle": "firmalife:blocks/rajya_metok_wheel_surface_fresh",
         "surface": "firmalife:blocks/rajya_metok_wheel_surface_fresh",
         "inside": "firmalife:blocks/rajya_metok_wheel_inner_fresh"
       }
@@ -21,18 +22,21 @@
     "age": {
       "fresh": {
         "textures": {
+          "particle": "firmalife:blocks/rajya_metok_wheel_surface_fresh",
           "surface": "firmalife:blocks/rajya_metok_wheel_surface_fresh",
           "inside": "firmalife:blocks/rajya_metok_wheel_inner_fresh"
         }
       },
       "aged": {
         "textures": {
+          "particle": "firmalife:blocks/rajya_metok_wheel_surface_aged",
           "surface": "firmalife:blocks/rajya_metok_wheel_surface_aged",
           "inside": "firmalife:blocks/rajya_metok_wheel_inner_aged"
         }
       },
       "vintage": {
         "textures": {
+          "particle": "firmalife:blocks/rajya_metok_wheel_surface_vintage",
           "surface": "firmalife:blocks/rajya_metok_wheel_surface_vintage",
           "inside": "firmalife:blocks/rajya_metok_wheel_inner_vintage"
         }

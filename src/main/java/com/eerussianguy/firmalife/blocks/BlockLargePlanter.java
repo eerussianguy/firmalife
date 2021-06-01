@@ -213,7 +213,7 @@ public class BlockLargePlanter extends Block implements IItemSize
     }
 
     @Nullable
-    private PlanterRecipe.PlantInfo getCrop(IBlockAccess world, BlockPos pos)
+    public PlanterRecipe.PlantInfo getCrop(IBlockAccess world, BlockPos pos)
     {
         TEPlanter te = Helpers.getTE(world, pos, TEPlanter.class);
         return te != null ? new PlanterRecipe.PlantInfo(te.getRecipe(0), te.getStage(0)) : null;

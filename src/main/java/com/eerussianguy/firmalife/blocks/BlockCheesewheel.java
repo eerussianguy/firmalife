@@ -6,6 +6,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.properties.PropertyInteger;
@@ -57,6 +58,7 @@ public class BlockCheesewheel extends Block implements IItemSize
         this.setDefaultState(this.blockState.getBaseState().withProperty(WEDGES, 0).withProperty(AGE, AgingFL.FRESH));
         this.setTickRandomly(true);
         this.setHardness(1.0F);
+        this.setSoundType(SoundType.CLOTH);
         this.item = item;
     }
 
