@@ -218,7 +218,9 @@ public class BlocksFL
         normalIBs.add(register(r, "greenhouse_wall", new BlockGreenhouseWall(), CT_DECORATIONS));
         normalIBs.add(register(r, "greenhouse_roof", new BlockGreenhouseRoof(), CT_DECORATIONS));
         register(r, "greenhouse_door", new BlockGreenhouseDoor(), CT_DECORATIONS);
-        normalIBs.add(register(r, "climate_station", new BlockClimateStation(), CT_DECORATIONS));
+        normalIBs.add(register(r, "climate_station", new BlockClimateStation(0), CT_DECORATIONS));
+        for (int i = 1; i < 6; i++)
+            normalIBs.add(register(r, "climate_station_" + i, new BlockClimateStation(i), CT_DECORATIONS));
         register(r, "quad_planter", new BlockQuadPlanter(), CT_DECORATIONS);
         register(r, "large_planter", new BlockLargePlanter(), CT_DECORATIONS);
         normalIBs.add(register(r, "pumpkin_hanging_planter", new BlockHangingPlanter(() -> Item.getItemFromBlock(BlocksFL.PUMPKIN_FRUIT), () -> ItemSeedsTFC.get(StemCrop.PUMPKIN)), CT_DECORATIONS));

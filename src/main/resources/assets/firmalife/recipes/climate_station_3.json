@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XYX",
+    "YCY",
+    "XYX"
+  ],
+  "key": {
+    "C": {
+      "item": "firmalife:climate_station_2"
+    },
+    "X": {
+      "item": "firmalife:rennet"
+    },
+    "Y": {
+      "item": "tfc:bellows"
+    }
+  },
+  "result": {
+    "item": "firmalife:climate_station_3",
+    "count": 1
+  }
+}

@@ -204,6 +204,12 @@ tile.firmalife.greenhouse_wall.name=Greenhouse Wall
 tile.firmalife.greenhouse_door.name=Greenhouse Door
 tile.firmalife.greenhouse_roof.name=Greenhouse Roof
 tile.firmalife.climate_station.name=Climate Station
+tile.firmalife.climate_station_1.name=Climate Station I
+tile.firmalife.climate_station_2.name=Climate Station II
+tile.firmalife.climate_station_3.name=Climate Station III
+tile.firmalife.climate_station_4.name=Climate Station IV
+tile.firmalife.climate_station_5.name=Climate Station V
+
 tile.firmalife.quad_planter.name=Quad Planter
 tile.firmalife.large_planter.name=Large Planter
 tile.firmalife.pumpkin_hanging_planter.name=Pumpkin Hanging Planter
@@ -357,7 +363,7 @@ config.firmalife.general.worldgen.beeRarity.tooltip=Rarity of Wild Bees in 1/N c
 config.firmalife.general.compat.woodenWhitelist=Add to Wooden Bucket Whitelist?
 config.firmalife.general.compat.woodenWhitelist.tooltip=Allows adding Firmalife's fluids to the wooden bucket whitelist. Disable if you want to configure it yourself.
 
-config.firmalife.general.compat.barrelWhitelist=Add to Wooden Bucket Whitelist?
+config.firmalife.general.compat.barrelWhitelist=Add to Barrel Whitelist?
 config.firmalife.general.compat.barrelWhitelist.tooltip=Allows adding Firmalife's fluids to the barrel whitelist. Disable if you want to configure it yourself.
 
 config.firmalife.general.compat.customMilk=Enable custom milk?

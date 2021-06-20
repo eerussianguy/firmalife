@@ -31,7 +31,7 @@ public class TEPlanter extends TEInventory implements ITickable, ICalendarTickab
     private long lastUpdateTick;
     private long lastTickCalChecked;
     private int waterUses;
-    private boolean isClimateValid;
+    public boolean isClimateValid;
 
     public TEPlanter()
     {
@@ -155,6 +155,7 @@ public class TEPlanter extends TEInventory implements ITickable, ICalendarTickab
     public void setValidity(boolean approvalStatus)
     {
         isClimateValid = approvalStatus;
+        markForSync();
     }
 
     private boolean canGrow(int slot)
@@ -182,7 +183,8 @@ public class TEPlanter extends TEInventory implements ITickable, ICalendarTickab
         {
             ItemStack returnStack = recipe.getOutputItem(inventory.getStackInSlot(slot));
             ItemHandlerHelper.giveItemToPlayer(player, returnStack);
-            ItemHandlerHelper.giveItemToPlayer(player, inventory.getStackInSlot(slot), 1 + Constants.RNG.nextInt());
+            final int seeds = 1 + Constants.RNG.nextInt(2);
+            ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(inventory.getStackInSlot(slot).getItem(), seeds));
             inventory.setStackInSlot(slot, ItemStack.EMPTY);
             stages[slot] = 0;
             resetCounter();

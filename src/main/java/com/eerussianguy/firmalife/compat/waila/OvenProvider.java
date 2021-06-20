@@ -56,6 +56,10 @@ public class OvenProvider implements IWailaBlock
                         break;
                 }
                 currentTooltip.add(new TextComponentTranslation(recipe.getOutputItem(mainSlot).getDisplayName()).getFormattedText());
+                if (((TEOven) te).isCuringRecipe())
+                {
+                    currentTooltip.add("Curing");
+                }
             }
         }
         return currentTooltip;

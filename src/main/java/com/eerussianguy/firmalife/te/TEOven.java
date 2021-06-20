@@ -243,7 +243,7 @@ public class TEOven extends TEInventory implements ITickable
         }
     }
 
-    private boolean isCuringRecipe()
+    public boolean isCuringRecipe()
     {
         if (recipeExists())
         {

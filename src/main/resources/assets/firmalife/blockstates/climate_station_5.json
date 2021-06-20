@@ -1,0 +1,56 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"textures": {
+			"front": "firmalife:blocks/climate_station_front",
+			"top": "firmalife:blocks/climate_station_top_5"
+		},
+		"model": "firmalife:climate_station"
+	},
+	"variants": {
+		"stasis": {
+			"true": {
+				"textures": {
+					"front": "firmalife:blocks/climate_station_front"
+				}
+			},
+			"false": {
+				"textures": {
+					"front": "firmalife:blocks/climate_station_front_ice"
+				}
+			}
+		},
+		"facing": {
+			"north": {
+				"y": 90
+			},
+			"south": {
+				"y": 270
+			},
+			"west": {
+				"y": 0
+			},
+			"east": {
+				"y": 180
+			}
+		},
+		"inventory": [{
+		   "transform": "forge:default-block",
+		   "model": "firmalife:climate_station",
+		   "textures": {
+			"front": "firmalife:blocks/climate_station_front",
+			"top": "firmalife:blocks/climate_station_top_5"
+			},
+		   "y": 180
+		}],
+		"normal": [{
+		   "transform": "forge:default-block",
+		   "model": "firmalife:climate_station",
+		   "textures": {
+			"front": "firmalife:blocks/climate_station_front",
+			"top": "firmalife:blocks/climate_station_top_2"
+			},
+		   "y": 180
+		}]
+	}
+}

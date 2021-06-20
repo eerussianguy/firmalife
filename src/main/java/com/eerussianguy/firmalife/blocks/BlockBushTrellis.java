@@ -12,6 +12,8 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -63,6 +65,8 @@ public class BlockBushTrellis extends BlockTrellis
     {
         if (!world.isRemote && hand == EnumHand.MAIN_HAND)
         {
+            Item held = player.getHeldItem(hand).getItem();
+            if (held instanceof ItemBlock && ((ItemBlock) held).getBlock() instanceof BlockTrellis) return false;
             if (state.getValue(GROWN))
             {
                 ItemHandlerHelper.giveItemToPlayer(player, bush.getFoodDrop());

@@ -54,7 +54,7 @@ public class BlockSpout extends BlockNonCube
     {
         if (!world.isRemote && doWater(world, pos))
         {
-            HelpersFL.sendVanillaParticleToClient(EnumParticleTypes.WATER_DROP, world, pos.getX() + 0.5D, pos.getY() + 0.25D, pos.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
+            HelpersFL.sendVanillaParticleToClient(EnumParticleTypes.WATER_SPLASH, world, pos.getX() + 0.5D, pos.getY() + 0.25D, pos.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
             for (int i = -1; i > -6; i--)
             {
                 BlockPos checkPos = pos.add(0, i, 0);

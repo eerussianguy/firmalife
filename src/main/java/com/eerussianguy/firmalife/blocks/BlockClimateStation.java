@@ -37,7 +37,9 @@ import static net.minecraft.block.BlockHorizontal.FACING;
 @MethodsReturnNonnullByDefault
 public class BlockClimateStation extends Block implements IItemSize, IHighlightHandler
 {
-    public BlockClimateStation()
+    public final int tier;
+
+    public BlockClimateStation(int tier)
     {
         super(Material.WOOD, MapColor.GREEN);
         setHardness(1.0f);
@@ -45,12 +47,13 @@ public class BlockClimateStation extends Block implements IItemSize, IHighlightH
         setSoundType(SoundType.WOOD);
         setTickRandomly(true);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.EAST).withProperty(STASIS, false));
+        this.tier = tier;
     }
 
     @Override
     public void randomTick(World world, BlockPos pos, IBlockState state, Random random)
     {
-        world.setBlockState(pos, state.withProperty(STASIS, GreenhouseHelpers.isMultiblockValid(world, pos, state)));
+        world.setBlockState(pos, state.withProperty(STASIS, GreenhouseHelpers.isMultiblockValid(world, pos, state, false)));
     }
 
     @Override
@@ -58,9 +61,13 @@ public class BlockClimateStation extends Block implements IItemSize, IHighlightH
     {
         if (!world.isRemote && hand == EnumHand.MAIN_HAND)
         {
-            boolean valid = GreenhouseHelpers.isMultiblockValid(world, pos, state);
+            boolean visual = tier > 0;
+            boolean valid = GreenhouseHelpers.isMultiblockValid(world, pos, state, visual);
             world.setBlockState(pos, state.withProperty(STASIS, valid));
-            player.sendMessage(new TextComponentTranslation(valid ? "tooltip.firmalife.valid" : "tooltip.firmalife.invalid"));
+            if (!valid || !visual)
+            {
+                player.sendMessage(new TextComponentTranslation(valid ? "tooltip.firmalife.valid" : "tooltip.firmalife.invalid"));
+            }
         }
         return true;
     }
@@ -70,7 +77,7 @@ public class BlockClimateStation extends Block implements IItemSize, IHighlightH
     {
         for (EnumFacing d : EnumFacing.HORIZONTALS)
         {
-            GreenhouseHelpers.deny(world, pos, state, d);
+            GreenhouseHelpers.setApproval(world, pos, state, d, false, false);
         }
         super.breakBlock(world, pos, state);
     }
@@ -119,12 +126,14 @@ public class BlockClimateStation extends Block implements IItemSize, IHighlightH
     }
 
     @Override
+    @Nonnull
     public Size getSize(@Nonnull ItemStack stack)
     {
         return Size.NORMAL;
     }
 
     @Override
+    @Nonnull
     public Weight getWeight(@Nonnull ItemStack stack)
     {
         return Weight.MEDIUM;

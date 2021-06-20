@@ -21,6 +21,7 @@ public class TEHangingPlanter extends TETickCounter implements IGreenhouseReceiv
     public void setValidity(boolean approvalStatus)
     {
         isClimateValid = approvalStatus;
+        markForSync();
     }
 
     public boolean isClimateValid()

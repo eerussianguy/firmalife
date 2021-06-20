@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XYX",
+    "YCY",
+    "XYX"
+  ],
+  "key": {
+    "C": {
+      "item": "firmalife:climate_station_3"
+    },
+    "X": {
+      "type": "forge:ore_dict",
+      "ore": "sheetRedSteel"
+    },
+    "Y": {
+      "type": "forge:ore_dict",
+      "ore": "sheetBlueSteel"
+    }
+  },
+  "result": {
+    "item": "firmalife:climate_station_4",
+    "count": 1
+  }
+}

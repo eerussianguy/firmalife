@@ -6,6 +6,7 @@ import java.util.Set;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
@@ -13,9 +14,13 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 import com.eerussianguy.firmalife.ConfigFL;
 import com.eerussianguy.firmalife.FirmaLife;
+import com.eerussianguy.firmalife.network.PacketDrawBoundingBox;
 import com.eerussianguy.firmalife.network.PacketSpawnVanillaParticle;
 import net.dries007.tfc.ConfigTFC;
 import net.dries007.tfc.TerraFirmaCraft;
+import net.dries007.tfc.api.capability.food.CapabilityFood;
+import net.dries007.tfc.api.capability.food.IFood;
+import net.dries007.tfc.util.calendar.ICalendar;
 
 public class HelpersFL
 {
@@ -66,5 +71,24 @@ public class HelpersFL
         PacketSpawnVanillaParticle packet = new PacketSpawnVanillaParticle(particle, x, y, z, speedX, speedY, speedZ);
         NetworkRegistry.TargetPoint point = new NetworkRegistry.TargetPoint(worldIn.provider.getDimension(), x, y, z, range);
         FirmaLife.getNetwork().sendToAllAround(packet, point);
+    }
+
+    public static void sendBoundingBoxPacket(World worldIn, BlockPos min, BlockPos max, float red, float green, float blue, boolean isBlockShape)
+    {
+        final int range = 80;
+        PacketDrawBoundingBox packet = new PacketDrawBoundingBox(min, max, red, green, blue, isBlockShape);
+        NetworkRegistry.TargetPoint point = new NetworkRegistry.TargetPoint(worldIn.provider.getDimension(), min.getX(), min.getY(), min.getZ(), range);
+        FirmaLife.getNetwork().sendToAllAround(packet, point);
+    }
+
+    public static ItemStack updateFoodFuzzed(ItemStack oldStack, ItemStack newStack)
+    {
+        ItemStack output = CapabilityFood.updateFoodFromPrevious(oldStack, newStack);
+        IFood cap = output.getCapability(CapabilityFood.CAPABILITY, null);
+        if (cap != null && !cap.isRotten())
+        {
+            cap.setCreationDate(cap.getCreationDate() - (cap.getCreationDate() % ICalendar.HOURS_IN_DAY));
+        }
+        return output;
     }
 }

@@ -12,10 +12,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import com.eerussianguy.firmalife.recipe.DryingRecipe;
+import com.eerussianguy.firmalife.util.HelpersFL;
 import net.dries007.tfc.api.capability.food.CapabilityFood;
+import net.dries007.tfc.api.capability.food.IFood;
 import net.dries007.tfc.objects.te.TEInventory;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.calendar.CalendarTFC;
+import net.dries007.tfc.util.calendar.ICalendar;
 
 @ParametersAreNonnullByDefault
 public class TELeafMat extends TEInventory implements ITickable
@@ -139,7 +142,7 @@ public class TELeafMat extends TEInventory implements ITickable
             DryingRecipe recipe = DryingRecipe.get(input);
             if (recipe != null && !world.isRemote)
             {
-                inventory.setStackInSlot(0, CapabilityFood.updateFoodFromPrevious(input, recipe.getOutputItem(input)));
+                inventory.setStackInSlot(0, HelpersFL.updateFoodFuzzed(input, recipe.getOutputItem(input)));
                 setAndUpdateSlots(0);
                 markForSync();
             }
