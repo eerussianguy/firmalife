@@ -24,7 +24,12 @@ public class CTPlanter {
 
     @ZenMethod
     public static void addRecipe(String recipe_name,IIngredient input, IItemStack output, int stage, boolean large) {
-        PlanterRecipe recipe = new PlanterRecipe(CTHelper.getInternalIngredient(input), InputHelper.toStack(output), stage, large).setRegistryName(recipe_name);
+        addRecipe(recipe_name, input, output, stage, large, 0);
+    }
+
+    @ZenMethod
+    public static void addRecipe(String recipe_name,IIngredient input, IItemStack output, int stage, boolean large, int tier) {
+        PlanterRecipe recipe = new PlanterRecipe(CTHelper.getInternalIngredient(input), InputHelper.toStack(output), stage, large, tier).setRegistryName(recipe_name);
         CraftTweakerAPI.apply(new IAction() {
             @Override
             public void apply() {

@@ -51,9 +51,8 @@ public class ItemPizza extends ItemFoodFL
             {
                 if (ingredient == FoodDataFL.PINEAPPLE)
                 {
-                    data = new FoodData(4, water, saturation, new float[Nutrient.TOTAL], rootData.getDecayModifier());
-                    FirmaLife.logger.warn("Pineapple discovered on pizza! This will not have any nutrition.");
-                    return;
+                    //data = new FoodData(4, water, saturation, new float[Nutrient.TOTAL], rootData.getDecayModifier());
+                    FirmaLife.logger.warn("Why did you put pineapple on your pizza?");
                 }
                 for (int i = 0; i < nutrition.length; i++)
                 {

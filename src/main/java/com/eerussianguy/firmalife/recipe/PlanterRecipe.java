@@ -16,6 +16,7 @@ public class PlanterRecipe extends IForgeRegistryEntry.Impl<PlanterRecipe>
     protected ItemStack outputItem;
     private final int stages;
     private final boolean large;
+    private final int tier;
 
     @Nullable
     public static PlanterRecipe get(ItemStack item)
@@ -28,12 +29,23 @@ public class PlanterRecipe extends IForgeRegistryEntry.Impl<PlanterRecipe>
         return recipe.stages;
     }
 
+    public static int getTier(PlanterRecipe recipe)
+    {
+        return recipe.tier;
+    }
+
     public PlanterRecipe(IIngredient<ItemStack> input, ItemStack output, int stages, boolean large)
+    {
+        this(input, output, stages, large, 0);
+    }
+
+    public PlanterRecipe(IIngredient<ItemStack> input, ItemStack output, int stages, boolean large, int tier)
     {
         this.inputItem = input;
         this.outputItem = output;
         this.stages = stages;
         this.large = large;
+        this.tier = tier;
 
         if (inputItem == null || outputItem == null)
         {

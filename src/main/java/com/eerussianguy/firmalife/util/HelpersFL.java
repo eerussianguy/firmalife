@@ -2,6 +2,7 @@ package com.eerussianguy.firmalife.util;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 import net.minecraft.item.ItemStack;
@@ -91,4 +92,10 @@ public class HelpersFL
         }
         return output;
     }
+
+    public static int nextSign(Random rand)
+    {
+        return rand.nextBoolean() ? 1 : -1;
+    }
+
 }

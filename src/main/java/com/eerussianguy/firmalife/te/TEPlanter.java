@@ -32,6 +32,7 @@ public class TEPlanter extends TEInventory implements ITickable, ICalendarTickab
     private long lastTickCalChecked;
     private int waterUses;
     public boolean isClimateValid;
+    private int tier;
 
     public TEPlanter()
     {
@@ -40,6 +41,7 @@ public class TEPlanter extends TEInventory implements ITickable, ICalendarTickab
         lastUpdateTick = 0;
         lastTickCalChecked = CalendarTFC.PLAYER_TIME.getTicks();
         waterUses = 0;
+        tier = 0;
         isClimateValid = false;
     }
 
@@ -62,6 +64,7 @@ public class TEPlanter extends TEInventory implements ITickable, ICalendarTickab
         lastTickCalChecked = nbt.getLong("lastTickCalChecked");
         waterUses = nbt.getInteger("waterUses");
         isClimateValid = nbt.getBoolean("isClimateValid");
+        tier = nbt.getInteger("tier");
         super.readFromNBT(nbt);
     }
 
@@ -74,6 +77,7 @@ public class TEPlanter extends TEInventory implements ITickable, ICalendarTickab
         nbt.setLong("lastTickCalChecked", lastTickCalChecked);
         nbt.setInteger("waterUses", waterUses);
         nbt.setBoolean("isClimateValid", isClimateValid);
+        nbt.setInteger("tier", tier);
         return super.writeToNBT(nbt);
     }
 
@@ -152,9 +156,10 @@ public class TEPlanter extends TEInventory implements ITickable, ICalendarTickab
     }
 
     @Override
-    public void setValidity(boolean approvalStatus)
+    public void setValidity(boolean approvalStatus, int tier)
     {
         isClimateValid = approvalStatus;
+        this.tier = tier;
         markForSync();
     }
 
@@ -162,7 +167,7 @@ public class TEPlanter extends TEInventory implements ITickable, ICalendarTickab
     {
         PlanterRecipe recipe = getRecipe(slot);
         return isClimateValid && recipe != null && getStage(slot) < PlanterRecipe.getMaxStage(recipe) &&
-            world.getBlockState(pos).getValue(StatePropertiesFL.WET) && GreenhouseHelpers.isSkylightValid(world, pos);
+            tier >= PlanterRecipe.getTier(recipe) && world.getBlockState(pos).getValue(StatePropertiesFL.WET) && GreenhouseHelpers.isSkylightValid(world, pos);
     }
 
     public PlanterRecipe getRecipe(int slot)

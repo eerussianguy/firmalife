@@ -68,6 +68,7 @@ public class BlockBeehive extends Block implements IItemSize
     }
 
     @SideOnly(Side.CLIENT)
+    @Override
     public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
     {
         if (state.getValue(STAGE) > 0 && world.isDaytime())

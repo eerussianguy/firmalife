@@ -100,10 +100,16 @@ public class RecipesFL
             new PlanterRecipe(IIngredient.of(ItemSeedsTFC.get(Crop.SUGARCANE)), new ItemStack(ItemFoodTFC.get(Food.SUGARCANE)), 7, true).setRegistryName("sugarcane"),
             new PlanterRecipe(IIngredient.of(ItemSeedsTFC.get(Crop.TOMATO)), new ItemStack(ItemFoodTFC.get(Food.TOMATO)), 7, true).setRegistryName("tomato"),
             new PlanterRecipe(IIngredient.of(ItemSeedsTFC.get(Crop.RED_BELL_PEPPER)), new ItemStack(ItemFoodTFC.get(Food.RED_BELL_PEPPER)), 5, true).setRegistryName("red_bell_pepper"),
-            new PlanterRecipe(IIngredient.of(ItemSeedsTFC.get(Crop.MAIZE)), new ItemStack(ItemFoodTFC.get(Food.MAIZE)), 5, true).setRegistryName("maize"),
             new PlanterRecipe(IIngredient.of(ItemSeedsTFC.get(Crop.JUTE)), new ItemStack(ItemsTFC.JUTE), 5, true).setRegistryName("jute"),
-            new PlanterRecipe(IIngredient.of(ItemSeedsTFC.get(Crop.GREEN_BEAN)), new ItemStack(ItemFoodTFC.get(Food.GREEN_BEAN)), 6, true).setRegistryName("green_bean")
-        );
+            new PlanterRecipe(IIngredient.of(ItemSeedsTFC.get(Crop.GREEN_BEAN)), new ItemStack(ItemFoodTFC.get(Food.GREEN_BEAN)), 6, true).setRegistryName("green_bean"),
+
+            new PlanterRecipe(IIngredient.of(ItemSeedsTFC.get(Crop.MAIZE)), new ItemStack(ItemFoodTFC.get(Food.MAIZE)), 5, true, 3).setRegistryName("maize"),
+            new PlanterRecipe(IIngredient.of(ItemSeedsTFC.get(Crop.BARLEY)), new ItemStack(ItemFoodTFC.get(Food.BARLEY)), 7, true, 3).setRegistryName("barley"),
+            new PlanterRecipe(IIngredient.of(ItemSeedsTFC.get(Crop.OAT)), new ItemStack(ItemFoodTFC.get(Food.OAT)), 7, true, 3).setRegistryName("oat"),
+            new PlanterRecipe(IIngredient.of(ItemSeedsTFC.get(Crop.RICE)), new ItemStack(ItemFoodTFC.get(Food.RICE)), 7, true, 3).setRegistryName("rice"),
+            new PlanterRecipe(IIngredient.of(ItemSeedsTFC.get(Crop.RYE)), new ItemStack(ItemFoodTFC.get(Food.RYE)), 7, true, 3).setRegistryName("rye"),
+            new PlanterRecipe(IIngredient.of(ItemSeedsTFC.get(Crop.WHEAT)), new ItemStack(ItemFoodTFC.get(Food.WHEAT)), 7, true, 3).setRegistryName("wheat")
+            );
 
         // this makes me laugh for some reason...
         PlantsFL.WRAPPERS.forEach(plant -> {

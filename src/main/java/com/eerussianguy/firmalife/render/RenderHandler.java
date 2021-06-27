@@ -67,17 +67,17 @@ public class RenderHandler
                 switch (station.tier)
                 {
                     case 1:
-                        event.getToolTip().add("Has enhanced flaw detection for your greenhouse.");
+                        event.getToolTip().add("Enables enhanced flaw detection for your greenhouse.");
                         event.getToolTip().add("Right click to show either the protected region, or the incorrect block.");
                         break;
                     case 2:
-                        event.getToolTip().add("");
+                        event.getToolTip().add("Currently Unused");
                         break;
                     case 3:
-                        event.getToolTip().add("");
+                        event.getToolTip().add("Enables growing grains in the greenhouse.");
                         break;
                     case 4:
-                        event.getToolTip().add("");
+                        event.getToolTip().add("Enables growing fruit trees in the greenhouse.");
                         break;
                     case 5:
                         event.getToolTip().add("Distributes steam to your spouts and sprinklers, eliminating the need to feed them with barrels.");

@@ -2,5 +2,5 @@ package com.eerussianguy.firmalife.util;
 
 public interface IGreenhouseReceiver
 {
-    void setValidity(boolean approvalStatus);
+    void setValidity(boolean approvalStatus, int tier);
 }

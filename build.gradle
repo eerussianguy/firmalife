@@ -36,9 +36,8 @@ repositories {
     }
     maven {
         name "Crafttweaker Maven"
-        url "http://maven.blamejared.com/"
+        url "https://maven.blamejared.com/"
     }
-
     maven {
         name = "CurseForge"
         url = "https://minecraft.curseforge.com/api/maven/"
@@ -74,8 +73,8 @@ dependencies {
     compile fileTree(include: ["*.jar"], dir: "libs")
     compileOnly fileTree(include: ["*.jar"], dir: "libs_compat")// change to compile for testing
     compile "mezz.jei:jei_1.12.2:4.15.0.291"
-    compile "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.626"
-    compile "com.blamejared:MTLib:3.0.4.8"
+    compile "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.652"
+    compile "com.blamejared:MTLib:3.0.5.15"
     compile "curse.maven:hwyla:2568751"
 }
 

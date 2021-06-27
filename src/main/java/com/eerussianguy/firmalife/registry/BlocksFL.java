@@ -233,7 +233,8 @@ public class BlocksFL
         normalIBs.add(register(r, "bumper", new BlockBumper(), CT_DECORATIONS));
         normalIBs.add(register(r, "candle", new BlockTorchTFC(), CT_DECORATIONS));
         register(r, "bee_nest", new BlockBeeNest(), CT_DECORATIONS);
-        normalIBs.add(register(r, "spout", new BlockSpout(), CT_DECORATIONS));
+        normalIBs.add(register(r, "spout", new BlockSpout(false), CT_DECORATIONS));
+        normalIBs.add(register(r, "sprinkler", new BlockSpout(true), CT_DECORATIONS));
 
         normalIBs.add(register(r, "cheddar_wheel", new BlockCheesewheel(() -> ItemsFL.CHEDDAR), CT_FOOD));
         normalIBs.add(register(r, "chevre_wheel", new BlockCheesewheel(() -> ItemsFL.CHEVRE), CT_FOOD));

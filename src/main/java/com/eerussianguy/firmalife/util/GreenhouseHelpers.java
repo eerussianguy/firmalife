@@ -203,7 +203,7 @@ public class GreenhouseHelpers
         return returnValue;
     }
 
-    public static boolean isMultiblockValid(World world, BlockPos pos, IBlockState state, boolean visual)
+    public static boolean isMultiblockValid(World world, BlockPos pos, IBlockState state, boolean visual, int tier)
     {
         int arcs = getGoodArcs(world, pos, state, visual);
         EnumFacing facing = state.getValue(FACING);
@@ -230,12 +230,12 @@ public class GreenhouseHelpers
                 if (arcs > 1)
                 {
                     seedPositionData(world, pos, state, arcs);
-                    setApproval(world, pos, state, wallFace.getOpposite(), true, visual);
+                    setApproval(world, pos, state, wallFace.getOpposite(), true, visual, tier);
                     return true;
                 }
             }
         }
-        setApproval(world, pos, state, wallFace.getOpposite(), false, visual);
+        setApproval(world, pos, state, wallFace.getOpposite(), false, visual, 0);
         return false;
     }
 
@@ -272,7 +272,7 @@ public class GreenhouseHelpers
         }
     }
 
-    public static void setApproval(World world, BlockPos pos, IBlockState state, EnumFacing wallDir, boolean approvalStatus, boolean visual)
+    public static void setApproval(World world, BlockPos pos, IBlockState state, EnumFacing wallDir, boolean approvalStatus, boolean visual, int tier)
     {
         final EnumFacing facing = state.getValue(FACING);
         TEClimateStation te = Helpers.getTE(world, pos, TEClimateStation.class);
@@ -288,7 +288,7 @@ public class GreenhouseHelpers
                         TileEntity teFound = world.getTileEntity(checkPos);
                         if (teFound instanceof IGreenhouseReceiver)
                         {
-                            ((IGreenhouseReceiver) teFound).setValidity(approvalStatus);
+                            ((IGreenhouseReceiver) teFound).setValidity(approvalStatus, approvalStatus ? tier : 0);
                         }
                     }
                 }

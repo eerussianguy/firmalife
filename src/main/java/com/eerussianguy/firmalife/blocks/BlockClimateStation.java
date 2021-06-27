@@ -53,7 +53,7 @@ public class BlockClimateStation extends Block implements IItemSize, IHighlightH
     @Override
     public void randomTick(World world, BlockPos pos, IBlockState state, Random random)
     {
-        world.setBlockState(pos, state.withProperty(STASIS, GreenhouseHelpers.isMultiblockValid(world, pos, state, false)));
+        world.setBlockState(pos, state.withProperty(STASIS, GreenhouseHelpers.isMultiblockValid(world, pos, state, false, tier)));
     }
 
     @Override
@@ -62,7 +62,7 @@ public class BlockClimateStation extends Block implements IItemSize, IHighlightH
         if (!world.isRemote && hand == EnumHand.MAIN_HAND)
         {
             boolean visual = tier > 0;
-            boolean valid = GreenhouseHelpers.isMultiblockValid(world, pos, state, visual);
+            boolean valid = GreenhouseHelpers.isMultiblockValid(world, pos, state, visual, tier);
             world.setBlockState(pos, state.withProperty(STASIS, valid));
             if (!valid || !visual)
             {
@@ -77,7 +77,7 @@ public class BlockClimateStation extends Block implements IItemSize, IHighlightH
     {
         for (EnumFacing d : EnumFacing.HORIZONTALS)
         {
-            GreenhouseHelpers.setApproval(world, pos, state, d, false, false);
+            GreenhouseHelpers.setApproval(world, pos, state, d, false, false, 0);
         }
         super.breakBlock(world, pos, state);
     }
