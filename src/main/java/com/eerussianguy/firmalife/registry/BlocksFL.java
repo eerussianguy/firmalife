@@ -87,6 +87,8 @@ public class BlocksFL
     public static final BlockBeeNest BEE_NEST = Helpers.getNull();
     @GameRegistry.ObjectHolder("spout")
     public static final BlockSpout SPOUT = Helpers.getNull();
+    @GameRegistry.ObjectHolder("sprinkler")
+    public static final BlockSpout SPRINKLER = Helpers.getNull();
 
     private static ImmutableList<ItemBlock> allIBs;
     private static ImmutableList<Block> allNormalIBs = Helpers.getNull();

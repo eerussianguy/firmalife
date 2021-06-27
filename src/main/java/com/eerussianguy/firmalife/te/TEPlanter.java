@@ -13,7 +13,6 @@ import net.minecraftforge.items.ItemHandlerHelper;
 import com.eerussianguy.firmalife.init.StatePropertiesFL;
 import com.eerussianguy.firmalife.recipe.PlanterRecipe;
 import com.eerussianguy.firmalife.util.GreenhouseHelpers;
-import com.eerussianguy.firmalife.util.IGreenhouseReceiver;
 import com.eerussianguy.firmalife.util.IWaterable;
 import net.dries007.tfc.ConfigTFC;
 import net.dries007.tfc.Constants;
@@ -25,7 +24,7 @@ import net.dries007.tfc.util.calendar.ICalendarTickable;
 /**
  * Evil combination of TEInventory and TECropBase because I can't code
  */
-public class TEPlanter extends TEInventory implements ITickable, ICalendarTickable, IWaterable, IGreenhouseReceiver
+public class TEPlanter extends TEInventory implements ITickable, ICalendarTickable, IWaterable, GreenhouseHelpers.IGreenhouseReceiver
 {
     protected int[] stages;
     private long lastUpdateTick;

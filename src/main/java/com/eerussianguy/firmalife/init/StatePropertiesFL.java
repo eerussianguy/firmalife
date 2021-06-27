@@ -11,6 +11,8 @@ public class StatePropertiesFL
     public static final PropertyBool GROWN = PropertyBool.create("grown");
     public static final PropertyBool CAN_GROW = PropertyBool.create("can_grow");
     public static final PropertyBool WET = PropertyBool.create("wet");
+    public static final PropertyBool WATERED = PropertyBool.create("watered");
+    public static final PropertyBool NEEDS_SOURCE = PropertyBool.create("needs_source");
     public static final PropertyBool CONNECTED = PropertyBool.create("connected");
     public static final PropertyBool TOP = PropertyBool.create("top");
     public static final PropertyBool GLASS = PropertyBool.create("glass");

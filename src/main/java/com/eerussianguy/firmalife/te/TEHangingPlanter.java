@@ -4,10 +4,10 @@ import javax.annotation.Nonnull;
 
 import net.minecraft.nbt.NBTTagCompound;
 
-import com.eerussianguy.firmalife.util.IGreenhouseReceiver;
+import com.eerussianguy.firmalife.util.GreenhouseHelpers;
 import net.dries007.tfc.objects.te.TETickCounter;
 
-public class TEHangingPlanter extends TETickCounter implements IGreenhouseReceiver
+public class TEHangingPlanter extends TETickCounter implements GreenhouseHelpers.IGreenhouseReceiver
 {
     private boolean isClimateValid;
 

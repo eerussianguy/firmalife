@@ -1,5 +1,6 @@
 package com.eerussianguy.firmalife.util;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -290,6 +291,15 @@ public class GreenhouseHelpers
                         {
                             ((IGreenhouseReceiver) teFound).setValidity(approvalStatus, approvalStatus ? tier : 0);
                         }
+                        else
+                        {
+                            IBlockState checkState = world.getBlockState(checkPos);
+                            Block checkBlock = checkState.getBlock();
+                            if (checkState.getBlock() instanceof IGreenhouseReceiverBlock)
+                            {
+                                world.setBlockState(checkPos, ((IGreenhouseReceiverBlock) checkBlock).getStateFor(checkState, approvalStatus, tier));
+                            }
+                        }
                     }
                 }
             }
@@ -316,5 +326,15 @@ public class GreenhouseHelpers
             HelpersFL.sendBoundingBoxPacket(world, pos, pos, 1.0F, 0.0F, 0.0F, true);
         }
         return valid;
+    }
+
+    public interface IGreenhouseReceiver
+    {
+        void setValidity(boolean approvalStatus, int tier);
+    }
+
+    public interface IGreenhouseReceiverBlock
+    {
+        IBlockState getStateFor(IBlockState state, boolean approvalStatus, int tier);
     }
 }

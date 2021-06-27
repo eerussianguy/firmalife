@@ -17,7 +17,6 @@ import com.eerussianguy.firmalife.blocks.BlockLargePlanter;
 import com.eerussianguy.firmalife.blocks.BlockQuadPlanter;
 import com.eerussianguy.firmalife.recipe.PlanterRecipe;
 import com.eerussianguy.firmalife.te.TEPlanter;
-import com.eerussianguy.firmalife.util.IGreenhouseReceiver;
 import net.dries007.tfc.compat.waila.interfaces.IWailaBlock;
 
 public class PlanterProvider implements IWailaBlock
