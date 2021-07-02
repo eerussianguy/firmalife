@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "firmalife:large_planter"
+    },
+    {
+      "item": "tfc:fruit_trees/sapling/olive"
+    }
+  ],
+  "result": {
+    "item": "firmalife:olive_bonsai_pot",
+    "count": 1
+  }
+}

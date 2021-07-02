@@ -8,7 +8,7 @@ public class FoodDataFL
     public static final FoodData CHOCOLATE = new FoodData(4, 0.0F, 0.2F, 0.2F, 0.0F, 0.0F, 0.0F, 0.8F, 1.1F);
     public static final FoodData COCOA_BEANS = new FoodData(4, 0.0F, 0.1F, 0.1F, 0.0F, 0.0F, 0.1F, 0.0F, 0.5F);
     //copied from squash
-    public static final FoodData PUMPKIN = new FoodData(4, 1F, 0F, 0F, 1.5F, 0F, 0F, 0F, 1.67F);
+    public static final FoodData PUMPKIN = new FoodData(4, 1F, 0F, 0F, 1.4F, 0F, 0F, 0F, 1.8F);
 
     public static final FoodData DRIED_COCOA_BEANS = new FoodData(4, 0.0F, 0.1F, 0.1F, 0.0F, 0.0F, 0.1F, 0.0F, 0.5F);
 

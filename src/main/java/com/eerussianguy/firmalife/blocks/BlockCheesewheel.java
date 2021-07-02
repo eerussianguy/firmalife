@@ -44,7 +44,7 @@ import net.dries007.tfc.util.OreDictionaryHelper;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class BlockCheesewheel extends Block implements IItemSize
+public class BlockCheesewheel extends BlockNonCube implements IItemSize
 {
     public static final PropertyInteger WEDGES = StatePropertiesFL.WEDGES;
     public static final PropertyEnum<AgingFL> AGE = StatePropertiesFL.AGE;
@@ -121,30 +121,9 @@ public class BlockCheesewheel extends Block implements IItemSize
         }
     }
 
-    @SuppressWarnings("deprecation")
-    @Override
-    public boolean isOpaqueCube(IBlockState state)
-    {
-        return false;
-    }
-
-    @SuppressWarnings("deprecation")
-    @Override
-    public boolean isFullCube(IBlockState state)
-    {
-        return false;
-    }
-
     private boolean canBlockStay(World worldIn, BlockPos pos)
     {
         return worldIn.getBlockState(pos.down()).getMaterial().isSolid();
-    }
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public BlockRenderLayer getRenderLayer()
-    {
-        return BlockRenderLayer.CUTOUT;
     }
 
     public void randomTick(World worldIn, BlockPos pos, IBlockState state, Random random)

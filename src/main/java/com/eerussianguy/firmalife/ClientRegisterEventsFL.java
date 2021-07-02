@@ -29,6 +29,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import com.eerussianguy.firmalife.blocks.BlockBonsai;
 import com.eerussianguy.firmalife.blocks.BlockFruitDoor;
 import com.eerussianguy.firmalife.blocks.BlockFruitFenceGate;
 import com.eerussianguy.firmalife.blocks.BlockStemCrop;
@@ -149,6 +150,10 @@ public class ClientRegisterEventsFL
                 event.getBlockColors().colorMultiplier(((ItemBlock) stack.getItem()).getBlock().getStateFromMeta(stack.getMetadata()), null, null, tintIndex),
             BlocksFL.getAllFruitLeaves().toArray(new BlockFruitTreeLeaves[0])
         );
+        itemColors.registerItemColorHandler((stack, tintIndex) ->
+                event.getBlockColors().colorMultiplier(((ItemBlock) stack.getItem()).getBlock().getStateFromMeta(stack.getMetadata()), null, null, tintIndex),
+            BlocksFL.getAllBonsai().toArray(new BlockBonsai[0])
+        );
 
         itemColors.registerItemColorHandler((stack, tintIndex) ->
                 event.getBlockColors().colorMultiplier(((ItemBlock) stack.getItem()).getBlock().getStateFromMeta(stack.getMetadata()), null, null, tintIndex),
@@ -163,6 +168,7 @@ public class ClientRegisterEventsFL
         IBlockColor foliageColor = GrassColorHandler::computeGrassColor;
 
         blockColors.registerBlockColorHandler(foliageColor, BlocksFL.getAllFruitLeaves().toArray(new Block[0]));
+        blockColors.registerBlockColorHandler(foliageColor, BlocksFL.getAllBonsai().toArray(new Block[0]));
 
         //use vanilla stem coloring for stemcrops
         for (BlockStemCrop block : BlocksFL.getAllCropBlocks())

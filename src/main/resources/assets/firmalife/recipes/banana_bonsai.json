@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "firmalife:large_planter"
+    },
+    {
+      "item": "tfc:fruit_trees/sapling/banana"
+    }
+  ],
+  "result": {
+    "item": "firmalife:banana_bonsai_pot",
+    "count": 1
+  }
+}

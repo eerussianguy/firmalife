@@ -45,17 +45,15 @@ public class LargePlanterBakedModel implements IBakedModel
     @Override
     public List<BakedQuad> getQuads(@Nullable IBlockState state, @Nullable EnumFacing side, long rand)
     {
-        if (state == null || !(state.getBlock() instanceof BlockLargePlanter)) return dummy.bake(dummy.getDefaultState(), DefaultVertexFormats.BLOCK, ModelLoader.defaultTextureGetter()).getQuads(state, side, rand);
+        if (state == null || !(state.getBlock() instanceof BlockLargePlanter)) return bake(dummy).getQuads(state, side, rand);
         Map<String, String> sprites = new HashMap<>();
         sprites.put("soil", MOD_ID + (state.getValue(StatePropertiesFL.WET) ? ":blocks/potting_soil_wet" : ":blocks/potting_soil_dry"));
         if (state instanceof IExtendedBlockState)
         {
-            IExtendedBlockState extendedState = (IExtendedBlockState) state;
-            sprites.put("crop1", resolveTexture(extendedState, BlockLargePlanter.CROP));
+            sprites.put("crop1", resolveTexture((IExtendedBlockState) state, BlockLargePlanter.CROP));
         }
         IModel newModel = dummy.retexture(ImmutableMap.copyOf(sprites));
-        IBakedModel bakedModel = newModel.bake(newModel.getDefaultState(), DefaultVertexFormats.BLOCK, ModelLoader.defaultTextureGetter());
-        return bakedModel.getQuads(state, side, rand);
+        return bake(newModel).getQuads(state, side, rand);
     }
 
     protected String resolveTexture(IExtendedBlockState state, UnlistedCropProperty property)
@@ -68,6 +66,11 @@ public class LargePlanterBakedModel implements IBakedModel
             return crop.getNamespace() + ":blocks/crop/" + crop.getPath() + "_" + info.getStage();
         }
         return "tfc:blocks/empty";
+    }
+
+    protected static IBakedModel bake(IModel model)
+    {
+        return model.bake(model.getDefaultState(), DefaultVertexFormats.BLOCK, ModelLoader.defaultTextureGetter());
     }
 
     @Override

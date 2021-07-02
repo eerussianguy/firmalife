@@ -150,6 +150,18 @@ tile.firmalife.peach_door.name=Peach Door
 tile.firmalife.plum_door.name=Plum Door
 tile.firmalife.red_apple_door.name=Red Apple Door
 
+tile.firmalife.banana_bonsai_pot.name=Banana Bonsai Pot
+tile.firmalife.cherry_bonsai_pot.name=Cherry Bonsai Pot
+tile.firmalife.cinnamon_bonsai_pot.name=Cinnamon Bonsai Pot
+tile.firmalife.cocoa_bonsai_pot.name=Cocoa Bonsai Pot
+tile.firmalife.green_apple_bonsai_pot.name=Green Apple Bonsai Pot
+tile.firmalife.lemon_bonsai_pot.name=Lemon Bonsai Pot
+tile.firmalife.olive_bonsai_pot.name=Olive Bonsai Pot
+tile.firmalife.orange_bonsai_pot.name=Orange Bonsai Pot
+tile.firmalife.peach_bonsai_pot.name=Peach Bonsai Pot
+tile.firmalife.plum_bonsai_pot.name=Plum Bonsai Pot
+tile.firmalife.red_apple_bonsai_pot.name=Red Apple Bonsai Pot
+
 tile.firmalife.banana_trapdoor.name=Banana Trapdoor
 tile.firmalife.cherry_trapdoor.name=Cherry Trapdoor
 tile.firmalife.cinnamon_trapdoor.name=Cinnamon Trapdoor

@@ -117,12 +117,14 @@ public class BlockJars extends BlockNonCube implements IItemSize
     }
 
     @Override
+    @Nonnull
     public Size getSize(@Nonnull ItemStack stack)
     {
         return Size.VERY_LARGE;
     }
 
     @Override
+    @Nonnull
     public Weight getWeight(@Nonnull ItemStack stack)
     {
         return Weight.MEDIUM;

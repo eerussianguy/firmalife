@@ -41,7 +41,7 @@ public class QuadPlanterBakedModel extends LargePlanterBakedModel implements IBa
     @Override
     public List<BakedQuad> getQuads(@Nullable IBlockState state, @Nullable EnumFacing side, long rand)
     {
-        if (state == null || !(state.getBlock() instanceof BlockQuadPlanter)) return dummy.bake(dummy.getDefaultState(), DefaultVertexFormats.BLOCK, ModelLoader.defaultTextureGetter()).getQuads(state, side, rand);
+        if (state == null || !(state.getBlock() instanceof BlockQuadPlanter)) return bake(dummy).getQuads(state, side, rand);
         Map<String, String> sprites = new HashMap<>();
         sprites.put("soil", MOD_ID + (state.getValue(StatePropertiesFL.WET) ? ":blocks/potting_soil_wet" : ":blocks/potting_soil_dry"));
         if (state instanceof IExtendedBlockState)
@@ -53,7 +53,6 @@ public class QuadPlanterBakedModel extends LargePlanterBakedModel implements IBa
             sprites.put("crop4", resolveTexture(extendedState, BlockQuadPlanter.CROP_4));
         }
         IModel newModel = dummy.retexture(ImmutableMap.copyOf(sprites));
-        IBakedModel bakedModel = newModel.bake(newModel.getDefaultState(), DefaultVertexFormats.BLOCK, ModelLoader.defaultTextureGetter());
-        return bakedModel.getQuads(state, side, rand);
+        return bake(newModel).getQuads(state, side, rand);
     }
 }

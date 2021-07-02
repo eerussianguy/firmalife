@@ -1,5 +1,6 @@
 package com.eerussianguy.firmalife.blocks;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -201,12 +202,14 @@ public class BlockLargePlanter extends Block implements IItemSize
     }
 
     @Override
+    @Nonnull
     public Size getSize(ItemStack stack)
     {
         return Size.NORMAL;
     }
 
     @Override
+    @Nonnull
     public Weight getWeight(ItemStack stack)
     {
         return Weight.HEAVY;

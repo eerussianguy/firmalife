@@ -1,0 +1,38 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "firmalife:bonsai_tree",
+		"textures": {
+			"leaves": "firmalife:blocks/cocoa_leaves",
+			"log": "firmalife:blocks/cocoa_bark",
+			"overlay": "tfc:blocks/empty"
+		}
+	},
+	"variants": {
+		"stage": {
+			"0": {
+				"textures": {
+					"overlay": "tfc:blocks/empty"
+				}
+			},
+			"1": {
+				"textures": {
+					"overlay": "firmalife:blocks/cocoa_flowers"
+				}
+			},
+			"2": {
+				"textures": {
+					"overlay": "firmalife:blocks/cocoa_fruit"
+				}
+			}
+		},
+		"inventory": [{
+			"transform": "forge:default-block",
+		    "model": "firmalife:bonsai_tree"
+		}],
+		"normal": [{
+			"transform": "forge:default-block",
+		    "model": "firmalife:bonsai_tree"
+		}]
+	}
+}

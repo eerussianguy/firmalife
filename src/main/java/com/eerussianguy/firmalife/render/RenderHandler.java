@@ -71,7 +71,7 @@ public class RenderHandler
                         event.getToolTip().add("Right click to show either the protected region, or the incorrect block.");
                         break;
                     case 2:
-                        event.getToolTip().add("Currently Unused");
+                        event.getToolTip().add("Upgrade Currently Unused");
                         break;
                     case 3:
                         event.getToolTip().add("Enables growing grains in the greenhouse.");
