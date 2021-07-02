@@ -124,7 +124,8 @@ public class TEPlanter extends TEInventory implements ITickable, ICalendarTickab
     @Override
     public void onCalendarUpdate(long l)
     {
-        long growthTicks = (long) (ICalendar.TICKS_IN_DAY * ConfigTFC.General.FOOD.cropGrowthTimeModifier);
+        double tierModifier = tier >= 2 ? 0.95D : 1.05D;
+        long growthTicks = (long) (ICalendar.TICKS_IN_DAY * tierModifier * ConfigTFC.General.FOOD.cropGrowthTimeModifier);
         while (getTicksSinceUpdate() > growthTicks)
         {
             reduceCounter(growthTicks);

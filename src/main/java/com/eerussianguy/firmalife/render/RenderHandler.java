@@ -71,7 +71,7 @@ public class RenderHandler
                         event.getToolTip().add("Right click to show either the protected region, or the incorrect block.");
                         break;
                     case 2:
-                        event.getToolTip().add("Upgrade Currently Unused");
+                        event.getToolTip().add("Enhanced climate regulation makes planters grow 10.5% faster.");
                         break;
                     case 3:
                         event.getToolTip().add("Enables growing grains in the greenhouse.");

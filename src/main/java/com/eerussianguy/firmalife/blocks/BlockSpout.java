@@ -119,7 +119,7 @@ public class BlockSpout extends BlockNonCube implements GreenhouseHelpers.IGreen
         {
             if (range)
             {
-                double speed = MathHelper.nextDouble(rand, -0.1D, 0.1D);
+                double speed = MathHelper.nextDouble(rand, -0.2D, 0.2D);
                 for (int i = 0; i < 5; i++)
                 {
                     ParticlesFL.SPRINKLE.spawn(world, pos.getX() + 0.5D, pos.getY() + 0.25D, pos.getZ() + 0.5D, speed * HelpersFL.nextSign(rand), 0.0D, speed * HelpersFL.nextSign(rand), 130);
