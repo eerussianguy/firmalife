@@ -3,30 +3,24 @@ package com.eerussianguy.firmalife.render;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import javax.annotation.Nullable;
 
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.IBakedModel;
-import net.minecraft.client.renderer.block.model.ItemOverrideList;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.IModel;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.property.IExtendedBlockState;
 
 import com.eerussianguy.firmalife.blocks.BlockQuadPlanter;
 import com.eerussianguy.firmalife.init.StatePropertiesFL;
-import com.eerussianguy.firmalife.recipe.PlanterRecipe;
 import mcp.MethodsReturnNonnullByDefault;
 
 import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
+import static com.eerussianguy.firmalife.util.ClientHelpers.bake;
 
 @MethodsReturnNonnullByDefault
 public class QuadPlanterBakedModel extends LargePlanterBakedModel implements IBakedModel

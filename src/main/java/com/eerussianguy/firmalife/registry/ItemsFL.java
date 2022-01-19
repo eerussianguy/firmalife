@@ -137,6 +137,7 @@ public class ItemsFL
     public static ItemMetalMalletMold malletMold;
     private static ImmutableList<Item> allEasyItems;
     private static ImmutableList<ItemFruitDoor> allFruitDoors;
+    private static ImmutableList<Item> unused;
 
     public static ImmutableList<Item> getAllEasyItems()
     {
@@ -157,6 +158,11 @@ public class ItemsFL
         return foods.get(food);
     }
 
+    public static Item getUnused(int idx)
+    {
+        return unused.get(idx);
+    }
+
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event)
@@ -165,6 +171,7 @@ public class ItemsFL
 
         ImmutableList.Builder<Item> easyItems = ImmutableList.builder();
         ImmutableList.Builder<ItemFruitDoor> fruitDoors = ImmutableList.builder();
+        ImmutableList.Builder<Item> unu = ImmutableList.builder();
 
         for (FoodFL food : FoodFL.values())
         {
@@ -272,6 +279,13 @@ public class ItemsFL
         easyItems.add(register(r, "treated_lumber", new ItemMisc(Size.SMALL, Weight.MEDIUM), CT_MISC));
         easyItems.add(register(r, "beeswax", new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT), CT_FOOD));
 
+        for (int i = 0; i < 5; i++)
+        {
+            ItemMisc item = register(r, "unused" + i, new ItemMisc(Size.VERY_SMALL, Weight.VERY_LIGHT));
+            easyItems.add(item);
+            unu.add(item);
+        }
+
         ItemMisc cpole = new ItemMisc(Size.SMALL, Weight.MEDIUM);
         easyItems.add(register(r, "cinnamon_pole", cpole, CT_MISC));
         OreDictionary.registerOre("poleWooden", cpole);
@@ -308,6 +322,7 @@ public class ItemsFL
         }
         allEasyItems = easyItems.build();
         allFruitDoors = fruitDoors.build();
+        unused = unu.build();
     }
 
     private static String convert(String in)
@@ -341,6 +356,14 @@ public class ItemsFL
     {
         item.setRegistryName(MOD_ID, name);
         item.setCreativeTab(ct);
+        item.setTranslationKey(MOD_ID + "." + name.replace('/', '.'));
+        r.register(item);
+        return item;
+    }
+
+    private static <T extends Item> T register(IForgeRegistry<Item> r, String name, T item)
+    {
+        item.setRegistryName(MOD_ID, name);
         item.setTranslationKey(MOD_ID + "." + name.replace('/', '.'));
         r.register(item);
         return item;

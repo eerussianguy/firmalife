@@ -1,0 +1,20 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"1": "tfc:blocks/wood/planks/douglas_fir",
+		"particle": "tfc:blocks/metal/wrought_iron"
+	},
+	"elements": [
+		{
+			"from": [4, 0, 4],
+			"to": [12, 3, 12],
+			"faces": {
+				"north": {"uv": [0, 6, 8, 9], "texture": "#1"},
+				"east": {"uv": [0, 6, 8, 9], "texture": "#1"},
+				"south": {"uv": [0, 6, 8, 9], "texture": "#1"},
+				"west": {"uv": [0, 6, 8, 9], "texture": "#1"},
+				"down": {"uv": [0, 2, 8, 10], "texture": "#1"}
+			}
+		}
+	]
+}

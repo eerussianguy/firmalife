@@ -93,7 +93,10 @@ public class BlockStemFruit extends BlockDirectional implements IItemSize
     }
 
     @Override
-    public boolean hasTileEntity(IBlockState state) { return true; }
+    public boolean hasTileEntity(IBlockState state)
+    {
+        return true;
+    }
 
     @Override
     public TileEntity createTileEntity(World world, IBlockState state)
@@ -123,8 +126,6 @@ public class BlockStemFruit extends BlockDirectional implements IItemSize
         }
 
     }
-
-    //Lifted from BlockFlowerPot
 
     @Override
     public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest)

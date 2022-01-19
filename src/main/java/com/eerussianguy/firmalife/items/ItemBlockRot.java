@@ -31,7 +31,6 @@ public class ItemBlockRot extends ItemBlockTFC
         super(b);
     }
 
-
     @Override
     public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable NBTTagCompound nbt)
     {
@@ -57,7 +56,7 @@ public class ItemBlockRot extends ItemBlockTFC
             {
                 long currentTime = CalendarTFC.PLAYER_TIME.getTicks();
                 te.resetCounter(); //te counter is at currentTime
-                te.reduceCounter(foodCreationDate - currentTime); //teCounter is now at foodCrationDate
+                te.reduceCounter(foodCreationDate - currentTime); //teCounter is now at foodCreationDate
             }
         }
         return result;

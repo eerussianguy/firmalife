@@ -138,6 +138,14 @@ item.firmalife.peach_door.name=Peach Door
 item.firmalife.plum_door.name=Plum Door
 item.firmalife.red_apple_door.name=Red Apple Door
 
+tile.firmalife.chestnut_pile.name=Chestnut Grain Pile
+tile.firmalife.rye_pile.name=Rye Grain Pile
+tile.firmalife.rice_pile.name=Rice Grain Pile
+tile.firmalife.wheat_pile.name=Wheat Grain Pile
+tile.firmalife.barley_pile.name=Barley Grain Pile
+tile.firmalife.oat_pile.name=Oat Grain Pile
+tile.firmalife.maize_pile.name=Maize Pile
+
 tile.firmalife.banana_door.name=Banana Door
 tile.firmalife.cherry_door.name=Cherry Door
 tile.firmalife.cinnamon_door.name=Cinnamon Door
@@ -258,6 +266,7 @@ tile.firmalife.feta_wheel.name=Feta Wheel
 tile.firmalife.shosha_wheel.name=Shosha Wheel
 tile.firmalife.spout.name=Spout
 tile.firmalife.sprinkler.name=Sprinkler
+tile.firmalife.turntable.name=Turntable
 
 item.firmalife.unfired_mallet_mold.name=Unfired Mallet Head Mold
 item.firmalife.mallet_mold.name=Mallet Head Mold

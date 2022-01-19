@@ -24,7 +24,7 @@ import net.dries007.tfc.objects.recipes.ShapedDamageRecipe;
 import net.dries007.tfc.util.calendar.CalendarTFC;
 
 @SuppressWarnings("unused")
-public class TrailMixRecipe extends ShapedDamageRecipe
+public class TrailMixRecipe extends SandwichBasedRecipe
 {
     public TrailMixRecipe(ResourceLocation group, CraftingHelper.ShapedPrimer input, @Nonnull ItemStack result, int damage)
     {
@@ -48,37 +48,6 @@ public class TrailMixRecipe extends ShapedDamageRecipe
             trailMix.setCreationDate(CalendarTFC.PLAYER_TIME.getTicks()); // Meals get decay reset as they have on average, high decay modifiers. Also it's too much of a pain to re-calculate a remaining decay fraction average
         }
         return output;
-    }
-
-    @Override
-    public boolean matches(@Nonnull InventoryCrafting inv, @Nonnull World world)
-    {
-        if (super.matches(inv, world))
-        {
-            List<FoodData> ingredients = new ArrayList<>();
-            getIngredients(inv, ingredients);
-            return ingredients.size() > 0;
-        }
-        return false;
-    }
-
-    private void getIngredients(InventoryCrafting inv, List<FoodData> ingredients)
-    {
-        for (int i = 0; i < inv.getSizeInventory(); i++)
-        {
-            ItemStack ingredientStack = inv.getStackInSlot(i);
-            IFood ingredientCap = ingredientStack.getCapability(CapabilityFood.CAPABILITY, null);
-            if (ingredientCap != null)
-            {
-                if (ingredientCap.isRotten())
-                {
-                    // Found a rotten ingredient, aborting
-                    ingredients.clear();
-                    return;
-                }
-                ingredients.add(ingredientCap.getData());
-            }
-        }
     }
 
     @SuppressWarnings("unused")

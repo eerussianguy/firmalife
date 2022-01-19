@@ -22,4 +22,5 @@ public class StatePropertiesFL
     public static final PropertyInteger JARS = PropertyInteger.create("jars", 1, 4);
     public static final PropertyInteger WEDGES = PropertyInteger.create("wedges", 0, 3);
     public static final PropertyEnum<AgingFL> AGE = PropertyEnum.create("age", AgingFL.class);
+    public static final PropertyInteger CLAY = PropertyInteger.create("clay", 0, 4);
 }

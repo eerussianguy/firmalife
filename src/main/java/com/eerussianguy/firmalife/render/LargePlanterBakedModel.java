@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import com.google.common.collect.ImmutableMap;
@@ -15,22 +13,19 @@ import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ItemOverrideList;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
-
 import net.minecraftforge.client.model.IModel;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.property.IExtendedBlockState;
 
 import com.eerussianguy.firmalife.blocks.BlockLargePlanter;
-import com.eerussianguy.firmalife.blocks.BlockQuadPlanter;
 import com.eerussianguy.firmalife.init.StatePropertiesFL;
 import com.eerussianguy.firmalife.recipe.PlanterRecipe;
 import mcp.MethodsReturnNonnullByDefault;
 
 import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
+import static com.eerussianguy.firmalife.util.ClientHelpers.bake;
 
 @MethodsReturnNonnullByDefault
 public class LargePlanterBakedModel implements IBakedModel
@@ -54,23 +49,6 @@ public class LargePlanterBakedModel implements IBakedModel
         }
         IModel newModel = dummy.retexture(ImmutableMap.copyOf(sprites));
         return bake(newModel).getQuads(state, side, rand);
-    }
-
-    protected String resolveTexture(IExtendedBlockState state, UnlistedCropProperty property)
-    {
-        PlanterRecipe.PlantInfo info = state.getValue(property);
-        if (info == null || info.getRecipe() == null) return "tfc:blocks/empty";
-        ResourceLocation crop = info.getRecipe().getRegistryName();
-        if (crop != null && !property.valueToString(info).equals("null")) // epic non-null null
-        {
-            return crop.getNamespace() + ":blocks/crop/" + crop.getPath() + "_" + info.getStage();
-        }
-        return "tfc:blocks/empty";
-    }
-
-    protected static IBakedModel bake(IModel model)
-    {
-        return model.bake(model.getDefaultState(), DefaultVertexFormats.BLOCK, ModelLoader.defaultTextureGetter());
     }
 
     @Override
@@ -101,5 +79,17 @@ public class LargePlanterBakedModel implements IBakedModel
     public ItemOverrideList getOverrides()
     {
         return ItemOverrideList.NONE;
+    }
+
+    protected String resolveTexture(IExtendedBlockState state, UnlistedCropProperty property)
+    {
+        PlanterRecipe.PlantInfo info = state.getValue(property);
+        if (info == null || info.getRecipe() == null) return "tfc:blocks/empty";
+        ResourceLocation crop = info.getRecipe().getRegistryName();
+        if (crop != null && !property.valueToString(info).equals("null")) // epic non-null null
+        {
+            return crop.getNamespace() + ":blocks/crop/" + crop.getPath() + "_" + info.getStage();
+        }
+        return "tfc:blocks/empty";
     }
 }

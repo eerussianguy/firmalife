@@ -27,7 +27,6 @@ import net.dries007.tfc.api.types.IFruitTree;
 import net.dries007.tfc.objects.blocks.BlockFluidTFC;
 import net.dries007.tfc.objects.blocks.BlockTorchTFC;
 import net.dries007.tfc.objects.blocks.agriculture.*;
-import net.dries007.tfc.objects.blocks.wood.BlockSaplingTFC;
 import net.dries007.tfc.objects.fluids.FluidsTFC;
 import net.dries007.tfc.objects.fluids.properties.FluidWrapper;
 import net.dries007.tfc.objects.items.ItemSeedsTFC;
@@ -93,6 +92,8 @@ public class BlocksFL
     public static final BlockSpout SPOUT = Helpers.getNull();
     @GameRegistry.ObjectHolder("sprinkler")
     public static final BlockSpout SPRINKLER = Helpers.getNull();
+    @GameRegistry.ObjectHolder("turntable")
+    public static final BlockTurntable TURNTABLE = Helpers.getNull();
 
     private static ImmutableList<ItemBlock> allIBs;
     private static ImmutableList<Block> allNormalIBs = Helpers.getNull();
@@ -223,6 +224,7 @@ public class BlocksFL
         register(r, "bee_nest", new BlockBeeNest(), CT_DECORATIONS);
         normalIBs.add(register(r, "spout", new BlockSpout(false), CT_DECORATIONS));
         normalIBs.add(register(r, "sprinkler", new BlockSpout(true), CT_DECORATIONS));
+        normalIBs.add(register(r, "turntable", new BlockTurntable(), CT_DECORATIONS));
 
         normalIBs.add(register(r, "cheddar_wheel", new BlockCheesewheel(() -> ItemsFL.CHEDDAR), CT_FOOD));
         normalIBs.add(register(r, "chevre_wheel", new BlockCheesewheel(() -> ItemsFL.CHEVRE), CT_FOOD));
@@ -313,6 +315,7 @@ public class BlocksFL
         register(TEString.class, "string");
         register(TEStemCrop.class, "stem_crop");
         register(TEClimateStation.class, "climate_station");
+        register(TETurntable.class, "turntable");
         //needs fix
         FluidsTFC.getWrapper(FluidsFL.COCONUT_MILK.get());
         FluidsTFC.getWrapper(FluidsFL.YAK_MILK.get());
