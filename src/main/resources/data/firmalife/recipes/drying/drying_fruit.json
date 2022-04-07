@@ -1,0 +1,16 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "firmalife:drying",
+  "ingredient": {
+    "tag": "tfc:foods/fruits"
+  },
+  "result": {
+    "modifiers": [
+      "tfc:copy_input",
+      {
+        "type": "tfc:add_trait",
+        "trait": "firmalife:dried"
+      }
+    ]
+  }
+}

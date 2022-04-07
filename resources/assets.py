@@ -1,4 +1,4 @@
-from mcresources import ResourceManager
+from mcresources import ResourceManager, ItemContext
 from mcresources import utils, loot_tables
 from constants import *
 
@@ -23,13 +23,29 @@ def generate(rm: ResourceManager):
 
     rm.block_model('oven_chimney_bricks', parent='firmalife:block/oven_chimney', textures={'cured': 'minecraft:block/bricks', 'particle': 'minecraft:block/bricks'})
     rm.block_model('oven_chimney_clay', parent='firmalife:block/oven_chimney', textures={'cured': 'firmalife:block/unfired_bricks', 'particle': 'firmalife:block/unfired_bricks'})
-    rm.blockstate('oven_chimney', variants={'cured=true': {'model': 'firmalife:block/oven_chimney_bricks'}, 'cured=false': {'model': 'firmalife:block/oven_chimney_clay'}}).with_lang(lang('oven chimney')).with_tag('firmalife:oven_blocks')
+    rm.blockstate('oven_chimney', variants={'cured=true': {'model': 'firmalife:block/oven_chimney_bricks'}, 'cured=false': {'model': 'firmalife:block/oven_chimney_clay'}}).with_lang(lang('oven chimney')).with_tag('firmalife:oven_blocks').with_tag('firmalife:chimneys')
     rm.item_model('oven_chimney', parent='firmalife:block/oven_chimney_clay')
+
+    for fruit in TFC_FRUITS:
+        rm.item_model(('dried', fruit), 'firmalife:dried/dried_%s' % fruit)
+        item_model_property(rm, 'tfc:food/%s' % fruit, [{'predicate': {'firmalife:dried': 1}, 'model': 'firmalife:item/dried/%s'}], {'parent': 'tfc:item/food/%s' % fruit})
 
     for item in SIMPLE_ITEMS:
         rm.item_model(item).with_lang(lang(item))
     for be in BLOCK_ENTITIES:
         rm.lang('firmalife.block_entity.%s' % be, lang(be))
+
+    for key, value in DEFAULT_LANG.items():
+        rm.lang(key, value)
+
+
+def item_model_property(rm: ResourceManager, name_parts: utils.ResourceIdentifier, overrides: utils.Json, data: Dict[str, Any]) -> ItemContext:
+    res = utils.resource_location(rm.domain, name_parts)
+    rm.write((*rm.resource_dir, 'assets', res.domain, 'models', 'item', res.path), {
+        **data,
+        'overrides': overrides
+    })
+    return ItemContext(rm, res)
 
 
 def four_rotations(model: str, rots: Tuple[Any, Any, Any, Any], suffix: str = '', prefix: str = '') -> Dict[str, Dict[str, Any]]:

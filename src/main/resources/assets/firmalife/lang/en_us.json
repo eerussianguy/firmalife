@@ -5,6 +5,7 @@
   "block.firmalife.oven_chimney": "Oven Chimney",
   "item.firmalife.peel": "Peel",
   "item.firmalife.fruit_leaf": "Fruit Leaf",
-  "firmalife.block_entity.oven_bottom": "Oven Bottom",
-  "firmalife.block_entity.oven_top": "Oven Top"
+  "firmalife.block_entity.oven_bottom": "Bottom Oven",
+  "firmalife.block_entity.oven_top": "Top Oven",
+  "firmalife.tooltip.food_trait.dried": "Dried"
 }

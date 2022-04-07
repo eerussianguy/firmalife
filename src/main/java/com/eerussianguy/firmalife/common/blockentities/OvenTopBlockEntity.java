@@ -152,6 +152,11 @@ public class OvenTopBlockEntity extends TickableInventoryBlockEntity<OvenTopBloc
         super.saveAdditional(nbt);
     }
 
+    public float getTemperature()
+    {
+        return temperature;
+    }
+
     @NotNull
     @Override
     public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side)

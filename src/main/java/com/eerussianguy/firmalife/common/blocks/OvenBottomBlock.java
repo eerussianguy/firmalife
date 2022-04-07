@@ -4,7 +4,10 @@ import java.util.Random;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -22,12 +25,14 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 
+import com.eerussianguy.firmalife.client.FLClientHelpers;
 import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.blockentities.OvenBottomBlockEntity;
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.devices.IBellowsConsumer;
+import net.dries007.tfc.util.Helpers;
 
 public class OvenBottomBlock extends AbstractOvenBlock implements IBellowsConsumer
 {
@@ -62,6 +67,15 @@ public class OvenBottomBlock extends AbstractOvenBlock implements IBellowsConsum
             }).orElse(InteractionResult.FAIL)).orElse(InteractionResult.FAIL);
         }
         return InteractionResult.PASS;
+    }
+
+    @Override
+    public void animateTick(BlockState state, Level level, BlockPos pos, Random random)
+    {
+        if (state.getValue(LIT))
+        {
+            super.animateTick(state, level, pos, random);
+        }
     }
 
     @Override

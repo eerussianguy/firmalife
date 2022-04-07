@@ -1,18 +1,28 @@
 package com.eerussianguy.firmalife.client;
 
+import java.util.EnumSet;
+
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import com.eerussianguy.firmalife.client.render.OvenBlockEntityRenderer;
+import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
+import com.eerussianguy.firmalife.common.items.FLFoodTraits;
+import net.dries007.tfc.common.capabilities.food.FoodCapability;
+import net.dries007.tfc.common.items.Food;
+import net.dries007.tfc.common.items.TFCItems;
 
 public class FLClientEvents
 {
+    public static final EnumSet<Food> FRUITS = EnumSet.of(Food.BANANA, Food.BLACKBERRY, Food.BLUEBERRY, Food.BUNCHBERRY, Food.CHERRY, Food.CLOUDBERRY, Food.CRANBERRY, Food.ELDERBERRY, Food.GOOSEBERRY, Food.GREEN_APPLE, Food.LEMON, Food.OLIVE, Food.ORANGE, Food.PEACH, Food.PLUM, Food.RASPBERRY, Food.RED_APPLE, Food.SNOWBERRY, Food.STRAWBERRY, Food.WINTERGREEN_BERRY);
+
     public static void init()
     {
         final IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -32,6 +42,13 @@ public class FLClientEvents
         ItemBlockRenderTypes.setRenderLayer(FLBlocks.OVEN_TOP.get(), cutout);
         ItemBlockRenderTypes.setRenderLayer(FLBlocks.OVEN_BOTTOM.get(), cutout);
         ItemBlockRenderTypes.setRenderLayer(FLBlocks.OVEN_CHIMNEY.get(), cutout);
+
+        TFCItems.FOOD.forEach((food, item) -> {
+            if (FRUITS.contains(food))
+            {
+                ItemProperties.register(item.get(), FLHelpers.identifier("dry"), (stack, a, b, c) -> stack.getCapability(FoodCapability.CAPABILITY).map(cap -> cap.getTraits().contains(FLFoodTraits.DRIED)).orElse(false) ? 1f : 0f);
+            }
+        });
     }
 
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event)

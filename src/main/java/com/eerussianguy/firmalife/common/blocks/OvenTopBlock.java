@@ -71,6 +71,15 @@ public class OvenTopBlock extends AbstractOvenBlock
     }
 
     @Override
+    public void animateTick(BlockState state, Level level, BlockPos pos, Random random)
+    {
+        if (level.getBlockEntity(pos, FLBlockEntities.OVEN_TOP.get()).map(oven -> oven.getTemperature() > 0f).orElse(false))
+        {
+            super.animateTick(state, level, pos, random);
+        }
+    }
+
+    @Override
     @SuppressWarnings("deprecation")
     public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos)
     {

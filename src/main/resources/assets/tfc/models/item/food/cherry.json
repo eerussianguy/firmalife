@@ -1,0 +1,12 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "tfc:item/food/cherry",
+  "overrides": [
+    {
+      "predicate": {
+        "firmalife:dried": 1
+      },
+      "model": "firmalife:item/dried/%s"
+    }
+  ]
+}
