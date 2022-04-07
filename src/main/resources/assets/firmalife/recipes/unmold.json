@@ -1,9 +1,0 @@
-{
-  "type": "firmalife:unmold_recipe",
-  "ingredients": [
-    {
-      "item": "firmalife:mallet_mold"
-    }
-  ],
-  "result": "mallet_head"
-}

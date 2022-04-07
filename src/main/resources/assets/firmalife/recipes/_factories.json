@@ -1,7 +1,0 @@
-{
-  "recipes": {
-    "unmold_recipe": "com.eerussianguy.firmalife.recipe.UnmoldRecipeFL$Factory",
-    "trail_mix": "com.eerussianguy.firmalife.recipe.TrailMixRecipe$Factory",
-    "pizza": "com.eerussianguy.firmalife.recipe.PizzaRecipe$Factory"
-  }
-}

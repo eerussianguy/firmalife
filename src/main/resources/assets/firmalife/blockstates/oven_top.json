@@ -1,0 +1,35 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "variants": {
+    "cured=true,facing=east": {
+      "model": "firmalife:block/oven_top_bricks",
+      "y": 90
+    },
+    "cured=true,facing=north": {
+      "model": "firmalife:block/oven_top_bricks"
+    },
+    "cured=true,facing=south": {
+      "model": "firmalife:block/oven_top_bricks",
+      "y": 180
+    },
+    "cured=true,facing=west": {
+      "model": "firmalife:block/oven_top_bricks",
+      "y": 270
+    },
+    "cured=false,facing=east": {
+      "model": "firmalife:block/oven_top_clay",
+      "y": 90
+    },
+    "cured=false,facing=north": {
+      "model": "firmalife:block/oven_top_clay"
+    },
+    "cured=false,facing=south": {
+      "model": "firmalife:block/oven_top_clay",
+      "y": 180
+    },
+    "cured=false,facing=west": {
+      "model": "firmalife:block/oven_top_clay",
+      "y": 270
+    }
+  }
+}

@@ -1,7 +1,7 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "parent": "item/generated",
+  "parent": "firmalife:block/oven_chimney_clay",
   "textures": {
-    "layer0": "firmalife:item/fruit_leaf"
+    "layer0": "firmalife:item/oven_chimney"
   }
 }

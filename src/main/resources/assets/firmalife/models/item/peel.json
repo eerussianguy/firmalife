@@ -1,6 +1,7 @@
 {
-  "parent": "item/handheld",
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "item/generated",
   "textures": {
-    "layer0": "firmalife:items/peel"
+    "layer0": "firmalife:item/peel"
   }
 }

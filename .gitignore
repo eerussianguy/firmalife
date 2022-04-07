@@ -1,30 +1,26 @@
-# Compiled class file
-*.class
+# eclipse
+bin
+*.launch
+.settings
+.metadata
+.classpath
+.project
 
-# Log file
-*.log
+# idea
+out
+*.ipr
+*.iws
+*.iml
+.idea
 
-# BlueJ files
-*.ctxt
+# gradle
+build
+.gradle
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+# other
+eclipse
+run
+libs
 
-# Package Files #
-#*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
-
-*.idea
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-/.idea/
-/.gradle/
-/build/
-/run/
-/libs/
+# Files from Forge MDK
+forge*changelog.txt

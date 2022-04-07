@@ -1,0 +1,10 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "block.firmalife.oven_bottom": "Bottom Oven",
+  "block.firmalife.oven_top": "Top Oven",
+  "block.firmalife.oven_chimney": "Oven Chimney",
+  "item.firmalife.peel": "Peel",
+  "item.firmalife.fruit_leaf": "Fruit Leaf",
+  "firmalife.block_entity.oven_bottom": "Oven Bottom",
+  "firmalife.block_entity.oven_top": "Oven Top"
+}

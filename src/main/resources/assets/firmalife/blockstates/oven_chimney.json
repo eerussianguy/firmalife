@@ -1,32 +1,11 @@
 {
-	"forge_marker": 1,
-	"defaults": {
-		"textures": {
-			"cured": "firmalife:blocks/unfired_bricks",
-			"particle": "firmalife:blocks/unfired_bricks"
-		},
-		"model": "firmalife:oven_chimney"
-	},
-	"variants": {
-		"cured": {
-			"true": {
-				"textures": {
-					"particle": "blocks/brick",
-					"cured": "blocks/brick"
-				}
-			},
-			"false": {
-				"textures": {
-					"particle": "firmalife:blocks/unfired_bricks",
-					"cured": "firmalife:blocks/unfired_bricks"
-				}
-			}
-		},
-		"inventory": [{
-		}],
-		"normal": [{
-		   "transform": "forge:default-block",
-		   "model": "firmalife:oven_chimney"
-		}]
-	}
+  "__comment__": "This file was automatically created by mcresources",
+  "variants": {
+    "cured=true": {
+      "model": "firmalife:block/oven_chimney_bricks"
+    },
+    "cured=false": {
+      "model": "firmalife:block/oven_chimney_clay"
+    }
+  }
 }
