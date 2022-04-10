@@ -26,6 +26,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 
 import com.eerussianguy.firmalife.client.FLClientHelpers;
+import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.blockentities.OvenBottomBlockEntity;
@@ -55,13 +56,7 @@ public class OvenBottomBlock extends AbstractOvenBlock implements IBellowsConsum
             return level.getBlockEntity(pos, FLBlockEntities.OVEN_BOTTOM.get()).map(oven -> oven.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).map(inv -> {
                 if (inv.getStackInSlot(OvenBottomBlockEntity.SLOT_FUEL_MAX).isEmpty())
                 {
-                    ItemStack stack = inv.insertItem(OvenBottomBlockEntity.SLOT_FUEL_MAX, item.split(1), false);
-                    if (stack.isEmpty()) return InteractionResult.PASS;
-                    if (!level.isClientSide)
-                    {
-                        ItemHandlerHelper.giveItemToPlayer(player, stack);
-                    }
-                    return InteractionResult.sidedSuccess(level.isClientSide);
+                    return FLHelpers.insertOne(level, item, OvenBottomBlockEntity.SLOT_FUEL_MAX, inv, player);
                 }
                 return InteractionResult.FAIL;
             }).orElse(InteractionResult.FAIL)).orElse(InteractionResult.FAIL);

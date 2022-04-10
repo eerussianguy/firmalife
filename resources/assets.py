@@ -26,9 +26,15 @@ def generate(rm: ResourceManager):
     rm.blockstate('oven_chimney', variants={'cured=true': {'model': 'firmalife:block/oven_chimney_bricks'}, 'cured=false': {'model': 'firmalife:block/oven_chimney_clay'}}).with_lang(lang('oven chimney')).with_tag('firmalife:oven_blocks').with_tag('firmalife:chimneys')
     rm.item_model('oven_chimney', parent='firmalife:block/oven_chimney_clay')
 
+    for variant in ('bottom', 'chimney', 'top'):
+        rm.item_model('cured_oven_%s' % variant, parent='firmalife:block/oven_%s_bricks' % variant).with_lang(lang('Cured %s', variant))
+
+    rm.blockstate('drying_mat', model='firmalife:block/drying_mat').with_item_model().with_tag('tfc:mineable_with_sharp_tool').with_lang(lang('drying mat'))
+
     for fruit in TFC_FRUITS:
-        rm.item_model(('dried', fruit), 'firmalife:dried/dried_%s' % fruit)
-        item_model_property(rm, 'tfc:food/%s' % fruit, [{'predicate': {'firmalife:dried': 1}, 'model': 'firmalife:item/dried/%s'}], {'parent': 'tfc:item/food/%s' % fruit})
+        rm.item_model(('not_dried', fruit), 'tfc:item/food/%s' % fruit)
+        rm.item_model(('dried', fruit), 'firmalife:item/dried/dried_%s' % fruit)
+        item_model_property(rm, 'tfc:food/%s' % fruit, [{'predicate': {'firmalife:dry': 1}, 'model': 'firmalife:item/dried/%s' % fruit}], {'parent': 'firmalife:item/not_dried/%s' % fruit})
 
     for item in SIMPLE_ITEMS:
         rm.item_model(item).with_lang(lang(item))

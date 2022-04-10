@@ -7,6 +7,7 @@ from constants import *
 def generate(rm: ResourceManager):
     rm.crafting_shaped('crafting/peel', ['X', 'Y'], {'X': 'minecraft:bowl', 'Y': '#forge:rods/wooden'}, 'firmalife:peel').with_advancement('#forge:rods/wooden')
     drying_recipe(rm, 'drying_fruit', '#tfc:foods/fruits', item_stack_provider(copy_input=True, add_trait='firmalife:dried'))
+    drying_recipe(rm, 'cinnamon', 'firmalife:cinnamon_bark', item_stack_provider('firmalife:cinnamon'))
 
 
 def drying_recipe(rm: ResourceManager, name: utils.ResourceIdentifier, item: str, result: Json) -> RecipeContext:

@@ -24,6 +24,7 @@ public class OvenChimneyBlock extends Block
     public OvenChimneyBlock(Properties properties)
     {
         super(properties);
+        registerDefaultState(getStateDefinition().any().setValue(CURED, false));
     }
 
     @Override

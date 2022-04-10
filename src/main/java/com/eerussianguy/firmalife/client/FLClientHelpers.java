@@ -16,6 +16,6 @@ public final class FLClientHelpers
         final double x = pos.getX() + Mth.nextFloat(random, 0.125f, 0.875f);
         final double y = pos.getY() + Mth.nextFloat(random, 0.125f, 0.875f);
         final double z = pos.getZ() + Mth.nextFloat(random, 0.125f, 0.875f);
-        level.addParticle(particle, x, y, z, Helpers.triangle(random), ySpeed, Helpers.triangle(random));
+        level.addParticle(particle, x, y, z, 0, ySpeed, 0f);
     }
 }

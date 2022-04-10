@@ -1,12 +1,12 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "parent": "tfc:item/food/plum",
+  "parent": "firmalife:item/not_dried/plum",
   "overrides": [
     {
       "predicate": {
-        "firmalife:dried": 1
+        "firmalife:dry": 1
       },
-      "model": "firmalife:item/dried/%s"
+      "model": "firmalife:item/dried/plum"
     }
   ]
 }

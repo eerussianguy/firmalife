@@ -18,6 +18,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import com.eerussianguy.firmalife.common.blockentities.DryingMatBlockEntity;
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.blockentities.OvenBottomBlockEntity;
 import com.eerussianguy.firmalife.common.blockentities.OvenTopBlockEntity;
@@ -34,7 +35,7 @@ public class FLBlocks
     public static final RegistryObject<Block> OVEN_BOTTOM = register("oven_bottom", () -> new OvenBottomBlock(ExtendedProperties.of(Properties.of(Material.STONE).strength(4.0f).randomTicks().lightLevel(FLBlocks::lightEmission).sound(SoundType.STONE).noOcclusion()).blockEntity(FLBlockEntities.OVEN_BOTTOM).serverTicks(OvenBottomBlockEntity::serverTick)), DECORATIONS);
     public static final RegistryObject<Block> OVEN_TOP = register("oven_top", () -> new OvenTopBlock(ExtendedProperties.of(Properties.of(Material.STONE).strength(4.0f).randomTicks().sound(SoundType.STONE).noOcclusion()).blockEntity(FLBlockEntities.OVEN_TOP).serverTicks(OvenTopBlockEntity::serverTick)), DECORATIONS);
     public static final RegistryObject<Block> OVEN_CHIMNEY = register("oven_chimney", () -> new OvenChimneyBlock(Properties.of(Material.STONE).strength(4.0f).sound(SoundType.STONE).noOcclusion()), DECORATIONS);
-    public static final RegistryObject<Block> DRYING_MAT = register("drying_mat", () -> new DryingMatBlock(ExtendedProperties.of(Properties.of(Material.DECORATION).strength(3.0f).sound(SoundType.AZALEA_LEAVES).randomTicks())), DECORATIONS);
+    public static final RegistryObject<Block> DRYING_MAT = register("drying_mat", () -> new DryingMatBlock(ExtendedProperties.of(Properties.of(Material.DECORATION).strength(3.0f).sound(SoundType.AZALEA_LEAVES)).flammable(60, 30).blockEntity(FLBlockEntities.DRYING_MAT).serverTicks(DryingMatBlockEntity::serverTick)), DECORATIONS);
 
 
     public static int lightEmission(BlockState state)

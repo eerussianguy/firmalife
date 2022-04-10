@@ -16,6 +16,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 
+import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.blockentities.OvenBottomBlockEntity;
@@ -45,26 +46,11 @@ public class OvenTopBlock extends AbstractOvenBlock
                 {
                     player.hurt(TFCDamageSources.GRILL, 0.5f);
                 }
-                for (int i = OvenTopBlockEntity.SLOT_INPUT_START; i <= OvenTopBlockEntity.SLOT_INPUT_END; i++)
-                {
-                    ItemStack stack = inv.extractItem(i, 1, false);
-                    if (stack.isEmpty()) continue;
-                    if (!level.isClientSide) ItemHandlerHelper.giveItemToPlayer(player, stack);
-                    return InteractionResult.sidedSuccess(level.isClientSide);
-                }
+                return FLHelpers.takeOneAny(level, OvenTopBlockEntity.SLOT_INPUT_START, OvenTopBlockEntity.SLOT_INPUT_END, inv, player);
             }
             else if (!item.isEmpty())
             {
-                for (int i = OvenTopBlockEntity.SLOT_INPUT_START; i <= OvenTopBlockEntity.SLOT_INPUT_END; i++)
-                {
-                    if (inv.getStackInSlot(i).isEmpty())
-                    {
-                        ItemStack stack = inv.insertItem(i, item.split(1), false);
-                        if (!stack.isEmpty()) continue;
-                        if (!level.isClientSide) ItemHandlerHelper.giveItemToPlayer(player, stack);
-                        return InteractionResult.sidedSuccess(level.isClientSide);
-                    }
-                }
+                return FLHelpers.insertOneAny(level, item, OvenTopBlockEntity.SLOT_INPUT_START, OvenTopBlockEntity.SLOT_INPUT_END, inv, player);
             }
             return InteractionResult.PASS;
         }).orElse(InteractionResult.PASS)).orElse(InteractionResult.PASS);

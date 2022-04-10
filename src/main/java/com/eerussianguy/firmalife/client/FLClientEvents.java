@@ -10,6 +10,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
+import com.eerussianguy.firmalife.client.render.DryingMatBlockEntityRenderer;
 import com.eerussianguy.firmalife.client.render.OvenBlockEntityRenderer;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
@@ -46,7 +47,9 @@ public class FLClientEvents
         TFCItems.FOOD.forEach((food, item) -> {
             if (FRUITS.contains(food))
             {
-                ItemProperties.register(item.get(), FLHelpers.identifier("dry"), (stack, a, b, c) -> stack.getCapability(FoodCapability.CAPABILITY).map(cap -> cap.getTraits().contains(FLFoodTraits.DRIED)).orElse(false) ? 1f : 0f);
+                ItemProperties.register(item.get(), FLHelpers.identifier("dry"), (stack, a, b, c) -> {
+                    return stack.getCapability(FoodCapability.CAPABILITY).map(cap -> cap.getTraits().contains(FLFoodTraits.DRIED)).orElse(false) ? 1f : 0f;
+                });
             }
         });
     }
@@ -54,5 +57,6 @@ public class FLClientEvents
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event)
     {
         event.registerBlockEntityRenderer(FLBlockEntities.OVEN_TOP.get(), ctx -> new OvenBlockEntityRenderer());
+        event.registerBlockEntityRenderer(FLBlockEntities.DRYING_MAT.get(), ctx -> new DryingMatBlockEntityRenderer());
     }
 }

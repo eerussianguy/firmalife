@@ -1,0 +1,10 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "firmalife:drying",
+  "ingredient": {
+    "item": "firmalife:cinnamon_bark"
+  },
+  "result": {
+    "item": "firmalife:cinnamon"
+  }
+}

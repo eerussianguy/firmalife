@@ -1,12 +1,12 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "parent": "tfc:item/food/raspberry",
+  "parent": "firmalife:item/not_dried/raspberry",
   "overrides": [
     {
       "predicate": {
-        "firmalife:dried": 1
+        "firmalife:dry": 1
       },
-      "model": "firmalife:item/dried/%s"
+      "model": "firmalife:item/dried/raspberry"
     }
   ]
 }

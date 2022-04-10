@@ -1,7 +1,7 @@
 package com.eerussianguy.firmalife.common.items;
 
+import com.eerussianguy.firmalife.common.FLHelpers;
 import net.dries007.tfc.common.capabilities.food.FoodTrait;
-import net.dries007.tfc.util.Helpers;
 
 public class FLFoodTraits
 {
@@ -11,6 +11,6 @@ public class FLFoodTraits
 
     private static FoodTrait register(String name, float mod)
     {
-        return FoodTrait.register(Helpers.identifier(name), new FoodTrait(mod, "firmalife.tooltip.food_trait." + name));
+        return FoodTrait.register(FLHelpers.identifier(name), new FoodTrait(mod, "firmalife.tooltip.food_trait." + name));
     }
 }
