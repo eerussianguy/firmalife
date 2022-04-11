@@ -2,6 +2,7 @@
   "__comment__": "This file was automatically created by mcresources",
   "replace": false,
   "values": [
+    "firmalife:cured_oven_chimney",
     "firmalife:oven_chimney"
   ]
 }

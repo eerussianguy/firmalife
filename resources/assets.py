@@ -1,33 +1,32 @@
 from mcresources import ResourceManager, ItemContext
 from mcresources import utils, loot_tables
+
 from constants import *
 
 
 def generate(rm: ResourceManager):
     bot_variants = four_rotations_mp('firmalife:block/oven_fire', (90, None, 180, 270), 'lit', True)
     for stage in ('bricks', 'clay'):
+        tex = 'minecraft:block/bricks' if stage == 'bricks' else 'firmalife:block/unfired_bricks'
         for part in ('bottom', 'top'):
-            tex = 'minecraft:block/bricks' if stage == 'bricks' else 'firmalife:block/unfired_bricks'
             rm.block_model('oven_%s_%s' % (part, stage), parent='firmalife:block/oven_%s' % part, textures={'0': tex, 'particle': tex})
-        bot_variants += four_rotations_mp('firmalife:block/oven_bottom_%s' % stage, (90, None, 180, 270), 'cured', True if stage == 'bricks' else False)
+        rm.block_model('oven_particle_%s' % stage, parent='tfc:block/empty', textures={'particle': tex})
     for i in range(1, 5):
         bot_variants += four_rotations_mp('firmalife:block/oven_logs_%s' % i, (90, None, 180, 270), 'logs', i)
 
-    rm.blockstate_multipart('oven_bottom', *bot_variants).with_lang(lang('bottom oven')).with_tag('firmalife:oven_blocks')
-    rm.item_model('oven_bottom', parent='firmalife:block/oven_bottom_clay')
-    rm.blockstate('oven_top', variants={
-        **four_rotations('firmalife:block/oven_top_bricks', (90, None, 180, 270), prefix='cured=true,'),
-        **four_rotations('firmalife:block/oven_top_clay', (90, None, 180, 270), prefix='cured=false,')
-    }).with_lang(lang('top oven')).with_item_model().with_tag('firmalife:oven_blocks')
-    rm.item_model('oven_top', parent='firmalife:block/oven_top_clay')
-
     rm.block_model('oven_chimney_bricks', parent='firmalife:block/oven_chimney', textures={'cured': 'minecraft:block/bricks', 'particle': 'minecraft:block/bricks'})
     rm.block_model('oven_chimney_clay', parent='firmalife:block/oven_chimney', textures={'cured': 'firmalife:block/unfired_bricks', 'particle': 'firmalife:block/unfired_bricks'})
-    rm.blockstate('oven_chimney', variants={'cured=true': {'model': 'firmalife:block/oven_chimney_bricks'}, 'cured=false': {'model': 'firmalife:block/oven_chimney_clay'}}).with_lang(lang('oven chimney')).with_tag('firmalife:oven_blocks').with_tag('firmalife:chimneys')
-    rm.item_model('oven_chimney', parent='firmalife:block/oven_chimney_clay')
-
-    for variant in ('bottom', 'chimney', 'top'):
-        rm.item_model('cured_oven_%s' % variant, parent='firmalife:block/oven_%s_bricks' % variant).with_lang(lang('Cured %s', variant))
+    for stage in ('bricks', 'clay'):
+        pref = 'cured_' if stage == 'bricks' else ''
+        last_bot_variants = bot_variants.copy()
+        last_bot_variants += four_rotations_mp_free('firmalife:block/oven_bottom_%s' % stage, (90, None, 180, 270))
+        last_bot_variants += [{'model': 'firmalife:block/oven_particle_%s' % stage}]
+        rm.blockstate_multipart('%soven_bottom' % pref, *last_bot_variants).with_lang(lang('%sbottom oven', pref)).with_tag('firmalife:oven_blocks').with_block_loot('firmalife:%soven_bottom' % pref)
+        rm.item_model('%soven_bottom' % pref, parent='firmalife:block/oven_bottom_%s' % stage, no_textures=True)
+        rm.blockstate('%soven_top' % pref, variants={**four_rotations('firmalife:block/oven_top_%s' % stage, (90, None, 180, 270))}).with_lang(lang('%stop oven', pref)).with_tag('firmalife:oven_blocks').with_block_loot('firmalife:%soven_top' % pref)
+        rm.item_model('%soven_top' % pref, parent='firmalife:block/oven_top_%s' % stage, no_textures=True)
+        rm.blockstate('%soven_chimney' % pref, model='firmalife:block/oven_chimney_%s' % stage).with_lang(lang('%soven chimney', pref)).with_tag('firmalife:oven_blocks').with_tag('firmalife:chimneys').with_block_loot('firmalife:%soven_chimney' % pref)
+        rm.item_model('%soven_chimney' % pref, parent='firmalife:block/oven_chimney_%s' % stage, no_textures=True)
 
     rm.blockstate('drying_mat', model='firmalife:block/drying_mat').with_item_model().with_tag('tfc:mineable_with_sharp_tool').with_lang(lang('drying mat'))
 
@@ -62,6 +61,13 @@ def four_rotations(model: str, rots: Tuple[Any, Any, Any, Any], suffix: str = ''
         '%sfacing=west%s' % (prefix, suffix): {'model': model, 'y': rots[3]}
     }
 
+def four_rotations_mp_free(model: str, rots: Tuple[Any, Any, Any, Any]) -> List:
+    return [
+        [{'facing': 'east'}, {'model': model, 'y': rots[0]}],
+        [{'facing': 'north'}, {'model': model, 'y': rots[1]}],
+        [{'facing': 'south'}, {'model': model, 'y': rots[2]}],
+        [{'facing': 'west'}, {'model': model, 'y': rots[3]}]
+    ]
 
 def four_rotations_mp(model: str, rots: Tuple[Any, Any, Any, Any], condition_name: str, condition_value: Any) -> List:
     return [

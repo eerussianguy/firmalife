@@ -1,7 +1,4 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "parent": "firmalife:block/oven_bottom_clay",
-  "textures": {
-    "layer0": "firmalife:item/oven_bottom"
-  }
+  "parent": "firmalife:block/oven_bottom_clay"
 }

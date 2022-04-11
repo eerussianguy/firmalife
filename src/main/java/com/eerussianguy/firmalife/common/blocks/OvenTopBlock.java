@@ -1,6 +1,7 @@
 package com.eerussianguy.firmalife.common.blocks;
 
 import java.util.Random;
+import java.util.function.Supplier;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -11,25 +12,25 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.ItemHandlerHelper;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
-import com.eerussianguy.firmalife.common.blockentities.OvenBottomBlockEntity;
 import com.eerussianguy.firmalife.common.blockentities.OvenTopBlockEntity;
 import net.dries007.tfc.common.TFCDamageSources;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.util.Helpers;
+import org.jetbrains.annotations.Nullable;
 
 public class OvenTopBlock extends AbstractOvenBlock
 {
-    public OvenTopBlock(ExtendedProperties properties)
+    public OvenTopBlock(ExtendedProperties properties, @Nullable Supplier<? extends Block> curedBlock)
     {
-        super(properties);
+        super(properties, curedBlock);
     }
 
     @Override
@@ -78,6 +79,15 @@ public class OvenTopBlock extends AbstractOvenBlock
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, Random rand)
     {
         extinguish(level, pos, state);
+    }
+
+    @Override
+    public void cure(Level level, BlockState state, BlockPos pos)
+    {
+        if (getCured() != null)
+        {
+            OvenTopBlockEntity.cure(level, state, getCured().defaultBlockState(), pos);
+        }
     }
 
     private void extinguish(LevelAccessor level, BlockPos pos, BlockState state)

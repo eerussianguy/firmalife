@@ -8,10 +8,12 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
+import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blocks.AbstractOvenBlock;
+import com.eerussianguy.firmalife.common.blocks.ICure;
 import com.eerussianguy.firmalife.common.blocks.OvenBottomBlock;
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
@@ -26,15 +28,59 @@ import net.dries007.tfc.util.calendar.ICalendarTickable;
  */
 public class OvenBottomBlockEntity extends TickableInventoryBlockEntity<ItemStackHandler> implements ICalendarTickable
 {
+    public static void cure(Level level, BlockState oldState, BlockState newState, BlockPos pos)
+    {
+        // copy state
+        final BlockState placeState = newState
+            .setValue(OvenBottomBlock.FACING, oldState.getValue(OvenBottomBlock.FACING))
+            .setValue(OvenBottomBlock.LOGS, oldState.getValue(OvenBottomBlock.LOGS))
+            .setValue(OvenBottomBlock.LIT, oldState.getValue(OvenBottomBlock.LIT));
+
+        // copy data
+        level.getBlockEntity(pos, FLBlockEntities.OVEN_BOTTOM.get()).ifPresent(oven -> {
+            final float temperature = oven.temperature;
+            final int burnTicks = oven.burnTicks;
+            final float burnTemperature = oven.burnTemperature;
+            final long lastPlayerTick = oven.lastPlayerTick;
+            final int airTicks = oven.airTicks;
+
+            final ItemStack[] inv = new ItemStack[4];
+            oven.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(cap -> {
+                for (int slot = SLOT_FUEL_MIN; slot <= SLOT_FUEL_MAX; slot++)
+                {
+                    inv[slot] = cap.extractItem(slot, 1, false);
+                }
+            });
+
+            level.setBlockAndUpdate(pos, placeState);
+            level.getBlockEntity(pos, FLBlockEntities.OVEN_BOTTOM.get()).ifPresent(newOven -> {
+                newOven.temperature = temperature;
+                newOven.burnTicks = burnTicks;
+                newOven.burnTemperature = burnTemperature;
+                newOven.lastPlayerTick = lastPlayerTick;
+                newOven.airTicks = airTicks;
+                newOven.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(cap -> {
+                    for (int slot = SLOT_FUEL_MIN; slot <= SLOT_FUEL_MAX; slot++)
+                    {
+                        inv[slot] = cap.insertItem(slot, inv[slot], false);
+                    }
+                });
+                newOven.markForSync();
+                newOven.needsSlotUpdate = true;
+            });
+        });
+
+    }
+
     public static void serverTick(Level level, BlockPos pos, BlockState state, OvenBottomBlockEntity oven)
     {
         oven.checkForLastTickSync();
         oven.checkForCalendarUpdate();
 
-        final boolean cured = state.getValue(AbstractOvenBlock.CURED);
+        final boolean cured = state.getBlock() instanceof ICure cure && cure.isCured();
         if (oven.temperature > OvenTopBlockEntity.CURE_TEMP)
         {
-            AbstractOvenBlock.cure(level, pos, !cured);
+            AbstractOvenBlock.cureAllAround(level, pos, !cured);
         }
 
         if (level.getGameTime() % 40 == 0)
@@ -93,7 +139,7 @@ public class OvenBottomBlockEntity extends TickableInventoryBlockEntity<ItemStac
     private long lastPlayerTick;
     private boolean needsSlotUpdate;
     private int airTicks;
-    private float temperature;
+    float temperature;
 
     public OvenBottomBlockEntity(BlockPos pos, BlockState state)
     {

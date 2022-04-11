@@ -53,7 +53,7 @@ public class FLForgeEvents
         BlockState state = event.getState();
         Block block = state.getBlock();
 
-        if (block == FLBlocks.OVEN_BOTTOM.get())
+        if (block == FLBlocks.OVEN_BOTTOM.get() || block == FLBlocks.CURED_OVEN_BOTTOM.get())
         {
             level.getBlockEntity(pos, FLBlockEntities.OVEN_BOTTOM.get()).ifPresent(oven -> oven.light(state));
             event.setCanceled(true);

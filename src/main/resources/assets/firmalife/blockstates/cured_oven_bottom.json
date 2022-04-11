@@ -201,7 +201,7 @@
         "facing": "east"
       },
       "apply": {
-        "model": "firmalife:block/oven_bottom_clay",
+        "model": "firmalife:block/oven_bottom_bricks",
         "y": 90
       }
     },
@@ -210,7 +210,7 @@
         "facing": "north"
       },
       "apply": {
-        "model": "firmalife:block/oven_bottom_clay"
+        "model": "firmalife:block/oven_bottom_bricks"
       }
     },
     {
@@ -218,7 +218,7 @@
         "facing": "south"
       },
       "apply": {
-        "model": "firmalife:block/oven_bottom_clay",
+        "model": "firmalife:block/oven_bottom_bricks",
         "y": 180
       }
     },
@@ -227,13 +227,13 @@
         "facing": "west"
       },
       "apply": {
-        "model": "firmalife:block/oven_bottom_clay",
+        "model": "firmalife:block/oven_bottom_bricks",
         "y": 270
       }
     },
     {
       "apply": {
-        "model": "firmalife:block/oven_particle_clay"
+        "model": "firmalife:block/oven_particle_bricks"
       }
     }
   ]

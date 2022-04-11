@@ -27,6 +27,7 @@ public class FourWayDeviceBlock extends DeviceBlock
         builder.add(FACING);
     }
 
+    @Override
     public BlockState getStateForPlacement(BlockPlaceContext ctx)
     {
         return this.defaultBlockState().setValue(FACING, ctx.getHorizontalDirection().getOpposite());

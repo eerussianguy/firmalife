@@ -1,7 +1,4 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "parent": "firmalife:block/oven_chimney_bricks",
-  "textures": {
-    "layer0": "firmalife:item/cured_oven_chimney"
-  }
+  "parent": "firmalife:block/oven_chimney_bricks"
 }

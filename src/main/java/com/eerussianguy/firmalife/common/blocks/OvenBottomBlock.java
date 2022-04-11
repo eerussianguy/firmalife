@@ -1,13 +1,11 @@
 package com.eerussianguy.firmalife.common.blocks;
 
 import java.util.Random;
+import java.util.function.Supplier;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -23,27 +21,24 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 
 import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.ItemHandlerHelper;
 
-import com.eerussianguy.firmalife.client.FLClientHelpers;
 import com.eerussianguy.firmalife.common.FLHelpers;
-import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.blockentities.OvenBottomBlockEntity;
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.devices.IBellowsConsumer;
-import net.dries007.tfc.util.Helpers;
+import org.jetbrains.annotations.Nullable;
 
 public class OvenBottomBlock extends AbstractOvenBlock implements IBellowsConsumer
 {
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
     public static final IntegerProperty LOGS = FLStateProperties.LOGS;
 
-    public OvenBottomBlock(ExtendedProperties properties)
+    public OvenBottomBlock(ExtendedProperties properties, @Nullable Supplier<? extends Block> curedBlock)
     {
-        super(properties);
-        registerDefaultState(getStateDefinition().any().setValue(CURED, false).setValue(LOGS, 0).setValue(FACING, Direction.NORTH).setValue(LIT, false));
+        super(properties, curedBlock);
+        registerDefaultState(getStateDefinition().any().setValue(LOGS, 0).setValue(FACING, Direction.NORTH).setValue(LIT, false));
     }
 
     @Override
@@ -70,6 +65,15 @@ public class OvenBottomBlock extends AbstractOvenBlock implements IBellowsConsum
         if (state.getValue(LIT))
         {
             super.animateTick(state, level, pos, random);
+        }
+    }
+
+    @Override
+    public void cure(Level level, BlockState state, BlockPos pos)
+    {
+        if (getCured() != null)
+        {
+            OvenBottomBlockEntity.cure(level, state, getCured().defaultBlockState(), pos);
         }
     }
 

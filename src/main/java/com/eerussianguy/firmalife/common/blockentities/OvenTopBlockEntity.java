@@ -9,10 +9,13 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blocks.AbstractOvenBlock;
+import com.eerussianguy.firmalife.common.blocks.ICure;
+import com.eerussianguy.firmalife.common.blocks.OvenBottomBlock;
 import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
 import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
 import net.dries007.tfc.common.capabilities.DelegateItemHandler;
@@ -33,14 +36,41 @@ import org.jetbrains.annotations.Nullable;
  */
 public class OvenTopBlockEntity extends TickableInventoryBlockEntity<OvenTopBlockEntity.OvenInventory> implements ICalendarTickable
 {
-    public static final int SLOTS = 4;
-    public static final int SLOT_INPUT_END = 3;
-    public static final int SLOT_INPUT_START = 0;
-    public static final int TARGET_TEMPERATURE_STABILITY_TICKS = 400;
-    public static final float CURE_TEMP = 600f;
-    public static final int COOK_TIME = ICalendar.TICKS_IN_HOUR * 2;
+    public static void cure(Level level, BlockState oldState, BlockState newState, BlockPos pos)
+    {
+        // copy state
+        final BlockState placeState = newState.setValue(OvenBottomBlock.FACING, oldState.getValue(OvenBottomBlock.FACING));
 
-    private final SidedHandler.Noop<IHeatBlock> sidedHeat;
+        // copy data
+        level.getBlockEntity(pos, FLBlockEntities.OVEN_TOP.get()).ifPresent(oven -> {
+            final float temperature = oven.temperature;
+            final float targetTemperature = oven.targetTemperature;
+            final int targetTemperatureStabilityTicks = oven.targetTemperatureStabilityTicks;
+            final ItemStack[] inv = new ItemStack[4];
+            oven.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(cap -> {
+                for (int slot = SLOT_INPUT_START; slot <= SLOT_INPUT_END; slot++)
+                {
+                    inv[slot] = cap.extractItem(slot, 1, false);
+                }
+            });
+
+            level.setBlockAndUpdate(pos, placeState);
+            level.getBlockEntity(pos, FLBlockEntities.OVEN_TOP.get()).ifPresent(newOven -> {
+                newOven.temperature = temperature;
+                newOven.targetTemperature = targetTemperature;
+                newOven.targetTemperatureStabilityTicks = targetTemperatureStabilityTicks;
+                newOven.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(cap -> {
+                    for (int slot = SLOT_INPUT_START; slot <= SLOT_INPUT_END; slot++)
+                    {
+                        inv[slot] = cap.insertItem(slot, inv[slot], false);
+                    }
+                });
+                newOven.markForSync();
+                newOven.needsRecipeUpdate = true;
+            });
+        });
+
+    }
 
     public static void serverTick(Level level, BlockPos pos, BlockState state, OvenTopBlockEntity oven)
     {
@@ -57,10 +87,10 @@ public class OvenTopBlockEntity extends TickableInventoryBlockEntity<OvenTopBloc
         {
             oven.temperature = HeatCapability.adjustTempTowards(oven.temperature, oven.targetTemperature);
         }
-        final boolean cured = state.getValue(AbstractOvenBlock.CURED);
+        final boolean cured = state.getBlock() instanceof ICure cure && cure.isCured();
         if (oven.temperature > CURE_TEMP)
         {
-            AbstractOvenBlock.cure(level, pos, !cured);
+            AbstractOvenBlock.cureAllAround(level, pos, !cured);
         }
 
         if (oven.targetTemperatureStabilityTicks > 0)
@@ -111,8 +141,17 @@ public class OvenTopBlockEntity extends TickableInventoryBlockEntity<OvenTopBloc
         }
     }
 
+    public static final int SLOTS = 4;
+    public static final int SLOT_INPUT_END = 3;
+    public static final int SLOT_INPUT_START = 0;
+    public static final int TARGET_TEMPERATURE_STABILITY_TICKS = 400;
+    public static final float CURE_TEMP = 600f;
+    public static final int COOK_TIME = ICalendar.TICKS_IN_HOUR * 2;
 
-    private float temperature;
+    private final SidedHandler.Noop<IHeatBlock> sidedHeat;
+
+
+    float temperature;
     private float targetTemperature;
     private int targetTemperatureStabilityTicks;
     private long lastUpdateTick;

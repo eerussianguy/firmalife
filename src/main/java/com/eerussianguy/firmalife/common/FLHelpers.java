@@ -28,6 +28,7 @@ public class FLHelpers
 
     public static InteractionResult insertOne(Level level, ItemStack item, int slot, IItemHandler inv, Player player)
     {
+        if (!inv.isItemValid(slot, item)) return InteractionResult.PASS;
         ItemStack stack = inv.insertItem(slot, item.split(1), false);
         if (stack.isEmpty()) return InteractionResult.sidedSuccess(level.isClientSide);
         if (!level.isClientSide)
@@ -49,11 +50,14 @@ public class FLHelpers
     {
         for (int i = start; i <= end; i++)
         {
-            if (inv.getStackInSlot(i).isEmpty())
+            if (inv.getStackInSlot(i).isEmpty() && inv.isItemValid(i, item))
             {
                 ItemStack stack = inv.insertItem(i, item.split(1), false);
-                if (!stack.isEmpty()) continue;
-                if (!level.isClientSide) ItemHandlerHelper.giveItemToPlayer(player, stack);
+                if (stack.isEmpty()) return InteractionResult.sidedSuccess(level.isClientSide);
+                if (!level.isClientSide)
+                {
+                    ItemHandlerHelper.giveItemToPlayer(player, stack);
+                }
                 return InteractionResult.sidedSuccess(level.isClientSide);
             }
         }

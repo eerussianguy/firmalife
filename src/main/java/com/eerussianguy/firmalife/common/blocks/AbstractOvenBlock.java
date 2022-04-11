@@ -1,6 +1,7 @@
 package com.eerussianguy.firmalife.common.blocks;
 
 import java.util.Random;
+import java.util.function.Supplier;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -9,15 +10,14 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
 
 import com.eerussianguy.firmalife.client.FLClientHelpers;
 import com.eerussianguy.firmalife.common.FLTags;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.util.Helpers;
+import org.jetbrains.annotations.Nullable;
 
-public abstract class AbstractOvenBlock extends FourWayDeviceBlock
+public abstract class AbstractOvenBlock extends FourWayDeviceBlock implements ICure
 {
     public static boolean insulated(LevelAccessor level, BlockPos pos, BlockState state)
     {
@@ -37,30 +37,33 @@ public abstract class AbstractOvenBlock extends FourWayDeviceBlock
         return true;
     }
 
-    public static void cure(Level level, BlockPos pos, boolean myself)
+    public static void cureAllAround(Level level, BlockPos pos, boolean myself)
     {
         BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
         for (Direction d : Helpers.DIRECTIONS)
         {
             mutable.set(pos).relative(d);
             BlockState state = level.getBlockState(mutable);
-            if (state.hasProperty(CURED) && !state.getValue(CURED))
+            if (state.getBlock() instanceof ICure oven)
             {
-                level.setBlockAndUpdate(mutable, state.setValue(CURED, true));
+                oven.cure(level, state, pos);
             }
         }
-        if (myself)
+        BlockState myState = level.getBlockState(pos);
+        if (myself && myState.getBlock() instanceof ICure oven)
         {
-            level.setBlockAndUpdate(pos, level.getBlockState(pos).setValue(CURED, true));
+            oven.cure(level, myState, pos);
         }
     }
 
-    public static final BooleanProperty CURED = FLStateProperties.CURED;
+    @Nullable
+    private final Supplier<? extends Block> curedBlock;
 
-    public AbstractOvenBlock(ExtendedProperties properties)
+    public AbstractOvenBlock(ExtendedProperties properties, @Nullable Supplier<? extends Block> curedBlock)
     {
         super(properties, InventoryRemoveBehavior.DROP);
-        registerDefaultState(getStateDefinition().any().setValue(CURED, false).setValue(FACING, Direction.NORTH));
+        this.curedBlock = curedBlock;
+        registerDefaultState(getStateDefinition().any().setValue(FACING, Direction.NORTH));
     }
 
     @Override
@@ -92,9 +95,9 @@ public abstract class AbstractOvenBlock extends FourWayDeviceBlock
         }
     }
 
-    @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
+    public Block getCured()
     {
-        super.createBlockStateDefinition(builder.add(CURED));
+        return curedBlock == null ? null : curedBlock.get();
     }
+
 }

@@ -6,15 +6,37 @@ from constants import *
 
 def generate(rm: ResourceManager):
     rm.crafting_shaped('crafting/peel', ['X', 'Y'], {'X': 'minecraft:bowl', 'Y': '#forge:rods/wooden'}, 'firmalife:peel').with_advancement('#forge:rods/wooden')
-    drying_recipe(rm, 'drying_fruit', '#tfc:foods/fruits', item_stack_provider(copy_input=True, add_trait='firmalife:dried'))
+    drying_recipe(rm, 'drying_fruit', intersect(utils.ingredient('#tfc:foods/fruits'), not_ingredient(has_trait(true_ingredient(), 'firmalife:dried'))), item_stack_provider(copy_input=True, add_trait='firmalife:dried'))
     drying_recipe(rm, 'cinnamon', 'firmalife:cinnamon_bark', item_stack_provider('firmalife:cinnamon'))
 
 
-def drying_recipe(rm: ResourceManager, name: utils.ResourceIdentifier, item: str, result: Json) -> RecipeContext:
+def drying_recipe(rm: ResourceManager, name: utils.ResourceIdentifier, item: Any, result: Json) -> RecipeContext:
     return rm.recipe(('drying', name), 'firmalife:drying', {
-        'ingredient': utils.ingredient(item),
+        'ingredient': utils.ingredient(item) if isinstance(item, str) else item,
         'result': result
     })
+
+def intersect(ingredient1: Json, ingredient2: Json):
+    return {
+        'type': 'forge:intersect',
+        'children': [ingredient1, ingredient2]
+    }
+
+def has_trait(ingredient: Json, trait: str) -> Json:
+    return {
+        'type': 'tfc:has_trait',
+        'trait': trait,
+        'ingredient': utils.ingredient(ingredient)
+    }
+
+def not_ingredient(data_in: Json):
+    return {'type': 'tfc:not', 'ingredient': data_in}
+
+def false_ingredient():
+    return {'tag': 'tfc:empty'}
+
+def true_ingredient():
+    return not_ingredient(false_ingredient())
 
 def item_stack_provider(data_in: Json = None, copy_input: bool = False, copy_heat: bool = False, copy_food: bool = False, reset_food: bool = False, add_heat: float = None, add_trait: str = None, remove_trait: str = None, empty_bowl: bool = False) -> Json:
     if isinstance(data_in, dict):
