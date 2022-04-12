@@ -2,7 +2,7 @@
   "__comment__": "This file was automatically created by mcresources",
   "type": "firmalife:drying",
   "ingredient": {
-    "type": "forge:intersect",
+    "type": "forge:intersection",
     "children": [
       {
         "tag": "tfc:foods/fruits"

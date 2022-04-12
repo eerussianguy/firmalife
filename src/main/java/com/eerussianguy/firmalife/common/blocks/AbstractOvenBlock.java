@@ -42,11 +42,11 @@ public abstract class AbstractOvenBlock extends FourWayDeviceBlock implements IC
         BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
         for (Direction d : Helpers.DIRECTIONS)
         {
-            mutable.set(pos).relative(d);
+            mutable.set(pos).move(d);
             BlockState state = level.getBlockState(mutable);
             if (state.getBlock() instanceof ICure oven)
             {
-                oven.cure(level, state, pos);
+                oven.cure(level, state, mutable);
             }
         }
         BlockState myState = level.getBlockState(pos);
@@ -69,14 +69,15 @@ public abstract class AbstractOvenBlock extends FourWayDeviceBlock implements IC
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, Random random)
     {
-        FLClientHelpers.randomParticle(ParticleTypes.SMOKE, random, pos, level, 0.1f);
-        FLClientHelpers.randomParticle(ParticleTypes.FLAME, random, pos, level, 0.1f);
+        FLClientHelpers.randomParticle(ParticleTypes.SMOKE, random, pos, level, 0.05f);
+        FLClientHelpers.randomParticle(ParticleTypes.FLAME, random, pos, level, 0.05f);
 
         pos = pos.relative(state.getValue(FACING).getOpposite());
         BlockState stateAt = level.getBlockState(pos);
         if (Helpers.isBlock(stateAt, FLTags.Blocks.CHIMNEYS))
         {
             BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
+            mutable.set(pos);
             do
             {
                 mutable.move(Direction.UP);

@@ -2,6 +2,7 @@ package com.eerussianguy.firmalife.common.blockentities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -25,6 +26,7 @@ import net.dries007.tfc.common.capabilities.heat.HeatCapability;
 import net.dries007.tfc.common.capabilities.heat.IHeatBlock;
 import net.dries007.tfc.common.recipes.HeatingRecipe;
 import net.dries007.tfc.common.recipes.inventory.ItemStackInventory;
+import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.ICalendar;
 import net.dries007.tfc.util.calendar.ICalendarTickable;
@@ -46,27 +48,15 @@ public class OvenTopBlockEntity extends TickableInventoryBlockEntity<OvenTopBloc
             final float temperature = oven.temperature;
             final float targetTemperature = oven.targetTemperature;
             final int targetTemperatureStabilityTicks = oven.targetTemperatureStabilityTicks;
-            final ItemStack[] inv = new ItemStack[4];
-            oven.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(cap -> {
-                for (int slot = SLOT_INPUT_START; slot <= SLOT_INPUT_END; slot++)
-                {
-                    inv[slot] = cap.extractItem(slot, 1, false);
-                }
-            });
+            NonNullList<ItemStack> items = Helpers.extractAllItems(oven.inventory);
 
             level.setBlockAndUpdate(pos, placeState);
             level.getBlockEntity(pos, FLBlockEntities.OVEN_TOP.get()).ifPresent(newOven -> {
                 newOven.temperature = temperature;
                 newOven.targetTemperature = targetTemperature;
                 newOven.targetTemperatureStabilityTicks = targetTemperatureStabilityTicks;
-                newOven.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(cap -> {
-                    for (int slot = SLOT_INPUT_START; slot <= SLOT_INPUT_END; slot++)
-                    {
-                        inv[slot] = cap.insertItem(slot, inv[slot], false);
-                    }
-                });
+                Helpers.insertAllItems(newOven.inventory, items);
                 newOven.markForSync();
-                newOven.needsRecipeUpdate = true;
             });
         });
 
@@ -88,9 +78,13 @@ public class OvenTopBlockEntity extends TickableInventoryBlockEntity<OvenTopBloc
             oven.temperature = HeatCapability.adjustTempTowards(oven.temperature, oven.targetTemperature);
         }
         final boolean cured = state.getBlock() instanceof ICure cure && cure.isCured();
-        if (oven.temperature > CURE_TEMP)
+        if (level.getGameTime() % 40 == 0)
         {
-            AbstractOvenBlock.cureAllAround(level, pos, !cured);
+            if (oven.cureTicks < OvenBottomBlockEntity.CURE_TICKS) oven.cureTicks++;
+            if (oven.temperature > OvenTopBlockEntity.CURE_TEMP && oven.cureTicks > OvenBottomBlockEntity.CURE_TICKS)
+            {
+                AbstractOvenBlock.cureAllAround(level, pos, !cured);
+            }
         }
 
         if (oven.targetTemperatureStabilityTicks > 0)
@@ -158,11 +152,12 @@ public class OvenTopBlockEntity extends TickableInventoryBlockEntity<OvenTopBloc
     private boolean needsRecipeUpdate;
     private final HeatingRecipe[] cachedRecipes;
     private int[] cookTicks;
+    private int cureTicks;
 
     public OvenTopBlockEntity(BlockPos pos, BlockState state)
     {
         super(FLBlockEntities.OVEN_TOP.get(), pos, state, OvenInventory::new, FLHelpers.blockEntityName("oven_top"));
-        temperature = targetTemperature = targetTemperatureStabilityTicks = 0;
+        temperature = targetTemperature = targetTemperatureStabilityTicks = cureTicks = 0;
         lastUpdateTick = Calendars.SERVER.getTicks();
         cachedRecipes = new HeatingRecipe[4];
         cookTicks = new int[] {0, 0, 0, 0};
@@ -177,6 +172,7 @@ public class OvenTopBlockEntity extends TickableInventoryBlockEntity<OvenTopBloc
         targetTemperature = nbt.getFloat("targetTemperature");
         targetTemperatureStabilityTicks = nbt.getInt("targetTemperatureStabilityTicks");
         cookTicks = nbt.getIntArray("cookTicks");
+        cureTicks = nbt.getInt("cureTicks");
         needsRecipeUpdate = true;
         super.loadAdditional(nbt);
     }
@@ -188,6 +184,7 @@ public class OvenTopBlockEntity extends TickableInventoryBlockEntity<OvenTopBloc
         nbt.putFloat("targetTemperature", targetTemperature);
         nbt.putInt("targetTemperatureStabilityTicks", targetTemperatureStabilityTicks);
         nbt.putIntArray("cookTicks", cookTicks);
+        nbt.putInt("cureTicks", cureTicks);
         super.saveAdditional(nbt);
     }
 

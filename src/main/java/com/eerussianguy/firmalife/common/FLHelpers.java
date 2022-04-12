@@ -12,7 +12,6 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 
 import com.eerussianguy.firmalife.Firmalife;
-import com.eerussianguy.firmalife.common.blockentities.OvenTopBlockEntity;
 
 public class FLHelpers
 {

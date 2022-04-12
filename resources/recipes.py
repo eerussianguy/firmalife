@@ -18,7 +18,7 @@ def drying_recipe(rm: ResourceManager, name: utils.ResourceIdentifier, item: Any
 
 def intersect(ingredient1: Json, ingredient2: Json):
     return {
-        'type': 'forge:intersect',
+        'type': 'forge:intersection',
         'children': [ingredient1, ingredient2]
     }
 

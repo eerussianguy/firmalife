@@ -1,6 +1,7 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -8,7 +9,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
@@ -44,13 +44,7 @@ public class OvenBottomBlockEntity extends TickableInventoryBlockEntity<ItemStac
             final long lastPlayerTick = oven.lastPlayerTick;
             final int airTicks = oven.airTicks;
 
-            final ItemStack[] inv = new ItemStack[4];
-            oven.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(cap -> {
-                for (int slot = SLOT_FUEL_MIN; slot <= SLOT_FUEL_MAX; slot++)
-                {
-                    inv[slot] = cap.extractItem(slot, 1, false);
-                }
-            });
+            NonNullList<ItemStack> items = Helpers.extractAllItems(oven.inventory);
 
             level.setBlockAndUpdate(pos, placeState);
             level.getBlockEntity(pos, FLBlockEntities.OVEN_BOTTOM.get()).ifPresent(newOven -> {
@@ -59,14 +53,8 @@ public class OvenBottomBlockEntity extends TickableInventoryBlockEntity<ItemStac
                 newOven.burnTemperature = burnTemperature;
                 newOven.lastPlayerTick = lastPlayerTick;
                 newOven.airTicks = airTicks;
-                newOven.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(cap -> {
-                    for (int slot = SLOT_FUEL_MIN; slot <= SLOT_FUEL_MAX; slot++)
-                    {
-                        inv[slot] = cap.insertItem(slot, inv[slot], false);
-                    }
-                });
+                Helpers.insertAllItems(newOven.inventory, items);
                 newOven.markForSync();
-                newOven.needsSlotUpdate = true;
             });
         });
 
@@ -77,15 +65,17 @@ public class OvenBottomBlockEntity extends TickableInventoryBlockEntity<ItemStac
         oven.checkForLastTickSync();
         oven.checkForCalendarUpdate();
 
-        final boolean cured = state.getBlock() instanceof ICure cure && cure.isCured();
-        if (oven.temperature > OvenTopBlockEntity.CURE_TEMP)
-        {
-            AbstractOvenBlock.cureAllAround(level, pos, !cured);
-        }
+
 
         if (level.getGameTime() % 40 == 0)
         {
-           oven.updateLogs(state);
+            final boolean cured = state.getBlock() instanceof ICure cure && cure.isCured();
+            if (oven.cureTicks <= CURE_TICKS) oven.cureTicks++;
+            if (oven.temperature > OvenTopBlockEntity.CURE_TEMP && oven.cureTicks > CURE_TICKS)
+            {
+                AbstractOvenBlock.cureAllAround(level, pos, !cured);
+            }
+           oven.updateLogs();
         }
 
         if (state.getValue(BlockStateProperties.LIT))
@@ -126,12 +116,13 @@ public class OvenBottomBlockEntity extends TickableInventoryBlockEntity<ItemStac
         if (oven.needsSlotUpdate)
         {
             oven.cascadeFuelSlots();
-            oven.updateLogs(state);
+            oven.updateLogs();
         }
     }
 
     public static final int SLOT_FUEL_MIN = 0;
     public static final int SLOT_FUEL_MAX = 3;
+    public static final int CURE_TICKS = 40;
     private static final int MAX_AIR_TICKS = 600;
 
     private int burnTicks;
@@ -139,15 +130,13 @@ public class OvenBottomBlockEntity extends TickableInventoryBlockEntity<ItemStac
     private long lastPlayerTick;
     private boolean needsSlotUpdate;
     private int airTicks;
+    private int cureTicks;
     float temperature;
 
     public OvenBottomBlockEntity(BlockPos pos, BlockState state)
     {
         super(FLBlockEntities.OVEN_BOTTOM.get(), pos, state, defaultInventory(4), FLHelpers.blockEntityName("oven_bottom"));
-        temperature = 0;
-        burnTemperature = 0;
-        burnTicks = 0;
-        airTicks = 0;
+        temperature = burnTemperature = burnTicks = airTicks = cureTicks = 0;
         lastPlayerTick = Calendars.SERVER.getTicks();
     }
 
@@ -190,6 +179,7 @@ public class OvenBottomBlockEntity extends TickableInventoryBlockEntity<ItemStac
         airTicks = nbt.getInt("airTicks");
         burnTemperature = nbt.getFloat("burnTemperature");
         lastPlayerTick = nbt.getLong("lastPlayerTick");
+        cureTicks = nbt.getInt("cureTicks");
         super.loadAdditional(nbt);
     }
 
@@ -201,6 +191,7 @@ public class OvenBottomBlockEntity extends TickableInventoryBlockEntity<ItemStac
         nbt.putInt("airTicks", airTicks);
         nbt.putFloat("burnTemperature", burnTemperature);
         nbt.putLong("lastPlayerTick", lastPlayerTick);
+        nbt.putInt("cureTicks", cureTicks);
         super.saveAdditional(nbt);
     }
 
@@ -295,9 +286,11 @@ public class OvenBottomBlockEntity extends TickableInventoryBlockEntity<ItemStac
         needsSlotUpdate = false;
     }
 
-    private void updateLogs(BlockState state)
+    private void updateLogs()
     {
+        assert level != null;
         final int logs = countLogs();
+        BlockState state = level.getBlockState(worldPosition);
         if (state.getValue(OvenBottomBlock.LOGS) != logs)
         {
             assert level != null;
