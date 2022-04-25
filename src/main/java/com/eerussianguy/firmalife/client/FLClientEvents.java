@@ -43,6 +43,10 @@ public class FLClientEvents
         ItemBlockRenderTypes.setRenderLayer(FLBlocks.OVEN_TOP.get(), cutout);
         ItemBlockRenderTypes.setRenderLayer(FLBlocks.OVEN_BOTTOM.get(), cutout);
         ItemBlockRenderTypes.setRenderLayer(FLBlocks.OVEN_CHIMNEY.get(), cutout);
+        ItemBlockRenderTypes.setRenderLayer(FLBlocks.IRON_GREENHOUSE_WALL.get(), cutout);
+        ItemBlockRenderTypes.setRenderLayer(FLBlocks.IRON_GREENHOUSE_ROOF.get(), cutout);
+        ItemBlockRenderTypes.setRenderLayer(FLBlocks.IRON_GREENHOUSE_ROOF_TOP.get(), cutout);
+
 
         TFCItems.FOOD.forEach((food, item) -> {
             if (FRUITS.contains(food))

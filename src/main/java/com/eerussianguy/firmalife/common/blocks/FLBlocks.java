@@ -9,6 +9,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.BlockState;
@@ -40,9 +41,12 @@ public class FLBlocks
     public static final RegistryObject<Block> OVEN_TOP = register("oven_top", () -> new OvenTopBlock(ExtendedProperties.of(Properties.of(Material.STONE).strength(4.0f).randomTicks().sound(SoundType.STONE).noOcclusion()).blockEntity(FLBlockEntities.OVEN_TOP).serverTicks(OvenTopBlockEntity::serverTick), FLBlocks.CURED_OVEN_TOP), DECORATIONS);
     public static final RegistryObject<Block> OVEN_CHIMNEY = register("oven_chimney", () -> new OvenChimneyBlock(Properties.of(Material.STONE).strength(4.0f).sound(SoundType.STONE).noOcclusion(), FLBlocks.CURED_OVEN_CHIMNEY), DECORATIONS);
 
-
     public static final RegistryObject<Block> DRYING_MAT = register("drying_mat", () -> new DryingMatBlock(ExtendedProperties.of(Properties.of(Material.DECORATION).strength(3.0f).sound(SoundType.AZALEA_LEAVES)).flammable(60, 30).blockEntity(FLBlockEntities.DRYING_MAT).serverTicks(DryingMatBlockEntity::serverTick)), DECORATIONS);
 
+    public static final RegistryObject<Block> IRON_GREENHOUSE_WALL = register("iron_greenhouse_wall", () -> new GreenhouseWallBlock(Properties.of(Material.METAL).sound(SoundType.COPPER).strength(4.0f).noOcclusion()), DECORATIONS);
+    public static final RegistryObject<Block> IRON_GREENHOUSE_ROOF = register("iron_greenhouse_roof", () -> new GlassStairBlock(() -> IRON_GREENHOUSE_WALL.get().defaultBlockState(), Properties.of(Material.METAL).sound(SoundType.COPPER).strength(4.0f).noOcclusion()));
+    public static final RegistryObject<Block> IRON_GREENHOUSE_ROOF_TOP = register("iron_greenhouse_roof_top", () -> new GlassSlabBlock(Properties.of(Material.METAL).sound(SoundType.COPPER).strength(4.0f).noOcclusion()));
+    public static final RegistryObject<Block> IRON_GREENHOUSE_DOOR = register("iron_greenhouse_door", () -> new DoorBlock(Properties.of(Material.METAL).sound(SoundType.COPPER).strength(4.0f).noOcclusion()));
 
     public static int lightEmission(BlockState state)
     {

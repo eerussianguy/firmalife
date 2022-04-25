@@ -15,7 +15,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class DryingRecipe extends SimpleItemRecipe
 {
-    public static final IndirectHashCollection<Item, DryingRecipe> CACHE = new IndirectHashCollection<>(DryingRecipe::getValidItems);
+    public static final IndirectHashCollection<Item, DryingRecipe> CACHE = IndirectHashCollection.createForRecipe(DryingRecipe::getValidItems, FLRecipeTypes.DRYING);
 
     public DryingRecipe(ResourceLocation id, Ingredient ingredient, ItemStackProvider result)
     {

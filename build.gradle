@@ -120,8 +120,8 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.18.2-40.0.40'
-    implementation fg.deobf("tfc:TerraFirmaCraft-Forge-1.18.2:2.0.15-alpha")
+    minecraft 'net.minecraftforge:forge:1.18.2-40.1.0'
+    implementation fg.deobf("tfc:TerraFirmaCraft-Forge-1.18.2:2.0.18-alpha")
 
     if (System.getProperty("idea.sync.active") != "true") {
         annotationProcessor "org.spongepowered:mixin:0.8.5:processor"

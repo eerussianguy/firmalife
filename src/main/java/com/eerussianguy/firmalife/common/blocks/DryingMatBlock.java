@@ -29,7 +29,7 @@ public class DryingMatBlock extends DeviceBlock
 
     public DryingMatBlock(ExtendedProperties properties)
     {
-        super(properties);
+        super(properties, InventoryRemoveBehavior.DROP);
     }
 
     @Override
