@@ -5,6 +5,16 @@ SIMPLE_ITEMS = ('peel', 'fruit_leaf', 'cinnamon', 'cinnamon_bark', 'ground_cinna
 BLOCK_ENTITIES = ('oven_bottom', 'oven_top', 'drying_mat')
 TFC_FRUITS = ('banana', 'blackberry', 'blueberry', 'bunchberry', 'cherry', 'cloudberry', 'cranberry', 'elderberry', 'gooseberry', 'green_apple', 'lemon', 'olive', 'orange', 'peach', 'plum', 'raspberry', 'red_apple', 'snowberry', 'strawberry', 'wintergreen_berry')
 
+GREENHOUSES = ('rusted_iron', 'iron', 'oxidized_copper', 'weathered_copper', 'exposed_copper', 'copper', 'weathered_treated_wood', 'treated_wood', 'stainless_steel')
+GREENHOUSE_BLOCKS = ('roof', 'roof_top', 'wall', 'glass')
+CLEANING_PAIRS: Dict[str, str] = {
+    'rusted_iron': 'iron',
+    'oxidized_copper': 'copper',
+    'weathered_copper': 'copper',
+    'exposed_copper': 'copper',
+    'weathered_treated_wood': 'treated_wood'
+}
+
 DEFAULT_LANG = {
     'firmalife.tooltip.food_trait.dried': 'Dried',
     'firmalife.jei.drying': 'Drying'

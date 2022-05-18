@@ -10,6 +10,7 @@ import com.eerussianguy.firmalife.common.recipes.DryingRecipe;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.RecipeType;
 import net.dries007.tfc.compat.jei.category.SimpleItemRecipeCategory;
+import org.jetbrains.annotations.Nullable;
 
 public class DryingCategory extends SimpleItemRecipeCategory<DryingRecipe>
 {
@@ -19,8 +20,9 @@ public class DryingCategory extends SimpleItemRecipeCategory<DryingRecipe>
     }
 
     @Override
+    @Nullable
     protected TagKey<Item> getToolTag()
     {
-        return FLTags.Items.USABLE_ON_OVEN; // todo: make this null
+        return null;
     }
 }

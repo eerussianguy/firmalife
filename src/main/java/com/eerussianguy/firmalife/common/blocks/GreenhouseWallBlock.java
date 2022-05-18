@@ -1,7 +1,11 @@
 package com.eerussianguy.firmalife.common.blocks;
 
+import java.util.Random;
+import java.util.function.Supplier;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -12,18 +16,54 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 
+import com.eerussianguy.firmalife.common.FLTags;
+import net.dries007.tfc.common.blocks.ExtendedProperties;
+import net.dries007.tfc.common.blocks.IForgeBlockExtension;
 import net.dries007.tfc.util.Helpers;
+import org.jetbrains.annotations.Nullable;
 
-public class GreenhouseWallBlock extends AbstractGlassBlock
+public class GreenhouseWallBlock extends AbstractGlassBlock implements IWeather, IForgeBlockExtension
 {
     // these properties indicate the lack of another of the same wall above this.
     public static final BooleanProperty UP = BlockStateProperties.UP;
     public static final BooleanProperty DOWN = BlockStateProperties.DOWN;
 
-    public GreenhouseWallBlock(Properties properties)
+    @Nullable
+    private final Supplier<? extends Block> next;
+    private final ExtendedProperties properties;
+
+    public GreenhouseWallBlock(ExtendedProperties properties, @Nullable Supplier<? extends Block> next)
     {
-        super(properties);
+        super(properties.properties());
+        this.next = next;
+        this.properties = properties;
         registerDefaultState(getStateDefinition().any().setValue(UP, false).setValue(DOWN, false));
+    }
+
+    @Override
+    public boolean isRandomlyTicking(BlockState pState)
+    {
+        return hasNext();
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, Random rand)
+    {
+        IWeather.super.randomTick(state, level, pos, rand);
+    }
+
+    @Override
+    @Nullable
+    public Supplier<? extends Block> getNext()
+    {
+        return next;
+    }
+
+    @Override
+    public ExtendedProperties getExtendedProperties()
+    {
+        return properties;
     }
 
     @Override
@@ -32,17 +72,17 @@ public class GreenhouseWallBlock extends AbstractGlassBlock
         builder.add(UP, DOWN);
     }
 
-        @Override
+    @Override
     @SuppressWarnings("deprecation")
     public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos)
     {
-        if (facing == Direction.UP && !Helpers.isBlock(facingState, this))
+        if (facing == Direction.UP)
         {
-            state = state.setValue(UP, true);
+            state = state.setValue(UP, !Helpers.isBlock(facingState, this));
         }
-        else if (facing == Direction.DOWN && !Helpers.isBlock(facingState, this))
+        else if (facing == Direction.DOWN)
         {
-            state = state.setValue(DOWN, true);
+            state = state.setValue(DOWN, !Helpers.isBlock(facingState, this));
         }
         return state;
     }
@@ -53,5 +93,11 @@ public class GreenhouseWallBlock extends AbstractGlassBlock
         final Level level = ctx.getLevel();
         final BlockPos pos = ctx.getClickedPos();
         return defaultBlockState().setValue(UP, !Helpers.isBlock(level.getBlockState(pos.above()), this)).setValue(DOWN, !Helpers.isBlock(level.getBlockState(pos.below()), this));
+    }
+
+    @Override
+    public boolean skipRendering(BlockState state, BlockState adjacent, Direction side)
+    {
+        return Helpers.isBlock(adjacent, FLTags.Blocks.GREENHOUSE);
     }
 }

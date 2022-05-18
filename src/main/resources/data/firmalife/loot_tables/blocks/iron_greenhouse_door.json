@@ -8,7 +8,16 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "firmalife:iron_greenhouse_door"
+          "name": "firmalife:iron_greenhouse_door",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "firmalife:iron_greenhouse_door",
+              "properties": {
+                "half": "lower"
+              }
+            }
+          ]
         }
       ],
       "conditions": [

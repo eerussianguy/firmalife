@@ -9,11 +9,19 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class GlassSlabBlock extends SlabBlock
+import com.eerussianguy.firmalife.common.FLTags;
+import net.dries007.tfc.common.blocks.ExtendedProperties;
+import net.dries007.tfc.common.blocks.IForgeBlockExtension;
+import net.dries007.tfc.util.Helpers;
+
+public class GlassSlabBlock extends SlabBlock implements IForgeBlockExtension
 {
-    public GlassSlabBlock(Properties properties)
+    private final ExtendedProperties properties;
+
+    public GlassSlabBlock(ExtendedProperties properties)
     {
-        super(properties);
+        super(properties.properties());
+        this.properties = properties;
     }
 
     @Override
@@ -40,6 +48,12 @@ public class GlassSlabBlock extends SlabBlock
     @SuppressWarnings("deprecation")
     public boolean skipRendering(BlockState state, BlockState adjacent, Direction side)
     {
-        return adjacent.is(this) || super.skipRendering(state, adjacent, side);
+        return Helpers.isBlock(adjacent, FLTags.Blocks.GREENHOUSE) || super.skipRendering(state, adjacent, side);
+    }
+
+    @Override
+    public ExtendedProperties getExtendedProperties()
+    {
+        return properties;
     }
 }

@@ -2,7 +2,6 @@
   "__comment__": "This file was automatically created by mcresources",
   "parent": "block/door_top_rh",
   "textures": {
-    "bottom": "firmalife:block/greenhouse/iron_door_bottom",
-    "steel": "firmalife:block/greenhouse/iron_door_top"
+    "top": "firmalife:block/greenhouse/iron_door_top"
   }
 }

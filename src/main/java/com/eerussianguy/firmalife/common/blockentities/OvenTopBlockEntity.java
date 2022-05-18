@@ -117,7 +117,6 @@ public class OvenTopBlockEntity extends TickableInventoryBlockEntity<OvenTopBloc
                     {
                         if (oven.cookTicks[slot]++ > COOK_TIME)
                         {
-                            // todo: ItemStackModifier
                             // Convert input
                             final ItemStackInventory inventory = new ItemStackInventory(inputStack);
                             final ItemStack outputItem = recipe.assemble(inventory);
@@ -125,7 +124,7 @@ public class OvenTopBlockEntity extends TickableInventoryBlockEntity<OvenTopBloc
                             // Output transformations
                             outputItem.getCapability(HeatCapability.CAPABILITY).ifPresent(outputCap -> outputCap.setTemperature(oven.temperature));
 
-                            // Add output to crucible
+                            // Add output to oven
                             oven.inventory.setStackInSlot(slot, outputItem);
                             oven.markForSync();
                         }

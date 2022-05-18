@@ -1,6 +1,7 @@
 package com.eerussianguy.firmalife.common.blocks;
 
 import java.util.Locale;
+import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
@@ -25,6 +26,7 @@ import com.eerussianguy.firmalife.common.blockentities.OvenBottomBlockEntity;
 import com.eerussianguy.firmalife.common.blockentities.OvenTopBlockEntity;
 import com.eerussianguy.firmalife.common.items.FLItems;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
+import net.dries007.tfc.util.Helpers;
 
 import static net.dries007.tfc.common.TFCItemGroup.*;
 
@@ -43,10 +45,11 @@ public class FLBlocks
 
     public static final RegistryObject<Block> DRYING_MAT = register("drying_mat", () -> new DryingMatBlock(ExtendedProperties.of(Properties.of(Material.DECORATION).strength(3.0f).sound(SoundType.AZALEA_LEAVES)).flammable(60, 30).blockEntity(FLBlockEntities.DRYING_MAT).serverTicks(DryingMatBlockEntity::serverTick)), DECORATIONS);
 
-    public static final RegistryObject<Block> IRON_GREENHOUSE_WALL = register("iron_greenhouse_wall", () -> new GreenhouseWallBlock(Properties.of(Material.METAL).sound(SoundType.COPPER).strength(4.0f).noOcclusion()), DECORATIONS);
-    public static final RegistryObject<Block> IRON_GREENHOUSE_ROOF = register("iron_greenhouse_roof", () -> new GlassStairBlock(() -> IRON_GREENHOUSE_WALL.get().defaultBlockState(), Properties.of(Material.METAL).sound(SoundType.COPPER).strength(4.0f).noOcclusion()));
-    public static final RegistryObject<Block> IRON_GREENHOUSE_ROOF_TOP = register("iron_greenhouse_roof_top", () -> new GlassSlabBlock(Properties.of(Material.METAL).sound(SoundType.COPPER).strength(4.0f).noOcclusion()));
-    public static final RegistryObject<Block> IRON_GREENHOUSE_DOOR = register("iron_greenhouse_door", () -> new DoorBlock(Properties.of(Material.METAL).sound(SoundType.COPPER).strength(4.0f).noOcclusion()));
+    public static final Map<Greenhouse, Map<Greenhouse.BlockType, RegistryObject<Block>>> GREENHOUSE_BLOCKS = Helpers.mapOfKeys(Greenhouse.class, greenhouse ->
+        Helpers.mapOfKeys(Greenhouse.BlockType.class, type ->
+            register(greenhouse.name() + "_greenhouse_" + type.name(), type.create(greenhouse), type.createBlockItem(new Item.Properties().tab(DECORATIONS)))
+        )
+    );
 
     public static int lightEmission(BlockState state)
     {

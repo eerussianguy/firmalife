@@ -17,21 +17,21 @@ public class FLItems
 {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, com.eerussianguy.firmalife.Firmalife.MOD_ID);
 
-    public static final RegistryObject<Item> CINNAMON = register("cinnamon", MISC);
+    public static final RegistryObject<Item> CINNAMON = register("spice/cinnamon", MISC);
     public static final RegistryObject<Item> CINNAMON_BARK = register("cinnamon_bark", MISC);
-    public static final RegistryObject<Item> GROUND_CINNAMON = register("ground_cinnamon", MISC);
+    public static final RegistryObject<Item> GROUND_CINNAMON = register("spice/ground_cinnamon", MISC);
 
     public static final RegistryObject<Item> BEESWAX = register("beeswax", MISC);
-    public static final RegistryObject<Item> FROTHY_COCONUT = register("frothy_coconut", MISC);
+    public static final RegistryObject<Item> FROTHY_COCONUT = register("food/frothy_coconut", MISC);
     public static final RegistryObject<Item> FRUIT_LEAF = register("fruit_leaf", MISC);
     public static final RegistryObject<Item> PEEL = register("peel", MISC);
     public static final RegistryObject<Item> PINEAPPLE_LEATHER = register("pineapple_leather", MISC);
     public static final RegistryObject<Item> PINEAPPLE_YARN = register("pineapple_yarn", MISC);
     public static final RegistryObject<Item> RENNET = register("rennet", MISC);
 
-    public static final RegistryObject<Item> WHITE_CHOCOLATE_BLEND = register("white_chocolate_blend", MISC);
-    public static final RegistryObject<Item> DARK_CHOCOLATE_BLEND = register("dark_chocolate_blend", MISC);
-    public static final RegistryObject<Item> MILK_CHOCOLATE_BLEND = register("milk_chocolate_blend", MISC);
+    public static final RegistryObject<Item> WHITE_CHOCOLATE_BLEND = register("food/white_chocolate_blend", MISC);
+    public static final RegistryObject<Item> DARK_CHOCOLATE_BLEND = register("food/dark_chocolate_blend", MISC);
+    public static final RegistryObject<Item> MILK_CHOCOLATE_BLEND = register("food/milk_chocolate_blend", MISC);
 
     private static Item.Properties prop()
     {

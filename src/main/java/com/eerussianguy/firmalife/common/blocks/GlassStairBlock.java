@@ -11,6 +11,9 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import com.eerussianguy.firmalife.common.FLTags;
+import net.dries007.tfc.util.Helpers;
+
 public class GlassStairBlock extends StairBlock
 {
     public GlassStairBlock(Supplier<BlockState> state, Properties properties)
@@ -42,6 +45,6 @@ public class GlassStairBlock extends StairBlock
     @SuppressWarnings("deprecation")
     public boolean skipRendering(BlockState state, BlockState adjacent, Direction side)
     {
-        return adjacent.is(this) || super.skipRendering(state, adjacent, side);
+        return Helpers.isBlock(adjacent, FLTags.Blocks.GREENHOUSE);
     }
 }

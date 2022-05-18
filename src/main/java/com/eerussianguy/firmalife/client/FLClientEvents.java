@@ -1,6 +1,8 @@
 package com.eerussianguy.firmalife.client;
 
 import java.util.EnumSet;
+import java.util.Map;
+import java.util.function.Supplier;
 
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -43,9 +45,7 @@ public class FLClientEvents
         ItemBlockRenderTypes.setRenderLayer(FLBlocks.OVEN_TOP.get(), cutout);
         ItemBlockRenderTypes.setRenderLayer(FLBlocks.OVEN_BOTTOM.get(), cutout);
         ItemBlockRenderTypes.setRenderLayer(FLBlocks.OVEN_CHIMNEY.get(), cutout);
-        ItemBlockRenderTypes.setRenderLayer(FLBlocks.IRON_GREENHOUSE_WALL.get(), cutout);
-        ItemBlockRenderTypes.setRenderLayer(FLBlocks.IRON_GREENHOUSE_ROOF.get(), cutout);
-        ItemBlockRenderTypes.setRenderLayer(FLBlocks.IRON_GREENHOUSE_ROOF_TOP.get(), cutout);
+        FLBlocks.GREENHOUSE_BLOCKS.values().forEach(map -> map.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout)));
 
 
         TFCItems.FOOD.forEach((food, item) -> {

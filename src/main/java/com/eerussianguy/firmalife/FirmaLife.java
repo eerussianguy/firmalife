@@ -1,9 +1,11 @@
 package com.eerussianguy.firmalife;
 
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 
 import com.eerussianguy.firmalife.client.FLClientEvents;
 import com.eerussianguy.firmalife.client.FLClientForgeEvents;
@@ -35,8 +37,12 @@ public class Firmalife
         bus.addListener(this::setup);
 
         FLForgeEvents.init();
-        FLClientEvents.init();
-        FLClientForgeEvents.init();
+        if (FMLEnvironment.dist == Dist.CLIENT)
+        {
+            FLClientEvents.init();
+            FLClientForgeEvents.init();
+        }
+
     }
 
     public void setup(FMLCommonSetupEvent event)

@@ -11,13 +11,7 @@
         "type": "tfc:not",
         "ingredient": {
           "type": "tfc:has_trait",
-          "trait": "firmalife:dried",
-          "ingredient": {
-            "type": "tfc:not",
-            "ingredient": {
-              "tag": "tfc:empty"
-            }
-          }
+          "trait": "firmalife:dried"
         }
       }
     ]
