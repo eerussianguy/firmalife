@@ -1,11 +1,14 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"2": "minecraft:block/fire_0"
+		"2": "minecraft:block/fire_0",
+        "particle": "minecraft:block/fire_0"
 	},
+    "ambientocclusion": false,
 	"elements": [
 		{
 			"name": "fire",
+            "shade": false,
 			"from": [1, 4, 9],
 			"to": [15, 11, 9],
 			"faces": {

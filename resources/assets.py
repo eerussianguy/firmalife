@@ -41,8 +41,14 @@ def generate(rm: ResourceManager):
         greenhouse_wall(rm, greenhouse, 'firmalife:block/greenhouse/%s' % greenhouse, 'firmalife:block/greenhouse/%s_glass' % greenhouse)
         greenhouse_door(rm, greenhouse, 'firmalife:block/greenhouse/%s_door_bottom' % greenhouse, 'firmalife:block/greenhouse/%s_door_top' % greenhouse)
 
+    for block, tag in SIMPLE_BLOCKS.items():
+        rm.blockstate(block).with_block_model().with_tag(tag).with_lang(lang(block)).with_item_model()
     for item in SIMPLE_ITEMS:
         rm.item_model(item).with_lang(lang(item))
+    for item in SIMPLE_FOODS:
+        rm.item_model('food/%s' % item).with_lang(lang(item))
+    for item in SIMPLE_SPICES:
+        rm.item_model('spice/%s' % item).with_lang(lang(item))
     for be in BLOCK_ENTITIES:
         rm.lang('firmalife.block_entity.%s' % be, lang(be))
 
@@ -96,7 +102,7 @@ def greenhouse_stairs(rm: ResourceManager, name: str, frame: str, glass: str) ->
     rm.block_model('greenhouse/%s_roof_outer' % name, textures=textures, parent='firmalife:block/greenhouse_roof_outer')
     rm.item_model(block_name, parent='firmalife:block/greenhouse/%s_roof' % name, no_textures=True)
     block.with_block_loot('firmalife:%s' % block_name).with_lang(lang('%s greenhouse roof', name))
-    block.with_tag('%s_greenhouse' % name).with_tag('minecraft:stairs')
+    greenhouse_tags(block, name).with_tag('minecraft:stairs')
     return block
 
 def greenhouse_slab(rm: ResourceManager, name: str, frame: str, glass: str) -> 'BlockContext':
@@ -111,7 +117,7 @@ def greenhouse_slab(rm: ResourceManager, name: str, frame: str, glass: str) -> '
     rm.block_model('greenhouse/%s_roof_top_upper' % name, textures, parent='firmalife:block/greenhouse_roof_top_upper')
     rm.item_model(block_name, parent='firmalife:block/greenhouse/%s_roof_top' % name, no_textures=True)
     block.with_block_loot('firmalife:%s' % block_name)
-    block.with_tag('%s_greenhouse' % name).with_tag('minecraft:slabs')
+    greenhouse_tags(block, name).with_tag('minecraft:slabs')
     return block
 
 def greenhouse_wall(rm: ResourceManager, name: str, frame: str, glass: str) -> 'BlockContext':
@@ -128,7 +134,7 @@ def greenhouse_wall(rm: ResourceManager, name: str, frame: str, glass: str) -> '
         'down=true,up=true': {'model': 'firmalife:block/greenhouse/%s_wall_both' % name}
     }).with_block_loot('firmalife:%s_greenhouse_wall' % name).with_lang(lang('%s greenhouse wall', name))
     rm.item_model('%s_greenhouse_wall' % name, parent='firmalife:block/greenhouse/%s_wall_both' % name, no_textures=True)
-    block.with_tag('%s_greenhouse' % name)
+    greenhouse_tags(block, name)
     return block
 
 def greenhouse_door(rm: ResourceManager, name: str, bot: str, upper: str) -> 'BlockContext':
@@ -147,5 +153,14 @@ def greenhouse_door(rm: ResourceManager, name: str, bot: str, upper: str) -> 'Bl
     rm.block_model(door_model + '_top_hinge', {'top': upper}, parent='block/door_top_rh')
     rm.item_model(door)
     block.with_block_loot({'name': 'firmalife:%s' % door, 'conditions': [loot_tables.block_state_property('firmalife:%s[half=lower]' % door)]}).with_lang(lang('%s greenhouse door', name))
-    block.with_tag('%s_greenhouse' % name).with_tag('minecraft:doors')
+    greenhouse_tags(block, name).with_tag('minecraft:doors')
     return block
+
+def greenhouse_tags(block: BlockContext, greenhouse_name: str) -> 'BlockContext':
+    block.with_tag('%s_greenhouse' % greenhouse_name)
+    if greenhouse_name in ('weathered_treated_wood', 'treated_wood'):
+        block.with_tag('minecraft:mineable/axe')
+    else:
+        block.with_tag('minecraft:mineable/pickaxe')
+    return block
+

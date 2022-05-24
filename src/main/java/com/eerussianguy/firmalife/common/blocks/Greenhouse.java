@@ -16,30 +16,33 @@ import org.jetbrains.annotations.Nullable;
 
 public enum Greenhouse
 {
-    RUSTED_IRON(SoundType.METAL),
-    IRON(SoundType.METAL, RUSTED_IRON),
-    OXIDIZED_COPPER(SoundType.COPPER),
-    WEATHERED_COPPER(SoundType.COPPER, OXIDIZED_COPPER),
-    EXPOSED_COPPER(SoundType.COPPER, WEATHERED_COPPER),
-    COPPER(SoundType.COPPER, EXPOSED_COPPER),
-    WEATHERED_TREATED_WOOD(SoundType.WOOD),
-    TREATED_WOOD(SoundType.WOOD, WEATHERED_TREATED_WOOD),
-    STAINLESS_STEEL(SoundType.LANTERN);
+    RUSTED_IRON(SoundType.METAL, false),
+    IRON(SoundType.METAL, false, RUSTED_IRON),
+    OXIDIZED_COPPER(SoundType.COPPER, false),
+    WEATHERED_COPPER(SoundType.COPPER, false, OXIDIZED_COPPER),
+    EXPOSED_COPPER(SoundType.COPPER, false, WEATHERED_COPPER),
+    COPPER(SoundType.COPPER, false, EXPOSED_COPPER),
+    WEATHERED_TREATED_WOOD(SoundType.WOOD, true),
+    TREATED_WOOD(SoundType.WOOD, true, WEATHERED_TREATED_WOOD),
+    STAINLESS_STEEL(SoundType.LANTERN, false);
 
     @Nullable
     private final Greenhouse next;
     private final SoundType sound;
+    private final boolean flammable;
 
-    Greenhouse(SoundType sound)
+    Greenhouse(SoundType sound, boolean flammable)
     {
         this.next = null;
         this.sound = sound;
+        this.flammable = flammable;
     }
 
-    Greenhouse(SoundType sound, Greenhouse next)
+    Greenhouse(SoundType sound, boolean flammable, Greenhouse next)
     {
         this.next = next;
         this.sound = sound;
+        this.flammable = flammable;
     }
 
     public enum BlockType
@@ -51,7 +54,9 @@ public enum Greenhouse
 
         public static ExtendedProperties properties(Greenhouse green)
         {
-            return ExtendedProperties.of(BlockBehaviour.Properties.of(Material.METAL).sound(green.sound).strength(4.0f).noOcclusion().randomTicks());
+            ExtendedProperties prop = ExtendedProperties.of(BlockBehaviour.Properties.of(Material.METAL).sound(green.sound).strength(4.0f).noOcclusion().randomTicks());
+            if (green.flammable) prop = prop.flammable(60, 30);
+            return prop;
         }
 
         private final BiFunction<Greenhouse, Greenhouse.BlockType, ? extends Block> factory;

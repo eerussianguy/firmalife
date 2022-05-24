@@ -5,14 +5,13 @@ import java.util.function.Supplier;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
 import net.dries007.tfc.util.Helpers;
 import org.jetbrains.annotations.Nullable;
 
-public interface IWeather
+public interface IWeatherable
 {
     default void randomTick(BlockState state, ServerLevel level, BlockPos pos, Random random)
     {
@@ -25,7 +24,7 @@ public interface IWeather
 
     default int weatherChance()
     {
-        return 2;
+        return 350;
     }
 
     default boolean hasNext()

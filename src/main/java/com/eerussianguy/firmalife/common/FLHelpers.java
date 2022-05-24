@@ -1,5 +1,6 @@
 package com.eerussianguy.firmalife.common;
 
+import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
@@ -15,6 +16,8 @@ import com.eerussianguy.firmalife.Firmalife;
 
 public class FLHelpers
 {
+    public static Direction[] NOT_DOWN = new Direction[] {Direction.WEST, Direction.EAST, Direction.NORTH, Direction.SOUTH, Direction.UP};
+
     public static ResourceLocation identifier(String id)
     {
         return new ResourceLocation(Firmalife.MOD_ID, id);

@@ -45,6 +45,9 @@ public class FLClientEvents
         ItemBlockRenderTypes.setRenderLayer(FLBlocks.OVEN_TOP.get(), cutout);
         ItemBlockRenderTypes.setRenderLayer(FLBlocks.OVEN_BOTTOM.get(), cutout);
         ItemBlockRenderTypes.setRenderLayer(FLBlocks.OVEN_CHIMNEY.get(), cutout);
+        ItemBlockRenderTypes.setRenderLayer(FLBlocks.CURED_OVEN_TOP.get(), cutout);
+        ItemBlockRenderTypes.setRenderLayer(FLBlocks.CURED_OVEN_BOTTOM.get(), cutout);
+        ItemBlockRenderTypes.setRenderLayer(FLBlocks.CURED_OVEN_CHIMNEY.get(), cutout);
         FLBlocks.GREENHOUSE_BLOCKS.values().forEach(map -> map.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout)));
 
 

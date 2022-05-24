@@ -12,7 +12,7 @@ import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.IForgeBlockExtension;
 import org.jetbrains.annotations.Nullable;
 
-public class GreenhouseStairBlock extends GlassStairBlock implements IWeather, IForgeBlockExtension
+public class GreenhouseStairBlock extends GlassStairBlock implements IWeatherable, IForgeBlockExtension
 {
     @Nullable
     private final Supplier<? extends Block> next;
@@ -34,7 +34,7 @@ public class GreenhouseStairBlock extends GlassStairBlock implements IWeather, I
     @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, Random rand)
     {
-        IWeather.super.randomTick(state, level, pos, rand);
+        IWeatherable.super.randomTick(state, level, pos, rand);
     }
 
     @Override

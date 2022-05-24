@@ -2,11 +2,16 @@ from typing import Dict, List, NamedTuple, Sequence, Optional, Literal, Tuple, A
 
 
 SIMPLE_ITEMS = ('peel', 'fruit_leaf', 'cinnamon', 'cinnamon_bark', 'ground_cinnamon', 'beeswax', 'frothy_coconut', 'pineapple_leather', 'pineapple_yarn', 'rennet', 'white_chocolate_blend', 'dark_chocolate_blend', 'milk_chocolate_blend')
+SIMPLE_FOODS = ('frothy_coconut', 'white_chocolate_blend', 'dark_chocolate_blend', 'milk_chocolate_blend')
+SIMPLE_SPICES = ('ground_cinnamon', 'cinnamon')
+SIMPLE_BLOCKS: Dict[str, str] = {
+    'climate_station': 'minecraft:mineable/axe'
+}
 BLOCK_ENTITIES = ('oven_bottom', 'oven_top', 'drying_mat')
 TFC_FRUITS = ('banana', 'blackberry', 'blueberry', 'bunchberry', 'cherry', 'cloudberry', 'cranberry', 'elderberry', 'gooseberry', 'green_apple', 'lemon', 'olive', 'orange', 'peach', 'plum', 'raspberry', 'red_apple', 'snowberry', 'strawberry', 'wintergreen_berry')
 
 GREENHOUSES = ('rusted_iron', 'iron', 'oxidized_copper', 'weathered_copper', 'exposed_copper', 'copper', 'weathered_treated_wood', 'treated_wood', 'stainless_steel')
-GREENHOUSE_BLOCKS = ('roof', 'roof_top', 'wall', 'glass')
+GREENHOUSE_BLOCKS = ('roof', 'roof_top', 'wall', 'door')
 CLEANING_PAIRS: Dict[str, str] = {
     'rusted_iron': 'iron',
     'oxidized_copper': 'copper',

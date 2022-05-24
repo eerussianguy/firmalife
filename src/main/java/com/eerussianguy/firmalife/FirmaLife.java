@@ -14,6 +14,7 @@ import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.common.items.FLItems;
+import com.eerussianguy.firmalife.common.network.FLPackets;
 import com.eerussianguy.firmalife.common.recipes.FLRecipeSerializers;
 import com.eerussianguy.firmalife.common.recipes.FLRecipeTypes;
 import com.mojang.logging.LogUtils;
@@ -33,6 +34,8 @@ public class Firmalife
         FLBlockEntities.BLOCK_ENTITIES.register(bus);
         FLRecipeTypes.RECIPE_TYPES.register(bus);
         FLRecipeSerializers.RECIPE_SERIALIZERS.register(bus);
+
+        FLPackets.init();
 
         bus.addListener(this::setup);
 

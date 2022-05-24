@@ -10,12 +10,14 @@ def generate(rm: ResourceManager):
 
     # Firmalife
     drying_recipe(rm, 'drying_fruit', intersect(utils.ingredient('#tfc:foods/fruits'), not_ingredient(has_trait(None, 'firmalife:dried'))), item_stack_provider(copy_input=True, add_trait='firmalife:dried'))
-    drying_recipe(rm, 'cinnamon', 'firmalife:cinnamon_bark', item_stack_provider('firmalife:cinnamon'))
+    drying_recipe(rm, 'cinnamon', 'firmalife:cinnamon_bark', item_stack_provider('firmalife:spice/cinnamon'))
 
     # TFC
     for block in GREENHOUSE_BLOCKS:
-        for first, second in CLEANING_PAIRS.items():
-            chisel_recipe(rm, 'cleaning/%s_greenhouse_%s' % (first, block), 'firmalife:%s_greenhouse_%s' % (first, block), 'firmalife:%s_greenhouse_%s' % (second, block), 'smooth')
+        if block != 'door':
+            for first, second in CLEANING_PAIRS.items():
+                chisel_recipe(rm, 'cleaning/%s_greenhouse_%s' % (first, block), 'firmalife:%s_greenhouse_%s' % (first, block), 'firmalife:%s_greenhouse_%s' % (second, block), 'smooth')
+
 
 def chisel_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredient: utils.Json, result: str, mode: str):
     rm.recipe(('chisel', mode, name_parts), 'tfc:chisel', {

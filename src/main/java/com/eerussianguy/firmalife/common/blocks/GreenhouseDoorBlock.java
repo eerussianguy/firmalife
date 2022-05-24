@@ -18,13 +18,12 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 
-import com.eerussianguy.firmalife.common.FLTags;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.IForgeBlockExtension;
 import net.dries007.tfc.util.Helpers;
 import org.jetbrains.annotations.Nullable;
 
-public class GreenhouseDoorBlock extends DoorBlock implements IWeather, IForgeBlockExtension
+public class GreenhouseDoorBlock extends DoorBlock implements IWeatherable, IForgeBlockExtension
 {
     @Nullable
     private final Supplier<? extends Block> next;

@@ -22,7 +22,7 @@ import net.dries007.tfc.common.blocks.IForgeBlockExtension;
 import net.dries007.tfc.util.Helpers;
 import org.jetbrains.annotations.Nullable;
 
-public class GreenhouseWallBlock extends AbstractGlassBlock implements IWeather, IForgeBlockExtension
+public class GreenhouseWallBlock extends AbstractGlassBlock implements IWeatherable, IForgeBlockExtension
 {
     // these properties indicate the lack of another of the same wall above this.
     public static final BooleanProperty UP = BlockStateProperties.UP;
@@ -50,7 +50,7 @@ public class GreenhouseWallBlock extends AbstractGlassBlock implements IWeather,
     @SuppressWarnings("deprecation")
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, Random rand)
     {
-        IWeather.super.randomTick(state, level, pos, rand);
+        IWeatherable.super.randomTick(state, level, pos, rand);
     }
 
     @Override

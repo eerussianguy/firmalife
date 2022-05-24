@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import org.jetbrains.annotations.Nullable;
 
-public class GreenhouseSlabBlock extends GlassSlabBlock implements IWeather
+public class GreenhouseSlabBlock extends GlassSlabBlock implements IWeatherable
 {
     @Nullable
     private final Supplier<? extends Block> next;
@@ -32,7 +32,7 @@ public class GreenhouseSlabBlock extends GlassSlabBlock implements IWeather
     @SuppressWarnings("deprecation")
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, Random rand)
     {
-        IWeather.super.randomTick(state, level, pos, rand);
+        IWeatherable.super.randomTick(state, level, pos, rand);
     }
 
     @Override
