@@ -1,0 +1,9 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "block/stairs",
+  "textures": {
+    "bottom": "firmalife:block/greenhouse/weathered_copper_glass",
+    "top": "firmalife:block/greenhouse/weathered_copper_glass",
+    "side": "firmalife:block/greenhouse/weathered_copper_glass"
+  }
+}

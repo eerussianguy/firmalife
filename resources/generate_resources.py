@@ -1,9 +1,24 @@
 import argparse
+import sys
+import traceback
+from typing import Sequence
 
 from mcresources import ResourceManager, utils
+from mcresources.type_definitions import Json
+
 import assets
 import recipes
 import data
+
+class ModificationLoggingResourceManager(ResourceManager):
+
+    def write(self, path_parts: Sequence[str], data_in: Json):
+        m = self.modified_files
+        super(ModificationLoggingResourceManager, self).write(path_parts, data_in)
+        if m != self.modified_files:
+            print('Modified: ' + utils.resource_location(self.domain, path_parts).join(), file=sys.stderr)
+            traceback.print_stack()
+            print('', file=sys.stderr)
 
 
 def main():

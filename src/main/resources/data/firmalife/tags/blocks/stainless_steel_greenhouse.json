@@ -2,9 +2,9 @@
   "__comment__": "This file was automatically created by mcresources",
   "replace": false,
   "values": [
-    "firmalife:stainless_steel_greenhouse_roof_top",
-    "firmalife:stainless_steel_greenhouse_roof",
-    "firmalife:stainless_steel_greenhouse_wall",
-    "firmalife:stainless_steel_greenhouse_door"
+    "firmalife:stainless_steel_glass",
+    "firmalife:stainless_steel_glass_stairs",
+    "firmalife:stainless_steel_glass_slab",
+    "firmalife:stainless_steel_glass_door"
   ]
 }

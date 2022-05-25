@@ -5,6 +5,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -48,7 +49,16 @@ public class GlassSlabBlock extends SlabBlock implements IForgeBlockExtension
     @SuppressWarnings("deprecation")
     public boolean skipRendering(BlockState state, BlockState adjacent, Direction side)
     {
-        return Helpers.isBlock(adjacent, FLTags.Blocks.GREENHOUSE) || super.skipRendering(state, adjacent, side);
+        if (!(adjacent.getBlock() instanceof GlassSlabBlock))
+        {
+            return false;
+        }
+        SlabType myType = state.getValue(TYPE);
+        if (myType == SlabType.DOUBLE)
+        {
+            return true;
+        }
+        return myType == adjacent.getValue(TYPE);
     }
 
     @Override

@@ -1,7 +1,0 @@
-{
-  "__comment__": "This file was automatically created by mcresources",
-  "type": "tfc:chisel",
-  "ingredient": "firmalife:exposed_copper_greenhouse_roof_top",
-  "result": "firmalife:copper_greenhouse_roof_top",
-  "mode": "smooth"
-}

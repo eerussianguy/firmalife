@@ -1,8 +1,0 @@
-{
-  "__comment__": "This file was automatically created by mcresources",
-  "parent": "firmalife:block/greenhouse_wall_both",
-  "textures": {
-    "glass": "firmalife:block/greenhouse/rusted_iron_glass",
-    "steel": "firmalife:block/greenhouse/rusted_iron"
-  }
-}

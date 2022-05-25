@@ -1,0 +1,7 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:chisel",
+  "ingredient": "firmalife:rusted_iron_glass",
+  "result": "firmalife:iron_glass",
+  "mode": "smooth"
+}

@@ -45,6 +45,10 @@ public class GlassStairBlock extends StairBlock
     @SuppressWarnings("deprecation")
     public boolean skipRendering(BlockState state, BlockState adjacent, Direction side)
     {
-        return Helpers.isBlock(adjacent, FLTags.Blocks.GREENHOUSE);
+        if (!(adjacent.getBlock() instanceof GlassStairBlock))
+        {
+            return false;
+        }
+        return state.getValue(HALF) == adjacent.getValue(HALF) && state.getValue(FACING) == adjacent.getValue(FACING);
     }
 }

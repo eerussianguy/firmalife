@@ -1,0 +1,7 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:chisel",
+  "ingredient": "firmalife:exposed_copper_glass_door",
+  "result": "firmalife:copper_glass_door",
+  "mode": "smooth"
+}

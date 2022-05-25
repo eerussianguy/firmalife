@@ -49,7 +49,7 @@ public class FLBlocks
 
     public static final Map<Greenhouse, Map<Greenhouse.BlockType, RegistryObject<Block>>> GREENHOUSE_BLOCKS = Helpers.mapOfKeys(Greenhouse.class, greenhouse ->
         Helpers.mapOfKeys(Greenhouse.BlockType.class, type ->
-            register(greenhouse.name() + "_greenhouse_" + type.name(), type.create(greenhouse), type.createBlockItem(new Item.Properties().tab(DECORATIONS)))
+            register(greenhouse.name() + "_" + type.name(), type.create(greenhouse), type.createBlockItem(new Item.Properties().tab(DECORATIONS)))
         )
     );
 

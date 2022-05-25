@@ -1,0 +1,9 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "block/slab",
+  "textures": {
+    "bottom": "firmalife:block/greenhouse/stainless_steel_glass",
+    "top": "firmalife:block/greenhouse/stainless_steel_glass",
+    "side": "firmalife:block/greenhouse/stainless_steel_glass_divided"
+  }
+}

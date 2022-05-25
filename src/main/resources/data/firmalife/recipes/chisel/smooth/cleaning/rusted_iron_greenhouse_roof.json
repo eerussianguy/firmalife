@@ -1,7 +1,0 @@
-{
-  "__comment__": "This file was automatically created by mcresources",
-  "type": "tfc:chisel",
-  "ingredient": "firmalife:rusted_iron_greenhouse_roof",
-  "result": "firmalife:iron_greenhouse_roof",
-  "mode": "smooth"
-}

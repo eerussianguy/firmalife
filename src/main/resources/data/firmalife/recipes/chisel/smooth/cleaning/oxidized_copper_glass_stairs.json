@@ -1,0 +1,7 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:chisel",
+  "ingredient": "firmalife:oxidized_copper_glass_stairs",
+  "result": "firmalife:copper_glass_stairs",
+  "mode": "smooth"
+}

@@ -1,7 +1,0 @@
-{
-  "__comment__": "This file was automatically created by mcresources",
-  "type": "tfc:chisel",
-  "ingredient": "firmalife:weathered_treated_wood_greenhouse_roof_top",
-  "result": "firmalife:treated_wood_greenhouse_roof_top",
-  "mode": "smooth"
-}

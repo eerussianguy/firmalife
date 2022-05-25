@@ -2,9 +2,9 @@
   "__comment__": "This file was automatically created by mcresources",
   "replace": false,
   "values": [
-    "firmalife:treated_wood_greenhouse_roof_top",
-    "firmalife:treated_wood_greenhouse_roof",
-    "firmalife:treated_wood_greenhouse_wall",
-    "firmalife:treated_wood_greenhouse_door"
+    "firmalife:treated_wood_glass",
+    "firmalife:treated_wood_glass_stairs",
+    "firmalife:treated_wood_glass_slab",
+    "firmalife:treated_wood_glass_door"
   ]
 }

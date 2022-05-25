@@ -1,7 +1,0 @@
-{
-  "__comment__": "This file was automatically created by mcresources",
-  "parent": "block/door_top_rh",
-  "textures": {
-    "top": "firmalife:block/greenhouse/rusted_iron_door_top"
-  }
-}

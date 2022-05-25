@@ -94,11 +94,4 @@ public class GreenhouseDoorBlock extends DoorBlock implements IWeatherable, IFor
         return material == Material.METAL ? 1005 : 1006;
     }
 
-    @Override
-    @SuppressWarnings("deprecation")
-    public boolean skipRendering(BlockState state, BlockState adjacent, Direction side)
-    {
-        // specifically we don't want this behavior from door to door
-        return false;
-    }
 }
