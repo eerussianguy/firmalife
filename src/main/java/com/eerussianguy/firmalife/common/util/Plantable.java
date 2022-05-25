@@ -7,6 +7,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 
+import net.minecraftforge.registries.ForgeRegistries;
+
 import com.eerussianguy.firmalife.common.network.DMSPacket;
 import net.dries007.tfc.util.DataManager;
 import net.dries007.tfc.util.ItemDefinition;
@@ -22,6 +24,7 @@ public class Plantable extends ItemDefinition
     @Nullable
     public static Plantable get(ItemStack stack)
     {
+        if (stack.isEmpty()) return null;
         for (Plantable def : CACHE.getAll(stack.getItem()))
         {
             if (def.matches(stack))
@@ -32,8 +35,23 @@ public class Plantable extends ItemDefinition
         return null;
     }
 
+    @Nullable
+    public static Plantable get(ResourceLocation id)
+    {
+        for (Plantable def : MANAGER.getValues())
+        {
+            if (def.id == id)
+            {
+                return def;
+            }
+        }
+        return null;
+    }
+
     private final boolean large;
     private final int stages;
+    private final ItemStack seed;
+    private final ItemStack crop;
 
     private Plantable(ResourceLocation id, JsonObject json)
     {
@@ -41,6 +59,8 @@ public class Plantable extends ItemDefinition
 
         large = JsonHelpers.getAsBoolean(json, "large", false);
         stages = JsonHelpers.getAsInt(json, "stages");
+        seed = JsonHelpers.getItemStack(json, "seed");
+        crop = JsonHelpers.getItemStack(json, "crop");
     }
 
     private Plantable(ResourceLocation id, FriendlyByteBuf buffer)
@@ -48,6 +68,8 @@ public class Plantable extends ItemDefinition
         super(id, Ingredient.fromNetwork(buffer));
         large = buffer.readBoolean();
         stages = buffer.readVarInt();
+        seed = buffer.readItem();
+        crop = buffer.readItem();
     }
 
     public void encode(FriendlyByteBuf buffer)
@@ -55,6 +77,8 @@ public class Plantable extends ItemDefinition
         ingredient.toNetwork(buffer);
         buffer.writeBoolean(large);
         buffer.writeVarInt(stages);
+        buffer.writeItem(seed);
+        buffer.writeItem(crop);
     }
 
     public boolean isLarge()

@@ -1,9 +1,0 @@
-{
-  "__comment__": "This file was automatically created by mcresources",
-  "parent": "block/outer_stairs",
-  "textures": {
-    "bottom": "firmalife:block/greenhouse/oxidized_copper_glass",
-    "top": "firmalife:block/greenhouse/oxidized_copper_glass",
-    "side": "firmalife:block/greenhouse/oxidized_copper_glass"
-  }
-}

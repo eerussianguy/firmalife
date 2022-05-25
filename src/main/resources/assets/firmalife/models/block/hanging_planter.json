@@ -1,0 +1,50 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "firmalife:blocks/greenhouse_steel",
+		"1": "#leaves",
+		"particle": "firmalife:blocks/greenhouse_steel"
+	},
+	"elements": [
+		{
+			"from": [0, 12, 0],
+			"to": [16, 16, 2],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 4], "texture": "#0"},
+				"east": {"uv": [0, 0, 2, 4], "texture": "#0"},
+				"south": {"uv": [0, 0, 16, 4], "texture": "#0"},
+				"west": {"uv": [0, 0, 2, 4], "texture": "#0"},
+				"up": {"uv": [0, 0, 16, 2], "texture": "#0"},
+				"down": {"uv": [0, 0, 16, 2], "texture": "#0"}
+			}
+		},
+		{
+			"from": [0, 12, 14],
+			"to": [16, 16, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 4], "texture": "#0"},
+				"east": {"uv": [0, 0, 2, 4], "texture": "#0"},
+				"south": {"uv": [0, 0, 16, 4], "texture": "#0"},
+				"west": {"uv": [0, 0, 2, 4], "texture": "#0"},
+				"up": {"uv": [0, 0, 16, 2], "texture": "#0"},
+				"down": {"uv": [0, 0, 16, 2], "texture": "#0"}
+			}
+		},
+		{
+			"from": [0, 12, 2],
+			"to": [16, 12, 14],
+			"faces": {
+				"up": {"uv": [0, 0, 16, 12], "texture": "#1"},
+				"down": {"uv": [0, 12, 16, 0], "texture": "#1"}
+			}
+		},
+		{
+			"from": [0, 16, 2],
+			"to": [16, 16, 14],
+			"faces": {
+				"up": {"uv": [0, 12, 16, 0], "texture": "#1"},
+				"down": {"uv": [0, 0, 16, 12], "texture": "#1"}
+			}
+		}
+	]
+}

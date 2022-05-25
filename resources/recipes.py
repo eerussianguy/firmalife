@@ -16,7 +16,7 @@ def generate(rm: ResourceManager):
     for block in GREENHOUSE_BLOCKS:
         if block != 'door':
             for first, second in CLEANING_PAIRS.items():
-                chisel_recipe(rm, 'cleaning/%s_glass%s' % (first, block), 'firmalife:%s_glass%s' % (first, block), 'firmalife:%s_glass%s' % (second, block), 'smooth')
+                chisel_recipe(rm, 'cleaning/%s_greenhouse_%s' % (first, block), 'firmalife:%s_greenhouse_%s' % (first, block), 'firmalife:%s_greenhouse_%s' % (second, block), 'smooth')
 
 
 def chisel_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredient: utils.Json, result: str, mode: str):

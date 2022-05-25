@@ -1,0 +1,7 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "firmalife:block/quad_planter",
+  "textures": {
+    "soil": "firmalife:block/potting_soil_dry"
+  }
+}

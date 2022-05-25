@@ -2,9 +2,9 @@
   "__comment__": "This file was automatically created by mcresources",
   "replace": false,
   "values": [
-    "firmalife:copper_glass",
-    "firmalife:copper_glass_stairs",
-    "firmalife:copper_glass_slab",
-    "firmalife:copper_glass_door"
+    "firmalife:copper_greenhouse_roof_top",
+    "firmalife:copper_greenhouse_roof",
+    "firmalife:copper_greenhouse_wall",
+    "firmalife:copper_greenhouse_door"
   ]
 }

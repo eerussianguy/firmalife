@@ -13,6 +13,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 
 import com.eerussianguy.firmalife.Firmalife;
+import org.jetbrains.annotations.NotNull;
 
 public class FLHelpers
 {
@@ -31,13 +32,7 @@ public class FLHelpers
     public static InteractionResult insertOne(Level level, ItemStack item, int slot, IItemHandler inv, Player player)
     {
         if (!inv.isItemValid(slot, item)) return InteractionResult.PASS;
-        ItemStack stack = inv.insertItem(slot, item.split(1), false);
-        if (stack.isEmpty()) return InteractionResult.sidedSuccess(level.isClientSide);
-        if (!level.isClientSide)
-        {
-            ItemHandlerHelper.giveItemToPlayer(player, stack);
-        }
-        return InteractionResult.sidedSuccess(level.isClientSide);
+        return completeInsertion(level, item, inv, player, slot);
     }
 
     public static InteractionResult takeOne(Level level, int slot, IItemHandler inv, Player player)
@@ -52,18 +47,23 @@ public class FLHelpers
     {
         for (int i = start; i <= end; i++)
         {
-            if (inv.getStackInSlot(i).isEmpty() && inv.isItemValid(i, item))
+            if (inv.getStackInSlot(i).isEmpty())
             {
-                ItemStack stack = inv.insertItem(i, item.split(1), false);
-                if (stack.isEmpty()) return InteractionResult.sidedSuccess(level.isClientSide);
-                if (!level.isClientSide)
-                {
-                    ItemHandlerHelper.giveItemToPlayer(player, stack);
-                }
-                return InteractionResult.sidedSuccess(level.isClientSide);
+                return completeInsertion(level, item, inv, player, i);
             }
         }
         return InteractionResult.PASS;
+    }
+
+    private static InteractionResult completeInsertion(Level level, ItemStack item, IItemHandler inv, Player player, int slot)
+    {
+        ItemStack stack = inv.insertItem(slot, item.split(1), false);
+        if (stack.isEmpty()) return InteractionResult.sidedSuccess(level.isClientSide);
+        if (!level.isClientSide)
+        {
+            ItemHandlerHelper.giveItemToPlayer(player, stack);
+        }
+        return InteractionResult.sidedSuccess(level.isClientSide);
     }
 
     public static InteractionResult takeOneAny(Level level, int start, int end, IItemHandler inv, Player player)

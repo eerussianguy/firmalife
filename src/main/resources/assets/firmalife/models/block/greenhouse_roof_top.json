@@ -156,31 +156,22 @@
 				"west": {"uv": [14, 2, 16, 8], "texture": "#steel"},
 				"down": {"uv": [0, 0, 2, 2], "texture": "#steel"}
 			}
-		},
-		{
-			"from": [1, 1, 1],
-			"to": [15, 7, 15],
-			"rotation": {"angle": 0, "axis": "y", "origin": [10, 14, 9]},
-			"faces": {
-				"north": {"uv": [1, 1, 15, 7], "texture": "#glass"},
-				"east": {"uv": [1, 1, 15, 7], "texture": "#glass"},
-				"south": {"uv": [1, 1, 15, 7], "texture": "#glass"},
-				"west": {"uv": [1, 1, 15, 7], "texture": "#glass"},
-				"up": {"uv": [1, 1, 15, 15], "texture": "#glass"},
-				"down": {"uv": [0, 0, 14, 14], "texture": "#glass"}
-			}
 		}
 	],
-	"groups": [0,
+	"groups": [
+		0,
 		{
 			"name": "greenhouse_roof_top",
 			"origin": [8, 8, 8],
+			"color": 0,
 			"children": [
 				{
 					"name": "group",
 					"origin": [8, 8, 23],
+					"color": 0,
 					"children": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-				}, 13]
+				}
+			]
 		}
 	]
 }

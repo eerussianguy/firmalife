@@ -19,6 +19,8 @@ public class FLBlockEntities
     public static final RegistryObject<BlockEntityType<OvenBottomBlockEntity>> OVEN_BOTTOM = register("oven_bottom", OvenBottomBlockEntity::new, Stream.of(FLBlocks.OVEN_BOTTOM, FLBlocks.CURED_OVEN_BOTTOM));
     public static final RegistryObject<BlockEntityType<OvenTopBlockEntity>> OVEN_TOP = register("oven_top", OvenTopBlockEntity::new, Stream.of(FLBlocks.OVEN_TOP, FLBlocks.CURED_OVEN_TOP));
     public static final RegistryObject<BlockEntityType<DryingMatBlockEntity>> DRYING_MAT = register("drying_mat", DryingMatBlockEntity::new, FLBlocks.DRYING_MAT);
+    public static final RegistryObject<BlockEntityType<LargePlanterBlockEntity>> LARGE_PLANTER = register("large_planter", LargePlanterBlockEntity::new, FLBlocks.LARGE_PLANTER);
+    public static final RegistryObject<BlockEntityType<LargePlanterBlockEntity>> QUAD_PLANTER = register("quad_planter", LargePlanterBlockEntity::new, FLBlocks.QUAD_PLANTER);
 
     @SuppressWarnings("ConstantConditions")
     private static <T extends BlockEntity> RegistryObject<BlockEntityType<T>> register(String name, BlockEntityType.BlockEntitySupplier<T> factory, Supplier<? extends Block> block)

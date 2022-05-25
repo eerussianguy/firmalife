@@ -1,9 +1,0 @@
-{
-  "__comment__": "This file was automatically created by mcresources",
-  "parent": "block/slab",
-  "textures": {
-    "bottom": "firmalife:block/greenhouse/exposed_copper_glass",
-    "top": "firmalife:block/greenhouse/exposed_copper_glass",
-    "side": "firmalife:block/greenhouse/exposed_copper_glass"
-  }
-}

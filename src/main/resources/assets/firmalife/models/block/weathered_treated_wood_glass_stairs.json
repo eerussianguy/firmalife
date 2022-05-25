@@ -1,9 +1,0 @@
-{
-  "__comment__": "This file was automatically created by mcresources",
-  "parent": "block/stairs",
-  "textures": {
-    "bottom": "firmalife:block/greenhouse/weathered_treated_wood_glass",
-    "top": "firmalife:block/greenhouse/weathered_treated_wood_glass",
-    "side": "firmalife:block/greenhouse/weathered_treated_wood_glass_divided"
-  }
-}

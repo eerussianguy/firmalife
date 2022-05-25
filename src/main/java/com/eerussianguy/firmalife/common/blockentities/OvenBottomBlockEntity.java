@@ -65,8 +65,6 @@ public class OvenBottomBlockEntity extends TickableInventoryBlockEntity<ItemStac
         oven.checkForLastTickSync();
         oven.checkForCalendarUpdate();
 
-
-
         if (level.getGameTime() % 40 == 0)
         {
             final boolean cured = state.getBlock() instanceof ICure cure && cure.isCured();

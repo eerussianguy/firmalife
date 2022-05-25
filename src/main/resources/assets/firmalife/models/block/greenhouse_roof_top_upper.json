@@ -6,19 +6,6 @@
 	},
 	"elements": [
 		{
-			"from": [1, 10, 1],
-			"to": [15, 15, 15],
-			"rotation": {"angle": 0, "axis": "y", "origin": [9, 10, 9]},
-			"faces": {
-				"north": {"uv": [0, 0, 14, 5], "texture": "#glass"},
-				"east": {"uv": [0, 0, 14, 5], "texture": "#glass"},
-				"south": {"uv": [0, 0, 14, 5], "texture": "#glass"},
-				"west": {"uv": [0, 0, 14, 5], "texture": "#glass"},
-				"up": {"uv": [1, 1, 15, 15], "texture": "#glass"},
-				"down": {"uv": [1, 1, 15, 15], "texture": "#glass"}
-			}
-		},
-		{
 			"from": [0, 8, 0],
 			"to": [2, 16, 2],
 			"faces": {
@@ -172,7 +159,6 @@
 		}
 	],
 	"groups": [
-		0,
 		{
 			"name": "greenhouse_roof_top",
 			"origin": [8, 8, 8],
@@ -182,9 +168,9 @@
 					"name": "group",
 					"origin": [8, 8, 23],
 					"color": 0,
-					"children": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+					"children": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 				},
-				13
+				12
 			]
 		}
 	]

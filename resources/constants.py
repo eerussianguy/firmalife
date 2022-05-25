@@ -11,7 +11,7 @@ BLOCK_ENTITIES = ('oven_bottom', 'oven_top', 'drying_mat')
 TFC_FRUITS = ('banana', 'blackberry', 'blueberry', 'bunchberry', 'cherry', 'cloudberry', 'cranberry', 'elderberry', 'gooseberry', 'green_apple', 'lemon', 'olive', 'orange', 'peach', 'plum', 'raspberry', 'red_apple', 'snowberry', 'strawberry', 'wintergreen_berry')
 
 GREENHOUSES = ('rusted_iron', 'iron', 'oxidized_copper', 'weathered_copper', 'exposed_copper', 'copper', 'weathered_treated_wood', 'treated_wood', 'stainless_steel')
-GREENHOUSE_BLOCKS = ('_stairs', '_slab', '', '_door')
+GREENHOUSE_BLOCKS = ('roof', 'roof_top', 'wall', 'door')
 CLEANING_PAIRS: Dict[str, str] = {
     'rusted_iron': 'iron',
     'oxidized_copper': 'copper',

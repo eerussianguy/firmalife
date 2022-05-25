@@ -19,12 +19,11 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-import com.eerussianguy.firmalife.common.blockentities.DryingMatBlockEntity;
-import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
-import com.eerussianguy.firmalife.common.blockentities.OvenBottomBlockEntity;
-import com.eerussianguy.firmalife.common.blockentities.OvenTopBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.*;
 import com.eerussianguy.firmalife.common.blocks.greenhouse.ClimateStationBlock;
 import com.eerussianguy.firmalife.common.blocks.greenhouse.Greenhouse;
+import com.eerussianguy.firmalife.common.blocks.greenhouse.LargePlanterBlock;
+import com.eerussianguy.firmalife.common.blocks.greenhouse.QuadPlanterBlock;
 import com.eerussianguy.firmalife.common.items.FLItems;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.util.Helpers;
@@ -47,10 +46,12 @@ public class FLBlocks
     public static final RegistryObject<Block> DRYING_MAT = register("drying_mat", () -> new DryingMatBlock(ExtendedProperties.of(Properties.of(Material.DECORATION).strength(3.0f).sound(SoundType.AZALEA_LEAVES)).flammable(60, 30).blockEntity(FLBlockEntities.DRYING_MAT).serverTicks(DryingMatBlockEntity::serverTick)), DECORATIONS);
 
     public static final RegistryObject<Block> CLIMATE_STATION = register("climate_station", () -> new ClimateStationBlock(ExtendedProperties.of(Properties.of(Material.WOOD).strength(3.0f).sound(SoundType.WOOD)).flammable(60, 30)), DECORATIONS);
+    public static final RegistryObject<Block> LARGE_PLANTER = register("large_planter", () -> new LargePlanterBlock(ExtendedProperties.of(Properties.of(Material.DIRT).sound(SoundType.CROP).strength(1f)).blockEntity(FLBlockEntities.LARGE_PLANTER).serverTicks(LargePlanterBlockEntity::serverTick)));
+    public static final RegistryObject<Block> QUAD_PLANTER = register("quad_planter", () -> new QuadPlanterBlock(ExtendedProperties.of(Properties.of(Material.DIRT).sound(SoundType.CROP).strength(1f)).blockEntity(FLBlockEntities.QUAD_PLANTER).serverTicks(LargePlanterBlockEntity::serverTick)));
 
     public static final Map<Greenhouse, Map<Greenhouse.BlockType, RegistryObject<Block>>> GREENHOUSE_BLOCKS = Helpers.mapOfKeys(Greenhouse.class, greenhouse ->
         Helpers.mapOfKeys(Greenhouse.BlockType.class, type ->
-            register(greenhouse.name() + "_" + type.name(), type.create(greenhouse), type.createBlockItem(new Item.Properties().tab(DECORATIONS)))
+            register(greenhouse.name() + "_greenhouse_" + type.name(), type.create(greenhouse), type.createBlockItem(new Item.Properties().tab(DECORATIONS)))
         )
     );
 

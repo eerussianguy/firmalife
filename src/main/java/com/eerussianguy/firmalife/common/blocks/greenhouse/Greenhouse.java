@@ -48,10 +48,10 @@ public enum Greenhouse
 
     public enum BlockType
     {
-        GLASS((green, type) -> new GreenhouseGlassBlock(properties(green), type.getNext(green))),
-        GLASS_STAIRS((green, type) -> new GreenhouseStairBlock(properties(green), () -> FLBlocks.GREENHOUSE_BLOCKS.get(green).get(GLASS).get().defaultBlockState(), type.getNext(green))),
-        GLASS_SLAB((green, type) -> new GreenhouseSlabBlock(properties(green), type.getNext(green))),
-        GLASS_DOOR((green, type) -> new GreenhouseDoorBlock(properties(green), type.getNext(green)));
+        WALL((green, type) -> new GreenhouseWallBlock(properties(green), type.getNext(green))),
+        ROOF((green, type) -> new GreenhouseStairBlock(properties(green), () -> FLBlocks.GREENHOUSE_BLOCKS.get(green).get(WALL).get().defaultBlockState(), type.getNext(green))),
+        ROOF_TOP((green, type) -> new GreenhouseSlabBlock(properties(green), type.getNext(green))),
+        DOOR((green, type) -> new GreenhouseDoorBlock(properties(green), type.getNext(green)));
 
         public static ExtendedProperties properties(Greenhouse green)
         {
