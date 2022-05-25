@@ -1,4 +1,4 @@
-package com.eerussianguy.firmalife.common.blocks;
+package com.eerussianguy.firmalife.common.blocks.greenhouse;
 
 import java.util.Random;
 import java.util.function.Supplier;
@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
 import com.eerussianguy.firmalife.common.FLTags;
+import com.eerussianguy.firmalife.common.blocks.IWeatherable;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.util.Helpers;
 import org.jetbrains.annotations.Nullable;

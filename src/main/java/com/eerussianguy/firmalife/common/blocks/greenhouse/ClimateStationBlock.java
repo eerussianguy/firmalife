@@ -1,4 +1,4 @@
-package com.eerussianguy.firmalife.common.blocks;
+package com.eerussianguy.firmalife.common.blocks.greenhouse;
 
 import java.util.Set;
 

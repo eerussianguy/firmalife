@@ -1,28 +1,21 @@
-package com.eerussianguy.firmalife.common.blocks;
+package com.eerussianguy.firmalife.common.blocks.greenhouse;
+
+import java.util.function.Supplier;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import com.eerussianguy.firmalife.common.FLTags;
-import net.dries007.tfc.common.blocks.ExtendedProperties;
-import net.dries007.tfc.common.blocks.IForgeBlockExtension;
-import net.dries007.tfc.util.Helpers;
-
-public class GlassSlabBlock extends SlabBlock implements IForgeBlockExtension
+public class GlassStairBlock extends StairBlock
 {
-    private final ExtendedProperties properties;
-
-    public GlassSlabBlock(ExtendedProperties properties)
+    public GlassStairBlock(Supplier<BlockState> state, Properties properties)
     {
-        super(properties.properties());
-        this.properties = properties;
+        super(state, properties);
     }
 
     @Override
@@ -49,21 +42,10 @@ public class GlassSlabBlock extends SlabBlock implements IForgeBlockExtension
     @SuppressWarnings("deprecation")
     public boolean skipRendering(BlockState state, BlockState adjacent, Direction side)
     {
-        if (!(adjacent.getBlock() instanceof GlassSlabBlock))
+        if (!(adjacent.getBlock() instanceof GlassStairBlock))
         {
             return false;
         }
-        SlabType myType = state.getValue(TYPE);
-        if (myType == SlabType.DOUBLE)
-        {
-            return true;
-        }
-        return myType == adjacent.getValue(TYPE);
-    }
-
-    @Override
-    public ExtendedProperties getExtendedProperties()
-    {
-        return properties;
+        return state.getValue(HALF) == adjacent.getValue(HALF) && state.getValue(FACING) == adjacent.getValue(FACING);
     }
 }
