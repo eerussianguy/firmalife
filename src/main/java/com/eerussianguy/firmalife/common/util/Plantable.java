@@ -7,9 +7,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 
-import net.minecraftforge.registries.ForgeRegistries;
-
 import com.eerussianguy.firmalife.common.network.DMSPacket;
+import net.dries007.tfc.common.blockentities.FarmlandBlockEntity;
 import net.dries007.tfc.util.DataManager;
 import net.dries007.tfc.util.ItemDefinition;
 import net.dries007.tfc.util.JsonHelpers;
@@ -52,6 +51,8 @@ public class Plantable extends ItemDefinition
     private final int stages;
     private final ItemStack seed;
     private final ItemStack crop;
+    private final FarmlandBlockEntity.NutrientType nutrient;
+    private final String texture;
 
     private Plantable(ResourceLocation id, JsonObject json)
     {
@@ -61,6 +62,8 @@ public class Plantable extends ItemDefinition
         stages = JsonHelpers.getAsInt(json, "stages");
         seed = JsonHelpers.getItemStack(json, "seed");
         crop = JsonHelpers.getItemStack(json, "crop");
+        nutrient = JsonHelpers.getEnum(json, "nutrient", FarmlandBlockEntity.NutrientType.class, FarmlandBlockEntity.NutrientType.NITROGEN);
+        texture = JsonHelpers.getAsString(json, "texture");
     }
 
     private Plantable(ResourceLocation id, FriendlyByteBuf buffer)
@@ -70,6 +73,8 @@ public class Plantable extends ItemDefinition
         stages = buffer.readVarInt();
         seed = buffer.readItem();
         crop = buffer.readItem();
+        nutrient = buffer.readEnum(FarmlandBlockEntity.NutrientType.class);
+        texture = buffer.readUtf();
     }
 
     public void encode(FriendlyByteBuf buffer)
@@ -79,6 +84,8 @@ public class Plantable extends ItemDefinition
         buffer.writeVarInt(stages);
         buffer.writeItem(seed);
         buffer.writeItem(crop);
+        buffer.writeEnum(nutrient);
+        buffer.writeUtf(texture);
     }
 
     public boolean isLarge()
@@ -89,6 +96,26 @@ public class Plantable extends ItemDefinition
     public int getStages()
     {
         return stages;
+    }
+
+    public ItemStack getSeed()
+    {
+        return seed.copy();
+    }
+
+    public ItemStack getCrop()
+    {
+        return crop.copy();
+    }
+
+    public FarmlandBlockEntity.NutrientType getPrimaryNutrient()
+    {
+        return nutrient;
+    }
+
+    public ResourceLocation getTexture(float growth)
+    {
+        return new ResourceLocation(texture + "_" + (int) (growth * stages));
     }
 
     public static class Packet extends DMSPacket<Plantable> {}

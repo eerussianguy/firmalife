@@ -1,19 +1,20 @@
 package com.eerussianguy.firmalife.common.util;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Predicate;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.Mth;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
+import com.eerussianguy.firmalife.common.blockentities.LargePlanterBlockEntity;
 import net.dries007.tfc.util.Helpers;
+import net.dries007.tfc.util.calendar.Calendars;
+import net.dries007.tfc.util.calendar.ICalendar;
 import org.jetbrains.annotations.Nullable;
 
 public final class Mechanics
@@ -101,4 +102,58 @@ public final class Mechanics
     }
 
     public record GreenhouseInfo(GreenhouseType type, Set<BlockPos> positions) { }
+
+    private static final int UPDATE_INTERVAL = ICalendar.TICKS_IN_DAY;
+
+    public static final float GROWTH_FACTOR = 1f / (24 * ICalendar.TICKS_IN_DAY);
+    public static final float NUTRIENT_CONSUMPTION = 1f / (12 * ICalendar.TICKS_IN_DAY);
+    public static final float NUTRIENT_GROWTH_FACTOR = 0.5f;
+
+    public static boolean growthTick(Level level, BlockPos pos, BlockState state, LargePlanterBlockEntity planter)
+    {
+        final long firstTick = planter.getLastUpdateTick(), thisTick = Calendars.SERVER.getTicks();
+        long tick = firstTick + UPDATE_INTERVAL, lastTick = firstTick;
+        for (; tick < thisTick; tick += UPDATE_INTERVAL)
+        {
+            if (!growthTickStep(level, level.getRandom(), lastTick, tick, planter))
+            {
+                return false;
+            }
+            lastTick = tick;
+        }
+        return lastTick >= thisTick || growthTickStep(level, level.getRandom(), lastTick, thisTick, planter);
+    }
+
+    public static boolean growthTickStep(Level level, Random random, long fromTick, long toTick, LargePlanterBlockEntity planter)
+    {
+        // Calculate invariants
+        final ICalendar calendar = Calendars.get(level);
+        final long tickDelta = toTick - fromTick;
+        final boolean growing = planter.checkValid();
+
+        for (int slot = 0; slot < planter.slots(); slot++)
+        {
+            Plantable plant = planter.getPlantable(slot);
+            if (plant == null) continue;
+            // Nutrients are consumed first, since they are independent of growth or health.
+            // As long as the crop exists it consumes nutrients.
+            float nutrientsConsumed = planter.consumeNutrientAndResupplyOthers(plant.getPrimaryNutrient(), NUTRIENT_CONSUMPTION * tickDelta);
+
+            // Total growth is based on the ticks and the nutrients consumed. It is then allocated to actual growth or expiry based on other factors.
+            float totalGrowthDelta = Helpers.uniform(random, 0.9f, 1.1f) * tickDelta * GROWTH_FACTOR + nutrientsConsumed * NUTRIENT_GROWTH_FACTOR;
+            float growth = planter.getGrowth(slot);
+
+            if (totalGrowthDelta > 0 && growing)
+            {
+                // Allocate to growth
+                final float delta = Mth.clamp(totalGrowthDelta, 0, 1);
+                growth += delta;
+            }
+
+            planter.setGrowth(slot, growth);
+            planter.setLastUpdateTick(calendar.getTicks());
+        }
+        return true;
+    }
+
 }

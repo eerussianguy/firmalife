@@ -2,10 +2,7 @@ package com.eerussianguy.firmalife.common.blocks.greenhouse;
 
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -14,7 +11,6 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import com.eerussianguy.firmalife.common.util.Plantable;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.dries007.tfc.client.IHighlightHandler;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
@@ -35,21 +31,10 @@ public class QuadPlanterBlock extends LargePlanterBlock implements IHighlightHan
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit)
+    protected int getUseSlot(BlockHitResult hit, BlockPos pos)
     {
-        final ItemStack held = player.getItemInHand(hand);
-        final Plantable plant = Plantable.get(held);
         final Vec3 trace = hit.getLocation().add(-pos.getX(), -pos.getY(), -pos.getZ());
-        final int slot = getSlotForHit(trace.x, trace.z);
-        if (plant != null && !plant.isLarge())
-        {
-            return insertSlot(level, pos, held, player, slot);
-        }
-        else if (player.isShiftKeyDown() && held.isEmpty())
-        {
-            return takeSlot(level, pos, player, slot);
-        }
-        return InteractionResult.PASS;
+        return getSlotForHit(trace.x, trace.z);
     }
 
     @Override

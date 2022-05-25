@@ -1,6 +1,5 @@
 package com.eerussianguy.firmalife.common.blocks.greenhouse;
 
-import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -20,13 +19,11 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.items.CapabilityItemHandler;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
-import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.blockentities.LargePlanterBlockEntity;
 import com.eerussianguy.firmalife.common.blocks.FLStateProperties;
 import com.eerussianguy.firmalife.common.util.Plantable;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.devices.DeviceBlock;
-import net.dries007.tfc.util.Helpers;
 
 public class LargePlanterBlock extends DeviceBlock
 {
@@ -46,18 +43,24 @@ public class LargePlanterBlock extends DeviceBlock
     {
         final ItemStack held = player.getItemInHand(hand);
         final Plantable plant = Plantable.get(held);
+        final int slot = getUseSlot(hit, pos);
         if (plant != null && plant.isLarge())
         {
-            return insertSlot(level, pos, held, player, 0);
+            return insertSlot(level, pos, held, player, slot);
         }
         else if (player.isShiftKeyDown() && held.isEmpty())
         {
-            return takeSlot(level, pos, player, 0);
+            return takeSlot(level, pos, player, slot);
         }
         return InteractionResult.PASS;
     }
 
-    protected InteractionResult insertSlot(Level level, BlockPos pos, ItemStack held, Player player, int slot)
+    protected int getUseSlot(BlockHitResult hit, BlockPos pos)
+    {
+        return 0;
+    }
+
+    private InteractionResult insertSlot(Level level, BlockPos pos, ItemStack held, Player player, int slot)
     {
         BlockEntity blockEntity = level.getBlockEntity(pos);
         if (blockEntity instanceof LargePlanterBlockEntity planter)
@@ -69,10 +72,23 @@ public class LargePlanterBlock extends DeviceBlock
         return InteractionResult.PASS;
     }
 
-    protected InteractionResult takeSlot(Level level, BlockPos pos, Player player, int slot)
+    private InteractionResult takeSlot(Level level, BlockPos pos, Player player, int slot)
     {
-        return InteractionResult.FAIL;
+        BlockEntity blockEntity = level.getBlockEntity(pos);
+        if (blockEntity instanceof LargePlanterBlockEntity planter)
+        {
+            return planter.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).map(inv -> {
+                Plantable plant = planter.getPlantable(slot);
+                if (plant != null && planter.getGrowth(slot) >= 1)
+                {
+                    return FLHelpers.takeOne(level, slot, inv, player);
+                }
+                return InteractionResult.PASS;
+            }).orElse(InteractionResult.PASS);
+        }
+        return InteractionResult.PASS;
     }
+
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
     {

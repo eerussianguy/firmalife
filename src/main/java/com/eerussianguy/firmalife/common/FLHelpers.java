@@ -1,5 +1,6 @@
 package com.eerussianguy.firmalife.common;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -76,5 +77,10 @@ public class FLHelpers
             return InteractionResult.sidedSuccess(level.isClientSide);
         }
         return InteractionResult.PASS;
+    }
+
+    public static Iterable<BlockPos> allPositionsCentered(BlockPos center, int radius, int height)
+    {
+        return BlockPos.betweenClosed(center.offset(-radius, -height, -radius), center.offset(radius, height, radius));
     }
 }
