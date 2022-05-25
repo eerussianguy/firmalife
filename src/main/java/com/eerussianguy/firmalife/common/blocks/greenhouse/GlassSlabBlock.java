@@ -47,16 +47,7 @@ public class GlassSlabBlock extends SlabBlock implements IForgeBlockExtension
     @SuppressWarnings("deprecation")
     public boolean skipRendering(BlockState state, BlockState adjacent, Direction side)
     {
-        if (!(adjacent.getBlock() instanceof GlassSlabBlock))
-        {
-            return false;
-        }
-        SlabType myType = state.getValue(TYPE);
-        if (myType == SlabType.DOUBLE)
-        {
-            return true;
-        }
-        return myType == adjacent.getValue(TYPE);
+        return adjacent.getBlock() instanceof GlassSlabBlock && state.getValue(TYPE) == adjacent.getValue(TYPE);
     }
 
     @Override

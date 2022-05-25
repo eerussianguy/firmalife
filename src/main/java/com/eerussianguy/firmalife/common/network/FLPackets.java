@@ -13,6 +13,7 @@ import net.minecraftforge.network.simple.SimpleChannel;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.util.GreenhouseType;
+import com.eerussianguy.firmalife.common.util.Plantable;
 import net.dries007.tfc.util.DataManager;
 
 public class FLPackets
@@ -32,6 +33,7 @@ public class FLPackets
         // S -> C
 
         registerDataManager(GreenhouseType.Packet.class, GreenhouseType.MANAGER);
+        registerDataManager(Plantable.Packet.class, Plantable.MANAGER);
 
         // C -> S
     }

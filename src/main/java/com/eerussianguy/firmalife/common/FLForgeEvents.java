@@ -16,6 +16,7 @@ import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.network.FLPackets;
 import com.eerussianguy.firmalife.common.util.GreenhouseType;
+import com.eerussianguy.firmalife.common.util.Plantable;
 import net.dries007.tfc.util.events.StartFireEvent;
 
 public class FLForgeEvents
@@ -38,6 +39,7 @@ public class FLForgeEvents
     public static void addReloadListeners(AddReloadListenerEvent event)
     {
         event.addListener(GreenhouseType.MANAGER);
+        event.addListener(Plantable.MANAGER);
     }
 
     public static void onDataPackSync(OnDatapackSyncEvent event)
@@ -46,6 +48,7 @@ public class FLForgeEvents
         final PacketDistributor.PacketTarget target = player == null ? PacketDistributor.ALL.noArg() : PacketDistributor.PLAYER.with(() -> player);
 
         FLPackets.send(target, GreenhouseType.MANAGER.createSyncPacket());
+        FLPackets.send(target, Plantable.MANAGER.createSyncPacket());
     }
 
     public static void onFireStart(StartFireEvent event)
