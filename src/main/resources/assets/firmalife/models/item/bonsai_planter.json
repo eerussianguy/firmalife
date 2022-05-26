@@ -1,0 +1,7 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "firmalife:block/bonsai_planter_dry",
+  "textures": {
+    "layer0": "firmalife:item/bonsai_planter"
+  }
+}

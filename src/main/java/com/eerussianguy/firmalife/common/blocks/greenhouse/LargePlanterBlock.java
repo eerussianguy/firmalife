@@ -8,7 +8,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -63,7 +62,7 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
         final int slot = getUseSlot(hit, pos);
         if (level.getBlockEntity(pos) instanceof LargePlanterBlockEntity planter)
         {
-            if (fertilizer != null)
+            if (!held.isEmpty() && fertilizer != null)
             {
                 planter.addNutrients(fertilizer);
                 if (level instanceof ServerLevel server)
@@ -127,11 +126,16 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
             {
                 text.add(new TextComponent(String.format("[Debug] Growth = %.2f, Water = %.2f", planter.getGrowth(slot), planter.getWater())));
             }
-            if (planter.getGrowth(slot) == 1)
+            if (planter.getGrowth(slot) >= 1)
             {
                 text.add(new TranslatableComponent("tfc.tooltip.farmland.mature"));
             }
-            text.add(new TranslatableComponent(planter.checkValid() ? "firmalife.greenhouse.valid_block" : "firmalife.greenhouse.invalid_block"));
+            final boolean valid = planter.checkValid();
+            text.add(new TranslatableComponent(valid ? "firmalife.greenhouse.valid_block" : "firmalife.greenhouse.invalid_block"));
+            if (!valid)
+            {
+                text.add(planter.getInvalidReason());
+            }
 
             text.add(new TranslatableComponent("tfc.tooltip.farmland.nutrients", format(planter, FarmlandBlockEntity.NutrientType.NITROGEN), format(planter, FarmlandBlockEntity.NutrientType.PHOSPHOROUS), format(planter, FarmlandBlockEntity.NutrientType.POTASSIUM)));
         }
@@ -148,35 +152,53 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
         return 0;
     }
 
-    private InteractionResult insertSlot(Level level, LargePlanterBlockEntity planter, ItemStack held, Player player, int slot)
+    protected InteractionResult insertSlot(Level level, LargePlanterBlockEntity planter, ItemStack held, Player player, int slot)
     {
-        planter.markForSync();
         return planter.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).map(inv -> {
-            var res = FLHelpers.insertOne(level, held, slot, inv, player);
-            planter.updateCache();
+            var res = InteractionResult.PASS;
+            if (inv.getStackInSlot(slot).isEmpty())
+            {
+                res = FLHelpers.insertOne(level, held, slot, inv, player);
+                if (res.consumesAction())
+                {
+                    planter.setGrowth(slot, 0);
+                    planter.updateCache();
+                }
+            }
             return res;
         }).orElse(InteractionResult.PASS);
     }
 
-    private InteractionResult takeSlot(Level level, LargePlanterBlockEntity planter, Player player, int slot)
+    protected InteractionResult takeSlot(Level level, LargePlanterBlockEntity planter, Player player, int slot)
     {
-        planter.markForSync();
         return planter.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).map(inv -> {
             Plantable plant = planter.getPlantable(slot);
-            if (plant != null && planter.getGrowth(slot) >= 1 && !level.isClientSide)
+            if (plant != null && planter.getGrowth(slot) >= 1)
             {
-                inv.extractItem(slot, 1, false); // discard the ingredient
-                final int seedAmount = Mth.nextInt(level.random, 1, 2);
+                if (resetGrowthTo() == 0)
+                {
+                    inv.extractItem(slot, 1, false); // discard the internal ingredient
+                }
+                final int seedAmount = level.random.nextFloat() < extraDropChance() ? 2 : 1;
                 ItemStack seed = plant.getSeed();
                 seed.setCount(seedAmount);
                 ItemHandlerHelper.giveItemToPlayer(player, seed);
                 ItemHandlerHelper.giveItemToPlayer(player, plant.getCrop());
-                planter.setGrowth(slot, 0f);
-                planter.updateCache();
-                return InteractionResult.sidedSuccess(false);
+                planter.setGrowth(slot, resetGrowthTo());
+                return InteractionResult.sidedSuccess(level.isClientSide);
             }
             return InteractionResult.PASS;
         }).orElse(InteractionResult.PASS);
+    }
+
+    protected float resetGrowthTo()
+    {
+        return 0;
+    }
+
+    protected float extraDropChance()
+    {
+        return 0.5f;
     }
 
     @Override

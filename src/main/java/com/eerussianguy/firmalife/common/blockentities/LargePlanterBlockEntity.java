@@ -3,6 +3,7 @@ package com.eerussianguy.firmalife.common.blockentities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -32,7 +33,7 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
 
     public static final Component NAME = FLHelpers.blockEntityName("large_planter");
     public static final FarmlandBlockEntity.NutrientType[] NUTRIENTS = FarmlandBlockEntity.NutrientType.values();
-    private static final int NUM_SLOTS = 1;
+    protected static final int LARGE_PLANTER_SLOTS = 1;
 
     @Nullable
     private Plantable cachedPlant;
@@ -45,7 +46,7 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
 
     public LargePlanterBlockEntity(BlockPos pos, BlockState state)
     {
-        this(FLBlockEntities.LARGE_PLANTER.get(), pos, state, defaultInventory(NUM_SLOTS), NAME);
+        this(FLBlockEntities.LARGE_PLANTER.get(), pos, state, defaultInventory(LARGE_PLANTER_SLOTS), NAME);
     }
 
     public LargePlanterBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state, InventoryFactory<ItemStackHandler> inventoryFactory, Component defaultName)
@@ -161,7 +162,30 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     {
         assert level != null;
         BlockPos above = worldPosition.above();
-        return climateValid && level.getBrightness(LightLayer.SKY, above) >= level.getMaxLightLevel() - 5 && level.getBlockState(above).isAir();
+        return climateValid && level.getBrightness(LightLayer.SKY, above) >= level.getMaxLightLevel() - 5 && level.getBlockState(above).isAir() && water > 0;
+    }
+
+    public Component getInvalidReason()
+    {
+        assert level != null;
+        String complaint = "error_unknown";
+        if (!climateValid)
+        {
+            complaint = "climate_invalid";
+        }
+        else if (level.getBrightness(LightLayer.SKY, worldPosition.above()) < level.getMaxLightLevel() - 5)
+        {
+            complaint = "no_sky";
+        }
+        else if (!level.getBlockState(worldPosition.above()).isAir())
+        {
+            complaint = "air_above";
+        }
+        else if (water <= 0)
+        {
+            complaint = "dehydrated";
+        }
+        return new TranslatableComponent("firmalife.greenhouse." + complaint);
     }
 
     public int getTier()
@@ -171,7 +195,7 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
 
     public int slots()
     {
-        return NUM_SLOTS;
+        return LARGE_PLANTER_SLOTS;
     }
 
     public float getGrowth(int slot)
@@ -181,7 +205,9 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
 
     public void setGrowth(int slot, float growth)
     {
+        if (growth > 0.99f) growth = 1f;
         this.growth = growth;
+        markForSync();
     }
 
     @Nullable

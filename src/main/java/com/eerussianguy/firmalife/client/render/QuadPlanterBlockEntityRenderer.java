@@ -23,7 +23,7 @@ public class QuadPlanterBlockEntityRenderer implements BlockEntityRenderer<QuadP
             if (plant == null) continue;
 
             poseStack.pushPose();
-            TextureAtlasSprite sprite = Minecraft.getInstance().getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(plant.getTexture(planter.getGrowth(0)));
+            TextureAtlasSprite sprite = Minecraft.getInstance().getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(plant.getTexture(planter.getGrowth(i)));
             VertexConsumer buffer = buffers.getBuffer(RenderType.cutout());
 
             if (i == 1 || i == 2)
@@ -35,7 +35,7 @@ public class QuadPlanterBlockEntityRenderer implements BlockEntityRenderer<QuadP
                 poseStack.translate(0f, 0f, 0.5f);
             }
 
-            LargePlanterBlockEntityRenderer.renderCross(0.125f, 0.4375f, 0.3125f, 0.7291f, poseStack, buffer, combinedLight, combinedOverlay, sprite, 0.125f, 0f, 0.875f, 1f);
+            RenderUtils.renderCross(0.125f, 0.4375f, 0.3125f, 0.7291f, poseStack, buffer, combinedLight, combinedOverlay, sprite, 0.125f, 0f, 0.875f, 1f);
 
             poseStack.popPose();
         }

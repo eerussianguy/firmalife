@@ -29,7 +29,7 @@ public class QuadPlanterBlockEntity extends LargePlanterBlockEntity
     @Override
     protected void loadUnique(CompoundTag nbt)
     {
-        growth = new float[] {nbt.getFloat("grow1"), nbt.getFloat("grow2"), nbt.getFloat("grow3"), nbt.getFloat("grow4")};
+        growth = new float[] {nbt.getFloat("grow0"), nbt.getFloat("grow1"), nbt.getFloat("grow2"), nbt.getFloat("grow3")};
     }
 
     @Override
@@ -66,6 +66,7 @@ public class QuadPlanterBlockEntity extends LargePlanterBlockEntity
     public void setGrowth(int slot, float growth)
     {
         this.growth[slot] = growth;
+        markForSync();
     }
 
     @Nullable

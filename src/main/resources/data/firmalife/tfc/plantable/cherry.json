@@ -1,0 +1,17 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "planter": "bonsai",
+  "ingredient": {
+    "item": "tfc:plant/cherry_sapling"
+  },
+  "seed": {
+    "item": "tfc:plant/cherry_sapling"
+  },
+  "crop": {
+    "item": "tfc:food/cherry"
+  },
+  "nutrient": "nitrogen",
+  "stages": 0,
+  "texture": "tfc:block/fruit_tree/cherry",
+  "tier": 15
+}

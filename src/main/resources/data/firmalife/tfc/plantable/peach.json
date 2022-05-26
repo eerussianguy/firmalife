@@ -1,0 +1,17 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "planter": "bonsai",
+  "ingredient": {
+    "item": "tfc:plant/peach_sapling"
+  },
+  "seed": {
+    "item": "tfc:plant/peach_sapling"
+  },
+  "crop": {
+    "item": "tfc:food/peach"
+  },
+  "nutrient": "nitrogen",
+  "stages": 0,
+  "texture": "tfc:block/fruit_tree/peach",
+  "tier": 15
+}

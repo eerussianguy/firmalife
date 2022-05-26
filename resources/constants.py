@@ -22,8 +22,13 @@ CLEANING_PAIRS: Dict[str, str] = {
 
 DEFAULT_LANG = {
     'firmalife.tooltip.food_trait.dried': 'Dried',
-    'firmalife.greenhouse.valid_block': '§aClimate and skylight valid',
-    'firmalife.greenhouse.invalid_block': '§cClimate or skylight not valid',
+    'firmalife.greenhouse.valid_block': '§aGrowing',
+    'firmalife.greenhouse.invalid_block': '§cNot Growing',
+    'firmalife.greenhouse.error_unknown': 'Unknown reason for failure to grow',
+    'firmalife.greenhouse.no_sky': 'There is not enough sky light to grow',
+    'firmalife.greenhouse.climate_invalid': 'This block is not in a valid greenhouse. Try clicking your climate station.',
+    'firmalife.greenhouse.air_above': 'Planters need an air block above them to work',
+    'firmalife.greenhouse.dehydrated': 'This planter needs to be watered with a Watering Can',
     'firmalife.greenhouse.wrong_tier': 'To grow this crop, upgrade to a better greenhouse',
     'firmalife.greenhouse.wrong_type': 'This crop does not grow in this kind of planter.',
     'firmalife.greenhouse.found': 'Found a greenhouse of %s blocks',

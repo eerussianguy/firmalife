@@ -13,10 +13,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-import com.eerussianguy.firmalife.client.render.DryingMatBlockEntityRenderer;
-import com.eerussianguy.firmalife.client.render.LargePlanterBlockEntityRenderer;
-import com.eerussianguy.firmalife.client.render.OvenBlockEntityRenderer;
-import com.eerussianguy.firmalife.client.render.QuadPlanterBlockEntityRenderer;
+import com.eerussianguy.firmalife.client.render.*;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
@@ -72,6 +69,7 @@ public class FLClientEvents
         event.registerBlockEntityRenderer(FLBlockEntities.DRYING_MAT.get(), ctx -> new DryingMatBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.LARGE_PLANTER.get(), ctx -> new LargePlanterBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.QUAD_PLANTER.get(), ctx -> new QuadPlanterBlockEntityRenderer());
+        event.registerBlockEntityRenderer(FLBlockEntities.BONSAI_PLANTER.get(), ctx -> new BonsaiPlanterBlockEntityRenderer());
     }
 
     public static void onTextureStitch(TextureStitchEvent.Pre event)

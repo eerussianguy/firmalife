@@ -11,7 +11,7 @@
     "item": "tfc:food/maize"
   },
   "nutrient": "phosphorous",
-  "stages": 7,
+  "stages": 4,
   "texture": "firmalife:block/crop/maize",
-  "tier": 15
+  "tier": 10
 }

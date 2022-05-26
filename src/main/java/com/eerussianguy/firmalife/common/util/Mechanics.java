@@ -138,28 +138,34 @@ public final class Mechanics
         for (int slot = 0; slot < planter.slots(); slot++)
         {
             Plantable plant = planter.getPlantable(slot);
-            if (plant == null) continue;
-            // Nutrients are consumed first, since they are independent of growth or health.
-            // As long as the crop exists it consumes nutrients.
-            float nutrientsConsumed = planter.consumeNutrientAndResupplyOthers(plant.getPrimaryNutrient(), NUTRIENT_CONSUMPTION * tickDelta);
-
-            // Total growth is based on the ticks and the nutrients consumed. It is then allocated to actual growth or expiry based on other factors.
-            float totalGrowthDelta = Helpers.uniform(random, 0.9f, 1.1f) * tickDelta * GROWTH_FACTOR + nutrientsConsumed * NUTRIENT_GROWTH_FACTOR;
-            float growth = planter.getGrowth(slot);
-
-            if (totalGrowthDelta > 0 && growing)
+            if (plant != null)
             {
-                // Allocate to growth
-                final float delta = Mth.clamp(totalGrowthDelta, 0, 1);
-                growth += delta;
+                // Nutrients are consumed first, since they are independent of growth or health.
+                // As long as the crop exists it consumes nutrients.
+                float nutrientsConsumed = planter.consumeNutrientAndResupplyOthers(plant.getPrimaryNutrient(), NUTRIENT_CONSUMPTION * tickDelta);
 
-                planter.drainWater(0.04f);
+                // Total growth is based on the ticks and the nutrients consumed. It is then allocated to actual growth.
+                float totalGrowthDelta = Helpers.uniform(random, 0.9f, 1.1f) * tickDelta * GROWTH_FACTOR + nutrientsConsumed * NUTRIENT_GROWTH_FACTOR;
+                float growth = planter.getGrowth(slot);
+
+                if (totalGrowthDelta > 0 && growing)
+                {
+                    // Allocate to growth
+                    final float delta = Mth.clamp(totalGrowthDelta, 0, 1);
+                    growth += delta;
+
+                    planter.drainWater(tickDelta * NUTRIENT_CONSUMPTION);
+                }
+
+                planter.setGrowth(slot, Mth.clamp(growth, 0f, 1f));
             }
-
-            planter.setGrowth(slot, Mth.clamp(growth, 0f, 1f));
-            planter.setLastUpdateTick(calendar.getTicks());
-            planter.markForSync();
+            else
+            {
+                planter.setGrowth(slot, 0);
+            }
         }
+        planter.setLastUpdateTick(calendar.getTicks());
+        planter.markForSync();
         return true;
     }
 

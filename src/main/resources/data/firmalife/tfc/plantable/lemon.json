@@ -1,0 +1,17 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "planter": "bonsai",
+  "ingredient": {
+    "item": "tfc:plant/lemon_sapling"
+  },
+  "seed": {
+    "item": "tfc:plant/lemon_sapling"
+  },
+  "crop": {
+    "item": "tfc:food/lemon"
+  },
+  "nutrient": "nitrogen",
+  "stages": 0,
+  "texture": "tfc:block/fruit_tree/lemon",
+  "tier": 15
+}

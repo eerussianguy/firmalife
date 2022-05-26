@@ -62,7 +62,7 @@ public class Plantable extends ItemDefinition
 
         planter = JsonHelpers.getEnum(json, "planter", PlanterType.class, PlanterType.QUAD);
         tier = JsonHelpers.getAsInt(json, "tier", 0);
-        stages = JsonHelpers.getAsInt(json, "stages");
+        stages = JsonHelpers.getAsInt(json, "stages", 0);
         seed = JsonHelpers.getItemStack(json, "seed");
         crop = JsonHelpers.getItemStack(json, "crop");
         nutrient = JsonHelpers.getEnum(json, "nutrient", FarmlandBlockEntity.NutrientType.class, FarmlandBlockEntity.NutrientType.NITROGEN);
@@ -121,6 +121,11 @@ public class Plantable extends ItemDefinition
     public int getTier()
     {
         return tier;
+    }
+
+    public String getTextureLocation()
+    {
+        return texture;
     }
 
     public ResourceLocation getTexture(float growth)

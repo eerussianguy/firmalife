@@ -41,7 +41,7 @@ def generate(rm: ResourceManager):
         greenhouse_wall(rm, greenhouse, 'firmalife:block/greenhouse/%s' % greenhouse, 'firmalife:block/greenhouse/%s_glass' % greenhouse)
         greenhouse_door(rm, greenhouse, 'firmalife:block/greenhouse/%s_door_bottom' % greenhouse, 'firmalife:block/greenhouse/%s_door_top' % greenhouse)
 
-    for planter in ('quad_planter', 'large_planter'):
+    for planter in ('quad_planter', 'large_planter', 'bonsai_planter'):
         for state in ('wet', 'dry'):
             rm.block_model('%s_%s' % (planter, state), parent='firmalife:block/%s' % planter, textures={'soil': 'firmalife:block/potting_soil_%s' % state})
         rm.blockstate(planter, variants={

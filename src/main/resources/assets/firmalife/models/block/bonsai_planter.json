@@ -1,0 +1,94 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "block/block",
+	"textures": {
+		"pot": "minecraft:block/terracotta",
+		"particle": "#pot"
+	},
+	"elements": [
+		{
+			"from": [3, 0, 3],
+			"to": [13, 1, 13],
+			"rotation": {"angle": 0, "axis": "y", "origin": [9, 8, 9]},
+			"faces": {
+				"down": {"uv": [1, 1, 11, 11], "texture": "#pot"}
+			}
+		},
+		{
+			"from": [2, 0, 2],
+			"to": [3, 8, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 13, 8]},
+			"faces": {
+				"north": {"uv": [12, 0, 13, 8], "texture": "#pot"},
+				"east": {"uv": [0, 0, 12, 8], "texture": "#pot"},
+				"south": {"uv": [0, 0, 1, 8], "texture": "#pot"},
+				"west": {"uv": [0, 0, 12, 8], "texture": "#pot"},
+				"up": {"uv": [0, 0, 1, 12], "texture": "#pot"},
+				"down": {"uv": [0, 0, 1, 12], "texture": "#pot"}
+			}
+		},
+		{
+			"from": [13, 0, 2],
+			"to": [14, 8, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [23, 13, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 1, 8], "texture": "#pot"},
+				"east": {"uv": [0, 0, 12, 8], "texture": "#pot"},
+				"south": {"uv": [0, 0, 1, 8], "texture": "#pot"},
+				"west": {"uv": [0, 0, 12, 8], "texture": "#pot"},
+				"up": {"uv": [0, 0, 1, 12], "texture": "#pot"},
+				"down": {"uv": [0, 0, 1, 12], "texture": "#pot"}
+			}
+		},
+		{
+			"from": [3, 0, 2],
+			"to": [13, 8, 3],
+			"rotation": {"angle": 0, "axis": "y", "origin": [9, 13, 8]},
+			"faces": {
+				"north": {"uv": [1, 0, 11, 8], "texture": "#pot"},
+				"south": {"uv": [0, 0, 10, 8], "texture": "#pot"},
+				"up": {"uv": [0, 0, 1, 10], "rotation": 90, "texture": "#pot"},
+				"down": {"uv": [0, 3, 1, 13], "rotation": 270, "texture": "#pot"}
+			}
+		},
+		{
+			"from": [3, 0, 13],
+			"to": [13, 8, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [9, 13, 23]},
+			"faces": {
+				"north": {"uv": [0, 0, 10, 8], "texture": "#pot"},
+				"south": {"uv": [1, 0, 11, 8], "texture": "#pot"},
+				"up": {"uv": [11, 0, 12, 10], "rotation": 90, "texture": "#pot"},
+				"down": {"uv": [11, 0, 12, 10], "rotation": 270, "texture": "#pot"}
+			}
+		},
+		{
+			"from": [3, 3, 3],
+			"to": [13, 7, 13],
+			"rotation": {"angle": 0, "axis": "y", "origin": [9, 11, 9]},
+			"faces": {
+				"up": {"uv": [0, 0, 10, 10], "texture": "#soil"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "group",
+			"origin": [9, 13, 23],
+			"color": 0,
+			"children": [0, 1, 2, 3, 4]
+		},
+		{
+			"name": "quad_planter_dirt",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [5]
+		},
+		{
+			"name": "crop1",
+			"origin": [4, 6, 4],
+			"color": 0,
+			"children": []
+		}
+	]
+}
