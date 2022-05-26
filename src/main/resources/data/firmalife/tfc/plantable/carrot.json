@@ -1,0 +1,16 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "ingredient": {
+    "item": "tfc:seeds/carrot"
+  },
+  "seed": {
+    "item": "tfc:seeds/carrot"
+  },
+  "crop": {
+    "item": "tfc:food/carrot"
+  },
+  "nutrient": "potassium",
+  "large": false,
+  "stages": 4,
+  "texture": "tfc:block/crop/carrot"
+}

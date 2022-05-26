@@ -1,7 +1,7 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "parent": "firmalife:block/large_planter_dry",
+  "parent": "item/generated",
   "textures": {
-    "layer0": "firmalife:item/large_planter"
+    "layer0": "firmalife:item/watering_can"
   }
 }

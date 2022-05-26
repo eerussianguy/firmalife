@@ -47,22 +47,26 @@ public class GreenhouseType
 
     public final ResourceLocation id;
     public final BlockIngredient ingredient;
+    public final int tier;
 
     private GreenhouseType(ResourceLocation id, JsonObject json)
     {
         this.id = id;
         this.ingredient = BlockIngredients.fromJson(JsonHelpers.get(json, "ingredient"));
+        this.tier = JsonHelpers.getAsInt(json, "tier");
     }
 
     private GreenhouseType(ResourceLocation id, FriendlyByteBuf buffer)
     {
         this.id = id;
         this.ingredient = BlockIngredients.fromNetwork(buffer);
+        this.tier = buffer.readVarInt();
     }
 
     public void encode(FriendlyByteBuf buffer)
     {
         ingredient.toNetwork(buffer);
+        buffer.writeVarInt(tier);
     }
 
     public static class Packet extends DMSPacket<GreenhouseType> { }

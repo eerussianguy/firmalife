@@ -1,0 +1,16 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "ingredient": {
+    "item": "tfc:seeds/soybean"
+  },
+  "seed": {
+    "item": "tfc:seeds/soybean"
+  },
+  "crop": {
+    "item": "tfc:food/soybean"
+  },
+  "nutrient": "nitrogen",
+  "large": false,
+  "stages": 6,
+  "texture": "tfc:block/crop/soybean"
+}

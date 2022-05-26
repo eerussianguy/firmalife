@@ -12,6 +12,7 @@ import net.minecraft.world.level.levelgen.structure.BoundingBox;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.LargePlanterBlockEntity;
+import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.ICalendar;
@@ -90,7 +91,7 @@ public final class Mechanics
             if (greenhouse != null)
             {
                 final BoundingBox box = new BoundingBox(pos).inflatedBy(15);
-                Set<BlockPos> filled = floodfill(level, pos, mutable, box, greenhouse.ingredient, s -> true, false, lastSize, FLHelpers.NOT_DOWN);
+                Set<BlockPos> filled = floodfill(level, pos, mutable, box, greenhouse.ingredient, s -> !Helpers.isBlock(s, FLBlocks.CLIMATE_STATION.get()), false, lastSize, FLHelpers.NOT_DOWN);
                 if (filled.isEmpty())
                 {
                     return null;
@@ -148,10 +149,13 @@ public final class Mechanics
                 // Allocate to growth
                 final float delta = Mth.clamp(totalGrowthDelta, 0, 1);
                 growth += delta;
+
+                planter.drainWater(0.04f);
             }
 
-            planter.setGrowth(slot, growth);
+            planter.setGrowth(slot, Mth.clamp(growth, 0f, 1f));
             planter.setLastUpdateTick(calendar.getTicks());
+            planter.markForSync();
         }
         return true;
     }

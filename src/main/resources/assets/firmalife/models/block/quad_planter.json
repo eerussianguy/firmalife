@@ -1,5 +1,6 @@
 {
 	"credit": "Made with Blockbench",
+	"parent": "block/block",
 	"textures": {
 		"particle": "minecraft:block/terracotta",
 		"pot": "minecraft:block/terracotta"

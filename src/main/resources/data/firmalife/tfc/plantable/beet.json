@@ -1,0 +1,16 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "ingredient": {
+    "item": "tfc:seeds/beet"
+  },
+  "seed": {
+    "item": "tfc:seeds/beet"
+  },
+  "crop": {
+    "item": "tfc:food/beet"
+  },
+  "nutrient": "potassium",
+  "large": false,
+  "stages": 5,
+  "texture": "tfc:block/crop/beet"
+}

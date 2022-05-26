@@ -48,6 +48,7 @@ public class Plantable extends ItemDefinition
     }
 
     private final boolean large;
+    private final int tier;
     private final int stages;
     private final ItemStack seed;
     private final ItemStack crop;
@@ -59,6 +60,7 @@ public class Plantable extends ItemDefinition
         super(id, Ingredient.fromJson(JsonHelpers.get(json, "ingredient")));
 
         large = JsonHelpers.getAsBoolean(json, "large", false);
+        tier = JsonHelpers.getAsInt(json, "tier", 0);
         stages = JsonHelpers.getAsInt(json, "stages");
         seed = JsonHelpers.getItemStack(json, "seed");
         crop = JsonHelpers.getItemStack(json, "crop");
@@ -70,6 +72,7 @@ public class Plantable extends ItemDefinition
     {
         super(id, Ingredient.fromNetwork(buffer));
         large = buffer.readBoolean();
+        tier = buffer.readVarInt();
         stages = buffer.readVarInt();
         seed = buffer.readItem();
         crop = buffer.readItem();
@@ -81,6 +84,7 @@ public class Plantable extends ItemDefinition
     {
         ingredient.toNetwork(buffer);
         buffer.writeBoolean(large);
+        buffer.writeVarInt(tier);
         buffer.writeVarInt(stages);
         buffer.writeItem(seed);
         buffer.writeItem(crop);

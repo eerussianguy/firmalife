@@ -33,7 +33,7 @@ public class WateringCanItem extends Item
     @SuppressWarnings("deprecation")
     public void onUseTick(Level level, LivingEntity entity, ItemStack stack, int countLeft)
     {
-        if (entity instanceof Player player)//TODO GREENHOUSE RECEPTION FROM CLMATE STATION!
+        if (entity instanceof Player player)
         {
             final BlockHitResult hit = getPlayerPOVHitResult(level, player, ClipContext.Fluid.NONE);
             if (level.isClientSide && hit.getType() != HitResult.Type.MISS)

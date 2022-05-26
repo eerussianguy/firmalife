@@ -1,0 +1,13 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "block/cube",
+  "textures": {
+    "west": "firmalife:block/greenhouse/climate_station/invalid",
+    "east": "firmalife:block/greenhouse/climate_station/invalid",
+    "north": "firmalife:block/greenhouse/climate_station/invalid",
+    "south": "firmalife:block/greenhouse/climate_station/invalid",
+    "particle": "firmalife:block/greenhouse/climate_station/invalid",
+    "up": "firmalife:block/greenhouse/climate_station/top",
+    "down": "firmalife:block/greenhouse/climate_station/end"
+  }
+}

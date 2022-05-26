@@ -1,0 +1,16 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "ingredient": {
+    "item": "tfc:seeds/onion"
+  },
+  "seed": {
+    "item": "tfc:seeds/onion"
+  },
+  "crop": {
+    "item": "tfc:food/onion"
+  },
+  "nutrient": "nitrogen",
+  "large": false,
+  "stages": 6,
+  "texture": "tfc:block/crop/onion"
+}

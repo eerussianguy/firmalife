@@ -47,10 +47,20 @@ def generate(rm: ResourceManager):
         rm.blockstate(planter, variants={
             'watered=true': {'model': 'firmalife:block/%s_wet' % planter},
             'watered=false': {'model': 'firmalife:block/%s_dry' % planter}
-        }).with_lang(lang(planter)).with_block_loot('firmalife:%s' % planter).with_item_model().with_tag('minecraft:mineable/axe').with_tag('minecraft:mineable/pickaxe')
+        }).with_lang(lang(planter)).with_block_loot('firmalife:%s' % planter).with_tag('minecraft:mineable/axe').with_tag('minecraft:mineable/pickaxe')
+        rm.item_model(planter, parent='firmalife:block/%s_dry' % planter)
 
-    for block, tag in SIMPLE_BLOCKS.items():
-        rm.blockstate(block).with_block_model().with_tag(tag).with_lang(lang(block)).with_item_model()
+    rm.blockstate('climate_station', variants={
+        'stasis=true': {'model': 'firmalife:block/climate_station_valid'},
+        'stasis=false': {'model': 'firmalife:block/climate_station_invalid'}
+    }).with_lang(lang('climate station')).with_tag('minecraft:mineable/axe').with_block_loot('firmalife:climate_station')
+    rm.item_model('climate_station', parent='firmalife:block/climate_station_invalid')
+    for variant in ('valid', 'invalid'):
+        tex = 'firmalife:block/greenhouse/climate_station/%s' % variant
+        rm.block_model('firmalife:climate_station_%s' % variant, {'west': tex, 'east': tex, 'north': tex, 'south': tex, 'particle': tex, 'up': 'firmalife:block/greenhouse/climate_station/top', 'down': 'firmalife:block/greenhouse/climate_station/end'}, 'block/cube')
+
+    #for block, tag in SIMPLE_BLOCKS.items():
+    #    rm.blockstate(block).with_block_model().with_tag(tag).with_lang(lang(block)).with_item_model()
     for item in SIMPLE_ITEMS:
         rm.item_model(item).with_lang(lang(item))
     for item in SIMPLE_FOODS:

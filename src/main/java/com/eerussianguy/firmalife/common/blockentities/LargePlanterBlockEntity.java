@@ -3,6 +3,8 @@ package com.eerussianguy.firmalife.common.blockentities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.Mth;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -24,6 +26,7 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     public static void serverTick(Level level, BlockPos pos, BlockState state, LargePlanterBlockEntity planter)
     {
         planter.checkForCalendarUpdate();
+        planter.checkForLastTickSync();
     }
 
     public static final Component NAME = FLHelpers.blockEntityName("large_planter");
@@ -37,6 +40,7 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     private float nitrogen, phosphorous, potassium;
     private long lastPlayerTick;
     private boolean climateValid;
+    private int tier;
 
     public LargePlanterBlockEntity(BlockPos pos, BlockState state)
     {
@@ -51,7 +55,20 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
         climateValid = false;
         growth = 0;
         water = 0;
+        tier = 0;
         nitrogen = phosphorous = potassium = 0;
+    }
+
+    @Override
+    public int getSlotStackLimit(int slot)
+    {
+        return 1;
+    }
+
+    @Override
+    public boolean isItemValid(int slot, ItemStack stack)
+    {
+        return Plantable.get(stack) != null;
     }
 
     @Override
@@ -101,6 +118,7 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
         phosphorous = nbt.getFloat("p");
         potassium = nbt.getFloat("k");
         water = nbt.getFloat("water");
+        tier = nbt.getInt("tier");
 
         loadUnique(nbt);
         updateCache();
@@ -121,6 +139,7 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
         nbt.putFloat("p", phosphorous);
         nbt.putFloat("k", potassium);
         nbt.putFloat("water", water);
+        nbt.putInt("tier", tier);
 
         saveUnique(nbt);
     }
@@ -130,7 +149,7 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
         nbt.putFloat("growth", growth);
     }
 
-    protected void updateCache()
+    public void updateCache()
     {
         cachedPlant = Plantable.get(inventory.getStackInSlot(0));
     }
@@ -174,6 +193,7 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
 
     public void setNutrient(FarmlandBlockEntity.NutrientType type, float amount)
     {
+        amount = Mth.clamp(amount, 0f, 1f);
         switch (type)
         {
             case NITROGEN -> nitrogen = amount;
@@ -188,15 +208,34 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     }
 
     @Override
-    public void addWater(float amount)
+    public void setAndUpdateSlots(int slot)
     {
-        water = Math.min(water + amount, 1);
+        updateCache();
     }
 
     @Override
-    public void setValid(boolean valid)
+    public void addWater(float amount)
+    {
+        assert level != null;
+        water = Math.min(water + amount, 1f);
+        postGrowthTick(level.getBlockState(worldPosition));
+        markForSync();
+    }
+
+    public void drainWater(float amount)
+    {
+        assert level != null;
+        water = Math.max(0, water - amount);
+        postGrowthTick(level.getBlockState(worldPosition));
+        markForSync();
+    }
+
+    @Override
+    public void setValid(boolean valid, int tier)
     {
         this.climateValid = valid;
+        this.tier = tier;
+        markForSync();
     }
 
     public float getWater()

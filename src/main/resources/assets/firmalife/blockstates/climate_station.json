@@ -1,8 +1,11 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "variants": {
-    "": {
-      "model": "firmalife:block/climate_station"
+    "stasis=true": {
+      "model": "firmalife:block/climate_station_valid"
+    },
+    "stasis=false": {
+      "model": "firmalife:block/climate_station_invalid"
     }
   }
 }

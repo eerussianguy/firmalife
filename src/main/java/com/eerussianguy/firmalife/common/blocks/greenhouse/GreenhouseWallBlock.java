@@ -79,11 +79,11 @@ public class GreenhouseWallBlock extends AbstractGlassBlock implements IWeathera
     {
         if (facing == Direction.UP)
         {
-            state = state.setValue(UP, !Helpers.isBlock(facingState, this));
+            state = state.setValue(UP, !(facingState.getBlock() instanceof GreenhouseWallBlock));
         }
         else if (facing == Direction.DOWN)
         {
-            state = state.setValue(DOWN, !Helpers.isBlock(facingState, this));
+            state = state.setValue(DOWN, !(facingState.getBlock() instanceof GreenhouseWallBlock));
         }
         return state;
     }
