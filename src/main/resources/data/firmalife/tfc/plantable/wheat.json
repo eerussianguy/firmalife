@@ -1,5 +1,6 @@
 {
   "__comment__": "This file was automatically created by mcresources",
+  "planter": "large",
   "ingredient": {
     "item": "tfc:seeds/wheat"
   },
@@ -10,7 +11,7 @@
     "item": "tfc:food/wheat"
   },
   "nutrient": "phosphorous",
-  "large": true,
   "stages": 7,
-  "texture": "tfc:block/crop/wheat"
+  "texture": "tfc:block/crop/wheat",
+  "tier": 15
 }

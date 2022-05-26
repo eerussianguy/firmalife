@@ -2,16 +2,15 @@
   "__comment__": "This file was automatically created by mcresources",
   "planter": "large",
   "ingredient": {
-    "item": "tfc:seeds/barley"
+    "item": "tfc:seeds/green_bean"
   },
   "seed": {
-    "item": "tfc:seeds/barley"
+    "item": "tfc:seeds/green_bean"
   },
   "crop": {
-    "item": "tfc:food/barley"
+    "item": "tfc:food/green_bean"
   },
   "nutrient": "nitrogen",
-  "stages": 7,
-  "texture": "tfc:block/crop/barley",
-  "tier": 15
+  "stages": 4,
+  "texture": "firmalife:block/crop/green_bean"
 }

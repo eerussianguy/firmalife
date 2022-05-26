@@ -2,16 +2,16 @@
   "__comment__": "This file was automatically created by mcresources",
   "planter": "large",
   "ingredient": {
-    "item": "tfc:seeds/barley"
+    "item": "tfc:seeds/maize"
   },
   "seed": {
-    "item": "tfc:seeds/barley"
+    "item": "tfc:seeds/maize"
   },
   "crop": {
-    "item": "tfc:food/barley"
+    "item": "tfc:food/maize"
   },
-  "nutrient": "nitrogen",
+  "nutrient": "phosphorous",
   "stages": 7,
-  "texture": "tfc:block/crop/barley",
+  "texture": "firmalife:block/crop/maize",
   "tier": 15
 }

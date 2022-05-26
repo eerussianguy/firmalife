@@ -1,16 +1,16 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "planter": "quad",
+  "planter": "large",
   "ingredient": {
-    "item": "tfc:seeds/carrot"
+    "item": "tfc:seeds/jute"
   },
   "seed": {
-    "item": "tfc:seeds/carrot"
+    "item": "tfc:seeds/jute"
   },
   "crop": {
-    "item": "tfc:food/carrot"
+    "item": "tfc:jute"
   },
   "nutrient": "potassium",
   "stages": 4,
-  "texture": "tfc:block/crop/carrot"
+  "texture": "firmalife:block/crop/jute"
 }

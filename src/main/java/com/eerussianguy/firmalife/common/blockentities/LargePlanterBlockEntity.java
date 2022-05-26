@@ -17,6 +17,7 @@ import com.eerussianguy.firmalife.common.util.Mechanics;
 import com.eerussianguy.firmalife.common.util.Plantable;
 import net.dries007.tfc.common.blockentities.FarmlandBlockEntity;
 import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
+import net.dries007.tfc.util.Fertilizer;
 import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.ICalendarTickable;
 import org.jetbrains.annotations.Nullable;
@@ -35,9 +36,9 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
 
     @Nullable
     private Plantable cachedPlant;
-    private float growth, water;
+    private float growth;
 
-    private float nitrogen, phosphorous, potassium;
+    private float nitrogen, phosphorous, potassium, water;
     private long lastPlayerTick;
     private boolean climateValid;
     private int tier;
@@ -76,16 +77,16 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     {
         assert level != null;
         BlockState state = level.getBlockState(worldPosition);
-        if (state.getBlock() instanceof LargePlanterBlock && !level.isClientSide && cachedPlant != null)
+        if (state.getBlock() instanceof LargePlanterBlock && !level.isClientSide)
         {
             if (Mechanics.growthTick(level, worldPosition, state, this))
             {
-                postGrowthTick(state);
+                updateBlockState(state);
             }
         }
     }
 
-    protected void postGrowthTick(BlockState state)
+    protected void updateBlockState(BlockState state)
     {
         assert level != null;
         boolean waterLast = state.getValue(LargePlanterBlock.WATERED);
@@ -112,6 +113,7 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     public void loadAdditional(CompoundTag nbt)
     {
         super.loadAdditional(nbt);
+        climateValid = nbt.getBoolean("valid");
         lastPlayerTick = nbt.getLong("lastPlayerTick");
         climateValid = nbt.getBoolean("climateValid");
         nitrogen = nbt.getFloat("n");
@@ -133,6 +135,7 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     public void saveAdditional(CompoundTag nbt)
     {
         super.saveAdditional(nbt);
+        nbt.putBoolean("valid", climateValid);
         nbt.putLong("lastPlayerTick", lastPlayerTick);
         nbt.putBoolean("climateValid", climateValid);
         nbt.putFloat("n", nitrogen);
@@ -157,7 +160,13 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     public boolean checkValid()
     {
         assert level != null;
-        return climateValid && level.getBrightness(LightLayer.SKY, worldPosition.above()) >= level.getMaxLightLevel() - 5;
+        BlockPos above = worldPosition.above();
+        return climateValid && level.getBrightness(LightLayer.SKY, above) >= level.getMaxLightLevel() - 5 && level.getBlockState(above).isAir();
+    }
+
+    public int getTier()
+    {
+        return tier;
     }
 
     public int slots()
@@ -218,7 +227,7 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     {
         assert level != null;
         water = Math.min(water + amount, 1f);
-        postGrowthTick(level.getBlockState(worldPosition));
+        updateBlockState(level.getBlockState(worldPosition));
         markForSync();
     }
 
@@ -226,7 +235,7 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     {
         assert level != null;
         water = Math.max(0, water - amount);
-        postGrowthTick(level.getBlockState(worldPosition));
+        updateBlockState(level.getBlockState(worldPosition));
         markForSync();
     }
 
@@ -262,5 +271,13 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
             }
         }
         return consumed;
+    }
+
+    public void addNutrients(Fertilizer fertilizer)
+    {
+        addNutrient(FarmlandBlockEntity.NutrientType.NITROGEN, fertilizer.getNitrogen());
+        addNutrient(FarmlandBlockEntity.NutrientType.PHOSPHOROUS, fertilizer.getPhosphorus());
+        addNutrient(FarmlandBlockEntity.NutrientType.POTASSIUM, fertilizer.getPotassium());
+        markForSync();
     }
 }

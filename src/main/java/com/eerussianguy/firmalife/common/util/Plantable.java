@@ -7,6 +7,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 
+import com.eerussianguy.firmalife.common.blocks.greenhouse.PlanterType;
 import com.eerussianguy.firmalife.common.network.DMSPacket;
 import net.dries007.tfc.common.blockentities.FarmlandBlockEntity;
 import net.dries007.tfc.util.DataManager;
@@ -47,7 +48,7 @@ public class Plantable extends ItemDefinition
         return null;
     }
 
-    private final boolean large;
+    private final PlanterType planter;
     private final int tier;
     private final int stages;
     private final ItemStack seed;
@@ -59,7 +60,7 @@ public class Plantable extends ItemDefinition
     {
         super(id, Ingredient.fromJson(JsonHelpers.get(json, "ingredient")));
 
-        large = JsonHelpers.getAsBoolean(json, "large", false);
+        planter = JsonHelpers.getEnum(json, "planter", PlanterType.class, PlanterType.QUAD);
         tier = JsonHelpers.getAsInt(json, "tier", 0);
         stages = JsonHelpers.getAsInt(json, "stages");
         seed = JsonHelpers.getItemStack(json, "seed");
@@ -71,7 +72,7 @@ public class Plantable extends ItemDefinition
     private Plantable(ResourceLocation id, FriendlyByteBuf buffer)
     {
         super(id, Ingredient.fromNetwork(buffer));
-        large = buffer.readBoolean();
+        planter = buffer.readEnum(PlanterType.class);
         tier = buffer.readVarInt();
         stages = buffer.readVarInt();
         seed = buffer.readItem();
@@ -83,7 +84,7 @@ public class Plantable extends ItemDefinition
     public void encode(FriendlyByteBuf buffer)
     {
         ingredient.toNetwork(buffer);
-        buffer.writeBoolean(large);
+        buffer.writeEnum(planter);
         buffer.writeVarInt(tier);
         buffer.writeVarInt(stages);
         buffer.writeItem(seed);
@@ -92,9 +93,9 @@ public class Plantable extends ItemDefinition
         buffer.writeUtf(texture);
     }
 
-    public boolean isLarge()
+    public PlanterType getPlanterType()
     {
-        return large;
+        return planter;
     }
 
     public int getStages()
@@ -115,6 +116,11 @@ public class Plantable extends ItemDefinition
     public FarmlandBlockEntity.NutrientType getPrimaryNutrient()
     {
         return nutrient;
+    }
+
+    public int getTier()
+    {
+        return tier;
     }
 
     public ResourceLocation getTexture(float growth)

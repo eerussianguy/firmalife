@@ -22,7 +22,13 @@ CLEANING_PAIRS: Dict[str, str] = {
 
 DEFAULT_LANG = {
     'firmalife.tooltip.food_trait.dried': 'Dried',
-    'firmalife.jei.drying': 'Drying'
+    'firmalife.greenhouse.valid_block': '§aClimate and skylight valid',
+    'firmalife.greenhouse.invalid_block': '§cClimate or skylight not valid',
+    'firmalife.greenhouse.wrong_tier': 'To grow this crop, upgrade to a better greenhouse',
+    'firmalife.greenhouse.wrong_type': 'This crop does not grow in this kind of planter.',
+    'firmalife.greenhouse.found': 'Found a greenhouse of %s blocks',
+    
+    'firmalife.jei.drying': 'Drying',
 }
 
 def lang(key: str, *args) -> str:

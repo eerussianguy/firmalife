@@ -31,6 +31,12 @@ public class QuadPlanterBlock extends LargePlanterBlock implements IHighlightHan
     }
 
     @Override
+    public PlanterType getPlanterType()
+    {
+        return PlanterType.QUAD;
+    }
+
+    @Override
     protected int getUseSlot(BlockHitResult hit, BlockPos pos)
     {
         final Vec3 trace = hit.getLocation().add(-pos.getX(), -pos.getY(), -pos.getZ());

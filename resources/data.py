@@ -19,7 +19,8 @@ def generate(rm: ResourceManager):
     greenhouse(rm, 'stainless_steel', '#firmalife:stainless_steel_greenhouse', 20)
 
     for grain in ('barley', 'oat', 'rye', 'wheat', 'rice'):
-        simple_plantable(rm, grain, 'nitrogen' if grain == 'barley' else 'phosphorous', 7, True)
+        simple_plantable(rm, grain, 'nitrogen' if grain == 'barley' else 'phosphorous', 7, planter='large', tier=15)
+    simple_plantable(rm, 'maize', 'nitrogen' if grain == 'barley' else 'phosphorous', 7, planter='large', tier=15, firmalife=True)
 
     simple_plantable(rm, 'beet', 'potassium', 5)
     simple_plantable(rm, 'cabbage', 'nitrogen', 5)
@@ -29,7 +30,10 @@ def generate(rm: ResourceManager):
     simple_plantable(rm, 'onion', 'nitrogen', 6)
     simple_plantable(rm, 'soybean', 'nitrogen', 6)
 
-    #todo: large planting for green bean, sugarcane, tomato, jute, maize
+    simple_plantable(rm, 'green_bean', 'nitrogen', 4, planter='large', firmalife=True)
+    simple_plantable(rm, 'tomato', 'potassium', 4, planter='large', firmalife=True)
+    simple_plantable(rm, 'sugarcane', 'potassium', 4, planter='large', firmalife=True)
+    plantable(rm, 'jute', 'tfc:seeds/jute', 'tfc:jute', 'potassium', 'firmalife:block/crop/jute', 4, 'large')
 
 
 def greenhouse(rm: ResourceManager, name: str, block_ingredient: str, tier: int):
@@ -38,16 +42,17 @@ def greenhouse(rm: ResourceManager, name: str, block_ingredient: str, tier: int)
         'tier': tier
     })
 
-def simple_plantable(rm: ResourceManager, name: str, nutrient: str, stages: int, large: bool = False):
-    plantable(rm, name, 'tfc:seeds/%s' % name, 'tfc:food/%s' % name, nutrient, 'tfc:block/crop/%s' % name, stages, large)
+def simple_plantable(rm: ResourceManager, name: str, nutrient: str, stages: int, planter: str = 'quad', tier: int = None, firmalife: bool = False):
+    plantable(rm, name, 'tfc:seeds/%s' % name, 'tfc:food/%s' % name, nutrient, 'tfc:block/crop/%s' % name if not firmalife else 'firmalife:block/crop/%s' % name, stages, planter, tier)
 
-def plantable(rm: ResourceManager, name: str, seed: str, crop: str, nutrient: str, texture: str, stages: int, large: bool = False):
+def plantable(rm: ResourceManager, name: str, seed: str, crop: str, nutrient: str, texture: str, stages: int, planter: str = 'quad', tier: int = None):
     rm.data(('tfc', 'plantable', name), {
+        'planter': planter,
         'ingredient': utils.ingredient(seed),
         'seed': utils.item_stack(seed),
         'crop': utils.item_stack(crop),
         'nutrient': nutrient,
-        'large': large,
         'stages': stages,
-        'texture': texture
+        'texture': texture,
+        'tier': tier
     })

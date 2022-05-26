@@ -5,6 +5,7 @@ import java.util.Set;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -25,6 +26,8 @@ import com.eerussianguy.firmalife.common.util.Mechanics;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.devices.DeviceBlock;
 import org.jetbrains.annotations.Nullable;
+
+import static com.eerussianguy.firmalife.Firmalife.MOD_ID;
 
 public class ClimateStationBlock extends DeviceBlock
 {
@@ -82,9 +85,8 @@ public class ClimateStationBlock extends DeviceBlock
         }
         else
         {
-            GreenhouseType greenhouse = info.type();
             Set<BlockPos> positions = info.positions();
-            player.displayClientMessage(new TextComponent("Found " + greenhouse.id + " greenhouse of " + positions.size() + " blocks"), true);
+            player.displayClientMessage(new TranslatableComponent(MOD_ID + ".greenhouse.found", positions.size()), true);
             return InteractionResult.sidedSuccess(level.isClientSide);
         }
     }

@@ -24,17 +24,22 @@ public class LargePlanterBlockEntityRenderer implements BlockEntityRenderer<Larg
         TextureAtlasSprite sprite = Minecraft.getInstance().getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(plant.getTexture(planter.getGrowth(0)));
         VertexConsumer buffer = buffers.getBuffer(RenderType.cutout());
 
-        for (float[] v : getCrossHalfVertices(0.125f, 0.375f, 0.125f, 0.875f, 1.125f, 0.875f, 0f, 0f, 1f, 1f))
-        {
-            renderTexturedVertex(poseStack, buffer, combinedLight, combinedOverlay, v[0], v[1], v[2], sprite.getU(v[3] * 16), sprite.getV(16 - (v[4] * 16)), 1.414f, 0f, 1.414f);
-        }
-
-        for (float[] v : getCrossHalfVertices(0.125f, 0.375f, 0.875f, 0.875f, 1.125f, 0.125f, 0f, 0f, 1f, 1f))
-        {
-            renderTexturedVertex(poseStack, buffer, combinedLight, combinedOverlay, v[0], v[1], v[2], sprite.getU(v[3] * 16), sprite.getV(16 - (v[4] * 16)), 1.414f, 0f, 1.414f);
-        }
+        renderCross(0.125f, 0.875f, 0.3125f, 1.0625f, poseStack, buffer, combinedLight, combinedOverlay, sprite, 0f, 0f, 1f, 1f);
 
         poseStack.popPose();
+    }
+
+    public static void renderCross(float x, float z, float y1, float y2, PoseStack poseStack, VertexConsumer buffer, int combinedLight, int combinedOverlay, TextureAtlasSprite sprite, float u1, float v1, float u2, float v2)
+    {
+        for (float[] ver : getCrossHalfVertices(x, y1, x, z, y2, z, u1, v1, u2, v2))
+        {
+            renderTexturedVertex(poseStack, buffer, combinedLight, combinedOverlay, ver[0], ver[1], ver[2], sprite.getU(ver[3] * 16), sprite.getV(16 - (ver[4] * 16)), -1.414f, 0f, -1.414f);
+        }
+
+        for (float[] ver : getCrossHalfVertices(x, y1, z, z, y2, x, u1, v1, u2, v2))
+        {
+            renderTexturedVertex(poseStack, buffer, combinedLight, combinedOverlay, ver[0], ver[1], ver[2], sprite.getU(ver[3] * 16), sprite.getV(16 - (ver[4] * 16)), 1.414f, 0f, 1.414f);
+        }
     }
 
     public static float[][] getCrossHalfVertices(float x1, float y1, float z1, float x2, float y2, float z2, float u1, float v1, float u2, float v2)

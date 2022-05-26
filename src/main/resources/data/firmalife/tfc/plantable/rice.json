@@ -1,5 +1,6 @@
 {
   "__comment__": "This file was automatically created by mcresources",
+  "planter": "large",
   "ingredient": {
     "item": "tfc:seeds/rice"
   },
@@ -10,7 +11,7 @@
     "item": "tfc:food/rice"
   },
   "nutrient": "phosphorous",
-  "large": true,
   "stages": 7,
-  "texture": "tfc:block/crop/rice"
+  "texture": "tfc:block/crop/rice",
+  "tier": 15
 }

@@ -3,18 +3,20 @@ package com.eerussianguy.firmalife.common.blocks.greenhouse;
 import java.util.List;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
@@ -25,16 +27,19 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 
+import com.eerussianguy.firmalife.client.FLClientHelpers;
 import com.eerussianguy.firmalife.common.FLHelpers;
-import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.blockentities.LargePlanterBlockEntity;
 import com.eerussianguy.firmalife.common.blocks.FLStateProperties;
+import com.eerussianguy.firmalife.common.util.Mechanics;
 import com.eerussianguy.firmalife.common.util.Plantable;
 import net.dries007.tfc.common.blockentities.FarmlandBlockEntity;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.devices.DeviceBlock;
 import net.dries007.tfc.common.blocks.soil.HoeOverlayBlock;
 import net.dries007.tfc.util.Fertilizer;
+import net.dries007.tfc.util.Helpers;
+import org.jetbrains.annotations.Nullable;
 
 public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
 {
@@ -56,44 +61,82 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
         final Plantable plant = Plantable.get(held);
         final Fertilizer fertilizer = Fertilizer.get(held);
         final int slot = getUseSlot(hit, pos);
-        if (fertilizer != null)
+        if (level.getBlockEntity(pos) instanceof LargePlanterBlockEntity planter)
         {
-            // todo: move to TE class, particle FX
-            level.getBlockEntity(pos, FLBlockEntities.LARGE_PLANTER.get()).ifPresent(planter -> {
-                planter.addNutrient(FarmlandBlockEntity.NutrientType.NITROGEN, fertilizer.getNitrogen());
-                planter.addNutrient(FarmlandBlockEntity.NutrientType.PHOSPHOROUS, fertilizer.getPhosphorus());
-                planter.addNutrient(FarmlandBlockEntity.NutrientType.POTASSIUM, fertilizer.getPotassium());
-                planter.markForSync();
-            });
-            held.shrink(1);
-            return InteractionResult.sidedSuccess(level.isClientSide);
-        }
-        else if (plant != null && plant.isLarge())
-        {
-            return insertSlot(level, pos, held, player, slot);
-        }
-        else if (player.isShiftKeyDown() && held.isEmpty())
-        {
-            return takeSlot(level, pos, player, slot);
+            if (fertilizer != null)
+            {
+                planter.addNutrients(fertilizer);
+                if (level instanceof ServerLevel server)
+                {
+                    Mechanics.addNutrientParticles(server, pos, fertilizer);
+                }
+                held.shrink(1);
+                return InteractionResult.sidedSuccess(level.isClientSide);
+            }
+            else if (plant != null)
+            {
+                if (plant.getPlanterType() != getPlanterType())
+                {
+                    player.displayClientMessage(new TranslatableComponent("firmalife.greenhouse.wrong_type"), true);
+                    return InteractionResult.sidedSuccess(level.isClientSide);
+                }
+                if (planter.getTier() < plant.getTier())
+                {
+                    player.displayClientMessage(new TranslatableComponent("firmalife.greenhouse.wrong_tier"), true);
+                    return InteractionResult.sidedSuccess(level.isClientSide);
+                }
+                return insertSlot(level, planter, held, player, slot);
+            }
+            else if (player.isShiftKeyDown() && held.isEmpty())
+            {
+                return takeSlot(level, planter, player, slot);
+            }
         }
         return InteractionResult.PASS;
+    }
+
+    public PlanterType getPlanterType()
+    {
+        return PlanterType.LARGE;
+    }
+
+    @Override
+    public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack)
+    {
+        super.setPlacedBy(level, pos, state, placer, stack); // basically a convenience thing when you place next to another planter
+        for (Direction d : Helpers.DIRECTIONS)
+        {
+            if (level.getBlockEntity(pos.relative(d)) instanceof LargePlanterBlockEntity planter && planter.checkValid())
+            {
+                planter.setValid(true, planter.getTier());
+            }
+        }
     }
 
     @Override
     public void addHoeOverlayInfo(Level level, BlockPos pos, BlockState state, List<Component> text, boolean debug)
     {
-        level.getBlockEntity(pos, FLBlockEntities.LARGE_PLANTER.get()).ifPresent(planter -> {
+        if (!level.isClientSide) return;
+        if (level.getBlockEntity(pos) instanceof LargePlanterBlockEntity planter)
+        {
+            BlockHitResult target = FLClientHelpers.getTargetedLocation();
+            if (target == null) return;
+
+            final int slot = getUseSlot(target, pos);
             if (debug)
             {
-                text.add(new TextComponent(String.format("[Debug] Growth = %.2f, Water = %.2f", planter.getGrowth(0), planter.getWater())));
+                text.add(new TextComponent(String.format("[Debug] Growth = %.2f, Water = %.2f", planter.getGrowth(slot), planter.getWater())));
             }
-            if (planter.getGrowth(0) == 1)
+            if (planter.getGrowth(slot) == 1)
             {
                 text.add(new TranslatableComponent("tfc.tooltip.farmland.mature"));
             }
+            text.add(new TranslatableComponent(planter.checkValid() ? "firmalife.greenhouse.valid_block" : "firmalife.greenhouse.invalid_block"));
+
             text.add(new TranslatableComponent("tfc.tooltip.farmland.nutrients", format(planter, FarmlandBlockEntity.NutrientType.NITROGEN), format(planter, FarmlandBlockEntity.NutrientType.PHOSPHOROUS), format(planter, FarmlandBlockEntity.NutrientType.POTASSIUM)));
-        });
+        }
     }
+
 
     private String format(LargePlanterBlockEntity planter, FarmlandBlockEntity.NutrientType value)
     {
@@ -105,43 +148,35 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
         return 0;
     }
 
-    private InteractionResult insertSlot(Level level, BlockPos pos, ItemStack held, Player player, int slot)
+    private InteractionResult insertSlot(Level level, LargePlanterBlockEntity planter, ItemStack held, Player player, int slot)
     {
-        BlockEntity blockEntity = level.getBlockEntity(pos);
-        if (blockEntity instanceof LargePlanterBlockEntity planter)
-        {
-            planter.markForSync();
-            return planter.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).map(inv -> {
-                var res = FLHelpers.insertOne(level, held, slot, inv, player);
-                planter.updateCache();
-                return res;
-            }).orElse(InteractionResult.PASS);
-        }
-        return InteractionResult.PASS;
+        planter.markForSync();
+        return planter.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).map(inv -> {
+            var res = FLHelpers.insertOne(level, held, slot, inv, player);
+            planter.updateCache();
+            return res;
+        }).orElse(InteractionResult.PASS);
     }
 
-    private InteractionResult takeSlot(Level level, BlockPos pos, Player player, int slot)
+    private InteractionResult takeSlot(Level level, LargePlanterBlockEntity planter, Player player, int slot)
     {
-        BlockEntity blockEntity = level.getBlockEntity(pos);
-        if (blockEntity instanceof LargePlanterBlockEntity planter)
-        {
-            planter.markForSync();
-            return planter.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).map(inv -> {
-                Plantable plant = planter.getPlantable(slot);
-                if (plant != null && planter.getGrowth(slot) >= 1 && !level.isClientSide)
-                {
-                    inv.extractItem(slot, 1, false); // discard the ingredient
-                    final int seedAmount = Mth.nextInt(level.random, 1, 2);
-                    ItemStack seed = plant.getSeed();
-                    seed.setCount(seedAmount);
-                    ItemHandlerHelper.giveItemToPlayer(player, seed);
-                    ItemHandlerHelper.giveItemToPlayer(player, plant.getCrop());
-                    planter.updateCache();
-                }
-                return InteractionResult.PASS;
-            }).orElse(InteractionResult.PASS);
-        }
-        return InteractionResult.PASS;
+        planter.markForSync();
+        return planter.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).map(inv -> {
+            Plantable plant = planter.getPlantable(slot);
+            if (plant != null && planter.getGrowth(slot) >= 1 && !level.isClientSide)
+            {
+                inv.extractItem(slot, 1, false); // discard the ingredient
+                final int seedAmount = Mth.nextInt(level.random, 1, 2);
+                ItemStack seed = plant.getSeed();
+                seed.setCount(seedAmount);
+                ItemHandlerHelper.giveItemToPlayer(player, seed);
+                ItemHandlerHelper.giveItemToPlayer(player, plant.getCrop());
+                planter.setGrowth(slot, 0f);
+                planter.updateCache();
+                return InteractionResult.sidedSuccess(false);
+            }
+            return InteractionResult.PASS;
+        }).orElse(InteractionResult.PASS);
     }
 
     @Override

@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -15,6 +16,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import com.eerussianguy.firmalife.client.render.DryingMatBlockEntityRenderer;
 import com.eerussianguy.firmalife.client.render.LargePlanterBlockEntityRenderer;
 import com.eerussianguy.firmalife.client.render.OvenBlockEntityRenderer;
+import com.eerussianguy.firmalife.client.render.QuadPlanterBlockEntityRenderer;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
@@ -33,6 +35,7 @@ public class FLClientEvents
 
         bus.addListener(FLClientEvents::clientSetup);
         bus.addListener(FLClientEvents::registerEntityRenderers);
+        bus.addListener(FLClientEvents::onTextureStitch);
     }
 
     public static void clientSetup(FMLClientSetupEvent event)
@@ -68,5 +71,18 @@ public class FLClientEvents
         event.registerBlockEntityRenderer(FLBlockEntities.OVEN_TOP.get(), ctx -> new OvenBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.DRYING_MAT.get(), ctx -> new DryingMatBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.LARGE_PLANTER.get(), ctx -> new LargePlanterBlockEntityRenderer());
+        event.registerBlockEntityRenderer(FLBlockEntities.QUAD_PLANTER.get(), ctx -> new QuadPlanterBlockEntityRenderer());
+    }
+
+    public static void onTextureStitch(TextureStitchEvent.Pre event)
+    {
+        for (String name : new String[] {"green_bean", "maize", "jute", "tomato", "sugarcane"})
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                event.addSprite(FLHelpers.identifier("block/crop/" + name + "_" + i));
+            }
+        }
+
     }
 }
