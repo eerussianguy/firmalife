@@ -109,8 +109,9 @@ public final class Mechanics
 
     private static final int UPDATE_INTERVAL = ICalendar.TICKS_IN_DAY;
 
-    public static final float GROWTH_FACTOR = 1f / (24 * ICalendar.TICKS_IN_DAY);
-    public static final float NUTRIENT_CONSUMPTION = 1f / (12 * ICalendar.TICKS_IN_DAY);
+    public static final float GROWTH_FACTOR = 1f / (16 * ICalendar.TICKS_IN_DAY); // 24 -> 16 days
+    public static final float NUTRIENT_CONSUMPTION = 1f / (8 * ICalendar.TICKS_IN_DAY); //  12 -> 8 days
+    public static final float WATER_CONSUMPTION = 1f / (12 * ICalendar.TICKS_IN_DAY); // 12 days
     public static final float NUTRIENT_GROWTH_FACTOR = 0.5f;
 
     public static boolean growthTick(Level level, BlockPos pos, BlockState state, LargePlanterBlockEntity planter)
@@ -154,7 +155,7 @@ public final class Mechanics
                     final float delta = Mth.clamp(totalGrowthDelta, 0, 1);
                     growth += delta;
 
-                    planter.drainWater(tickDelta * NUTRIENT_CONSUMPTION);
+                    planter.drainWater(tickDelta * WATER_CONSUMPTION);
                 }
 
                 planter.setGrowth(slot, Mth.clamp(growth, 0f, 1f));
