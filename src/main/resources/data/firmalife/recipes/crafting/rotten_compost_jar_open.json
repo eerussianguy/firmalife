@@ -1,0 +1,13 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "firmalife:rotten_compost_jar"
+    }
+  ],
+  "result": {
+    "item": "tfc:rotten_compost",
+    "count": 8
+  }
+}

@@ -12,8 +12,11 @@ import com.eerussianguy.firmalife.client.FLClientForgeEvents;
 import com.eerussianguy.firmalife.common.FLForgeEvents;
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
+import com.eerussianguy.firmalife.common.blocks.FLFluids;
+import com.eerussianguy.firmalife.common.container.FLContainerTypes;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.common.items.FLItems;
+import com.eerussianguy.firmalife.common.misc.FLEffects;
 import com.eerussianguy.firmalife.common.network.FLPackets;
 import com.eerussianguy.firmalife.common.recipes.FLRecipeSerializers;
 import com.eerussianguy.firmalife.common.recipes.FLRecipeTypes;
@@ -31,9 +34,12 @@ public class Firmalife
         final IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         FLItems.ITEMS.register(bus);
         FLBlocks.BLOCKS.register(bus);
+        FLFluids.FLUIDS.register(bus);
         FLBlockEntities.BLOCK_ENTITIES.register(bus);
         FLRecipeTypes.RECIPE_TYPES.register(bus);
         FLRecipeSerializers.RECIPE_SERIALIZERS.register(bus);
+        FLContainerTypes.CONTAINERS.register(bus);
+        FLEffects.EFFECTS.register(bus);
 
         FLPackets.init();
 

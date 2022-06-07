@@ -15,6 +15,9 @@ public class FLTags
         public static final TagKey<Block> OVEN_INSULATION = create("oven_insulation");
         public static final TagKey<Block> CHIMNEYS = create("chimneys");
         public static final TagKey<Block> GREENHOUSE = create("greenhouse");
+        public static final TagKey<Block> BEE_PLANTS = create("bee_plants");
+        public static final TagKey<Block> BEE_RESTORATION_PLANTS = create("bee_restoration_plants");
+        public static final TagKey<Block> BEE_RESTORATION_WATER_PLANTS = create("bee_restoration_water_plants");
 
         private static TagKey<Block> create(String id)
         {

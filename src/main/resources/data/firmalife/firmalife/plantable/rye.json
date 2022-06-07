@@ -1,0 +1,18 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "planter": "large",
+  "ingredient": {
+    "item": "tfc:seeds/rye"
+  },
+  "seed": {
+    "item": "tfc:seeds/rye"
+  },
+  "crop": {
+    "item": "tfc:food/rye"
+  },
+  "nutrient": "phosphorous",
+  "stages": 7,
+  "texture": "tfc:block/crop/rye",
+  "tier": 10,
+  "extra_seed_chance": 0.5
+}

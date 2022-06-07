@@ -1,0 +1,17 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "planter": "large",
+  "ingredient": {
+    "item": "tfc:seeds/sugarcane"
+  },
+  "seed": {
+    "item": "tfc:seeds/sugarcane"
+  },
+  "crop": {
+    "item": "tfc:food/sugarcane"
+  },
+  "nutrient": "potassium",
+  "stages": 4,
+  "texture": "firmalife:block/crop/sugarcane",
+  "extra_seed_chance": 0.5
+}

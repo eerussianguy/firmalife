@@ -1,0 +1,17 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "planter": "quad",
+  "ingredient": {
+    "item": "tfc:seeds/garlic"
+  },
+  "seed": {
+    "item": "tfc:seeds/garlic"
+  },
+  "crop": {
+    "item": "tfc:food/garlic"
+  },
+  "nutrient": "nitrogen",
+  "stages": 4,
+  "texture": "tfc:block/crop/garlic",
+  "extra_seed_chance": 0.5
+}

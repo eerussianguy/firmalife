@@ -1,0 +1,17 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "planter": "quad",
+  "ingredient": {
+    "item": "tfc:seeds/carrot"
+  },
+  "seed": {
+    "item": "tfc:seeds/carrot"
+  },
+  "crop": {
+    "item": "tfc:food/carrot"
+  },
+  "nutrient": "potassium",
+  "stages": 4,
+  "texture": "tfc:block/crop/carrot",
+  "extra_seed_chance": 0.5
+}

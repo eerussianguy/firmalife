@@ -22,7 +22,7 @@ public class DryingMatBlockEntity extends InventoryBlockEntity<ItemStackHandler>
     public static void serverTick(Level level, BlockPos pos, BlockState state, DryingMatBlockEntity mat)
     {
         // reset when it rains
-        if (level.getGameTime() % 20 == 0 && level.isRainingAt(pos.above()))
+        if (level.getGameTime() % 40 == 0 && level.isRainingAt(pos.above()))
         {
             mat.startTick = Calendars.SERVER.getTicks();
         }

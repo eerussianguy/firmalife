@@ -6,9 +6,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
-import com.eerussianguy.firmalife.common.network.DMSPacket;
+import com.eerussianguy.firmalife.common.FLHelpers;
 import net.dries007.tfc.common.recipes.ingredients.BlockIngredient;
 import net.dries007.tfc.common.recipes.ingredients.BlockIngredients;
+import net.dries007.tfc.network.DataManagerSyncPacket;
 import net.dries007.tfc.util.DataManager;
 import net.dries007.tfc.util.JsonHelpers;
 import net.dries007.tfc.util.collections.IndirectHashCollection;
@@ -16,7 +17,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class GreenhouseType
 {
-    public static final DataManager<GreenhouseType> MANAGER = new DataManager<>("greenhouse", "greenhouse", GreenhouseType::new, GreenhouseType::new, GreenhouseType::encode, Packet::new);
+    public static final DataManager<GreenhouseType> MANAGER = new DataManager<>(FLHelpers.identifier("greenhouse"), "greenhouse", GreenhouseType::new, GreenhouseType::new, GreenhouseType::encode, Packet::new);
     public static final IndirectHashCollection<Block, GreenhouseType> CACHE = IndirectHashCollection.create(s -> s.ingredient.getValidBlocks(), MANAGER::getValues);
 
     @Nullable
@@ -69,5 +70,5 @@ public class GreenhouseType
         buffer.writeVarInt(tier);
     }
 
-    public static class Packet extends DMSPacket<GreenhouseType> { }
+    public static class Packet extends DataManagerSyncPacket<GreenhouseType> { }
 }

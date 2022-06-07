@@ -76,12 +76,19 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
             {
                 if (plant.getPlanterType() != getPlanterType())
                 {
-                    player.displayClientMessage(new TranslatableComponent("firmalife.greenhouse.wrong_type"), true);
+                    player.displayClientMessage(new TranslatableComponent("firmalife.greenhouse.wrong_type").append(FLHelpers.getEnumTranslationKey(plant.getPlanterType())), true);
                     return InteractionResult.sidedSuccess(level.isClientSide);
                 }
                 if (planter.getTier() < plant.getTier())
                 {
-                    player.displayClientMessage(new TranslatableComponent("firmalife.greenhouse.wrong_tier"), true);
+                    if (!planter.isClimateValid())
+                    {
+                        player.displayClientMessage(new TranslatableComponent("firmalife.greenhouse.climate_invalid"), true);
+                    }
+                    else
+                    {
+                        player.displayClientMessage(new TranslatableComponent("firmalife.greenhouse.wrong_tier"), true);
+                    }
                     return InteractionResult.sidedSuccess(level.isClientSide);
                 }
                 return insertSlot(level, planter, held, player, slot);
@@ -179,7 +186,7 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
                 {
                     inv.extractItem(slot, 1, false); // discard the internal ingredient
                 }
-                final int seedAmount = level.random.nextFloat() < extraDropChance() ? 2 : 1;
+                final int seedAmount = level.random.nextFloat() < plant.getExtraSeedChance() ? 2 : 1;
                 ItemStack seed = plant.getSeed();
                 seed.setCount(seedAmount);
                 ItemHandlerHelper.giveItemToPlayer(player, seed);
@@ -194,11 +201,6 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
     protected float resetGrowthTo()
     {
         return 0;
-    }
-
-    protected float extraDropChance()
-    {
-        return 0.5f;
     }
 
     @Override

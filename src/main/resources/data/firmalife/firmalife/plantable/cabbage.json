@@ -1,0 +1,17 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "planter": "quad",
+  "ingredient": {
+    "item": "tfc:seeds/cabbage"
+  },
+  "seed": {
+    "item": "tfc:seeds/cabbage"
+  },
+  "crop": {
+    "item": "tfc:food/cabbage"
+  },
+  "nutrient": "nitrogen",
+  "stages": 5,
+  "texture": "tfc:block/crop/cabbage",
+  "extra_seed_chance": 0.5
+}

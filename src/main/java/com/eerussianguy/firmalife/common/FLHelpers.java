@@ -1,5 +1,7 @@
 package com.eerussianguy.firmalife.common;
 
+import java.util.Locale;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -14,7 +16,8 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 
 import com.eerussianguy.firmalife.Firmalife;
-import org.jetbrains.annotations.NotNull;
+
+import static com.eerussianguy.firmalife.Firmalife.MOD_ID;
 
 public class FLHelpers
 {
@@ -22,12 +25,12 @@ public class FLHelpers
 
     public static ResourceLocation identifier(String id)
     {
-        return new ResourceLocation(Firmalife.MOD_ID, id);
+        return new ResourceLocation(MOD_ID, id);
     }
 
     public static Component blockEntityName(String name)
     {
-        return new TranslatableComponent(Firmalife.MOD_ID + ".block_entity." + name);
+        return new TranslatableComponent(MOD_ID + ".block_entity." + name);
     }
 
     public static InteractionResult insertOne(Level level, ItemStack item, int slot, IItemHandler inv, Player player)
@@ -82,5 +85,26 @@ public class FLHelpers
     public static Iterable<BlockPos> allPositionsCentered(BlockPos center, int radius, int height)
     {
         return BlockPos.betweenClosed(center.offset(-radius, -height, -radius), center.offset(radius, height, radius));
+    }
+
+    public static TranslatableComponent translateEnum(Enum<?> anEnum)
+    {
+        return new TranslatableComponent(getEnumTranslationKey(anEnum));
+    }
+
+    /**
+     * Gets the translation key name for an enum. For instance, Metal.UNKNOWN would map to "firmalife.enum.metal.unknown"
+     */
+    public static String getEnumTranslationKey(Enum<?> anEnum)
+    {
+        return getEnumTranslationKey(anEnum, anEnum.getDeclaringClass().getSimpleName());
+    }
+
+    /**
+     * Gets the translation key name for an enum, using a custom name instead of the enum class name
+     */
+    public static String getEnumTranslationKey(Enum<?> anEnum, String enumName)
+    {
+        return String.join(".", MOD_ID, "enum", enumName, anEnum.name()).toLowerCase(Locale.ROOT);
     }
 }

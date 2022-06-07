@@ -1,0 +1,11 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "variants": {
+    "watered=true": {
+      "model": "firmalife:block/hanging_planter_wet"
+    },
+    "watered=false": {
+      "model": "firmalife:block/hanging_planter_dry"
+    }
+  }
+}

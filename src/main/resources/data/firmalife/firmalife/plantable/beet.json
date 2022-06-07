@@ -1,0 +1,17 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "planter": "quad",
+  "ingredient": {
+    "item": "tfc:seeds/beet"
+  },
+  "seed": {
+    "item": "tfc:seeds/beet"
+  },
+  "crop": {
+    "item": "tfc:food/beet"
+  },
+  "nutrient": "potassium",
+  "stages": 5,
+  "texture": "tfc:block/crop/beet",
+  "extra_seed_chance": 0.5
+}

@@ -30,12 +30,6 @@ public class BonsaiPlanterBlock extends LargePlanterBlock
     }
 
     @Override
-    protected float extraDropChance()
-    {
-        return 0.1f;
-    }
-
-    @Override
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context)
     {
         return BONSAI_SHAPE;

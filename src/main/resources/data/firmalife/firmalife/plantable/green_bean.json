@@ -1,0 +1,17 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "planter": "large",
+  "ingredient": {
+    "item": "tfc:seeds/green_bean"
+  },
+  "seed": {
+    "item": "tfc:seeds/green_bean"
+  },
+  "crop": {
+    "item": "tfc:food/green_bean"
+  },
+  "nutrient": "nitrogen",
+  "stages": 4,
+  "texture": "firmalife:block/crop/green_bean",
+  "extra_seed_chance": 0.5
+}

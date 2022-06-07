@@ -1,0 +1,17 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "planter": "large",
+  "ingredient": {
+    "item": "tfc:seeds/tomato"
+  },
+  "seed": {
+    "item": "tfc:seeds/tomato"
+  },
+  "crop": {
+    "item": "tfc:food/tomato"
+  },
+  "nutrient": "potassium",
+  "stages": 4,
+  "texture": "firmalife:block/crop/tomato",
+  "extra_seed_chance": 0.5
+}

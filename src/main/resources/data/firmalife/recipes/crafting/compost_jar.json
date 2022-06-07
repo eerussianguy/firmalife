@@ -1,0 +1,20 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XYX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "tfc:compost"
+    },
+    "Y": {
+      "item": "firmalife:empty_jar"
+    }
+  },
+  "result": {
+    "item": "firmalife:compost_jar"
+  }
+}

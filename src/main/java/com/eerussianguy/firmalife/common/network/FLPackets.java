@@ -14,7 +14,7 @@ import net.minecraftforge.network.simple.SimpleChannel;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.util.GreenhouseType;
 import com.eerussianguy.firmalife.common.util.Plantable;
-import net.dries007.tfc.util.DataManager;
+import net.dries007.tfc.network.PacketHandler;
 
 public class FLPackets
 {
@@ -32,26 +32,10 @@ public class FLPackets
     {
         // S -> C
 
-        registerDataManager(GreenhouseType.Packet.class, GreenhouseType.MANAGER);
-        registerDataManager(Plantable.Packet.class, Plantable.MANAGER);
+        PacketHandler.registerDataManager(GreenhouseType.Packet.class, GreenhouseType.MANAGER, CHANNEL, ID.getAndIncrement());
+        PacketHandler.registerDataManager(Plantable.Packet.class, Plantable.MANAGER, CHANNEL, ID.getAndIncrement());
 
         // C -> S
-    }
-
-    @SuppressWarnings("unchecked")
-    private static <T extends DMSPacket<E>, E> void registerDataManager(Class<T> cls, DataManager<E> manager)
-    {
-        CHANNEL.registerMessage(ID.getAndIncrement(), cls,
-            (packet, buffer) -> packet.encode(manager, buffer),
-            buffer -> {
-                final T packet = (T) manager.createEmptyPacket();
-                packet.decode(manager, buffer);
-                return packet;
-            },
-            (packet, context) -> {
-                context.get().setPacketHandled(true);
-                context.get().enqueueWork(() -> packet.handle(context.get(), manager));
-            });
     }
 
     private static <T> void register(Class<T> cls, BiConsumer<T, FriendlyByteBuf> encoder, Function<FriendlyByteBuf, T> decoder, BiConsumer<T, NetworkEvent.Context> handler)

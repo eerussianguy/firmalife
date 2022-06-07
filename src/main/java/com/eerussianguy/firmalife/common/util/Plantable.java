@@ -7,9 +7,10 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 
+import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blocks.greenhouse.PlanterType;
-import com.eerussianguy.firmalife.common.network.DMSPacket;
 import net.dries007.tfc.common.blockentities.FarmlandBlockEntity;
+import net.dries007.tfc.network.DataManagerSyncPacket;
 import net.dries007.tfc.util.DataManager;
 import net.dries007.tfc.util.ItemDefinition;
 import net.dries007.tfc.util.JsonHelpers;
@@ -18,7 +19,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class Plantable extends ItemDefinition
 {
-    public static final DataManager<Plantable> MANAGER = new DataManager<>("plantable", "plantable", Plantable::new, Plantable::new, Plantable::encode, Plantable.Packet::new);
+    public static final DataManager<Plantable> MANAGER = new DataManager<>(FLHelpers.identifier("plantable"), "plantable", Plantable::new, Plantable::new, Plantable::encode, Plantable.Packet::new);
     public static final IndirectHashCollection<Item, Plantable> CACHE = IndirectHashCollection.create(Plantable::getValidItems, MANAGER::getValues);
 
     @Nullable
@@ -51,6 +52,7 @@ public class Plantable extends ItemDefinition
     private final PlanterType planter;
     private final int tier;
     private final int stages;
+    private final float extraSeedChance;
     private final ItemStack seed;
     private final ItemStack crop;
     private final FarmlandBlockEntity.NutrientType nutrient;
@@ -63,6 +65,7 @@ public class Plantable extends ItemDefinition
         planter = JsonHelpers.getEnum(json, "planter", PlanterType.class, PlanterType.QUAD);
         tier = JsonHelpers.getAsInt(json, "tier", 0);
         stages = JsonHelpers.getAsInt(json, "stages", 0);
+        extraSeedChance = JsonHelpers.getAsFloat(json, "extra_seed_chance", 0.5f);
         seed = JsonHelpers.getItemStack(json, "seed");
         crop = JsonHelpers.getItemStack(json, "crop");
         nutrient = JsonHelpers.getEnum(json, "nutrient", FarmlandBlockEntity.NutrientType.class, FarmlandBlockEntity.NutrientType.NITROGEN);
@@ -75,6 +78,7 @@ public class Plantable extends ItemDefinition
         planter = buffer.readEnum(PlanterType.class);
         tier = buffer.readVarInt();
         stages = buffer.readVarInt();
+        extraSeedChance = buffer.readFloat();
         seed = buffer.readItem();
         crop = buffer.readItem();
         nutrient = buffer.readEnum(FarmlandBlockEntity.NutrientType.class);
@@ -87,6 +91,7 @@ public class Plantable extends ItemDefinition
         buffer.writeEnum(planter);
         buffer.writeVarInt(tier);
         buffer.writeVarInt(stages);
+        buffer.writeFloat(extraSeedChance);
         buffer.writeItem(seed);
         buffer.writeItem(crop);
         buffer.writeEnum(nutrient);
@@ -128,10 +133,15 @@ public class Plantable extends ItemDefinition
         return texture;
     }
 
+    public float getExtraSeedChance()
+    {
+        return extraSeedChance;
+    }
+
     public ResourceLocation getTexture(float growth)
     {
         return new ResourceLocation(texture + "_" + (int) (growth * stages));
     }
 
-    public static class Packet extends DMSPacket<Plantable> {}
+    public static class Packet extends DataManagerSyncPacket<Plantable> {}
 }

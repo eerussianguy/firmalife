@@ -1,0 +1,17 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "planter": "large",
+  "ingredient": {
+    "item": "tfc:seeds/jute"
+  },
+  "seed": {
+    "item": "tfc:seeds/jute"
+  },
+  "crop": {
+    "item": "tfc:jute"
+  },
+  "nutrient": "potassium",
+  "stages": 4,
+  "texture": "firmalife:block/crop/jute",
+  "extra_seed_chance": 0.5
+}

@@ -1,0 +1,16 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:anvil",
+  "input": {
+    "item": "firmalife:metal/double_ingot/stainless_steel"
+  },
+  "result": {
+    "item": "firmalife:metal/sheet/stainless_steel"
+  },
+  "tier": 6,
+  "rules": [
+    "hit_last",
+    "hit_second_last",
+    "hit_third_last"
+  ]
+}

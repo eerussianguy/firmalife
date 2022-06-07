@@ -101,13 +101,7 @@ public class OvenBottomBlock extends AbstractOvenBlock implements IBellowsConsum
     }
 
     @Override
-    public boolean canAcceptAir(BlockState blockState, Level level, BlockPos blockPos, Direction direction)
-    {
-        return direction == blockState.getValue(FACING).getOpposite();
-    }
-
-    @Override
-    public void intakeAir(BlockState blockState, Level level, BlockPos blockPos, Direction direction, int amount)
+    public void intakeAir(Level level, BlockPos blockPos, BlockState state, int amount)
     {
         level.getBlockEntity(blockPos, FLBlockEntities.OVEN_BOTTOM.get()).ifPresent(oven -> oven.onAirIntake(amount));
     }

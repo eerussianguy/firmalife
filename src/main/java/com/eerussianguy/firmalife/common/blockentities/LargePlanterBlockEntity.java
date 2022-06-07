@@ -1,6 +1,8 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.Vec3i;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -10,6 +12,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.items.ItemStackHandler;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
@@ -161,8 +164,13 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     public boolean checkValid()
     {
         assert level != null;
-        BlockPos above = worldPosition.above();
-        return climateValid && level.getBrightness(LightLayer.SKY, above) >= level.getMaxLightLevel() - 5 && level.getBlockState(above).isAir() && water > 0;
+        BlockPos offset = worldPosition.relative(airFindOffset());
+        return climateValid && level.getBrightness(LightLayer.SKY, offset) >= level.getMaxLightLevel() - 5 && level.getBlockState(offset).isAir() && water > 0;
+    }
+
+    public boolean isClimateValid()
+    {
+        return climateValid;
     }
 
     public Component getInvalidReason()
@@ -173,7 +181,7 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
         {
             complaint = "climate_invalid";
         }
-        else if (level.getBrightness(LightLayer.SKY, worldPosition.above()) < level.getMaxLightLevel() - 5)
+        else if (level.getBrightness(LightLayer.SKY, worldPosition.relative(Direction.UP)) < level.getMaxLightLevel() - 5)
         {
             complaint = "no_sky";
         }
@@ -186,6 +194,11 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
             complaint = "dehydrated";
         }
         return new TranslatableComponent("firmalife.greenhouse." + complaint);
+    }
+
+    protected Direction airFindOffset()
+    {
+        return Direction.UP;
     }
 
     public int getTier()

@@ -41,7 +41,7 @@ def generate(rm: ResourceManager):
         greenhouse_wall(rm, greenhouse, 'firmalife:block/greenhouse/%s' % greenhouse, 'firmalife:block/greenhouse/%s_glass' % greenhouse)
         greenhouse_door(rm, greenhouse, 'firmalife:block/greenhouse/%s_door_bottom' % greenhouse, 'firmalife:block/greenhouse/%s_door_top' % greenhouse)
 
-    for planter in ('quad_planter', 'large_planter', 'bonsai_planter'):
+    for planter in ('quad_planter', 'large_planter', 'bonsai_planter', 'hanging_planter'):
         for state in ('wet', 'dry'):
             rm.block_model('%s_%s' % (planter, state), parent='firmalife:block/%s' % planter, textures={'soil': 'firmalife:block/potting_soil_%s' % state})
         rm.blockstate(planter, variants={
@@ -58,6 +58,17 @@ def generate(rm: ResourceManager):
     for variant in ('valid', 'invalid'):
         tex = 'firmalife:block/greenhouse/climate_station/%s' % variant
         rm.block_model('firmalife:climate_station_%s' % variant, {'west': tex, 'east': tex, 'north': tex, 'south': tex, 'particle': tex, 'up': 'firmalife:block/greenhouse/climate_station/top', 'down': 'firmalife:block/greenhouse/climate_station/end'}, 'block/cube')
+
+    for jar, remainder, texture, ingredient in JARS:
+        for i in range(1, 5):
+            rm.block_model('jar/%s_%s' % (jar, i), textures={'1': texture}, parent='firmalife:block/jar_%s' % i)
+        block = rm.blockstate('%s_jar' % jar, variants=dict(('count=%s' % i, {'model': 'tfc:block/jar/%s_%s' % (jar, i)}) for i in range(1, 5)))
+        block.with_lang(lang('%s jar', jar))
+        loot_pools = []
+        for i in range(1, 5):
+            loot_pools += [{'name': 'firmalife:%s_jar' % jar, 'conditions': [loot_tables.block_state_property('tfc:%s_jar[count=%s]' % (jar, i))], 'functions': [loot_tables.set_count(i)]}]
+        block.with_block_loot(*loot_pools)
+        rm.item_model('firmalife:%s_jar' % jar, 'firmalife:item/jar/%s' % jar)
 
     #for block, tag in SIMPLE_BLOCKS.items():
     #    rm.blockstate(block).with_block_model().with_tag(tag).with_lang(lang(block)).with_item_model()
