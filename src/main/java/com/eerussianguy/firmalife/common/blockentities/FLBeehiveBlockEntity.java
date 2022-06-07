@@ -144,10 +144,10 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
     private void updateTick()
     {
         assert level != null;
-        final int minX = worldPosition.getX() - 10;
-        final int maxX = worldPosition.getX() + 10;
-        final int minZ = worldPosition.getZ() - 10;
-        final int maxZ = worldPosition.getZ() + 10;
+        final int minX = worldPosition.getX() - 5;
+        final int maxX = worldPosition.getX() + 5;
+        final int minZ = worldPosition.getZ() - 5;
+        final int maxZ = worldPosition.getZ() + 5;
         final float temp = Climate.getTemperature(level, worldPosition);
 
         // collect bees that exist and have queens
@@ -174,7 +174,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
         // noinspection deprecation
         if (level.hasChunksAt(minX, maxX, minZ, maxZ))
         {
-            for (BlockPos pos : BlockPos.betweenClosed(minX, worldPosition.getY() - 10, minZ, maxX, worldPosition.getY() + 10, maxZ))
+            for (BlockPos pos : BlockPos.betweenClosed(minX, worldPosition.getY() - 5, minZ, maxX, worldPosition.getY() + 5, maxZ))
             {
                 if (empty)
                 {
@@ -339,7 +339,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
     {
         for (int i = 0; i < SLOTS; i++)
         {
-            if (cachedBees[i] != null)
+            if (cachedBees[i] != null && cachedBees[i].hasQueen())
             {
                 return true;
             }

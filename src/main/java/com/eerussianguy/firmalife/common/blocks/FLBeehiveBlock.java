@@ -1,5 +1,7 @@
 package com.eerussianguy.firmalife.common.blocks;
 
+import java.util.Random;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -26,6 +28,7 @@ import com.eerussianguy.firmalife.common.capabilities.bee.BeeCapability;
 import com.eerussianguy.firmalife.common.capabilities.bee.IBee;
 import com.eerussianguy.firmalife.common.items.FLItems;
 import com.eerussianguy.firmalife.common.misc.FLEffects;
+import com.eerussianguy.firmalife.common.misc.SwarmEffect;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.blocks.devices.FirepitBlock;
@@ -77,7 +80,7 @@ public class FLBeehiveBlock extends FourWayDeviceBlock
 
     public static void attack(Player player)
     {
-        player.addEffect(new MobEffectInstance(FLEffects.SWARM.get(), 40));
+        player.addEffect(new MobEffectInstance(FLEffects.SWARM.get(), 100));
     }
 
     public static final BooleanProperty HONEY = FLStateProperties.HONEY;
@@ -111,6 +114,15 @@ public class FLBeehiveBlock extends FourWayDeviceBlock
             return InteractionResult.sidedSuccess(level.isClientSide);
         }
         return InteractionResult.PASS;
+    }
+
+    @Override
+    public void animateTick(BlockState state, Level level, BlockPos pos, Random random)
+    {
+        if (state.getValue(BEES) && level.getGameTime() < 12000)
+        {
+            SwarmEffect.particles(level, pos, random);
+        }
     }
 
     @Override

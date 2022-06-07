@@ -1,6 +1,7 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -13,5 +14,11 @@ public class HangingPlanterBlockEntity extends LargePlanterBlockEntity
     public HangingPlanterBlockEntity(BlockPos pos, BlockState state)
     {
         super(FLBlockEntities.HANGING_PLANTER.get(), pos, state, defaultInventory(LARGE_PLANTER_SLOTS), NAME);
+    }
+
+    @Override
+    protected Direction airFindOffset()
+    {
+        return Direction.DOWN;
     }
 }

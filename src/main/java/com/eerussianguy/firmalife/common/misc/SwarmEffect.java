@@ -8,11 +8,24 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.Level;
 
 import net.dries007.tfc.util.Helpers;
 
 public class SwarmEffect extends MobEffect
 {
+    public static void particles(Level level, BlockPos pos, Random rand)
+    {
+        final double x = pos.getX() + 0.5;
+        final double y = pos.getY() + 0.5;
+        final double z = pos.getZ() + 0.5;
+        final int ct = 3 + rand.nextInt(4);
+        for (int i = 0; i < ct; i++)
+        {
+            level.addParticle(ParticleTypes.SMOKE, x + Helpers.triangle(rand), y + rand.nextFloat(), z + Helpers.triangle(rand), 0.5 * (Helpers.triangle(rand)), 0.5 * (Helpers.triangle(rand)), 0.5 * (Helpers.triangle(rand)));
+        }
+    }
+
     public SwarmEffect(MobEffectCategory category, int color)
     {
         super(category, color);
@@ -36,16 +49,6 @@ public class SwarmEffect extends MobEffect
         {
             entity.hurt(DamageSource.MAGIC, 1.0F);
         }
-
-        final BlockPos pos = entity.blockPosition();
-        final Random rand = entity.getRandom();
-        final double x = pos.getX() + 0.5;
-        final double y = pos.getY() + 0.5;
-        final double z = pos.getZ() + 0.5;
-        final int ct = 3 + rand.nextInt(4);
-        for (int i = 0; i < ct; i++)
-        {
-            entity.getLevel().addParticle(ParticleTypes.SMOKE, x + Helpers.triangle(rand), y + rand.nextFloat(), z + Helpers.triangle(rand), 0.5 * (Helpers.triangle(rand)), 0.5 * (Helpers.triangle(rand)), 0.5 * (Helpers.triangle(rand)));
-        }
+        particles(entity.getLevel(), entity.blockPosition(), entity.getRandom());
     }
 }

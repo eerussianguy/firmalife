@@ -12,7 +12,7 @@
           "conditions": [
             {
               "condition": "minecraft:block_state_property",
-              "block": "tfc:guano_jar",
+              "block": "firmalife:guano_jar",
               "properties": {
                 "count": "1"
               }
@@ -42,7 +42,7 @@
           "conditions": [
             {
               "condition": "minecraft:block_state_property",
-              "block": "tfc:guano_jar",
+              "block": "firmalife:guano_jar",
               "properties": {
                 "count": "2"
               }
@@ -72,7 +72,7 @@
           "conditions": [
             {
               "condition": "minecraft:block_state_property",
-              "block": "tfc:guano_jar",
+              "block": "firmalife:guano_jar",
               "properties": {
                 "count": "3"
               }
@@ -102,7 +102,7 @@
           "conditions": [
             {
               "condition": "minecraft:block_state_property",
-              "block": "tfc:guano_jar",
+              "block": "firmalife:guano_jar",
               "properties": {
                 "count": "4"
               }

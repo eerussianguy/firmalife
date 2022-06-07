@@ -2,6 +2,7 @@ package com.eerussianguy.firmalife.common.capabilities.bee;
 
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
@@ -43,7 +44,7 @@ public class BeeHandler implements IBee, ICapabilitySerializable<CompoundTag>
     @Override
     public void setAbility(BeeAbility ability, int value)
     {
-        abilities[ability.ordinal()] = value;
+        abilities[ability.ordinal()] = Mth.clamp(value, 1, 10);
         save();
     }
 
@@ -57,6 +58,7 @@ public class BeeHandler implements IBee, ICapabilitySerializable<CompoundTag>
     public void setHasQueen(boolean exists)
     {
         hasQueen = exists;
+        save();
     }
 
     @NotNull
@@ -78,7 +80,11 @@ public class BeeHandler implements IBee, ICapabilitySerializable<CompoundTag>
             initialized = true;
 
             final CompoundTag tag = stack.getOrCreateTag();
-            if (tag.contains("abilities")) abilities = tag.getIntArray("abilities");
+            if (tag.contains("queen"))
+            {
+                hasQueen = tag.getBoolean("queen");
+                abilities = tag.getIntArray("abilities");
+            }
         }
     }
 
@@ -86,6 +92,7 @@ public class BeeHandler implements IBee, ICapabilitySerializable<CompoundTag>
     {
         final CompoundTag tag = stack.getOrCreateTag();
         tag.putIntArray("abilities", abilities);
+        tag.putBoolean("queen", hasQueen);
     }
 
     @Override

@@ -2,16 +2,16 @@
   "__comment__": "This file was automatically created by mcresources",
   "variants": {
     "count=1": {
-      "model": "tfc:block/jar/guano_1"
+      "model": "firmalife:block/jar/guano_1"
     },
     "count=2": {
-      "model": "tfc:block/jar/guano_2"
+      "model": "firmalife:block/jar/guano_2"
     },
     "count=3": {
-      "model": "tfc:block/jar/guano_3"
+      "model": "firmalife:block/jar/guano_3"
     },
     "count=4": {
-      "model": "tfc:block/jar/guano_4"
+      "model": "firmalife:block/jar/guano_4"
     }
   }
 }

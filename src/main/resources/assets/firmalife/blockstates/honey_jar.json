@@ -2,16 +2,16 @@
   "__comment__": "This file was automatically created by mcresources",
   "variants": {
     "count=1": {
-      "model": "tfc:block/jar/honey_1"
+      "model": "firmalife:block/jar/honey_1"
     },
     "count=2": {
-      "model": "tfc:block/jar/honey_2"
+      "model": "firmalife:block/jar/honey_2"
     },
     "count=3": {
-      "model": "tfc:block/jar/honey_3"
+      "model": "firmalife:block/jar/honey_3"
     },
     "count=4": {
-      "model": "tfc:block/jar/honey_4"
+      "model": "firmalife:block/jar/honey_4"
     }
   }
 }

@@ -1,0 +1,11 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "variants": {
+    "honey=true": {
+      "model": "minecraft:block/beehive_honey"
+    },
+    "honey=false": {
+      "model": "minecraft:block/beehive"
+    }
+  }
+}

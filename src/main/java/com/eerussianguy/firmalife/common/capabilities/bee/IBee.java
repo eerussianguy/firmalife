@@ -43,7 +43,7 @@ public interface IBee extends INBTSerializable<CompoundTag>
         int[] parent1Abilities = parent1.getAbilityMap();
         int[] parent2Abilities = parent2.getAbilityMap();
         int[] myAbilities = getAbilityMap();
-        int mutation = myAbilities[BeeAbility.MUTANT.ordinal()];
+        int mutation = (parent1Abilities[BeeAbility.MUTANT.ordinal()] + parent2Abilities[BeeAbility.MUTANT.ordinal()]) / 2;
 
         for (BeeAbility ability : BeeAbility.VALUES)
         {
@@ -61,7 +61,7 @@ public interface IBee extends INBTSerializable<CompoundTag>
             tooltip.add(new TranslatableComponent("firmalife.bee.abilities").withStyle(ChatFormatting.WHITE));
             for (BeeAbility ability : BeeAbility.VALUES)
             {
-                tooltip.add(new TranslatableComponent("firmalife.bee.ability." + ability.getSerializedName(), getAbility(ability)).withStyle(ChatFormatting.GRAY));
+                tooltip.add(new TranslatableComponent("firmalife.bee.ability." + ability.getSerializedName(), String.valueOf(getAbility(ability))).withStyle(ChatFormatting.GRAY));
             }
         }
         else

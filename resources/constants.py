@@ -34,6 +34,7 @@ CLEANING_PAIRS: Dict[str, str] = {
 PLANTERS = ('hanging', 'bonsai', 'quad', 'large')  # todo: trellis
 
 DEFAULT_LANG = {
+    'effect.firmalife.swarm': 'Swarm',
     'firmalife.tooltip.food_trait.dried': 'Dried',
     'firmalife.greenhouse.valid_block': '§aGrowing',
     'firmalife.greenhouse.invalid_block': '§cNot Growing',
@@ -49,13 +50,13 @@ DEFAULT_LANG = {
     'firmalife.bee.queen': 'Queen',
     'firmalife.bee.no_queen': 'No Queen',
     'firmalife.bee.abilities': 'Abilities:',
-    'firmalife.bee.ability.hardiness': 'Hardiness ',
-    'firmalife.bee.ability.production': 'Production ',
-    'firmalife.bee.ability.mutant': 'Mutant ',
-    'firmalife.bee.ability.fertility': 'Fertility ',
-    'firmalife.bee.ability.crop_affinity': 'Crop Affinity ',
-    'firmalife.bee.ability.nature_restoration': 'Nature Restoration ',
-    'firmalife.bee.ability.calmness': 'Calmness ',
+    'firmalife.bee.ability.hardiness': 'Hardiness %s',
+    'firmalife.bee.ability.production': 'Production %s',
+    'firmalife.bee.ability.mutant': 'Mutant %s',
+    'firmalife.bee.ability.fertility': 'Fertility %s',
+    'firmalife.bee.ability.crop_affinity': 'Crop Affinity %s',
+    'firmalife.bee.ability.nature_restoration': 'Nature Restoration %s',
+    'firmalife.bee.ability.calmness': 'Calmness %s',
 
     'firmalife.enum.plantertype.hanging': 'Hanging Planter',
     'firmalife.enum.plantertype.trellis': 'Trellis Planter',
