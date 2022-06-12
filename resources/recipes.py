@@ -42,17 +42,26 @@ def generate(rm: ResourceManager):
     # Crafting
     rm.crafting_shaped('crafting/peel', ['X', 'Y'], {'X': 'minecraft:bowl', 'Y': '#forge:rods/wooden'}, 'firmalife:peel').with_advancement('#forge:rods/wooden')
     rm.crafting_shapeless('crafting/empty_jar', ('minecraft:glass', '#tfc:lumber'), (4, 'firmalife:empty_jar')).with_advancement('minecraft:glass')
+    rm.crafting_shaped('crafting/drying_mat', ['XXX'], {'X': 'firmalife:fruit_leaf'}, 'firmalife:drying_mat').with_advancement('firmalife:fruit_leaf')
+    damage_shapeless(rm, 'crafting/scrape_beehive_frame', (has_queen('firmalife:beehive_frame'), '#tfc:knives'), 'firmalife:beeswax').with_advancement('firmalife:beehive_frame')  # frame has a container item of itself
+    rm.crafting_shapeless('crafting/bee_candle', ('firmalife:beeswax', '#forge:string'), '4 tfc:candle').with_advancement('firmalife:beeswax')
+    rm.crafting_shaped('crafting/sealed_bricks', ['XXX', 'XYX', 'XXX'], {'X': '#forge:stone_bricks', 'Y': 'firmalife:beeswax'}, '8 firmalife:sealed_bricks').with_advancement('firmalife:beeswax')
+    rm.crafting_shaped('crafting/treated_lumber', ['XXX', 'XYX', 'XXX'], {'X': '#tfc:lumber', 'Y': 'firmalife:beeswax'}, '8 firmalife:treated_lumber').with_advancement('firmalife:beeswax')
+    rm.crafting_shaped('crafting/beehive_frame', ['X X', ' X ', 'X X'], {'X': '#tfc:lumber'}, 'firmalife:beehive_frame').with_advancement('#tfc:lumber')
+    rm.crafting_shaped('crafting/beehive', ['XYX', 'XZX', 'XYX'], {'X': '#tfc:lumber', 'Y': 'firmalife:beehive_frame', 'Z': 'tfc:thatch'}, 'firmalife:beehive').with_advancement('#tfc:lumber')
+    rm.crafting_shaped('crafting/iron_composter', ['XYX'], {'X': '#forge:sheets/wrought_iron', 'Y': 'tfc:composter'}, 'firmalife:iron_composter').with_advancement('tfc:composter')
 
-    for jar, remainder, tex, ing in JARS:
-        if ing is not None:
-            if remainder == 8:
-                rm.crafting_shaped('crafting/%s_jar' % jar, ['XXX', 'XYX', 'XXX'], {'X': ing, 'Y': 'firmalife:empty_jar'}, 'firmalife:%s_jar' % jar).with_advancement(ing)
-            rm.crafting_shapeless('crafting/%s_jar_open' % jar, ('firmalife:%s_jar' % jar), (remainder, ing))
-
+    for jar, remainder, _, ing in JARS:
+        make_jar(rm, jar, remainder, ing)
+    for fruit in TFC_FRUITS:
+        make_jar(rm, fruit)
+        simple_pot_recipe(rm, '%s_jar' % fruit, [utils.ingredient('firmalife:empty_jar'), utils.ingredient('#firmalife:sweetener'), not_rotten(has_trait('tfc:food/%s' % fruit, 'firmalife:dried', True))], '1000 minecraft:water', None, ['firmalife:%s_jar' % fruit])
+    barrel_sealed_recipe(rm, 'cleaning_jar', 'Cleaning Jar', 1000, '#firmalife:jars', '1000 minecraft:water', output_item='firmalife:empty_jar')
 
     # Firmalife
-    drying_recipe(rm, 'drying_fruit', intersect(utils.ingredient('#tfc:foods/fruits'), not_ingredient(has_trait(None, 'firmalife:dried'))), item_stack_provider(copy_input=True, add_trait='firmalife:dried'))
+    drying_recipe(rm, 'drying_fruit', not_rotten(has_trait('#tfc:foods/fruits', 'firmalife:dried', True)), item_stack_provider(copy_input=True, add_trait='firmalife:dried'))
     drying_recipe(rm, 'cinnamon', 'firmalife:cinnamon_bark', item_stack_provider('firmalife:spice/cinnamon'))
+    drying_recipe(rm, 'dry_grass', 'tfc:thatch', item_stack_provider('tfc:groundcover/dead_grass'))
 
     # Greenhouse
     for block in GREENHOUSE_BLOCKS:
@@ -70,6 +79,13 @@ def generate(rm: ResourceManager):
         rm.crafting_shaped('crafting/greenhouse/%s_greenhouse_door' % greenhouse, ['XY', 'XY', 'XY'], mapping, (2, 'firmalife:%s_greenhouse_door' % greenhouse)).with_advancement(rod)
 
 
+def make_jar(rm: ResourceManager, jar: str, remainder: int = -1, ing: str = None):
+    if ing is not None:
+        if remainder == 8:
+            rm.crafting_shaped('crafting/%s_jar' % jar, ['XXX', 'XYX', 'XXX'], {'X': ing, 'Y': 'firmalife:empty_jar'}, 'firmalife:%s_jar' % jar).with_advancement('firmalife:empty_jar')
+        elif remainder == 1:
+            rm.crafting_shapeless('crafting/%s_jar' % jar, ('firmalife:empty_jar', ing), 'firmalife:%s_jar' % jar).with_advancement('firmalife:empty_jar')
+        rm.crafting_shapeless('crafting/%s_jar_open' % jar, ('firmalife:%s_jar' % jar), (remainder, ing))
 
 
 def damage_shapeless(rm: ResourceManager, name_parts: ResourceIdentifier, ingredients: Json, result: Json, group: str = None, conditions: utils.Json = None) -> RecipeContext:
@@ -100,21 +116,24 @@ def drying_recipe(rm: ResourceManager, name: utils.ResourceIdentifier, item: Any
         'result': result
     })
 
-def intersect(ingredient1: Json, ingredient2: Json):
+def has_trait(ingredient: Json, trait: str, invert: bool = False) -> Json:
     return {
-        'type': 'forge:intersection',
-        'children': [ingredient1, ingredient2]
-    }
-
-def has_trait(ingredient: Json, trait: str) -> Json:
-    return {
-        'type': 'tfc:has_trait',
+        'type': 'tfc:lacks_trait' if invert else 'tfc:has_trait',
         'trait': trait,
-        'ingredient': utils.ingredient(ingredient) if ingredient is not None else None
+        'ingredient': utils.ingredient(ingredient)
     }
 
-def not_ingredient(data_in: Json):
-    return {'type': 'tfc:not', 'ingredient': data_in}
+def not_rotten(ingredient: Json) -> Json:
+    return {
+        'type': 'tfc:not_rotten',
+        'ingredient': utils.ingredient(ingredient)
+    }
+
+def has_queen(ingredient: Json) -> Json:
+    return {
+        'type': 'firmalife:has_queen',
+        'ingredient': utils.ingredient(ingredient)
+    }
 
 def item_stack_provider(data_in: Json = None, copy_input: bool = False, copy_heat: bool = False, copy_food: bool = False, reset_food: bool = False, add_heat: float = None, add_trait: str = None, remove_trait: str = None, empty_bowl: bool = False) -> Json:
     if isinstance(data_in, dict):
@@ -154,6 +173,15 @@ def welding_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, fi
         'result': item_stack_provider(result)
     })
 
+def simple_pot_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredients: Json, fluid: str, output_fluid: str = None, output_items: Json = None, duration: int = 2000, temp: int = 300):
+    rm.recipe(('pot', name_parts), 'tfc:pot', {
+        'ingredients': ingredients,
+        'fluid_ingredient': fluid_stack_ingredient(fluid),
+        'duration': duration,
+        'temperature': temp,
+        'fluid_output': fluid_stack(output_fluid) if output_fluid is not None else None,
+        'item_output': [utils.item_stack(item) for item in output_items] if output_items is not None else None
+    })
 
 def heat_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredient: utils.Json, temperature: float, result_item: Optional[Union[str, Json]], result_fluid: Optional[str] = None) -> RecipeContext:
     result_item = item_stack_provider(result_item) if isinstance(result_item, str) else result_item
@@ -210,6 +238,34 @@ def fluid_ingredient(data_in: Json) -> Json:
         else:
             return fluid
 
+def barrel_sealed_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, translation: str, duration: int, input_item: Optional[Json] = None, input_fluid: Optional[Json] = None, output_item: Optional[Json] = None, output_fluid: Optional[Json] = None, on_seal: Optional[Json] = None, on_unseal: Optional[Json] = None, sound: Optional[str] = None):
+    rm.recipe(('barrel', name_parts), 'tfc:barrel_sealed', {
+        'input_item': item_stack_ingredient(input_item) if input_item is not None else None,
+        'input_fluid': fluid_stack_ingredient(input_fluid) if input_fluid is not None else None,
+        'output_item': item_stack_provider(output_item) if isinstance(output_item, str) else output_item,
+        'output_fluid': fluid_stack(output_fluid) if output_fluid is not None else None,
+        'duration': duration,
+        'on_seal': on_seal,
+        'on_unseal': on_unseal,
+        'sound': sound
+    })
+    res = utils.resource_location('tfc', name_parts)
+    rm.lang('tfc.recipe.barrel.' + res.domain + '.barrel.' + res.path.replace('/', '.'), lang(translation))
+
+def item_stack_ingredient(data_in: Json):
+    if isinstance(data_in, dict):
+        return {
+            'ingredient': utils.ingredient(data_in['ingredient']),
+            'count': data_in['count'] if data_in.get('count') is not None else None
+        }
+    if pair := utils.maybe_unordered_pair(data_in, int, object):
+        count, item = pair
+        return {'ingredient': fluid_ingredient(item), 'count': count}
+    item, tag, count, _ = utils.parse_item_stack(data_in, False)
+    if tag:
+        return {'ingredient': {'tag': item}, 'count': count}
+    else:
+        return {'ingredient': {'item': item}, 'count': count}
 
 
 

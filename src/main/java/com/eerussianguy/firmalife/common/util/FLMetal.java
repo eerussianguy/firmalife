@@ -3,33 +3,29 @@ package com.eerussianguy.firmalife.common.util;
 import java.util.Locale;
 
 import net.minecraft.util.StringRepresentable;
+import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.Tier;
 
 import net.minecraftforge.common.util.NonNullFunction;
 
+import net.dries007.tfc.common.TFCArmorMaterial;
 import net.dries007.tfc.common.TFCItemGroup;
+import net.dries007.tfc.common.TFCTiers;
 import net.dries007.tfc.util.Metal;
+import net.dries007.tfc.util.registry.RegistryMetal;
 
-public enum FLMetal implements StringRepresentable
+public enum FLMetal implements RegistryMetal
 {
-    STAINLESS_STEEL(0xFFD9FCFF, Rarity.EPIC, Metal.Tier.TIER_VI);
+    STAINLESS_STEEL(0xFFD9FCFF);
 
     private final String serializedName;
-    private final Metal.Tier metalTier;
-    private final Rarity rarity;
     private final int color;
 
-    FLMetal(int color, Rarity rarity)
-    {
-        this(color, rarity, Metal.Tier.TIER_0);
-    }
-
-    FLMetal(int color, Rarity rarity, Metal.Tier metalTier)
+    FLMetal(int color)
     {
         this.serializedName = name().toLowerCase(Locale.ROOT);
-        this.metalTier = metalTier;
-        this.rarity = rarity;
         this.color = color;
     }
 
@@ -39,19 +35,32 @@ public enum FLMetal implements StringRepresentable
         return serializedName;
     }
 
-    public Metal.Tier getMetalTier()
+    public int getColor()
     {
-        return metalTier;
+        return color;
     }
 
     public Rarity getRarity()
     {
-        return rarity;
+        return Rarity.EPIC;
     }
 
-    public int getColor()
+    @Override
+    public Tier toolTier()
     {
-        return color;
+        return TFCTiers.RED_STEEL;
+    }
+
+    @Override
+    public ArmorMaterial armorTier()
+    {
+        return TFCArmorMaterial.RED_STEEL;
+    }
+
+    @Override
+    public Metal.Tier metalTier()
+    {
+        return Metal.Tier.TIER_VI;
     }
 
     public enum ItemType

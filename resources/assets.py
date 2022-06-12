@@ -62,19 +62,21 @@ def generate(rm: ResourceManager):
     rm.blockstate('beehive', variants={'honey=true': {'model': 'minecraft:block/beehive_honey'}, 'honey=false': {'model': 'minecraft:block/beehive'}}).with_lang(lang('wooden beehive')).with_tag('minecraft:mineable/axe').with_block_loot('firmalife:beehive')
     rm.item_model('beehive', parent='minecraft:block/beehive', no_textures=True)
 
-    for jar, remainder, texture, ingredient in JARS:
-        for i in range(1, 5):
-            rm.block_model('jar/%s_%s' % (jar, i), textures={'1': texture}, parent='firmalife:block/jar_%s' % i)
-        block = rm.blockstate('%s_jar' % jar, variants=dict(('count=%s' % i, {'model': 'firmalife:block/jar/%s_%s' % (jar, i)}) for i in range(1, 5)))
-        block.with_lang(lang('%s jar', jar))
-        loot_pools = []
-        for i in range(1, 5):
-            loot_pools += [{'name': 'firmalife:%s_jar' % jar, 'conditions': [loot_tables.block_state_property('firmalife:%s_jar[count=%s]' % (jar, i))], 'functions': [loot_tables.set_count(i)]}]
-        block.with_block_loot(*loot_pools)
-        rm.item_model('firmalife:%s_jar' % jar, 'firmalife:item/jar/%s' % jar)
+    rm.block_model('iron_composter', parent='tfc:block/composter/composter', textures={'0': 'firmalife:block/iron_composter_bottom', '1': 'firmalife:block/iron_composter_side', 'particle': 'firmalife:block/iron_composter_bottom'})
+    states = [({'model': 'firmalife:block/iron_composter'})]
+    for i in range(1, 9):
+        for age in ('normal', 'ready', 'rotten'):
+            states.append(({'type': age, 'stage': i}, {'model': 'tfc:block/composter/%s_%s' % (age, i)}),)
+    rm.blockstate_multipart('iron_composter', *states).with_lang(lang('iron composter')).with_block_loot('firmalife:iron_composter')
+    rm.item_model('iron_composter', parent='firmalife:block/iron_composter', no_textures=True)
 
-    #for block, tag in SIMPLE_BLOCKS.items():
-    #    rm.blockstate(block).with_block_model().with_tag(tag).with_lang(lang(block)).with_item_model()
+    for jar, _, texture, _ in JARS:
+        make_jar(rm, jar, texture)
+    for fruit in TFC_FRUITS:
+        make_jar(rm, fruit, 'firmalife:block/jar/%s' % fruit)
+
+    for block, tag in SIMPLE_BLOCKS.items():
+        rm.blockstate(block).with_block_model().with_tag(tag).with_lang(lang(block)).with_item_model()
     for item in SIMPLE_ITEMS:
         rm.item_model(item).with_lang(lang(item))
     for item in SIMPLE_FOODS:
@@ -83,10 +85,23 @@ def generate(rm: ResourceManager):
         rm.item_model('spice/%s' % item).with_lang(lang(item))
     for be in BLOCK_ENTITIES:
         rm.lang('firmalife.block_entity.%s' % be, lang(be))
+    for fluid in EXTRA_FLUIDS:
+        water_based_fluid(rm, fluid)
 
     for key, value in DEFAULT_LANG.items():
         rm.lang(key, value)
 
+def make_jar(rm: ResourceManager, jar: str, texture: str, lang_override: str = None):
+    for i in range(1, 5):
+        rm.block_model('jar/%s_%s' % (jar, i), textures={'1': texture}, parent='firmalife:block/jar_%s' % i)
+    block = rm.blockstate('%s_jar' % jar, variants=dict(('count=%s' % i, {'model': 'firmalife:block/jar/%s_%s' % (jar, i)}) for i in range(1, 5)))
+    block.with_lang(lang('%s jar', jar) if lang_override is None else lang_override)
+    loot_pools = []
+    for i in range(1, 5):
+        loot_pools += [{'name': 'firmalife:%s_jar' % jar, 'conditions': [loot_tables.block_state_property('firmalife:%s_jar[count=%s]' % (jar, i))], 'functions': [loot_tables.set_count(i)]}]
+    block.with_block_loot(*loot_pools)
+    rm.item_model('firmalife:%s_jar' % jar, 'firmalife:item/jar/%s' % jar)
+    rm.item_tag('jars', 'firmalife:%s_jar' % jar)
 
 def item_model_property(rm: ResourceManager, name_parts: utils.ResourceIdentifier, overrides: utils.Json, data: Dict[str, Any]) -> ItemContext:
     res = utils.resource_location(rm.domain, name_parts)
@@ -209,3 +224,15 @@ def slab_loot(block: BlockContext, loot: str) -> 'BlockContext':
 def door_loot(block: BlockContext, loot: str) -> 'BlockContext':
     return block.with_block_loot({'name': loot, 'conditions': [loot_tables.block_state_property(loot + '[half=lower]')]})
 
+def water_based_fluid(rm: ResourceManager, name: str):
+    rm.blockstate(('fluid', name)).with_block_model({'particle': 'minecraft:block/water_still'}, parent=None).with_lang(lang(name))
+    rm.fluid_tag(name, 'firmalife:%s' % name, 'firmalife:flowing_%s' % name)
+    rm.fluid_tag('minecraft:water', 'firmalife:%s' % name, 'firmalife:flowing_%s' % name)  # Need to use water fluid tag for behavior
+    rm.fluid_tag('mixable', 'firmalife:%s' % name, 'firmalife:flowing_%s' % name)
+
+    item = rm.custom_item_model(('bucket', name), 'forge:bucket', {
+        'parent': 'forge:item/bucket',
+        'fluid': 'firmalife:%s' % name
+    })
+    item.with_lang(lang('%s bucket', name))
+    rm.lang('fluid.firmalife.%s' % name, lang(name))

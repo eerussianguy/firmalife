@@ -1,0 +1,18 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XYX"
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:sheets/wrought_iron"
+    },
+    "Y": {
+      "item": "tfc:composter"
+    }
+  },
+  "result": {
+    "item": "firmalife:iron_composter"
+  }
+}

@@ -10,8 +10,8 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 
 import com.eerussianguy.firmalife.Firmalife;
+import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.capabilities.bee.BeeCapability;
-import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.SelfTests;
 
 public class FLClientForgeEvents
@@ -26,7 +26,7 @@ public class FLClientForgeEvents
 
     public static void onSelfTest(SelfTests.ClientSelfTestEvent event)
     {
-        if (Helpers.ASSERTIONS_ENABLED)
+        if (FLHelpers.ASSERTIONS_ENABLED)
         {
             final Stopwatch tick = Stopwatch.createStarted();
             FLClientSelfTests.validateModels();

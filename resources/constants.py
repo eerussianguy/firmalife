@@ -1,13 +1,14 @@
 from typing import Dict, List, NamedTuple, Sequence, Optional, Literal, Tuple, Any, Set
 
-SIMPLE_ITEMS = ('peel', 'fruit_leaf', 'cinnamon_bark', 'beeswax', 'pineapple_leather', 'pineapple_yarn', 'rennet', 'watering_can', 'treated_lumber', 'beehive_frame', 'empty_jar')
+SIMPLE_ITEMS = ('peel', 'fruit_leaf', 'cinnamon_bark', 'beeswax', 'pineapple_leather', 'pineapple_yarn', 'raw_honey', 'rennet', 'watering_can', 'treated_lumber', 'beehive_frame', 'empty_jar')
 SIMPLE_FOODS = ('frothy_coconut', 'white_chocolate_blend', 'dark_chocolate_blend', 'milk_chocolate_blend')
 SIMPLE_SPICES = ('ground_cinnamon', 'cinnamon')
 SIMPLE_BLOCKS: Dict[str, str] = {
-    #'climate_station': 'minecraft:mineable/axe'
+    'sealed_bricks': 'minecraft:mineable/pickaxe'
 }
+EXTRA_FLUIDS = ('yeast_starter', 'coconut_milk', 'yak_milk', 'goat_milk', 'zebu_milk', 'curdled_yak_milk', 'curdled_goat_milk', 'curdled_zebu_milk', 'pina_colada')
 JARS: Sequence[Tuple[str, int, str, str]] = (
-    ('honey', -1, 'minecraft:block/honey_block_side', None),
+    ('honey', 1, 'minecraft:block/honey_block_side', 'firmalife:raw_honey'),
     ('compost', 8, 'firmalife:block/potting_soil_wet', 'tfc:compost'),
     ('rotten_compost', 8, 'firmalife:block/rotten_soil', 'tfc:rotten_compost'),
     ('guano', 8, 'minecraft:block/dead_brain_coral_block', 'tfc:groundcover/guano'),
@@ -65,7 +66,7 @@ DEFAULT_LANG = {
     'firmalife.enum.plantertype.large': 'Large Planter',
 
 
-    'firmalife.jei.drying': 'Drying',
+    'tfc.jei.drying': 'Drying',
 }
 
 def lang(key: str, *args) -> str:

@@ -1,0 +1,38 @@
+package com.eerussianguy.firmalife.common.util;
+
+import java.util.Locale;
+
+import net.minecraft.util.StringRepresentable;
+
+public enum ExtraFluid implements StringRepresentable
+{
+    YEAST_STARTER(0xFFa79464),
+    COCONUT_MILK(0xFFfcfae2),
+    YAK_MILK(0xFFfcfaec),
+    GOAT_MILK(0xFFf6f6eb),
+    ZEBU_MILK(0xFFefede6),
+    CURDLED_YAK_MILK(0xFFf9f4d6),
+    CURDLED_GOAT_MILK(0xFFeeeed9),
+    CURDLED_ZEBU_MILK(0xFFEBE9E1),
+    PINA_COLADA(0xFFE4C06A);
+
+    private final String id;
+    private final int color;
+
+    ExtraFluid(int color)
+    {
+        this.id = name().toLowerCase(Locale.ROOT);
+        this.color = color;
+    }
+
+    @Override
+    public String getSerializedName()
+    {
+        return id;
+    }
+
+    public int getColor()
+    {
+        return color;
+    }
+}

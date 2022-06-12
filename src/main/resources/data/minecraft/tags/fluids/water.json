@@ -1,0 +1,24 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "firmalife:yeast_starter",
+    "firmalife:flowing_yeast_starter",
+    "firmalife:coconut_milk",
+    "firmalife:flowing_coconut_milk",
+    "firmalife:yak_milk",
+    "firmalife:flowing_yak_milk",
+    "firmalife:goat_milk",
+    "firmalife:flowing_goat_milk",
+    "firmalife:zebu_milk",
+    "firmalife:flowing_zebu_milk",
+    "firmalife:curdled_yak_milk",
+    "firmalife:flowing_curdled_yak_milk",
+    "firmalife:curdled_goat_milk",
+    "firmalife:flowing_curdled_goat_milk",
+    "firmalife:curdled_zebu_milk",
+    "firmalife:flowing_curdled_zebu_milk",
+    "firmalife:pina_colada",
+    "firmalife:flowing_pina_colada"
+  ]
+}

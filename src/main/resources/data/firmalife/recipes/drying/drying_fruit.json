@@ -2,19 +2,14 @@
   "__comment__": "This file was automatically created by mcresources",
   "type": "firmalife:drying",
   "ingredient": {
-    "type": "forge:intersection",
-    "children": [
-      {
+    "type": "tfc:not_rotten",
+    "ingredient": {
+      "type": "tfc:lacks_trait",
+      "trait": "firmalife:dried",
+      "ingredient": {
         "tag": "tfc:foods/fruits"
-      },
-      {
-        "type": "tfc:not",
-        "ingredient": {
-          "type": "tfc:has_trait",
-          "trait": "firmalife:dried"
-        }
       }
-    ]
+    }
   },
   "result": {
     "modifiers": [

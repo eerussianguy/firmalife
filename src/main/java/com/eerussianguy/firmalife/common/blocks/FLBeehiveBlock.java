@@ -39,7 +39,7 @@ public class FLBeehiveBlock extends FourWayDeviceBlock
 {
     public static boolean shouldAnger(Level level, BlockPos pos)
     {
-        if (level.getGameTime() > 12000)
+        if (level.getTimeOfDay(1f) > 12000)
         {
             return false;
         }
@@ -119,7 +119,7 @@ public class FLBeehiveBlock extends FourWayDeviceBlock
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, Random random)
     {
-        if (state.getValue(BEES) && level.getGameTime() < 12000)
+        if (state.getValue(BEES) && level.getTimeOfDay(1f) < 12000)
         {
             SwarmEffect.particles(level, pos, random);
         }

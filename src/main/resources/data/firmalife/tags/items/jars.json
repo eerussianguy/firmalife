@@ -1,0 +1,30 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "firmalife:honey_jar",
+    "firmalife:compost_jar",
+    "firmalife:rotten_compost_jar",
+    "firmalife:guano_jar",
+    "firmalife:banana_jar",
+    "firmalife:blackberry_jar",
+    "firmalife:blueberry_jar",
+    "firmalife:bunchberry_jar",
+    "firmalife:cherry_jar",
+    "firmalife:cloudberry_jar",
+    "firmalife:cranberry_jar",
+    "firmalife:elderberry_jar",
+    "firmalife:gooseberry_jar",
+    "firmalife:green_apple_jar",
+    "firmalife:lemon_jar",
+    "firmalife:olive_jar",
+    "firmalife:orange_jar",
+    "firmalife:peach_jar",
+    "firmalife:plum_jar",
+    "firmalife:raspberry_jar",
+    "firmalife:red_apple_jar",
+    "firmalife:snowberry_jar",
+    "firmalife:strawberry_jar",
+    "firmalife:wintergreen_berry_jar"
+  ]
+}

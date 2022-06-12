@@ -121,7 +121,7 @@ repositories {
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.18.2-40.1.0'
-    implementation fg.deobf("tfc:TerraFirmaCraft-Forge-1.18.2:2.0.25-alpha")
+    implementation fg.deobf("tfc:TerraFirmaCraft-Forge-1.18.2:0.0.0-indev")
 
     if (System.getProperty("idea.sync.active") != "true") {
         annotationProcessor "org.spongepowered:mixin:0.8.5:processor"

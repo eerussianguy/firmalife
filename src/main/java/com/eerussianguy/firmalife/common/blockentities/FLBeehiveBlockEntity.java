@@ -57,7 +57,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
     }
 
     public static final int MIN_FLOWERS = 10;
-    public static final int UPDATE_INTERVAL = ICalendar.TICKS_IN_DAY / 6; // 4 times daily
+    public static final int UPDATE_INTERVAL = ICalendar.TICKS_IN_DAY;
     public static final int SLOTS = 4;
     private static final Component NAME = FLHelpers.blockEntityName("beehive");
     private static final FarmlandBlockEntity.NutrientType N = FarmlandBlockEntity.NutrientType.NITROGEN;
@@ -195,7 +195,8 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
         {
             breedTickChanceInverted = 20;
         }
-        if (flowers > MIN_FLOWERS && breedTickChanceInverted > 0 && level.random.nextInt(Math.max(1, breedTickChanceInverted - flowers)) == 0)
+        breedTickChanceInverted = Math.max(0, breedTickChanceInverted - flowers);
+        if (flowers > MIN_FLOWERS && breedTickChanceInverted > 0 && level.random.nextInt(breedTickChanceInverted) == 0)
         {
             IBee parent1 = null;
             IBee parent2 = null;
@@ -243,12 +244,14 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
     public void addHoney(int amount)
     {
         honey = Math.min(16, amount + honey);
+        markForSync();
     }
 
     public int takeHoney(int amount)
     {
         final int take = Math.min(amount, honey);
         honey -= take;
+        markForSync();
         return take;
     }
 
@@ -288,7 +291,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
             final int restore = bee.getAbility(BeeAbility.NATURE_RESTORATION);
             if (restore > 1)
             {
-                if (level.random.nextInt(10 + 10 * (10 - restore)) == 0)
+                if (level.random.nextInt(50 + 50 * (10 - restore)) == 0)
                 {
                     BlockPos above = pos.above();
                     boolean airAbove = level.getBlockState(above).isAir();

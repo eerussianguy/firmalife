@@ -11,6 +11,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
+import net.dries007.tfc.util.registry.RegistrationHelpers;
 
 public class FLBlockEntities
 {
@@ -20,6 +21,7 @@ public class FLBlockEntities
     public static final RegistryObject<BlockEntityType<OvenTopBlockEntity>> OVEN_TOP = register("oven_top", OvenTopBlockEntity::new, Stream.of(FLBlocks.OVEN_TOP, FLBlocks.CURED_OVEN_TOP));
     public static final RegistryObject<BlockEntityType<DryingMatBlockEntity>> DRYING_MAT = register("drying_mat", DryingMatBlockEntity::new, FLBlocks.DRYING_MAT);
     public static final RegistryObject<BlockEntityType<FLBeehiveBlockEntity>> BEEHIVE = register("beehive", FLBeehiveBlockEntity::new, FLBlocks.BEEHIVE);
+    public static final RegistryObject<BlockEntityType<IronComposterBlockEntity>> IRON_COMPOSTER = register("iron_composter", IronComposterBlockEntity::new, FLBlocks.IRON_COMPOSTER);
 
     public static final RegistryObject<BlockEntityType<LargePlanterBlockEntity>> LARGE_PLANTER = register("large_planter", LargePlanterBlockEntity::new, FLBlocks.LARGE_PLANTER);
     public static final RegistryObject<BlockEntityType<BonsaiPlanterBlockEntity>> BONSAI_PLANTER = register("bonsai_planter", BonsaiPlanterBlockEntity::new, FLBlocks.BONSAI_PLANTER);
@@ -27,15 +29,13 @@ public class FLBlockEntities
     public static final RegistryObject<BlockEntityType<QuadPlanterBlockEntity>> QUAD_PLANTER = register("quad_planter", QuadPlanterBlockEntity::new, FLBlocks.QUAD_PLANTER);
     public static final RegistryObject<BlockEntityType<ClimateStationBlockEntity>> CLIMATE_STATION = register("climate_station", ClimateStationBlockEntity::new, FLBlocks.CLIMATE_STATION);
 
-    @SuppressWarnings("ConstantConditions")
     private static <T extends BlockEntity> RegistryObject<BlockEntityType<T>> register(String name, BlockEntityType.BlockEntitySupplier<T> factory, Supplier<? extends Block> block)
     {
-        return BLOCK_ENTITIES.register(name, () -> BlockEntityType.Builder.of(factory, block.get()).build(null));
+        return RegistrationHelpers.register(BLOCK_ENTITIES, name, factory, block);
     }
 
-    @SuppressWarnings("ConstantConditions")
     private static <T extends BlockEntity> RegistryObject<BlockEntityType<T>> register(String name, BlockEntityType.BlockEntitySupplier<T> factory, Stream<? extends Supplier<? extends Block>> blocks)
     {
-        return BLOCK_ENTITIES.register(name, () -> BlockEntityType.Builder.of(factory, blocks.map(Supplier::get).toArray(Block[]::new)).build(null));
+        return RegistrationHelpers.register(BLOCK_ENTITIES, name, factory, blocks);
     }
 }

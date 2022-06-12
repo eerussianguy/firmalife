@@ -6,6 +6,8 @@ from mcresources import utils
 
 def generate(rm: ResourceManager):
     rm.item_tag('usable_on_oven', 'firmalife:peel')
+    rm.item_tag('sweetener', 'minecraft:sugar', 'firmalife:raw_honey')
+
     rm.block_tag('oven_insulation', 'minecraft:bricks', '#tfc:forge_insulation', '#firmalife:oven_blocks')
     rm.block_tag('minecraft:mineable/pickaxe', '#firmalife:oven_blocks')
     rm.block_tag('planters', *['firmalife:%s_planter' % p for p in PLANTERS])

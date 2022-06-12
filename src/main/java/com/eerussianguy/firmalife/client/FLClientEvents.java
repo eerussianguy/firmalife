@@ -1,9 +1,5 @@
 package com.eerussianguy.firmalife.client;
 
-import java.util.EnumSet;
-import java.util.Map;
-import java.util.function.Supplier;
-
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -21,13 +17,12 @@ import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.container.FLContainerTypes;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
+import com.eerussianguy.firmalife.common.items.FLItems;
 import net.dries007.tfc.common.capabilities.food.FoodCapability;
-import net.dries007.tfc.common.items.Food;
 import net.dries007.tfc.common.items.TFCItems;
 
 public class FLClientEvents
 {
-    public static final EnumSet<Food> FRUITS = EnumSet.of(Food.BANANA, Food.BLACKBERRY, Food.BLUEBERRY, Food.BUNCHBERRY, Food.CHERRY, Food.CLOUDBERRY, Food.CRANBERRY, Food.ELDERBERRY, Food.GOOSEBERRY, Food.GREEN_APPLE, Food.LEMON, Food.OLIVE, Food.ORANGE, Food.PEACH, Food.PLUM, Food.RASPBERRY, Food.RED_APPLE, Food.SNOWBERRY, Food.STRAWBERRY, Food.WINTERGREEN_BERRY);
 
     public static void init()
     {
@@ -56,19 +51,21 @@ public class FLClientEvents
         ItemBlockRenderTypes.setRenderLayer(FLBlocks.LARGE_PLANTER.get(), cutout);
         ItemBlockRenderTypes.setRenderLayer(FLBlocks.HANGING_PLANTER.get(), cutout);
         ItemBlockRenderTypes.setRenderLayer(FLBlocks.BONSAI_PLANTER.get(), cutout);
+        ItemBlockRenderTypes.setRenderLayer(FLBlocks.IRON_COMPOSTER.get(), cutout);
         ItemBlockRenderTypes.setRenderLayer(FLBlocks.COMPOST_JAR.get(), translucent);
         ItemBlockRenderTypes.setRenderLayer(FLBlocks.HONEY_JAR.get(), translucent);
         ItemBlockRenderTypes.setRenderLayer(FLBlocks.ROTTEN_COMPOST_JAR.get(), translucent);
         ItemBlockRenderTypes.setRenderLayer(FLBlocks.GUANO_JAR.get(), translucent);
 
 
+        FLBlocks.FRUIT_PRESERVES.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), translucent));
         FLBlocks.GREENHOUSE_BLOCKS.values().forEach(map -> map.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout)));
 
         event.enqueueWork(() -> {
             MenuScreens.register(FLContainerTypes.BEEHIVE.get(), BeehiveScreen::new);
 
             TFCItems.FOOD.forEach((food, item) -> {
-                if (FRUITS.contains(food))
+                if (FLItems.TFC_FRUITS.contains(food))
                 {
                     ItemProperties.register(item.get(), FLHelpers.identifier("dry"), (stack, a, b, c) -> {
                         return stack.getCapability(FoodCapability.CAPABILITY).map(cap -> cap.getTraits().contains(FLFoodTraits.DRIED)).orElse(false) ? 1f : 0f;

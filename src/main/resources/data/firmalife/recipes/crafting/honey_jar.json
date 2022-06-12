@@ -1,0 +1,15 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "firmalife:empty_jar"
+    },
+    {
+      "item": "firmalife:raw_honey"
+    }
+  ],
+  "result": {
+    "item": "firmalife:honey_jar"
+  }
+}

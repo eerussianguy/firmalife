@@ -60,6 +60,7 @@ public class FLJEIPlugin implements IModPlugin
     {
         return FLHelpers.identifier("jei");
     }
+
     @Override
     public void registerCategories(IRecipeCategoryRegistration r)
     {

@@ -20,6 +20,7 @@ import com.eerussianguy.firmalife.common.misc.FLEffects;
 import com.eerussianguy.firmalife.common.network.FLPackets;
 import com.eerussianguy.firmalife.common.recipes.FLRecipeSerializers;
 import com.eerussianguy.firmalife.common.recipes.FLRecipeTypes;
+import com.eerussianguy.firmalife.common.recipes.data.FLIngredients;
 import com.mojang.logging.LogUtils;
 import org.slf4j.Logger;
 
@@ -59,6 +60,7 @@ public class Firmalife
         // Vanilla registries are not thread safe
         event.enqueueWork(() -> {
             FLFoodTraits.init();
+            FLIngredients.init();
         });
     }
 

@@ -21,6 +21,8 @@ import static com.eerussianguy.firmalife.Firmalife.MOD_ID;
 
 public class FLHelpers
 {
+    public static final boolean ASSERTIONS_ENABLED = detectAssertionsEnabled();
+
     public static Direction[] NOT_DOWN = new Direction[] {Direction.WEST, Direction.EAST, Direction.NORTH, Direction.SOUTH, Direction.UP};
 
     public static ResourceLocation identifier(String id)
@@ -106,5 +108,13 @@ public class FLHelpers
     public static String getEnumTranslationKey(Enum<?> anEnum, String enumName)
     {
         return String.join(".", MOD_ID, "enum", enumName, anEnum.name()).toLowerCase(Locale.ROOT);
+    }
+
+    @SuppressWarnings({"AssertWithSideEffects", "ConstantConditions"})
+    private static boolean detectAssertionsEnabled()
+    {
+        boolean enabled = false;
+        assert enabled = true;
+        return enabled;
     }
 }

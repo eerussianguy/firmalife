@@ -3,5 +3,11 @@
   "tier": 6,
   "fluid": "firmalife:metal/stainless_steel",
   "melt_temperature": 1540,
-  "heat_capacity": 0.35
+  "heat_capacity": 0.35,
+  "ingots": {
+    "tag": "forge:ingots/stainless_steel"
+  },
+  "sheets": {
+    "tag": "forge:sheets/stainless_steel"
+  }
 }

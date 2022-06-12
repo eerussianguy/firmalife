@@ -27,7 +27,9 @@ def generate(rm: ResourceManager):
             'tier': metal_data.tier,
             'fluid': 'firmalife:metal/%s' % metal,
             'melt_temperature': metal_data.melt_temperature,
-            'heat_capacity': metal_data.heat_capacity
+            'heat_capacity': metal_data.heat_capacity,
+            'ingots': utils.ingredient('#forge:ingots/%s' % metal),
+            'sheets': utils.ingredient('#forge:sheets/%s' % metal)
         })
         for item, item_data in METAL_ITEMS.items():
             if item_data.type in metal_data.types or item_data.type == 'all':

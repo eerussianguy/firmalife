@@ -24,12 +24,14 @@ import com.eerussianguy.firmalife.common.blockentities.*;
 import com.eerussianguy.firmalife.common.blocks.greenhouse.*;
 import com.eerussianguy.firmalife.common.items.FLItems;
 import com.eerussianguy.firmalife.common.items.JarsBlockItem;
+import com.eerussianguy.firmalife.common.util.ExtraFluid;
 import com.eerussianguy.firmalife.common.util.FLMetal;
+import net.dries007.tfc.common.blockentities.TFCBlockEntities;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.TFCMaterials;
-import net.dries007.tfc.common.fluids.TFCFluids;
+import net.dries007.tfc.common.blocks.devices.TFCComposterBlock;
+import net.dries007.tfc.common.items.Food;
 import net.dries007.tfc.util.Helpers;
-import net.dries007.tfc.util.Metal;
 
 import static net.dries007.tfc.common.TFCItemGroup.*;
 
@@ -48,17 +50,21 @@ public class FLBlocks
 
     public static final RegistryObject<Block> DRYING_MAT = register("drying_mat", () -> new DryingMatBlock(ExtendedProperties.of(Properties.of(Material.DECORATION).strength(3.0f).sound(SoundType.AZALEA_LEAVES)).flammable(60, 30).blockEntity(FLBlockEntities.DRYING_MAT).serverTicks(DryingMatBlockEntity::serverTick)), DECORATIONS);
     public static final RegistryObject<Block> BEEHIVE = register("beehive", () -> new FLBeehiveBlock(ExtendedProperties.of(Properties.of(Material.WOOD).strength(0.6f).sound(SoundType.WOOD)).flammable(60, 30).blockEntity(FLBlockEntities.BEEHIVE).serverTicks(FLBeehiveBlockEntity::serverTick)), DECORATIONS);
+    public static final RegistryObject<Block> IRON_COMPOSTER = register("iron_composter", () -> new TFCComposterBlock(ExtendedProperties.of(Properties.of(Material.WOOD).strength(0.6F).noOcclusion().sound(SoundType.METAL).randomTicks()).flammable(60, 90).blockEntity(FLBlockEntities.IRON_COMPOSTER)), DECORATIONS);
 
-    public static final RegistryObject<Block> HONEY_JAR = register("honey_jar", () -> new JarsBlock(ExtendedProperties.of(Properties.of(Material.DECORATION).noCollission().noOcclusion().instabreak().sound(SoundType.GLASS).randomTicks())), b -> new JarsBlockItem(b, new Item.Properties().tab(MISC)));
-    public static final RegistryObject<Block> COMPOST_JAR = register("compost_jar", () -> new JarsBlock(ExtendedProperties.of(Properties.of(Material.DECORATION).noCollission().noOcclusion().instabreak().sound(SoundType.GLASS).randomTicks())), b -> new JarsBlockItem(b, new Item.Properties().tab(MISC)));
-    public static final RegistryObject<Block> ROTTEN_COMPOST_JAR = register("rotten_compost_jar", () -> new JarsBlock(ExtendedProperties.of(Properties.of(Material.DECORATION).noCollission().noOcclusion().instabreak().sound(SoundType.GLASS).randomTicks())), b -> new JarsBlockItem(b, new Item.Properties().tab(MISC)));
-    public static final RegistryObject<Block> GUANO_JAR = register("guano_jar", () -> new JarsBlock(ExtendedProperties.of(Properties.of(Material.DECORATION).noCollission().noOcclusion().instabreak().sound(SoundType.GLASS).randomTicks())), b -> new JarsBlockItem(b, new Item.Properties().tab(MISC)));
+    public static final RegistryObject<Block> HONEY_JAR = register("honey_jar", () -> new JarsBlock(jarProperties()), b -> new JarsBlockItem(b, new Item.Properties().tab(MISC)));
+    public static final RegistryObject<Block> COMPOST_JAR = register("compost_jar", () -> new JarsBlock(jarProperties()), b -> new JarsBlockItem(b, new Item.Properties().tab(MISC)));
+    public static final RegistryObject<Block> ROTTEN_COMPOST_JAR = register("rotten_compost_jar", () -> new JarsBlock(jarProperties()), b -> new JarsBlockItem(b, new Item.Properties().tab(MISC)));
+    public static final RegistryObject<Block> GUANO_JAR = register("guano_jar", () -> new JarsBlock(jarProperties()), b -> new JarsBlockItem(b, new Item.Properties().tab(MISC)));
+    public static final Map<Food, RegistryObject<Block>> FRUIT_PRESERVES = Helpers.mapOfKeys(Food.class, FLItems.TFC_FRUITS::contains, food -> register(food.name().toLowerCase(Locale.ROOT) + "_jar", () -> new JarsBlock(jarProperties()), b -> new JarsBlockItem(b, new Item.Properties().tab(MISC))));
 
     public static final RegistryObject<Block> CLIMATE_STATION = register("climate_station", () -> new ClimateStationBlock(ExtendedProperties.of(Properties.of(Material.WOOD).strength(3.0f).sound(SoundType.WOOD).randomTicks()).blockEntity(FLBlockEntities.CLIMATE_STATION).flammable(60, 30)), DECORATIONS);
     public static final RegistryObject<Block> LARGE_PLANTER = register("large_planter", () -> new LargePlanterBlock(ExtendedProperties.of(Properties.of(Material.DIRT).sound(SoundType.CROP).strength(1f)).blockEntity(FLBlockEntities.LARGE_PLANTER).serverTicks(LargePlanterBlockEntity::serverTick)), DECORATIONS);
     public static final RegistryObject<Block> QUAD_PLANTER = register("quad_planter", () -> new QuadPlanterBlock(ExtendedProperties.of(Properties.of(Material.DIRT).sound(SoundType.CROP).strength(1f)).blockEntity(FLBlockEntities.QUAD_PLANTER).serverTicks(LargePlanterBlockEntity::serverTick)), DECORATIONS);
     public static final RegistryObject<Block> BONSAI_PLANTER = register("bonsai_planter", () -> new BonsaiPlanterBlock(ExtendedProperties.of(Properties.of(Material.DIRT).sound(SoundType.CROP).strength(1f)).blockEntity(FLBlockEntities.BONSAI_PLANTER).serverTicks(LargePlanterBlockEntity::serverTick)), DECORATIONS);
     public static final RegistryObject<Block> HANGING_PLANTER = register("hanging_planter", () -> new HangingPlanterBlock(ExtendedProperties.of(Properties.of(Material.DIRT).sound(SoundType.CROP).strength(1f)).blockEntity(FLBlockEntities.HANGING_PLANTER).serverTicks(LargePlanterBlockEntity::serverTick)), DECORATIONS);
+
+    public static final RegistryObject<Block> SEALED_BRICKS = register("sealed_bricks", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).strength(2.0f, 10).requiresCorrectToolForDrops()), DECORATIONS);
 
     public static final Map<Greenhouse, Map<Greenhouse.BlockType, RegistryObject<Block>>> GREENHOUSE_BLOCKS = Helpers.mapOfKeys(Greenhouse.class, greenhouse ->
         Helpers.mapOfKeys(Greenhouse.BlockType.class, type ->
@@ -67,8 +73,17 @@ public class FLBlocks
     );
 
     public static final Map<FLMetal, RegistryObject<LiquidBlock>> METAL_FLUIDS = Helpers.mapOfKeys(FLMetal.class, metal ->
-        register("fluid/metal/" + metal.name(), () -> new LiquidBlock(FLFluids.METALS.get(metal).getSecond(), Properties.of(TFCMaterials.MOLTEN_METAL).noCollission().strength(100f).noDrops()))
+        register("fluid/metal/" + metal.name(), () -> new LiquidBlock(FLFluids.METALS.get(metal).source(), Properties.of(TFCMaterials.MOLTEN_METAL).noCollission().strength(100f).noDrops()))
     );
+
+    public static final Map<ExtraFluid, RegistryObject<LiquidBlock>> EXTRA_FLUIDS = Helpers.mapOfKeys(ExtraFluid.class, fluid ->
+        register("fluid/" + fluid.getSerializedName(), () -> new LiquidBlock(FLFluids.EXTRA_FLUIDS.get(fluid).source(), Properties.of(Material.WATER).noCollission().strength(100f).noDrops()))
+    );
+
+    public static ExtendedProperties jarProperties()
+    {
+        return ExtendedProperties.of(Properties.of(Material.DECORATION).noCollission().noOcclusion().instabreak().sound(SoundType.GLASS).randomTicks());
+    }
 
     public static int lightEmission(BlockState state)
     {
