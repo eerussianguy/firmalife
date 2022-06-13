@@ -5,7 +5,7 @@
     "type": "minecraft:crafting_shapeless",
     "ingredients": [
       {
-        "type": "tfc:has_queen",
+        "type": "firmalife:has_queen",
         "ingredient": {
           "item": "firmalife:beehive_frame"
         }

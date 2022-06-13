@@ -46,22 +46,56 @@ def generate(rm: ResourceManager):
     damage_shapeless(rm, 'crafting/scrape_beehive_frame', (has_queen('firmalife:beehive_frame'), '#tfc:knives'), 'firmalife:beeswax').with_advancement('firmalife:beehive_frame')  # frame has a container item of itself
     rm.crafting_shapeless('crafting/bee_candle', ('firmalife:beeswax', '#forge:string'), '4 tfc:candle').with_advancement('firmalife:beeswax')
     rm.crafting_shaped('crafting/sealed_bricks', ['XXX', 'XYX', 'XXX'], {'X': '#forge:stone_bricks', 'Y': 'firmalife:beeswax'}, '8 firmalife:sealed_bricks').with_advancement('firmalife:beeswax')
+    rm.crafting_shaped('crafting/sealed_door', ['YX', 'YX', 'YX'], {'X': 'firmalife:sealed_bricks', 'Y': '#forge:rods/brass'}, 'firmalife:sealed_door').with_advancement('firmalife:sealed_bricks')
+    rm.crafting_shaped('crafting/quad_planter', ['YY', 'XX', 'XX'], {'X': 'minecraft:brick', 'Y': 'tfc:compost'}, 'firmalife:quad_planter').with_advancement('tfc:compost')
+    rm.crafting_shaped('crafting/large_planter', ['XYX', 'XXX'], {'X': 'minecraft:brick', 'Y': 'tfc:compost'}, 'firmalife:large_planter').with_advancement('tfc:compost')
+    rm.crafting_shaped('crafting/hanging_planter', ['XXX', 'XYX'], {'X': 'minecraft:brick', 'Y': 'tfc:compost'}, 'firmalife:hanging_planter').with_advancement('tfc:compost')
+    rm.crafting_shaped('crafting/trellis_planter', ['X X', 'X X', 'XYX'], {'X': 'minecraft:brick', 'Y': 'tfc:compost'}, 'firmalife:trellis_planter').with_advancement('tfc:compost')
+    rm.crafting_shaped('crafting/bonsai_planter', ['X X', 'XYX', 'XXX'], {'X': 'minecraft:brick', 'Y': 'tfc:compost'}, 'firmalife:bonsai_planter').with_advancement('tfc:compost')
     rm.crafting_shaped('crafting/treated_lumber', ['XXX', 'XYX', 'XXX'], {'X': '#tfc:lumber', 'Y': 'firmalife:beeswax'}, '8 firmalife:treated_lumber').with_advancement('firmalife:beeswax')
     rm.crafting_shaped('crafting/beehive_frame', ['X X', ' X ', 'X X'], {'X': '#tfc:lumber'}, 'firmalife:beehive_frame').with_advancement('#tfc:lumber')
     rm.crafting_shaped('crafting/beehive', ['XYX', 'XZX', 'XYX'], {'X': '#tfc:lumber', 'Y': 'firmalife:beehive_frame', 'Z': 'tfc:thatch'}, 'firmalife:beehive').with_advancement('#tfc:lumber')
     rm.crafting_shaped('crafting/iron_composter', ['XYX'], {'X': '#forge:sheets/wrought_iron', 'Y': 'tfc:composter'}, 'firmalife:iron_composter').with_advancement('tfc:composter')
+    rm.crafting_shaped('crafting/rajya_metok_wheel', ['XXX', 'YYY', 'XXX'], {'X': 'tfc:powder/salt', 'Y': 'firmalife:food/yak_curd'}, 'firmalife:rajya_metok_wheel').with_advancement('firmalife:food/yak_curd')
+    rm.crafting_shaped('crafting/chevre_wheel', ['XXX', 'YYY', 'XXX'], {'X': 'tfc:powder/salt', 'Y': 'firmalife:food/goat_curd'}, 'firmalife:chevre_wheel').with_advancement('firmalife:food/goat_curd')
+    rm.crafting_shaped('crafting/cheddar_wheel', ['XXX', 'YYY', 'XXX'], {'X': 'tfc:powder/salt', 'Y': 'firmalife:food/milk_curd'}, 'firmalife:cheddar_wheel').with_advancement('firmalife:food/milkk_curd')
+    rm.crafting_shaped('crafting/cheesecloth', ['XX'], {'X': '#tfc:high_quality_cloth'}, '8 firmalife:cheesecloth').with_advancement('#tfc:high_quality_cloth')
 
     for jar, remainder, _, ing in JARS:
         make_jar(rm, jar, remainder, ing)
     for fruit in TFC_FRUITS:
         make_jar(rm, fruit)
         simple_pot_recipe(rm, '%s_jar' % fruit, [utils.ingredient('firmalife:empty_jar'), utils.ingredient('#firmalife:sweetener'), not_rotten(has_trait('tfc:food/%s' % fruit, 'firmalife:dried', True))], '1000 minecraft:water', None, ['firmalife:%s_jar' % fruit])
-    barrel_sealed_recipe(rm, 'cleaning_jar', 'Cleaning Jar', 1000, '#firmalife:jars', '1000 minecraft:water', output_item='firmalife:empty_jar')
 
-    # Firmalife
+    beet = not_rotten('tfc:food/beet')
+    simple_pot_recipe(rm, 'beet_sugar', [beet, beet, beet, beet, beet], '1000 minecraft:water', output_items=['minecraft:sugar', 'minecraft:sugar', 'minecraft:sugar'])
+    simple_pot_recipe(rm, 'soy_mixture', [not_rotten('tfc:food/soybean'), not_rotten('tfc:food/soybean'), utils.ingredient('tfc:powder/salt'), utils.ingredient('tfc:powder/salt')], '1000 minecraft:water', output_items=['firmalife:food/soy_mixture', 'firmalife:food/soy_mixture'])
+
+    barrel_sealed_recipe(rm, 'cleaning_jar', 'Cleaning Jar', 1000, '#firmalife:jars', '1000 minecraft:water', output_item='firmalife:empty_jar')
+    barrel_sealed_recipe(rm, 'yeast_starter', 'Yeast Starter', 24000 * 3, not_rotten(has_trait('#tfc:foods/fruits', 'firmalife:dried')), '100 minecraft:water', output_fluid='100 firmalife:yeast_starter')
+    barrel_sealed_recipe(rm, 'feed_yeast', 'Feeding Yeast', 12000, not_rotten('#firmalife:feeds_yeast'), '100 firmalife:yeast_starter', output_fluid='600 firmalife:yeast_starter')
+    barrel_sealed_recipe(rm, 'pina_colada', 'Pina Colada', 1000, not_rotten('firmalife:food/frothy_coconut'), '1000 tfc:rum', output_fluid='1000 firmalife:pina_colada')
+    barrel_sealed_recipe(rm, 'curdled_milk', 'Curdling Milk', 4000, 'firmalife:rennet', '2000 minecraft:milk', output_fluid='2000 tfc:curdled_milk')
+    barrel_sealed_recipe(rm, 'curdled_yak_milk', 'Curdling Yak Milk', 4000, 'firmalife:rennet', '2000 firmalife:yak_milk', output_fluid='2000 firmalife:curdled_yak_milk')
+    barrel_sealed_recipe(rm, 'curdled_goat_milk', 'Curdling Goat Milk', 4000, 'firmalife:rennet', '2000 firmalife:goat_milk', output_fluid='2000 firmalife:curdled_goat_milk')
+    barrel_sealed_recipe(rm, 'milk_curd', 'Milk Curd', 1000, 'firmalife:cheesecloth', '1000 tfc:curdled_milk', output_item='firmalife:food/milk_curd')
+    barrel_sealed_recipe(rm, 'goat_milk_curd', 'Goat Curd', 1000, 'firmalife:cheesecloth', '1000 firmalife:curdled_goat_milk', output_item='firmalife:food/goat_curd')
+    barrel_sealed_recipe(rm, 'yak_milk_curd', 'Yak Curd', 1000, 'firmalife:cheesecloth', '1000 firmalife:curdled_yak_milk', output_item='firmalife:food/yak_curd')
+
+    barrel_sealed_recipe(rm, 'shosha', 'Shosha Wheel', 16000, '3 firmalife:food/yak_curd', '750 tfc:salt_water', output_item='firmalife:shosha_wheel')
+    barrel_sealed_recipe(rm, 'feta', 'Feta Wheel', 16000, '3 firmalife:food/goat_curd', '750 tfc:salt_water', output_item='firmalife:feta_wheel')
+    rm.domain = 'tfc'  # DOMAIN CHANGE
+    barrel_sealed_recipe(rm, 'cheese', 'Gouda Wheel', 16000, '3 firmalife:food/milk_curd', '750 tfc:salt_water', output_item='firmalife:gouda_wheel')
+    rm.domain = 'firmalife'  # DOMAIN RESET
+
+    # Firmalife Recipes
     drying_recipe(rm, 'drying_fruit', not_rotten(has_trait('#tfc:foods/fruits', 'firmalife:dried', True)), item_stack_provider(copy_input=True, add_trait='firmalife:dried'))
     drying_recipe(rm, 'cinnamon', 'firmalife:cinnamon_bark', item_stack_provider('firmalife:spice/cinnamon'))
     drying_recipe(rm, 'dry_grass', 'tfc:thatch', item_stack_provider('tfc:groundcover/dead_grass'))
+    drying_recipe(rm, 'tofu', 'firmalife:food/soy_mixture', item_stack_provider('firmalife:food/tofu'))
+
+    smoking_recipe(rm, 'meat', not_rotten(has_trait(has_trait('#tfc:foods/raw_meats', 'firmalife:smoked', True), 'tfc:brined')), item_stack_provider(copy_input=True, add_trait='firmalife:smoked'))
+    smoking_recipe(rm, 'cheese', not_rotten(has_trait('#firmalife:foods/cheeses', 'firmalife:smoked', True)), item_stack_provider(copy_input=True, add_trait='firmalife:smoked'))
 
     # Greenhouse
     for block in GREENHOUSE_BLOCKS:
@@ -78,6 +112,24 @@ def generate(rm: ResourceManager):
         rm.crafting_shaped('crafting/greenhouse/%s_greenhouse_roof' % greenhouse, ['Y  ', 'XY ', 'XXY'], mapping, (4, 'firmalife:%s_greenhouse_roof' % greenhouse)).with_advancement(rod)
         rm.crafting_shaped('crafting/greenhouse/%s_greenhouse_door' % greenhouse, ['XY', 'XY', 'XY'], mapping, (2, 'firmalife:%s_greenhouse_door' % greenhouse)).with_advancement(rod)
 
+    # Grain Stuff
+    for grain in TFC_GRAINS:
+        damage_shapeless(rm, 'crafting/%s_slice' % grain, ('tfc:food/%s_bread' % grain, '#tfc:knives'), '2 firmalife:food/%s_slice' % grain).with_advancement('tfc:food/%s_bread' % grain)
+
+        rm.domain = 'tfc'  # DOMAIN CHANGE
+        rm.crafting_shapeless('crafting/%s_dough' % grain, (not_rotten('tfc:food/%s_flour' % grain), fluid_item_ingredient('100 firmalife:yeast_starter'), '#firmalife:sweetener'), (4, 'tfc:food/%s_dough' % grain)).with_advancement('tfc:food/%s_grain' % grain)
+        sandwich_pattern = ['ZX ', 'YYY', ' X ']
+        sandwich_ingredients = {'X': not_rotten('firmalife:food/%s_slice' % grain), 'Y': not_rotten('#tfc:foods/usable_in_sandwich'), 'Z': '#tfc:knives'}
+        delegate_recipe(rm, 'crafting/%s_sandwich' % grain, 'tfc:damage_inputs_shaped_crafting', {
+            'type': 'tfc:advanced_shaped_crafting',
+            'pattern': sandwich_pattern,
+            'key': utils.item_stack_dict(sandwich_ingredients, ''.join(sandwich_pattern)[0]),
+            'result': item_stack_provider('2 tfc:food/%s_bread_sandwich' % grain, other_modifier='tfc:sandwich'),
+            'input_row': 0,
+            'input_column': 0,
+        }).with_advancement('tfc:food/%s_bread' % grain)
+
+        rm.domain = 'firmalife'  # DOMAIN RESET
 
 def make_jar(rm: ResourceManager, jar: str, remainder: int = -1, ing: str = None):
     if ing is not None:
@@ -87,6 +139,12 @@ def make_jar(rm: ResourceManager, jar: str, remainder: int = -1, ing: str = None
             rm.crafting_shapeless('crafting/%s_jar' % jar, ('firmalife:empty_jar', ing), 'firmalife:%s_jar' % jar).with_advancement('firmalife:empty_jar')
         rm.crafting_shapeless('crafting/%s_jar_open' % jar, ('firmalife:%s_jar' % jar), (remainder, ing))
 
+def fluid_item_ingredient(fluid: Json, delegate: Json = None):
+    return {
+        'type': 'tfc:fluid_item',
+        'ingredient': delegate,
+        'fluid_ingredient': fluid_stack_ingredient(fluid)
+    }
 
 def damage_shapeless(rm: ResourceManager, name_parts: ResourceIdentifier, ingredients: Json, result: Json, group: str = None, conditions: utils.Json = None) -> RecipeContext:
     res = utils.resource_location(rm.domain, name_parts)
@@ -116,6 +174,12 @@ def drying_recipe(rm: ResourceManager, name: utils.ResourceIdentifier, item: Any
         'result': result
     })
 
+def smoking_recipe(rm: ResourceManager, name: utils.ResourceIdentifier, item: Any, result: Json) -> RecipeContext:
+    return rm.recipe(('smoking', name), 'firmalife:smoking', {
+        'ingredient': utils.ingredient(item) if isinstance(item, str) else item,
+        'result': result
+    })
+
 def has_trait(ingredient: Json, trait: str, invert: bool = False) -> Json:
     return {
         'type': 'tfc:lacks_trait' if invert else 'tfc:has_trait',
@@ -135,7 +199,7 @@ def has_queen(ingredient: Json) -> Json:
         'ingredient': utils.ingredient(ingredient)
     }
 
-def item_stack_provider(data_in: Json = None, copy_input: bool = False, copy_heat: bool = False, copy_food: bool = False, reset_food: bool = False, add_heat: float = None, add_trait: str = None, remove_trait: str = None, empty_bowl: bool = False) -> Json:
+def item_stack_provider(data_in: Json = None, copy_input: bool = False, copy_heat: bool = False, copy_food: bool = False, reset_food: bool = False, add_heat: float = None, add_trait: str = None, remove_trait: str = None, empty_bowl: bool = False, copy_forging: bool = False, other_modifier: str = None) -> Json:
     if isinstance(data_in, dict):
         return data_in
     stack = utils.item_stack(data_in) if data_in is not None else None
@@ -145,6 +209,8 @@ def item_stack_provider(data_in: Json = None, copy_input: bool = False, copy_hea
         ('tfc:copy_food', copy_food),
         ('tfc:reset_food', reset_food),
         ('tfc:empty_bowl', empty_bowl),
+        ('tfc:copy_forging_bonus', copy_forging),
+        (other_modifier, other_modifier is not None),
         ({'type': 'tfc:add_heat', 'temperature': add_heat}, add_heat is not None),
         ({'type': 'tfc:add_trait', 'trait': add_trait}, add_trait is not None),
         ({'type': 'tfc:remove_trait', 'trait': remove_trait}, remove_trait is not None)
@@ -267,5 +333,22 @@ def item_stack_ingredient(data_in: Json):
     else:
         return {'ingredient': {'item': item}, 'count': count}
 
+def delegate_recipe(rm: ResourceManager, name_parts: ResourceIdentifier, recipe_type: str, delegate: Json) -> RecipeContext:
+    res = utils.resource_location(rm.domain, name_parts)
+    rm.write((*rm.resource_dir, 'data', res.domain, 'recipes', res.path), {
+        'type': recipe_type,
+        'recipe': delegate
+    })
+    return RecipeContext(rm, res)
 
-
+def extra_products_shapeless(rm: ResourceManager, name_parts: ResourceIdentifier, ingredients: Json, result: Json, extra: Json):
+    res = utils.resource_location(rm.domain, name_parts)
+    rm.write((*rm.resource_dir, 'data', res.domain, 'recipes', 'crafting', res.path), {
+        'type': 'tfc:extra_products_shapeless_crafting',
+        'extra_products': utils.item_stack_list(extra),
+        'recipe': {
+            'type': 'minecraft:crafting_shapeless',
+            'ingredients': utils.item_stack_list(ingredients),
+            'result': utils.item_stack(results)
+        }
+    })

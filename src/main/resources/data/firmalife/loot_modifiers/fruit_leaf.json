@@ -1,0 +1,15 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "firmalife:add_item",
+  "conditions": [
+    {
+      "condition": "firmalife:block_ingredient",
+      "ingredient": {
+        "tag": "firmalife:drops_fruit_leaf"
+      }
+    }
+  ],
+  "item": {
+    "item": "firmalife:fruit_leaf"
+  }
+}

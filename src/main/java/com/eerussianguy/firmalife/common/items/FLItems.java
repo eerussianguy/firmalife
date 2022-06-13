@@ -34,9 +34,10 @@ public class FLItems
 
     public static final EnumSet<Food> TFC_FRUITS = EnumSet.of(Food.BANANA, Food.BLACKBERRY, Food.BLUEBERRY, Food.BUNCHBERRY, Food.CHERRY, Food.CLOUDBERRY, Food.CRANBERRY, Food.ELDERBERRY, Food.GOOSEBERRY, Food.GREEN_APPLE, Food.LEMON, Food.OLIVE, Food.ORANGE, Food.PEACH, Food.PLUM, Food.RASPBERRY, Food.RED_APPLE, Food.SNOWBERRY, Food.STRAWBERRY, Food.WINTERGREEN_BERRY);
 
-    public static final RegistryObject<Item> CINNAMON_BARK = register("cinnamon_bark", MISC);
     public static final RegistryObject<Item> BEEHIVE_FRAME = register("beehive_frame", () -> new BeehiveFrameItem(prop()));
     public static final RegistryObject<Item> BEESWAX = register("beeswax", MISC);
+    public static final RegistryObject<Item> CINNAMON_BARK = register("cinnamon_bark", MISC);
+    public static final RegistryObject<Item> CHEESECLOTH = register("cheesecloth", MISC);
     public static final RegistryObject<Item> FRUIT_LEAF = register("fruit_leaf", MISC);
     public static final RegistryObject<Item> EMPTY_JAR = register("empty_jar", MISC);
     public static final RegistryObject<Item> PEEL = register("peel", MISC);

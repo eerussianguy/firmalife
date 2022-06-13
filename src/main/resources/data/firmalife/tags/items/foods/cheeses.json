@@ -1,0 +1,12 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "firmalife:food/gouda",
+    "firmalife:food/chevre",
+    "firmalife:food/shosha",
+    "firmalife:food/feta",
+    "firmalife:food/rajya_metok",
+    "firmalife:food/cheddar"
+  ]
+}

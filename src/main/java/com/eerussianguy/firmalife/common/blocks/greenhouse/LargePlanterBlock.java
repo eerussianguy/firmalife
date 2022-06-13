@@ -112,9 +112,10 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
         super.setPlacedBy(level, pos, state, placer, stack); // basically a convenience thing when you place next to another planter
         for (Direction d : Helpers.DIRECTIONS)
         {
-            if (level.getBlockEntity(pos.relative(d)) instanceof LargePlanterBlockEntity planter && planter.checkValid())
+            BlockPos rel = pos.relative(d);
+            if (level.getBlockEntity(rel) instanceof LargePlanterBlockEntity planter && planter.checkValid())
             {
-                planter.setValid(true, planter.getTier());
+                planter.setValid(level, rel, true, planter.getTier(), false);
             }
         }
     }
@@ -159,7 +160,7 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
         return 0;
     }
 
-    protected InteractionResult insertSlot(Level level, LargePlanterBlockEntity planter, ItemStack held, Player player, int slot)
+    public InteractionResult insertSlot(Level level, LargePlanterBlockEntity planter, ItemStack held, Player player, int slot)
     {
         return planter.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).map(inv -> {
             var res = InteractionResult.PASS;
@@ -176,7 +177,7 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
         }).orElse(InteractionResult.PASS);
     }
 
-    protected InteractionResult takeSlot(Level level, LargePlanterBlockEntity planter, Player player, int slot)
+    public InteractionResult takeSlot(Level level, LargePlanterBlockEntity planter, Player player, int slot)
     {
         return planter.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).map(inv -> {
             Plantable plant = planter.getPlantable(slot);
@@ -188,8 +189,11 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
                 }
                 final int seedAmount = level.random.nextFloat() < plant.getExtraSeedChance() ? 2 : 1;
                 ItemStack seed = plant.getSeed();
-                seed.setCount(seedAmount);
-                ItemHandlerHelper.giveItemToPlayer(player, seed);
+                if (!seed.isEmpty())
+                {
+                    seed.setCount(seedAmount);
+                    ItemHandlerHelper.giveItemToPlayer(player, seed);
+                }
                 ItemHandlerHelper.giveItemToPlayer(player, plant.getCrop());
                 planter.setGrowth(slot, resetGrowthTo());
                 return InteractionResult.sidedSuccess(level.isClientSide);

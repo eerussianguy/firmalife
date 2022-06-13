@@ -2,7 +2,6 @@ package com.eerussianguy.firmalife.common.blockentities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Vec3i;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -12,7 +11,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.items.ItemStackHandler;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
@@ -26,7 +24,7 @@ import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.ICalendarTickable;
 import org.jetbrains.annotations.Nullable;
 
-public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemStackHandler> implements ICalendarTickable, GreenhouseReceiver
+public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemStackHandler> implements ICalendarTickable, ClimateReceiver
 {
     public static void serverTick(Level level, BlockPos pos, BlockState state, LargePlanterBlockEntity planter)
     {
@@ -164,8 +162,26 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     public boolean checkValid()
     {
         assert level != null;
-        BlockPos offset = worldPosition.relative(airFindOffset());
-        return climateValid && level.getBrightness(LightLayer.SKY, offset) >= level.getMaxLightLevel() - 5 && level.getBlockState(offset).isAir() && water > 0;
+        Direction dir = airFindOffset();
+        if (dir != null)
+        {
+            BlockPos offset = worldPosition.relative(dir);
+            if (!(skylightValid(offset) && level.getBlockState(offset).isAir()))
+            {
+                return false;
+            }
+        }
+        else if (!skylightValid(worldPosition))
+        {
+            return false;
+        }
+        return climateValid && water > 0;
+    }
+
+    private boolean skylightValid(BlockPos pos)
+    {
+        assert level != null;
+        return level.getBrightness(LightLayer.SKY, pos) >= level.getMaxLightLevel() - 5;
     }
 
     public boolean isClimateValid()
@@ -196,6 +212,7 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
         return new TranslatableComponent("firmalife.greenhouse." + complaint);
     }
 
+    @Nullable
     protected Direction airFindOffset()
     {
         return Direction.UP;
@@ -279,10 +296,13 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     }
 
     @Override
-    public void setValid(boolean valid, int tier)
+    public void setValid(Level level, BlockPos pos, boolean valid, int tier, boolean cellar)
     {
-        this.climateValid = valid;
-        this.tier = tier;
+        if (!cellar)
+        {
+            this.climateValid = valid;
+            this.tier = tier;
+        }
         markForSync();
     }
 
@@ -318,5 +338,10 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
         addNutrient(FarmlandBlockEntity.NutrientType.PHOSPHOROUS, fertilizer.getPhosphorus());
         addNutrient(FarmlandBlockEntity.NutrientType.POTASSIUM, fertilizer.getPotassium());
         markForSync();
+    }
+
+    public void afterGrowthTickStep(boolean wasGrowing)
+    {
+
     }
 }

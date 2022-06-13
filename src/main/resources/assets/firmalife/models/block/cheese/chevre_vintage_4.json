@@ -1,0 +1,10 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "firmalife:block/cheese_4",
+  "textures": {
+    "surface": "firmalife:block/cheese/chevre_wheel_surface_vintage",
+    "particle": "firmalife:block/cheese/chevre_wheel_surface_vintage",
+    "down": "firmalife:block/cheese/chevre_wheel_surface_vintage",
+    "inside": "firmalife:block/cheese/chevre_wheel_inner_vintage"
+  }
+}

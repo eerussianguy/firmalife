@@ -1,6 +1,0 @@
-{
-  "__comment__": "This file was automatically created by mcresources",
-  "loader": "forge:bucket",
-  "parent": "forge:item/bucket",
-  "fluid": "firmalife:zebu_milk"
-}

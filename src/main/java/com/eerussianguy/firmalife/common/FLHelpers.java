@@ -2,6 +2,8 @@ package com.eerussianguy.firmalife.common;
 
 import java.util.Locale;
 
+import com.google.gson.JsonElement;
+import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -16,6 +18,10 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 
 import com.eerussianguy.firmalife.Firmalife;
+import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.JsonOps;
+import net.dries007.tfc.common.blockentities.TickCounterBlockEntity;
 
 import static com.eerussianguy.firmalife.Firmalife.MOD_ID;
 
@@ -28,6 +34,16 @@ public class FLHelpers
     public static ResourceLocation identifier(String id)
     {
         return new ResourceLocation(MOD_ID, id);
+    }
+
+    public static void resetCounter(Level level, BlockPos pos)
+    {
+        level.getBlockEntity(pos, FLBlockEntities.TICK_COUNTER.get()).ifPresent(TickCounterBlockEntity::resetCounter);
+    }
+
+    public static <T> JsonElement codecToJson(Codec<T> codec, T instance)
+    {
+        return codec.encodeStart(JsonOps.INSTANCE, instance).getOrThrow(false, Util.prefix("Error encoding: ", Firmalife.LOGGER::error));
     }
 
     public static Component blockEntityName(String name)

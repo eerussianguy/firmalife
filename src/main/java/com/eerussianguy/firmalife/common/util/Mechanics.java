@@ -12,9 +12,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
+import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blockentities.LargePlanterBlockEntity;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import net.dries007.tfc.client.particle.TFCParticles;
+import net.dries007.tfc.common.recipes.ingredients.BlockIngredient;
+import net.dries007.tfc.common.recipes.ingredients.BlockIngredients;
 import net.dries007.tfc.util.Fertilizer;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.calendar.Calendars;
@@ -78,6 +81,29 @@ public final class Mechanics
     }
 
     @Nullable
+    public static Set<BlockPos> getCellar(Level level, BlockPos pos, BlockState state)
+    {
+        return getCellar(level, pos, state, -1);
+    }
+
+    @Nullable
+    public static Set<BlockPos> getCellar(Level level, BlockPos pos, BlockState state, int lastSize)
+    {
+        final BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
+        for (Direction d : Helpers.DIRECTIONS)
+        {
+            mutable.setWithOffset(pos, d);
+            if (CELLAR.test(level.getBlockState(mutable)))
+            {
+                final BoundingBox box = new BoundingBox(pos).inflatedBy(15);
+                Set<BlockPos> filled = floodfill(level, pos, mutable, box, CELLAR, s -> !Helpers.isBlock(s, FLBlocks.CLIMATE_STATION.get()), false, lastSize, Helpers.DIRECTIONS);
+                return filled.isEmpty() ? null : filled;
+            }
+        }
+        return null;
+    }
+
+    @Nullable
     public static GreenhouseInfo getGreenhouse(Level level, BlockPos pos, BlockState state)
     {
         return getGreenhouse(level, pos, state, -1);
@@ -107,6 +133,7 @@ public final class Mechanics
 
     public record GreenhouseInfo(GreenhouseType type, Set<BlockPos> positions) { }
 
+    private static final BlockIngredient CELLAR = BlockIngredients.of(FLTags.Blocks.CELLAR_INSULATION);
     private static final int UPDATE_INTERVAL = ICalendar.TICKS_IN_DAY;
 
     public static final float GROWTH_FACTOR = 1f / (16 * ICalendar.TICKS_IN_DAY); // 24 -> 16 days
@@ -167,6 +194,7 @@ public final class Mechanics
         }
         planter.setLastUpdateTick(calendar.getTicks());
         planter.markForSync();
+        planter.afterGrowthTickStep(growing);
         return true;
     }
 

@@ -66,7 +66,7 @@ public class Plantable extends ItemDefinition
         tier = JsonHelpers.getAsInt(json, "tier", 0);
         stages = JsonHelpers.getAsInt(json, "stages", 0);
         extraSeedChance = JsonHelpers.getAsFloat(json, "extra_seed_chance", 0.5f);
-        seed = JsonHelpers.getItemStack(json, "seed");
+        seed = json.has("seed") ? JsonHelpers.getItemStack(json, "seed") : ItemStack.EMPTY;
         crop = JsonHelpers.getItemStack(json, "crop");
         nutrient = JsonHelpers.getEnum(json, "nutrient", FarmlandBlockEntity.NutrientType.class, FarmlandBlockEntity.NutrientType.NITROGEN);
         texture = JsonHelpers.getAsString(json, "texture");

@@ -49,6 +49,12 @@ def generate(rm: ResourceManager):
             'watered=false': {'model': 'firmalife:block/%s_dry' % planter}
         }).with_lang(lang(planter)).with_block_loot('firmalife:%s' % planter).with_tag('minecraft:mineable/axe').with_tag('minecraft:mineable/pickaxe')
         rm.item_model(planter, parent='firmalife:block/%s_dry' % planter)
+    rm.blockstate('trellis_planter', model='firmalife:block/trellis_planter').with_lang(lang('trellis planter')).with_block_loot('firmalife:trellis_planter').with_tag('minecraft:mineable/axe').with_tag('minecraft:mineable/pickaxe').with_item_model()
+
+    rm.blockstate('wool_string', variants={
+        'axis=x': {'model': 'firmalife:block/wool_string'},
+        'axis=z': {'model': 'firmalife:block/wool_string', 'y': 90}
+    }).with_block_model(parent='firmalife:block/string', textures={'string': 'minecraft:block/white_wool'}).with_lang(lang('wool string')).with_tag('tfc:mineable_with_sharp_tool').with_item_model().with_block_loot('firmalife:wool_string')
 
     rm.blockstate('climate_station', variants={
         'stasis=true': {'model': 'firmalife:block/climate_station_valid'},
@@ -67,8 +73,28 @@ def generate(rm: ResourceManager):
     for i in range(1, 9):
         for age in ('normal', 'ready', 'rotten'):
             states.append(({'type': age, 'stage': i}, {'model': 'tfc:block/composter/%s_%s' % (age, i)}),)
-    rm.blockstate_multipart('iron_composter', *states).with_lang(lang('iron composter')).with_block_loot('firmalife:iron_composter')
+    rm.blockstate_multipart('iron_composter', *states).with_lang(lang('iron composter')).with_block_loot('firmalife:iron_composter').with_tag('minecraft:mineable/pickaxe')
     rm.item_model('iron_composter', parent='firmalife:block/iron_composter', no_textures=True)
+
+    rm.block('sealed').make_door()
+    block = rm.block('firmalife:sealed_door').with_tag('minecraft:doors').with_lang(lang('sealed door')).with_tag('minecraft:mineable/pickaxe')
+    door_loot(block, 'firmalife:sealed_door')
+
+    for cheese in CHEESE_WHEELS:
+        for age in ('fresh', 'aged', 'vintage'):
+            for i in range(1, 5):
+                surf = 'firmalife:block/cheese/%s_wheel_surface_%s' % (cheese, age)
+                rm.block_model('cheese/%s_%s_%s' % (cheese, age, i), parent='firmalife:block/cheese_%s' % i, textures={'surface': surf, 'particle': surf, 'down': surf, 'inside': 'firmalife:block/cheese/%s_wheel_inner_%s' % (cheese, age)})
+        block = rm.blockstate('%s_wheel' % cheese, variants=dict(
+            ('age=%s,count=%s' % (a, c), {'model': 'firmalife:block/cheese/%s_%s_%s' % (cheese, a, c)})
+            for a in ('fresh', 'aged', 'vintage') for c in range(1, 5)
+        )).with_lang(lang('%s cheese wheel', cheese))
+        block.with_block_loot([{
+            'name': 'firmalife:food/%s' % cheese,
+            'functions': [loot_tables.set_count(c)],
+            'conditions': [loot_tables.block_state_property('firmalife:%s_wheel[count=%s]' % (cheese, c))]
+        } for c in range(1, 5)])
+        rm.item_model('firmalife:%s_wheel' % cheese, parent='firmalife:block/cheese/%s_fresh_4' % cheese, no_textures=True)
 
     for jar, _, texture, _ in JARS:
         make_jar(rm, jar, texture)
@@ -81,6 +107,8 @@ def generate(rm: ResourceManager):
         rm.item_model(item).with_lang(lang(item))
     for item in SIMPLE_FOODS:
         rm.item_model('food/%s' % item).with_lang(lang(item))
+    for grain in TFC_GRAINS:
+        rm.item_model('food/%s_slice' % grain).with_lang(lang('%s slice', grain))
     for item in SIMPLE_SPICES:
         rm.item_model('spice/%s' % item).with_lang(lang(item))
     for be in BLOCK_ENTITIES:

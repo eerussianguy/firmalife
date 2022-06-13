@@ -1,0 +1,41 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "variants": {
+    "age=fresh,count=1": {
+      "model": "firmalife:block/cheese/rajya_metok_fresh_1"
+    },
+    "age=fresh,count=2": {
+      "model": "firmalife:block/cheese/rajya_metok_fresh_2"
+    },
+    "age=fresh,count=3": {
+      "model": "firmalife:block/cheese/rajya_metok_fresh_3"
+    },
+    "age=fresh,count=4": {
+      "model": "firmalife:block/cheese/rajya_metok_fresh_4"
+    },
+    "age=aged,count=1": {
+      "model": "firmalife:block/cheese/rajya_metok_aged_1"
+    },
+    "age=aged,count=2": {
+      "model": "firmalife:block/cheese/rajya_metok_aged_2"
+    },
+    "age=aged,count=3": {
+      "model": "firmalife:block/cheese/rajya_metok_aged_3"
+    },
+    "age=aged,count=4": {
+      "model": "firmalife:block/cheese/rajya_metok_aged_4"
+    },
+    "age=vintage,count=1": {
+      "model": "firmalife:block/cheese/rajya_metok_vintage_1"
+    },
+    "age=vintage,count=2": {
+      "model": "firmalife:block/cheese/rajya_metok_vintage_2"
+    },
+    "age=vintage,count=3": {
+      "model": "firmalife:block/cheese/rajya_metok_vintage_3"
+    },
+    "age=vintage,count=4": {
+      "model": "firmalife:block/cheese/rajya_metok_vintage_4"
+    }
+  }
+}

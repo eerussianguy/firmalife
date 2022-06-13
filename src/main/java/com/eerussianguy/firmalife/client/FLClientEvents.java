@@ -56,6 +56,12 @@ public class FLClientEvents
         ItemBlockRenderTypes.setRenderLayer(FLBlocks.HONEY_JAR.get(), translucent);
         ItemBlockRenderTypes.setRenderLayer(FLBlocks.ROTTEN_COMPOST_JAR.get(), translucent);
         ItemBlockRenderTypes.setRenderLayer(FLBlocks.GUANO_JAR.get(), translucent);
+        ItemBlockRenderTypes.setRenderLayer(FLBlocks.CHEDDAR_WHEEL.get(), cutout);
+        ItemBlockRenderTypes.setRenderLayer(FLBlocks.RAJYA_METOK_WHEEL.get(), cutout);
+        ItemBlockRenderTypes.setRenderLayer(FLBlocks.CHEVRE_WHEEL.get(), cutout);
+        ItemBlockRenderTypes.setRenderLayer(FLBlocks.SHOSHA_WHEEL.get(), cutout);
+        ItemBlockRenderTypes.setRenderLayer(FLBlocks.FETA_WHEEL.get(), cutout);
+        ItemBlockRenderTypes.setRenderLayer(FLBlocks.GOUDA_WHEEL.get(), cutout);
 
 
         FLBlocks.FRUIT_PRESERVES.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), translucent));
@@ -82,8 +88,10 @@ public class FLClientEvents
     {
         event.registerBlockEntityRenderer(FLBlockEntities.OVEN_TOP.get(), ctx -> new OvenBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.DRYING_MAT.get(), ctx -> new DryingMatBlockEntityRenderer());
+        event.registerBlockEntityRenderer(FLBlockEntities.STRING.get(), ctx -> new StringBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.LARGE_PLANTER.get(), ctx -> new LargePlanterBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.QUAD_PLANTER.get(), ctx -> new QuadPlanterBlockEntityRenderer());
+        event.registerBlockEntityRenderer(FLBlockEntities.TRELLIS_PLANTER.get(), ctx -> new TrellisPlanterBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.BONSAI_PLANTER.get(), ctx -> new BonsaiPlanterBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.HANGING_PLANTER.get(), ctx -> new HangingPlanterBlockEntityRenderer());
     }

@@ -4,7 +4,6 @@ import java.util.Random;
 import java.util.Set;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
@@ -21,8 +20,8 @@ import net.minecraft.world.phys.BlockHitResult;
 
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.blocks.FLStateProperties;
-import com.eerussianguy.firmalife.common.util.GreenhouseType;
 import com.eerussianguy.firmalife.common.util.Mechanics;
+import com.mojang.datafixers.util.Either;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.devices.DeviceBlock;
 import org.jetbrains.annotations.Nullable;
@@ -37,7 +36,7 @@ public class ClimateStationBlock extends DeviceBlock
     }
 
     @Nullable
-    private static Mechanics.GreenhouseInfo check(Level level, BlockPos pos, BlockState state)
+    private static Either<Mechanics.GreenhouseInfo, Set<BlockPos>> check(Level level, BlockPos pos, BlockState state)
     {
         final Mechanics.GreenhouseInfo info = Mechanics.getGreenhouse(level, pos, state);
         if (info != null)
@@ -46,15 +45,30 @@ public class ClimateStationBlock extends DeviceBlock
             level.getBlockEntity(pos, FLBlockEntities.CLIMATE_STATION.get()).ifPresent(station -> {
                 station.setPositions(positions);
                 station.updateValidity(true, info.type().tier);
+                station.setCellar(false);
             });
             updateState(level, pos, state, true);
-            return info;
+            return Either.left(info);
         }
         else
         {
-            denyAll(level, pos);
-            updateState(level, pos, state, false);
-            return null;
+            Set<BlockPos> cellarPositions = Mechanics.getCellar(level, pos, state);
+            if (cellarPositions != null)
+            {
+                level.getBlockEntity(pos, FLBlockEntities.CLIMATE_STATION.get()).ifPresent(station -> {
+                    station.setPositions(cellarPositions);
+                    station.updateValidity(true, 0);
+                    station.setCellar(true);
+                });
+                updateState(level, pos, state, true);
+                return Either.right(cellarPositions);
+            }
+            else
+            {
+                denyAll(level, pos);
+                updateState(level, pos, state, false);
+                return null;
+            }
         }
     }
 
@@ -78,15 +92,19 @@ public class ClimateStationBlock extends DeviceBlock
     @SuppressWarnings("deprecation")
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit)
     {
-        Mechanics.GreenhouseInfo info = check(level, pos, state);
-        if (info == null)
+        Either<Mechanics.GreenhouseInfo, Set<BlockPos>> either = check(level, pos, state);
+        if (either == null)
         {
             return InteractionResult.PASS;
         }
         else
         {
-            Set<BlockPos> positions = info.positions();
-            player.displayClientMessage(new TranslatableComponent(MOD_ID + ".greenhouse.found", positions.size()), true);
+            either.ifLeft(info -> {
+                player.displayClientMessage(new TranslatableComponent(MOD_ID + ".greenhouse.found", info.positions().size()), true);
+            });
+            either.ifRight(positions -> {
+                player.displayClientMessage(new TranslatableComponent(MOD_ID + ".cellar.found", positions.size()), true);
+            });
             return InteractionResult.sidedSuccess(level.isClientSide);
         }
     }

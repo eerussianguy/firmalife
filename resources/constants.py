@@ -1,20 +1,23 @@
 from typing import Dict, List, NamedTuple, Sequence, Optional, Literal, Tuple, Any, Set
 
-SIMPLE_ITEMS = ('peel', 'fruit_leaf', 'cinnamon_bark', 'beeswax', 'pineapple_leather', 'pineapple_yarn', 'raw_honey', 'rennet', 'watering_can', 'treated_lumber', 'beehive_frame', 'empty_jar')
-SIMPLE_FOODS = ('frothy_coconut', 'white_chocolate_blend', 'dark_chocolate_blend', 'milk_chocolate_blend')
+SIMPLE_ITEMS = ('peel', 'fruit_leaf', 'cinnamon_bark', 'beeswax', 'pineapple_leather', 'pineapple_yarn', 'raw_honey', 'rennet', 'watering_can', 'treated_lumber', 'beehive_frame', 'empty_jar', 'cheesecloth')
+SIMPLE_FOODS = ('frothy_coconut', 'white_chocolate_blend', 'dark_chocolate_blend', 'milk_chocolate_blend', 'tofu', 'soy_mixture', 'yak_curd', 'goat_curd', 'milk_curd', 'cheddar', 'chevre', 'rajya_metok', 'gouda', 'feta', 'shosha')
 SIMPLE_SPICES = ('ground_cinnamon', 'cinnamon')
 SIMPLE_BLOCKS: Dict[str, str] = {
     'sealed_bricks': 'minecraft:mineable/pickaxe'
 }
-EXTRA_FLUIDS = ('yeast_starter', 'coconut_milk', 'yak_milk', 'goat_milk', 'zebu_milk', 'curdled_yak_milk', 'curdled_goat_milk', 'curdled_zebu_milk', 'pina_colada')
+BLOCK_ENTITIES = ('oven_bottom', 'oven_top', 'drying_mat', 'beehive')
+EXTRA_FLUIDS = ('yeast_starter', 'coconut_milk', 'yak_milk', 'goat_milk', 'curdled_yak_milk', 'curdled_goat_milk', 'pina_colada')
 JARS: Sequence[Tuple[str, int, str, str]] = (
     ('honey', 1, 'minecraft:block/honey_block_side', 'firmalife:raw_honey'),
     ('compost', 8, 'firmalife:block/potting_soil_wet', 'tfc:compost'),
     ('rotten_compost', 8, 'firmalife:block/rotten_soil', 'tfc:rotten_compost'),
     ('guano', 8, 'minecraft:block/dead_brain_coral_block', 'tfc:groundcover/guano'),
 )
-BLOCK_ENTITIES = ('oven_bottom', 'oven_top', 'drying_mat', 'beehive')
+CHEESE_WHEELS = ('rajya_metok', 'cheddar', 'gouda', 'feta', 'chevre', 'shosha')
 
+TFC_GRAINS = ('wheat', 'rye', 'barley', 'rice', 'maize', 'oat')
+TFC_FRUIT_TREES = ('cherry', 'green_apple', 'lemon', 'olive', 'orange', 'peach', 'plum', 'red_apple')
 TFC_FRUITS = ('banana', 'blackberry', 'blueberry', 'bunchberry', 'cherry', 'cloudberry', 'cranberry', 'elderberry', 'gooseberry', 'green_apple', 'lemon', 'olive', 'orange', 'peach', 'plum', 'raspberry', 'red_apple', 'snowberry', 'strawberry', 'wintergreen_berry')
 TFC_FLOWERS = ('canna', 'goldenrod', 'allium', 'anthurium', 'houstonia', 'blood_lily', 'blue_orchid', 'blue_ginger', 'butterfly_milkweed', 'black_orchid',
                'dandelion', 'desert_flame', 'field_horsetail', 'grape_hyacinth', 'heliconia', 'kangaroo_paw', 'labrador_tea', 'lady_fern', 'calendula',
@@ -32,11 +35,18 @@ CLEANING_PAIRS: Dict[str, str] = {
     'exposed_copper': 'copper',
     'weathered_treated_wood': 'treated_wood'
 }
-PLANTERS = ('hanging', 'bonsai', 'quad', 'large')  # todo: trellis
+PLANTERS = ('hanging', 'bonsai', 'quad', 'large', 'trellis')
 
 DEFAULT_LANG = {
     'effect.firmalife.swarm': 'Swarm',
     'firmalife.tooltip.food_trait.dried': 'Dried',
+    'firmalife.tooltip.food_trait.aged': 'Aged',
+    'firmalife.tooltip.food_trait.vintage': 'Vintage',
+    'firmalife.tooltip.food_trait.fresh': 'Fresh',
+    'firmalife.tooltip.food_trait.oven_baked': 'Oven Baked',
+    'firmalife.tooltip.food_trait.smoked': 'Smoked',
+    'firmalife.tooltip.food_trait.rancid_smoked': 'Rancid Smoked',
+    'firmalife.cellar.found': 'Found a cellar of %s blocks',
     'firmalife.greenhouse.valid_block': '§aGrowing',
     'firmalife.greenhouse.invalid_block': '§cNot Growing',
     'firmalife.greenhouse.error_unknown': 'Unknown reason for failure to grow',
@@ -67,6 +77,7 @@ DEFAULT_LANG = {
 
 
     'tfc.jei.drying': 'Drying',
+    'tfc.jei.smoking': 'Smoking',
 }
 
 def lang(key: str, *args) -> str:

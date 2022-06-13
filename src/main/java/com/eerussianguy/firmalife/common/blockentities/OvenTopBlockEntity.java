@@ -17,11 +17,13 @@ import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blocks.AbstractOvenBlock;
 import com.eerussianguy.firmalife.common.blocks.ICure;
 import com.eerussianguy.firmalife.common.blocks.OvenBottomBlock;
+import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
 import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
 import net.dries007.tfc.common.capabilities.DelegateItemHandler;
 import net.dries007.tfc.common.capabilities.InventoryItemHandler;
 import net.dries007.tfc.common.capabilities.SidedHandler;
+import net.dries007.tfc.common.capabilities.food.FoodCapability;
 import net.dries007.tfc.common.capabilities.heat.HeatCapability;
 import net.dries007.tfc.common.capabilities.heat.IHeatBlock;
 import net.dries007.tfc.common.recipes.HeatingRecipe;
@@ -123,6 +125,7 @@ public class OvenTopBlockEntity extends TickableInventoryBlockEntity<OvenTopBloc
 
                             // Output transformations
                             outputItem.getCapability(HeatCapability.CAPABILITY).ifPresent(outputCap -> outputCap.setTemperature(oven.temperature));
+                            FoodCapability.applyTrait(outputItem, FLFoodTraits.OVEN_BAKED);
 
                             // Add output to oven
                             oven.inventory.setStackInSlot(slot, outputItem);

@@ -2,6 +2,7 @@
   "__comment__": "This file was automatically created by mcresources",
   "replace": false,
   "values": [
-    "firmalife:drying_mat"
+    "firmalife:drying_mat",
+    "firmalife:wool_string"
   ]
 }

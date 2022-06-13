@@ -19,6 +19,7 @@ import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.recipes.DryingRecipe;
 import com.eerussianguy.firmalife.common.recipes.FLRecipeTypes;
+import com.eerussianguy.firmalife.common.recipes.SmokingRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.helpers.IGuiHelper;
@@ -54,6 +55,7 @@ public class FLJEIPlugin implements IModPlugin
     }
 
     public static final RecipeType<DryingRecipe> DRYING = type("drying", DryingRecipe.class);
+    public static final RecipeType<SmokingRecipe> SMOKING = type("smoking", SmokingRecipe.class);
 
     @Override
     public ResourceLocation getPluginUid()
@@ -66,17 +68,20 @@ public class FLJEIPlugin implements IModPlugin
     {
         IGuiHelper gui = r.getJeiHelpers().getGuiHelper();
         r.addRecipeCategories(new DryingCategory(DRYING, gui));
+        r.addRecipeCategories(new SmokingCategory(SMOKING, gui));
     }
 
     @Override
     public void registerRecipes(IRecipeRegistration r)
     {
         r.addRecipes(DRYING, getRecipes(FLRecipeTypes.DRYING.get()));
+        r.addRecipes(SMOKING, getRecipes(FLRecipeTypes.SMOKING.get()));
     }
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration r)
     {
         r.addRecipeCatalyst(new ItemStack(FLBlocks.DRYING_MAT.get()), DRYING);
+        // todo add cat
     }
 }

@@ -10,6 +10,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import com.eerussianguy.firmalife.common.FLTickCounterBlockEntity;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import net.dries007.tfc.util.registry.RegistrationHelpers;
 
@@ -22,11 +23,14 @@ public class FLBlockEntities
     public static final RegistryObject<BlockEntityType<DryingMatBlockEntity>> DRYING_MAT = register("drying_mat", DryingMatBlockEntity::new, FLBlocks.DRYING_MAT);
     public static final RegistryObject<BlockEntityType<FLBeehiveBlockEntity>> BEEHIVE = register("beehive", FLBeehiveBlockEntity::new, FLBlocks.BEEHIVE);
     public static final RegistryObject<BlockEntityType<IronComposterBlockEntity>> IRON_COMPOSTER = register("iron_composter", IronComposterBlockEntity::new, FLBlocks.IRON_COMPOSTER);
+    public static final RegistryObject<BlockEntityType<StringBlockEntity>> STRING = register("string", StringBlockEntity::new, FLBlocks.WOOL_STRING);
+    public static final RegistryObject<BlockEntityType<FLTickCounterBlockEntity>> TICK_COUNTER = register("tick_counter", FLTickCounterBlockEntity::new, Stream.of(FLBlocks.CHEDDAR_WHEEL, FLBlocks.CHEVRE_WHEEL, FLBlocks.FETA_WHEEL, FLBlocks.SHOSHA_WHEEL, FLBlocks.RAJYA_METOK_WHEEL, FLBlocks.GOUDA_WHEEL));
 
     public static final RegistryObject<BlockEntityType<LargePlanterBlockEntity>> LARGE_PLANTER = register("large_planter", LargePlanterBlockEntity::new, FLBlocks.LARGE_PLANTER);
     public static final RegistryObject<BlockEntityType<BonsaiPlanterBlockEntity>> BONSAI_PLANTER = register("bonsai_planter", BonsaiPlanterBlockEntity::new, FLBlocks.BONSAI_PLANTER);
     public static final RegistryObject<BlockEntityType<HangingPlanterBlockEntity>> HANGING_PLANTER = register("hanging_planter", HangingPlanterBlockEntity::new, FLBlocks.HANGING_PLANTER);
     public static final RegistryObject<BlockEntityType<QuadPlanterBlockEntity>> QUAD_PLANTER = register("quad_planter", QuadPlanterBlockEntity::new, FLBlocks.QUAD_PLANTER);
+    public static final RegistryObject<BlockEntityType<TrellisPlanterBlockEntity>> TRELLIS_PLANTER = register("trellis_planter", TrellisPlanterBlockEntity::new, FLBlocks.TRELLIS_PLANTER);
     public static final RegistryObject<BlockEntityType<ClimateStationBlockEntity>> CLIMATE_STATION = register("climate_station", ClimateStationBlockEntity::new, FLBlocks.CLIMATE_STATION);
 
     private static <T extends BlockEntity> RegistryObject<BlockEntityType<T>> register(String name, BlockEntityType.BlockEntitySupplier<T> factory, Supplier<? extends Block> block)

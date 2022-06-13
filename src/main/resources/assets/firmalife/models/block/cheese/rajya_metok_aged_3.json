@@ -1,0 +1,10 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "firmalife:block/cheese_3",
+  "textures": {
+    "surface": "firmalife:block/cheese/rajya_metok_wheel_surface_aged",
+    "particle": "firmalife:block/cheese/rajya_metok_wheel_surface_aged",
+    "down": "firmalife:block/cheese/rajya_metok_wheel_surface_aged",
+    "inside": "firmalife:block/cheese/rajya_metok_wheel_inner_aged"
+  }
+}

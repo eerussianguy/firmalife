@@ -1,0 +1,15 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "planter": "trellis",
+  "ingredient": {
+    "item": "tfc:plant/elderberry_bush"
+  },
+  "crop": {
+    "item": "tfc:food/elderberry"
+  },
+  "nutrient": "nitrogen",
+  "stages": 0,
+  "texture": "tfc:block/berry_bush/elderberry_bush",
+  "tier": 15,
+  "extra_seed_chance": 0
+}

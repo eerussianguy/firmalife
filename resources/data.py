@@ -1,12 +1,18 @@
-from mcresources import ResourceManager
+from mcresources import ResourceManager, loot_tables
+from mcresources.type_definitions import Json
 
 from constants import *
 from mcresources import utils
 
 
 def generate(rm: ResourceManager):
+    ### TAGS ###
     rm.item_tag('usable_on_oven', 'firmalife:peel')
     rm.item_tag('sweetener', 'minecraft:sugar', 'firmalife:raw_honey')
+    rm.item_tag('feeds_yeast', *['tfc:food/%s_flour' % g for g in TFC_GRAINS])
+    rm.item_tag('tfc:sandwich_bread', *['firmalife:food/%s_slice' % g for g in TFC_GRAINS])
+    rm.item_tag('foods/cheeses', 'firmalife:food/gouda', 'firmalife:food/chevre', 'firmalife:food/shosha', 'firmalife:food/feta', 'firmalife:food/rajya_metok', 'firmalife:food/cheddar')
+    rm.item_tag('smoking_fuel', '#minecraft:logs')
 
     rm.block_tag('oven_insulation', 'minecraft:bricks', '#tfc:forge_insulation', '#firmalife:oven_blocks')
     rm.block_tag('minecraft:mineable/pickaxe', '#firmalife:oven_blocks')
@@ -18,7 +24,12 @@ def generate(rm: ResourceManager):
     rm.block_tag('all_copper_greenhouse', *['#firmalife:%s_greenhouse' % g for g in ('exposed_copper', 'weathered_copper', 'copper', 'oxidized_copper')])
     rm.block_tag('all_treated_wood_greenhouse', '#firmalife:treated_wood_greenhouse', '#firmalife:weathered_treated_wood_greenhouse')
     rm.block_tag('greenhouse', '#firmalife:all_iron_greenhouse', '#firmalife:all_copper_greenhouse', '#firmalife:all_treated_wood_greenhouse', '#firmalife:stainless_steel_greenhouse')
+    rm.block_tag('drops_fruit_leaf', *['tfc:plant/%s_leaves' % t for t in TFC_FRUIT_TREES])
+    rm.block_tag('cellar_insulation', 'firmalife:sealed_bricks', 'firmalife:sealed_door')
 
+    rm.entity_tag('drops_rennet', 'tfc:cow')
+
+    ### JSON DATA ###
     greenhouse(rm, 'treated_wood', '#firmalife:all_treated_wood_greenhouse', 5)
     greenhouse(rm, 'copper', '#firmalife:all_copper_greenhouse', 10)  # allows grain
     greenhouse(rm, 'iron', '#firmalife:all_iron_greenhouse', 15)  # allows fruit trees
@@ -53,12 +64,32 @@ def generate(rm: ResourceManager):
     hanging_plantable(rm, 'squash', 'tfc:seeds/squash', 'tfc:food/squash', 'potassium')
     hanging_plantable(rm, 'banana', 'tfc:plant/banana_sapling', 'tfc:food/banana', 'nitrogen', tier=15, seed_chance=0.08)
 
+    trellis_plantable(rm, 'blackberry', 'tfc:plant/blackberry_bush', 'tfc:food/blackberry', 'nitrogen')
+    trellis_plantable(rm, 'blueberry', 'tfc:plant/blueberry_bush', 'tfc:food/blueberry', 'nitrogen')
+    trellis_plantable(rm, 'raspberry', 'tfc:plant/raspberry_bush', 'tfc:food/raspberry', 'nitrogen')
+    trellis_plantable(rm, 'elderberry', 'tfc:plant/elderberry_bush', 'tfc:food/elderberry', 'nitrogen')
+    trellis_plantable(rm, 'bunchberry', 'tfc:plant/bunchberry_bush', 'tfc:food/bunchberry', 'nitrogen')
+    trellis_plantable(rm, 'cloudberry', 'tfc:plant/cloudberry_bush', 'tfc:food/cloudberry', 'nitrogen')
+    trellis_plantable(rm, 'gooseberry', 'tfc:plant/gooseberry_bush', 'tfc:food/gooseberry', 'nitrogen')
+    trellis_plantable(rm, 'snowberry', 'tfc:plant/snowberry_bush', 'tfc:food/snowberry', 'nitrogen')
+    trellis_plantable(rm, 'strawberry', 'tfc:plant/strawberry_bush', 'tfc:food/strawberry', 'nitrogen')
+    trellis_plantable(rm, 'wintergreen_berry', 'tfc:plant/wintergreen_berry_bush', 'tfc:food/wintergreen_berry', 'nitrogen')
+    # missing is cranberries. hydroponic planter?
+
+    ### MISC DATA ###
+    global_loot_modifiers(rm, 'firmalife:fruit_leaf', 'firmalife:rennet')
+    global_loot_modifier(rm, 'rennet', 'firmalife:add_item', {'item': utils.item_stack('firmalife:rennet')}, match_entity_tag('firmalife:drops_rennet'))
+    global_loot_modifier(rm, 'fruit_leaf', 'firmalife:add_item', {'item': utils.item_stack('firmalife:fruit_leaf')}, match_block_ingredient('firmalife:drops_fruit_leaf'))
+
 
 def greenhouse(rm: ResourceManager, name: str, block_ingredient: str, tier: int):
     rm.data(('firmalife', 'greenhouse', name), {
         'ingredient': utils.ingredient(block_ingredient),
         'tier': tier
     })
+
+def trellis_plantable(rm: ResourceManager, name: str, ingredient: str, crop: str, nutrient: str, firmalife: bool = False):
+    plantable(rm, name, ingredient, crop, nutrient, 'firmalife:block/berry_bush/%s_bush' % name if firmalife else 'tfc:block/berry_bush/%s_bush' % name, 0, 'trellis', 15, 0, False)
 
 def hanging_plantable(rm: ResourceManager, name: str, seed: str, crop: str, nutrient: str, tier: int = None, seed_chance: float = 0.5):
     plantable(rm, name, seed, crop, nutrient, 'firmalife:block/crop/%s' % name, 4, 'hanging', tier, seed_chance)
@@ -69,11 +100,11 @@ def bonsai_plantable(rm: ResourceManager, name: str, nutrient: str, firmalife: b
 def simple_plantable(rm: ResourceManager, name: str, nutrient: str, stages: int, planter: str = 'quad', tier: int = None, firmalife: bool = False):
     plantable(rm, name, 'tfc:seeds/%s' % name, 'tfc:food/%s' % name, nutrient, 'tfc:block/crop/%s' % name if not firmalife else 'firmalife:block/crop/%s' % name, stages, planter, tier)
 
-def plantable(rm: ResourceManager, name: str, seed: str, crop: str, nutrient: str, texture: str, stages: int, planter: str = 'quad', tier: int = None, seed_chance: float = 0.5):
+def plantable(rm: ResourceManager, name: str, seed: str, crop: str, nutrient: str, texture: str, stages: int, planter: str = 'quad', tier: int = None, seed_chance: float = 0.5, seeds: bool = True):
     rm.data(('firmalife', 'plantable', name), {
         'planter': planter,
         'ingredient': utils.ingredient(seed),
-        'seed': utils.item_stack(seed),
+        'seed': utils.item_stack(seed) if seeds else None,
         'crop': utils.item_stack(crop),
         'nutrient': nutrient,
         'stages': stages,
@@ -95,3 +126,32 @@ def item_heat(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredi
         'forging_temperature': forging_temperature,
         'welding_temperature': welding_temperature
     })
+
+def global_loot_modifier(rm: ResourceManager, name: str, mod_type: str, data_in: Json, *conditions: utils.Json):
+    rm.write((*rm.resource_dir, 'data', rm.domain, 'loot_modifiers', name), {
+        'type': mod_type,
+        'conditions': [c for c in conditions],
+        **data_in
+    })
+
+# note for the mcresources dev: these work exactly the same as tags so if you implement this, do it like that
+def global_loot_modifiers(rm: ResourceManager, *modifiers: str):
+    rm.write((*rm.resource_dir, 'data', 'forge', 'loot_modifiers', 'global_loot_modifiers'), {
+        'replace': False,
+        'entries': [m for m in modifiers]
+    })
+
+def match_entity_tag(tag: str):
+    return {
+        'condition': 'minecraft:entity_properties',
+        'predicate': {
+            'type': '#' + tag
+        },
+        'entity': 'this'
+    }
+
+def match_block_ingredient(tag: str):
+    return {
+        'condition': 'firmalife:block_ingredient',
+        'ingredient': {'tag': tag}
+    }

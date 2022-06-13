@@ -1,0 +1,15 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "planter": "trellis",
+  "ingredient": {
+    "item": "tfc:plant/cloudberry_bush"
+  },
+  "crop": {
+    "item": "tfc:food/cloudberry"
+  },
+  "nutrient": "nitrogen",
+  "stages": 0,
+  "texture": "tfc:block/berry_bush/cloudberry_bush",
+  "tier": 15,
+  "extra_seed_chance": 0
+}

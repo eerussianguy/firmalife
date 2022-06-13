@@ -17,6 +17,8 @@ import com.eerussianguy.firmalife.common.container.FLContainerTypes;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.common.items.FLItems;
 import com.eerussianguy.firmalife.common.misc.FLEffects;
+import com.eerussianguy.firmalife.common.misc.FLInteractionManager;
+import com.eerussianguy.firmalife.common.misc.FLLoot;
 import com.eerussianguy.firmalife.common.network.FLPackets;
 import com.eerussianguy.firmalife.common.recipes.FLRecipeSerializers;
 import com.eerussianguy.firmalife.common.recipes.FLRecipeTypes;
@@ -41,6 +43,7 @@ public class Firmalife
         FLRecipeSerializers.RECIPE_SERIALIZERS.register(bus);
         FLContainerTypes.CONTAINERS.register(bus);
         FLEffects.EFFECTS.register(bus);
+        FLLoot.registerAll(bus);
 
         FLPackets.init();
 
@@ -59,6 +62,7 @@ public class Firmalife
     {
         // Vanilla registries are not thread safe
         event.enqueueWork(() -> {
+            FLInteractionManager.init();
             FLFoodTraits.init();
             FLIngredients.init();
         });

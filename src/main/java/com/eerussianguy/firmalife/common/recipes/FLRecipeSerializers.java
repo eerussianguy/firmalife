@@ -16,6 +16,7 @@ public class FLRecipeSerializers
     public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, MOD_ID);
 
     public static final RegistryObject<SimpleItemRecipe.Serializer<DryingRecipe>> DRYING = register("drying", () -> new SimpleItemRecipe.Serializer<>(DryingRecipe::new));
+    public static final RegistryObject<SimpleItemRecipe.Serializer<SmokingRecipe>> SMOKING = register("smoking", () -> new SimpleItemRecipe.Serializer<>(SmokingRecipe::new));
 
     private static <S extends RecipeSerializer<?>> RegistryObject<S> register(String name, Supplier<S> factory)
     {

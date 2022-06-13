@@ -15,6 +15,7 @@ public class FLTags
         public static final TagKey<Block> OVEN_INSULATION = create("oven_insulation");
         public static final TagKey<Block> CHIMNEYS = create("chimneys");
         public static final TagKey<Block> GREENHOUSE = create("greenhouse");
+        public static final TagKey<Block> CELLAR_INSULATION = create("cellar_insulation");
         public static final TagKey<Block> BEE_PLANTS = create("bee_plants");
         public static final TagKey<Block> BEE_RESTORATION_PLANTS = create("bee_restoration_plants");
         public static final TagKey<Block> BEE_RESTORATION_WATER_PLANTS = create("bee_restoration_water_plants");
@@ -28,6 +29,7 @@ public class FLTags
     public static class Items
     {
         public static final TagKey<Item> USABLE_ON_OVEN = create("usable_on_oven");
+        public static final TagKey<Item> SMOKING_FUEL = create("smoking_fuel");
 
         private static TagKey<Item> create(String id)
         {

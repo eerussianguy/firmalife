@@ -15,6 +15,7 @@ public class FLRecipeTypes
     public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(Registry.RECIPE_TYPE_REGISTRY, MOD_ID);
 
     public static final RegistryObject<RecipeType<DryingRecipe>> DRYING = register("scraping");
+    public static final RegistryObject<RecipeType<SmokingRecipe>> SMOKING = register("smoking");
 
     private static <R extends Recipe<?>> RegistryObject<RecipeType<R>> register(String name)
     {

@@ -3,7 +3,6 @@ package com.eerussianguy.firmalife.common.items;
 import java.util.Random;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -20,7 +19,7 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
-import com.eerussianguy.firmalife.common.blockentities.GreenhouseReceiver;
+import com.eerussianguy.firmalife.common.blockentities.ClimateReceiver;
 
 public class WateringCanItem extends Item
 {
@@ -50,7 +49,7 @@ public class WateringCanItem extends Item
     {
         for (BlockPos pos : FLHelpers.allPositionsCentered(entity.blockPosition(), 3, 3))
         {
-            if (level.getBlockEntity(pos) instanceof GreenhouseReceiver receiver)
+            if (level.getBlockEntity(pos) instanceof ClimateReceiver receiver)
             {
                 receiver.addWater(0.25f);
             }

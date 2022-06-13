@@ -1,0 +1,12 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "variants": {
+    "axis=x": {
+      "model": "firmalife:block/wool_string"
+    },
+    "axis=z": {
+      "model": "firmalife:block/wool_string",
+      "y": 90
+    }
+  }
+}

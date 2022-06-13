@@ -1,0 +1,16 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "firmalife:add_item",
+  "conditions": [
+    {
+      "condition": "minecraft:entity_properties",
+      "predicate": {
+        "type": "#firmalife:drops_rennet"
+      },
+      "entity": "this"
+    }
+  ],
+  "item": {
+    "item": "firmalife:rennet"
+  }
+}
