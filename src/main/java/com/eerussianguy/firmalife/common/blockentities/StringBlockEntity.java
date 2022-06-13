@@ -70,7 +70,7 @@ public class StringBlockEntity extends SimpleItemRecipeBlockEntity<SmokingRecipe
 
     public StringBlockEntity(BlockPos pos, BlockState state)
     {
-        super(FLBlockEntities.STRING.get(), pos, state, FLHelpers.blockEntityName("string"), ICalendar.TICKS_IN_DAY / 2);
+        super(FLBlockEntities.STRING.get(), pos, state, FLHelpers.blockEntityName("string"), ICalendar.TICKS_IN_DAY / 3);
     }
 
     @Override

@@ -11,11 +11,8 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import com.eerussianguy.firmalife.common.blockentities.StringBlockEntity;
 import com.eerussianguy.firmalife.common.blocks.StringBlock;
-import com.eerussianguy.firmalife.common.items.FLFoodTraits;
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
-import net.dries007.tfc.common.capabilities.food.FoodCapability;
 
 public class StringBlockEntityRenderer implements BlockEntityRenderer<StringBlockEntity>
 {
@@ -37,12 +34,6 @@ public class StringBlockEntityRenderer implements BlockEntityRenderer<StringBloc
         ItemStack item = string.readStack();
         if (!item.isEmpty())
         {
-            item.getCapability(FoodCapability.CAPABILITY).ifPresent(cap -> {
-                if (cap.getTraits().contains(FLFoodTraits.SMOKED) || cap.getTraits().contains(FLFoodTraits.RANCID_SMOKED))
-                {
-                    RenderSystem.setShaderColor(0.5f, 0.5f, 0.5f, 1f);
-                }
-            });
             Minecraft.getInstance().getItemRenderer().renderStatic(item, ItemTransforms.TransformType.FIXED, combinedLight, combinedOverlay, poseStack, buffers, 0);
         }
         poseStack.popPose();

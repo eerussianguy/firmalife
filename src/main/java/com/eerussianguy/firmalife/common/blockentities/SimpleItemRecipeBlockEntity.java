@@ -30,8 +30,8 @@ public abstract class SimpleItemRecipeBlockEntity<T extends SimpleItemRecipe> ex
     public void loadAdditional(CompoundTag nbt)
     {
         startTick = nbt.getLong("startTick");
-        updateCache();
         super.loadAdditional(nbt);
+        updateCache();
     }
 
     @Override

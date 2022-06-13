@@ -88,6 +88,10 @@ def generate(rm: ResourceManager):
     barrel_sealed_recipe(rm, 'cheese', 'Gouda Wheel', 16000, '3 firmalife:food/milk_curd', '750 tfc:salt_water', output_item='firmalife:gouda_wheel')
     rm.domain = 'firmalife'  # DOMAIN RESET
 
+    clay_knapping(rm, 'oven_top', ['XXXXX', 'XX XX', 'X   X', 'X   X', 'XXXXX'], 'firmalife:oven_top')
+    clay_knapping(rm, 'oven_bottom', ['XX XX', 'X   X', 'X   X', 'XXXXX'], 'firmalife:oven_bottom')
+    clay_knapping(rm, 'oven_chimney', ['XX XX', 'XX XX', 'XX XX'], 'firmalife:oven_chimney')
+
     # Firmalife Recipes
     drying_recipe(rm, 'drying_fruit', not_rotten(has_trait('#tfc:foods/fruits', 'firmalife:dried', True)), item_stack_provider(copy_input=True, add_trait='firmalife:dried'))
     drying_recipe(rm, 'cinnamon', 'firmalife:cinnamon_bark', item_stack_provider('firmalife:spice/cinnamon'))
@@ -330,14 +334,13 @@ def delegate_recipe(rm: ResourceManager, name_parts: ResourceIdentifier, recipe_
     })
     return RecipeContext(rm, res)
 
-def extra_products_shapeless(rm: ResourceManager, name_parts: ResourceIdentifier, ingredients: Json, result: Json, extra: Json):
-    res = utils.resource_location(rm.domain, name_parts)
-    rm.write((*rm.resource_dir, 'data', res.domain, 'recipes', 'crafting', res.path), {
-        'type': 'tfc:extra_products_shapeless_crafting',
-        'extra_products': utils.item_stack_list(extra),
-        'recipe': {
-            'type': 'minecraft:crafting_shapeless',
-            'ingredients': utils.item_stack_list(ingredients),
-            'result': utils.item_stack(results)
-        }
+def clay_knapping(rm: ResourceManager, name_parts: ResourceIdentifier, pattern: List[str], result: Json, outside_slot_required: bool = None):
+    knapping_recipe(rm, 'clay_knapping', name_parts, pattern, result, outside_slot_required)
+
+def knapping_recipe(rm: ResourceManager, knapping_type: str, name_parts: utils.ResourceIdentifier, pattern: List[str], result: utils.Json, outside_slot_required: bool = None):
+    rm.recipe((knapping_type, name_parts), 'tfc:%s' % knapping_type, {
+        'outside_slot_required': outside_slot_required,
+        'pattern': pattern,
+        'result': utils.item_stack(result)
     })
+

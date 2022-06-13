@@ -27,6 +27,7 @@ import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
+import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.util.Helpers;
 
 @JeiPlugin
@@ -82,6 +83,6 @@ public class FLJEIPlugin implements IModPlugin
     public void registerRecipeCatalysts(IRecipeCatalystRegistration r)
     {
         r.addRecipeCatalyst(new ItemStack(FLBlocks.DRYING_MAT.get()), DRYING);
-        r.addRecipeCatalyst(new ItemStack(FLBlocks.WOOL_STRING.get()), SMOKING);
+        r.addRecipeCatalyst(new ItemStack(TFCItems.WOOL_YARN.get()), SMOKING);
     }
 }
