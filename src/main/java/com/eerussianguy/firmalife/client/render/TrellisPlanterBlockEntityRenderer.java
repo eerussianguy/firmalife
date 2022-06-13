@@ -51,7 +51,7 @@ public class TrellisPlanterBlockEntityRenderer implements BlockEntityRenderer<Tr
 
 
         TextureAtlasSprite sprite = atlas.apply(actualTexture);
-        RenderUtils.renderTexturedCuboid(poseStack, buffer, sprite, combinedLight, combinedOverlay, 0, 0, 0, 1, 1, 1);
+        RenderUtils.renderTexturedCuboid(poseStack, buffer, sprite, combinedLight, combinedOverlay, 0, 0, 0, 1, 1.01f, 1);
 
         poseStack.popPose();
     }

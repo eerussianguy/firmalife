@@ -54,7 +54,7 @@ def generate(rm: ResourceManager):
     rm.blockstate('wool_string', variants={
         'axis=x': {'model': 'firmalife:block/wool_string'},
         'axis=z': {'model': 'firmalife:block/wool_string', 'y': 90}
-    }).with_block_model(parent='firmalife:block/string', textures={'string': 'minecraft:block/white_wool'}).with_lang(lang('wool string')).with_tag('tfc:mineable_with_sharp_tool').with_item_model().with_block_loot('firmalife:wool_string')
+    }).with_block_model(parent='firmalife:block/string', textures={'string': 'minecraft:block/white_wool'}).with_lang(lang('wool string')).with_tag('tfc:mineable_with_sharp_tool').with_item_model().with_block_loot('tfc:wool_yarn')
 
     rm.blockstate('climate_station', variants={
         'stasis=true': {'model': 'firmalife:block/climate_station_valid'},

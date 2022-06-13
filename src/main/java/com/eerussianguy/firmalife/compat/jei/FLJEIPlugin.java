@@ -82,6 +82,6 @@ public class FLJEIPlugin implements IModPlugin
     public void registerRecipeCatalysts(IRecipeCatalystRegistration r)
     {
         r.addRecipeCatalyst(new ItemStack(FLBlocks.DRYING_MAT.get()), DRYING);
-        // todo add cat
+        r.addRecipeCatalyst(new ItemStack(FLBlocks.WOOL_STRING.get()), SMOKING);
     }
 }

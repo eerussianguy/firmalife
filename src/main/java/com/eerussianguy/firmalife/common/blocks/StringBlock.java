@@ -1,9 +1,12 @@
 package com.eerussianguy.firmalife.common.blocks;
 
+import java.util.List;
+import java.util.Random;
 import java.util.function.Supplier;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -23,9 +26,14 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
+import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import net.dries007.tfc.common.blockentities.FirepitBlockEntity;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.devices.DeviceBlock;
+import net.dries007.tfc.common.capabilities.food.FoodCapability;
+import net.dries007.tfc.common.capabilities.food.FoodTrait;
+import net.dries007.tfc.util.Helpers;
 import org.jetbrains.annotations.Nullable;
 
 public class StringBlock extends DeviceBlock
@@ -38,9 +46,9 @@ public class StringBlock extends DeviceBlock
         for (int i = 0; i < 4; i++)
         {
             mutable.move(0, -1, 0);
-            if (!level.getBlockState(pos).isAir())
+            if (!level.getBlockState(mutable).isAir())
             {
-                return level.getBlockEntity(pos) instanceof FirepitBlockEntity firepit ? firepit : null;
+                return level.getBlockEntity(mutable) instanceof FirepitBlockEntity firepit ? firepit : null;
             }
         }
         return null;
@@ -48,8 +56,8 @@ public class StringBlock extends DeviceBlock
 
     public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.HORIZONTAL_AXIS;
 
-    private static final VoxelShape SHAPE_X = box(0, 8, 7, 1, 10, 9);
-    private static final VoxelShape SHAPE_Z = box(7, 8, 0, 9, 10, 1);
+    private static final VoxelShape SHAPE_X = box(0, 8, 7, 16, 10, 9);
+    private static final VoxelShape SHAPE_Z = box(7, 8, 0, 9, 10, 16);
 
     private final Supplier<? extends Item> item;
 
@@ -57,6 +65,30 @@ public class StringBlock extends DeviceBlock
     {
         super(properties, InventoryRemoveBehavior.DROP);
         this.item = item;
+    }
+
+    @Override
+    public void animateTick(BlockState state, Level level, BlockPos pos, Random random)
+    {
+        level.getBlockEntity(pos, FLBlockEntities.STRING.get()).ifPresent(string -> {
+            ItemStack stack = string.readStack();
+            if (!stack.isEmpty())
+            {
+                stack.getCapability(FoodCapability.CAPABILITY).ifPresent(food -> {
+                    List<FoodTrait> traits = food.getTraits();
+                    if (traits.contains(FLFoodTraits.DRIED) || traits.contains(FLFoodTraits.RANCID_SMOKED))
+                    {
+                        final double x = pos.getX() + 0.5;
+                        final double y = pos.getY() + 0.55;
+                        final double z = pos.getZ() + 0.5;
+                        for (int i = 0; i < 4; i++)
+                        {
+                            level.addParticle(ParticleTypes.SMOKE, x, y, z, Helpers.triangle(random), Helpers.triangle(random), Helpers.triangle(random));
+                        }
+                    }
+                });
+            }
+        });
     }
 
     @Nullable

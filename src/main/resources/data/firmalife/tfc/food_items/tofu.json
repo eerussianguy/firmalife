@@ -1,0 +1,12 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "ingredient": {
+    "item": "firmalife:food/tofu"
+  },
+  "category": "cooked_meat",
+  "hunger": 4,
+  "saturation": 2,
+  "water": 2,
+  "decay": 0.75,
+  "protein": 1.5
+}

@@ -23,11 +23,11 @@ public class SmokingRecipe extends SimpleItemRecipe
     }
 
     @Nullable
-    public static SmokingRecipe getRecipe(Level world, ItemStackInventory wrapper)
+    public static SmokingRecipe getRecipe(Level level, ItemStackInventory wrapper)
     {
         for (SmokingRecipe recipe : CACHE.getAll(wrapper.getStack().getItem()))
         {
-            if (recipe.matches(wrapper, world))
+            if (recipe.matches(wrapper, level))
             {
                 return recipe;
             }

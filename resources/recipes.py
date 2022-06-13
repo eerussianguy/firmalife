@@ -58,7 +58,7 @@ def generate(rm: ResourceManager):
     rm.crafting_shaped('crafting/iron_composter', ['XYX'], {'X': '#forge:sheets/wrought_iron', 'Y': 'tfc:composter'}, 'firmalife:iron_composter').with_advancement('tfc:composter')
     rm.crafting_shaped('crafting/rajya_metok_wheel', ['XXX', 'YYY', 'XXX'], {'X': 'tfc:powder/salt', 'Y': 'firmalife:food/yak_curd'}, 'firmalife:rajya_metok_wheel').with_advancement('firmalife:food/yak_curd')
     rm.crafting_shaped('crafting/chevre_wheel', ['XXX', 'YYY', 'XXX'], {'X': 'tfc:powder/salt', 'Y': 'firmalife:food/goat_curd'}, 'firmalife:chevre_wheel').with_advancement('firmalife:food/goat_curd')
-    rm.crafting_shaped('crafting/cheddar_wheel', ['XXX', 'YYY', 'XXX'], {'X': 'tfc:powder/salt', 'Y': 'firmalife:food/milk_curd'}, 'firmalife:cheddar_wheel').with_advancement('firmalife:food/milkk_curd')
+    rm.crafting_shaped('crafting/cheddar_wheel', ['XXX', 'YYY', 'XXX'], {'X': 'tfc:powder/salt', 'Y': 'firmalife:food/milk_curd'}, 'firmalife:cheddar_wheel').with_advancement('firmalife:food/milk_curd')
     rm.crafting_shaped('crafting/cheesecloth', ['XX'], {'X': '#tfc:high_quality_cloth'}, '8 firmalife:cheesecloth').with_advancement('#tfc:high_quality_cloth')
 
     for jar, remainder, _, ing in JARS:
@@ -118,17 +118,6 @@ def generate(rm: ResourceManager):
 
         rm.domain = 'tfc'  # DOMAIN CHANGE
         rm.crafting_shapeless('crafting/%s_dough' % grain, (not_rotten('tfc:food/%s_flour' % grain), fluid_item_ingredient('100 firmalife:yeast_starter'), '#firmalife:sweetener'), (4, 'tfc:food/%s_dough' % grain)).with_advancement('tfc:food/%s_grain' % grain)
-        sandwich_pattern = ['ZX ', 'YYY', ' X ']
-        sandwich_ingredients = {'X': not_rotten('firmalife:food/%s_slice' % grain), 'Y': not_rotten('#tfc:foods/usable_in_sandwich'), 'Z': '#tfc:knives'}
-        delegate_recipe(rm, 'crafting/%s_sandwich' % grain, 'tfc:damage_inputs_shaped_crafting', {
-            'type': 'tfc:advanced_shaped_crafting',
-            'pattern': sandwich_pattern,
-            'key': utils.item_stack_dict(sandwich_ingredients, ''.join(sandwich_pattern)[0]),
-            'result': item_stack_provider('2 tfc:food/%s_bread_sandwich' % grain, other_modifier='tfc:sandwich'),
-            'input_row': 0,
-            'input_column': 0,
-        }).with_advancement('tfc:food/%s_bread' % grain)
-
         rm.domain = 'firmalife'  # DOMAIN RESET
 
 def make_jar(rm: ResourceManager, jar: str, remainder: int = -1, ing: str = None):

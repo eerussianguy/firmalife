@@ -26,6 +26,11 @@ public class StringBlockEntity extends SimpleItemRecipeBlockEntity<SmokingRecipe
     {
         if (level.getGameTime() % 40 == 0)
         {
+            if (mat.cachedRecipe == null)
+            {
+                mat.startTick = Calendars.SERVER.getTicks();
+                return;
+            }
             FirepitBlockEntity firepit = StringBlock.findFirepit(level, pos);
             if (firepit == null)
             {

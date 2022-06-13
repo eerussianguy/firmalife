@@ -15,7 +15,7 @@ public class SmokingCategory extends SimpleItemRecipeCategory<SmokingRecipe>
 {
     public SmokingCategory(RecipeType<SmokingRecipe> type, IGuiHelper helper)
     {
-        super(type, helper, new ItemStack(FLBlocks.DRYING_MAT.get())); // todo fix
+        super(type, helper, new ItemStack(FLBlocks.WOOL_STRING.get()));
     }
 
     @Override

@@ -23,11 +23,11 @@ public class DryingRecipe extends SimpleItemRecipe
     }
 
     @Nullable
-    public static DryingRecipe getRecipe(Level world, ItemStackInventory wrapper)
+    public static DryingRecipe getRecipe(Level level, ItemStackInventory wrapper)
     {
         for (DryingRecipe recipe : CACHE.getAll(wrapper.getStack().getItem()))
         {
-            if (recipe.matches(wrapper, world))
+            if (recipe.matches(wrapper, level))
             {
                 return recipe;
             }

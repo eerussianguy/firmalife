@@ -1,0 +1,11 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "ingredient": {
+    "tag": "firmalife:foods/slices"
+  },
+  "category": "grain",
+  "hunger": 4,
+  "saturation": 0.75,
+  "decay": 1.5,
+  "grain": 1
+}

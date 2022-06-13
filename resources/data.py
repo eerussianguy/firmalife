@@ -1,18 +1,31 @@
+from enum import Enum, auto
+
 from mcresources import ResourceManager, loot_tables
 from mcresources.type_definitions import Json
 
 from constants import *
 from mcresources import utils
 
+class Category(Enum):
+    fruit = auto()
+    vegetable = auto()
+    grain = auto()
+    bread = auto()
+    dairy = auto()
+    meat = auto()
+    cooked_meat = auto()
+    other = auto()
 
 def generate(rm: ResourceManager):
     ### TAGS ###
     rm.item_tag('usable_on_oven', 'firmalife:peel')
     rm.item_tag('sweetener', 'minecraft:sugar', 'firmalife:raw_honey')
     rm.item_tag('feeds_yeast', *['tfc:food/%s_flour' % g for g in TFC_GRAINS])
-    rm.item_tag('tfc:sandwich_bread', *['firmalife:food/%s_slice' % g for g in TFC_GRAINS])
+    rm.item_tag('foods/slices', *['firmalife:food/%s_slice' % g for g in TFC_GRAINS])
+    rm.item_tag('tfc:sandwich_bread', '#firmalife:foods/slices')
     rm.item_tag('foods/cheeses', 'firmalife:food/gouda', 'firmalife:food/chevre', 'firmalife:food/shosha', 'firmalife:food/feta', 'firmalife:food/rajya_metok', 'firmalife:food/cheddar')
     rm.item_tag('smoking_fuel', '#minecraft:logs')
+    rm.item_tag('chocolate_blends', 'firmalife:food/milk_chocolate_blend', 'firmalife:food/dark_chocolate_blend', 'firmalife:food/white_chocolate_blend')
 
     rm.block_tag('oven_insulation', 'minecraft:bricks', '#tfc:forge_insulation', '#firmalife:oven_blocks')
     rm.block_tag('minecraft:mineable/pickaxe', '#firmalife:oven_blocks')
@@ -75,6 +88,17 @@ def generate(rm: ResourceManager):
     trellis_plantable(rm, 'strawberry', 'tfc:plant/strawberry_bush', 'tfc:food/strawberry', 'nitrogen')
     trellis_plantable(rm, 'wintergreen_berry', 'tfc:plant/wintergreen_berry_bush', 'tfc:food/wintergreen_berry', 'nitrogen')
     # missing is cranberries. hydroponic planter?
+
+    # Food: HUNGER, SATURATION, WATER, DECAY
+    decayable(rm, 'frothy_coconut', 'firmalife:food/frothy_coconut', Category.vegetable)
+    food_item(rm, 'tofu', 'firmalife:food/tofu', Category.cooked_meat, 4, 2, 2, 0.75, protein=1.5)
+    decayable(rm, 'soy_mixture', 'firmalife:food/soy_mixture', Category.meat)
+    decayable(rm, 'yak_curd', 'firmalife:food/yak_curd', Category.dairy)
+    decayable(rm, 'goat_curd', 'firmalife:food/goat_curd', Category.dairy)
+    decayable(rm, 'milk_curd', 'firmalife:food/milk_curd', Category.dairy)
+    food_item(rm, 'slices', '#firmalife:foods/slices', Category.grain, 4, 0.75, 0, 1.5, grain=1)
+    food_item(rm, 'cheeses', '#firmalife:foods/cheeses', Category.dairy, 4, 2, 0, 0.3, dairy=3)
+    decayable(rm, 'chocolate_blends', '#firmalife:chocolate_blends', Category.dairy)
 
     ### MISC DATA ###
     global_loot_modifiers(rm, 'firmalife:fruit_leaf', 'firmalife:rennet')
@@ -155,3 +179,34 @@ def match_block_ingredient(tag: str):
         'condition': 'firmalife:block_ingredient',
         'ingredient': {'tag': tag}
     }
+
+def decayable(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredient: utils.Json, category: Category, decay: float = 3):
+    food_item(rm, name_parts, ingredient, category, 4, 0, 0, decay)
+
+def food_item(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredient: utils.Json, category: Category, hunger: int, saturation: float, water: int, decay: float, fruit: Optional[float] = None, veg: Optional[float] = None, protein: Optional[float] = None, grain: Optional[float] = None, dairy: Optional[float] = None):
+    rm.item_tag('tfc:foods', ingredient)
+    rm.data(('tfc', 'food_items', name_parts), {
+        'ingredient': utils.ingredient(ingredient),
+        'category': category.name,
+        'hunger': hunger,
+        'saturation': saturation,
+        'water': water if water != 0 else None,
+        'decay': decay,
+        'fruit': fruit,
+        'vegetables': veg,
+        'protein': protein,
+        'grain': grain,
+        'dairy': dairy
+    })
+    rm.item_tag('foods', ingredient)
+    if category in (Category.fruit, Category.vegetable):
+        rm.item_tag('foods/%ss' % category.name.lower(), ingredient)
+    if category in (Category.meat, Category.cooked_meat):
+        rm.item_tag('foods/meats', ingredient)
+        if category == Category.cooked_meat:
+            rm.item_tag('foods/cooked_meats', ingredient)
+        else:
+            rm.item_tag('foods/raw_meats', ingredient)
+    if category == Category.dairy:
+        rm.item_tag('foods/dairy', ingredient)
+

@@ -21,10 +21,17 @@ public class DryingMatBlockEntity extends SimpleItemRecipeBlockEntity<DryingReci
             mat.startTick = Calendars.SERVER.getTicks();
         }
 
-        long remainingTicks = mat.getDuration() - (Calendars.SERVER.getTicks() - mat.startTick);
-        if (remainingTicks <= 0)
+        if (mat.cachedRecipe != null)
         {
-            mat.finish();
+            long remainingTicks = mat.getDuration() - (Calendars.SERVER.getTicks() - mat.startTick);
+            if (remainingTicks <= 0)
+            {
+                mat.finish();
+            }
+        }
+        else
+        {
+            mat.startTick = Calendars.SERVER.getTicks();
         }
     }
 
