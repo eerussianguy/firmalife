@@ -18,7 +18,6 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 
 import com.eerussianguy.firmalife.Firmalife;
-import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.JsonOps;
 import net.dries007.tfc.common.blockentities.TickCounterBlockEntity;
@@ -38,7 +37,10 @@ public class FLHelpers
 
     public static void resetCounter(Level level, BlockPos pos)
     {
-        level.getBlockEntity(pos, FLBlockEntities.TICK_COUNTER.get()).ifPresent(TickCounterBlockEntity::resetCounter);
+        if (level.getBlockEntity(pos) instanceof TickCounterBlockEntity counter)
+        {
+            counter.resetCounter();
+        }
     }
 
     public static <T> JsonElement codecToJson(Codec<T> codec, T instance)

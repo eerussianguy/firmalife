@@ -28,7 +28,8 @@ apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: 'org.spongepowered.mixin'
 
 
-version = '1.0'
+def envVersion = System.getenv('VERSION')
+version = envVersion == null ? '0.0.0-indev' : envVersion
 group = 'com.eerussianguy.firmalife' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'firmalife'
 
@@ -108,6 +109,11 @@ repositories {
         url = "https://modmaven.k-4u.nl"
     }
     maven {
+        // Patchouli
+        name = "BlameJared"
+        url = "https://maven.blamejared.com"
+    }
+    maven {
         url 'https://www.cursemaven.com'
         content {
             includeGroup "curse.maven"
@@ -120,16 +126,19 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.18.2-40.1.0'
-    implementation fg.deobf("tfc:TerraFirmaCraft-Forge-1.18.2:0.0.0-indev")
+    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+    implementation fg.deobf("tfc:TerraFirmaCraft-Forge-${minecraft_version}:${tfc_version}")
 
     if (System.getProperty("idea.sync.active") != "true") {
-        annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
+        annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"
     }
 
+    // Patchouli
+    implementation fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}:api")
+
     // JEI
-    compileOnly fg.deobf("mezz.jei:jei-1.18.2:9.5.0.132:api")
-    runtimeOnly fg.deobf("mezz.jei:jei-1.18.2:9.5.0.132")
+    compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}:api")
+    runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
 }
 
 // Example for how to get properties into the manifest for reading at runtime.

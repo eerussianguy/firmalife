@@ -6,6 +6,9 @@ from mcresources.type_definitions import Json
 from constants import *
 from mcresources import utils
 
+from recipes import fluid_ingredient
+
+
 class Category(Enum):
     fruit = auto()
     vegetable = auto()
@@ -41,6 +44,9 @@ def generate(rm: ResourceManager):
     rm.block_tag('cellar_insulation', 'firmalife:sealed_bricks', 'firmalife:sealed_door')
 
     rm.entity_tag('drops_rennet', 'tfc:cow')
+
+    rm.fluid_tag('tfc:alcohols', 'firmalife:pina_colada')
+    rm.fluid_tag('tfc:milks', 'firmalife:yak_milk', 'firmalife:goat_milk', 'firmalife:coconut_milk')
 
     ### JSON DATA ###
     greenhouse(rm, 'treated_wood', '#firmalife:all_treated_wood_greenhouse', 5)
@@ -210,3 +216,11 @@ def food_item(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredi
     if category == Category.dairy:
         rm.item_tag('foods/dairy', ingredient)
 
+def drinkable(rm: ResourceManager, name_parts: utils.ResourceIdentifier, fluid: utils.Json, thirst: Optional[int] = None, intoxication: Optional[int] = None):
+    rm.data(('tfc', 'drinkables', name_parts), {
+        'ingredient': fluid_ingredient(fluid),
+        'thirst': thirst,
+        'intoxication': intoxication
+        # todo: effects
+        # todo: milk effects
+    })

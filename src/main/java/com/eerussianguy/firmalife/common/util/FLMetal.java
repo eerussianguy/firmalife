@@ -11,6 +11,7 @@ import net.minecraft.world.item.Tier;
 import net.minecraftforge.common.util.NonNullFunction;
 
 import net.dries007.tfc.common.TFCArmorMaterial;
+import net.dries007.tfc.common.TFCArmorMaterials;
 import net.dries007.tfc.common.TFCItemGroup;
 import net.dries007.tfc.common.TFCTiers;
 import net.dries007.tfc.util.Metal;
@@ -54,7 +55,7 @@ public enum FLMetal implements RegistryMetal
     @Override
     public ArmorMaterial armorTier()
     {
-        return TFCArmorMaterial.RED_STEEL;
+        return TFCArmorMaterials.RED_STEEL;
     }
 
     @Override

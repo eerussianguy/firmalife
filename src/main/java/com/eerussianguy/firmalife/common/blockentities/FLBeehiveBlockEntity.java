@@ -30,8 +30,6 @@ import com.eerussianguy.firmalife.common.container.BeehiveContainer;
 import net.dries007.tfc.common.blockentities.FarmlandBlockEntity;
 import net.dries007.tfc.common.blockentities.TFCBlockEntities;
 import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
-import net.dries007.tfc.common.blocks.TFCBlocks;
-import net.dries007.tfc.common.blocks.plant.Plant;
 import net.dries007.tfc.common.blocks.soil.ConnectedGrassBlock;
 import net.dries007.tfc.common.blocks.soil.DirtBlock;
 import net.dries007.tfc.common.blocks.soil.FarmlandBlock;
@@ -141,6 +139,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
     /**
      * Main method called periodically to perform bee actions
      */
+    @SuppressWarnings("deprecation") // hasChunksAt
     private void updateTick()
     {
         assert level != null;
@@ -171,7 +170,6 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
         // perform area of effect actions
         final boolean empty = usableBees.isEmpty();
         int flowers = 0;
-        // noinspection deprecation
         if (level.hasChunksAt(minX, maxX, minZ, maxZ))
         {
             for (BlockPos pos : BlockPos.betweenClosed(minX, worldPosition.getY() - 5, minZ, maxX, worldPosition.getY() + 5, maxZ))

@@ -80,7 +80,7 @@ public class CheeseWheelBlock extends BottomSupportedDeviceBlock implements Clim
             ItemStack drop = new ItemStack(slice.get());
             FoodCapability.applyTrait(drop, state.getValue(AGE).getTrait());
             ItemHandlerHelper.giveItemToPlayer(player, drop);
-            Helpers.resetCounter(level, pos);
+            FLHelpers.resetCounter(level, pos);
             if (count - 1 == 0)
             {
                 level.destroyBlock(pos, false);
