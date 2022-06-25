@@ -21,7 +21,7 @@ jobs:
       with:
         java-version: '17'
         distribution: 'adopt'
-    - name: Build, Test, Check Licenses
+    - name: Build
       uses: gradle/gradle-build-action@v2
       with:
         arguments: build
