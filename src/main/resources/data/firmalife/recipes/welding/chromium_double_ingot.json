@@ -1,0 +1,14 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:welding",
+  "first_input": {
+    "item": "firmalife:metal/ingot/chromium"
+  },
+  "second_input": {
+    "item": "firmalife:metal/ingot/chromium"
+  },
+  "tier": 5,
+  "result": {
+    "item": "firmalife:metal/double_ingot/chromium"
+  }
+}

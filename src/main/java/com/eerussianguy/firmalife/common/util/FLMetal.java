@@ -19,6 +19,7 @@ import net.dries007.tfc.util.registry.RegistryMetal;
 
 public enum FLMetal implements RegistryMetal
 {
+    CHROMIUM(0xFFF5FEFF),
     STAINLESS_STEEL(0xFFD9FCFF);
 
     private final String serializedName;

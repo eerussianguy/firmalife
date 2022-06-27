@@ -1,0 +1,18 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "tfc:ore/normal_chromite/igneous_intrusive",
+    "tfc:ore/poor_chromite/igneous_intrusive",
+    "tfc:ore/rich_chromite/igneous_intrusive",
+    "tfc:ore/normal_chromite/sedimentary",
+    "tfc:ore/poor_chromite/sedimentary",
+    "tfc:ore/rich_chromite/sedimentary",
+    "tfc:ore/normal_chromite/igneous_extrusive",
+    "tfc:ore/poor_chromite/igneous_extrusive",
+    "tfc:ore/rich_chromite/igneous_extrusive",
+    "tfc:ore/normal_chromite/metamorphic",
+    "tfc:ore/poor_chromite/metamorphic",
+    "tfc:ore/rich_chromite/metamorphic"
+  ]
+}

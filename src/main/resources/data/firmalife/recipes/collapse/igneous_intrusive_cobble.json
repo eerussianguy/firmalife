@@ -1,0 +1,10 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:collapse",
+  "ingredient": [
+    "firmalife:ore/poor_chromite/igneous_intrusive",
+    "firmalife:ore/normal_chromite/igneous_intrusive",
+    "firmalife:ore/rich_chromite/igneous_intrusive"
+  ],
+  "result": "tfc:rock/cobble/igneous_intrusive"
+}

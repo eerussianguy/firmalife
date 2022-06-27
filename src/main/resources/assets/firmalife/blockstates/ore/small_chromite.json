@@ -1,0 +1,22 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "variants": {
+    "": [
+      {
+        "model": "firmalife:block/small_chromite",
+        "y": 90
+      },
+      {
+        "model": "firmalife:block/small_chromite"
+      },
+      {
+        "model": "firmalife:block/small_chromite",
+        "y": 180
+      },
+      {
+        "model": "firmalife:block/small_chromite",
+        "y": 270
+      }
+    ]
+  }
+}

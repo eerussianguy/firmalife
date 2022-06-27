@@ -1,0 +1,14 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "Smoking",
+  "category": "tfc:firmalife",
+  "icon": "tfc:food/venison",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": ""
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 9
+}

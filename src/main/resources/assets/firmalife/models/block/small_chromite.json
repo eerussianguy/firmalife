@@ -1,0 +1,55 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "firmalife:item/ore/normal_chromite",
+		"particle": "firmalife:item/ore/normal_chromite"
+	},
+	"elements": [
+		{
+			"from": [6, 0, 8],
+			"to": [12, 1, 9],
+			"faces": {
+				"north": {"uv": [6, 7, 12, 8], "texture": "#0"},
+				"east": {"uv": [10, 12, 11, 13], "texture": "#0"},
+				"south": {"uv": [4, 11, 10, 12], "texture": "#0"},
+				"west": {"uv": [7, 8, 8, 9], "texture": "#0"},
+				"up": {"uv": [7, 6, 13, 7], "texture": "#0"},
+				"down": {"uv": [5, 8, 11, 9], "texture": "#0"}
+			}
+		},
+		{
+			"from": [8, 0, 9],
+			"to": [11, 1, 10],
+			"faces": {
+				"east": {"uv": [8, 8, 9, 9], "texture": "#0"},
+				"south": {"uv": [3, 13, 6, 14], "texture": "#0"},
+				"west": {"uv": [7, 8, 8, 9], "texture": "#0"},
+				"up": {"uv": [7, 6, 10, 7], "texture": "#0"},
+				"down": {"uv": [5, 8, 8, 9], "texture": "#0"}
+			}
+		},
+		{
+			"from": [5, 0, 6],
+			"to": [11, 1, 8],
+			"faces": {
+				"north": {"uv": [7, 13, 13, 14], "texture": "#0"},
+				"east": {"uv": [13, 11, 15, 12], "texture": "#0"},
+				"south": {"uv": [4, 11, 10, 12], "texture": "#0"},
+				"west": {"uv": [7, 8, 9, 9], "texture": "#0"},
+				"up": {"uv": [7, 12, 13, 14], "texture": "#0"},
+				"down": {"uv": [5, 8, 11, 10], "texture": "#0"}
+			}
+		},
+		{
+			"from": [7, 1, 7],
+			"to": [11, 2, 9],
+			"faces": {
+				"north": {"uv": [6, 7, 10, 8], "texture": "#0"},
+				"east": {"uv": [8, 8, 10, 9], "texture": "#0"},
+				"south": {"uv": [4, 11, 8, 12], "texture": "#0"},
+				"west": {"uv": [7, 8, 9, 9], "texture": "#0"},
+				"up": {"uv": [6, 3, 10, 5], "texture": "#0"}
+			}
+		}
+	]
+}

@@ -88,13 +88,28 @@ def generate(rm: ResourceManager):
         block = rm.blockstate('%s_wheel' % cheese, variants=dict(
             ('age=%s,count=%s' % (a, c), {'model': 'firmalife:block/cheese/%s_%s_%s' % (cheese, a, c)})
             for a in ('fresh', 'aged', 'vintage') for c in range(1, 5)
-        )).with_lang(lang('%s cheese wheel', cheese))
+        )).with_lang(lang('%s cheese wheel', cheese)).with_tag('cheese_wheels')
         block.with_block_loot([{
             'name': 'firmalife:food/%s' % cheese,
             'functions': [loot_tables.set_count(c)],
             'conditions': [loot_tables.block_state_property('firmalife:%s_wheel[count=%s]' % (cheese, c))]
         } for c in range(1, 5)])
         rm.item_model('firmalife:%s_wheel' % cheese, parent='firmalife:block/cheese/%s_fresh_4' % cheese, no_textures=True)
+
+    ore = 'chromite'
+    block = rm.blockstate('ore/small_%s' % ore, variants={"": four_ways('firmalife:block/small_%s' % ore)}, use_default_model=False)
+    block.with_lang(lang('small %s', ore)).with_block_loot('firmalife:ore/small_%s' % ore).with_tag('can_be_snow_piled')
+    rm.item_model('ore/small_%s' % ore).with_lang(lang('small %s', ore))
+    for rock, data in TFC_ROCKS.values():
+        for grade in ORE_GRADES.keys():
+            block = rm.blockstate(('ore', grade + '_' + ore, rock), 'firmalife:block/ore/%s_%s/%s' % (grade, ore, rock))
+            block.with_block_model({
+                'all': 'tfc:block/rock/raw/%s' % rock,
+                'particle': 'tfc:block/rock/raw/%s' % rock,
+                'overlay': 'firmalife:block/ore/%s_%s' % (grade, ore)
+            }, parent='tfc:block/ore')
+            block.with_item_model().with_lang(lang('%s %s %s', grade, rock, ore)).with_block_loot('firmalife:ore/%s_%s' % (grade, ore)).with_tag('minecraft:mineable/pickaxe').with_tag('tfc:prospectable')
+            rm.block('firmalife:ore/%s_%s/%s/prospected' % (grade, ore, rock)).with_lang(lang(ore))
 
     for jar, _, texture, _ in JARS:
         make_jar(rm, jar, texture)
@@ -264,3 +279,12 @@ def water_based_fluid(rm: ResourceManager, name: str):
     })
     item.with_lang(lang('%s bucket', name))
     rm.lang('fluid.firmalife.%s' % name, lang(name))
+
+def four_ways(model: str) -> List[Dict[str, Any]]:
+    return [
+        {'model': model, 'y': 90},
+        {'model': model},
+        {'model': model, 'y': 180},
+        {'model': model, 'y': 270}
+    ]
+

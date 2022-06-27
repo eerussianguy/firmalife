@@ -4,11 +4,13 @@
   "ingredients": [
     {
       "type": "tfc:fluid_item",
-      "ingredient": "tfc:wooden_bucket",
       "fluid_ingredient": {
         "ingredient": "minecraft:water",
         "amount": 1000
       }
+    },
+    {
+      "item": "tfc:wooden_bucket"
     },
     {
       "tag": "tfc:lumber"

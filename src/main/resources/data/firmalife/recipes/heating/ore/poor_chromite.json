@@ -1,0 +1,12 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:heating",
+  "ingredient": {
+    "item": "tfc:ore/poor_chromite"
+  },
+  "result_fluid": {
+    "fluid": "tfc:metal/firmalife:metal/chromium",
+    "amount": 15
+  },
+  "temperature": 1250
+}

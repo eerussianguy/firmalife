@@ -1,0 +1,13 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "tier": 6,
+  "fluid": "firmalife:metal/chromium",
+  "melt_temperature": 1250,
+  "heat_capacity": 0.35,
+  "ingots": {
+    "tag": "forge:ingots/chromium"
+  },
+  "sheets": {
+    "tag": "forge:sheets/chromium"
+  }
+}

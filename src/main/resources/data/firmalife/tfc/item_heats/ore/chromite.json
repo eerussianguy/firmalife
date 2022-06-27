@@ -1,0 +1,20 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "ingredient": [
+    {
+      "item": "firmalife:ore/small_chromite"
+    },
+    {
+      "item": "firmalife:ore/normal_chromite"
+    },
+    {
+      "item": "firmalife:ore/poor_chromite"
+    },
+    {
+      "item": "firmalife:ore/rich_chromite"
+    }
+  ],
+  "heat_capacity": 0.35,
+  "forging_temperature": 750.0,
+  "welding_temperature": 1000.0
+}

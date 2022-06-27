@@ -1,0 +1,14 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "Bread",
+  "category": "tfc:firmalife",
+  "icon": "tfc:food/rye_bread",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": ""
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 11
+}

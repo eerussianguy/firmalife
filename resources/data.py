@@ -8,6 +8,22 @@ from mcresources import utils
 
 from recipes import fluid_ingredient
 
+class Size(Enum):
+    tiny = auto()
+    very_small = auto()
+    small = auto()
+    normal = auto()
+    large = auto()
+    very_large = auto()
+    huge = auto()
+
+
+class Weight(Enum):
+    very_light = auto()
+    light = auto()
+    medium = auto()
+    heavy = auto()
+    very_heavy = auto()
 
 class Category(Enum):
     fruit = auto()
@@ -105,6 +121,10 @@ def generate(rm: ResourceManager):
     food_item(rm, 'slices', '#firmalife:foods/slices', Category.grain, 4, 0.75, 0, 1.5, grain=1)
     food_item(rm, 'cheeses', '#firmalife:foods/cheeses', Category.dairy, 4, 2, 0, 0.3, dairy=3)
     decayable(rm, 'chocolate_blends', '#firmalife:chocolate_blends', Category.dairy)
+
+    item_size(rm, 'jars', '#firmalife:jars', Size.very_large, Weight.medium)
+    item_size(rm, 'beehive_frame', 'firmalife:beehive_frame', Size.very_small, Weight.very_heavy)
+    item_size(rm, 'cheese_wheels', '#firmalife:cheese_wheels', Size.very_large, Weight.very_heavy)
 
     ### MISC DATA ###
     global_loot_modifiers(rm, 'firmalife:fruit_leaf', 'firmalife:rennet')
@@ -224,3 +244,11 @@ def drinkable(rm: ResourceManager, name_parts: utils.ResourceIdentifier, fluid: 
         # todo: effects
         # todo: milk effects
     })
+
+def item_size(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredient: utils.Json, size: Size, weight: Weight):
+    rm.data(('tfc', 'item_sizes', name_parts), {
+        'ingredient': utils.ingredient(ingredient),
+        'size': size.name,
+        'weight': weight.name
+    })
+

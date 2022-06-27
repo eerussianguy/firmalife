@@ -1,5 +1,10 @@
 from typing import Dict, List, NamedTuple, Sequence, Optional, Literal, Tuple, Any, Set
 
+OreGrade = NamedTuple('OreGrade', weight=int, grind_amount=int)
+RockCategory = Literal['sedimentary', 'metamorphic', 'igneous_extrusive', 'igneous_intrusive']
+Rock = NamedTuple('Rock', category=RockCategory, sand=str)
+Vein = NamedTuple('Vein', ore=str, type=str, rarity=int, size=int, min_y=int, max_y=int, density=float, poor=float, normal=float, rich=float, rocks=List[str], spoiler_ore=str, spoiler_rarity=int, spoiler_rocks=List[str], biomes=Optional[str], height=Optional[int], deposits=bool)
+
 SIMPLE_ITEMS = ('peel', 'fruit_leaf', 'cinnamon_bark', 'beeswax', 'pineapple_leather', 'pineapple_yarn', 'raw_honey', 'rennet', 'watering_can', 'treated_lumber', 'beehive_frame', 'empty_jar', 'cheesecloth')
 SIMPLE_FOODS = ('frothy_coconut', 'white_chocolate_blend', 'dark_chocolate_blend', 'milk_chocolate_blend', 'tofu', 'soy_mixture', 'yak_curd', 'goat_curd', 'milk_curd', 'cheddar', 'chevre', 'rajya_metok', 'gouda', 'feta', 'shosha')
 SIMPLE_SPICES = ('ground_cinnamon', 'cinnamon')
@@ -25,7 +30,34 @@ TFC_FLOWERS = ('canna', 'goldenrod', 'allium', 'anthurium', 'houstonia', 'blood_
                'snapdragon_red', 'snapdragon_white', 'snapdragon_yellow', 'strelitzia', 'sword_fern', 'trillium', 'tropical_milkweed', 'tulip_orange', 'tulip_pink',
                'tulip_red', 'tulip_white')
 TFC_FLOATING_FLOWERS = ('duckweed', 'lotus', 'pistia', 'water_canna', 'water_lily')
+TFC_ROCKS: Dict[str, Rock] = {
+    'granite': Rock('igneous_intrusive', 'white'),
+    'diorite': Rock('igneous_intrusive', 'white'),
+    'gabbro': Rock('igneous_intrusive', 'black'),
+    'shale': Rock('sedimentary', 'black'),
+    'claystone': Rock('sedimentary', 'brown'),
+    'limestone': Rock('sedimentary', 'white'),
+    'conglomerate': Rock('sedimentary', 'green'),
+    'dolomite': Rock('sedimentary', 'black'),
+    'chert': Rock('sedimentary', 'yellow'),
+    'chalk': Rock('sedimentary', 'white'),
+    'rhyolite': Rock('igneous_extrusive', 'red'),
+    'basalt': Rock('igneous_extrusive', 'red'),
+    'andesite': Rock('igneous_extrusive', 'red'),
+    'dacite': Rock('igneous_extrusive', 'red'),
+    'quartzite': Rock('metamorphic', 'white'),
+    'slate': Rock('metamorphic', 'brown'),
+    'phyllite': Rock('metamorphic', 'brown'),
+    'schist': Rock('metamorphic', 'green'),
+    'gneiss': Rock('metamorphic', 'green'),
+    'marble': Rock('metamorphic', 'yellow')
+}
 ROCK_CATEGORIES: List[str] = ['sedimentary', 'metamorphic', 'igneous_extrusive', 'igneous_intrusive']
+ORE_GRADES: Dict[str, OreGrade] = {
+    'normal': OreGrade(50, 5),
+    'poor': OreGrade(30, 3),
+    'rich': OreGrade(20, 7)
+}
 
 GREENHOUSES = ('rusted_iron', 'iron', 'oxidized_copper', 'weathered_copper', 'exposed_copper', 'copper', 'weathered_treated_wood', 'treated_wood', 'stainless_steel')
 GREENHOUSE_BLOCKS = ('roof', 'roof_top', 'wall', 'door')
@@ -37,6 +69,37 @@ CLEANING_PAIRS: Dict[str, str] = {
     'weathered_treated_wood': 'treated_wood'
 }
 PLANTERS = ('hanging', 'bonsai', 'quad', 'large', 'trellis')
+
+
+# Default parameters for common ore veins
+# rarity, size, min_y, max_y, density, poor, normal, rich
+POOR_METAL_ORE = (80, 15, 0, 100, 40, 40, 30, 10)
+NORMAL_METAL_ORE = (60, 20, -32, 75, 60, 20, 50, 30)
+DEEP_METAL_ORE = (100, 30, -64, 30, 70, 10, 30, 60)
+SURFACE_METAL_ORE = (20, 15, 60, 210, 50, 60, 30, 10)
+
+POOR_S_METAL_ORE = (100, 12, 0, 100, 40, 60, 30, 10)
+NORMAL_S_METAL_ORE = (70, 15, -32, 60, 60, 20, 50, 30)
+DEEP_S_METAL_ORE = (110, 25, -64, 30, 70, 10, 30, 60)
+
+DEEP_MINERAL_ORE = (90, 10, -48, 100, 60, 0, 0, 0)
+HIGH_MINERAL_ORE = (90, 10, 0, 210, 60, 0, 0, 0)
+
+def vein(ore: str, vein_type: str, rarity: int, size: int, min_y: int, max_y: int, density: float, poor: float, normal: float, rich: float, rocks: List[str], spoiler_ore: Optional[str] = None, spoiler_rarity: int = 0, spoiler_rocks: List[str] = None, biomes: str = None, height: int = 0, deposits: bool = False):
+    # Factory method to allow default values
+    return Vein(ore, vein_type, rarity, size, min_y, max_y, density, poor, normal, rich, rocks, spoiler_ore, spoiler_rarity, spoiler_rocks, biomes, height, deposits)
+
+
+def preset_vein(ore: str, vein_type: str, rocks: List[str], spoiler_ore: Optional[str] = None, spoiler_rarity: int = 0, spoiler_rocks: List[str] = None, biomes: str = None, height: int = 0, preset: Tuple[int, int, int, int, int, int, int, int] = None, deposits: bool = False):
+    assert preset is not None
+    return Vein(ore, vein_type, preset[0], preset[1], preset[2], preset[3], preset[4], preset[5], preset[6], preset[7], rocks, spoiler_ore, spoiler_rarity, spoiler_rocks, biomes, height, deposits)
+
+
+ORE_VEINS: Dict[str, Vein] = {
+    'normal_chromite': preset_vein('chromite', 'cluster', ['igneous_intrusive', 'metamorphic'], preset=NORMAL_METAL_ORE),
+    'surface_chromite': preset_vein('chromite', 'cluster', ['igneous_intrusive', 'metamorphic'], preset=SURFACE_METAL_ORE),
+    'deep_chromite': preset_vein('chromite', 'cluster', ['igneous_intrusive', 'metamorphic'], preset=DEEP_METAL_ORE),
+}
 
 DEFAULT_LANG = {
     'effect.firmalife.swarm': 'Swarm',

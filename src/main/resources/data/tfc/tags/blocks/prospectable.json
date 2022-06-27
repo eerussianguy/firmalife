@@ -1,0 +1,18 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "firmalife:ore/normal_chromite/igneous_intrusive",
+    "firmalife:ore/poor_chromite/igneous_intrusive",
+    "firmalife:ore/rich_chromite/igneous_intrusive",
+    "firmalife:ore/normal_chromite/sedimentary",
+    "firmalife:ore/poor_chromite/sedimentary",
+    "firmalife:ore/rich_chromite/sedimentary",
+    "firmalife:ore/normal_chromite/igneous_extrusive",
+    "firmalife:ore/poor_chromite/igneous_extrusive",
+    "firmalife:ore/rich_chromite/igneous_extrusive",
+    "firmalife:ore/normal_chromite/metamorphic",
+    "firmalife:ore/poor_chromite/metamorphic",
+    "firmalife:ore/rich_chromite/metamorphic"
+  ]
+}

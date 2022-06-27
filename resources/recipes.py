@@ -6,6 +6,7 @@ from mcresources.type_definitions import Json, ResourceIdentifier
 
 from constants import *
 
+
 class Rules(Enum):
     hit_any = 'hit_any'
     hit_not_last = 'hit_not_last'
@@ -61,7 +62,7 @@ def generate(rm: ResourceManager):
     rm.crafting_shaped('crafting/cheddar_wheel', ['XXX', 'YYY', 'XXX'], {'X': 'tfc:powder/salt', 'Y': 'firmalife:food/milk_curd'}, 'firmalife:cheddar_wheel').with_advancement('firmalife:food/milk_curd')
     rm.crafting_shaped('crafting/cheesecloth', ['XX'], {'X': '#tfc:high_quality_cloth'}, '8 firmalife:cheesecloth').with_advancement('#tfc:high_quality_cloth')
     rm.crafting_shaped('crafting/climate_station', ['BXB', 'OYO', 'BXB'], {'Y': 'minecraft:blue_stained_glass', 'X': 'tfc:brass_mechanisms', 'O': '#forge:dusts/redstone', 'B': '#minecraft:planks'}, 'firmalife:climate_station').with_advancement('#tfc:brass_mechanisms')
-    rm.crafting_shapeless('crafting/watering_can', (fluid_item_ingredient('1000 minecraft:water', 'tfc:wooden_bucket'), '#tfc:lumber'), 'firmalife:watering_can')
+    rm.crafting_shapeless('crafting/watering_can', (fluid_item_ingredient('1000 minecraft:water'), 'tfc:wooden_bucket', '#tfc:lumber'), 'firmalife:watering_can')
 
     for jar, remainder, _, ing in JARS:
         make_jar(rm, jar, remainder, ing)
@@ -125,6 +126,28 @@ def generate(rm: ResourceManager):
         rm.domain = 'tfc'  # DOMAIN CHANGE
         rm.crafting_shapeless('crafting/%s_dough' % grain, (not_rotten('tfc:food/%s_flour' % grain), fluid_item_ingredient('100 firmalife:yeast_starter'), '#firmalife:sweetener'), (4, 'tfc:food/%s_dough' % grain)).with_advancement('tfc:food/%s_grain' % grain)
         rm.domain = 'firmalife'  # DOMAIN RESET
+
+    ore = 'chromite'
+    for rock, data in TFC_ROCKS.values():
+        cobble = 'tfc:rock/cobble/%s' % rock
+        collapse_recipe(rm, '%s_cobble' % rock, [
+            'firmalife:ore/poor_%s/%s' % (ore, rock),
+            'firmalife:ore/normal_%s/%s' % (ore, rock),
+            'firmalife:ore/rich_%s/%s' % (ore, rock)
+        ], cobble)
+        for grade in ORE_GRADES.keys():
+            rm.block_tag('can_start_collapse', 'tfc:ore/%s_%s/%s' % (grade, ore, rock))
+            rm.block_tag('can_collapse', 'tfc:ore/%s_%s/%s' % (grade, ore, rock))
+
+    alloy_recipe(rm, 'stainless_steel', 'stainless_steel', ('firmalife:chromium', 0.2, 0.3), ('tfc:nickel', 0.1, 0.2), ('tfc:steel', 0.6, 0.8))
+
+def collapse_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredient, result: Optional[utils.Json] = None, copy_input: Optional[bool] = None):
+    assert result is not None or copy_input
+    rm.recipe(('collapse', name_parts), 'tfc:collapse', {
+        'ingredient': ingredient,
+        'result': result,
+        'copy_input': copy_input
+    })
 
 def make_jar(rm: ResourceManager, jar: str, remainder: int = -1, ing: str = None):
     if ing is not None:
@@ -346,3 +369,12 @@ def knapping_recipe(rm: ResourceManager, knapping_type: str, name_parts: utils.R
         'result': utils.item_stack(result)
     })
 
+def alloy_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, metal: str, *parts: Tuple[str, float, float]):
+    rm.recipe(('alloy', name_parts), 'tfc:alloy', {
+        'result': 'firmalife:%s' % metal,
+        'contents': [{
+            'metal': p[0],
+            'min': p[1],
+            'max': p[2]
+        } for p in parts]
+    })

@@ -37,6 +37,18 @@
     "firmalife:trellis_planter",
     "firmalife:iron_composter",
     "firmalife:sealed_door",
+    "firmalife:ore/normal_chromite/igneous_intrusive",
+    "firmalife:ore/poor_chromite/igneous_intrusive",
+    "firmalife:ore/rich_chromite/igneous_intrusive",
+    "firmalife:ore/normal_chromite/sedimentary",
+    "firmalife:ore/poor_chromite/sedimentary",
+    "firmalife:ore/rich_chromite/sedimentary",
+    "firmalife:ore/normal_chromite/igneous_extrusive",
+    "firmalife:ore/poor_chromite/igneous_extrusive",
+    "firmalife:ore/rich_chromite/igneous_extrusive",
+    "firmalife:ore/normal_chromite/metamorphic",
+    "firmalife:ore/poor_chromite/metamorphic",
+    "firmalife:ore/rich_chromite/metamorphic",
     "firmalife:sealed_bricks",
     "#firmalife:oven_blocks"
   ]

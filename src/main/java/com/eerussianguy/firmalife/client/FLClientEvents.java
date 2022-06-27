@@ -62,8 +62,9 @@ public class FLClientEvents
         ItemBlockRenderTypes.setRenderLayer(FLBlocks.SHOSHA_WHEEL.get(), cutout);
         ItemBlockRenderTypes.setRenderLayer(FLBlocks.FETA_WHEEL.get(), cutout);
         ItemBlockRenderTypes.setRenderLayer(FLBlocks.GOUDA_WHEEL.get(), cutout);
+        ItemBlockRenderTypes.setRenderLayer(FLBlocks.SMALL_CHROMITE.get(), cutout);
 
-
+        FLBlocks.CHROMITE_ORES.values().forEach(map -> map.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout)));
         FLBlocks.FRUIT_PRESERVES.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), translucent));
         FLBlocks.GREENHOUSE_BLOCKS.values().forEach(map -> map.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout)));
 

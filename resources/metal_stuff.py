@@ -10,7 +10,8 @@ Metal = NamedTuple('Metal', tier=int, types=set, heat_capacity=float, melt_tempe
 MetalItem = NamedTuple('MetalItem', type=str, smelt_amount=int, parent_model=str, tag=Optional[str], mold=bool)
 
 FL_METALS: Dict[str, Metal] = {
-    'stainless_steel': Metal(6, {'part'}, 0.35, 1540, None)
+    'stainless_steel': Metal(6, {'part'}, 0.35, 1540, None),
+    'chromium': Metal(6, {'part'}, 0.35, 1250, None),
 }
 
 METAL_ITEMS: Dict[str, MetalItem] = {
@@ -22,6 +23,7 @@ METAL_ITEMS: Dict[str, MetalItem] = {
 }
 
 def generate(rm: ResourceManager):
+    chromium_ore_heats(rm)
     for metal, metal_data in FL_METALS.items():
         rm.data(('tfc', 'metals', metal), {
             'tier': metal_data.tier,
@@ -70,3 +72,13 @@ def generate(rm: ResourceManager):
             'fluid': 'firmalife:metal/%s' % metal
         })
         item.with_lang(lang('molten %s bucket', metal))
+
+def chromium_ore_heats(rm: ResourceManager):
+    ore = 'chromite'
+    metal_data = FL_METALS['chromium']
+    item_heat(rm, ('ore', ore), ['firmalife:ore/small_%s' % ore, 'firmalife:ore/normal_%s' % ore, 'firmalife:ore/poor_%s' % ore, 'firmalife:ore/rich_%s' % ore], metal_data.heat_capacity, int(metal_data.melt_temperature))
+    temp = FL_METALS['chromium'].melt_temperature
+    heat_recipe(rm, ('ore', 'small_%s' % ore), 'tfc:ore/small_%s' % ore, temp, None, '%d tfc:metal/%s' % (10, 'firmalife:metal/chromium'))
+    heat_recipe(rm, ('ore', 'poor_%s' % ore), 'tfc:ore/poor_%s' % ore, temp, None, '%d tfc:metal/%s' % (15, 'firmalife:metal/chromium'))
+    heat_recipe(rm, ('ore', 'normal_%s' % ore), 'tfc:ore/normal_%s' % ore, temp, None, '%d tfc:metal/%s' % (25, 'firmalife:metal/chromium'))
+    heat_recipe(rm, ('ore', 'rich_%s' % ore), 'tfc:ore/rich_%s' % ore, temp, None, '%d tfc:metal/%s' % (35, 'firmalife:metal/chromium'))
