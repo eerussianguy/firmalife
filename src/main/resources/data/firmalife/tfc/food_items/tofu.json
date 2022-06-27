@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "firmalife:food/tofu"
   },
-  "category": "cooked_meat",
+  "category": "vegetable",
   "hunger": 4,
   "saturation": 2,
   "water": 2,

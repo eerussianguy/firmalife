@@ -23,6 +23,7 @@ import com.eerussianguy.firmalife.common.network.FLPackets;
 import com.eerussianguy.firmalife.common.recipes.FLRecipeSerializers;
 import com.eerussianguy.firmalife.common.recipes.FLRecipeTypes;
 import com.eerussianguy.firmalife.common.recipes.data.FLIngredients;
+import com.eerussianguy.firmalife.compat.patchouli.FLPatchouliIntegration;
 import com.mojang.logging.LogUtils;
 import org.slf4j.Logger;
 
@@ -66,6 +67,7 @@ public class Firmalife
             FLFoodTraits.init();
             FLIngredients.init();
         });
+        FLPatchouliIntegration.registerMultiBlocks();
     }
 
 }

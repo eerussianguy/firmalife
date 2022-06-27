@@ -25,6 +25,7 @@ TFC_FLOWERS = ('canna', 'goldenrod', 'allium', 'anthurium', 'houstonia', 'blood_
                'snapdragon_red', 'snapdragon_white', 'snapdragon_yellow', 'strelitzia', 'sword_fern', 'trillium', 'tropical_milkweed', 'tulip_orange', 'tulip_pink',
                'tulip_red', 'tulip_white')
 TFC_FLOATING_FLOWERS = ('duckweed', 'lotus', 'pistia', 'water_canna', 'water_lily')
+ROCK_CATEGORIES: List[str] = ['sedimentary', 'metamorphic', 'igneous_extrusive', 'igneous_intrusive']
 
 GREENHOUSES = ('rusted_iron', 'iron', 'oxidized_copper', 'weathered_copper', 'exposed_copper', 'copper', 'weathered_treated_wood', 'treated_wood', 'stainless_steel')
 GREENHOUSE_BLOCKS = ('roof', 'roof_top', 'wall', 'door')
@@ -57,6 +58,7 @@ DEFAULT_LANG = {
     'firmalife.greenhouse.wrong_tier': 'To grow this crop, upgrade to a better greenhouse',
     'firmalife.greenhouse.wrong_type': 'This crop does not grow in this planter. It grows in a ',
     'firmalife.greenhouse.found': 'Found a greenhouse of %s blocks',
+    'firmalife.planter.growth_water': 'Growth: %s, Water: %s',
 
     'firmalife.bee.queen': 'Queen',
     'firmalife.bee.no_queen': 'No Queen',

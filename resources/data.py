@@ -43,7 +43,7 @@ def generate(rm: ResourceManager):
     rm.block_tag('drops_fruit_leaf', *['tfc:plant/%s_leaves' % t for t in TFC_FRUIT_TREES])
     rm.block_tag('cellar_insulation', 'firmalife:sealed_bricks', 'firmalife:sealed_door')
 
-    rm.entity_tag('drops_rennet', 'tfc:cow')
+    rm.entity_tag('drops_rennet', 'tfc:cow', 'tfc:sheep', 'tfc:goat', 'tfc:yak', 'tfc:musk_ox')
 
     rm.fluid_tag('tfc:alcohols', 'firmalife:pina_colada')
     rm.fluid_tag('tfc:milks', 'firmalife:yak_milk', 'firmalife:goat_milk', 'firmalife:coconut_milk')
@@ -97,8 +97,8 @@ def generate(rm: ResourceManager):
 
     # Food: HUNGER, SATURATION, WATER, DECAY
     decayable(rm, 'frothy_coconut', 'firmalife:food/frothy_coconut', Category.vegetable)
-    food_item(rm, 'tofu', 'firmalife:food/tofu', Category.cooked_meat, 4, 2, 2, 0.75, protein=1.5)
-    decayable(rm, 'soy_mixture', 'firmalife:food/soy_mixture', Category.meat)
+    food_item(rm, 'tofu', 'firmalife:food/tofu', Category.vegetable, 4, 2, 2, 0.75, protein=1.5)
+    decayable(rm, 'soy_mixture', 'firmalife:food/soy_mixture', Category.vegetable)
     decayable(rm, 'yak_curd', 'firmalife:food/yak_curd', Category.dairy)
     decayable(rm, 'goat_curd', 'firmalife:food/goat_curd', Category.dairy)
     decayable(rm, 'milk_curd', 'firmalife:food/milk_curd', Category.dairy)

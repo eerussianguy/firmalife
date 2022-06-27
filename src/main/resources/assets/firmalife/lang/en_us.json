@@ -164,6 +164,7 @@
   "firmalife.greenhouse.wrong_tier": "To grow this crop, upgrade to a better greenhouse",
   "firmalife.greenhouse.wrong_type": "This crop does not grow in this planter. It grows in a ",
   "firmalife.greenhouse.found": "Found a greenhouse of %s blocks",
+  "firmalife.planter.growth_water": "Growth: %s, Water: %s",
   "firmalife.bee.queen": "Queen",
   "firmalife.bee.no_queen": "No Queen",
   "firmalife.bee.abilities": "Abilities:",

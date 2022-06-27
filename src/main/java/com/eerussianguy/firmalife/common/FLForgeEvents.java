@@ -2,21 +2,30 @@ package com.eerussianguy.firmalife.common;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.OnDatapackSyncEvent;
-import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.network.PacketDistributor;
 
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
+import com.eerussianguy.firmalife.common.blocks.FLFluids;
 import com.eerussianguy.firmalife.common.network.FLPackets;
+import com.eerussianguy.firmalife.common.util.ExtraFluid;
 import com.eerussianguy.firmalife.common.util.GreenhouseType;
 import com.eerussianguy.firmalife.common.util.Plantable;
+import net.dries007.tfc.common.entities.TFCEntities;
+import net.dries007.tfc.util.events.AnimalProductEvent;
 import net.dries007.tfc.util.events.StartFireEvent;
 
 public class FLForgeEvents
@@ -25,15 +34,10 @@ public class FLForgeEvents
     {
         final IEventBus bus = MinecraftForge.EVENT_BUS;
 
-        bus.addListener(FLForgeEvents::onBiomeLoad);
         bus.addListener(FLForgeEvents::onFireStart);
         bus.addListener(FLForgeEvents::addReloadListeners);
         bus.addListener(FLForgeEvents::onDataPackSync);
-    }
-
-    public static void onBiomeLoad(BiomeLoadingEvent event)
-    {
-
+        bus.addListener(FLForgeEvents::onAnimalProduce);
     }
 
     public static void addReloadListeners(AddReloadListenerEvent event)
@@ -63,5 +67,30 @@ public class FLForgeEvents
             level.getBlockEntity(pos, FLBlockEntities.OVEN_BOTTOM.get()).ifPresent(oven -> oven.light(state));
             event.setCanceled(true);
         }
+    }
+
+    public static void onAnimalProduce(AnimalProductEvent event)
+    {
+        Entity entity = event.getEntity();
+        ItemStack product = event.getProduct();
+        if (entity.getType() == TFCEntities.YAK.get())
+        {
+            replaceFluid(product, FLFluids.EXTRA_FLUIDS.get(ExtraFluid.YAK_MILK).getSource());
+        }
+        else if (entity.getType() == TFCEntities.GOAT.get())
+        {
+            replaceFluid(product, FLFluids.EXTRA_FLUIDS.get(ExtraFluid.GOAT_MILK).getSource());
+        }
+    }
+
+    private static void replaceFluid(ItemStack bucket, Fluid toFill)
+    {
+        bucket.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY).ifPresent(cap -> {
+            final int drained = cap.drain(Integer.MAX_VALUE, IFluidHandler.FluidAction.EXECUTE).getAmount();
+            if (drained > 0)
+            {
+                cap.fill(new FluidStack(toFill, drained), IFluidHandler.FluidAction.EXECUTE);
+            }
+        });
     }
 }

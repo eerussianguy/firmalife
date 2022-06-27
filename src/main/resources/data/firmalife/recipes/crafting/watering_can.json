@@ -1,0 +1,20 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "type": "tfc:fluid_item",
+      "ingredient": "tfc:wooden_bucket",
+      "fluid_ingredient": {
+        "ingredient": "minecraft:water",
+        "amount": 1000
+      }
+    },
+    {
+      "tag": "tfc:lumber"
+    }
+  ],
+  "result": {
+    "item": "firmalife:watering_can"
+  }
+}

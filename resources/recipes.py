@@ -60,6 +60,8 @@ def generate(rm: ResourceManager):
     rm.crafting_shaped('crafting/chevre_wheel', ['XXX', 'YYY', 'XXX'], {'X': 'tfc:powder/salt', 'Y': 'firmalife:food/goat_curd'}, 'firmalife:chevre_wheel').with_advancement('firmalife:food/goat_curd')
     rm.crafting_shaped('crafting/cheddar_wheel', ['XXX', 'YYY', 'XXX'], {'X': 'tfc:powder/salt', 'Y': 'firmalife:food/milk_curd'}, 'firmalife:cheddar_wheel').with_advancement('firmalife:food/milk_curd')
     rm.crafting_shaped('crafting/cheesecloth', ['XX'], {'X': '#tfc:high_quality_cloth'}, '8 firmalife:cheesecloth').with_advancement('#tfc:high_quality_cloth')
+    rm.crafting_shaped('crafting/climate_station', ['BXB', 'OYO', 'BXB'], {'Y': 'minecraft:blue_stained_glass', 'X': 'tfc:brass_mechanisms', 'O': '#forge:dusts/redstone', 'B': '#minecraft:planks'}, 'firmalife:climate_station').with_advancement('#tfc:brass_mechanisms')
+    rm.crafting_shapeless('crafting/watering_can', (fluid_item_ingredient('1000 minecraft:water', 'tfc:wooden_bucket'), '#tfc:lumber'), 'firmalife:watering_can')
 
     for jar, remainder, _, ing in JARS:
         make_jar(rm, jar, remainder, ing)

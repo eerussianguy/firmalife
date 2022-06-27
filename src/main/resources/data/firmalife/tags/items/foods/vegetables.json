@@ -2,6 +2,8 @@
   "__comment__": "This file was automatically created by mcresources",
   "replace": false,
   "values": [
-    "firmalife:food/frothy_coconut"
+    "firmalife:food/frothy_coconut",
+    "firmalife:food/tofu",
+    "firmalife:food/soy_mixture"
   ]
 }

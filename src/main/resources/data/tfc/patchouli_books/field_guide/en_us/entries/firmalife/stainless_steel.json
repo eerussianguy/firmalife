@@ -1,0 +1,14 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "Stainless Steel",
+  "category": "tfc:firmalife",
+  "icon": "firmalife:metal/ingot/stainless_steel",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": ""
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 6
+}

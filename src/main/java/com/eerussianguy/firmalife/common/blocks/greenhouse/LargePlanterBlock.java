@@ -5,7 +5,6 @@ import java.util.List;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
@@ -130,10 +129,7 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
             if (target == null) return;
 
             final int slot = getUseSlot(target, pos);
-            if (debug)
-            {
-                text.add(new TextComponent(String.format("[Debug] Growth = %.2f, Water = %.2f", planter.getGrowth(slot), planter.getWater())));
-            }
+            text.add(new TranslatableComponent("firmalife.planter.growth_water", String.format("%.2f", planter.getGrowth(slot)), String.format("%.2f", planter.getWater())));
             if (planter.getGrowth(slot) >= 1)
             {
                 text.add(new TranslatableComponent("tfc.tooltip.farmland.mature"));

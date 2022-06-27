@@ -1,0 +1,20 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "Planters",
+  "category": "tfc:firmalife",
+  "icon": "firmalife:large_planter",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "anchor": "planters",
+      "text": "$(thing)Planters$() are used to grow crops inside a $(l:firmalife/greenhouse)Greenhouse$(). To see the status of a planter, you can look at it while holding a $(thing)Hoe$(). Crops in planters consume $(l:mechanics/fertilizers)Nutrients$() in a similar way to $(l:food/crops)Crops$(). Planters should be placed inside a valid Greenhouse and activated with a $(l:firmalife/climate_station)Climate Station$()."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/watering_can",
+      "text": "Planters must be $(thing)Watered$() to grow. This can be done with a $(thing)Watering Can$(), crafted from a $(thing)Wooden Bucket$() of $(thing)Water$() and $(thing)Lumber$(). Press $(item)$(k:key.use)$() with it to water nearby planters. Refill it by pressing $(item)$(k:key.use)$() on a water source."
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 4
+}
