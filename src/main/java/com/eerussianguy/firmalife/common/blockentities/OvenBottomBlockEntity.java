@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.items.ItemStackHandler;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
+import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blocks.AbstractOvenBlock;
 import com.eerussianguy.firmalife.common.blocks.ICure;
 import com.eerussianguy.firmalife.common.blocks.OvenBottomBlock;
@@ -209,7 +210,7 @@ public class OvenBottomBlockEntity extends TickableInventoryBlockEntity<ItemStac
     @Override
     public boolean isItemValid(int slot, ItemStack stack)
     {
-        return Helpers.isItem(stack, TFCTags.Items.FIREPIT_FUEL);
+        return Helpers.isItem(stack, FLTags.Items.OVEN_FUEL);
     }
 
     /**

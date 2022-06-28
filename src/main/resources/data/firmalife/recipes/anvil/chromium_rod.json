@@ -8,7 +8,7 @@
     "item": "firmalife:metal/rod/chromium",
     "count": 2
   },
-  "tier": 6,
+  "tier": 4,
   "rules": [
     "bend_last",
     "draw_second_last",

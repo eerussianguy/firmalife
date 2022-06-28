@@ -50,7 +50,7 @@ public enum FLMetal implements RegistryMetal
     @Override
     public Tier toolTier()
     {
-        return TFCTiers.RED_STEEL;
+        return TFCTiers.STEEL;
     }
 
     @Override

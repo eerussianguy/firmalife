@@ -5,8 +5,28 @@
   "icon": "firmalife:drying_mat",
   "pages": [
     {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/drying_mat",
+      "text": "The $(thing)Drying Mat$() is used to dry items. It is made with $(thing)Fruit Leaves$(), which are obtained from breaking the leaves of $(thing)Fruit Trees$()."
+    },
+    {
       "type": "patchouli:text",
-      "text": ""
+      "text": "To use the drying mat, place it out on the sun and add an item to it with $(item)$(k:key.use)$(). After a half day, it will be dried. If it rains, the drying process must start over."
+    },
+    {
+      "type": "tfc:drying_recipe",
+      "recipe": "firmalife:drying/drying_fruit",
+      "text": "Drying fruit is a common use of the drying mat. Dried fruit is used in some recipes, and lasts longer."
+    },
+    {
+      "type": "tfc:drying_recipe",
+      "recipe": "firmalife:drying/tofu",
+      "text": "Tofu is made using a drying mat."
+    },
+    {
+      "type": "tfc:drying_recipe",
+      "recipe": "firmalife:drying/cinnamon",
+      "text": "Cinnamon is made using a drying mat."
     }
   ],
   "read_by_default": true,

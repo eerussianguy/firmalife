@@ -10,8 +10,8 @@ Metal = NamedTuple('Metal', tier=int, types=set, heat_capacity=float, melt_tempe
 MetalItem = NamedTuple('MetalItem', type=str, smelt_amount=int, parent_model=str, tag=Optional[str], mold=bool)
 
 FL_METALS: Dict[str, Metal] = {
-    'stainless_steel': Metal(6, {'part'}, 0.35, 1540, None),
-    'chromium': Metal(6, {'part'}, 0.35, 1250, None),
+    'stainless_steel': Metal(4, {'part'}, 0.35, 1540, None),
+    'chromium': Metal(4, {'part'}, 0.35, 1250, None),
 }
 
 METAL_ITEMS: Dict[str, MetalItem] = {

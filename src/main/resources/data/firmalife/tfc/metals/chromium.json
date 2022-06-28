@@ -1,6 +1,6 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "tier": 6,
+  "tier": 4,
   "fluid": "firmalife:metal/chromium",
   "melt_temperature": 1250,
   "heat_capacity": 0.35,

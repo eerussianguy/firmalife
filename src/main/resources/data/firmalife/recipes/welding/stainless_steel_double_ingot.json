@@ -7,7 +7,7 @@
   "second_input": {
     "item": "firmalife:metal/ingot/stainless_steel"
   },
-  "tier": 5,
+  "tier": 3,
   "result": {
     "item": "firmalife:metal/double_ingot/stainless_steel"
   }

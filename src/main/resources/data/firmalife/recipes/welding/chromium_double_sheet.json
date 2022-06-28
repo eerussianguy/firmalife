@@ -7,7 +7,7 @@
   "second_input": {
     "item": "firmalife:metal/sheet/chromium"
   },
-  "tier": 5,
+  "tier": 3,
   "result": {
     "item": "firmalife:metal/double_sheet/chromium"
   }

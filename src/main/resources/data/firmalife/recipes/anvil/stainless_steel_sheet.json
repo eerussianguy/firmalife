@@ -7,7 +7,7 @@
   "result": {
     "item": "firmalife:metal/sheet/stainless_steel"
   },
-  "tier": 6,
+  "tier": 4,
   "rules": [
     "hit_last",
     "hit_second_last",

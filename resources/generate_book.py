@@ -116,19 +116,57 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False):
             text('$(li)Fruit Preserves$()$(li)Guano Jar$()$(li)Honey Jar$()$(li)Rotten Compost Jar$()$(li)Compost Jar$()', 'Jar Types'),
         )),
         entry('stainless_steel', 'Stainless Steel', 'firmalife:metal/ingot/stainless_steel', pages=(
-            text(''),
+            text('$(thing)Stainless Steel$() and $(thing)Chromium$() are $(thing)Steel-tier$() metals added by Firmalife. They are used in the construction of $(l:firmalife/greenhouse)Stainless Steel Greenhouses$().'),
+            alloy_recipe('Stainless Steel', 'firmalife:metal/ingot/stainless_steel', ('Chromium', 20, 30), ('Nickel', 10, 20), ('Steel', 60, 80), text_content=''),
+            item_spotlight('firmalife:ore/small_chromite', text_contents='Chromite is an ore that is melted to obtain Chromium. It is found in $(thing)Igneous Intrusive$() and $(thing)Metamorphic$() rocks.'),
+            text('$(li)Granite$()$(li)Diorite$()$(li)Gabbro$()$(li)Slate$()$(li)Phyllite$()$(li)Schist$()$(li)Gneiss$()$(li)Marble$()', 'All Chromium Rocks')
         )),
         entry('drying', 'Drying', 'firmalife:drying_mat', pages=(
-            text(''),
+            crafting('firmalife:crafting/drying_mat', text_contents='The $(thing)Drying Mat$() is used to dry items. It is made with $(thing)Fruit Leaves$(), which are obtained from breaking the leaves of $(thing)Fruit Trees$().'),
+            text('To use the drying mat, place it out on the sun and add an item to it with $(item)$(k:key.use)$(). After a half day, it will be dried. If it rains, the drying process must start over.'),
+            drying_recipe('firmalife:drying/drying_fruit', 'Drying fruit is a common use of the drying mat. Dried fruit is used in some recipes, and lasts longer.'),
+            drying_recipe('firmalife:drying/tofu', 'Tofu is made using a drying mat.'),
+            drying_recipe('firmalife:drying/cinnamon', 'Cinnamon is made using a drying mat.'),
         )),
         entry('smoking', 'Smoking', 'tfc:food/venison', pages=(
-            text(''),
+            two_tall_block_spotlight('Smoking', 'Wool string is used to hang items for $(thing)Smoking$(). To place it, just use $(item)$(k:key.use)$().', 'tfc:firepit[lit=true]', 'firmalife:wool_string'),
+            text('Smoking is used to preserve $(thing)Meat$() and $(thing)Cheese$(). To smoke meat, it must have first been $(thing)Brined$() by sealing it in a $(thing)Barrel$() with $(thing)Brine$(). You may also salt it first. Cheese does not have this requirement.'),
+            text('To start the smoking process, add the item to the string above a firepit. The firepit must be within four blocks, directly underneath the string. The string should begin to generate some smoke if it is working. It is important to note that the firepit must only be burned with $(thing)Logs$(). Using something like $(thing)Peat$() will instantly give your food the $(thing)Disgusting$() trait!'),
+            text('The smoking process takes 8 in-game hours. Happy smoking!'),
         )),
         entry('ovens', 'Ovens', 'firmalife:cured_top_oven', pages=(
-            text(''),
+            text('$(thing)Ovens$() are a great way of cooking lots of food in a way that improves their shelf life. Oven-baked food decays at 90% of the rate of regular food. Ovens are a multiblock structure consisting of a $(thing)Bottom Oven$(), $(thing)Top Oven$(), and optionally $(thing)Chimneys$(). These blocks start off as clay, and must be $(thing)Cured$() by raising their temperature to a certain amount for long enough.'),
+            clay_knapping('firmalife:clay_knapping/oven_top', 'The recipe for the top oven.'),
+            clay_knapping('firmalife:clay_knapping/oven_bottom', 'The recipe for the top oven.'),
+            clay_knapping('firmalife:clay_knapping/oven_chimney', 'The recipe for the top oven.'),
+            crafting('tfc:crafting/bricks', text_contents='Ovens are insulated with $(thing)Bricks$(), other oven blocks, or anything that can insulate a Forge. This means you can use stone blocks, if you want!'),
+            crafting('firmalife:crafting/peel', text_contents='The $(thing)Peel$() is the only safe way to remove hot items from an Oven. Just $(item)$(k:key.use)$() on it while holding it to retrieve items. Otherwise, you may get burned!'),
+            text('The Oven first consists of the Top Oven placed on top of the Bottom Oven. All sides of each oven part, besides the front face, should then be covered with Oven Insulation blocks, as covered two pages ago. You may choose to use $(thing)Oven Chimneys$() as insulation. Placing a stack of chimneys directly behind the oven causes the smoke from the oven to travel up and out of it. If you don\'t do this, smoke will quickly fill up your house, which is very distracting!'),
+            multimultiblock('An example oven structure, uncured and cured.', *[multiblock('', '', True, (
+                ('     ', '  C  '),
+                ('     ', '  C  '),
+                ('WT0TW', 'WWCWW'),
+                ('WBBBW', 'WWCWW'),
+            ), {
+                '0': 'firmalife:%stop_oven' % pref,
+                'T': 'firmalife:%stop_oven' % pref,
+                'B': 'firmalife:%sbottom_oven' % pref,
+                'W': 'minecraft:bricks',
+                'C': 'firmalife:%schimney' % pref,
+            }) for pref in ('cured_', '')]),
+            text('The Bottom Oven is used to hold fuel, which may only be logs. Press $(item)$(k:key.use)$() to add or remove them. The bottom oven is also the part of the oven which may be lit with a $(thing)Firestarter$() or other tool. It transfers heat contained in it to the top oven.'),
+            text('The Top Oven contains the items that are being cooked. It will draw heat from the Bottom Oven and slowly release it over time. This means that even if your fuel runs out, your Top Oven can continue to work for a little while. Adding items to it is as simple as pressing $(item)$(k:key.use)$(). Remember to use a $(thing)Peel$() to remove the items after.'),
+            text('Curing Oven blocks is easy, but requires patience. Simply start running your Bottom Oven as you would normally, and then wait. If an oven block is above 600 degrees for about 80 seconds, it will cure itself and any oven blocks around it. The curing effect will pass all the way up chimneys nearby.')
         )),
         entry('bread', 'Bread', 'tfc:food/rye_bread', pages=(
-            text(''),
+            text('To make $(Thing)Bread$(), one first must get $(thing)Yeast$(). To get your first yeast, seal $(l:firmalife/drying)Dried Fruit$() in a Barrel of $(thing)Water$(). After three days, $(thing)Yeast Starter$() will form.$(br)From now on, your yeast can be fed by sealing Yeast Starter in a Barrel with $(thing)Flour$(). This causes it to multiply. 1 flour per 100mB of Yeast produces 600mB of Yeast. That\'s a good deal!'),
+            crafting('tfc:crafting/barley_dough', text_contents='Yeast Starter, Sugar, and Flour can be combined to make $(thing)Dough$(). Dough can be cooked like normal to produce $(thing)Bread!$().'),
+        )),
+        entry('more_fertilizer', 'More Fertilizer Options', 'firmalife:iron_composter', pages=(
+            text('Given a greater need for fertilization in Firmalife, there are more options for getting fertilizers.'),
+            drying_recipe('firmalife:drying/dry_grass', 'Thatch can be $(l:firmalife/drying)Dried$() into $(thing)Dry Grass$(), which can be used in a Composter as a brown item.'),
+            crafting('firmalife:crafting/iron_composter', 'The Composter can be upgraded to an $(thing)Iron Composter$(), which works the same, except it produces compost four times as fast.'),
+            multimultiblock('The possible fill levels of the iron composter', *[block_spotlight('', '', 'firmalife:iron_composter[type=normal,stage=%s]' % i) for i in range(0, 9)]),
         )),
     ))
 
@@ -363,6 +401,14 @@ def multiblock(title: str, text_content: str, enable_visualize: bool, pattern: T
 
 def empty() -> Page:
     return page('patchouli:empty', {})
+
+# Firmalife Pages
+
+def drying_recipe(recipe: str, text_content: str) -> Page:
+    return page('drying_recipe', {'recipe': recipe, 'text': text_content}, custom=True, translation_keys=('text',))
+
+def smoking_recipe(recipe: str, text_content: str) -> Page:
+    return page('smoking_recipe', {'recipe': recipe, 'text': text_content}, custom=True, translation_keys=('text',))
 
 # ==============
 # TFC Page Types

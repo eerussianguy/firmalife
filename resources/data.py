@@ -44,6 +44,7 @@ def generate(rm: ResourceManager):
     rm.item_tag('tfc:sandwich_bread', '#firmalife:foods/slices')
     rm.item_tag('foods/cheeses', 'firmalife:food/gouda', 'firmalife:food/chevre', 'firmalife:food/shosha', 'firmalife:food/feta', 'firmalife:food/rajya_metok', 'firmalife:food/cheddar')
     rm.item_tag('smoking_fuel', '#minecraft:logs')
+    rm.item_tag('oven_fuel', '#minecraft:logs')
     rm.item_tag('chocolate_blends', 'firmalife:food/milk_chocolate_blend', 'firmalife:food/dark_chocolate_blend', 'firmalife:food/white_chocolate_blend')
 
     rm.block_tag('oven_insulation', 'minecraft:bricks', '#tfc:forge_insulation', '#firmalife:oven_blocks')

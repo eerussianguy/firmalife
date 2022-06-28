@@ -34,6 +34,7 @@ public class FLTags
     {
         public static final TagKey<Item> USABLE_ON_OVEN = create("usable_on_oven");
         public static final TagKey<Item> SMOKING_FUEL = create("smoking_fuel");
+        public static final TagKey<Item> OVEN_FUEL = create("oven_fuel");
 
         private static TagKey<Item> create(String id)
         {
