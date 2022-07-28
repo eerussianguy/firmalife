@@ -115,10 +115,10 @@ def generate(rm: ResourceManager):
             rm.block('firmalife:ore/%s_%s/%s/prospected' % (grade, ore, rock)).with_lang(lang(ore))
 
     for carving in CARVINGS.keys():
-        for variant in ('lit_pumpkin', 'carved_pumpkin'):
+        for variant, lang_part in (('lit_pumpkin', 'Jack o\'Lantern'), ('carved_pumpkin', 'Carved Pumpkin')):
             name = '%s/%s' % (variant, carving)
             rm.block_model(name, parent='minecraft:block/carved_pumpkin', textures={'front': 'firmalife:block/%s/%s' % (variant, carving)})
-            rm.blockstate(name, variants=four_rotations('firmalife:block/%s' % name, (90, 0, 180, 270))).with_tag('tfc:mineable_with_sharp_tool').with_block_loot('firmalife:%s' % name).with_lang(lang('Jack o\'Lantern'))
+            rm.blockstate(name, variants=four_rotations('firmalife:block/%s' % name, (90, 0, 180, 270))).with_tag('tfc:mineable_with_sharp_tool').with_block_loot('firmalife:%s' % name).with_lang(lang('%s %s', carving, lang_part))
             rm.item_model('firmalife:%s' % name, parent='firmalife:block/%s' % name)
 
     for jar, _, texture, _ in JARS:

@@ -3,12 +3,12 @@
   "type": "tfc:pumpkin_knapping",
   "pattern": [
     "XXXXX",
+    "X X X",
+    "XXXXX",
     "X   X",
-    "XXX X",
-    "XXX X",
     "XXXXX"
   ],
   "result": {
-    "item": "firmalife:carved_pumpkin/right"
+    "item": "minecraft:carved_pumpkin"
   }
 }

@@ -78,7 +78,7 @@ CARVINGS = {
     'hammer': ['XXXXX', 'X   X', 'X   X', 'XX XX', 'XX XX'],
     'pickaxe': ['XXXXX', 'XX XX', 'X X X', 'XX XX', 'XX XX'],
     'left': ['XXXXX', 'X XXX', 'X XXX', 'X   X', 'XXXXX'],
-    'right': ['XXXXX', 'XXX X', 'XXX X', 'X   X', 'XXXXX'],
+    'right': ['XXXXX', 'X   X', 'XXX X', 'XXX X', 'XXXXX'],
 }
 
 

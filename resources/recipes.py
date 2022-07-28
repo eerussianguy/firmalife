@@ -101,6 +101,7 @@ def generate(rm: ResourceManager):
     # Firmalife Recipes
     for carving, pattern in CARVINGS.items():
         pumpkin_knapping(rm, carving, pattern, 'firmalife:carved_pumpkin/%s' % carving)
+    pumpkin_knapping(rm, 'face', ['XXXXX', 'X X X', 'XXXXX', 'X   X', 'XXXXX'], 'minecraft:carved_pumpkin')
 
     drying_recipe(rm, 'drying_fruit', not_rotten(has_trait('#tfc:foods/fruits', 'firmalife:dried', True)), item_stack_provider(copy_input=True, add_trait='firmalife:dried'))
     drying_recipe(rm, 'cinnamon', 'firmalife:cinnamon_bark', item_stack_provider('firmalife:spice/cinnamon'))
