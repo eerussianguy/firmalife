@@ -5,7 +5,9 @@ import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.client.model.ForgeModelBakery;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -18,6 +20,7 @@ import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.container.FLContainerTypes;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.common.items.FLItems;
+import com.eerussianguy.firmalife.common.util.FLMetal;
 import net.dries007.tfc.common.capabilities.food.FoodCapability;
 import net.dries007.tfc.common.items.TFCItems;
 
@@ -31,6 +34,7 @@ public class FLClientEvents
         bus.addListener(FLClientEvents::clientSetup);
         bus.addListener(FLClientEvents::registerEntityRenderers);
         bus.addListener(FLClientEvents::onTextureStitch);
+        bus.addListener(FLClientEvents::onModelRegister);
     }
 
     public static void clientSetup(FMLClientSetupEvent event)
@@ -63,6 +67,7 @@ public class FLClientEvents
         ItemBlockRenderTypes.setRenderLayer(FLBlocks.FETA_WHEEL.get(), cutout);
         ItemBlockRenderTypes.setRenderLayer(FLBlocks.GOUDA_WHEEL.get(), cutout);
         ItemBlockRenderTypes.setRenderLayer(FLBlocks.SMALL_CHROMITE.get(), cutout);
+        ItemBlockRenderTypes.setRenderLayer(FLBlocks.MIXING_BOWL.get(), cutout);
 
         FLBlocks.CHROMITE_ORES.values().forEach(map -> map.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout)));
         FLBlocks.FRUIT_PRESERVES.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), translucent));
@@ -95,6 +100,7 @@ public class FLClientEvents
         event.registerBlockEntityRenderer(FLBlockEntities.TRELLIS_PLANTER.get(), ctx -> new TrellisPlanterBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.BONSAI_PLANTER.get(), ctx -> new BonsaiPlanterBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.HANGING_PLANTER.get(), ctx -> new HangingPlanterBlockEntityRenderer());
+        event.registerBlockEntityRenderer(FLBlockEntities.MIXING_BOWL.get(), ctx -> new MixingBowlBlockEntityRenderer());
     }
 
     public static void onTextureStitch(TextureStitchEvent.Pre event)
@@ -114,5 +120,14 @@ public class FLClientEvents
             }
             event.addSprite(FLHelpers.identifier("block/crop/" + name + "_fruit"));
         }
+        for (FLMetal metal : FLMetal.values())
+        {
+            event.addSprite(metal.getSheet());
+        }
+    }
+
+    public static void onModelRegister(ModelRegistryEvent event)
+    {
+        ForgeModelBakery.addSpecialModel(MixingBowlBlockEntityRenderer.SPOON_LOCATION);
     }
 }

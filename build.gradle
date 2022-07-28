@@ -134,7 +134,7 @@ dependencies {
     }
 
     // Patchouli
-    implementation fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}:api")
+    implementation fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
 
     // JEI
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}:api")

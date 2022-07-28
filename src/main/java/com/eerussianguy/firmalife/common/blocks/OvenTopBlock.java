@@ -38,7 +38,7 @@ public class OvenTopBlock extends AbstractOvenBlock
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
     {
         final ItemStack item = player.getItemInHand(hand);
-        return level.getBlockEntity(pos, FLBlockEntities.OVEN_TOP.get()).map(oven -> oven.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).map(inv -> {
+        return FLHelpers.consumeInventory(level, pos, FLBlockEntities.OVEN_TOP, (oven, inv) -> {
             final boolean peel = Helpers.isItem(item, FLTags.Items.USABLE_ON_OVEN);
             if (peel || (item.isEmpty() && player.isShiftKeyDown()))
             {
@@ -54,7 +54,7 @@ public class OvenTopBlock extends AbstractOvenBlock
                 return FLHelpers.insertOneAny(level, item, OvenTopBlockEntity.SLOT_INPUT_START, OvenTopBlockEntity.SLOT_INPUT_END, inv, player);
             }
             return InteractionResult.PASS;
-        }).orElse(InteractionResult.PASS)).orElse(InteractionResult.PASS);
+        });
     }
 
     @Override

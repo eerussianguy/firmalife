@@ -17,9 +17,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 import com.eerussianguy.firmalife.Firmalife;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
-import com.eerussianguy.firmalife.common.recipes.DryingRecipe;
-import com.eerussianguy.firmalife.common.recipes.FLRecipeTypes;
-import com.eerussianguy.firmalife.common.recipes.SmokingRecipe;
+import com.eerussianguy.firmalife.common.items.FLItems;
+import com.eerussianguy.firmalife.common.recipes.*;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.helpers.IGuiHelper;
@@ -27,7 +26,10 @@ import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
+import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.items.TFCItems;
+import net.dries007.tfc.common.recipes.KnappingRecipe;
+import net.dries007.tfc.compat.jei.category.KnappingRecipeCategory;
 import net.dries007.tfc.util.Helpers;
 
 @JeiPlugin
@@ -55,8 +57,12 @@ public class FLJEIPlugin implements IModPlugin
         return RecipeType.create(Firmalife.MOD_ID, name, tClass);
     }
 
+    private static final ResourceLocation PUMPKIN_TEXTURE = Helpers.identifier("textures/gui/knapping/pumpkin.png");
+
     public static final RecipeType<DryingRecipe> DRYING = type("drying", DryingRecipe.class);
     public static final RecipeType<SmokingRecipe> SMOKING = type("smoking", SmokingRecipe.class);
+    public static final RecipeType<MixingBowlRecipe> MIXING_BOWL = type("mixing_bowl", MixingBowlRecipe.class);
+    public static final RecipeType<KnappingRecipe> PUMPKIN_KNAPPING = type("pumpkin_knapping", KnappingRecipe.class);
 
     @Override
     public ResourceLocation getPluginUid()
@@ -70,6 +76,8 @@ public class FLJEIPlugin implements IModPlugin
         IGuiHelper gui = r.getJeiHelpers().getGuiHelper();
         r.addRecipeCategories(new DryingCategory(DRYING, gui));
         r.addRecipeCategories(new SmokingCategory(SMOKING, gui));
+        r.addRecipeCategories(new MixingCategory(MIXING_BOWL, gui));
+        r.addRecipeCategories(new KnappingRecipeCategory<>(PUMPKIN_KNAPPING, gui, new ItemStack(TFCBlocks.PUMPKIN.get()), PUMPKIN_TEXTURE, null));
     }
 
     @Override
@@ -77,6 +85,8 @@ public class FLJEIPlugin implements IModPlugin
     {
         r.addRecipes(DRYING, getRecipes(FLRecipeTypes.DRYING.get()));
         r.addRecipes(SMOKING, getRecipes(FLRecipeTypes.SMOKING.get()));
+        r.addRecipes(MIXING_BOWL, getRecipes(FLRecipeTypes.MIXING_BOWL.get()));
+        r.addRecipes(PUMPKIN_KNAPPING, getRecipes(FLRecipeTypes.PUMPKIN_KNAPPING.get(), recipe -> recipe.getSerializer() == FLRecipeSerializers.PUMPKIN_KNAPPING.get()));
     }
 
     @Override
@@ -84,5 +94,8 @@ public class FLJEIPlugin implements IModPlugin
     {
         r.addRecipeCatalyst(new ItemStack(FLBlocks.DRYING_MAT.get()), DRYING);
         r.addRecipeCatalyst(new ItemStack(TFCItems.WOOL_YARN.get()), SMOKING);
+        r.addRecipeCatalyst(new ItemStack(FLBlocks.MIXING_BOWL.get()), MIXING_BOWL);
+        r.addRecipeCatalyst(new ItemStack(FLItems.SPOON.get()), MIXING_BOWL);
+        r.addRecipeCatalyst(new ItemStack(TFCBlocks.PUMPKIN.get()), PUMPKIN_KNAPPING);
     }
 }

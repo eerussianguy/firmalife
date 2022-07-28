@@ -5,11 +5,9 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -49,14 +47,7 @@ public class DryingMatBlock extends BottomSupportedDeviceBlock
 
     public DryingMatBlock(ExtendedProperties properties)
     {
-        super(properties, InventoryRemoveBehavior.DROP);
-    }
-
-    @Override
-    @SuppressWarnings("deprecation")
-    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context)
-    {
-        return SHAPE;
+        super(properties, InventoryRemoveBehavior.DROP, SHAPE);
     }
 
     @Override

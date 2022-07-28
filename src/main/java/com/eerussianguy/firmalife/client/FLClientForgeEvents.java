@@ -24,7 +24,7 @@ public class FLClientForgeEvents
         bus.addListener(FLClientForgeEvents::onTooltip);
     }
 
-    public static void onSelfTest(SelfTests.ClientSelfTestEvent event)
+    private static void onSelfTest(SelfTests.ClientSelfTestEvent event)
     {
         if (FLHelpers.ASSERTIONS_ENABLED)
         {
@@ -34,7 +34,7 @@ public class FLClientForgeEvents
         }
     }
 
-    public static void onTooltip(ItemTooltipEvent event)
+    private static void onTooltip(ItemTooltipEvent event)
     {
         final ItemStack stack = event.getItemStack();
         final List<Component> text = event.getToolTip();

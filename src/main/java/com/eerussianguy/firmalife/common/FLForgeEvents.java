@@ -6,6 +6,8 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CarvedPumpkinBlock;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.common.MinecraftForge;
@@ -24,7 +26,9 @@ import com.eerussianguy.firmalife.common.network.FLPackets;
 import com.eerussianguy.firmalife.common.util.ExtraFluid;
 import com.eerussianguy.firmalife.common.util.GreenhouseType;
 import com.eerussianguy.firmalife.common.util.Plantable;
+import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.entities.TFCEntities;
+import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.events.AnimalProductEvent;
 import net.dries007.tfc.util.events.StartFireEvent;
 
@@ -66,6 +70,16 @@ public class FLForgeEvents
         {
             level.getBlockEntity(pos, FLBlockEntities.OVEN_BOTTOM.get()).ifPresent(oven -> oven.light(state));
             event.setCanceled(true);
+        }
+        else if (block instanceof CarvedPumpkinBlock)
+        {
+            FLBlocks.CARVED_PUMPKINS.forEach((carve, reg) -> {
+                if (block == reg.get())
+                {
+                    level.setBlockAndUpdate(pos, Helpers.copyProperty(FLBlocks.CARVED_PUMPKINS.get(carve).get().defaultBlockState(), state, HorizontalDirectionalBlock.FACING));
+                    event.setCanceled(true);
+                }
+            });
         }
     }
 

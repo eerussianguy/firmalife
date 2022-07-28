@@ -1,6 +1,9 @@
 package com.eerussianguy.firmalife.common;
 
 import java.util.Locale;
+import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
+import java.util.function.Supplier;
 
 import com.google.gson.JsonElement;
 import net.minecraft.Util;
@@ -13,7 +16,11 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 
@@ -53,6 +60,18 @@ public class FLHelpers
         return new TranslatableComponent(MOD_ID + ".block_entity." + name);
     }
 
+    public static <T extends BlockEntity> void readInventory(Level level, BlockPos pos, Supplier<BlockEntityType<T>> type, BiConsumer<T, IItemHandler> consumer)
+    {
+        level.getBlockEntity(pos, type.get()).ifPresent(be -> be.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(inv -> consumer.accept(be, inv)));
+    }
+
+    public static <T extends BlockEntity> InteractionResult consumeInventory(Level level, BlockPos pos, Supplier<BlockEntityType<T>> type, BiFunction<T, IItemHandler, InteractionResult> consumer)
+    {
+        return level.getBlockEntity(pos, type.get()).map(be ->
+            be.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).map(inv -> consumer.apply(be, inv)).orElse(InteractionResult.PASS)
+        ).orElse(InteractionResult.PASS);
+    }
+
     public static InteractionResult insertOne(Level level, ItemStack item, int slot, IItemHandler inv, Player player)
     {
         if (!inv.isItemValid(slot, item)) return InteractionResult.PASS;
@@ -65,6 +84,11 @@ public class FLHelpers
         if (stack.isEmpty()) return InteractionResult.PASS;
         if (!level.isClientSide) ItemHandlerHelper.giveItemToPlayer(player, stack);
         return InteractionResult.sidedSuccess(level.isClientSide);
+    }
+
+    public static InteractionResult insertOneAny(Level level, ItemStack item, int start, int end, ICapabilityProvider provider, Player player)
+    {
+        return provider.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).map(inv -> insertOneAny(level, item, start, end, inv, player)).orElse(InteractionResult.PASS);
     }
 
     public static InteractionResult insertOneAny(Level level, ItemStack item, int start, int end, IItemHandler inv, Player player)
@@ -88,6 +112,11 @@ public class FLHelpers
             ItemHandlerHelper.giveItemToPlayer(player, stack);
         }
         return InteractionResult.sidedSuccess(level.isClientSide);
+    }
+
+    public static InteractionResult takeOneAny(Level level, int start, int end, ICapabilityProvider provider, Player player)
+    {
+        return provider.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).map(inv -> takeOneAny(level, start, end, inv, player)).orElse(InteractionResult.PASS);
     }
 
     public static InteractionResult takeOneAny(Level level, int start, int end, IItemHandler inv, Player player)

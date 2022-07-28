@@ -6,14 +6,12 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import net.minecraftforge.items.ItemHandlerHelper;
@@ -32,7 +30,7 @@ public class JarsBlock extends BottomSupportedDeviceBlock
 
     public JarsBlock(ExtendedProperties properties)
     {
-        super(properties, DeviceBlock.InventoryRemoveBehavior.NOOP);
+        super(properties, DeviceBlock.InventoryRemoveBehavior.NOOP, SHAPE);
         registerDefaultState(getStateDefinition().any().setValue(COUNT, 1));
     }
 
@@ -82,12 +80,5 @@ public class JarsBlock extends BottomSupportedDeviceBlock
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
     {
         super.createBlockStateDefinition(builder.add(COUNT));
-    }
-
-    @Override
-    @SuppressWarnings("deprecation")
-    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context)
-    {
-        return SHAPE;
     }
 }

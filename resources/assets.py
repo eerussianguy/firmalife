@@ -29,6 +29,7 @@ def generate(rm: ResourceManager):
         rm.item_model('%soven_chimney' % pref, parent='firmalife:block/oven_chimney_%s' % stage, no_textures=True)
 
     rm.blockstate('drying_mat', model='firmalife:block/drying_mat').with_item_model().with_tag('tfc:mineable_with_sharp_tool').with_lang(lang('drying mat'))
+    rm.blockstate('mixing_bowl', model='firmalife:block/mixing_bowl').with_item_model().with_tag('minecraft:mineable/axe').with_lang(lang('mixing bowl'))
 
     for fruit in TFC_FRUITS:
         rm.item_model(('not_dried', fruit), 'tfc:item/food/%s' % fruit)
@@ -97,10 +98,12 @@ def generate(rm: ResourceManager):
         rm.item_model('firmalife:%s_wheel' % cheese, parent='firmalife:block/cheese/%s_fresh_4' % cheese, no_textures=True)
 
     ore = 'chromite'
+    for grade in ORE_GRADES.keys():
+        rm.item_model('firmalife:ore/%s_%s' % (grade, ore)).with_lang(lang('%s %s', grade, ore))
     block = rm.blockstate('ore/small_%s' % ore, variants={"": four_ways('firmalife:block/small_%s' % ore)}, use_default_model=False)
     block.with_lang(lang('small %s', ore)).with_block_loot('firmalife:ore/small_%s' % ore).with_tag('can_be_snow_piled')
     rm.item_model('ore/small_%s' % ore).with_lang(lang('small %s', ore))
-    for rock, data in TFC_ROCKS.values():
+    for rock, data in TFC_ROCKS.items():
         for grade in ORE_GRADES.keys():
             block = rm.blockstate(('ore', grade + '_' + ore, rock), 'firmalife:block/ore/%s_%s/%s' % (grade, ore, rock))
             block.with_block_model({
@@ -108,8 +111,15 @@ def generate(rm: ResourceManager):
                 'particle': 'tfc:block/rock/raw/%s' % rock,
                 'overlay': 'firmalife:block/ore/%s_%s' % (grade, ore)
             }, parent='tfc:block/ore')
-            block.with_item_model().with_lang(lang('%s %s %s', grade, rock, ore)).with_block_loot('firmalife:ore/%s_%s' % (grade, ore)).with_tag('minecraft:mineable/pickaxe').with_tag('tfc:prospectable')
+            block.with_item_model().with_lang(lang('%s %s %s', grade, rock, ore)).with_block_loot('firmalife:ore/%s_%s/%s' % (grade, ore, rock)).with_tag('minecraft:mineable/pickaxe').with_tag('tfc:prospectable')
             rm.block('firmalife:ore/%s_%s/%s/prospected' % (grade, ore, rock)).with_lang(lang(ore))
+
+    for carving in CARVINGS.keys():
+        for variant in ('lit_pumpkin', 'carved_pumpkin'):
+            name = '%s/%s' % (variant, carving)
+            rm.block_model(name, parent='minecraft:block/carved_pumpkin', textures={'front': 'firmalife:block/%s/%s' % (variant, carving)})
+            rm.blockstate(name, variants=four_rotations('firmalife:block/%s' % name, (90, 0, 180, 270))).with_tag('tfc:mineable_with_sharp_tool').with_block_loot('firmalife:%s' % name).with_lang(lang('Jack o\'Lantern'))
+            rm.item_model('firmalife:%s' % name, parent='firmalife:block/%s' % name)
 
     for jar, _, texture, _ in JARS:
         make_jar(rm, jar, texture)

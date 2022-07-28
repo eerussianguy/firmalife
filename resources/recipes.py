@@ -42,6 +42,8 @@ class Rules(Enum):
 def generate(rm: ResourceManager):
     # Crafting
     rm.crafting_shaped('crafting/peel', ['X', 'Y'], {'X': 'minecraft:bowl', 'Y': '#forge:rods/wooden'}, 'firmalife:peel').with_advancement('#forge:rods/wooden')
+    damage_shapeless(rm, 'crafting/spoon', ('#forge:rods/wooden', '#tfc:lumber', '#tfc:knives'), 'firmalife:spoon').with_advancement('#forge:rods/wooden')
+    rm.crafting_shaped('crafting/mixing_bowl', ['XYX', 'YXY'], {'X': 'firmalife:treated_lumber', 'Y': 'tfc:glue'}, 'firmalife:mixing_bowl').with_advancement('firmalife:treated_lumber')
     rm.crafting_shapeless('crafting/empty_jar', ('minecraft:glass', '#tfc:lumber'), (4, 'firmalife:empty_jar')).with_advancement('minecraft:glass')
     rm.crafting_shaped('crafting/drying_mat', ['XXX'], {'X': 'firmalife:fruit_leaf'}, 'firmalife:drying_mat').with_advancement('firmalife:fruit_leaf')
     damage_shapeless(rm, 'crafting/scrape_beehive_frame', (has_queen('firmalife:beehive_frame'), '#tfc:knives'), 'firmalife:beeswax').with_advancement('firmalife:beehive_frame')  # frame has a container item of itself
@@ -84,6 +86,7 @@ def generate(rm: ResourceManager):
     barrel_sealed_recipe(rm, 'milk_curd', 'Milk Curd', 1000, 'firmalife:cheesecloth', '1000 tfc:curdled_milk', output_item='firmalife:food/milk_curd')
     barrel_sealed_recipe(rm, 'goat_milk_curd', 'Goat Curd', 1000, 'firmalife:cheesecloth', '1000 firmalife:curdled_goat_milk', output_item='firmalife:food/goat_curd')
     barrel_sealed_recipe(rm, 'yak_milk_curd', 'Yak Curd', 1000, 'firmalife:cheesecloth', '1000 firmalife:curdled_yak_milk', output_item='firmalife:food/yak_curd')
+    barrel_sealed_recipe(rm, 'cream', 'Cream', 1000, 'firmalife:cheesecloth', '1000 #tfc:milks', output_item='firmalife:cheesecloth', output_fluid='1000 firmalife:cream')
 
     barrel_sealed_recipe(rm, 'shosha', 'Shosha Wheel', 16000, '3 firmalife:food/yak_curd', '750 tfc:salt_water', output_item='firmalife:shosha_wheel')
     barrel_sealed_recipe(rm, 'feta', 'Feta Wheel', 16000, '3 firmalife:food/goat_curd', '750 tfc:salt_water', output_item='firmalife:feta_wheel')
@@ -96,6 +99,9 @@ def generate(rm: ResourceManager):
     clay_knapping(rm, 'oven_chimney', ['XX XX', 'XX XX', 'XX XX'], 'firmalife:oven_chimney')
 
     # Firmalife Recipes
+    for carving, pattern in CARVINGS.items():
+        pumpkin_knapping(rm, carving, pattern, 'firmalife:carved_pumpkin/%s' % carving)
+
     drying_recipe(rm, 'drying_fruit', not_rotten(has_trait('#tfc:foods/fruits', 'firmalife:dried', True)), item_stack_provider(copy_input=True, add_trait='firmalife:dried'))
     drying_recipe(rm, 'cinnamon', 'firmalife:cinnamon_bark', item_stack_provider('firmalife:spice/cinnamon'))
     drying_recipe(rm, 'dry_grass', 'tfc:thatch', item_stack_provider('tfc:groundcover/dead_grass'))
@@ -103,6 +109,8 @@ def generate(rm: ResourceManager):
 
     smoking_recipe(rm, 'meat', not_rotten(has_trait(has_trait('#tfc:foods/raw_meats', 'firmalife:smoked', True), 'tfc:brined')), item_stack_provider(copy_input=True, add_trait='firmalife:smoked'))
     smoking_recipe(rm, 'cheese', not_rotten(has_trait('#firmalife:foods/cheeses', 'firmalife:smoked', True)), item_stack_provider(copy_input=True, add_trait='firmalife:smoked'))
+
+    mixing_recipe(rm, 'butter', ingredients=[utils.ingredient('tfc:powder/salt')], fluid='1000 firmalife:cream', output_item='firmalife:food/butter')
 
     # Greenhouse
     for block in GREENHOUSE_BLOCKS:
@@ -128,7 +136,7 @@ def generate(rm: ResourceManager):
         rm.domain = 'firmalife'  # DOMAIN RESET
 
     ore = 'chromite'
-    for rock, data in TFC_ROCKS.values():
+    for rock, data in TFC_ROCKS.items():
         cobble = 'tfc:rock/cobble/%s' % rock
         collapse_recipe(rm, '%s_cobble' % rock, [
             'firmalife:ore/poor_%s/%s' % (ore, rock),
@@ -136,8 +144,8 @@ def generate(rm: ResourceManager):
             'firmalife:ore/rich_%s/%s' % (ore, rock)
         ], cobble)
         for grade in ORE_GRADES.keys():
-            rm.block_tag('can_start_collapse', 'tfc:ore/%s_%s/%s' % (grade, ore, rock))
-            rm.block_tag('can_collapse', 'tfc:ore/%s_%s/%s' % (grade, ore, rock))
+            rm.block_tag('can_start_collapse', 'firmalife:ore/%s_%s/%s' % (grade, ore, rock))
+            rm.block_tag('can_collapse', 'firmalife:ore/%s_%s/%s' % (grade, ore, rock))
 
     alloy_recipe(rm, 'stainless_steel', 'stainless_steel', ('firmalife:chromium', 0.2, 0.3), ('tfc:nickel', 0.1, 0.2), ('tfc:steel', 0.6, 0.8))
 
@@ -184,6 +192,14 @@ def chisel_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ing
         'result': result,
         'mode': mode,
         'extra_drop': item_stack_provider(result) if mode == 'slab' else None
+    })
+
+def mixing_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredients: Json = None, fluid: str = None, output_fluid: str = None, output_item: str = None) -> RecipeContext:
+    rm.recipe(('mixing_bowl', name_parts), 'firmalife:mixing_bowl', {
+        'ingredients': ingredients if ingredients is not None else None,
+        'fluid_ingredient': fluid_stack_ingredient(fluid) if fluid is not None else None,
+        'output_fluid': fluid_stack(output_fluid) if output_fluid is not None else None,
+        'output_item': utils.item_stack(output_item) if output_item is not None else None
     })
 
 def drying_recipe(rm: ResourceManager, name: utils.ResourceIdentifier, item: Any, result: Json) -> RecipeContext:
@@ -358,6 +374,9 @@ def delegate_recipe(rm: ResourceManager, name_parts: ResourceIdentifier, recipe_
         'recipe': delegate
     })
     return RecipeContext(rm, res)
+
+def pumpkin_knapping(rm: ResourceManager, name_parts: ResourceIdentifier, pattern: List[str], result: Json, outside_slot_required: bool = None):
+    knapping_recipe(rm, 'pumpkin_knapping', name_parts, pattern, result, outside_slot_required)
 
 def clay_knapping(rm: ResourceManager, name_parts: ResourceIdentifier, pattern: List[str], result: Json, outside_slot_required: bool = None):
     knapping_recipe(rm, 'clay_knapping', name_parts, pattern, result, outside_slot_required)

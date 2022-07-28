@@ -3,6 +3,22 @@
   "replace": false,
   "values": [
     "firmalife:drying_mat",
-    "firmalife:wool_string"
+    "firmalife:wool_string",
+    "firmalife:lit_pumpkin/none",
+    "firmalife:carved_pumpkin/none",
+    "firmalife:lit_pumpkin/circle",
+    "firmalife:carved_pumpkin/circle",
+    "firmalife:lit_pumpkin/creeper",
+    "firmalife:carved_pumpkin/creeper",
+    "firmalife:lit_pumpkin/axe",
+    "firmalife:carved_pumpkin/axe",
+    "firmalife:lit_pumpkin/hammer",
+    "firmalife:carved_pumpkin/hammer",
+    "firmalife:lit_pumpkin/pickaxe",
+    "firmalife:carved_pumpkin/pickaxe",
+    "firmalife:lit_pumpkin/left",
+    "firmalife:carved_pumpkin/left",
+    "firmalife:lit_pumpkin/right",
+    "firmalife:carved_pumpkin/right"
   ]
 }

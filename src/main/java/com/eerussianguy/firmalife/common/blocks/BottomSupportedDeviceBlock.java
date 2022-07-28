@@ -3,10 +3,13 @@ package com.eerussianguy.firmalife.common.blocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.devices.DeviceBlock;
@@ -14,9 +17,19 @@ import org.jetbrains.annotations.Nullable;
 
 public abstract class BottomSupportedDeviceBlock extends DeviceBlock
 {
-    public BottomSupportedDeviceBlock(ExtendedProperties properties, InventoryRemoveBehavior removeBehavior)
+    private final VoxelShape shape;
+
+    public BottomSupportedDeviceBlock(ExtendedProperties properties, InventoryRemoveBehavior removeBehavior, VoxelShape shape)
     {
         super(properties, removeBehavior);
+        this.shape = shape;
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext)
+    {
+        return shape;
     }
 
     @Override

@@ -1,0 +1,7 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "firmalife:block/lit_pumpkin/none",
+  "textures": {
+    "layer0": "firmalife:item/lit_pumpkin/none"
+  }
+}

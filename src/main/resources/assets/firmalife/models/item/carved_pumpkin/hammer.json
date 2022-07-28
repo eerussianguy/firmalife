@@ -1,0 +1,7 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "firmalife:block/carved_pumpkin/hammer",
+  "textures": {
+    "layer0": "firmalife:item/carved_pumpkin/hammer"
+  }
+}

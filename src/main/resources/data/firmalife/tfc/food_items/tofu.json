@@ -7,6 +7,6 @@
   "hunger": 4,
   "saturation": 2,
   "water": 2,
-  "decay": 0.75,
+  "decay_modifier": 0.75,
   "protein": 1.5
 }

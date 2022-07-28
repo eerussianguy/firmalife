@@ -46,6 +46,9 @@ def generate(rm: ResourceManager):
     rm.item_tag('smoking_fuel', '#minecraft:logs')
     rm.item_tag('oven_fuel', '#minecraft:logs')
     rm.item_tag('chocolate_blends', 'firmalife:food/milk_chocolate_blend', 'firmalife:food/dark_chocolate_blend', 'firmalife:food/white_chocolate_blend')
+    rm.item_tag('tfc:foods/can_be_salted', 'firmalife:food/butter')
+    rm.item_tag('tfc:usable_on_tool_rack', 'firmalife:spoon')
+    rm.item_tag('pumpkin_knapping', 'tfc:pumpkin')
 
     rm.block_tag('oven_insulation', 'minecraft:bricks', '#tfc:forge_insulation', '#firmalife:oven_blocks')
     rm.block_tag('minecraft:mineable/pickaxe', '#firmalife:oven_blocks')
@@ -64,6 +67,8 @@ def generate(rm: ResourceManager):
 
     rm.fluid_tag('tfc:alcohols', 'firmalife:pina_colada')
     rm.fluid_tag('tfc:milks', 'firmalife:yak_milk', 'firmalife:goat_milk', 'firmalife:coconut_milk')
+    rm.fluid_tag('tfc:ingredients', *['firmalife:%s' % fluid for fluid in EXTRA_FLUIDS])
+    rm.fluid_tag('usable_in_mixing_bowl', '#tfc:usable_in_pot')
 
     ### JSON DATA ###
     greenhouse(rm, 'treated_wood', '#firmalife:all_treated_wood_greenhouse', 5)
@@ -98,6 +103,8 @@ def generate(rm: ResourceManager):
     bonsai_plantable(rm, 'red_apple', 'nitrogen')
 
     hanging_plantable(rm, 'squash', 'tfc:seeds/squash', 'tfc:food/squash', 'potassium')
+    hanging_plantable(rm, 'pumpkin', 'tfc:seeds/melon', 'tfc:melon', 'phosphorous')
+    hanging_plantable(rm, 'melon', 'tfc:seeds/pumpkin', 'tfc:pumpkin', 'phosphorous')
     hanging_plantable(rm, 'banana', 'tfc:plant/banana_sapling', 'tfc:food/banana', 'nitrogen', tier=15, seed_chance=0.08)
 
     trellis_plantable(rm, 'blackberry', 'tfc:plant/blackberry_bush', 'tfc:food/blackberry', 'nitrogen')
@@ -122,6 +129,7 @@ def generate(rm: ResourceManager):
     food_item(rm, 'slices', '#firmalife:foods/slices', Category.grain, 4, 0.75, 0, 1.5, grain=1)
     food_item(rm, 'cheeses', '#firmalife:foods/cheeses', Category.dairy, 4, 2, 0, 0.3, dairy=3)
     decayable(rm, 'chocolate_blends', '#firmalife:chocolate_blends', Category.dairy)
+    decayable(rm, 'butter', 'firmalife:food/butter', Category.dairy)
 
     item_size(rm, 'jars', '#firmalife:jars', Size.very_large, Weight.medium)
     item_size(rm, 'beehive_frame', 'firmalife:beehive_frame', Size.very_small, Weight.very_heavy)
@@ -218,7 +226,7 @@ def food_item(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredi
         'hunger': hunger,
         'saturation': saturation,
         'water': water if water != 0 else None,
-        'decay': decay,
+        'decay_modifier': decay,
         'fruit': fruit,
         'vegetables': veg,
         'protein': protein,

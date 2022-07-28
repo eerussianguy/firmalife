@@ -48,13 +48,13 @@ public class OvenBottomBlock extends AbstractOvenBlock implements IBellowsConsum
         final ItemStack item = player.getItemInHand(hand);
         if (!item.isEmpty() && item.is(TFCTags.Items.FIREPIT_FUEL))
         {
-            return level.getBlockEntity(pos, FLBlockEntities.OVEN_BOTTOM.get()).map(oven -> oven.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).map(inv -> {
+            return FLHelpers.consumeInventory(level, pos, FLBlockEntities.OVEN_BOTTOM, (oven, inv) -> {
                 if (inv.getStackInSlot(OvenBottomBlockEntity.SLOT_FUEL_MAX).isEmpty())
                 {
                     return FLHelpers.insertOne(level, item, OvenBottomBlockEntity.SLOT_FUEL_MAX, inv, player);
                 }
                 return InteractionResult.FAIL;
-            }).orElse(InteractionResult.FAIL)).orElse(InteractionResult.FAIL);
+            });
         }
         return InteractionResult.PASS;
     }

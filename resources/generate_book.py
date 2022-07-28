@@ -168,6 +168,10 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False):
             crafting('firmalife:crafting/iron_composter', 'The Composter can be upgraded to an $(thing)Iron Composter$(), which works the same, except it produces compost four times as fast.'),
             multimultiblock('The possible fill levels of the iron composter', *[block_spotlight('', '', 'firmalife:iron_composter[type=normal,stage=%s]' % i) for i in range(0, 9)]),
         )),
+        entry('mixing_bowl', 'Mixing Bowl', 'firmalife:mixing_bowl', pages=(
+            crafting('firmalife:crafting/mixing_bowl', 'firmalife:crafting/spoon'),
+            text('The mixing bowl is a way of mixing items and fluids together in a friendly way. $(item)$(k:key.use)$() on it with a $(thing)Spoon$() to add it to the bowl, which allows it to operate.'),
+        ))
     ))
 
     rm.domain = 'firmalife'  # DOMAIN RESET

@@ -5,14 +5,14 @@ RockCategory = Literal['sedimentary', 'metamorphic', 'igneous_extrusive', 'igneo
 Rock = NamedTuple('Rock', category=RockCategory, sand=str)
 Vein = NamedTuple('Vein', ore=str, type=str, rarity=int, size=int, min_y=int, max_y=int, density=float, poor=float, normal=float, rich=float, rocks=List[str], spoiler_ore=str, spoiler_rarity=int, spoiler_rocks=List[str], biomes=Optional[str], height=Optional[int], deposits=bool)
 
-SIMPLE_ITEMS = ('peel', 'fruit_leaf', 'cinnamon_bark', 'beeswax', 'pineapple_leather', 'pineapple_yarn', 'raw_honey', 'rennet', 'watering_can', 'treated_lumber', 'beehive_frame', 'empty_jar', 'cheesecloth')
-SIMPLE_FOODS = ('frothy_coconut', 'white_chocolate_blend', 'dark_chocolate_blend', 'milk_chocolate_blend', 'tofu', 'soy_mixture', 'yak_curd', 'goat_curd', 'milk_curd', 'cheddar', 'chevre', 'rajya_metok', 'gouda', 'feta', 'shosha')
+SIMPLE_ITEMS = ('peel', 'fruit_leaf', 'cinnamon_bark', 'beeswax', 'pineapple_leather', 'pineapple_yarn', 'raw_honey', 'rennet', 'watering_can', 'treated_lumber', 'beehive_frame', 'empty_jar', 'cheesecloth', 'spoon')
+SIMPLE_FOODS = ('frothy_coconut', 'white_chocolate_blend', 'dark_chocolate_blend', 'milk_chocolate_blend', 'tofu', 'soy_mixture', 'yak_curd', 'goat_curd', 'milk_curd', 'cheddar', 'chevre', 'rajya_metok', 'gouda', 'feta', 'shosha', 'butter')
 SIMPLE_SPICES = ('ground_cinnamon', 'cinnamon')
 SIMPLE_BLOCKS: Dict[str, str] = {
     'sealed_bricks': 'minecraft:mineable/pickaxe'
 }
 BLOCK_ENTITIES = ('oven_bottom', 'oven_top', 'drying_mat', 'beehive')
-EXTRA_FLUIDS = ('yeast_starter', 'coconut_milk', 'yak_milk', 'goat_milk', 'curdled_yak_milk', 'curdled_goat_milk', 'pina_colada')
+EXTRA_FLUIDS = ('yeast_starter', 'coconut_milk', 'yak_milk', 'goat_milk', 'curdled_yak_milk', 'curdled_goat_milk', 'pina_colada', 'cream')
 JARS: Sequence[Tuple[str, int, str, str]] = (
     ('honey', 1, 'minecraft:block/honey_block_side', 'firmalife:raw_honey'),
     ('compost', 8, 'firmalife:block/potting_soil_wet', 'tfc:compost'),
@@ -69,6 +69,17 @@ CLEANING_PAIRS: Dict[str, str] = {
     'weathered_treated_wood': 'treated_wood'
 }
 PLANTERS = ('hanging', 'bonsai', 'quad', 'large', 'trellis')
+
+CARVINGS = {
+    'none': ['XXXXX', 'XXXXX', 'XXXXX', 'X   X', 'XXXXX'],
+    'circle': ['XXXXX', 'X   X', 'X   X', 'X   X', 'XXXXX'],
+    'creeper': ['XXXXX', 'X X X', 'XX XX', 'X X X', 'X X X'],
+    'axe': ['XXXXX', 'X  XX', 'X   X', 'X  XX', 'XXXXX'],
+    'hammer': ['XXXXX', 'X   X', 'X   X', 'XX XX', 'XX XX'],
+    'pickaxe': ['XXXXX', 'XX XX', 'X X X', 'XX XX', 'XX XX'],
+    'left': ['XXXXX', 'X XXX', 'X XXX', 'X   X', 'XXXXX'],
+    'right': ['XXXXX', 'XXX X', 'XXX X', 'X   X', 'XXXXX'],
+}
 
 
 # Default parameters for common ore veins
@@ -134,15 +145,22 @@ DEFAULT_LANG = {
     'firmalife.bee.ability.nature_restoration': 'Nature Restoration %s',
     'firmalife.bee.ability.calmness': 'Calmness %s',
 
+    'firmalife.bowl.spoon': 'The bowl is missing a spoon.',
+    'firmalife.bowl.mixing': 'The bowl is currently mixing',
+    'firmalife.bowl.no_recipe': 'The bowl has no recipe.',
+    'firmalife.bowl.matching_recipe': 'The bowl\'s contents do not match the recipe',
+
     'firmalife.enum.plantertype.hanging': 'Hanging Planter',
     'firmalife.enum.plantertype.trellis': 'Trellis Planter',
     'firmalife.enum.plantertype.bonsai': 'Bonsai Planter',
     'firmalife.enum.plantertype.quad': 'Quad Planter',
     'firmalife.enum.plantertype.large': 'Large Planter',
 
-
+    'firmalife.screen.pumpkin_knapping': 'Pumpkin Knapping',
+    'tfc.jei.pumpkin_knapping': 'Pumpkin Knapping',
     'tfc.jei.drying': 'Drying',
     'tfc.jei.smoking': 'Smoking',
+    'tfc.jei.mixing_bowl': 'Mixing Bowl',
 }
 
 def lang(key: str, *args) -> str:

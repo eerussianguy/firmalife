@@ -2,6 +2,7 @@ package com.eerussianguy.firmalife.common.util;
 
 import java.util.Locale;
 
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Item;
@@ -10,7 +11,7 @@ import net.minecraft.world.item.Tier;
 
 import net.minecraftforge.common.util.NonNullFunction;
 
-import net.dries007.tfc.common.TFCArmorMaterial;
+import com.eerussianguy.firmalife.common.FLHelpers;
 import net.dries007.tfc.common.TFCArmorMaterials;
 import net.dries007.tfc.common.TFCItemGroup;
 import net.dries007.tfc.common.TFCTiers;
@@ -24,11 +25,18 @@ public enum FLMetal implements RegistryMetal
 
     private final String serializedName;
     private final int color;
+    private final ResourceLocation sheet;
 
     FLMetal(int color)
     {
         this.serializedName = name().toLowerCase(Locale.ROOT);
         this.color = color;
+        this.sheet = FLHelpers.identifier("block/metal/full/" + serializedName);
+    }
+
+    public ResourceLocation getSheet()
+    {
+        return sheet;
     }
 
     @Override

@@ -19,6 +19,7 @@ import com.eerussianguy.firmalife.common.blocks.FLFluids;
 import com.eerussianguy.firmalife.common.util.ExtraFluid;
 import com.eerussianguy.firmalife.common.util.FLMetal;
 import net.dries007.tfc.common.TFCItemGroup;
+import net.dries007.tfc.common.blocks.rock.Ore;
 import net.dries007.tfc.common.fluids.SimpleFluid;
 import net.dries007.tfc.common.fluids.TFCFluids;
 import net.dries007.tfc.common.items.DecayingItem;
@@ -45,11 +46,14 @@ public class FLItems
     public static final RegistryObject<Item> PINEAPPLE_YARN = register("pineapple_yarn", MISC);
     public static final RegistryObject<Item> RAW_HONEY = register("raw_honey", MISC);
     public static final RegistryObject<Item> RENNET = register("rennet", MISC);
+    public static final RegistryObject<Item> SPOON = register("spoon", MISC);
     public static final RegistryObject<Item> TREATED_LUMBER = register("treated_lumber", MISC);
     public static final RegistryObject<Item> WATERING_CAN = register("watering_can", () -> new WateringCanItem(prop()));
 
     public static final Map<Spice, RegistryObject<Item>> SPICES = Helpers.mapOfKeys(Spice.class, spice -> register("spice/" + spice.name(), MISC));
     public static final Map<FLFood, RegistryObject<Item>> FOODS = Helpers.mapOfKeys(FLFood.class, food -> register("food/" + food.name(), () -> new DecayingItem(new Item.Properties().food(food.getFoodProperties()).tab(TFCItemGroup.FOOD))));
+
+    public static final Map<Ore.Grade, RegistryObject<Item>> CHROMIUM_ORES = Helpers.mapOfKeys(Ore.Grade.class, grade -> register("ore/" + grade.name() + "_chromite", TFCItemGroup.ORES));
 
     public static final Map<FLMetal, Map<FLMetal.ItemType, RegistryObject<Item>>> METAL_ITEMS = Helpers.mapOfKeys(FLMetal.class, metal ->
         Helpers.mapOfKeys(FLMetal.ItemType.class, type ->

@@ -6,18 +6,19 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.DoorBlock;
-import net.minecraft.world.level.block.LiquidBlock;
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -27,12 +28,14 @@ import com.eerussianguy.firmalife.common.blocks.greenhouse.*;
 import com.eerussianguy.firmalife.common.items.FLFood;
 import com.eerussianguy.firmalife.common.items.FLItems;
 import com.eerussianguy.firmalife.common.items.JarsBlockItem;
+import com.eerussianguy.firmalife.common.util.Carving;
 import com.eerussianguy.firmalife.common.util.ExtraFluid;
 import com.eerussianguy.firmalife.common.util.FLMetal;
 import net.dries007.tfc.common.TFCItemGroup;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.GroundcoverBlock;
 import net.dries007.tfc.common.blocks.TFCMaterials;
+import net.dries007.tfc.common.blocks.devices.JackOLanternBlock;
 import net.dries007.tfc.common.blocks.devices.TFCComposterBlock;
 import net.dries007.tfc.common.blocks.rock.Ore;
 import net.dries007.tfc.common.blocks.rock.Rock;
@@ -59,6 +62,7 @@ public class FLBlocks
     public static final RegistryObject<Block> BEEHIVE = register("beehive", () -> new FLBeehiveBlock(ExtendedProperties.of(Properties.of(Material.WOOD).strength(0.6f).sound(SoundType.WOOD)).flammable(60, 30).blockEntity(FLBlockEntities.BEEHIVE).serverTicks(FLBeehiveBlockEntity::serverTick)), DECORATIONS);
     public static final RegistryObject<Block> IRON_COMPOSTER = register("iron_composter", () -> new TFCComposterBlock(ExtendedProperties.of(Properties.of(Material.WOOD).strength(0.6F).noOcclusion().sound(SoundType.METAL).randomTicks()).flammable(60, 90).blockEntity(FLBlockEntities.IRON_COMPOSTER)), DECORATIONS);
     public static final RegistryObject<Block> WOOL_STRING = register("wool_string", () -> new StringBlock(ExtendedProperties.of(Properties.of(Material.CLOTH_DECORATION).noCollission().strength(2.0f).sound(SoundType.WOOL).randomTicks()).blockEntity(FLBlockEntities.STRING).serverTicks(StringBlockEntity::serverTick), TFCItems.WOOL_YARN));
+    public static final RegistryObject<Block> MIXING_BOWL = register("mixing_bowl", () -> new MixingBowlBlock(ExtendedProperties.of(Properties.of(Material.DIRT).sound(SoundType.STONE).strength(1f).noOcclusion()).blockEntity(FLBlockEntities.MIXING_BOWL).ticks(MixingBowlBlockEntity::serverTick, MixingBowlBlockEntity::clientTick)), DECORATIONS);
 
     public static final RegistryObject<Block> HONEY_JAR = register("honey_jar", () -> new JarsBlock(jarProperties()), b -> new JarsBlockItem(b, new Item.Properties().tab(MISC)));
     public static final RegistryObject<Block> COMPOST_JAR = register("compost_jar", () -> new JarsBlock(jarProperties()), b -> new JarsBlockItem(b, new Item.Properties().tab(MISC)));
@@ -83,7 +87,15 @@ public class FLBlocks
     public static final RegistryObject<Block> SEALED_BRICKS = register("sealed_bricks", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).strength(2.0f, 10).requiresCorrectToolForDrops()), DECORATIONS);
     public static final RegistryObject<Block> SEALED_DOOR = register("sealed_door", () -> new DoorBlock(BlockBehaviour.Properties.of(Material.WOOD).sound(SoundType.STONE).strength(2.0f, 10).requiresCorrectToolForDrops()), DECORATIONS);
 
-    public static final RegistryObject<Block> SMALL_CHROMITE = register("ore/small_chromite", () -> GroundcoverBlock.looseOre(Properties.of(Material.GRASS).strength(0.05F, 0.0F).sound(SoundType.NETHER_ORE).noCollission()));
+    public static final Map<Carving, RegistryObject<Block>> CARVED_PUMPKINS = Helpers.mapOfKeys(Carving.class, carve ->
+        register("carved_pumpkin/" + carve.getSerializedName(), () -> new CarvedPumpkinBlock(Properties.of(Material.VEGETABLE, MaterialColor.COLOR_ORANGE).strength(1.0F).sound(SoundType.WOOD).isValidSpawn(FLBlocks::always)))
+    );
+
+    public static final Map<Carving, RegistryObject<Block>> JACK_O_LANTERNS = Helpers.mapOfKeys(Carving.class, carve ->
+        register("lit_pumpkin/" + carve.getSerializedName(), () -> new JackOLanternBlock(ExtendedProperties.of(Properties.of(Material.VEGETABLE, MaterialColor.COLOR_ORANGE).strength(1.0F).sound(SoundType.WOOD).randomTicks().isValidSpawn(FLBlocks::always)).blockEntity(FLBlockEntities.TICK_COUNTER), CARVED_PUMPKINS.get(carve)))
+    );
+
+    public static final RegistryObject<Block> SMALL_CHROMITE = register("ore/small_chromite", () -> GroundcoverBlock.looseOre(Properties.of(Material.GRASS).strength(0.05F, 0.0F).sound(SoundType.NETHER_ORE).noCollission()), ORES);
     public static final Map<Rock, Map<Ore.Grade, RegistryObject<Block>>> CHROMITE_ORES = Helpers.mapOfKeys(Rock.class, rock ->
         Helpers.mapOfKeys(Ore.Grade.class, grade ->
             register(("ore/" + grade.name() + "_chromite" + "/" + rock.name()), () -> new Block(Properties.of(Material.STONE).sound(SoundType.STONE).strength(3, 10).requiresCorrectToolForDrops()), TFCItemGroup.ORES)
@@ -107,6 +119,11 @@ public class FLBlocks
     public static ExtendedProperties jarProperties()
     {
         return ExtendedProperties.of(Properties.of(Material.DECORATION).noCollission().noOcclusion().instabreak().sound(SoundType.GLASS).randomTicks());
+    }
+
+    private static boolean always(BlockState state, BlockGetter level, BlockPos pos, EntityType<?> type)
+    {
+        return true;
     }
 
     public static int lightEmission(BlockState state)

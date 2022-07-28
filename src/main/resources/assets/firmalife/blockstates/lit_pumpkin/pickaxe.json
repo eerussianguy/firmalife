@@ -1,0 +1,21 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "variants": {
+    "facing=east": {
+      "model": "firmalife:block/lit_pumpkin/pickaxe",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "firmalife:block/lit_pumpkin/pickaxe",
+      "y": 0
+    },
+    "facing=south": {
+      "model": "firmalife:block/lit_pumpkin/pickaxe",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "firmalife:block/lit_pumpkin/pickaxe",
+      "y": 270
+    }
+  }
+}

@@ -63,7 +63,7 @@ public class CheeseWheelBlock extends BottomSupportedDeviceBlock implements Clim
 
     public CheeseWheelBlock(ExtendedProperties properties, Supplier<? extends Item> slice)
     {
-        super(properties, InventoryRemoveBehavior.DROP);
+        super(properties, InventoryRemoveBehavior.DROP, SHAPE_4);
         this.slice = slice;
 
         registerDefaultState(getStateDefinition().any().setValue(COUNT, 4).setValue(AGE, FoodAge.FRESH).setValue(AGING, false));
@@ -132,7 +132,6 @@ public class CheeseWheelBlock extends BottomSupportedDeviceBlock implements Clim
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public VoxelShape getShape(BlockState state, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext)
     {
         return getShape(state.getValue(COUNT));

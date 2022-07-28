@@ -78,7 +78,7 @@ def chromium_ore_heats(rm: ResourceManager):
     metal_data = FL_METALS['chromium']
     item_heat(rm, ('ore', ore), ['firmalife:ore/small_%s' % ore, 'firmalife:ore/normal_%s' % ore, 'firmalife:ore/poor_%s' % ore, 'firmalife:ore/rich_%s' % ore], metal_data.heat_capacity, int(metal_data.melt_temperature))
     temp = FL_METALS['chromium'].melt_temperature
-    heat_recipe(rm, ('ore', 'small_%s' % ore), 'tfc:ore/small_%s' % ore, temp, None, '%d tfc:metal/%s' % (10, 'firmalife:metal/chromium'))
-    heat_recipe(rm, ('ore', 'poor_%s' % ore), 'tfc:ore/poor_%s' % ore, temp, None, '%d tfc:metal/%s' % (15, 'firmalife:metal/chromium'))
-    heat_recipe(rm, ('ore', 'normal_%s' % ore), 'tfc:ore/normal_%s' % ore, temp, None, '%d tfc:metal/%s' % (25, 'firmalife:metal/chromium'))
-    heat_recipe(rm, ('ore', 'rich_%s' % ore), 'tfc:ore/rich_%s' % ore, temp, None, '%d tfc:metal/%s' % (35, 'firmalife:metal/chromium'))
+    heat_recipe(rm, ('ore', 'small_%s' % ore), 'firmalife:ore/small_%s' % ore, temp, None, '10 firmalife:metal/chromium')
+    heat_recipe(rm, ('ore', 'poor_%s' % ore), 'firmalife:ore/poor_%s' % ore, temp, None, '15 firmalife:metal/chromium')
+    heat_recipe(rm, ('ore', 'normal_%s' % ore), 'firmalife:ore/normal_%s' % ore, temp, None, '25 firmalife:metal/chromium')
+    heat_recipe(rm, ('ore', 'rich_%s' % ore), 'firmalife:ore/rich_%s' % ore, temp, None, '35 firmalife:metal/chromium')

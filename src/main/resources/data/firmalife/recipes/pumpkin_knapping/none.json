@@ -1,0 +1,14 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:pumpkin_knapping",
+  "pattern": [
+    "XXXXX",
+    "XXXXX",
+    "XXXXX",
+    "X   X",
+    "XXXXX"
+  ],
+  "result": {
+    "item": "firmalife:carved_pumpkin/none"
+  }
+}

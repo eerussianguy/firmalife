@@ -1,0 +1,7 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "minecraft:block/carved_pumpkin",
+  "textures": {
+    "front": "firmalife:block/lit_pumpkin/none"
+  }
+}

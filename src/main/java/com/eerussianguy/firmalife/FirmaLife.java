@@ -25,6 +25,7 @@ import com.eerussianguy.firmalife.common.recipes.FLRecipeTypes;
 import com.eerussianguy.firmalife.common.recipes.data.FLIngredients;
 import com.eerussianguy.firmalife.compat.patchouli.FLPatchouliIntegration;
 import com.mojang.logging.LogUtils;
+import net.dries007.tfc.config.TFCConfig;
 import org.slf4j.Logger;
 
 @Mod(Firmalife.MOD_ID)
@@ -66,6 +67,7 @@ public class Firmalife
             FLInteractionManager.init();
             FLFoodTraits.init();
             FLIngredients.init();
+            TFCConfig.SERVER.enablePumpkinCarving.set(false);
         });
         FLPatchouliIntegration.registerMultiBlocks();
     }

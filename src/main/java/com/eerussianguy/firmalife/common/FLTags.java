@@ -5,6 +5,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.material.Fluid;
 
 @SuppressWarnings("unused")
 public class FLTags
@@ -35,10 +36,22 @@ public class FLTags
         public static final TagKey<Item> USABLE_ON_OVEN = create("usable_on_oven");
         public static final TagKey<Item> SMOKING_FUEL = create("smoking_fuel");
         public static final TagKey<Item> OVEN_FUEL = create("oven_fuel");
+        public static final TagKey<Item> PUMPKIN_KNAPPING = create("pumpkin_knapping");
 
         private static TagKey<Item> create(String id)
         {
             return TagKey.create(Registry.ITEM_REGISTRY, FLHelpers.identifier(id));
+        }
+
+    }
+
+    public static class Fluids
+    {
+        public static final TagKey<Fluid> USABLE_IN_MIXING_BOWL = create("usable_in_mixing_bowl");
+
+        private static TagKey<Fluid> create(String id)
+        {
+            return TagKey.create(Registry.FLUID_REGISTRY, FLHelpers.identifier(id));
         }
 
     }
