@@ -39,8 +39,10 @@ def generate(rm: ResourceManager):
     ### TAGS ###
     rm.item_tag('usable_on_oven', 'firmalife:peel')
     rm.item_tag('sweetener', 'minecraft:sugar', 'firmalife:raw_honey')
-    rm.item_tag('feeds_yeast', *['tfc:food/%s_flour' % g for g in TFC_GRAINS])
+    rm.item_tag('tfc:foods/flour', *['tfc:food/%s_flour' % g for g in TFC_GRAINS])
+    rm.item_tag('feeds_yeast', '#tfc:foods/flour')
     rm.item_tag('foods/slices', *['firmalife:food/%s_slice' % g for g in TFC_GRAINS])
+    rm.item_tag('foods/pizza_ingredients', '#tfc:foods/vegetables', '#tfc:foods/fruits', '#tfc:foods/cooked_meats')
     rm.item_tag('tfc:sandwich_bread', '#firmalife:foods/slices')
     rm.item_tag('foods/cheeses', 'firmalife:food/gouda', 'firmalife:food/chevre', 'firmalife:food/shosha', 'firmalife:food/feta', 'firmalife:food/rajya_metok', 'firmalife:food/cheddar')
     rm.item_tag('smoking_fuel', '#minecraft:logs')
@@ -49,6 +51,8 @@ def generate(rm: ResourceManager):
     rm.item_tag('tfc:foods/can_be_salted', 'firmalife:food/butter')
     rm.item_tag('tfc:usable_on_tool_rack', 'firmalife:spoon')
     rm.item_tag('pumpkin_knapping', 'tfc:pumpkin')
+    rm.item_tag('foods/heatable', 'firmalife:food/raw_pizza', 'firmalife:food/filled_pie')
+    rm.item_tag('foods/dynamic', 'firmalife:food/raw_pizza', 'firmalife:food/filled_pie', 'firmalife:food/cooked_pizza', 'firmalife:food/cooked_pie')
 
     rm.block_tag('oven_insulation', 'minecraft:bricks', '#tfc:forge_insulation', '#firmalife:oven_blocks')
     rm.block_tag('minecraft:mineable/pickaxe', '#firmalife:oven_blocks')
@@ -103,8 +107,8 @@ def generate(rm: ResourceManager):
     bonsai_plantable(rm, 'red_apple', 'nitrogen')
 
     hanging_plantable(rm, 'squash', 'tfc:seeds/squash', 'tfc:food/squash', 'potassium')
-    hanging_plantable(rm, 'pumpkin', 'tfc:seeds/melon', 'tfc:melon', 'phosphorous')
-    hanging_plantable(rm, 'melon', 'tfc:seeds/pumpkin', 'tfc:pumpkin', 'phosphorous')
+    hanging_plantable(rm, 'pumpkin', 'tfc:seeds/melon', 'tfc:melon', 'phosphorous', tier=15)
+    hanging_plantable(rm, 'melon', 'tfc:seeds/pumpkin', 'tfc:pumpkin', 'phosphorous', tier=15)
     hanging_plantable(rm, 'banana', 'tfc:plant/banana_sapling', 'tfc:food/banana', 'nitrogen', tier=15, seed_chance=0.08)
 
     trellis_plantable(rm, 'blackberry', 'tfc:plant/blackberry_bush', 'tfc:food/blackberry', 'nitrogen')
@@ -130,10 +134,14 @@ def generate(rm: ResourceManager):
     food_item(rm, 'cheeses', '#firmalife:foods/cheeses', Category.dairy, 4, 2, 0, 0.3, dairy=3)
     decayable(rm, 'chocolate_blends', '#firmalife:chocolate_blends', Category.dairy)
     decayable(rm, 'butter', 'firmalife:food/butter', Category.dairy)
+    decayable(rm, 'pie_dough', 'firmalife:food/pie_dough', Category.other)
 
     item_size(rm, 'jars', '#firmalife:jars', Size.very_large, Weight.medium)
     item_size(rm, 'beehive_frame', 'firmalife:beehive_frame', Size.very_small, Weight.very_heavy)
     item_size(rm, 'cheese_wheels', '#firmalife:cheese_wheels', Size.very_large, Weight.very_heavy)
+    item_size(rm, 'dynamic_foods', '#firmalife:foods/dynamic', Size.very_small, Weight.very_heavy)
+
+    item_heat(rm, 'heatable_foods', '#firmalife:foods/heatable', 1)
 
     ### MISC DATA ###
     global_loot_modifiers(rm, 'firmalife:fruit_leaf', 'firmalife:rennet')
@@ -233,17 +241,16 @@ def food_item(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredi
         'grain': grain,
         'dairy': dairy
     })
-    rm.item_tag('foods', ingredient)
     if category in (Category.fruit, Category.vegetable):
-        rm.item_tag('foods/%ss' % category.name.lower(), ingredient)
+        rm.item_tag('tfc:foods/%ss' % category.name.lower(), ingredient)
     if category in (Category.meat, Category.cooked_meat):
-        rm.item_tag('foods/meats', ingredient)
+        rm.item_tag('tfc:foods/meats', ingredient)
         if category == Category.cooked_meat:
-            rm.item_tag('foods/cooked_meats', ingredient)
+            rm.item_tag('tfc:foods/cooked_meats', ingredient)
         else:
-            rm.item_tag('foods/raw_meats', ingredient)
+            rm.item_tag('tfc:foods/raw_meats', ingredient)
     if category == Category.dairy:
-        rm.item_tag('foods/dairy', ingredient)
+        rm.item_tag('tfc:foods/dairy', ingredient)
 
 def drinkable(rm: ResourceManager, name_parts: utils.ResourceIdentifier, fluid: utils.Json, thirst: Optional[int] = None, intoxication: Optional[int] = None):
     rm.data(('tfc', 'drinkables', name_parts), {

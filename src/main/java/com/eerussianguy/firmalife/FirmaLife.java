@@ -23,6 +23,7 @@ import com.eerussianguy.firmalife.common.network.FLPackets;
 import com.eerussianguy.firmalife.common.recipes.FLRecipeSerializers;
 import com.eerussianguy.firmalife.common.recipes.FLRecipeTypes;
 import com.eerussianguy.firmalife.common.recipes.data.FLIngredients;
+import com.eerussianguy.firmalife.common.recipes.data.FLItemStackModifiers;
 import com.eerussianguy.firmalife.compat.patchouli.FLPatchouliIntegration;
 import com.mojang.logging.LogUtils;
 import net.dries007.tfc.config.TFCConfig;
@@ -69,6 +70,7 @@ public class Firmalife
             FLIngredients.init();
             TFCConfig.SERVER.enablePumpkinCarving.set(false);
         });
+        FLItemStackModifiers.init();
         FLPatchouliIntegration.registerMultiBlocks();
     }
 

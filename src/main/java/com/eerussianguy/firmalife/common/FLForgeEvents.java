@@ -76,7 +76,7 @@ public class FLForgeEvents
             FLBlocks.CARVED_PUMPKINS.forEach((carve, reg) -> {
                 if (block == reg.get())
                 {
-                    level.setBlockAndUpdate(pos, Helpers.copyProperty(FLBlocks.CARVED_PUMPKINS.get(carve).get().defaultBlockState(), state, HorizontalDirectionalBlock.FACING));
+                    level.setBlockAndUpdate(pos, Helpers.copyProperty(FLBlocks.JACK_O_LANTERNS.get(carve).get().defaultBlockState(), state, HorizontalDirectionalBlock.FACING));
                     event.setCanceled(true);
                 }
             });

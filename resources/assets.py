@@ -66,6 +66,7 @@ def generate(rm: ResourceManager):
         tex = 'firmalife:block/greenhouse/climate_station/%s' % variant
         rm.block_model('firmalife:climate_station_%s' % variant, {'west': tex, 'east': tex, 'north': tex, 'south': tex, 'particle': tex, 'up': 'firmalife:block/greenhouse/climate_station/top', 'down': 'firmalife:block/greenhouse/climate_station/end'}, 'block/cube')
 
+    # todo: facing
     rm.blockstate('beehive', variants={'honey=true': {'model': 'minecraft:block/beehive_honey'}, 'honey=false': {'model': 'minecraft:block/beehive'}}).with_lang(lang('wooden beehive')).with_tag('minecraft:mineable/axe').with_block_loot('firmalife:beehive')
     rm.item_model('beehive', parent='minecraft:block/beehive', no_textures=True)
 
@@ -124,7 +125,7 @@ def generate(rm: ResourceManager):
     for jar, _, texture, _ in JARS:
         make_jar(rm, jar, texture)
     for fruit in TFC_FRUITS:
-        make_jar(rm, fruit, 'firmalife:block/jar/%s' % fruit)
+        make_jar(rm, fruit, 'firmalife:block/jar/%s' % fruit).with_tag('foods/preserves')
 
     for block, tag in SIMPLE_BLOCKS.items():
         rm.blockstate(block).with_block_model().with_tag(tag).with_lang(lang(block)).with_item_model()
@@ -144,7 +145,7 @@ def generate(rm: ResourceManager):
     for key, value in DEFAULT_LANG.items():
         rm.lang(key, value)
 
-def make_jar(rm: ResourceManager, jar: str, texture: str, lang_override: str = None):
+def make_jar(rm: ResourceManager, jar: str, texture: str, lang_override: str = None) -> ItemContext:
     for i in range(1, 5):
         rm.block_model('jar/%s_%s' % (jar, i), textures={'1': texture}, parent='firmalife:block/jar_%s' % i)
     block = rm.blockstate('%s_jar' % jar, variants=dict(('count=%s' % i, {'model': 'firmalife:block/jar/%s_%s' % (jar, i)}) for i in range(1, 5)))
@@ -153,8 +154,9 @@ def make_jar(rm: ResourceManager, jar: str, texture: str, lang_override: str = N
     for i in range(1, 5):
         loot_pools += [{'name': 'firmalife:%s_jar' % jar, 'conditions': [loot_tables.block_state_property('firmalife:%s_jar[count=%s]' % (jar, i))], 'functions': [loot_tables.set_count(i)]}]
     block.with_block_loot(*loot_pools)
-    rm.item_model('firmalife:%s_jar' % jar, 'firmalife:item/jar/%s' % jar)
+    ctx = rm.item_model('firmalife:%s_jar' % jar, 'firmalife:item/jar/%s' % jar)
     rm.item_tag('jars', 'firmalife:%s_jar' % jar)
+    return ctx
 
 def item_model_property(rm: ResourceManager, name_parts: utils.ResourceIdentifier, overrides: utils.Json, data: Dict[str, Any]) -> ItemContext:
     res = utils.resource_location(rm.domain, name_parts)

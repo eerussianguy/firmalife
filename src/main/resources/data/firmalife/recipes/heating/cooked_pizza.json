@@ -1,0 +1,16 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:heating",
+  "ingredient": {
+    "item": "firmalife:food/raw_pizza"
+  },
+  "result_item": {
+    "stack": {
+      "item": "firmalife:food/cooked_pizza"
+    },
+    "modifiers": [
+      "firmalife:copy_dynamic_food"
+    ]
+  },
+  "temperature": 400
+}

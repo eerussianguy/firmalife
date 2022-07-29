@@ -11,6 +11,7 @@
     "#firmalife:foods/slices",
     "#firmalife:foods/cheeses",
     "#firmalife:chocolate_blends",
-    "firmalife:food/butter"
+    "firmalife:food/butter",
+    "firmalife:food/pie_dough"
   ]
 }

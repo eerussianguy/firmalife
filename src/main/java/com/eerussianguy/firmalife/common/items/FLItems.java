@@ -5,6 +5,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.function.Supplier;
 
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -24,8 +25,10 @@ import net.dries007.tfc.common.fluids.SimpleFluid;
 import net.dries007.tfc.common.fluids.TFCFluids;
 import net.dries007.tfc.common.items.DecayingItem;
 import net.dries007.tfc.common.items.Food;
+import net.dries007.tfc.common.items.SandwichItem;
 import net.dries007.tfc.util.Helpers;
 
+import static net.dries007.tfc.common.TFCItemGroup.FOOD;
 import static net.dries007.tfc.common.TFCItemGroup.MISC;
 
 @SuppressWarnings("unused")
@@ -51,7 +54,12 @@ public class FLItems
     public static final RegistryObject<Item> WATERING_CAN = register("watering_can", () -> new WateringCanItem(prop()));
 
     public static final Map<Spice, RegistryObject<Item>> SPICES = Helpers.mapOfKeys(Spice.class, spice -> register("spice/" + spice.name(), MISC));
-    public static final Map<FLFood, RegistryObject<Item>> FOODS = Helpers.mapOfKeys(FLFood.class, food -> register("food/" + food.name(), () -> new DecayingItem(new Item.Properties().food(food.getFoodProperties()).tab(TFCItemGroup.FOOD))));
+    public static final Map<FLFood, RegistryObject<Item>> FOODS = Helpers.mapOfKeys(FLFood.class, food -> register("food/" + food.name(), () -> new DecayingItem(new Item.Properties().food(food.getFoodProperties()).tab(FOOD))));
+
+    public static final RegistryObject<SandwichItem> FILLED_PIE = registerDynamicFood("food/filled_pie");
+    public static final RegistryObject<SandwichItem> COOKED_PIE = registerDynamicFood("food/cooked_pie");
+    public static final RegistryObject<SandwichItem> RAW_PIZZA = registerDynamicFood("food/raw_pizza");
+    public static final RegistryObject<SandwichItem> COOKED_PIZZA = registerDynamicFood("food/cooked_pizza");
 
     public static final Map<Ore.Grade, RegistryObject<Item>> CHROMIUM_ORES = Helpers.mapOfKeys(Ore.Grade.class, grade -> register("ore/" + grade.name() + "_chromite", TFCItemGroup.ORES));
 
@@ -72,6 +80,11 @@ public class FLItems
     private static Item.Properties prop()
     {
         return new Item.Properties().tab(MISC);
+    }
+
+    private static RegistryObject<SandwichItem> registerDynamicFood(String name)
+    {
+        return register(name, () -> new DynamicFoodItem(new Item.Properties().tab(FOOD).food(new FoodProperties.Builder().nutrition(4).saturationMod(0.3f).build())));
     }
 
     private static RegistryObject<Item> register(String name, CreativeModeTab group)

@@ -1,0 +1,23 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:advanced_shapeless_crafting",
+  "ingredients": [
+    {
+      "item": "firmalife:food/pie_dough"
+    },
+    {
+      "tag": "firmalife:foods/preserves"
+    }
+  ],
+  "result": {
+    "stack": {
+      "item": "firmalife:food/filled_pie"
+    },
+    "modifiers": [
+      "firmalife:pie"
+    ]
+  },
+  "primary_ingredient": {
+    "tag": "tfc:foods"
+  }
+}

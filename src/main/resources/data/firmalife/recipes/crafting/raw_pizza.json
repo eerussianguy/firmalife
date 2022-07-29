@@ -1,0 +1,29 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:advanced_shapeless_crafting",
+  "ingredients": [
+    {
+      "item": "firmalife:food/pizza_dough"
+    },
+    {
+      "tag": "firmalife:foods/pizza_ingredients"
+    },
+    {
+      "tag": "firmalife:foods/pizza_ingredients"
+    },
+    {
+      "item": "firmalife:food/shredded_cheese"
+    }
+  ],
+  "result": {
+    "stack": {
+      "item": "firmalife:food/raw_pizza"
+    },
+    "modifiers": [
+      "firmalife:pizza"
+    ]
+  },
+  "primary_ingredient": {
+    "tag": "tfc:foods"
+  }
+}

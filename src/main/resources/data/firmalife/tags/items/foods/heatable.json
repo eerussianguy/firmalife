@@ -2,6 +2,7 @@
   "__comment__": "This file was automatically created by mcresources",
   "replace": false,
   "values": [
-    "#tfc:foods/flour"
+    "firmalife:food/raw_pizza",
+    "firmalife:food/filled_pie"
   ]
 }

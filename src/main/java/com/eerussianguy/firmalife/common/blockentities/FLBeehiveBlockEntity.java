@@ -194,7 +194,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
             breedTickChanceInverted = 20;
         }
         breedTickChanceInverted = Math.max(0, breedTickChanceInverted - flowers);
-        if (flowers > MIN_FLOWERS && breedTickChanceInverted > 0 && level.random.nextInt(breedTickChanceInverted) == 0)
+        if (flowers > MIN_FLOWERS && (breedTickChanceInverted == 0 || level.random.nextInt(breedTickChanceInverted) == 0))
         {
             IBee parent1 = null;
             IBee parent2 = null;

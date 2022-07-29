@@ -65,6 +65,7 @@ def generate(rm: ResourceManager):
     rm.crafting_shaped('crafting/cheesecloth', ['XX'], {'X': '#tfc:high_quality_cloth'}, '8 firmalife:cheesecloth').with_advancement('#tfc:high_quality_cloth')
     rm.crafting_shaped('crafting/climate_station', ['BXB', 'OYO', 'BXB'], {'Y': 'minecraft:blue_stained_glass', 'X': 'tfc:brass_mechanisms', 'O': '#forge:dusts/redstone', 'B': '#minecraft:planks'}, 'firmalife:climate_station').with_advancement('#tfc:brass_mechanisms')
     rm.crafting_shapeless('crafting/watering_can', (fluid_item_ingredient('1000 minecraft:water'), 'tfc:wooden_bucket', '#tfc:lumber'), 'firmalife:watering_can')
+    damage_shapeless(rm, 'crafting/shredded_cheese', ('#tfc:knives', '#firmalife:foods/cheeses'), 'firmalife:food/shredded_cheese').with_advancement('#firmalife:foods/cheeses')
 
     for jar, remainder, _, ing in JARS:
         make_jar(rm, jar, remainder, ing)
@@ -98,6 +99,9 @@ def generate(rm: ResourceManager):
     clay_knapping(rm, 'oven_bottom', ['XX XX', 'X   X', 'X   X', 'XXXXX'], 'firmalife:oven_bottom')
     clay_knapping(rm, 'oven_chimney', ['XX XX', 'XX XX', 'XX XX'], 'firmalife:oven_chimney')
 
+    heat_recipe(rm, 'cooked_pie', 'firmalife:food/filled_pie', 400, result_item=item_stack_provider('firmalife:food/cooked_pie', other_modifier='firmalife:copy_dynamic_food'))
+    heat_recipe(rm, 'cooked_pizza', 'firmalife:food/raw_pizza', 400, result_item=item_stack_provider('firmalife:food/cooked_pizza', other_modifier='firmalife:copy_dynamic_food'))
+
     # Firmalife Recipes
     for carving, pattern in CARVINGS.items():
         pumpkin_knapping(rm, carving, pattern, 'firmalife:carved_pumpkin/%s' % carving)
@@ -112,6 +116,11 @@ def generate(rm: ResourceManager):
     smoking_recipe(rm, 'cheese', not_rotten(has_trait('#firmalife:foods/cheeses', 'firmalife:smoked', True)), item_stack_provider(copy_input=True, add_trait='firmalife:smoked'))
 
     mixing_recipe(rm, 'butter', ingredients=[utils.ingredient('tfc:powder/salt')], fluid='1000 firmalife:cream', output_item='firmalife:food/butter')
+    mixing_recipe(rm, 'pie_dough', ingredients=[not_rotten('firmalife:food/butter'), not_rotten('#tfc:foods/flour'), utils.ingredient('#firmalife:sweetener')], fluid='1000 minecraft:water', output_item='firmalife:food/pie_dough')
+    mixing_recipe(rm, 'pizza_dough', ingredients=[not_rotten('#tfc:foods/dough'), utils.ingredient('tfc:powder/salt')], fluid='1000 tfc:olive_oil', output_item='4 firmalife:food/pizza_dough')
+
+    meal_shapeless(rm, 'crafting/filled_pie', ('firmalife:food/pie_dough', '#firmalife:foods/preserves'), 'firmalife:food/filled_pie', 'firmalife:pie').with_advancement('firmalife:food/pie_dough')
+    meal_shapeless(rm, 'crafting/raw_pizza', ('firmalife:food/pizza_dough', '#firmalife:foods/pizza_ingredients', '#firmalife:foods/pizza_ingredients', 'firmalife:food/shredded_cheese'), 'firmalife:food/raw_pizza', 'firmalife:pizza').with_advancement('firmalife:food/pizza_dough')
 
     # Greenhouse
     for block in GREENHOUSE_BLOCKS:
@@ -149,6 +158,35 @@ def generate(rm: ResourceManager):
             rm.block_tag('can_collapse', 'firmalife:ore/%s_%s/%s' % (grade, ore, rock))
 
     alloy_recipe(rm, 'stainless_steel', 'stainless_steel', ('firmalife:chromium', 0.2, 0.3), ('tfc:nickel', 0.1, 0.2), ('tfc:steel', 0.6, 0.8))
+
+def meal_shapeless(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredients: Json, result: str, mod: str) -> RecipeContext:
+    return advanced_shapeless(rm, name_parts, ingredients, item_stack_provider(result, other_modifier=mod), primary_ingredient=utils.ingredient('#tfc:foods'))
+
+def advanced_shapeless(rm: ResourceManager, name_parts: ResourceIdentifier, ingredients: Json, result: Json, primary_ingredient: Json, group: str = None, conditions: Optional[Json] = None) -> RecipeContext:
+    res = utils.resource_location(rm.domain, name_parts)
+    rm.write((*rm.resource_dir, 'data', res.domain, 'recipes', res.path), {
+        'type': 'tfc:advanced_shapeless_crafting',
+        'group': group,
+        'ingredients': utils.item_stack_list(ingredients),
+        'result': result,
+        'primary_ingredient': utils.ingredient(primary_ingredient),
+        'conditions': utils.recipe_condition(conditions)
+    })
+    return RecipeContext(rm, res)
+
+def advanced_shaped(rm: ResourceManager, name_parts: ResourceIdentifier, pattern: Sequence[str], ingredients: Json, result: Json, input_xy: Tuple[int, int], group: str = None, conditions: Optional[Json] = None) -> RecipeContext:
+    res = utils.resource_location(rm.domain, name_parts)
+    rm.write((*rm.resource_dir, 'data', res.domain, 'recipes', res.path), {
+        'type': 'tfc:advanced_shaped_crafting',
+        'group': group,
+        'pattern': pattern,
+        'key': utils.item_stack_dict(ingredients, ''.join(pattern)[0]),
+        'result': item_stack_provider(result),
+        'input_row': input_xy[1],
+        'input_column': input_xy[0],
+        'conditions': utils.recipe_condition(conditions)
+    })
+    return RecipeContext(rm, res)
 
 def collapse_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredient, result: Optional[utils.Json] = None, copy_input: Optional[bool] = None):
     assert result is not None or copy_input
@@ -377,13 +415,13 @@ def delegate_recipe(rm: ResourceManager, name_parts: ResourceIdentifier, recipe_
     return RecipeContext(rm, res)
 
 def pumpkin_knapping(rm: ResourceManager, name_parts: ResourceIdentifier, pattern: List[str], result: Json, outside_slot_required: bool = None):
-    knapping_recipe(rm, 'pumpkin_knapping', name_parts, pattern, result, outside_slot_required)
+    knapping_recipe(rm, 'firmalife:pumpkin_knapping', name_parts, pattern, result, outside_slot_required)
 
 def clay_knapping(rm: ResourceManager, name_parts: ResourceIdentifier, pattern: List[str], result: Json, outside_slot_required: bool = None):
-    knapping_recipe(rm, 'clay_knapping', name_parts, pattern, result, outside_slot_required)
+    knapping_recipe(rm, 'tfc:clay_knapping', name_parts, pattern, result, outside_slot_required)
 
 def knapping_recipe(rm: ResourceManager, knapping_type: str, name_parts: utils.ResourceIdentifier, pattern: List[str], result: utils.Json, outside_slot_required: bool = None):
-    rm.recipe((knapping_type, name_parts), 'tfc:%s' % knapping_type, {
+    rm.recipe((knapping_type, name_parts), knapping_type, {
         'outside_slot_required': outside_slot_required,
         'pattern': pattern,
         'result': utils.item_stack(result)
