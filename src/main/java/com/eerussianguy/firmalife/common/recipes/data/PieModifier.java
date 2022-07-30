@@ -1,9 +1,14 @@
 package com.eerussianguy.firmalife.common.recipes.data;
 
+import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;
 
+import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import net.dries007.tfc.common.capabilities.food.FoodCapability;
+import net.dries007.tfc.common.items.DynamicBowlFood;
+import net.dries007.tfc.common.recipes.RecipeHelpers;
+import net.dries007.tfc.util.Helpers;
 
 public enum PieModifier implements CustomFoodModifier<PieModifier>
 {
@@ -14,6 +19,24 @@ public enum PieModifier implements CustomFoodModifier<PieModifier>
     {
         ItemStack ret = CustomFoodModifier.super.apply(stack, input);
         FoodCapability.applyTrait(ret, FLFoodTraits.RAW);
+
+        CraftingContainer inv = RecipeHelpers.getCraftingContainer();
+        if (inv != null)
+        {
+            for (int i = 0; i < inv.getContainerSize(); i++)
+            {
+                ItemStack item = inv.getItem(i);
+                if (Helpers.isItem(item, FLTags.Items.PIE_PANS))
+                {
+                    ret.getCapability(FoodCapability.CAPABILITY).ifPresent(cap -> {
+                        if (cap instanceof DynamicBowlFood.DynamicBowlHandler handler)
+                        {
+                            handler.setBowl(item);
+                        }
+                    });
+                }
+            }
+        }
         return ret;
     }
 

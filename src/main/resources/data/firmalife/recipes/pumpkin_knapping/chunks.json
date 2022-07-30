@@ -1,0 +1,14 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "firmalife:pumpkin_knapping",
+  "pattern": [
+    " X X ",
+    "X X X",
+    " X X ",
+    "X X X",
+    " X X "
+  ],
+  "result": {
+    "item": "firmalife:food/pumpkin_chunks"
+  }
+}

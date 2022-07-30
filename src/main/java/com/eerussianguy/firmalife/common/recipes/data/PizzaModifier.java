@@ -27,6 +27,7 @@ public enum PizzaModifier implements CustomFoodModifier<PizzaModifier>
     public float[] nutrients(float[] input)
     {
         input[G] = 1f;
+        input[D] = 0.25f;
         return input;
     }
 

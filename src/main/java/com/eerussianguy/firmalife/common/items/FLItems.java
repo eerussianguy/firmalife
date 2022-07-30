@@ -18,12 +18,12 @@ import net.minecraftforge.registries.RegistryObject;
 import com.eerussianguy.firmalife.Firmalife;
 import com.eerussianguy.firmalife.common.blocks.FLFluids;
 import com.eerussianguy.firmalife.common.util.ExtraFluid;
+import com.eerussianguy.firmalife.common.util.FLFruit;
 import com.eerussianguy.firmalife.common.util.FLMetal;
 import net.dries007.tfc.common.TFCItemGroup;
 import net.dries007.tfc.common.blocks.rock.Ore;
-import net.dries007.tfc.common.fluids.SimpleFluid;
-import net.dries007.tfc.common.fluids.TFCFluids;
 import net.dries007.tfc.common.items.DecayingItem;
+import net.dries007.tfc.common.items.DynamicBowlFood;
 import net.dries007.tfc.common.items.Food;
 import net.dries007.tfc.common.items.SandwichItem;
 import net.dries007.tfc.util.Helpers;
@@ -45,6 +45,7 @@ public class FLItems
     public static final RegistryObject<Item> FRUIT_LEAF = register("fruit_leaf", MISC);
     public static final RegistryObject<Item> EMPTY_JAR = register("empty_jar", MISC);
     public static final RegistryObject<Item> PEEL = register("peel", MISC);
+    public static final RegistryObject<Item> PIE_PAN = register("pie_pan", MISC);
     public static final RegistryObject<Item> PINEAPPLE_LEATHER = register("pineapple_leather", MISC);
     public static final RegistryObject<Item> PINEAPPLE_YARN = register("pineapple_yarn", MISC);
     public static final RegistryObject<Item> RAW_HONEY = register("raw_honey", MISC);
@@ -55,10 +56,11 @@ public class FLItems
 
     public static final Map<Spice, RegistryObject<Item>> SPICES = Helpers.mapOfKeys(Spice.class, spice -> register("spice/" + spice.name(), MISC));
     public static final Map<FLFood, RegistryObject<Item>> FOODS = Helpers.mapOfKeys(FLFood.class, food -> register("food/" + food.name(), () -> new DecayingItem(new Item.Properties().food(food.getFoodProperties()).tab(FOOD))));
+    public static final Map<FLFruit, RegistryObject<Item>> FRUITS = Helpers.mapOfKeys(FLFruit.class, food -> register("food/" + food.name(), () -> new DecayingItem(new Item.Properties().food(food.getFoodProperties()).tab(FOOD))));
 
-    public static final RegistryObject<SandwichItem> FILLED_PIE = registerDynamicFood("food/filled_pie");
-    public static final RegistryObject<SandwichItem> COOKED_PIE = registerDynamicFood("food/cooked_pie");
-    public static final RegistryObject<SandwichItem> RAW_PIZZA = registerDynamicFood("food/raw_pizza");
+    public static final RegistryObject<DynamicBowlFood> FILLED_PIE = registerContainerFood("food/filled_pie", false);
+    public static final RegistryObject<DynamicBowlFood> COOKED_PIE = registerContainerFood("food/cooked_pie");
+    public static final RegistryObject<SandwichItem> RAW_PIZZA = registerDynamicFood("food/raw_pizza", false);
     public static final RegistryObject<SandwichItem> COOKED_PIZZA = registerDynamicFood("food/cooked_pizza");
 
     public static final Map<Ore.Grade, RegistryObject<Item>> CHROMIUM_ORES = Helpers.mapOfKeys(Ore.Grade.class, grade -> register("ore/" + grade.name() + "_chromite", TFCItemGroup.ORES));
@@ -84,7 +86,32 @@ public class FLItems
 
     private static RegistryObject<SandwichItem> registerDynamicFood(String name)
     {
-        return register(name, () -> new DynamicFoodItem(new Item.Properties().tab(FOOD).food(new FoodProperties.Builder().nutrition(4).saturationMod(0.3f).build())));
+        return registerDynamicFood(name, true);
+    }
+
+    private static RegistryObject<SandwichItem> registerDynamicFood(String name, boolean edible)
+    {
+        return register(name, () -> new SandwichItem(foodProperties(edible)));
+    }
+
+    private static RegistryObject<DynamicBowlFood> registerContainerFood(String name)
+    {
+        return registerContainerFood(name, true);
+    }
+
+    private static RegistryObject<DynamicBowlFood> registerContainerFood(String name, boolean edible)
+    {
+        return register(name, () -> new DynamicBowlFood(foodProperties(edible)));
+    }
+
+    private static Item.Properties foodProperties(boolean edible)
+    {
+        Item.Properties properties = new Item.Properties().tab(FOOD);
+        if (edible)
+        {
+            properties.food(new FoodProperties.Builder().nutrition(4).saturationMod(0.3f).build());
+        }
+        return properties;
     }
 
     private static RegistryObject<Item> register(String name, CreativeModeTab group)

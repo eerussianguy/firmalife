@@ -53,6 +53,8 @@ def generate(rm: ResourceManager):
     rm.item_tag('pumpkin_knapping', 'tfc:pumpkin')
     rm.item_tag('foods/heatable', 'firmalife:food/raw_pizza', 'firmalife:food/filled_pie')
     rm.item_tag('foods/dynamic', 'firmalife:food/raw_pizza', 'firmalife:food/filled_pie', 'firmalife:food/cooked_pizza', 'firmalife:food/cooked_pie')
+    rm.item_tag('foods/washable', 'firmalife:food/filled_pie', 'firmalife:food/cooked_pie')
+    rm.item_tag('pie_pans', 'firmalife:pie_pan')
 
     rm.block_tag('oven_insulation', 'minecraft:bricks', '#tfc:forge_insulation', '#firmalife:oven_blocks')
     rm.block_tag('minecraft:mineable/pickaxe', '#firmalife:oven_blocks')
@@ -132,9 +134,11 @@ def generate(rm: ResourceManager):
     decayable(rm, 'milk_curd', 'firmalife:food/milk_curd', Category.dairy)
     food_item(rm, 'slices', '#firmalife:foods/slices', Category.grain, 4, 0.75, 0, 1.5, grain=1)
     food_item(rm, 'cheeses', '#firmalife:foods/cheeses', Category.dairy, 4, 2, 0, 0.3, dairy=3)
+    food_item(rm, 'shredded_cheese', '#firmalife:foods/cheeses', Category.dairy, 4, 2, 0, 0.3, dairy=0.75)
     decayable(rm, 'chocolate_blends', '#firmalife:chocolate_blends', Category.dairy)
     decayable(rm, 'butter', 'firmalife:food/butter', Category.dairy)
     decayable(rm, 'pie_dough', 'firmalife:food/pie_dough', Category.other)
+    food_item(rm, 'pumpkin_chunks', 'firmalife:food/pumpkin_chunks', Category.fruit, 4, 1, 5, 1.5, fruit=1)
 
     item_size(rm, 'jars', '#firmalife:jars', Size.very_large, Weight.medium)
     item_size(rm, 'beehive_frame', 'firmalife:beehive_frame', Size.very_small, Weight.very_heavy)

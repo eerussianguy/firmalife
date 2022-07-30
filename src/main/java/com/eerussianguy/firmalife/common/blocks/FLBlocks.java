@@ -31,6 +31,7 @@ import com.eerussianguy.firmalife.common.items.FLItems;
 import com.eerussianguy.firmalife.common.items.JarsBlockItem;
 import com.eerussianguy.firmalife.common.util.Carving;
 import com.eerussianguy.firmalife.common.util.ExtraFluid;
+import com.eerussianguy.firmalife.common.util.FLFruit;
 import com.eerussianguy.firmalife.common.util.FLMetal;
 import net.dries007.tfc.common.TFCItemGroup;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
@@ -69,7 +70,8 @@ public class FLBlocks
     public static final RegistryObject<Block> COMPOST_JAR = register("compost_jar", () -> new JarsBlock(jarProperties()), b -> new JarsBlockItem(b, new Item.Properties().tab(MISC)));
     public static final RegistryObject<Block> ROTTEN_COMPOST_JAR = register("rotten_compost_jar", () -> new JarsBlock(jarProperties()), b -> new JarsBlockItem(b, new Item.Properties().tab(MISC)));
     public static final RegistryObject<Block> GUANO_JAR = register("guano_jar", () -> new JarsBlock(jarProperties()), b -> new JarsBlockItem(b, new Item.Properties().tab(MISC)));
-    public static final Map<Food, RegistryObject<Block>> FRUIT_PRESERVES = Helpers.mapOfKeys(Food.class, FLItems.TFC_FRUITS::contains, food -> register(food.name().toLowerCase(Locale.ROOT) + "_jar", () -> new JarsBlock(jarProperties()), b -> new JarsBlockItem(b, new Item.Properties().tab(MISC))));
+    public static final Map<Food, RegistryObject<Block>> FRUIT_PRESERVES = Helpers.mapOfKeys(Food.class, FLItems.TFC_FRUITS::contains, food -> register(food.name().toLowerCase(Locale.ROOT) + "_jar", () -> new JarsBlock(jarProperties()), b -> new JarsBlockItem(b, new Item.Properties().tab(FOOD))));
+    public static final Map<FLFruit, RegistryObject<Block>> FL_FRUIT_PRESERVES = Helpers.mapOfKeys(FLFruit.class, food -> register(food.name().toLowerCase(Locale.ROOT) + "_jar", () -> new JarsBlock(jarProperties()), b -> new JarsBlockItem(b, new Item.Properties().tab(FOOD))));
 
     public static final RegistryObject<Block> CHEDDAR_WHEEL = register("cheddar_wheel", () -> new CheeseWheelBlock(ExtendedProperties.of(Properties.of(Material.DIRT).sound(SoundType.WART_BLOCK).strength(2f).randomTicks()).blockEntity(FLBlockEntities.TICK_COUNTER), FLItems.FOODS.get(FLFood.CHEDDAR)), DECORATIONS);
     public static final RegistryObject<Block> CHEVRE_WHEEL = register("chevre_wheel", () -> new CheeseWheelBlock(ExtendedProperties.of(Properties.of(Material.DIRT).sound(SoundType.WART_BLOCK).strength(2f).randomTicks()).blockEntity(FLBlockEntities.TICK_COUNTER), FLItems.FOODS.get(FLFood.CHEVRE)), DECORATIONS);

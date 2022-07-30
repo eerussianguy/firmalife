@@ -28,13 +28,19 @@ def generate(rm: ResourceManager):
         rm.blockstate('%soven_chimney' % pref, model='firmalife:block/oven_chimney_%s' % stage).with_lang(lang('%soven chimney', pref)).with_tag('firmalife:oven_blocks').with_tag('firmalife:chimneys').with_block_loot('firmalife:%soven_chimney' % pref)
         rm.item_model('%soven_chimney' % pref, parent='firmalife:block/oven_chimney_%s' % stage, no_textures=True)
 
-    rm.blockstate('drying_mat', model='firmalife:block/drying_mat').with_item_model().with_tag('tfc:mineable_with_sharp_tool').with_lang(lang('drying mat'))
-    rm.blockstate('mixing_bowl', model='firmalife:block/mixing_bowl').with_item_model().with_tag('minecraft:mineable/axe').with_lang(lang('mixing bowl'))
+    rm.blockstate('drying_mat', model='firmalife:block/drying_mat').with_item_model().with_tag('tfc:mineable_with_sharp_tool').with_lang(lang('drying mat')).with_block_loot('firmalife:drying_mat')
+    block = rm.blockstate('mixing_bowl', model='firmalife:block/mixing_bowl').with_item_model().with_tag('minecraft:mineable/axe').with_lang(lang('mixing bowl'))
+    block.with_block_loot({'name': 'firmalife:mixing_bowl'}, {'name': 'firmalife:mixing_bowl', 'conditions': [loot_tables.block_state_property('firmalife:mixing_bowl[spoon=true]')]})
 
     for fruit in TFC_FRUITS:
         rm.item_model(('not_dried', fruit), 'tfc:item/food/%s' % fruit)
         rm.item_model(('dried', fruit), 'firmalife:item/dried/dried_%s' % fruit)
         item_model_property(rm, 'tfc:food/%s' % fruit, [{'predicate': {'firmalife:dry': 1}, 'model': 'firmalife:item/dried/%s' % fruit}], {'parent': 'firmalife:item/not_dried/%s' % fruit})
+
+    for fruit in FL_FRUITS:
+        rm.item_model(('not_dried', fruit), 'firmalife:item/food/%s' % fruit)
+        rm.item_model(('dried', fruit), 'firmalife:item/dried/dried_%s' % fruit)
+        item_model_property(rm, 'firmalife:food/%s' % fruit, [{'predicate': {'firmalife:dry': 1}, 'model': 'firmalife:item/dried/%s' % fruit}], {'parent': 'firmalife:item/not_dried/%s' % fruit})
 
     for greenhouse in GREENHOUSES:
         greenhouse_slab(rm, greenhouse, 'firmalife:block/greenhouse/%s' % greenhouse, 'firmalife:block/greenhouse/%s_glass' % greenhouse)
@@ -66,8 +72,10 @@ def generate(rm: ResourceManager):
         tex = 'firmalife:block/greenhouse/climate_station/%s' % variant
         rm.block_model('firmalife:climate_station_%s' % variant, {'west': tex, 'east': tex, 'north': tex, 'south': tex, 'particle': tex, 'up': 'firmalife:block/greenhouse/climate_station/top', 'down': 'firmalife:block/greenhouse/climate_station/end'}, 'block/cube')
 
-    # todo: facing
-    rm.blockstate('beehive', variants={'honey=true': {'model': 'minecraft:block/beehive_honey'}, 'honey=false': {'model': 'minecraft:block/beehive'}}).with_lang(lang('wooden beehive')).with_tag('minecraft:mineable/axe').with_block_loot('firmalife:beehive')
+    rm.blockstate('beehive', variants={
+        **four_rotations('minecraft:block/beehive_honey', (90, None, 180, 270), ',honey=true'),
+        **four_rotations('minecraft:block/beehive', (90, None, 180, 270), ',honey=false')
+    }).with_lang(lang('wooden beehive')).with_tag('minecraft:mineable/axe').with_block_loot('firmalife:beehive')
     rm.item_model('beehive', parent='minecraft:block/beehive', no_textures=True)
 
     rm.block_model('iron_composter', parent='tfc:block/composter/composter', textures={'0': 'firmalife:block/iron_composter_bottom', '1': 'firmalife:block/iron_composter_side', 'particle': 'firmalife:block/iron_composter_bottom'})
@@ -125,6 +133,8 @@ def generate(rm: ResourceManager):
     for jar, _, texture, _ in JARS:
         make_jar(rm, jar, texture)
     for fruit in TFC_FRUITS:
+        make_jar(rm, fruit, 'firmalife:block/jar/%s' % fruit).with_tag('foods/preserves')
+    for fruit in FL_FRUITS:
         make_jar(rm, fruit, 'firmalife:block/jar/%s' % fruit).with_tag('foods/preserves')
 
     for block, tag in SIMPLE_BLOCKS.items():

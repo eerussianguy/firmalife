@@ -1,9 +1,13 @@
 package com.eerussianguy.firmalife.client;
 
+import java.util.function.Supplier;
+
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
@@ -72,6 +76,7 @@ public class FLClientEvents
 
         FLBlocks.CHROMITE_ORES.values().forEach(map -> map.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout)));
         FLBlocks.FRUIT_PRESERVES.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), translucent));
+        FLBlocks.FL_FRUIT_PRESERVES.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), translucent));
         FLBlocks.GREENHOUSE_BLOCKS.values().forEach(map -> map.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout)));
 
         event.enqueueWork(() -> {
@@ -81,16 +86,21 @@ public class FLClientEvents
             TFCItems.FOOD.forEach((food, item) -> {
                 if (FLItems.TFC_FRUITS.contains(food))
                 {
-                    ItemProperties.register(item.get(), FLHelpers.identifier("dry"), (stack, a, b, c) -> {
-                        return stack.getCapability(FoodCapability.CAPABILITY).map(cap -> cap.getTraits().contains(FLFoodTraits.DRIED)).orElse(false) ? 1f : 0f;
-                    });
+                    registerDryProperty(item);
                 }
             });
+            FLItems.FRUITS.forEach((food, item) -> registerDryProperty(item));
         });
-
-
-
     }
+
+    private static void registerDryProperty(Supplier<Item> item)
+    {
+        ItemProperties.register(item.get(), FLHelpers.identifier("dry"), (stack, a, b, c) ->
+            stack.getCapability(FoodCapability.CAPABILITY)
+                .map(cap -> cap.getTraits().contains(FLFoodTraits.DRIED))
+                .orElse(false) ? 1f : 0f);
+    }
+
 
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event)
     {
@@ -117,6 +127,14 @@ public class FLClientEvents
         for (String name : new String[] {"squash", "banana"})
         {
             for (int i = 0; i < 5; i++)
+            {
+                event.addSprite(FLHelpers.identifier("block/crop/" + name + "_" + i));
+            }
+            event.addSprite(FLHelpers.identifier("block/crop/" + name + "_fruit"));
+        }
+        for (String name : new String[] {"melon", "pumpkin"})
+        {
+            for (int i = 0; i < 7; i++)
             {
                 event.addSprite(FLHelpers.identifier("block/crop/" + name + "_" + i));
             }

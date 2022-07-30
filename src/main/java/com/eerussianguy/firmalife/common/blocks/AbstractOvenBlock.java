@@ -84,7 +84,7 @@ public abstract class AbstractOvenBlock extends FourWayDeviceBlock implements IC
                 stateAt = level.getBlockState(mutable);
             }
             while (Helpers.isBlock(stateAt, FLTags.Blocks.CHIMNEYS));
-            FLClientHelpers.randomParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, random, mutable, level, 0.4f);
+            FLClientHelpers.randomParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, random, mutable, level, 0.05f);
         }
         else
         {

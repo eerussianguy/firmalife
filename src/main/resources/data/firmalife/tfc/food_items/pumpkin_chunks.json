@@ -1,0 +1,12 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "ingredient": {
+    "item": "firmalife:food/pumpkin_chunks"
+  },
+  "category": "fruit",
+  "hunger": 4,
+  "saturation": 1,
+  "water": 5,
+  "decay_modifier": 1.5,
+  "fruit": 1
+}

@@ -1,11 +1,35 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "variants": {
-    "honey=true": {
+    "facing=east,honey=true": {
+      "model": "minecraft:block/beehive_honey",
+      "y": 90
+    },
+    "facing=north,honey=true": {
       "model": "minecraft:block/beehive_honey"
     },
-    "honey=false": {
+    "facing=south,honey=true": {
+      "model": "minecraft:block/beehive_honey",
+      "y": 180
+    },
+    "facing=west,honey=true": {
+      "model": "minecraft:block/beehive_honey",
+      "y": 270
+    },
+    "facing=east,honey=false": {
+      "model": "minecraft:block/beehive",
+      "y": 90
+    },
+    "facing=north,honey=false": {
       "model": "minecraft:block/beehive"
+    },
+    "facing=south,honey=false": {
+      "model": "minecraft:block/beehive",
+      "y": 180
+    },
+    "facing=west,honey=false": {
+      "model": "minecraft:block/beehive",
+      "y": 270
     }
   }
 }

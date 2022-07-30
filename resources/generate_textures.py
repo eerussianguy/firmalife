@@ -32,6 +32,9 @@ def main():
     for fruit in TFC_FRUITS:
         jar_color = get_jar_color(fruit)
         easy_colorize(jar_color, 'texture_templates/jar_content', path + 'block/jar/%s' % fruit, 2)
+    for fruit in FL_FRUITS:
+        jar_color = get_jar_color(fruit)
+        easy_colorize(jar_color, 'texture_templates/jar_content', path + 'block/jar/%s' % fruit, 2)
 
 
 if __name__ == '__main__':

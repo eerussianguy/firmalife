@@ -4,6 +4,7 @@ import net.minecraft.world.item.ItemStack;
 
 import net.dries007.tfc.common.capabilities.food.FoodCapability;
 import net.dries007.tfc.common.capabilities.food.FoodHandler;
+import net.dries007.tfc.common.items.DynamicBowlFood;
 import net.dries007.tfc.common.recipes.outputs.ItemStackModifier;
 
 public enum CopyDynamicFoodModifier implements ItemStackModifier.SingleInstance<CopyDynamicFoodModifier>
@@ -21,6 +22,10 @@ public enum CopyDynamicFoodModifier implements ItemStackModifier.SingleInstance<
                     {
                         outHandler.setFood(inHandler.getData());
                         outHandler.setCreationDate(FoodCapability.getRoundedCreationDate());
+                    }
+                    if (cap instanceof DynamicBowlFood.DynamicBowlHandler outBowl && inputCap instanceof DynamicBowlFood.DynamicBowlHandler inBowl)
+                    {
+                        outBowl.setBowl(inBowl.getBowl());
                     }
                 });
             }

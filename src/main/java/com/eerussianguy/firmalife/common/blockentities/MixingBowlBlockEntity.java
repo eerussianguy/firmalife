@@ -168,11 +168,20 @@ public class MixingBowlBlockEntity extends TickableInventoryBlockEntity<MixingBo
         if (recipe != null && recipe.matches(inventory, level))
         {
             ItemStack outputStack = recipe.assemble(inventory);
+            int count = outputStack.getCount();
             for (int i = 0; i < SLOTS; i++)
             {
                 inventory.setStackInSlot(i, ItemStack.EMPTY);
+                if (count > 0)
+                {
+                    inventory.setStackInSlot(i, Helpers.copyWithSize(outputStack, 1));
+                    count--;
+                }
+                else
+                {
+                    break;
+                }
             }
-            inventory.setStackInSlot(0, outputStack);
             inventory.drain(FluidHelpers.BUCKET_VOLUME, IFluidHandler.FluidAction.EXECUTE);
             inventory.fill(recipe.getResultFluid(), IFluidHandler.FluidAction.EXECUTE);
         }

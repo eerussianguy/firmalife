@@ -233,6 +233,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
                 }
             }
         }
+        honeyChanceInverted /= usableBees.size();
         if (flowers > MIN_FLOWERS && honeyChanceInverted > 0 && level.random.nextInt(honeyChanceInverted) == 0)
         {
             addHoney(usableBees.size());
