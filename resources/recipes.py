@@ -66,6 +66,7 @@ def generate(rm: ResourceManager):
     rm.crafting_shaped('crafting/climate_station', ['BXB', 'OYO', 'BXB'], {'Y': 'minecraft:blue_stained_glass', 'X': 'tfc:brass_mechanisms', 'O': '#forge:dusts/redstone', 'B': '#minecraft:planks'}, 'firmalife:climate_station').with_advancement('#tfc:brass_mechanisms')
     rm.crafting_shapeless('crafting/watering_can', (fluid_item_ingredient('1000 minecraft:water'), 'tfc:wooden_bucket', '#tfc:lumber'), 'firmalife:watering_can')
     damage_shapeless(rm, 'crafting/shredded_cheese', ('#tfc:knives', '#firmalife:foods/cheeses'), '4 firmalife:food/shredded_cheese').with_advancement('#firmalife:foods/cheeses')
+    rm.crafting_shapeless('crafting/pickled_egg', ('minecraft:clay_ball', 'tfc:powder/wood_ash', 'tfc:powder/salt', 'tfc:food/boiled_egg'), 'firmalife:food/pickled_egg')
 
     for jar, remainder, _, ing in JARS:
         make_jar(rm, jar, remainder, ing)
@@ -165,6 +166,16 @@ def generate(rm: ResourceManager):
             rm.block_tag('can_collapse', 'firmalife:ore/%s_%s/%s' % (grade, ore, rock))
 
     alloy_recipe(rm, 'stainless_steel', 'stainless_steel', ('firmalife:chromium', 0.2, 0.3), ('tfc:nickel', 0.1, 0.2), ('tfc:steel', 0.6, 0.8))
+    anvil_recipe(rm, 'pie_pan', '#forge:sheets/cast_iron', '4 firmalife:pie_pan', 1, Rules.hit_last, Rules.hit_second_last, Rules.draw_third_last)
+
+    for recipe in DISABLED_TFC_RECIPES:
+        rm.domain = 'tfc' # DOMAIN CHANGE
+        disable_recipe(rm, recipe)
+        rm.domain = 'firmalife' # DOMAIN RESET
+
+def disable_recipe(rm: ResourceManager, name_parts: ResourceIdentifier):
+    # noinspection PyTypeChecker
+    rm.recipe(name_parts, None, {}, conditions='forge:false')
 
 def meal_shapeless(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredients: Json, result: str, mod: str) -> RecipeContext:
     return advanced_shapeless(rm, name_parts, ingredients, item_stack_provider(result, other_modifier=mod), primary_ingredient=utils.ingredient('#tfc:foods'))

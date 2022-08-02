@@ -12,7 +12,8 @@
       }
     ],
     "result": {
-      "item": "firmalife:food/shredded_cheese"
+      "item": "firmalife:food/shredded_cheese",
+      "count": 4
     }
   }
 }
