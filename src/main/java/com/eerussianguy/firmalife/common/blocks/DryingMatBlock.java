@@ -23,6 +23,7 @@ public class DryingMatBlock extends BottomSupportedDeviceBlock
         ItemStack held = player.getItemInHand(hand);
         if (level.getBlockEntity(pos) instanceof SimpleItemRecipeBlockEntity<?> mat)
         {
+            mat.markForSync();
             return mat.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).map(inv -> {
                 if (mat.readStack().isEmpty() && !held.isEmpty())
                 {

@@ -28,6 +28,7 @@ import com.eerussianguy.firmalife.Firmalife;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.JsonOps;
 import net.dries007.tfc.common.blockentities.TickCounterBlockEntity;
+import net.dries007.tfc.util.Helpers;
 
 import static com.eerussianguy.firmalife.Firmalife.MOD_ID;
 
@@ -138,7 +139,7 @@ public class FLHelpers
 
     public static TranslatableComponent translateEnum(Enum<?> anEnum)
     {
-        return new TranslatableComponent(getEnumTranslationKey(anEnum));
+        return Helpers.translatable(getEnumTranslationKey(anEnum));
     }
 
     /**

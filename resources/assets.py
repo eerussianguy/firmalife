@@ -41,6 +41,7 @@ def generate(rm: ResourceManager):
         rm.item_model(('not_dried', fruit), 'firmalife:item/food/%s' % fruit)
         rm.item_model(('dried', fruit), 'firmalife:item/dried/dried_%s' % fruit)
         item_model_property(rm, 'firmalife:food/%s' % fruit, [{'predicate': {'firmalife:dry': 1}, 'model': 'firmalife:item/dried/%s' % fruit}], {'parent': 'firmalife:item/not_dried/%s' % fruit})
+        rm.item('food/%s' % fruit).with_lang(lang(fruit))
 
     for greenhouse in GREENHOUSES:
         greenhouse_slab(rm, greenhouse, 'firmalife:block/greenhouse/%s' % greenhouse, 'firmalife:block/greenhouse/%s_glass' % greenhouse)
@@ -130,6 +131,19 @@ def generate(rm: ResourceManager):
             rm.blockstate(name, variants=four_rotations('firmalife:block/%s' % name, (90, 0, 180, 270))).with_tag('tfc:mineable_with_sharp_tool').with_block_loot('firmalife:%s' % name).with_lang(lang('%s %s', carving, lang_part))
             rm.item_model('firmalife:%s' % name, parent='firmalife:block/%s' % name)
 
+    for variant in ('gold', 'red', 'purple'):
+        rm.block_model('plant/butterfly_grass_%s' % variant, parent='firmalife:block/tinted_cross_overlay', textures={'cross': 'firmalife:block/plant/butterfly_grass/base', 'overlay': 'firmalife:block/plant/butterfly_grass/%s' % variant})
+    rm.blockstate('plant/butterfly_grass', variants={'': [{'model': 'firmalife:block/plant/butterfly_grass_%s' % variant, 'y': rot} for variant in ('gold', 'red', 'purple') for rot in (None, 90)]}, use_default_model=False).with_lang(lang('butterfly grass'))
+    simple_plant_data(rm, 'firmalife:plant/butterfly_grass')
+    rm.item_model('plant/butterfly_grass', 'firmalife:block/plant/butterfly_grass/base')
+
+    for herb in ('basil', 'bay_laurel', 'cardamom', 'cilantro', 'cumin', 'oregano', 'pimento', 'vanilla'):
+        for stage in ('0', '1'):
+            rm.block_model('plant/%s_%s' % (herb, stage), parent='minecraft:block/tinted_cross', textures={'cross': 'firmalife:block/plant/%s/%s' % (herb, stage)})
+        rm.blockstate('plant/%s' % herb, variants={'stage=0': {'model': 'firmalife:block/plant/%s_0' % herb}, 'stage=1': {'model': 'firmalife:block/plant/%s_0' % herb}}).with_lang(lang(herb)).with_tag('firmalife:butterfly_grass_mutants')
+        simple_plant_data(rm, 'firmalife:plant/%s' % herb)
+        rm.item_model('plant/%s' % herb, 'firmalife:block/plant/%s/1' % herb)
+
     for jar, _, texture, _ in JARS:
         make_jar(rm, jar, texture)
     for fruit in TFC_FRUITS:
@@ -154,6 +168,19 @@ def generate(rm: ResourceManager):
 
     for key, value in DEFAULT_LANG.items():
         rm.lang(key, value)
+
+def simple_plant_data(rm: ResourceManager, p: str, bees: bool = True):
+    rm.block_tag('tfc:plants', p)
+    rm.item_tag('tfc:plants', p)
+    if bees:
+        rm.block_tag('bee_restoration_plants', p)
+    rm.block_loot(p, ({
+      'name': p,
+      'conditions': [loot_tables.match_tag('forge:shears')],
+    }, {
+      'name': 'tfc:straw',
+      'conditions': [loot_tables.match_tag('tfc:sharp_tools')]
+    }))
 
 def make_jar(rm: ResourceManager, jar: str, texture: str, lang_override: str = None) -> ItemContext:
     for i in range(1, 5):

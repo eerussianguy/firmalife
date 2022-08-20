@@ -14,6 +14,8 @@ import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.blocks.FLFluids;
 import com.eerussianguy.firmalife.common.container.FLContainerTypes;
+import com.eerussianguy.firmalife.common.entities.FLEntities;
+import com.eerussianguy.firmalife.common.entities.FLParticles;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.common.items.FLItems;
 import com.eerussianguy.firmalife.common.misc.FLEffects;
@@ -46,6 +48,8 @@ public class Firmalife
         FLRecipeSerializers.RECIPE_SERIALIZERS.register(bus);
         FLContainerTypes.CONTAINERS.register(bus);
         FLEffects.EFFECTS.register(bus);
+        FLEntities.ENTITIES.register(bus);
+        FLParticles.PARTICLE_TYPES.register(bus);
         FLLoot.registerAll(bus);
 
         FLPackets.init();

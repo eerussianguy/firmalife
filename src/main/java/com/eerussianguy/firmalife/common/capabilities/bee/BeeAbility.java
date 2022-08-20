@@ -1,5 +1,6 @@
 package com.eerussianguy.firmalife.common.capabilities.bee;
 
+import java.util.Arrays;
 import java.util.Locale;
 
 import net.minecraft.util.StringRepresentable;
@@ -17,6 +18,13 @@ public enum BeeAbility implements StringRepresentable
     public static float getMinTemperature(int hardiness)
     {
         return -2 * hardiness + 4;
+    }
+
+    public static int[] fresh()
+    {
+        final int[] ints = new int[BeeAbility.SIZE];
+        Arrays.fill(ints, 0);
+        return ints;
     }
 
     public static final BeeAbility[] VALUES = values();

@@ -67,6 +67,7 @@ def generate(rm: ResourceManager):
     rm.crafting_shapeless('crafting/watering_can', (fluid_item_ingredient('1000 minecraft:water'), 'tfc:wooden_bucket', '#tfc:lumber'), 'firmalife:watering_can')
     damage_shapeless(rm, 'crafting/shredded_cheese', ('#tfc:knives', '#firmalife:foods/cheeses'), '4 firmalife:food/shredded_cheese').with_advancement('#firmalife:foods/cheeses')
     rm.crafting_shapeless('crafting/pickled_egg', ('minecraft:clay_ball', 'tfc:powder/wood_ash', 'tfc:powder/salt', 'tfc:food/boiled_egg'), 'firmalife:food/pickled_egg')
+    rm.crafting_shaped('crafting/seed_ball', [' X ', 'XYX', ' X '], {'X': '#tfc:seeds', 'Y': 'tfc:compost'}, 'firmalife:seed_ball').with_advancement('tfc:compost')
 
     for jar, remainder, _, ing in JARS:
         make_jar(rm, jar, remainder, ing)

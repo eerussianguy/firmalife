@@ -136,6 +136,11 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
         }
     }
 
+    public IBee[] getCachedBees()
+    {
+        return cachedBees;
+    }
+
     /**
      * Main method called periodically to perform bee actions
      */
@@ -233,7 +238,10 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
                 }
             }
         }
-        honeyChanceInverted /= usableBees.size();
+        if (!usableBees.isEmpty())
+        {
+            honeyChanceInverted /= usableBees.size();
+        }
         if (flowers > MIN_FLOWERS && honeyChanceInverted > 0 && level.random.nextInt(honeyChanceInverted) == 0)
         {
             addHoney(usableBees.size());
@@ -254,6 +262,11 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
         return take;
     }
 
+    public int getHoney()
+    {
+        return honey;
+    }
+
     private int tickPosition(BlockPos pos, @Nullable IBee bee)
     {
         assert level != null;
@@ -268,8 +281,8 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
 
             if (planter || soil)
             {
-                float cropAffinity = bee.getAbility(BeeAbility.CROP_AFFINITY); // 1 -> 10 scale
-                float nitrogen = level.random.nextFloat() * cropAffinity * 0.1f; // 0.1 -> 1 scale
+                float cropAffinity = bee.getAbility(BeeAbility.CROP_AFFINITY); // 0 -> 10 scale
+                float nitrogen = level.random.nextFloat() * cropAffinity * 0.1f; // 0 -> 1 scale
                 float potassium = level.random.nextFloat() * cropAffinity * 0.1f;
                 float phosphorous = level.random.nextFloat() * cropAffinity * 0.1f;
                 float cap = (cropAffinity - 1) * 0.5f; // max that can possibly be set by bee fertilization, 0 -> 4.5 scale

@@ -50,6 +50,7 @@ public class FLItems
     public static final RegistryObject<Item> PINEAPPLE_YARN = register("pineapple_yarn", MISC);
     public static final RegistryObject<Item> RAW_HONEY = register("raw_honey", MISC);
     public static final RegistryObject<Item> RENNET = register("rennet", MISC);
+    public static final RegistryObject<Item> SEED_BALL = register("seed_ball", () -> new SeedBallItem(prop()));
     public static final RegistryObject<Item> SPOON = register("spoon", MISC);
     public static final RegistryObject<Item> TREATED_LUMBER = register("treated_lumber", MISC);
     public static final RegistryObject<Item> WATERING_CAN = register("watering_can", () -> new WateringCanItem(prop()));

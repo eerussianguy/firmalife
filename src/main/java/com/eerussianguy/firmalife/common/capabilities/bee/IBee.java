@@ -27,9 +27,19 @@ public interface IBee extends INBTSerializable<CompoundTag>
         return getAbilityMap()[ability.ordinal()];
     }
 
+    /**
+     * Init two, perhaps three abilities chosen randomly
+     */
     default void initFreshAbilities(Random random)
     {
-        int[] values = new int[BeeAbility.SIZE];
+        final int[] values = BeeAbility.fresh();
+
+        values[random.nextInt(values.length)] = random.nextInt(4) + 1;
+        values[random.nextInt(values.length)] = random.nextInt(4) + 1;
+        if (random.nextFloat() < 0.1f)
+        {
+            values[random.nextInt(values.length)] = random.nextInt(4) + 1;
+        }
         for (int i = 0; i < values.length; i++)
         {
             values[i] = random.nextInt(4) + 1;
@@ -42,13 +52,16 @@ public interface IBee extends INBTSerializable<CompoundTag>
     {
         int[] parent1Abilities = parent1.getAbilityMap();
         int[] parent2Abilities = parent2.getAbilityMap();
-        int[] myAbilities = getAbilityMap();
         int mutation = (parent1Abilities[BeeAbility.MUTANT.ordinal()] + parent2Abilities[BeeAbility.MUTANT.ordinal()]) / 2;
+        mutation = Mth.clamp(mutation, 1, 5);
 
         for (BeeAbility ability : BeeAbility.VALUES)
         {
             int average = (parent1Abilities[ability.ordinal()] + parent2Abilities[ability.ordinal()]) / 2;
-            setAbility(ability, Mth.nextInt(random, average - mutation, average + mutation));
+            if (average >= 1)
+            {
+                setAbility(ability, Mth.nextInt(random, average - mutation, average + mutation));
+            }
         }
         setHasQueen(true);
     }
@@ -61,7 +74,11 @@ public interface IBee extends INBTSerializable<CompoundTag>
             tooltip.add(new TranslatableComponent("firmalife.bee.abilities").withStyle(ChatFormatting.WHITE));
             for (BeeAbility ability : BeeAbility.VALUES)
             {
-                tooltip.add(new TranslatableComponent("firmalife.bee.ability." + ability.getSerializedName(), String.valueOf(getAbility(ability))).withStyle(ChatFormatting.GRAY));
+                final int amount = getAbility(ability);
+                if (amount > 0)
+                {
+                    tooltip.add(new TranslatableComponent("firmalife.bee.ability." + ability.getSerializedName(), String.valueOf(amount)).withStyle(ChatFormatting.GRAY));
+                }
             }
         }
         else

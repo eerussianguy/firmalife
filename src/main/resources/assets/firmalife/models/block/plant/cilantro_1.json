@@ -1,0 +1,7 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "minecraft:block/tinted_cross",
+  "textures": {
+    "cross": "firmalife:block/plant/cilantro/1"
+  }
+}

@@ -5,7 +5,7 @@ RockCategory = Literal['sedimentary', 'metamorphic', 'igneous_extrusive', 'igneo
 Rock = NamedTuple('Rock', category=RockCategory, sand=str)
 Vein = NamedTuple('Vein', ore=str, type=str, rarity=int, size=int, min_y=int, max_y=int, density=float, poor=float, normal=float, rich=float, rocks=List[str], spoiler_ore=str, spoiler_rarity=int, spoiler_rocks=List[str], biomes=Optional[str], height=Optional[int], deposits=bool)
 
-SIMPLE_ITEMS = ('peel', 'fruit_leaf', 'cinnamon_bark', 'beeswax', 'pineapple_leather', 'pineapple_yarn', 'raw_honey', 'rennet', 'watering_can', 'treated_lumber', 'beehive_frame', 'empty_jar', 'cheesecloth', 'spoon', 'pie_pan')
+SIMPLE_ITEMS = ('peel', 'fruit_leaf', 'cinnamon_bark', 'beeswax', 'pineapple_leather', 'pineapple_yarn', 'raw_honey', 'rennet', 'watering_can', 'treated_lumber', 'beehive_frame', 'empty_jar', 'cheesecloth', 'spoon', 'pie_pan', 'seed_ball')
 SIMPLE_FOODS = ('frothy_coconut', 'white_chocolate_blend', 'dark_chocolate_blend', 'milk_chocolate_blend', 'tofu', 'soy_mixture', 'yak_curd', 'goat_curd', 'milk_curd', 'cheddar', 'chevre', 'rajya_metok', 'gouda', 'feta', 'shosha', 'butter', 'pie_dough', 'filled_pie', 'cooked_pie', 'pizza_dough', 'raw_pizza', 'cooked_pizza', 'shredded_cheese', 'pickled_egg')
 SIMPLE_SPICES = ('ground_cinnamon', 'cinnamon')
 SIMPLE_BLOCKS: Dict[str, str] = {
@@ -124,6 +124,7 @@ DEFAULT_LANG = {
     'firmalife.tooltip.food_trait.smoked': 'Smoked',
     'firmalife.tooltip.food_trait.rancid_smoked': 'Rancid Smoked',
     'firmalife.tooltip.food_trait.raw': 'Raw (INEDIBLE)',
+    'firmalife.tooltip.seed_ball': 'Throw me!',
     'firmalife.cellar.found': 'Found a cellar of %s blocks',
     'firmalife.greenhouse.valid_block': '§aGrowing',
     'firmalife.greenhouse.invalid_block': '§cNot Growing',
@@ -147,6 +148,11 @@ DEFAULT_LANG = {
     'firmalife.bee.ability.crop_affinity': 'Crop Affinity %s',
     'firmalife.bee.ability.nature_restoration': 'Nature Restoration %s',
     'firmalife.bee.ability.calmness': 'Calmness %s',
+    'firmalife.beehive.honey': 'Honey: %s',
+    'firmalife.beehive.bee': 'Frame %s: ',
+    'firmalife.beehive.bee_cold': 'Too cold! Minimum Temperature: %s C, Current Temperature: %s C',
+    'firmalife.beehive.has_queen': 'Has Queen. ',
+    'firmalife.beehive.no_queen': 'Empty',
 
     'firmalife.bowl.spoon': 'The bowl is missing a spoon.',
     'firmalife.bowl.mixing': 'The bowl is currently mixing',

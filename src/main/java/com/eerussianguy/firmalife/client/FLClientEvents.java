@@ -1,20 +1,28 @@
 package com.eerussianguy.firmalife.client;
 
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.color.block.BlockColor;
+import net.minecraft.client.color.block.BlockColors;
+import net.minecraft.client.color.item.ItemColor;
+import net.minecraft.client.color.item.ItemColors;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.client.event.EntityRenderersEvent;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.client.event.*;
 import net.minecraftforge.client.model.ForgeModelBakery;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.RegistryObject;
 
 import com.eerussianguy.firmalife.client.render.*;
 import com.eerussianguy.firmalife.client.screen.BeehiveScreen;
@@ -22,9 +30,13 @@ import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.container.FLContainerTypes;
+import com.eerussianguy.firmalife.common.entities.FLEntities;
+import com.eerussianguy.firmalife.common.entities.FLParticles;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.common.items.FLItems;
 import com.eerussianguy.firmalife.common.util.FLMetal;
+import net.dries007.tfc.client.TFCColors;
+import net.dries007.tfc.client.particle.GlintParticleProvider;
 import net.dries007.tfc.client.screen.KnappingScreen;
 import net.dries007.tfc.common.capabilities.food.FoodCapability;
 import net.dries007.tfc.common.items.TFCItems;
@@ -40,6 +52,9 @@ public class FLClientEvents
         bus.addListener(FLClientEvents::registerEntityRenderers);
         bus.addListener(FLClientEvents::onTextureStitch);
         bus.addListener(FLClientEvents::onModelRegister);
+        bus.addListener(FLClientEvents::onBlockColors);
+        bus.addListener(FLClientEvents::onItemColors);
+        bus.addListener(FLClientEvents::registerParticleFactories);
     }
 
     public static void clientSetup(FMLClientSetupEvent event)
@@ -50,29 +65,13 @@ public class FLClientEvents
         final RenderType cutoutMipped = RenderType.cutoutMipped();
         final RenderType translucent = RenderType.translucent();
 
-        ItemBlockRenderTypes.setRenderLayer(FLBlocks.OVEN_TOP.get(), cutout);
-        ItemBlockRenderTypes.setRenderLayer(FLBlocks.OVEN_BOTTOM.get(), cutout);
-        ItemBlockRenderTypes.setRenderLayer(FLBlocks.OVEN_CHIMNEY.get(), cutout);
-        ItemBlockRenderTypes.setRenderLayer(FLBlocks.CURED_OVEN_TOP.get(), cutout);
-        ItemBlockRenderTypes.setRenderLayer(FLBlocks.CURED_OVEN_BOTTOM.get(), cutout);
-        ItemBlockRenderTypes.setRenderLayer(FLBlocks.CURED_OVEN_CHIMNEY.get(), cutout);
-        ItemBlockRenderTypes.setRenderLayer(FLBlocks.QUAD_PLANTER.get(), cutout);
-        ItemBlockRenderTypes.setRenderLayer(FLBlocks.LARGE_PLANTER.get(), cutout);
-        ItemBlockRenderTypes.setRenderLayer(FLBlocks.HANGING_PLANTER.get(), cutout);
-        ItemBlockRenderTypes.setRenderLayer(FLBlocks.BONSAI_PLANTER.get(), cutout);
-        ItemBlockRenderTypes.setRenderLayer(FLBlocks.IRON_COMPOSTER.get(), cutout);
-        ItemBlockRenderTypes.setRenderLayer(FLBlocks.COMPOST_JAR.get(), translucent);
-        ItemBlockRenderTypes.setRenderLayer(FLBlocks.HONEY_JAR.get(), translucent);
-        ItemBlockRenderTypes.setRenderLayer(FLBlocks.ROTTEN_COMPOST_JAR.get(), translucent);
-        ItemBlockRenderTypes.setRenderLayer(FLBlocks.GUANO_JAR.get(), translucent);
-        ItemBlockRenderTypes.setRenderLayer(FLBlocks.CHEDDAR_WHEEL.get(), cutout);
-        ItemBlockRenderTypes.setRenderLayer(FLBlocks.RAJYA_METOK_WHEEL.get(), cutout);
-        ItemBlockRenderTypes.setRenderLayer(FLBlocks.CHEVRE_WHEEL.get(), cutout);
-        ItemBlockRenderTypes.setRenderLayer(FLBlocks.SHOSHA_WHEEL.get(), cutout);
-        ItemBlockRenderTypes.setRenderLayer(FLBlocks.FETA_WHEEL.get(), cutout);
-        ItemBlockRenderTypes.setRenderLayer(FLBlocks.GOUDA_WHEEL.get(), cutout);
-        ItemBlockRenderTypes.setRenderLayer(FLBlocks.SMALL_CHROMITE.get(), cutout);
-        ItemBlockRenderTypes.setRenderLayer(FLBlocks.MIXING_BOWL.get(), cutout);
+        Stream.of(FLBlocks.OVEN_TOP, FLBlocks.OVEN_BOTTOM, FLBlocks.OVEN_CHIMNEY, FLBlocks.CURED_OVEN_TOP, FLBlocks.CURED_OVEN_BOTTOM,
+            FLBlocks.CURED_OVEN_CHIMNEY, FLBlocks.QUAD_PLANTER, FLBlocks.LARGE_PLANTER, FLBlocks.HANGING_PLANTER, FLBlocks.BONSAI_PLANTER,
+            FLBlocks.IRON_COMPOSTER, FLBlocks.COMPOST_JAR, FLBlocks.HONEY_JAR, FLBlocks.ROTTEN_COMPOST_JAR, FLBlocks.GUANO_JAR, FLBlocks.CHEDDAR_WHEEL,
+            FLBlocks.RAJYA_METOK_WHEEL, FLBlocks.CHEVRE_WHEEL, FLBlocks.SHOSHA_WHEEL, FLBlocks.FETA_WHEEL, FLBlocks.GOUDA_WHEEL, FLBlocks.SMALL_CHROMITE,
+            FLBlocks.MIXING_BOWL, FLBlocks.BUTTERFLY_GRASS, FLBlocks.BASIL, FLBlocks.BAY_LAUREL, FLBlocks.CUMIN, FLBlocks.CARDAMOM, FLBlocks.CILANTRO,
+            FLBlocks.OREGANO, FLBlocks.PIMENTO, FLBlocks.VANILLA
+        ).forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
 
         FLBlocks.CHROMITE_ORES.values().forEach(map -> map.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout)));
         FLBlocks.FRUIT_PRESERVES.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), translucent));
@@ -91,6 +90,31 @@ public class FLClientEvents
             });
             FLItems.FRUITS.forEach((food, item) -> registerDryProperty(item));
         });
+    }
+
+    public static void onBlockColors(ColorHandlerEvent.Block event)
+    {
+        final BlockColors registry = event.getBlockColors();
+        final BlockColor grassColor = (state, level, pos, tintIndex) -> TFCColors.getGrassColor(pos, tintIndex);
+        final BlockColor tallGrassColor = (state, level, pos, tintIndex) -> TFCColors.getTallGrassColor(pos, tintIndex);
+
+        registry.register(tallGrassColor, FLBlocks.BUTTERFLY_GRASS.get());
+
+        Stream.of(FLBlocks.BASIL, FLBlocks.BAY_LAUREL, FLBlocks.CARDAMOM, FLBlocks.CILANTRO, FLBlocks.CUMIN, FLBlocks.OREGANO, FLBlocks.PIMENTO, FLBlocks.VANILLA).forEach(reg -> registry.register(grassColor, reg.get()));
+    }
+
+    public static void onItemColors(ColorHandlerEvent.Item event)
+    {
+        final ItemColors registry = event.getItemColors();
+        final ItemColor grassColor = (stack, tintIndex) -> TFCColors.getGrassColor(null, tintIndex);
+
+        Stream.of(FLBlocks.BUTTERFLY_GRASS).forEach(reg -> registry.register(grassColor, reg.get()));
+    }
+
+    public static void registerParticleFactories(ParticleFactoryRegisterEvent event)
+    {
+        ParticleEngine engine = Minecraft.getInstance().particleEngine;
+        engine.register(FLParticles.GROWTH.get(), set -> new GlintParticleProvider(set, ChatFormatting.GREEN));
     }
 
     private static void registerDryProperty(Supplier<Item> item)
@@ -113,6 +137,8 @@ public class FLClientEvents
         event.registerBlockEntityRenderer(FLBlockEntities.BONSAI_PLANTER.get(), ctx -> new BonsaiPlanterBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.HANGING_PLANTER.get(), ctx -> new HangingPlanterBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.MIXING_BOWL.get(), ctx -> new MixingBowlBlockEntityRenderer());
+
+        event.registerEntityRenderer(FLEntities.SEED_BALL.get(), ThrownItemRenderer::new);
     }
 
     public static void onTextureStitch(TextureStitchEvent.Pre event)

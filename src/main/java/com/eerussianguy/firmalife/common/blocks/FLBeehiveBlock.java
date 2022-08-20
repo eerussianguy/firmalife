@@ -1,8 +1,12 @@
 package com.eerussianguy.firmalife.common.blocks;
 
+import java.util.List;
 import java.util.Random;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -21,6 +25,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.network.NetworkHooks;
 
+import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.FLBeehiveBlockEntity;
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.capabilities.bee.BeeAbility;
@@ -32,10 +37,12 @@ import com.eerussianguy.firmalife.common.misc.SwarmEffect;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.blocks.devices.FirepitBlock;
+import net.dries007.tfc.common.blocks.soil.HoeOverlayBlock;
 import net.dries007.tfc.util.Helpers;
+import net.dries007.tfc.util.climate.Climate;
 import org.jetbrains.annotations.Nullable;
 
-public class FLBeehiveBlock extends FourWayDeviceBlock
+public class FLBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBlock
 {
     public static boolean shouldAnger(Level level, BlockPos pos)
     {
@@ -133,6 +140,39 @@ public class FLBeehiveBlock extends FourWayDeviceBlock
             attack(player);
         }
         super.playerDestroy(level, player, pos, state, entity, tool);
+    }
+
+    @Override
+    public void addHoeOverlayInfo(Level level, BlockPos pos, BlockState blockState, List<Component> text, boolean debug)
+    {
+        level.getBlockEntity(pos, FLBlockEntities.BEEHIVE.get()).ifPresent(hive -> {
+            if (hive.getHoney() > 0)
+            {
+                text.add(Helpers.translatable("firmalife.beehive.honey", String.valueOf(hive.getHoney())).withStyle(ChatFormatting.GOLD));
+            }
+            final float temp = Climate.getTemperature(level, pos);
+            int ord = 0;
+            for (IBee bee : hive.getCachedBees())
+            {
+                ord++;
+                MutableComponent beeText = Helpers.translatable("firmalife.beehive.bee", String.valueOf(ord));
+                if (bee.hasQueen())
+                {
+                    beeText.append(Helpers.translatable("firmalife.beehive.has_queen"));
+                    final float minTemp = BeeAbility.getMinTemperature(bee.getAbility(BeeAbility.HARDINESS));
+                    if (temp < minTemp)
+                    {
+                        beeText.append(Helpers.translatable("firmalife.beehive.bee_cold", minTemp, temp).withStyle(ChatFormatting.AQUA));
+                    }
+                }
+                else
+                {
+                    beeText.append(Helpers.translatable("firmalife.beehive.no_queen"));
+                }
+                text.add(beeText);
+            }
+        });
+
     }
 
     @Override
