@@ -26,7 +26,7 @@ import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.devices.DeviceBlock;
 import org.jetbrains.annotations.Nullable;
 
-import static com.eerussianguy.firmalife.Firmalife.MOD_ID;
+import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
 
 public class ClimateStationBlock extends DeviceBlock
 {

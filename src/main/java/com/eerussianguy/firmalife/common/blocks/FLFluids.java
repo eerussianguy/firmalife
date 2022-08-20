@@ -15,16 +15,13 @@ import net.minecraftforge.registries.ForgeRegistries;
 import com.eerussianguy.firmalife.common.items.FLItems;
 import com.eerussianguy.firmalife.common.util.ExtraFluid;
 import com.eerussianguy.firmalife.common.util.FLMetal;
-import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.fluids.FlowingFluidRegistryObject;
 import net.dries007.tfc.common.fluids.MixingFluid;
 import net.dries007.tfc.common.fluids.MoltenFluid;
-import net.dries007.tfc.common.fluids.SimpleFluid;
-import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.registry.RegistrationHelpers;
 
-import static com.eerussianguy.firmalife.Firmalife.MOD_ID;
+import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
 import static net.dries007.tfc.common.fluids.TFCFluids.*;
 
 public class FLFluids

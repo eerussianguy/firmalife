@@ -9,11 +9,11 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-import com.eerussianguy.firmalife.Firmalife;
+import com.eerussianguy.firmalife.FirmaLife;
 
 public class FLEntities
 {
-    public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, Firmalife.MOD_ID);
+    public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, FirmaLife.MOD_ID);
 
     public static final RegistryObject<EntityType<SeedBall>> SEED_BALL = register("seed_ball", EntityType.Builder.<SeedBall>of(SeedBall::new, MobCategory.MISC).sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(10));
 
@@ -27,7 +27,7 @@ public class FLEntities
         final String id = name.toLowerCase(Locale.ROOT);
         return ENTITIES.register(id, () -> {
             if (!serialize) builder.noSave();
-            return builder.build(Firmalife.MOD_ID + ":" + id);
+            return builder.build(FirmaLife.MOD_ID + ":" + id);
         });
     }
 }

@@ -14,7 +14,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import com.eerussianguy.firmalife.Firmalife;
+import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.items.FLItems;
@@ -54,7 +54,7 @@ public class FLJEIPlugin implements IModPlugin
 
     private static <T> RecipeType<T> type(String name, Class<T> tClass)
     {
-        return RecipeType.create(Firmalife.MOD_ID, name, tClass);
+        return RecipeType.create(FirmaLife.MOD_ID, name, tClass);
     }
 
     private static final ResourceLocation PUMPKIN_TEXTURE = Helpers.identifier("textures/gui/knapping/pumpkin.png");

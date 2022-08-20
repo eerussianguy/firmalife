@@ -10,7 +10,7 @@ import net.minecraftforge.registries.RegistryObject;
 import net.dries007.tfc.common.recipes.KnappingRecipe;
 import net.dries007.tfc.common.recipes.SimpleItemRecipe;
 
-import static com.eerussianguy.firmalife.Firmalife.MOD_ID;
+import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
 
 public class FLRecipeSerializers
 {

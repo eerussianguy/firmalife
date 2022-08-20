@@ -9,7 +9,7 @@ import net.minecraftforge.registries.RegistryObject;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import net.dries007.tfc.common.recipes.KnappingRecipe;
 
-import static com.eerussianguy.firmalife.Firmalife.MOD_ID;
+import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
 
 public class FLRecipeTypes
 {

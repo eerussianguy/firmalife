@@ -24,13 +24,13 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 
-import com.eerussianguy.firmalife.Firmalife;
+import com.eerussianguy.firmalife.FirmaLife;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.JsonOps;
 import net.dries007.tfc.common.blockentities.TickCounterBlockEntity;
 import net.dries007.tfc.util.Helpers;
 
-import static com.eerussianguy.firmalife.Firmalife.MOD_ID;
+import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
 
 public class FLHelpers
 {
@@ -53,7 +53,7 @@ public class FLHelpers
 
     public static <T> JsonElement codecToJson(Codec<T> codec, T instance)
     {
-        return codec.encodeStart(JsonOps.INSTANCE, instance).getOrThrow(false, Util.prefix("Error encoding: ", Firmalife.LOGGER::error));
+        return codec.encodeStart(JsonOps.INSTANCE, instance).getOrThrow(false, Util.prefix("Error encoding: ", FirmaLife.LOGGER::error));
     }
 
     public static Component blockEntityName(String name)

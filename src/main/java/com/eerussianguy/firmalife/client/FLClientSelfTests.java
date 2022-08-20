@@ -10,9 +10,9 @@ import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import com.eerussianguy.firmalife.Firmalife;
+import com.eerussianguy.firmalife.FirmaLife;
 
-import static com.eerussianguy.firmalife.Firmalife.MOD_ID;
+import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
 import static net.dries007.tfc.util.SelfTests.*;
 
 public final class FLClientSelfTests
@@ -31,7 +31,7 @@ public final class FLClientSelfTests
             .flatMap(states(s -> !s.isAir() && shaper.getParticleIcon(s) == missingParticle))
             .toList();
 
-        return logErrors("{} block states with missing models:", missingModelErrors, Firmalife.LOGGER)
-            | logErrors("{} block states with missing particles:", missingParticleErrors, Firmalife.LOGGER);
+        return logErrors("{} block states with missing models:", missingModelErrors, FirmaLife.LOGGER)
+            | logErrors("{} block states with missing particles:", missingParticleErrors, FirmaLife.LOGGER);
     }
 }

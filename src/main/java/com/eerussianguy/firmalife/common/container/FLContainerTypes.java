@@ -21,7 +21,7 @@ import net.dries007.tfc.common.container.ItemStackContainer;
 import net.dries007.tfc.common.container.KnappingContainer;
 import net.dries007.tfc.util.registry.RegistrationHelpers;
 
-import static com.eerussianguy.firmalife.Firmalife.MOD_ID;
+import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
 
 public class FLContainerTypes
 {

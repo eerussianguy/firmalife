@@ -31,13 +31,13 @@ import com.mojang.logging.LogUtils;
 import net.dries007.tfc.config.TFCConfig;
 import org.slf4j.Logger;
 
-@Mod(Firmalife.MOD_ID)
-public class Firmalife
+@Mod(FirmaLife.MOD_ID)
+public class FirmaLife
 {
     public static final String MOD_ID = "firmalife";
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    public Firmalife()
+    public FirmaLife()
     {
         final IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         FLItems.ITEMS.register(bus);

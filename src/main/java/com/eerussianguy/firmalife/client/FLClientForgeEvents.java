@@ -9,7 +9,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 
-import com.eerussianguy.firmalife.Firmalife;
+import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.capabilities.bee.BeeCapability;
 import net.dries007.tfc.util.SelfTests;
@@ -30,7 +30,7 @@ public class FLClientForgeEvents
         {
             final Stopwatch tick = Stopwatch.createStarted();
             FLClientSelfTests.validateModels();
-            Firmalife.LOGGER.info("Client self tests passed in {}", tick.stop());
+            FirmaLife.LOGGER.info("Client self tests passed in {}", tick.stop());
         }
     }
 

@@ -18,6 +18,7 @@ import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
+import net.dries007.tfc.compat.jei.JEIIntegration;
 import net.dries007.tfc.compat.jei.category.BaseRecipeCategory;
 
 public class MixingCategory extends BaseRecipeCategory<MixingBowlRecipe>
@@ -48,7 +49,7 @@ public class MixingCategory extends BaseRecipeCategory<MixingBowlRecipe>
         if (!inputFluids.isEmpty())
         {
             IRecipeSlotBuilder fluidOutput = builder.addSlot(RecipeIngredientRole.INPUT, 16, 66);
-            fluidOutput.addIngredients(VanillaTypes.FLUID, inputFluids);
+            fluidOutput.addIngredients(JEIIntegration.FLUID_STACK, inputFluids);
             fluidOutput.setFluidRenderer(1, false, 16, 16);
         }
 
@@ -62,7 +63,7 @@ public class MixingCategory extends BaseRecipeCategory<MixingBowlRecipe>
         if (!outputFluid.isEmpty())
         {
             IRecipeSlotBuilder fluidOutput = builder.addSlot(RecipeIngredientRole.OUTPUT, 16, 66);
-            fluidOutput.addIngredient(VanillaTypes.FLUID, outputFluid);
+            fluidOutput.addIngredient(JEIIntegration.FLUID_STACK, outputFluid);
             fluidOutput.setFluidRenderer(1, false, 16, 16);
         }
     }
