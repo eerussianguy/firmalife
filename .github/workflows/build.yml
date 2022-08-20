@@ -72,6 +72,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./build/libs/Firmalife-Forge-1.18.2-${{ steps.version.outputs.result }}.jar
-        asset_name: Firmalife-Forge-1.18.2-${{ steps.version.outputs.result }}.jar
+        asset_path: ./build/libs/firmalife-${{ steps.version.outputs.result }}.jar
+        asset_name: firmalife-${{ steps.version.outputs.result }}.jar
         asset_content_type: application/java-archive
