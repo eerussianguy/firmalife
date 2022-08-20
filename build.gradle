@@ -129,7 +129,7 @@ repositories {
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     //implementation fg.deobf("tfc:TerraFirmaCraft-Forge-${minecraft_version}:${tfc_version}")
-    implementation "curse.maven:tfc-302973:${tfc_identifier}"
+    implementation fg.deobf("curse.maven:tfc-302973:${tfc_identifier}")
 
     if (System.getProperty("idea.sync.active") != "true") {
         annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"
