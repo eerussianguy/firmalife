@@ -1,9 +1,13 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "name": "Smoking",
-  "category": "tfc:firmalife",
+  "category": "firmalife:firmalife",
   "icon": "tfc:food/venison",
   "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Wool string is used to hang items for $(thing)Smoking$(). To place it, just use $(item)$(k:key.use)$()."
+    },
     {
       "type": "patchouli:multiblock",
       "multiblock": {
@@ -24,12 +28,12 @@
         }
       },
       "name": "Smoking",
-      "text": "Wool string is used to hang items for $(thing)Smoking$(). To place it, just use $(item)$(k:key.use)$().",
+      "text": "A piece of string above a firepit",
       "enable_visualize": false
     },
     {
       "type": "patchouli:text",
-      "text": "Smoking is used to preserve $(thing)Meat$() and $(thing)Cheese$(). To smoke meat, it must have first been $(thing)Brined$() by sealing it in a $(thing)Barrel$() with $(thing)Brine$(). You may also salt it first. Cheese does not have this requirement."
+      "text": "Smoking is used to preserve $(thing)Meat$() and $(l:mechanics/dairy)Cheese$(). To smoke meat, it must have first been $(thing)Brined$() by sealing it in a $(thing)Barrel$() with $(thing)Brine$(). You may also salt it first. Cheese does not have this requirement."
     },
     {
       "type": "patchouli:text",

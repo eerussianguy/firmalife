@@ -1,7 +1,7 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "name": "More Fertilizer Options",
-  "category": "tfc:firmalife",
+  "category": "firmalife:firmalife",
   "icon": "firmalife:iron_composter",
   "pages": [
     {
@@ -9,14 +9,14 @@
       "text": "Given a greater need for fertilization in Firmalife, there are more options for getting fertilizers."
     },
     {
-      "type": "tfc:drying_recipe",
+      "type": "firmalife:drying_recipe",
       "recipe": "firmalife:drying/dry_grass",
       "text": "Thatch can be $(l:firmalife/drying)Dried$() into $(thing)Dry Grass$(), which can be used in a Composter as a brown item."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/iron_composter",
-      "recipe2": "The Composter can be upgraded to an $(thing)Iron Composter$(), which works the same, except it produces compost four times as fast."
+      "text": "The Composter can be upgraded to an $(thing)Iron Composter$(), which works the same, except it produces compost four times as fast."
     },
     {
       "type": "tfc:multimultiblock",

@@ -1,7 +1,7 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "name": "Bread",
-  "category": "tfc:firmalife",
+  "category": "firmalife:firmalife",
   "icon": "tfc:food/rye_bread",
   "pages": [
     {

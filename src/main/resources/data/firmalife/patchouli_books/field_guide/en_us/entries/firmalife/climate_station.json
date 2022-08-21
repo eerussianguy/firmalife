@@ -1,7 +1,7 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "name": "Climate Station",
-  "category": "tfc:firmalife",
+  "category": "firmalife:firmalife",
   "icon": "firmalife:climate_station",
   "pages": [
     {

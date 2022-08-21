@@ -11,11 +11,10 @@ authors="EERussianguy" #optional
 description='''
 An addon for TFC.
 '''
-[[dependencies.firmalife]] #optional
-    modId="forge" #mandatory
-    mandatory=true #mandatory
-    versionRange="[40,)" #mandatory
-    # An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
+[[dependencies.firmalife]]
+    modId="forge"
+    mandatory=true
+    versionRange="[40,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.firmalife]]

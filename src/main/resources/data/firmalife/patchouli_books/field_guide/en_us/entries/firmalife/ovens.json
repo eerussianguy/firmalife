@@ -1,8 +1,8 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "name": "Ovens",
-  "category": "tfc:firmalife",
-  "icon": "firmalife:cured_top_oven",
+  "category": "firmalife:firmalife",
+  "icon": "firmalife:cured_oven_top",
   "pages": [
     {
       "type": "patchouli:text",
@@ -10,17 +10,17 @@
     },
     {
       "type": "tfc:clay_knapping_recipe",
-      "recipe": "firmalife:clay_knapping/oven_top",
+      "recipe": "tfc:clay_knapping/oven_top",
       "text": "The recipe for the top oven."
     },
     {
       "type": "tfc:clay_knapping_recipe",
-      "recipe": "firmalife:clay_knapping/oven_bottom",
+      "recipe": "tfc:clay_knapping/oven_bottom",
       "text": "The recipe for the top oven."
     },
     {
       "type": "tfc:clay_knapping_recipe",
-      "recipe": "firmalife:clay_knapping/oven_chimney",
+      "recipe": "tfc:clay_knapping/oven_chimney",
       "text": "The recipe for the top oven."
     },
     {
@@ -61,11 +61,11 @@
             ]
           ],
           "mapping": {
-            "0": "firmalife:cured_top_oven",
-            "T": "firmalife:cured_top_oven",
-            "B": "firmalife:cured_bottom_oven",
+            "0": "firmalife:cured_oven_top",
+            "T": "firmalife:cured_oven_top",
+            "B": "firmalife:cured_oven_bottom",
             "W": "minecraft:bricks",
-            "C": "firmalife:cured_chimney"
+            "C": "firmalife:cured_oven_chimney"
           }
         },
         {
@@ -88,11 +88,11 @@
             ]
           ],
           "mapping": {
-            "0": "firmalife:top_oven",
-            "T": "firmalife:top_oven",
-            "B": "firmalife:bottom_oven",
+            "0": "firmalife:oven_top",
+            "T": "firmalife:oven_top",
+            "B": "firmalife:oven_bottom",
             "W": "minecraft:bricks",
-            "C": "firmalife:chimney"
+            "C": "firmalife:oven_chimney"
           }
         }
       ]

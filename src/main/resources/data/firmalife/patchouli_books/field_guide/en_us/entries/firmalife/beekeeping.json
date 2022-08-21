@@ -1,7 +1,7 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "name": "Beekeeping",
-  "category": "tfc:firmalife",
+  "category": "firmalife:firmalife",
   "icon": "firmalife:beehive",
   "pages": [
     {
