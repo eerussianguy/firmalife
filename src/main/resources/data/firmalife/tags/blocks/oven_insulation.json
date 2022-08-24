@@ -4,6 +4,8 @@
   "values": [
     "minecraft:bricks",
     "#tfc:forge_insulation",
-    "#firmalife:oven_blocks"
+    "#firmalife:oven_blocks",
+    "minecraft:brick_stairs",
+    "minecraft:brick_slab"
   ]
 }

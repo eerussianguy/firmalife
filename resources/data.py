@@ -56,7 +56,7 @@ def generate(rm: ResourceManager):
     rm.item_tag('foods/washable', 'firmalife:food/filled_pie', 'firmalife:food/cooked_pie')
     rm.item_tag('pie_pans', 'firmalife:pie_pan')
 
-    rm.block_tag('oven_insulation', 'minecraft:bricks', '#tfc:forge_insulation', '#firmalife:oven_blocks')
+    rm.block_tag('oven_insulation', 'minecraft:bricks', '#tfc:forge_insulation', '#firmalife:oven_blocks', 'minecraft:brick_stairs', 'minecraft:brick_slab')
     rm.block_tag('minecraft:mineable/pickaxe', '#firmalife:oven_blocks')
     rm.block_tag('planters', *['firmalife:%s_planter' % p for p in PLANTERS])
     rm.block_tag('bee_restoration_plants', *['tfc:plant/%s' % p for p in TFC_FLOWERS])
