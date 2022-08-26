@@ -10,7 +10,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "tfc:crafting/barley_dough",
+      "recipe": "firmalife:crafting/barley_dough",
       "text": "Yeast Starter, Sugar, and Flour can be combined to make $(thing)Dough$(). Dough can be cooked like normal to produce $(thing)Bread!$()."
     }
   ],

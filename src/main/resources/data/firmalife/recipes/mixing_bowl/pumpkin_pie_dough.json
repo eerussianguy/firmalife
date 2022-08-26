@@ -1,0 +1,40 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "firmalife:mixing_bowl",
+  "ingredients": [
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "minecraft:egg"
+      }
+    },
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "firmalife:food/pumpkin_chunks"
+      }
+    },
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "firmalife:food/pumpkin_chunks"
+      }
+    },
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "tag": "tfc:foods/flour"
+      }
+    },
+    {
+      "tag": "firmalife:sweetener"
+    }
+  ],
+  "fluid_ingredient": {
+    "ingredient": "minecraft:water",
+    "amount": 1000
+  },
+  "output_item": {
+    "item": "firmalife:food/pumpkin_pie_dough"
+  }
+}

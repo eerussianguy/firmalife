@@ -8,7 +8,7 @@
         "items": [
           {
             "items": [
-              "tfc:food/oat_grain"
+              "tfc:food/wheat_grain"
             ]
           }
         ]
@@ -17,7 +17,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "tfc:crafting/oat_dough"
+        "recipe": "firmalife:crafting/wheat_dough"
       }
     }
   },
@@ -29,7 +29,7 @@
   ],
   "rewards": {
     "recipes": [
-      "tfc:crafting/oat_dough"
+      "firmalife:crafting/wheat_dough"
     ]
   }
 }

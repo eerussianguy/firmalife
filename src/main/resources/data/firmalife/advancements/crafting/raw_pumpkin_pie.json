@@ -8,7 +8,7 @@
         "items": [
           {
             "items": [
-              "tfc:food/rice_grain"
+              "firmalife:food/pumpkin_pie_dough"
             ]
           }
         ]
@@ -17,7 +17,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "tfc:crafting/rice_dough"
+        "recipe": "firmalife:crafting/raw_pumpkin_pie"
       }
     }
   },
@@ -29,7 +29,7 @@
   ],
   "rewards": {
     "recipes": [
-      "tfc:crafting/rice_dough"
+      "firmalife:crafting/raw_pumpkin_pie"
     ]
   }
 }

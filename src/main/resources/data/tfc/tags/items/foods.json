@@ -15,6 +15,9 @@
     "#firmalife:chocolate_blends",
     "firmalife:food/butter",
     "firmalife:food/pie_dough",
-    "firmalife:food/pumpkin_chunks"
+    "firmalife:food/pumpkin_chunks",
+    "firmalife:food/pumpkin_pie_dough",
+    "firmalife:food/raw_pumpkin_pie",
+    "firmalife:food/cooked_pumpkin_pie"
   ]
 }

@@ -51,7 +51,7 @@ def generate(rm: ResourceManager):
     rm.item_tag('tfc:foods/can_be_salted', 'firmalife:food/butter')
     rm.item_tag('tfc:usable_on_tool_rack', 'firmalife:spoon')
     rm.item_tag('pumpkin_knapping', 'tfc:pumpkin')
-    rm.item_tag('foods/heatable', 'firmalife:food/raw_pizza', 'firmalife:food/filled_pie')
+    rm.item_tag('foods/heatable', 'firmalife:food/raw_pizza', 'firmalife:food/filled_pie', 'firmalife:food/raw_pumpkin_pie')
     rm.item_tag('foods/dynamic', 'firmalife:food/raw_pizza', 'firmalife:food/filled_pie', 'firmalife:food/cooked_pizza', 'firmalife:food/cooked_pie')
     rm.item_tag('foods/washable', 'firmalife:food/filled_pie', 'firmalife:food/cooked_pie')
     rm.item_tag('pie_pans', 'firmalife:pie_pan')
@@ -140,6 +140,9 @@ def generate(rm: ResourceManager):
     decayable(rm, 'butter', 'firmalife:food/butter', Category.dairy)
     decayable(rm, 'pie_dough', 'firmalife:food/pie_dough', Category.other)
     food_item(rm, 'pumpkin_chunks', 'firmalife:food/pumpkin_chunks', Category.fruit, 4, 1, 5, 1.5, fruit=1)
+    decayable(rm, 'pumpkin_pie_dough', 'firmalife:food/pumpkin_pie_dough', Category.other)
+    decayable(rm, 'raw_pumpkin_pie', 'firmalife:food/raw_pumpkin_pie', Category.other)
+    decayable(rm, 'cooked_pumpkin_pie', 'firmalife:food/cooked_pumpkin_pie', Category.other)
 
     item_size(rm, 'jars', '#firmalife:jars', Size.very_large, Weight.medium)
     item_size(rm, 'beehive_frame', 'firmalife:beehive_frame', Size.very_small, Weight.very_heavy)

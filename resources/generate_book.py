@@ -164,7 +164,7 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False):
         )),
         entry('bread', 'Bread', 'tfc:food/rye_bread', pages=(
             text('To make $(Thing)Bread$(), one first must get $(thing)Yeast$(). To get your first yeast, seal $(l:firmalife/drying)Dried Fruit$() in a Barrel of $(thing)Water$(). After three days, $(thing)Yeast Starter$() will form.$(br)From now on, your yeast can be fed by sealing Yeast Starter in a Barrel with $(thing)Flour$(). This causes it to multiply. 1 flour per 100mB of Yeast produces 600mB of Yeast. That\'s a good deal!'),
-            crafting('tfc:crafting/barley_dough', text_contents='Yeast Starter, Sugar, and Flour can be combined to make $(thing)Dough$(). Dough can be cooked like normal to produce $(thing)Bread!$().'),
+            crafting('firmalife:crafting/barley_dough', text_contents='Yeast Starter, Sugar, and Flour can be combined to make $(thing)Dough$(). Dough can be cooked like normal to produce $(thing)Bread!$().'),
         )),
         entry('more_fertilizer', 'More Fertilizer Options', 'firmalife:iron_composter', pages=(
             text('Given a greater need for fertilization in Firmalife, there are more options for getting fertilizers.'),

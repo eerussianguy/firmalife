@@ -1,4 +1,5 @@
 from enum import Enum
+from itertools import repeat
 from typing import Union
 
 from mcresources import ResourceManager, RecipeContext, utils
@@ -68,6 +69,10 @@ def generate(rm: ResourceManager):
     damage_shapeless(rm, 'crafting/shredded_cheese', ('#tfc:knives', '#firmalife:foods/cheeses'), '4 firmalife:food/shredded_cheese').with_advancement('#firmalife:foods/cheeses')
     rm.crafting_shapeless('crafting/pickled_egg', ('minecraft:clay_ball', 'tfc:powder/wood_ash', 'tfc:powder/salt', 'tfc:food/boiled_egg'), 'firmalife:food/pickled_egg')
     rm.crafting_shaped('crafting/seed_ball', [' X ', 'XYX', ' X '], {'X': '#tfc:seeds', 'Y': 'tfc:compost'}, 'firmalife:seed_ball').with_advancement('tfc:compost')
+    rm.crafting_shapeless('crafting/raw_pumpkin_pie', ('firmalife:food/pumpkin_pie_dough', 'firmalife:pie_pan'), 'firmalife:food/raw_pumpkin_pie').with_advancement('firmalife:food/pumpkin_pie_dough')
+    rm.domain = 'tfc'
+    rm.crafting_shapeless('crafting/pumpkin_pie', ('firmalife:food/cooked_pumpkin_pie',), 'minecraft:pumpkin_pie').with_advancement('firmalife:food/cooked_pumpkin_pie')
+    rm.domain = 'firmalife'
 
     for jar, remainder, _, ing in JARS:
         make_jar(rm, jar, remainder, ing)
@@ -104,11 +109,12 @@ def generate(rm: ResourceManager):
     rm.domain = 'firmalife'  # DOMAIN RESET
 
     clay_knapping(rm, 'oven_top', ['XXXXX', 'XX XX', 'X   X', 'X   X', 'XXXXX'], 'firmalife:oven_top')
-    clay_knapping(rm, 'oven_bottom', ['XX XX', 'X   X', 'X   X', 'XXXXX'], 'firmalife:oven_bottom')
+    clay_knapping(rm, 'oven_bottom', ['XX XX', 'X   X', 'X   X', 'XX XX', 'XXXXX'], 'firmalife:oven_bottom')
     clay_knapping(rm, 'oven_chimney', ['XX XX', 'XX XX', 'XX XX'], 'firmalife:oven_chimney')
 
     heat_recipe(rm, 'cooked_pie', 'firmalife:food/filled_pie', 400, result_item=item_stack_provider('firmalife:food/cooked_pie', other_modifier='firmalife:copy_dynamic_food', remove_trait='firmalife:raw'))
     heat_recipe(rm, 'cooked_pizza', 'firmalife:food/raw_pizza', 400, result_item=item_stack_provider('firmalife:food/cooked_pizza', other_modifier='firmalife:copy_dynamic_food', remove_trait='firmalife:raw'))
+    heat_recipe(rm, 'pumpkin_pie', 'firmalife:food/raw_pumpkin_pie', 400, result_item=item_stack_provider('firmalife:food/cooked_pumpkin_pie'))
 
     # Firmalife Recipes
     for carving, pattern in CARVINGS.items():
@@ -126,6 +132,7 @@ def generate(rm: ResourceManager):
 
     mixing_recipe(rm, 'butter', ingredients=[utils.ingredient('tfc:powder/salt')], fluid='1000 firmalife:cream', output_item='firmalife:food/butter')
     mixing_recipe(rm, 'pie_dough', ingredients=[not_rotten('firmalife:food/butter'), not_rotten('#tfc:foods/flour'), utils.ingredient('#firmalife:sweetener')], fluid='1000 minecraft:water', output_item='firmalife:food/pie_dough')
+    mixing_recipe(rm, 'pumpkin_pie_dough', ingredients=[not_rotten('minecraft:egg'), not_rotten('firmalife:food/pumpkin_chunks'), not_rotten('firmalife:food/pumpkin_chunks'), not_rotten('#tfc:foods/flour'), utils.ingredient('#firmalife:sweetener')], fluid='1000 minecraft:water', output_item='firmalife:food/pumpkin_pie_dough')
     mixing_recipe(rm, 'pizza_dough', ingredients=[not_rotten('#tfc:foods/dough'), utils.ingredient('tfc:powder/salt')], fluid='1000 tfc:olive_oil', output_item='4 firmalife:food/pizza_dough')
 
     meal_shapeless(rm, 'crafting/filled_pie', ('firmalife:food/pie_dough', '#firmalife:foods/preserves', '#firmalife:pie_pans'), 'firmalife:food/filled_pie', 'firmalife:pie').with_advancement('firmalife:food/pie_dough')
@@ -150,8 +157,10 @@ def generate(rm: ResourceManager):
     for grain in TFC_GRAINS:
         damage_shapeless(rm, 'crafting/%s_slice' % grain, ('tfc:food/%s_bread' % grain, '#tfc:knives'), '2 firmalife:food/%s_slice' % grain).with_advancement('tfc:food/%s_bread' % grain)
 
-        rm.domain = 'tfc'  # DOMAIN CHANGE
         rm.crafting_shapeless('crafting/%s_dough' % grain, (not_rotten('tfc:food/%s_flour' % grain), fluid_item_ingredient('100 firmalife:yeast_starter'), '#firmalife:sweetener'), (4, 'tfc:food/%s_dough' % grain)).with_advancement('tfc:food/%s_grain' % grain)
+        rm.domain = 'tfc'  # DOMAIN CHANGE
+        for i in range(1, 9):
+            disable_recipe(rm, 'crafting/dough/%s_dough_%s' % (grain, i))
         rm.domain = 'firmalife'  # DOMAIN RESET
 
     ore = 'chromite'

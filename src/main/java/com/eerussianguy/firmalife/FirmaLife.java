@@ -9,6 +9,7 @@ import net.minecraftforge.fml.loading.FMLEnvironment;
 
 import com.eerussianguy.firmalife.client.FLClientEvents;
 import com.eerussianguy.firmalife.client.FLClientForgeEvents;
+import com.eerussianguy.firmalife.common.FLEvents;
 import com.eerussianguy.firmalife.common.FLForgeEvents;
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
@@ -54,6 +55,7 @@ public class FirmaLife
 
         FLPackets.init();
 
+        FLEvents.init();
         bus.addListener(this::setup);
 
         FLForgeEvents.init();

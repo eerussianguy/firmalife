@@ -8,7 +8,7 @@
         "items": [
           {
             "items": [
-              "tfc:food/wheat_grain"
+              "tfc:food/rye_grain"
             ]
           }
         ]
@@ -17,7 +17,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "tfc:crafting/wheat_dough"
+        "recipe": "firmalife:crafting/rye_dough"
       }
     }
   },
@@ -29,7 +29,7 @@
   ],
   "rewards": {
     "recipes": [
-      "tfc:crafting/wheat_dough"
+      "firmalife:crafting/rye_dough"
     ]
   }
 }
