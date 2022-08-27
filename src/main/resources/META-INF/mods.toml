@@ -12,20 +12,20 @@ description='''
 An addon for TFC.
 '''
 [[dependencies.firmalife]]
+    modId="tfc"
+    mandatory=true
+    versionRange="[0,)"
+    ordering="AFTER"
+    side="BOTH"
+[[dependencies.firmalife]]
     modId="forge"
     mandatory=true
     versionRange="[40,)"
-    ordering="NONE"
+    ordering="AFTER"
     side="BOTH"
 [[dependencies.firmalife]]
     modId="minecraft"
     mandatory=true
     versionRange="[1.18.2,1.19)"
-    ordering="NONE"
-    side="BOTH"
-[[dependencies.firmalife]]
-    modId="tfc"
-    mandatory=true
-    versionRange="[0,)"
-    ordering="BEFORE"
+    ordering="AFTER"
     side="BOTH"

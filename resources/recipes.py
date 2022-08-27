@@ -1,5 +1,4 @@
 from enum import Enum
-from itertools import repeat
 from typing import Union
 
 from mcresources import ResourceManager, RecipeContext, utils
