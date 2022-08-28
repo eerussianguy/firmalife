@@ -30,7 +30,7 @@ def generate(rm: ResourceManager):
 
     rm.blockstate('drying_mat', model='firmalife:block/drying_mat').with_item_model().with_tag('tfc:mineable_with_sharp_tool').with_lang(lang('drying mat')).with_block_loot('firmalife:drying_mat')
     block = rm.blockstate('mixing_bowl', model='firmalife:block/mixing_bowl').with_item_model().with_tag('minecraft:mineable/axe').with_lang(lang('mixing bowl'))
-    block.with_block_loot({'name': 'firmalife:mixing_bowl'}, {'name': 'firmalife:mixing_bowl', 'conditions': [loot_tables.block_state_property('firmalife:mixing_bowl[spoon=true]')]})
+    block.with_block_loot({'name': 'firmalife:mixing_bowl'}, {'name': 'firmalife:spoon', 'conditions': [loot_tables.block_state_property('firmalife:mixing_bowl[spoon=true]')]})
 
     for fruit in TFC_FRUITS:
         rm.item_model(('not_dried', fruit), 'tfc:item/food/%s' % fruit)

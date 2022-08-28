@@ -115,9 +115,12 @@ public class FLBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBloc
             });
             return InteractionResult.sidedSuccess(level.isClientSide);
         }
-        else if (!player.isShiftKeyDown() && player instanceof ServerPlayer serverPlayer)
+        else if (!player.isShiftKeyDown())
         {
-            level.getBlockEntity(pos, FLBlockEntities.BEEHIVE.get()).ifPresent(nest -> NetworkHooks.openGui(serverPlayer, nest, pos));
+            if (player instanceof ServerPlayer serverPlayer)
+            {
+                level.getBlockEntity(pos, FLBlockEntities.BEEHIVE.get()).ifPresent(nest -> NetworkHooks.openGui(serverPlayer, nest, pos));
+            }
             return InteractionResult.sidedSuccess(level.isClientSide);
         }
         return InteractionResult.PASS;

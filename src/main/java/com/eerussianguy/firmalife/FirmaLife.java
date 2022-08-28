@@ -55,9 +55,9 @@ public class FirmaLife
 
         FLPackets.init();
 
-        FLEvents.init();
         bus.addListener(this::setup);
 
+        FLEvents.init();
         FLForgeEvents.init();
         if (FMLEnvironment.dist == Dist.CLIENT)
         {

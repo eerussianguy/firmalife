@@ -23,7 +23,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "firmalife:mixing_bowl",
+          "name": "firmalife:spoon",
           "conditions": [
             {
               "condition": "minecraft:block_state_property",
