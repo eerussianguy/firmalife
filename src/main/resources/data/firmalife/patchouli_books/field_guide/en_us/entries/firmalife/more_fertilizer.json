@@ -6,12 +6,12 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Given a greater need for fertilization in Firmalife, there are more options for getting fertilizers."
+      "text": "Given a greater need for fertilization in Firmalife, there are more options for getting $(l:mechanics/fertilizers)fertilizers$()."
     },
     {
       "type": "firmalife:drying_recipe",
       "recipe": "firmalife:drying/dry_grass",
-      "text": "Thatch can be $(l:firmalife/drying)Dried$() into $(thing)Dry Grass$(), which can be used in a Composter as a brown item."
+      "text": "Thatch can be $(l:firmalife:firmalife/drying)Dried$() into $(thing)Dry Grass$(), which can be used in a Composter as a brown item."
     },
     {
       "type": "patchouli:crafting",

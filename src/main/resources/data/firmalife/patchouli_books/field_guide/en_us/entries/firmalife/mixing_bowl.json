@@ -11,7 +11,7 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/mixing_bowl",
-      "text": "firmalife:crafting/spoon"
+      "text": "Requires a $(thing)Spoon$() to use."
     }
   ],
   "read_by_default": true,

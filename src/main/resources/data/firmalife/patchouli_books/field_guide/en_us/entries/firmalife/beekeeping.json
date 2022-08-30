@@ -24,12 +24,12 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/honey_jar_open",
-      "text": "Bees also produce $(thing)Honey$(). Using $(item)$(k:key.use)$() with an $(l:firmalife/jar)Empty Jar$() on a hive that visibly has honey gives you a $(thing)Honey Jar$(). Opening a Honey Jar gives you $(thing)Raw Honey$(), a $(thing)Sugar$() substitute."
+      "text": "Bees also produce $(thing)Honey$(). Using $(item)$(k:key.use)$() with an $(l:firmalife:firmalife/jar)Empty Jar$() on a hive that visibly has honey gives you a $(thing)Honey Jar$(). Opening a Honey Jar gives you $(thing)Raw Honey$(), a $(thing)Sugar$() substitute."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/scrape_beehive_frame",
-      "text": "Crafting a filled frame with a $(thing)Knife$() gives you $(thing)Beeswax$(), which has many uses"
+      "text": "Crafting a filled frame with a $(thing)Knife$() gives you $(thing)Beeswax$(), which has many uses. However, this kills the queen inside the frame so be careful!"
     },
     {
       "type": "patchouli:crafting",
@@ -43,12 +43,12 @@
     },
     {
       "type": "patchouli:text",
-      "text": "$(li)$(thing)Hardiness$(): Allows bees to produce honey at lower temperatures. Hardiness 10 allows up to -16\u00b0C, whereas Hardiness 1 allows up to 2\u00b0C.$()$(li)$(thing)Production$(): Improves the speed of honey production.$()$(li)$(thing)Mutant$(): Increases variability in the traits passed during breeding$()",
+      "text": "$(li)$(thing)Hardiness$(): Allows bees to produce honey at lower temperatures. Hardiness 10 allows up to -16°C, whereas Hardiness 1 allows up to 2°C.$()$(li)$(thing)Production$(): Improves the speed of honey production.$()$(li)$(thing)Mutant$(): Increases variability in the traits passed during breeding$().",
       "title": "List of Abilities"
     },
     {
       "type": "patchouli:text",
-      "text": "$(li)$(thing)Fertility$(): Increases likelihood of breeding$()$(li)$(thing)Crop Affinity$(): Likelihood of spreading a small amount of nutrients to crops$()$(li)$(thing)Nature Restoration$()Causes new flowers and lilypads to spawn around the hive$()$(li)$(thing)Calmness$()Decreases likelihood of bees attacking you$()"
+      "text": "$(li)$(thing)Fertility$(): Increases likelihood of breeding.$()$(li)$(thing)Crop Affinity$(): Likelihood of spreading a small amount of nutrients to crops.$()$(li)$(thing)Nature Restoration$(): Causes new flowers and lilypads to spawn around the hive.$()$(li)$(thing)Calmness$(): Decreases likelihood of bees attacking you$()."
     }
   ],
   "read_by_default": true,
