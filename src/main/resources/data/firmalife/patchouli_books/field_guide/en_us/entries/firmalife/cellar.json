@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The $(thing)Cellar$() is a multiblock device controlled by a $(l:firmalife/climate_station)Climate Station$(). The Cellar multiblock's only requirement is that it be in an enclosed area surrounded by $(thing)Sealed Bricks$() or $(thing)Sealed Brick Doors$() on all sides. The Climate Station must be placed on the first level of the cellar, touching a wall."
+      "text": "The $(thing)Cellar$() is a multiblock device controlled by a $(l:firmalife:firmalife/climate_station)Climate Station$(). The Cellar multiblock's only requirement is that it be in an enclosed area surrounded by $(thing)Sealed Bricks$() or $(thing)Sealed Brick Doors$() on all sides. The Climate Station must be placed on the first level of the cellar, touching a wall."
     },
     {
       "type": "patchouli:multiblock",
@@ -22,7 +22,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "$(thing)Beeswax$() is obtained from $(l:firmalife/beekeeping)Beekeeping$().$(br)Cellars are used for $(l:firmalife/cheese#aging)Aging Cheese$()."
+      "text": "$(thing)Beeswax$() is obtained from $(l:firmalife:firmalife/beekeeping)Beekeeping$().$(br)Cellars are used for $(l:firmalife:firmalife/cheese#aging)Aging Cheese$()."
     }
   ],
   "read_by_default": true,

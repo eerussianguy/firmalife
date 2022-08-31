@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The $(thing)Climate Station$() is a block that manages the $(l:firmalife/greenhouse)Greenhouse$() and the $(l:firmalife/cellar)Cellar$(). When its corresponding multiblock is built correctly, it will show water on its sides. When it it is invalid, it will show ice. The Climate Station must be placed on the first level of the multiblock, touching a wall."
+      "text": "The $(thing)Climate Station$() is a block that manages the $(l:firmalife:firmalife/greenhouse)Greenhouse$() and the $(l:firmalife:firmalife/cellar)Cellar$(). When its corresponding multiblock is built correctly, it will show water on its sides. When it it is invalid, it will show ice. The Climate Station must be placed on the first level of the multiblock, touching a wall."
     },
     {
       "type": "tfc:multimultiblock",
@@ -42,7 +42,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "$(li)It updates periodically on its own, or when placed/broken.$()$(li)When a climate station updates, it tells all the blocks inside the multiblock that they can operate. For example, it lets $(l:firmalife/cheese)Cheese$() begin aging.$()$(li)Press $(item)$(k:key.use)$() to force update the Climate Station and the blocks inside the multiblock.",
+      "text": "$(li)It updates periodically on its own, or when placed/broken.$()$(li)When a climate station updates, it tells all the blocks inside the multiblock that they can operate. For example, it lets $(l:firmalife:firmalife/cheese)Cheese$() begin aging.$()$(li)Press $(item)$(k:key.use)$() to force update the Climate Station and the blocks inside the multiblock.",
       "title": "Climate Station Tips"
     },
     {

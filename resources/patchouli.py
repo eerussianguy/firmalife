@@ -65,9 +65,9 @@ class Book:
 
         if self.i18n.lang == 'en_us':  # Only generate the book.json if we're in the root language
             rm.data(('patchouli_books', self.root_name, 'book'), {
-                'extend': 'tfc:field_guide'
-                #'name': 'tfc.field_guide.book_name',
-                #'landing_text': 'tfc.field_guide.book_landing_text',
+                'extend': 'tfc:field_guide',
+                'name': 'firmalife field_guide extension',
+                'landing_text': 'firmalife field_guide extension'
                 #'subtitle': '${version}',
                 # Even though we don't use the book item, we still need patchy to make a book item for us, as it controls the title
                 # If neither we nor patchy make a book item, this will show up as 'Air'. So we make one to allow the title to work properly.

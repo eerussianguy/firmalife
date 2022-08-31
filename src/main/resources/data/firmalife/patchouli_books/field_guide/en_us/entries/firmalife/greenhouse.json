@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The $(thing)Greenhouse$() is a multiblock device controlled by a $(l:firmalife/climate_station)Climate Station$(). It allows growing crops year round. The Greenhouse has an array of types and blocks to choose from. However, building a greenhouse is quite simple. Like the $(l:firmalife/cellar)Cellar$(), it should be an enclosed area of blocks belonging to the same $(thing)Greenhouse Type$(). The floor of the greenhouse may be any solid block."
+      "text": "The $(thing)Greenhouse$() is a multiblock device controlled by a $(l:firmalife:firmalife/climate_station)Climate Station$(). It allows growing crops year round. The Greenhouse has an array of types and blocks to choose from. However, building a greenhouse is quite simple. Like the $(l:firmalife:firmalife/cellar)Cellar$(), it should be an enclosed area of blocks belonging to the same $(thing)Greenhouse Type$(). The floor of the greenhouse may be any solid block."
     },
     {
       "type": "patchouli:text",
@@ -33,7 +33,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The next two pages contain recipes for the four main greenhouse block types. While they are only shown for Iron greenhouses, the iron rods in the recipe can be replaced with $(thing)Treated Lumber$(), $(thing)Copper Rods$(), or $(thing)Stainless Steel Rods$(). For information on Stainless Steel, see $(l:firmalife/stainless_steel)this linked page$()."
+      "text": "The next two pages contain recipes for the four main greenhouse block types. While they are only shown for Iron greenhouses, the iron rods in the recipe can be replaced with $(thing)Treated Lumber$(), $(thing)Copper Rods$(), or $(thing)Stainless Steel Rods$(). For information on Stainless Steel, see $(l:firmalife:firmalife/stainless_steel)this linked page$()."
     },
     {
       "type": "patchouli:crafting",
@@ -47,7 +47,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "There are many blocks that operate inside Greenhouses:$(br)$(li)$(l:firmalife/planters)Planters$(), for growing crops$()"
+      "text": "There are many blocks that operate inside Greenhouses:$(br)$(li)$(l:firmalife:firmalife/planters)Planters$(), for growing crops$()"
     }
   ],
   "read_by_default": true,
