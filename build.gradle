@@ -20,9 +20,13 @@ buildscript {
 }
 
 
+plugins {
+    id 'com.matthewprenger.cursegradle' version '1.4.0'
+    id 'idea'
+}
+
 apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
-apply plugin: 'idea'
 apply plugin: 'maven-publish'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: 'org.spongepowered.mixin'
@@ -184,6 +188,30 @@ publishing {
     repositories {
         maven {
             url "file://${project.projectDir}/mcmodsrepo"
+        }
+    }
+}
+
+curseforge {
+    final String envApiKey = System.getenv('CURSEFORGE_API_KEY');
+    final String versionType = project.version.contains('beta') ? 'beta' : (project.version.contains('alpha') ? 'alpha' : 'release')
+
+    apiKey = envApiKey == null ? 'nope' : envApiKey
+
+    project {
+        id = '453394'
+        changelog = "[Changelog ${version}](https://github.com/eerussianguy/firmalife/releases/tag/v${project.version})"
+        changelogType = "markdown"
+
+        releaseType = versionType
+        addGameVersion "${minecraft_version}"
+
+        mainArtifact jar
+
+        relations {
+            requiredDependency 'patchouli'
+            requiredDependency 'terrafirmacraft'
+            optionalDependency 'jei'
         }
     }
 }
