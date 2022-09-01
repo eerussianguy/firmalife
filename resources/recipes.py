@@ -425,7 +425,7 @@ def barrel_sealed_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifi
         'on_unseal': on_unseal,
         'sound': sound
     })
-    res = utils.resource_location('tfc', name_parts)
+    res = utils.resource_location('firmalife', name_parts)
     rm.lang('tfc.recipe.barrel.' + res.domain + '.barrel.' + res.path.replace('/', '.'), lang(translation))
 
 def item_stack_ingredient(data_in: Json):
