@@ -83,7 +83,7 @@ public class FLHelpers
     {
         ItemStack stack = inv.extractItem(slot, 1, false);
         if (stack.isEmpty()) return InteractionResult.PASS;
-        if (!level.isClientSide) ItemHandlerHelper.giveItemToPlayer(player, stack);
+        ItemHandlerHelper.giveItemToPlayer(player, stack);
         return InteractionResult.sidedSuccess(level.isClientSide);
     }
 
@@ -108,10 +108,7 @@ public class FLHelpers
     {
         ItemStack stack = inv.insertItem(slot, item.split(1), false);
         if (stack.isEmpty()) return InteractionResult.sidedSuccess(level.isClientSide);
-        if (!level.isClientSide)
-        {
-            ItemHandlerHelper.giveItemToPlayer(player, stack);
-        }
+        ItemHandlerHelper.giveItemToPlayer(player, stack);
         return InteractionResult.sidedSuccess(level.isClientSide);
     }
 
@@ -126,7 +123,7 @@ public class FLHelpers
         {
             ItemStack stack = inv.extractItem(i, 1, false);
             if (stack.isEmpty()) continue;
-            if (!level.isClientSide) ItemHandlerHelper.giveItemToPlayer(player, stack);
+            ItemHandlerHelper.giveItemToPlayer(player, stack);
             return InteractionResult.sidedSuccess(level.isClientSide);
         }
         return InteractionResult.PASS;
