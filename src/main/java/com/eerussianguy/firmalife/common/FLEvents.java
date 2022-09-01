@@ -48,6 +48,7 @@ public class FLEvents
                 var metadata = pack.getMetadataSection(PackMetadataSection.SERIALIZER);
                 if (metadata != null)
                 {
+                    FirmaLife.LOGGER.info("Injecting firmalife override pack");
                     event.addRepositorySource((consumer, constructor) ->
                         consumer.accept(constructor.create("builtin/firmalife_data", new TextComponent("Firmalife Resources"), true, () -> pack, metadata, Pack.Position.TOP, PackSource.BUILT_IN, false))
                     );

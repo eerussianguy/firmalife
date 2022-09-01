@@ -5,6 +5,11 @@
     "item": "firmalife:food/soy_mixture"
   },
   "result": {
-    "item": "firmalife:food/tofu"
+    "stack": {
+      "item": "firmalife:food/tofu"
+    },
+    "modifiers": [
+      "tfc:copy_food"
+    ]
   }
 }

@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
@@ -65,6 +66,7 @@ public class SeedBall extends ThrowableItemProjectile
         super.onHit(hit);
         if (!this.level.isClientSide)
         {
+            Helpers.playSound(level, blockPosition(), SoundEvents.ROOTED_DIRT_PLACE);
             spread(level, blockPosition());
             this.level.broadcastEntityEvent(this, (byte) 3);
             this.discard();

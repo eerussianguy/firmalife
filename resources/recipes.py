@@ -124,7 +124,7 @@ def generate(rm: ResourceManager):
     drying_recipe(rm, 'drying_fruit', not_rotten(has_trait('#tfc:foods/fruits', 'firmalife:dried', True)), item_stack_provider(copy_input=True, add_trait='firmalife:dried'))
     drying_recipe(rm, 'cinnamon', 'firmalife:cinnamon_bark', item_stack_provider('firmalife:spice/cinnamon'))
     drying_recipe(rm, 'dry_grass', 'tfc:thatch', item_stack_provider('tfc:groundcover/dead_grass'))
-    drying_recipe(rm, 'tofu', 'firmalife:food/soy_mixture', item_stack_provider('firmalife:food/tofu'))
+    drying_recipe(rm, 'tofu', 'firmalife:food/soy_mixture', item_stack_provider('firmalife:food/tofu', copy_food=True))
 
     smoking_recipe(rm, 'meat', not_rotten(has_trait(has_trait('#tfc:foods/raw_meats', 'firmalife:smoked', True), 'tfc:brined')), item_stack_provider(copy_input=True, add_trait='firmalife:smoked'))
     smoking_recipe(rm, 'cheese', not_rotten(has_trait('#firmalife:foods/cheeses', 'firmalife:smoked', True)), item_stack_provider(copy_input=True, add_trait='firmalife:smoked'))

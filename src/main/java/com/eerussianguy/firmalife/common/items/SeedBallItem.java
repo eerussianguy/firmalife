@@ -38,6 +38,7 @@ public class SeedBallItem extends Item
         player.getCooldowns().addCooldown(this, 20);
         if (!level.isClientSide)
         {
+            Helpers.playSound(level, player.blockPosition(), SoundEvents.SNOWBALL_THROW);
             SeedBall ball = new SeedBall(player, level);
             ball.setItem(held);
             ball.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1.5F, 1.0F);
