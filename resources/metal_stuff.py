@@ -72,6 +72,7 @@ def generate(rm: ResourceManager):
             'fluid': 'firmalife:metal/%s' % metal
         })
         item.with_lang(lang('molten %s bucket', metal))
+        rm.lang('metal.firmalife.%s' % metal, lang(metal))
 
 def chromium_ore_heats(rm: ResourceManager):
     ore = 'chromite'
