@@ -159,7 +159,7 @@ public class FLBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBloc
             {
                 ord++;
                 MutableComponent beeText = Helpers.translatable("firmalife.beehive.bee", String.valueOf(ord));
-                if (bee.hasQueen())
+                if (bee != null && bee.hasQueen())
                 {
                     beeText.append(Helpers.translatable("firmalife.beehive.has_queen"));
                     final float minTemp = BeeAbility.getMinTemperature(bee.getAbility(BeeAbility.HARDINESS));
