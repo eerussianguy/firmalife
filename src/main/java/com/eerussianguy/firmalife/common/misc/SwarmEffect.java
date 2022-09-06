@@ -45,9 +45,9 @@ public class SwarmEffect extends MobEffect
     @Override
     public void applyEffectTick(LivingEntity entity, int amplifier)
     {
-        if (entity.getHealth() > 1.0F && !entity.isInWaterOrRain() && FLConfig.SERVER.enableBeeSwarm.get())
+        if (!entity.isInWaterOrRain() && FLConfig.SERVER.enableBeeSwarm.get())
         {
-            entity.hurt(FLDamageSources.SWARM, 1.0F);
+            entity.hurt(FLDamageSources.SWARM, 0.5F);
         }
         particles(entity.getLevel(), entity.blockPosition(), entity.getRandom());
     }
