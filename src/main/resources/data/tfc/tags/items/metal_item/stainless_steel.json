@@ -1,0 +1,11 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "firmalife:metal/ingot/stainless_steel",
+    "firmalife:metal/double_ingot/stainless_steel",
+    "firmalife:metal/sheet/stainless_steel",
+    "firmalife:metal/double_sheet/stainless_steel",
+    "firmalife:metal/rod/stainless_steel"
+  ]
+}

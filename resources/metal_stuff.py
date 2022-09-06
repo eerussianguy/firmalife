@@ -35,11 +35,14 @@ def generate(rm: ResourceManager):
         })
         for item, item_data in METAL_ITEMS.items():
             if item_data.type in metal_data.types or item_data.type == 'all':
+                item_name = 'firmalife:metal/%s/%s' % (item, metal)
                 if item_data.tag is not None:
-                    rm.item_tag(item_data.tag + '/' + metal, 'firmalife:metal/%s/%s' % (item, metal))
+                    rm.item_tag(item_data.tag, '#%s/%s' % (item_data.tag, metal))
+                    rm.item_tag(item_data.tag + '/' + metal, item_name)
                     ingredient = utils.item_stack('#%s/%s' % (item_data.tag, metal))
                 else:
-                    ingredient = utils.item_stack('firmalife:metal/%s/%s' % (item, metal))
+                    ingredient = utils.item_stack(item_name)
+                rm.item_tag('tfc:metal_item/%s' % metal, item_name)
                 item_heat(rm, ('metal', metal + '_' + item), ingredient, metal_data.heat_capacity, metal_data.melt_temperature)
 
         def item(_variant: str) -> str:

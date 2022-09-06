@@ -1,0 +1,11 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "firmalife:metal/ingot/chromium",
+    "firmalife:metal/double_ingot/chromium",
+    "firmalife:metal/sheet/chromium",
+    "firmalife:metal/double_sheet/chromium",
+    "firmalife:metal/rod/chromium"
+  ]
+}
