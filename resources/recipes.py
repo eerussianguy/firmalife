@@ -46,6 +46,7 @@ def generate(rm: ResourceManager):
     rm.crafting_shaped('crafting/mixing_bowl', ['XYX', 'YXY'], {'X': 'firmalife:treated_lumber', 'Y': 'tfc:glue'}, 'firmalife:mixing_bowl').with_advancement('firmalife:treated_lumber')
     rm.crafting_shapeless('crafting/empty_jar', ('minecraft:glass', '#tfc:lumber'), (4, 'firmalife:empty_jar')).with_advancement('minecraft:glass')
     rm.crafting_shaped('crafting/drying_mat', ['XXX'], {'X': 'firmalife:fruit_leaf'}, 'firmalife:drying_mat').with_advancement('firmalife:fruit_leaf')
+    damage_shapeless(rm, 'crafting/basil_leaves', ('firmalife:plant/basil', '#tfc:knives'), (2, 'firmalife:spice/basil_leaves')).with_advancement('firmalife:plant/basil')
     damage_shapeless(rm, 'crafting/scrape_beehive_frame', (has_queen('firmalife:beehive_frame'), '#tfc:knives'), 'firmalife:beeswax').with_advancement('firmalife:beehive_frame')  # frame has a container item of itself
     rm.crafting_shapeless('crafting/bee_candle', ('firmalife:beeswax', '#forge:string'), '4 tfc:candle').with_advancement('firmalife:beeswax')
     rm.crafting_shaped('crafting/sealed_bricks', ['XXX', 'XYX', 'XXX'], {'X': '#forge:stone_bricks', 'Y': 'firmalife:beeswax'}, '8 firmalife:sealed_bricks').with_advancement('firmalife:beeswax')
@@ -132,7 +133,7 @@ def generate(rm: ResourceManager):
     mixing_recipe(rm, 'butter', ingredients=[utils.ingredient('tfc:powder/salt')], fluid='1000 firmalife:cream', output_item='firmalife:food/butter')
     mixing_recipe(rm, 'pie_dough', ingredients=[not_rotten('firmalife:food/butter'), not_rotten('#tfc:foods/flour'), utils.ingredient('#firmalife:sweetener')], fluid='1000 minecraft:water', output_item='firmalife:food/pie_dough')
     mixing_recipe(rm, 'pumpkin_pie_dough', ingredients=[not_rotten('minecraft:egg'), not_rotten('firmalife:food/pumpkin_chunks'), not_rotten('firmalife:food/pumpkin_chunks'), not_rotten('#tfc:foods/flour'), utils.ingredient('#firmalife:sweetener')], fluid='1000 minecraft:water', output_item='firmalife:food/pumpkin_pie_dough')
-    mixing_recipe(rm, 'pizza_dough', ingredients=[not_rotten('#tfc:foods/dough'), utils.ingredient('tfc:powder/salt')], fluid='1000 tfc:olive_oil', output_item='4 firmalife:food/pizza_dough')
+    mixing_recipe(rm, 'pizza_dough', ingredients=[not_rotten('#tfc:foods/dough'), utils.ingredient('tfc:powder/salt'), utils.ingredient('firmalife:basil_leaves')], fluid='1000 tfc:olive_oil', output_item='4 firmalife:food/pizza_dough')
 
     meal_shapeless(rm, 'crafting/filled_pie', ('firmalife:food/pie_dough', '#firmalife:foods/preserves', '#firmalife:pie_pans'), 'firmalife:food/filled_pie', 'firmalife:pie').with_advancement('firmalife:food/pie_dough')
     meal_shapeless(rm, 'crafting/raw_pizza', ('firmalife:food/pizza_dough', '#firmalife:foods/pizza_ingredients', '#firmalife:foods/pizza_ingredients', 'firmalife:food/shredded_cheese'), 'firmalife:food/raw_pizza', 'firmalife:pizza').with_advancement('firmalife:food/pizza_dough')
