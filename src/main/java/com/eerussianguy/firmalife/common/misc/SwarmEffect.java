@@ -4,12 +4,12 @@ import java.util.Random;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 
+import com.eerussianguy.firmalife.config.FLConfig;
 import net.dries007.tfc.util.Helpers;
 
 public class SwarmEffect extends MobEffect
@@ -45,9 +45,9 @@ public class SwarmEffect extends MobEffect
     @Override
     public void applyEffectTick(LivingEntity entity, int amplifier)
     {
-        if (entity.getHealth() > 1.0F && !entity.isInWaterOrRain())
+        if (entity.getHealth() > 1.0F && !entity.isInWaterOrRain() && FLConfig.SERVER.enableBeeSwarm.get())
         {
-            entity.hurt(DamageSource.MAGIC, 1.0F);
+            entity.hurt(FLDamageSources.SWARM, 1.0F);
         }
         particles(entity.getLevel(), entity.blockPosition(), entity.getRandom());
     }

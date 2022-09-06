@@ -125,6 +125,7 @@ DEFAULT_LANG = {
     'firmalife.tooltip.food_trait.rancid_smoked': 'Rancid Smoked',
     'firmalife.tooltip.food_trait.raw': 'Raw (INEDIBLE)',
     'firmalife.tooltip.seed_ball': 'Throw me!',
+    'firmalife.tooltip.seed_ball_disabled': 'This server has disabled seed balls!',
     'firmalife.cellar.found': 'Found a cellar of %s blocks',
     'firmalife.greenhouse.valid_block': '§aGrowing',
     'firmalife.greenhouse.invalid_block': '§cNot Growing',
@@ -164,6 +165,11 @@ DEFAULT_LANG = {
     'firmalife.enum.plantertype.bonsai': 'Bonsai Planter',
     'firmalife.enum.plantertype.quad': 'Quad Planter',
     'firmalife.enum.plantertype.large': 'Large Planter',
+
+    'death.attack.firmalife.oven': '%1$s died by sticking their hand in a hot oven.',
+    'death.attack.firmalife.oven.player': '%1$s climbed into an oven to escape %2$s.',
+    'death.attack.firmalife.swarm': '%1$s was stung to death by bees.',
+    'death.attack.firmalife.swarm.player': '%1$s was stung to death by bees while trying to escape %2$s.',
 
     'firmalife.screen.pumpkin_knapping': 'Pumpkin Knapping',
     'tfc.jei.pumpkin_knapping': 'Pumpkin Knapping',

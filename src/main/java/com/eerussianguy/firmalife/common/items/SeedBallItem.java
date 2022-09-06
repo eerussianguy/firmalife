@@ -14,6 +14,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 
 import com.eerussianguy.firmalife.common.entities.SeedBall;
+import com.eerussianguy.firmalife.config.FLConfig;
 import net.dries007.tfc.util.Helpers;
 import org.jetbrains.annotations.Nullable;
 
@@ -33,13 +34,19 @@ public class SeedBallItem extends Item
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand)
     {
-        ItemStack held = player.getItemInHand(hand);
+        final ItemStack held = player.getItemInHand(hand);
+        if (!FLConfig.SERVER.enableSeedBalls.get())
+        {
+            player.displayClientMessage(Helpers.translatable("firmalife.tooltip.seed_ball_disabled"), true);
+            return InteractionResultHolder.pass(held);
+        }
+
         Helpers.playSound(level, player.blockPosition(), SoundEvents.SNOWBALL_THROW);
         player.getCooldowns().addCooldown(this, 20);
         if (!level.isClientSide)
         {
             Helpers.playSound(level, player.blockPosition(), SoundEvents.SNOWBALL_THROW);
-            SeedBall ball = new SeedBall(player, level);
+            final SeedBall ball = new SeedBall(player, level);
             ball.setItem(held);
             ball.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1.5F, 1.0F);
             level.addFreshEntity(ball);

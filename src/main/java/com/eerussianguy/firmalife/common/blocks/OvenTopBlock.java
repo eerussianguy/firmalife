@@ -15,13 +15,13 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.items.CapabilityItemHandler;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.blockentities.OvenTopBlockEntity;
-import net.dries007.tfc.common.TFCDamageSources;
+import com.eerussianguy.firmalife.common.misc.FLDamageSources;
+import com.eerussianguy.firmalife.config.FLConfig;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.util.Helpers;
 import org.jetbrains.annotations.Nullable;
@@ -43,9 +43,9 @@ public class OvenTopBlock extends AbstractOvenBlock
             if (peel || (item.isEmpty() && player.isShiftKeyDown()))
             {
                 BlockState downState = level.getBlockState(pos.below());
-                if (!peel && Helpers.isBlock(downState, FLBlocks.OVEN_BOTTOM.get()) && downState.getValue(OvenBottomBlock.LIT))
+                if (!peel && Helpers.isBlock(downState, FLBlocks.OVEN_BOTTOM.get()) && downState.getValue(OvenBottomBlock.LIT) && FLConfig.SERVER.ovenRequirePeel.get())
                 {
-                    player.hurt(TFCDamageSources.GRILL, 0.5f);
+                    player.hurt(FLDamageSources.OVEN, 0.5f);
                 }
                 return FLHelpers.takeOneAny(level, OvenTopBlockEntity.SLOT_INPUT_START, OvenTopBlockEntity.SLOT_INPUT_END, inv, player);
             }

@@ -12,6 +12,7 @@ import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blocks.StringBlock;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.common.recipes.SmokingRecipe;
+import com.eerussianguy.firmalife.config.FLConfig;
 import net.dries007.tfc.common.blockentities.FirepitBlockEntity;
 import net.dries007.tfc.common.blocks.devices.FirepitBlock;
 import net.dries007.tfc.common.capabilities.food.FoodCapability;
@@ -70,7 +71,7 @@ public class StringBlockEntity extends SimpleItemRecipeBlockEntity<SmokingRecipe
 
     public StringBlockEntity(BlockPos pos, BlockState state)
     {
-        super(FLBlockEntities.STRING.get(), pos, state, FLHelpers.blockEntityName("string"), ICalendar.TICKS_IN_DAY / 3);
+        super(FLBlockEntities.STRING.get(), pos, state, FLHelpers.blockEntityName("string"), FLConfig.SERVER.smokingTicks);
     }
 
     @Override

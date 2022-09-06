@@ -7,6 +7,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.recipes.DryingRecipe;
+import com.eerussianguy.firmalife.config.FLConfig;
 import net.dries007.tfc.common.recipes.inventory.ItemStackInventory;
 import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.ICalendar;
@@ -37,7 +38,7 @@ public class DryingMatBlockEntity extends SimpleItemRecipeBlockEntity<DryingReci
 
     public DryingMatBlockEntity(BlockPos pos, BlockState state)
     {
-        super(FLBlockEntities.DRYING_MAT.get(), pos, state, FLHelpers.blockEntityName("drying_mat"), ICalendar.TICKS_IN_DAY / 2);
+        super(FLBlockEntities.DRYING_MAT.get(), pos, state, FLHelpers.blockEntityName("drying_mat"), FLConfig.SERVER.dryingTicks);
     }
 
     @Override

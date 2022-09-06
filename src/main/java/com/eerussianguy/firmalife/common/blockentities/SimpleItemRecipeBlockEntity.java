@@ -1,5 +1,7 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
+import java.util.function.Supplier;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -16,11 +18,11 @@ import org.jetbrains.annotations.Nullable;
 
 public abstract class SimpleItemRecipeBlockEntity<T extends SimpleItemRecipe> extends InventoryBlockEntity<ItemStackHandler>
 {
-    private final int duration;
+    private final Supplier<Integer> duration;
     protected long startTick;
     @Nullable protected T cachedRecipe;
 
-    public SimpleItemRecipeBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state, Component defaultName, int duration)
+    public SimpleItemRecipeBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state, Component defaultName, Supplier<Integer> duration)
     {
         super(type, pos, state, defaultInventory(1), defaultName);
         this.duration = duration;
@@ -58,7 +60,7 @@ public abstract class SimpleItemRecipeBlockEntity<T extends SimpleItemRecipe> ex
             startTick = Calendars.SERVER.getTicks();
             if (!level.canSeeSky(worldPosition.above()))
             {
-                startTick += duration; // takes twice as long indoors
+                startTick += getDuration(); // takes twice as long indoors
             }
             markForSync();
         }
@@ -93,6 +95,6 @@ public abstract class SimpleItemRecipeBlockEntity<T extends SimpleItemRecipe> ex
 
     public int getDuration()
     {
-        return duration;
+        return duration.get();
     }
 }

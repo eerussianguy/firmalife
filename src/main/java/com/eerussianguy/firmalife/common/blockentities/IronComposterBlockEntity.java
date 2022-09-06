@@ -3,6 +3,7 @@ package com.eerussianguy.firmalife.common.blockentities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
 
+import com.eerussianguy.firmalife.config.FLConfig;
 import net.dries007.tfc.common.blockentities.ComposterBlockEntity;
 import net.dries007.tfc.common.blockentities.TFCBlockEntities;
 import net.dries007.tfc.common.blocks.devices.TFCComposterBlock;
@@ -23,7 +24,7 @@ public class IronComposterBlockEntity extends ComposterBlockEntity
         {
             assert level != null;
             final float rainfall = Climate.getRainfall(level, getBlockPos());
-            long readyTicks = TFCConfig.SERVER.composterTicks.get() / 4; // firmalife: divide ready time by 4
+            long readyTicks = FLConfig.SERVER.ironComposterTicks.get(); // firmalife: divide ready time by 4
             if (TFCConfig.SERVER.composterRainfallCheck.get())
             {
                 if (rainfall < 150f) // inverted trapezoid wave

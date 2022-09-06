@@ -29,6 +29,7 @@ import net.minecraftforge.items.ItemHandlerHelper;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.ClimateReceiver;
 import com.eerussianguy.firmalife.common.util.FoodAge;
+import com.eerussianguy.firmalife.config.FLConfig;
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blockentities.TFCBlockEntities;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
@@ -40,9 +41,6 @@ import org.jetbrains.annotations.Nullable;
 
 public class CheeseWheelBlock extends BottomSupportedDeviceBlock implements ClimateReceiver
 {
-    public static final int DAYS_TO_AGED = 28;
-    public static final int DAYS_TO_VINTAGE = 112; // todo config option
-
     public static final IntegerProperty COUNT = TFCBlockStateProperties.COUNT_1_4;
     public static final EnumProperty<FoodAge> AGE = FLStateProperties.AGE;
     public static final BooleanProperty AGING = FLStateProperties.AGING;
@@ -107,12 +105,12 @@ public class CheeseWheelBlock extends BottomSupportedDeviceBlock implements Clim
             if (state.getValue(AGING))
             {
                 long days = counter.getTicksSinceUpdate() / ICalendar.TICKS_IN_DAY;
-                if (state.getValue(AGE) == FoodAge.FRESH && state.getValue(COUNT) == 4 && days > DAYS_TO_AGED)
+                if (state.getValue(AGE) == FoodAge.FRESH && state.getValue(COUNT) == 4 && days > FLConfig.SERVER.cheeseAgedDays.get())
                 {
                     level.setBlockAndUpdate(pos, state.setValue(AGE, FoodAge.AGED));
                     counter.resetCounter();
                 }
-                else if (state.getValue(AGE) == FoodAge.AGED && state.getValue(COUNT) == 4 && days > DAYS_TO_VINTAGE)
+                else if (state.getValue(AGE) == FoodAge.AGED && state.getValue(COUNT) == 4 && days > FLConfig.SERVER.cheeseVintageDays.get())
                 {
                     level.setBlockAndUpdate(pos, state.setValue(AGE, FoodAge.VINTAGE));
                 }
