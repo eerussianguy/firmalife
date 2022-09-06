@@ -34,7 +34,7 @@
     }
   ],
   "fluid_ingredient": {
-    "ingredient": "minecraft:water",
+    "ingredient": "tfc:salt_water",
     "amount": 1000
   },
   "duration": 2000,

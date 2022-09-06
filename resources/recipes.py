@@ -85,7 +85,7 @@ def generate(rm: ResourceManager):
 
 
     beet = not_rotten('tfc:food/beet')
-    simple_pot_recipe(rm, 'beet_sugar', [beet, beet, beet, beet, beet], '1000 minecraft:water', output_items=['minecraft:sugar', 'minecraft:sugar', 'minecraft:sugar'])
+    simple_pot_recipe(rm, 'beet_sugar', [beet, beet, beet, beet, beet], '1000 tfc:salt_water', output_items=['minecraft:sugar', 'minecraft:sugar', 'minecraft:sugar'])
     simple_pot_recipe(rm, 'soy_mixture', [not_rotten('tfc:food/soybean'), not_rotten('tfc:food/soybean'), utils.ingredient('tfc:powder/salt'), utils.ingredient('tfc:powder/salt')], '1000 minecraft:water', output_items=['firmalife:food/soy_mixture', 'firmalife:food/soy_mixture'])
 
     barrel_instant_recipe(rm, 'clean_any_bowl', '#firmalife:foods/washable', '100 minecraft:water', output_item=item_stack_provider(empty_bowl=True))
