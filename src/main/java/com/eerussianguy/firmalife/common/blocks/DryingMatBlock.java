@@ -23,8 +23,7 @@ public class DryingMatBlock extends BottomSupportedDeviceBlock
         ItemStack held = player.getItemInHand(hand);
         if (level.getBlockEntity(pos) instanceof SimpleItemRecipeBlockEntity<?> mat)
         {
-            mat.markForSync();
-            return mat.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).map(inv -> {
+            InteractionResult result = mat.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).map(inv -> {
                 if (mat.readStack().isEmpty() && !held.isEmpty())
                 {
                     InteractionResult res = FLHelpers.insertOne(level, held, 0, inv, player);
@@ -40,6 +39,8 @@ public class DryingMatBlock extends BottomSupportedDeviceBlock
                 }
                 return InteractionResult.PASS;
             }).orElse(InteractionResult.PASS);
+            mat.markForSync();
+            return result;
         }
         return InteractionResult.PASS;
     }
