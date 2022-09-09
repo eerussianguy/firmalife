@@ -122,21 +122,21 @@ def generate(rm: ResourceManager):
     pumpkin_knapping(rm, 'face', ['XXXXX', 'X X X', 'XXXXX', 'X   X', 'XXXXX'], 'minecraft:carved_pumpkin')
     pumpkin_knapping(rm, 'chunks', [' X X ', 'X X X', ' X X ', 'X X X', ' X X '], 'firmalife:food/pumpkin_chunks')
 
-    drying_recipe(rm, 'drying_fruit', not_rotten(has_trait('#tfc:foods/fruits', 'firmalife:dried', True)), item_stack_provider(copy_input=True, add_trait='firmalife:dried'))
+    drying_recipe(rm, 'drying_fruit', not_rotten(lacks_trait('#tfc:foods/fruits', 'firmalife:dried')), item_stack_provider(copy_input=True, add_trait='firmalife:dried'))
     drying_recipe(rm, 'cinnamon', 'firmalife:cinnamon_bark', item_stack_provider('firmalife:spice/cinnamon'))
     drying_recipe(rm, 'dry_grass', 'tfc:thatch', item_stack_provider('tfc:groundcover/dead_grass'))
     drying_recipe(rm, 'tofu', 'firmalife:food/soy_mixture', item_stack_provider('firmalife:food/tofu', copy_food=True))
 
-    smoking_recipe(rm, 'meat', not_rotten(has_trait(has_trait('#tfc:foods/raw_meats', 'firmalife:smoked', True), 'tfc:brined')), item_stack_provider(copy_input=True, add_trait='firmalife:smoked'))
-    smoking_recipe(rm, 'cheese', not_rotten(has_trait('#firmalife:foods/cheeses', 'firmalife:smoked', True)), item_stack_provider(copy_input=True, add_trait='firmalife:smoked'))
+    smoking_recipe(rm, 'meat', not_rotten(has_trait(lacks_trait('#tfc:foods/raw_meats', 'firmalife:smoked'), 'tfc:brined')), item_stack_provider(copy_input=True, add_trait='firmalife:smoked'))
+    smoking_recipe(rm, 'cheese', not_rotten(lacks_trait('#firmalife:foods/cheeses', 'firmalife:smoked')), item_stack_provider(copy_input=True, add_trait='firmalife:smoked'))
 
     mixing_recipe(rm, 'butter', ingredients=[utils.ingredient('tfc:powder/salt')], fluid='1000 firmalife:cream', output_item='firmalife:food/butter')
     mixing_recipe(rm, 'pie_dough', ingredients=[not_rotten('firmalife:food/butter'), not_rotten('#tfc:foods/flour'), utils.ingredient('#firmalife:sweetener')], fluid='1000 minecraft:water', output_item='firmalife:food/pie_dough')
     mixing_recipe(rm, 'pumpkin_pie_dough', ingredients=[not_rotten('minecraft:egg'), not_rotten('firmalife:food/pumpkin_chunks'), not_rotten('firmalife:food/pumpkin_chunks'), not_rotten('#tfc:foods/flour'), utils.ingredient('#firmalife:sweetener')], fluid='1000 minecraft:water', output_item='firmalife:food/pumpkin_pie_dough')
     mixing_recipe(rm, 'pizza_dough', ingredients=[not_rotten('#tfc:foods/dough'), utils.ingredient('tfc:powder/salt'), utils.ingredient('firmalife:spice/basil_leaves')], fluid='1000 tfc:olive_oil', output_item='4 firmalife:food/pizza_dough')
 
-    meal_shapeless(rm, 'crafting/filled_pie', ('firmalife:food/pie_dough', '#firmalife:foods/preserves', '#firmalife:pie_pans'), 'firmalife:food/filled_pie', 'firmalife:pie').with_advancement('firmalife:food/pie_dough')
-    meal_shapeless(rm, 'crafting/raw_pizza', ('firmalife:food/pizza_dough', '#firmalife:foods/pizza_ingredients', '#firmalife:foods/pizza_ingredients', 'firmalife:food/shredded_cheese'), 'firmalife:food/raw_pizza', 'firmalife:pizza').with_advancement('firmalife:food/pizza_dough')
+    meal_shapeless(rm, 'crafting/filled_pie', (not_rotten('firmalife:food/pie_dough'), '#firmalife:foods/preserves', '#firmalife:pie_pans'), 'firmalife:food/filled_pie', 'firmalife:pie').with_advancement('firmalife:food/pie_dough')
+    meal_shapeless(rm, 'crafting/raw_pizza', (not_rotten('firmalife:food/pizza_dough'), not_rotten('#firmalife:foods/pizza_ingredients'), not_rotten('#firmalife:foods/pizza_ingredients'), not_rotten('firmalife:food/shredded_cheese')), 'firmalife:food/raw_pizza', 'firmalife:pizza').with_advancement('firmalife:food/pizza_dough')
 
     # Greenhouse
     for block in GREENHOUSE_BLOCKS:
@@ -287,6 +287,9 @@ def has_trait(ingredient: Json, trait: str, invert: bool = False) -> Json:
         'trait': trait,
         'ingredient': utils.ingredient(ingredient)
     }
+
+def lacks_trait(ingredient: Json, trait: str) -> Json:
+    return has_trait(ingredient, trait, True)
 
 def not_rotten(ingredient: Json) -> Json:
     return {

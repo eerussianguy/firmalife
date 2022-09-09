@@ -3,7 +3,10 @@
   "type": "tfc:advanced_shapeless_crafting",
   "ingredients": [
     {
-      "item": "firmalife:food/pie_dough"
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "firmalife:food/pie_dough"
+      }
     },
     {
       "tag": "firmalife:foods/preserves"

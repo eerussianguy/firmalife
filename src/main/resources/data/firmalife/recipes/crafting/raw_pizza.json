@@ -3,16 +3,28 @@
   "type": "tfc:advanced_shapeless_crafting",
   "ingredients": [
     {
-      "item": "firmalife:food/pizza_dough"
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "firmalife:food/pizza_dough"
+      }
     },
     {
-      "tag": "firmalife:foods/pizza_ingredients"
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "tag": "firmalife:foods/pizza_ingredients"
+      }
     },
     {
-      "tag": "firmalife:foods/pizza_ingredients"
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "tag": "firmalife:foods/pizza_ingredients"
+      }
     },
     {
-      "item": "firmalife:food/shredded_cheese"
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "firmalife:food/shredded_cheese"
+      }
     }
   ],
   "result": {

@@ -42,8 +42,7 @@ public class OvenTopBlock extends AbstractOvenBlock
             final boolean peel = Helpers.isItem(item, FLTags.Items.USABLE_ON_OVEN);
             if (peel || (item.isEmpty() && player.isShiftKeyDown()))
             {
-                BlockState downState = level.getBlockState(pos.below());
-                if (!peel && Helpers.isBlock(downState, FLBlocks.OVEN_BOTTOM.get()) && downState.getValue(OvenBottomBlock.LIT) && FLConfig.SERVER.ovenRequirePeel.get())
+                if (!peel && oven.getTemperature() > 100f && FLConfig.SERVER.ovenRequirePeel.get())
                 {
                     player.hurt(FLDamageSources.OVEN, 0.5f);
                 }

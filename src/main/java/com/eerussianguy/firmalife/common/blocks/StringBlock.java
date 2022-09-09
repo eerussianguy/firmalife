@@ -48,7 +48,8 @@ public class StringBlock extends DeviceBlock
         for (int i = 0; i < 4; i++)
         {
             mutable.move(0, -1, 0);
-            if (!level.getBlockState(mutable).isAir())
+            final BlockState stateAt = level.getBlockState(mutable);
+            if (!stateAt.isAir() && !(stateAt.getBlock() instanceof StringBlock))
             {
                 return level.getBlockEntity(mutable) instanceof FirepitBlockEntity firepit ? firepit : null;
             }

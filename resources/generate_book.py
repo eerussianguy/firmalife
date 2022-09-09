@@ -175,6 +175,14 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False):
         entry('mixing_bowl', 'Mixing Bowl', 'firmalife:mixing_bowl', pages=(
             text('The mixing bowl is a way of mixing items and fluids together in a friendly way. $(item)$(k:key.use)$() on it with a $(thing)Spoon$() to add it to the bowl, which allows it to operate.'),
             crafting('firmalife:crafting/mixing_bowl', text_contents='Requires a $(thing)Spoon$() to use.'),
+        )),
+        entry('herbs_and_spices', 'Herbs and Spices', 'firmalife:spice/basil_leaves', pages=(
+            text('In Firmalife, there are a number of small plants you can collect and grow on your own, which have cooking properties. The easiest way to obtain these plants is with a $(thing)Seed Ball$(). To use a $(thing)Seed Ball$(), just $(item)$(k:key.use)$() to throw it, like a snowball. This will spawn $(thing)Butterfly Grass$() in the area.'),
+            crafting('firmalife:crafting/seed_ball', text_contents='The recipe for the seed ball requires $(l:firmalife:firmalife/more_fertilizer)Compost$() and 4 $(thing)Seeds$().'),
+            block_spotlight('', 'A butterfly grass plant.', 'firmalife:plant/butterfly_grass'),
+            text('Butterfly grass will mature over time. When one reaches maturity, it has a chance to spread to surrounding blocks, or turn into something new. Butterfly grass blocks that have been spread by another grass block do not spread anymore.'),
+            block_spotlight('', 'Basil is one of the plants that can be spawned by butterfly grass.', 'firmalife:plant/basil'),
+            crafting('firmalife:crafting/basil_leaves', text_contents='Basil leaves are used in pizza.'),
         ))
     ))
 
