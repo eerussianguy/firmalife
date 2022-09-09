@@ -53,7 +53,7 @@ public class FLItems
     public static final RegistryObject<Item> SEED_BALL = register("seed_ball", () -> new SeedBallItem(prop()));
     public static final RegistryObject<Item> SPOON = register("spoon", MISC);
     public static final RegistryObject<Item> TREATED_LUMBER = register("treated_lumber", MISC);
-    public static final RegistryObject<Item> WATERING_CAN = register("watering_can", () -> new WateringCanItem(prop()));
+    public static final RegistryObject<Item> WATERING_CAN = register("watering_can", () -> new WateringCanItem(prop().defaultDurability(20)));
 
     public static final Map<Spice, RegistryObject<Item>> SPICES = Helpers.mapOfKeys(Spice.class, spice -> register("spice/" + spice.name(), MISC));
     public static final Map<FLFood, RegistryObject<Item>> FOODS = Helpers.mapOfKeys(FLFood.class, food -> register("food/" + food.name(), () -> new DecayingItem(new Item.Properties().food(food.getFoodProperties()).tab(FOOD))));

@@ -54,6 +54,7 @@ public class WateringCanItem extends Item
                 receiver.addWater(0.25f);
             }
         }
+        stack.hurtAndBreak(1, entity, p -> p.broadcastBreakEvent(entity.getUsedItemHand()));
     }
 
     @Override
