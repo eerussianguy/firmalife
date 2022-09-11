@@ -69,7 +69,8 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
     public FLBeehiveBlockEntity(BlockPos pos, BlockState state)
     {
         super(FLBlockEntities.BEEHIVE.get(), pos, state, defaultInventory(SLOTS), NAME);
-        lastPlayerTick = lastAreaTick = Calendars.SERVER.getTicks();
+        lastPlayerTick = Integer.MIN_VALUE;
+        lastAreaTick = Calendars.SERVER.getTicks();
         cachedBees = new IBee[] {null, null, null, null};
         honey = 0;
     }

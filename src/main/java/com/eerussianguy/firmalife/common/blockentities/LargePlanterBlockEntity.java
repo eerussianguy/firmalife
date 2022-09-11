@@ -41,7 +41,8 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     private float growth;
 
     private float nitrogen, phosphorous, potassium, water;
-    private long lastPlayerTick;
+    private long lastUpdateTick;
+    private long lastGrowthTick;
     private boolean climateValid;
     private int tier;
 
@@ -54,12 +55,13 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     {
         super(type, pos, state, inventoryFactory, defaultName);
         cachedPlant = null;
-        lastPlayerTick = Calendars.SERVER.getTicks();
         climateValid = false;
         growth = 0;
         water = 0;
         tier = 0;
         nitrogen = phosphorous = potassium = 0;
+        lastUpdateTick = Integer.MIN_VALUE;
+        lastGrowthTick = Calendars.SERVER.getTicks();
     }
 
     @Override
@@ -99,16 +101,27 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
         }
     }
 
+    public long getLastGrowthTick()
+    {
+        return lastGrowthTick;
+    }
+
+    public void setLastGrowthTick(long lastGrowthTick)
+    {
+        this.lastGrowthTick = lastGrowthTick;
+    }
+
     @Override
     public long getLastUpdateTick()
     {
-        return lastPlayerTick;
+        return lastUpdateTick;
     }
 
     @Override
     public void setLastUpdateTick(long ticks)
     {
-        lastPlayerTick = ticks;
+        lastUpdateTick = ticks;
+        markForSync();
     }
 
     @Override
@@ -116,7 +129,8 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     {
         super.loadAdditional(nbt);
         climateValid = nbt.getBoolean("valid");
-        lastPlayerTick = nbt.getLong("lastPlayerTick");
+        lastUpdateTick = nbt.getLong("lastUpdateTick");
+        lastGrowthTick = nbt.getLong("lastGrowthTick");
         climateValid = nbt.getBoolean("climateValid");
         nitrogen = nbt.getFloat("n");
         phosphorous = nbt.getFloat("p");
@@ -138,7 +152,8 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     {
         super.saveAdditional(nbt);
         nbt.putBoolean("valid", climateValid);
-        nbt.putLong("lastPlayerTick", lastPlayerTick);
+        nbt.putLong("lastUpdateTick", lastUpdateTick);
+        nbt.putLong("lastGrowthTick", lastGrowthTick);
         nbt.putBoolean("climateValid", climateValid);
         nbt.putFloat("n", nitrogen);
         nbt.putFloat("p", phosphorous);

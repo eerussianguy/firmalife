@@ -143,7 +143,7 @@ public final class Mechanics
 
     public static boolean growthTick(Level level, BlockPos pos, BlockState state, LargePlanterBlockEntity planter)
     {
-        final long firstTick = planter.getLastUpdateTick(), thisTick = Calendars.SERVER.getTicks();
+        final long firstTick = planter.getLastGrowthTick(), thisTick = Calendars.SERVER.getTicks();
         long tick = firstTick + UPDATE_INTERVAL, lastTick = firstTick;
         for (; tick < thisTick; tick += UPDATE_INTERVAL)
         {
@@ -192,7 +192,7 @@ public final class Mechanics
                 planter.setGrowth(slot, 0);
             }
         }
-        planter.setLastUpdateTick(calendar.getTicks());
+        planter.setLastGrowthTick(calendar.getTicks());
         planter.markForSync();
         planter.afterGrowthTickStep(growing);
         return true;
