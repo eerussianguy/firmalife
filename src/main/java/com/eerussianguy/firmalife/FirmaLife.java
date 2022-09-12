@@ -2,8 +2,11 @@ package com.eerussianguy.firmalife;
 
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.InterModComms;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 
@@ -28,6 +31,7 @@ import com.eerussianguy.firmalife.common.recipes.FLRecipeTypes;
 import com.eerussianguy.firmalife.common.recipes.data.FLIngredients;
 import com.eerussianguy.firmalife.common.recipes.data.FLItemStackModifiers;
 import com.eerussianguy.firmalife.compat.patchouli.FLPatchouliIntegration;
+import com.eerussianguy.firmalife.compat.tooltip.TheOneProbeIntegration;
 import com.eerussianguy.firmalife.config.FLConfig;
 import com.mojang.logging.LogUtils;
 import net.dries007.tfc.config.TFCConfig;
@@ -57,6 +61,7 @@ public class FirmaLife
         FLPackets.init();
 
         bus.addListener(this::setup);
+        bus.addListener(this::onInterModComms);
 
         FLConfig.init();
         FLEvents.init();
@@ -80,6 +85,14 @@ public class FirmaLife
         });
         FLItemStackModifiers.init();
         FLPatchouliIntegration.registerMultiBlocks();
+    }
+
+    public void onInterModComms(InterModEnqueueEvent event)
+    {
+        if (ModList.get().isLoaded("theoneprobe"))
+        {
+            InterModComms.sendTo("theoneprobe", "getTheOneProbe", TheOneProbeIntegration::new);
+        }
     }
 
 }

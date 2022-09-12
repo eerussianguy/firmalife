@@ -18,31 +18,29 @@ import net.dries007.tfc.common.blocks.devices.FirepitBlock;
 import net.dries007.tfc.common.capabilities.food.FoodCapability;
 import net.dries007.tfc.common.recipes.inventory.ItemStackInventory;
 import net.dries007.tfc.util.Helpers;
-import net.dries007.tfc.util.calendar.Calendars;
-import net.dries007.tfc.util.calendar.ICalendar;
 
 public class StringBlockEntity extends SimpleItemRecipeBlockEntity<SmokingRecipe>
 {
-    public static void serverTick(Level level, BlockPos pos, BlockState state, StringBlockEntity mat)
+    public static void serverTick(Level level, BlockPos pos, BlockState state, StringBlockEntity string)
     {
         if (level.getGameTime() % 40 == 0)
         {
-            if (mat.cachedRecipe == null)
+            if (string.cachedRecipe == null)
             {
-                mat.startTick = Calendars.SERVER.getTicks();
+                string.resetCounter();
                 return;
             }
             FirepitBlockEntity firepit = StringBlock.findFirepit(level, pos);
             if (firepit == null)
             {
-                mat.startTick = Calendars.SERVER.getTicks();
+                string.resetCounter();
             }
             else
             {
                 BlockState pitState = level.getBlockState(pos);
                 if (pitState.hasProperty(FirepitBlock.LIT) && !pitState.getValue(FirepitBlock.LIT))
                 {
-                    mat.startTick = Calendars.SERVER.getTicks();
+                    string.resetCounter();
                 }
                 else
                 {
@@ -54,7 +52,7 @@ public class StringBlockEntity extends SimpleItemRecipeBlockEntity<SmokingRecipe
                             if (!item.isEmpty() && !Helpers.isItem(item, FLTags.Items.SMOKING_FUEL))
                             {
                                 FoodCapability.applyTrait(item, FLFoodTraits.RANCID_SMOKED);
-                                mat.startTick = Calendars.SERVER.getTicks();
+                                string.resetCounter();
                             }
                         }
                     });
@@ -62,10 +60,9 @@ public class StringBlockEntity extends SimpleItemRecipeBlockEntity<SmokingRecipe
             }
         }
 
-        long remainingTicks = mat.getDuration() - (Calendars.SERVER.getTicks() - mat.startTick);
-        if (remainingTicks <= 0)
+        if (string.getTicksLeft() <= 0)
         {
-            mat.finish();
+            string.finish();
         }
     }
 

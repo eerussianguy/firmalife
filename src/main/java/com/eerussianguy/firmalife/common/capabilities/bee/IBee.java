@@ -10,6 +10,8 @@ import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.util.Mth;
 import net.minecraftforge.common.util.INBTSerializable;
 
+import net.dries007.tfc.util.Helpers;
+
 public interface IBee extends INBTSerializable<CompoundTag>
 {
     void setHasQueen(boolean exists);
@@ -71,13 +73,13 @@ public interface IBee extends INBTSerializable<CompoundTag>
         if (hasQueen())
         {
             tooltip.add(new TranslatableComponent("firmalife.bee.queen").withStyle(ChatFormatting.GOLD));
-            tooltip.add(new TranslatableComponent("firmalife.bee.abilities").withStyle(ChatFormatting.WHITE));
+            tooltip.add(Helpers.translatable("firmalife.bee.abilities").withStyle(ChatFormatting.WHITE));
             for (BeeAbility ability : BeeAbility.VALUES)
             {
                 final int amount = getAbility(ability);
                 if (amount > 0)
                 {
-                    tooltip.add(new TranslatableComponent("firmalife.bee.ability." + ability.getSerializedName(), String.valueOf(amount)).withStyle(ChatFormatting.GRAY));
+                    tooltip.add(Helpers.translatable("firmalife.bee.ability." + ability.getSerializedName(), String.valueOf(amount)).withStyle(ChatFormatting.GRAY));
                 }
             }
         }

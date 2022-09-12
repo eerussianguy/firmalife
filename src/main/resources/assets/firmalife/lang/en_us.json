@@ -334,7 +334,7 @@
   "firmalife.greenhouse.error_unknown": "Unknown reason for failure to grow",
   "firmalife.greenhouse.no_sky": "There is not enough sky light to grow",
   "firmalife.greenhouse.climate_invalid": "This block is not in a valid greenhouse. Try clicking your climate station.",
-  "firmalife.greenhouse.air_above": "Planters need an air block above them to work",
+  "firmalife.greenhouse.air_needed": "Planters need a block of air to grow into.",
   "firmalife.greenhouse.dehydrated": "This planter needs to be watered with a Watering Can",
   "firmalife.greenhouse.wrong_tier": "To grow this crop, upgrade to a better greenhouse",
   "firmalife.greenhouse.wrong_type": "This crop does not grow in this planter. It grows in a ",

@@ -60,17 +60,17 @@ public class WateringCanItem extends Item
     @Override
     public InteractionResult useOn(UseOnContext context)
     {
+        ItemStack item = context.getItemInHand();
         if (context.getLevel().getFluidState(context.getClickedPos().relative(context.getClickedFace())).getType().isSame(Fluids.WATER))
         {
-            ItemStack item = context.getItemInHand();
             if (item.isDamaged())
             {
-                item.setDamageValue(getMaxDamage(item));
+                item.setDamageValue(0);
                 return InteractionResult.SUCCESS;
             }
             return InteractionResult.PASS;
         }
-        else if (context.getPlayer() != null)
+        else if (context.getPlayer() != null && item.getDamageValue() < item.getMaxDamage() - 1)
         {
             context.getPlayer().startUsingItem(context.getHand());
         }

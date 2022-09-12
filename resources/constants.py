@@ -132,7 +132,7 @@ DEFAULT_LANG = {
     'firmalife.greenhouse.error_unknown': 'Unknown reason for failure to grow',
     'firmalife.greenhouse.no_sky': 'There is not enough sky light to grow',
     'firmalife.greenhouse.climate_invalid': 'This block is not in a valid greenhouse. Try clicking your climate station.',
-    'firmalife.greenhouse.air_above': 'Planters need an air block above them to work',
+    'firmalife.greenhouse.air_needed': 'Planters need a block of air to grow into.',
     'firmalife.greenhouse.dehydrated': 'This planter needs to be watered with a Watering Can',
     'firmalife.greenhouse.wrong_tier': 'To grow this crop, upgrade to a better greenhouse',
     'firmalife.greenhouse.wrong_type': 'This crop does not grow in this planter. It grows in a ',
@@ -165,6 +165,12 @@ DEFAULT_LANG = {
     'firmalife.enum.plantertype.bonsai': 'Bonsai Planter',
     'firmalife.enum.plantertype.quad': 'Quad Planter',
     'firmalife.enum.plantertype.large': 'Large Planter',
+
+    'firmalife.jade.food_age': 'Age: %s',
+    'firmalife.jade.aging': 'Currently Aging',
+    'firmalife.jade.not_aging': 'Not Aging',
+    'firmalife.jade.slices': 'Slices: %s',
+    'firmalife.jade.cure_time_left': 'Curing Time Left: %s',
 
     'death.attack.firmalife.oven': '%1$s died by sticking their hand in a hot oven.',
     'death.attack.firmalife.oven.player': '%1$s climbed into an oven to escape %2$s.',

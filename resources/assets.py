@@ -152,7 +152,7 @@ def generate(rm: ResourceManager):
         make_jar(rm, fruit, 'firmalife:block/jar/%s' % fruit).with_tag('foods/preserves')
 
     for block, tag in SIMPLE_BLOCKS.items():
-        rm.blockstate(block).with_block_model().with_tag(tag).with_lang(lang(block)).with_item_model()
+        rm.blockstate(block).with_block_model().with_tag(tag).with_lang(lang(block)).with_item_model().with_block_loot('firmalife:%s' % block)
     for item in SIMPLE_ITEMS:
         rm.item_model(item).with_lang(lang(item))
     for item in SIMPLE_FOODS:

@@ -9,30 +9,23 @@ import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.recipes.DryingRecipe;
 import com.eerussianguy.firmalife.config.FLConfig;
 import net.dries007.tfc.common.recipes.inventory.ItemStackInventory;
-import net.dries007.tfc.util.calendar.Calendars;
-import net.dries007.tfc.util.calendar.ICalendar;
 
 public class DryingMatBlockEntity extends SimpleItemRecipeBlockEntity<DryingRecipe>
 {
     public static void serverTick(Level level, BlockPos pos, BlockState state, DryingMatBlockEntity mat)
     {
         // reset when it rains
-        if (level.getGameTime() % 40 == 0 && level.isRainingAt(pos.above()))
+        if (level.getGameTime() % 60 == 0 && level.isRainingAt(pos.above()))
         {
-            mat.startTick = Calendars.SERVER.getTicks();
+            mat.resetCounter();
         }
 
         if (mat.cachedRecipe != null)
         {
-            long remainingTicks = mat.getDuration() - (Calendars.SERVER.getTicks() - mat.startTick);
-            if (remainingTicks <= 0)
+            if (mat.getTicksLeft() <= 0)
             {
                 mat.finish();
             }
-        }
-        else
-        {
-            mat.startTick = Calendars.SERVER.getTicks();
         }
     }
 

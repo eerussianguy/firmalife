@@ -51,6 +51,12 @@ public abstract class SimpleItemRecipeBlockEntity<T extends SimpleItemRecipe> ex
 
     abstract void updateCache();
 
+    public long getTicksLeft()
+    {
+        assert level != null;
+        return getDuration() - (Calendars.get(level).getTicks() - startTick);
+    }
+
     public void start()
     {
         assert level != null;
@@ -78,14 +84,11 @@ public abstract class SimpleItemRecipeBlockEntity<T extends SimpleItemRecipe> ex
         }
     }
 
-    public ItemStack insert(ItemStack item)
+    public void resetCounter()
     {
-        return inventory.insertItem(0, item, false);
-    }
-
-    public ItemStack extract()
-    {
-        return inventory.extractItem(0, 1, false);
+        assert level != null;
+        startTick = Calendars.get(level).getTicks();
+        markForSync();
     }
 
     public ItemStack readStack()

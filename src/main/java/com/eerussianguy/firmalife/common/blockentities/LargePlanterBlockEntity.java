@@ -4,7 +4,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -20,6 +19,7 @@ import com.eerussianguy.firmalife.common.util.Plantable;
 import net.dries007.tfc.common.blockentities.FarmlandBlockEntity;
 import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
 import net.dries007.tfc.util.Fertilizer;
+import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.ICalendarTickable;
 import org.jetbrains.annotations.Nullable;
@@ -109,6 +109,7 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     public void setLastGrowthTick(long lastGrowthTick)
     {
         this.lastGrowthTick = lastGrowthTick;
+        markForSync();
     }
 
     @Override
@@ -181,7 +182,7 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
         if (dir != null)
         {
             BlockPos offset = worldPosition.relative(dir);
-            if (!(skylightValid(offset) && level.getBlockState(offset).isAir()))
+            if (skylightValid(offset) || level.getBlockState(offset).isAir())
             {
                 return false;
             }
@@ -216,15 +217,15 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
         {
             complaint = "no_sky";
         }
-        else if (!level.getBlockState(worldPosition.above()).isAir())
+        else if (airFindOffset() != null && !level.getBlockState(worldPosition.relative(airFindOffset())).isAir())
         {
-            complaint = "air_above";
+            complaint = "air_needed";
         }
         else if (water <= 0)
         {
             complaint = "dehydrated";
         }
-        return new TranslatableComponent("firmalife.greenhouse." + complaint);
+        return Helpers.translatable("firmalife.greenhouse." + complaint);
     }
 
     @Nullable

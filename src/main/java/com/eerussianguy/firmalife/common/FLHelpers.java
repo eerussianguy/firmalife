@@ -20,7 +20,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 
@@ -28,6 +27,7 @@ import com.eerussianguy.firmalife.FirmaLife;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.JsonOps;
 import net.dries007.tfc.common.blockentities.TickCounterBlockEntity;
+import net.dries007.tfc.common.capabilities.Capabilities;
 import net.dries007.tfc.util.Helpers;
 
 import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
@@ -63,13 +63,13 @@ public class FLHelpers
 
     public static <T extends BlockEntity> void readInventory(Level level, BlockPos pos, Supplier<BlockEntityType<T>> type, BiConsumer<T, IItemHandler> consumer)
     {
-        level.getBlockEntity(pos, type.get()).ifPresent(be -> be.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(inv -> consumer.accept(be, inv)));
+        level.getBlockEntity(pos, type.get()).ifPresent(be -> be.getCapability(Capabilities.ITEM).ifPresent(inv -> consumer.accept(be, inv)));
     }
 
     public static <T extends BlockEntity> InteractionResult consumeInventory(Level level, BlockPos pos, Supplier<BlockEntityType<T>> type, BiFunction<T, IItemHandler, InteractionResult> consumer)
     {
         return level.getBlockEntity(pos, type.get()).map(be ->
-            be.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).map(inv -> consumer.apply(be, inv)).orElse(InteractionResult.PASS)
+            be.getCapability(Capabilities.ITEM).map(inv -> consumer.apply(be, inv)).orElse(InteractionResult.PASS)
         ).orElse(InteractionResult.PASS);
     }
 
@@ -89,7 +89,7 @@ public class FLHelpers
 
     public static InteractionResult insertOneAny(Level level, ItemStack item, int start, int end, ICapabilityProvider provider, Player player)
     {
-        return provider.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).map(inv -> insertOneAny(level, item, start, end, inv, player)).orElse(InteractionResult.PASS);
+        return provider.getCapability(Capabilities.ITEM).map(inv -> insertOneAny(level, item, start, end, inv, player)).orElse(InteractionResult.PASS);
     }
 
     public static InteractionResult insertOneAny(Level level, ItemStack item, int start, int end, IItemHandler inv, Player player)
@@ -114,7 +114,7 @@ public class FLHelpers
 
     public static InteractionResult takeOneAny(Level level, int start, int end, ICapabilityProvider provider, Player player)
     {
-        return provider.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).map(inv -> takeOneAny(level, start, end, inv, player)).orElse(InteractionResult.PASS);
+        return provider.getCapability(Capabilities.ITEM).map(inv -> takeOneAny(level, start, end, inv, player)).orElse(InteractionResult.PASS);
     }
 
     public static InteractionResult takeOneAny(Level level, int start, int end, IItemHandler inv, Player player)

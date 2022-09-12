@@ -139,6 +139,16 @@ public class OvenBottomBlockEntity extends TickableInventoryBlockEntity<ItemStac
         lastPlayerTick = Calendars.SERVER.getTicks();
     }
 
+    public float getTemperature()
+    {
+        return temperature;
+    }
+
+    public int getCureTicks()
+    {
+        return cureTicks;
+    }
+
     @Override
     public void onCalendarUpdate(long ticks)
     {

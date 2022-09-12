@@ -124,6 +124,13 @@ repositories {
             includeGroup "curse.maven"
         }
     }
+    maven {
+        // Jade
+        url "https://www.cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
 
     flatDir {
          dir 'libs'
@@ -141,6 +148,12 @@ dependencies {
 
     // Patchouli
     implementation fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
+
+    // Jade
+    compileOnly fg.deobf("curse.maven:jade-324717:${jade_version}")
+    runtimeOnly fg.deobf("curse.maven:jade-324717:${jade_version}")
+    compileOnly fg.deobf("curse.maven:top-245211:${top_version}")
+    //runtimeOnly fg.deobf("curse.maven:top-245211:${top_version}")
 
     // JEI
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}:api")
