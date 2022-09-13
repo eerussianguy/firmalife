@@ -75,7 +75,7 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
             {
                 if (plant.getPlanterType() != getPlanterType())
                 {
-                    player.displayClientMessage(new TranslatableComponent("firmalife.greenhouse.wrong_type").append(FLHelpers.getEnumTranslationKey(plant.getPlanterType())), true);
+                    player.displayClientMessage(new TranslatableComponent("firmalife.greenhouse.wrong_type").append(FLHelpers.translateEnum(plant.getPlanterType())), true);
                     return InteractionResult.sidedSuccess(level.isClientSide);
                 }
                 if (planter.getTier() < plant.getTier())
@@ -134,11 +134,12 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
             {
                 text.add(new TranslatableComponent("tfc.tooltip.farmland.mature"));
             }
-            final boolean valid = planter.checkValid();
+            final Component invalidReason = planter.getInvalidReason();
+            final boolean valid = invalidReason == null;
             text.add(new TranslatableComponent(valid ? "firmalife.greenhouse.valid_block" : "firmalife.greenhouse.invalid_block"));
             if (!valid)
             {
-                text.add(planter.getInvalidReason());
+                text.add(invalidReason);
             }
 
             text.add(new TranslatableComponent("tfc.tooltip.farmland.nutrients", format(planter, FarmlandBlockEntity.NutrientType.NITROGEN), format(planter, FarmlandBlockEntity.NutrientType.PHOSPHOROUS), format(planter, FarmlandBlockEntity.NutrientType.POTASSIUM)));

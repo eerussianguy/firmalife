@@ -129,7 +129,6 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     public void loadAdditional(CompoundTag nbt)
     {
         super.loadAdditional(nbt);
-        climateValid = nbt.getBoolean("valid");
         lastUpdateTick = nbt.getLong("lastUpdateTick");
         lastGrowthTick = nbt.getLong("lastGrowthTick");
         climateValid = nbt.getBoolean("climateValid");
@@ -152,7 +151,6 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     public void saveAdditional(CompoundTag nbt)
     {
         super.saveAdditional(nbt);
-        nbt.putBoolean("valid", climateValid);
         nbt.putLong("lastUpdateTick", lastUpdateTick);
         nbt.putLong("lastGrowthTick", lastGrowthTick);
         nbt.putBoolean("climateValid", climateValid);
@@ -177,21 +175,7 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
 
     public boolean checkValid()
     {
-        assert level != null;
-        Direction dir = airFindOffset();
-        if (dir != null)
-        {
-            BlockPos offset = worldPosition.relative(dir);
-            if (skylightValid(offset) || level.getBlockState(offset).isAir())
-            {
-                return false;
-            }
-        }
-        else if (!skylightValid(worldPosition))
-        {
-            return false;
-        }
-        return climateValid && water > 0;
+        return getInvalidReason() == null;
     }
 
     private boolean skylightValid(BlockPos pos)
@@ -205,28 +189,29 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
         return climateValid;
     }
 
+    @Nullable
     public Component getInvalidReason()
     {
         assert level != null;
         final Direction airFind = airFindOffset();
-        String complaint = "error_unknown";
+        String complaint = null;
         if (!climateValid)
         {
             complaint = "climate_invalid";
         }
-        else if (level.getBrightness(LightLayer.SKY, worldPosition.relative(Direction.UP)) < level.getMaxLightLevel() - 5)
+        else if (!skylightValid(worldPosition))
         {
             complaint = "no_sky";
-        }
-        else if (airFind != null && !level.getBlockState(worldPosition.relative(airFind)).isAir())
-        {
-            complaint = "air_needed";
         }
         else if (water <= 0)
         {
             complaint = "dehydrated";
         }
-        return Helpers.translatable("firmalife.greenhouse." + complaint);
+        else if (airFind != null && !level.getBlockState(worldPosition.relative(airFind)).isAir())
+        {
+            complaint = "air_needed";
+        }
+        return complaint == null ? null : Helpers.translatable("firmalife.greenhouse." + complaint);
     }
 
     @Nullable
