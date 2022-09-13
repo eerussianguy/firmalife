@@ -208,6 +208,7 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     public Component getInvalidReason()
     {
         assert level != null;
+        final Direction airFind = airFindOffset();
         String complaint = "error_unknown";
         if (!climateValid)
         {
@@ -217,7 +218,7 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
         {
             complaint = "no_sky";
         }
-        else if (airFindOffset() != null && !level.getBlockState(worldPosition.relative(airFindOffset())).isAir())
+        else if (airFind != null && !level.getBlockState(worldPosition.relative(airFind)).isAir())
         {
             complaint = "air_needed";
         }

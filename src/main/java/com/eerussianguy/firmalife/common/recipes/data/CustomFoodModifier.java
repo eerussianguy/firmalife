@@ -47,6 +47,12 @@ public interface CustomFoodModifier<T extends ItemStackModifier> extends Contain
         handler.setCreationDate(FoodCapability.getRoundedCreationDate());
     }
 
+    @Override
+    default boolean dependsOnInput()
+    {
+        return true;
+    }
+
     default float saturation()
     {
         return 0.5f;

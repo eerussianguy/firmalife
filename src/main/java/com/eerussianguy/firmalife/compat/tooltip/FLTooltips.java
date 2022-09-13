@@ -1,9 +1,13 @@
 package com.eerussianguy.firmalife.compat.tooltip;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.BiConsumer;
 
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 
@@ -11,6 +15,11 @@ import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.*;
 import com.eerussianguy.firmalife.common.blocks.*;
 import com.eerussianguy.firmalife.common.blocks.greenhouse.LargePlanterBlock;
+import com.eerussianguy.firmalife.common.items.FLFoodTraits;
+import com.eerussianguy.firmalife.config.FLConfig;
+import net.dries007.tfc.common.capabilities.food.FoodCapability;
+import net.dries007.tfc.common.capabilities.food.FoodTrait;
+import net.dries007.tfc.common.capabilities.food.IFood;
 import net.dries007.tfc.compat.jade.common.BlockEntityTooltip;
 import net.dries007.tfc.compat.jade.common.BlockEntityTooltips;
 import net.dries007.tfc.compat.jade.common.EntityTooltip;
@@ -47,16 +56,45 @@ public final class FLTooltips
         };
 
         public static final BlockEntityTooltip DRYING_MAT = (level, state, pos, entity, tooltip) -> {
-            if (state.getBlock() instanceof DryingMatBlock block && entity instanceof DryingMatBlockEntity mat)
+            if (state.getBlock() instanceof DryingMatBlock block && entity instanceof DryingMatBlockEntity mat && !mat.viewStack().isEmpty())
             {
-                tooltip.accept(Helpers.translatable("tfc.jade.time_left", delta(level, mat.getTicksLeft())));
+                if (mat.getCachedRecipe() != null)
+                {
+                    tooltip.accept(Helpers.translatable("tfc.jade.time_left", delta(level, mat.getTicksLeft())));
+                }
             }
         };
 
         public static final BlockEntityTooltip STRING = (level, state, pos, entity, tooltip) -> {
             if (state.getBlock() instanceof StringBlock block && entity instanceof StringBlockEntity mat)
             {
-                tooltip.accept(Helpers.translatable("tfc.jade.time_left", delta(level, mat.getTicksLeft())));
+                final ItemStack item = mat.viewStack();
+                if (!item.isEmpty())
+                {
+                    final IFood food = item.getCapability(FoodCapability.CAPABILITY).resolve().orElse(null);
+                    final List<FoodTrait> traits = food == null ? null : food.getTraits();
+                    if (mat.getCachedRecipe() != null)
+                    {
+                        tooltip.accept(Helpers.translatable("tfc.jade.time_left", delta(level, mat.getTicksLeft())));
+                    }
+                    else if (traits != null)
+                    {
+                        final List<Component> text = new ArrayList<>();
+                        if (traits.contains(FLFoodTraits.SMOKED))
+                        {
+                            FLFoodTraits.SMOKED.addTooltipInfo(item, text);
+                        }
+                        if (traits.contains(FLFoodTraits.RANCID_SMOKED))
+                        {
+                            FLFoodTraits.RANCID_SMOKED.addTooltipInfo(item, text);
+                        }
+                        if (!text.isEmpty())
+                        {
+                            text.forEach(tooltip);
+                        }
+                    }
+
+                }
             }
         };
 
@@ -82,7 +120,14 @@ public final class FLTooltips
                 BlockEntityTooltips.heat(tooltip, oven.getTemperature());
                 if (state.getBlock() instanceof ICure cure && !cure.isCured())
                 {
-                    tooltip.accept(Helpers.translatable("firmalife.jade.cure_time_left", delta(level, OvenBottomBlockEntity.CURE_TICKS - oven.getCureTicks())));
+                    if (oven.getTemperature() < FLConfig.SERVER.ovenCureTemperature.get())
+                    {
+                        tooltip.accept(Helpers.translatable("firmalife.jade.cannot_cure"));
+                    }
+                    else
+                    {
+                        tooltip.accept(Helpers.translatable("firmalife.jade.cure_time_left", delta(level, FLConfig.SERVER.ovenCureTicks.get() - oven.getCureTicks())));
+                    }
                 }
             }
         };
@@ -91,6 +136,17 @@ public final class FLTooltips
             if (state.getBlock() instanceof OvenTopBlock block && entity instanceof OvenTopBlockEntity oven)
             {
                 BlockEntityTooltips.heat(tooltip, oven.getTemperature());
+                if (state.getBlock() instanceof ICure cure && !cure.isCured())
+                {
+                    if (oven.getTemperature() < FLConfig.SERVER.ovenCureTemperature.get())
+                    {
+                        tooltip.accept(Helpers.translatable("firmalife.jade.cannot_cure"));
+                    }
+                    else
+                    {
+                        tooltip.accept(Helpers.translatable("firmalife.jade.cure_time_left", delta(level, FLConfig.SERVER.ovenCureTicks.get() - oven.getCureTicks())));
+                    }
+                }
             }
         };
 

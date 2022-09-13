@@ -24,6 +24,9 @@
     ]
   },
   "primary_ingredient": {
-    "tag": "tfc:foods"
+    "type": "tfc:not_rotten",
+    "ingredient": {
+      "item": "firmalife:food/pie_dough"
+    }
   }
 }

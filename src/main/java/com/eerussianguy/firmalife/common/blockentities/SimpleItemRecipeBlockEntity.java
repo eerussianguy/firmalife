@@ -51,6 +51,16 @@ public abstract class SimpleItemRecipeBlockEntity<T extends SimpleItemRecipe> ex
 
     abstract void updateCache();
 
+    @Nullable
+    public T getCachedRecipe()
+    {
+        if (cachedRecipe == null && level != null && level.isClientSide)
+        {
+            updateCache();
+        }
+        return cachedRecipe;
+    }
+
     public long getTicksLeft()
     {
         assert level != null;
@@ -63,7 +73,7 @@ public abstract class SimpleItemRecipeBlockEntity<T extends SimpleItemRecipe> ex
         updateCache();
         if (cachedRecipe != null)
         {
-            startTick = Calendars.SERVER.getTicks();
+            startTick = Calendars.get(level).getTicks();
             if (!level.canSeeSky(worldPosition.above()))
             {
                 startTick += getDuration(); // takes twice as long indoors
@@ -89,6 +99,11 @@ public abstract class SimpleItemRecipeBlockEntity<T extends SimpleItemRecipe> ex
         assert level != null;
         startTick = Calendars.get(level).getTicks();
         markForSync();
+    }
+
+    public ItemStack viewStack()
+    {
+        return inventory.getStackInSlot(0);
     }
 
     public ItemStack readStack()

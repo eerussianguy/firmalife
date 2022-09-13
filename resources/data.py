@@ -139,6 +139,7 @@ def generate(rm: ResourceManager):
     decayable(rm, 'chocolate_blends', '#firmalife:chocolate_blends', Category.dairy)
     decayable(rm, 'butter', 'firmalife:food/butter', Category.dairy)
     decayable(rm, 'pie_dough', 'firmalife:food/pie_dough', Category.other)
+    decayable(rm, 'pizza_dough', 'firmalife:food/pizza_dough', Category.other)
     food_item(rm, 'pumpkin_chunks', 'firmalife:food/pumpkin_chunks', Category.fruit, 4, 1, 5, 1.5, fruit=1)
     decayable(rm, 'pumpkin_pie_dough', 'firmalife:food/pumpkin_pie_dough', Category.other)
     decayable(rm, 'raw_pumpkin_pie', 'firmalife:food/raw_pumpkin_pie', Category.other)

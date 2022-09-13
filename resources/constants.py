@@ -171,6 +171,7 @@ DEFAULT_LANG = {
     'firmalife.jade.not_aging': 'Not Aging',
     'firmalife.jade.slices': 'Slices: %s',
     'firmalife.jade.cure_time_left': 'Curing Time Left: %s',
+    'firmalife.jade.cannot_cure': 'Not hot enough to cure!',
 
     'death.attack.firmalife.oven': '%1$s died by sticking their hand in a hot oven.',
     'death.attack.firmalife.oven.player': '%1$s climbed into an oven to escape %2$s.',

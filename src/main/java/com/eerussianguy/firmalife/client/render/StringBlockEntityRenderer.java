@@ -31,7 +31,7 @@ public class StringBlockEntityRenderer implements BlockEntityRenderer<StringBloc
         {
             poseStack.mulPose(Vector3f.YP.rotationDegrees(90f));
         }
-        ItemStack item = string.readStack();
+        ItemStack item = string.viewStack();
         if (!item.isEmpty())
         {
             Minecraft.getInstance().getItemRenderer().renderStatic(item, ItemTransforms.TransformType.FIXED, combinedLight, combinedOverlay, poseStack, buffers, 0);

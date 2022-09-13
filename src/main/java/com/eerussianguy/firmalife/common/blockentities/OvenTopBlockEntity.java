@@ -10,7 +10,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
@@ -18,6 +17,7 @@ import com.eerussianguy.firmalife.common.blocks.AbstractOvenBlock;
 import com.eerussianguy.firmalife.common.blocks.ICure;
 import com.eerussianguy.firmalife.common.blocks.OvenBottomBlock;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
+import com.eerussianguy.firmalife.config.FLConfig;
 import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
 import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
 import net.dries007.tfc.common.capabilities.DelegateItemHandler;
@@ -30,7 +30,6 @@ import net.dries007.tfc.common.recipes.HeatingRecipe;
 import net.dries007.tfc.common.recipes.inventory.ItemStackInventory;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.calendar.Calendars;
-import net.dries007.tfc.util.calendar.ICalendar;
 import net.dries007.tfc.util.calendar.ICalendarTickable;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -80,10 +79,11 @@ public class OvenTopBlockEntity extends TickableInventoryBlockEntity<OvenTopBloc
             oven.temperature = HeatCapability.adjustTempTowards(oven.temperature, oven.targetTemperature);
         }
         final boolean cured = state.getBlock() instanceof ICure cure && cure.isCured();
-        if (level.getGameTime() % 40 == 0)
+        final int updateInterval = 40;
+        if (level.getGameTime() % updateInterval == 0)
         {
-            if (oven.cureTicks < OvenBottomBlockEntity.CURE_TICKS) oven.cureTicks++;
-            if (oven.temperature > OvenTopBlockEntity.CURE_TEMP && oven.cureTicks > OvenBottomBlockEntity.CURE_TICKS)
+            if (oven.cureTicks <= FLConfig.SERVER.ovenCureTicks.get()) oven.cureTicks += updateInterval;
+            if (oven.temperature > (float) FLConfig.SERVER.ovenCureTemperature.get() && oven.cureTicks > FLConfig.SERVER.ovenCureTicks.get())
             {
                 AbstractOvenBlock.cureAllAround(level, pos, !cured);
             }
@@ -117,7 +117,7 @@ public class OvenTopBlockEntity extends TickableInventoryBlockEntity<OvenTopBloc
                     final HeatingRecipe recipe = oven.cachedRecipes[slot];
                     if (recipe != null && recipe.isValidTemperature(cap.getTemperature()))
                     {
-                        if (oven.cookTicks[slot]++ > COOK_TIME)
+                        if (oven.cookTicks[slot]++ > FLConfig.SERVER.ovenCookTicks.get())
                         {
                             // Convert input
                             final ItemStackInventory inventory = new ItemStackInventory(inputStack);
@@ -141,8 +141,6 @@ public class OvenTopBlockEntity extends TickableInventoryBlockEntity<OvenTopBloc
     public static final int SLOT_INPUT_END = 3;
     public static final int SLOT_INPUT_START = 0;
     public static final int TARGET_TEMPERATURE_STABILITY_TICKS = 400;
-    public static final float CURE_TEMP = 600f;
-    public static final int COOK_TIME = ICalendar.TICKS_IN_HOUR * 2;
 
     private final SidedHandler.Noop<IHeatBlock> sidedHeat;
 
@@ -165,6 +163,11 @@ public class OvenTopBlockEntity extends TickableInventoryBlockEntity<OvenTopBloc
         cookTicks = new int[] {0, 0, 0, 0};
 
         sidedHeat = new SidedHandler.Noop<>(inventory);
+    }
+
+    public int getCureTicks()
+    {
+        return cureTicks;
     }
 
     @Override

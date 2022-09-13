@@ -16,7 +16,7 @@ import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blocks.AbstractOvenBlock;
 import com.eerussianguy.firmalife.common.blocks.ICure;
 import com.eerussianguy.firmalife.common.blocks.OvenBottomBlock;
-import net.dries007.tfc.common.TFCTags;
+import com.eerussianguy.firmalife.config.FLConfig;
 import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
 import net.dries007.tfc.common.capabilities.heat.HeatCapability;
 import net.dries007.tfc.util.Fuel;
@@ -66,11 +66,12 @@ public class OvenBottomBlockEntity extends TickableInventoryBlockEntity<ItemStac
         oven.checkForLastTickSync();
         oven.checkForCalendarUpdate();
 
-        if (level.getGameTime() % 40 == 0)
+        final int updateInterval = 40;
+        if (level.getGameTime() % updateInterval == 0)
         {
             final boolean cured = state.getBlock() instanceof ICure cure && cure.isCured();
-            if (oven.cureTicks <= CURE_TICKS) oven.cureTicks++;
-            if (oven.temperature > OvenTopBlockEntity.CURE_TEMP && oven.cureTicks > CURE_TICKS)
+            if (oven.cureTicks <= FLConfig.SERVER.ovenCureTicks.get()) oven.cureTicks += updateInterval;
+            if (oven.temperature > (float) FLConfig.SERVER.ovenCureTemperature.get() && oven.cureTicks > FLConfig.SERVER.ovenCureTicks.get())
             {
                 AbstractOvenBlock.cureAllAround(level, pos, !cured);
             }
@@ -121,7 +122,6 @@ public class OvenBottomBlockEntity extends TickableInventoryBlockEntity<ItemStac
 
     public static final int SLOT_FUEL_MIN = 0;
     public static final int SLOT_FUEL_MAX = 3;
-    public static final int CURE_TICKS = 40;
     private static final int MAX_AIR_TICKS = 600;
 
     private int burnTicks;

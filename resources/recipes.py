@@ -188,7 +188,7 @@ def disable_recipe(rm: ResourceManager, name_parts: ResourceIdentifier):
     rm.recipe(name_parts, None, {}, conditions='forge:false')
 
 def meal_shapeless(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredients: Json, result: str, mod: str) -> RecipeContext:
-    return advanced_shapeless(rm, name_parts, ingredients, item_stack_provider(result, other_modifier=mod), primary_ingredient=utils.ingredient('#tfc:foods'))
+    return advanced_shapeless(rm, name_parts, ingredients, item_stack_provider(result, other_modifier=mod), primary_ingredient=utils.ingredient(ingredients[0]))
 
 def advanced_shapeless(rm: ResourceManager, name_parts: ResourceIdentifier, ingredients: Json, result: Json, primary_ingredient: Json, group: str = None, conditions: Optional[Json] = None) -> RecipeContext:
     res = utils.resource_location(rm.domain, name_parts)
