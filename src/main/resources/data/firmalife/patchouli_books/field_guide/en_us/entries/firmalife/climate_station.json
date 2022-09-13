@@ -6,11 +6,11 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The $(thing)Climate Station$() is a block that manages the $(l:firmalife:firmalife/greenhouse)Greenhouse$() and the $(l:firmalife:firmalife/cellar)Cellar$(). When its corresponding multiblock is built correctly, it will show water on its sides. When it it is invalid, it will show ice. The Climate Station must be placed on the first level of the multiblock, touching a wall."
+      "text": "The $(thing)Climate Station$() is a block that manages the $(l:firmalife:firmalife/greenhouse)Greenhouse$() and the $(l:firmalife:firmalife/cellar)Cellar$(). When its corresponding multiblock is built correctly, it will show water on its sides. When it is invalid, it will show ice. The Climate Station must be placed on the first level of the multiblock, touching a wall."
     },
     {
       "type": "tfc:multimultiblock",
-      "text": "The climate station in it's valid and invalid state.",
+      "text": "The climate station in its valid and invalid state.",
       "multiblocks": [
         {
           "pattern": [

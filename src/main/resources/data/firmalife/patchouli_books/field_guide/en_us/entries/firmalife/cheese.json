@@ -19,7 +19,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/rajya_metok_wheel",
+      "recipe": "firmalife:crafting/feta_wheel",
       "text": "You are ready to make $(thing)Dry Cheese$() if you wish. You can make $(thing)Rajya Metok$() from $(thing)Yak Curds$(), $(thing)Chevre$() from $(thing)Goat Curds$(), and $(thing)Cheddar$() from $(thing)Milk Curds$()."
     },
     {

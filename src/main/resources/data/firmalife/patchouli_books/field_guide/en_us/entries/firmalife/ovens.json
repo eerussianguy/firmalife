@@ -11,7 +11,7 @@
     {
       "type": "tfc:clay_knapping_recipe",
       "recipe": "tfc:clay_knapping/oven_top",
-      "text": "The recipe for the top oven."
+      "text": "The recipe for the bottom oven."
     },
     {
       "type": "tfc:clay_knapping_recipe",
@@ -21,7 +21,7 @@
     {
       "type": "tfc:clay_knapping_recipe",
       "recipe": "tfc:clay_knapping/oven_chimney",
-      "text": "The recipe for the top oven."
+      "text": "The recipe for the oven chimney    ."
     },
     {
       "type": "patchouli:crafting",
@@ -61,9 +61,9 @@
             ]
           ],
           "mapping": {
-            "0": "firmalife:cured_oven_top",
-            "T": "firmalife:cured_oven_top",
-            "B": "firmalife:cured_oven_bottom",
+            "0": "firmalife:cured_oven_top[facing=south]",
+            "T": "firmalife:cured_oven_top[facing=south]",
+            "B": "firmalife:cured_oven_bottom[facing=south]",
             "W": "minecraft:bricks",
             "C": "firmalife:cured_oven_chimney"
           }
@@ -88,9 +88,9 @@
             ]
           ],
           "mapping": {
-            "0": "firmalife:oven_top",
-            "T": "firmalife:oven_top",
-            "B": "firmalife:oven_bottom",
+            "0": "firmalife:oven_top[facing=south]",
+            "T": "firmalife:oven_top[facing=south]",
+            "B": "firmalife:oven_bottom[facing=south]",
             "W": "minecraft:bricks",
             "C": "firmalife:oven_chimney"
           }

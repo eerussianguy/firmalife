@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(thing)Beehives$() are a place to house bees. Beehives need $(thing)Beehive Frames$() inside them for the bees to leave. Removing frames from an active hive will cause the bees to attack you, unless done at night, or with a $(thing)Firepit$() underneath the hive active."
+      "text": "$(thing)Beehives$() are a place to house bees. Beehives need $(thing)Beehive Frames$() inside them for the bees to live. Removing frames from an active hive will cause the bees to attack you, unless done at night, or with a $(thing)Firepit$() underneath the hive active."
     },
     {
       "type": "patchouli:crafting",
