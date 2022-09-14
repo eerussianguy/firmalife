@@ -157,6 +157,7 @@ public class FLBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBloc
             final float temp = Climate.getTemperature(level, pos);
             int ord = 0;
             final List<IBee> bees = new ArrayList<>();
+            int noQueen = 0;
             for (IBee bee : hive.getCachedBees())
             {
                 ord++;
@@ -169,10 +170,14 @@ public class FLBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBloc
                     {
                         beeText.append(Helpers.translatable("firmalife.beehive.bee_cold", minTemp, String.format("%.2f", temp)).withStyle(ChatFormatting.AQUA));
                     }
-                    bees.add(bee);
+                    else
+                    {
+                        bees.add(bee);
+                    }
                 }
                 else
                 {
+                    if (bee != null) noQueen++;
                     beeText.append(Helpers.translatable("firmalife.beehive.no_queen"));
                 }
                 text.add(beeText);
@@ -185,12 +190,19 @@ public class FLBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBloc
             }
             else
             {
-                int breed = hive.getBreedTickChanceInverted(bees, flowers);
-                if (breed == 0) text.add(Helpers.translatable("firmalife.beehive.breed_chance_100"));
-                else text.add(Helpers.translatable("firmalife.beehive.breed_chance", breed));
-                int honey = hive.getHoneyTickChanceInverted(bees, flowers);
-                if (honey == 0) text.add(Helpers.translatable("firmalife.beehive.honey_chance_100"));
-                else text.add(Helpers.translatable("firmalife.beehive.honey_chance", honey));
+                if (bees.size() < 4 && noQueen != 0)
+                {
+                    int breed = hive.getBreedTickChanceInverted(bees, flowers);
+                    if (breed == 0) text.add(Helpers.translatable("firmalife.beehive.breed_chance_100"));
+                    else text.add(Helpers.translatable("firmalife.beehive.breed_chance", breed));
+                }
+                if (!bees.isEmpty())
+                {
+                    int honey = hive.getHoneyTickChanceInverted(bees, flowers);
+                    if (honey == 0) text.add(Helpers.translatable("firmalife.beehive.honey_chance_100"));
+                    else text.add(Helpers.translatable("firmalife.beehive.honey_chance", honey));
+                }
+
             }
 
         });

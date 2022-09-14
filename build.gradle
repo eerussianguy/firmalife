@@ -124,13 +124,6 @@ repositories {
             includeGroup "curse.maven"
         }
     }
-    maven {
-        // Jade
-        url "https://www.cursemaven.com"
-        content {
-            includeGroup "curse.maven"
-        }
-    }
 
     flatDir {
          dir 'libs'

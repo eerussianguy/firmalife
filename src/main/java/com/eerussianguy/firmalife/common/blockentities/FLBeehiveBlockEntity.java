@@ -139,6 +139,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
 
     public IBee[] getCachedBees()
     {
+        if (level != null && level.isClientSide) updateCache();
         return cachedBees;
     }
 
@@ -189,7 +190,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
             }
         }
         final int honeyChanceInverted = getHoneyTickChanceInverted(usableBees, flowers);
-        if (flowers > MIN_FLOWERS && honeyChanceInverted > 0 && level.random.nextInt(honeyChanceInverted) == 0)
+        if (flowers > MIN_FLOWERS && (honeyChanceInverted == 0 || level.random.nextInt(honeyChanceInverted) == 0))
         {
             addHoney(usableBees.size());
         }
@@ -233,7 +234,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
 
     public int getHoneyTickChanceInverted(List<IBee> bees, int flowers)
     {
-        int chance = 0;
+        int chance = 30;
         for (IBee bee : bees)
         {
             if (bee.hasQueen())
@@ -245,7 +246,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
         {
             chance /= bees.size();
         }
-        return Math.max(0, chance - Mth.ceil((0.2 * flowers)));
+        return Math.max(0, chance - Mth.ceil((0.2 * Math.min(flowers, 60))));
     }
 
     public int getBreedTickChanceInverted(List<IBee> bees, int flowers)
@@ -261,10 +262,10 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
         // no bees, have to give some chance
         if (bees.isEmpty())
         {
-            chance = 20;
+            chance = 100;
         }
         // flowers increase probability
-        return Math.max(0, chance - flowers);
+        return Math.max(0, chance - Math.min(flowers, 60));
     }
 
     public void addHoney(int amount)
