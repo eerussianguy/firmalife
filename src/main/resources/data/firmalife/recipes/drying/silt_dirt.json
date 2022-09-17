@@ -1,0 +1,10 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "firmalife:drying",
+  "ingredient": {
+    "item": "tfc:mud/silt"
+  },
+  "result": {
+    "item": "tfc:dirt/silt"
+  }
+}

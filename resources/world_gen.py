@@ -30,6 +30,36 @@ def generate(rm: ResourceManager):
             'biomes': vein.biomes
         })
 
+    for fruit, info in FRUITS.items():
+        config = {
+            'min_temperature': info.min_temp,
+            'max_temperature': info.max_temp,
+            'min_rainfall': info.min_rain,
+            'max_rainfall': info.max_rain,
+            'max_forest': 'normal'
+        }
+        feature = 'tfc:fruit_trees'
+        state = 'tfc:plant/%s_growing_branch' % fruit
+        if fruit == 'banana':
+            feature = 'tfc:bananas'
+            state = 'tfc:plant/banana_plant'
+        configured_placed_feature(rm, ('plant', fruit), feature, {'state': state}, ('tfc:climate', config), decorate_heightmap('world_surface_wg'), decorate_square(), decorate_chance(50))
+
+        placed_feature_tag(rm, 'feature/fruit_trees', 'tfc:plant/%s' % fruit, 'tfc:plant/%s' % fruit)
+
+
+Heightmap = Literal['motion_blocking', 'motion_blocking_no_leaves', 'ocean_floor', 'ocean_floor_wg', 'world_surface', 'world_surface_wg']
+
+def decorate_heightmap(heightmap: Heightmap) -> Json:
+    assert heightmap in get_args(Heightmap)
+    return 'minecraft:heightmap', {'heightmap': heightmap.upper()}
+
+def decorate_square() -> Json:
+    return 'minecraft:in_square'
+
+def decorate_chance(rarity_or_probability: Union[int, float]) -> Json:
+    return {'type': 'minecraft:rarity_filter', 'chance': round(1 / rarity_or_probability) if isinstance(rarity_or_probability, float) else rarity_or_probability}
+
 def placed_feature_tag(rm: ResourceManager, name_parts: ResourceIdentifier, *values: ResourceIdentifier):
     return rm.tag(name_parts, 'worldgen/placed_feature', *values)
 

@@ -14,7 +14,7 @@ import net.minecraft.world.phys.HitResult;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
-import com.eerussianguy.firmalife.common.blocks.MutatingPlantBlock;
+import com.eerussianguy.firmalife.common.blocks.plant.MutatingPlantBlock;
 import com.eerussianguy.firmalife.common.items.FLItems;
 import net.dries007.tfc.client.particle.TFCParticles;
 import net.dries007.tfc.common.TFCTags;

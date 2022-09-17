@@ -1,0 +1,17 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "variants": {
+    "lifecycle=flowering": {
+      "model": "firmalife:block/plant/cocoa_flowering_leaves"
+    },
+    "lifecycle=fruiting": {
+      "model": "firmalife:block/plant/cocoa_fruiting_leaves"
+    },
+    "lifecycle=dormant": {
+      "model": "firmalife:block/plant/cocoa_dry_leaves"
+    },
+    "lifecycle=healthy": {
+      "model": "firmalife:block/plant/cocoa_leaves"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "minecraft:block/flower_pot_cross",
+  "textures": {
+    "plant": "firmalife:block/plant/cardamom/cardamom",
+    "dirt": "tfc:block/dirt/loam"
+  }
+}

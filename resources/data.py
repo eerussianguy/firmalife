@@ -66,8 +66,11 @@ def generate(rm: ResourceManager):
     rm.block_tag('all_copper_greenhouse', *['#firmalife:%s_greenhouse' % g for g in ('exposed_copper', 'weathered_copper', 'copper', 'oxidized_copper')])
     rm.block_tag('all_treated_wood_greenhouse', '#firmalife:treated_wood_greenhouse', '#firmalife:weathered_treated_wood_greenhouse')
     rm.block_tag('greenhouse', '#firmalife:all_iron_greenhouse', '#firmalife:all_copper_greenhouse', '#firmalife:all_treated_wood_greenhouse', '#firmalife:stainless_steel_greenhouse')
-    rm.block_tag('drops_fruit_leaf', *['tfc:plant/%s_leaves' % t for t in TFC_FRUIT_TREES])
+    rm.block_tag('drops_fruit_leaf', '#tfc:fruit_tree_leaves')
     rm.block_tag('cellar_insulation', 'firmalife:sealed_bricks', 'firmalife:sealed_door')
+
+    rm.block_tag('minecraft:mineable/axe', *['firmalife:plant/%s_branch' % t for t in FRUITS], *['firmalife:plant/%s_growing_branch' % t for t in FRUITS], *['firmalife:plant/%s' % p for p in HERBS], 'firmalife:plant/butterfly_grass')
+    rm.block_tag('tfc:mineable_with_sharp_tool', *['firmalife:plant/%s_leaves' % t for t in FRUITS], *['firmalife:plant/%s_sapling' % t for t in FRUITS])
 
     rm.entity_tag('drops_rennet', 'tfc:cow', 'tfc:sheep', 'tfc:goat', 'tfc:yak', 'tfc:musk_ox')
 
@@ -144,6 +147,7 @@ def generate(rm: ResourceManager):
     decayable(rm, 'pumpkin_pie_dough', 'firmalife:food/pumpkin_pie_dough', Category.other)
     decayable(rm, 'raw_pumpkin_pie', 'firmalife:food/raw_pumpkin_pie', Category.other)
     decayable(rm, 'cooked_pumpkin_pie', 'firmalife:food/cooked_pumpkin_pie', Category.other)
+    decayable(rm, 'cocoa_beans', 'firmalife:food/cocoa_beans', Category.other)
 
     item_size(rm, 'jars', '#firmalife:jars', Size.very_large, Weight.medium)
     item_size(rm, 'beehive_frame', 'firmalife:beehive_frame', Size.very_small, Weight.very_heavy)
@@ -151,6 +155,9 @@ def generate(rm: ResourceManager):
     item_size(rm, 'dynamic_foods', '#firmalife:foods/dynamic', Size.very_small, Weight.very_heavy)
 
     item_heat(rm, 'heatable_foods', '#firmalife:foods/heatable', 1)
+
+    for fruit, data in FRUITS.items():
+        climate_range(rm, 'plant/%s_tree' % fruit, hydration=(hydration_from_rainfall(data.min_rain), 100, 0), temperature=(data.min_temp - 7, data.max_temp + 7, 0))
 
     ### MISC DATA ###
     global_loot_modifiers(rm, 'firmalife:fruit_leaf', 'firmalife:rennet')
@@ -266,8 +273,6 @@ def drinkable(rm: ResourceManager, name_parts: utils.ResourceIdentifier, fluid: 
         'ingredient': fluid_ingredient(fluid),
         'thirst': thirst,
         'intoxication': intoxication
-        # todo: effects
-        # todo: milk effects
     })
 
 def item_size(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredient: utils.Json, size: Size, weight: Weight):
@@ -276,4 +281,16 @@ def item_size(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredi
         'size': size.name,
         'weight': weight.name
     })
+
+def climate_range(rm: ResourceManager, name_parts: utils.ResourceIdentifier, hydration: Tuple[int, int, int] = None, temperature: Tuple[float, float, float] = None):
+    data = {}
+    if hydration is not None:
+        data.update({'min_hydration': hydration[0], 'max_hydration': hydration[1], 'hydration_wiggle_range': hydration[2]})
+    if temperature is not None:
+        data.update({'min_temperature': temperature[0], 'max_temperature': temperature[1], 'temperature_wiggle_range': temperature[2]})
+    rm.data(('tfc', 'climate_ranges', name_parts), data)
+
+
+def hydration_from_rainfall(rainfall: int) -> int:
+    return rainfall * 60 // 500
 

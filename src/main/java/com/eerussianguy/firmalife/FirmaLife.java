@@ -81,6 +81,7 @@ public class FirmaLife
             FLInteractionManager.init();
             FLFoodTraits.init();
             FLIngredients.init();
+            FLBlocks.registerFlowerPotFlowers();
             TFCConfig.SERVER.enablePumpkinCarving.set(false);
         });
         FLItemStackModifiers.init();

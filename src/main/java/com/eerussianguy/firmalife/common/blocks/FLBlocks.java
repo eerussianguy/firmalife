@@ -28,6 +28,8 @@ import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blockentities.*;
 import com.eerussianguy.firmalife.common.blocks.greenhouse.*;
+import com.eerussianguy.firmalife.common.blocks.plant.FLFruitBlocks;
+import com.eerussianguy.firmalife.common.blocks.plant.MutatingPlantBlock;
 import com.eerussianguy.firmalife.common.items.FLFood;
 import com.eerussianguy.firmalife.common.items.FLItems;
 import com.eerussianguy.firmalife.common.items.JarsBlockItem;
@@ -90,15 +92,17 @@ public class FLBlocks
     public static final RegistryObject<Block> SEALED_DOOR = register("sealed_door", () -> new DoorBlock(BlockBehaviour.Properties.of(Material.WOOD).sound(SoundType.STONE).strength(2.0f, 10).requiresCorrectToolForDrops()), DECORATIONS);
 
     public static final RegistryObject<Block> BUTTERFLY_GRASS = register("plant/butterfly_grass", () -> MutatingPlantBlock.create(FLPlant.BUTTERFLY_GRASS, FLPlant.BUTTERFLY_GRASS.nonSolidFire(), FLTags.Blocks.BUTTERFLY_GRASS_MUTANTS), FLORA);
+    public static final RegistryObject<Block> POTTED_BUTTERFLY_GRASS = register("plant/potted/butterfly_grass", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, BUTTERFLY_GRASS, Properties.of(Material.DECORATION).instabreak().noOcclusion()), FLORA);
 
-    public static final RegistryObject<Block> BASIL = register("plant/basil", () -> PlantBlock.create(FLPlant.HERB, FLPlant.HERB.nonSolidFire()), FLORA);
-    public static final RegistryObject<Block> BAY_LAUREL = register("plant/bay_laurel", () -> PlantBlock.create(FLPlant.HERB, FLPlant.HERB.nonSolidFire()), FLORA);
-    public static final RegistryObject<Block> CARDAMOM = register("plant/cardamom", () -> PlantBlock.create(FLPlant.HERB, FLPlant.HERB.nonSolidFire()), FLORA);
-    public static final RegistryObject<Block> CILANTRO = register("plant/cilantro", () -> PlantBlock.create(FLPlant.HERB, FLPlant.HERB.nonSolidFire()), FLORA);
-    public static final RegistryObject<Block> CUMIN = register("plant/cumin", () -> PlantBlock.create(FLPlant.HERB, FLPlant.HERB.nonSolidFire()), FLORA);
-    public static final RegistryObject<Block> OREGANO = register("plant/oregano", () -> PlantBlock.create(FLPlant.HERB, FLPlant.HERB.nonSolidFire()), FLORA);
-    public static final RegistryObject<Block> PIMENTO = register("plant/pimento", () -> PlantBlock.create(FLPlant.HERB, FLPlant.HERB.nonSolidFire()), FLORA);
-    public static final RegistryObject<Block> VANILLA = register("plant/vanilla", () -> PlantBlock.create(FLPlant.HERB, FLPlant.HERB.nonSolidFire()), FLORA);
+    public static final Map<Herb, RegistryObject<Block>> HERBS = Helpers.mapOfKeys(Herb.class, herb -> register("plant/" + herb.name(), () -> PlantBlock.create(FLPlant.HERB, FLPlant.HERB.nonSolidFire()), FLORA));
+    public static final Map<Herb, RegistryObject<Block>> POTTED_HERBS = Helpers.mapOfKeys(Herb.class, herb -> register("plant/potted/" + herb.name(), () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, HERBS.get(herb), Properties.of(Material.DECORATION).instabreak().noOcclusion()), FLORA));
+
+    public static final Map<FLFruitBlocks.Tree, RegistryObject<Block>> FRUIT_TREE_LEAVES = Helpers.mapOfKeys(FLFruitBlocks.Tree.class, tree -> register("plant/" + tree.name() + "_leaves", tree::createLeaves, FLORA));
+    public static final Map<FLFruitBlocks.Tree, RegistryObject<Block>> FRUIT_TREE_BRANCHES = Helpers.mapOfKeys(FLFruitBlocks.Tree.class, tree -> register("plant/" + tree.name() + "_branch", tree::createBranch));
+    public static final Map<FLFruitBlocks.Tree, RegistryObject<Block>> FRUIT_TREE_GROWING_BRANCHES = Helpers.mapOfKeys(FLFruitBlocks.Tree.class, tree -> register("plant/" + tree.name() + "_growing_branch", tree::createGrowingBranch));
+    public static final Map<FLFruitBlocks.Tree, RegistryObject<Block>> FRUIT_TREE_SAPLINGS = Helpers.mapOfKeys(FLFruitBlocks.Tree.class, tree -> register("plant/" + tree.name() + "_sapling", tree::createSapling, FLORA));
+    public static final Map<FLFruitBlocks.Tree, RegistryObject<Block>> FRUIT_TREE_POTTED_SAPLINGS = Helpers.mapOfKeys(FLFruitBlocks.Tree.class, tree -> register("plant/potted/" + tree.name() + "_sapling", tree::createPottedSapling));
+
 
     public static final Map<Carving, RegistryObject<Block>> CARVED_PUMPKINS = Helpers.mapOfKeys(Carving.class, carve ->
         register("carved_pumpkin/" + carve.getSerializedName(), () -> new CarvedPumpkinBlock(Properties.of(Material.VEGETABLE, MaterialColor.COLOR_ORANGE).strength(1.0F).sound(SoundType.WOOD).isValidSpawn(FLBlocks::always)), DECORATIONS)
@@ -128,6 +132,14 @@ public class FLBlocks
     public static final Map<ExtraFluid, RegistryObject<LiquidBlock>> EXTRA_FLUIDS = Helpers.mapOfKeys(ExtraFluid.class, fluid ->
         register("fluid/" + fluid.getSerializedName(), () -> new LiquidBlock(FLFluids.EXTRA_FLUIDS.get(fluid).source(), Properties.of(Material.WATER).noCollission().strength(100f).noDrops()))
     );
+
+    public static void registerFlowerPotFlowers()
+    {
+        FlowerPotBlock pot = (FlowerPotBlock) Blocks.FLOWER_POT;
+        FRUIT_TREE_POTTED_SAPLINGS.forEach((plant, reg) -> pot.addPlant(FRUIT_TREE_SAPLINGS.get(plant).getId(), reg));
+        POTTED_HERBS.forEach((herb, reg) -> pot.addPlant(HERBS.get(herb).getId(), reg));
+        pot.addPlant(BUTTERFLY_GRASS.getId(), POTTED_BUTTERFLY_GRASS);
+    }
 
     public static ExtendedProperties jarProperties()
     {

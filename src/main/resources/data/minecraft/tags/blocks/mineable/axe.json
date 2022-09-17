@@ -17,6 +17,17 @@
     "firmalife:hanging_planter",
     "firmalife:trellis_planter",
     "firmalife:climate_station",
-    "firmalife:beehive"
+    "firmalife:beehive",
+    "firmalife:plant/cocoa_branch",
+    "firmalife:plant/cocoa_growing_branch",
+    "firmalife:plant/basil",
+    "firmalife:plant/bay_laurel",
+    "firmalife:plant/cardamom",
+    "firmalife:plant/cilantro",
+    "firmalife:plant/cumin",
+    "firmalife:plant/oregano",
+    "firmalife:plant/pimento",
+    "firmalife:plant/vanilla",
+    "firmalife:plant/butterfly_grass"
   ]
 }
