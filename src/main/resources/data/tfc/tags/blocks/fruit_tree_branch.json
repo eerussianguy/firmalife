@@ -3,6 +3,8 @@
   "replace": false,
   "values": [
     "firmalife:plant/cocoa_branch",
-    "firmalife:plant/cocoa_growing_branch"
+    "firmalife:plant/cocoa_growing_branch",
+    "firmalife:plant/fig_branch",
+    "firmalife:plant/fig_growing_branch"
   ]
 }

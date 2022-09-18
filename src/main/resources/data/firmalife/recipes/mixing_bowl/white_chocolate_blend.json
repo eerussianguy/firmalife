@@ -1,0 +1,31 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "firmalife:mixing_bowl",
+  "ingredients": [
+    {
+      "tag": "firmalife:sweetener"
+    },
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "firmalife:food/cocoa_butter"
+      }
+    },
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "firmalife:food/cocoa_butter"
+      }
+    }
+  ],
+  "fluid_ingredient": {
+    "ingredient": {
+      "tag": "tfc:milks"
+    },
+    "amount": 1000
+  },
+  "output_item": {
+    "item": "firmalife:food/white_chocolate_blend",
+    "count": 2
+  }
+}

@@ -1,5 +1,7 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
+import java.util.function.Supplier;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -12,6 +14,16 @@ import net.dries007.tfc.common.recipes.inventory.ItemStackInventory;
 
 public class DryingMatBlockEntity extends SimpleItemRecipeBlockEntity<DryingRecipe>
 {
+    public static DryingMatBlockEntity dryingMat(BlockPos pos, BlockState state)
+    {
+        return new DryingMatBlockEntity(pos, state, FLConfig.SERVER.dryingTicks);
+    }
+
+    public static DryingMatBlockEntity solarDrier(BlockPos pos, BlockState state)
+    {
+        return new DryingMatBlockEntity(pos, state, FLConfig.SERVER.solarDryingTicks);
+    }
+
     public static void serverTick(Level level, BlockPos pos, BlockState state, DryingMatBlockEntity mat)
     {
         // reset when it rains
@@ -29,9 +41,9 @@ public class DryingMatBlockEntity extends SimpleItemRecipeBlockEntity<DryingReci
         }
     }
 
-    public DryingMatBlockEntity(BlockPos pos, BlockState state)
+    public DryingMatBlockEntity(BlockPos pos, BlockState state, Supplier<Integer> dryTicks)
     {
-        super(FLBlockEntities.DRYING_MAT.get(), pos, state, FLHelpers.blockEntityName("drying_mat"), FLConfig.SERVER.dryingTicks);
+        super(FLBlockEntities.DRYING_MAT.get(), pos, state, FLHelpers.blockEntityName("drying_mat"), dryTicks);
     }
 
     @Override

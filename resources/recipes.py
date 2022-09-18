@@ -46,6 +46,7 @@ def generate(rm: ResourceManager):
     rm.crafting_shaped('crafting/mixing_bowl', ['XYX', 'YXY'], {'X': 'firmalife:treated_lumber', 'Y': 'tfc:glue'}, 'firmalife:mixing_bowl').with_advancement('firmalife:treated_lumber')
     rm.crafting_shapeless('crafting/empty_jar', ('minecraft:glass', '#tfc:lumber'), (4, 'firmalife:empty_jar')).with_advancement('minecraft:glass')
     rm.crafting_shaped('crafting/drying_mat', ['XXX'], {'X': 'firmalife:fruit_leaf'}, 'firmalife:drying_mat').with_advancement('firmalife:fruit_leaf')
+    rm.crafting_shaped('crafting/solar_drier', ['SGS', ' M ', 'WWW'], {'M': 'firmalife:drying_mat', 'S': '#forge:rods/stainless_steel', 'G': 'minecraft:glass', 'W': 'firmalife:treated_lumber'}, 'firmalife:solar_drier').with_advancement('firmalife:drying_mat')
     damage_shapeless(rm, 'crafting/basil_leaves', ('firmalife:plant/basil', '#tfc:knives'), (2, 'firmalife:spice/basil_leaves')).with_advancement('firmalife:plant/basil')
     damage_shapeless(rm, 'crafting/scrape_beehive_frame', (has_queen('firmalife:beehive_frame'), '#tfc:knives'), 'firmalife:beeswax').with_advancement('firmalife:beehive_frame')  # frame has a container item of itself
     rm.crafting_shapeless('crafting/bee_candle', ('firmalife:beeswax', '#forge:string'), '4 tfc:candle').with_advancement('firmalife:beeswax')
@@ -73,6 +74,19 @@ def generate(rm: ResourceManager):
     rm.domain = 'tfc'
     rm.crafting_shapeless('crafting/pumpkin_pie', ('firmalife:food/cooked_pumpkin_pie',), 'minecraft:pumpkin_pie').with_advancement('firmalife:food/cooked_pumpkin_pie')
     rm.domain = 'firmalife'
+
+    write_crafting_recipe(rm, 'cocoa_butter_powder', {
+        'type': 'tfc:extra_products_shapeless_crafting',
+        'extra_products': utils.item_stack_list('firmalife:food/cocoa_powder'),
+        'recipe': {
+            'type': 'tfc:damage_inputs_shapeless_crafting',
+            'recipe': {
+                'type': 'minecraft:crafting_shapeless',
+                'ingredients': utils.item_stack_list((not_rotten('firmalife:food/roasted_cocoa_beans'), '#tfc:knives')),
+                'result': utils.item_stack('firmalife:food/cocoa_butter')
+            }
+        }
+    })
 
     for jar, remainder, _, ing in JARS:
         make_jar(rm, jar, remainder, ing)
@@ -112,9 +126,10 @@ def generate(rm: ResourceManager):
     clay_knapping(rm, 'oven_bottom', ['XX XX', 'X   X', 'X   X', 'XX XX', 'XXXXX'], 'firmalife:oven_bottom')
     clay_knapping(rm, 'oven_chimney', ['XX XX', 'XX XX', 'XX XX'], 'firmalife:oven_chimney')
 
-    heat_recipe(rm, 'cooked_pie', 'firmalife:food/filled_pie', 400, result_item=item_stack_provider('firmalife:food/cooked_pie', other_modifier='firmalife:copy_dynamic_food', remove_trait='firmalife:raw'))
-    heat_recipe(rm, 'cooked_pizza', 'firmalife:food/raw_pizza', 400, result_item=item_stack_provider('firmalife:food/cooked_pizza', other_modifier='firmalife:copy_dynamic_food', remove_trait='firmalife:raw'))
-    heat_recipe(rm, 'pumpkin_pie', 'firmalife:food/raw_pumpkin_pie', 400, result_item=item_stack_provider('firmalife:food/cooked_pumpkin_pie'))
+    heat_recipe(rm, 'cooked_pie', not_rotten('firmalife:food/filled_pie'), 400, result_item=item_stack_provider('firmalife:food/cooked_pie', other_modifier='firmalife:copy_dynamic_food', remove_trait='firmalife:raw'))
+    heat_recipe(rm, 'cooked_pizza', not_rotten('firmalife:food/raw_pizza'), 400, result_item=item_stack_provider('firmalife:food/cooked_pizza', other_modifier='firmalife:copy_dynamic_food', remove_trait='firmalife:raw'))
+    heat_recipe(rm, 'pumpkin_pie', not_rotten('firmalife:food/raw_pumpkin_pie'), 400, result_item=item_stack_provider('firmalife:food/cooked_pumpkin_pie'))
+    heat_recipe(rm, 'roasted_cocoa_beans', not_rotten('firmalife:food/cocoa_beans'), 400, result_item=item_stack_provider('firmalife:food/roasted_cocoa_beans'))
 
     # Firmalife Recipes
     for carving, pattern in CARVINGS.items():
@@ -137,6 +152,9 @@ def generate(rm: ResourceManager):
     mixing_recipe(rm, 'pie_dough', ingredients=[not_rotten('firmalife:food/butter'), not_rotten('#tfc:foods/flour'), utils.ingredient('#firmalife:sweetener')], fluid='1000 minecraft:water', output_item='firmalife:food/pie_dough')
     mixing_recipe(rm, 'pumpkin_pie_dough', ingredients=[not_rotten('minecraft:egg'), not_rotten('firmalife:food/pumpkin_chunks'), not_rotten('firmalife:food/pumpkin_chunks'), not_rotten('#tfc:foods/flour'), utils.ingredient('#firmalife:sweetener')], fluid='1000 minecraft:water', output_item='firmalife:food/pumpkin_pie_dough')
     mixing_recipe(rm, 'pizza_dough', ingredients=[not_rotten('#tfc:foods/dough'), utils.ingredient('tfc:powder/salt'), utils.ingredient('firmalife:spice/basil_leaves')], fluid='1000 tfc:olive_oil', output_item='4 firmalife:food/pizza_dough')
+    mixing_recipe(rm, 'dark_chocolate_blend', ingredients=[utils.ingredient('#firmalife:sweetener'), not_rotten('firmalife:food/cocoa_powder'), not_rotten('firmalife:food/cocoa_powder')], fluid='1000 #tfc:milks', output_item='2 firmalife:food/dark_chocolate_blend')
+    mixing_recipe(rm, 'white_chocolate_blend', ingredients=[utils.ingredient('#firmalife:sweetener'), not_rotten('firmalife:food/cocoa_butter'), not_rotten('firmalife:food/cocoa_butter')], fluid='1000 #tfc:milks', output_item='2 firmalife:food/white_chocolate_blend')
+    mixing_recipe(rm, 'milk_chocolate_blend', ingredients=[utils.ingredient('#firmalife:sweetener'), not_rotten('firmalife:food/cocoa_butter'), not_rotten('firmalife:food/cocoa_powder')], fluid='1000 #tfc:milks', output_item='2 firmalife:food/milk_chocolate_blend')
 
     meal_shapeless(rm, 'crafting/filled_pie', (not_rotten('firmalife:food/pie_dough'), '#firmalife:foods/preserves', '#firmalife:pie_pans'), 'firmalife:food/filled_pie', 'firmalife:pie').with_advancement('firmalife:food/pie_dough')
     meal_shapeless(rm, 'crafting/raw_pizza', (not_rotten('firmalife:food/pizza_dough'), not_rotten('#firmalife:foods/pizza_ingredients'), not_rotten('#firmalife:foods/pizza_ingredients'), not_rotten('firmalife:food/shredded_cheese')), 'firmalife:food/raw_pizza', 'firmalife:pizza').with_advancement('firmalife:food/pizza_dough')
@@ -189,6 +207,11 @@ def generate(rm: ResourceManager):
 def disable_recipe(rm: ResourceManager, name_parts: ResourceIdentifier):
     # noinspection PyTypeChecker
     rm.recipe(name_parts, None, {}, conditions='forge:false')
+
+def write_crafting_recipe(rm: ResourceManager, name_parts: ResourceIdentifier, data: Json) -> RecipeContext:
+    res = utils.resource_location(rm.domain, name_parts)
+    rm.write((*rm.resource_dir, 'data', res.domain, 'recipes', 'crafting', res.path), data)
+    return RecipeContext(rm, res)
 
 def meal_shapeless(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredients: Json, result: str, mod: str) -> RecipeContext:
     return advanced_shapeless(rm, name_parts, ingredients, item_stack_provider(result, other_modifier=mod), primary_ingredient=utils.ingredient(ingredients[0]))

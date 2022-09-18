@@ -4,6 +4,7 @@ import net.minecraft.world.food.FoodProperties;
 
 public enum FLFruit
 {
+    FIG,
     PUMPKIN_CHUNKS;
 
     private final boolean meat, fast;

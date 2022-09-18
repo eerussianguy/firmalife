@@ -1,7 +1,4 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "replace": false,
-  "values": [
-    "tfc:plant/cocoa"
-  ]
+  "parent": "firmalife:block/plant/fig_growing_branch"
 }

@@ -11,6 +11,7 @@ public class FLServerConfig
     public final IntValue cheeseAgedDays;
     public final IntValue cheeseVintageDays;
     public final IntValue dryingTicks;
+    public final IntValue solarDryingTicks;
     public final IntValue smokingTicks;
     public final IntValue ironComposterTicks;
     public final IntValue ovenCookTicks;
@@ -29,6 +30,7 @@ public class FLServerConfig
         cheeseAgedDays = builder.apply("cheeseAgedDays").comment("Days in a cellar to make cheese Aged.").defineInRange("cheeseAgedDays", 28, 1, Integer.MAX_VALUE);
         cheeseVintageDays = builder.apply("cheeseVintageDays").comment("Days in a cellar to make cheese Vintage.").defineInRange("cheeseVintageDays", 112, 1, Integer.MAX_VALUE);
         dryingTicks = builder.apply("dryingTicks").comment("Ticks to dry something on a drying mat (24000 ticks = 1 day)").defineInRange("dryingTicks", 12000, 1, Integer.MAX_VALUE);
+        solarDryingTicks = builder.apply("solarDryingTicks").comment("Ticks to dry something on a solar drier (24000 ticks = 1 day)").defineInRange("solarDryingTicks", 1000, 1, Integer.MAX_VALUE);
         smokingTicks = builder.apply("smokingTicks").comment("Ticks to smoke something on a string (24000 ticks = 1 day)").defineInRange("smokingTicks", 8000, 1, Integer.MAX_VALUE);
         ironComposterTicks = builder.apply("ironComposterTicks").comment("Ticks for an iron composter to finish (24000 ticks = 1 day)").defineInRange("ironComposterTicks", 72000, 1, Integer.MAX_VALUE);
         ovenCookTicks = builder.apply("ovenCookTicks").comment("Ticks for an oven to cook an item (24000 ticks = 1 day)").defineInRange("ovenCookTicks", 2000, 1, Integer.MAX_VALUE);

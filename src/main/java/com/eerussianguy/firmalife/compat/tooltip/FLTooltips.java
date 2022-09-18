@@ -35,6 +35,7 @@ public final class FLTooltips
             r.accept(PLANTERS, LargePlanterBlock.class);
             r.accept(BEEHIVE, FLBeehiveBlock.class);
             r.accept(DRYING_MAT, DryingMatBlock.class);
+            r.accept(DRYING_MAT, SolarDrierBlock.class);
             r.accept(STRING, StringBlock.class);
             r.accept(CHEESE, CheeseWheelBlock.class);
             r.accept(OVEN_BOTTOM, OvenBottomBlock.class);

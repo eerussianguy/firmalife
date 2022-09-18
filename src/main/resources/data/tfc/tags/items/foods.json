@@ -20,6 +20,10 @@
     "firmalife:food/pumpkin_pie_dough",
     "firmalife:food/raw_pumpkin_pie",
     "firmalife:food/cooked_pumpkin_pie",
-    "firmalife:food/cocoa_beans"
+    "firmalife:food/cocoa_beans",
+    "firmalife:food/fig",
+    "firmalife:food/roasted_cocoa_beans",
+    "firmalife:food/cocoa_powder",
+    "firmalife:food/cocoa_butter"
   ]
 }

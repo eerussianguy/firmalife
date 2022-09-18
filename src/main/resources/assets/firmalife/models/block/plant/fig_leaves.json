@@ -1,7 +1,7 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "parent": "item/generated",
+  "parent": "block/leaves",
   "textures": {
-    "layer0": "tfc:item/food/cocoa"
+    "all": "firmalife:block/fruit_tree/fig_leaves"
   }
 }

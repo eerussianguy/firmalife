@@ -1,0 +1,17 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "variants": {
+    "lifecycle=flowering": {
+      "model": "firmalife:block/plant/fig_flowering_leaves"
+    },
+    "lifecycle=fruiting": {
+      "model": "firmalife:block/plant/fig_fruiting_leaves"
+    },
+    "lifecycle=dormant": {
+      "model": "firmalife:block/plant/fig_dry_leaves"
+    },
+    "lifecycle=healthy": {
+      "model": "firmalife:block/plant/fig_leaves"
+    }
+  }
+}

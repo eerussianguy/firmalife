@@ -2,6 +2,7 @@
   "__comment__": "This file was automatically created by mcresources",
   "replace": false,
   "values": [
+    "firmalife:solar_drier",
     "firmalife:mixing_bowl",
     "firmalife:weathered_treated_wood_greenhouse_roof_top",
     "firmalife:weathered_treated_wood_greenhouse_roof",
@@ -19,7 +20,9 @@
     "firmalife:climate_station",
     "firmalife:beehive",
     "firmalife:plant/cocoa_branch",
+    "firmalife:plant/fig_branch",
     "firmalife:plant/cocoa_growing_branch",
+    "firmalife:plant/fig_growing_branch",
     "firmalife:plant/basil",
     "firmalife:plant/bay_laurel",
     "firmalife:plant/cardamom",

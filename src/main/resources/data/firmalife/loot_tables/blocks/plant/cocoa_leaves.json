@@ -8,7 +8,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "firmalife:food/cocoa",
+          "name": "firmalife:food/cocoa_beans",
           "conditions": [
             {
               "condition": "minecraft:block_state_property",

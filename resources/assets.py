@@ -29,6 +29,7 @@ def generate(rm: ResourceManager):
         rm.item_model('%soven_chimney' % pref, parent='firmalife:block/oven_chimney_%s' % stage, no_textures=True)
 
     rm.blockstate('drying_mat', model='firmalife:block/drying_mat').with_item_model().with_tag('tfc:mineable_with_sharp_tool').with_lang(lang('drying mat')).with_block_loot('firmalife:drying_mat')
+    rm.blockstate('solar_drier', model='firmalife:block/solar_drier').with_item_model().with_tag('minecraft:mineable/axe').with_lang(lang('solar drier')).with_block_loot('firmalife:solar_drier')
     block = rm.blockstate('mixing_bowl', model='firmalife:block/mixing_bowl').with_item_model().with_tag('minecraft:mineable/axe').with_lang(lang('mixing bowl'))
     block.with_block_loot({'name': 'firmalife:mixing_bowl'}, {'name': 'firmalife:spoon', 'conditions': [loot_tables.block_state_property('firmalife:mixing_bowl[spoon=true]')]})
 
@@ -144,7 +145,7 @@ def generate(rm: ResourceManager):
         rm.blockstate('plant/%s' % herb, variants={'stage=0': {'model': 'firmalife:block/plant/%s_0' % herb}, 'stage=1': {'model': 'firmalife:block/plant/%s_1' % herb}}).with_lang(lang(herb)).with_tag('firmalife:butterfly_grass_mutants')
         simple_plant_data(rm, 'firmalife:plant/%s' % herb)
         rm.item_model('plant/%s' % herb, 'firmalife:block/plant/%s/1' % herb)
-        flower_pot_cross(rm, herb, 'firmalife:plant/potted/%s' % herb, 'plant/flowerpot/%s' % herb, 'firmalife:block/plant/%s/%s' % (herb, herb), 'firmalife:plant/%s' % herb)
+        flower_pot_cross(rm, herb, 'firmalife:plant/potted/%s' % herb, 'plant/flowerpot/%s' % herb, 'firmalife:block/plant/%s/1' % herb, 'firmalife:plant/%s' % herb)
 
     for fruit in FRUITS.keys():
         for prefix in ('', 'growing_'):
@@ -179,7 +180,7 @@ def generate(rm: ResourceManager):
                 'lifecycle=dormant': {'model': 'firmalife:block/plant/%s_dry_leaves' % fruit},
                 'lifecycle=healthy': {'model': 'firmalife:block/plant/%s_leaves' % fruit}
             }).with_item_model().with_tag('minecraft:leaves').with_tag('tfc:fruit_tree_leaves').with_lang(lang('%s Leaves', fruit)).with_block_loot({
-                'name': 'firmalife:food/%s' % fruit,
+                'name': 'firmalife:food/%s' % fruit if fruit != 'cocoa' else 'firmalife:food/cocoa_beans',
                 'conditions': [loot_tables.block_state_property('firmalife:plant/%s_leaves[lifecycle=fruiting]' % fruit)]
             }, {
                 'name': 'firmalife:plant/%s_leaves' % fruit,
@@ -202,10 +203,9 @@ def generate(rm: ResourceManager):
                 'functions': [list({**loot_tables.set_count(i), 'conditions': [loot_tables.block_state_property('firmalife:plant/%s_sapling[saplings=%s]' % (fruit, i))]} for i in range(1, 5)), loot_tables.explosion_decay()]
             })
             for stage in range(2, 4 + 1):
-                rm.block_model(('plant', '%s_sapling_%d' % (fruit, stage)), parent='tfc:block/plant/cross_%s' % stage, textures={'cross': 'tfc:block/fruit_tree/%s_sapling' % fruit})
+                rm.block_model(('plant', '%s_sapling_%d' % (fruit, stage)), parent='tfc:block/plant/cross_%s' % stage, textures={'cross': 'firmalife:block/fruit_tree/%s_sapling' % fruit})
             rm.block_model(('plant', '%s_sapling_1' % fruit), {'cross': 'firmalife:block/fruit_tree/%s_sapling' % fruit}, 'block/cross')
-            rm.item_model(('plant', '%s_sapling' % fruit), 'tfc:block/fruit_tree/%s_sapling' % fruit)
-            rm.item_model(('food', fruit), 'tfc:item/food/%s' % fruit).with_lang(lang(fruit))
+            rm.item_model(('plant', '%s_sapling' % fruit), 'firmalife:block/fruit_tree/%s_sapling' % fruit)
             flower_pot_cross(rm, '%s sapling' % fruit, 'firmalife:plant/potted/%s_sapling' % fruit, 'plant/flowerpot/%s_sapling' % fruit, 'firmalife:block/fruit_tree/%s_sapling' % fruit, 'firmalife:plant/%s_sapling' % fruit)
 
     for jar, _, texture, _ in JARS:

@@ -68,6 +68,7 @@ def generate(rm: ResourceManager):
     rm.block_tag('greenhouse', '#firmalife:all_iron_greenhouse', '#firmalife:all_copper_greenhouse', '#firmalife:all_treated_wood_greenhouse', '#firmalife:stainless_steel_greenhouse')
     rm.block_tag('drops_fruit_leaf', '#tfc:fruit_tree_leaves')
     rm.block_tag('cellar_insulation', 'firmalife:sealed_bricks', 'firmalife:sealed_door')
+    rm.block_tag('buzzing_leaves', 'firmalife:plant/fig_leaves')
 
     rm.block_tag('minecraft:mineable/axe', *['firmalife:plant/%s_branch' % t for t in FRUITS], *['firmalife:plant/%s_growing_branch' % t for t in FRUITS], *['firmalife:plant/%s' % p for p in HERBS], 'firmalife:plant/butterfly_grass')
     rm.block_tag('tfc:mineable_with_sharp_tool', *['firmalife:plant/%s_leaves' % t for t in FRUITS], *['firmalife:plant/%s_sapling' % t for t in FRUITS])
@@ -110,6 +111,8 @@ def generate(rm: ResourceManager):
     bonsai_plantable(rm, 'peach', 'nitrogen')
     bonsai_plantable(rm, 'plum', 'nitrogen')
     bonsai_plantable(rm, 'red_apple', 'nitrogen')
+    bonsai_plantable(rm, 'cocoa', 'nitrogen', firmalife=True, food='firmalife:food/cocoa_beans')
+    bonsai_plantable(rm, 'fig', 'nitrogen', firmalife=True)
 
     hanging_plantable(rm, 'squash', 'tfc:seeds/squash', 'tfc:food/squash', 'potassium')
     hanging_plantable(rm, 'pumpkin', 'tfc:seeds/melon', 'tfc:melon', 'phosphorous', tier=15)
@@ -147,7 +150,11 @@ def generate(rm: ResourceManager):
     decayable(rm, 'pumpkin_pie_dough', 'firmalife:food/pumpkin_pie_dough', Category.other)
     decayable(rm, 'raw_pumpkin_pie', 'firmalife:food/raw_pumpkin_pie', Category.other)
     decayable(rm, 'cooked_pumpkin_pie', 'firmalife:food/cooked_pumpkin_pie', Category.other)
-    decayable(rm, 'cocoa_beans', 'firmalife:food/cocoa_beans', Category.other)
+    decayable(rm, 'cocoa_beans', 'firmalife:food/cocoa_beans', Category.other, decay=0.25)
+    food_item(rm, 'fig', 'firmalife:food/fig', Category.fruit, 4, 1, 5, 0.8, fruit=0.9)
+    decayable(rm, 'roasted_cocoa_beans', 'firmalife:food/roasted_cocoa_beans', Category.other)
+    decayable(rm, 'cocoa_powder', 'firmalife:food/cocoa_powder', Category.other, decay=0.25)
+    decayable(rm, 'cocoa_butter', 'firmalife:food/cocoa_butter', Category.other, decay=0.25)
 
     item_size(rm, 'jars', '#firmalife:jars', Size.very_large, Weight.medium)
     item_size(rm, 'beehive_frame', 'firmalife:beehive_frame', Size.very_small, Weight.very_heavy)
@@ -177,8 +184,9 @@ def trellis_plantable(rm: ResourceManager, name: str, ingredient: str, crop: str
 def hanging_plantable(rm: ResourceManager, name: str, seed: str, crop: str, nutrient: str, tier: int = None, seed_chance: float = 0.5):
     plantable(rm, name, seed, crop, nutrient, 'firmalife:block/crop/%s' % name, 4, 'hanging', tier, seed_chance)
 
-def bonsai_plantable(rm: ResourceManager, name: str, nutrient: str, firmalife: bool = False):
-    plantable(rm, name, 'tfc:plant/%s_sapling' % name, 'tfc:food/%s' % name, nutrient, 'tfc:block/fruit_tree/%s' % name if not firmalife else 'firmalife:block/fruit_tree/%s' % name, 0, 'bonsai', 15, 0.08)
+def bonsai_plantable(rm: ResourceManager, name: str, nutrient: str, firmalife: bool = False, food: str = None):
+    space = 'firmalife' if firmalife else 'tfc'
+    plantable(rm, name, '%s:plant/%s_sapling' % (space, name), '%s:food/%s' % (space, name) if food is None else food, nutrient, '%s:block/fruit_tree/%s' % (space, name), 0, 'bonsai', 15, 0.08)
 
 def simple_plantable(rm: ResourceManager, name: str, nutrient: str, stages: int, planter: str = 'quad', tier: int = None, firmalife: bool = False):
     plantable(rm, name, 'tfc:seeds/%s' % name, 'tfc:food/%s' % name, nutrient, 'tfc:block/crop/%s' % name if not firmalife else 'firmalife:block/crop/%s' % name, stages, planter, tier)

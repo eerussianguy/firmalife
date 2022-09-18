@@ -30,6 +30,7 @@ import com.eerussianguy.firmalife.common.recipes.FLRecipeSerializers;
 import com.eerussianguy.firmalife.common.recipes.FLRecipeTypes;
 import com.eerussianguy.firmalife.common.recipes.data.FLIngredients;
 import com.eerussianguy.firmalife.common.recipes.data.FLItemStackModifiers;
+import com.eerussianguy.firmalife.common.worldgen.FLFeatures;
 import com.eerussianguy.firmalife.compat.patchouli.FLPatchouliIntegration;
 import com.eerussianguy.firmalife.compat.tooltip.TheOneProbeIntegration;
 import com.eerussianguy.firmalife.config.FLConfig;
@@ -56,6 +57,7 @@ public class FirmaLife
         FLEffects.EFFECTS.register(bus);
         FLEntities.ENTITIES.register(bus);
         FLParticles.PARTICLE_TYPES.register(bus);
+        FLFeatures.FEATURES.register(bus);
         FLLoot.registerAll(bus);
 
         FLPackets.init();

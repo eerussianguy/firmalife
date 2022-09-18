@@ -25,6 +25,7 @@ public class FLTags
         public static final TagKey<Block> BEE_RESTORATION_PLANTS = create("bee_restoration_plants");
         public static final TagKey<Block> BEE_RESTORATION_WATER_PLANTS = create("bee_restoration_water_plants");
         public static final TagKey<Block> BUTTERFLY_GRASS_MUTANTS = create("butterfly_grass_mutants");
+        public static final TagKey<Block> BUZZING_LEAVES = create("buzzing_leaves");
 
         private static TagKey<Block> create(String id)
         {

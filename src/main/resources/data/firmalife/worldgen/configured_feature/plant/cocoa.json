@@ -1,7 +1,7 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "type": "tfc:fruit_trees",
+  "type": "firmalife:fruit_trees",
   "config": {
-    "state": "tfc:plant/cocoa_growing_branch"
+    "state": "firmalife:plant/cocoa_growing_branch"
   }
 }

@@ -2,6 +2,6 @@
   "__comment__": "This file was automatically created by mcresources",
   "parent": "tfc:block/plant/cross_3",
   "textures": {
-    "cross": "tfc:block/fruit_tree/cocoa_sapling"
+    "cross": "firmalife:block/fruit_tree/cocoa_sapling"
   }
 }

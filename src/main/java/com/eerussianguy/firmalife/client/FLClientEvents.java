@@ -70,6 +70,8 @@ public class FLClientEvents
             FLBlocks.MIXING_BOWL, FLBlocks.BUTTERFLY_GRASS
         ).forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
 
+        ItemBlockRenderTypes.setRenderLayer(FLBlocks.SOLAR_DRIER.get(), translucent);
+
         FLBlocks.CHROMITE_ORES.values().forEach(map -> map.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout)));
         FLBlocks.FRUIT_PRESERVES.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), translucent));
         FLBlocks.FL_FRUIT_PRESERVES.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), translucent));
@@ -129,7 +131,8 @@ public class FLClientEvents
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event)
     {
         event.registerBlockEntityRenderer(FLBlockEntities.OVEN_TOP.get(), ctx -> new OvenBlockEntityRenderer());
-        event.registerBlockEntityRenderer(FLBlockEntities.DRYING_MAT.get(), ctx -> new DryingMatBlockEntityRenderer());
+        event.registerBlockEntityRenderer(FLBlockEntities.DRYING_MAT.get(), ctx -> new DryingMatBlockEntityRenderer(2f / 16));
+        event.registerBlockEntityRenderer(FLBlockEntities.SOLAR_DRIER.get(), ctx -> new DryingMatBlockEntityRenderer(1f / 16));
         event.registerBlockEntityRenderer(FLBlockEntities.STRING.get(), ctx -> new StringBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.LARGE_PLANTER.get(), ctx -> new LargePlanterBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.QUAD_PLANTER.get(), ctx -> new QuadPlanterBlockEntityRenderer());

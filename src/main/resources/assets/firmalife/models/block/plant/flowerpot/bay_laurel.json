@@ -2,7 +2,7 @@
   "__comment__": "This file was automatically created by mcresources",
   "parent": "minecraft:block/flower_pot_cross",
   "textures": {
-    "plant": "firmalife:block/plant/bay_laurel/bay_laurel",
+    "plant": "firmalife:block/plant/bay_laurel/1",
     "dirt": "tfc:block/dirt/loam"
   }
 }

@@ -6,7 +6,7 @@ from mcresources.type_definitions import ResourceIdentifier, JsonObject, Json, V
 from constants import *
 
 def generate(rm: ResourceManager):
-    placed_feature_tag(rm, 'in_biome/veins', *['firmalife:vein/%s' % v for v in ORE_VEINS.keys()])
+    placed_feature_tag(rm, 'tfc:in_biome/veins', *['firmalife:vein/%s' % v for v in ORE_VEINS.keys()])
 
     for vein_name, vein in ORE_VEINS.items():
         rocks = expand_rocks(vein.rocks, vein_name)
@@ -38,14 +38,11 @@ def generate(rm: ResourceManager):
             'max_rainfall': info.max_rain,
             'max_forest': 'normal'
         }
-        feature = 'tfc:fruit_trees'
-        state = 'tfc:plant/%s_growing_branch' % fruit
-        if fruit == 'banana':
-            feature = 'tfc:bananas'
-            state = 'tfc:plant/banana_plant'
+        feature = 'firmalife:fruit_trees'
+        state = 'firmalife:plant/%s_growing_branch' % fruit
         configured_placed_feature(rm, ('plant', fruit), feature, {'state': state}, ('tfc:climate', config), decorate_heightmap('world_surface_wg'), decorate_square(), decorate_chance(50))
 
-        placed_feature_tag(rm, 'feature/fruit_trees', 'tfc:plant/%s' % fruit, 'tfc:plant/%s' % fruit)
+        placed_feature_tag(rm, 'tfc:feature/fruit_trees', 'firmalife:plant/%s' % fruit, 'firmalife:plant/%s' % fruit)
 
 
 Heightmap = Literal['motion_blocking', 'motion_blocking_no_leaves', 'ocean_floor', 'ocean_floor_wg', 'world_surface', 'world_surface_wg']

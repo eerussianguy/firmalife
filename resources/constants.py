@@ -7,12 +7,13 @@ Vein = NamedTuple('Vein', ore=str, type=str, rarity=int, size=int, min_y=int, ma
 Fruit = NamedTuple('Fruit', min_temp=float, max_temp=float, min_rain=float, max_rain=float)
 
 SIMPLE_ITEMS = ('peel', 'fruit_leaf', 'cinnamon_bark', 'beeswax', 'pineapple_leather', 'pineapple_yarn', 'raw_honey', 'rennet', 'watering_can', 'treated_lumber', 'beehive_frame', 'empty_jar', 'cheesecloth', 'spoon', 'pie_pan', 'seed_ball')
-SIMPLE_FOODS = ('frothy_coconut', 'white_chocolate_blend', 'dark_chocolate_blend', 'milk_chocolate_blend', 'tofu', 'soy_mixture', 'yak_curd', 'goat_curd', 'milk_curd', 'cheddar', 'chevre', 'rajya_metok', 'gouda', 'feta', 'shosha', 'butter', 'pie_dough', 'filled_pie', 'cooked_pie', 'pizza_dough', 'raw_pizza', 'cooked_pizza', 'shredded_cheese', 'pickled_egg', 'pumpkin_pie_dough', 'raw_pumpkin_pie', 'cooked_pumpkin_pie', 'cocoa_beans')
+SIMPLE_FOODS = ('frothy_coconut', 'white_chocolate_blend', 'dark_chocolate_blend', 'milk_chocolate_blend', 'tofu', 'soy_mixture', 'yak_curd', 'goat_curd', 'milk_curd', 'cheddar', 'chevre', 'rajya_metok', 'gouda', 'feta', 'shosha', 'butter',
+                'pie_dough', 'filled_pie', 'cooked_pie', 'pizza_dough', 'raw_pizza', 'cooked_pizza', 'shredded_cheese', 'pickled_egg', 'pumpkin_pie_dough', 'raw_pumpkin_pie', 'cooked_pumpkin_pie', 'cocoa_beans', 'roasted_cocoa_beans', 'cocoa_butter', 'cocoa_powder')
 SIMPLE_SPICES = ('ground_cinnamon', 'cinnamon', 'basil_leaves')
 SIMPLE_BLOCKS: Dict[str, str] = {
     'sealed_bricks': 'minecraft:mineable/pickaxe'
 }
-BLOCK_ENTITIES = ('oven_bottom', 'oven_top', 'drying_mat', 'beehive')
+BLOCK_ENTITIES = ('oven_bottom', 'oven_top', 'drying_mat', 'beehive', 'solar_drier', 'mixing_bowl', 'iron_composter', 'string', 'berry_bush', 'large_planter', 'bonsai_planter', 'trellis_planter', 'hanging_planter', 'quad_planter', 'climate_station')
 EXTRA_FLUIDS = ('yeast_starter', 'coconut_milk', 'yak_milk', 'goat_milk', 'curdled_yak_milk', 'curdled_goat_milk', 'pina_colada', 'cream')
 JARS: Sequence[Tuple[str, int, str, str]] = (
     ('honey', 1, 'minecraft:block/honey_block_side', 'firmalife:raw_honey'),
@@ -21,7 +22,7 @@ JARS: Sequence[Tuple[str, int, str, str]] = (
     ('guano', 8, 'minecraft:block/dead_brain_coral_block', 'tfc:groundcover/guano'),
 )
 CHEESE_WHEELS = ('rajya_metok', 'cheddar', 'gouda', 'feta', 'chevre', 'shosha')
-FL_FRUITS = ('pumpkin_chunks', )
+FL_FRUITS = ('pumpkin_chunks', 'fig')
 
 TFC_GRAINS = ('wheat', 'rye', 'barley', 'rice', 'maize', 'oat')
 TFC_FRUIT_TREES = ('cherry', 'green_apple', 'lemon', 'olive', 'orange', 'peach', 'plum', 'red_apple')
@@ -86,7 +87,8 @@ CARVINGS = {
 HERBS = ('basil', 'bay_laurel', 'cardamom', 'cilantro', 'cumin', 'oregano', 'pimento', 'vanilla')
 
 FRUITS: Dict[str, Fruit] = {
-    'cocoa': Fruit(20, 35, 220, 400)
+    'cocoa': Fruit(20, 35, 220, 400),
+    'fig': Fruit(20, 35, 125, 215)
 }
 
 DISABLED_TFC_RECIPES = ()

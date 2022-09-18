@@ -2,6 +2,7 @@
   "__comment__": "This file was automatically created by mcresources",
   "replace": false,
   "values": [
-    "firmalife:plant/cocoa_leaves"
+    "firmalife:plant/cocoa_leaves",
+    "firmalife:plant/fig_leaves"
   ]
 }
