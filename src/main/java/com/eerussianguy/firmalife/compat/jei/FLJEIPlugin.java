@@ -93,6 +93,7 @@ public class FLJEIPlugin implements IModPlugin
     public void registerRecipeCatalysts(IRecipeCatalystRegistration r)
     {
         r.addRecipeCatalyst(new ItemStack(FLBlocks.DRYING_MAT.get()), DRYING);
+        r.addRecipeCatalyst(new ItemStack(FLBlocks.SOLAR_DRIER.get()), DRYING);
         r.addRecipeCatalyst(new ItemStack(TFCItems.WOOL_YARN.get()), SMOKING);
         r.addRecipeCatalyst(new ItemStack(FLBlocks.MIXING_BOWL.get()), MIXING_BOWL);
         r.addRecipeCatalyst(new ItemStack(FLItems.SPOON.get()), MIXING_BOWL);

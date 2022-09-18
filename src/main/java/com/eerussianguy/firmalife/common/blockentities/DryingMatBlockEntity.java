@@ -5,6 +5,7 @@ import java.util.function.Supplier;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
@@ -16,12 +17,12 @@ public class DryingMatBlockEntity extends SimpleItemRecipeBlockEntity<DryingReci
 {
     public static DryingMatBlockEntity dryingMat(BlockPos pos, BlockState state)
     {
-        return new DryingMatBlockEntity(pos, state, FLConfig.SERVER.dryingTicks);
+        return new DryingMatBlockEntity(FLBlockEntities.DRYING_MAT.get(), pos, state, FLConfig.SERVER.dryingTicks);
     }
 
     public static DryingMatBlockEntity solarDrier(BlockPos pos, BlockState state)
     {
-        return new DryingMatBlockEntity(pos, state, FLConfig.SERVER.solarDryingTicks);
+        return new DryingMatBlockEntity(FLBlockEntities.SOLAR_DRIER.get(), pos, state, FLConfig.SERVER.solarDryingTicks);
     }
 
     public static void serverTick(Level level, BlockPos pos, BlockState state, DryingMatBlockEntity mat)
@@ -41,9 +42,9 @@ public class DryingMatBlockEntity extends SimpleItemRecipeBlockEntity<DryingReci
         }
     }
 
-    public DryingMatBlockEntity(BlockPos pos, BlockState state, Supplier<Integer> dryTicks)
+    public DryingMatBlockEntity(BlockEntityType<DryingMatBlockEntity> type, BlockPos pos, BlockState state, Supplier<Integer> dryTicks)
     {
-        super(FLBlockEntities.DRYING_MAT.get(), pos, state, FLHelpers.blockEntityName("drying_mat"), dryTicks);
+        super(type, pos, state, FLHelpers.blockEntityName("drying_mat"), dryTicks);
     }
 
     @Override

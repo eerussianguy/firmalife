@@ -23,17 +23,17 @@ public class DryingMatBlock extends BottomSupportedDeviceBlock
         if (level.getBlockEntity(pos) instanceof SimpleItemRecipeBlockEntity<?> mat)
         {
             InteractionResult result = mat.getCapability(Capabilities.ITEM).map(inv -> {
-                if (mat.readStack().isEmpty() && !held.isEmpty())
+                if (inv.getStackInSlot(0).isEmpty() && !held.isEmpty())
                 {
                     InteractionResult res = FLHelpers.insertOne(level, held, 0, inv, player);
                     if (res.consumesAction())
                     {
+                        mat.markForSync();
                         mat.start();
                     }
-                    mat.markForSync();
                     return res;
                 }
-                else if (!mat.readStack().isEmpty() && held.isEmpty() && player.isShiftKeyDown())
+                else if (!inv.getStackInSlot(0).isEmpty() && held.isEmpty() && player.isShiftKeyDown())
                 {
                     mat.markForSync();
                     return FLHelpers.takeOne(level, 0, inv, player);
