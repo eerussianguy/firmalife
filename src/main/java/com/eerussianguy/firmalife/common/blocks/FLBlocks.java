@@ -91,6 +91,7 @@ public class FLBlocks
 
     public static final RegistryObject<Block> SEALED_BRICKS = register("sealed_bricks", () -> new Block(Properties.of(Material.STONE).sound(SoundType.STONE).strength(2.0f, 10).requiresCorrectToolForDrops()), DECORATIONS);
     public static final RegistryObject<Block> SEALED_DOOR = register("sealed_door", () -> new DoorBlock(Properties.of(Material.WOOD).sound(SoundType.STONE).strength(2.0f, 10).requiresCorrectToolForDrops()), DECORATIONS);
+    public static final RegistryObject<Block> HOLLOW_SHELL = register("hollow_shell", () -> new GroundcoverBlock(ExtendedProperties.of(Material.GRASS).strength(0.05F, 0.0F).sound(SoundType.NETHER_WART).noCollission(), GroundcoverBlock.SMALL, FLItems.HOLLOW_SHELL));
 
     public static final RegistryObject<Block> BUTTERFLY_GRASS = register("plant/butterfly_grass", () -> MutatingPlantBlock.create(FLPlant.BUTTERFLY_GRASS, FLPlant.BUTTERFLY_GRASS.nonSolidFire(), FLTags.Blocks.BUTTERFLY_GRASS_MUTANTS), FLORA);
     public static final RegistryObject<Block> POTTED_BUTTERFLY_GRASS = register("plant/potted/butterfly_grass", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, BUTTERFLY_GRASS, Properties.of(Material.DECORATION).instabreak().noOcclusion()));

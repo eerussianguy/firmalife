@@ -10,13 +10,9 @@ import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Fluids;
 
 import net.minecraftforge.client.model.data.EmptyModelData;
-import net.minecraftforge.client.model.data.IModelData;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
-import net.minecraftforge.items.CapabilityItemHandler;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.MixingBowlBlockEntity;
@@ -25,9 +21,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Vector3f;
 import net.dries007.tfc.client.RenderHelpers;
-
-import static net.dries007.tfc.common.blockentities.PotBlockEntity.SLOT_EXTRA_INPUT_END;
-import static net.dries007.tfc.common.blockentities.PotBlockEntity.SLOT_EXTRA_INPUT_START;
+import net.dries007.tfc.common.capabilities.Capabilities;
 
 public class MixingBowlBlockEntityRenderer implements BlockEntityRenderer<MixingBowlBlockEntity>
 {
@@ -66,7 +60,7 @@ public class MixingBowlBlockEntityRenderer implements BlockEntityRenderer<Mixing
                 }
             }
             poseStack.pushPose();
-            bowl.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).ifPresent(cap -> {
+            bowl.getCapability(Capabilities.FLUID).ifPresent(cap -> {
                 FluidStack fluid = cap.getFluidInTank(0);
                 if (!fluid.isEmpty())
                 {
@@ -76,7 +70,7 @@ public class MixingBowlBlockEntityRenderer implements BlockEntityRenderer<Mixing
             poseStack.popPose();
 
             poseStack.pushPose();
-            bowl.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(cap -> {
+            bowl.getCapability(Capabilities.ITEM).ifPresent(cap -> {
                 int ordinal = 0;
                 ItemRenderer render = Minecraft.getInstance().getItemRenderer();
                 for (int slot = 0; slot < MixingBowlBlockEntity.SLOTS; slot++)

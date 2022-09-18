@@ -7,12 +7,11 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.world.item.ItemStack;
 
-import net.minecraftforge.items.CapabilityItemHandler;
-
 import com.eerussianguy.firmalife.common.blockentities.OvenTopBlockEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
 import net.dries007.tfc.client.RenderHelpers;
+import net.dries007.tfc.common.capabilities.Capabilities;
 
 public class OvenBlockEntityRenderer implements BlockEntityRenderer<OvenTopBlockEntity>
 {
@@ -20,7 +19,7 @@ public class OvenBlockEntityRenderer implements BlockEntityRenderer<OvenTopBlock
     public void render(OvenTopBlockEntity oven, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int light, int overlay)
     {
         ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
-        oven.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(cap -> {
+        oven.getCapability(Capabilities.ITEM).ifPresent(cap -> {
             float timeD = RenderHelpers.itemTimeRotation();
             poseStack.translate(0.25D, 0.25D, 0.25D);
             poseStack.scale(0.5F, 0.5F, 0.5F);

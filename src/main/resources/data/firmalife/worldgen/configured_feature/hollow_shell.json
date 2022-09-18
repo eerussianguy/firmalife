@@ -1,0 +1,15 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:block_with_fluid",
+  "config": {
+    "to_place": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "firmalife:hollow_shell",
+        "Properties": {
+          "fluid": "empty"
+        }
+      }
+    }
+  }
+}

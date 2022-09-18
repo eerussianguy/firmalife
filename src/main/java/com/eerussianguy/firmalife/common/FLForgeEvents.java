@@ -15,7 +15,6 @@ import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.OnDatapackSyncEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.network.PacketDistributor;
 
@@ -26,7 +25,7 @@ import com.eerussianguy.firmalife.common.network.FLPackets;
 import com.eerussianguy.firmalife.common.util.ExtraFluid;
 import com.eerussianguy.firmalife.common.util.GreenhouseType;
 import com.eerussianguy.firmalife.common.util.Plantable;
-import net.dries007.tfc.common.blocks.TFCBlocks;
+import net.dries007.tfc.common.capabilities.Capabilities;
 import net.dries007.tfc.common.entities.TFCEntities;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.events.AnimalProductEvent;
@@ -99,7 +98,7 @@ public class FLForgeEvents
 
     private static void replaceFluid(ItemStack bucket, Fluid toFill)
     {
-        bucket.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY).ifPresent(cap -> {
+        bucket.getCapability(Capabilities.FLUID_ITEM).ifPresent(cap -> {
             final int drained = cap.drain(Integer.MAX_VALUE, IFluidHandler.FluidAction.EXECUTE).getAmount();
             if (drained > 0)
             {

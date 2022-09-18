@@ -6,10 +6,9 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 
-import net.minecraftforge.items.CapabilityItemHandler;
-
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blocks.greenhouse.TrellisPlanterBlock;
+import net.dries007.tfc.common.capabilities.Capabilities;
 import org.jetbrains.annotations.Nullable;
 
 public class TrellisPlanterBlockEntity extends LargePlanterBlockEntity
@@ -40,7 +39,7 @@ public class TrellisPlanterBlockEntity extends LargePlanterBlockEntity
                 BlockPos above = worldPosition.above();
                 if (level.getBlockState(above).getBlock() instanceof TrellisPlanterBlock && level.getBlockEntity(above) instanceof TrellisPlanterBlockEntity planter)
                 {
-                    planter.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(inv -> {
+                    planter.getCapability(Capabilities.ITEM).ifPresent(inv -> {
                         if (inv.getStackInSlot(0).isEmpty() && inv.isItemValid(0, inside))
                         {
                             ItemStack leftover = inv.insertItem(0, inside.copy(), false);

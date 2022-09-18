@@ -5,8 +5,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
-import net.minecraftforge.items.CapabilityItemHandler;
-
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blocks.StringBlock;
@@ -15,6 +13,7 @@ import com.eerussianguy.firmalife.common.recipes.SmokingRecipe;
 import com.eerussianguy.firmalife.config.FLConfig;
 import net.dries007.tfc.common.blockentities.FirepitBlockEntity;
 import net.dries007.tfc.common.blocks.devices.FirepitBlock;
+import net.dries007.tfc.common.capabilities.Capabilities;
 import net.dries007.tfc.common.capabilities.food.FoodCapability;
 import net.dries007.tfc.common.recipes.inventory.ItemStackInventory;
 import net.dries007.tfc.util.Helpers;
@@ -45,7 +44,7 @@ public class StringBlockEntity extends SimpleItemRecipeBlockEntity<SmokingRecipe
                 else
                 {
                     // check for correct fuel
-                    firepit.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(inv -> {
+                    firepit.getCapability(Capabilities.ITEM).ifPresent(inv -> {
                         for (int i = FirepitBlockEntity.SLOT_FUEL_CONSUME; i < FirepitBlockEntity.SLOT_FUEL_INPUT; i++)
                         {
                             ItemStack item = inv.getStackInSlot(i);

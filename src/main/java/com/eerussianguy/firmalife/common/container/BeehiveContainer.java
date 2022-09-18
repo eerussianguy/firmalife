@@ -3,9 +3,8 @@ package com.eerussianguy.firmalife.common.container;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 
-import net.minecraftforge.items.CapabilityItemHandler;
-
 import com.eerussianguy.firmalife.common.blockentities.FLBeehiveBlockEntity;
+import net.dries007.tfc.common.capabilities.Capabilities;
 import net.dries007.tfc.common.container.BlockEntityContainer;
 import net.dries007.tfc.common.container.CallbackSlot;
 
@@ -34,7 +33,7 @@ public class BeehiveContainer extends BlockEntityContainer<FLBeehiveBlockEntity>
     @Override
     protected void addContainerSlots()
     {
-        blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
+        blockEntity.getCapability(Capabilities.ITEM).ifPresent(handler -> {
             addSlot(new CallbackSlot(blockEntity, handler, 0, 71, 23));
             addSlot(new CallbackSlot(blockEntity, handler, 1, 89, 23));
             addSlot(new CallbackSlot(blockEntity, handler, 2, 71, 41));

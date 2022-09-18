@@ -79,6 +79,7 @@ def generate(rm: ResourceManager):
     rm.fluid_tag('tfc:milks', 'firmalife:yak_milk', 'firmalife:goat_milk', 'firmalife:coconut_milk')
     rm.fluid_tag('tfc:ingredients', *['firmalife:%s' % fluid for fluid in EXTRA_FLUIDS])
     rm.fluid_tag('usable_in_mixing_bowl', '#tfc:usable_in_pot')
+    rm.fluid_tag('usable_in_hollow_shell', '#tfc:usable_in_wooden_bucket')
 
     ### JSON DATA ###
     greenhouse(rm, 'treated_wood', '#firmalife:all_treated_wood_greenhouse', 5)

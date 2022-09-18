@@ -15,6 +15,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import net.dries007.tfc.common.TFCTags;
+import net.dries007.tfc.common.blockentities.TickCounterBlockEntity;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.plant.fruit.FruitTreeBranchBlock;
 import net.dries007.tfc.common.blocks.plant.fruit.GrowingFruitTreeBranchBlock;
@@ -77,7 +78,8 @@ public class FLGrowingFruitTreeBranchBlock extends GrowingFruitTreeBranchBlock
     public void tick(BlockState state, ServerLevel level, BlockPos pos, Random rand)
     {
         super.tick(state, level, pos, rand);
-        level.getBlockEntity(pos, FLBlockEntities.TICK_COUNTER.get()).ifPresent(counter -> {
+        if (level.getBlockEntity(pos) instanceof TickCounterBlockEntity counter)
+        {
             long days = counter.getTicksSinceUpdate() / ICalendar.TICKS_IN_DAY;
             int cycles = (int) (days / 5);
             if (cycles >= 1)
@@ -85,7 +87,7 @@ public class FLGrowingFruitTreeBranchBlock extends GrowingFruitTreeBranchBlock
                 grow(state, level, pos, rand, cycles);
                 counter.resetCounter();
             }
-        });
+        }
     }
 
     @Override
@@ -164,10 +166,11 @@ public class FLGrowingFruitTreeBranchBlock extends GrowingFruitTreeBranchBlock
     private void placeGrownFlower(ServerLevel level, BlockPos pos, int stage, int saplings, int cycles)
     {
         level.setBlock(pos, getStateForPlacement(level, pos).setValue(STAGE, stage).setValue(SAPLINGS, saplings), 3);
-        level.getBlockEntity(pos, FLBlockEntities.TICK_COUNTER.get()).ifPresent(counter -> {
+        if (level.getBlockEntity(pos) instanceof TickCounterBlockEntity counter)
+        {
             counter.resetCounter();
             counter.reduceCounter(-1L * ICalendar.TICKS_IN_DAY * cycles * 5);
-        });
+        }
         addLeaves(level, pos);
         level.getBlockState(pos).randomTick(level, pos, level.random);
     }

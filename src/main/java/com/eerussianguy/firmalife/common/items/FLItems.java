@@ -16,16 +16,15 @@ import net.minecraftforge.registries.RegistryObject;
 
 
 import com.eerussianguy.firmalife.FirmaLife;
+import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blocks.FLFluids;
 import com.eerussianguy.firmalife.common.util.ExtraFluid;
 import com.eerussianguy.firmalife.common.util.FLFruit;
 import com.eerussianguy.firmalife.common.util.FLMetal;
+import com.eerussianguy.firmalife.config.FLConfig;
 import net.dries007.tfc.common.TFCItemGroup;
 import net.dries007.tfc.common.blocks.rock.Ore;
-import net.dries007.tfc.common.items.DecayingItem;
-import net.dries007.tfc.common.items.DynamicBowlFood;
-import net.dries007.tfc.common.items.Food;
-import net.dries007.tfc.common.items.SandwichItem;
+import net.dries007.tfc.common.items.*;
 import net.dries007.tfc.util.Helpers;
 
 import static net.dries007.tfc.common.TFCItemGroup.FOOD;
@@ -44,6 +43,7 @@ public class FLItems
     public static final RegistryObject<Item> CHEESECLOTH = register("cheesecloth", MISC);
     public static final RegistryObject<Item> FRUIT_LEAF = register("fruit_leaf", MISC);
     public static final RegistryObject<Item> EMPTY_JAR = register("empty_jar", MISC);
+    public static final RegistryObject<Item> HOLLOW_SHELL = register("hollow_shell",  () -> new HollowShellItem(new Item.Properties().tab(MISC).stacksTo(1), FLConfig.SERVER.hollowShellCapacity, FLTags.Fluids.USABLE_IN_HOLLOW_SHELL, false));
     public static final RegistryObject<Item> PEEL = register("peel", MISC);
     public static final RegistryObject<Item> PIE_PAN = register("pie_pan", MISC);
     public static final RegistryObject<Item> PINEAPPLE_LEATHER = register("pineapple_leather", MISC);

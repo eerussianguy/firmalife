@@ -25,6 +25,7 @@ import com.eerussianguy.firmalife.common.items.FLItems;
 import com.eerussianguy.firmalife.common.misc.FLEffects;
 import com.eerussianguy.firmalife.common.misc.FLInteractionManager;
 import com.eerussianguy.firmalife.common.misc.FLLoot;
+import com.eerussianguy.firmalife.common.misc.FLSounds;
 import com.eerussianguy.firmalife.common.network.FLPackets;
 import com.eerussianguy.firmalife.common.recipes.FLRecipeSerializers;
 import com.eerussianguy.firmalife.common.recipes.FLRecipeTypes;
@@ -58,6 +59,7 @@ public class FirmaLife
         FLEntities.ENTITIES.register(bus);
         FLParticles.PARTICLE_TYPES.register(bus);
         FLFeatures.FEATURES.register(bus);
+        FLSounds.SOUNDS.register(bus);
         FLLoot.registerAll(bus);
 
         FLPackets.init();

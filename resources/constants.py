@@ -191,7 +191,9 @@ DEFAULT_LANG = {
     'death.attack.firmalife.oven.player': '%1$s climbed into an oven to escape %2$s.',
     'death.attack.firmalife.swarm': '%1$s was stung to death by bees.',
     'death.attack.firmalife.swarm.player': '%1$s was stung to death by bees while trying to escape %2$s.',
+    'subtitles.item.firmalife.hollow_shell.blow': 'Shell whistles',
 
+    'item.firmalife.hollow_shell.filled': '%s Hollow Shell',
     'firmalife.screen.pumpkin_knapping': 'Pumpkin Knapping',
     'tfc.jei.pumpkin_knapping': 'Pumpkin Knapping',
     'tfc.jei.drying': 'Drying',

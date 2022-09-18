@@ -9,6 +9,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
+import net.dries007.tfc.common.blockentities.TickCounterBlockEntity;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.blocks.plant.Plant;
@@ -36,7 +37,8 @@ public class FLFruitTreeSaplingBlock extends FruitTreeSaplingBlock
     {
         if (this.stages[Calendars.SERVER.getCalendarMonthOfYear().ordinal()].active())
         {
-            level.getBlockEntity(pos, FLBlockEntities.TICK_COUNTER.get()).ifPresent((counter) -> {
+            if (level.getBlockEntity(pos) instanceof TickCounterBlockEntity counter)
+            {
                 if (counter.getTicksSinceUpdate() > 24000L * (long) this.treeGrowthDays)
                 {
                     int hydration = FruitTreeLeavesBlock.getHydration(level, pos);
@@ -51,7 +53,7 @@ public class FLFruitTreeSaplingBlock extends FruitTreeSaplingBlock
                     }
                 }
 
-            });
+            }
         }
 
     }

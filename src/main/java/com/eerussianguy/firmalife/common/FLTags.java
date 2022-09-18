@@ -51,6 +51,7 @@ public class FLTags
     public static class Fluids
     {
         public static final TagKey<Fluid> USABLE_IN_MIXING_BOWL = create("usable_in_mixing_bowl");
+        public static final TagKey<Fluid> USABLE_IN_HOLLOW_SHELL = create("usable_in_hollow_shell");
 
         private static TagKey<Fluid> create(String id)
         {

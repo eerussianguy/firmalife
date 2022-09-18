@@ -1,0 +1,8 @@
+{
+  "item.hollow_shell.blow": {
+    "subtitle": "subtitles.item.firmalife.hollow_shell.blow",
+    "sounds": [
+      "firmalife:hollow_shell_blow"
+    ]
+  }
+}

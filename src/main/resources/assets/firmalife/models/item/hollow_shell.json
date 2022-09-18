@@ -1,0 +1,9 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "loader": "tfc:contained_fluid",
+  "parent": "forge:item/default",
+  "textures": {
+    "base": "firmalife:item/hollow_shell",
+    "fluid": "firmalife:item/hollow_shell_overlay"
+  }
+}

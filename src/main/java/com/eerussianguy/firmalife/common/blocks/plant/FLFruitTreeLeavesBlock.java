@@ -10,8 +10,8 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 
 import com.eerussianguy.firmalife.common.FLTags;
-import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.misc.SwarmEffect;
+import net.dries007.tfc.common.blockentities.BerryBushBlockEntity;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.plant.fruit.FruitTreeLeavesBlock;
 import net.dries007.tfc.common.blocks.plant.fruit.Lifecycle;
@@ -43,7 +43,8 @@ public class FLFruitTreeLeavesBlock extends FruitTreeLeavesBlock
         // Fruit tree leaves work like berry bushes, but don't have propagation or growth functionality.
         // Which makes them relatively simple, as then they only need to keep track of their lifecycle.
         if (state.getValue(PERSISTENT)) return; // persistent leaves don't grow
-        level.getBlockEntity(pos, FLBlockEntities.BERRY_BUSH.get()).ifPresent(leaves -> {
+        if (level.getBlockEntity(pos) instanceof BerryBushBlockEntity leaves)
+        {
             Lifecycle currentLifecycle = state.getValue(LIFECYCLE);
             Lifecycle expectedLifecycle = getLifecycleForCurrentMonth();
             // if we are not working with a plant that is or should be dormant
@@ -107,7 +108,6 @@ public class FLFruitTreeLeavesBlock extends FruitTreeLeavesBlock
                     level.setBlock(pos, newState, 3);
                 }
             }
-        });
+        }
     }
-
 }

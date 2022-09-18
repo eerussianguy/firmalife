@@ -10,11 +10,10 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import net.minecraftforge.items.CapabilityItemHandler;
-
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.SimpleItemRecipeBlockEntity;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
+import net.dries007.tfc.common.capabilities.Capabilities;
 
 public class DryingMatBlock extends BottomSupportedDeviceBlock
 {
@@ -23,7 +22,7 @@ public class DryingMatBlock extends BottomSupportedDeviceBlock
         ItemStack held = player.getItemInHand(hand);
         if (level.getBlockEntity(pos) instanceof SimpleItemRecipeBlockEntity<?> mat)
         {
-            InteractionResult result = mat.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).map(inv -> {
+            InteractionResult result = mat.getCapability(Capabilities.ITEM).map(inv -> {
                 if (mat.readStack().isEmpty() && !held.isEmpty())
                 {
                     InteractionResult res = FLHelpers.insertOne(level, held, 0, inv, player);

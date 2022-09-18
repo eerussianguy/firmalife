@@ -22,11 +22,9 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.network.NetworkHooks;
 
-import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.FLBeehiveBlockEntity;
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.capabilities.bee.BeeAbility;
@@ -39,6 +37,7 @@ import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.blocks.devices.FirepitBlock;
 import net.dries007.tfc.common.blocks.soil.HoeOverlayBlock;
+import net.dries007.tfc.common.capabilities.Capabilities;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.climate.Climate;
 import org.jetbrains.annotations.Nullable;
@@ -71,7 +70,7 @@ public class FLBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBloc
 
         }
         return level.getBlockEntity(pos, FLBlockEntities.BEEHIVE.get()).map(hive ->
-            hive.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).map(inv -> {
+            hive.getCapability(Capabilities.ITEM).map(inv -> {
                 float calmChance = 0;
                 for (int i = 0; i < FLBeehiveBlockEntity.SLOTS; i++)
                 {

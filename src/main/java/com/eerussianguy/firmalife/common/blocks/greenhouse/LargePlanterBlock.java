@@ -22,7 +22,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 
 import com.eerussianguy.firmalife.client.FLClientHelpers;
@@ -35,6 +34,7 @@ import net.dries007.tfc.common.blockentities.FarmlandBlockEntity;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.devices.DeviceBlock;
 import net.dries007.tfc.common.blocks.soil.HoeOverlayBlock;
+import net.dries007.tfc.common.capabilities.Capabilities;
 import net.dries007.tfc.util.Fertilizer;
 import net.dries007.tfc.util.Helpers;
 import org.jetbrains.annotations.Nullable;
@@ -159,7 +159,7 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
 
     public InteractionResult insertSlot(Level level, LargePlanterBlockEntity planter, ItemStack held, Player player, int slot)
     {
-        return planter.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).map(inv -> {
+        return planter.getCapability(Capabilities.ITEM).map(inv -> {
             var res = InteractionResult.PASS;
             if (inv.getStackInSlot(slot).isEmpty())
             {
@@ -176,7 +176,7 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
 
     public InteractionResult takeSlot(Level level, LargePlanterBlockEntity planter, Player player, int slot)
     {
-        return planter.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).map(inv -> {
+        return planter.getCapability(Capabilities.ITEM).map(inv -> {
             Plantable plant = planter.getPlantable(slot);
             if (plant != null && planter.getGrowth(slot) >= 1)
             {

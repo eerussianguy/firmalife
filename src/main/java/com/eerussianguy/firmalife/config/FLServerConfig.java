@@ -20,6 +20,7 @@ public class FLServerConfig
     public final BooleanValue ovenRequirePeel;
     public final BooleanValue enableSeedBalls;
     public final BooleanValue enableBeeSwarm;
+    public final IntValue hollowShellCapacity;
 
     FLServerConfig(Builder innerBuilder)
     {
@@ -39,6 +40,7 @@ public class FLServerConfig
         ovenRequirePeel = builder.apply("ovenRequirePeel").comment("If true, ovens will hurt the player if they touch it without a peel in hand.").define("ovenRequirePeel", true);
         enableSeedBalls = builder.apply("enableSeedBalls").comment("If true, players can throw seed balls.").define("enableSeedBalls", true);
         enableBeeSwarm = builder.apply("enableBeeSwarm").comment("If true, bees can swarm and hurt the player if provoked.").define("enableBeeSwarm", true);
+        hollowShellCapacity = builder.apply("hollowShellCapacity").comment("The capacity in mB of the hollow shell. Default 100").defineInRange("hollowShellCapacity", 100, 1, Integer.MAX_VALUE);
 
         innerBuilder.pop();
     }
