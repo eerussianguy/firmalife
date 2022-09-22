@@ -19,6 +19,7 @@ public class FLRecipeTypes
     public static final RegistryObject<RecipeType<SmokingRecipe>> SMOKING = register("smoking");
     public static final RegistryObject<RecipeType<MixingBowlRecipe>> MIXING_BOWL = register("mixing_bowl");
     public static final RegistryObject<RecipeType<KnappingRecipe>> PUMPKIN_KNAPPING = register("pumpkin_knapping");
+    public static final RegistryObject<RecipeType<OvenRecipe>> OVEN = register("oven");
 
     private static <R extends Recipe<?>> RegistryObject<RecipeType<R>> register(String name)
     {

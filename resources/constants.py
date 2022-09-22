@@ -8,7 +8,7 @@ Fruit = NamedTuple('Fruit', min_temp=float, max_temp=float, min_rain=float, max_
 
 SIMPLE_ITEMS = ('peel', 'fruit_leaf', 'cinnamon_bark', 'beeswax', 'pineapple_leather', 'pineapple_yarn', 'raw_honey', 'rennet', 'watering_can', 'treated_lumber', 'beehive_frame', 'empty_jar', 'cheesecloth', 'spoon', 'pie_pan', 'seed_ball')
 SIMPLE_FOODS = ('frothy_coconut', 'white_chocolate_blend', 'dark_chocolate_blend', 'milk_chocolate_blend', 'tofu', 'soy_mixture', 'yak_curd', 'goat_curd', 'milk_curd', 'cheddar', 'chevre', 'rajya_metok', 'gouda', 'feta', 'shosha', 'butter',
-                'pie_dough', 'filled_pie', 'cooked_pie', 'pizza_dough', 'raw_pizza', 'cooked_pizza', 'shredded_cheese', 'pickled_egg', 'pumpkin_pie_dough', 'raw_pumpkin_pie', 'cooked_pumpkin_pie', 'cocoa_beans', 'roasted_cocoa_beans', 'cocoa_butter', 'cocoa_powder')
+                'pie_dough', 'filled_pie', 'cooked_pie', 'pizza_dough', 'raw_pizza', 'cooked_pizza', 'shredded_cheese', 'pickled_egg', 'pumpkin_pie_dough', 'raw_pumpkin_pie', 'cooked_pumpkin_pie', 'cocoa_beans', 'roasted_cocoa_beans', 'cocoa_butter', 'cocoa_powder', 'toast')
 SIMPLE_SPICES = ('ground_cinnamon', 'cinnamon', 'basil_leaves')
 SIMPLE_BLOCKS: Dict[str, str] = {
     'sealed_bricks': 'minecraft:mineable/pickaxe'
@@ -149,6 +149,7 @@ DEFAULT_LANG = {
 
     'firmalife.bee.queen': 'Queen',
     'firmalife.bee.no_queen': 'No Queen',
+    'firmalife.bee.may_scrape': 'Right click with a knife to scrape',
     'firmalife.bee.abilities': 'Abilities:',
     'firmalife.bee.ability.hardiness': 'Hardiness %s',
     'firmalife.bee.ability.production': 'Production %s',

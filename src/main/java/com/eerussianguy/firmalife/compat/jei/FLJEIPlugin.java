@@ -2,6 +2,7 @@ package com.eerussianguy.firmalife.compat.jei;
 
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import net.minecraft.client.Minecraft;
@@ -12,6 +13,7 @@ import net.minecraft.world.Container;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import com.eerussianguy.firmalife.FirmaLife;
@@ -63,6 +65,7 @@ public class FLJEIPlugin implements IModPlugin
     public static final RecipeType<SmokingRecipe> SMOKING = type("smoking", SmokingRecipe.class);
     public static final RecipeType<MixingBowlRecipe> MIXING_BOWL = type("mixing_bowl", MixingBowlRecipe.class);
     public static final RecipeType<KnappingRecipe> PUMPKIN_KNAPPING = type("pumpkin_knapping", KnappingRecipe.class);
+    public static final RecipeType<OvenRecipe> OVEN = type("oven", OvenRecipe.class);
 
     @Override
     public ResourceLocation getPluginUid()
@@ -77,6 +80,7 @@ public class FLJEIPlugin implements IModPlugin
         r.addRecipeCategories(new DryingCategory(DRYING, gui));
         r.addRecipeCategories(new SmokingCategory(SMOKING, gui));
         r.addRecipeCategories(new MixingCategory(MIXING_BOWL, gui));
+        r.addRecipeCategories(new OvenCategory(OVEN, gui));
         r.addRecipeCategories(new KnappingRecipeCategory<>(PUMPKIN_KNAPPING, gui, new ItemStack(TFCBlocks.PUMPKIN.get()), PUMPKIN_TEXTURE, null));
     }
 
@@ -86,17 +90,34 @@ public class FLJEIPlugin implements IModPlugin
         r.addRecipes(DRYING, getRecipes(FLRecipeTypes.DRYING.get()));
         r.addRecipes(SMOKING, getRecipes(FLRecipeTypes.SMOKING.get()));
         r.addRecipes(MIXING_BOWL, getRecipes(FLRecipeTypes.MIXING_BOWL.get()));
+        r.addRecipes(OVEN, getRecipes(FLRecipeTypes.OVEN.get()));
         r.addRecipes(PUMPKIN_KNAPPING, getRecipes(FLRecipeTypes.PUMPKIN_KNAPPING.get(), recipe -> recipe.getSerializer() == FLRecipeSerializers.PUMPKIN_KNAPPING.get()));
     }
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration r)
     {
-        r.addRecipeCatalyst(new ItemStack(FLBlocks.DRYING_MAT.get()), DRYING);
-        r.addRecipeCatalyst(new ItemStack(FLBlocks.SOLAR_DRIER.get()), DRYING);
-        r.addRecipeCatalyst(new ItemStack(TFCItems.WOOL_YARN.get()), SMOKING);
-        r.addRecipeCatalyst(new ItemStack(FLBlocks.MIXING_BOWL.get()), MIXING_BOWL);
-        r.addRecipeCatalyst(new ItemStack(FLItems.SPOON.get()), MIXING_BOWL);
-        r.addRecipeCatalyst(new ItemStack(TFCBlocks.PUMPKIN.get()), PUMPKIN_KNAPPING);
+        cat(r, FLBlocks.DRYING_MAT, DRYING);
+        cat(r, FLBlocks.SOLAR_DRIER, DRYING);
+        cat(r, TFCItems.WOOL_YARN.get(), SMOKING);
+        cat(r, FLBlocks.MIXING_BOWL, MIXING_BOWL);
+        cat(r, FLItems.SPOON.get(), MIXING_BOWL);
+        cat(r, TFCBlocks.PUMPKIN, PUMPKIN_KNAPPING);
+        cat(r, FLBlocks.OVEN_BOTTOM, OVEN);
+        cat(r, FLBlocks.OVEN_TOP, OVEN);
+        cat(r, FLBlocks.OVEN_CHIMNEY, OVEN);
+        cat(r, FLBlocks.CURED_OVEN_BOTTOM, OVEN);
+        cat(r, FLBlocks.CURED_OVEN_CHIMNEY, OVEN);
+        cat(r, FLBlocks.CURED_OVEN_TOP, OVEN);
+    }
+
+    private static void cat(IRecipeCatalystRegistration r, Supplier<? extends Block> supplier, RecipeType<?> type)
+    {
+        r.addRecipeCatalyst(new ItemStack(supplier.get()), type);
+    }
+
+    private static void cat(IRecipeCatalystRegistration r, Item item, RecipeType<?> type)
+    {
+        r.addRecipeCatalyst(new ItemStack(item), type);
     }
 }

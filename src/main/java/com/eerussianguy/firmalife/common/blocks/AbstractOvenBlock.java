@@ -10,6 +10,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 
 import com.eerussianguy.firmalife.client.FLClientHelpers;
 import com.eerussianguy.firmalife.common.FLTags;
@@ -19,6 +21,32 @@ import org.jetbrains.annotations.Nullable;
 
 public abstract class AbstractOvenBlock extends FourWayDeviceBlock implements ICure
 {
+    @Nullable
+    public static BlockPos locateChimney(LevelAccessor level, BlockPos pos, BlockState state)
+    {
+        final BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
+        final Direction back = state.getValue(FACING).getOpposite();
+        final Direction left = back.getClockWise();
+        pos = pos.relative(back);
+
+        for (int i = -2; i <= 2; i++)
+        {
+            mutable.set(pos).move(left, i);
+            BlockState stateAt = level.getBlockState(mutable);
+            if (Helpers.isBlock(stateAt, FLTags.Blocks.CHIMNEYS))
+            {
+                do
+                {
+                    mutable.move(Direction.UP);
+                    stateAt = level.getBlockState(mutable);
+                }
+                while (Helpers.isBlock(stateAt, FLTags.Blocks.CHIMNEYS));
+                return mutable.immutable();
+            }
+        }
+        return null;
+    }
+
     public static boolean insulated(LevelAccessor level, BlockPos pos, BlockState state)
     {
         BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
@@ -56,6 +84,8 @@ public abstract class AbstractOvenBlock extends FourWayDeviceBlock implements IC
         }
     }
 
+    public static final BooleanProperty HAS_CHIMNEY = FLStateProperties.HAS_CHIMNEY;
+
     @Nullable
     private final Supplier<? extends Block> curedBlock;
 
@@ -63,7 +93,6 @@ public abstract class AbstractOvenBlock extends FourWayDeviceBlock implements IC
     {
         super(properties, InventoryRemoveBehavior.DROP);
         this.curedBlock = curedBlock;
-        registerDefaultState(getStateDefinition().any().setValue(FACING, Direction.NORTH));
     }
 
     @Override
@@ -72,19 +101,13 @@ public abstract class AbstractOvenBlock extends FourWayDeviceBlock implements IC
         FLClientHelpers.randomParticle(ParticleTypes.SMOKE, random, pos, level, 0.05f);
         FLClientHelpers.randomParticle(ParticleTypes.FLAME, random, pos, level, 0.05f);
 
-        pos = pos.relative(state.getValue(FACING).getOpposite());
-        BlockState stateAt = level.getBlockState(pos);
-        if (Helpers.isBlock(stateAt, FLTags.Blocks.CHIMNEYS))
+        if (state.getValue(FLStateProperties.HAS_CHIMNEY))
         {
-            BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
-            mutable.set(pos);
-            do
+            pos = locateChimney(level, pos, state);
+            if (pos != null)
             {
-                mutable.move(Direction.UP);
-                stateAt = level.getBlockState(mutable);
+                FLClientHelpers.randomParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, random, pos, level, 0.05f);
             }
-            while (Helpers.isBlock(stateAt, FLTags.Blocks.CHIMNEYS));
-            FLClientHelpers.randomParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, random, mutable, level, 0.05f);
         }
         else
         {
@@ -96,9 +119,17 @@ public abstract class AbstractOvenBlock extends FourWayDeviceBlock implements IC
         }
     }
 
+    @Override
+    @Nullable
     public Block getCured()
     {
         return curedBlock == null ? null : curedBlock.get();
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
+    {
+        super.createBlockStateDefinition(builder.add(HAS_CHIMNEY));
     }
 
 }

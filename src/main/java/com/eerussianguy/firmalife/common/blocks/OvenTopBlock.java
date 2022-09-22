@@ -31,6 +31,7 @@ public class OvenTopBlock extends AbstractOvenBlock
     public OvenTopBlock(ExtendedProperties properties, @Nullable Supplier<? extends Block> curedBlock)
     {
         super(properties, curedBlock);
+        registerDefaultState(getStateDefinition().any().setValue(FACING, Direction.NORTH).setValue(HAS_CHIMNEY, false));
     }
 
     @Override

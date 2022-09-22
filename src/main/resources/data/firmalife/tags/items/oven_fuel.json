@@ -2,6 +2,7 @@
   "__comment__": "This file was automatically created by mcresources",
   "replace": false,
   "values": [
-    "#minecraft:logs"
+    "#minecraft:logs",
+    "tfc:stick_bundle"
   ]
 }

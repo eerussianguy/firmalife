@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "firmalife:food/butter"
   },
-  "category": "dairy",
+  "category": "other",
   "hunger": 4,
   "saturation": 0,
   "decay_modifier": 3

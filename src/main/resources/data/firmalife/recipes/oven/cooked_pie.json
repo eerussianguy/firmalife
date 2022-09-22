@@ -1,0 +1,24 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "firmalife:oven",
+  "ingredient": {
+    "type": "tfc:not_rotten",
+    "ingredient": {
+      "item": "firmalife:food/filled_pie"
+    }
+  },
+  "result_item": {
+    "stack": {
+      "item": "firmalife:food/cooked_pie"
+    },
+    "modifiers": [
+      "firmalife:copy_dynamic_food",
+      {
+        "type": "tfc:remove_trait",
+        "trait": "firmalife:raw"
+      }
+    ]
+  },
+  "temperature": 400,
+  "duration": 1000
+}

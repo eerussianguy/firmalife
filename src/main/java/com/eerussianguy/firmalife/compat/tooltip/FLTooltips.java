@@ -14,7 +14,6 @@ import net.minecraft.world.level.block.Block;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.*;
 import com.eerussianguy.firmalife.common.blocks.*;
-import com.eerussianguy.firmalife.common.blocks.greenhouse.LargePlanterBlock;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.config.FLConfig;
 import net.dries007.tfc.common.capabilities.food.FoodCapability;
@@ -32,8 +31,6 @@ public final class FLTooltips
     {
         public static void register(BiConsumer<BlockEntityTooltip, Class<? extends Block>> r)
         {
-            r.accept(PLANTERS, LargePlanterBlock.class);
-            r.accept(BEEHIVE, FLBeehiveBlock.class);
             r.accept(DRYING_MAT, DryingMatBlock.class);
             r.accept(DRYING_MAT, SolarDrierBlock.class);
             r.accept(STRING, StringBlock.class);
@@ -41,20 +38,6 @@ public final class FLTooltips
             r.accept(OVEN_BOTTOM, OvenBottomBlock.class);
             r.accept(OVEN_TOP, OvenTopBlock.class);
         }
-
-        public static final BlockEntityTooltip PLANTERS = (level, state, pos, entity, tooltip) -> {
-            if (state.getBlock() instanceof LargePlanterBlock block && entity instanceof LargePlanterBlockEntity planter)
-            {
-                BlockEntityTooltips.hoeOverlay(level, block, planter, tooltip);
-            }
-        };
-
-        public static final BlockEntityTooltip BEEHIVE = (level, state, pos, entity, tooltip) -> {
-            if (state.getBlock() instanceof FLBeehiveBlock block && entity instanceof FLBeehiveBlockEntity hive)
-            {
-                BlockEntityTooltips.hoeOverlay(level, block, hive, tooltip);
-            }
-        };
 
         public static final BlockEntityTooltip DRYING_MAT = (level, state, pos, entity, tooltip) -> {
             if (state.getBlock() instanceof DryingMatBlock block && entity instanceof DryingMatBlockEntity mat && !mat.viewStack().isEmpty())

@@ -17,14 +17,14 @@ import com.eerussianguy.firmalife.common.blocks.greenhouse.LargePlanterBlock;
 import com.eerussianguy.firmalife.common.util.Mechanics;
 import com.eerussianguy.firmalife.common.util.Plantable;
 import net.dries007.tfc.common.blockentities.FarmlandBlockEntity;
+import net.dries007.tfc.common.blockentities.IFarmland;
 import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
-import net.dries007.tfc.util.Fertilizer;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.ICalendarTickable;
 import org.jetbrains.annotations.Nullable;
 
-public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemStackHandler> implements ICalendarTickable, ClimateReceiver
+public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemStackHandler> implements ICalendarTickable, ClimateReceiver, IFarmland
 {
     public static void serverTick(Level level, BlockPos pos, BlockState state, LargePlanterBlockEntity planter)
     {
@@ -248,6 +248,7 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
         return cachedPlant;
     }
 
+    @Override
     public float getNutrient(FarmlandBlockEntity.NutrientType type)
     {
         return switch (type)
@@ -258,6 +259,7 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
         };
     }
 
+    @Override
     public void setNutrient(FarmlandBlockEntity.NutrientType type, float amount)
     {
         amount = Mth.clamp(amount, 0f, 1f);
@@ -267,11 +269,7 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
             case POTASSIUM -> potassium = amount;
             case PHOSPHOROUS -> phosphorous = amount;
         }
-    }
-
-    public void addNutrient(FarmlandBlockEntity.NutrientType type, float amount)
-    {
-        setNutrient(type, getNutrient(type) + amount);
+        markForSync();
     }
 
     @Override
@@ -311,35 +309,6 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     public float getWater()
     {
         return water;
-    }
-
-    /**
-     * Consume up to {@code amount} of nutrient {@code type}.
-     * Additionally, increase all other nutrients by 1/6 the consumed value (effectively, recovering 33% of the consumed nutrients)
-     * @return The amount of nutrient {@code type} that was actually consumed.
-     */
-    public float consumeNutrientAndResupplyOthers(FarmlandBlockEntity.NutrientType type, float amount)
-    {
-        final float startValue = getNutrient(type);
-        final float consumed = Math.min(startValue, amount);
-
-        setNutrient(type, startValue - consumed);
-        for (FarmlandBlockEntity.NutrientType other : NUTRIENTS)
-        {
-            if (other != type)
-            {
-                addNutrient(other, consumed * (1 / 6f));
-            }
-        }
-        return consumed;
-    }
-
-    public void addNutrients(Fertilizer fertilizer)
-    {
-        addNutrient(FarmlandBlockEntity.NutrientType.NITROGEN, fertilizer.getNitrogen());
-        addNutrient(FarmlandBlockEntity.NutrientType.PHOSPHOROUS, fertilizer.getPhosphorus());
-        addNutrient(FarmlandBlockEntity.NutrientType.POTASSIUM, fertilizer.getPotassium());
-        markForSync();
     }
 
     public void afterGrowthTickStep(boolean wasGrowing)

@@ -6,7 +6,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -28,14 +27,13 @@ import com.eerussianguy.firmalife.client.FLClientHelpers;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.LargePlanterBlockEntity;
 import com.eerussianguy.firmalife.common.blocks.FLStateProperties;
-import com.eerussianguy.firmalife.common.util.Mechanics;
 import com.eerussianguy.firmalife.common.util.Plantable;
 import net.dries007.tfc.common.blockentities.FarmlandBlockEntity;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
+import net.dries007.tfc.common.blocks.crop.CropHelpers;
 import net.dries007.tfc.common.blocks.devices.DeviceBlock;
 import net.dries007.tfc.common.blocks.soil.HoeOverlayBlock;
 import net.dries007.tfc.common.capabilities.Capabilities;
-import net.dries007.tfc.util.Fertilizer;
 import net.dries007.tfc.util.Helpers;
 import org.jetbrains.annotations.Nullable;
 
@@ -57,18 +55,11 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
     {
         final ItemStack held = player.getItemInHand(hand);
         final Plantable plant = Plantable.get(held);
-        final Fertilizer fertilizer = Fertilizer.get(held);
         final int slot = getUseSlot(hit, pos);
         if (level.getBlockEntity(pos) instanceof LargePlanterBlockEntity planter)
         {
-            if (!held.isEmpty() && fertilizer != null)
+            if (CropHelpers.useFertilizer(level, player, hand, pos))
             {
-                planter.addNutrients(fertilizer);
-                if (level instanceof ServerLevel server)
-                {
-                    Mechanics.addNutrientParticles(server, pos, fertilizer);
-                }
-                held.shrink(1);
                 return InteractionResult.sidedSuccess(level.isClientSide);
             }
             else if (plant != null)

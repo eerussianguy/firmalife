@@ -29,7 +29,6 @@ import com.eerussianguy.firmalife.common.misc.FLSounds;
 import com.eerussianguy.firmalife.common.network.FLPackets;
 import com.eerussianguy.firmalife.common.recipes.FLRecipeSerializers;
 import com.eerussianguy.firmalife.common.recipes.FLRecipeTypes;
-import com.eerussianguy.firmalife.common.recipes.data.FLIngredients;
 import com.eerussianguy.firmalife.common.recipes.data.FLItemStackModifiers;
 import com.eerussianguy.firmalife.common.worldgen.FLFeatures;
 import com.eerussianguy.firmalife.compat.patchouli.FLPatchouliIntegration;
@@ -84,7 +83,6 @@ public class FirmaLife
         event.enqueueWork(() -> {
             FLInteractionManager.init();
             FLFoodTraits.init();
-            FLIngredients.init();
             FLBlocks.registerFlowerPotFlowers();
             TFCConfig.SERVER.enablePumpkinCarving.set(false);
         });
