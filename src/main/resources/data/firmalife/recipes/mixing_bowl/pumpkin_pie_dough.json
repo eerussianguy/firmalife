@@ -2,7 +2,9 @@
   "__comment__": "This file was automatically created by mcresources",
   "type": "firmalife:mixing_bowl",
   "ingredients": [
-    "minecraft:egg",
+    {
+      "item": "minecraft:egg"
+    },
     {
       "type": "tfc:not_rotten",
       "ingredient": {

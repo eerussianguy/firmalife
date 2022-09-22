@@ -7,6 +7,7 @@ import net.minecraft.client.gui.Font;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.item.ItemStack;
 
+import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.recipes.OvenRecipe;
 import com.mojang.blaze3d.vertex.PoseStack;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -16,7 +17,6 @@ import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
-import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.compat.jei.JEIIntegration;
 import net.dries007.tfc.compat.jei.category.BaseRecipeCategory;
 import net.dries007.tfc.config.TFCConfig;
@@ -25,7 +25,7 @@ public class OvenCategory extends BaseRecipeCategory<OvenRecipe>
 {
     public OvenCategory(RecipeType<OvenRecipe> type, IGuiHelper helper)
     {
-        super(type, helper, helper.createBlankDrawable(120, 38), new ItemStack(TFCBlocks.FIREPIT.get()));
+        super(type, helper, helper.createBlankDrawable(120, 38), new ItemStack(FLBlocks.CURED_OVEN_TOP.get()));
     }
 
     @Override

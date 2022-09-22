@@ -200,6 +200,7 @@ DEFAULT_LANG = {
     'tfc.jei.drying': 'Drying',
     'tfc.jei.smoking': 'Smoking',
     'tfc.jei.mixing_bowl': 'Mixing Bowl',
+    'tfc.jei.oven': 'Oven',
 }
 
 def lang(key: str, *args) -> str:

@@ -103,9 +103,6 @@ public class FLJEIPlugin implements IModPlugin
         cat(r, FLBlocks.MIXING_BOWL, MIXING_BOWL);
         cat(r, FLItems.SPOON.get(), MIXING_BOWL);
         cat(r, TFCBlocks.PUMPKIN, PUMPKIN_KNAPPING);
-        cat(r, FLBlocks.OVEN_BOTTOM, OVEN);
-        cat(r, FLBlocks.OVEN_TOP, OVEN);
-        cat(r, FLBlocks.OVEN_CHIMNEY, OVEN);
         cat(r, FLBlocks.CURED_OVEN_BOTTOM, OVEN);
         cat(r, FLBlocks.CURED_OVEN_CHIMNEY, OVEN);
         cat(r, FLBlocks.CURED_OVEN_TOP, OVEN);
