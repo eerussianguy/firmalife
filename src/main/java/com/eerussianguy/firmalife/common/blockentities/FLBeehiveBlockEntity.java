@@ -2,8 +2,6 @@ package com.eerussianguy.firmalife.common.blockentities;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.BiConsumer;
-import java.util.function.Function;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -23,17 +21,15 @@ import net.minecraftforge.registries.ForgeRegistries;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blocks.FLBeehiveBlock;
-import com.eerussianguy.firmalife.common.blocks.greenhouse.LargePlanterBlock;
 import com.eerussianguy.firmalife.common.capabilities.bee.BeeAbility;
 import com.eerussianguy.firmalife.common.capabilities.bee.BeeCapability;
 import com.eerussianguy.firmalife.common.capabilities.bee.IBee;
 import com.eerussianguy.firmalife.common.container.BeehiveContainer;
 import net.dries007.tfc.common.blockentities.FarmlandBlockEntity;
-import net.dries007.tfc.common.blockentities.TFCBlockEntities;
+import net.dries007.tfc.common.blockentities.IFarmland;
 import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
 import net.dries007.tfc.common.blocks.soil.ConnectedGrassBlock;
 import net.dries007.tfc.common.blocks.soil.DirtBlock;
-import net.dries007.tfc.common.blocks.soil.FarmlandBlock;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.ICalendar;
@@ -278,6 +274,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
     {
         final int take = Math.min(amount, honey);
         honey -= take;
+        updateState();
         markForSync();
         return take;
     }
@@ -293,28 +290,15 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
         if (bee != null)
         {
             final Block block = state.getBlock();
-            final boolean soil = block instanceof FarmlandBlock;
-            final boolean planter = block instanceof LargePlanterBlock;
 
-            if (planter || soil)
+            if (level.getBlockEntity(pos) instanceof IFarmland farmland)
             {
                 float cropAffinity = bee.getAbility(BeeAbility.CROP_AFFINITY); // 0 -> 10 scale
                 float nitrogen = level.random.nextFloat() * cropAffinity * 0.1f; // 0 -> 1 scale
                 float potassium = level.random.nextFloat() * cropAffinity * 0.1f;
                 float phosphorous = level.random.nextFloat() * cropAffinity * 0.1f;
                 float cap = (cropAffinity - 1) * 0.5f; // max that can possibly be set by bee fertilization, 0 -> 4.5 scale
-
-                if (soil)
-                {
-                    level.getBlockEntity(pos, TFCBlockEntities.FARMLAND.get()).ifPresent(farmland -> receiveNutrients(farmland::getNutrient, farmland::setNutrient, cap, nitrogen, phosphorous, potassium));
-                }
-                else
-                {
-                    if (level.getBlockEntity(pos) instanceof LargePlanterBlockEntity planterEntity)
-                    {
-                        receiveNutrients(planterEntity::getNutrient, planterEntity::setNutrient, cap, nitrogen, phosphorous, potassium);
-                    }
-                }
+                receiveNutrients(farmland, cap, nitrogen, phosphorous, potassium);
             }
 
             final int restore = bee.getAbility(BeeAbility.NATURE_RESTORATION);
@@ -342,11 +326,11 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
         }
     }
 
-    private void receiveNutrients(Function<FarmlandBlockEntity.NutrientType, Float> getter, BiConsumer<FarmlandBlockEntity.NutrientType, Float> setter, float cap, float nitrogen, float phosphorous, float potassium)
+    private void receiveNutrients(IFarmland farmland, float cap, float nitrogen, float phosphorous, float potassium)
     {
-        float n = getter.apply(N); if (n < cap) setter.accept(N, Math.min(n + nitrogen, cap));
-        float p = getter.apply(N); if (p < cap) setter.accept(P, Math.min(p + phosphorous, cap));
-        float k = getter.apply(K); if (k < cap) setter.accept(K, Math.min(k + potassium, cap));
+        float n = farmland.getNutrient(N); if (n < cap) farmland.setNutrient(N, Math.min(n + nitrogen, cap));
+        float p = farmland.getNutrient(N); if (p < cap) farmland.setNutrient(P, Math.min(p + phosphorous, cap));
+        float k = farmland.getNutrient(K); if (k < cap) farmland.setNutrient(K, Math.min(k + potassium, cap));
     }
 
     public void updateState()
