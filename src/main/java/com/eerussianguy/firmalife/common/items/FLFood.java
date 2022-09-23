@@ -49,7 +49,10 @@ public enum FLFood
     COCOA_POWDER,
     WHITE_CHOCOLATE_BLEND,
     DARK_CHOCOLATE_BLEND,
-    MILK_CHOCOLATE_BLEND;
+    MILK_CHOCOLATE_BLEND,
+    WHITE_CHOCOLATE,
+    DARK_CHOCOLATE,
+    MILK_CHOCOLATE;
 
     private final boolean meat, fast;
 

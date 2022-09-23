@@ -155,6 +155,7 @@ public class OvenTopBlockEntity extends TickableInventoryBlockEntity<OvenTopBloc
                             // Add output to oven
                             oven.inventory.setStackInSlot(slot, outputItem);
                             oven.markForSync();
+                            oven.needsRecipeUpdate = true;
                         }
                     }
                 });

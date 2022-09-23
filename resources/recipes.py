@@ -140,7 +140,8 @@ def generate(rm: ResourceManager):
     drying_recipe(rm, 'cinnamon', 'firmalife:cinnamon_bark', item_stack_provider('firmalife:spice/cinnamon'))
     drying_recipe(rm, 'dry_grass', 'tfc:thatch', item_stack_provider('tfc:groundcover/dead_grass'))
     drying_recipe(rm, 'tofu', 'firmalife:food/soy_mixture', item_stack_provider('firmalife:food/tofu', copy_food=True))
-
+    for choc in ('milk', 'white', 'dark'):
+        drying_recipe(rm, '%s_chocolate' % choc, 'firmalife:food/%s_chocolate_blend' % choc, item_stack_provider('firmalife:food/%s_chocolate' % choc))
     for dirt in ('loam', 'sandy_loam', 'silty_loam', 'silt'):
         drying_recipe(rm, '%s_dirt' % dirt, 'tfc:mud/%s' % dirt, item_stack_provider('tfc:dirt/%s' % dirt))
 

@@ -262,7 +262,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
         // no bees, have to give some chance
         if (bees.isEmpty())
         {
-            chance = 100;
+            chance = 80;
         }
         // flowers increase probability
         return Math.max(0, chance - Math.min(flowers, 60));

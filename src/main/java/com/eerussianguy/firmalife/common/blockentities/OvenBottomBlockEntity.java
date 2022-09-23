@@ -3,6 +3,7 @@ package com.eerussianguy.firmalife.common.blockentities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -14,6 +15,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blocks.AbstractOvenBlock;
+import com.eerussianguy.firmalife.common.blocks.FLStateProperties;
 import com.eerussianguy.firmalife.common.blocks.ICure;
 import com.eerussianguy.firmalife.common.blocks.OvenBottomBlock;
 import com.eerussianguy.firmalife.config.FLConfig;
@@ -69,6 +71,21 @@ public class OvenBottomBlockEntity extends TickableInventoryBlockEntity<ItemStac
         final int updateInterval = 40;
         if (level.getGameTime() % updateInterval == 0)
         {
+            if (state.hasProperty(FLStateProperties.HAS_CHIMNEY))
+            {
+                final boolean chimney = state.getValue(FLStateProperties.HAS_CHIMNEY);
+                final BlockPos chimneyPos = AbstractOvenBlock.locateChimney(level, pos, state);
+                final boolean chimneyNow = chimneyPos != null;
+                if (chimneyNow != chimney)
+                {
+                    level.setBlockAndUpdate(pos, state.setValue(FLStateProperties.HAS_CHIMNEY, chimneyNow));
+                }
+                if (!chimneyNow && level.random.nextInt(4) == 0 && level instanceof ServerLevel server)
+                {
+                    Helpers.fireSpreaderTick(server, pos, level.random, 2);
+                }
+            }
+
             final boolean cured = state.getBlock() instanceof ICure cure && cure.isCured();
             if (oven.cureTicks <= FLConfig.SERVER.ovenCureTicks.get()) oven.cureTicks += updateInterval;
             if (oven.temperature > (float) FLConfig.SERVER.ovenCureTemperature.get() && oven.cureTicks > FLConfig.SERVER.ovenCureTicks.get())
