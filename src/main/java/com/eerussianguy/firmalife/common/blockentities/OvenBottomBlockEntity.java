@@ -3,7 +3,6 @@ package com.eerussianguy.firmalife.common.blockentities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -14,11 +13,8 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.FLTags;
-import com.eerussianguy.firmalife.common.blocks.AbstractOvenBlock;
-import com.eerussianguy.firmalife.common.blocks.FLStateProperties;
 import com.eerussianguy.firmalife.common.blocks.ICure;
 import com.eerussianguy.firmalife.common.blocks.OvenBottomBlock;
-import com.eerussianguy.firmalife.config.FLConfig;
 import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
 import net.dries007.tfc.common.capabilities.heat.HeatCapability;
 import net.dries007.tfc.util.Fuel;
@@ -29,7 +25,7 @@ import net.dries007.tfc.util.calendar.ICalendarTickable;
 /**
  * Consumes fuel like a charcoal forge but has no other functionality (like, executing recipes)
  */
-public class OvenBottomBlockEntity extends TickableInventoryBlockEntity<ItemStackHandler> implements ICalendarTickable
+public class OvenBottomBlockEntity extends TickableInventoryBlockEntity<ItemStackHandler> implements ICalendarTickable, OvenLike
 {
     public static void cure(Level level, BlockState oldState, BlockState newState, BlockPos pos)
     {
@@ -69,30 +65,11 @@ public class OvenBottomBlockEntity extends TickableInventoryBlockEntity<ItemStac
         oven.checkForCalendarUpdate();
 
         final int updateInterval = 40;
+        final boolean cured = state.getBlock() instanceof ICure cure && cure.isCured();
         if (level.getGameTime() % updateInterval == 0)
         {
-            if (state.hasProperty(FLStateProperties.HAS_CHIMNEY))
-            {
-                final boolean chimney = state.getValue(FLStateProperties.HAS_CHIMNEY);
-                final BlockPos chimneyPos = AbstractOvenBlock.locateChimney(level, pos, state);
-                final boolean chimneyNow = chimneyPos != null;
-                if (chimneyNow != chimney)
-                {
-                    level.setBlockAndUpdate(pos, state.setValue(FLStateProperties.HAS_CHIMNEY, chimneyNow));
-                }
-                if (!chimneyNow && level.random.nextInt(4) == 0 && level instanceof ServerLevel server)
-                {
-                    Helpers.fireSpreaderTick(server, pos, level.random, 2);
-                }
-            }
-
-            final boolean cured = state.getBlock() instanceof ICure cure && cure.isCured();
-            if (oven.cureTicks <= FLConfig.SERVER.ovenCureTicks.get()) oven.cureTicks += updateInterval;
-            if (oven.temperature > (float) FLConfig.SERVER.ovenCureTemperature.get() && oven.cureTicks > FLConfig.SERVER.ovenCureTicks.get())
-            {
-                AbstractOvenBlock.cureAllAround(level, pos, !cured);
-            }
-           oven.updateLogs();
+            OvenLike.regularBlockUpdate(level, pos, state, oven, cured, updateInterval);
+            oven.updateLogs();
         }
 
         if (state.getValue(BlockStateProperties.LIT))
@@ -156,14 +133,22 @@ public class OvenBottomBlockEntity extends TickableInventoryBlockEntity<ItemStac
         lastPlayerTick = Calendars.SERVER.getTicks();
     }
 
+    @Override
     public float getTemperature()
     {
         return temperature;
     }
 
+    @Override
     public int getCureTicks()
     {
         return cureTicks;
+    }
+
+    @Override
+    public void addCureTicks(int ticks)
+    {
+        cureTicks += ticks;
     }
 
     @Override

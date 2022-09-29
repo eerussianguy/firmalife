@@ -35,8 +35,8 @@ public final class FLTooltips
             r.accept(DRYING_MAT, SolarDrierBlock.class);
             r.accept(STRING, StringBlock.class);
             r.accept(CHEESE, CheeseWheelBlock.class);
-            r.accept(OVEN_BOTTOM, OvenBottomBlock.class);
-            r.accept(OVEN_TOP, OvenTopBlock.class);
+            r.accept(OVEN, OvenBottomBlock.class);
+            r.accept(OVEN, OvenTopBlock.class);
         }
 
         public static final BlockEntityTooltip DRYING_MAT = (level, state, pos, entity, tooltip) -> {
@@ -98,8 +98,8 @@ public final class FLTooltips
             }
         };
 
-        public static final BlockEntityTooltip OVEN_BOTTOM = (level, state, pos, entity, tooltip) -> {
-            if (state.getBlock() instanceof OvenBottomBlock block && entity instanceof OvenBottomBlockEntity oven)
+        public static final BlockEntityTooltip OVEN = (level, state, pos, entity, tooltip) -> {
+            if (entity instanceof OvenLike oven)
             {
                 BlockEntityTooltips.heat(tooltip, oven.getTemperature());
                 if (state.getBlock() instanceof ICure cure && !cure.isCured())
@@ -115,25 +115,6 @@ public final class FLTooltips
                 }
             }
         };
-
-        public static final BlockEntityTooltip OVEN_TOP = (level, state, pos, entity, tooltip) -> {
-            if (state.getBlock() instanceof OvenTopBlock block && entity instanceof OvenTopBlockEntity oven)
-            {
-                BlockEntityTooltips.heat(tooltip, oven.getTemperature());
-                if (state.getBlock() instanceof ICure cure && !cure.isCured())
-                {
-                    if (oven.getTemperature() < FLConfig.SERVER.ovenCureTemperature.get())
-                    {
-                        tooltip.accept(Helpers.translatable("firmalife.jade.cannot_cure"));
-                    }
-                    else
-                    {
-                        tooltip.accept(Helpers.translatable("firmalife.jade.cure_time_left", delta(level, FLConfig.SERVER.ovenCureTicks.get() - oven.getCureTicks())));
-                    }
-                }
-            }
-        };
-
     }
 
     public static final class Entities
