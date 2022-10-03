@@ -14,7 +14,7 @@
       "item": "firmalife:ore/rich_chromite"
     }
   ],
-  "heat_capacity": 0.35,
-  "forging_temperature": 750.0,
-  "welding_temperature": 1000.0
+  "heat_capacity": 1.143,
+  "forging_temperature": 750,
+  "welding_temperature": 1000
 }

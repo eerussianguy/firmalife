@@ -1,4 +1,4 @@
-from typing import NamedTuple, Dict, Optional
+from typing import NamedTuple, Dict, Optional, Set
 
 from mcresources import ResourceManager, utils
 
@@ -6,7 +6,17 @@ from constants import lang
 from data import item_heat
 from recipes import anvil_recipe, Rules, welding_recipe, heat_recipe, casting_recipe
 
-Metal = NamedTuple('Metal', tier=int, types=set, heat_capacity=float, melt_temperature=float, melt_metal=Optional[str])
+class Metal(NamedTuple):
+    tier: int
+    types: Set[str]
+    heat_capacity_base: float  # Do not access directly, use one of specific or ingot heat capacity.
+    melt_temperature: float
+    melt_metal: Optional[str]
+
+    def specific_heat_capacity(self) -> float: return round(300 / self.heat_capacity_base) / 100_000
+    def ingot_heat_capacity(self) -> float: return 1 / self.heat_capacity_base
+
+
 MetalItem = NamedTuple('MetalItem', type=str, smelt_amount=int, parent_model=str, tag=Optional[str], mold=bool)
 
 FL_METALS: Dict[str, Metal] = {
@@ -29,7 +39,7 @@ def generate(rm: ResourceManager):
             'tier': metal_data.tier,
             'fluid': 'firmalife:metal/%s' % metal,
             'melt_temperature': metal_data.melt_temperature,
-            'heat_capacity': metal_data.heat_capacity,
+            'specific_heat_capacity': metal_data.specific_heat_capacity(),
             'ingots': utils.ingredient('#forge:ingots/%s' % metal),
             'sheets': utils.ingredient('#forge:sheets/%s' % metal)
         })
@@ -43,7 +53,7 @@ def generate(rm: ResourceManager):
                 else:
                     ingredient = utils.item_stack(item_name)
                 rm.item_tag('tfc:metal_item/%s' % metal, item_name)
-                item_heat(rm, ('metal', metal + '_' + item), ingredient, metal_data.heat_capacity, metal_data.melt_temperature)
+                item_heat(rm, ('metal', metal + '_' + item), ingredient, metal_data.ingot_heat_capacity(), metal_data.melt_temperature, mb=item_data.smelt_amount)
 
         def item(_variant: str) -> str:
             return 'firmalife:metal/%s/%s' % (_variant, metal)
@@ -80,7 +90,7 @@ def generate(rm: ResourceManager):
 def chromium_ore_heats(rm: ResourceManager):
     ore = 'chromite'
     metal_data = FL_METALS['chromium']
-    item_heat(rm, ('ore', ore), ['firmalife:ore/small_%s' % ore, 'firmalife:ore/normal_%s' % ore, 'firmalife:ore/poor_%s' % ore, 'firmalife:ore/rich_%s' % ore], metal_data.heat_capacity, int(metal_data.melt_temperature))
+    item_heat(rm, ('ore', ore), ['firmalife:ore/small_%s' % ore, 'firmalife:ore/normal_%s' % ore, 'firmalife:ore/poor_%s' % ore, 'firmalife:ore/rich_%s' % ore], metal_data.ingot_heat_capacity(), int(metal_data.melt_temperature), mb=40)
     temp = FL_METALS['chromium'].melt_temperature
     heat_recipe(rm, ('ore', 'small_%s' % ore), 'firmalife:ore/small_%s' % ore, temp, None, '10 firmalife:metal/chromium')
     heat_recipe(rm, ('ore', 'poor_%s' % ore), 'firmalife:ore/poor_%s' % ore, temp, None, '15 firmalife:metal/chromium')

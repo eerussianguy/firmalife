@@ -3,7 +3,7 @@
   "ingredient": {
     "tag": "forge:double_ingots/chromium"
   },
-  "heat_capacity": 0.35,
-  "forging_temperature": 750.0,
-  "welding_temperature": 1000.0
+  "heat_capacity": 5.714,
+  "forging_temperature": 750,
+  "welding_temperature": 1000
 }
