@@ -103,6 +103,7 @@ public class FLClientEvents
         final BlockColor tallGrassColor = (state, level, pos, tintIndex) -> TFCColors.getTallGrassColor(pos, tintIndex);
 
         registry.register(tallGrassColor, FLBlocks.BUTTERFLY_GRASS.get());
+        registry.register(tallGrassColor, FLBlocks.POTTED_BUTTERFLY_GRASS.get());
     }
 
     public static void onItemColors(ColorHandlerEvent.Item event)

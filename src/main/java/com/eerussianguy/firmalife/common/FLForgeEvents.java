@@ -76,6 +76,7 @@ public class FLForgeEvents
                 if (block == reg.get())
                 {
                     level.setBlockAndUpdate(pos, Helpers.copyProperty(FLBlocks.JACK_O_LANTERNS.get(carve).get().defaultBlockState(), state, HorizontalDirectionalBlock.FACING));
+                    FLHelpers.resetCounter(level, pos);
                     event.setCanceled(true);
                 }
             });
