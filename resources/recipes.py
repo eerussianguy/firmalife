@@ -70,6 +70,8 @@ def generate(rm: ResourceManager):
     rm.crafting_shapeless('crafting/pickled_egg', ('minecraft:clay_ball', 'tfc:powder/wood_ash', 'tfc:powder/salt', 'tfc:food/boiled_egg'), 'firmalife:food/pickled_egg')
     rm.crafting_shaped('crafting/seed_ball', [' X ', 'XYX', ' X '], {'X': '#tfc:seeds', 'Y': 'tfc:compost'}, 'firmalife:seed_ball').with_advancement('tfc:compost')
     rm.crafting_shapeless('crafting/raw_pumpkin_pie', ('firmalife:food/pumpkin_pie_dough', 'firmalife:pie_pan'), 'firmalife:food/raw_pumpkin_pie').with_advancement('firmalife:food/pumpkin_pie_dough')
+    rm.crafting_shaped('crafting/squirting_moisture_transducer', ['XYX', 'XZX', 'XYX'], {'X': '#forge:sheets/stainless_steel', 'Y': 'tfc:brass_mechanisms', 'Z': '#forge:rods/nickel'}, 'firmalife:squirting_moisture_transducer').with_advancement('#forge:rods/stainless_steel')
+    rm.crafting_shaped('crafting/embedded_pipe', ['XY', 'XY', 'ZZ'], {'X': '#forge:rods/stainless_steel', 'Y': '#forge:rods/copper', 'Z': 'firmalife:beeswax'}, '6 firmalife:embedded_pipe').with_advancement('#forge:rods/stainless_steel')
     rm.domain = 'tfc'
     rm.crafting_shapeless('crafting/pumpkin_pie', ('firmalife:food/cooked_pumpkin_pie',), 'minecraft:pumpkin_pie').with_advancement('firmalife:food/cooked_pumpkin_pie')
     rm.domain = 'firmalife'

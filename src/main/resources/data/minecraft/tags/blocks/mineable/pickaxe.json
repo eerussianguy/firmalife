@@ -35,6 +35,7 @@
     "firmalife:bonsai_planter",
     "firmalife:hanging_planter",
     "firmalife:trellis_planter",
+    "firmalife:squirting_moisture_transducer",
     "firmalife:iron_composter",
     "firmalife:sealed_door",
     "firmalife:ore/normal_chromite/granite",
@@ -98,6 +99,7 @@
     "firmalife:ore/poor_chromite/marble",
     "firmalife:ore/rich_chromite/marble",
     "firmalife:sealed_bricks",
+    "firmalife:embedded_pipe",
     "#firmalife:oven_blocks"
   ]
 }

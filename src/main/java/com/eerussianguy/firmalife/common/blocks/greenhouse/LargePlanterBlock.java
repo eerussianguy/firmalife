@@ -5,7 +5,6 @@ import java.util.List;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -66,18 +65,18 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
             {
                 if (plant.getPlanterType() != getPlanterType())
                 {
-                    player.displayClientMessage(new TranslatableComponent("firmalife.greenhouse.wrong_type").append(FLHelpers.translateEnum(plant.getPlanterType())), true);
+                    player.displayClientMessage(Helpers.translatable("firmalife.greenhouse.wrong_type").append(FLHelpers.translateEnum(plant.getPlanterType())), true);
                     return InteractionResult.sidedSuccess(level.isClientSide);
                 }
                 if (planter.getTier() < plant.getTier())
                 {
                     if (!planter.isClimateValid())
                     {
-                        player.displayClientMessage(new TranslatableComponent("firmalife.greenhouse.climate_invalid"), true);
+                        player.displayClientMessage(Helpers.translatable("firmalife.greenhouse.climate_invalid"), true);
                     }
                     else
                     {
-                        player.displayClientMessage(new TranslatableComponent("firmalife.greenhouse.wrong_tier"), true);
+                        player.displayClientMessage(Helpers.translatable("firmalife.greenhouse.wrong_tier"), true);
                     }
                     return InteractionResult.sidedSuccess(level.isClientSide);
                 }
@@ -120,20 +119,20 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
             if (target == null) return;
 
             final int slot = getUseSlot(target, pos);
-            text.add(new TranslatableComponent("firmalife.planter.growth_water", String.format("%.2f", planter.getGrowth(slot)), String.format("%.2f", planter.getWater())));
+            text.add(Helpers.translatable("firmalife.planter.growth_water", String.format("%.2f", planter.getGrowth(slot)), String.format("%.2f", planter.getWater())));
             if (planter.getGrowth(slot) >= 1)
             {
-                text.add(new TranslatableComponent("tfc.tooltip.farmland.mature"));
+                text.add(Helpers.translatable("tfc.tooltip.farmland.mature"));
             }
             final Component invalidReason = planter.getInvalidReason();
             final boolean valid = invalidReason == null;
-            text.add(new TranslatableComponent(valid ? "firmalife.greenhouse.valid_block" : "firmalife.greenhouse.invalid_block"));
+            text.add(Helpers.translatable(valid ? "firmalife.greenhouse.valid_block" : "firmalife.greenhouse.invalid_block"));
             if (!valid)
             {
                 text.add(invalidReason);
             }
 
-            text.add(new TranslatableComponent("tfc.tooltip.farmland.nutrients", format(planter, FarmlandBlockEntity.NutrientType.NITROGEN), format(planter, FarmlandBlockEntity.NutrientType.PHOSPHOROUS), format(planter, FarmlandBlockEntity.NutrientType.POTASSIUM)));
+            text.add(Helpers.translatable("tfc.tooltip.farmland.nutrients", format(planter, FarmlandBlockEntity.NutrientType.NITROGEN), format(planter, FarmlandBlockEntity.NutrientType.PHOSPHOROUS), format(planter, FarmlandBlockEntity.NutrientType.POTASSIUM)));
         }
     }
 

@@ -12,7 +12,8 @@ SIMPLE_FOODS = ('frothy_coconut', 'white_chocolate_blend', 'dark_chocolate_blend
                 'cocoa_butter', 'cocoa_powder', 'toast', 'dark_chocolate', 'milk_chocolate', 'white_chocolate')
 SIMPLE_SPICES = ('ground_cinnamon', 'cinnamon', 'basil_leaves')
 SIMPLE_BLOCKS: Dict[str, str] = {
-    'sealed_bricks': 'minecraft:mineable/pickaxe'
+    'sealed_bricks': 'minecraft:mineable/pickaxe',
+    'embedded_pipe': 'minecraft:mineable/pickaxe',
 }
 BLOCK_ENTITIES = ('oven_bottom', 'oven_top', 'drying_mat', 'beehive', 'solar_drier', 'mixing_bowl', 'iron_composter', 'string', 'berry_bush', 'large_planter', 'bonsai_planter', 'trellis_planter', 'hanging_planter', 'quad_planter', 'climate_station')
 EXTRA_FLUIDS = ('yeast_starter', 'coconut_milk', 'yak_milk', 'goat_milk', 'curdled_yak_milk', 'curdled_goat_milk', 'pina_colada', 'cream')
@@ -147,6 +148,10 @@ DEFAULT_LANG = {
     'firmalife.greenhouse.wrong_type': 'This crop does not grow in this planter. It grows in a ',
     'firmalife.greenhouse.found': 'Found a greenhouse of %s blocks',
     'firmalife.planter.growth_water': 'Growth: %s, Water: %s',
+    'firmalife.transducer.no_pipes': 'Currently empty. Add embedded pipes with right click!',
+    'firmalife.transducer.current_pipes': 'Pipe Inventory: %s',
+    'firmalife.transducer.pipe_length': 'Current Pipes: %s',
+    'firmalife.transducer.pipe_wanted': 'Pipes needed due to the the local climate: %s',
 
     'firmalife.bee.queen': 'Queen',
     'firmalife.bee.no_queen': 'No Queen',

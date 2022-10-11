@@ -8,7 +8,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "firmalife:ore/normal_chromite/basalt"
+          "name": "firmalife:ore/normal_chromite"
         }
       ],
       "conditions": [

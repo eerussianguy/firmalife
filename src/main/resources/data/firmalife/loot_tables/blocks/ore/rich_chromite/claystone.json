@@ -8,7 +8,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "firmalife:ore/rich_chromite/claystone"
+          "name": "firmalife:ore/rich_chromite"
         }
       ],
       "conditions": [

@@ -8,7 +8,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "firmalife:ore/poor_chromite/chert"
+          "name": "firmalife:ore/poor_chromite"
         }
       ],
       "conditions": [

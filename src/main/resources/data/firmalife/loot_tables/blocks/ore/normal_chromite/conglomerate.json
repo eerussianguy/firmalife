@@ -8,7 +8,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "firmalife:ore/normal_chromite/conglomerate"
+          "name": "firmalife:ore/normal_chromite"
         }
       ],
       "conditions": [

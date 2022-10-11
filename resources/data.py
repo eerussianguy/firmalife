@@ -72,6 +72,7 @@ def generate(rm: ResourceManager):
     rm.block_tag('drops_fruit_leaf', '#tfc:fruit_tree_leaves')
     rm.block_tag('cellar_insulation', 'firmalife:sealed_bricks', 'firmalife:sealed_door')
     rm.block_tag('buzzing_leaves', 'firmalife:plant/fig_leaves')
+    rm.block_tag('pipe_replaceable', '#tfc:dirt', '#tfc:grass', '#minecraft:base_stone_overworld', '#forge:gravel', '#minecraft:sand', '#tfc:can_carve')
 
     rm.block_tag('minecraft:mineable/axe', *['firmalife:plant/%s_branch' % t for t in FRUITS], *['firmalife:plant/%s_growing_branch' % t for t in FRUITS], *['firmalife:plant/%s' % p for p in HERBS], 'firmalife:plant/butterfly_grass')
     rm.block_tag('tfc:mineable_with_sharp_tool', *['firmalife:plant/%s_leaves' % t for t in FRUITS], *['firmalife:plant/%s_sapling' % t for t in FRUITS])

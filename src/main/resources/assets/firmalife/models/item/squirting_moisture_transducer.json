@@ -1,0 +1,7 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "firmalife:block/squirting_moisture_transducer_on",
+  "textures": {
+    "layer0": "firmalife:item/squirting_moisture_transducer"
+  }
+}

@@ -8,7 +8,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "firmalife:ore/rich_chromite/quartzite"
+          "name": "firmalife:ore/rich_chromite"
         }
       ],
       "conditions": [

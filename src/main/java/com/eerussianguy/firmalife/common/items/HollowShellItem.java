@@ -14,12 +14,13 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 
 import com.eerussianguy.firmalife.common.misc.FLSounds;
 import net.dries007.tfc.common.items.DiscreteFluidContainerItem;
+import net.dries007.tfc.common.items.FluidContainerItem;
 
-public class HollowShellItem extends DiscreteFluidContainerItem
+public class HollowShellItem extends FluidContainerItem
 {
-    public HollowShellItem(Properties properties, Supplier<Integer> capacity, TagKey<Fluid> whitelist, boolean canPlaceSourceBlocks)
+    public HollowShellItem(Properties properties, Supplier<Integer> capacity, TagKey<Fluid> whitelist, boolean canPlaceSourceBlocks, boolean canPlaceLiquidsInWorld)
     {
-        super(properties, capacity, whitelist, canPlaceSourceBlocks);
+        super(properties, capacity, whitelist, canPlaceSourceBlocks, canPlaceLiquidsInWorld);
     }
 
     @Override

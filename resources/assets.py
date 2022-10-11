@@ -75,6 +75,16 @@ def generate(rm: ResourceManager):
         tex = 'firmalife:block/greenhouse/climate_station/%s' % variant
         rm.block_model('firmalife:climate_station_%s' % variant, {'west': tex, 'east': tex, 'north': tex, 'south': tex, 'particle': tex, 'up': 'firmalife:block/greenhouse/climate_station/top', 'down': 'firmalife:block/greenhouse/climate_station/end'}, 'block/cube')
 
+    trd = 'squirting_moisture_transducer'
+    rm.blockstate(trd, variants={
+        'stasis=true': {'model': 'firmalife:block/' + trd + '_on'},
+        'stasis=false': {'model': 'firmalife:block/' + trd + '_off'}
+    }).with_lang(lang(trd)).with_tag('minecraft:mineable/pickaxe').with_block_loot('firmalife:%s' % trd)
+    rm.item_model(trd, parent='firmalife:block/' + trd + '_on')
+    for variant in ('on', 'off'):
+        tex = 'firmalife:block/%s_%s' % (trd, variant)
+        rm.block_model('firmalife:%s_%s' % (trd, variant), {'west': tex, 'east': tex, 'north': tex, 'south': tex, 'particle': tex, 'up': 'firmalife:block/%s_top' % trd, 'down': 'firmalife:block/%s_top' % trd})
+
     rm.blockstate('beehive', variants={
         **four_rotations('minecraft:block/beehive_honey', (90, None, 180, 270), ',honey=true'),
         **four_rotations('minecraft:block/beehive', (90, None, 180, 270), ',honey=false')
@@ -123,7 +133,7 @@ def generate(rm: ResourceManager):
                 'particle': 'tfc:block/rock/raw/%s' % rock,
                 'overlay': 'firmalife:block/ore/%s_%s' % (grade, ore)
             }, parent='tfc:block/ore')
-            block.with_item_model().with_lang(lang('%s %s %s', grade, rock, ore)).with_block_loot('firmalife:ore/%s_%s/%s' % (grade, ore, rock)).with_tag('minecraft:mineable/pickaxe').with_tag('tfc:prospectable')
+            block.with_item_model().with_lang(lang('%s %s %s', grade, rock, ore)).with_block_loot('firmalife:ore/%s_%s' % (grade, ore)).with_tag('minecraft:mineable/pickaxe').with_tag('tfc:prospectable')
             rm.block('firmalife:ore/%s_%s/%s/prospected' % (grade, ore, rock)).with_lang(lang(ore))
 
     for carving in CARVINGS.keys():
