@@ -13,7 +13,7 @@ public class IronComposterBlockEntity extends ComposterBlockEntity
 {
     public IronComposterBlockEntity(BlockPos pos, BlockState state)
     {
-        super(TFCBlockEntities.COMPOSTER.get(), pos, state);
+        super(FLBlockEntities.IRON_COMPOSTER.get(), pos, state);
     }
 
     @Override
