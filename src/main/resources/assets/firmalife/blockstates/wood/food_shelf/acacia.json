@@ -1,0 +1,20 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "variants": {
+    "facing=east": {
+      "model": "firmalife:block/wood/food_shelf/acacia",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "firmalife:block/wood/food_shelf/acacia",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "firmalife:block/wood/food_shelf/acacia"
+    },
+    "facing=west": {
+      "model": "firmalife:block/wood/food_shelf/acacia",
+      "y": 90
+    }
+  }
+}

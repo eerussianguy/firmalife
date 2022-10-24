@@ -158,6 +158,17 @@ def generate(rm: ResourceManager):
         rm.item_model('plant/%s' % herb, 'firmalife:block/plant/%s/1' % herb)
         flower_pot_cross(rm, herb, 'firmalife:plant/potted/%s' % herb, 'plant/flowerpot/%s' % herb, 'firmalife:block/plant/%s/1' % herb, 'firmalife:plant/%s' % herb)
 
+    for wood in TFC_WOODS.keys():
+        block = rm.blockstate('firmalife:wood/food_shelf/%s' % wood, variants=four_rotations('firmalife:block/wood/food_shelf/%s' % wood, (270, 180, None, 90)))
+        block.with_block_loot('firmalife:wood/food_shelf/%s' % wood).with_lang(lang('%s food shelf', wood)).with_tag('minecraft:mineable/axe')
+        rm.item_model('firmalife:wood/food_shelf/%s' % wood, parent='firmalife:block/wood/food_shelf/%s' % wood, no_textures=True)
+        rm.block_model('firmalife:wood/food_shelf/%s' % wood, parent='firmalife:block/food_shelf_base', textures={'wood': 'tfc:block/wood/planks/%s' % wood, 'string': 'minecraft:block/white_wool'})
+
+        block = rm.blockstate('firmalife:wood/hanger/%s' % wood, model='firmalife:block/wood/hanger/%s' % wood)
+        block.with_block_loot('firmalife:wood/hanger/%s' % wood).with_lang(lang('%s hanger' % wood)).with_tag('minecraft:mineable/axe')
+        rm.item_model('firmalife:wood/hanger/%s' % wood, parent='firmalife:block/wood/hanger/%s' % wood, no_textures=True)
+        rm.block_model('firmalife:wood/hanger/%s' % wood, parent='firmalife:block/food_shelf_base', textures={'wood': 'tfc:block/wood/planks/%s' % wood})
+
     for fruit in FRUITS.keys():
         for prefix in ('', 'growing_'):
             block = rm.blockstate_multipart('plant/' + fruit + '_' + prefix + 'branch',

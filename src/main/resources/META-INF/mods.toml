@@ -7,7 +7,7 @@ modId="firmalife" #mandatory
 version="${file.jarVersion}" #mandatory
 displayName="Firmalife" #mandatory
 logoFile="firmalife.png" #optional
-authors="EERussianguy" #optional
+authors="EERussianguy, Indi, Peffern, Lumintorious" #optional
 description='''
 An addon for TFC.
 '''

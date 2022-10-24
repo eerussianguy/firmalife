@@ -81,6 +81,8 @@ public class FLClientEvents
         FLBlocks.FRUIT_TREE_POTTED_SAPLINGS.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
         FLBlocks.HERBS.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
         FLBlocks.POTTED_HERBS.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
+        FLBlocks.FOOD_SHELVES.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
+        FLBlocks.HANGERS.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
 
         event.enqueueWork(() -> {
             MenuScreens.register(FLContainerTypes.BEEHIVE.get(), BeehiveScreen::new);
@@ -141,6 +143,8 @@ public class FLClientEvents
         event.registerBlockEntityRenderer(FLBlockEntities.BONSAI_PLANTER.get(), ctx -> new BonsaiPlanterBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.HANGING_PLANTER.get(), ctx -> new HangingPlanterBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.MIXING_BOWL.get(), ctx -> new MixingBowlBlockEntityRenderer());
+        event.registerBlockEntityRenderer(FLBlockEntities.HANGER.get(), ctx -> new HangerBlockEntityRenderer());
+        event.registerBlockEntityRenderer(FLBlockEntities.FOOD_SHELF.get(), ctx -> new FoodShelfBlockEntityRenderer());
 
         event.registerEntityRenderer(FLEntities.SEED_BALL.get(), ThrownItemRenderer::new);
     }

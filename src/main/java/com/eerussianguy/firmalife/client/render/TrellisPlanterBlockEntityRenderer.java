@@ -1,6 +1,5 @@
 package com.eerussianguy.firmalife.client.render;
 
-import java.nio.file.Path;
 import java.util.function.Function;
 
 import net.minecraft.client.Minecraft;
@@ -15,6 +14,7 @@ import com.eerussianguy.firmalife.common.blockentities.TrellisPlanterBlockEntity
 import com.eerussianguy.firmalife.common.util.Plantable;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.dries007.tfc.client.RenderHelpers;
 
 public class TrellisPlanterBlockEntityRenderer implements BlockEntityRenderer<TrellisPlanterBlockEntity>
 {
@@ -51,7 +51,7 @@ public class TrellisPlanterBlockEntityRenderer implements BlockEntityRenderer<Tr
 
 
         TextureAtlasSprite sprite = atlas.apply(actualTexture);
-        RenderUtils.renderTexturedCuboid(poseStack, buffer, sprite, combinedLight, combinedOverlay, 0, 0, 0, 1, 1.01f, 1);
+        RenderHelpers.renderTexturedCuboid(poseStack, buffer, sprite, combinedLight, combinedOverlay, (float) 0, (float) 0, (float) 0, (float) 1, 1.01f, (float) 1);
 
         poseStack.popPose();
     }

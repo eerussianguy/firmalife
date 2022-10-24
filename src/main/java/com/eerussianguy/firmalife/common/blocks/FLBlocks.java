@@ -42,6 +42,7 @@ import net.dries007.tfc.common.blocks.devices.TFCComposterBlock;
 import net.dries007.tfc.common.blocks.plant.PlantBlock;
 import net.dries007.tfc.common.blocks.rock.Ore;
 import net.dries007.tfc.common.blocks.rock.Rock;
+import net.dries007.tfc.common.blocks.wood.Wood;
 import net.dries007.tfc.common.items.Food;
 import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.util.Helpers;
@@ -107,6 +108,8 @@ public class FLBlocks
     public static final Map<FLFruitBlocks.Tree, RegistryObject<Block>> FRUIT_TREE_SAPLINGS = Helpers.mapOfKeys(FLFruitBlocks.Tree.class, tree -> register("plant/" + tree.name() + "_sapling", tree::createSapling, FLORA));
     public static final Map<FLFruitBlocks.Tree, RegistryObject<Block>> FRUIT_TREE_POTTED_SAPLINGS = Helpers.mapOfKeys(FLFruitBlocks.Tree.class, tree -> register("plant/potted/" + tree.name() + "_sapling", tree::createPottedSapling));
 
+    public static final Map<Wood, RegistryObject<Block>> FOOD_SHELVES = Helpers.mapOfKeys(Wood.class, wood -> register("wood/food_shelf/" + wood.getSerializedName(), () -> new FoodShelfBlock(shelfProperties()), DECORATIONS));
+    public static final Map<Wood, RegistryObject<Block>> HANGERS = Helpers.mapOfKeys(Wood.class, wood -> register("wood/hanger/" + wood.getSerializedName(), () -> new HangerBlock(hangerProperties()), DECORATIONS));
 
     public static final Map<Carving, RegistryObject<Block>> CARVED_PUMPKINS = Helpers.mapOfKeys(Carving.class, carve ->
         register("carved_pumpkin/" + carve.getSerializedName(), () -> new CarvedPumpkinBlock(Properties.of(Material.VEGETABLE, MaterialColor.COLOR_ORANGE).strength(1.0F).sound(SoundType.WOOD).isValidSpawn(FLBlocks::always)), DECORATIONS)
@@ -143,6 +146,16 @@ public class FLBlocks
         FRUIT_TREE_POTTED_SAPLINGS.forEach((plant, reg) -> pot.addPlant(FRUIT_TREE_SAPLINGS.get(plant).getId(), reg));
         POTTED_HERBS.forEach((herb, reg) -> pot.addPlant(HERBS.get(herb).getId(), reg));
         pot.addPlant(BUTTERFLY_GRASS.getId(), POTTED_BUTTERFLY_GRASS);
+    }
+
+    public static ExtendedProperties shelfProperties()
+    {
+        return ExtendedProperties.of(Material.WOOD).strength(0.3F).sound(SoundType.WOOD).noOcclusion().blockEntity(FLBlockEntities.FOOD_SHELF);
+    }
+
+    public static ExtendedProperties hangerProperties()
+    {
+        return ExtendedProperties.of(Material.WOOD).strength(0.3F).sound(SoundType.WOOD).noOcclusion().blockEntity(FLBlockEntities.HANGER);
     }
 
     public static ExtendedProperties wheelProperties()

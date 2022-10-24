@@ -5,6 +5,7 @@ import net.minecraftforge.resource.ResourceCacheManager;
 
 import com.eerussianguy.firmalife.FirmaLife;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Pseudo;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -12,6 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 /**
  * For some reason bad namespaces are being initialized. This is the only way to fix that.
  */
+@Pseudo
 @Mixin(ResourceCacheManager.class)
 public class ResourceCacheManagerMixin
 {

@@ -14,6 +14,7 @@ import com.eerussianguy.firmalife.common.blockentities.HangingPlanterBlockEntity
 import com.eerussianguy.firmalife.common.util.Plantable;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.dries007.tfc.client.RenderHelpers;
 
 public class HangingPlanterBlockEntityRenderer implements BlockEntityRenderer<HangingPlanterBlockEntity>
 {
@@ -35,9 +36,9 @@ public class HangingPlanterBlockEntityRenderer implements BlockEntityRenderer<Ha
         if (planter.getGrowth(0) >= 1f)
         {
             TextureAtlasSprite fruit = atlas.apply(new ResourceLocation(plant.getTextureLocation() + "_fruit"));
-            RenderUtils.renderTexturedCuboid(poseStack, buffer, fruit, combinedLight, combinedOverlay, 4 / 16f, 3 / 16f, 4 / 16f, 7 / 16f, 6 / 16f, 7 / 16f);
-            RenderUtils.renderTexturedCuboid(poseStack, buffer, fruit, combinedLight, combinedOverlay, 4 / 16f, 0, 10 / 16f, 7 / 16f, 3 / 16f, 13 / 16f);
-            RenderUtils.renderTexturedCuboid(poseStack, buffer, fruit, combinedLight, combinedOverlay, 9 / 16f, 7 / 16f, 5 / 16f, 12 / 16f, 10 / 16f, 8 / 16f);
+            RenderHelpers.renderTexturedCuboid(poseStack, buffer, fruit, combinedLight, combinedOverlay, 4 / 16f, 3 / 16f, 4 / 16f, 7 / 16f, 6 / 16f, 7 / 16f);
+            RenderHelpers.renderTexturedCuboid(poseStack, buffer, fruit, combinedLight, combinedOverlay, 4 / 16f, (float) 0, 10 / 16f, 7 / 16f, 3 / 16f, 13 / 16f);
+            RenderHelpers.renderTexturedCuboid(poseStack, buffer, fruit, combinedLight, combinedOverlay, 9 / 16f, 7 / 16f, 5 / 16f, 12 / 16f, 10 / 16f, 8 / 16f);
         }
 
         poseStack.popPose();

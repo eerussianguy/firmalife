@@ -6,6 +6,10 @@ Rock = NamedTuple('Rock', category=RockCategory, sand=str)
 Vein = NamedTuple('Vein', ore=str, type=str, rarity=int, size=int, min_y=int, max_y=int, density=float, poor=float, normal=float, rich=float, rocks=List[str], spoiler_ore=str, spoiler_rarity=int, spoiler_rocks=List[str], biomes=Optional[str], height=Optional[int], deposits=bool)
 Fruit = NamedTuple('Fruit', min_temp=float, max_temp=float, min_rain=float, max_rain=float)
 
+class Wood(NamedTuple):
+    temp: float
+    duration: int
+
 SIMPLE_ITEMS = ('peel', 'fruit_leaf', 'cinnamon_bark', 'beeswax', 'pineapple_leather', 'pineapple_yarn', 'raw_honey', 'rennet', 'watering_can', 'treated_lumber', 'beehive_frame', 'empty_jar', 'cheesecloth', 'spoon', 'pie_pan', 'seed_ball')
 SIMPLE_FOODS = ('frothy_coconut', 'white_chocolate_blend', 'dark_chocolate_blend', 'milk_chocolate_blend', 'tofu', 'soy_mixture', 'yak_curd', 'goat_curd', 'milk_curd', 'cheddar', 'chevre', 'rajya_metok', 'gouda', 'feta', 'shosha', 'butter',
                 'pie_dough', 'filled_pie', 'cooked_pie', 'pizza_dough', 'raw_pizza', 'cooked_pizza', 'shredded_cheese', 'pickled_egg', 'pumpkin_pie_dough', 'raw_pumpkin_pie', 'cooked_pumpkin_pie', 'cocoa_beans', 'roasted_cocoa_beans',
@@ -57,6 +61,28 @@ TFC_ROCKS: Dict[str, Rock] = {
     'gneiss': Rock('metamorphic', 'green'),
     'marble': Rock('metamorphic', 'yellow')
 }
+TFC_WOODS: Dict[str, Wood] = {
+    'acacia': Wood(650, 1000),
+    'ash': Wood(696, 1250),
+    'aspen': Wood(611, 1000),
+    'birch': Wood(652, 1750),
+    'blackwood': Wood(720, 1750),
+    'chestnut': Wood(651, 1500),
+    'douglas_fir': Wood(707, 1500),
+    'hickory': Wood(762, 2000),
+    'kapok': Wood(645, 1000),
+    'maple': Wood(745, 2000),
+    'oak': Wood(728, 2250),
+    'palm': Wood(730, 1250),
+    'pine': Wood(627, 1250),
+    'rosewood': Wood(640, 1500),
+    'sequoia': Wood(612, 1750),
+    'spruce': Wood(608, 1500),
+    'sycamore': Wood(653, 1750),
+    'white_cedar': Wood(625, 1500),
+    'willow': Wood(603, 1000)
+}
+
 ROCK_CATEGORIES: List[str] = ['sedimentary', 'metamorphic', 'igneous_extrusive', 'igneous_intrusive']
 ORE_GRADES: Dict[str, OreGrade] = {
     'normal': OreGrade(50, 5),

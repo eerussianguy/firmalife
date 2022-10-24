@@ -42,6 +42,7 @@ public class FLTags
         public static final TagKey<Item> PUMPKIN_KNAPPING = create("pumpkin_knapping");
         public static final TagKey<Item> PIE_PANS = create("pie_pans");
         public static final TagKey<Item> CONTAINS_PIE_PAN = create("contains_pie_pan");
+        public static final TagKey<Item> CAN_BE_HUNG = create("can_be_hung");
 
         private static TagKey<Item> create(String id)
         {

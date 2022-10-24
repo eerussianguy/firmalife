@@ -59,6 +59,7 @@ def generate(rm: ResourceManager):
     rm.item_tag('foods/washable', 'firmalife:food/filled_pie', 'firmalife:food/cooked_pie')
     rm.item_tag('pie_pans', 'firmalife:pie_pan')
     rm.item_tag('contains_pie_pan', 'firmalife:food/cooked_pumpkin_pie')
+    rm.item_tag('can_be_hung', '#tfc:foods/meats', 'tfc:food/garlic')
 
     rm.block_tag('oven_insulation', 'minecraft:bricks', '#tfc:forge_insulation', '#firmalife:oven_blocks', 'minecraft:brick_stairs', 'minecraft:brick_slab')
     rm.block_tag('minecraft:mineable/pickaxe', '#firmalife:oven_blocks')
