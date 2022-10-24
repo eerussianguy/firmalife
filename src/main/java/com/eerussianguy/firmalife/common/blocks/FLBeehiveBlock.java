@@ -23,7 +23,6 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 
 import net.minecraftforge.items.ItemHandlerHelper;
-import net.minecraftforge.network.NetworkHooks;
 
 import com.eerussianguy.firmalife.common.blockentities.FLBeehiveBlockEntity;
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
@@ -119,7 +118,7 @@ public class FLBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBloc
         {
             if (player instanceof ServerPlayer serverPlayer)
             {
-                level.getBlockEntity(pos, FLBlockEntities.BEEHIVE.get()).ifPresent(nest -> NetworkHooks.openGui(serverPlayer, nest, pos));
+                level.getBlockEntity(pos, FLBlockEntities.BEEHIVE.get()).ifPresent(nest -> Helpers.openScreen(serverPlayer, nest, pos));
             }
             return InteractionResult.sidedSuccess(level.isClientSide);
         }

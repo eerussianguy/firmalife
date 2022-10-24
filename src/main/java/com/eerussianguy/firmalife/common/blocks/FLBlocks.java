@@ -14,7 +14,6 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -38,7 +37,6 @@ import net.dries007.tfc.common.TFCItemGroup;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.GroundcoverBlock;
 import net.dries007.tfc.common.blocks.TFCMaterials;
-import net.dries007.tfc.common.blocks.devices.TFCComposterBlock;
 import net.dries007.tfc.common.blocks.plant.PlantBlock;
 import net.dries007.tfc.common.blocks.rock.Ore;
 import net.dries007.tfc.common.blocks.rock.Rock;
@@ -46,6 +44,7 @@ import net.dries007.tfc.common.blocks.wood.Wood;
 import net.dries007.tfc.common.items.Food;
 import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.util.Helpers;
+import net.dries007.tfc.util.registry.RegistrationHelpers;
 
 import static net.dries007.tfc.common.TFCItemGroup.*;
 
@@ -200,12 +199,6 @@ public class FLBlocks
 
     private static <T extends Block> RegistryObject<T> register(String name, Supplier<T> blockSupplier, @Nullable Function<T, ? extends BlockItem> blockItemFactory)
     {
-        final String actualName = name.toLowerCase(Locale.ROOT);
-        final RegistryObject<T> block = BLOCKS.register(actualName, blockSupplier);
-        if (blockItemFactory != null)
-        {
-            FLItems.ITEMS.register(actualName, () -> blockItemFactory.apply(block.get()));
-        }
-        return block;
+        return RegistrationHelpers.registerBlock(BLOCKS, FLItems.ITEMS, name, blockSupplier, blockItemFactory);
     }
 }
