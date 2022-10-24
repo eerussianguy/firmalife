@@ -58,7 +58,7 @@ def generate(rm: ResourceManager):
             'watered=true': {'model': 'firmalife:block/%s_wet' % planter},
             'watered=false': {'model': 'firmalife:block/%s_dry' % planter}
         }).with_lang(lang(planter)).with_block_loot('firmalife:%s' % planter).with_tag('minecraft:mineable/axe').with_tag('minecraft:mineable/pickaxe')
-        rm.item_model(planter, parent='firmalife:block/%s_dry' % planter)
+        rm.item_model(planter, parent='firmalife:block/%s_dry' % planter, no_textures=True)
     rm.blockstate('trellis_planter', model='firmalife:block/trellis_planter').with_lang(lang('trellis planter')).with_block_loot('firmalife:trellis_planter').with_tag('minecraft:mineable/axe').with_tag('minecraft:mineable/pickaxe').with_item_model()
 
     rm.blockstate('wool_string', variants={
@@ -70,7 +70,7 @@ def generate(rm: ResourceManager):
         'stasis=true': {'model': 'firmalife:block/climate_station_valid'},
         'stasis=false': {'model': 'firmalife:block/climate_station_invalid'}
     }).with_lang(lang('climate station')).with_tag('minecraft:mineable/axe').with_block_loot('firmalife:climate_station')
-    rm.item_model('climate_station', parent='firmalife:block/climate_station_invalid')
+    rm.item_model('climate_station', parent='firmalife:block/climate_station_invalid', no_textures=True)
     for variant in ('valid', 'invalid'):
         tex = 'firmalife:block/greenhouse/climate_station/%s' % variant
         rm.block_model('firmalife:climate_station_%s' % variant, {'west': tex, 'east': tex, 'north': tex, 'south': tex, 'particle': tex, 'up': 'firmalife:block/greenhouse/climate_station/top', 'down': 'firmalife:block/greenhouse/climate_station/end'}, 'block/cube')
@@ -80,7 +80,7 @@ def generate(rm: ResourceManager):
         'stasis=true': {'model': 'firmalife:block/' + trd + '_on'},
         'stasis=false': {'model': 'firmalife:block/' + trd + '_off'}
     }).with_lang(lang(trd)).with_tag('minecraft:mineable/pickaxe').with_block_loot('firmalife:%s' % trd)
-    rm.item_model(trd, parent='firmalife:block/' + trd + '_on')
+    rm.item_model(trd, parent='firmalife:block/' + trd + '_on', no_textures=True)
     for variant in ('on', 'off'):
         tex = 'firmalife:block/%s_%s' % (trd, variant)
         rm.block_model('firmalife:%s_%s' % (trd, variant), {'west': tex, 'east': tex, 'north': tex, 'south': tex, 'particle': tex, 'up': 'firmalife:block/%s_top' % trd, 'down': 'firmalife:block/%s_top' % trd})
@@ -141,7 +141,7 @@ def generate(rm: ResourceManager):
             name = '%s/%s' % (variant, carving)
             rm.block_model(name, parent='minecraft:block/carved_pumpkin', textures={'front': 'firmalife:block/%s/%s' % (variant, carving)})
             rm.blockstate(name, variants=four_rotations('firmalife:block/%s' % name, (90, 0, 180, 270))).with_tag('tfc:mineable_with_sharp_tool').with_block_loot('firmalife:%s' % name).with_lang(lang('%s %s', carving, lang_part))
-            rm.item_model('firmalife:%s' % name, parent='firmalife:block/%s' % name)
+            rm.item_model('firmalife:%s' % name, parent='firmalife:block/%s' % name, no_textures=True)
 
     for variant in ('gold', 'red', 'purple'):
         rm.block_model('plant/butterfly_grass_%s' % variant, parent='firmalife:block/tinted_cross_overlay', textures={'cross': 'firmalife:block/plant/butterfly_grass/base', 'overlay': 'firmalife:block/plant/butterfly_grass/%s' % variant})
@@ -168,7 +168,7 @@ def generate(rm: ResourceManager):
                 ({'south': True}, {'model': 'firmalife:block/plant/%s_branch_side' % fruit, 'y': 270}),
                 ({'west': True}, {'model': 'firmalife:block/plant/%s_branch_side' % fruit}),
                 ({'east': True}, {'model': 'firmalife:block/plant/%s_branch_side' % fruit, 'y': 180})
-                ).with_tag('tfc:fruit_tree_branch').with_item_model().with_lang(lang('%s Branch', fruit))
+                ).with_tag('tfc:fruit_tree_branch').with_lang(lang('%s Branch', fruit))
             if prefix == '':
                 block.with_block_loot({
                     'name': 'firmalife:plant/%s_sapling' % fruit,

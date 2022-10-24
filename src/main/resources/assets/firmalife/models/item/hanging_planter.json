@@ -1,7 +1,4 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "parent": "firmalife:block/hanging_planter_dry",
-  "textures": {
-    "layer0": "firmalife:item/hanging_planter"
-  }
+  "parent": "firmalife:block/hanging_planter_dry"
 }

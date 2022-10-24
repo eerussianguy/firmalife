@@ -1,7 +1,4 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "parent": "firmalife:block/climate_station_invalid",
-  "textures": {
-    "layer0": "firmalife:item/climate_station"
-  }
+  "parent": "firmalife:block/climate_station_invalid"
 }

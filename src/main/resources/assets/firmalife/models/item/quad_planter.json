@@ -1,7 +1,4 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "parent": "firmalife:block/quad_planter_dry",
-  "textures": {
-    "layer0": "firmalife:item/quad_planter"
-  }
+  "parent": "firmalife:block/quad_planter_dry"
 }

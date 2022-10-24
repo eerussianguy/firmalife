@@ -1,7 +1,4 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "parent": "firmalife:block/carved_pumpkin/pickaxe",
-  "textures": {
-    "layer0": "firmalife:item/carved_pumpkin/pickaxe"
-  }
+  "parent": "firmalife:block/carved_pumpkin/pickaxe"
 }
