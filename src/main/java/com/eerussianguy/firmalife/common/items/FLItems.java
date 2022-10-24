@@ -43,7 +43,7 @@ public class FLItems
     public static final RegistryObject<Item> CHEESECLOTH = register("cheesecloth", MISC);
     public static final RegistryObject<Item> FRUIT_LEAF = register("fruit_leaf", MISC);
     public static final RegistryObject<Item> EMPTY_JAR = register("empty_jar", MISC);
-    public static final RegistryObject<Item> HOLLOW_SHELL = register("hollow_shell",  () -> new HollowShellItem(new Item.Properties().tab(MISC).stacksTo(1), FLConfig.SERVER.hollowShellCapacity, FLTags.Fluids.USABLE_IN_HOLLOW_SHELL, false, false));
+    public static final RegistryObject<Item> HOLLOW_SHELL = register("hollow_shell",  () -> new HollowShellItem(prop().stacksTo(1), FLConfig.SERVER.hollowShellCapacity, FLTags.Fluids.USABLE_IN_HOLLOW_SHELL, false, false));
     public static final RegistryObject<Item> PEEL = register("peel", MISC);
     public static final RegistryObject<Item> PIE_PAN = register("pie_pan", MISC);
     public static final RegistryObject<Item> PINEAPPLE_LEATHER = register("pineapple_leather", MISC);
@@ -56,7 +56,7 @@ public class FLItems
     public static final RegistryObject<Item> WATERING_CAN = register("watering_can", () -> new WateringCanItem(prop().defaultDurability(20)));
 
     public static final Map<Spice, RegistryObject<Item>> SPICES = Helpers.mapOfKeys(Spice.class, spice -> register("spice/" + spice.name(), MISC));
-    public static final Map<FLFood, RegistryObject<Item>> FOODS = Helpers.mapOfKeys(FLFood.class, food -> register("food/" + food.name(), () -> new DecayingItem(new Item.Properties().food(food.getFoodProperties()).tab(FOOD))));
+    public static final Map<FLFood, RegistryObject<Item>> FOODS = Helpers.mapOfKeys(FLFood.class, food -> register("food/" + food.name(), () -> new DecayingContainerItem(new Item.Properties().food(food.getFoodProperties()).tab(FOOD))));
     public static final Map<FLFruit, RegistryObject<Item>> FRUITS = Helpers.mapOfKeys(FLFruit.class, food -> register("food/" + food.name(), () -> new DecayingItem(new Item.Properties().food(food.getFoodProperties()).tab(FOOD))));
 
     public static final RegistryObject<DynamicBowlFood> FILLED_PIE = registerContainerFood("food/filled_pie", false);

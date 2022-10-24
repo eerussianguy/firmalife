@@ -1,6 +1,7 @@
 package com.eerussianguy.firmalife.common.items;
 
 import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.Item;
 
 public enum FLFood
 {
