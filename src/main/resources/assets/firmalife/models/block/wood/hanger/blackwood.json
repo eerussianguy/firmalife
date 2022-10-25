@@ -1,7 +1,8 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "parent": "firmalife:block/food_shelf_base",
+  "parent": "firmalife:block/hanger_base",
   "textures": {
-    "wood": "tfc:block/wood/planks/blackwood"
+    "wood": "tfc:block/wood/planks/blackwood",
+    "string": "minecraft:block/white_wool"
   }
 }

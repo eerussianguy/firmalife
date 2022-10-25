@@ -47,6 +47,11 @@ public class FoodShelfBlockEntity extends InventoryBlockEntity<ItemStackHandler>
         nbt.putBoolean("climateValid", climateValid);
     }
 
+    public boolean isClimateValid()
+    {
+        return climateValid;
+    }
+
     @Override
     public void onLoad()
     {
@@ -67,7 +72,9 @@ public class FoodShelfBlockEntity extends InventoryBlockEntity<ItemStackHandler>
         final ItemStack current = inventory.getStackInSlot(slot);
         if (!current.isEmpty())
         {
-            return Helpers.isItem(stack, current.getItem());
+            ItemStack currentWithoutTrait = current.copy();
+            FoodCapability.removeTrait(currentWithoutTrait, getFoodTrait());
+            return FoodCapability.areStacksStackableExceptCreationDate(stack, currentWithoutTrait);
         }
         return stack.getCapability(FoodCapability.CAPABILITY).isPresent();
     }
@@ -82,13 +89,20 @@ public class FoodShelfBlockEntity extends InventoryBlockEntity<ItemStackHandler>
         assert level != null;
         var res = InteractionResult.PASS;
         final ItemStack held = player.getItemInHand(hand);
-        if (!held.isEmpty())
+        if (!held.isEmpty() && isItemValid(0, held))
         {
-            res = FLHelpers.insertOne(level, held, 0, inventory, player);
+            if (climateValid)
+            {
+                FoodCapability.applyTrait(held, getFoodTrait());
+            }
+            player.setItemInHand(hand, Helpers.mergeInsertStack(inventory, 0, held));
+
+            FoodCapability.removeTrait(player.getItemInHand(hand), getFoodTrait());
+            res = InteractionResult.sidedSuccess(level.isClientSide);
         }
         else if (player.isShiftKeyDown())
         {
-            ItemStack stack = inventory.extractItem(0, 1, false);
+            ItemStack stack = inventory.extractItem(0, Integer.MAX_VALUE, false);
             if (stack.isEmpty()) return InteractionResult.PASS;
             FoodCapability.removeTrait(stack, getFoodTrait());
             ItemHandlerHelper.giveItemToPlayer(player, stack);

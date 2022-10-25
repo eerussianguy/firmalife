@@ -16,6 +16,7 @@ import com.eerussianguy.firmalife.common.blockentities.*;
 import com.eerussianguy.firmalife.common.blocks.*;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.config.FLConfig;
+import net.dries007.tfc.common.capabilities.Capabilities;
 import net.dries007.tfc.common.capabilities.food.FoodCapability;
 import net.dries007.tfc.common.capabilities.food.FoodTrait;
 import net.dries007.tfc.common.capabilities.food.IFood;
@@ -37,6 +38,8 @@ public final class FLTooltips
             r.accept(CHEESE, CheeseWheelBlock.class);
             r.accept(OVEN, OvenBottomBlock.class);
             r.accept(OVEN, OvenTopBlock.class);
+            r.accept(SHELF_OR_HANGER, FoodShelfBlock.class);
+            r.accept(SHELF_OR_HANGER, HangerBlock.class);
         }
 
         public static final BlockEntityTooltip DRYING_MAT = (level, state, pos, entity, tooltip) -> {
@@ -95,6 +98,28 @@ public final class FLTooltips
                 }
                 tooltip.accept(Helpers.translatable("firmalife.jade.slices", state.getValue(CheeseWheelBlock.COUNT)));
                 tooltip.accept(Helpers.translatable("firmalife.jade.food_age", FLHelpers.translateEnum(state.getValue(CheeseWheelBlock.AGE))));
+            }
+        };
+
+        public static final BlockEntityTooltip SHELF_OR_HANGER = (level, state, pos, entity, tooltip) -> {
+            if (level.getBlockEntity(pos) instanceof FoodShelfBlockEntity shelf)
+            {
+                if (shelf.isClimateValid())
+                {
+                    tooltip.accept(Helpers.translatable("firmalife.cellar.valid_block"));
+                }
+                else
+                {
+                    tooltip.accept(Helpers.translatable("firmalife.cellar.invalid_block"));
+                }
+                shelf.getCapability(Capabilities.ITEM).ifPresent(inv -> {
+                    ItemStack stack = inv.getStackInSlot(0);
+                    stack.getCapability(FoodCapability.CAPABILITY).ifPresent(food -> {
+                        List<Component> foodTooltip = new ArrayList<>();
+                        food.addTooltipInfo(stack, foodTooltip);
+                        foodTooltip.forEach(tooltip);
+                    });
+                });
             }
         };
 
