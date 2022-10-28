@@ -1,10 +1,12 @@
 package com.eerussianguy.firmalife.common.blocks.greenhouse;
 
 import java.util.List;
+import java.util.Random;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -26,6 +28,7 @@ import com.eerussianguy.firmalife.client.FLClientHelpers;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.LargePlanterBlockEntity;
 import com.eerussianguy.firmalife.common.blocks.FLStateProperties;
+import com.eerussianguy.firmalife.common.util.Mechanics;
 import com.eerussianguy.firmalife.common.util.Plantable;
 import net.dries007.tfc.common.blockentities.FarmlandBlockEntity;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
@@ -46,6 +49,19 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
     {
         super(properties, InventoryRemoveBehavior.DROP);
         registerDefaultState(getStateDefinition().any().setValue(WATERED, false));
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public void tick(BlockState state, ServerLevel level, BlockPos pos, Random rand)
+    {
+        if (!level.isClientSide && level.getBlockEntity(pos) instanceof LargePlanterBlockEntity planter && state.getBlock() == this)
+        {
+            if (Mechanics.growthTick(level, pos, state, planter))
+            {
+                planter.updateBlockState(state);
+            }
+        }
     }
 
     @Override

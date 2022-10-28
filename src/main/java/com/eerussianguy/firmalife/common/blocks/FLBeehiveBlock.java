@@ -8,6 +8,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -123,6 +124,13 @@ public class FLBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBloc
             return InteractionResult.sidedSuccess(level.isClientSide);
         }
         return InteractionResult.PASS;
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public void tick(BlockState state, ServerLevel level, BlockPos pos, Random rand)
+    {
+        level.getBlockEntity(pos, FLBlockEntities.BEEHIVE.get()).ifPresent(FLBeehiveBlockEntity::tryPeriodicUpdate);
     }
 
     @Override

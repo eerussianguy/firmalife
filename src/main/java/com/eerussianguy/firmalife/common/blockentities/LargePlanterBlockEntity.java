@@ -33,7 +33,6 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     }
 
     public static final Component NAME = FLHelpers.blockEntityName("large_planter");
-    public static final FarmlandBlockEntity.NutrientType[] NUTRIENTS = FarmlandBlockEntity.NutrientType.values();
     protected static final int LARGE_PLANTER_SLOTS = 1;
 
     @Nullable
@@ -90,7 +89,7 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
         }
     }
 
-    protected void updateBlockState(BlockState state)
+    public void updateBlockState(BlockState state)
     {
         assert level != null;
         boolean waterLast = state.getValue(LargePlanterBlock.WATERED);
@@ -122,7 +121,6 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     public void setLastUpdateTick(long ticks)
     {
         lastUpdateTick = ticks;
-        markForSync();
     }
 
     @Override

@@ -190,7 +190,6 @@ public final class Mechanics
             }
         }
         planter.setLastGrowthTick(calendar.getTicks());
-        planter.markForSync();
         planter.afterGrowthTickStep(growing);
         return true;
     }

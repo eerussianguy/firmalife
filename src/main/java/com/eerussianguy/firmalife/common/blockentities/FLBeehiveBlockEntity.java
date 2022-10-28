@@ -106,6 +106,11 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
     @Override
     public void onCalendarUpdate(long ticks)
     {
+        tryPeriodicUpdate();
+    }
+
+    public void tryPeriodicUpdate()
+    {
         long now = Calendars.SERVER.getTicks();
         if (now > (lastAreaTick + UPDATE_INTERVAL))
         {
