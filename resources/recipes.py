@@ -89,6 +89,10 @@ def generate(rm: ResourceManager):
         }
     })
 
+    for wood in TFC_WOODS.keys():
+        rm.crafting_shaped('crafting/wood/%s_hanger' % wood, ['XXX', ' Y ', ' Y ', ], {'X': 'tfc:wood/planks/%s' % wood, 'Y': '#forge:string'}, 'firmalife:wood/hanger/%s' % wood).with_advancement('tfc:wood/lumber/%s' % wood)
+        rm.crafting_shaped('crafting/wood/%s_shelf' % wood, ['XXX', 'YYY', 'XXX'], {'X': 'tfc:wood/planks/%s' % wood, 'Y': 'tfc:wood/lumber/%s' % wood}, 'firmalife:wood/food_shelf/%s' % wood).with_advancement('tfc:wood/lumber/%s' % wood)
+
     for jar, remainder, _, ing in JARS:
         make_jar(rm, jar, remainder, ing)
     for fruit in TFC_FRUITS:

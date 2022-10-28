@@ -10,6 +10,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blocks.greenhouse.PlanterType;
 import net.dries007.tfc.common.blockentities.FarmlandBlockEntity;
+import net.dries007.tfc.common.capabilities.food.FoodCapability;
 import net.dries007.tfc.network.DataManagerSyncPacket;
 import net.dries007.tfc.util.DataManager;
 import net.dries007.tfc.util.ItemDefinition;
@@ -67,7 +68,7 @@ public class Plantable extends ItemDefinition
         stages = JsonHelpers.getAsInt(json, "stages", 0);
         extraSeedChance = JsonHelpers.getAsFloat(json, "extra_seed_chance", 0.5f);
         seed = json.has("seed") ? JsonHelpers.getItemStack(json, "seed") : ItemStack.EMPTY;
-        crop = JsonHelpers.getItemStack(json, "crop");
+        crop = FoodCapability.setStackNonDecaying(JsonHelpers.getItemStack(json, "crop"));
         nutrient = JsonHelpers.getEnum(json, "nutrient", FarmlandBlockEntity.NutrientType.class, FarmlandBlockEntity.NutrientType.NITROGEN);
         texture = JsonHelpers.getAsString(json, "texture");
     }
@@ -115,7 +116,7 @@ public class Plantable extends ItemDefinition
 
     public ItemStack getCrop()
     {
-        return crop.copy();
+        return FoodCapability.updateFoodDecayOnCreate(crop.copy());
     }
 
     public FarmlandBlockEntity.NutrientType getPrimaryNutrient()

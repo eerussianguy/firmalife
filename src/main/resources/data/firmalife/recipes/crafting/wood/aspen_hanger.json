@@ -1,0 +1,20 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    " Y ",
+    " Y "
+  ],
+  "key": {
+    "X": {
+      "item": "tfc:wood/planks/aspen"
+    },
+    "Y": {
+      "tag": "forge:string"
+    }
+  },
+  "result": {
+    "item": "firmalife:wood/hanger/aspen"
+  }
+}
