@@ -1,0 +1,115 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "Ovens",
+  "category": "firmalife:firmalife",
+  "icon": "firmalife:cured_oven_top",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(thing)Ovens$() are a great way of cooking lots of food in a way that improves their shelf life. Oven-baked food decays at 90% of the rate of regular food. Ovens are a multiblock structure consisting of a $(thing)Bottom Oven$(), $(thing)Top Oven$(), and optionally $(thing)Chimneys$(). These blocks start off as clay, and must be $(thing)Cured$() by raising their temperature to a certain amount for long enough."
+    },
+    {
+      "type": "tfc:clay_knapping_recipe",
+      "recipe": "tfc:clay_knapping/oven_top",
+      "text": "The recipe for the bottom oven."
+    },
+    {
+      "type": "tfc:clay_knapping_recipe",
+      "recipe": "tfc:clay_knapping/oven_bottom",
+      "text": "The recipe for the top oven."
+    },
+    {
+      "type": "tfc:clay_knapping_recipe",
+      "recipe": "tfc:clay_knapping/oven_chimney",
+      "text": "The recipe for the oven chimney    ."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "tfc:crafting/bricks",
+      "text": "Ovens are insulated with $(thing)Bricks$(), other oven blocks, or anything that can insulate a Forge. This means you can use stone blocks, if you want!"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/peel",
+      "text": "The $(thing)Peel$() is the only safe way to remove hot items from an Oven. Just $(item)$(k:key.use)$() on it while holding it to retrieve items. Otherwise, you may get burned!"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The Oven first consists of the Top Oven placed on top of the Bottom Oven. All sides of each oven part, besides the front face, should then be covered with Oven Insulation blocks, as covered two pages ago. You may choose to use $(thing)Oven Chimneys$() as insulation. Placing a stack of chimneys directly behind the oven causes the smoke from the oven to travel up and out of it. If you don't do this, smoke will quickly fill up your house, which is very distracting!"
+    },
+    {
+      "type": "tfc:multimultiblock",
+      "text": "An example oven structure, uncured and cured.",
+      "multiblocks": [
+        {
+          "pattern": [
+            [
+              "     ",
+              "  C  "
+            ],
+            [
+              "     ",
+              "  C  "
+            ],
+            [
+              "WT0TW",
+              "WWCWW"
+            ],
+            [
+              "WBBBW",
+              "WWCWW"
+            ]
+          ],
+          "mapping": {
+            "0": "firmalife:cured_oven_top[facing=south]",
+            "T": "firmalife:cured_oven_top[facing=south]",
+            "B": "firmalife:cured_oven_bottom[facing=south]",
+            "W": "minecraft:bricks",
+            "C": "firmalife:cured_oven_chimney"
+          }
+        },
+        {
+          "pattern": [
+            [
+              "     ",
+              "  C  "
+            ],
+            [
+              "     ",
+              "  C  "
+            ],
+            [
+              "WT0TW",
+              "WWCWW"
+            ],
+            [
+              "WBBBW",
+              "WWCWW"
+            ]
+          ],
+          "mapping": {
+            "0": "firmalife:oven_top[facing=south]",
+            "T": "firmalife:oven_top[facing=south]",
+            "B": "firmalife:oven_bottom[facing=south]",
+            "W": "minecraft:bricks",
+            "C": "firmalife:oven_chimney"
+          }
+        }
+      ]
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The Bottom Oven is used to hold fuel, which may only be logs. Press $(item)$(k:key.use)$() to add or remove them. The bottom oven is also the part of the oven which may be lit with a $(thing)Firestarter$() or other tool. It transfers heat contained in it to the top oven."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The Top Oven contains the items that are being cooked. It will draw heat from the Bottom Oven and slowly release it over time. This means that even if your fuel runs out, your Top Oven can continue to work for a little while. Adding items to it is as simple as pressing $(item)$(k:key.use)$(). Remember to use a $(thing)Peel$() to remove the items after."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Curing Oven blocks is easy, but requires patience. Simply start running your Bottom Oven as you would normally, and then wait. If an oven block is above 600 degrees for about 80 seconds, it will cure itself and any oven blocks around it. The curing effect will pass all the way up chimneys nearby."
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 10
+}
