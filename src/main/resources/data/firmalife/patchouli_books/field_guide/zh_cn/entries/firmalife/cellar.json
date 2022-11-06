@@ -1,18 +1,18 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "name": "Cellars",
+  "name": "地窖",
   "category": "firmalife:firmalife",
   "icon": "firmalife:sealed_bricks",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The $(thing)Cellar$() is a multiblock device controlled by a $(l:firmalife:firmalife/climate_station)Climate Station$(). The Cellar multiblock's only requirement is that it be in an enclosed area surrounded by $(thing)Sealed Bricks$() or $(thing)Sealed Brick Doors$() on all sides. The Climate Station must be placed on the first level of the cellar, touching a wall."
+      "text": "$(thing)地窖$()是一种被$(l:firmalife:firmalife/climate_station)气象站$()控制的多方块建筑. 建造地窖的唯一要求就是用$(thing)密封砖$()或者$(thing)密封门$()建造一个完全封闭的空间. 气象站必须放在地窖的第一层, 紧靠着墙."
     },
     {
       "type": "patchouli:multiblock",
       "multiblock_id": "firmalife:cellar",
-      "name": "An Example Cellar",
-      "text": "This is just one of many cellars that you could make!",
+      "name": "地窖的一个范例",
+      "text": "这只是你可以建造的无数种地窖的一个例子!",
       "enable_visualize": true
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "$(thing)Beeswax$() is obtained from $(l:firmalife:firmalife/beekeeping)Beekeeping$().$(br)Cellars are used for $(l:firmalife:firmalife/cheese#aging)Aging Cheese$()."
+      "text": "$(thing)蜂蜡$()可以通过$(l:firmalife:firmalife/beekeeping)养蜂$()获得.$(br)地窖可以用来$(l:firmalife:firmalife/cheese#aging)老化奶酪$()."
     }
   ],
   "read_by_default": true,

@@ -1,63 +1,63 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "name": "Planters",
+  "name": "種植盆",
   "category": "firmalife:firmalife",
   "icon": "firmalife:large_planter",
   "pages": [
     {
       "type": "patchouli:text",
       "anchor": "planters",
-      "text": "$(thing)Planters$() are used to grow crops inside a $(l:firmalife:firmalife/greenhouse)Greenhouse$(). To see the status of a planter, you can look at it while holding a $(thing)Hoe$(). Crops in planters consume $(l:mechanics/fertilizers)Nutrients$() in a similar way to $(l:mechanics/crops)Crops$(). Planters should be placed inside a valid Greenhouse and activated with a $(l:firmalife:firmalife/climate_station)Climate Station$(). Planters need at least some natural sunlight to work."
+      "text": "$(thing)種植盆$()用來在$(l:firmalife:firmalife/greenhouse)溫室$()中種植農作物. 手持$(thing)鋤$()並看向種植盆, 就可以檢視種植盆的狀態. 在種植盆裡的植物會像普通$(l:mechanics/crops)農作物$()一樣消耗$(l:mechanics/fertilizers)營養$(). 種植盆需要被放置在溫室中, 並且用$(l:firmalife:firmalife/climate_station)溫室氣象站$()啟用. 種植盆需要有天然的太陽光才能正常工作."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/watering_can",
-      "text": "Planters must be $(thing)Watered$() to grow. This is done with a $(thing)Watering Can$(), crafted from a $(thing)Wooden Bucket$(), a container of $(thing)Water$() and $(thing)Lumber$(). Press $(item)$(k:key.use)$() with it to water nearby planters. Refill it by pressing $(item)$(k:key.use)$() on a water source."
+      "text": "種植盆必須要$(thing)澆水$()才能生長. 你需要使用$(thing)噴壺$(), 它用$(thing)木桶$(), 一個裝$(thing)水$()的容器, 以及$(thing)木材$()來合成. 手持噴壺按$(item)$(k:key.use)$()就可以給附近的植物澆水, 對著水源按$(item)$(k:key.use)$()就可以重新灌滿水."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/large_planter",
-      "text": "$(thing)Large Planters$() are the most simple kind of planter. They grow a single crop from seed, and are harvested with $(item)$(k:key.use)$() when mature."
+      "text": "$(thing)大號種植盆$()是最簡單的一種種植盆. 它可以用種子種植一株農作物, 並且在農作物成熟後按$(item)$(k:key.use)$()收穫."
     },
     {
       "type": "patchouli:text",
-      "text": "Large Planters can grow $(thing)Green Beans$(), $(thing)Tomatoes$(), $(thing)Sugarcane$(), $(thing)Jute$(), and $(thing)Grains$(). However, to grow Grains, you need a $(thing)Copper$() or better Greenhouse."
+      "text": "大號種植盆可以種植$(thing)綠豆$(), $(thing)西紅柿$(), $(thing)甘蔗$(), $(thing)黃麻$(), and $(thing)穀物$(). 但如果要種植穀物, 你需要一個$(thing)銅$()或更高等級的溫室."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/quad_planter",
-      "text": "$(thing)Quad Planters$() grow four individual crops at once. These crops all draw from the same nutrient pool, and can be harvested individually with $(item)$(k:key.use)$() when mature."
+      "text": "$(thing)四槽種植盆$()可以一次種植四株農作物. 這些農作物都會從同一個養料池汲取營養, 並且在成熟後可以按$(item)$(k:key.use)$()來單獨收穫."
     },
     {
       "type": "patchouli:text",
-      "text": "Quad Planters can grow $(thing)Beets$(), $(thing)Cabbage$(), $(thing)Carrots$(), $(thing)Garlic$(), $(thing)Onions$(), $(thing)Potatoes$(), and $(thing)Soybeans$(). These crops can be grown in any greenhouse type."
+      "text": "四槽種植盆可以種植$(thing)甜菜$(), $(thing)捲心菜$(), $(thing)胡蘿蔔$(), $(thing)大蒜$(), $(thing)洋蔥$(), $(thing)馬鈴薯$(), 和$(thing)大豆$(). 這些農作物都可以在任意等級的溫室中種植."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/bonsai_planter",
-      "text": "$(thing)Bonsai Planters$() grow small fruit trees from their saplings. The fruit can be picked with $(item)$(k:key.use)$()."
+      "text": "$(thing)盆栽種植盆$()可以用樹苗來種植小型果樹. 按$(item)$(k:key.use)$()就可以收穫水果."
     },
     {
       "type": "patchouli:text",
-      "text": "Bonsai Planters can grow any fruit tree type, except $(thing)Bananas$(), which need a $(thing)Hanging Planter$(). They all consume Nitrogen as their main nutrient. They need an $(thing)Iron$() or better greenhouse to grow."
+      "text": "盆栽種植盆可以種植除$(thing)香蕉$()外的任何果樹, 而香蕉需要$(thing)懸掛的種植盆$(). 他們都會消耗氮作為主要的營養, 並且需要$(thing)鐵$()或更高等級的溫室才能種植."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/hanging_planter",
-      "text": "$(thing)Hanging Planters$() grow crops upside down. When mature, they can be harvested with $(item)$(k:key.use)$()."
+      "text": "$(thing)懸掛的種植盆$()可以倒著種植農作物. 成熟後可以按$(item)$(k:key.use)$()收穫."
     },
     {
       "type": "patchouli:text",
-      "text": "Hanging Planters grow $(thing)Squash$(), from their seeds, and $(thing)Bananas$(), from their saplings. Squash can be grown in any greenhouse, but Bananas require an $(thing)Iron$() or better greenhouse to grow. Hanging planters need to anchor to a solid block above them."
+      "text": "懸掛的種植盆可以用種子種植$(thing)西葫蘆$(), 以及用樹苗種植$(thing)香蕉$(). 西葫蘆可以在任意等級的溫室種植, 但香蕉需要$(thing)鐵$()或更高等級的溫室. 懸掛的種植盆必須被掛在一個固體方塊的下方."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/trellis_planter",
-      "text": "$(thing)Trellis Planters$() grow berry bushes. Berries can be picked with $(item)$(k:key.use)$()."
+      "text": "$(thing)格子種植盆$()可以種植各種莓果灌木. 莓果可以按$(item)$(k:key.use)$()收穫."
     },
     {
       "type": "patchouli:text",
-      "text": "Trellis Planters have the unique property of $(thing)propagating$() berry bushes. If a trellis planter is placed on top of another, and the one below has a mature berry bush, it has a chance to grow upwards into the next one. Trellis planters can grow any berry bush except $(thing)Cranberries$(), but require an $(thing)Iron$() or better greenhouse to work. Bushes prefer Nitrogen."
+      "text": "格子種植盆有一種獨特的$(thing)繁殖$()灌木的功能. 如果一個格子種植盆放在另一個的上方, 並且下面的那個種植盆有一個成熟的莓果灌木, 那麼它就有可能生長到上方的種植盆裡. 格子種植盆可以種植所有的莓果灌木, 但$(thing)蔓越莓灌木$()除外. 它們需要$(thing)鐵$()或更高等級的溫室才能正常工作. 這些灌木喜歡氮."
     }
   ],
   "read_by_default": true,

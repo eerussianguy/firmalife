@@ -1,16 +1,16 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "name": "Jars",
+  "name": "罐子",
   "category": "firmalife:firmalife",
   "icon": "firmalife:empty_jar",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(thing)Jars$() are a way of storing certain items. They can be placed on the ground, in groups of up to four. They are most useful as a way of storing $(l:firmalife:firmalife/beekeeping)Honey$() indefinitely."
+      "text": "$(thing)罐子$()是储存特定物品的一种方式. 他们可以放在地面上, 最多一组四个. 他们最大的用途是无限制的储存$(l:firmalife:firmalife/beekeeping)蜂蜜$()."
     },
     {
       "type": "tfc:multimultiblock",
-      "text": "Each possible arrangement of jars.",
+      "text": "罐子的放置方式.",
       "multiblocks": [
         {
           "pattern": [
@@ -69,7 +69,7 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/empty_jar",
-      "text": "It all starts with an $(thing)Empty Jar$(). Jars can be emptied, discarding the contents, by sealing them in a $(l:mechanics/barrels)Barrel$() of Water$()."
+      "text": "所有罐子都是从$(thing)空罐子$()开始. 无论罐子的内容是什么, 把它密封在装有$(thing)水$()的$(l:mechanics/barrels)大桶$()里就可以清空."
     },
     {
       "type": "patchouli:text",

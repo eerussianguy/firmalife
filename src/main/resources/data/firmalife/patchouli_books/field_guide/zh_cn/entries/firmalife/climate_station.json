@@ -1,16 +1,16 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "name": "Climate Station",
+  "name": "气象站",
   "category": "firmalife:firmalife",
   "icon": "firmalife:climate_station",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The $(thing)Climate Station$() is a block that manages the $(l:firmalife:firmalife/greenhouse)Greenhouse$() and the $(l:firmalife:firmalife/cellar)Cellar$(). When its corresponding multiblock is built correctly, it will show water on its sides. When it is invalid, it will show ice. The Climate Station must be placed on the first level of the multiblock, touching a wall."
+      "text": "$(thing)气象站$()是用来管理$(l:firmalife:firmalife/greenhouse)温室$()和$(l:firmalife:firmalife/cellar)地窖$()的方块. 如果温室或地窖的多方块结构被正确的建造完成, 它就会在方块侧面显示水. 如果建造的不正确, 就会显示冰. 气象站必须放在多方块结构的第一层, 并且紧靠着墙."
     },
     {
       "type": "tfc:multimultiblock",
-      "text": "The climate station in its valid and invalid state.",
+      "text": "处于有效和无效状态的气象站.",
       "multiblocks": [
         {
           "pattern": [
@@ -42,13 +42,13 @@
     },
     {
       "type": "patchouli:text",
-      "text": "$(li)It updates periodically on its own, or when placed/broken.$()$(li)When a climate station updates, it tells all the blocks inside the multiblock that they can operate. For example, it lets $(l:firmalife:firmalife/cheese)Cheese$() begin aging.$()$(li)Press $(item)$(k:key.use)$() to force update the Climate Station and the blocks inside the multiblock.",
-      "title": "Climate Station Tips"
+      "text": "$(li)它每间隔一段时间都会自动更新.$()$(li)当气象站更新时, 它会触发结构中的所有其他方块发生更新. 例如, 它会让$(l:firmalife:firmalife/cheese)奶酪$()开始老化.$()$(li)按$(item)$(k:key.use)$()就可以手动触发一次更新.",
+      "title": "气象站提示"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/climate_station",
-      "text": "The climate station is crafted like this."
+      "text": "气象站的合成方法."
     }
   ],
   "read_by_default": true,

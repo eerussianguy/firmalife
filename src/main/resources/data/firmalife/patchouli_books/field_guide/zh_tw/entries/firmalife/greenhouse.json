@@ -1,29 +1,29 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "name": "Greenhouse",
+  "name": "溫室",
   "category": "firmalife:firmalife",
   "icon": "firmalife:sealed_bricks",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The $(thing)Greenhouse$() is a multiblock device controlled by a $(l:firmalife:firmalife/climate_station)Climate Station$(). It allows growing crops year round. The Greenhouse has an array of types and blocks to choose from. However, building a greenhouse is quite simple. Like the $(l:firmalife:firmalife/cellar)Cellar$(), it should be an enclosed area of blocks belonging to the same $(thing)Greenhouse Type$(). The floor of the greenhouse may be any solid block."
+      "text": "$(thing)溫室$()是一種被$(l:firmalife:firmalife/climate_station)溫室氣象站$()控制的多方塊建築. 它全年都能種植農作物. 有很多種溫室和溫室方塊可供選擇, 建造一個溫室是很簡單的. 就像$(l:firmalife:firmalife/cellar)地窖$()一樣, 溫室需要用屬於同種$(thing)溫室型別$()的建築方塊建造一個封閉的空間. 溫室的地板可以是任意固體方塊."
     },
     {
       "type": "patchouli:text",
-      "text": "$(thing)Greenhouse Types$() are families of greenhouse blocks that can be used interchangeably in a greenhouse. Most greenhouse blocks $(thing)age$(). For example, $(thing)Treated Wood$() greenhouse blocks become $(thing)Weathered Treated Wood$() blocks. Since both of those block types belong to the same greenhouse type, your greenhouse will continue to function."
+      "text": "屬於同一種$(thing)溫室型別$()的建築方塊可以互相替換使用. 大多數的溫室方塊都會$(thing)老化$(). 例如, $(thing)防腐木$()材質的溫室方塊會慢慢變成$(thing)風化的防腐木$(). 由於這兩種方塊都屬於同一種溫室型別, 所以這種情況下溫室還是能繼續正常工作."
     },
     {
       "type": "patchouli:text",
-      "text": "These are the $(thing)Greenhouse Types$() available, with the block types they can age into:$(br)$(br)$(li)Treated Wood: Weathered $()$(li)Copper: Exposed, Weathered, Oxidized$()$(li)Iron: Rusted$() $(li)Stainless Steel (does not age)$()",
-      "title": "Greenhouse Types"
+      "text": "以下是所有的$(thing)溫室型別$(), 並且它們可能老化變成:$(br)$(br)$(li)防腐木: 風化的 $()$(li)銅: 斑駁的, 風化的, 氧化的$()$(li)鐵: 生鏽的$() $(li)不鏽鋼 (不會老化)$()",
+      "title": "溫室型別"
     },
     {
       "type": "patchouli:text",
-      "text": "There are four types of $(thing)Greenhouse Blocks$(): Walls, Doors, Roofs, and Roof Tops. Roofs and Roof Tops are stairs and slabs, respectively. These can be combined however you choose to form the structure of the greenhouse."
+      "text": "一共有四種$(thing)溫室方塊$(): 牆壁, 門, 屋簷, 屋頂. 屋簷和屋頂看起來像是樓梯和臺階. 你可以任意組合這四種方塊用於建造你的溫室."
     },
     {
       "type": "tfc:multimultiblock",
-      "text": "An example greenhouse, in each main type.",
+      "text": "每種型別的溫室的一個範例",
       "multiblocks": [
         "firmalife:treated_wood_greenhouse",
         "firmalife:copper_greenhouse",
@@ -33,7 +33,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The next two pages contain recipes for the four main greenhouse block types. While they are only shown for Iron greenhouses, the iron rods in the recipe can be replaced with $(thing)Treated Lumber$(), $(thing)Copper Rods$(), or $(thing)Stainless Steel Rods$(). For information on Stainless Steel, see $(l:firmalife:firmalife/stainless_steel)this linked page$()."
+      "text": "下面兩頁介紹了四種溫室方塊的合成方法. 這裡僅介紹了鐵質溫室, 其中的鐵棒可以替換成$(thing)防腐木材$(),$(thing)銅棒$(),或者$(thing)不鏽鋼棒$(). 關於不鏽鋼的資訊, 請看$(l:firmalife:firmalife/stainless_steel)此頁$()."
     },
     {
       "type": "patchouli:crafting",
@@ -47,7 +47,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "There are many blocks that operate inside Greenhouses:$(br)$(li)$(l:firmalife:firmalife/planters)Planters$(), for growing crops$()"
+      "text": "有一些方塊可以在溫室中工作:$(br)$(li)$(l:firmalife:firmalife/planters)種植盆$(), 用來種植農作物$()"
     }
   ],
   "read_by_default": true,

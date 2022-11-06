@@ -69,7 +69,7 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/empty_jar",
-      "text": "It all starts with an $(thing)Empty Jar$(). Jars can be emptied, discarding the contents, by sealing them in a $(l:mechanics/barrels)Barrel$() of Water$()."
+      "text": "It all starts with an $(thing)Empty Jar$(). Jars can be emptied, discarding the contents, by sealing them in a $(l:mechanics/barrels)Barrel$() of $(thing)Water$()."
     },
     {
       "type": "patchouli:text",

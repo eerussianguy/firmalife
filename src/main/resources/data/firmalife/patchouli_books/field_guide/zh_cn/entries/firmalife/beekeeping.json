@@ -1,12 +1,12 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "name": "Beekeeping",
+  "name": "养蜂",
   "category": "firmalife:firmalife",
   "icon": "firmalife:beehive",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(thing)Beehives$() are a place to house bees. Beehives need $(thing)Beehive Frames$() inside them for the bees to live. Removing frames from an active hive will cause the bees to attack you, unless done at night, or with a $(thing)Firepit$() underneath the hive active."
+      "text": "$(thing)蜂箱$()是养殖蜜蜂的地方. 蜂箱里面需要有至少一个$(thing)巢脾$()让蜜蜂生活. 如果要从一个有蜂居住的蜂箱中拆除巢脾, 最好在夜晚行动, 或者在蜂箱下生一堆$(thing)篝火$(). 否则被拆家的蜜蜂就会袭击你."
     },
     {
       "type": "patchouli:crafting",
@@ -15,39 +15,39 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Beehives know about the area in a 5 block radius from them. If there are at least 10 flowers around the hive, there is a chance an empty frame will be populated with a $(thing)Queen$(). This is indicated by bee particles flying around the hive."
+      "text": "如果蜂箱周围5个方块的半径内, 有至少10朵花. 那么空的巢脾就有可能出现$(thing)蜂王$(). 这可以从绕着巢穴飞行的蜜蜂看出来."
     },
     {
       "type": "patchouli:text",
-      "text": "If a beehive has two frames with queens, and an empty frame, the two colonies have a chance of $(thing)Breeding$() and producing a new queen in the empty frame. This has the effect of passing on the $(thing)Abilities$() of each parent to the offspring. Abilities are different traits bees have that change how they effect the world around them. They are on a scale of 1-10, with 10 being the max."
+      "text": "如果一个蜂箱有两个带蜂王的巢脾, 加上一个空的巢脾, 它们就有可能$(thing)配种$()并在空的巢脾上产生一个新的蜂王. 新的蜂王会继承它的祖先的$(thing)能力$(). $(thing)能力$()是蜜蜂拥有的一些不同特点, 这决定了它们如何影响周围的环境. 这些能力有1-10的等级, 其中10是最大的."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/honey_jar_open",
-      "text": "Bees also produce $(thing)Honey$(). Using $(item)$(k:key.use)$() with an $(l:firmalife:firmalife/jar)Empty Jar$() on a hive that visibly has honey gives you a $(thing)Honey Jar$(). Opening a Honey Jar gives you $(thing)Raw Honey$(), a $(thing)Sugar$() substitute."
+      "text": "蜜蜂也会生产$(thing)蜂蜜$(). 手持$(l:firmalife:firmalife/jar)空罐子$()对着有蜂蜜的蜂箱按$(item)$(k:key.use)$()就可以得到$(thing)蜂蜜罐子$(). 打开蜂蜜罐子可以得到$(thing)生蜂蜜$(), 是一种$(thing)糖$()的替代品."
     },
     {
       "type": "patchouli:text",
-      "text": "Pressing $(item)$(k:key.use)$() a filled frame in your inventory with a $(thing)Knife$() gives you $(thing)Beeswax$(), which has many uses. However, this kills the queen inside the frame so be careful!"
+      "text": "在物品栏有$(thing)刀$()的情况下, 手持一个满的巢脾按$(item)$(k:key.use)$()可以获得有用的$(thing)蜂蜡$(). 注意, 这个操作会杀死巢脾中的蜂王!"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/treated_lumber",
-      "text": "The most important use of beeswax is in creating $(thing)Treated Lumber$()."
+      "text": "蜂蜡最重要的作用是制作$(thing)防腐木材$()."
     },
     {
       "type": "patchouli:text",
-      "text": "$(li)Bees can help fertilize planters!$()$(li)Scraping a frame sacrifices the queen. Be smart!$()$(li)Being wet prevents bees from attacking you.$()",
-      "title": "Bee Tips"
+      "text": "$(li)蜜蜂可以帮种植盆提供营养.$()$(li)注意, 用刀刮蜂脾会牺牲蜂王!$()$(li)把身体弄湿可以防止蜜蜂攻击你.$()",
+      "title": "养蜂提示"
     },
     {
       "type": "patchouli:text",
-      "text": "$(li)$(thing)Hardiness$(): Allows bees to produce honey at lower temperatures. Hardiness 10 allows up to -16°C, whereas Hardiness 1 allows up to 2°C.$()$(li)$(thing)Production$(): Improves the speed of honey production.$()$(li)$(thing)Mutant$(): Increases variability in the traits passed during breeding$().",
-      "title": "List of Abilities"
+      "text": "$(li)$(thing)愉悦度$(): 可以让蜜蜂在更低的温度下生产蜂蜜. 10级的愉悦度可以忍受-16°C的低温, 而1级的愉悦度可以忍受2°C的低温.$()$(li)$(thing)生产力$(): 提高蜂蜜生产的速度.$()$(li)$(thing)突变体$(): 提高配种时传给下一代的能力值的标准差.$().",
+      "title": "能力列表"
     },
     {
       "type": "patchouli:text",
-      "text": "$(li)$(thing)Fertility$(): Increases likelihood of breeding.$()$(li)$(thing)Crop Affinity$(): Likelihood of spreading a small amount of nutrients to crops.$()$(li)$(thing)Nature Restoration$(): Causes new flowers and lilypads to spawn around the hive.$()$(li)$(thing)Calmness$(): Decreases likelihood of bees attacking you$()."
+      "text": "$(li)$(thing)生育能力$(): 提高配种的可能性.$()$(li)$(thing)作物亲和力$(): 给农作物传递少量营养物质的可能性.$()$(li)$(thing)自然修复$(): 造成新的花或荷叶在蜂箱附近生成.$()$(li)$(thing)冷静度$(): 降低蜜蜂攻击你的可能性$()."
     }
   ],
   "read_by_default": true,
