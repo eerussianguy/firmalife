@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "羊毛线用来悬挂物品以便$(thing)熏制$(). 按$(item)$(k:key.use)$()来放置羊毛线."
+      "text": "羊毛纱用来悬挂物品以便$(thing)熏制$(). 按$(item)$(k:key.use)$()来放置羊毛纱."
     },
     {
       "type": "patchouli:multiblock",
@@ -28,7 +28,7 @@
         }
       },
       "name": "熏制",
-      "text": "在篝火上方的羊毛线.",
+      "text": "在篝火上方的羊毛纱.",
       "enable_visualize": false
     },
     {
