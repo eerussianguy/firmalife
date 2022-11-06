@@ -1,17 +1,17 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "name": "Bread",
+  "name": "麵包",
   "category": "firmalife:firmalife",
   "icon": "tfc:food/rye_bread",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "To make $(thing)Bread$(), one first must get $(thing)Yeast$(). To get your first yeast, seal $(l:firmalife:firmalife/drying)Dried Fruit$() in a Barrel of $(thing)Water$(). After three days, $(thing)Yeast Starter$() will form.$(br)From now on, your yeast can be fed by sealing Yeast Starter in a Barrel with $(thing)Flour$(). This causes it to multiply. 1 flour per 100mB of Yeast produces 600mB of Yeast. That's a good deal!"
+      "text": "製作$(thing)麵包$()需要$(thing)酵母$(). 要獲得第一個酵母, 把$(l:firmalife:firmalife/drying)烘乾的水果$()密封在一大桶$(thing)水$()裡. 三天後就可以得到$(thing)酵種$().$(br)從現在開始, 你就可以把麵粉密封在裝有酵種的大桶裡餵養你的酵母. 這會讓酵母的數量翻倍. 每100mB酵種搭配一份麵粉可以得到600mB的酵種."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/barley_dough",
-      "text": "Yeast Starter, Sweetener, and Flour can be combined to make $(thing)Dough$(). Dough can be cooked like normal to produce $(thing)Bread!$()."
+      "text": "酵種, 甜味劑, 加上面粉, 就可以合成$(thing)麵糰$(). 把麵糰烤熟就可以得到$(thing)麵包$()了!"
     }
   ],
   "read_by_default": true,

@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(thing)溫室$()是一種被$(l:firmalife:firmalife/climate_station)溫室氣象站$()控制的多方塊建築. 它全年都能種植農作物. 有很多種溫室和溫室方塊可供選擇, 建造一個溫室是很簡單的. 就像$(l:firmalife:firmalife/cellar)地窖$()一樣, 溫室需要用屬於同種$(thing)溫室型別$()的建築方塊建造一個封閉的空間. 溫室的地板可以是任意固體方塊."
+      "text": "$(thing)溫室$()是一種被$(l:firmalife:firmalife/climate_station)氣象站$()控制的多方塊建築. 它全年都能種植農作物. 有很多種溫室和溫室方塊可供選擇, 建造一個溫室是很簡單的. 就像$(l:firmalife:firmalife/cellar)地窖$()一樣, 溫室需要用屬於同種$(thing)溫室型別$()的建築方塊建造一個封閉的空間. 溫室的地板可以是任意固體方塊."
     },
     {
       "type": "patchouli:text",
@@ -33,7 +33,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "下面兩頁介紹了四種溫室方塊的合成方法. 這裡僅介紹了鐵質溫室, 其中的鐵棒可以替換成$(thing)防腐木材$(),$(thing)銅棒$(),或者$(thing)不鏽鋼棒$(). 關於不鏽鋼的資訊, 請看$(l:firmalife:firmalife/stainless_steel)此頁$()."
+      "text": "下面兩頁介紹了四種溫室方塊的配方. 這裡僅介紹了鐵質溫室, 其中的鐵棒可以替換成$(thing)防腐木材$(),$(thing)銅棒$(),或者$(thing)不鏽鋼棒$(). 關於不鏽鋼的資訊, 請看$(l:firmalife:firmalife/stainless_steel)此頁$()."
     },
     {
       "type": "patchouli:crafting",

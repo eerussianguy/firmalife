@@ -73,12 +73,12 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The recipes to fill and empty jars are typically simple crafting recipes. Some jars cannot have their insides removed without a special recipe.$(br)$(br)One use of jars is making $(thing)Fruit Preserves$(). To do this, boil an $(thing)Empty Jar$(), a $(thing)Sweetener$(), and fresh $(thing)Fruit$()."
+      "text": "填满和清空罐子的合成配方一般都很简单, 但有些罐子需要一些特殊的方法来清空.$(br)$(br)罐子的一种用途是制作$(thing)水果罐头$(), 只需将$(thing)空罐子$(), 一份$(thing)甜味剂$()(例如生蜂蜜或糖), 和新鲜$(thing)水果$()放进锅里一起煮."
     },
     {
       "type": "patchouli:text",
-      "text": "$(li)Fruit Preserves$()$(li)Guano Jar$()$(li)Honey Jar$()$(li)Rotten Compost Jar$()$(li)Compost Jar$()",
-      "title": "Jar Types"
+      "text": "$(li)水果罐头$()$(li)鸟粪罐子$()$(li)蜂蜜罐子$()$(li)腐烂的堆肥罐子$()$(li)堆肥罐子$()",
+      "title": "罐子的种类"
     }
   ],
   "read_by_default": true,

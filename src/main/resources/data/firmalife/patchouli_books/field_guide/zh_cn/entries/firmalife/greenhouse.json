@@ -33,7 +33,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "下面两页介绍了四种温室方块的合成方法. 这里仅介绍了铁质温室, 其中的铁棒可以替换成$(thing)防腐木材$(),$(thing)铜棒$(),或者$(thing)不锈钢棒$(). 关于不锈钢的信息, 请看$(l:firmalife:firmalife/stainless_steel)此页$()."
+      "text": "下面两页介绍了四种温室方块的配方. 这里仅介绍了铁质温室, 其中的铁棒可以替换成$(thing)防腐木材$(),$(thing)铜棒$(),或者$(thing)不锈钢棒$(). 关于不锈钢的信息, 请看$(l:firmalife:firmalife/stainless_steel)此页$()."
     },
     {
       "type": "patchouli:crafting",

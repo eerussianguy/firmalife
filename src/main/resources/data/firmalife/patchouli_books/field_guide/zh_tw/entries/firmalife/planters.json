@@ -7,7 +7,7 @@
     {
       "type": "patchouli:text",
       "anchor": "planters",
-      "text": "$(thing)種植盆$()用來在$(l:firmalife:firmalife/greenhouse)溫室$()中種植農作物. 手持$(thing)鋤$()並看向種植盆, 就可以檢視種植盆的狀態. 在種植盆裡的植物會像普通$(l:mechanics/crops)農作物$()一樣消耗$(l:mechanics/fertilizers)營養$(). 種植盆需要被放置在溫室中, 並且用$(l:firmalife:firmalife/climate_station)溫室氣象站$()啟用. 種植盆需要有天然的太陽光才能正常工作."
+      "text": "$(thing)種植盆$()用來在$(l:firmalife:firmalife/greenhouse)溫室$()中種植農作物. 手持$(thing)鋤$()並看向種植盆, 就可以檢視種植盆的狀態. 在種植盆裡的植物會像普通$(l:mechanics/crops)農作物$()一樣消耗$(l:mechanics/fertilizers)營養$(). 種植盆需要被放置在溫室中, 並且用$(l:firmalife:firmalife/climate_station)氣象站$()啟用. 種植盆需要有天然的太陽光才能正常工作."
     },
     {
       "type": "patchouli:crafting",

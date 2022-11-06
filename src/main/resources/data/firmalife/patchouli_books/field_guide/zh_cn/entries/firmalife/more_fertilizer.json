@@ -1,26 +1,26 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "name": "More Fertilizer Options",
+  "name": "更多的肥料获取途径",
   "category": "firmalife:firmalife",
   "icon": "firmalife:iron_composter",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Given a greater need for fertilization in Firmalife, there are more options for getting $(l:mechanics/fertilizers)fertilizers$()."
+      "text": "Firmalife中对肥料的需求更大, 因此有更多的获取$(l:mechanics/fertilizers)肥料$()的途径."
     },
     {
       "type": "firmalife:drying_recipe",
       "recipe": "firmalife:drying/dry_grass",
-      "text": "Thatch can be $(l:firmalife:firmalife/drying)Dried$() into $(thing)Dry Grass$(), which can be used in a Composter as a brown item."
+      "text": "干草可以被$(l:firmalife:firmalife/drying)烘干$()变成$(thing)干草$(), 它可以当作棕色物品进行堆肥."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/iron_composter",
-      "text": "The Composter can be upgraded to an $(thing)Iron Composter$(), which works the same, except it produces compost four times as fast."
+      "text": "堆肥桶可以被升级为$(thing)铁堆肥桶$(), 它堆肥的速度是普通堆肥桶的四倍."
     },
     {
       "type": "tfc:multimultiblock",
-      "text": "The possible fill levels of the iron composter",
+      "text": "铁堆肥桶的几种填充状态",
       "multiblocks": [
         {
           "pattern": [

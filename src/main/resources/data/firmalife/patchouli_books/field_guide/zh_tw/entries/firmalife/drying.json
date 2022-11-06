@@ -1,36 +1,36 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "name": "Drying",
+  "name": "烘乾",
   "category": "firmalife:firmalife",
   "icon": "firmalife:drying_mat",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The $(thing)Drying Mat$() is used to dry items. It is made with $(thing)Fruit Leaves$(), which are obtained from breaking the leaves of $(thing)Fruit Trees$()."
+      "text": "$(thing)乾燥墊$()是用來烘乾物品的. 它使用$(thing)果樹葉子$()製成. 果樹葉子可以打碎$(thing)果樹$()的葉子得到."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/drying_mat",
-      "text": "The recipe for the drying mat."
+      "text": "乾燥墊的合成配方."
     },
     {
       "type": "patchouli:text",
-      "text": "To use the drying mat, place it out on the sun and add an item to it with $(item)$(k:key.use)$(). After a half day, it will be dried. If it rains, the drying process must start over."
+      "text": "要使用乾燥墊, 把它放置在陽光下, 然後按$(item)$(k:key.use)$()來放置一個物品. 在半天之後, 物品就會被烘乾. 如果下雨了, 這個烘乾過程就需要重新開始."
     },
     {
       "type": "firmalife:drying_recipe",
       "recipe": "firmalife:drying/drying_fruit",
-      "text": "Drying fruit is a common use of the drying mat. Dried fruit is used in some recipes, and lasts longer."
+      "text": "乾燥墊一般用來烘乾水果. 烘乾的水果有更長的保質期, 並且在某些配方中會用到."
     },
     {
       "type": "firmalife:drying_recipe",
       "recipe": "firmalife:drying/tofu",
-      "text": "Tofu is made using a drying mat."
+      "text": "豆腐需要用乾燥墊製作."
     },
     {
       "type": "firmalife:drying_recipe",
       "recipe": "firmalife:drying/cinnamon",
-      "text": "Cinnamon is made using a drying mat."
+      "text": "肉桂需要用乾燥墊製作."
     }
   ],
   "read_by_default": true,

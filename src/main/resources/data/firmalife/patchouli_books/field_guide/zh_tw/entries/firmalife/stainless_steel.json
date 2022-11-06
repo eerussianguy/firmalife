@@ -1,17 +1,17 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "name": "Stainless Steel",
+  "name": "不鏽鋼",
   "category": "firmalife:firmalife",
   "icon": "firmalife:metal/ingot/stainless_steel",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(thing)Stainless Steel$() and $(thing)Chromium$() are $(thing)Steel-tier$() metals added by Firmalife. They are used in the construction of $(l:firmalife:firmalife/greenhouse)Stainless Steel Greenhouses$()."
+      "text": "$(thing)不鏽鋼$()和$(thing)鉻$()是Firmalife新增的相當於$(thing)鋼$()等級的金屬材料. 他們可以用來建造$(l:firmalife:firmalife/greenhouse)不鏽鋼溫室$()."
     },
     {
       "type": "patchouli:spotlight",
       "item": "firmalife:metal/ingot/stainless_steel",
-      "title": "Stainless Steel",
+      "title": "不鏽鋼",
       "link_recipes": false,
       "text": "$(br)$(bold)Requirements:$()$(br)$(li)20 - 30 % : $(thing)Chromium$()$(li)10 - 20 % : $(thing)Nickel$()$(li)60 - 80 % : $(thing)Steel$()$(br2)"
     },
@@ -24,7 +24,7 @@
     {
       "type": "patchouli:text",
       "text": "$(li)Granite$()$(li)Diorite$()$(li)Gabbro$()$(li)Slate$()$(li)Phyllite$()$(li)Schist$()$(li)Gneiss$()$(li)Marble$()",
-      "title": "All Chromium Rocks"
+      "title": "所有的鉻礦石"
     }
   ],
   "read_by_default": true,

@@ -1,16 +1,16 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "name": "Jars",
+  "name": "罐子",
   "category": "firmalife:firmalife",
   "icon": "firmalife:empty_jar",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(thing)Jars$() are a way of storing certain items. They can be placed on the ground, in groups of up to four. They are most useful as a way of storing $(l:firmalife:firmalife/beekeeping)Honey$() indefinitely."
+      "text": "$(thing)罐子$()是儲存特定物品的一種方式. 他們可以放在地面上, 最多一組四個. 他們最大的用途是無限制的儲存$(l:firmalife:firmalife/beekeeping)蜂蜜$()."
     },
     {
       "type": "tfc:multimultiblock",
-      "text": "Each possible arrangement of jars.",
+      "text": "罐子的放置方式.",
       "multiblocks": [
         {
           "pattern": [
@@ -69,16 +69,16 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/empty_jar",
-      "text": "It all starts with an $(thing)Empty Jar$(). Jars can be emptied, discarding the contents, by sealing them in a $(l:mechanics/barrels)Barrel$() of $(thing)Water$()."
+      "text": "所有罐子都是從$(thing)空罐子$()開始. 無論罐子的內容是什麼, 把它密封在裝有$(thing)水$()的$(l:mechanics/barrels)大桶$()裡就可以清空."
     },
     {
       "type": "patchouli:text",
-      "text": "The recipes to fill and empty jars are typically simple crafting recipes. Some jars cannot have their insides removed without a special recipe.$(br)$(br)One use of jars is making $(thing)Fruit Preserves$(). To do this, boil an $(thing)Empty Jar$(), a $(thing)Sweetener$(), and fresh $(thing)Fruit$()."
+      "text": "填滿和清空罐子的合成配方一般都很簡單, 但有些罐子需要一些特殊的方法來清空.$(br)$(br)罐子的一種用途是製作$(thing)水果罐頭$(), 只需將$(thing)空罐子$(), 一份$(thing)甜味劑$()(例如生蜂蜜或糖), 和新鮮$(thing)水果$()放進鍋裡一起煮."
     },
     {
       "type": "patchouli:text",
-      "text": "$(li)Fruit Preserves$()$(li)Guano Jar$()$(li)Honey Jar$()$(li)Rotten Compost Jar$()$(li)Compost Jar$()",
-      "title": "Jar Types"
+      "text": "$(li)水果罐頭$()$(li)鳥糞罐子$()$(li)蜂蜜罐子$()$(li)腐爛的堆肥罐子$()$(li)堆肥罐子$()",
+      "title": "罐子的種類"
     }
   ],
   "read_by_default": true,

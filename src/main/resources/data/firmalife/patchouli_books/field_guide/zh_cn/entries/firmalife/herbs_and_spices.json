@@ -1,17 +1,17 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "name": "Herbs and Spices",
+  "name": "草药和香料",
   "category": "firmalife:firmalife",
   "icon": "firmalife:spice/basil_leaves",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "In Firmalife, there are a number of small plants you can collect and grow on your own, which have cooking properties. The easiest way to obtain these plants is with a $(thing)Seed Ball$(). To use a $(thing)Seed Ball$(), just $(item)$(k:key.use)$() to throw it, like a snowball. This will spawn $(thing)Butterfly Grass$() in the area."
+      "text": "在Firmalife中, 有很多可以收集和种植的具有烹饪效果的小植物. 获得这些植物的最简单的办法就是用$(thing)种子球$(). 按$(item)$(k:key.use)$()就可以把$(thing)种子球$()扔出去, 就像雪球一样. 这会在目标区域生成一些$(thing)蝴蝶草$()."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/seed_ball",
-      "text": "The recipe for the seed ball requires $(l:firmalife:firmalife/more_fertilizer)Compost$() and 4 $(thing)Seeds$()."
+      "text": "种子球的合成配方是$(l:firmalife:firmalife/more_fertilizer)堆肥$()和4个$(thing)种子$()."
     },
     {
       "type": "patchouli:multiblock",
@@ -29,12 +29,12 @@
         }
       },
       "name": "",
-      "text": "A butterfly grass plant.",
+      "text": "一种蝴蝶草.",
       "enable_visualize": false
     },
     {
       "type": "patchouli:text",
-      "text": "Butterfly grass will mature over time. When one reaches maturity, it has a chance to spread to surrounding blocks, or turn into something new. Butterfly grass blocks that have been spread by another grass block do not spread anymore."
+      "text": "蝴蝶草会随着时间的推移而成熟。它成熟时可能会传播到周围的方块，或者变成新的东西。已被一株蝴蝶草传播过的方块不会被另一株再次传播."
     },
     {
       "type": "patchouli:multiblock",
@@ -52,13 +52,13 @@
         }
       },
       "name": "",
-      "text": "Basil is one of the plants that can be spawned by butterfly grass.",
+      "text": "Basil香草是一种可能被蝴蝶草衍生出的植物.",
       "enable_visualize": false
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/basil_leaves",
-      "text": "Basil leaves are used in pizza."
+      "text": "Basil香草的叶子可以用来制作披萨."
     }
   ],
   "read_by_default": true,
