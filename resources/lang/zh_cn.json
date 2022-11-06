@@ -1,6 +1,6 @@
 {
-  "Firmalife": "Firmalife",
-  "All about the Firmalife addon": "关于Firmalife模组的一切",
+  "Firmalife": "Firmalife扩展模组",
+  "All about the Firmalife addon": "关于Firmalife扩展模组的一切",
   "Cheese": "奶酪",
   "Making $(thing)cheese$() in Firmalife is a little more involved than in vanilla TFC. There are two new kinds of milk: $(thing)Yak Milk$(), and $(thing)Goat Milk$(). These are obtained from milking the $(l:mechanics/animal_husbandry#yak)Yak$() and $(l:mechanics/animal_husbandry#goat)Goat$(), respectively. Milking the $(l:mechanics/animal_husbandry#cow)Cow$() still produces the old kind of milk.": "在Firmalife中制造$(thing)奶酪$()要稍微复杂一点. 一共有两种奶: $(thing)牦牛奶$()和$(thing)山羊奶$(). 给$(l:mechanics/animal_husbandry#yak)牦牛$()和$(l:mechanics/animal_husbandry#goat)山羊$()挤奶可以得到它们. 当然, 给$(l:mechanics/animal_husbandry#cow)奶牛$()挤奶仍然可以获得传统的牛奶.",
   "Like usual, milk must be $(thing)curdled$() first. To curdle milk, you need $(thing)Rennet$(). Rennet comes from the stomach of $(thing)Ruminant$() animals. This includes $(l:mechanics/animal_husbandry#yak)Yaks$(), $(l:mechanics/animal_husbandry#cow)Cows$(), $(l:mechanics/animal_husbandry#sheep)Sheep$(), $(l:mechanics/animal_husbandry#goat)Goats$(), and $(l:mechanics/animal_husbandry#musk_ox)Musk Oxen$(). To curdle milk, seal it in a $(l:mechanics/barrels)Barrel$() with Rennet for 4 hours.": "牛奶首先要用$(thing)凝乳酶$()制成$(thing)凝固的牛奶$(). 凝乳酶可以从$(thing)反刍$()动物的胃获得. 这些动物包括$(l:mechanics/animal_husbandry#yak)牦牛$(), $(l:mechanics/animal_husbandry#cow)奶牛$(), $(l:mechanics/animal_husbandry#sheep)绵羊$(), $(l:mechanics/animal_husbandry#goat)山羊$(), 和$(l:mechanics/animal_husbandry#musk_ox)麝牛$(). 把牛奶和凝乳酶一起密封在$(l:mechanics/barrels)大桶$()4小时就可以凝固.",
