@@ -1,0 +1,18 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "firmalife:food/toast"
+    },
+    {
+      "item": "firmalife:food/butter"
+    },
+    {
+      "item": "tfc:food/garlic"
+    }
+  ],
+  "result": {
+    "item": "firmalife:food/garlic_bread"
+  }
+}

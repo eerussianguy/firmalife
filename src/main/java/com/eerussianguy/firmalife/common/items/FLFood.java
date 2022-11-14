@@ -30,6 +30,7 @@ public enum FLFood
     RICE_DOUGH,
     RYE_DOUGH,
     TOAST,
+    GARLIC_BREAD,
     CHEDDAR,
     CHEVRE,
     RAJYA_METOK,

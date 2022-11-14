@@ -147,6 +147,7 @@ def generate(rm: ResourceManager):
     decayable(rm, 'milk_curd', 'firmalife:food/milk_curd', Category.dairy)
     food_item(rm, 'slices', '#firmalife:foods/slices', Category.grain, 4, 0.75, 0, 1.5, grain=1)
     food_item(rm, 'toast', 'firmalife:food/toast', Category.grain, 4, 1.5, 0, 1, grain=1)
+    food_item(rm, 'garlic_bread', 'firmalife:food/garlic_bread', Category.other, 4, 2, 0, 2, grain=1, veg=1, dairy=0.1)
     food_item(rm, 'flatbreads', '#firmalife:foods/flatbreads', Category.grain, 4, 0.75, 0, 1, grain=0.5)
     food_item(rm, 'cheeses', '#firmalife:foods/cheeses', Category.dairy, 4, 2, 0, 0.3, dairy=3)
     food_item(rm, 'shredded_cheese', 'firmalife:food/shredded_cheese', Category.dairy, 4, 2, 0, 0.3, dairy=0.75)
