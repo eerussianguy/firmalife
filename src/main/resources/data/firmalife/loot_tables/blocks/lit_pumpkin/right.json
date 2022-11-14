@@ -8,7 +8,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "firmalife:lit_pumpkin/right"
+          "name": "firmalife:carved_pumpkin/right"
         }
       ],
       "conditions": [

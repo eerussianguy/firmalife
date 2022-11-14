@@ -138,6 +138,20 @@ public final class FLTooltips
                         tooltip.accept(Helpers.translatable("firmalife.jade.cure_time_left", delta(level, FLConfig.SERVER.ovenCureTicks.get() - oven.getCureTicks())));
                     }
                 }
+                if (entity instanceof OvenTopBlockEntity top)
+                {
+                    entity.getCapability(Capabilities.ITEM).ifPresent(inv -> {
+                        for (int i = 0; i < inv.getSlots(); i++)
+                        {
+                            final int ticksLeft = top.getTicksLeft(i);
+                            if (ticksLeft > 0)
+                            {
+                                tooltip.accept(Helpers.translatable("firmalife.jade.cook_left", delta(level, ticksLeft)));
+                            }
+                        }
+                    });
+                }
+
             }
         };
     }

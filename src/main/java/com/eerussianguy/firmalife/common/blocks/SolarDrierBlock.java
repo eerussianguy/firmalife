@@ -11,6 +11,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import net.dries007.tfc.common.blocks.ExtendedProperties;
+import net.dries007.tfc.common.blocks.devices.BottomSupportedDeviceBlock;
 
 public class SolarDrierBlock extends BottomSupportedDeviceBlock
 {

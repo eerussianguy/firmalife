@@ -153,6 +153,7 @@ ORE_VEINS: Dict[str, Vein] = {
 
 DEFAULT_LANG = {
     'effect.firmalife.swarm': 'Swarm',
+    'entity.firmalife.seed_ball': 'Seed Ball',
     'firmalife.tooltip.food_trait.dried': 'Dried',
     'firmalife.tooltip.food_trait.aged': 'Aged',
     'firmalife.tooltip.food_trait.vintage': 'Vintage',
@@ -223,6 +224,7 @@ DEFAULT_LANG = {
     'firmalife.jade.slices': 'Slices: %s',
     'firmalife.jade.cure_time_left': 'Curing Time Left: %s',
     'firmalife.jade.cannot_cure': 'Not hot enough to cure!',
+    'firmalife.jade.cook_left': 'Cook Time: %s',
 
     'death.attack.firmalife.oven': '%1$s died by sticking their hand in a hot oven.',
     'death.attack.firmalife.oven.player': '%1$s climbed into an oven to escape %2$s.',

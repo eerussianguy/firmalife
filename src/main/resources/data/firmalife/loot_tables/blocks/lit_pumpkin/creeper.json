@@ -8,7 +8,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "firmalife:lit_pumpkin/creeper"
+          "name": "firmalife:carved_pumpkin/creeper"
         }
       ],
       "conditions": [

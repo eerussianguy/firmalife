@@ -37,6 +37,7 @@ import net.dries007.tfc.common.TFCItemGroup;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.GroundcoverBlock;
 import net.dries007.tfc.common.blocks.TFCMaterials;
+import net.dries007.tfc.common.blocks.devices.JackOLanternBlock;
 import net.dries007.tfc.common.blocks.plant.PlantBlock;
 import net.dries007.tfc.common.blocks.rock.Ore;
 import net.dries007.tfc.common.blocks.rock.Rock;
@@ -115,7 +116,7 @@ public class FLBlocks
     );
 
     public static final Map<Carving, RegistryObject<Block>> JACK_O_LANTERNS = Helpers.mapOfKeys(Carving.class, carve ->
-        register("lit_pumpkin/" + carve.getSerializedName(), () -> new FLJackOLanternBlock(ExtendedProperties.of(Properties.of(Material.VEGETABLE, MaterialColor.COLOR_ORANGE).strength(1.0F).sound(SoundType.WOOD).randomTicks().isValidSpawn(FLBlocks::always).lightLevel(alwaysLit())).blockEntity(FLBlockEntities.TICK_COUNTER), CARVED_PUMPKINS.get(carve)), DECORATIONS)
+        register("lit_pumpkin/" + carve.getSerializedName(), () -> new JackOLanternBlock(ExtendedProperties.of(Properties.of(Material.VEGETABLE, MaterialColor.COLOR_ORANGE).strength(1.0F).sound(SoundType.WOOD).randomTicks().isValidSpawn(FLBlocks::always).lightLevel(alwaysLit())).blockEntity(FLBlockEntities.TICK_COUNTER), CARVED_PUMPKINS.get(carve)), DECORATIONS)
     );
 
     public static final RegistryObject<Block> SMALL_CHROMITE = register("ore/small_chromite", () -> GroundcoverBlock.looseOre(Properties.of(Material.GRASS).strength(0.05F, 0.0F).sound(SoundType.NETHER_ORE).noCollission()), ORES);

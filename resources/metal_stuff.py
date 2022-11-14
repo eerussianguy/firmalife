@@ -79,6 +79,7 @@ def generate(rm: ResourceManager):
         rm.blockstate(('fluid', 'metal', metal)).with_block_model({'particle': 'block/lava_still'}, parent=None).with_lang(lang('Molten %s', metal))
         rm.lang('fluid.firmalife.metal.%s' % metal, lang('Molten %s', metal))
         rm.fluid_tag(metal, 'firmalife:metal/%s' % metal, 'firmalife:metal/flowing_%s' % metal)
+        rm.fluid_tag('tfc:molten_metals', *['firmalife:metal/%s' % metal])
 
         item = rm.custom_item_model(('bucket', 'metal', metal), 'forge:bucket', {
             'parent': 'forge:item/bucket',
@@ -86,6 +87,9 @@ def generate(rm: ResourceManager):
         })
         item.with_lang(lang('molten %s bucket', metal))
         rm.lang('metal.firmalife.%s' % metal, lang(metal))
+
+        rm.item_tag('tfc:pileable_ingots', '#forge:ingots/%s' % metal)
+        rm.item_tag('tfc:pileable_sheets', '#forge:sheets/%s' % metal)
 
 def chromium_ore_heats(rm: ResourceManager):
     ore = 'chromite'

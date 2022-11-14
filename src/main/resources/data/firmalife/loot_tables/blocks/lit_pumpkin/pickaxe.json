@@ -8,7 +8,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "firmalife:lit_pumpkin/pickaxe"
+          "name": "firmalife:carved_pumpkin/pickaxe"
         }
       ],
       "conditions": [

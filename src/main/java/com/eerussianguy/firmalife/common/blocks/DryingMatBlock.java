@@ -13,6 +13,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.SimpleItemRecipeBlockEntity;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
+import net.dries007.tfc.common.blocks.devices.BottomSupportedDeviceBlock;
 import net.dries007.tfc.common.capabilities.Capabilities;
 
 public class DryingMatBlock extends BottomSupportedDeviceBlock

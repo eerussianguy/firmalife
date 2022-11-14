@@ -16,7 +16,7 @@ import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blocks.ICure;
 import com.eerussianguy.firmalife.common.blocks.OvenBottomBlock;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
-import com.eerussianguy.firmalife.common.recipes.OvenRecipe;
+import com.eerussianguy.firmalife.common.recipes.WrappedHeatingRecipe;
 import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
 import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
 import net.dries007.tfc.common.capabilities.DelegateItemHandler;
@@ -63,14 +63,13 @@ public class OvenTopBlockEntity extends TickableInventoryBlockEntity<OvenTopBloc
 
     public static void serverTick(Level level, BlockPos pos, BlockState state, OvenTopBlockEntity oven)
     {
-        oven.checkForLastTickSync();
-        oven.checkForCalendarUpdate();
-
         if (oven.needsRecipeUpdate)
         {
             oven.needsRecipeUpdate = false;
             oven.updateCaches();
         }
+        oven.checkForLastTickSync();
+        oven.checkForCalendarUpdate();
 
         if (oven.temperature != oven.targetTemperature)
         {
@@ -109,17 +108,16 @@ public class OvenTopBlockEntity extends TickableInventoryBlockEntity<OvenTopBloc
             if (!inputStack.isEmpty())
             {
                 inputStack.getCapability(HeatCapability.CAPABILITY).ifPresent(cap -> {
-
                     // Always heat up the item regardless if it is melting or not
                     if (cap.getTemperature() < oven.temperature)
                     {
                         HeatCapability.addTemp(cap, oven.temperature, 2 + oven.temperature * 0.0025f); // Breaks even at 400 C
                     }
 
-                    final OvenRecipe recipe = oven.cachedRecipes[slot];
+                    final WrappedHeatingRecipe recipe = oven.cachedRecipes[slot];
                     if (recipe != null && recipe.isValidTemperature(cap.getTemperature()))
                     {
-                        if (oven.cookTicks[slot]++ > recipe.getDuration())
+                        if (oven.cookTicks[slot]++ > recipe.duration())
                         {
                             // Convert input
                             final ItemStackInventory inventory = new ItemStackInventory(inputStack);
@@ -153,7 +151,7 @@ public class OvenTopBlockEntity extends TickableInventoryBlockEntity<OvenTopBloc
     private int targetTemperatureStabilityTicks;
     private long lastUpdateTick;
     private boolean needsRecipeUpdate;
-    private final OvenRecipe[] cachedRecipes;
+    private final WrappedHeatingRecipe[] cachedRecipes;
     private int[] cookTicks;
     private int cureTicks;
 
@@ -162,7 +160,7 @@ public class OvenTopBlockEntity extends TickableInventoryBlockEntity<OvenTopBloc
         super(FLBlockEntities.OVEN_TOP.get(), pos, state, OvenInventory::new, FLHelpers.blockEntityName("oven_top"));
         temperature = targetTemperature = targetTemperatureStabilityTicks = cureTicks = 0;
         lastUpdateTick = Calendars.SERVER.getTicks();
-        cachedRecipes = new OvenRecipe[4];
+        cachedRecipes = new WrappedHeatingRecipe[4];
         cookTicks = new int[] {0, 0, 0, 0};
 
         sidedHeat = new SidedHandler.Noop<>(inventory);
@@ -245,7 +243,7 @@ public class OvenTopBlockEntity extends TickableInventoryBlockEntity<OvenTopBloc
     public void setAndUpdateSlots(int slot)
     {
         super.setAndUpdateSlots(slot);
-        singleRecipeUpdate(slot);
+        singleRecipeUpdate(slot, true);
     }
 
     @Override
@@ -264,15 +262,15 @@ public class OvenTopBlockEntity extends TickableInventoryBlockEntity<OvenTopBloc
     {
         for (int slot = SLOT_INPUT_START; slot <= SLOT_INPUT_END; slot++)
         {
-            singleRecipeUpdate(slot);
+            singleRecipeUpdate(slot, false);
         }
     }
 
-    private void singleRecipeUpdate(int slot)
+    private void singleRecipeUpdate(int slot, boolean wipe)
     {
-        OvenRecipe previous = cachedRecipes[slot];
-        cachedRecipes[slot] = OvenRecipe.getRecipe(inventory.getStackInSlot(slot));
-        if (previous != cachedRecipes[slot] || cachedRecipes[slot] == null)
+        final WrappedHeatingRecipe previous = cachedRecipes[slot];
+        cachedRecipes[slot] = WrappedHeatingRecipe.getRecipe(inventory.getStackInSlot(slot));
+        if (wipe && previous != cachedRecipes[slot] || cachedRecipes[slot] == null)
         {
             cookTicks[slot] = 0;
         }
@@ -288,6 +286,27 @@ public class OvenTopBlockEntity extends TickableInventoryBlockEntity<OvenTopBloc
         temperature = 0;
         targetTemperature = 0;
         targetTemperatureStabilityTicks = 0;
+    }
+
+    public int getTicksLeft(int slot)
+    {
+        assert level != null;
+        if (cookTicks[slot] == 0)
+        {
+            return -1;
+        }
+        if (cachedRecipes[slot] == null)
+        {
+            if (level.isClientSide)
+            {
+                singleRecipeUpdate(slot, true);
+            }
+        }
+        if (cachedRecipes[slot] != null)
+        {
+            return cachedRecipes[slot].duration() - cookTicks[slot];
+        }
+        return -1;
     }
 
     static class OvenInventory implements DelegateItemHandler, IHeatBlock, INBTSerializable<CompoundTag>
