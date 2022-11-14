@@ -47,9 +47,9 @@
     },
     {
       "type": "patchouli:text",
-      "text": "There are many blocks that operate inside Greenhouses:$(br)$(li)$(l:firmalife:firmalife/planters)Planters$(), for growing crops$()"
+      "text": "There are many blocks that operate inside Greenhouses:$(br)$(li)$(l:firmalife:firmalife/planters)Planters$(), for growing crops$(), and $(br)$(li)$(l:firmalife:firmalife/sprinklers)Sprinklers$(), various devices that add water to planters."
     }
   ],
   "read_by_default": true,
-  "sortnum": 3
+  "sortnum": 5
 }
