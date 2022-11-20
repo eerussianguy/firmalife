@@ -52,7 +52,7 @@ def generate(rm: ResourceManager):
     rm.item_tag('oven_fuel', '#minecraft:logs', 'tfc:stick_bundle')
     rm.item_tag('chocolate_blends', 'firmalife:food/milk_chocolate_blend', 'firmalife:food/dark_chocolate_blend', 'firmalife:food/white_chocolate_blend')
     rm.item_tag('tfc:foods/can_be_salted', 'firmalife:food/butter')
-    rm.item_tag('tfc:usable_on_tool_rack', 'firmalife:spoon')
+    rm.item_tag('tfc:usable_on_tool_rack', 'firmalife:spoon', 'firmalife:peel')
     rm.item_tag('pumpkin_knapping', 'tfc:pumpkin')
     rm.item_tag('foods/heatable', 'firmalife:food/raw_pizza', 'firmalife:food/filled_pie', 'firmalife:food/raw_pumpkin_pie')
     rm.item_tag('foods/dynamic', 'firmalife:food/raw_pizza', 'firmalife:food/filled_pie', 'firmalife:food/cooked_pizza', 'firmalife:food/cooked_pie')

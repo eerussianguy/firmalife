@@ -1,21 +1,40 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "XXX",
-    "XYX",
-    "XXX"
-  ],
-  "key": {
-    "X": {
-      "item": "tfc:pumpkin"
-    },
-    "Y": {
-      "tag": "tfc:hammers"
+  "type": "tfc:damage_inputs_shapeless_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+      {
+        "tag": "tfc:hammers"
+      },
+      {
+        "item": "tfc:pumpkin"
+      },
+      {
+        "item": "tfc:pumpkin"
+      },
+      {
+        "item": "tfc:pumpkin"
+      },
+      {
+        "item": "tfc:pumpkin"
+      },
+      {
+        "item": "tfc:pumpkin"
+      },
+      {
+        "item": "tfc:pumpkin"
+      },
+      {
+        "item": "tfc:pumpkin"
+      },
+      {
+        "item": "tfc:pumpkin"
+      }
+    ],
+    "result": {
+      "item": "firmalife:food/pumpkin_chunks",
+      "count": 8
     }
-  },
-  "result": {
-    "item": "firmalife:food/pumpkin_chunks",
-    "count": 8
   }
 }

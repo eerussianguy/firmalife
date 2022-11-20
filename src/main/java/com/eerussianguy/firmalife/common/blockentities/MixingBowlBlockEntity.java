@@ -171,6 +171,9 @@ public class MixingBowlBlockEntity extends TickableInventoryBlockEntity<MixingBo
             for (int i = 0; i < SLOTS; i++)
             {
                 inventory.setStackInSlot(i, ItemStack.EMPTY);
+            }
+            for (int i = 0; i < SLOTS; i++)
+            {
                 if (count > 0)
                 {
                     inventory.setStackInSlot(i, Helpers.copyWithSize(outputStack, 1));
