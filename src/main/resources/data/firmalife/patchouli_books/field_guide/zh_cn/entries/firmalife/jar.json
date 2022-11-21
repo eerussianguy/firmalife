@@ -1,16 +1,16 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "name": "Jars",
+  "name": "罐子",
   "category": "firmalife:firmalife",
   "icon": "firmalife:empty_jar",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(thing)Jars$() are a way of storing certain items. They can be placed on the ground, in groups of up to four. They are most useful as a way of storing $(l:firmalife:firmalife/beekeeping)Honey$() indefinitely."
+      "text": "$(thing)罐子$()是储存特定物品的一种方式. 他们可以放在地面上, 最多一组四个. 他们最大的用途是无限制的储存$(l:firmalife:firmalife/beekeeping)蜂蜜$()."
     },
     {
       "type": "tfc:multimultiblock",
-      "text": "Each possible arrangement of jars.",
+      "text": "罐子的放置方式.",
       "multiblocks": [
         {
           "pattern": [
@@ -69,18 +69,18 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/empty_jar",
-      "text": "It all starts with an $(thing)Empty Jar$(). Jars can be emptied, discarding the contents, by sealing them in a $(l:mechanics/barrels)Barrel$() of $(thing)Water$()."
+      "text": "所有罐子都是从$(thing)空罐子$()开始. 无论罐子的内容是什么, 把它密封在装有$(thing)水$()的$(l:mechanics/barrels)大桶$()里就可以清空."
     },
     {
       "type": "patchouli:text",
-      "text": "The recipes to fill and empty jars are typically simple crafting recipes. Some jars cannot have their insides removed without a special recipe.$(br)$(br)One use of jars is making $(thing)Fruit Preserves$(). To do this, boil an $(thing)Empty Jar$(), a $(thing)Sweetener$(), and fresh $(thing)Fruit$()."
+      "text": "填满和清空罐子的合成配方一般都很简单, 但有些罐子需要一些特殊的方法来清空.$(br)$(br)罐子的一种用途是制作$(thing)水果罐头$(), 只需将$(thing)空罐子$(), 一份$(thing)甜味剂$()(例如生蜂蜜或糖), 和新鲜$(thing)水果$()放进锅里一起煮."
     },
     {
       "type": "patchouli:text",
-      "text": "$(li)Fruit Preserves$()$(li)Guano Jar$()$(li)Honey Jar$()$(li)Rotten Compost Jar$()$(li)Compost Jar$()",
-      "title": "Jar Types"
+      "text": "$(li)水果罐头$()$(li)鸟粪罐子$()$(li)蜂蜜罐子$()$(li)腐烂的堆肥罐子$()$(li)堆肥罐子$()",
+      "title": "罐子的种类"
     }
   ],
   "read_by_default": true,
-  "sortnum": 9
+  "sortnum": 6
 }

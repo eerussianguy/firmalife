@@ -1,0 +1,56 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "气象站",
+  "category": "firmalife:firmalife",
+  "icon": "firmalife:climate_station",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(thing)气象站$()是用来管理$(l:firmalife:firmalife/greenhouse)温室$()和$(l:firmalife:firmalife/cellar)地窖$()的方块. 如果温室或地窖的多方块结构被正确的建造完成, 它就会在方块侧面显示水. 如果建造的不正确, 就会显示冰. 气象站必须放在多方块结构的第一层, 并且紧靠着墙."
+    },
+    {
+      "type": "tfc:multimultiblock",
+      "text": "处于有效和无效状态的气象站.",
+      "multiblocks": [
+        {
+          "pattern": [
+            [
+              "X"
+            ],
+            [
+              "0"
+            ]
+          ],
+          "mapping": {
+            "X": "firmalife:climate_station[stasis=true]"
+          }
+        },
+        {
+          "pattern": [
+            [
+              "X"
+            ],
+            [
+              "0"
+            ]
+          ],
+          "mapping": {
+            "X": "firmalife:climate_station[stasis=false]"
+          }
+        }
+      ]
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(li)它每间隔一段时间都会自动更新.$()$(li)当气象站更新时, 它会触发结构中的所有其他方块发生更新. 例如, 它会让$(l:firmalife:firmalife/cheese)奶酪$()开始老化.$()$(li)按$(item)$(k:key.use)$()就可以手动触发一次更新.",
+      "title": "气象站提示"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/climate_station",
+      "text": "气象站的合成方法."
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 1
+}

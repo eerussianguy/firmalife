@@ -1,0 +1,147 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "更多的肥料獲取途徑",
+  "category": "firmalife:firmalife",
+  "icon": "firmalife:iron_composter",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Firmalife中對肥料的需求更大, 因此有更多的獲取$(l:mechanics/fertilizers)肥料$()的途徑."
+    },
+    {
+      "type": "firmalife:drying_recipe",
+      "recipe": "firmalife:drying/dry_grass",
+      "text": "乾草可以被$(l:firmalife:firmalife/drying)烘乾$()變成$(thing)乾草$(), 它可以當作棕色物品進行堆肥."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/iron_composter",
+      "text": "堆肥桶可以被升級為$(thing)鐵堆肥桶$(), 它堆肥的速度是普通堆肥桶的四倍."
+    },
+    {
+      "type": "tfc:multimultiblock",
+      "text": "鐵堆肥桶的幾種填充狀態",
+      "multiblocks": [
+        {
+          "pattern": [
+            [
+              "X"
+            ],
+            [
+              "0"
+            ]
+          ],
+          "mapping": {
+            "X": "firmalife:iron_composter[type=normal,stage=0]"
+          }
+        },
+        {
+          "pattern": [
+            [
+              "X"
+            ],
+            [
+              "0"
+            ]
+          ],
+          "mapping": {
+            "X": "firmalife:iron_composter[type=normal,stage=1]"
+          }
+        },
+        {
+          "pattern": [
+            [
+              "X"
+            ],
+            [
+              "0"
+            ]
+          ],
+          "mapping": {
+            "X": "firmalife:iron_composter[type=normal,stage=2]"
+          }
+        },
+        {
+          "pattern": [
+            [
+              "X"
+            ],
+            [
+              "0"
+            ]
+          ],
+          "mapping": {
+            "X": "firmalife:iron_composter[type=normal,stage=3]"
+          }
+        },
+        {
+          "pattern": [
+            [
+              "X"
+            ],
+            [
+              "0"
+            ]
+          ],
+          "mapping": {
+            "X": "firmalife:iron_composter[type=normal,stage=4]"
+          }
+        },
+        {
+          "pattern": [
+            [
+              "X"
+            ],
+            [
+              "0"
+            ]
+          ],
+          "mapping": {
+            "X": "firmalife:iron_composter[type=normal,stage=5]"
+          }
+        },
+        {
+          "pattern": [
+            [
+              "X"
+            ],
+            [
+              "0"
+            ]
+          ],
+          "mapping": {
+            "X": "firmalife:iron_composter[type=normal,stage=6]"
+          }
+        },
+        {
+          "pattern": [
+            [
+              "X"
+            ],
+            [
+              "0"
+            ]
+          ],
+          "mapping": {
+            "X": "firmalife:iron_composter[type=normal,stage=7]"
+          }
+        },
+        {
+          "pattern": [
+            [
+              "X"
+            ],
+            [
+              "0"
+            ]
+          ],
+          "mapping": {
+            "X": "firmalife:iron_composter[type=normal,stage=8]"
+          }
+        }
+      ]
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 12
+}

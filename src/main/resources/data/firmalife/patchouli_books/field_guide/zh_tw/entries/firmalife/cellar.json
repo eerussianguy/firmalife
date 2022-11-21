@@ -1,0 +1,30 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "地窖",
+  "category": "firmalife:firmalife",
+  "icon": "firmalife:sealed_bricks",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(thing)地窖$()是一種被$(l:firmalife:firmalife/climate_station)氣象站$()控制的多方塊建築. 建造地窖的唯一要求就是用$(thing)密封磚$()或者$(thing)密封門$()建造一個完全封閉的空間. 氣象站必須放在地窖的第一層, 緊靠著牆."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "multiblock_id": "firmalife:cellar",
+      "name": "地窖的一個範例",
+      "text": "這只是你可以建造的無數種地窖的一個例子!",
+      "enable_visualize": true
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/sealed_bricks",
+      "recipe2": "firmalife:crafting/sealed_door"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(thing)蜂蠟$()可以透過$(l:firmalife:firmalife/beekeeping)養蜂$()獲得.$(br)地窖可以用來$(l:firmalife:firmalife/cheese#aging)老化乳酪$()."
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 2
+}

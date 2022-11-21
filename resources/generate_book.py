@@ -126,7 +126,7 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False):
         entry('jar', 'Jars', 'firmalife:empty_jar', pages=(
             text('$(thing)Jars$() are a way of storing certain items. They can be placed on the ground, in groups of up to four. They are most useful as a way of storing $(l:firmalife:firmalife/beekeeping)Honey$() indefinitely.'),
             multimultiblock('Each possible arrangement of jars.', *[block_spotlight('', '', 'firmalife:honey_jar[count=%s]' % i) for i in range(1, 5)]),
-            crafting('firmalife:crafting/empty_jar', text_contents='It all starts with an $(thing)Empty Jar$(). Jars can be emptied, discarding the contents, by sealing them in a $(l:mechanics/barrels)Barrel$() of Water$().'),
+            crafting('firmalife:crafting/empty_jar', text_contents='It all starts with an $(thing)Empty Jar$(). Jars can be emptied, discarding the contents, by sealing them in a $(l:mechanics/barrels)Barrel$() of $(thing)Water$().'),
             text('The recipes to fill and empty jars are typically simple crafting recipes. Some jars cannot have their insides removed without a special recipe.$(br)$(br)One use of jars is making $(thing)Fruit Preserves$(). To do this, boil an $(thing)Empty Jar$(), a $(thing)Sweetener$(), and fresh $(thing)Fruit$().'),
             text('$(li)Fruit Preserves$()$(li)Guano Jar$()$(li)Honey Jar$()$(li)Rotten Compost Jar$()$(li)Compost Jar$()', 'Jar Types'),
             empty_last_page()
