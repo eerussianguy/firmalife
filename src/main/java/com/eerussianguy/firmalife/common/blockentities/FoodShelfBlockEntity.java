@@ -100,9 +100,9 @@ public class FoodShelfBlockEntity extends InventoryBlockEntity<ItemStackHandler>
             FoodCapability.removeTrait(player.getItemInHand(hand), getFoodTrait());
             res = InteractionResult.sidedSuccess(level.isClientSide);
         }
-        else if (player.isShiftKeyDown())
+        else if (held.isEmpty())
         {
-            ItemStack stack = inventory.extractItem(0, Integer.MAX_VALUE, false);
+            ItemStack stack = inventory.extractItem(0, player.isShiftKeyDown() ? Integer.MAX_VALUE : 1, false);
             if (stack.isEmpty()) return InteractionResult.PASS;
             FoodCapability.removeTrait(stack, getFoodTrait());
             ItemHandlerHelper.giveItemToPlayer(player, stack);

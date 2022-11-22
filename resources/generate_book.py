@@ -3,6 +3,7 @@ from argparse import ArgumentParser
 
 from mcresources.type_definitions import ResourceIdentifier
 
+from constants import FRUITS
 from patchouli import *
 from i18n import I18n
 
@@ -199,6 +200,18 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False):
             text('Butterfly grass will mature over time. When one reaches maturity, it has a chance to spread to surrounding blocks, or turn into something new. Butterfly grass blocks that have been spread by another grass block do not spread anymore.'),
             block_spotlight('', 'Basil is one of the plants that can be spawned by butterfly grass.', 'firmalife:plant/basil'),
             crafting('firmalife:crafting/basil_leaves', text_contents='Basil leaves are used in pizza.'),
+        )),
+        entry('fruit_trees', 'Firmalife Fruits', 'firmalife:plant/fig_sapling', pages=(
+            text('Firmalife adds some fruiting plants on top of those added by TFC.'),
+            text('To improve readability, entries start on the next page.'),
+            *detail_fruit_tree('cocoa', 'Cocoa trees are used to make $(l:firmalife:firmalife/chocolate)Chocolate$().'),
+            *detail_fruit_tree('fig'),
+        )),
+        entry('chocolate', 'Chocolate', 'firmalife:food/dark_chocolate', pages=(
+            text('$(thing)Chocolate-making$() takes a few processing steps, for not much of a reward. It\'s important to remember, when playing Firmalife, that being a chocolatier is for your personal enjoyment and pleasure, rather than for trying to extract maximum value from any given input.'),
+            text('To start chocolate processing, cocoa beans must first be $(thing)roasted$() in an $(l:firmalife:firmalife/ovens)Oven$() to make $(thing)Roasted Cocoa Beans$(). Then, craft the roasted beans with a $(thing)Knife$() to split the beans into $(thing)Cocoa Powder$() and $(thing)Cocoa Powder$().'),
+            text('The $(l:firmalife:firmalife/mixing_bowl)Mixing Bowl$() is used to mix cocoa powder, butter, and sweetener (sugar or honey) to make $(thing)Chocolate Blends$(). The ratio of cocoa butter to powder determines what comes out:$(br)$(li)1 Powder, 1 Butter, 1 Sweetener: Milk Chocolate$()$(li)2 Powder, 1 Sweetener: Dark Chocolate$()$(li)2 Butter, 1 Sweetener: White Chocolate$()'),
+            drying_recipe('firmalife:drying/dark_chocolate', 'Finally, chocolate is dried on a $(l:firmalife:firmalife/drying)Drying Mat$() to make $(thing)Chocolate$().')
         ))
     ))
 
@@ -219,6 +232,12 @@ def alloy_recipe(title: str, ingot: str, *components: Tuple[str, int, int], text
 def custom_component(x: int, y: int, class_name: str, data: JsonObject) -> Component:
     return Component('patchouli:custom', x, y, {'class': 'com.eerussianguy.firmalife.compat.patchouli.' + class_name, **data})
 
+def detail_fruit_tree(fruit: str, text_contents: str = '', right: Page = None, an: str = 'a') -> Tuple[Page, Page, Page]:
+    data = FRUITS[fruit]
+    left = text('$(bold)$(l:the_world/climate#temperature)Temperature$(): %d - %d °C$(br)$(bold)$(l:mechanics/hydration)Rainfall$(): %d - %dmm$(br2)%s' % (data.min_temp, data.max_temp, data.min_rain, data.max_rain, text_contents), title=('%s tree' % fruit).replace('_', ' ').title()).anchor(fruit)
+    if right is None:
+        right = multimultiblock('The monthly stages of %s %s tree' % (an, fruit.replace('_', ' ').title()), *[two_tall_block_spotlight('', '', 'firmalife:plant/%s_branch[up=true,down=true]' % fruit, 'firmalife:plant/%s_leaves[lifecycle=%s]' % (fruit, life)) for life in ('dormant', 'healthy', 'flowering', 'fruiting')])
+    return left, right, page_break()
 
 if __name__ == '__main__':
     main()

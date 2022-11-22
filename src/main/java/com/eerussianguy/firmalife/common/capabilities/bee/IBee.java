@@ -1,5 +1,7 @@
 package com.eerussianguy.firmalife.common.capabilities.bee;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -36,15 +38,11 @@ public interface IBee extends INBTSerializable<CompoundTag>
     {
         final int[] values = BeeAbility.fresh();
 
-        values[random.nextInt(values.length)] = random.nextInt(4) + 1;
-        values[random.nextInt(values.length)] = random.nextInt(4) + 1;
+        values[random.nextInt(values.length)] = random.nextInt(3) + 1;
+        values[random.nextInt(values.length)] = random.nextInt(3) + 1;
         if (random.nextFloat() < 0.1f)
         {
-            values[random.nextInt(values.length)] = random.nextInt(4) + 1;
-        }
-        for (int i = 0; i < values.length; i++)
-        {
-            values[i] = random.nextInt(4) + 1;
+            values[random.nextInt(values.length)] = random.nextInt(3) + 1;
         }
         setAbilities(values);
         setHasQueen(true);
@@ -57,11 +55,15 @@ public interface IBee extends INBTSerializable<CompoundTag>
         int mutation = (parent1Abilities[BeeAbility.MUTANT.ordinal()] + parent2Abilities[BeeAbility.MUTANT.ordinal()]) / 2;
         mutation = Mth.clamp(mutation, 1, 5);
 
-        for (BeeAbility ability : BeeAbility.VALUES)
+        int abilitiesSet = 0;
+        List<BeeAbility> abilities = Arrays.asList(BeeAbility.VALUES);
+        Collections.shuffle(abilities);
+        for (BeeAbility ability : abilities)
         {
             int average = (parent1Abilities[ability.ordinal()] + parent2Abilities[ability.ordinal()]) / 2;
-            if (average >= 1)
+            if (average >= 1 && abilitiesSet < 4)
             {
+                abilitiesSet++;
                 setAbility(ability, Mth.nextInt(random, average - mutation, average + mutation));
             }
         }
