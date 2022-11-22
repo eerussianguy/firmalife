@@ -1,0 +1,19 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "面包",
+  "category": "firmalife:firmalife",
+  "icon": "tfc:food/rye_bread",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "制作$(thing)面包$()需要$(thing)酵母$(). 要获得第一个酵母, 把$(l:firmalife:firmalife/drying)烘干的水果$()密封在一大桶$(thing)水$()里. 三天后就可以得到$(thing)酵种$().$(br)从现在开始, 你就可以把面粉密封在装有酵种的大桶里喂养你的酵母. 这会让酵母的数量翻倍. 每100mB酵种搭配一份面粉可以得到600mB的酵种."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/barley_dough",
+      "text": "酵种, 甜味剂, 加上面粉, 就可以合成$(thing)面团$(). 把面团烤熟就可以得到$(thing)面包$()了!"
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 11
+}

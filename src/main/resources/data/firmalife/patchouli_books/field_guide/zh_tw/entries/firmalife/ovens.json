@@ -1,0 +1,115 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "烤爐",
+  "category": "firmalife:firmalife",
+  "icon": "firmalife:cured_oven_top",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(thing)烤爐$()是烹飪大量食物並提高保質期的好辦法. 烤爐烤制的食物比一般食物變質慢10%. 烤爐是由$(thing)烤爐底$(),$(thing)烤爐頂$(),可選的$(thing)烤爐煙囪$()組成的多方塊結構. 這些方塊剛開始都是粘土材質, 然後需要加熱足夠長的時間來$(thing)硬化$()."
+    },
+    {
+      "type": "tfc:clay_knapping_recipe",
+      "recipe": "tfc:clay_knapping/oven_top",
+      "text": "烤爐底的合成配方."
+    },
+    {
+      "type": "tfc:clay_knapping_recipe",
+      "recipe": "tfc:clay_knapping/oven_bottom",
+      "text": "烤爐頂的合成配方."
+    },
+    {
+      "type": "tfc:clay_knapping_recipe",
+      "recipe": "tfc:clay_knapping/oven_chimney",
+      "text": "烤爐煙囪的合成配方."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "tfc:crafting/bricks",
+      "text": "烤爐用$(thing)磚塊$(), 烤爐方塊, 或者任何能夠包裹一個木炭爐的方塊構成. 如果你想的話, 你甚至可以使用石塊."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/peel",
+      "text": "$(thing)烤爐鏟$()是從烤爐中取出炙熱物體的安全方式. 拿著烤爐鏟然後按$(item)$(k:key.use)$()就可以取出物品, 否則你會被燙到!"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "烤爐首先由烤爐底和上方的烤爐頂構成. 每一個烤爐方塊(底或頂)的每一個面都必須被其他方塊包裹, 就像上文提到的那樣. 你也可以選擇使用$(thing)烤爐煙囪$()作為包裹. 在烤爐方塊的後方放置一個垂直的煙囪可以讓煙排出去, 如果你不這麼做, 煙就會很快填滿你的房子, 這是令人很不愉快的."
+    },
+    {
+      "type": "tfc:multimultiblock",
+      "text": "烤爐的一個示例,包括未硬化的和硬化的.",
+      "multiblocks": [
+        {
+          "pattern": [
+            [
+              "     ",
+              "  C  "
+            ],
+            [
+              "     ",
+              "  C  "
+            ],
+            [
+              "WT0TW",
+              "WWCWW"
+            ],
+            [
+              "WBBBW",
+              "WWCWW"
+            ]
+          ],
+          "mapping": {
+            "0": "firmalife:cured_oven_top[facing=south]",
+            "T": "firmalife:cured_oven_top[facing=south]",
+            "B": "firmalife:cured_oven_bottom[facing=south]",
+            "W": "minecraft:bricks",
+            "C": "firmalife:cured_oven_chimney"
+          }
+        },
+        {
+          "pattern": [
+            [
+              "     ",
+              "  C  "
+            ],
+            [
+              "     ",
+              "  C  "
+            ],
+            [
+              "WT0TW",
+              "WWCWW"
+            ],
+            [
+              "WBBBW",
+              "WWCWW"
+            ]
+          ],
+          "mapping": {
+            "0": "firmalife:oven_top[facing=south]",
+            "T": "firmalife:oven_top[facing=south]",
+            "B": "firmalife:oven_bottom[facing=south]",
+            "W": "minecraft:bricks",
+            "C": "firmalife:oven_chimney"
+          }
+        }
+      ]
+    },
+    {
+      "type": "patchouli:text",
+      "text": "烤爐底用來放置燃料, 它只能是原木. 按$(item)$(k:key.use)$()來放入或取出物品. 烤爐底也是烤爐的一部分, 可以用$(thing)起火器$()或其他工具點燃. 它把熱量傳遞到上方的烤爐頂."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "烤爐頂用來放置被烤制的食物. 它會從烤爐底吸收熱量並且緩慢的流失熱量. 也就是說, 如果你的燃料燒完了, 烤爐頂仍然可以繼續烤制一段時間. 按$(item)$(k:key.use)$()就可以放入或取出物品. 記得使用$(thing)烤爐鏟$()來取出炙熱的食物!"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "硬化烤爐方塊是很簡單的, 但是需要一點耐心. 只要正常的點燃你的烤爐底, 然後等待就可以了. 如果烤爐方塊連續80秒保持600度, 這個烤爐方塊和周圍的方塊就會硬化. 硬化的效果會一直向上傳導到煙囪."
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 10
+}
