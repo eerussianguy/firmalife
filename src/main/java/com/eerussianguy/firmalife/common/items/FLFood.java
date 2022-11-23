@@ -54,7 +54,15 @@ public enum FLFood
     MILK_CHOCOLATE_BLEND,
     WHITE_CHOCOLATE,
     DARK_CHOCOLATE,
-    MILK_CHOCOLATE;
+    MILK_CHOCOLATE,
+    CURED_MAIZE,
+    NIXTAMAL,
+    MASA_FLOUR,
+    MASA,
+    CORN_TORTILLA,
+    TACO_SHELL,
+    TOMATO_SAUCE,
+    SALSA;
 
     private final boolean meat, fast;
 

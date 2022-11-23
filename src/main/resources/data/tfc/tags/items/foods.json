@@ -28,6 +28,14 @@
     "firmalife:food/fig",
     "firmalife:food/roasted_cocoa_beans",
     "firmalife:food/cocoa_powder",
-    "firmalife:food/cocoa_butter"
+    "firmalife:food/cocoa_butter",
+    "firmalife:food/cured_maize",
+    "firmalife:food/nixtamal",
+    "firmalife:food/masa_flour",
+    "firmalife:food/masa",
+    "firmalife:food/corn_tortilla",
+    "firmalife:food/taco_shell",
+    "firmalife:food/tomato_sauce",
+    "firmalife:food/salsa"
   ]
 }

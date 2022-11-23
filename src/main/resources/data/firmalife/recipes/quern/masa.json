@@ -1,0 +1,11 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:quern",
+  "ingredient": {
+    "item": "firmalife:food/nixtamal"
+  },
+  "result": {
+    "item": "firmalife:food/masa_flour",
+    "count": 4
+  }
+}

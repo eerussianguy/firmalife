@@ -5,6 +5,8 @@
     "firmalife:food/raw_pizza",
     "firmalife:food/filled_pie",
     "firmalife:food/cooked_pizza",
-    "firmalife:food/cooked_pie"
+    "firmalife:food/cooked_pie",
+    "firmalife:food/burrito",
+    "firmalife:food/taco"
   ]
 }

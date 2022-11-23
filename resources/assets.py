@@ -154,7 +154,7 @@ def generate(rm: ResourceManager):
         for stage in ('0', '1'):
             rm.block_model('plant/%s_%s' % (herb, stage), parent='minecraft:block/cross', textures={'cross': 'firmalife:block/plant/%s/%s' % (herb, stage)})
         rm.blockstate('plant/%s' % herb, variants={'stage=0': {'model': 'firmalife:block/plant/%s_0' % herb}, 'stage=1': {'model': 'firmalife:block/plant/%s_1' % herb}}).with_lang(lang(herb)).with_tag('firmalife:butterfly_grass_mutants')
-        simple_plant_data(rm, 'firmalife:plant/%s' % herb)
+        simple_plant_data(rm, 'firmalife:plant/%s' % herb, straw=False)
         rm.item_model('plant/%s' % herb, 'firmalife:block/plant/%s/1' % herb)
         flower_pot_cross(rm, herb, 'firmalife:plant/potted/%s' % herb, 'plant/flowerpot/%s' % herb, 'firmalife:block/plant/%s/1' % herb, 'firmalife:plant/%s' % herb)
 
@@ -274,18 +274,13 @@ def flower_pot_cross(rm: ResourceManager, simple_name: str, name: str, model: st
     rm.blockstate(name, model='firmalife:block/%s' % model).with_lang(lang('potted %s', simple_name)).with_tag('minecraft:flower_pots').with_block_loot(loot, 'minecraft:flower_pot')
     rm.block_model(model, parent='minecraft:block/tinted_flower_pot_cross' if tinted else 'minecraft:block/flower_pot_cross', textures={'plant': texture, 'dirt': 'tfc:block/dirt/loam'})
 
-def simple_plant_data(rm: ResourceManager, p: str, bees: bool = True):
+def simple_plant_data(rm: ResourceManager, p: str, bees: bool = True, straw: bool = True):
     rm.block_tag('tfc:plants', p)
     rm.item_tag('tfc:plants', p)
     if bees:
         rm.block_tag('bee_restoration_plants', p)
-    rm.block_loot(p, ({
-      'name': p,
-      'conditions': [loot_tables.match_tag('forge:shears')],
-    }, {
-      'name': 'tfc:straw',
-      'conditions': [loot_tables.match_tag('tfc:sharp_tools')]
-    }))
+    loot_alt = ({'name': p, 'conditions': [loot_tables.match_tag('tfc:knives')]}) if not straw else ({'name': p, 'conditions': [loot_tables.match_tag('forge:shears')]}, {'name': 'tfc:straw', 'conditions': [loot_tables.match_tag('tfc:sharp_tools')]})
+    rm.block_loot(p, loot_alt)
 
 def make_jar(rm: ResourceManager, jar: str, texture: str, lang_override: str = None) -> ItemContext:
     for i in range(1, 5):

@@ -25,6 +25,12 @@
       "ingredient": {
         "item": "firmalife:food/shredded_cheese"
       }
+    },
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "firmalife:food/tomato_sauce"
+      }
     }
   ],
   "result": {

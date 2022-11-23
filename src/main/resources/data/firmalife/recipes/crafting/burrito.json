@@ -1,0 +1,50 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:advanced_shapeless_crafting",
+  "ingredients": [
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "tag": "tfc:foods/cooked_meats"
+      }
+    },
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "firmalife:food/shredded_cheese"
+      }
+    },
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "firmalife:food/corn_tortilla"
+      }
+    },
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "tag": "tfc:foods/vegetables"
+      }
+    },
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "firmalife:food/salsa"
+      }
+    }
+  ],
+  "result": {
+    "stack": {
+      "item": "firmalife:food/burrito"
+    },
+    "modifiers": [
+      "firmalife:burrito"
+    ]
+  },
+  "primary_ingredient": {
+    "type": "tfc:not_rotten",
+    "ingredient": {
+      "tag": "tfc:foods/cooked_meats"
+    }
+  }
+}

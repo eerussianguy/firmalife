@@ -7,31 +7,14 @@
       "rolls": 1,
       "entries": [
         {
-          "type": "minecraft:alternatives",
-          "children": [
+          "type": "minecraft:item",
+          "name": "firmalife:plant/vanilla",
+          "conditions": [
             {
-              "type": "minecraft:item",
-              "name": "firmalife:plant/vanilla",
-              "conditions": [
-                {
-                  "condition": "minecraft:match_tool",
-                  "predicate": {
-                    "tag": "forge:shears"
-                  }
-                }
-              ]
-            },
-            {
-              "type": "minecraft:item",
-              "name": "tfc:straw",
-              "conditions": [
-                {
-                  "condition": "minecraft:match_tool",
-                  "predicate": {
-                    "tag": "tfc:sharp_tools"
-                  }
-                }
-              ]
+              "condition": "minecraft:match_tool",
+              "predicate": {
+                "tag": "tfc:knives"
+              }
             }
           ]
         }

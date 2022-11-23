@@ -60,6 +60,8 @@ public class FLItems
     public static final RegistryObject<DynamicBowlFood> COOKED_PIE = registerContainerFood("food/cooked_pie");
     public static final RegistryObject<SandwichItem> RAW_PIZZA = registerDynamicFood("food/raw_pizza", false);
     public static final RegistryObject<SandwichItem> COOKED_PIZZA = registerDynamicFood("food/cooked_pizza");
+    public static final RegistryObject<SandwichItem> BURRITO = registerDynamicFood("food/burrito");
+    public static final RegistryObject<SandwichItem> TACO = registerDynamicFood("food/taco");
 
     public static final Map<Ore.Grade, RegistryObject<Item>> CHROMIUM_ORES = Helpers.mapOfKeys(Ore.Grade.class, grade -> register("ore/" + grade.name() + "_chromite", TFCItemGroup.ORES));
 

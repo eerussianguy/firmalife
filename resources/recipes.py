@@ -1,4 +1,5 @@
 from enum import Enum
+from itertools import repeat
 from typing import Union
 
 from mcresources import ResourceManager, RecipeContext, utils
@@ -74,9 +75,16 @@ def generate(rm: ResourceManager):
     rm.crafting_shaped('crafting/embedded_pipe', ['XY', 'XY', 'ZZ'], {'X': '#forge:rods/stainless_steel', 'Y': '#forge:rods/copper', 'Z': 'firmalife:beeswax'}, '6 firmalife:embedded_pipe').with_advancement('#forge:rods/stainless_steel')
     damage_shapeless(rm, 'crafting/pumpkin_chunks_bulk', ('#tfc:hammers', *('tfc:pumpkin' for _ in range(0, 8))), '8 firmalife:food/pumpkin_chunks').with_advancement('tfc:pumpkin')
     rm.crafting_shapeless('crafting/garlic_bread', ('firmalife:food/toast', 'firmalife:food/butter', 'tfc:food/garlic'), 'firmalife:food/garlic_bread').with_advancement('tfc:food/garlic')
+    damage_shapeless(rm, 'crafting/salsa', ('tfc:food/tomato', 'tfc:powder/salt', 'firmalife:plant/cilantro', '#tfc:knives'), '5 firmalife:food/salsa').with_advancement('tfc:food/tomato')
     rm.domain = 'tfc'
     rm.crafting_shapeless('crafting/pumpkin_pie', ('firmalife:food/cooked_pumpkin_pie',), 'minecraft:pumpkin_pie').with_advancement('firmalife:food/cooked_pumpkin_pie')
     rm.domain = 'firmalife'
+
+    for i in range(1, 9):
+        advanced_shapeless(rm, 'crafting/masa_%s' % i, (
+            fluid_item_ingredient('100 minecraft:water'),
+            *repeat(not_rotten('firmalife:food/masa_flour'), i)
+        ), item_stack_provider('%d firmalife:food/masa' % (2 * i), copy_oldest_food=True)).with_advancement('firmalife:food/masa_flour')
 
     write_crafting_recipe(rm, 'cocoa_butter_powder', {
         'type': 'tfc:extra_products_shapeless_crafting',
@@ -104,10 +112,11 @@ def generate(rm: ResourceManager):
         make_jar(rm, fruit)
         simple_pot_recipe(rm, '%s_jar' % fruit, [utils.ingredient('firmalife:empty_jar'), utils.ingredient('#firmalife:sweetener'), not_rotten(has_trait('firmalife:food/%s' % fruit, 'firmalife:dried', True))], '1000 minecraft:water', None, ['firmalife:%s_jar' % fruit])
 
-
     beet = not_rotten('tfc:food/beet')
     simple_pot_recipe(rm, 'beet_sugar', [beet, beet, beet, beet, beet], '1000 tfc:salt_water', output_items=['minecraft:sugar', 'minecraft:sugar', 'minecraft:sugar'])
     simple_pot_recipe(rm, 'soy_mixture', [not_rotten('tfc:food/soybean'), not_rotten('tfc:food/soybean'), utils.ingredient('tfc:powder/salt'), utils.ingredient('tfc:powder/salt')], '1000 minecraft:water', output_items=['firmalife:food/soy_mixture', 'firmalife:food/soy_mixture'])
+    simple_pot_recipe(rm, 'cured_maize', [not_rotten('tfc:food/maize_grain')], '1000 tfc:limewater', output_items=['firmalife:food/cured_maize'], duration=3000)
+    simple_pot_recipe(rm, 'tomato_sauce', [not_rotten('tfc:food/tomato'), utils.ingredient('tfc:powder/salt'), not_rotten('tfc:food/garlic')], '1000 minecraft:water', output_items=['firmalife:food/tomato_sauce', 'firmalife:food/tomato_sauce', 'firmalife:food/tomato_sauce', 'firmalife:food/tomato_sauce', 'firmalife:food/tomato_sauce'])
 
     barrel_instant_recipe(rm, 'clean_any_bowl', '#firmalife:foods/washable', '100 minecraft:water', output_item=item_stack_provider(empty_bowl=True))
 
@@ -122,12 +131,15 @@ def generate(rm: ResourceManager):
     barrel_sealed_recipe(rm, 'goat_milk_curd', 'Goat Curd', 1000, 'firmalife:cheesecloth', '1000 firmalife:curdled_goat_milk', output_item='firmalife:food/goat_curd')
     barrel_sealed_recipe(rm, 'yak_milk_curd', 'Yak Curd', 1000, 'firmalife:cheesecloth', '1000 firmalife:curdled_yak_milk', output_item='firmalife:food/yak_curd')
     barrel_sealed_recipe(rm, 'cream', 'Cream', 1000, 'firmalife:cheesecloth', '1000 #tfc:milks', output_item='firmalife:cheesecloth', output_fluid='1000 firmalife:cream')
+    barrel_sealed_recipe(rm, 'nixtamal', 'Nixtamal', 1000, 'firmalife:food/cured_maize', '100 minecraft:water', output_item='firmalife:food/nixtamal')
 
     barrel_sealed_recipe(rm, 'shosha', 'Shosha Wheel', 16000, '3 firmalife:food/yak_curd', '750 tfc:salt_water', output_item='firmalife:shosha_wheel')
     barrel_sealed_recipe(rm, 'feta', 'Feta Wheel', 16000, '3 firmalife:food/goat_curd', '750 tfc:salt_water', output_item='firmalife:feta_wheel')
     rm.domain = 'tfc'  # DOMAIN CHANGE
     barrel_sealed_recipe(rm, 'cheese', 'Gouda Wheel', 16000, '3 firmalife:food/milk_curd', '750 tfc:salt_water', output_item='firmalife:gouda_wheel')
     rm.domain = 'firmalife'  # DOMAIN RESET
+
+    quern_recipe(rm, 'masa', 'firmalife:food/nixtamal', 'firmalife:food/masa_flour', count=4)
 
     clay_knapping(rm, 'oven_top', ['XXXXX', 'XX XX', 'X   X', 'X   X', 'XXXXX'], 'firmalife:oven_top')
     clay_knapping(rm, 'oven_bottom', ['XX XX', 'X   X', 'X   X', 'XX XX', 'XXXXX'], 'firmalife:oven_bottom')
@@ -137,6 +149,7 @@ def generate(rm: ResourceManager):
     oven_recipe(rm, 'cooked_pizza', not_rotten('firmalife:food/raw_pizza'), 400, result_item=item_stack_provider('firmalife:food/cooked_pizza', other_modifier='firmalife:copy_dynamic_food', remove_trait='firmalife:raw'))
     oven_recipe(rm, 'pumpkin_pie', not_rotten('firmalife:food/raw_pumpkin_pie'), 400, result_item=item_stack_provider('firmalife:food/cooked_pumpkin_pie'))
     oven_recipe(rm, 'roasted_cocoa_beans', not_rotten('firmalife:food/cocoa_beans'), 400, result_item=item_stack_provider('firmalife:food/roasted_cocoa_beans'))
+    oven_recipe(rm, 'taco_shell', not_rotten('firmalife:food/corn_tortilla'), 400, result_item=item_stack_provider('firmalife:food/taco_shell'))
 
     # Firmalife Recipes
     for carving, pattern in CARVINGS.items():
@@ -165,7 +178,9 @@ def generate(rm: ResourceManager):
     mixing_recipe(rm, 'milk_chocolate_blend', ingredients=[utils.ingredient('#firmalife:sweetener'), not_rotten('firmalife:food/cocoa_butter'), not_rotten('firmalife:food/cocoa_powder')], fluid='1000 #tfc:milks', output_item='2 firmalife:food/milk_chocolate_blend')
 
     meal_shapeless(rm, 'crafting/filled_pie', (not_rotten('firmalife:food/pie_dough'), '#firmalife:foods/preserves', '#firmalife:pie_pans'), 'firmalife:food/filled_pie', 'firmalife:pie').with_advancement('firmalife:food/pie_dough')
-    meal_shapeless(rm, 'crafting/raw_pizza', (not_rotten('firmalife:food/pizza_dough'), not_rotten('#firmalife:foods/pizza_ingredients'), not_rotten('#firmalife:foods/pizza_ingredients'), not_rotten('firmalife:food/shredded_cheese')), 'firmalife:food/raw_pizza', 'firmalife:pizza').with_advancement('firmalife:food/pizza_dough')
+    meal_shapeless(rm, 'crafting/raw_pizza', (not_rotten('firmalife:food/pizza_dough'), not_rotten('#firmalife:foods/pizza_ingredients'), not_rotten('#firmalife:foods/pizza_ingredients'), not_rotten('firmalife:food/shredded_cheese'), not_rotten('firmalife:food/tomato_sauce')), 'firmalife:food/raw_pizza', 'firmalife:pizza').with_advancement('firmalife:food/pizza_dough')
+    meal_shapeless(rm, 'crafting/burrito', (not_rotten('#tfc:foods/cooked_meats'), not_rotten('firmalife:food/shredded_cheese'), not_rotten('firmalife:food/corn_tortilla'), not_rotten('#tfc:foods/vegetables'), not_rotten('firmalife:food/salsa')), 'firmalife:food/burrito', 'firmalife:burrito').with_advancement('firmalife:food/corn_tortilla')
+    meal_shapeless(rm, 'crafting/taco', (not_rotten('#tfc:foods/cooked_meats'), not_rotten('firmalife:food/shredded_cheese'), not_rotten('firmalife:food/taco_shell'), not_rotten('#tfc:foods/vegetables'), not_rotten('firmalife:food/salsa')), 'firmalife:food/taco', 'firmalife:burrito').with_advancement('firmalife:food/taco_shell')
 
     # Greenhouse
     for block in GREENHOUSE_BLOCKS:
@@ -193,6 +208,8 @@ def generate(rm: ResourceManager):
         rm.domain = 'tfc'  # DOMAIN CHANGE
         heat_recipe(rm, grain + '_dough', not_rotten('tfc:food/%s_dough' % grain), 200, result_item=item_stack_provider('firmalife:food/%s_flatbread' % grain, copy_food=True))
         rm.domain = 'firmalife'  # DOMAIN RESET
+
+    heat_recipe(rm, 'corn_tortilla', not_rotten('firmalife:food/masa'), 200, result_item=item_stack_provider('firmalife:food/corn_tortilla', copy_food=True))
 
     ore = 'chromite'
     for rock, data in TFC_ROCKS.items():
@@ -226,14 +243,14 @@ def write_crafting_recipe(rm: ResourceManager, name_parts: ResourceIdentifier, d
 def meal_shapeless(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredients: Json, result: str, mod: str) -> RecipeContext:
     return advanced_shapeless(rm, name_parts, ingredients, item_stack_provider(result, other_modifier=mod), primary_ingredient=utils.ingredient(ingredients[0]))
 
-def advanced_shapeless(rm: ResourceManager, name_parts: ResourceIdentifier, ingredients: Json, result: Json, primary_ingredient: Json, group: str = None, conditions: Optional[Json] = None) -> RecipeContext:
+def advanced_shapeless(rm: ResourceManager, name_parts: ResourceIdentifier, ingredients: Json, result: Json, primary_ingredient: Json = None, group: str = None, conditions: Optional[Json] = None) -> RecipeContext:
     res = utils.resource_location(rm.domain, name_parts)
     rm.write((*rm.resource_dir, 'data', res.domain, 'recipes', res.path), {
         'type': 'tfc:advanced_shapeless_crafting',
         'group': group,
         'ingredients': utils.item_stack_list(ingredients),
         'result': result,
-        'primary_ingredient': utils.ingredient(primary_ingredient),
+        'primary_ingredient': None if primary_ingredient is None else utils.ingredient(primary_ingredient),
         'conditions': utils.recipe_condition(conditions)
     })
     return RecipeContext(rm, res)
@@ -516,4 +533,11 @@ def alloy_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, meta
             'min': p[1],
             'max': p[2]
         } for p in parts]
+    })
+
+def quern_recipe(rm: ResourceManager, name: ResourceIdentifier, item: str, result: str, count: int = 1) -> RecipeContext:
+    result = result if not isinstance(result, str) else utils.item_stack((count, result))
+    return rm.recipe(('quern', name), 'tfc:quern', {
+        'ingredient': utils.ingredient(item),
+        'result': result
     })
