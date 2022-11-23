@@ -135,9 +135,7 @@ def generate(rm: ResourceManager):
 
     barrel_sealed_recipe(rm, 'shosha', 'Shosha Wheel', 16000, '3 firmalife:food/yak_curd', '750 tfc:salt_water', output_item='firmalife:shosha_wheel')
     barrel_sealed_recipe(rm, 'feta', 'Feta Wheel', 16000, '3 firmalife:food/goat_curd', '750 tfc:salt_water', output_item='firmalife:feta_wheel')
-    rm.domain = 'tfc'  # DOMAIN CHANGE
-    barrel_sealed_recipe(rm, 'cheese', 'Gouda Wheel', 16000, '3 firmalife:food/milk_curd', '750 tfc:salt_water', output_item='firmalife:gouda_wheel')
-    rm.domain = 'firmalife'  # DOMAIN RESET
+    barrel_sealed_recipe(rm, 'gouda', 'Gouda Wheel', 16000, '3 firmalife:food/milk_curd', '750 tfc:salt_water', output_item='firmalife:gouda_wheel')
 
     quern_recipe(rm, 'masa', 'firmalife:food/nixtamal', 'firmalife:food/masa_flour', count=4)
 

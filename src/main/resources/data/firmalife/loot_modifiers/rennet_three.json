@@ -5,13 +5,13 @@
     {
       "condition": "minecraft:entity_properties",
       "predicate": {
-        "type": "#firmalife:drops_rennet"
+        "type": "#firmalife:drops_three_rennet"
       },
       "entity": "this"
     }
   ],
   "item": {
     "item": "firmalife:rennet",
-    "count": 2
+    "count": 3
   }
 }

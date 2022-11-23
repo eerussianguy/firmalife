@@ -79,7 +79,8 @@ def generate(rm: ResourceManager):
     rm.block_tag('minecraft:mineable/axe', *['firmalife:plant/%s_branch' % t for t in FRUITS], *['firmalife:plant/%s_growing_branch' % t for t in FRUITS], *['firmalife:plant/%s' % p for p in HERBS], 'firmalife:plant/butterfly_grass')
     rm.block_tag('tfc:mineable_with_sharp_tool', *['firmalife:plant/%s_leaves' % t for t in FRUITS], *['firmalife:plant/%s_sapling' % t for t in FRUITS])
 
-    rm.entity_tag('drops_rennet', 'tfc:cow', 'tfc:sheep', 'tfc:goat', 'tfc:yak', 'tfc:musk_ox')
+    rm.entity_tag('drops_rennet', 'tfc:goat', 'tfc:yak')
+    rm.entity_tag('drops_three_rennet', 'tfc:cow', 'tfc:sheep', 'tfc:musk_ox')
 
     rm.fluid_tag('tfc:alcohols', 'firmalife:pina_colada')
     rm.fluid_tag('tfc:milks', 'firmalife:yak_milk', 'firmalife:goat_milk', 'firmalife:coconut_milk')
@@ -186,8 +187,9 @@ def generate(rm: ResourceManager):
         climate_range(rm, 'plant/%s_tree' % fruit, hydration=(hydration_from_rainfall(data.min_rain), 100, 0), temperature=(data.min_temp - 7, data.max_temp + 7, 0))
 
     ### MISC DATA ###
-    global_loot_modifiers(rm, 'firmalife:fruit_leaf', 'firmalife:rennet')
-    global_loot_modifier(rm, 'rennet', 'firmalife:add_item', {'item': utils.item_stack('firmalife:rennet')}, match_entity_tag('firmalife:drops_rennet'))
+    global_loot_modifiers(rm, 'firmalife:fruit_leaf', 'firmalife:rennet', 'firmalife:rennet_three')
+    global_loot_modifier(rm, 'rennet', 'firmalife:add_item', {'item': utils.item_stack('2 firmalife:rennet')}, match_entity_tag('firmalife:drops_rennet'))
+    global_loot_modifier(rm, 'rennet_three', 'firmalife:add_item', {'item': utils.item_stack('3 firmalife:rennet')}, match_entity_tag('firmalife:drops_three_rennet'))
     global_loot_modifier(rm, 'fruit_leaf', 'firmalife:add_item', {'item': utils.item_stack('firmalife:fruit_leaf')}, match_block_ingredient('firmalife:drops_fruit_leaf'))
 
 
