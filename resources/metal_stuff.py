@@ -29,7 +29,7 @@ METAL_ITEMS: Dict[str, MetalItem] = {
     'double_ingot': MetalItem('part', 200, 'item/generated', 'forge:double_ingots', False),
     'sheet': MetalItem('part', 200, 'item/generated', 'forge:sheets', False),
     'double_sheet': MetalItem('part', 400, 'item/generated', 'forge:double_sheets', False),
-    'rod': MetalItem('part', 100, 'item/generated', 'forge:rods', False),
+    'rod': MetalItem('part', 50, 'item/generated', 'forge:rods', False),
 }
 
 def generate(rm: ResourceManager):
