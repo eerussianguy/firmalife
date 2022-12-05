@@ -5,6 +5,8 @@
     "firmalife:food/raw_pizza",
     "firmalife:food/filled_pie",
     "firmalife:food/raw_pumpkin_pie",
-    "firmalife:food/corn_tortilla"
+    "firmalife:food/corn_tortilla",
+    "firmalife:food/masa",
+    "#firmalife:foods/slices"
   ]
 }

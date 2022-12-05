@@ -34,6 +34,7 @@ import com.eerussianguy.firmalife.common.items.FLItems;
 import com.eerussianguy.firmalife.common.items.JarsBlockItem;
 import com.eerussianguy.firmalife.common.util.*;
 import net.dries007.tfc.common.TFCItemGroup;
+import net.dries007.tfc.common.blocks.ExtendedBlock;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.GroundcoverBlock;
 import net.dries007.tfc.common.blocks.TFCMaterials;
@@ -94,6 +95,7 @@ public class FLBlocks
     public static final RegistryObject<Block> SEALED_DOOR = register("sealed_door", () -> new DoorBlock(Properties.of(Material.WOOD).sound(SoundType.STONE).strength(2.0f, 10).requiresCorrectToolForDrops()), DECORATIONS);
     public static final RegistryObject<Block> HOLLOW_SHELL = register("hollow_shell", () -> new GroundcoverBlock(ExtendedProperties.of(Material.GRASS).strength(0.05F, 0.0F).sound(SoundType.NETHER_WART).noCollission(), GroundcoverBlock.SMALL, FLItems.HOLLOW_SHELL));
     public static final RegistryObject<Block> EMBEDDED_PIPE = register("embedded_pipe", () -> new Block(Properties.of(Material.METAL).sound(SoundType.COPPER).strength(2f)), DECORATIONS);
+    public static final RegistryObject<Block> TREATED_WOOD = register("treated_wood", () -> new ExtendedBlock(ExtendedProperties.of(Material.WOOD).sound(SoundType.WOOL).strength(2f).flammableLikePlanks()), DECORATIONS);
     public static final RegistryObject<Block> SQUIRTING_MOISTURE_TRANSDUCER = register("squirting_moisture_transducer", () -> new SquirtingMoistureTransducerBlock(ExtendedProperties.of(Material.METAL).strength(8f).sound(SoundType.LANTERN).blockEntity(FLBlockEntities.SQUIRTING_MOISTURE_TRANSDUCER).serverTicks(SquirtingMoistureTransducerBlockEntity::serverTick)), DECORATIONS);
 
     public static final RegistryObject<Block> BUTTERFLY_GRASS = register("plant/butterfly_grass", () -> MutatingPlantBlock.create(FLPlant.BUTTERFLY_GRASS, FLPlant.BUTTERFLY_GRASS.nonSolidFire(), FLTags.Blocks.BUTTERFLY_GRASS_MUTANTS), FLORA);

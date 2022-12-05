@@ -73,6 +73,7 @@ def generate(rm: ResourceManager):
     rm.crafting_shapeless('crafting/raw_pumpkin_pie', ('firmalife:food/pumpkin_pie_dough', 'firmalife:pie_pan'), 'firmalife:food/raw_pumpkin_pie').with_advancement('firmalife:food/pumpkin_pie_dough')
     rm.crafting_shaped('crafting/squirting_moisture_transducer', ['XYX', 'XZX', 'XYX'], {'X': '#forge:sheets/stainless_steel', 'Y': 'tfc:brass_mechanisms', 'Z': '#forge:rods/nickel'}, 'firmalife:squirting_moisture_transducer').with_advancement('#forge:rods/stainless_steel')
     rm.crafting_shaped('crafting/embedded_pipe', ['XY', 'XY', 'ZZ'], {'X': '#forge:rods/stainless_steel', 'Y': '#forge:rods/copper', 'Z': 'firmalife:beeswax'}, '6 firmalife:embedded_pipe').with_advancement('#forge:rods/stainless_steel')
+    rm.crafting_shaped('crafting/treated_wood', ['XX', 'XX'], {'X': 'firmalife:treated_lumber'}, 'firmalife:treated_wood').with_advancement('firmalife:treated_lumber')
     damage_shapeless(rm, 'crafting/pumpkin_chunks_bulk', ('#tfc:hammers', *('tfc:pumpkin' for _ in range(0, 8))), '8 firmalife:food/pumpkin_chunks').with_advancement('tfc:pumpkin')
     rm.crafting_shapeless('crafting/garlic_bread', ('firmalife:food/toast', 'firmalife:food/butter', 'tfc:food/garlic'), 'firmalife:food/garlic_bread').with_advancement('tfc:food/garlic')
     damage_shapeless(rm, 'crafting/salsa', ('tfc:food/tomato', 'tfc:powder/salt', 'firmalife:plant/cilantro', '#tfc:knives'), '5 firmalife:food/salsa').with_advancement('tfc:food/tomato')
