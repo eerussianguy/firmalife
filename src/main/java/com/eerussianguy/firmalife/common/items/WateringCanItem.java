@@ -4,7 +4,9 @@ import java.util.Random;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -42,19 +44,17 @@ public class WateringCanItem extends Item
                 level.addParticle(ParticleTypes.SPLASH, vec.x, vec.y, vec.z, rand.nextFloat() - 0.5f, rand.nextFloat(), rand.nextFloat() - 0.5f);
             }
         }
-    }
-
-    @Override
-    public void releaseUsing(ItemStack stack, Level level, LivingEntity entity, int left)
-    {
-        for (BlockPos pos : FLHelpers.allPositionsCentered(entity.blockPosition(), 3, 3))
+        if (countLeft == 1)
         {
-            if (level.getBlockEntity(pos) instanceof ClimateReceiver receiver)
+            for (BlockPos pos : FLHelpers.allPositionsCentered(entity.blockPosition(), 3, 3))
             {
-                receiver.addWater(0.25f);
+                if (level.getBlockEntity(pos) instanceof ClimateReceiver receiver)
+                {
+                    receiver.addWater(0.25f);
+                }
             }
+            stack.hurtAndBreak(1, entity, p -> p.broadcastBreakEvent(entity.getUsedItemHand()));
         }
-        stack.hurtAndBreak(1, entity, p -> p.broadcastBreakEvent(entity.getUsedItemHand()));
     }
 
     @Override

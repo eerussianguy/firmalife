@@ -121,7 +121,7 @@ FRUITS: Dict[str, Fruit] = {
     'fig': Fruit(20, 35, 125, 215)
 }
 
-DISABLED_TFC_RECIPES = ('barrel/curdling', 'barrel/cheese')
+DISABLED_TFC_RECIPES = ('barrel/curdling', 'barrel/cheese', 'barrel/milk_vinegar')
 
 # Default parameters for common ore veins
 # rarity, size, min_y, max_y, density, poor, normal, rich

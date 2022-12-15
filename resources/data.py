@@ -54,7 +54,7 @@ def generate(rm: ResourceManager):
     rm.item_tag('tfc:foods/can_be_salted', 'firmalife:food/butter')
     rm.item_tag('tfc:usable_on_tool_rack', 'firmalife:spoon', 'firmalife:peel')
     rm.item_tag('pumpkin_knapping', 'tfc:pumpkin')
-    rm.item_tag('foods/heatable', 'firmalife:food/raw_pizza', 'firmalife:food/filled_pie', 'firmalife:food/raw_pumpkin_pie', 'firmalife:food/corn_tortilla', 'firmalife:food/masa', '#firmalife:foods/slices')
+    rm.item_tag('foods/heatable', 'firmalife:food/raw_pizza', 'firmalife:food/filled_pie', 'firmalife:food/raw_pumpkin_pie', 'firmalife:food/corn_tortilla', 'firmalife:food/masa', '#firmalife:foods/slices', 'firmalife:food/cocoa_beans')
     rm.item_tag('foods/dynamic', 'firmalife:food/raw_pizza', 'firmalife:food/filled_pie', 'firmalife:food/cooked_pizza', 'firmalife:food/cooked_pie', 'firmalife:food/burrito', 'firmalife:food/taco')
     rm.item_tag('foods/washable', 'firmalife:food/filled_pie', 'firmalife:food/cooked_pie')
     rm.item_tag('pie_pans', 'firmalife:pie_pan')
@@ -76,7 +76,7 @@ def generate(rm: ResourceManager):
     rm.block_tag('buzzing_leaves', 'firmalife:plant/fig_leaves')
     rm.block_tag('pipe_replaceable', '#tfc:dirt', '#tfc:grass', '#minecraft:base_stone_overworld', '#forge:gravel', '#minecraft:sand', '#tfc:can_carve')
 
-    rm.block_tag('minecraft:mineable/axe', *['firmalife:plant/%s_branch' % t for t in FRUITS], *['firmalife:plant/%s_growing_branch' % t for t in FRUITS], *['firmalife:plant/%s' % p for p in HERBS], 'firmalife:plant/butterfly_grass')
+    rm.block_tag('minecraft:mineable/axe', *['firmalife:plant/%s_branch' % t for t in FRUITS], *['firmalife:plant/%s_growing_branch' % t for t in FRUITS])
     rm.block_tag('tfc:mineable_with_sharp_tool', *['firmalife:plant/%s_leaves' % t for t in FRUITS], *['firmalife:plant/%s_sapling' % t for t in FRUITS])
 
     rm.entity_tag('drops_rennet', 'tfc:goat', 'tfc:yak')

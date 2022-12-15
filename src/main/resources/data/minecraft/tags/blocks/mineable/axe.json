@@ -61,15 +61,6 @@
     "firmalife:plant/cocoa_branch",
     "firmalife:plant/fig_branch",
     "firmalife:plant/cocoa_growing_branch",
-    "firmalife:plant/fig_growing_branch",
-    "firmalife:plant/basil",
-    "firmalife:plant/bay_laurel",
-    "firmalife:plant/cardamom",
-    "firmalife:plant/cilantro",
-    "firmalife:plant/cumin",
-    "firmalife:plant/oregano",
-    "firmalife:plant/pimento",
-    "firmalife:plant/vanilla",
-    "firmalife:plant/butterfly_grass"
+    "firmalife:plant/fig_growing_branch"
   ]
 }
