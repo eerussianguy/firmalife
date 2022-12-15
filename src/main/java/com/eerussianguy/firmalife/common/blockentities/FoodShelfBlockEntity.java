@@ -1,5 +1,6 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
+import com.eerussianguy.firmalife.config.FLConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.InteractionHand;
@@ -18,9 +19,12 @@ import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
 import net.dries007.tfc.common.capabilities.food.FoodCapability;
 import net.dries007.tfc.common.capabilities.food.FoodTrait;
 import net.dries007.tfc.util.Helpers;
+import net.dries007.tfc.util.climate.Climate;
 
 public class FoodShelfBlockEntity extends InventoryBlockEntity<ItemStackHandler> implements ClimateReceiver
 {
+    private static final FoodTrait[] POSSIBLE = {FLFoodTraits.SHELVED, FLFoodTraits.SHELVED_2, FLFoodTraits.SHELVED_3};
+
     private boolean climateValid = false;
 
     public FoodShelfBlockEntity(BlockPos pos, BlockState state)
@@ -81,7 +85,24 @@ public class FoodShelfBlockEntity extends InventoryBlockEntity<ItemStackHandler>
 
     public FoodTrait getFoodTrait()
     {
+        if (level != null)
+        {
+            final float temp = Climate.getTemperature(level, getBlockPos());
+            if (temp < FLConfig.SERVER.cellarLevel3Temperature.get())
+            {
+                return FLFoodTraits.SHELVED_3;
+            }
+            if (temp < FLConfig.SERVER.cellarLevel2Temperature.get())
+            {
+                return FLFoodTraits.SHELVED_2;
+            }
+        }
         return FLFoodTraits.SHELVED;
+    }
+
+    public FoodTrait[] getPossibleTraits()
+    {
+        return POSSIBLE;
     }
 
     public InteractionResult use(Player player, InteractionHand hand)
@@ -121,7 +142,11 @@ public class FoodShelfBlockEntity extends InventoryBlockEntity<ItemStackHandler>
         }
         else
         {
-            FoodCapability.removeTrait(inventory.getStackInSlot(0), getFoodTrait());
+            final ItemStack stack = inventory.getStackInSlot(0);
+            for (FoodTrait trait : getPossibleTraits())
+            {
+                FoodCapability.removeTrait(stack, trait);
+            }
         }
     }
 

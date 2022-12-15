@@ -20,6 +20,8 @@ public class FLServerConfig
     public final BooleanValue enableSeedBalls;
     public final BooleanValue enableBeeSwarm;
     public final IntValue hollowShellCapacity;
+    public final DoubleValue cellarLevel2Temperature;
+    public final DoubleValue cellarLevel3Temperature;
 
     FLServerConfig(Builder innerBuilder)
     {
@@ -39,6 +41,8 @@ public class FLServerConfig
         enableSeedBalls = builder.apply("enableSeedBalls").comment("If true, players can throw seed balls.").define("enableSeedBalls", true);
         enableBeeSwarm = builder.apply("enableBeeSwarm").comment("If true, bees can swarm and hurt the player if provoked.").define("enableBeeSwarm", true);
         hollowShellCapacity = builder.apply("hollowShellCapacity").comment("The capacity in mB of the hollow shell. Default 100").defineInRange("hollowShellCapacity", 100, 1, Integer.MAX_VALUE);
+        cellarLevel2Temperature = builder.apply("cellarLevel2Temperature").comment("The average temperature below which stronger decay modifiers apply to cellar blocks.").defineInRange("cellarLevel2Temperature", 0d, Double.MIN_VALUE, Double.MAX_VALUE);
+        cellarLevel3Temperature = builder.apply("cellarLevel3Temperature").comment("The average temperature below which even stronger decay modifiers apply to cellar blocks.").defineInRange("cellarLevel3Temperature", -12d, Double.MIN_VALUE, Double.MAX_VALUE);
 
         innerBuilder.pop();
     }

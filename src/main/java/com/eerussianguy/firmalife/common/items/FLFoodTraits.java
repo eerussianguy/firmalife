@@ -16,7 +16,11 @@ public class FLFoodTraits
     public static final FoodTrait RANCID_SMOKED = register("rancid_smoked", 2.0f);
     public static final FoodTrait RAW = register("raw", 1f);
     public static final FoodTrait SHELVED = register("shelved", 0.4f);
+    public static final FoodTrait SHELVED_2 = register("shelved_2", 0.35f);
+    public static final FoodTrait SHELVED_3 = register("shelved_3", 0.25f);
     public static final FoodTrait HUNG = register("hung", 0.35f);
+    public static final FoodTrait HUNG_2 = register("hung_2", 0.3f);
+    public static final FoodTrait HUNG_3 = register("hung_3", 0.25f);
 
     private static FoodTrait register(String name, float mod)
     {

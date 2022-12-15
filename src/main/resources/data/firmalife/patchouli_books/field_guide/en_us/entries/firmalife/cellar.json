@@ -23,6 +23,10 @@
     {
       "type": "patchouli:text",
       "text": "$(thing)Beeswax$() is obtained from $(l:firmalife:firmalife/beekeeping)Beekeeping$().$(br)Cellars are used for $(l:firmalife:firmalife/cheese#aging)Aging Cheese$()."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The cellar is used for food preservation, for example by using $(l:firmalife:firmalife/food_shelves)Food Shelves$() and $(l:firmalife:firmalife/hangers)Hangers$(). The cellar performs better in environments with cooler average temperatures for food preservation. Below 0 degrees, decay modifiers work slightly better. Below -12 degrees, they perform much better."
     }
   ],
   "read_by_default": true,

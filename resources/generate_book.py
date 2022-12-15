@@ -69,6 +69,8 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False):
             multiblock('An Example Cellar', 'This is just one of many cellars that you could make!', True, multiblock_id='firmalife:cellar'),
             crafting('firmalife:crafting/sealed_bricks', 'firmalife:crafting/sealed_door'),
             text('$(thing)Beeswax$() is obtained from $(l:firmalife:firmalife/beekeeping)Beekeeping$().$(br)Cellars are used for $(l:firmalife:firmalife/cheese#aging)Aging Cheese$().'),
+            text('The cellar is used for food preservation, for example by using $(l:firmalife:firmalife/food_shelves)Food Shelves$() and $(l:firmalife:firmalife/hangers)Hangers$(). The cellar performs better in environments with cooler average temperatures for food preservation. Below 0 degrees, decay modifiers work slightly better. Below -12 degrees, they perform much better.'),
+            empty_last_page()
         )),
         entry('food_shelves', 'Food Shelves', 'firmalife:wood/food_shelf/pine', pages=(
             text('The $(thing)Food Shelf$() is a device for storing food. It can only be used in a valid $(l:firmalife:firmalife/cellar)Cellar$(). Food shelves can contain a full stack of one food item. Adding and removing the item can be done with $(item)$(k:key.use)$(). Items in valid food shelves receive a decay modifier that is better than vessels.'),
