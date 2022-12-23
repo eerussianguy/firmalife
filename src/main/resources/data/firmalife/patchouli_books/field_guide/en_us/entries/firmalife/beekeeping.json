@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(thing)Beehives$() are a place to house bees. Beehives need $(thing)Beehive Frames$() inside them for the bees to live. Removing frames from an active hive will cause the bees to attack you, unless done at night, or with a $(thing)Firepit$() underneath the hive active."
+      "text": "$(thing)Beehives$() are a place to house bees. Beehives need $(thing)Beehive Frames$() inside them for the bees to live. Removing frames from an active hive will cause the bees to attack you, unless done at night, or with a $(thing)Firepit$() underneath the hive active. Beehives can share flowers. The benefit of flowers diminishes after 60 flowers."
     },
     {
       "type": "patchouli:crafting",
@@ -15,7 +15,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Beehives know about the area in a 5 block radius from them. If there are at least 10 flowers around the hive, there is a chance an empty frame will be populated with a $(thing)Queen$(). This is indicated by bee particles flying around the hive."
+      "text": "Beehives know about the area in a 5 block radius from them. If there are at least 10 flowers around the hive, there is a chance an empty frame will be populated with a $(thing)Queen$(). This is indicated by bee particles flying around the hive. Having 4 empty frames in a hive greatly increases the chances of bees moving in."
     },
     {
       "type": "patchouli:text",
