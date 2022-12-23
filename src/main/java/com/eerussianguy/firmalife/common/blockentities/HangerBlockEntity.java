@@ -25,7 +25,7 @@ public class HangerBlockEntity extends FoodShelfBlockEntity
     {
         if (level != null)
         {
-            final float temp = Climate.getTemperature(level, getBlockPos());
+            final float temp = Climate.getAverageTemperature(level, getBlockPos());
             if (temp < FLConfig.SERVER.cellarLevel3Temperature.get())
             {
                 return FLFoodTraits.HUNG_3;

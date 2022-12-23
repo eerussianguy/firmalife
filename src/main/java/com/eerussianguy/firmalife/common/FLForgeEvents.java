@@ -45,7 +45,7 @@ public class FLForgeEvents
         bus.addListener(FLForgeEvents::addReloadListeners);
         bus.addListener(FLForgeEvents::onDataPackSync);
         bus.addListener(FLForgeEvents::onAnimalProduce);
-        bus.addListener(FLForgeEvents::onEntityCaps);
+        //bus.addListener(FLForgeEvents::onEntityCaps); use generic lsitener
     }
 
     public static void onEntityCaps(AttachCapabilitiesEvent<Entity> event)
