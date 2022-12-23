@@ -18,6 +18,11 @@
       "text": "To use the drying mat, place it out on the sun and add an item to it with $(item)$(k:key.use)$(). After a half day, it will be dried. If it rains, the drying process must start over."
     },
     {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/solar_drier",
+      "text": "The solar drier functions the same as the drying mat, but 12x as fast."
+    },
+    {
       "type": "firmalife:drying_recipe",
       "recipe": "firmalife:drying/drying_fruit",
       "text": "Drying fruit is a common use of the drying mat. Dried fruit is used in some recipes, and lasts longer."

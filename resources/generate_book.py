@@ -144,9 +144,11 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False):
             text('The $(thing)Drying Mat$() is used to dry items. It is made with $(thing)Fruit Leaves$(), which are obtained from breaking the leaves of $(thing)Fruit Trees$().'),
             crafting('firmalife:crafting/drying_mat', text_contents='The recipe for the drying mat.'),
             text('To use the drying mat, place it out on the sun and add an item to it with $(item)$(k:key.use)$(). After a half day, it will be dried. If it rains, the drying process must start over.'),
+            crafting('firmalife:crafting/solar_drier', text_contents='The solar drier functions the same as the drying mat, but 12x as fast.'),
             drying_recipe('firmalife:drying/drying_fruit', 'Drying fruit is a common use of the drying mat. Dried fruit is used in some recipes, and lasts longer.'),
             drying_recipe('firmalife:drying/tofu', 'Tofu is made using a drying mat.'),
             drying_recipe('firmalife:drying/cinnamon', 'Cinnamon is made using a drying mat.'),
+            empty_last_page()
         )),
         entry('smoking', 'Smoking', 'tfc:food/venison', pages=(
             text('Wool string is used to hang items for $(thing)Smoking$(). To place it, just use $(item)$(k:key.use)$().'),
