@@ -3,6 +3,8 @@
   "replace": false,
   "values": [
     "firmalife:food/filled_pie",
-    "firmalife:food/cooked_pie"
+    "firmalife:food/cooked_pie",
+    "firmalife:food/raw_pumpkin_pie",
+    "firmalife:food/cooked_pumpkin_pie"
   ]
 }

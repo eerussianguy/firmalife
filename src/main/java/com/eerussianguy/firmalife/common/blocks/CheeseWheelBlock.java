@@ -137,9 +137,6 @@ public class CheeseWheelBlock extends BottomSupportedDeviceBlock implements Clim
     }
 
     @Override
-    public void addWater(float amount) { }
-
-    @Override
     public void setValid(Level level, BlockPos pos, boolean valid, int tier, boolean cellar)
     {
         BlockState state = level.getBlockState(pos);

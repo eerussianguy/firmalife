@@ -1,5 +1,7 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "feature": "firmalife:vein/surface_chromite",
-  "placement": []
+  "replace": false,
+  "values": [
+    "firmalife:fruit_leaf"
+  ]
 }

@@ -56,10 +56,11 @@ def generate(rm: ResourceManager):
     rm.item_tag('pumpkin_knapping', 'tfc:pumpkin')
     rm.item_tag('foods/heatable', 'firmalife:food/raw_pizza', 'firmalife:food/filled_pie', 'firmalife:food/raw_pumpkin_pie', 'firmalife:food/corn_tortilla', 'firmalife:food/masa', '#firmalife:foods/slices', 'firmalife:food/cocoa_beans')
     rm.item_tag('foods/dynamic', 'firmalife:food/raw_pizza', 'firmalife:food/filled_pie', 'firmalife:food/cooked_pizza', 'firmalife:food/cooked_pie', 'firmalife:food/burrito', 'firmalife:food/taco')
-    rm.item_tag('foods/washable', 'firmalife:food/filled_pie', 'firmalife:food/cooked_pie')
+    rm.item_tag('foods/washable', 'firmalife:food/filled_pie', 'firmalife:food/cooked_pie', 'firmalife:food/raw_pumpkin_pie', 'firmalife:food/cooked_pumpkin_pie')
     rm.item_tag('pie_pans', 'firmalife:pie_pan')
     rm.item_tag('contains_pie_pan', 'firmalife:food/cooked_pumpkin_pie')
     rm.item_tag('can_be_hung', '#tfc:foods/meats', 'tfc:food/garlic')
+    rm.item_tag('tfc:compost_greens_low', 'firmalife:fruit_leaf')
 
     rm.block_tag('oven_insulation', 'minecraft:bricks', '#tfc:forge_insulation', '#firmalife:oven_blocks', 'minecraft:brick_stairs', 'minecraft:brick_slab')
     rm.block_tag('minecraft:mineable/pickaxe', '#firmalife:oven_blocks')

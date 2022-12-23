@@ -5,7 +5,7 @@ import net.minecraft.world.level.Level;
 
 public interface ClimateReceiver
 {
-    void addWater(float amount);
+    default void addWater(float amount) { }
 
     void setValid(Level level, BlockPos pos, boolean valid, int tier, boolean cellar);
 }

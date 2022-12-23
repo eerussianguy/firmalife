@@ -58,6 +58,7 @@ public class FLItems
 
     public static final RegistryObject<DynamicBowlFood> FILLED_PIE = registerContainerFood("food/filled_pie", false);
     public static final RegistryObject<DynamicBowlFood> COOKED_PIE = registerContainerFood("food/cooked_pie");
+    public static final RegistryObject<DynamicBowlFood> COOKED_PUMPKIN_PIE = registerContainerFood("food/cooked_pumpkin_pie");
     public static final RegistryObject<SandwichItem> RAW_PIZZA = registerDynamicFood("food/raw_pizza", false);
     public static final RegistryObject<SandwichItem> COOKED_PIZZA = registerDynamicFood("food/cooked_pizza");
     public static final RegistryObject<SandwichItem> BURRITO = registerDynamicFood("food/burrito");

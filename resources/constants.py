@@ -149,7 +149,6 @@ def preset_vein(ore: str, vein_type: str, rocks: List[str], spoiler_ore: Optiona
 
 ORE_VEINS: Dict[str, Vein] = {
     'normal_chromite': preset_vein('chromite', 'cluster', ['igneous_intrusive', 'metamorphic'], preset=NORMAL_METAL_ORE),
-    'surface_chromite': preset_vein('chromite', 'cluster', ['igneous_intrusive', 'metamorphic'], preset=SURFACE_METAL_ORE),
     'deep_chromite': preset_vein('chromite', 'cluster', ['igneous_intrusive', 'metamorphic'], preset=DEEP_METAL_ORE),
 }
 

@@ -1,8 +1,11 @@
 package com.eerussianguy.firmalife.common;
 
+import com.eerussianguy.firmalife.common.capabilities.player.FLPlayerData;
+import com.eerussianguy.firmalife.common.capabilities.player.FLPlayerDataCapability;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -12,6 +15,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.AddReloadListenerEvent;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.OnDatapackSyncEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fluids.FluidStack;
@@ -41,6 +45,15 @@ public class FLForgeEvents
         bus.addListener(FLForgeEvents::addReloadListeners);
         bus.addListener(FLForgeEvents::onDataPackSync);
         bus.addListener(FLForgeEvents::onAnimalProduce);
+        bus.addListener(FLForgeEvents::onEntityCaps);
+    }
+
+    public static void onEntityCaps(AttachCapabilitiesEvent<Entity> event)
+    {
+        if (event.getObject() instanceof Player player)
+        {
+            event.addCapability(FLPlayerDataCapability.KEY, new FLPlayerData(player));
+        }
     }
 
     public static void addReloadListeners(AddReloadListenerEvent event)
