@@ -123,7 +123,7 @@ def generate(rm: ResourceManager):
     for grade in ORE_GRADES.keys():
         rm.item_model('firmalife:ore/%s_%s' % (grade, ore)).with_lang(lang('%s %s', grade, ore))
     block = rm.blockstate('ore/small_%s' % ore, variants={"": four_ways('firmalife:block/small_%s' % ore)}, use_default_model=False)
-    block.with_lang(lang('small %s', ore)).with_block_loot('firmalife:ore/small_%s' % ore).with_tag('can_be_snow_piled')
+    block.with_lang(lang('small %s', ore)).with_block_loot('firmalife:ore/small_%s' % ore).with_tag('tfc:can_be_snow_piled')
     rm.item_model('ore/small_%s' % ore).with_lang(lang('small %s', ore))
     for rock, data in TFC_ROCKS.items():
         for grade in ORE_GRADES.keys():
