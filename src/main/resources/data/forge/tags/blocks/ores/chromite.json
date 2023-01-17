@@ -1,0 +1,9 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "#firmalife:ores/chromite/poor",
+    "#firmalife:ores/chromite/normal",
+    "#firmalife:ores/chromite/rich"
+  ]
+}

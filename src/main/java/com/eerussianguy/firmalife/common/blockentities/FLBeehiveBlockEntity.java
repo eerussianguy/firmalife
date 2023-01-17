@@ -13,6 +13,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.items.ItemStackHandler;
@@ -312,10 +313,15 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
                 if (level.random.nextInt(50 + 50 * (10 - restore)) == 0)
                 {
                     BlockPos above = pos.above();
-                    boolean airAbove = level.getBlockState(above).isAir();
-                    if (airAbove && Helpers.isFluid(state.getFluidState(), Fluids.WATER))
+                    final boolean airAbove = level.getBlockState(above).isAir();
+                    if (airAbove && state.getBlock() == Blocks.WATER && state.getFluidState().isSource())
                     {
-                        Helpers.getRandomElement(ForgeRegistries.BLOCKS, FLTags.Blocks.BEE_RESTORATION_WATER_PLANTS, level.random).ifPresent(plant -> level.setBlockAndUpdate(pos, plant.defaultBlockState()));
+                        Helpers.getRandomElement(ForgeRegistries.BLOCKS, FLTags.Blocks.BEE_RESTORATION_WATER_PLANTS, level.random).ifPresent(plant -> {
+                            if (plant.defaultBlockState().canSurvive(level, pos))
+                            {
+                                level.setBlockAndUpdate(pos, plant.defaultBlockState());
+                            }
+                        });
                     }
                     else if (airAbove && block instanceof DirtBlock dirt)
                     {

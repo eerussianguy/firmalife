@@ -31,6 +31,7 @@ JARS: Sequence[Tuple[str, int, str, str]] = (
 )
 CHEESE_WHEELS = ('rajya_metok', 'cheddar', 'gouda', 'feta', 'chevre', 'shosha')
 FL_FRUITS = ('pumpkin_chunks', 'fig')
+DEFAULT_FORGE_ORE_TAGS: Tuple[str, ...] = ('coal', 'diamond', 'emerald', 'gold', 'iron', 'lapis', 'netherite_scrap', 'quartz', 'redstone')
 
 TFC_GRAINS = ('wheat', 'rye', 'barley', 'rice', 'maize', 'oat')
 TFC_FRUIT_TREES = ('cherry', 'green_apple', 'lemon', 'olive', 'orange', 'peach', 'plum', 'red_apple')

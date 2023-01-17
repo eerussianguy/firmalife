@@ -51,6 +51,7 @@ def generate(rm: ResourceManager):
     rm.item_tag('smoking_fuel', '#minecraft:logs')
     rm.item_tag('oven_fuel', '#minecraft:logs', 'tfc:stick_bundle')
     rm.item_tag('chocolate_blends', 'firmalife:food/milk_chocolate_blend', 'firmalife:food/dark_chocolate_blend', 'firmalife:food/white_chocolate_blend')
+    rm.item_tag('food/chocolate', 'firmalife:food/milk_chocolate', 'firmalife:food/dark_chocolate', 'firmalife:food/white_chocolate')
     rm.item_tag('tfc:foods/can_be_salted', 'firmalife:food/butter')
     rm.item_tag('tfc:usable_on_tool_rack', 'firmalife:spoon', 'firmalife:peel')
     rm.item_tag('pumpkin_knapping', 'tfc:pumpkin')
@@ -88,6 +89,17 @@ def generate(rm: ResourceManager):
     rm.fluid_tag('tfc:ingredients', *['firmalife:%s' % fluid for fluid in EXTRA_FLUIDS])
     rm.fluid_tag('usable_in_mixing_bowl', '#tfc:usable_in_pot')
     rm.fluid_tag('usable_in_hollow_shell', '#tfc:usable_in_wooden_bucket')
+
+    # Ore tags
+    ore = 'chromite'
+    rm.block_tag('forge:ores', '#forge:ores/%s' % ore)
+    rm.block_tag('forge:ores/%s' % ore, '#firmalife:ores/%s/poor' % ore, '#firmalife:ores/%s/normal' % ore, '#firmalife:ores/%s/rich' % ore)
+    rm.item_tag('ore_pieces', 'firmalife:ore/poor_%s' % ore, 'firmalife:ore/normal_%s' % ore, 'firmalife:ore/rich_%s' % ore)
+    rm.item_tag('small_ore_pieces', 'firmalife:ore/small_%s' % ore)
+    for rock in TFC_ROCKS.keys():
+        rm.block_tag('ores/%s/poor' % ore, 'firmalife:ore/poor_%s/%s' % (ore, rock))
+        rm.block_tag('ores/%s/normal' % ore, 'firmalife:ore/normal_%s/%s' % (ore, rock))
+        rm.block_tag('ores/%s/rich' % ore, 'firmalife:ore/rich_%s/%s' % (ore, rock))
 
     ### JSON DATA ###
     greenhouse(rm, 'treated_wood', '#firmalife:all_treated_wood_greenhouse', 5)
@@ -155,6 +167,7 @@ def generate(rm: ResourceManager):
     food_item(rm, 'shredded_cheese', 'firmalife:food/shredded_cheese', Category.dairy, 4, 2, 0, 0.3, dairy=0.75)
     food_item(rm, 'pickled_egg', 'firmalife:food/pickled_egg', Category.other, 4, 2, 10, 0.3, protein=1.5, dairy=0.25)
     decayable(rm, 'chocolate_blends', '#firmalife:chocolate_blends', Category.dairy)
+    food_item(rm, 'chocolate', '#firmalife:food/chocolate', Category.other, 4, 1, 0, 0.3, dairy=0.5, grain=0.5)
     decayable(rm, 'doughs', '#firmalife:foods/extra_dough', Category.other, decay=2)
     decayable(rm, 'butter', 'firmalife:food/butter', Category.other)
     decayable(rm, 'pie_dough', 'firmalife:food/pie_dough', Category.other)

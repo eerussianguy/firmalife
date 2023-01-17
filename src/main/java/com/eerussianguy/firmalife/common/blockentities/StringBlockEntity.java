@@ -30,32 +30,24 @@ public class StringBlockEntity extends SimpleItemRecipeBlockEntity<SmokingRecipe
                 return;
             }
             FirepitBlockEntity firepit = StringBlock.findFirepit(level, pos);
-            if (firepit == null)
+            if (firepit == null || firepit.getTemperature() <= 0f)
             {
                 string.resetCounter();
             }
             else
             {
-                BlockState pitState = level.getBlockState(pos);
-                if (pitState.hasProperty(FirepitBlock.LIT) && !pitState.getValue(FirepitBlock.LIT))
-                {
-                    string.resetCounter();
-                }
-                else
-                {
-                    // check for correct fuel
-                    firepit.getCapability(Capabilities.ITEM).ifPresent(inv -> {
-                        for (int i = FirepitBlockEntity.SLOT_FUEL_CONSUME; i < FirepitBlockEntity.SLOT_FUEL_INPUT; i++)
+                // check for correct fuel
+                firepit.getCapability(Capabilities.ITEM).ifPresent(inv -> {
+                    for (int i = FirepitBlockEntity.SLOT_FUEL_CONSUME; i < FirepitBlockEntity.SLOT_FUEL_INPUT; i++)
+                    {
+                        ItemStack item = inv.getStackInSlot(i);
+                        if (!item.isEmpty() && !Helpers.isItem(item, FLTags.Items.SMOKING_FUEL))
                         {
-                            ItemStack item = inv.getStackInSlot(i);
-                            if (!item.isEmpty() && !Helpers.isItem(item, FLTags.Items.SMOKING_FUEL))
-                            {
-                                FoodCapability.applyTrait(item, FLFoodTraits.RANCID_SMOKED);
-                                string.resetCounter();
-                            }
+                            FoodCapability.applyTrait(item, FLFoodTraits.RANCID_SMOKED);
+                            string.resetCounter();
                         }
-                    });
-                }
+                    }
+                });
             }
         }
 

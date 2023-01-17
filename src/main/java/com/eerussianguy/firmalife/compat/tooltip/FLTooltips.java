@@ -16,6 +16,9 @@ import com.eerussianguy.firmalife.common.blockentities.*;
 import com.eerussianguy.firmalife.common.blocks.*;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.config.FLConfig;
+
+import net.dries007.tfc.common.blockentities.TickCounterBlockEntity;
+import net.dries007.tfc.common.blocks.plant.fruit.FruitTreeSaplingBlock;
 import net.dries007.tfc.common.capabilities.Capabilities;
 import net.dries007.tfc.common.capabilities.food.FoodCapability;
 import net.dries007.tfc.common.capabilities.food.FoodTrait;
@@ -23,8 +26,12 @@ import net.dries007.tfc.common.capabilities.food.IFood;
 import net.dries007.tfc.compat.jade.common.BlockEntityTooltip;
 import net.dries007.tfc.compat.jade.common.BlockEntityTooltips;
 import net.dries007.tfc.compat.jade.common.EntityTooltip;
+import net.dries007.tfc.config.TFCConfig;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.calendar.Calendars;
+import net.dries007.tfc.util.calendar.ICalendar;
+
+import static net.dries007.tfc.compat.jade.common.BlockEntityTooltips.*;
 
 public final class FLTooltips
 {
@@ -154,6 +161,14 @@ public final class FLTooltips
 
             }
         };
+
+        public static final BlockEntityTooltip FRUIT_TREE_SAPLING = (level, state, pos, entity, tooltip) -> {
+            if (entity instanceof TickCounterBlockEntity counter && state.getBlock() instanceof FruitTreeSaplingBlock sapling)
+            {
+                timeLeft(level, tooltip, (long) (sapling.getTreeGrowthDays() * ICalendar.TICKS_IN_DAY * TFCConfig.SERVER.globalFruitSaplingGrowthModifier.get()) - counter.getTicksSinceUpdate(), Helpers.translatable("tfc.jade.ready_to_grow"));
+            }
+        };
+
     }
 
     public static final class Entities

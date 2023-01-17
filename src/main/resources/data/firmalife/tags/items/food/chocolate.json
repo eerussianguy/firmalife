@@ -1,0 +1,9 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "firmalife:food/milk_chocolate",
+    "firmalife:food/dark_chocolate",
+    "firmalife:food/white_chocolate"
+  ]
+}
