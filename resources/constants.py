@@ -22,7 +22,7 @@ SIMPLE_BLOCKS: Dict[str, str] = {
     'treated_wood': 'minecraft:mineable/axe'
 }
 BLOCK_ENTITIES = ('oven_bottom', 'oven_top', 'drying_mat', 'beehive', 'solar_drier', 'mixing_bowl', 'iron_composter', 'string', 'berry_bush', 'large_planter', 'bonsai_planter', 'trellis_planter', 'hanging_planter', 'quad_planter', 'climate_station')
-EXTRA_FLUIDS = ('yeast_starter', 'coconut_milk', 'yak_milk', 'goat_milk', 'curdled_yak_milk', 'curdled_goat_milk', 'pina_colada', 'cream')
+EXTRA_FLUIDS = ('yeast_starter', 'coconut_milk', 'yak_milk', 'goat_milk', 'curdled_yak_milk', 'curdled_goat_milk', 'pina_colada', 'cream', 'chocolate')
 JARS: Sequence[Tuple[str, int, str, str]] = (
     ('honey', 1, 'minecraft:block/honey_block_side', 'firmalife:raw_honey'),
     ('compost', 8, 'firmalife:block/potting_soil_wet', 'tfc:compost'),
@@ -223,6 +223,10 @@ DEFAULT_LANG = {
     'firmalife.enum.plantertype.bonsai': 'Bonsai Planter',
     'firmalife.enum.plantertype.quad': 'Quad Planter',
     'firmalife.enum.plantertype.large': 'Large Planter',
+
+    'firmalife.enum.foodage.fresh': 'Fresh',
+    'firmalife.enum.foodage.aged': 'Aged',
+    'firmalife.enum.foodage.vintage': 'Vintage',
 
     'firmalife.jade.food_age': 'Age: %s',
     'firmalife.jade.aging': 'Currently Aging',

@@ -51,7 +51,7 @@ def generate(rm: ResourceManager):
     rm.item_tag('smoking_fuel', '#minecraft:logs')
     rm.item_tag('oven_fuel', '#minecraft:logs', 'tfc:stick_bundle')
     rm.item_tag('chocolate_blends', 'firmalife:food/milk_chocolate_blend', 'firmalife:food/dark_chocolate_blend', 'firmalife:food/white_chocolate_blend')
-    rm.item_tag('food/chocolate', 'firmalife:food/milk_chocolate', 'firmalife:food/dark_chocolate', 'firmalife:food/white_chocolate')
+    rm.item_tag('foods/chocolate', 'firmalife:food/milk_chocolate', 'firmalife:food/dark_chocolate', 'firmalife:food/white_chocolate')
     rm.item_tag('tfc:foods/can_be_salted', 'firmalife:food/butter')
     rm.item_tag('tfc:usable_on_tool_rack', 'firmalife:spoon', 'firmalife:peel')
     rm.item_tag('pumpkin_knapping', 'tfc:pumpkin')
@@ -62,6 +62,7 @@ def generate(rm: ResourceManager):
     rm.item_tag('contains_pie_pan', 'firmalife:food/cooked_pumpkin_pie')
     rm.item_tag('can_be_hung', '#tfc:foods/meats', 'tfc:food/garlic')
     rm.item_tag('tfc:compost_greens_low', 'firmalife:fruit_leaf')
+    rm.item_tag('foods/cooked_meats_and_substitutes', '#tfc:foods/cooked_meats', 'firmalife:food/tofu')
 
     rm.block_tag('oven_insulation', 'minecraft:bricks', '#tfc:forge_insulation', '#firmalife:oven_blocks', 'minecraft:brick_stairs', 'minecraft:brick_slab')
     rm.block_tag('minecraft:mineable/pickaxe', '#firmalife:oven_blocks')
@@ -86,6 +87,7 @@ def generate(rm: ResourceManager):
 
     rm.fluid_tag('tfc:alcohols', 'firmalife:pina_colada')
     rm.fluid_tag('tfc:milks', 'firmalife:yak_milk', 'firmalife:goat_milk', 'firmalife:coconut_milk')
+    rm.fluid_tag('tfc:drinkables', 'firmalife:chocolate')
     rm.fluid_tag('tfc:ingredients', *['firmalife:%s' % fluid for fluid in EXTRA_FLUIDS])
     rm.fluid_tag('usable_in_mixing_bowl', '#tfc:usable_in_pot')
     rm.fluid_tag('usable_in_hollow_shell', '#tfc:usable_in_wooden_bucket')
@@ -94,8 +96,8 @@ def generate(rm: ResourceManager):
     ore = 'chromite'
     rm.block_tag('forge:ores', '#forge:ores/%s' % ore)
     rm.block_tag('forge:ores/%s' % ore, '#firmalife:ores/%s/poor' % ore, '#firmalife:ores/%s/normal' % ore, '#firmalife:ores/%s/rich' % ore)
-    rm.item_tag('ore_pieces', 'firmalife:ore/poor_%s' % ore, 'firmalife:ore/normal_%s' % ore, 'firmalife:ore/rich_%s' % ore)
-    rm.item_tag('small_ore_pieces', 'firmalife:ore/small_%s' % ore)
+    rm.item_tag('tfc:ore_pieces', 'firmalife:ore/poor_%s' % ore, 'firmalife:ore/normal_%s' % ore, 'firmalife:ore/rich_%s' % ore)
+    rm.item_tag('tfc:small_ore_pieces', 'firmalife:ore/small_%s' % ore)
     for rock in TFC_ROCKS.keys():
         rm.block_tag('ores/%s/poor' % ore, 'firmalife:ore/poor_%s/%s' % (ore, rock))
         rm.block_tag('ores/%s/normal' % ore, 'firmalife:ore/normal_%s/%s' % (ore, rock))
@@ -152,6 +154,9 @@ def generate(rm: ResourceManager):
     trellis_plantable(rm, 'wintergreen_berry', 'tfc:plant/wintergreen_berry_bush', 'tfc:food/wintergreen_berry', 'nitrogen')
     # missing is cranberries. hydroponic planter?
 
+    # Drinkable
+    drinkable(rm, 'chocolate', 'firmalife:chocolate', thirst=10, food={'hunger': 0, 'saturation': 1.0, 'dairy': 1.0})
+
     # Food: HUNGER, SATURATION, WATER, DECAY
     decayable(rm, 'frothy_coconut', 'firmalife:food/frothy_coconut', Category.vegetable)
     food_item(rm, 'tofu', 'firmalife:food/tofu', Category.vegetable, 4, 2, 2, 0.75, protein=1.5)
@@ -167,7 +172,7 @@ def generate(rm: ResourceManager):
     food_item(rm, 'shredded_cheese', 'firmalife:food/shredded_cheese', Category.dairy, 4, 2, 0, 0.3, dairy=0.75)
     food_item(rm, 'pickled_egg', 'firmalife:food/pickled_egg', Category.other, 4, 2, 10, 0.3, protein=1.5, dairy=0.25)
     decayable(rm, 'chocolate_blends', '#firmalife:chocolate_blends', Category.dairy)
-    food_item(rm, 'chocolate', '#firmalife:food/chocolate', Category.other, 4, 1, 0, 0.3, dairy=0.5, grain=0.5)
+    food_item(rm, 'chocolate', '#firmalife:foods/chocolate', Category.other, 4, 1, 0, 0.3, dairy=0.5, grain=0.5)
     decayable(rm, 'doughs', '#firmalife:foods/extra_dough', Category.other, decay=2)
     decayable(rm, 'butter', 'firmalife:food/butter', Category.other)
     decayable(rm, 'pie_dough', 'firmalife:food/pie_dough', Category.other)
@@ -315,12 +320,15 @@ def food_item(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredi
     if category == Category.dairy:
         rm.item_tag('tfc:foods/dairy', ingredient)
 
-def drinkable(rm: ResourceManager, name_parts: utils.ResourceIdentifier, fluid: utils.Json, thirst: Optional[int] = None, intoxication: Optional[int] = None):
+def drinkable(rm: ResourceManager, name_parts: utils.ResourceIdentifier, fluid: utils.Json, thirst: Optional[int] = None, intoxication: Optional[int] = None, effects: Optional[utils.Json] = None, food: Optional[utils.Json] = None):
     rm.data(('tfc', 'drinkables', name_parts), {
         'ingredient': fluid_ingredient(fluid),
         'thirst': thirst,
-        'intoxication': intoxication
+        'intoxication': intoxication,
+        'effects': effects,
+        'food': food
     })
+
 
 def item_size(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredient: utils.Json, size: Size, weight: Weight):
     rm.data(('tfc', 'item_sizes', name_parts), {

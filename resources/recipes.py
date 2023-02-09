@@ -118,6 +118,7 @@ def generate(rm: ResourceManager):
     simple_pot_recipe(rm, 'soy_mixture', [not_rotten('tfc:food/soybean'), not_rotten('tfc:food/soybean'), utils.ingredient('tfc:powder/salt'), utils.ingredient('tfc:powder/salt')], '1000 minecraft:water', output_items=['firmalife:food/soy_mixture', 'firmalife:food/soy_mixture'])
     simple_pot_recipe(rm, 'cured_maize', [not_rotten('tfc:food/maize_grain')], '1000 tfc:limewater', output_items=['firmalife:food/cured_maize'], duration=3000)
     simple_pot_recipe(rm, 'tomato_sauce', [not_rotten('tfc:food/tomato'), utils.ingredient('tfc:powder/salt'), not_rotten('tfc:food/garlic')], '1000 minecraft:water', output_items=['firmalife:food/tomato_sauce', 'firmalife:food/tomato_sauce', 'firmalife:food/tomato_sauce', 'firmalife:food/tomato_sauce', 'firmalife:food/tomato_sauce'])
+    simple_pot_recipe(rm, 'chocolate', [utils.ingredient('#firmalife:sweetener'), not_rotten('#firmalife:foods/chocolate')], '1000 #tfc:milks', output_fluid='1000 firmalife:chocolate')
 
     barrel_instant_recipe(rm, 'clean_any_bowl', '#firmalife:foods/washable', '100 minecraft:water', output_item=item_stack_provider(other_modifier='firmalife:empty_pan'))
 
@@ -178,8 +179,8 @@ def generate(rm: ResourceManager):
 
     meal_shapeless(rm, 'crafting/filled_pie', (not_rotten('firmalife:food/pie_dough'), '#firmalife:foods/preserves', '#firmalife:pie_pans'), 'firmalife:food/filled_pie', 'firmalife:pie').with_advancement('firmalife:food/pie_dough')
     meal_shapeless(rm, 'crafting/raw_pizza', (not_rotten('firmalife:food/pizza_dough'), not_rotten('#firmalife:foods/pizza_ingredients'), not_rotten('#firmalife:foods/pizza_ingredients'), not_rotten('firmalife:food/shredded_cheese'), not_rotten('firmalife:food/tomato_sauce')), 'firmalife:food/raw_pizza', 'firmalife:pizza').with_advancement('firmalife:food/pizza_dough')
-    meal_shapeless(rm, 'crafting/burrito', (not_rotten('#tfc:foods/cooked_meats'), not_rotten('firmalife:food/shredded_cheese'), not_rotten('firmalife:food/corn_tortilla'), not_rotten('#tfc:foods/vegetables'), not_rotten('firmalife:food/salsa')), 'firmalife:food/burrito', 'firmalife:burrito').with_advancement('firmalife:food/corn_tortilla')
-    meal_shapeless(rm, 'crafting/taco', (not_rotten('#tfc:foods/cooked_meats'), not_rotten('firmalife:food/shredded_cheese'), not_rotten('firmalife:food/taco_shell'), not_rotten('#tfc:foods/vegetables'), not_rotten('firmalife:food/salsa')), 'firmalife:food/taco', 'firmalife:burrito').with_advancement('firmalife:food/taco_shell')
+    meal_shapeless(rm, 'crafting/burrito', (not_rotten('#firmalife:foods/cooked_meats_and_substitutes'), not_rotten('firmalife:food/shredded_cheese'), not_rotten('firmalife:food/corn_tortilla'), not_rotten('#tfc:foods/vegetables'), not_rotten('firmalife:food/salsa')), 'firmalife:food/burrito', 'firmalife:burrito').with_advancement('firmalife:food/corn_tortilla')
+    meal_shapeless(rm, 'crafting/taco', (not_rotten('#firmalife:foods/cooked_meats_and_substitutes'), not_rotten('firmalife:food/shredded_cheese'), not_rotten('firmalife:food/taco_shell'), not_rotten('#tfc:foods/vegetables'), not_rotten('firmalife:food/salsa')), 'firmalife:food/taco', 'firmalife:burrito').with_advancement('firmalife:food/taco_shell')
 
     # Greenhouse
     for block in GREENHOUSE_BLOCKS:
@@ -208,6 +209,18 @@ def generate(rm: ResourceManager):
         heat_recipe(rm, grain + '_dough', not_rotten('tfc:food/%s_dough' % grain), 200, result_item=item_stack_provider('firmalife:food/%s_flatbread' % grain, copy_food=True))
         rm.domain = 'firmalife'  # DOMAIN RESET
 
+        for bread in ('slice', 'flatbread'):
+            sandwich_pattern = ['ZX ', 'YYY', ' X ']
+            sandwich_ingredients = {'X': not_rotten('firmalife:food/%s_%s' % (grain, bread)), 'Y': not_rotten('#tfc:foods/usable_in_sandwich'), 'Z': '#tfc:knives'}
+            delegate_recipe(rm, 'crafting/%s_%s_sandwich' % (grain, bread), 'tfc:damage_inputs_shaped_crafting', {
+                'type': 'tfc:advanced_shaped_crafting',
+                'pattern': sandwich_pattern,
+                'key': utils.item_stack_dict(sandwich_ingredients, ''.join(sandwich_pattern)[0]),
+                'result': item_stack_provider('2 tfc:food/%s_bread_sandwich' % grain, other_modifier='tfc:sandwich'),
+                'input_row': 0,
+                'input_column': 0,
+            }).with_advancement('tfc:food/%s_bread' % grain)
+
     heat_recipe(rm, 'corn_tortilla', not_rotten('firmalife:food/masa'), 200, result_item=item_stack_provider('firmalife:food/corn_tortilla', copy_food=True))
 
     ore = 'chromite'
@@ -219,8 +232,8 @@ def generate(rm: ResourceManager):
             'firmalife:ore/rich_%s/%s' % (ore, rock)
         ], cobble)
         for grade in ORE_GRADES.keys():
-            rm.block_tag('can_start_collapse', 'firmalife:ore/%s_%s/%s' % (grade, ore, rock))
-            rm.block_tag('can_collapse', 'firmalife:ore/%s_%s/%s' % (grade, ore, rock))
+            rm.block_tag('tfc:can_start_collapse', 'firmalife:ore/%s_%s/%s' % (grade, ore, rock))
+            rm.block_tag('tfc:can_collapse', 'firmalife:ore/%s_%s/%s' % (grade, ore, rock))
 
     alloy_recipe(rm, 'stainless_steel', 'stainless_steel', ('firmalife:chromium', 0.2, 0.3), ('tfc:nickel', 0.1, 0.2), ('tfc:steel', 0.6, 0.8))
     anvil_recipe(rm, 'pie_pan', '#forge:sheets/cast_iron', '4 firmalife:pie_pan', 1, Rules.hit_last, Rules.hit_second_last, Rules.draw_third_last)

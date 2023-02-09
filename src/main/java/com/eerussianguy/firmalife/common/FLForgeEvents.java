@@ -5,21 +5,19 @@ import com.eerussianguy.firmalife.common.capabilities.player.FLPlayerDataCapabil
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CarvedPumpkinBlock;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.OnDatapackSyncEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.network.PacketDistributor;
 
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
@@ -29,7 +27,6 @@ import com.eerussianguy.firmalife.common.network.FLPackets;
 import com.eerussianguy.firmalife.common.util.ExtraFluid;
 import com.eerussianguy.firmalife.common.util.GreenhouseType;
 import com.eerussianguy.firmalife.common.util.Plantable;
-import net.dries007.tfc.common.capabilities.Capabilities;
 import net.dries007.tfc.common.entities.TFCEntities;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.events.AnimalProductEvent;
@@ -98,26 +95,15 @@ public class FLForgeEvents
 
     public static void onAnimalProduce(AnimalProductEvent event)
     {
-        Entity entity = event.getEntity();
-        ItemStack product = event.getProduct();
-        if (entity.getType() == TFCEntities.YAK.get())
+        final EntityType<?> type = event.getEntity().getType();
+        if (type == TFCEntities.YAK.get())
         {
-            replaceFluid(product, FLFluids.EXTRA_FLUIDS.get(ExtraFluid.YAK_MILK).getSource());
+            event.setProduct(new FluidStack(FLFluids.EXTRA_FLUIDS.get(ExtraFluid.YAK_MILK).getSource(), 1000));
         }
-        else if (entity.getType() == TFCEntities.GOAT.get())
+        else if (type == TFCEntities.GOAT.get())
         {
-            replaceFluid(product, FLFluids.EXTRA_FLUIDS.get(ExtraFluid.GOAT_MILK).getSource());
+            event.setProduct(new FluidStack(FLFluids.EXTRA_FLUIDS.get(ExtraFluid.GOAT_MILK).getSource(), 1000));
         }
     }
 
-    private static void replaceFluid(ItemStack bucket, Fluid toFill)
-    {
-        bucket.getCapability(Capabilities.FLUID_ITEM).ifPresent(cap -> {
-            final int drained = cap.drain(Integer.MAX_VALUE, IFluidHandler.FluidAction.EXECUTE).getAmount();
-            if (drained > 0)
-            {
-                cap.fill(new FluidStack(toFill, drained), IFluidHandler.FluidAction.EXECUTE);
-            }
-        });
-    }
 }

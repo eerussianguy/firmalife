@@ -5,7 +5,7 @@
     {
       "type": "tfc:not_rotten",
       "ingredient": {
-        "tag": "tfc:foods/cooked_meats"
+        "tag": "firmalife:foods/cooked_meats_and_substitutes"
       }
     },
     {
@@ -44,7 +44,7 @@
   "primary_ingredient": {
     "type": "tfc:not_rotten",
     "ingredient": {
-      "tag": "tfc:foods/cooked_meats"
+      "tag": "firmalife:foods/cooked_meats_and_substitutes"
     }
   }
 }

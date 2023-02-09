@@ -1,0 +1,10 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "ingredient": "firmalife:chocolate",
+  "thirst": 10,
+  "food": {
+    "hunger": 0,
+    "saturation": 1.0,
+    "dairy": 1.0
+  }
+}

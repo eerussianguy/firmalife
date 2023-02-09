@@ -1,0 +1,27 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:pot",
+  "ingredients": [
+    {
+      "tag": "firmalife:sweetener"
+    },
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "tag": "firmalife:foods/chocolate"
+      }
+    }
+  ],
+  "fluid_ingredient": {
+    "ingredient": {
+      "tag": "tfc:milks"
+    },
+    "amount": 1000
+  },
+  "duration": 2000,
+  "temperature": 300,
+  "fluid_output": {
+    "fluid": "firmalife:chocolate",
+    "amount": 1000
+  }
+}

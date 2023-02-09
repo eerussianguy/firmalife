@@ -391,7 +391,7 @@ def greenhouse_door(rm: ResourceManager, name: str, bot: str, upper: str) -> 'Bl
     rm.block_model(door_model + '_top_hinge', {'top': upper}, parent='block/door_top_rh')
     rm.item_model(door)
     door_loot(block, 'firmalife:%s' % door)
-    greenhouse_tags(block, name).with_tag('minecraft:doors')
+    greenhouse_tags(block, name).with_tag('minecraft:doors').with_item_tag('minecraft:doors')
     return block
 
 def greenhouse_tags(block: BlockContext, greenhouse_name: str) -> 'BlockContext':
