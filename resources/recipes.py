@@ -80,6 +80,8 @@ def generate(rm: ResourceManager):
     rm.domain = 'tfc'
     rm.crafting_shapeless('crafting/pumpkin_pie', ('firmalife:food/cooked_pumpkin_pie',), 'minecraft:pumpkin_pie').with_advancement('firmalife:food/cooked_pumpkin_pie')
     rm.domain = 'firmalife'
+    rm.crafting_shapeless('crafting/pineapple_fiber', (not_rotten(has_trait('firmalife:food/pineapple', trait='firmalife:dried'))), 'firmalife:pineapple_fiber').with_advancement('firmalife:food/pineapple')
+    damage_shapeless(rm, 'crafting/pineapple_yarn', ('tfc:spindle', 'firmalife:pineapple_fiber'), '8 firmalife:pineapple_yarn').with_advancement('firmalife:pineapple_fiber')
 
     for i in range(1, 9):
         advanced_shapeless(rm, 'crafting/masa_%s' % i, (
@@ -120,6 +122,17 @@ def generate(rm: ResourceManager):
     simple_pot_recipe(rm, 'tomato_sauce', [not_rotten('tfc:food/tomato'), utils.ingredient('tfc:powder/salt'), not_rotten('tfc:food/garlic')], '1000 minecraft:water', output_items=['firmalife:food/tomato_sauce', 'firmalife:food/tomato_sauce', 'firmalife:food/tomato_sauce', 'firmalife:food/tomato_sauce', 'firmalife:food/tomato_sauce'])
     simple_pot_recipe(rm, 'chocolate', [utils.ingredient('#firmalife:sweetener'), not_rotten('#firmalife:foods/chocolate')], '1000 #tfc:milks', output_fluid='1000 firmalife:chocolate')
 
+    soup_food = not_rotten(utils.ingredient('#tfc:foods/usable_in_soup'))
+    for duration, count in ((1000, 3), (1150, 4), (1300, 5)):
+        ingr = [soup_food] * count
+        ingr.append(not_rotten(utils.ingredient('firmalife:food/nightshade_berry')))
+        rm.recipe(('pot', 'soup_%s' % count), 'firmalife:stinky_soup', {
+            'ingredients': ingr,
+            'fluid_ingredient': fluid_stack_ingredient('100 minecraft:water'),
+            'duration': duration,
+            'temperature': 300
+        })
+
     barrel_instant_recipe(rm, 'clean_any_bowl', '#firmalife:foods/washable', '100 minecraft:water', output_item=item_stack_provider(other_modifier='firmalife:empty_pan'))
 
     barrel_sealed_recipe(rm, 'cleaning_jar', 'Cleaning Jar', 1000, '#firmalife:jars', '1000 minecraft:water', output_item='firmalife:empty_jar')
@@ -140,6 +153,8 @@ def generate(rm: ResourceManager):
     barrel_sealed_recipe(rm, 'gouda', 'Gouda Wheel', 16000, '3 firmalife:food/milk_curd', '750 tfc:salt_water', output_item='firmalife:gouda_wheel')
 
     quern_recipe(rm, 'masa', not_rotten('firmalife:food/nixtamal'), 'firmalife:food/masa_flour', count=4)
+
+    loom_recipe(rm, 'pineapple_leather', 'firmalife:pineapple_yarn', 16, 'firmalife:pineapple_leather', 16, 'firmalife:block/pineapple')
 
     clay_knapping(rm, 'oven_top', ['XXXXX', 'XX XX', 'X   X', 'X   X', 'XXXXX'], 'firmalife:oven_top')
     clay_knapping(rm, 'oven_bottom', ['XX XX', 'X   X', 'X   X', 'XX XX', 'XXXXX'], 'firmalife:oven_bottom')
@@ -553,3 +568,13 @@ def quern_recipe(rm: ResourceManager, name: ResourceIdentifier, item: str, resul
         'ingredient': utils.ingredient(item),
         'result': result
     })
+
+def loom_recipe(rm: ResourceManager, name: utils.ResourceIdentifier, ingredient: Json, input_count: int, result: Json, steps: int, in_progress_texture: str):
+    return rm.recipe(('loom', name), 'tfc:loom', {
+        'ingredient': utils.ingredient(ingredient),
+        'input_count': input_count,
+        'result': utils.item_stack(result),
+        'steps_required': steps,
+        'in_progress_texture': in_progress_texture
+    })
+

@@ -1,0 +1,13 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:loom",
+  "ingredient": {
+    "item": "firmalife:pineapple_yarn"
+  },
+  "input_count": 16,
+  "result": {
+    "item": "firmalife:pineapple_leather"
+  },
+  "steps_required": 16,
+  "in_progress_texture": "firmalife:block/pineapple"
+}

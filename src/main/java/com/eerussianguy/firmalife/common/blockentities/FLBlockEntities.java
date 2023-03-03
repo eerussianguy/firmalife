@@ -35,7 +35,7 @@ public class FLBlockEntities
     public static final RegistryObject<BlockEntityType<IronComposterBlockEntity>> IRON_COMPOSTER = register("iron_composter", IronComposterBlockEntity::new, FLBlocks.IRON_COMPOSTER);
     public static final RegistryObject<BlockEntityType<StringBlockEntity>> STRING = register("string", StringBlockEntity::new, FLBlocks.WOOL_STRING);
     public static final RegistryObject<BlockEntityType<MixingBowlBlockEntity>> MIXING_BOWL = register("mixing_bowl", MixingBowlBlockEntity::new, FLBlocks.MIXING_BOWL);
-    public static final RegistryObject<BlockEntityType<BerryBushBlockEntity>> BERRY_BUSH = register("berry_bush", FLBerryBushBlockEntity::new, Stream.of(FLBlocks.FRUIT_TREE_LEAVES.values()).<Supplier<? extends Block>>flatMap(Helpers::flatten));
+    public static final RegistryObject<BlockEntityType<BerryBushBlockEntity>> BERRY_BUSH = register("berry_bush", FLBerryBushBlockEntity::new, Stream.of(FLBlocks.FRUIT_TREE_LEAVES.values(), FLBlocks.STATIONARY_BUSHES.values()).<Supplier<? extends Block>>flatMap(Helpers::flatten));
     public static final RegistryObject<BlockEntityType<SquirtingMoistureTransducerBlockEntity>> SQUIRTING_MOISTURE_TRANSDUCER = register("squirting_moisture_transducer", SquirtingMoistureTransducerBlockEntity::new, FLBlocks.SQUIRTING_MOISTURE_TRANSDUCER);
     public static final RegistryObject<BlockEntityType<FoodShelfBlockEntity>> FOOD_SHELF = register("food_shelf", FoodShelfBlockEntity::new, Stream.of(FLBlocks.FOOD_SHELVES.values()).<Supplier<? extends Block>>flatMap(Helpers::flatten));
     public static final RegistryObject<BlockEntityType<HangerBlockEntity>> HANGER = register("hanger", HangerBlockEntity::new, Stream.of(FLBlocks.HANGERS.values()).<Supplier<? extends Block>>flatMap(Helpers::flatten));

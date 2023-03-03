@@ -1,0 +1,19 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "type": "tfc:has_trait",
+        "trait": "firmalife:dried",
+        "ingredient": {
+          "item": "firmalife:food/pineapple"
+        }
+      }
+    }
+  ],
+  "result": {
+    "item": "firmalife:pineapple_fiber"
+  }
+}

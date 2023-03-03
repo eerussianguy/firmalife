@@ -56,13 +56,16 @@ def generate(rm: ResourceManager):
     rm.item_tag('tfc:usable_on_tool_rack', 'firmalife:spoon', 'firmalife:peel')
     rm.item_tag('pumpkin_knapping', 'tfc:pumpkin')
     rm.item_tag('foods/heatable', 'firmalife:food/raw_pizza', 'firmalife:food/filled_pie', 'firmalife:food/raw_pumpkin_pie', 'firmalife:food/corn_tortilla', 'firmalife:food/masa', '#firmalife:foods/slices', 'firmalife:food/cocoa_beans')
-    rm.item_tag('foods/dynamic', 'firmalife:food/raw_pizza', 'firmalife:food/filled_pie', 'firmalife:food/cooked_pizza', 'firmalife:food/cooked_pie', 'firmalife:food/burrito', 'firmalife:food/taco')
-    rm.item_tag('foods/washable', 'firmalife:food/filled_pie', 'firmalife:food/cooked_pie', 'firmalife:food/raw_pumpkin_pie', 'firmalife:food/cooked_pumpkin_pie')
+    rm.item_tag('foods/dynamic', 'firmalife:food/raw_pizza', 'firmalife:food/filled_pie', 'firmalife:food/cooked_pizza', 'firmalife:food/cooked_pie', 'firmalife:food/burrito', 'firmalife:food/taco', 'firmalife:food/stinky_soup')
+    rm.item_tag('foods/washable', 'firmalife:food/filled_pie', 'firmalife:food/cooked_pie', 'firmalife:food/raw_pumpkin_pie', 'firmalife:food/cooked_pumpkin_pie', 'firmalife:food/stinky_soup')
     rm.item_tag('pie_pans', 'firmalife:pie_pan')
     rm.item_tag('contains_pie_pan', 'firmalife:food/cooked_pumpkin_pie')
     rm.item_tag('can_be_hung', '#tfc:foods/meats', 'tfc:food/garlic')
     rm.item_tag('tfc:compost_greens_low', 'firmalife:fruit_leaf')
     rm.item_tag('foods/cooked_meats_and_substitutes', '#tfc:foods/cooked_meats', 'firmalife:food/tofu')
+    rm.item_tag('forge:leather', 'firmalife:pineapple_leather')
+
+    block_and_item_tag(rm, 'tfc:wild_fruits', 'firmalife:plant/pineapple_bush', 'firmalife:plant/nightshade_bush', 'firmalife:plant/fig_sapling', 'firmalife:plant/cocoa_sapling')
 
     rm.block_tag('oven_insulation', 'minecraft:bricks', '#tfc:forge_insulation', '#firmalife:oven_blocks', 'minecraft:brick_stairs', 'minecraft:brick_slab')
     rm.block_tag('minecraft:mineable/pickaxe', '#firmalife:oven_blocks')
@@ -155,6 +158,8 @@ def generate(rm: ResourceManager):
     trellis_plantable(rm, 'snowberry', 'tfc:plant/snowberry_bush', 'tfc:food/snowberry', 'nitrogen')
     trellis_plantable(rm, 'strawberry', 'tfc:plant/strawberry_bush', 'tfc:food/strawberry', 'nitrogen')
     trellis_plantable(rm, 'wintergreen_berry', 'tfc:plant/wintergreen_berry_bush', 'tfc:food/wintergreen_berry', 'nitrogen')
+    trellis_plantable(rm, 'nightshade_berry', 'firmalife:plant/nightshade_bush', 'firmalife:food/nightshade_berry', 'nitrogen')
+    trellis_plantable(rm, 'pineapple', 'firmalife:plant/pineapple_bush', 'firmalife:food/pineapple', 'nitrogen')
     # missing is cranberries. hydroponic planter?
 
     # Drinkable
@@ -197,6 +202,8 @@ def generate(rm: ResourceManager):
     food_item(rm, 'taco_shell', 'firmalife:food/taco_shell', Category.grain, 4, 1, 0, 0.8, grain=0.6)
     food_item(rm, 'tomato_sauce', 'firmalife:food/tomato_sauce', Category.vegetable, 1, 1, 1, 1, veg=0.75)
     food_item(rm, 'salsa', 'firmalife:food/salsa', Category.vegetable, 1, 1, 1, 0.8, veg=0.5)
+    food_item(rm, 'pineapple', 'firmalife:food/pineapple', Category.fruit, 4, 1, 1, 0.85, fruit=1.0)
+    food_item(rm, 'nightshade_berry', 'firmalife:food/nightshade_berry', Category.other, 4, 1, 1, 0.85, fruit=3.0)
 
     item_size(rm, 'jars', '#firmalife:jars', Size.very_large, Weight.medium)
     item_size(rm, 'beehive_frame', 'firmalife:beehive_frame', Size.very_small, Weight.very_heavy)
@@ -207,6 +214,8 @@ def generate(rm: ResourceManager):
 
     for fruit, data in FRUITS.items():
         climate_range(rm, 'plant/%s_tree' % fruit, hydration=(hydration_from_rainfall(data.min_rain), 100, 0), temperature=(data.min_temp - 7, data.max_temp + 7, 0))
+    for berry, data in STILL_BUSHES.items():
+        climate_range(rm, 'plant/%s_bush' % berry, hydration=(hydration_from_rainfall(data[0]), 100, 0), temperature=(data[2], data[3], 0))
 
     ### MISC DATA ###
     global_loot_modifiers(rm, 'firmalife:fruit_leaf', 'firmalife:rennet', 'firmalife:rennet_three')
@@ -354,4 +363,8 @@ def climate_range(rm: ResourceManager, name_parts: utils.ResourceIdentifier, hyd
 
 def hydration_from_rainfall(rainfall: int) -> int:
     return rainfall * 60 // 500
+
+def block_and_item_tag(rm: ResourceManager, name_parts: utils.ResourceIdentifier, *values: utils.ResourceIdentifier, replace: bool = False):
+    rm.block_tag(name_parts, *values, replace=replace)
+    rm.item_tag(name_parts, *values, replace=replace)
 

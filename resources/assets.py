@@ -1,3 +1,5 @@
+import itertools
+
 from mcresources import ResourceManager, ItemContext, BlockContext, block_states
 from mcresources import utils, loot_tables
 
@@ -149,6 +151,22 @@ def generate(rm: ResourceManager):
     simple_plant_data(rm, 'firmalife:plant/butterfly_grass')
     flower_pot_cross(rm, 'butterfly grass', 'firmalife:plant/potted/butterfly_grass', 'plant/flowerpot/butterfly_grass', 'firmalife:block/plant/butterfly_grass/base', 'firmalife:plant/butterfly_grass', tinted=True)
     rm.item_model('plant/butterfly_grass', 'firmalife:block/plant/butterfly_grass/base')
+
+    lifecycle_to_model = {'healthy': '', 'dormant': 'dry_', 'fruiting': 'fruiting_', 'flowering': 'flowering_'}
+    lifecycles = ('healthy', 'dormant', 'fruiting', 'flowering')
+    for berry in STILL_BUSHES.keys():
+        rm.blockstate('plant/%s_bush' % berry, variants=dict(
+            (
+                'lifecycle=%s,stage=%d' % (lifecycle, stage),
+                {'model': 'firmalife:block/plant/%s%s_bush_%d' % (lifecycle_to_model[lifecycle], berry, stage)}
+            ) for lifecycle, stage in itertools.product(lifecycles, range(0, 3))
+        )).with_lang(lang('%s Bush', berry)).with_tag('tfc:berry_bushes')
+
+        rm.item_model('plant/%s_bush' % berry, parent='firmalife:block/plant/%s_bush_2' % berry, no_textures=True)
+        rm.block_loot('plant/%s_bush' % berry, {'name': 'firmalife:plant/%s_bush' % berry, 'conditions': [loot_tables.match_tag('tfc:sharp_tools')]})
+        for lifecycle, stage in itertools.product(lifecycle_to_model.values(), range(0, 3)):
+            rm.block_model('plant/%s%s_bush_%d' % (lifecycle, berry, stage), parent='tfc:block/plant/stationary_bush_%d' % stage, textures={'bush': 'firmalife:block/berry_bush/' + lifecycle + '%s_bush' % berry})
+        rm.block_tag('tfc:fox_raidable', 'firmalife:plant/%s_bush' % berry)
 
     for herb in HERBS:
         for stage in ('0', '1'):

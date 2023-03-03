@@ -1,0 +1,10 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "firmalife:plant/pineapple_bush",
+    "firmalife:plant/nightshade_bush",
+    "firmalife:plant/fig_sapling",
+    "firmalife:plant/cocoa_sapling"
+  ]
+}

@@ -63,4 +63,24 @@ public final class FLFruitBlocks
             return new FLGrowingFruitTreeBranchBlock(ExtendedProperties.of(Material.WOOD).sound(SoundType.SCAFFOLDING).randomTicks().strength(1.0f).blockEntity(FLBlockEntities.TICK_COUNTER).flammableLikeLogs(), FLBlocks.FRUIT_TREE_BRANCHES.get(this), FLBlocks.FRUIT_TREE_LEAVES.get(this), FLClimateRanges.FRUIT_TREES.get(this));
         }
     }
+
+    public enum StationaryBush
+    {
+        PINEAPPLE(FLItems.FRUITS.get(FLFruit.PINEAPPLE), DORMANT, DORMANT, HEALTHY, HEALTHY, HEALTHY, HEALTHY, FLOWERING, FLOWERING, FRUITING, DORMANT, DORMANT, DORMANT),
+        NIGHTSHADE(FLItems.NIGHTSHADE_BERRY, DORMANT, HEALTHY, HEALTHY, HEALTHY, HEALTHY, HEALTHY, FLOWERING, FRUITING, DORMANT, DORMANT, DORMANT, DORMANT);
+
+        private final Supplier<Item> product;
+        private final Lifecycle[] stages;
+
+        StationaryBush(Supplier<Item> product, Lifecycle... stages)
+        {
+            this.product = product;
+            this.stages = stages;
+        }
+
+        public Block create()
+        {
+            return new StationaryBerryBushBlock(ExtendedProperties.of(Material.LEAVES).strength(0.6f).noOcclusion().randomTicks().sound(SoundType.SWEET_BERRY_BUSH).blockEntity(FLBlockEntities.BERRY_BUSH).serverTicks(BerryBushBlockEntity::serverTick).flammableLikeLeaves(), product, stages, FLClimateRanges.STATIONARY_BUSHES.get(this));
+        }
+    }
 }

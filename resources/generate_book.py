@@ -3,7 +3,7 @@ from argparse import ArgumentParser
 
 from mcresources.type_definitions import ResourceIdentifier
 
-from constants import FRUITS
+from constants import FRUITS, STILL_BUSHES
 from patchouli import *
 from i18n import I18n
 
@@ -210,6 +210,14 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False):
             text('To improve readability, entries start on the next page.'),
             *detail_fruit_tree('cocoa', 'Cocoa trees are used to make $(l:firmalife:firmalife/chocolate)Chocolate$().'),
             *detail_fruit_tree('fig'),
+        )),
+        entry('berry_bushes', 'Berry Bushes', 'firmalife:plant/pineapple_bush', pages=(
+            text('Firmalife adds some berry bushes with interesting uses.'),
+            item_spotlight('firmalife:food/nightshade', text_contents='First is nightshade. Nightshade is a poisonous berry. When put into soup, it makes poisonous $(thing)Stinky Soup$(). It is found between 200-400mm of rain and 7-24 C temperature in forests.'),
+            item_spotlight('firmalife:food/pineapple', text_contents='Pineapple bushes are found 250-500mm of rainfall and 20-32 C temperature in forests. Pineapples are like any other fruit, except that they can be made into $(thing)Pineapple Leather$().'),
+            crafting('firmalife:crafting/pineapple_fiber', text_contents='Pineapples that have been $(l:firmalife:firmalife/drying)Dried$() can be crafted into pineapple fiber.'),
+            crafting('firmalife:crafting/pineapple_yarn', text_contents='Pineapple yarn is made by crafting a $(thing)Spindle$() with the fiber.'),
+            loom_recipe('firmalife:loom/pineapple_leather', text_content='Finally, pineapple leather can be me woven in a $(l:tfc:mechanics/weaving)Loom$(). It is a plant substitute for regular leather than can be used for knapping, crafting, and other uses!')
         )),
         entry('chocolate', 'Chocolate', 'firmalife:food/dark_chocolate', pages=(
             text('$(thing)Chocolate-making$() takes a few processing steps, for not much of a reward. It\'s important to remember, when playing Firmalife, that being a chocolatier is for your personal enjoyment and pleasure, rather than for trying to extract maximum value from any given input.'),

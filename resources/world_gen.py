@@ -47,6 +47,11 @@ def generate(rm: ResourceManager):
     configured_patch_feature(rm, 'hollow_shell', patch_config('firmalife:hollow_shell[fluid=empty]', 1, 15, 5, 'salt'), decorate_chance(20), decorate_square(), decorate_climate(-30, 20, 150, 500))
     placed_feature_tag(rm, 'tfc:feature/shore_decorations', 'firmalife:hollow_shell')
 
+    for berry, data in STILL_BUSHES.items():
+        bush_block = 'firmalife:plant/%s_bush[lifecycle=healthy,stage=0]' % berry
+        configured_patch_feature(rm, ('plant', berry + '_bush'), patch_config(bush_block, 1, 4, 4, False), decorate_climate(data[2], data[3], data[0], data[1], min_forest='sparse'), decorate_square(), decorate_chance(30), biome_check=False)
+        placed_feature_tag(rm, 'tfc:feature/berry_bushes', 'firmalife:plant/%s_bush_patch' % berry)
+
 
 Heightmap = Literal['motion_blocking', 'motion_blocking_no_leaves', 'ocean_floor', 'ocean_floor_wg', 'world_surface', 'world_surface_wg']
 

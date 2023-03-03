@@ -5,6 +5,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.function.Supplier;
 
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraftforge.registries.DeferredRegister;
@@ -43,6 +45,7 @@ public class FLItems
     public static final RegistryObject<Item> HOLLOW_SHELL = register("hollow_shell",  () -> new HollowShellItem(prop().stacksTo(1), FLConfig.SERVER.hollowShellCapacity, FLTags.Fluids.USABLE_IN_HOLLOW_SHELL, false, false));
     public static final RegistryObject<Item> PEEL = register("peel", MISC);
     public static final RegistryObject<Item> PIE_PAN = register("pie_pan", MISC);
+    public static final RegistryObject<Item> PINEAPPLE_FIBER = register("pineapple_fiber", MISC);
     public static final RegistryObject<Item> PINEAPPLE_LEATHER = register("pineapple_leather", MISC);
     public static final RegistryObject<Item> PINEAPPLE_YARN = register("pineapple_yarn", MISC);
     public static final RegistryObject<Item> RAW_HONEY = register("raw_honey", MISC);
@@ -63,6 +66,8 @@ public class FLItems
     public static final RegistryObject<SandwichItem> COOKED_PIZZA = registerDynamicFood("food/cooked_pizza");
     public static final RegistryObject<SandwichItem> BURRITO = registerDynamicFood("food/burrito");
     public static final RegistryObject<SandwichItem> TACO = registerDynamicFood("food/taco");
+    public static final RegistryObject<Item> NIGHTSHADE_BERRY = register("food/nightshade_berry", () -> new DecayingItem(new Item.Properties().tab(FOOD).food(new FoodProperties.Builder().nutrition(4).saturationMod(0.3f).effect(() -> new MobEffectInstance(MobEffects.HARM, 1, 10), 0.5f).build())));
+    public static final RegistryObject<DynamicBowlFood> STINKY_SOUP = register("food/stinky_soup", () -> new DynamicBowlFood(new Item.Properties().tab(FOOD).food(new FoodProperties.Builder().nutrition(4).saturationMod(0.3f).effect(() -> new MobEffectInstance(MobEffects.HARM, 1, 10), 0.5f).build())));
 
     public static final Map<Ore.Grade, RegistryObject<Item>> CHROMIUM_ORES = Helpers.mapOfKeys(Ore.Grade.class, grade -> register("ore/" + grade.name() + "_chromite", TFCItemGroup.ORES));
 

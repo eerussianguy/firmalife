@@ -1,0 +1,21 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "planter": "trellis",
+  "ingredient": {
+    "item": "firmalife:plant/nightshade_bush"
+  },
+  "crop": {
+    "item": "firmalife:food/nightshade_berry"
+  },
+  "nutrient": "nitrogen",
+  "stages": 0,
+  "texture": [
+    "tfc:block/berry_bush/nightshade_berry_bush",
+    "tfc:block/berry_bush/dry_nightshade_berry_bush",
+    "tfc:block/berry_bush/flowering_nightshade_berry_bush",
+    "tfc:block/berry_bush/fruiting_nightshade_berry_bush"
+  ],
+  "specials": [],
+  "tier": 15,
+  "extra_seed_chance": 0
+}

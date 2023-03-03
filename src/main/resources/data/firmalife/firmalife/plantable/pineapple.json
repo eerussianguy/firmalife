@@ -1,0 +1,21 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "planter": "trellis",
+  "ingredient": {
+    "item": "firmalife:plant/pineapple_bush"
+  },
+  "crop": {
+    "item": "firmalife:food/pineapple"
+  },
+  "nutrient": "nitrogen",
+  "stages": 0,
+  "texture": [
+    "tfc:block/berry_bush/pineapple_bush",
+    "tfc:block/berry_bush/dry_pineapple_bush",
+    "tfc:block/berry_bush/flowering_pineapple_bush",
+    "tfc:block/berry_bush/fruiting_pineapple_bush"
+  ],
+  "specials": [],
+  "tier": 15,
+  "extra_seed_chance": 0
+}

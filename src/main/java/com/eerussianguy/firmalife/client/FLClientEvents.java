@@ -36,6 +36,7 @@ import com.eerussianguy.firmalife.common.util.FLMetal;
 import net.dries007.tfc.client.TFCColors;
 import net.dries007.tfc.client.particle.GlintParticleProvider;
 import net.dries007.tfc.client.screen.KnappingScreen;
+import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.capabilities.food.FoodCapability;
 import net.dries007.tfc.common.items.TFCItems;
 
@@ -79,6 +80,7 @@ public class FLClientEvents
         FLBlocks.FRUIT_TREE_LEAVES.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), layer -> Minecraft.useFancyGraphics() ? layer == cutoutMipped : layer == solid));
         FLBlocks.FRUIT_TREE_SAPLINGS.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
         FLBlocks.FRUIT_TREE_POTTED_SAPLINGS.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
+        FLBlocks.STATIONARY_BUSHES.values().forEach(bush -> ItemBlockRenderTypes.setRenderLayer(bush.get(), cutoutMipped));
         FLBlocks.HERBS.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
         FLBlocks.POTTED_HERBS.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
         FLBlocks.FOOD_SHELVES.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
@@ -178,6 +180,7 @@ public class FLClientEvents
         {
             event.addSprite(metal.getSheet());
         }
+        event.addSprite(FLHelpers.identifier("block/pineapple"));
     }
 
     public static void onModelRegister(ModelRegistryEvent event)

@@ -37,6 +37,8 @@
     "firmalife:food/corn_tortilla",
     "firmalife:food/taco_shell",
     "firmalife:food/tomato_sauce",
-    "firmalife:food/salsa"
+    "firmalife:food/salsa",
+    "firmalife:food/pineapple",
+    "firmalife:food/nightshade_berry"
   ]
 }

@@ -88,6 +88,7 @@ public class FirmaLife
         });
         FLItemStackModifiers.init();
         FLPatchouliIntegration.registerMultiBlocks();
+        FLRecipeTypes.init();
     }
 
     public void onInterModComms(InterModEnqueueEvent event)
