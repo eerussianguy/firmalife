@@ -1,0 +1,21 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "planter": "quad",
+  "ingredient": {
+    "item": "firmalife:plant/cumin"
+  },
+  "seed": {
+    "item": "firmalife:plant/cumin"
+  },
+  "crop": {
+    "item": "firmalife:plant/cumin"
+  },
+  "nutrient": "nitrogen",
+  "stages": 1,
+  "texture": [
+    "firmalife:block/plant/cumin/0",
+    "firmalife:block/plant/cumin/1"
+  ],
+  "specials": [],
+  "extra_seed_chance": 0.8
+}

@@ -12,7 +12,13 @@
   },
   "nutrient": "potassium",
   "stages": 4,
-  "texture": "firmalife:block/crop/jute",
+  "texture": [
+    "firmalife:block/crop/jute_0",
+    "firmalife:block/crop/jute_1",
+    "firmalife:block/crop/jute_2",
+    "firmalife:block/crop/jute_3",
+    "firmalife:block/crop/jute_4"
+  ],
   "specials": [],
   "extra_seed_chance": 0.5
 }

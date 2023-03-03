@@ -1,0 +1,21 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "planter": "quad",
+  "ingredient": {
+    "item": "firmalife:plant/cilantro"
+  },
+  "seed": {
+    "item": "firmalife:plant/cilantro"
+  },
+  "crop": {
+    "item": "firmalife:plant/cilantro"
+  },
+  "nutrient": "nitrogen",
+  "stages": 1,
+  "texture": [
+    "firmalife:block/plant/cilantro/0",
+    "firmalife:block/plant/cilantro/1"
+  ],
+  "specials": [],
+  "extra_seed_chance": 0.8
+}

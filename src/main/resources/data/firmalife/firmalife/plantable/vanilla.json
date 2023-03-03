@@ -1,0 +1,21 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "planter": "quad",
+  "ingredient": {
+    "item": "firmalife:plant/vanilla"
+  },
+  "seed": {
+    "item": "firmalife:plant/vanilla"
+  },
+  "crop": {
+    "item": "firmalife:plant/vanilla"
+  },
+  "nutrient": "nitrogen",
+  "stages": 1,
+  "texture": [
+    "firmalife:block/plant/vanilla/0",
+    "firmalife:block/plant/vanilla/1"
+  ],
+  "specials": [],
+  "extra_seed_chance": 0.8
+}

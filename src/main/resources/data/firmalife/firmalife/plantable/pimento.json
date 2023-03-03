@@ -1,0 +1,21 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "planter": "quad",
+  "ingredient": {
+    "item": "firmalife:plant/pimento"
+  },
+  "seed": {
+    "item": "firmalife:plant/pimento"
+  },
+  "crop": {
+    "item": "firmalife:plant/pimento"
+  },
+  "nutrient": "nitrogen",
+  "stages": 1,
+  "texture": [
+    "firmalife:block/plant/pimento/0",
+    "firmalife:block/plant/pimento/1"
+  ],
+  "specials": [],
+  "extra_seed_chance": 0.8
+}

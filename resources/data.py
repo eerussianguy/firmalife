@@ -122,13 +122,12 @@ def generate(rm: ResourceManager):
     simple_plantable(rm, 'soybean', 'nitrogen', 6)
 
     for herb in HERBS:
-        pass
-        #plantable(rm, herb, 'firmalife:plant/%s' % herb, 'firmalife:plant/%s' % herb, 'firmalife:block/plant/%s/%s' % )
+        plantable(rm, herb, 'firmalife:plant/%s' % herb, 'firmalife:plant/%s' % herb, 'nitrogen', ['firmalife:block/plant/%s/%s' % (herb, i) for i in range(0, 2)], 1, seed_chance=0.8, )
 
     simple_plantable(rm, 'green_bean', 'nitrogen', 4, planter='large', firmalife=True)
     simple_plantable(rm, 'tomato', 'potassium', 4, planter='large', firmalife=True)
     simple_plantable(rm, 'sugarcane', 'potassium', 4, planter='large', firmalife=True)
-    plantable(rm, 'jute', 'tfc:seeds/jute', 'tfc:jute', 'potassium', 'firmalife:block/crop/jute', 4, 'large')
+    plantable(rm, 'jute', 'tfc:seeds/jute', 'tfc:jute', 'potassium', ['firmalife:block/crop/jute_%s' % i for i in range(0, 5)], 4, 'large')
 
     bonsai_plantable(rm, 'cherry', 'nitrogen')
     bonsai_plantable(rm, 'green_apple', 'nitrogen')

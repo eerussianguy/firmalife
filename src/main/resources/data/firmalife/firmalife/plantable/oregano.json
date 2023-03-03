@@ -1,0 +1,21 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "planter": "quad",
+  "ingredient": {
+    "item": "firmalife:plant/oregano"
+  },
+  "seed": {
+    "item": "firmalife:plant/oregano"
+  },
+  "crop": {
+    "item": "firmalife:plant/oregano"
+  },
+  "nutrient": "nitrogen",
+  "stages": 1,
+  "texture": [
+    "firmalife:block/plant/oregano/0",
+    "firmalife:block/plant/oregano/1"
+  ],
+  "specials": [],
+  "extra_seed_chance": 0.8
+}

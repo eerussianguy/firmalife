@@ -1,0 +1,21 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "planter": "quad",
+  "ingredient": {
+    "item": "firmalife:plant/basil"
+  },
+  "seed": {
+    "item": "firmalife:plant/basil"
+  },
+  "crop": {
+    "item": "firmalife:plant/basil"
+  },
+  "nutrient": "nitrogen",
+  "stages": 1,
+  "texture": [
+    "firmalife:block/plant/basil/0",
+    "firmalife:block/plant/basil/1"
+  ],
+  "specials": [],
+  "extra_seed_chance": 0.8
+}
