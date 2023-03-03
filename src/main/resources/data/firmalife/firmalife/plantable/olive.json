@@ -12,7 +12,14 @@
   },
   "nutrient": "nitrogen",
   "stages": 0,
-  "texture": "tfc:block/fruit_tree/olive",
+  "texture": [
+    "tfc:block/fruit_tree/olive_fruiting_leaves",
+    "tfc:block/fruit_tree/olive_dry_leaves",
+    "tfc:block/fruit_tree/olive_flowering_leaves",
+    "tfc:block/fruit_tree/olive_branch",
+    "tfc:block/fruit_tree/olive_leaves"
+  ],
+  "specials": [],
   "tier": 15,
   "extra_seed_chance": 0.08
 }

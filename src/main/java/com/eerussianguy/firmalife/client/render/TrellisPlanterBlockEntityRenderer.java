@@ -18,6 +18,11 @@ import net.dries007.tfc.client.RenderHelpers;
 
 public class TrellisPlanterBlockEntityRenderer implements BlockEntityRenderer<TrellisPlanterBlockEntity>
 {
+    private static final int GROWING_ID = 0;
+    private static final int DRY_ID = 1;
+    private static final int FLOWERING_ID = 2;
+    private static final int FRUITING_ID = 3;
+
     @Override
     public void render(TrellisPlanterBlockEntity planter, float partialTicks, PoseStack poseStack, MultiBufferSource buffers, int combinedLight, int combinedOverlay)
     {
@@ -28,30 +33,25 @@ public class TrellisPlanterBlockEntityRenderer implements BlockEntityRenderer<Tr
         final float growth = planter.getGrowth(0);
 
         final Function<ResourceLocation, TextureAtlasSprite> atlas = Minecraft.getInstance().getTextureAtlas(InventoryMenu.BLOCK_ATLAS);
-        final String baseTex = plant.getTextureLocation();
-        String prefix = "";
+        int id = GROWING_ID;
         if (growth >= 1)
         {
-            prefix = "fruiting_";
+            id = FRUITING_ID;
         }
         else if (!water)
         {
-            prefix = "dry_";
+            id = DRY_ID;
         }
         else if (growth > 0.66f)
         {
-            prefix = "flowering_";
+            id = FLOWERING_ID;
         }
-
-        final String[] splits = baseTex.split("block/berry_bush/", 2);
-        final ResourceLocation actualTexture = new ResourceLocation(splits[0] + "block/berry_bush/" + prefix + splits[1]);
 
         poseStack.pushPose();
         final VertexConsumer buffer = buffers.getBuffer(RenderType.cutout());
 
-
-        TextureAtlasSprite sprite = atlas.apply(actualTexture);
-        RenderHelpers.renderTexturedCuboid(poseStack, buffer, sprite, combinedLight, combinedOverlay, (float) 0, (float) 0, (float) 0, (float) 1, 1.01f, (float) 1);
+        TextureAtlasSprite sprite = atlas.apply(plant.getTexture(id));
+        RenderHelpers.renderTexturedCuboid(poseStack, buffer, sprite, combinedLight, combinedOverlay, 0f, 0f, 0f, 1f, 1.01f, 1f);
 
         poseStack.popPose();
     }

@@ -18,6 +18,12 @@ import net.dries007.tfc.client.RenderHelpers;
 
 public class BonsaiPlanterBlockEntityRenderer implements BlockEntityRenderer<LargePlanterBlockEntity>
 {
+    private static final int FRUITING_ID = 0;
+    private static final int DRY_ID = 1;
+    private static final int FLOWERING_ID = 2;
+    private static final int BRANCH_ID = 3;
+    private static final int LEAVES_ID = 4;
+
     @Override
     public void render(LargePlanterBlockEntity planter, float partialTicks, PoseStack poseStack, MultiBufferSource buffers, int combinedLight, int combinedOverlay)
     {
@@ -28,23 +34,22 @@ public class BonsaiPlanterBlockEntityRenderer implements BlockEntityRenderer<Lar
         final float growth = planter.getGrowth(0);
 
         Function<ResourceLocation, TextureAtlasSprite> atlas = Minecraft.getInstance().getTextureAtlas(InventoryMenu.BLOCK_ATLAS);
-        String baseTex = plant.getTextureLocation();
-        String leafTex = "_leaves";
+        int id = LEAVES_ID;
         if (growth >= 1)
         {
-            leafTex = "_fruiting_leaves";
+            id = FRUITING_ID;
         }
         else if (!water)
         {
-            leafTex = "_dry_leaves";
+            id = DRY_ID;
         }
         else if (growth > 0.66f)
         {
-            leafTex = "_flowering_leaves";
+            id = FLOWERING_ID;
         }
 
-        TextureAtlasSprite branch = atlas.apply(new ResourceLocation(baseTex + "_branch"));
-        TextureAtlasSprite leaves = atlas.apply(new ResourceLocation(baseTex + leafTex));
+        TextureAtlasSprite branch = atlas.apply(plant.getTexture(BRANCH_ID));
+        TextureAtlasSprite leaves = atlas.apply(plant.getTexture(id));
 
         poseStack.pushPose();
         VertexConsumer buffer = buffers.getBuffer(RenderType.cutout());

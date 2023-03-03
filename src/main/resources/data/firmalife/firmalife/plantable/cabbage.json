@@ -12,6 +12,14 @@
   },
   "nutrient": "nitrogen",
   "stages": 5,
-  "texture": "tfc:block/crop/cabbage",
+  "texture": [
+    "tfc:block/crop/cabbage_0",
+    "tfc:block/crop/cabbage_1",
+    "tfc:block/crop/cabbage_2",
+    "tfc:block/crop/cabbage_3",
+    "tfc:block/crop/cabbage_4",
+    "tfc:block/crop/cabbage_5"
+  ],
+  "specials": [],
   "extra_seed_chance": 0.5
 }

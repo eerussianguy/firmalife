@@ -9,7 +9,13 @@
   },
   "nutrient": "nitrogen",
   "stages": 0,
-  "texture": "tfc:block/berry_bush/blackberry_bush",
+  "texture": [
+    "tfc:block/berry_bush/blackberry_bush",
+    "tfc:block/berry_bush/dry_blackberry_bush",
+    "tfc:block/berry_bush/flowering_blackberry_bush",
+    "tfc:block/berry_bush/fruiting_blackberry_bush"
+  ],
+  "specials": [],
   "tier": 15,
   "extra_seed_chance": 0
 }

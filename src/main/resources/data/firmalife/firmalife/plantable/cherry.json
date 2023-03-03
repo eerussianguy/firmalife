@@ -12,7 +12,14 @@
   },
   "nutrient": "nitrogen",
   "stages": 0,
-  "texture": "tfc:block/fruit_tree/cherry",
+  "texture": [
+    "tfc:block/fruit_tree/cherry_fruiting_leaves",
+    "tfc:block/fruit_tree/cherry_dry_leaves",
+    "tfc:block/fruit_tree/cherry_flowering_leaves",
+    "tfc:block/fruit_tree/cherry_branch",
+    "tfc:block/fruit_tree/cherry_leaves"
+  ],
+  "specials": [],
   "tier": 15,
   "extra_seed_chance": 0.08
 }

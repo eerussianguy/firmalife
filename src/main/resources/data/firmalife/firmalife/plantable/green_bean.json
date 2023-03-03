@@ -12,6 +12,13 @@
   },
   "nutrient": "nitrogen",
   "stages": 4,
-  "texture": "firmalife:block/crop/green_bean",
+  "texture": [
+    "firmalife:block/crop/green_bean_0",
+    "firmalife:block/crop/green_bean_1",
+    "firmalife:block/crop/green_bean_2",
+    "firmalife:block/crop/green_bean_3",
+    "firmalife:block/crop/green_bean_4"
+  ],
+  "specials": [],
   "extra_seed_chance": 0.5
 }

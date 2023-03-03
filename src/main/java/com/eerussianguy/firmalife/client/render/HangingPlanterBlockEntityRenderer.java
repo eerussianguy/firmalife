@@ -18,16 +18,18 @@ import net.dries007.tfc.client.RenderHelpers;
 
 public class HangingPlanterBlockEntityRenderer implements BlockEntityRenderer<HangingPlanterBlockEntity>
 {
+    private static final int FRUIT_ID = 0;
+
     @Override
     public void render(HangingPlanterBlockEntity planter, float partialTicks, PoseStack poseStack, MultiBufferSource buffers, int combinedLight, int combinedOverlay)
     {
-        Plantable plant = planter.getPlantable(0);
+        final Plantable plant = planter.getPlantable(0);
         if (plant == null) return;
 
         poseStack.pushPose();
-        Function<ResourceLocation, TextureAtlasSprite> atlas = Minecraft.getInstance().getTextureAtlas(InventoryMenu.BLOCK_ATLAS);
-        TextureAtlasSprite growth = atlas.apply(plant.getTexture(planter.getGrowth(0)));
-        VertexConsumer buffer = buffers.getBuffer(RenderType.cutout());
+        final Function<ResourceLocation, TextureAtlasSprite> atlas = Minecraft.getInstance().getTextureAtlas(InventoryMenu.BLOCK_ATLAS);
+        final TextureAtlasSprite growth = atlas.apply(plant.getTexture(planter.getGrowth(0)));
+        final VertexConsumer buffer = buffers.getBuffer(RenderType.cutout());
 
         // foliage
         RenderUtils.renderCross(1 / 16f, 15 / 16f, 0 / 16f, 13 / 16f, poseStack, buffer, combinedLight, combinedOverlay, growth, 1f / 16f, 0f, 15f / 16f, 13f / 16f);
@@ -35,7 +37,7 @@ public class HangingPlanterBlockEntityRenderer implements BlockEntityRenderer<Ha
         // fruits
         if (planter.getGrowth(0) >= 1f)
         {
-            TextureAtlasSprite fruit = atlas.apply(new ResourceLocation(plant.getTextureLocation() + "_fruit"));
+            TextureAtlasSprite fruit = atlas.apply(plant.getSpecialTexture(FRUIT_ID));
             RenderHelpers.renderTexturedCuboid(poseStack, buffer, fruit, combinedLight, combinedOverlay, 4 / 16f, 3 / 16f, 4 / 16f, 7 / 16f, 6 / 16f, 7 / 16f);
             RenderHelpers.renderTexturedCuboid(poseStack, buffer, fruit, combinedLight, combinedOverlay, 4 / 16f, (float) 0, 10 / 16f, 7 / 16f, 3 / 16f, 13 / 16f);
             RenderHelpers.renderTexturedCuboid(poseStack, buffer, fruit, combinedLight, combinedOverlay, 9 / 16f, 7 / 16f, 5 / 16f, 12 / 16f, 10 / 16f, 8 / 16f);

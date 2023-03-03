@@ -12,7 +12,16 @@
   },
   "nutrient": "nitrogen",
   "stages": 4,
-  "texture": "firmalife:block/crop/banana",
+  "texture": [
+    "firmalife:block/crop/banana_0",
+    "firmalife:block/crop/banana_1",
+    "firmalife:block/crop/banana_2",
+    "firmalife:block/crop/banana_3",
+    "firmalife:block/crop/banana_4"
+  ],
+  "specials": [
+    "firmalife:block/crop/banana_fruit"
+  ],
   "tier": 15,
   "extra_seed_chance": 0.08
 }

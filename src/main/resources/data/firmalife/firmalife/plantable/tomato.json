@@ -12,6 +12,13 @@
   },
   "nutrient": "potassium",
   "stages": 4,
-  "texture": "firmalife:block/crop/tomato",
+  "texture": [
+    "firmalife:block/crop/tomato_0",
+    "firmalife:block/crop/tomato_1",
+    "firmalife:block/crop/tomato_2",
+    "firmalife:block/crop/tomato_3",
+    "firmalife:block/crop/tomato_4"
+  ],
+  "specials": [],
   "extra_seed_chance": 0.5
 }

@@ -9,7 +9,13 @@
   },
   "nutrient": "nitrogen",
   "stages": 0,
-  "texture": "tfc:block/berry_bush/cloudberry_bush",
+  "texture": [
+    "tfc:block/berry_bush/cloudberry_bush",
+    "tfc:block/berry_bush/dry_cloudberry_bush",
+    "tfc:block/berry_bush/flowering_cloudberry_bush",
+    "tfc:block/berry_bush/fruiting_cloudberry_bush"
+  ],
+  "specials": [],
   "tier": 15,
   "extra_seed_chance": 0
 }

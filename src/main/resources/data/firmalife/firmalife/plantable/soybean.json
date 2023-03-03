@@ -12,6 +12,15 @@
   },
   "nutrient": "nitrogen",
   "stages": 6,
-  "texture": "tfc:block/crop/soybean",
+  "texture": [
+    "tfc:block/crop/soybean_0",
+    "tfc:block/crop/soybean_1",
+    "tfc:block/crop/soybean_2",
+    "tfc:block/crop/soybean_3",
+    "tfc:block/crop/soybean_4",
+    "tfc:block/crop/soybean_5",
+    "tfc:block/crop/soybean_6"
+  ],
+  "specials": [],
   "extra_seed_chance": 0.5
 }

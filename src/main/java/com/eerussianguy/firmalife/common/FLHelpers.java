@@ -5,10 +5,13 @@ import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Supplier;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
@@ -29,6 +32,7 @@ import com.mojang.serialization.JsonOps;
 import net.dries007.tfc.common.blockentities.TickCounterBlockEntity;
 import net.dries007.tfc.common.capabilities.Capabilities;
 import net.dries007.tfc.util.Helpers;
+import net.dries007.tfc.util.JsonHelpers;
 
 import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
 
@@ -154,6 +158,41 @@ public class FLHelpers
     {
         return String.join(".", MOD_ID, "enum", enumName, anEnum.name()).toLowerCase(Locale.ROOT);
     }
+
+    public static ResourceLocation[] arrayOfResourceLocationsFromJson(JsonObject json, String field)
+    {
+        final JsonArray array = JsonHelpers.getAsJsonArray(json, field);
+        final ResourceLocation[] textures = new ResourceLocation[array.size()];
+        int i = 0;
+        for (JsonElement element : array)
+        {
+            textures[i] = new ResourceLocation(element.getAsString());
+            i++;
+        }
+        return textures;
+    }
+
+    public static ResourceLocation[] arrayOfResourceLocationsFromNetwork(FriendlyByteBuf buffer)
+    {
+        final int length = buffer.readVarInt();
+        if (length == 0) return new ResourceLocation[] {};
+        final ResourceLocation[] textures = new ResourceLocation[length];
+        for (int i = 0; i < length; i++)
+        {
+            textures[i] = new ResourceLocation(buffer.readUtf());
+        }
+        return textures;
+    }
+
+    public static void arrayOfResourceLocationsToNetwork(FriendlyByteBuf buffer, ResourceLocation[] textures)
+    {
+        buffer.writeVarInt(textures.length);
+        for (ResourceLocation res : textures)
+        {
+            buffer.writeUtf(res.toString());
+        }
+    }
+
 
     @SuppressWarnings({"AssertWithSideEffects", "ConstantConditions"})
     private static boolean detectAssertionsEnabled()

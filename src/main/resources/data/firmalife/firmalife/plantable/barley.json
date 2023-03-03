@@ -12,7 +12,17 @@
   },
   "nutrient": "nitrogen",
   "stages": 7,
-  "texture": "tfc:block/crop/barley",
+  "texture": [
+    "tfc:block/crop/barley_0",
+    "tfc:block/crop/barley_1",
+    "tfc:block/crop/barley_2",
+    "tfc:block/crop/barley_3",
+    "tfc:block/crop/barley_4",
+    "tfc:block/crop/barley_5",
+    "tfc:block/crop/barley_6",
+    "tfc:block/crop/barley_7"
+  ],
+  "specials": [],
   "tier": 10,
   "extra_seed_chance": 0.5
 }

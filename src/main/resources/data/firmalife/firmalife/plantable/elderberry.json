@@ -9,7 +9,13 @@
   },
   "nutrient": "nitrogen",
   "stages": 0,
-  "texture": "tfc:block/berry_bush/elderberry_bush",
+  "texture": [
+    "tfc:block/berry_bush/elderberry_bush",
+    "tfc:block/berry_bush/dry_elderberry_bush",
+    "tfc:block/berry_bush/flowering_elderberry_bush",
+    "tfc:block/berry_bush/fruiting_elderberry_bush"
+  ],
+  "specials": [],
   "tier": 15,
   "extra_seed_chance": 0
 }

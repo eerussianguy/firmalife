@@ -9,7 +9,13 @@
   },
   "nutrient": "nitrogen",
   "stages": 0,
-  "texture": "tfc:block/berry_bush/raspberry_bush",
+  "texture": [
+    "tfc:block/berry_bush/raspberry_bush",
+    "tfc:block/berry_bush/dry_raspberry_bush",
+    "tfc:block/berry_bush/flowering_raspberry_bush",
+    "tfc:block/berry_bush/fruiting_raspberry_bush"
+  ],
+  "specials": [],
   "tier": 15,
   "extra_seed_chance": 0
 }

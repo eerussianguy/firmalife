@@ -9,7 +9,13 @@
   },
   "nutrient": "nitrogen",
   "stages": 0,
-  "texture": "tfc:block/berry_bush/strawberry_bush",
+  "texture": [
+    "tfc:block/berry_bush/strawberry_bush",
+    "tfc:block/berry_bush/dry_strawberry_bush",
+    "tfc:block/berry_bush/flowering_strawberry_bush",
+    "tfc:block/berry_bush/fruiting_strawberry_bush"
+  ],
+  "specials": [],
   "tier": 15,
   "extra_seed_chance": 0
 }

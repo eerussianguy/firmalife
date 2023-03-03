@@ -12,6 +12,13 @@
   },
   "nutrient": "potassium",
   "stages": 4,
-  "texture": "firmalife:block/crop/sugarcane",
+  "texture": [
+    "firmalife:block/crop/sugarcane_0",
+    "firmalife:block/crop/sugarcane_1",
+    "firmalife:block/crop/sugarcane_2",
+    "firmalife:block/crop/sugarcane_3",
+    "firmalife:block/crop/sugarcane_4"
+  ],
+  "specials": [],
   "extra_seed_chance": 0.5
 }

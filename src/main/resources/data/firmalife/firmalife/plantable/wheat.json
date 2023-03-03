@@ -12,7 +12,17 @@
   },
   "nutrient": "phosphorous",
   "stages": 7,
-  "texture": "tfc:block/crop/wheat",
+  "texture": [
+    "tfc:block/crop/wheat_0",
+    "tfc:block/crop/wheat_1",
+    "tfc:block/crop/wheat_2",
+    "tfc:block/crop/wheat_3",
+    "tfc:block/crop/wheat_4",
+    "tfc:block/crop/wheat_5",
+    "tfc:block/crop/wheat_6",
+    "tfc:block/crop/wheat_7"
+  ],
+  "specials": [],
   "tier": 10,
   "extra_seed_chance": 0.5
 }

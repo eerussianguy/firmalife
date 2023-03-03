@@ -12,7 +12,14 @@
   },
   "nutrient": "nitrogen",
   "stages": 0,
-  "texture": "firmalife:block/fruit_tree/cocoa",
+  "texture": [
+    "firmalife:block/fruit_tree/cocoa_fruiting_leaves",
+    "firmalife:block/fruit_tree/cocoa_dry_leaves",
+    "firmalife:block/fruit_tree/cocoa_flowering_leaves",
+    "firmalife:block/fruit_tree/cocoa_branch",
+    "firmalife:block/fruit_tree/cocoa_leaves"
+  ],
+  "specials": [],
   "tier": 15,
   "extra_seed_chance": 0.08
 }

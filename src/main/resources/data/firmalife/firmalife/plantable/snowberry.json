@@ -9,7 +9,13 @@
   },
   "nutrient": "nitrogen",
   "stages": 0,
-  "texture": "tfc:block/berry_bush/snowberry_bush",
+  "texture": [
+    "tfc:block/berry_bush/snowberry_bush",
+    "tfc:block/berry_bush/dry_snowberry_bush",
+    "tfc:block/berry_bush/flowering_snowberry_bush",
+    "tfc:block/berry_bush/fruiting_snowberry_bush"
+  ],
+  "specials": [],
   "tier": 15,
   "extra_seed_chance": 0
 }

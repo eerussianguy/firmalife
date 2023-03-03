@@ -12,7 +12,17 @@
   },
   "nutrient": "phosphorous",
   "stages": 7,
-  "texture": "tfc:block/crop/rye",
+  "texture": [
+    "tfc:block/crop/rye_0",
+    "tfc:block/crop/rye_1",
+    "tfc:block/crop/rye_2",
+    "tfc:block/crop/rye_3",
+    "tfc:block/crop/rye_4",
+    "tfc:block/crop/rye_5",
+    "tfc:block/crop/rye_6",
+    "tfc:block/crop/rye_7"
+  ],
+  "specials": [],
   "tier": 10,
   "extra_seed_chance": 0.5
 }

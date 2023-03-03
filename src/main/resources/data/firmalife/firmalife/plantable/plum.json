@@ -12,7 +12,14 @@
   },
   "nutrient": "nitrogen",
   "stages": 0,
-  "texture": "tfc:block/fruit_tree/plum",
+  "texture": [
+    "tfc:block/fruit_tree/plum_fruiting_leaves",
+    "tfc:block/fruit_tree/plum_dry_leaves",
+    "tfc:block/fruit_tree/plum_flowering_leaves",
+    "tfc:block/fruit_tree/plum_branch",
+    "tfc:block/fruit_tree/plum_leaves"
+  ],
+  "specials": [],
   "tier": 15,
   "extra_seed_chance": 0.08
 }

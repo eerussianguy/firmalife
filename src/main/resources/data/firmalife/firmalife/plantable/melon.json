@@ -12,7 +12,16 @@
   },
   "nutrient": "phosphorous",
   "stages": 4,
-  "texture": "firmalife:block/crop/melon",
+  "texture": [
+    "firmalife:block/crop/melon_0",
+    "firmalife:block/crop/melon_1",
+    "firmalife:block/crop/melon_2",
+    "firmalife:block/crop/melon_3",
+    "firmalife:block/crop/melon_4"
+  ],
+  "specials": [
+    "firmalife:block/crop/melon_fruit"
+  ],
   "tier": 15,
   "extra_seed_chance": 0.5
 }

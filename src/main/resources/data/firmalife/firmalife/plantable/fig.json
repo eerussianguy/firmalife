@@ -12,7 +12,14 @@
   },
   "nutrient": "nitrogen",
   "stages": 0,
-  "texture": "firmalife:block/fruit_tree/fig",
+  "texture": [
+    "firmalife:block/fruit_tree/fig_fruiting_leaves",
+    "firmalife:block/fruit_tree/fig_dry_leaves",
+    "firmalife:block/fruit_tree/fig_flowering_leaves",
+    "firmalife:block/fruit_tree/fig_branch",
+    "firmalife:block/fruit_tree/fig_leaves"
+  ],
+  "specials": [],
   "tier": 15,
   "extra_seed_chance": 0.08
 }

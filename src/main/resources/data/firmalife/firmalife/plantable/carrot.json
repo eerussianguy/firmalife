@@ -12,6 +12,13 @@
   },
   "nutrient": "potassium",
   "stages": 4,
-  "texture": "tfc:block/crop/carrot",
+  "texture": [
+    "tfc:block/crop/carrot_0",
+    "tfc:block/crop/carrot_1",
+    "tfc:block/crop/carrot_2",
+    "tfc:block/crop/carrot_3",
+    "tfc:block/crop/carrot_4"
+  ],
+  "specials": [],
   "extra_seed_chance": 0.5
 }

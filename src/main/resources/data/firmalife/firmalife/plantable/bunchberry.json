@@ -9,7 +9,13 @@
   },
   "nutrient": "nitrogen",
   "stages": 0,
-  "texture": "tfc:block/berry_bush/bunchberry_bush",
+  "texture": [
+    "tfc:block/berry_bush/bunchberry_bush",
+    "tfc:block/berry_bush/dry_bunchberry_bush",
+    "tfc:block/berry_bush/flowering_bunchberry_bush",
+    "tfc:block/berry_bush/fruiting_bunchberry_bush"
+  ],
+  "specials": [],
   "tier": 15,
   "extra_seed_chance": 0
 }

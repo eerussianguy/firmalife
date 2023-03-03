@@ -12,6 +12,15 @@
   },
   "nutrient": "potassium",
   "stages": 4,
-  "texture": "firmalife:block/crop/squash",
+  "texture": [
+    "firmalife:block/crop/squash_0",
+    "firmalife:block/crop/squash_1",
+    "firmalife:block/crop/squash_2",
+    "firmalife:block/crop/squash_3",
+    "firmalife:block/crop/squash_4"
+  ],
+  "specials": [
+    "firmalife:block/crop/squash_fruit"
+  ],
   "extra_seed_chance": 0.5
 }

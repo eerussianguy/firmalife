@@ -121,6 +121,10 @@ def generate(rm: ResourceManager):
     simple_plantable(rm, 'onion', 'nitrogen', 6)
     simple_plantable(rm, 'soybean', 'nitrogen', 6)
 
+    for herb in HERBS:
+        pass
+        #plantable(rm, herb, 'firmalife:plant/%s' % herb, 'firmalife:plant/%s' % herb, 'firmalife:block/plant/%s/%s' % )
+
     simple_plantable(rm, 'green_bean', 'nitrogen', 4, planter='large', firmalife=True)
     simple_plantable(rm, 'tomato', 'potassium', 4, planter='large', firmalife=True)
     simple_plantable(rm, 'sugarcane', 'potassium', 4, planter='large', firmalife=True)
@@ -219,19 +223,21 @@ def greenhouse(rm: ResourceManager, name: str, block_ingredient: str, tier: int)
     })
 
 def trellis_plantable(rm: ResourceManager, name: str, ingredient: str, crop: str, nutrient: str, firmalife: bool = False):
-    plantable(rm, name, ingredient, crop, nutrient, 'firmalife:block/berry_bush/%s_bush' % name if firmalife else 'tfc:block/berry_bush/%s_bush' % name, 0, 'trellis', 15, 0, False)
+    tex = 'firmalife:block/berry_bush/%s%s_bush' if firmalife else 'tfc:block/berry_bush/%s%s_bush'
+    plantable(rm, name, ingredient, crop, nutrient, [tex % (pref, name) for pref in ('', 'dry_', 'flowering_', 'fruiting_')], 0, 'trellis', 15, 0, False)
 
 def hanging_plantable(rm: ResourceManager, name: str, seed: str, crop: str, nutrient: str, tier: int = None, seed_chance: float = 0.5):
-    plantable(rm, name, seed, crop, nutrient, 'firmalife:block/crop/%s' % name, 4, 'hanging', tier, seed_chance)
+    plantable(rm, name, seed, crop, nutrient, ['firmalife:block/crop/%s_%s' % (name, i) for i in range(0, 5)], 4, 'hanging', tier, seed_chance, specials=['firmalife:block/crop/%s_fruit' % name])
 
 def bonsai_plantable(rm: ResourceManager, name: str, nutrient: str, firmalife: bool = False, food: str = None):
     space = 'firmalife' if firmalife else 'tfc'
-    plantable(rm, name, '%s:plant/%s_sapling' % (space, name), '%s:food/%s' % (space, name) if food is None else food, nutrient, '%s:block/fruit_tree/%s' % (space, name), 0, 'bonsai', 15, 0.08)
+    plantable(rm, name, '%s:plant/%s_sapling' % (space, name), '%s:food/%s' % (space, name) if food is None else food, nutrient, ['%s:block/fruit_tree/%s%s' % (space, name, suff) for suff in ('_fruiting_leaves', '_dry_leaves', '_flowering_leaves', '_branch', '_leaves')], 0, 'bonsai', 15, 0.08)
 
 def simple_plantable(rm: ResourceManager, name: str, nutrient: str, stages: int, planter: str = 'quad', tier: int = None, firmalife: bool = False):
-    plantable(rm, name, 'tfc:seeds/%s' % name, 'tfc:food/%s' % name, nutrient, 'tfc:block/crop/%s' % name if not firmalife else 'firmalife:block/crop/%s' % name, stages, planter, tier)
+    tex = 'tfc:block/crop/%s_%s' if not firmalife else 'firmalife:block/crop/%s_%s'
+    plantable(rm, name, 'tfc:seeds/%s' % name, 'tfc:food/%s' % name, nutrient, [tex % (name, i) for i in range(0, stages + 1)], stages, planter, tier)
 
-def plantable(rm: ResourceManager, name: str, seed: str, crop: str, nutrient: str, texture: str, stages: int, planter: str = 'quad', tier: int = None, seed_chance: float = 0.5, seeds: bool = True):
+def plantable(rm: ResourceManager, name: str, seed: str, crop: str, nutrient: str, texture: List[str], stages: int, planter: str = 'quad', tier: int = None, seed_chance: float = 0.5, seeds: bool = True, specials: List[str] = None):
     rm.data(('firmalife', 'plantable', name), {
         'planter': planter,
         'ingredient': utils.ingredient(seed),
@@ -240,6 +246,7 @@ def plantable(rm: ResourceManager, name: str, seed: str, crop: str, nutrient: st
         'nutrient': nutrient,
         'stages': stages,
         'texture': texture,
+        'specials': [] if specials is None else specials,
         'tier': tier,
         'extra_seed_chance': seed_chance
     })

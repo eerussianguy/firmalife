@@ -3,6 +3,7 @@ package com.eerussianguy.firmalife.common.util;
 import com.google.gson.JsonObject;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -57,7 +58,8 @@ public class Plantable extends ItemDefinition
     private final ItemStack seed;
     private final ItemStack crop;
     private final FarmlandBlockEntity.NutrientType nutrient;
-    private final String texture;
+    private final ResourceLocation[] textures;
+    private final ResourceLocation[] specials;
 
     private Plantable(ResourceLocation id, JsonObject json)
     {
@@ -70,7 +72,9 @@ public class Plantable extends ItemDefinition
         seed = json.has("seed") ? JsonHelpers.getItemStack(json, "seed") : ItemStack.EMPTY;
         crop = FoodCapability.setStackNonDecaying(JsonHelpers.getItemStack(json, "crop"));
         nutrient = JsonHelpers.getEnum(json, "nutrient", FarmlandBlockEntity.NutrientType.class, FarmlandBlockEntity.NutrientType.NITROGEN);
-        texture = JsonHelpers.getAsString(json, "texture");
+
+        textures = FLHelpers.arrayOfResourceLocationsFromJson(json, "texture");
+        specials = FLHelpers.arrayOfResourceLocationsFromJson(json, "specials");
     }
 
     private Plantable(ResourceLocation id, FriendlyByteBuf buffer)
@@ -83,7 +87,8 @@ public class Plantable extends ItemDefinition
         seed = buffer.readItem();
         crop = buffer.readItem();
         nutrient = buffer.readEnum(FarmlandBlockEntity.NutrientType.class);
-        texture = buffer.readUtf();
+        textures = FLHelpers.arrayOfResourceLocationsFromNetwork(buffer);
+        specials = FLHelpers.arrayOfResourceLocationsFromNetwork(buffer);
     }
 
     public void encode(FriendlyByteBuf buffer)
@@ -96,7 +101,8 @@ public class Plantable extends ItemDefinition
         buffer.writeItem(seed);
         buffer.writeItem(crop);
         buffer.writeEnum(nutrient);
-        buffer.writeUtf(texture);
+        FLHelpers.arrayOfResourceLocationsToNetwork(buffer, textures);
+        FLHelpers.arrayOfResourceLocationsToNetwork(buffer, specials);
     }
 
     public PlanterType getPlanterType()
@@ -129,9 +135,14 @@ public class Plantable extends ItemDefinition
         return tier;
     }
 
-    public String getTextureLocation()
+    public ResourceLocation getSpecialTexture(int id)
     {
-        return texture;
+        return specials[id];
+    }
+
+    public ResourceLocation getTexture(int id)
+    {
+        return textures[id];
     }
 
     public float getExtraSeedChance()
@@ -141,7 +152,11 @@ public class Plantable extends ItemDefinition
 
     public ResourceLocation getTexture(float growth)
     {
-        return new ResourceLocation(texture + "_" + (int) (growth * stages));
+        if (textures.length == 2)
+        {
+            return growth >= 1f ? textures[1] : textures[0];
+        }
+        return textures[Mth.clamp((int) (growth * stages), 0, textures.length - 1)];
     }
 
     public static class Packet extends DataManagerSyncPacket<Plantable> {}
