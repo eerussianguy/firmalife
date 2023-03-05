@@ -19,6 +19,7 @@ import net.dries007.tfc.common.capabilities.food.FoodCapability;
 import net.dries007.tfc.common.capabilities.food.FoodData;
 import net.dries007.tfc.common.capabilities.food.IFood;
 import net.dries007.tfc.common.capabilities.food.Nutrient;
+import net.dries007.tfc.common.fluids.TFCFluids;
 import net.dries007.tfc.common.items.DynamicBowlFood;
 import net.dries007.tfc.common.recipes.PotRecipe;
 import net.dries007.tfc.common.recipes.SoupPotRecipe;
@@ -48,9 +49,9 @@ public class StinkySoupRecipe extends PotRecipe
         }
 
         @Override
-        public boolean renderDefaultFluid()
+        public int getFluidColor()
         {
-            return true;
+            return TFCFluids.ALPHA_MASK | 0x6666ff;
         }
 
         @Override
