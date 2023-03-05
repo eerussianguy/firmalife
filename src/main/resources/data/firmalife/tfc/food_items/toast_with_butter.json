@@ -1,0 +1,13 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "ingredient": {
+    "item": "firmalife:food/toast_with_butter"
+  },
+  "category": "other",
+  "hunger": 4,
+  "saturation": 2,
+  "water": 1,
+  "decay_modifier": 2,
+  "grain": 1,
+  "dairy": 0.25
+}

@@ -17,6 +17,8 @@ public class BeeHandler implements IBee, ICapabilitySerializable<CompoundTag>
     private final ItemStack stack;
     private int[] abilities;
     private boolean hasQueen;
+    private int geneticDisease = -1;
+    private int parasiticInfection = -1;
 
     private boolean initialized = false;
 
@@ -46,6 +48,30 @@ public class BeeHandler implements IBee, ICapabilitySerializable<CompoundTag>
     {
         abilities[ability.ordinal()] = Mth.clamp(value, 1, 10);
         save();
+    }
+
+    @Override
+    public void setGeneticDisease(int geneticDisease)
+    {
+        this.geneticDisease = geneticDisease;
+    }
+
+    @Override
+    public int getGeneticDisease()
+    {
+        return geneticDisease;
+    }
+
+    @Override
+    public void setParasiticInfection(int parasiticInfection)
+    {
+        this.parasiticInfection = parasiticInfection;
+    }
+
+    @Override
+    public int getParasiticInfection()
+    {
+        return parasiticInfection;
     }
 
     @Override
@@ -84,6 +110,8 @@ public class BeeHandler implements IBee, ICapabilitySerializable<CompoundTag>
             {
                 hasQueen = tag.getBoolean("queen");
                 abilities = tag.getIntArray("abilities");
+                geneticDisease = tag.getInt("geneticDisease");
+                parasiticInfection = tag.getInt("parasiticInfection");
             }
         }
     }
@@ -93,6 +121,8 @@ public class BeeHandler implements IBee, ICapabilitySerializable<CompoundTag>
         final CompoundTag tag = stack.getOrCreateTag();
         tag.putIntArray("abilities", abilities);
         tag.putBoolean("queen", hasQueen);
+        tag.putInt("geneticDisease", geneticDisease);
+        tag.putInt("parasiticInfection", parasiticInfection);
     }
 
     @Override

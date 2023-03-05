@@ -10,10 +10,10 @@
   "nutrient": "nitrogen",
   "stages": 0,
   "texture": [
-    "tfc:block/berry_bush/nightshade_berry_bush",
-    "tfc:block/berry_bush/dry_nightshade_berry_bush",
-    "tfc:block/berry_bush/flowering_nightshade_berry_bush",
-    "tfc:block/berry_bush/fruiting_nightshade_berry_bush"
+    "firmalife:block/berry_bush/nightshade_bush",
+    "firmalife:block/berry_bush/dry_nightshade_bush",
+    "firmalife:block/berry_bush/flowering_nightshade_bush",
+    "firmalife:block/berry_bush/fruiting_nightshade_bush"
   ],
   "specials": [],
   "tier": 15,

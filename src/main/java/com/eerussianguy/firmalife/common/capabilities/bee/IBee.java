@@ -16,6 +16,9 @@ import net.dries007.tfc.util.Helpers;
 
 public interface IBee extends INBTSerializable<CompoundTag>
 {
+    int MAX_DISEASE = 5;
+    int MAX_INFECTION = 5;
+
     void setHasQueen(boolean exists);
 
     boolean hasQueen();
@@ -25,6 +28,24 @@ public interface IBee extends INBTSerializable<CompoundTag>
     void setAbilities(int[] abilities);
 
     void setAbility(BeeAbility ability, int value);
+
+    void setGeneticDisease(int id);
+
+    int getGeneticDisease();
+
+    default boolean hasGeneticDisease()
+    {
+        return getGeneticDisease() != -1;
+    }
+
+    void setParasiticInfection(int id);
+
+    int getParasiticInfection();
+
+    default boolean hasParasiticInfection()
+    {
+        return getParasiticInfection() != -1;
+    }
 
     default int getAbility(BeeAbility ability)
     {
@@ -68,6 +89,18 @@ public interface IBee extends INBTSerializable<CompoundTag>
             }
         }
         setHasQueen(true);
+        if (parent1.hasGeneticDisease())
+        {
+            setGeneticDisease(parent1.getGeneticDisease());
+        }
+        else
+        {
+            setGeneticDisease(parent2.getGeneticDisease());
+        }
+        if (mutation >= 4 && random.nextInt(5) == 0)
+        {
+            setGeneticDisease(Mth.nextInt(random, 0, MAX_DISEASE));
+        }
     }
 
     default void addTooltipInfo(List<Component> tooltip)
@@ -75,6 +108,14 @@ public interface IBee extends INBTSerializable<CompoundTag>
         if (hasQueen())
         {
             tooltip.add(new TranslatableComponent("firmalife.bee.queen").withStyle(ChatFormatting.GOLD));
+            if (getGeneticDisease() != -1)
+            {
+                tooltip.add(Helpers.translatable("firmalife.bee.genetic_disease", Helpers.translatable("firmalife.bee.disease" + getGeneticDisease())).withStyle(ChatFormatting.RED));
+            }
+            if (getParasiticInfection() != -1)
+            {
+                tooltip.add(Helpers.translatable("firmalife.bee.parasitic_infection", Helpers.translatable("firmalife.bee.infection" + getGeneticDisease())).withStyle(ChatFormatting.RED));
+            }
             tooltip.add(Helpers.translatable("firmalife.bee.abilities").withStyle(ChatFormatting.WHITE));
             for (BeeAbility ability : BeeAbility.VALUES)
             {

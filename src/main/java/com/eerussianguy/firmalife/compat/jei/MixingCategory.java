@@ -74,8 +74,8 @@ public class MixingCategory extends BaseRecipeCategory<MixingBowlRecipe>
     @Override
     public void draw(MixingBowlRecipe recipe, IRecipeSlotsView recipeSlots, PoseStack stack, double mouseX, double mouseY)
     {
-        fire.draw(stack, 47, 45);
-        fireAnimated.draw(stack, 47, 45);
+        arrow.draw(stack, 47, 45);
+        arrowAnimated.draw(stack, 47, 45);
     }
 
 }

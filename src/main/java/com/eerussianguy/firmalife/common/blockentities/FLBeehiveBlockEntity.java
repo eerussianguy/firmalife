@@ -2,6 +2,7 @@ package com.eerussianguy.firmalife.common.blockentities;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -88,7 +89,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
         updateCache();
         lastPlayerTick = nbt.getLong("lastTick");
         lastAreaTick = nbt.getLong("lastAreaTick");
-        honey = nbt.getInt("honey");
+        honey = Math.min(nbt.getInt("honey"), getMaxHoney());
     }
 
     @Override
@@ -153,7 +154,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
         assert level != null;
         final float temp = Climate.getTemperature(level, worldPosition);
         // collect bees that exist and have queens
-        final List<IBee> usableBees = Arrays.stream(cachedBees).filter(bee -> bee != null && bee.hasQueen() && temp > BeeAbility.getMinTemperature(bee.getAbility(BeeAbility.HARDINESS))).toList();
+        final List<IBee> usableBees = Arrays.stream(cachedBees).filter(bee -> bee != null && bee.hasQueen() && temp > BeeAbility.getMinTemperature(bee.getAbility(BeeAbility.HARDINESS))).collect(Collectors.toList());
         // perform area of effect actions
         final int flowers = getFlowers(usableBees, true);
 
@@ -165,7 +166,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
             IBee uninitializedBee = null;
             for (int i = 0; i < SLOTS; i++)
             {
-                IBee bee = inventory.getStackInSlot(i).getCapability(BeeCapability.CAPABILITY).resolve().orElse(null);
+                final IBee bee = inventory.getStackInSlot(i).getCapability(BeeCapability.CAPABILITY).resolve().orElse(null);
                 if (bee != null)
                 {
                     if (bee.hasQueen())
@@ -194,6 +195,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
         final int honeyChanceInverted = getHoneyTickChanceInverted(usableBees, flowers);
         if (flowers > MIN_FLOWERS && (honeyChanceInverted == 0 || level.random.nextInt(honeyChanceInverted) == 0))
         {
+            usableBees.removeIf(IBee::hasGeneticDisease);
             addHoney(usableBees.size());
         }
     }
@@ -272,7 +274,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
 
     public void addHoney(int amount)
     {
-        honey = Math.min(16, amount + honey);
+        honey = Math.min(getMaxHoney(), amount + honey);
         markForSync();
     }
 
@@ -283,6 +285,11 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
         updateState();
         markForSync();
         return take;
+    }
+
+    public int getMaxHoney()
+    {
+        return 12;
     }
 
     public int getHoney()
@@ -299,12 +306,15 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
 
             if (level.getBlockEntity(pos) instanceof IFarmland farmland)
             {
-                float cropAffinity = bee.getAbility(BeeAbility.CROP_AFFINITY); // 0 -> 10 scale
-                float nitrogen = level.random.nextFloat() * cropAffinity * 0.1f; // 0 -> 1 scale
-                float potassium = level.random.nextFloat() * cropAffinity * 0.1f;
-                float phosphorous = level.random.nextFloat() * cropAffinity * 0.1f;
-                float cap = (cropAffinity - 1) * 0.5f; // max that can possibly be set by bee fertilization, 0 -> 4.5 scale
-                receiveNutrients(farmland, cap, nitrogen, phosphorous, potassium);
+                final float cropAffinity = (float) bee.getAbility(BeeAbility.CROP_AFFINITY); // 0 -> 10 scale
+                if (cropAffinity > 1)
+                {
+                    final float nitrogen = level.random.nextFloat() * cropAffinity * 0.02f; // 0 -> 1 scale
+                    final float potassium = level.random.nextFloat() * cropAffinity * 0.02f;
+                    final float phosphorous = level.random.nextFloat() * cropAffinity * 0.02f;
+                    final float cap = (cropAffinity / 10) * 0.5f; // max that can possibly be set by bee fertilization, 0 -> 5 scale
+                    receiveNutrients(farmland, cap, nitrogen, phosphorous, potassium);
+                }
             }
 
             final int restore = bee.getAbility(BeeAbility.NATURE_RESTORATION);
@@ -347,8 +357,8 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
     public void updateState()
     {
         assert level != null;
-        boolean bees = hasBees();
-        BlockState state = level.getBlockState(worldPosition);
+        final boolean bees = hasBees();
+        final BlockState state = level.getBlockState(worldPosition);
         if (bees != state.getValue(FLBeehiveBlock.BEES))
         {
             level.setBlockAndUpdate(worldPosition, state.setValue(FLBeehiveBlock.BEES, bees));
@@ -377,7 +387,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
     @Nullable
     private IBee getBee(int slot)
     {
-        ItemStack stack = inventory.getStackInSlot(slot);
+        final ItemStack stack = inventory.getStackInSlot(slot);
         if (!stack.isEmpty())
         {
             var opt = stack.getCapability(BeeCapability.CAPABILITY).resolve();

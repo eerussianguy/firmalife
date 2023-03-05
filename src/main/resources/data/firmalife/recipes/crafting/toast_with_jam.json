@@ -1,0 +1,15 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "firmalife:food/toast"
+    },
+    {
+      "tag": "firmalife:foods/preserves"
+    }
+  ],
+  "result": {
+    "item": "firmalife:food/toast_with_jam"
+  }
+}

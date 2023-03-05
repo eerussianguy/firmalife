@@ -1,0 +1,11 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "ingredient": {
+    "item": "firmalife:food/cooked_bacon"
+  },
+  "category": "cooked_meat",
+  "hunger": 4,
+  "saturation": 2,
+  "decay_modifier": 2,
+  "protein": 0.5
+}

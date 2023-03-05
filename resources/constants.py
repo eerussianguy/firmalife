@@ -14,7 +14,7 @@ SIMPLE_ITEMS = ('peel', 'fruit_leaf', 'cinnamon_bark', 'beeswax', 'pineapple_fib
 SIMPLE_FOODS = ('frothy_coconut', 'white_chocolate_blend', 'dark_chocolate_blend', 'milk_chocolate_blend', 'tofu', 'soy_mixture', 'yak_curd', 'goat_curd', 'milk_curd', 'cheddar', 'chevre', 'rajya_metok', 'gouda', 'feta', 'shosha', 'butter',
                 'pie_dough', 'filled_pie', 'cooked_pie', 'pizza_dough', 'raw_pizza', 'cooked_pizza', 'shredded_cheese', 'pickled_egg', 'pumpkin_pie_dough', 'raw_pumpkin_pie', 'cooked_pumpkin_pie', 'cocoa_beans', 'roasted_cocoa_beans',
                 'cocoa_butter', 'cocoa_powder', 'toast', 'dark_chocolate', 'milk_chocolate', 'white_chocolate', 'garlic_bread', 'cured_maize', 'nixtamal', 'masa', 'masa_flour', 'corn_tortilla', 'taco_shell', 'burrito', 'taco', 'salsa',
-                'tomato_sauce', 'nightshade_berry', 'stinky_soup')
+                'tomato_sauce', 'nightshade_berry', 'stinky_soup', 'toast_with_jam', 'toast_with_butter', 'bacon', 'cooked_bacon')
 SIMPLE_SPICES = ('ground_cinnamon', 'cinnamon', 'basil_leaves')
 SIMPLE_BLOCKS: Dict[str, str] = {
     'sealed_bricks': 'minecraft:mineable/pickaxe',
@@ -128,6 +128,9 @@ FRUITS: Dict[str, Fruit] = {
 
 DISABLED_TFC_RECIPES = ('barrel/curdling', 'barrel/cheese', 'barrel/milk_vinegar')
 
+GENETIC_DISEASES = ['Malformed Rectum', 'Malphigian Tubule Iridescence', 'Rectal Stones', 'Poor Osmoregulation', 'Nosemosis', 'Broken Wings']
+PARASITIC_INFECTIONS = ['Chalkbrood', 'Stonebrood', 'Foulbrood', 'Wax Moths', 'Hive Beetles', 'Mites']
+
 # Default parameters for common ore veins
 # rarity, size, min_y, max_y, density, poor, normal, rich
 POOR_METAL_ORE = (80, 15, 0, 100, 40, 40, 30, 10)
@@ -205,6 +208,10 @@ DEFAULT_LANG = {
     'firmalife.bee.ability.crop_affinity': 'Crop Affinity %s',
     'firmalife.bee.ability.nature_restoration': 'Nature Restoration %s',
     'firmalife.bee.ability.calmness': 'Calmness %s',
+    'firmalife.bee.genetic_disease': 'Genetic Disease: %s',
+    'firmalife.bee.parasitic_infection': 'Parasitic Infection: %s',
+    **{'firmalife.bee.disease%s' % i: d for i, d in enumerate(GENETIC_DISEASES)},
+    **{'firmalife.bee.infection%s' % i: d for i, d in enumerate(PARASITIC_INFECTIONS)},
     'firmalife.beehive.honey': 'Honey: %s / 16',
     'firmalife.beehive.bee': 'Frame %s: ',
     'firmalife.beehive.bee_cold': 'Too cold! Minimum: %s C, Current: %s C',
