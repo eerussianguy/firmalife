@@ -277,12 +277,17 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     }
 
     @Override
-    public void addWater(float amount)
+    public boolean addWater(float amount)
     {
         assert level != null;
-        water = Math.min(water + amount, 1f);
-        updateBlockState(level.getBlockState(worldPosition));
-        markForSync();
+        if (water < 1f)
+        {
+            water = Math.min(water + amount, 1f);
+            updateBlockState(level.getBlockState(worldPosition));
+            markForSync();
+            return true;
+        }
+        return false;
     }
 
     public void drainWater(float amount)

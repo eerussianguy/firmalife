@@ -54,11 +54,8 @@ public class ClimateStationBlockEntity extends TFCBlockEntity
     {
         assert level != null;
         positions.forEach(pos -> {
-            if (level.getBlockEntity(pos) instanceof ClimateReceiver receiver)
-            {
-                receiver.setValid(level, pos, valid, tier, isCellar);
-            }
-            else if (level.getBlockState(pos).getBlock() instanceof ClimateReceiver receiver)
+            final ClimateReceiver receiver = ClimateReceiver.get(level, pos);
+            if (receiver != null)
             {
                 receiver.setValid(level, pos, valid, tier, isCellar);
             }

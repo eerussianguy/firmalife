@@ -46,6 +46,7 @@ public class FLBlockEntities
     public static final RegistryObject<BlockEntityType<QuadPlanterBlockEntity>> QUAD_PLANTER = register("quad_planter", QuadPlanterBlockEntity::new, FLBlocks.QUAD_PLANTER);
     public static final RegistryObject<BlockEntityType<TrellisPlanterBlockEntity>> TRELLIS_PLANTER = register("trellis_planter", TrellisPlanterBlockEntity::new, FLBlocks.TRELLIS_PLANTER);
     public static final RegistryObject<BlockEntityType<ClimateStationBlockEntity>> CLIMATE_STATION = register("climate_station", ClimateStationBlockEntity::new, FLBlocks.CLIMATE_STATION);
+    public static final RegistryObject<BlockEntityType<SprinklerBlockEntity>> SPRINKLER = register("sprinkler", SprinklerBlockEntity::new, FLBlocks.SPRINKLER);
 
     private static <T extends BlockEntity> RegistryObject<BlockEntityType<T>> register(String name, BlockEntityType.BlockEntitySupplier<T> factory, Supplier<? extends Block> block)
     {

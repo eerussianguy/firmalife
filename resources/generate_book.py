@@ -93,12 +93,16 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False):
             empty_last_page()
         )),
         entry('sprinklers', 'Sprinklers', 'firmalife:squirting_moisture_transducer', pages=(
-            text('The $(thing)Squirting Moisture Transducer$(), or the SMT, is an advanced device for watering planters. The SMT must be placed in a valid $(l:firmalife:firmalife/greenhouse)Greenhouse$() to work.'),
-            crafting('firmalife:crafting/squirting_moisture_transducer', text_contents='The SMT is crafted from $(l:firmalife:firmalife/stainless_steel)Stainless Steel$().'),
-            crafting('firmalife:crafting/embedded_pipe', text_contents='You may notice that the SMT does not work on its own. It must be used with a number of $(thing)Embedded Pipes$().'),
-            text('When hovering over an SMT with a hoe, you will see that it wants $(thing)Embedded Pipes$(). To add pipes, $(item)$(k:key.use)$() on it while holding a pipe. The SMT can hold 32 pipes. The SMT will automatically drive pipes into the ground below it. The SMT can only drive pipes through natural blocks like dirt, grass, and rock, but not ore! The SMT will say in its hoe overlay when it has enough pipes to operate.'),
-            text('Depending on the moisture content of its surrounding environment, the SMT has a minimum number of pipes to work. When it is operating, the SMT will water a box of 4 blocks in all directions every minute, releasing particles when doing so.'),
-            empty_last_page(),
+            text('The $(thing)Sprinkler$() is a device that sprinkles water in a 5x6x5 area centered on the block below the sprinkler block. It automatically fills with water from any fluid tank or pipe placed above it. You know it is working when it drips out water particles.'),
+            two_tall_block_spotlight('Starter Sprinkler Setup', 'The easiest way to set up a sprinkler is with a barrel of water.', 'firmalife:sprinkler', 'tfc:wood/barrel/pine'),
+            anvil_recipe('firmalife:anvil/sprinkler', 'The sprinkler is made with a $(thing)Red Steel Sheet$().'),
+            empty_last_page()
+            # text('The $(thing)Squirting Moisture Transducer$(), or the SMT, is an advanced device for watering planters. The SMT must be placed in a valid $(l:firmalife:firmalife/greenhouse)Greenhouse$() to work.'),
+            # crafting('firmalife:crafting/squirting_moisture_transducer', text_contents='The SMT is crafted from $(l:firmalife:firmalife/stainless_steel)Stainless Steel$().'),
+            # crafting('firmalife:crafting/embedded_pipe', text_contents='You may notice that the SMT does not work on its own. It must be used with a number of $(thing)Embedded Pipes$().'),
+            # text('When hovering over an SMT with a hoe, you will see that it wants $(thing)Embedded Pipes$(). To add pipes, $(item)$(k:key.use)$() on it while holding a pipe. The SMT can hold 32 pipes. The SMT will automatically drive pipes into the ground below it. The SMT can only drive pipes through natural blocks like dirt, grass, and rock, but not ore! The SMT will say in its hoe overlay when it has enough pipes to operate.'),
+            # text('Depending on the moisture content of its surrounding environment, the SMT has a minimum number of pipes to work. When it is operating, the SMT will water a box of 4 blocks in all directions every minute, releasing particles when doing so.'),
+            # empty_last_page(),
         )),
         entry('planters', 'Planters', 'firmalife:large_planter', pages=(
             text('$(thing)Planters$() are used to grow crops inside a $(l:firmalife:firmalife/greenhouse)Greenhouse$(). To see the status of a planter, you can look at it while holding a $(thing)Hoe$(). Crops in planters consume $(l:mechanics/fertilizers)Nutrients$() in a similar way to $(l:mechanics/crops)Crops$(). Planters should be placed inside a valid Greenhouse and activated with a $(l:firmalife:firmalife/climate_station)Climate Station$(). Planters need at least some natural sunlight to work.').anchor('planters'),

@@ -71,8 +71,8 @@ def generate(rm: ResourceManager):
     rm.crafting_shapeless('crafting/pickled_egg', ('minecraft:clay_ball', 'tfc:powder/wood_ash', 'tfc:powder/salt', 'tfc:food/boiled_egg'), 'firmalife:food/pickled_egg')
     rm.crafting_shaped('crafting/seed_ball', [' X ', 'XYX', ' X '], {'X': '#tfc:seeds', 'Y': 'tfc:compost'}, 'firmalife:seed_ball').with_advancement('tfc:compost')
     rm.crafting_shapeless('crafting/raw_pumpkin_pie', ('firmalife:food/pumpkin_pie_dough', 'firmalife:pie_pan'), 'firmalife:food/raw_pumpkin_pie').with_advancement('firmalife:food/pumpkin_pie_dough')
-    rm.crafting_shaped('crafting/squirting_moisture_transducer', ['XYX', 'XZX', 'XYX'], {'X': '#forge:sheets/stainless_steel', 'Y': 'tfc:brass_mechanisms', 'Z': '#forge:rods/nickel'}, 'firmalife:squirting_moisture_transducer').with_advancement('#forge:rods/stainless_steel')
-    rm.crafting_shaped('crafting/embedded_pipe', ['XY', 'XY', 'ZZ'], {'X': '#forge:rods/stainless_steel', 'Y': '#forge:rods/copper', 'Z': 'firmalife:beeswax'}, '6 firmalife:embedded_pipe').with_advancement('#forge:rods/stainless_steel')
+    #rm.crafting_shaped('crafting/squirting_moisture_transducer', ['XYX', 'XZX', 'XYX'], {'X': '#forge:sheets/stainless_steel', 'Y': 'tfc:brass_mechanisms', 'Z': '#forge:rods/nickel'}, 'firmalife:squirting_moisture_transducer').with_advancement('#forge:rods/stainless_steel')
+    #rm.crafting_shaped('crafting/embedded_pipe', ['XY', 'XY', 'ZZ'], {'X': '#forge:rods/stainless_steel', 'Y': '#forge:rods/copper', 'Z': 'firmalife:beeswax'}, '6 firmalife:embedded_pipe').with_advancement('#forge:rods/stainless_steel')
     rm.crafting_shaped('crafting/treated_wood', ['XX', 'XX'], {'X': 'firmalife:treated_lumber'}, 'firmalife:treated_wood').with_advancement('firmalife:treated_lumber')
     damage_shapeless(rm, 'crafting/pumpkin_chunks_bulk', ('#tfc:hammers', *('tfc:pumpkin' for _ in range(0, 8))), '8 firmalife:food/pumpkin_chunks').with_advancement('tfc:pumpkin')
     rm.crafting_shapeless('crafting/garlic_bread', ('firmalife:food/toast', 'firmalife:food/butter', 'tfc:food/garlic'), 'firmalife:food/garlic_bread').with_advancement('tfc:food/garlic')
@@ -256,6 +256,7 @@ def generate(rm: ResourceManager):
 
     alloy_recipe(rm, 'stainless_steel', 'stainless_steel', ('firmalife:chromium', 0.2, 0.3), ('tfc:nickel', 0.1, 0.2), ('tfc:steel', 0.6, 0.8))
     anvil_recipe(rm, 'pie_pan', '#forge:sheets/cast_iron', '4 firmalife:pie_pan', 1, Rules.hit_last, Rules.hit_second_last, Rules.draw_third_last)
+    anvil_recipe(rm, 'sprinkler', '#forge:sheets/red_steel', 'firmalife:sprinkler', 6, Rules.bend_last, Rules.punch_second_last, Rules.shrink_third_last)
 
     for recipe in DISABLED_TFC_RECIPES:
         rm.domain = 'tfc' # DOMAIN CHANGE

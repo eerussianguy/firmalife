@@ -44,7 +44,8 @@ public class SquirtingMoistureTransducerBlockEntity extends TickableInventoryBlo
                 serverLevel.sendParticles(ParticleTypes.BUBBLE, x + Helpers.triangle(random, 2), y + Helpers.triangle(random, 2) + 2, z + Helpers.triangle(random, 2), 15, 0.0, 0.0, 0.0, 1);
                 serverLevel.sendParticles(TFCParticles.STEAM.get(), x, y, z, 15, 0.0, 0.0, 0.0, 1);
                 FLHelpers.allPositionsCentered(pos, 4, 4).forEach(checkPos -> {
-                    if (level.getBlockEntity(checkPos) instanceof ClimateReceiver receiver)
+                    final ClimateReceiver receiver = ClimateReceiver.get(level, pos);
+                    if (receiver != null)
                     {
                         receiver.addWater(0.1f);
                     }
