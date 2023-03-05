@@ -8,7 +8,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "firmalfie:sprinkler"
+          "name": "firmalife:sprinkler"
         }
       ],
       "conditions": [

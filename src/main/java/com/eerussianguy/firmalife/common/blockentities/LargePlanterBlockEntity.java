@@ -280,7 +280,7 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     public boolean addWater(float amount)
     {
         assert level != null;
-        if (water < 1f)
+        if (water < 0.99f)
         {
             water = Math.min(water + amount, 1f);
             updateBlockState(level.getBlockState(worldPosition));
