@@ -11,6 +11,8 @@ import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import net.dries007.tfc.common.entities.EntityHelpers;
+
 public class BeeHandler implements IBee, ICapabilitySerializable<CompoundTag>
 {
     private final LazyOptional<IBee> capability;
@@ -110,8 +112,8 @@ public class BeeHandler implements IBee, ICapabilitySerializable<CompoundTag>
             {
                 hasQueen = tag.getBoolean("queen");
                 abilities = tag.getIntArray("abilities");
-                geneticDisease = tag.getInt("geneticDisease");
-                parasiticInfection = tag.getInt("parasiticInfection");
+                geneticDisease = EntityHelpers.getIntOrDefault(tag, "geneticDiseases", -1);
+                parasiticInfection = EntityHelpers.getIntOrDefault(tag, "parasiticInfections", -1);
             }
         }
     }
@@ -121,8 +123,8 @@ public class BeeHandler implements IBee, ICapabilitySerializable<CompoundTag>
         final CompoundTag tag = stack.getOrCreateTag();
         tag.putIntArray("abilities", abilities);
         tag.putBoolean("queen", hasQueen);
-        tag.putInt("geneticDisease", geneticDisease);
-        tag.putInt("parasiticInfection", parasiticInfection);
+        tag.putInt("geneticDiseases", geneticDisease);
+        tag.putInt("parasiticInfections", parasiticInfection);
     }
 
     @Override
