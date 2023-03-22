@@ -270,6 +270,7 @@ def generate(rm: ResourceManager):
         rm.item_model('food/%s_slice' % grain).with_lang(lang('%s slice', grain))
         rm.item_model('food/%s_flatbread' % grain).with_lang(lang('%s flatbread', grain))
         rm.item_model('food/%s_dough' % grain, 'tfc:item/food/%s_dough' % grain).with_lang(lang('%s dough', grain))
+        rm.item_model('tfc:food/%s_dough' % grain, 'firmalife:food/%s_flatbread_dough' % grain)
         rm.lang('item.tfc.food.%s_dough' % grain, lang('%s flatbread dough', grain))
     for item in SIMPLE_SPICES:
         rm.item_model('spice/%s' % item).with_lang(lang(item))
