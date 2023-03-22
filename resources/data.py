@@ -145,8 +145,8 @@ def generate(rm: ResourceManager):
     bonsai_plantable(rm, 'fig', 'nitrogen', firmalife=True)
 
     hanging_plantable(rm, 'squash', 'tfc:seeds/squash', 'tfc:food/squash', 'potassium')
-    hanging_plantable(rm, 'pumpkin', 'tfc:seeds/melon', 'tfc:melon', 'phosphorous', tier=15)
-    hanging_plantable(rm, 'melon', 'tfc:seeds/pumpkin', 'tfc:pumpkin', 'phosphorous', tier=15)
+    hanging_plantable(rm, 'pumpkin', 'tfc:seeds/pumpkin', 'tfc:pumpkin', 'phosphorous', tier=15)
+    hanging_plantable(rm, 'melon', 'tfc:seeds/melon', 'tfc:melon', 'phosphorous', tier=15)
     hanging_plantable(rm, 'banana', 'tfc:plant/banana_sapling', 'tfc:food/banana', 'nitrogen', tier=15, seed_chance=0.08)
 
     trellis_plantable(rm, 'blackberry', 'tfc:plant/blackberry_bush', 'tfc:food/blackberry', 'nitrogen')

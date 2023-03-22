@@ -2,13 +2,13 @@
   "__comment__": "This file was automatically created by mcresources",
   "planter": "hanging",
   "ingredient": {
-    "item": "tfc:seeds/pumpkin"
+    "item": "tfc:seeds/melon"
   },
   "seed": {
-    "item": "tfc:seeds/pumpkin"
+    "item": "tfc:seeds/melon"
   },
   "crop": {
-    "item": "tfc:pumpkin"
+    "item": "tfc:melon"
   },
   "nutrient": "phosphorous",
   "stages": 4,
