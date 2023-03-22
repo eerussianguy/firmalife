@@ -42,7 +42,7 @@ public class FLItems
     public static final RegistryObject<Item> CHEESECLOTH = register("cheesecloth", MISC);
     public static final RegistryObject<Item> FRUIT_LEAF = register("fruit_leaf", MISC);
     public static final RegistryObject<Item> EMPTY_JAR = register("empty_jar", MISC);
-    public static final RegistryObject<Item> HOLLOW_SHELL = register("hollow_shell",  () -> new HollowShellItem(prop().stacksTo(1), FLConfig.SERVER.hollowShellCapacity, FLTags.Fluids.USABLE_IN_HOLLOW_SHELL, false, false));
+    public static final RegistryObject<Item> HOLLOW_SHELL = register("hollow_shell",  () -> new HollowShellItem(prop(), FLConfig.SERVER.hollowShellCapacity, FLTags.Fluids.USABLE_IN_HOLLOW_SHELL, false, false));
     public static final RegistryObject<Item> PEEL = register("peel", MISC);
     public static final RegistryObject<Item> PIE_PAN = register("pie_pan", MISC);
     public static final RegistryObject<Item> PINEAPPLE_FIBER = register("pineapple_fiber", MISC);
