@@ -3,15 +3,15 @@
   "type": "firmalife:vat",
   "input_item": {
     "ingredient": {
-      "item": "tfc:olive_paste"
+      "item": "minecraft:lime_dye"
     }
   },
   "input_fluid": {
     "ingredient": "minecraft:water",
-    "amount": 200
-  },
-  "output_fluid": {
-    "fluid": "tfc:olive_oil_water",
     "amount": 1000
+  },
+  "output_item": {
+    "item": "tfc:lime_dye",
+    "count": 1000
   }
 }

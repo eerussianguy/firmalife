@@ -3,7 +3,7 @@
   "type": "firmalife:vat",
   "input_item": {
     "ingredient": {
-      "item": "tfc:olive_paste"
+      "item": "tfc:powder/wood_ash"
     }
   },
   "input_fluid": {
@@ -11,7 +11,7 @@
     "amount": 200
   },
   "output_fluid": {
-    "fluid": "tfc:olive_oil_water",
+    "fluid": "tfc:lye",
     "amount": 1000
   }
 }

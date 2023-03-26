@@ -65,6 +65,7 @@ public enum FLFood
     CORN_TORTILLA,
     TACO_SHELL,
     TOMATO_SAUCE,
+    TOMATO_SAUCE_MIX,
     SALSA;
 
     private final boolean meat, fast;

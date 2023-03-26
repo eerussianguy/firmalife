@@ -66,6 +66,7 @@ public class FLJEIPlugin implements IModPlugin
     public static final RecipeType<MixingBowlRecipe> MIXING_BOWL = type("mixing_bowl", MixingBowlRecipe.class);
     public static final RecipeType<KnappingRecipe> PUMPKIN_KNAPPING = type("pumpkin_knapping", KnappingRecipe.class);
     public static final RecipeType<OvenRecipe> OVEN = type("oven", OvenRecipe.class);
+    public static final RecipeType<VatRecipe> VAT = type("vat", VatRecipe.class);
 
     @Override
     public ResourceLocation getPluginUid()
@@ -81,6 +82,7 @@ public class FLJEIPlugin implements IModPlugin
         r.addRecipeCategories(new SmokingCategory(SMOKING, gui));
         r.addRecipeCategories(new MixingCategory(MIXING_BOWL, gui));
         r.addRecipeCategories(new OvenCategory(OVEN, gui));
+        r.addRecipeCategories(new VatCategory(VAT, gui));
         r.addRecipeCategories(new KnappingRecipeCategory<>(PUMPKIN_KNAPPING, gui, new ItemStack(TFCBlocks.PUMPKIN.get()), PUMPKIN_TEXTURE, null));
     }
 
@@ -91,6 +93,7 @@ public class FLJEIPlugin implements IModPlugin
         r.addRecipes(SMOKING, getRecipes(FLRecipeTypes.SMOKING.get()));
         r.addRecipes(MIXING_BOWL, getRecipes(FLRecipeTypes.MIXING_BOWL.get()));
         r.addRecipes(OVEN, getRecipes(FLRecipeTypes.OVEN.get()));
+        r.addRecipes(VAT, getRecipes(FLRecipeTypes.VAT.get()));
         r.addRecipes(PUMPKIN_KNAPPING, getRecipes(FLRecipeTypes.PUMPKIN_KNAPPING.get(), recipe -> recipe.getSerializer() == FLRecipeSerializers.PUMPKIN_KNAPPING.get()));
     }
 
@@ -106,6 +109,7 @@ public class FLJEIPlugin implements IModPlugin
         cat(r, FLBlocks.CURED_OVEN_BOTTOM, OVEN);
         cat(r, FLBlocks.CURED_OVEN_CHIMNEY, OVEN);
         cat(r, FLBlocks.CURED_OVEN_TOP, OVEN);
+        cat(r, FLBlocks.VAT, VAT);
     }
 
     private static void cat(IRecipeCatalystRegistration r, Supplier<? extends Block> supplier, RecipeType<?> type)

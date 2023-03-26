@@ -12,7 +12,6 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import org.jetbrains.annotations.Nullable;
 
-import net.dries007.tfc.common.blockentities.BarrelBlockEntity;
 import net.dries007.tfc.common.recipes.ISimpleRecipe;
 import net.dries007.tfc.common.recipes.RecipeSerializerImpl;
 import net.dries007.tfc.common.recipes.ingredients.FluidStackIngredient;
@@ -151,12 +150,12 @@ public class VatRecipe implements ISimpleRecipe<VatBlockEntity.VatInventory>
         return FLRecipeTypes.VAT.get();
     }
 
-    public ItemStackIngredient getIngredient()
+    public ItemStackIngredient getInputItem()
     {
         return inputItem;
     }
 
-    public FluidStackIngredient getFluidInput()
+    public FluidStackIngredient getInputFluid()
     {
         return inputFluid;
     }
@@ -166,7 +165,7 @@ public class VatRecipe implements ISimpleRecipe<VatBlockEntity.VatInventory>
         return outputFluid;
     }
 
-    public ItemStackProvider getOutput()
+    public ItemStackProvider getOutputItem()
     {
         return outputItem;
     }

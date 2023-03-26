@@ -204,6 +204,7 @@ def generate(rm: ResourceManager):
     decayable(rm, 'cocoa_powder', 'firmalife:food/cocoa_powder', Category.other, decay=0.25)
     decayable(rm, 'cocoa_butter', 'firmalife:food/cocoa_butter', Category.other, decay=0.25)
     decayable(rm, 'cured_maize', 'firmalife:food/cured_maize', Category.other, decay=1.0)
+    decayable(rm, 'tomato_sauce_mix', 'firmalife:food/tomato_sauce_mix', Category.other, decay=2.0)
     decayable(rm, 'nixtamal', 'firmalife:food/nixtamal', Category.other, decay=0.3)
     decayable(rm, 'masa_flour', 'firmalife:food/masa_flour', Category.other, decay=0.8)
     decayable(rm, 'masa', 'firmalife:food/masa', Category.other, decay=2.0)

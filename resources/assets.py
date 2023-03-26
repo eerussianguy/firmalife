@@ -29,6 +29,11 @@ def generate(rm: ResourceManager):
         rm.item_model('%soven_top' % pref, parent='firmalife:block/oven_top_%s' % stage, no_textures=True)
         rm.blockstate('%soven_chimney' % pref, model='firmalife:block/oven_chimney_%s' % stage).with_lang(lang('%soven chimney', pref)).with_tag('firmalife:oven_blocks').with_tag('firmalife:chimneys').with_block_loot('firmalife:%soven_chimney' % pref)
         rm.item_model('%soven_chimney' % pref, parent='firmalife:block/oven_chimney_%s' % stage, no_textures=True)
+        rm.blockstate('%soven_hopper' % pref, variants={**four_rotations('firmalife:block/%soven_hopper' % pref, (90, None, 180, 270))}).with_lang(lang('%soven hopper', pref)).with_tag('firmalife:oven_blocks').with_block_loot('firmalife:%soven_hopper' % pref)
+        rm.item_model('%soven_hopper' % pref, parent='firmalife:block/%soven_hopper' % pref, no_textures=True)
+
+    rm.block_model('cured_oven_hopper', parent='minecraft:block/orientable', textures={'top': 'firmalife:block/oven_hopper_top', 'side': 'minecraft:block/bricks', 'front': 'firmalife:block/oven_hopper_front'})
+    rm.block_model('oven_hopper', parent='minecraft:block/orientable', textures={'top': 'firmalife:block/clay_oven_hopper_top', 'side': 'minecraft:block/bricks', 'front': 'firmalife:block/clay_oven_hopper_front'})
 
     rm.blockstate('drying_mat', model='firmalife:block/drying_mat').with_item_model().with_tag('tfc:mineable_with_sharp_tool').with_lang(lang('drying mat')).with_block_loot('firmalife:drying_mat')
     rm.blockstate('solar_drier', model='firmalife:block/solar_drier').with_item_model().with_tag('minecraft:mineable/axe').with_lang(lang('solar drier')).with_block_loot('firmalife:solar_drier')
@@ -94,7 +99,7 @@ def generate(rm: ResourceManager):
         rm.block_model('firmalife:%s_%s' % (trd, variant), {'west': tex, 'east': tex, 'north': tex, 'south': tex, 'particle': tex, 'up': 'firmalife:block/%s_top' % trd, 'down': 'firmalife:block/%s_top' % trd})
 
     rm.blockstate('sprinkler', model='firmalife:block/sprinkler').with_lang(lang('sprinkler')).with_tag('minecraft:mineable/pickaxe').with_block_loot('firmalife:sprinkler')
-    rm.item_model('sprinkler', parent='firmalife:block/sprinkler')
+    rm.item_model('sprinkler', parent='firmalife:block/sprinkler', no_textures=True)
 
     rm.blockstate('beehive', variants={
         **four_rotations('minecraft:block/beehive_honey', (90, None, 180, 270), ',honey=true'),

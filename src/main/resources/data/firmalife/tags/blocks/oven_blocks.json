@@ -5,8 +5,10 @@
     "firmalife:cured_oven_bottom",
     "firmalife:cured_oven_top",
     "firmalife:cured_oven_chimney",
+    "firmalife:cured_oven_hopper",
     "firmalife:oven_bottom",
     "firmalife:oven_top",
-    "firmalife:oven_chimney"
+    "firmalife:oven_chimney",
+    "firmalife:oven_hopper"
   ]
 }

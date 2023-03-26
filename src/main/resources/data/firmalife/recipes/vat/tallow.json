@@ -3,7 +3,7 @@
   "type": "firmalife:vat",
   "input_item": {
     "ingredient": {
-      "item": "tfc:olive_paste"
+      "item": "tfc:blubber"
     }
   },
   "input_fluid": {
@@ -11,7 +11,7 @@
     "amount": 200
   },
   "output_fluid": {
-    "fluid": "tfc:olive_oil_water",
+    "fluid": "tfc:tallow",
     "amount": 1000
   }
 }

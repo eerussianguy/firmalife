@@ -1,0 +1,21 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "firmalife:vat",
+  "input_item": {
+    "ingredient": {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "tfc:food/beet"
+      }
+    },
+    "count": 5
+  },
+  "input_fluid": {
+    "ingredient": "tfc:salt_water",
+    "amount": 1000
+  },
+  "output_item": {
+    "item": "minecraft:sugar",
+    "count": 3
+  }
+}
