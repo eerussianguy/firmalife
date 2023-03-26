@@ -155,6 +155,8 @@ def generate(rm: ResourceManager):
     barrel_sealed_recipe(rm, 'feta', 'Feta Wheel', 16000, '3 firmalife:food/goat_curd', '750 tfc:salt_water', output_item='firmalife:feta_wheel')
     barrel_sealed_recipe(rm, 'gouda', 'Gouda Wheel', 16000, '3 firmalife:food/milk_curd', '750 tfc:salt_water', output_item='firmalife:gouda_wheel')
 
+    vat_recipe(rm, 'olive_oil_water', 'tfc:olive_paste', '1000 minecraft:water', output_fluid='1000 tfc:olive_oil_water')
+
     quern_recipe(rm, 'masa', not_rotten('firmalife:food/nixtamal'), 'firmalife:food/masa_flour', count=4)
 
     loom_recipe(rm, 'pineapple_leather', 'firmalife:pineapple_yarn', 16, 'firmalife:pineapple_leather', 16, 'firmalife:block/pineapple')
@@ -497,6 +499,16 @@ def fluid_ingredient(data_in: Json) -> Json:
             return {'tag': fluid}
         else:
             return fluid
+
+def vat_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, input_item: Optional[Json] = None, input_fluid: Optional[Json] = None, output_item: Optional[Json] = None, output_fluid: Optional[Json] = None, length: int = None, temp: float = None):
+    rm.recipe(('vat', name_parts), 'firmalife:vat', {
+        'input_item': item_stack_ingredient(input_item) if input_item is not None else None,
+        'input_fluid': fluid_stack_ingredient(input_fluid) if input_fluid is not None else None,
+        'output_item': item_stack_provider(output_item) if output_item is not None else None,
+        'output_fluid': fluid_stack(output_fluid) if output_fluid is not None else None,
+        'length': length,
+        'temperature': temp
+    })
 
 def barrel_instant_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, input_item: Optional[Json] = None, input_fluid: Optional[Json] = None, output_item: Optional[Json] = None, output_fluid: Optional[Json] = None, sound: Optional[str] = None):
     rm.recipe(('barrel', name_parts), 'tfc:barrel_instant', {

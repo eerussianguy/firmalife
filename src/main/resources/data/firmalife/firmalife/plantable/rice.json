@@ -1,6 +1,6 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "planter": "large",
+  "planter": "hydroponic",
   "ingredient": {
     "item": "tfc:seeds/rice"
   },

@@ -1,5 +1,6 @@
 package com.eerussianguy.firmalife.common;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
@@ -11,6 +12,9 @@ import com.google.gson.JsonObject;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -52,6 +56,32 @@ public class FLHelpers
         if (level.getBlockEntity(pos) instanceof TickCounterBlockEntity counter)
         {
             counter.resetCounter();
+        }
+    }
+
+    public static void writeItemStackList(List<ItemStack> list, CompoundTag nbt, String key)
+    {
+        if (!list.isEmpty())
+        {
+            final ListTag listTag = new ListTag();
+            for (ItemStack stack : list)
+            {
+                listTag.add(stack.save(new CompoundTag()));
+            }
+            nbt.put(key, listTag);
+        }
+    }
+
+    public static void readItemStackList(List<ItemStack> list, CompoundTag nbt, String key)
+    {
+        list.clear();
+        if (nbt.contains(key))
+        {
+            final ListTag excessNbt = nbt.getList(key, Tag.TAG_COMPOUND);
+            for (int i = 0; i < excessNbt.size(); i++)
+            {
+                list.add(ItemStack.of(excessNbt.getCompound(i)));
+            }
         }
     }
 

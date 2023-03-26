@@ -22,6 +22,7 @@ public class FLRecipeSerializers
     public static final RegistryObject<KnappingRecipe.Serializer> PUMPKIN_KNAPPING = register("pumpkin_knapping", () -> new KnappingRecipe.Serializer(FLRecipeTypes.PUMPKIN_KNAPPING));
     public static final RegistryObject<OvenRecipe.Serializer> OVEN = register("oven", OvenRecipe.Serializer::new);
     public static final RegistryObject<StinkySoupRecipe.Serializer> STINKY_SOUP = register("stinky_soup", StinkySoupRecipe.Serializer::new);
+    public static final RegistryObject<VatRecipe.Serializer> VAT = register("vat", VatRecipe.Serializer::new);
 
     private static <S extends RecipeSerializer<?>> RegistryObject<S> register(String name, Supplier<S> factory)
     {

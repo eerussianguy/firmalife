@@ -1,7 +1,9 @@
 package com.eerussianguy.firmalife.common.util;
 
+import java.util.List;
 import com.google.gson.JsonObject;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.Item;
@@ -14,6 +16,7 @@ import net.dries007.tfc.common.blockentities.FarmlandBlockEntity;
 import net.dries007.tfc.common.capabilities.food.FoodCapability;
 import net.dries007.tfc.network.DataManagerSyncPacket;
 import net.dries007.tfc.util.DataManager;
+import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.ItemDefinition;
 import net.dries007.tfc.util.JsonHelpers;
 import net.dries007.tfc.util.collections.IndirectHashCollection;
@@ -157,6 +160,11 @@ public class Plantable extends ItemDefinition
             return growth >= 1f ? textures[1] : textures[0];
         }
         return textures[Mth.clamp((int) (growth * stages), 0, textures.length - 1)];
+    }
+
+    public void addTooltipInfo(List<Component> tooltip)
+    {
+        tooltip.add(Helpers.translatable("firmalife.tooltip.planter_usable", FLHelpers.translateEnum(planter)));
     }
 
     public static class Packet extends DataManagerSyncPacket<Plantable> {}

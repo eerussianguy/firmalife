@@ -350,7 +350,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
     private void receiveNutrients(IFarmland farmland, float cap, float nitrogen, float phosphorous, float potassium)
     {
         float n = farmland.getNutrient(N); if (n < cap) farmland.setNutrient(N, Math.min(n + nitrogen, cap));
-        float p = farmland.getNutrient(N); if (p < cap) farmland.setNutrient(P, Math.min(p + phosphorous, cap));
+        float p = farmland.getNutrient(P); if (p < cap) farmland.setNutrient(P, Math.min(p + phosphorous, cap));
         float k = farmland.getNutrient(K); if (k < cap) farmland.setNutrient(K, Math.min(k + potassium, cap));
     }
 

@@ -6,5 +6,7 @@ public enum PlanterType
     LARGE,
     HANGING,
     TRELLIS,
-    BONSAI;
+    BONSAI,
+    HYDROPONIC,
+    ;
 }

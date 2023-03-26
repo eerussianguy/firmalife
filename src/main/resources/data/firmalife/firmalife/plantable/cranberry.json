@@ -1,0 +1,24 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "planter": "hydroponic",
+  "ingredient": {
+    "item": "tfc:plant/cranberry_bush"
+  },
+  "seed": {
+    "item": "tfc:plant/cranberry_bush"
+  },
+  "crop": {
+    "item": "tfc:food/cranberry"
+  },
+  "nutrient": "phosphorous",
+  "stages": 3,
+  "texture": [
+    "firmalife:block/crop/cranberry_0",
+    "firmalife:block/crop/cranberry_1",
+    "firmalife:block/crop/cranberry_2",
+    "firmalife:block/crop/cranberry_3"
+  ],
+  "specials": [],
+  "tier": 10,
+  "extra_seed_chance": 0.5
+}

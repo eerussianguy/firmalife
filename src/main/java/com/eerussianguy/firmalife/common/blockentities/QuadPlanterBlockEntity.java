@@ -21,7 +21,12 @@ public class QuadPlanterBlockEntity extends LargePlanterBlockEntity
 
     public QuadPlanterBlockEntity(BlockPos pos, BlockState state)
     {
-        super(FLBlockEntities.QUAD_PLANTER.get(), pos, state, defaultInventory(NUM_SLOTS), NAME);
+        this(FLBlockEntities.QUAD_PLANTER.get(), pos, state, NAME);
+    }
+
+    public QuadPlanterBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state, Component name)
+    {
+        super(type, pos, state, defaultInventory(NUM_SLOTS), name);
         cachedPlants = new Plantable[] {null, null, null, null};
         growth = new float[] {0, 0, 0, 0};
     }

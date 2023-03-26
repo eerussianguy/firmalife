@@ -47,7 +47,19 @@ public final class FLTooltips
             r.accept(OVEN, OvenTopBlock.class);
             r.accept(SHELF_OR_HANGER, FoodShelfBlock.class);
             r.accept(SHELF_OR_HANGER, HangerBlock.class);
+            r.accept(VAT, VatBlock.class);
         }
+
+        public static final BlockEntityTooltip VAT = (level, state, pos, entity, tooltip) -> {
+            if (entity instanceof VatBlockEntity vat)
+            {
+                if (vat.isBoiling())
+                {
+                    tooltip.accept(Helpers.translatable("firmalife.jade.boiling"));
+                }
+                heat(tooltip, vat.getTemperature());
+            }
+        };
 
         public static final BlockEntityTooltip DRYING_MAT = (level, state, pos, entity, tooltip) -> {
             if (state.getBlock() instanceof DryingMatBlock block && entity instanceof DryingMatBlockEntity mat && !mat.viewStack().isEmpty())

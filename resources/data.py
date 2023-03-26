@@ -95,6 +95,7 @@ def generate(rm: ResourceManager):
     rm.fluid_tag('tfc:ingredients', *['firmalife:%s' % fluid for fluid in EXTRA_FLUIDS])
     rm.fluid_tag('usable_in_mixing_bowl', '#tfc:usable_in_pot')
     rm.fluid_tag('usable_in_hollow_shell', '#tfc:usable_in_wooden_bucket')
+    rm.fluid_tag('usable_in_vat', '#tfc:usable_in_pot')
 
     # Ore tags
     ore = 'chromite'
@@ -113,7 +114,7 @@ def generate(rm: ResourceManager):
     greenhouse(rm, 'iron', '#firmalife:all_iron_greenhouse', 15)  # allows fruit trees
     greenhouse(rm, 'stainless_steel', '#firmalife:stainless_steel_greenhouse', 20)
 
-    for grain in ('barley', 'oat', 'rye', 'wheat', 'rice'):
+    for grain in ('barley', 'oat', 'rye', 'wheat'):
         simple_plantable(rm, grain, 'nitrogen' if grain == 'barley' else 'phosphorous', 7, planter='large', tier=10)
     simple_plantable(rm, 'maize', 'nitrogen' if grain == 'barley' else 'phosphorous', 4, planter='large', tier=10, firmalife=True)
 
@@ -127,6 +128,9 @@ def generate(rm: ResourceManager):
 
     for herb in HERBS:
         plantable(rm, herb, 'firmalife:plant/%s' % herb, 'firmalife:plant/%s' % herb, 'nitrogen', ['firmalife:block/plant/%s/%s' % (herb, i) for i in range(0, 2)], 1, seed_chance=0.8, )
+
+    plantable(rm, 'rice', 'tfc:seeds/rice', 'tfc:food/rice', 'phosphorous', ['tfc:block/crop/rice_%s' % i for i in range(0, 8)], 7, 'hydroponic', tier=10)
+    plantable(rm, 'cranberry', 'tfc:plant/cranberry_bush', 'tfc:food/cranberry', 'phosphorous', ['firmalife:block/crop/cranberry_%s' % i for i in range(0, 4)], 3, 'hydroponic', tier=10)
 
     simple_plantable(rm, 'green_bean', 'nitrogen', 4, planter='large', firmalife=True)
     simple_plantable(rm, 'tomato', 'potassium', 4, planter='large', firmalife=True)

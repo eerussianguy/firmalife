@@ -62,6 +62,12 @@ def generate(rm: ResourceManager):
         }).with_lang(lang(planter)).with_block_loot('firmalife:%s' % planter).with_tag('minecraft:mineable/axe').with_tag('minecraft:mineable/pickaxe')
         rm.item_model(planter, parent='firmalife:block/%s_dry' % planter, no_textures=True)
     rm.blockstate('trellis_planter', model='firmalife:block/trellis_planter').with_lang(lang('trellis planter')).with_block_loot('firmalife:trellis_planter').with_tag('minecraft:mineable/axe').with_tag('minecraft:mineable/pickaxe').with_item_model()
+    rm.blockstate('hydroponic_planter', model='firmalife:block/hydroponic_planter').with_lang(lang('hydroponic planter')).with_block_loot('firmalife:hydroponic_planter').with_tag('minecraft:mineable/axe').with_tag('minecraft:mineable/pickaxe').with_item_model()
+
+    rm.blockstate('vat', variants={
+        'sealed=false': {'model': 'firmalife:block/vat'},
+        'sealed=true': {'model': 'firmalife:block/vat_sealed'},
+    }).with_lang(lang('vat')).with_block_loot('firmalife:vat').with_tag('minecraft:mineable/pickaxe').with_item_model()
 
     rm.blockstate('wool_string', variants={
         'axis=x': {'model': 'firmalife:block/wool_string'},
@@ -107,6 +113,8 @@ def generate(rm: ResourceManager):
     rm.block('sealed').make_door()
     block = rm.block('firmalife:sealed_door').with_tag('minecraft:doors').with_lang(lang('sealed door')).with_tag('minecraft:mineable/pickaxe')
     door_loot(block, 'firmalife:sealed_door')
+
+    rm.blockstate('nutritive_basin', model='firmalife:block/nutritive_basin').with_block_loot('firmalife:nutritive_basin').with_lang(lang('nutritive basin')).with_tag('minecraft:mineable/axe').with_item_model()
 
     for cheese in CHEESE_WHEELS:
         for age in ('fresh', 'aged', 'vintage'):
@@ -270,7 +278,7 @@ def generate(rm: ResourceManager):
         rm.item_model('food/%s_slice' % grain).with_lang(lang('%s slice', grain))
         rm.item_model('food/%s_flatbread' % grain).with_lang(lang('%s flatbread', grain))
         rm.item_model('food/%s_dough' % grain, 'tfc:item/food/%s_dough' % grain).with_lang(lang('%s dough', grain))
-        rm.item_model('tfc:food/%s_dough' % grain, 'firmalife:food/%s_flatbread_dough' % grain)
+        rm.item_model('tfc:food/%s_dough' % grain, 'firmalife:item/food/%s_flatbread_dough' % grain)
         rm.lang('item.tfc.food.%s_dough' % grain, lang('%s flatbread dough', grain))
     for item in SIMPLE_SPICES:
         rm.item_model('spice/%s' % item).with_lang(lang(item))

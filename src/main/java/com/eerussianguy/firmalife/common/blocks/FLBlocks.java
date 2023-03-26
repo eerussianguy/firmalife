@@ -40,7 +40,6 @@ import net.dries007.tfc.common.blocks.GroundcoverBlock;
 import net.dries007.tfc.common.blocks.TFCMaterials;
 import net.dries007.tfc.common.blocks.devices.JackOLanternBlock;
 import net.dries007.tfc.common.blocks.plant.PlantBlock;
-import net.dries007.tfc.common.blocks.plant.fruit.FruitBlocks;
 import net.dries007.tfc.common.blocks.rock.Ore;
 import net.dries007.tfc.common.blocks.rock.Rock;
 import net.dries007.tfc.common.blocks.wood.Wood;
@@ -70,6 +69,7 @@ public class FLBlocks
     public static final RegistryObject<Block> IRON_COMPOSTER = register("iron_composter", () -> new IronComposterBlock(ExtendedProperties.of(Material.WOOD).strength(0.6F).noOcclusion().sound(SoundType.METAL).randomTicks().flammable(60, 90).blockEntity(FLBlockEntities.IRON_COMPOSTER)), DECORATIONS);
     public static final RegistryObject<Block> WOOL_STRING = register("wool_string", () -> new StringBlock(ExtendedProperties.of(Material.CLOTH_DECORATION).noCollission().strength(2.0f).sound(SoundType.WOOL).randomTicks().blockEntity(FLBlockEntities.STRING).serverTicks(StringBlockEntity::serverTick), TFCItems.WOOL_YARN));
     public static final RegistryObject<Block> MIXING_BOWL = register("mixing_bowl", () -> new MixingBowlBlock(ExtendedProperties.of(Material.DIRT).sound(SoundType.STONE).strength(1f).noOcclusion().blockEntity(FLBlockEntities.MIXING_BOWL).ticks(MixingBowlBlockEntity::serverTick, MixingBowlBlockEntity::clientTick)), DECORATIONS);
+    public static final RegistryObject<Block> VAT = register("vat", () -> new VatBlock(ExtendedProperties.of(Material.METAL).sound(SoundType.METAL).strength(1f).noOcclusion().blockEntity(FLBlockEntities.VAT).serverTicks(VatBlockEntity::serverTick)), DECORATIONS);
 
     public static final RegistryObject<Block> HONEY_JAR = register("honey_jar", () -> new JarsBlock(jarProperties()), b -> new JarsBlockItem(b, new Item.Properties().tab(MISC)));
     public static final RegistryObject<Block> COMPOST_JAR = register("compost_jar", () -> new JarsBlock(jarProperties()), b -> new JarsBlockItem(b, new Item.Properties().tab(MISC)));
@@ -88,6 +88,7 @@ public class FLBlocks
     public static final RegistryObject<Block> CLIMATE_STATION = register("climate_station", () -> new ClimateStationBlock(ExtendedProperties.of(Material.WOOD).strength(3.0f).sound(SoundType.WOOD).randomTicks().blockEntity(FLBlockEntities.CLIMATE_STATION).flammable(60, 30)), DECORATIONS);
     public static final RegistryObject<Block> LARGE_PLANTER = register("large_planter", () -> new LargePlanterBlock(ExtendedProperties.of(Material.DIRT).sound(SoundType.STONE).strength(1f).randomTicks().blockEntity(FLBlockEntities.LARGE_PLANTER).serverTicks(LargePlanterBlockEntity::serverTick)), DECORATIONS);
     public static final RegistryObject<Block> QUAD_PLANTER = register("quad_planter", () -> new QuadPlanterBlock(ExtendedProperties.of(Material.DIRT).sound(SoundType.STONE).strength(1f).randomTicks().blockEntity(FLBlockEntities.QUAD_PLANTER).serverTicks(LargePlanterBlockEntity::serverTick)), DECORATIONS);
+    public static final RegistryObject<Block> HYDROPONIC_PLANTER = register("hydroponic_planter", () -> new HydroponicPlanterBlock(ExtendedProperties.of(Material.DIRT).sound(SoundType.STONE).strength(1f).randomTicks().blockEntity(FLBlockEntities.HYDROPONIC_PLANTER).serverTicks(LargePlanterBlockEntity::serverTick)), DECORATIONS);
     public static final RegistryObject<Block> BONSAI_PLANTER = register("bonsai_planter", () -> new BonsaiPlanterBlock(ExtendedProperties.of(Material.DIRT).sound(SoundType.STONE).strength(1f).randomTicks().blockEntity(FLBlockEntities.BONSAI_PLANTER).serverTicks(LargePlanterBlockEntity::serverTick)), DECORATIONS);
     public static final RegistryObject<Block> HANGING_PLANTER = register("hanging_planter", () -> new HangingPlanterBlock(ExtendedProperties.of(Material.DIRT).sound(SoundType.STONE).strength(1f).randomTicks().blockEntity(FLBlockEntities.HANGING_PLANTER).serverTicks(LargePlanterBlockEntity::serverTick)), DECORATIONS);
     public static final RegistryObject<Block> TRELLIS_PLANTER = register("trellis_planter", () -> new TrellisPlanterBlock(ExtendedProperties.of(Material.DIRT).sound(SoundType.STONE).strength(1f).randomTicks().blockEntity(FLBlockEntities.TRELLIS_PLANTER).serverTicks(LargePlanterBlockEntity::serverTick)), DECORATIONS);
@@ -99,6 +100,7 @@ public class FLBlocks
     public static final RegistryObject<Block> TREATED_WOOD = register("treated_wood", () -> new ExtendedBlock(ExtendedProperties.of(Material.WOOD).sound(SoundType.WOOL).strength(2f).flammableLikePlanks()), DECORATIONS);
     public static final RegistryObject<Block> SQUIRTING_MOISTURE_TRANSDUCER = register("squirting_moisture_transducer", () -> new SquirtingMoistureTransducerBlock(ExtendedProperties.of(Material.METAL).strength(8f).sound(SoundType.LANTERN).blockEntity(FLBlockEntities.SQUIRTING_MOISTURE_TRANSDUCER).serverTicks(SquirtingMoistureTransducerBlockEntity::serverTick)), DECORATIONS);
     public static final RegistryObject<Block> SPRINKLER = register("sprinkler", () -> new SprinklerBlock(ExtendedProperties.of(Material.METAL).requiresCorrectToolForDrops().strength(4.0f).sound(SoundType.METAL).blockEntity(FLBlockEntities.SPRINKLER).serverTicks(SprinklerBlockEntity::serverTick).randomTicks().noOcclusion()), DECORATIONS);
+    public static final RegistryObject<Block> NUTRITIVE_BASIN = register("nutritive_basin", () -> new NutritiveBasinBlock(ExtendedProperties.of(Material.WOOD).strength(4f).sound(SoundType.WOOD).blockEntity(FLBlockEntities.NUTRITIVE_BASIN)), DECORATIONS);
 
     public static final RegistryObject<Block> BUTTERFLY_GRASS = register("plant/butterfly_grass", () -> MutatingPlantBlock.create(FLPlant.BUTTERFLY_GRASS, FLPlant.BUTTERFLY_GRASS.nonSolidFire(), FLTags.Blocks.BUTTERFLY_GRASS_MUTANTS), FLORA);
     public static final RegistryObject<Block> POTTED_BUTTERFLY_GRASS = register("plant/potted/butterfly_grass", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, BUTTERFLY_GRASS, Properties.of(Material.DECORATION).instabreak().noOcclusion()));

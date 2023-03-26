@@ -28,6 +28,7 @@ minecraft {
             property("forge.logging.console.level", "debug")
 
             jvmArgs("-ea", "-Xmx4G", "-Xms4G")
+            jvmArg("-XX:+AllowEnhancedClassRedefinition")
 
             mods {
                 firmalife {

@@ -12,10 +12,10 @@ import com.eerussianguy.firmalife.common.util.Plantable;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
-public class QuadPlanterBlockEntityRenderer implements BlockEntityRenderer<QuadPlanterBlockEntity>
+public class QuadPlanterBlockEntityRenderer<T extends QuadPlanterBlockEntity> implements BlockEntityRenderer<T>
 {
     @Override
-    public void render(QuadPlanterBlockEntity planter, float partialTicks, PoseStack poseStack, MultiBufferSource buffers, int combinedLight, int combinedOverlay)
+    public void render(T planter, float partialTicks, PoseStack poseStack, MultiBufferSource buffers, int combinedLight, int combinedOverlay)
     {
         for (int i = 0; i < 4; i++)
         {

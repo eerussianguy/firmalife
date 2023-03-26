@@ -2,6 +2,7 @@ package com.eerussianguy.firmalife.client;
 
 import java.util.List;
 
+import com.eerussianguy.firmalife.common.util.Plantable;
 import com.google.common.base.Stopwatch;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
@@ -41,6 +42,11 @@ public class FLClientForgeEvents
         if (!stack.isEmpty())
         {
             stack.getCapability(BeeCapability.CAPABILITY).ifPresent(cap -> cap.addTooltipInfo(text));
+            final Plantable plantable = Plantable.get(stack);
+            if (plantable != null)
+            {
+                plantable.addTooltipInfo(text);
+            }
         }
     }
 }

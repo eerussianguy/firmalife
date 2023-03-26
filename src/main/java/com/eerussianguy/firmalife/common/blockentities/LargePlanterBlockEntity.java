@@ -93,7 +93,7 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     {
         assert level != null;
         boolean waterLast = state.getValue(LargePlanterBlock.WATERED);
-        boolean waterNow = water > 0;
+        boolean waterNow = getWater() > 0;
         if (waterNow != waterLast)
         {
             level.setBlockAndUpdate(worldPosition, state.setValue(LargePlanterBlock.WATERED, waterNow));
@@ -201,7 +201,7 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
         {
             complaint = "no_sky";
         }
-        else if (water <= 0)
+        else if (getWater() <= 0)
         {
             complaint = "dehydrated";
         }

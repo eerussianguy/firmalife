@@ -2,6 +2,6 @@
   "__comment__": "This file was automatically created by mcresources",
   "parent": "item/generated",
   "textures": {
-    "layer0": "firmalife:food/barley_flatbread_dough"
+    "layer0": "firmalife:item/food/barley_flatbread_dough"
   }
 }

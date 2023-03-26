@@ -149,7 +149,7 @@ public class OvenTopBlockEntity extends TickableInventoryBlockEntity<OvenTopBloc
     float temperature;
     private float targetTemperature;
     private int targetTemperatureStabilityTicks;
-    private long lastUpdateTick;
+    private long lastPlayerTick;
     private boolean needsRecipeUpdate;
     private final WrappedHeatingRecipe[] cachedRecipes;
     private int[] cookTicks;
@@ -159,7 +159,7 @@ public class OvenTopBlockEntity extends TickableInventoryBlockEntity<OvenTopBloc
     {
         super(FLBlockEntities.OVEN_TOP.get(), pos, state, OvenInventory::new, FLHelpers.blockEntityName("oven_top"));
         temperature = targetTemperature = targetTemperatureStabilityTicks = cureTicks = 0;
-        lastUpdateTick = Calendars.SERVER.getTicks();
+        lastPlayerTick = Calendars.SERVER.getTicks();
         cachedRecipes = new WrappedHeatingRecipe[4];
         cookTicks = new int[] {0, 0, 0, 0};
 
@@ -174,6 +174,7 @@ public class OvenTopBlockEntity extends TickableInventoryBlockEntity<OvenTopBloc
         targetTemperatureStabilityTicks = nbt.getInt("targetTemperatureStabilityTicks");
         cookTicks = nbt.getIntArray("cookTicks");
         cureTicks = nbt.getInt("cureTicks");
+        lastPlayerTick = nbt.getLong("lastTick");
         needsRecipeUpdate = true;
         super.loadAdditional(nbt);
     }
@@ -186,6 +187,7 @@ public class OvenTopBlockEntity extends TickableInventoryBlockEntity<OvenTopBloc
         nbt.putInt("targetTemperatureStabilityTicks", targetTemperatureStabilityTicks);
         nbt.putIntArray("cookTicks", cookTicks);
         nbt.putInt("cureTicks", cureTicks);
+        nbt.putLong("lastTick", lastPlayerTick);
         super.saveAdditional(nbt);
     }
 
@@ -230,13 +232,13 @@ public class OvenTopBlockEntity extends TickableInventoryBlockEntity<OvenTopBloc
     @Override
     public long getLastUpdateTick()
     {
-        return lastUpdateTick;
+        return lastPlayerTick;
     }
 
     @Override
     public void setLastUpdateTick(long ticks)
     {
-        lastUpdateTick = ticks;
+        lastPlayerTick = ticks;
     }
 
     @Override
@@ -309,7 +311,7 @@ public class OvenTopBlockEntity extends TickableInventoryBlockEntity<OvenTopBloc
         return -1;
     }
 
-    static class OvenInventory implements DelegateItemHandler, IHeatBlock, INBTSerializable<CompoundTag>
+    static class OvenInventory implements DelegateItemHandler, CrucibleLikeHeatBlock, INBTSerializable<CompoundTag>
     {
         private final OvenTopBlockEntity oven;
         private final InventoryItemHandler inventory;
@@ -333,23 +335,29 @@ public class OvenTopBlockEntity extends TickableInventoryBlockEntity<OvenTopBloc
         }
 
         @Override
-        public void setTemperature(float temperature)
+        public void setTargetTemperature(float temp)
         {
-            oven.targetTemperature = temperature;
-            oven.targetTemperatureStabilityTicks = TARGET_TEMPERATURE_STABILITY_TICKS;
-            oven.markForSync();
+            oven.targetTemperature = temp;
         }
 
         @Override
-        public void setTemperatureIfWarmer(float temperature)
+        public float getTargetTemperature()
         {
-            // Override to still cause an update to the stability ticks
-            if (temperature >= oven.temperature)
-            {
-                oven.temperature = temperature;
-                oven.targetTemperatureStabilityTicks = TARGET_TEMPERATURE_STABILITY_TICKS;
-                oven.markForSync();
-            }
+            return oven.targetTemperature;
+        }
+
+        @Override
+        public void setTemperature(float temperature)
+        {
+            CrucibleLikeHeatBlock.super.setTemperature(temperature);
+            oven.temperature = temperature;
+        }
+
+        @Override
+        public void resetStability()
+        {
+            oven.targetTemperatureStabilityTicks = TARGET_TEMPERATURE_STABILITY_TICKS;
+            oven.markForSync();
         }
 
         @Override
