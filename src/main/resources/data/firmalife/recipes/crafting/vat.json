@@ -1,0 +1,19 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X X",
+    "YXY"
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:sheets/stainless_steel"
+    },
+    "Y": {
+      "item": "firmalife:beeswax"
+    }
+  },
+  "result": {
+    "item": "firmalife:vat"
+  }
+}

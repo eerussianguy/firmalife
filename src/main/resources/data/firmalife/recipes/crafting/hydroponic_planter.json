@@ -1,0 +1,24 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "YY",
+    "XX",
+    "Z "
+  ],
+  "key": {
+    "Y": {
+      "item": "tfc:compost"
+    },
+    "X": {
+      "item": "firmalife:treated_lumber"
+    },
+    "Z": {
+      "item": "tfc:wrought_iron_grill"
+    }
+  },
+  "result": {
+    "item": "firmalife:hydroponic_planter",
+    "count": 3
+  }
+}

@@ -1,10 +1,11 @@
 {
 	"credit": "Made with Blockbench",
-    "parent": "block/block",
+	"parent": "block/block",
 	"textures": {
 		"0": "firmalife:block/nutritive_basin",
 		"1": "firmalife:block/potting_soil_wet",
 		"2": "tfc:block/plant/eel_grass/0",
+		"3": "firmalife:block/nutritive_basin_side",
 		"particle": "firmalife:block/nutritive_basin"
 	},
 	"elements": [
@@ -15,7 +16,7 @@
 				"north": {"uv": [0, 0, 1, 15], "texture": "#0"},
 				"east": {"uv": [0, 0, 16, 15], "texture": "#0"},
 				"south": {"uv": [0, 0, 1, 15], "texture": "#0"},
-				"west": {"uv": [0, 0, 16, 15], "texture": "#0"},
+				"west": {"uv": [0, 0, 16, 15], "texture": "#3"},
 				"up": {"uv": [0, 0, 1, 16], "texture": "#0"}
 			}
 		},
@@ -24,7 +25,7 @@
 			"to": [16, 16, 16],
 			"faces": {
 				"north": {"uv": [0, 0, 1, 15], "texture": "#0"},
-				"east": {"uv": [0, 0, 16, 15], "texture": "#0"},
+				"east": {"uv": [0, 0, 16, 15], "texture": "#3"},
 				"south": {"uv": [0, 0, 1, 15], "texture": "#0"},
 				"west": {"uv": [0, 0, 16, 15], "texture": "#0"},
 				"up": {"uv": [0, 0, 1, 16], "texture": "#0"}
@@ -35,7 +36,7 @@
 			"to": [15, 16, 16],
 			"faces": {
 				"north": {"uv": [0, 0, 14, 15], "texture": "#0"},
-				"south": {"uv": [0, 0, 14, 15], "texture": "#0"},
+				"south": {"uv": [0, 0, 14, 15], "texture": "#3"},
 				"up": {"uv": [0, 0, 14, 1], "texture": "#0"}
 			}
 		},
@@ -43,7 +44,7 @@
 			"from": [1, 1, 0],
 			"to": [15, 16, 1],
 			"faces": {
-				"north": {"uv": [0, 0, 14, 15], "texture": "#0"},
+				"north": {"uv": [0, 0, 14, 15], "texture": "#3"},
 				"south": {"uv": [0, 0, 14, 15], "texture": "#0"},
 				"up": {"uv": [0, 0, 14, 1], "texture": "#0"}
 			}

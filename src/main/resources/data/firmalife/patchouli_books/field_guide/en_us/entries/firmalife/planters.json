@@ -58,6 +58,16 @@
     {
       "type": "patchouli:text",
       "text": "Trellis Planters have the unique property of $(thing)propagating$() berry bushes. If a trellis planter is placed on top of another, and the one below has a mature berry bush, it has a chance to grow upwards into the next one. Trellis planters can grow any berry bush except $(thing)Cranberries$(), but require an $(thing)Iron$() or better greenhouse to work. Bushes prefer Nitrogen."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/hydroponic_planter",
+      "text": "$(thing)Hydroponic Planters$() grow rice and cranberry bushes. They work the same as a quad planter, except that they do not need to be watered. Instead, a $(thing)Nutritive Vat$() must be placed below them. Without the vat they will not grow."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/nutritive_basin",
+      "text": "Nutritive basins must be filled with water, using $(item)$(k:key.use)$()."
     }
   ],
   "read_by_default": true,

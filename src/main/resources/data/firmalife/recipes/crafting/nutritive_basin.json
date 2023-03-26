@@ -1,0 +1,29 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XYX",
+    "QWQ",
+    "XZX"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:brick"
+    },
+    "Y": {
+      "item": "minecraft:glass_block"
+    },
+    "Q": {
+      "tag": "forge:rods/stainless_steel"
+    },
+    "W": {
+      "tag": "tfc:seeds"
+    },
+    "Z": {
+      "tag": "forge:sheets/stainless_steel"
+    }
+  },
+  "result": {
+    "item": "firmalife:nutritive_basin"
+  }
+}
