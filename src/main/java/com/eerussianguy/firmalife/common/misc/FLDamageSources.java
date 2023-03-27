@@ -8,6 +8,7 @@ public class FLDamageSources
 {
     public static final DamageSource OVEN = create("oven").setIsFire();
     public static final DamageSource SWARM = create("swarm").bypassArmor();
+    public static final DamageSource ASH = create("ash").setIsFire().setExplosion();
 
     private static DamageSource create(String key)
     {

@@ -24,12 +24,13 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 
+import net.dries007.tfc.common.blocks.EntityBlockExtension;
 import net.dries007.tfc.common.blocks.ExtendedBlock;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.capabilities.Capabilities;
 import net.dries007.tfc.util.Helpers;
 
-public class NutritiveBasinBlock extends ExtendedBlock
+public class NutritiveBasinBlock extends ExtendedBlock implements EntityBlockExtension
 {
     public static final VoxelShape SHAPE = Shapes.join(
         Shapes.block(),

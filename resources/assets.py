@@ -33,7 +33,13 @@ def generate(rm: ResourceManager):
         rm.item_model('%soven_hopper' % pref, parent='firmalife:block/%soven_hopper' % pref, no_textures=True)
 
     rm.block_model('cured_oven_hopper', parent='minecraft:block/orientable', textures={'top': 'firmalife:block/oven_hopper_top', 'side': 'minecraft:block/bricks', 'front': 'firmalife:block/oven_hopper_front'})
-    rm.block_model('oven_hopper', parent='minecraft:block/orientable', textures={'top': 'firmalife:block/clay_oven_hopper_top', 'side': 'minecraft:block/bricks', 'front': 'firmalife:block/clay_oven_hopper_front'})
+    rm.block_model('oven_hopper', parent='minecraft:block/orientable', textures={'top': 'firmalife:block/clay_oven_hopper_top', 'side': 'firmalife:block/unfired_bricks', 'front': 'firmalife:block/clay_oven_hopper_front'})
+
+    block = rm.blockstate('ashtray', variants=dict(('stage=%s' % i, {'model': 'firmalife:block/ashtray_%s' % i}) for i in range(0, 11)))
+    block.with_lang(lang('ashtray')).with_tag('minecraft:mineable/pickaxe').with_block_loot('firmalife:ashtray')
+    for i in range(0, 11):
+        rm.block_model('ashtray_%s' % i, parent='minecraft:block/cube_column', textures={'side': 'firmalife:block/ashtray_side_%s' % i, 'end': 'firmalife:block/ashtray_top'})
+    rm.item_model('ashtray', parent='firmalife:block/ashtray_0', no_textures=True)
 
     rm.blockstate('drying_mat', model='firmalife:block/drying_mat').with_item_model().with_tag('tfc:mineable_with_sharp_tool').with_lang(lang('drying mat')).with_block_loot('firmalife:drying_mat')
     rm.blockstate('solar_drier', model='firmalife:block/solar_drier').with_item_model().with_tag('minecraft:mineable/axe').with_lang(lang('solar drier')).with_block_loot('firmalife:solar_drier')
@@ -122,7 +128,10 @@ def generate(rm: ResourceManager):
     block = rm.block('firmalife:sealed_door').with_tag('minecraft:doors').with_lang(lang('sealed door')).with_tag('minecraft:mineable/pickaxe')
     door_loot(block, 'firmalife:sealed_door')
 
-    rm.blockstate('nutritive_basin', model='firmalife:block/nutritive_basin').with_block_loot('firmalife:nutritive_basin').with_lang(lang('nutritive basin')).with_tag('minecraft:mineable/axe').with_item_model()
+    rm.blockstate('nutritive_basin', variants={
+        'watered=false': {'model': 'firmalife:block/nutritive_basin'},
+        'watered=true': {'model': 'firmalife:block/nutritive_basin_water'},
+    }).with_block_loot('firmalife:nutritive_basin').with_lang(lang('nutritive basin')).with_tag('minecraft:mineable/axe').with_item_model()
 
     for cheese in CHEESE_WHEELS:
         for age in ('fresh', 'aged', 'vintage'):

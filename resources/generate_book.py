@@ -180,9 +180,9 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False):
                 ('WT0TW', 'WWCWW'),
                 ('WBBBW', 'WWCWW'),
             ), {
-                '0': 'firmalife:%soven_top[facing=south]' % pref,
-                'T': 'firmalife:%soven_top[facing=south]' % pref,
-                'B': 'firmalife:%soven_bottom[facing=south]' % pref,
+                '0': 'firmalife:%soven_top[facing=north]' % pref,
+                'T': 'firmalife:%soven_top[facing=north]' % pref,
+                'B': 'firmalife:%soven_bottom[facing=north]' % pref,
                 'W': 'minecraft:bricks',
                 'C': 'firmalife:%soven_chimney' % pref,
             }) for pref in ('cured_', '')]),
@@ -190,6 +190,8 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False):
             text('The Top Oven contains the items that are being cooked. It will draw heat from the Bottom Oven and slowly release it over time. This means that even if your fuel runs out, your Top Oven can continue to work for a little while. Adding items to it is as simple as pressing $(item)$(k:key.use)$(). Remember to use a $(thing)Peel$() to remove the items after.'),
             text('Curing Oven blocks is easy, but requires patience. Simply start running your Bottom Oven as you would normally, and then wait. If an oven block is above 600 degrees for about 80 seconds, it will cure itself and any oven blocks around it. The curing effect will pass all the way up chimneys nearby.'),
             crafting('firmalife:crafting/oven_hopper', text_contents='The $(thing)Oven Hopper$() will input logs into any Bottom Oven that it is facing. It holds 16 logs (4 stacks of 4, like a log pile), and its inventory is fed by dropping items in the top. It can also be fed via automation from other mods.'),
+            crafting('firmalife:crafting/ashtray', text_contents='The $(thing)Ashtray$() collects $(thing)Wood Ash$() when placed below a $(thing)Bottom Oven Block$(). There is a 0.5 chance it gains ash when fuel is consumed. Ash is extracted with $(item)$(k:key.use)$() and inserted via attacking it.'),
+            empty_last_page()
         )),
         entry('bread', 'Bread', 'tfc:food/rye_bread', pages=(
             text('To make $(thing)Bread$(), one first must get $(thing)Yeast$(). To get your first yeast, seal $(l:firmalife:firmalife/drying)Dried Fruit$() in a Barrel of $(thing)Water$(). After three days, $(thing)Yeast Starter$() will form.$(br)From now on, your yeast can be fed by sealing Yeast Starter in a Barrel with $(thing)Flour$(). This causes it to multiply. 1 flour per 100mB of Yeast produces 600mB of Yeast. That\'s a good deal!'),

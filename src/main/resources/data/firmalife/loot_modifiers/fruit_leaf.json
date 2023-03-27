@@ -11,5 +11,6 @@
   ],
   "item": {
     "item": "firmalife:fruit_leaf"
-  }
+  },
+  "chance": 0.5
 }

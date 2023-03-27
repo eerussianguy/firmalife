@@ -1,0 +1,22 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ZZZ",
+    "XYX"
+  ],
+  "key": {
+    "Z": {
+      "item": "tfc:powder/salt"
+    },
+    "X": {
+      "item": "firmalife:sealed_bricks"
+    },
+    "Y": {
+      "tag": "forge:sheets/wrought_iron"
+    }
+  },
+  "result": {
+    "item": "firmalife:ashtray"
+  }
+}

@@ -22,7 +22,7 @@ SIMPLE_BLOCKS: Dict[str, str] = {
     'treated_wood': 'minecraft:mineable/axe'
 }
 COLORS = ('white', 'orange', 'magenta', 'light_blue', 'yellow', 'lime', 'pink', 'gray', 'light_gray', 'cyan', 'purple', 'blue', 'brown', 'green', 'red', 'black')
-BLOCK_ENTITIES = ('oven_bottom', 'oven_top', 'drying_mat', 'beehive', 'solar_drier', 'mixing_bowl', 'iron_composter', 'string', 'berry_bush', 'large_planter', 'bonsai_planter', 'trellis_planter', 'hanging_planter', 'quad_planter', 'climate_station', 'hydroponic_planter', 'vat', 'oven_hopper')
+BLOCK_ENTITIES = ('oven_bottom', 'oven_top', 'drying_mat', 'beehive', 'solar_drier', 'mixing_bowl', 'iron_composter', 'string', 'berry_bush', 'large_planter', 'bonsai_planter', 'trellis_planter', 'hanging_planter', 'quad_planter', 'climate_station', 'hydroponic_planter', 'vat', 'oven_hopper', 'ashtray')
 EXTRA_FLUIDS = ('yeast_starter', 'coconut_milk', 'yak_milk', 'goat_milk', 'curdled_yak_milk', 'curdled_goat_milk', 'pina_colada', 'cream', 'chocolate')
 JARS: Sequence[Tuple[str, int, str, str]] = (
     ('honey', 1, 'minecraft:block/honey_block_side', 'firmalife:raw_honey'),
@@ -254,8 +254,10 @@ DEFAULT_LANG = {
 
     'death.attack.firmalife.oven': '%1$s died by sticking their hand in a hot oven.',
     'death.attack.firmalife.oven.player': '%1$s climbed into an oven to escape %2$s.',
-    'death.attack.firmalife.swarm': '%1$s was stung to death by bees.',
-    'death.attack.firmalife.swarm.player': '%1$s was stung to death by bees while trying to escape %2$s.',
+    'death.attack.firmalife.swarm': '%1$s was stung to death by a swarm of bees!',
+    'death.attack.firmalife.swarm.player': '%1$s was stung to death by a swarm of bees while trying to escape %2$s.',
+    'death.attack.firmalife.ash': '%1$s lit wood ash on fire and was exploded.',
+    'death.attack.firmalife.ash.player': '%1$s lit wood ash on fire and was exploded while trying to escape %2$s.',
     'subtitles.item.firmalife.hollow_shell.blow': 'Shell whistles',
 
     'item.firmalife.hollow_shell.filled': '%s Hollow Shell',

@@ -1,8 +1,11 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "variants": {
-    "": {
+    "watered=false": {
       "model": "firmalife:block/nutritive_basin"
+    },
+    "watered=true": {
+      "model": "firmalife:block/nutritive_basin_water"
     }
   }
 }

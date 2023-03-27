@@ -59,7 +59,7 @@ public class SprinklerBlock extends DeviceBlock implements HoeOverlayBlock
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, Random random)
     {
-        if (random.nextFloat() < 0.3f)
+        if ((level.getGameTime() - 10) % 40 == 0)
         {
             if (level.getBlockEntity(pos) instanceof SprinklerBlockEntity sprinkler && sprinkler.isActive())
             {
@@ -69,29 +69,9 @@ public class SprinklerBlock extends DeviceBlock implements HoeOverlayBlock
         }
     }
 
-    @Override
-    @SuppressWarnings("deprecation")
-    public void randomTick(BlockState state, ServerLevel level, BlockPos origin, Random rand)
+    public Function<BlockPos, Iterable<BlockPos>> getPathMaker()
     {
-        if (level.getBlockEntity(origin) instanceof SprinklerBlockEntity sprinkler && sprinkler.isValid())
-        {
-            sprinkler.getCapability(Capabilities.FLUID, Direction.UP).ifPresent(cap -> {
-                for (BlockPos pos : pathMaker.apply(origin))
-                {
-                    final ClimateReceiver receiver = ClimateReceiver.get(level, pos);
-                    if (receiver != null)
-                    {
-                        if (cap.getFluidInTank(0).getAmount() > 10)
-                        {
-                            if (receiver.addWater(0.1f))
-                            {
-                                cap.drain(10, IFluidHandler.FluidAction.EXECUTE);
-                            }
-                        }
-                    }
-                }
-            });
-        }
+        return pathMaker;
     }
 
     @Override

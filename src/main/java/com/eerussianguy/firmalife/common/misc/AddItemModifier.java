@@ -18,18 +18,23 @@ import org.jetbrains.annotations.NotNull;
 public class AddItemModifier extends LootModifier
 {
     private final ItemStack item;
+    private final float chance;
 
-    protected AddItemModifier(LootItemCondition[] conditions, ItemStack item)
+    protected AddItemModifier(LootItemCondition[] conditions, ItemStack item, float chance)
     {
         super(conditions);
         this.item = FoodCapability.setStackNonDecaying(item);
+        this.chance = chance;
     }
 
     @NotNull
     @Override
     protected List<ItemStack> doApply(List<ItemStack> loot, LootContext context)
     {
-        loot.add(item.copy());
+        if (context.getRandom().nextFloat() < chance)
+        {
+            loot.add(item.copy());
+        }
         return loot;
     }
 
@@ -38,7 +43,7 @@ public class AddItemModifier extends LootModifier
         @Override
         public AddItemModifier read(ResourceLocation location, JsonObject json, LootItemCondition[] conditions)
         {
-            return new AddItemModifier(conditions, JsonHelpers.getItemStack(json, "item"));
+            return new AddItemModifier(conditions, JsonHelpers.getItemStack(json, "item"), JsonHelpers.getAsFloat(json, "chance", 1f));
         }
 
         @Override
@@ -46,6 +51,7 @@ public class AddItemModifier extends LootModifier
         {
             JsonObject json = makeConditions(instance.conditions);
             json.add("item", FLHelpers.codecToJson(ItemStack.CODEC, instance.item));
+            json.addProperty("chance", instance.chance);
             return json;
         }
     }

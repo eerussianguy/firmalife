@@ -135,8 +135,8 @@ def generate(rm: ResourceManager):
     simple_plantable(rm, 'green_bean', 'nitrogen', 4, planter='large', firmalife=True)
     simple_plantable(rm, 'tomato', 'potassium', 4, planter='large', firmalife=True)
     simple_plantable(rm, 'sugarcane', 'potassium', 4, planter='large', firmalife=True)
-    simple_plantable(rm, 'papyrus', 'potassium', 5, planter='large', firmalife=True)
     plantable(rm, 'jute', 'tfc:seeds/jute', 'tfc:jute', 'potassium', ['firmalife:block/crop/jute_%s' % i for i in range(0, 5)], 4, 'large')
+    plantable(rm, 'papyrus', 'tfc:seeds/papyrus', 'tfc:papyrus', 'potassium', ['firmalife:block/crop/papyrus_%s' % i for i in range(0, 6)], 5, 'large')
 
     bonsai_plantable(rm, 'cherry', 'nitrogen')
     bonsai_plantable(rm, 'green_apple', 'nitrogen')
@@ -232,7 +232,7 @@ def generate(rm: ResourceManager):
     global_loot_modifiers(rm, 'firmalife:fruit_leaf', 'firmalife:rennet', 'firmalife:rennet_three')
     global_loot_modifier(rm, 'rennet', 'firmalife:add_item', {'item': utils.item_stack('2 firmalife:rennet')}, match_entity_tag('firmalife:drops_rennet'))
     global_loot_modifier(rm, 'rennet_three', 'firmalife:add_item', {'item': utils.item_stack('3 firmalife:rennet')}, match_entity_tag('firmalife:drops_three_rennet'))
-    global_loot_modifier(rm, 'fruit_leaf', 'firmalife:add_item', {'item': utils.item_stack('firmalife:fruit_leaf')}, match_block_ingredient('firmalife:drops_fruit_leaf'))
+    global_loot_modifier(rm, 'fruit_leaf', 'firmalife:add_item', {'item': utils.item_stack('firmalife:fruit_leaf'), 'chance': 0.5}, match_block_ingredient('firmalife:drops_fruit_leaf'))
 
 
 def greenhouse(rm: ResourceManager, name: str, block_ingredient: str, tier: int):

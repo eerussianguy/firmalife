@@ -36,7 +36,6 @@ import com.eerussianguy.firmalife.common.util.FLMetal;
 import net.dries007.tfc.client.TFCColors;
 import net.dries007.tfc.client.particle.GlintParticleProvider;
 import net.dries007.tfc.client.screen.KnappingScreen;
-import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.capabilities.food.FoodCapability;
 import net.dries007.tfc.common.items.TFCItems;
 
@@ -68,10 +67,11 @@ public class FLClientEvents
             FLBlocks.CURED_OVEN_CHIMNEY, FLBlocks.QUAD_PLANTER, FLBlocks.LARGE_PLANTER, FLBlocks.HANGING_PLANTER, FLBlocks.BONSAI_PLANTER,
             FLBlocks.IRON_COMPOSTER, FLBlocks.COMPOST_JAR, FLBlocks.HONEY_JAR, FLBlocks.ROTTEN_COMPOST_JAR, FLBlocks.GUANO_JAR, FLBlocks.CHEDDAR_WHEEL,
             FLBlocks.RAJYA_METOK_WHEEL, FLBlocks.CHEVRE_WHEEL, FLBlocks.SHOSHA_WHEEL, FLBlocks.FETA_WHEEL, FLBlocks.GOUDA_WHEEL, FLBlocks.SMALL_CHROMITE,
-            FLBlocks.MIXING_BOWL, FLBlocks.BUTTERFLY_GRASS, FLBlocks.SPRINKLER, FLBlocks.DRIBBLER, FLBlocks.VAT, FLBlocks.HYDROPONIC_PLANTER, FLBlocks.NUTRITIVE_BASIN
+            FLBlocks.MIXING_BOWL, FLBlocks.BUTTERFLY_GRASS, FLBlocks.SPRINKLER, FLBlocks.DRIBBLER, FLBlocks.VAT, FLBlocks.HYDROPONIC_PLANTER
         ).forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
 
         ItemBlockRenderTypes.setRenderLayer(FLBlocks.SOLAR_DRIER.get(), translucent);
+        ItemBlockRenderTypes.setRenderLayer(FLBlocks.NUTRITIVE_BASIN.get(), translucent);
 
         FLBlocks.CHROMITE_ORES.values().forEach(map -> map.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout)));
         FLBlocks.FRUIT_PRESERVES.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), translucent));
@@ -149,7 +149,6 @@ public class FLClientEvents
         event.registerBlockEntityRenderer(FLBlockEntities.MIXING_BOWL.get(), ctx -> new MixingBowlBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.HANGER.get(), ctx -> new HangerBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.FOOD_SHELF.get(), ctx -> new FoodShelfBlockEntityRenderer());
-        event.registerBlockEntityRenderer(FLBlockEntities.NUTRITIVE_BASIN.get(), ctx -> new NutritiveBasinBlockEntityRenderer());
 
         event.registerEntityRenderer(FLEntities.SEED_BALL.get(), ThrownItemRenderer::new);
     }
@@ -166,6 +165,13 @@ public class FLClientEvents
         for (String name : new String[] {"cranberry"})
         {
             for (int i = 0; i < 4; i++)
+            {
+                event.addSprite(FLHelpers.identifier("block/crop/" + name + "_" + i));
+            }
+        }
+        for (String name : new String[] {"papyrus"})
+        {
+            for (int i = 0; i < 6; i++)
             {
                 event.addSprite(FLHelpers.identifier("block/crop/" + name + "_" + i));
             }

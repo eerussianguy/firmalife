@@ -1,5 +1,6 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
+import com.eerussianguy.firmalife.common.blocks.greenhouse.SprinklerBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -24,16 +25,39 @@ public class SprinklerBlockEntity extends TFCBlockEntity implements FluidTankCal
 {
     public static void serverTick(Level level, BlockPos pos, BlockState state, SprinklerBlockEntity sprinkler)
     {
-        if (level.getGameTime() % 20 == 0 && sprinkler.valid && sprinkler.tank.getFluidInTank(0).getAmount() < TANK_CAPACITY)
+        if (level.getGameTime() % 20 == 0 && sprinkler.valid)
         {
-            final BlockEntity above = level.getBlockEntity(pos.above());
-            if (above != null)
+            if (sprinkler.tank.getFluidInTank(0).getAmount() < TANK_CAPACITY)
             {
-                above.getCapability(Capabilities.FLUID, Direction.DOWN).ifPresent(aboveCap -> {
-                    final int amount = TANK_CAPACITY - sprinkler.tank.getFluidInTank(0).getAmount();
-                    if (amount > 0)
+                final BlockEntity above = level.getBlockEntity(pos.above());
+                if (above != null)
+                {
+                    above.getCapability(Capabilities.FLUID, Direction.DOWN).ifPresent(aboveCap -> {
+                        final int amount = TANK_CAPACITY - sprinkler.tank.getFluidInTank(0).getAmount();
+                        if (amount > 0)
+                        {
+                            sprinkler.tank.fill(aboveCap.drain(amount, IFluidHandler.FluidAction.EXECUTE), IFluidHandler.FluidAction.EXECUTE);
+                        }
+                    });
+                }
+            }
+
+            if (level.getGameTime() % 40 == 0 && state.getBlock() instanceof SprinklerBlock block)
+            {
+                sprinkler.getCapability(Capabilities.FLUID, Direction.UP).ifPresent(cap -> {
+                    for (BlockPos testPos : block.getPathMaker().apply(pos))
                     {
-                        sprinkler.tank.fill(aboveCap.drain(amount, IFluidHandler.FluidAction.EXECUTE), IFluidHandler.FluidAction.EXECUTE);
+                        final ClimateReceiver receiver = ClimateReceiver.get(level, testPos);
+                        if (receiver != null)
+                        {
+                            if (cap.getFluidInTank(0).getAmount() > 10)
+                            {
+                                if (receiver.addWater(0.1f))
+                                {
+                                    cap.drain(10, IFluidHandler.FluidAction.EXECUTE);
+                                }
+                            }
+                        }
                     }
                 });
             }

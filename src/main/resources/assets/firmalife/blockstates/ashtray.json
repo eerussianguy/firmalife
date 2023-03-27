@@ -1,0 +1,38 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "variants": {
+    "stage=0": {
+      "model": "firmalife:block/ashtray_0"
+    },
+    "stage=1": {
+      "model": "firmalife:block/ashtray_1"
+    },
+    "stage=2": {
+      "model": "firmalife:block/ashtray_2"
+    },
+    "stage=3": {
+      "model": "firmalife:block/ashtray_3"
+    },
+    "stage=4": {
+      "model": "firmalife:block/ashtray_4"
+    },
+    "stage=5": {
+      "model": "firmalife:block/ashtray_5"
+    },
+    "stage=6": {
+      "model": "firmalife:block/ashtray_6"
+    },
+    "stage=7": {
+      "model": "firmalife:block/ashtray_7"
+    },
+    "stage=8": {
+      "model": "firmalife:block/ashtray_8"
+    },
+    "stage=9": {
+      "model": "firmalife:block/ashtray_9"
+    },
+    "stage=10": {
+      "model": "firmalife:block/ashtray_10"
+    }
+  }
+}

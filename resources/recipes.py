@@ -90,6 +90,7 @@ def generate(rm: ResourceManager):
     rm.crafting_shapeless('crafting/toast_with_butter', ('firmalife:food/toast', 'firmalife:food/butter'), 'firmalife:food/toast_with_butter').with_advancement('firmalife:food/toast')
     damage_shapeless(rm, 'crafting/bacon', (not_rotten(has_trait('tfc:food/pork', trait='firmalife:smoked')), '#tfc:knives', 'tfc:powder/salt'), '4 firmalife:food/bacon').with_advancement('tfc:food/cooked_pork')
     rm.crafting_shapeless('crafting/tomato_sauce_mix', (not_rotten('tfc:food/tomato'), utils.ingredient('tfc:powder/salt'), not_rotten('tfc:food/garlic')), 'firmalife:food/tomato_sauce_mix').with_advancement('tfc:food/tomato')
+    rm.crafting_shaped('crafting/ashtray', ['ZZZ', 'XYX'], {'Z': 'tfc:powder/salt', 'X': 'firmalife:sealed_bricks', 'Y': '#forge:sheets/wrought_iron'}, 'firmalife:ashtray').with_advancement('#forge:sheets/wrought_iron')
 
     for i in range(1, 9):
         advanced_shapeless(rm, 'crafting/masa_%s' % i, (

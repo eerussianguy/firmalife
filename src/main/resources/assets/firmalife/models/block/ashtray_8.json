@@ -1,0 +1,8 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "firmalife:block/ashtray_side_8",
+    "end": "firmalife:block/ashtray_top"
+  }
+}

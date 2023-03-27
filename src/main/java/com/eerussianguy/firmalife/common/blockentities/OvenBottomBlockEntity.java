@@ -3,6 +3,7 @@ package com.eerussianguy.firmalife.common.blockentities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -16,7 +17,10 @@ import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blocks.ICure;
 import com.eerussianguy.firmalife.common.blocks.OvenBottomBlock;
 import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
+import net.dries007.tfc.common.capabilities.Capabilities;
 import net.dries007.tfc.common.capabilities.heat.HeatCapability;
+import net.dries007.tfc.common.items.Powder;
+import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.util.Fuel;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.calendar.Calendars;
@@ -30,10 +34,7 @@ public class OvenBottomBlockEntity extends TickableInventoryBlockEntity<ItemStac
     public static void cure(Level level, BlockState oldState, BlockState newState, BlockPos pos)
     {
         // copy state
-        final BlockState placeState = newState
-            .setValue(OvenBottomBlock.FACING, oldState.getValue(OvenBottomBlock.FACING))
-            .setValue(OvenBottomBlock.LOGS, oldState.getValue(OvenBottomBlock.LOGS))
-            .setValue(OvenBottomBlock.LIT, oldState.getValue(OvenBottomBlock.LIT));
+        final BlockState placeState = Helpers.copyProperties(newState, oldState);
 
         // copy data
         level.getBlockEntity(pos, FLBlockEntities.OVEN_BOTTOM.get()).ifPresent(oven -> {
@@ -242,9 +243,26 @@ public class OvenBottomBlockEntity extends TickableInventoryBlockEntity<ItemStac
                 burnTicks += fuel.getDuration();
                 burnTemperature = fuel.getTemperature();
             }
+            onFuelConsumed();
             markForSync();
         }
         return burnTicks > 0;
+    }
+
+    public void onFuelConsumed()
+    {
+        assert level != null;
+        if (level.getRandom().nextFloat() < 0.5f && level.getBlockEntity(getBlockPos().below()) instanceof AshTrayBlockEntity tray)
+        {
+            tray.getCapability(Capabilities.ITEM).ifPresent(inv -> {
+                final ItemStack leftover = inv.insertItem(0, new ItemStack(TFCItems.POWDERS.get(Powder.WOOD_ASH).get()), false);
+                if (leftover.isEmpty())
+                {
+                    Helpers.playSound(level, getBlockPos(), SoundEvents.SAND_PLACE);
+                    tray.updateBlockState();
+                }
+            });
+        }
     }
 
     public boolean light(BlockState state)

@@ -40,7 +40,7 @@ public class OvenTopBlockEntity extends TickableInventoryBlockEntity<OvenTopBloc
     public static void cure(Level level, BlockState oldState, BlockState newState, BlockPos pos)
     {
         // copy state
-        final BlockState placeState = newState.setValue(OvenBottomBlock.FACING, oldState.getValue(OvenBottomBlock.FACING));
+        final BlockState placeState = Helpers.copyProperties(newState, oldState);
 
         // copy data
         level.getBlockEntity(pos, FLBlockEntities.OVEN_TOP.get()).ifPresent(oven -> {

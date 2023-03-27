@@ -8,7 +8,7 @@
     "item": "tfc:seeds/papyrus"
   },
   "crop": {
-    "item": "tfc:food/papyrus"
+    "item": "tfc:papyrus"
   },
   "nutrient": "potassium",
   "stages": 5,

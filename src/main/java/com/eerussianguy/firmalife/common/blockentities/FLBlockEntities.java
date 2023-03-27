@@ -41,7 +41,7 @@ public class FLBlockEntities
     public static final RegistryObject<BlockEntityType<FoodShelfBlockEntity>> FOOD_SHELF = register("food_shelf", FoodShelfBlockEntity::new, Stream.of(FLBlocks.FOOD_SHELVES.values()).<Supplier<? extends Block>>flatMap(Helpers::flatten));
     public static final RegistryObject<BlockEntityType<HangerBlockEntity>> HANGER = register("hanger", HangerBlockEntity::new, Stream.of(FLBlocks.HANGERS.values()).<Supplier<? extends Block>>flatMap(Helpers::flatten));
     public static final RegistryObject<BlockEntityType<VatBlockEntity>> VAT = register("vat", VatBlockEntity::new, FLBlocks.VAT);
-    public static final RegistryObject<BlockEntityType<NutritiveBasinBlockEntity>> NUTRITIVE_BASIN = register("nutritive_basin", NutritiveBasinBlockEntity::new, FLBlocks.NUTRITIVE_BASIN);
+    public static final RegistryObject<BlockEntityType<AshTrayBlockEntity>> ASHTRAY = register("ashtray", AshTrayBlockEntity::new, FLBlocks.ASHTRAY);
 
     public static final RegistryObject<BlockEntityType<LargePlanterBlockEntity>> LARGE_PLANTER = register("large_planter", LargePlanterBlockEntity::new, FLBlocks.LARGE_PLANTER);
     public static final RegistryObject<BlockEntityType<BonsaiPlanterBlockEntity>> BONSAI_PLANTER = register("bonsai_planter", BonsaiPlanterBlockEntity::new, FLBlocks.BONSAI_PLANTER);
