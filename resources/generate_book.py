@@ -96,7 +96,7 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False):
             text('The $(thing)Sprinkler$() is a device that sprinkles water in a 5x6x5 area centered on the block below the sprinkler block. It automatically fills with water from any fluid tank or pipe placed above it. You know it is working when it drips out water particles.'),
             two_tall_block_spotlight('Starter Sprinkler Setup', 'The easiest way to set up a sprinkler is with a barrel of water.', 'firmalife:sprinkler', 'tfc:wood/barrel/pine'),
             anvil_recipe('firmalife:anvil/sprinkler', 'The sprinkler is made with a $(thing)Red Steel Sheet$().'),
-            empty_last_page()
+            anvil_recipe('firmalife:anvil/dribbler', 'The dribbler is made with a $(thing)Stainless Steel Sheet$(). It works like a sprinkler, but only waters the 7 blocks below it!'),
             # text('The $(thing)Squirting Moisture Transducer$(), or the SMT, is an advanced device for watering planters. The SMT must be placed in a valid $(l:firmalife:firmalife/greenhouse)Greenhouse$() to work.'),
             # crafting('firmalife:crafting/squirting_moisture_transducer', text_contents='The SMT is crafted from $(l:firmalife:firmalife/stainless_steel)Stainless Steel$().'),
             # crafting('firmalife:crafting/embedded_pipe', text_contents='You may notice that the SMT does not work on its own. It must be used with a number of $(thing)Embedded Pipes$().'),

@@ -1,0 +1,25 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "planter": "large",
+  "ingredient": {
+    "item": "tfc:seeds/papyrus"
+  },
+  "seed": {
+    "item": "tfc:seeds/papyrus"
+  },
+  "crop": {
+    "item": "tfc:food/papyrus"
+  },
+  "nutrient": "potassium",
+  "stages": 5,
+  "texture": [
+    "firmalife:block/crop/papyrus_0",
+    "firmalife:block/crop/papyrus_1",
+    "firmalife:block/crop/papyrus_2",
+    "firmalife:block/crop/papyrus_3",
+    "firmalife:block/crop/papyrus_4",
+    "firmalife:block/crop/papyrus_5"
+  ],
+  "specials": [],
+  "extra_seed_chance": 0.5
+}

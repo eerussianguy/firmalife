@@ -10,8 +10,8 @@
     "ingredient": "minecraft:water",
     "amount": 1000
   },
-  "output_item": {
-    "item": "tfc:brown_dye",
-    "count": 1000
+  "output_fluid": {
+    "fluid": "tfc:brown_dye",
+    "amount": 1000
   }
 }

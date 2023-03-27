@@ -58,7 +58,7 @@ def generate(rm: ResourceManager):
     rm.crafting_shaped('crafting/trellis_planter', ['X X', 'X X', 'XYX'], {'X': 'minecraft:brick', 'Y': 'tfc:compost'}, 'firmalife:trellis_planter').with_advancement('tfc:compost')
     rm.crafting_shaped('crafting/bonsai_planter', ['X X', 'XYX', 'XXX'], {'X': 'minecraft:brick', 'Y': 'tfc:compost'}, 'firmalife:bonsai_planter').with_advancement('tfc:compost')
     rm.crafting_shaped('crafting/treated_lumber', ['XXX', 'XYX', 'XXX'], {'X': '#tfc:lumber', 'Y': 'firmalife:beeswax'}, '8 firmalife:treated_lumber').with_advancement('firmalife:beeswax')
-    rm.crafting_shaped('crafting/nutritive_basin', ['XYX', 'QWQ', 'XZX'], {'X': 'minecraft:brick', 'Y': 'minecraft:glass_block', 'Q': '#forge:rods/stainless_steel', 'W': '#tfc:seeds', 'Z': '#forge:sheets/stainless_steel'}, 'firmalife:nutritive_basin').with_advancement('minecraft:brick')
+    rm.crafting_shaped('crafting/nutritive_basin', ['XYX', 'QWQ', 'XZX'], {'X': 'minecraft:brick', 'Y': 'minecraft:glass', 'Q': '#forge:rods/stainless_steel', 'W': '#tfc:seeds', 'Z': '#forge:sheets/stainless_steel'}, 'firmalife:nutritive_basin').with_advancement('minecraft:brick')
     rm.crafting_shaped('crafting/hydroponic_planter', ['YY', 'XX', 'Z '], {'Y': 'tfc:compost', 'X': 'firmalife:treated_lumber', 'Z': 'tfc:wrought_iron_grill'}, '3 firmalife:hydroponic_planter').with_advancement('firmalife:treated_lumber')
     rm.crafting_shaped('crafting/vat', ['X X', 'YXY'], {'X': '#forge:sheets/stainless_steel', 'Y': 'firmalife:beeswax'}, 'firmalife:vat').with_advancement('#forge:sheets/stainless_steel')
     rm.crafting_shapeless('crafting/oven_hopper', ('firmalife:oven_bottom', 'minecraft:hopper'), 'firmalife:oven_hopper').with_advancement('minecraft:hopper')
@@ -120,9 +120,9 @@ def generate(rm: ResourceManager):
     vat_recipe(rm, 'cooked_rice', not_rotten('tfc:food/rice_grain'), '200 minecraft:water', output_item='tfc:food/cooked_rice')
     vat_recipe(rm, 'boiled_egg', not_rotten('minecraft:egg'), '200 minecraft:water', output_item='tfc:food/boiled_egg')
     for color in COLORS:
-        vat_recipe(rm, '%s_dye' % color, 'minecraft:%s_dye' % color, '1000 minecraft:water', '1000 tfc:%s_dye' % color)
+        vat_recipe(rm, '%s_dye' % color, 'minecraft:%s_dye' % color, '1000 minecraft:water', output_fluid='1000 tfc:%s_dye' % color)
     vat_recipe(rm, 'beet_sugar', {'count': 5, 'ingredient': not_rotten('tfc:food/beet')}, '1000 tfc:salt_water', output_item='3 minecraft:sugar')
-    vat_recipe(rm, 'soy_mixture', not_rotten('firmalife:food/soybean'), '200 tfc:salt_water', output_item='firmalife:food/soy_mixture')
+    vat_recipe(rm, 'soy_mixture', not_rotten('tfc:food/soybean'), '200 tfc:salt_water', output_item='firmalife:food/soy_mixture')
     vat_recipe(rm, 'cured_maize', not_rotten('tfc:food/maize_grain'), '1000 tfc:limewater', output_item='firmalife:food/cured_maize')
     vat_recipe(rm, 'tomato_sauce', not_rotten('firmalife:food/tomato_sauce_mix'), '200 minecraft:water', output_item='firmalife:food/tomato_sauce')
 
@@ -274,6 +274,7 @@ def generate(rm: ResourceManager):
     alloy_recipe(rm, 'stainless_steel', 'stainless_steel', ('firmalife:chromium', 0.2, 0.3), ('tfc:nickel', 0.1, 0.2), ('tfc:steel', 0.6, 0.8))
     anvil_recipe(rm, 'pie_pan', '#forge:sheets/cast_iron', '4 firmalife:pie_pan', 1, Rules.hit_last, Rules.hit_second_last, Rules.draw_third_last)
     anvil_recipe(rm, 'sprinkler', '#forge:sheets/red_steel', 'firmalife:sprinkler', 6, Rules.bend_last, Rules.punch_second_last, Rules.shrink_third_last)
+    anvil_recipe(rm, 'dribbler', '#forge:sheets/stainless_steel', 'firmalife:dribbler', 6, Rules.bend_last, Rules.punch_second_last, Rules.shrink_third_last)
 
     for recipe in DISABLED_TFC_RECIPES:
         rm.domain = 'tfc' # DOMAIN CHANGE

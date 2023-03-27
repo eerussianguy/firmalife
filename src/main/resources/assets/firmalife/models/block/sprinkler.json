@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"0": "tfc:block/metal/full/red_steel",
-		"particle": "tfc:block/metal/full/red_steel"
+		"particle": "#0"
 	},
 	"parent": "block/block",
 	"elements": [

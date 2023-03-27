@@ -98,8 +98,11 @@ def generate(rm: ResourceManager):
         tex = 'firmalife:block/%s_%s' % (trd, variant)
         rm.block_model('firmalife:%s_%s' % (trd, variant), {'west': tex, 'east': tex, 'north': tex, 'south': tex, 'particle': tex, 'up': 'firmalife:block/%s_top' % trd, 'down': 'firmalife:block/%s_top' % trd})
 
+    rm.block_model('dribbler', parent='firmalife:block/sprinkler', textures={'0': 'firmalife:block/metal/full/stainless_steel'})
     rm.blockstate('sprinkler', model='firmalife:block/sprinkler').with_lang(lang('sprinkler')).with_tag('minecraft:mineable/pickaxe').with_block_loot('firmalife:sprinkler')
     rm.item_model('sprinkler', parent='firmalife:block/sprinkler', no_textures=True)
+    rm.blockstate('dribbler', model='firmalife:block/dribbler').with_lang(lang('dribbler')).with_tag('minecraft:mineable/pickaxe').with_block_loot('firmalife:dribbler')
+    rm.item_model('dribbler', parent='firmalife:block/dribbler', no_textures=True)
 
     rm.blockstate('beehive', variants={
         **four_rotations('minecraft:block/beehive_honey', (90, None, 180, 270), ',honey=true'),

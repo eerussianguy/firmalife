@@ -3,7 +3,7 @@
   "type": "firmalife:vat",
   "input_item": {
     "ingredient": {
-      "item": "firmalife:food/soybean"
+      "item": "tfc:food/soybean"
     }
   },
   "input_fluid": {

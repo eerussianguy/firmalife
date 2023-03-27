@@ -11,7 +11,7 @@
       "item": "minecraft:brick"
     },
     "Y": {
-      "item": "minecraft:glass_block"
+      "item": "minecraft:glass"
     },
     "Q": {
       "tag": "forge:rods/stainless_steel"

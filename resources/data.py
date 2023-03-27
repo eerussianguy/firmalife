@@ -135,6 +135,7 @@ def generate(rm: ResourceManager):
     simple_plantable(rm, 'green_bean', 'nitrogen', 4, planter='large', firmalife=True)
     simple_plantable(rm, 'tomato', 'potassium', 4, planter='large', firmalife=True)
     simple_plantable(rm, 'sugarcane', 'potassium', 4, planter='large', firmalife=True)
+    simple_plantable(rm, 'papyrus', 'potassium', 5, planter='large', firmalife=True)
     plantable(rm, 'jute', 'tfc:seeds/jute', 'tfc:jute', 'potassium', ['firmalife:block/crop/jute_%s' % i for i in range(0, 5)], 4, 'large')
 
     bonsai_plantable(rm, 'cherry', 'nitrogen')

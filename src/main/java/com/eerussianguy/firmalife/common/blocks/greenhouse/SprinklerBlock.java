@@ -2,6 +2,7 @@ package com.eerussianguy.firmalife.common.blocks.greenhouse;
 
 import java.util.List;
 import java.util.Random;
+import java.util.function.Function;
 import com.eerussianguy.firmalife.common.blockentities.ClimateReceiver;
 import com.eerussianguy.firmalife.common.blockentities.SprinklerBlockEntity;
 import net.minecraft.core.BlockPos;
@@ -37,9 +38,22 @@ public class SprinklerBlock extends DeviceBlock implements HoeOverlayBlock
         box(7, 10, 3, 9, 12, 6)
     );
 
-    public SprinklerBlock(ExtendedProperties properties)
+    private final Function<BlockPos, Iterable<BlockPos>> pathMaker;
+
+    public static SprinklerBlock createSprinkler(ExtendedProperties properties)
+    {
+        return new SprinklerBlock(properties, origin -> BlockPos.betweenClosed(origin.offset(-2, -6, -2), origin.offset(2, -1, 2)));
+    }
+
+    public static SprinklerBlock createDribbler(ExtendedProperties properties)
+    {
+        return new SprinklerBlock(properties, origin -> BlockPos.betweenClosed(origin.offset(0, -7, 0), origin.offset(0, -1, 0)));
+    }
+
+    public SprinklerBlock(ExtendedProperties properties, Function<BlockPos, Iterable<BlockPos>> pathMaker)
     {
         super(properties, InventoryRemoveBehavior.NOOP);
+        this.pathMaker = pathMaker;
     }
 
     @Override
@@ -62,7 +76,7 @@ public class SprinklerBlock extends DeviceBlock implements HoeOverlayBlock
         if (level.getBlockEntity(origin) instanceof SprinklerBlockEntity sprinkler && sprinkler.isValid())
         {
             sprinkler.getCapability(Capabilities.FLUID, Direction.UP).ifPresent(cap -> {
-                for (BlockPos pos : BlockPos.betweenClosed(origin.offset(-2, -6, -2), origin.offset(2, -1, 2)))
+                for (BlockPos pos : pathMaker.apply(origin))
                 {
                     final ClimateReceiver receiver = ClimateReceiver.get(level, pos);
                     if (receiver != null)

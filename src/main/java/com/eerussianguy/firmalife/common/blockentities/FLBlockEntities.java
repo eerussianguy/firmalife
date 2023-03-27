@@ -50,7 +50,7 @@ public class FLBlockEntities
     public static final RegistryObject<BlockEntityType<HydroponicPlanterBlockEntity>> HYDROPONIC_PLANTER = register("hydroponic_planter", HydroponicPlanterBlockEntity::new, FLBlocks.HYDROPONIC_PLANTER);
     public static final RegistryObject<BlockEntityType<TrellisPlanterBlockEntity>> TRELLIS_PLANTER = register("trellis_planter", TrellisPlanterBlockEntity::new, FLBlocks.TRELLIS_PLANTER);
     public static final RegistryObject<BlockEntityType<ClimateStationBlockEntity>> CLIMATE_STATION = register("climate_station", ClimateStationBlockEntity::new, FLBlocks.CLIMATE_STATION);
-    public static final RegistryObject<BlockEntityType<SprinklerBlockEntity>> SPRINKLER = register("sprinkler", SprinklerBlockEntity::new, FLBlocks.SPRINKLER);
+    public static final RegistryObject<BlockEntityType<SprinklerBlockEntity>> SPRINKLER = register("sprinkler", SprinklerBlockEntity::new, Stream.of(FLBlocks.SPRINKLER, FLBlocks.DRIBBLER));
 
     private static <T extends BlockEntity> RegistryObject<BlockEntityType<T>> register(String name, BlockEntityType.BlockEntitySupplier<T> factory, Supplier<? extends Block> block)
     {

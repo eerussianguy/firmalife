@@ -1,0 +1,16 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:anvil",
+  "input": {
+    "tag": "forge:sheets/stainless_steel"
+  },
+  "result": {
+    "item": "firmalife:dribbler"
+  },
+  "tier": 6,
+  "rules": [
+    "bend_last",
+    "punch_second_last",
+    "shrink_third_last"
+  ]
+}

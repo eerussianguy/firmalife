@@ -35,6 +35,11 @@
       "type": "tfc:anvil_recipe",
       "recipe": "firmalife:anvil/sprinkler",
       "text": "The sprinkler is made with a $(thing)Red Steel Sheet$()."
+    },
+    {
+      "type": "tfc:anvil_recipe",
+      "recipe": "firmalife:anvil/dribbler",
+      "text": "The dribbler is made with a $(thing)Stainless Steel Sheet$(). It works like a sprinkler, but only waters the 7 blocks below it!"
     }
   ],
   "read_by_default": true,
