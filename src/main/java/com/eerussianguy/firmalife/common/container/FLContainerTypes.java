@@ -2,6 +2,8 @@ package com.eerussianguy.firmalife.common.container;
 
 import java.util.function.Supplier;
 
+import com.eerussianguy.firmalife.common.blockentities.StovetopGrillBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.StovetopPotBlockEntity;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.MenuType;
@@ -28,6 +30,8 @@ public class FLContainerTypes
     public static final DeferredRegister<MenuType<?>> CONTAINERS = DeferredRegister.create(ForgeRegistries.CONTAINERS, MOD_ID);
 
     public static final RegistryObject<MenuType<BeehiveContainer>> BEEHIVE = FLContainerTypes.<FLBeehiveBlockEntity, BeehiveContainer>registerBlock("beehive", FLBlockEntities.BEEHIVE, BeehiveContainer::create);
+    public static final RegistryObject<MenuType<StovetopGrillContainer>> STOVETOP_GRILL = FLContainerTypes.<StovetopGrillBlockEntity, StovetopGrillContainer>registerBlock("stovetop_grill", FLBlockEntities.STOVETOP_GRILL, StovetopGrillContainer::create);
+    public static final RegistryObject<MenuType<StovetopPotContainer>> STOVETOP_POT = FLContainerTypes.<StovetopPotBlockEntity, StovetopPotContainer>registerBlock("stovetop_pot", FLBlockEntities.STOVETOP_POT, StovetopPotContainer::create);
     public static final RegistryObject<MenuType<KnappingContainer>> PUMPKIN = FLContainerTypes.registerItem("pumpkin", FLContainerTypes::createPumpkin);
 
     public static KnappingContainer createPumpkin(ItemStack stack, InteractionHand hand, Inventory playerInventory, int windowId)

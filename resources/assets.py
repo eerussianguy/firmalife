@@ -104,6 +104,9 @@ def generate(rm: ResourceManager):
         tex = 'firmalife:block/%s_%s' % (trd, variant)
         rm.block_model('firmalife:%s_%s' % (trd, variant), {'west': tex, 'east': tex, 'north': tex, 'south': tex, 'particle': tex, 'up': 'firmalife:block/%s_top' % trd, 'down': 'firmalife:block/%s_top' % trd})
 
+    rm.blockstate('stovetop_grill').with_lang(lang('stovetop grill')).with_tag('minecraft:mineable/pickaxe').with_block_loot('tfc:wrought_iron_grill')
+    rm.blockstate('stovetop_pot').with_lang(lang('stovetop pot')).with_tag('minecraft:mineable/pickaxe').with_block_loot('tfc:ceramic/pot')
+
     rm.block_model('dribbler', parent='firmalife:block/sprinkler', textures={'0': 'firmalife:block/metal/full/stainless_steel'})
     rm.blockstate('sprinkler', model='firmalife:block/sprinkler').with_lang(lang('sprinkler')).with_tag('minecraft:mineable/pickaxe').with_block_loot('firmalife:sprinkler')
     rm.item_model('sprinkler', parent='firmalife:block/sprinkler', no_textures=True)

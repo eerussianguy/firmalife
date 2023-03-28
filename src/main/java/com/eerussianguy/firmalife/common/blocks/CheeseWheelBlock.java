@@ -3,6 +3,7 @@ package com.eerussianguy.firmalife.common.blocks;
 import java.util.Random;
 import java.util.function.Supplier;
 
+import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
@@ -31,7 +32,6 @@ import com.eerussianguy.firmalife.common.blockentities.ClimateReceiver;
 import com.eerussianguy.firmalife.common.util.FoodAge;
 import com.eerussianguy.firmalife.config.FLConfig;
 import net.dries007.tfc.common.TFCTags;
-import net.dries007.tfc.common.blockentities.TFCBlockEntities;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.TFCBlockStateProperties;
 import net.dries007.tfc.common.blocks.devices.BottomSupportedDeviceBlock;
@@ -73,11 +73,12 @@ public class CheeseWheelBlock extends BottomSupportedDeviceBlock implements Clim
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit)
     {
         ItemStack held = player.getItemInHand(hand);
-        if (Helpers.isItem(held, TFCTags.Items.KNIVES) && !player.isShiftKeyDown())
+        if (Helpers.isItem(held, TFCTags.Items.KNIVES))
         {
             final int count = state.getValue(COUNT);
             ItemStack drop = new ItemStack(slice.get());
             FoodCapability.applyTrait(drop, state.getValue(AGE).getTrait());
+            drop.getCapability(FoodCapability.CAPABILITY).ifPresent(cap -> cap.setCreationDate(FoodCapability.getRoundedCreationDate()));
             ItemHandlerHelper.giveItemToPlayer(player, drop);
             FLHelpers.resetCounter(level, pos);
             if (count - 1 == 0)
@@ -86,6 +87,7 @@ public class CheeseWheelBlock extends BottomSupportedDeviceBlock implements Clim
             }
             else
             {
+                Helpers.playSound(level, pos, getSoundType(state, level, pos, player).getBreakSound());
                 level.setBlockAndUpdate(pos, state.setValue(COUNT, count - 1));
             }
         }
@@ -102,7 +104,7 @@ public class CheeseWheelBlock extends BottomSupportedDeviceBlock implements Clim
     @SuppressWarnings("deprecation")
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, Random rand)
     {
-        level.getBlockEntity(pos, TFCBlockEntities.TICK_COUNTER.get()).ifPresent(counter -> {
+        level.getBlockEntity(pos, FLBlockEntities.TICK_COUNTER.get()).ifPresent(counter -> {
             if (state.getValue(AGING))
             {
                 long days = counter.getTicksSinceUpdate() / ICalendar.TICKS_IN_DAY;

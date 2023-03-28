@@ -1,12 +1,17 @@
 package com.eerussianguy.firmalife.common.misc;
 
+import com.eerussianguy.firmalife.common.blocks.OvenBottomBlock;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.crafting.Ingredient;
 
 import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.container.FLContainerProviders;
+import net.minecraft.world.level.Level;
+
 import net.dries007.tfc.common.TFCTags;
-import net.dries007.tfc.common.container.TFCContainerProviders;
 import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.util.BlockItemPlacement;
 import net.dries007.tfc.util.InteractionManager;
@@ -18,5 +23,35 @@ public class FLInteractionManager
         InteractionManager.register(new BlockItemPlacement(TFCItems.WOOL_YARN, FLBlocks.WOOL_STRING));
 
         InteractionManager.register(Ingredient.of(FLTags.Items.PUMPKIN_KNAPPING), false, true, InteractionManager.createKnappingInteraction((s, p) -> p.getInventory().contains(TFCTags.Items.KNIVES), FLContainerProviders.PUMPKIN_KNAPPING));
+
+        InteractionManager.register(Ingredient.of(TFCItems.WROUGHT_IRON_GRILL.get()), false, (stack, context) -> {
+            final Level level = context.getLevel();
+            final BlockPos pos = context.getClickedPos();
+            final BlockPos abovePos = pos.above();
+
+            if (context.getClickedFace() == Direction.UP && level.getBlockState(pos).getBlock() instanceof OvenBottomBlock && level.getBlockState(abovePos).isAir())
+            {
+                level.setBlockAndUpdate(abovePos, FLBlocks.STOVETOP_GRILL.get().defaultBlockState());
+                if (context.getPlayer() == null || !context.getPlayer().isCreative()) stack.shrink(1);
+                return InteractionResult.SUCCESS;
+            }
+
+            return InteractionResult.PASS;
+        });
+
+        InteractionManager.register(Ingredient.of(TFCItems.POT.get()), false, (stack, context) -> {
+            final Level level = context.getLevel();
+            final BlockPos pos = context.getClickedPos();
+            final BlockPos abovePos = pos.above();
+
+            if (context.getClickedFace() == Direction.UP && level.getBlockState(pos).getBlock() instanceof OvenBottomBlock && level.getBlockState(abovePos).isAir())
+            {
+                level.setBlockAndUpdate(abovePos, FLBlocks.STOVETOP_POT.get().defaultBlockState());
+                if (context.getPlayer() == null || !context.getPlayer().isCreative()) stack.shrink(1);
+                return InteractionResult.SUCCESS;
+            }
+
+            return InteractionResult.PASS;
+        });
     }
 }

@@ -7,35 +7,22 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.util.INBTSerializable;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.IItemHandlerModifiable;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blocks.ICure;
-import com.eerussianguy.firmalife.common.blocks.OvenBottomBlock;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.common.recipes.WrappedHeatingRecipe;
 import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
-import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
-import net.dries007.tfc.common.capabilities.DelegateItemHandler;
-import net.dries007.tfc.common.capabilities.InventoryItemHandler;
-import net.dries007.tfc.common.capabilities.SidedHandler;
 import net.dries007.tfc.common.capabilities.food.FoodCapability;
 import net.dries007.tfc.common.capabilities.heat.HeatCapability;
-import net.dries007.tfc.common.capabilities.heat.IHeatBlock;
 import net.dries007.tfc.common.recipes.inventory.ItemStackInventory;
 import net.dries007.tfc.util.Helpers;
-import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.ICalendarTickable;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * Works like a crucible but with a delay on producing the heating recipes.
  */
-public class OvenTopBlockEntity extends TickableInventoryBlockEntity<OvenTopBlockEntity.OvenInventory> implements ICalendarTickable, OvenLike
+public class OvenTopBlockEntity extends ApplianceBlockEntity<ApplianceBlockEntity.ApplianceInventory> implements ICalendarTickable, OvenLike
 {
     public static void cure(Level level, BlockState oldState, BlockState newState, BlockPos pos)
     {
@@ -71,34 +58,13 @@ public class OvenTopBlockEntity extends TickableInventoryBlockEntity<OvenTopBloc
         oven.checkForLastTickSync();
         oven.checkForCalendarUpdate();
 
-        if (oven.temperature != oven.targetTemperature)
-        {
-            oven.temperature = HeatCapability.adjustTempTowards(oven.temperature, oven.targetTemperature);
-
-            for (Direction d : Direction.Plane.HORIZONTAL)
-            {
-                if (level.getBlockEntity(pos.relative(d)) instanceof OvenTopBlockEntity otherOven)
-                {
-                    otherOven.getCapability(HeatCapability.BLOCK_CAPABILITY).ifPresent(cap -> cap.setTemperatureIfWarmer(oven.temperature - 100f));
-                }
-            }
-        }
         final boolean cured = state.getBlock() instanceof ICure cure && cure.isCured();
         final int updateInterval = 40;
         if (level.getGameTime() % updateInterval == 0)
         {
             OvenLike.regularBlockUpdate(level, pos, state, oven, cured, updateInterval);
         }
-
-        if (oven.targetTemperatureStabilityTicks > 0)
-        {
-            oven.targetTemperatureStabilityTicks--;
-        }
-        if (oven.targetTemperature > 0 && oven.targetTemperatureStabilityTicks == 0)
-        {
-            // target temperature decays constantly, since it is set externally. As long as we don't consider ourselves 'stable'
-            oven.targetTemperature = HeatCapability.adjustTempTowards(oven.targetTemperature, 0);
-        }
+        oven.tickTemperature();
 
         if (!cured) return;
         for (int i = SLOT_INPUT_START; i <= SLOT_INPUT_END; i++)
@@ -143,13 +109,6 @@ public class OvenTopBlockEntity extends TickableInventoryBlockEntity<OvenTopBloc
     public static final int SLOT_INPUT_START = 0;
     public static final int TARGET_TEMPERATURE_STABILITY_TICKS = 400;
 
-    private final SidedHandler.Noop<IHeatBlock> sidedHeat;
-
-
-    float temperature;
-    private float targetTemperature;
-    private int targetTemperatureStabilityTicks;
-    private long lastPlayerTick;
     private boolean needsRecipeUpdate;
     private final WrappedHeatingRecipe[] cachedRecipes;
     private int[] cookTicks;
@@ -158,23 +117,16 @@ public class OvenTopBlockEntity extends TickableInventoryBlockEntity<OvenTopBloc
     public OvenTopBlockEntity(BlockPos pos, BlockState state)
     {
         super(FLBlockEntities.OVEN_TOP.get(), pos, state, OvenInventory::new, FLHelpers.blockEntityName("oven_top"));
-        temperature = targetTemperature = targetTemperatureStabilityTicks = cureTicks = 0;
-        lastPlayerTick = Calendars.SERVER.getTicks();
+        cureTicks = 0;
         cachedRecipes = new WrappedHeatingRecipe[4];
         cookTicks = new int[] {0, 0, 0, 0};
-
-        sidedHeat = new SidedHandler.Noop<>(inventory);
     }
 
     @Override
     public void loadAdditional(CompoundTag nbt)
     {
-        temperature = nbt.getFloat("temperature");
-        targetTemperature = nbt.getFloat("targetTemperature");
-        targetTemperatureStabilityTicks = nbt.getInt("targetTemperatureStabilityTicks");
         cookTicks = nbt.getIntArray("cookTicks");
         cureTicks = nbt.getInt("cureTicks");
-        lastPlayerTick = nbt.getLong("lastTick");
         needsRecipeUpdate = true;
         super.loadAdditional(nbt);
     }
@@ -182,19 +134,9 @@ public class OvenTopBlockEntity extends TickableInventoryBlockEntity<OvenTopBloc
     @Override
     public void saveAdditional(CompoundTag nbt)
     {
-        nbt.putFloat("temperature", temperature);
-        nbt.putFloat("targetTemperature", targetTemperature);
-        nbt.putInt("targetTemperatureStabilityTicks", targetTemperatureStabilityTicks);
         nbt.putIntArray("cookTicks", cookTicks);
         nbt.putInt("cureTicks", cureTicks);
-        nbt.putLong("lastTick", lastPlayerTick);
         super.saveAdditional(nbt);
-    }
-
-    @Override
-    public float getTemperature()
-    {
-        return temperature;
     }
 
     @Override
@@ -209,36 +151,25 @@ public class OvenTopBlockEntity extends TickableInventoryBlockEntity<OvenTopBloc
         cureTicks += ticks;
     }
 
-    @NotNull
     @Override
-    public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side)
+    public void ranOutDueToCalendar()
     {
-        if (cap == HeatCapability.BLOCK_CAPABILITY)
+        for (int i = 0; i < SLOTS; i++)
         {
-            return sidedHeat.getSidedHandler(side).cast();
+            cookTicks[i] = 0;
         }
-        return super.getCapability(cap, side);
     }
 
     @Override
-    public void onCalendarUpdate(long ticks)
+    public void onTemperatureAdjusted()
     {
-        assert level != null;
-        // Crucible has no fuel to consume, but it does drop the internal target and temperature over time.
-        targetTemperature = HeatCapability.adjustTempTowards(targetTemperature, 0, ticks);
-        temperature = HeatCapability.adjustTempTowards(temperature, targetTemperature, ticks);
-    }
-
-    @Override
-    public long getLastUpdateTick()
-    {
-        return lastPlayerTick;
-    }
-
-    @Override
-    public void setLastUpdateTick(long ticks)
-    {
-        lastPlayerTick = ticks;
+        for (Direction d : Direction.Plane.HORIZONTAL)
+        {
+            if (level.getBlockEntity(getBlockPos().relative(d)) instanceof OvenTopBlockEntity otherOven)
+            {
+                otherOven.getCapability(HeatCapability.BLOCK_CAPABILITY).ifPresent(cap -> cap.setTemperatureIfWarmer(temperature - 100f));
+            }
+        }
     }
 
     @Override
@@ -251,7 +182,7 @@ public class OvenTopBlockEntity extends TickableInventoryBlockEntity<OvenTopBloc
     @Override
     public boolean isItemValid(int slot, ItemStack stack)
     {
-        return stack.getCapability(HeatCapability.CAPABILITY).isPresent();
+        return Helpers.mightHaveCapability(stack, HeatCapability.CAPABILITY);
     }
 
     @Override
@@ -311,67 +242,11 @@ public class OvenTopBlockEntity extends TickableInventoryBlockEntity<OvenTopBloc
         return -1;
     }
 
-    static class OvenInventory implements DelegateItemHandler, CrucibleLikeHeatBlock, INBTSerializable<CompoundTag>
+    public static class OvenInventory extends ApplianceBlockEntity.ApplianceInventory
     {
-        private final OvenTopBlockEntity oven;
-        private final InventoryItemHandler inventory;
-
-        public OvenInventory(InventoryBlockEntity<?> blockEntity)
+        public OvenInventory(InventoryBlockEntity<?> entity)
         {
-            this.oven = (OvenTopBlockEntity) blockEntity;
-            this.inventory = new InventoryItemHandler(blockEntity, SLOTS);
-        }
-
-        @Override
-        public IItemHandlerModifiable getItemHandler()
-        {
-            return inventory;
-        }
-
-        @Override
-        public float getTemperature()
-        {
-            return oven.temperature;
-        }
-
-        @Override
-        public void setTargetTemperature(float temp)
-        {
-            oven.targetTemperature = temp;
-        }
-
-        @Override
-        public float getTargetTemperature()
-        {
-            return oven.targetTemperature;
-        }
-
-        @Override
-        public void setTemperature(float temperature)
-        {
-            CrucibleLikeHeatBlock.super.setTemperature(temperature);
-            oven.temperature = temperature;
-        }
-
-        @Override
-        public void resetStability()
-        {
-            oven.targetTemperatureStabilityTicks = TARGET_TEMPERATURE_STABILITY_TICKS;
-            oven.markForSync();
-        }
-
-        @Override
-        public CompoundTag serializeNBT()
-        {
-            final CompoundTag nbt = new CompoundTag();
-            nbt.put("inventory", inventory.serializeNBT());
-            return nbt;
-        }
-
-        @Override
-        public void deserializeNBT(CompoundTag nbt)
-        {
-            inventory.deserializeNBT(nbt.getCompound("inventory"));
+            super(entity, SLOTS);
         }
     }
 }

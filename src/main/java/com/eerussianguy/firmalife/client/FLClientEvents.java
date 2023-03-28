@@ -3,6 +3,8 @@ package com.eerussianguy.firmalife.client;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
+import com.eerussianguy.firmalife.client.screen.StovetopGrillScreen;
+import com.eerussianguy.firmalife.client.screen.StovetopPotScreen;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.block.BlockColor;
@@ -67,7 +69,7 @@ public class FLClientEvents
             FLBlocks.CURED_OVEN_CHIMNEY, FLBlocks.QUAD_PLANTER, FLBlocks.LARGE_PLANTER, FLBlocks.HANGING_PLANTER, FLBlocks.BONSAI_PLANTER,
             FLBlocks.IRON_COMPOSTER, FLBlocks.COMPOST_JAR, FLBlocks.HONEY_JAR, FLBlocks.ROTTEN_COMPOST_JAR, FLBlocks.GUANO_JAR, FLBlocks.CHEDDAR_WHEEL,
             FLBlocks.RAJYA_METOK_WHEEL, FLBlocks.CHEVRE_WHEEL, FLBlocks.SHOSHA_WHEEL, FLBlocks.FETA_WHEEL, FLBlocks.GOUDA_WHEEL, FLBlocks.SMALL_CHROMITE,
-            FLBlocks.MIXING_BOWL, FLBlocks.BUTTERFLY_GRASS, FLBlocks.SPRINKLER, FLBlocks.DRIBBLER, FLBlocks.VAT, FLBlocks.HYDROPONIC_PLANTER
+            FLBlocks.MIXING_BOWL, FLBlocks.BUTTERFLY_GRASS, FLBlocks.SPRINKLER, FLBlocks.DRIBBLER, FLBlocks.VAT, FLBlocks.HYDROPONIC_PLANTER, FLBlocks.STOVETOP_GRILL, FLBlocks.STOVETOP_POT
         ).forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
 
         ItemBlockRenderTypes.setRenderLayer(FLBlocks.SOLAR_DRIER.get(), translucent);
@@ -88,6 +90,8 @@ public class FLClientEvents
 
         event.enqueueWork(() -> {
             MenuScreens.register(FLContainerTypes.BEEHIVE.get(), BeehiveScreen::new);
+            MenuScreens.register(FLContainerTypes.STOVETOP_GRILL.get(), StovetopGrillScreen::new);
+            MenuScreens.register(FLContainerTypes.STOVETOP_POT.get(), StovetopPotScreen::new);
             MenuScreens.register(FLContainerTypes.PUMPKIN.get(), KnappingScreen::new);
 
             TFCItems.FOOD.forEach((food, item) -> {
@@ -149,6 +153,8 @@ public class FLClientEvents
         event.registerBlockEntityRenderer(FLBlockEntities.MIXING_BOWL.get(), ctx -> new MixingBowlBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.HANGER.get(), ctx -> new HangerBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.FOOD_SHELF.get(), ctx -> new FoodShelfBlockEntityRenderer());
+        event.registerBlockEntityRenderer(FLBlockEntities.STOVETOP_GRILL.get(), ctx -> new StovetopGrillBlockEntityRenderer());
+        event.registerBlockEntityRenderer(FLBlockEntities.STOVETOP_POT.get(), ctx -> new StovetopPotBlockEntityRenderer());
 
         event.registerEntityRenderer(FLEntities.SEED_BALL.get(), ThrownItemRenderer::new);
     }

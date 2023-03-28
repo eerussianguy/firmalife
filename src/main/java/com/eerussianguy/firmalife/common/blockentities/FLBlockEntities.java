@@ -3,6 +3,7 @@ package com.eerussianguy.firmalife.common.blockentities;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
+import com.eerussianguy.firmalife.common.blocks.StovetopPotBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -42,6 +43,8 @@ public class FLBlockEntities
     public static final RegistryObject<BlockEntityType<HangerBlockEntity>> HANGER = register("hanger", HangerBlockEntity::new, Stream.of(FLBlocks.HANGERS.values()).<Supplier<? extends Block>>flatMap(Helpers::flatten));
     public static final RegistryObject<BlockEntityType<VatBlockEntity>> VAT = register("vat", VatBlockEntity::new, FLBlocks.VAT);
     public static final RegistryObject<BlockEntityType<AshTrayBlockEntity>> ASHTRAY = register("ashtray", AshTrayBlockEntity::new, FLBlocks.ASHTRAY);
+    public static final RegistryObject<BlockEntityType<StovetopGrillBlockEntity>> STOVETOP_GRILL = register("stovetop_grill", StovetopGrillBlockEntity::new, FLBlocks.STOVETOP_GRILL);
+    public static final RegistryObject<BlockEntityType<StovetopPotBlockEntity>> STOVETOP_POT = register("stovetop_pot", StovetopPotBlockEntity::new, FLBlocks.STOVETOP_POT);
 
     public static final RegistryObject<BlockEntityType<LargePlanterBlockEntity>> LARGE_PLANTER = register("large_planter", LargePlanterBlockEntity::new, FLBlocks.LARGE_PLANTER);
     public static final RegistryObject<BlockEntityType<BonsaiPlanterBlockEntity>> BONSAI_PLANTER = register("bonsai_planter", BonsaiPlanterBlockEntity::new, FLBlocks.BONSAI_PLANTER);

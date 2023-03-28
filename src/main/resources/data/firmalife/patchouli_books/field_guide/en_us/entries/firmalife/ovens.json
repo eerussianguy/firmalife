@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(thing)Ovens$() are a great way of cooking lots of food in a way that improves their shelf life. Oven-baked food decays at 90% of the rate of regular food. Ovens are a multiblock structure consisting of a $(thing)Bottom Oven$(), $(thing)Top Oven$(), and optionally $(thing)Chimneys$(). These blocks start off as clay, and must be $(thing)Cured$() by raising their temperature to a certain amount for long enough."
+      "text": "$(thing)Ovens$() are a great way of cooking lots of food in a way that improves their shelf life. Oven-baked food decays at 90% of the rate of regular food. Ovens are a multiblock structure consisting of a $(thing)Bottom Oven$(), $(thing)Top Oven$(), and optionally $(thing)Chimneys$(). These blocks start off as clay, and must be $(thing)Cured$() by raising their temperature to a certain amount for long enough.$(br)$(l:firmalife:firmalife/oven_appliances)Oven Appliances$() extend oven functionality."
     },
     {
       "type": "tfc:clay_knapping_recipe",
@@ -61,9 +61,9 @@
             ]
           ],
           "mapping": {
-            "0": "firmalife:cured_oven_top[facing=south]",
-            "T": "firmalife:cured_oven_top[facing=south]",
-            "B": "firmalife:cured_oven_bottom[facing=south]",
+            "0": "firmalife:cured_oven_top[facing=north]",
+            "T": "firmalife:cured_oven_top[facing=north]",
+            "B": "firmalife:cured_oven_bottom[facing=north]",
             "W": "minecraft:bricks",
             "C": "firmalife:cured_oven_chimney"
           }
@@ -88,9 +88,9 @@
             ]
           ],
           "mapping": {
-            "0": "firmalife:oven_top[facing=south]",
-            "T": "firmalife:oven_top[facing=south]",
-            "B": "firmalife:oven_bottom[facing=south]",
+            "0": "firmalife:oven_top[facing=north]",
+            "T": "firmalife:oven_top[facing=north]",
+            "B": "firmalife:oven_bottom[facing=north]",
             "W": "minecraft:bricks",
             "C": "firmalife:oven_chimney"
           }
@@ -108,18 +108,8 @@
     {
       "type": "patchouli:text",
       "text": "Curing Oven blocks is easy, but requires patience. Simply start running your Bottom Oven as you would normally, and then wait. If an oven block is above 600 degrees for about 80 seconds, it will cure itself and any oven blocks around it. The curing effect will pass all the way up chimneys nearby."
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/oven_hopper",
-      "text": "The $(thing)Oven Hopper$() will input logs into any Bottom Oven that it is facing. It holds 16 logs (4 stacks of 4, like a log pile), and its inventory is fed by dropping items in the top. It can also be fed via automation from other mods."
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/ashtray",
-      "text": "The $(thing)Ashtray$() collects $(thing)Wood Ash$() when placed below a $(thing)Bottom Oven Block$(). There is a 0.5 chance it gains ash when fuel is consumed. Ash is extracted with $(item)$(k:key.use)$() and inserted via attacking it."
     }
   ],
   "read_by_default": true,
-  "sortnum": 13
+  "sortnum": 14
 }
