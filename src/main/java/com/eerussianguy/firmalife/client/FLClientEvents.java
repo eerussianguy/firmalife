@@ -69,7 +69,8 @@ public class FLClientEvents
             FLBlocks.CURED_OVEN_CHIMNEY, FLBlocks.QUAD_PLANTER, FLBlocks.LARGE_PLANTER, FLBlocks.HANGING_PLANTER, FLBlocks.BONSAI_PLANTER,
             FLBlocks.IRON_COMPOSTER, FLBlocks.COMPOST_JAR, FLBlocks.HONEY_JAR, FLBlocks.ROTTEN_COMPOST_JAR, FLBlocks.GUANO_JAR, FLBlocks.CHEDDAR_WHEEL,
             FLBlocks.RAJYA_METOK_WHEEL, FLBlocks.CHEVRE_WHEEL, FLBlocks.SHOSHA_WHEEL, FLBlocks.FETA_WHEEL, FLBlocks.GOUDA_WHEEL, FLBlocks.SMALL_CHROMITE,
-            FLBlocks.MIXING_BOWL, FLBlocks.BUTTERFLY_GRASS, FLBlocks.SPRINKLER, FLBlocks.DRIBBLER, FLBlocks.VAT, FLBlocks.HYDROPONIC_PLANTER, FLBlocks.STOVETOP_GRILL, FLBlocks.STOVETOP_POT
+            FLBlocks.MIXING_BOWL, FLBlocks.BUTTERFLY_GRASS, FLBlocks.SPRINKLER, FLBlocks.DRIBBLER, FLBlocks.VAT, FLBlocks.HYDROPONIC_PLANTER, FLBlocks.STOVETOP_GRILL, FLBlocks.STOVETOP_POT,
+            FLBlocks.DARK_LADDER
         ).forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
 
         ItemBlockRenderTypes.setRenderLayer(FLBlocks.SOLAR_DRIER.get(), translucent);
@@ -87,6 +88,7 @@ public class FLClientEvents
         FLBlocks.POTTED_HERBS.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
         FLBlocks.FOOD_SHELVES.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
         FLBlocks.HANGERS.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
+        FLBlocks.JARBNETS.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
 
         event.enqueueWork(() -> {
             MenuScreens.register(FLContainerTypes.BEEHIVE.get(), BeehiveScreen::new);
@@ -152,6 +154,7 @@ public class FLClientEvents
         event.registerBlockEntityRenderer(FLBlockEntities.VAT.get(), ctx -> new VatBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.MIXING_BOWL.get(), ctx -> new MixingBowlBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.HANGER.get(), ctx -> new HangerBlockEntityRenderer());
+        event.registerBlockEntityRenderer(FLBlockEntities.JARBNET.get(), ctx -> new JarbnetBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.FOOD_SHELF.get(), ctx -> new FoodShelfBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.STOVETOP_GRILL.get(), ctx -> new StovetopGrillBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.STOVETOP_POT.get(), ctx -> new StovetopPotBlockEntityRenderer());
@@ -208,5 +211,6 @@ public class FLClientEvents
     public static void onModelRegister(ModelRegistryEvent event)
     {
         ForgeModelBakery.addSpecialModel(MixingBowlBlockEntityRenderer.SPOON_LOCATION);
+        ForgeModelBakery.addSpecialModel(JarbnetBlockEntityRenderer.JUG_LOCATION);
     }
 }

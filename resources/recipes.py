@@ -91,6 +91,9 @@ def generate(rm: ResourceManager):
     damage_shapeless(rm, 'crafting/bacon', (not_rotten(has_trait('tfc:food/pork', trait='firmalife:smoked')), '#tfc:knives', 'tfc:powder/salt'), '4 firmalife:food/bacon').with_advancement('tfc:food/cooked_pork')
     rm.crafting_shapeless('crafting/tomato_sauce_mix', (not_rotten('tfc:food/tomato'), utils.ingredient('tfc:powder/salt'), not_rotten('tfc:food/garlic')), 'firmalife:food/tomato_sauce_mix').with_advancement('tfc:food/tomato')
     rm.crafting_shaped('crafting/ashtray', ['ZZZ', 'XYX'], {'Z': 'tfc:powder/salt', 'X': 'firmalife:sealed_bricks', 'Y': '#forge:sheets/wrought_iron'}, 'firmalife:ashtray').with_advancement('#forge:sheets/wrought_iron')
+    rm.crafting_shaped('crafting/dark_ladder', ['X X', 'X X', 'X X'], {'X': 'firmalife:sealed_bricks'}, '16 firmalife:dark_ladder').with_advancement('firmalife:sealed_bricks')
+    rm.crafting_shaped('crafting/sealed_walls', ['   ', 'XXX', 'XXX'], {'X': 'firmalife:sealed_bricks'}, '6 firmalife:sealed_wall').with_advancement('firmalife:sealed_bricks')
+    rm.crafting_shaped('crafting/sealed_trapdoor', ['YY', 'XX', 'XX'], {'Y': '#forge:rods/brass', 'X': 'firmalife:sealed_bricks'}, 'firmalife:sealed_trapdoor').with_advancement('firmalife:sealed_bricks')
 
     for i in range(1, 9):
         advanced_shapeless(rm, 'crafting/masa_%s' % i, (
@@ -114,16 +117,17 @@ def generate(rm: ResourceManager):
     for wood in TFC_WOODS.keys():
         rm.crafting_shaped('crafting/wood/%s_hanger' % wood, ['XXX', ' Y ', ' Y ', ], {'X': 'tfc:wood/planks/%s' % wood, 'Y': '#forge:string'}, 'firmalife:wood/hanger/%s' % wood).with_advancement('tfc:wood/lumber/%s' % wood)
         rm.crafting_shaped('crafting/wood/%s_shelf' % wood, ['XXX', 'YYY', 'XXX'], {'X': 'tfc:wood/planks/%s' % wood, 'Y': 'tfc:wood/lumber/%s' % wood}, 'firmalife:wood/food_shelf/%s' % wood).with_advancement('tfc:wood/lumber/%s' % wood)
+        rm.crafting_shaped('crafting/wood/%s_jarbnet' % wood, ['X  ', 'ZYY', 'X  '], {'X': 'tfc:wood/log/%s' % wood, 'Y': 'tfc:wood/lumber/%s' % wood, 'Z': '#forge:rods/brass'}, '2 firmalife:wood/jarbnet/%s' % wood).with_advancement('tfc:wood/lumber/%s' % wood)
 
-    vat_recipe(rm, 'olive_oil_water', 'tfc:olive_paste', '200 minecraft:water', output_fluid='1000 tfc:olive_oil_water')
-    vat_recipe(rm, 'tallow', 'tfc:blubber', '200 minecraft:water', output_fluid='1000 tfc:tallow')
-    vat_recipe(rm, 'lye', 'tfc:powder/wood_ash', '200 minecraft:water', output_fluid='1000 tfc:lye')
+    vat_recipe(rm, 'olive_oil_water', 'tfc:olive_paste', '200 minecraft:water', output_fluid='200 tfc:olive_oil_water')
+    vat_recipe(rm, 'tallow', 'tfc:blubber', '200 minecraft:water', output_fluid='200 tfc:tallow')
+    vat_recipe(rm, 'lye', 'tfc:powder/wood_ash', '200 minecraft:water', output_fluid='200 tfc:lye')
     vat_recipe(rm, 'cooked_rice', not_rotten('tfc:food/rice_grain'), '200 minecraft:water', output_item='tfc:food/cooked_rice')
     vat_recipe(rm, 'boiled_egg', not_rotten('minecraft:egg'), '200 minecraft:water', output_item='tfc:food/boiled_egg')
     for color in COLORS:
         vat_recipe(rm, '%s_dye' % color, 'minecraft:%s_dye' % color, '1000 minecraft:water', output_fluid='1000 tfc:%s_dye' % color)
     vat_recipe(rm, 'beet_sugar', {'count': 5, 'ingredient': not_rotten('tfc:food/beet')}, '1000 tfc:salt_water', output_item='3 minecraft:sugar')
-    vat_recipe(rm, 'soy_mixture', not_rotten('tfc:food/soybean'), '200 tfc:salt_water', output_item='firmalife:food/soy_mixture')
+    vat_recipe(rm, 'soy_mixture', not_rotten('tfc:food/soybean'), '1000 tfc:salt_water', output_item='firmalife:food/soy_mixture')
     vat_recipe(rm, 'cured_maize', not_rotten('tfc:food/maize_grain'), '1000 tfc:limewater', output_item='firmalife:food/cured_maize')
     vat_recipe(rm, 'tomato_sauce', not_rotten('firmalife:food/tomato_sauce_mix'), '200 minecraft:water', output_item='firmalife:food/tomato_sauce')
 

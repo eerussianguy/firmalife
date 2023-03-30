@@ -1,0 +1,71 @@
+{
+	"credit": "Made with Blockbench",
+    "parent": "block/block",
+	"textures": {
+		"particle": "#log"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 4],
+			"to": [16, 1, 15],
+			"faces": {
+				"north": {"uv": [0, 15, 16, 16], "texture": "#log"},
+				"east": {"uv": [0, 0, 11, 1], "texture": "#log"},
+				"west": {"uv": [0, 0, 11, 1], "texture": "#log"},
+				"up": {"uv": [0, 4, 16, 15], "texture": "#sheet"},
+				"down": {"uv": [0, 0, 16, 11], "texture": "#log"}
+			}
+		},
+		{
+			"from": [0, 15, 4],
+			"to": [16, 16, 15],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 1], "texture": "#log"},
+				"east": {"uv": [0, 0, 11, 1], "texture": "#log"},
+				"west": {"uv": [0, 0, 11, 1], "texture": "#log"},
+				"up": {"uv": [0, 4, 16, 15], "texture": "#log"},
+				"down": {"uv": [0, 0, 16, 11], "texture": "#sheet"}
+			}
+		},
+		{
+			"from": [15, 1, 4],
+			"to": [16, 15, 15],
+			"faces": {
+				"north": {"uv": [0, 1, 1, 15], "texture": "#log"},
+				"east": {"uv": [0, 0, 11, 14], "texture": "#log"},
+				"west": {"uv": [0, 0, 11, 14], "texture": "#sheet"}
+			}
+		},
+		{
+			"from": [0, 1, 4],
+			"to": [1, 15, 15],
+			"faces": {
+				"north": {"uv": [15, 1, 16, 15], "texture": "#log"},
+				"east": {"uv": [0, 0, 11, 14], "texture": "#sheet"},
+				"west": {"uv": [0, 0, 11, 14], "texture": "#log"}
+			}
+		},
+		{
+			"from": [1, 7, 5],
+			"to": [15, 8, 15],
+			"faces": {
+				"north": {"uv": [1, 8, 15, 9], "texture": "#planks"},
+				"up": {"uv": [1, 5, 15, 15], "texture": "#planks"},
+				"down": {"uv": [0, 0, 14, 10], "texture": "#planks"}
+			}
+		},
+		{
+			"from": [0, 0, 15],
+			"to": [16, 16, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#sheet"},
+				"east": {"uv": [0, 0, 1, 16], "texture": "#log"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#log"},
+				"west": {"uv": [0, 0, 1, 16], "texture": "#log"},
+				"up": {"uv": [0, 15, 16, 16], "texture": "#log"},
+				"down": {"uv": [0, 0, 16, 1], "texture": "#log"}
+			}
+		}
+	],
+	"__comment__": "This file was automatically created by mcresources"
+}

@@ -79,10 +79,11 @@ def generate(rm: ResourceManager):
     rm.block_tag('all_treated_wood_greenhouse', '#firmalife:treated_wood_greenhouse', '#firmalife:weathered_treated_wood_greenhouse')
     rm.block_tag('greenhouse', '#firmalife:all_iron_greenhouse', '#firmalife:all_copper_greenhouse', '#firmalife:all_treated_wood_greenhouse', '#firmalife:stainless_steel_greenhouse')
     rm.block_tag('drops_fruit_leaf', '#tfc:fruit_tree_leaves')
-    rm.block_tag('cellar_insulation', 'firmalife:sealed_bricks', 'firmalife:sealed_door')
+    rm.block_tag('cellar_insulation', 'firmalife:sealed_bricks', 'firmalife:sealed_door', 'firmalife:sealed_trapdoor', 'firmalife:sealed_wall')
     rm.block_tag('buzzing_leaves', 'firmalife:plant/fig_leaves')
     rm.block_tag('pipe_replaceable', '#tfc:dirt', '#tfc:grass', '#minecraft:base_stone_overworld', '#forge:gravel', '#minecraft:sand', '#tfc:can_carve')
     rm.block_tag('tfc:thorny_bushes', 'firmalife:plant/pineapple_bush')
+    rm.block_tag('minecraft:climbable', 'firmalife:dark_ladder')
 
     rm.block_tag('minecraft:mineable/axe', *['firmalife:plant/%s_branch' % t for t in FRUITS], *['firmalife:plant/%s_growing_branch' % t for t in FRUITS])
     rm.block_tag('tfc:mineable_with_sharp_tool', *['firmalife:plant/%s_leaves' % t for t in FRUITS], *['firmalife:plant/%s_sapling' % t for t in FRUITS])

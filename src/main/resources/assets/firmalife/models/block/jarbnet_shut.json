@@ -1,0 +1,108 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "block/block",
+	"textures": {
+		"particle": "#log"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 4],
+			"to": [16, 1, 15],
+			"faces": {
+				"north": {"uv": [0, 15, 16, 16], "texture": "#log"},
+				"east": {"uv": [0, 0, 11, 1], "texture": "#log"},
+				"west": {"uv": [0, 0, 11, 1], "texture": "#log"},
+				"up": {"uv": [0, 0, 16, 11], "texture": "#sheet"},
+				"down": {"uv": [0, 0, 16, 11], "texture": "#log"}
+			}
+		},
+		{
+			"from": [0, 15, 4],
+			"to": [16, 16, 15],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 1], "texture": "#log"},
+				"east": {"uv": [0, 0, 11, 1], "texture": "#log"},
+				"west": {"uv": [0, 0, 11, 1], "texture": "#log"},
+				"up": {"uv": [0, 0, 16, 11], "texture": "#log"},
+				"down": {"uv": [0, 0, 16, 11], "texture": "#sheet"}
+			}
+		},
+		{
+			"from": [15, 1, 4],
+			"to": [16, 15, 15],
+			"faces": {
+				"north": {"uv": [0, 1, 1, 15], "texture": "#log"},
+				"east": {"uv": [0, 0, 11, 14], "texture": "#log"},
+				"west": {"uv": [0, 0, 11, 14], "texture": "#sheet"}
+			}
+		},
+		{
+			"from": [0, 1, 4],
+			"to": [1, 15, 15],
+			"faces": {
+				"north": {"uv": [15, 1, 16, 15], "texture": "#log"},
+				"east": {"uv": [0, 0, 11, 14], "texture": "#sheet"},
+				"west": {"uv": [0, 0, 11, 14], "texture": "#log"}
+			}
+		},
+		{
+			"from": [0, 0, 15],
+			"to": [16, 16, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#sheet"},
+				"east": {"uv": [0, 0, 1, 16], "texture": "#log"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#log"},
+				"west": {"uv": [0, 0, 1, 16], "texture": "#log"},
+				"up": {"uv": [0, 0, 16, 1], "texture": "#log"},
+				"down": {"uv": [0, 0, 16, 1], "texture": "#log"}
+			}
+		},
+		{
+			"from": [9, 1, 4],
+			"to": [15, 15, 5],
+			"faces": {
+				"north": {"uv": [1, 1, 7, 15], "texture": "#sheet"},
+				"south": {"uv": [0, 0, 6, 14], "texture": "#sheet"}
+			}
+		},
+		{
+			"from": [1, 1, 4],
+			"to": [7, 15, 5],
+			"faces": {
+				"north": {"uv": [9, 1, 15, 15], "texture": "#sheet"},
+				"south": {"uv": [0, 0, 6, 14], "texture": "#sheet"}
+			}
+		},
+		{
+			"from": [7, 1, 4],
+			"to": [9, 15, 5],
+			"faces": {
+				"north": {"uv": [7, 1, 9, 15], "texture": "#log"},
+				"south": {"uv": [0, 0, 2, 14], "texture": "#log"}
+			}
+		},
+		{
+			"from": [11, 6, 3],
+			"to": [13, 9, 4],
+			"faces": {
+				"north": {"uv": [3, 7, 5, 10], "texture": "#log"},
+				"east": {"uv": [0, 0, 1, 3], "texture": "#log"},
+				"west": {"uv": [0, 0, 1, 3], "texture": "#log"},
+				"up": {"uv": [0, 0, 2, 1], "texture": "#log"},
+				"down": {"uv": [0, 0, 2, 1], "texture": "#log"}
+			}
+		},
+		{
+			"from": [3, 6, 3],
+			"to": [5, 9, 4],
+			"faces": {
+				"north": {"uv": [11, 7, 13, 10], "texture": "#log"},
+				"east": {"uv": [0, 0, 1, 3], "texture": "#log"},
+				"west": {"uv": [0, 0, 1, 3], "texture": "#log"},
+				"up": {"uv": [0, 0, 2, 1], "texture": "#log"},
+				"down": {"uv": [0, 0, 2, 1], "texture": "#log"}
+			}
+		}
+	],
+	"__comment__": "This file was automatically created by mcresources"
+}

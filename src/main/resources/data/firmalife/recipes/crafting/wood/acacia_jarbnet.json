@@ -1,0 +1,24 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X  ",
+    "ZYY",
+    "X  "
+  ],
+  "key": {
+    "X": {
+      "item": "tfc:wood/log/acacia"
+    },
+    "Y": {
+      "item": "tfc:wood/lumber/acacia"
+    },
+    "Z": {
+      "tag": "forge:rods/brass"
+    }
+  },
+  "result": {
+    "item": "firmalife:wood/jarbnet/acacia",
+    "count": 2
+  }
+}

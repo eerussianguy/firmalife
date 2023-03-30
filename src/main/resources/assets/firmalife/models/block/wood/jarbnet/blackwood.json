@@ -1,0 +1,9 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "firmalife:block/jarbnet",
+  "textures": {
+    "planks": "tfc:block/wood/planks/blackwood",
+    "sheet": "tfc:block/wood/sheet/blackwood",
+    "log": "tfc:block/wood/log/blackwood"
+  }
+}

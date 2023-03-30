@@ -48,7 +48,7 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False):
     book.template('drying_recipe', custom_component(0, 0, 'DryingComponent', {'recipe': '#recipe'}), text_component(0, 45))
 
     book.category('firmalife', 'Firmalife', 'All about the Firmalife addon', 'firmalife:cured_oven_top', is_sorted=True, entries=(
-        entry('differences_from_tfc', 'Differences from TFC (Read first!)', 'tfc:food/wheat_bread', pages=(
+        entry('differences_from_tfc', 'Differences from TFC', 'tfc:food/wheat_bread', pages=(
             text('Firmalife makes a few changes to how things operate in regular TFC. This chapter exists to help direct you towards areas where this is very different.'),
             text('$(l:firmalife:firmalife/cheese)Cheese$() is made through a more complex process. It can be placed in world, and has the option of aging in a $(l:firmalife:firmalife/cellar)Cellar$().', title='Cheese Aging'),
             text('$(l:firmalife:firmalife/bread)Bread$() is made through a more complex process, requiring yeast and sweetener. Regular TFC bread makes flatbread, which is worse nutritionally.', title='Cheese Aging'),
@@ -85,6 +85,10 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False):
         entry('hangers', 'Hangers', 'firmalife:wood/hanger/pine', pages=(
             text('The $(thing)Hanger$() is a device for storing meat or garlic. It can only be used in a valid $(l:firmalife:firmalife/cellar)Cellar$(). Food shelves can contain a full stack of one item. Adding and removing the item can be done with $(item)$(k:key.use)$(). Items in valid food shelves receive a decay modifier that is better than shelves or vessels.'),
             crafting('firmalife:crafting/wood/acacia_hanger', text_contents='The hanger is made from planks and string.'),
+        )),
+        entry('jarbnet', 'Jarbnets', 'firmalife:wood/jarbnet/pine', pages=(
+            text('The jarbnet is a cosmetic storage block for $(l:firmalife:firmalife/jars)Jars$(), Candles, and Jugs. It can be opened and closed by clicking with an empty hand and $(item)$(k:key.sneak)$() pressed. If candles are inside, it can be lit to produce a small amount of light.'),
+            crafting('firmalife:crafting/wood/acacia_jarbnet'),
         )),
         entry('greenhouse', 'Greenhouse', 'firmalife:sealed_bricks', pages=(
             text('The $(thing)Greenhouse$() is a multiblock device controlled by a $(l:firmalife:firmalife/climate_station)Climate Station$(). It allows growing crops year round. The Greenhouse has an array of types and blocks to choose from. However, building a greenhouse is quite simple. Like the $(l:firmalife:firmalife/cellar)Cellar$(), it should be an enclosed area of blocks belonging to the same $(thing)Greenhouse Type$(). The floor of the greenhouse may be any solid block.'),

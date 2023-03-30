@@ -1,0 +1,35 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "variants": {
+    "facing=east,open=true": {
+      "model": "firmalife:block/wood/jarbnet/sycamore",
+      "y": 90
+    },
+    "facing=north,open=true": {
+      "model": "firmalife:block/wood/jarbnet/sycamore"
+    },
+    "facing=south,open=true": {
+      "model": "firmalife:block/wood/jarbnet/sycamore",
+      "y": 180
+    },
+    "facing=west,open=true": {
+      "model": "firmalife:block/wood/jarbnet/sycamore",
+      "y": 270
+    },
+    "facing=east,open=false": {
+      "model": "firmalife:block/wood/jarbnet/sycamore_shut",
+      "y": 90
+    },
+    "facing=north,open=false": {
+      "model": "firmalife:block/wood/jarbnet/sycamore_shut"
+    },
+    "facing=south,open=false": {
+      "model": "firmalife:block/wood/jarbnet/sycamore_shut",
+      "y": 180
+    },
+    "facing=west,open=false": {
+      "model": "firmalife:block/wood/jarbnet/sycamore_shut",
+      "y": 270
+    }
+  }
+}

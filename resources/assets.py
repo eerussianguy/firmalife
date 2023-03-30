@@ -127,9 +127,14 @@ def generate(rm: ResourceManager):
     rm.blockstate_multipart('iron_composter', *states).with_lang(lang('iron composter')).with_block_loot('firmalife:iron_composter').with_tag('minecraft:mineable/pickaxe')
     rm.item_model('iron_composter', parent='firmalife:block/iron_composter', no_textures=True)
 
-    rm.block('sealed').make_door()
+    rm.block('sealed').make_door().make_trapdoor().make_wall(texture='firmalife:block/sealed_bricks')
+    rm.block('sealed_trapdoor').with_lang(lang('sealed trapdoor')).with_tag('minecraft:mineable/pickaxe').with_block_loot('firmalife:sealed_trapdoor')
+    rm.block('sealed_wall').with_lang(lang('sealed wall')).with_tag('minecraft:mineable/pickaxe').with_block_loot('firmalife:sealed_wall').with_item_tag('minecraft:walls').with_tag('minecraft:walls')
     block = rm.block('firmalife:sealed_door').with_tag('minecraft:doors').with_lang(lang('sealed door')).with_tag('minecraft:mineable/pickaxe')
     door_loot(block, 'firmalife:sealed_door')
+
+    rm.blockstate('dark_ladder', variants=four_rotations('firmalife:block/dark_ladder', (90, None, 180, 270))).with_block_model(textures={'texture': 'firmalife:block/dark_ladder', 'particle': 'firmalife:block/dark_ladder'}, parent='minecraft:block/ladder').with_lang(lang('dark ladder')).with_tag('minecraft:mineable/pickaxe').with_block_loot('firmalife:dark_ladder')
+    rm.item_model('dark_ladder', 'firmalife:block/dark_ladder')
 
     rm.blockstate('nutritive_basin', variants={
         'watered=false': {'model': 'firmalife:block/nutritive_basin'},
@@ -217,6 +222,16 @@ def generate(rm: ResourceManager):
         block.with_block_loot('firmalife:wood/hanger/%s' % wood).with_lang(lang('%s hanger' % wood)).with_tag('minecraft:mineable/axe')
         rm.item_model('firmalife:wood/hanger/%s' % wood, parent='firmalife:block/wood/hanger/%s' % wood, no_textures=True)
         rm.block_model('firmalife:wood/hanger/%s' % wood, parent='firmalife:block/hanger_base', textures={'wood': 'tfc:block/wood/planks/%s' % wood, 'string': 'minecraft:block/white_wool'})
+
+        block = rm.blockstate('firmalife:wood/jarbnet/%s' % wood, variants={
+            **four_rotations('firmalife:block/wood/jarbnet/%s' % wood, (90, None, 180, 270), suffix=',open=true'),
+            **four_rotations('firmalife:block/wood/jarbnet/%s_shut' % wood, (90, None, 180, 270), suffix=',open=false'),
+        })
+        block.with_block_loot('firmalife:wood/jarbnet/%s' % wood).with_lang(lang('%s jarbnet', wood)).with_tag('minecraft:mineable/axe')
+        rm.item_model('firmalife:wood/jarbnet/%s' % wood, parent='firmalife:block/wood/jarbnet/%s' % wood, no_textures=True)
+        textures = {'planks': 'tfc:block/wood/planks/%s' % wood, 'sheet': 'tfc:block/wood/sheet/%s' % wood, 'log': 'tfc:block/wood/log/%s' % wood}
+        rm.block_model('firmalife:wood/jarbnet/%s' % wood, parent='firmalife:block/jarbnet', textures=textures)
+        rm.block_model('firmalife:wood/jarbnet/%s_shut' % wood, parent='firmalife:block/jarbnet_shut', textures=textures)
 
     for fruit in FRUITS.keys():
         for prefix in ('', 'growing_'):

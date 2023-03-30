@@ -41,6 +41,7 @@ public class FLBlockEntities
     public static final RegistryObject<BlockEntityType<SquirtingMoistureTransducerBlockEntity>> SQUIRTING_MOISTURE_TRANSDUCER = register("squirting_moisture_transducer", SquirtingMoistureTransducerBlockEntity::new, FLBlocks.SQUIRTING_MOISTURE_TRANSDUCER);
     public static final RegistryObject<BlockEntityType<FoodShelfBlockEntity>> FOOD_SHELF = register("food_shelf", FoodShelfBlockEntity::new, Stream.of(FLBlocks.FOOD_SHELVES.values()).<Supplier<? extends Block>>flatMap(Helpers::flatten));
     public static final RegistryObject<BlockEntityType<HangerBlockEntity>> HANGER = register("hanger", HangerBlockEntity::new, Stream.of(FLBlocks.HANGERS.values()).<Supplier<? extends Block>>flatMap(Helpers::flatten));
+    public static final RegistryObject<BlockEntityType<JarbnetBlockEntity>> JARBNET = register("jarbnet", JarbnetBlockEntity::new, Stream.of(FLBlocks.JARBNETS.values()).<Supplier<? extends Block>>flatMap(Helpers::flatten));
     public static final RegistryObject<BlockEntityType<VatBlockEntity>> VAT = register("vat", VatBlockEntity::new, FLBlocks.VAT);
     public static final RegistryObject<BlockEntityType<AshTrayBlockEntity>> ASHTRAY = register("ashtray", AshTrayBlockEntity::new, FLBlocks.ASHTRAY);
     public static final RegistryObject<BlockEntityType<StovetopGrillBlockEntity>> STOVETOP_GRILL = register("stovetop_grill", StovetopGrillBlockEntity::new, FLBlocks.STOVETOP_GRILL);

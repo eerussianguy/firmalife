@@ -1,0 +1,24 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X  ",
+    "ZYY",
+    "X  "
+  ],
+  "key": {
+    "X": {
+      "item": "tfc:wood/log/sycamore"
+    },
+    "Y": {
+      "item": "tfc:wood/lumber/sycamore"
+    },
+    "Z": {
+      "tag": "forge:rods/brass"
+    }
+  },
+  "result": {
+    "item": "firmalife:wood/jarbnet/sycamore",
+    "count": 2
+  }
+}

@@ -1,0 +1,46 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "tfc:block/ceramic/large_vessel/side",
+		"particle": "tfc:block/ceramic/large_vessel/side"
+	},
+	"elements": [
+		{
+			"from": [11, 4.1, 10],
+			"to": [13, 6.1, 12],
+			"faces": {
+				"north": {"uv": [3, 9.9, 5, 11.9], "texture": "#0"},
+				"east": {"uv": [5, 1, 8, 2], "texture": "#0"},
+				"south": {"uv": [2, 3, 5, 4], "texture": "#0"},
+				"west": {"uv": [1, 2, 4, 3], "texture": "#0"},
+				"up": {"uv": [2, 1, 4, 3], "texture": "#0"},
+				"down": {"uv": [5, 2, 8, 5], "texture": "#0"}
+			}
+		},
+		{
+			"from": [10, 4.1, 12],
+			"to": [13, 5.1, 13],
+			"faces": {
+				"north": {"uv": [3, 10.9, 6, 11.9], "texture": "#0"},
+				"east": {"uv": [5, 1, 8, 2], "texture": "#0"},
+				"south": {"uv": [2, 3, 5, 4], "texture": "#0"},
+				"west": {"uv": [1, 2, 4, 3], "texture": "#0"},
+				"up": {"uv": [10, 12, 13, 13], "texture": "#0"},
+				"down": {"uv": [5, 2, 8, 5], "texture": "#0"}
+			}
+		},
+		{
+			"from": [9, 0, 9],
+			"to": [14, 4, 14],
+			"faces": {
+				"north": {"uv": [2, 12, 7, 16], "texture": "#0"},
+				"east": {"uv": [2, 12, 7, 16], "texture": "#0"},
+				"south": {"uv": [9, 12, 14, 16], "texture": "#0"},
+				"west": {"uv": [9, 12, 14, 16], "texture": "#0"},
+				"up": {"uv": [9, 9, 14, 14], "texture": "#0"},
+				"down": {"uv": [9, 2, 14, 7], "texture": "#0"}
+			}
+		}
+	],
+	"__comment__": "This file was automatically created by mcresources"
+}

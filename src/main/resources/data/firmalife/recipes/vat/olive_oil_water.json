@@ -12,6 +12,6 @@
   },
   "output_fluid": {
     "fluid": "tfc:olive_oil_water",
-    "amount": 1000
+    "amount": 200
   }
 }

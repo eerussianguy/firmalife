@@ -12,6 +12,6 @@
   },
   "output_fluid": {
     "fluid": "tfc:lye",
-    "amount": 1000
+    "amount": 200
   }
 }

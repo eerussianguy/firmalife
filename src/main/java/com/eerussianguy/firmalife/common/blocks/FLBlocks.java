@@ -42,6 +42,7 @@ import net.dries007.tfc.common.blocks.devices.JackOLanternBlock;
 import net.dries007.tfc.common.blocks.plant.PlantBlock;
 import net.dries007.tfc.common.blocks.rock.Ore;
 import net.dries007.tfc.common.blocks.rock.Rock;
+import net.dries007.tfc.common.blocks.wood.TFCTrapDoorBlock;
 import net.dries007.tfc.common.blocks.wood.Wood;
 import net.dries007.tfc.common.items.Food;
 import net.dries007.tfc.common.items.TFCItems;
@@ -100,6 +101,10 @@ public class FLBlocks
 
     public static final RegistryObject<Block> SEALED_BRICKS = register("sealed_bricks", () -> new Block(Properties.of(Material.STONE).sound(SoundType.STONE).strength(2.0f, 10).requiresCorrectToolForDrops()), DECORATIONS);
     public static final RegistryObject<Block> SEALED_DOOR = register("sealed_door", () -> new DoorBlock(Properties.of(Material.WOOD).sound(SoundType.STONE).strength(2.0f, 10).requiresCorrectToolForDrops()), DECORATIONS);
+    public static final RegistryObject<Block> SEALED_TRAPDOOR = register("sealed_trapdoor", () -> new TrapDoorBlock(Properties.of(Material.WOOD).sound(SoundType.STONE).strength(2.0f, 10).requiresCorrectToolForDrops()), DECORATIONS);
+    public static final RegistryObject<Block> SEALED_WALL = register("sealed_wall", () -> new WallBlock(Properties.of(Material.WOOD).sound(SoundType.STONE).strength(2.0f, 10).requiresCorrectToolForDrops()), DECORATIONS);
+    public static final RegistryObject<Block> DARK_LADDER = register("dark_ladder", () -> new FLLadderBlock(Properties.of(Material.DECORATION).strength(0.4F).sound(SoundType.LADDER).noOcclusion()), DECORATIONS);
+
     public static final RegistryObject<Block> HOLLOW_SHELL = register("hollow_shell", () -> new GroundcoverBlock(ExtendedProperties.of(Material.GRASS).strength(0.05F, 0.0F).sound(SoundType.NETHER_WART).noCollission(), GroundcoverBlock.SMALL, FLItems.HOLLOW_SHELL));
     public static final RegistryObject<Block> EMBEDDED_PIPE = register("embedded_pipe", () -> new Block(Properties.of(Material.METAL).sound(SoundType.COPPER).strength(2f)), DECORATIONS);
     public static final RegistryObject<Block> TREATED_WOOD = register("treated_wood", () -> new ExtendedBlock(ExtendedProperties.of(Material.WOOD).sound(SoundType.WOOL).strength(2f).flammableLikePlanks()), DECORATIONS);
@@ -124,6 +129,7 @@ public class FLBlocks
 
     public static final Map<Wood, RegistryObject<Block>> FOOD_SHELVES = Helpers.mapOfKeys(Wood.class, wood -> register("wood/food_shelf/" + wood.getSerializedName(), () -> new FoodShelfBlock(shelfProperties()), DECORATIONS));
     public static final Map<Wood, RegistryObject<Block>> HANGERS = Helpers.mapOfKeys(Wood.class, wood -> register("wood/hanger/" + wood.getSerializedName(), () -> new HangerBlock(hangerProperties()), DECORATIONS));
+    public static final Map<Wood, RegistryObject<Block>> JARBNETS = Helpers.mapOfKeys(Wood.class, wood -> register("wood/jarbnet/" + wood.getSerializedName(), () -> new JarbnetBlock(jarbnetProperties()), DECORATIONS));
 
     public static final Map<Carving, RegistryObject<Block>> CARVED_PUMPKINS = Helpers.mapOfKeys(Carving.class, carve ->
         register("carved_pumpkin/" + carve.getSerializedName(), () -> new CarvedPumpkinBlock(Properties.of(Material.VEGETABLE, MaterialColor.COLOR_ORANGE).strength(1.0F).sound(SoundType.WOOD).isValidSpawn(FLBlocks::always)), DECORATIONS)
@@ -170,6 +176,11 @@ public class FLBlocks
     public static ExtendedProperties hangerProperties()
     {
         return ExtendedProperties.of(Material.WOOD).strength(0.3F).sound(SoundType.WOOD).noOcclusion().blockEntity(FLBlockEntities.HANGER);
+    }
+
+    public static ExtendedProperties jarbnetProperties()
+    {
+        return ExtendedProperties.of(Material.WOOD).strength(0.3F).sound(SoundType.WOOD).noOcclusion().randomTicks().lightLevel(s -> s.getValue(JarbnetBlock.LIT) ? 11 : 0).blockEntity(FLBlockEntities.JARBNET);
     }
 
     public static ExtendedProperties wheelProperties()

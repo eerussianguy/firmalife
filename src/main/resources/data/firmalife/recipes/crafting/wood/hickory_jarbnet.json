@@ -1,0 +1,24 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X  ",
+    "ZYY",
+    "X  "
+  ],
+  "key": {
+    "X": {
+      "item": "tfc:wood/log/hickory"
+    },
+    "Y": {
+      "item": "tfc:wood/lumber/hickory"
+    },
+    "Z": {
+      "tag": "forge:rods/brass"
+    }
+  },
+  "result": {
+    "item": "firmalife:wood/jarbnet/hickory",
+    "count": 2
+  }
+}

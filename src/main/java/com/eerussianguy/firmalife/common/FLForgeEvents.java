@@ -1,5 +1,7 @@
 package com.eerussianguy.firmalife.common;
 
+import com.eerussianguy.firmalife.common.blocks.JarbnetBlock;
+import com.eerussianguy.firmalife.common.blocks.OvenBottomBlock;
 import com.eerussianguy.firmalife.common.capabilities.player.FLPlayerData;
 import com.eerussianguy.firmalife.common.capabilities.player.FLPlayerDataCapability;
 import net.minecraft.core.BlockPos;
@@ -7,6 +9,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CarvedPumpkinBlock;
@@ -28,6 +31,7 @@ import com.eerussianguy.firmalife.common.util.ExtraFluid;
 import com.eerussianguy.firmalife.common.util.GreenhouseType;
 import com.eerussianguy.firmalife.common.util.Plantable;
 import net.dries007.tfc.common.entities.TFCEntities;
+import net.dries007.tfc.common.items.CandleBlockItem;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.events.AnimalProductEvent;
 import net.dries007.tfc.util.events.StartFireEvent;
@@ -42,7 +46,7 @@ public class FLForgeEvents
         bus.addListener(FLForgeEvents::addReloadListeners);
         bus.addListener(FLForgeEvents::onDataPackSync);
         bus.addListener(FLForgeEvents::onAnimalProduce);
-        //bus.addListener(FLForgeEvents::onEntityCaps); use generic lsitener
+        //bus.addListener(FLForgeEvents::onEntityCaps); use generic listener
     }
 
     public static void onEntityCaps(AttachCapabilitiesEvent<Entity> event)
@@ -75,7 +79,7 @@ public class FLForgeEvents
         BlockState state = event.getState();
         Block block = state.getBlock();
 
-        if (block == FLBlocks.OVEN_BOTTOM.get() || block == FLBlocks.CURED_OVEN_BOTTOM.get())
+        if (block instanceof OvenBottomBlock)
         {
             level.getBlockEntity(pos, FLBlockEntities.OVEN_BOTTOM.get()).ifPresent(oven -> oven.light(state));
             event.setCanceled(true);
@@ -88,6 +92,21 @@ public class FLForgeEvents
                     level.setBlockAndUpdate(pos, Helpers.copyProperty(FLBlocks.JACK_O_LANTERNS.get(carve).get().defaultBlockState(), state, HorizontalDirectionalBlock.FACING));
                     FLHelpers.resetCounter(level, pos);
                     event.setCanceled(true);
+                }
+            });
+        }
+        else if (block instanceof JarbnetBlock)
+        {
+            FLHelpers.readInventory(level, pos, FLBlockEntities.JARBNET, (jarbnet, inv) -> {
+                for (ItemStack stack : Helpers.iterate(inv))
+                {
+                    if (stack.getItem() instanceof CandleBlockItem)
+                    {
+                        level.setBlockAndUpdate(pos, state.setValue(JarbnetBlock.LIT, true));
+                        jarbnet.resetCounter();
+                        event.setCanceled(true);
+                        break;
+                    }
                 }
             });
         }

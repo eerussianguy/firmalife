@@ -8,7 +8,7 @@
   },
   "input_fluid": {
     "ingredient": "tfc:salt_water",
-    "amount": 200
+    "amount": 1000
   },
   "output_item": {
     "item": "firmalife:food/soy_mixture"
