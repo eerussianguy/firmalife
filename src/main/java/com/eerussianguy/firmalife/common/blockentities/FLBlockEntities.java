@@ -46,6 +46,7 @@ public class FLBlockEntities
     public static final RegistryObject<BlockEntityType<AshTrayBlockEntity>> ASHTRAY = register("ashtray", AshTrayBlockEntity::new, FLBlocks.ASHTRAY);
     public static final RegistryObject<BlockEntityType<StovetopGrillBlockEntity>> STOVETOP_GRILL = register("stovetop_grill", StovetopGrillBlockEntity::new, FLBlocks.STOVETOP_GRILL);
     public static final RegistryObject<BlockEntityType<StovetopPotBlockEntity>> STOVETOP_POT = register("stovetop_pot", StovetopPotBlockEntity::new, FLBlocks.STOVETOP_POT);
+    public static final RegistryObject<BlockEntityType<IceFishingStationBlockEntity>> ICE_FISHING_STATION = register("ice_fishing_station", IceFishingStationBlockEntity::new, FLBlocks.ICE_FISHING_STATION);
 
     public static final RegistryObject<BlockEntityType<LargePlanterBlockEntity>> LARGE_PLANTER = register("large_planter", LargePlanterBlockEntity::new, FLBlocks.LARGE_PLANTER);
     public static final RegistryObject<BlockEntityType<BonsaiPlanterBlockEntity>> BONSAI_PLANTER = register("bonsai_planter", BonsaiPlanterBlockEntity::new, FLBlocks.BONSAI_PLANTER);

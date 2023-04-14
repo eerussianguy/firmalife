@@ -199,6 +199,9 @@ DEFAULT_LANG = {
     'firmalife.transducer.current_pipes': 'Pipe Inventory: %s',
     'firmalife.transducer.pipe_length': 'Current Pipes: %s',
     'firmalife.transducer.pipe_wanted': 'Pipes needed due to the the local climate: %s',
+    'firmalife.fishing.no_bait': 'Small fishing bait is needed to cast this rod.',
+    'firmalife.fishing.bait_added': 'Bait added to rod.',
+    'firmalife.fishing.no_water': 'The rod needs water 5 blocks below to operate.',
 
     'firmalife.bee.queen': 'Queen',
     'firmalife.bee.no_queen': 'No Queen',

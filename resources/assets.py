@@ -41,6 +41,9 @@ def generate(rm: ResourceManager):
         rm.block_model('ashtray_%s' % i, parent='minecraft:block/cube_column', textures={'side': 'firmalife:block/ashtray_side_%s' % i, 'end': 'firmalife:block/ashtray_top'})
     rm.item_model('ashtray', parent='firmalife:block/ashtray_0', no_textures=True)
 
+    block = rm.blockstate('ice_fishing_station', variants={**four_rotations('firmalife:block/ice_fishing_station', (90, None, 180, 270))})
+    block.with_block_loot('firmalife:ice_fishing_station').with_item_model().with_lang(lang('ice fishing station')).with_tag('minecraft:mineable/axe')
+
     rm.blockstate('drying_mat', model='firmalife:block/drying_mat').with_item_model().with_tag('tfc:mineable_with_sharp_tool').with_lang(lang('drying mat')).with_block_loot('firmalife:drying_mat')
     rm.blockstate('solar_drier', model='firmalife:block/solar_drier').with_item_model().with_tag('minecraft:mineable/axe').with_lang(lang('solar drier')).with_block_loot('firmalife:solar_drier')
     rm.blockstate('hollow_shell', model='firmalife:block/hollow_shell').with_lang(lang('hollow shell')).with_block_loot('firmalife:hollow_shell')

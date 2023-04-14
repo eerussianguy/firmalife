@@ -163,6 +163,7 @@ public class OvenTopBlockEntity extends ApplianceBlockEntity<ApplianceBlockEntit
     @Override
     public void onTemperatureAdjusted()
     {
+        assert level != null;
         for (Direction d : Direction.Plane.HORIZONTAL)
         {
             if (level.getBlockEntity(getBlockPos().relative(d)) instanceof OvenTopBlockEntity otherOven)

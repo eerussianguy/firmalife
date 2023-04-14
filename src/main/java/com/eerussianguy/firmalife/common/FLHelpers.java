@@ -26,6 +26,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
@@ -49,6 +50,11 @@ public class FLHelpers
     public static ResourceLocation identifier(String id)
     {
         return new ResourceLocation(MOD_ID, id);
+    }
+
+    public static Vec3 vec3(BlockPos pos)
+    {
+        return new Vec3(pos.getX(), pos.getY(), pos.getZ());
     }
 
     public static void resetCounter(Level level, BlockPos pos)

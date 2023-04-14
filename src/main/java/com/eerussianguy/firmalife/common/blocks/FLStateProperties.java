@@ -16,5 +16,6 @@ public class FLStateProperties
     public static final BooleanProperty HONEY = BooleanProperty.create("honey");
     public static final BooleanProperty BEES = BooleanProperty.create("bees");
     public static final BooleanProperty SPOON = BooleanProperty.create("spoon");
+    public static final BooleanProperty CAST = BooleanProperty.create("cast");
     public static final EnumProperty<FoodAge> AGE = EnumProperty.create("age", FoodAge.class);
 }
