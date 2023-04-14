@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
 
+import com.eerussianguy.firmalife.common.blocks.plant.FLFruitTreeSaplingBlock;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.Entity;
@@ -48,6 +49,7 @@ public final class FLTooltips
             r.accept(SHELF_OR_HANGER, FoodShelfBlock.class);
             r.accept(SHELF_OR_HANGER, HangerBlock.class);
             r.accept(VAT, VatBlock.class);
+            r.accept(FRUIT_TREE_SAPLING, FLFruitTreeSaplingBlock.class);
         }
 
         public static final BlockEntityTooltip VAT = (level, state, pos, entity, tooltip) -> {
@@ -171,6 +173,14 @@ public final class FLTooltips
                     });
                 }
 
+            }
+            if (!AbstractOvenBlock.insulated(level, pos, state))
+            {
+                tooltip.accept(Helpers.translatable("firmalife.jade.not_insulated"));
+            }
+            if (!state.getValue(AbstractOvenBlock.HAS_CHIMNEY))
+            {
+                tooltip.accept(Helpers.translatable("firmalife.jade.no_chimney"));
             }
         };
 

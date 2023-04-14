@@ -1,8 +1,11 @@
 package com.eerussianguy.firmalife.common.util;
 
 import java.util.*;
+import java.util.function.DoubleSupplier;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
+import com.eerussianguy.firmalife.config.FLConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.Mth;
@@ -133,9 +136,9 @@ public final class Mechanics
     private static final BlockIngredient CELLAR = BlockIngredients.of(FLTags.Blocks.CELLAR_INSULATION);
     private static final int UPDATE_INTERVAL = ICalendar.TICKS_IN_DAY;
 
-    public static final float GROWTH_FACTOR = 1f / (16 * ICalendar.TICKS_IN_DAY); // 24 -> 16 days
-    public static final float NUTRIENT_CONSUMPTION = 1f / (8 * ICalendar.TICKS_IN_DAY); //  12 -> 8 days
-    public static final float WATER_CONSUMPTION = 1f / (12 * ICalendar.TICKS_IN_DAY); // 12 days
+    public static final Supplier<Float> GROWTH_FACTOR = () -> 1f / (FLConfig.SERVER.greenhouseGrowthDays.get().floatValue() * ICalendar.TICKS_IN_DAY); // same as tfc
+    public static final Supplier<Float> NUTRIENT_CONSUMPTION = () -> 1f / (FLConfig.SERVER.greenhouseNutrientDays.get().floatValue() * ICalendar.TICKS_IN_DAY); //  12 -> 8 days
+    public static final Supplier<Float> WATER_CONSUMPTION = () -> 1f / (FLConfig.SERVER.greenhouseWaterDays.get().floatValue() * ICalendar.TICKS_IN_DAY); // 12 days
     public static final float NUTRIENT_GROWTH_FACTOR = 0.5f;
 
     public static boolean growthTick(Level level, BlockPos pos, BlockState state, LargePlanterBlockEntity planter)
@@ -167,10 +170,10 @@ public final class Mechanics
             {
                 // Nutrients are consumed first, since they are independent of growth or health.
                 // As long as the crop exists it consumes nutrients.
-                float nutrientsConsumed = planter.consumeNutrientAndResupplyOthers(plant.getPrimaryNutrient(), NUTRIENT_CONSUMPTION * tickDelta);
+                float nutrientsConsumed = planter.consumeNutrientAndResupplyOthers(plant.getPrimaryNutrient(), NUTRIENT_CONSUMPTION.get() * tickDelta);
 
                 // Total growth is based on the ticks and the nutrients consumed. It is then allocated to actual growth.
-                float totalGrowthDelta = Helpers.uniform(random, 0.9f, 1.1f) * tickDelta * GROWTH_FACTOR + nutrientsConsumed * NUTRIENT_GROWTH_FACTOR;
+                float totalGrowthDelta = Helpers.uniform(random, 0.9f, 1.1f) * tickDelta * GROWTH_FACTOR.get() + nutrientsConsumed * NUTRIENT_GROWTH_FACTOR;
                 float growth = planter.getGrowth(slot);
 
                 if (totalGrowthDelta > 0 && growing)
@@ -179,7 +182,7 @@ public final class Mechanics
                     final float delta = Mth.clamp(totalGrowthDelta, 0, 1);
                     growth += delta;
 
-                    planter.drainWater(tickDelta * WATER_CONSUMPTION);
+                    planter.drainWater(tickDelta * WATER_CONSUMPTION.get());
                 }
 
                 planter.setGrowth(slot, Mth.clamp(growth, 0f, 1f));

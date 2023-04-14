@@ -254,6 +254,8 @@ DEFAULT_LANG = {
     'firmalife.jade.cannot_cure': 'Not hot enough to cure!',
     'firmalife.jade.cook_left': 'Cook Time: %s',
     'firmalife.jade.boiling': 'Boiling',
+    'firmalife.jade.not_insulated': 'Not insulated!',
+    'firmalife.jade.no_chimney': 'Missing chimney!',
 
     'death.attack.firmalife.oven': '%1$s died by sticking their hand in a hot oven.',
     'death.attack.firmalife.oven.player': '%1$s climbed into an oven to escape %2$s.',

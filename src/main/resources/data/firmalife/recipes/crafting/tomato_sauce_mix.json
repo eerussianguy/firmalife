@@ -19,6 +19,7 @@
     }
   ],
   "result": {
-    "item": "firmalife:food/tomato_sauce_mix"
+    "item": "firmalife:food/tomato_sauce_mix",
+    "count": 5
   }
 }

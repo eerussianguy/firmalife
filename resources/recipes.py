@@ -89,7 +89,7 @@ def generate(rm: ResourceManager):
     rm.crafting_shapeless('crafting/toast_with_jam', ('firmalife:food/toast', '#firmalife:foods/preserves'), 'firmalife:food/toast_with_jam').with_advancement('firmalife:food/toast')
     rm.crafting_shapeless('crafting/toast_with_butter', ('firmalife:food/toast', 'firmalife:food/butter'), 'firmalife:food/toast_with_butter').with_advancement('firmalife:food/toast')
     damage_shapeless(rm, 'crafting/bacon', (not_rotten(has_trait('tfc:food/pork', trait='firmalife:smoked')), '#tfc:knives', 'tfc:powder/salt'), '4 firmalife:food/bacon').with_advancement('tfc:food/cooked_pork')
-    rm.crafting_shapeless('crafting/tomato_sauce_mix', (not_rotten('tfc:food/tomato'), utils.ingredient('tfc:powder/salt'), not_rotten('tfc:food/garlic')), 'firmalife:food/tomato_sauce_mix').with_advancement('tfc:food/tomato')
+    rm.crafting_shapeless('crafting/tomato_sauce_mix', (not_rotten('tfc:food/tomato'), utils.ingredient('tfc:powder/salt'), not_rotten('tfc:food/garlic')), '5 firmalife:food/tomato_sauce_mix').with_advancement('tfc:food/tomato')
     rm.crafting_shaped('crafting/ashtray', ['ZZZ', 'XYX'], {'Z': 'tfc:powder/salt', 'X': 'firmalife:sealed_bricks', 'Y': '#forge:sheets/wrought_iron'}, 'firmalife:ashtray').with_advancement('#forge:sheets/wrought_iron')
     rm.crafting_shaped('crafting/dark_ladder', ['X X', 'X X', 'X X'], {'X': 'firmalife:sealed_bricks'}, '16 firmalife:dark_ladder').with_advancement('firmalife:sealed_bricks')
     rm.crafting_shaped('crafting/sealed_walls', ['   ', 'XXX', 'XXX'], {'X': 'firmalife:sealed_bricks'}, '6 firmalife:sealed_wall').with_advancement('firmalife:sealed_bricks')

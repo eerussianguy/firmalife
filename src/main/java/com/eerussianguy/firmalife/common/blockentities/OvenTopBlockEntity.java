@@ -65,6 +65,10 @@ public class OvenTopBlockEntity extends ApplianceBlockEntity<ApplianceBlockEntit
             OvenLike.regularBlockUpdate(level, pos, state, oven, cured, updateInterval);
         }
         oven.tickTemperature();
+        if ((level.getGameTime() + 20) % 40 == 0)
+        {
+            oven.spreadHeat();
+        }
 
         if (!cured) return;
         for (int i = SLOT_INPUT_START; i <= SLOT_INPUT_END; i++)
@@ -160,8 +164,7 @@ public class OvenTopBlockEntity extends ApplianceBlockEntity<ApplianceBlockEntit
         }
     }
 
-    @Override
-    public void onTemperatureAdjusted()
+    public void spreadHeat()
     {
         assert level != null;
         for (Direction d : Direction.Plane.HORIZONTAL)

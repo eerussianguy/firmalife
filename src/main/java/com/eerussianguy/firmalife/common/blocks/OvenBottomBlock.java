@@ -10,6 +10,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
@@ -26,12 +27,25 @@ import com.eerussianguy.firmalife.common.blockentities.OvenBottomBlockEntity;
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.devices.IBellowsConsumer;
+import net.dries007.tfc.util.Helpers;
+
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 public class OvenBottomBlock extends AbstractOvenBlock implements IBellowsConsumer
 {
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
     public static final IntegerProperty LOGS = FLStateProperties.LOGS;
+
+    public static final VoxelShape[] SHAPES = Helpers.computeHorizontalShapes(d -> Shapes.or(
+        Helpers.rotateShape(d, 1, 0, 0, 15, 4, 15),
+        Helpers.rotateShape(d, 1, 11, 0, 15, 16, 15),
+        Helpers.rotateShape(d, 0, 0, 0, 1, 16, 16),
+        Helpers.rotateShape(d, 15, 0, 0, 16, 16, 16),
+        Helpers.rotateShape(d, 1, 0, 15, 15, 16, 16)
+    ));
 
     public OvenBottomBlock(ExtendedProperties properties, @Nullable Supplier<? extends Block> curedBlock)
     {
@@ -57,6 +71,13 @@ public class OvenBottomBlock extends AbstractOvenBlock implements IBellowsConsum
             return res1 == InteractionResult.PASS ? InteractionResult.SUCCESS : res1;
         }
         return InteractionResult.PASS;
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context)
+    {
+        return SHAPES[state.getValue(FACING).get2DDataValue()];
     }
 
     @Override

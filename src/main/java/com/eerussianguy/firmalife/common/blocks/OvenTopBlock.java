@@ -10,6 +10,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
@@ -24,14 +25,38 @@ import com.eerussianguy.firmalife.common.misc.FLDamageSources;
 import com.eerussianguy.firmalife.config.FLConfig;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.util.Helpers;
+
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 public class OvenTopBlock extends AbstractOvenBlock
 {
+    public static final VoxelShape[] SHAPES = Helpers.computeHorizontalShapes(d -> Shapes.or(
+        Helpers.rotateShape(d, 1, 0, 0, 15, 1, 15),
+        Helpers.rotateShape(d, 1, 11, 0, 15, 16, 15),
+        Helpers.rotateShape(d, 10, 10, 0, 15, 11, 15),
+        Helpers.rotateShape(d, 1, 10, 0, 6, 11, 15),
+        Helpers.rotateShape(d, 1, 9, 0, 4, 10, 15),
+        Helpers.rotateShape(d, 12, 9, 0, 15, 10, 15),
+        Helpers.rotateShape(d, 0, 0, 0, 1, 16, 16),
+        Helpers.rotateShape(d, 15, 0, 0, 16, 16, 16),
+        Helpers.rotateShape(d, 1, 0, 15, 15, 16, 16)
+    ));
+
+
     public OvenTopBlock(ExtendedProperties properties, @Nullable Supplier<? extends Block> curedBlock)
     {
         super(properties, curedBlock);
         registerDefaultState(getStateDefinition().any().setValue(FACING, Direction.NORTH).setValue(HAS_CHIMNEY, false));
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context)
+    {
+        return SHAPES[state.getValue(FACING).get2DDataValue()];
     }
 
     @Override

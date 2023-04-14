@@ -1,5 +1,6 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
+import com.eerussianguy.firmalife.config.FLConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
@@ -252,7 +253,7 @@ public class OvenBottomBlockEntity extends TickableInventoryBlockEntity<ItemStac
     public void onFuelConsumed()
     {
         assert level != null;
-        if (level.getRandom().nextFloat() < 0.5f && level.getBlockEntity(getBlockPos().below()) instanceof AshTrayBlockEntity tray)
+        if (level.getRandom().nextFloat() < FLConfig.SERVER.ovenAshChance.get() && level.getBlockEntity(getBlockPos().below()) instanceof AshTrayBlockEntity tray)
         {
             tray.getCapability(Capabilities.ITEM).ifPresent(inv -> {
                 final ItemStack leftover = inv.insertItem(0, new ItemStack(TFCItems.POWDERS.get(Powder.WOOD_ASH).get()), false);

@@ -16,12 +16,17 @@ public class FLServerConfig
     public final IntValue ironComposterTicks;
     public final IntValue ovenCureTicks;
     public final IntValue ovenCureTemperature;
+    public final DoubleValue ovenAshChance;
     public final BooleanValue ovenRequirePeel;
     public final BooleanValue enableSeedBalls;
     public final BooleanValue enableBeeSwarm;
     public final IntValue hollowShellCapacity;
     public final DoubleValue cellarLevel2Temperature;
     public final DoubleValue cellarLevel3Temperature;
+    public final DoubleValue greenhouseGrowthDays;
+    public final DoubleValue greenhouseWaterDays;
+    public final DoubleValue greenhouseNutrientDays;
+
 
     FLServerConfig(Builder innerBuilder)
     {
@@ -38,11 +43,15 @@ public class FLServerConfig
         ovenCureTicks = builder.apply("ovenCureTicks").comment("Ticks for an oven to cure (24000 ticks = 1 day)").defineInRange("ovenCureTicks", 2000, 1, Integer.MAX_VALUE);
         ovenCureTemperature = builder.apply("ovenCureTemperature").comment("Minimum temperature for an oven to start the curing process (24000 ticks = 1 day)").defineInRange("ovenCureTemperature", 600, 1, Integer.MAX_VALUE);
         ovenRequirePeel = builder.apply("ovenRequirePeel").comment("If true, ovens will hurt the player if they touch it without a peel in hand.").define("ovenRequirePeel", true);
+        ovenAshChance = builder.apply("ovenAshChance").comment("The chance for fuel burning in an oven to drop an ash block into an ashtray.").defineInRange("ovenAshChance", 0.5, 0, 1);
         enableSeedBalls = builder.apply("enableSeedBalls").comment("If true, players can throw seed balls.").define("enableSeedBalls", true);
         enableBeeSwarm = builder.apply("enableBeeSwarm").comment("If true, bees can swarm and hurt the player if provoked.").define("enableBeeSwarm", true);
         hollowShellCapacity = builder.apply("hollowShellCapacity").comment("The capacity in mB of the hollow shell. Default 100").defineInRange("hollowShellCapacity", 100, 1, Integer.MAX_VALUE);
         cellarLevel2Temperature = builder.apply("cellarLevel2Temperature").comment("The average temperature below which stronger decay modifiers apply to cellar blocks.").defineInRange("cellarLevel2Temperature", 0d, Double.MIN_VALUE, Double.MAX_VALUE);
         cellarLevel3Temperature = builder.apply("cellarLevel3Temperature").comment("The average temperature below which even stronger decay modifiers apply to cellar blocks.").defineInRange("cellarLevel3Temperature", -12d, Double.MIN_VALUE, Double.MAX_VALUE);
+        greenhouseGrowthDays = builder.apply("greenhouseGrowthDays").comment("The average amount of days for a crop in a greenhouse to grow. For normal crops, this is 24 days.").defineInRange("greenhouseGrowthDays", 20d, Double.MIN_VALUE, Double.MAX_VALUE);
+        greenhouseWaterDays = builder.apply("greenhouseWaterDays").comment("The average amount of days for a crop in a greenhouse to consume all its water.").defineInRange("greenhouseWaterDays", 12d, 0, Double.MAX_VALUE);
+        greenhouseNutrientDays = builder.apply("greenhouseNutrientDays").comment("The average amount of days for a crop to consume all of a nutrient. You should probably not configure this value unless you know what it does in the code. For regular crops this value is 12.").defineInRange("greenhouseNutrientDays", 8d, 0, Double.MAX_VALUE);
 
         innerBuilder.pop();
     }
