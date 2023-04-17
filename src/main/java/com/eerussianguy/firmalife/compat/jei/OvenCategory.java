@@ -2,6 +2,7 @@ package com.eerussianguy.firmalife.compat.jei;
 
 import java.util.List;
 
+import com.eerussianguy.firmalife.common.blocks.OvenType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.network.chat.MutableComponent;
@@ -25,7 +26,7 @@ public class OvenCategory extends BaseRecipeCategory<OvenRecipe>
 {
     public OvenCategory(RecipeType<OvenRecipe> type, IGuiHelper helper)
     {
-        super(type, helper, helper.createBlankDrawable(120, 38), new ItemStack(FLBlocks.CURED_OVEN_TOP.get()));
+        super(type, helper, helper.createBlankDrawable(120, 38), new ItemStack(FLBlocks.CURED_OVEN_TOP.get(OvenType.BRICK).get()));
     }
 
     @Override

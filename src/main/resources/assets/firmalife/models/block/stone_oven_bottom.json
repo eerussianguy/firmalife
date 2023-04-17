@@ -1,0 +1,10 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "firmalife:block/oven_bottom",
+  "textures": {
+    "main": "firmalife:block/sealed_bricks",
+    "side": "firmalife:block/stone_oven_side",
+    "front": "firmalife:block/stone_oven_bottom",
+    "top": "firmalife:block/stone_oven_surface"
+  }
+}

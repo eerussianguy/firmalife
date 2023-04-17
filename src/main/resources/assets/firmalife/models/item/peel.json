@@ -1,7 +1,22 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "firmalife:item/peel"
+  "loader": "forge:separate-perspective",
+  "gui_light": "front",
+  "base": {
+    "parent": "firmalife:item/peel_in_hand"
+  },
+  "perspectives": {
+    "none": {
+      "parent": "firmalife:item/peel_gui"
+    },
+    "fixed": {
+      "parent": "firmalife:item/peel_gui"
+    },
+    "ground": {
+      "parent": "firmalife:item/peel_gui"
+    },
+    "gui": {
+      "parent": "firmalife:item/peel_gui"
+    }
   }
 }

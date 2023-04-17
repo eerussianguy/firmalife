@@ -41,6 +41,11 @@ class Rules(Enum):
     shrink_third_last = 'shrink_third_last'
 
 def generate(rm: ResourceManager):
+    def craft_decorations(recipe_name: str, base_block: str):
+        rm.crafting_shaped(recipe_name + '_slab', ['XXX'], base_block, (6, base_block + '_slab')).with_advancement(base_block)
+        rm.crafting_shaped(recipe_name + '_stairs', ['X  ', 'XX ', 'XXX'], base_block, (8, base_block + '_stairs')).with_advancement(base_block)
+        rm.crafting_shaped(recipe_name + '_wall', ['XXX', 'XXX'], base_block, (6, base_block + '_wall')).with_advancement(base_block)
+
     # Crafting
     rm.crafting_shaped('crafting/peel', ['X', 'Y'], {'X': 'minecraft:bowl', 'Y': '#forge:rods/wooden'}, 'firmalife:peel').with_advancement('#forge:rods/wooden')
     damage_shapeless(rm, 'crafting/spoon', ('#forge:rods/wooden', '#tfc:lumber', '#tfc:knives'), 'firmalife:spoon').with_advancement('#forge:rods/wooden')
@@ -58,8 +63,8 @@ def generate(rm: ResourceManager):
     rm.crafting_shaped('crafting/trellis_planter', ['X X', 'X X', 'XYX'], {'X': 'minecraft:brick', 'Y': 'tfc:compost'}, 'firmalife:trellis_planter').with_advancement('tfc:compost')
     rm.crafting_shaped('crafting/bonsai_planter', ['X X', 'XYX', 'XXX'], {'X': 'minecraft:brick', 'Y': 'tfc:compost'}, 'firmalife:bonsai_planter').with_advancement('tfc:compost')
     rm.crafting_shaped('crafting/treated_lumber', ['XXX', 'XYX', 'XXX'], {'X': '#tfc:lumber', 'Y': 'firmalife:beeswax'}, '8 firmalife:treated_lumber').with_advancement('firmalife:beeswax')
-    rm.crafting_shaped('crafting/nutritive_basin', ['XYX', 'QWQ', 'XZX'], {'X': 'minecraft:brick', 'Y': 'minecraft:glass', 'Q': '#forge:rods/stainless_steel', 'W': '#tfc:seeds', 'Z': '#forge:sheets/stainless_steel'}, 'firmalife:nutritive_basin').with_advancement('minecraft:brick')
-    rm.crafting_shaped('crafting/hydroponic_planter', ['YY', 'XX', 'Z '], {'Y': 'tfc:compost', 'X': 'firmalife:treated_lumber', 'Z': 'tfc:wrought_iron_grill'}, '3 firmalife:hydroponic_planter').with_advancement('firmalife:treated_lumber')
+    rm.crafting_shaped('crafting/nutritive_basin', ['XYX', 'XWX', 'XZX'], {'X': 'minecraft:brick', 'Y': 'minecraft:glass', 'W': '#tfc:seeds', 'Z': '#forge:sheets/stainless_steel'}, 'firmalife:nutritive_basin').with_advancement('minecraft:brick')
+    rm.crafting_shaped('crafting/hydroponic_planter', ['YY', 'XX', 'Z '], {'Y': 'tfc:compost', 'X': 'firmalife:treated_lumber', 'Z': '#forge:ingots/wrought_iron'}, '2 firmalife:hydroponic_planter').with_advancement('firmalife:treated_lumber')
     rm.crafting_shaped('crafting/vat', ['X X', 'YXY'], {'X': '#forge:sheets/stainless_steel', 'Y': 'firmalife:beeswax'}, 'firmalife:vat').with_advancement('#forge:sheets/stainless_steel')
     rm.crafting_shapeless('crafting/oven_hopper', ('firmalife:oven_bottom', 'minecraft:hopper'), 'firmalife:oven_hopper').with_advancement('minecraft:hopper')
     rm.crafting_shaped('crafting/beehive_frame', ['X X', ' X ', 'X X'], {'X': '#tfc:lumber'}, 'firmalife:beehive_frame').with_advancement('#tfc:lumber')
@@ -94,6 +99,15 @@ def generate(rm: ResourceManager):
     rm.crafting_shaped('crafting/dark_ladder', ['X X', 'X X', 'X X'], {'X': 'firmalife:sealed_bricks'}, '16 firmalife:dark_ladder').with_advancement('firmalife:sealed_bricks')
     rm.crafting_shaped('crafting/sealed_walls', ['   ', 'XXX', 'XXX'], {'X': 'firmalife:sealed_bricks'}, '6 firmalife:sealed_wall').with_advancement('firmalife:sealed_bricks')
     rm.crafting_shaped('crafting/sealed_trapdoor', ['YY', 'XX', 'XX'], {'Y': '#forge:rods/brass', 'X': 'firmalife:sealed_bricks'}, 'firmalife:sealed_trapdoor').with_advancement('firmalife:sealed_bricks')
+    rm.crafting_shapeless('crafting/rustic_finish', (fluid_item_ingredient('100 tfc:tannin'), 'minecraft:brick'), '16 firmalife:rustic_finish').with_advancement('minecraft:brick')
+    rm.crafting_shapeless('crafting/stone_finish', ('firmalife:sealed_bricks', 'minecraft:brick'), '16 firmalife:stone_finish').with_advancement('minecraft:brick')
+    rm.crafting_shapeless('crafting/tile_finish', ('minecraft:clay_ball', '#forge:cobblestone', 'minecraft:brick'), '16 firmalife:tile_finish').with_advancement('minecraft:brick')
+    rm.crafting_shapeless('crafting/oven_insulation', ('#forge:sheets/wrought_iron', 'firmalife:beeswax', '#tfc:flux'), 'firmalife:oven_insulation').with_advancement('#forge:sheets/wrought_iron')
+    rm.crafting_shapeless('crafting/stone_countertop', ('firmalife:sealed_bricks', '#tfc:chisels'), 'firmalife:stone_countertop').with_advancement('firmalife:sealed_bricks')
+    rm.crafting_shapeless('crafting/rustic_countertop', ('firmalife:rustic_bricks', '#tfc:chisels'), 'firmalife:rustic_countertop').with_advancement('firmalife:rustic_bricks')
+    rm.crafting_shapeless('crafting/tile_countertop', ('firmalife:tiles', '#tfc:chisels'), 'firmalife:tile_countertop').with_advancement('firmalife:tiles')
+    craft_decorations('crafting/rustic_bricks', 'firmalife:rustic_bricks')
+    craft_decorations('crafting/tiles', 'firmalife:tiles')
 
     for i in range(1, 9):
         advanced_shapeless(rm, 'crafting/masa_%s' % i, (
@@ -119,6 +133,15 @@ def generate(rm: ResourceManager):
         rm.crafting_shaped('crafting/wood/%s_shelf' % wood, ['XXX', 'YYY', 'XXX'], {'X': 'tfc:wood/planks/%s' % wood, 'Y': 'tfc:wood/lumber/%s' % wood}, 'firmalife:wood/food_shelf/%s' % wood).with_advancement('tfc:wood/lumber/%s' % wood)
         rm.crafting_shaped('crafting/wood/%s_jarbnet' % wood, ['X  ', 'ZYY', 'X  '], {'X': 'tfc:wood/log/%s' % wood, 'Y': 'tfc:wood/lumber/%s' % wood, 'Z': '#forge:rods/brass'}, '2 firmalife:wood/jarbnet/%s' % wood).with_advancement('tfc:wood/lumber/%s' % wood)
 
+    # Chisel
+    def chisel_stair_slab(name: str, ingredient: str):
+        chisel_recipe(rm, name + '_stairs', ingredient, ingredient + '_stairs', 'stair')
+        chisel_recipe(rm, name + '_slab', ingredient, ingredient + '_slab', 'slab')
+    chisel_stair_slab('tiles', 'firmalife:tiles')
+    chisel_stair_slab('rustic_bricks', 'firmalife:rustic_bricks')
+
+    # Vat
+
     vat_recipe(rm, 'olive_oil_water', 'tfc:olive_paste', '200 minecraft:water', output_fluid='200 tfc:olive_oil_water')
     vat_recipe(rm, 'tallow', 'tfc:blubber', '200 minecraft:water', output_fluid='200 tfc:tallow')
     vat_recipe(rm, 'lye', 'tfc:powder/wood_ash', '200 minecraft:water', output_fluid='200 tfc:lye')
@@ -130,6 +153,7 @@ def generate(rm: ResourceManager):
     vat_recipe(rm, 'soy_mixture', not_rotten('tfc:food/soybean'), '1000 tfc:salt_water', output_item='firmalife:food/soy_mixture')
     vat_recipe(rm, 'cured_maize', not_rotten('tfc:food/maize_grain'), '1000 tfc:limewater', output_item='firmalife:food/cured_maize')
     vat_recipe(rm, 'tomato_sauce', not_rotten('firmalife:food/tomato_sauce_mix'), '200 minecraft:water', output_item='firmalife:food/tomato_sauce')
+    vat_recipe(rm, 'sugar_water', '#firmalife:sweetener', '1000 minecraft:water', output_fluid='500 firmalife:sugar_water')
 
     for jar, remainder, _, ing in JARS:
         make_jar(rm, jar, remainder, ing)

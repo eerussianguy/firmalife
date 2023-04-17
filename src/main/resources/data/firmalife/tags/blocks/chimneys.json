@@ -3,6 +3,9 @@
   "replace": false,
   "values": [
     "firmalife:cured_oven_chimney",
+    "firmalife:cured_rustic_oven_chimney",
+    "firmalife:cured_tile_oven_chimney",
+    "firmalife:cured_stone_oven_chimney",
     "firmalife:oven_chimney"
   ]
 }

@@ -1,8 +1,11 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "variants": {
-    "": {
-      "model": "firmalife:block/oven_chimney_clay"
+    "alt=true": {
+      "model": "firmalife:block/clay_oven_chimney_alt"
+    },
+    "alt=false": {
+      "model": "firmalife:block/clay_oven_chimney"
     }
   }
 }

@@ -1,0 +1,16 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "firmalife:rustic_bricks"
+    }
+  },
+  "result": {
+    "item": "firmalife:rustic_bricks_slab",
+    "count": 6
+  }
+}

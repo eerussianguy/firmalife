@@ -3,6 +3,7 @@ package com.eerussianguy.firmalife.client;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
+import com.eerussianguy.firmalife.client.model.PeelModel;
 import com.eerussianguy.firmalife.client.screen.StovetopGrillScreen;
 import com.eerussianguy.firmalife.client.screen.StovetopPotScreen;
 import net.minecraft.ChatFormatting;
@@ -51,6 +52,7 @@ public class FLClientEvents
         bus.addListener(FLClientEvents::clientSetup);
         bus.addListener(FLClientEvents::registerEntityRenderers);
         bus.addListener(FLClientEvents::onTextureStitch);
+        bus.addListener(FLClientEvents::onLayers);
         bus.addListener(FLClientEvents::onModelRegister);
         bus.addListener(FLClientEvents::onBlockColors);
         bus.addListener(FLClientEvents::onItemColors);
@@ -65,8 +67,8 @@ public class FLClientEvents
         final RenderType cutoutMipped = RenderType.cutoutMipped();
         final RenderType translucent = RenderType.translucent();
 
-        Stream.of(FLBlocks.OVEN_TOP, FLBlocks.OVEN_BOTTOM, FLBlocks.OVEN_CHIMNEY, FLBlocks.CURED_OVEN_TOP, FLBlocks.CURED_OVEN_BOTTOM,
-            FLBlocks.CURED_OVEN_CHIMNEY, FLBlocks.QUAD_PLANTER, FLBlocks.LARGE_PLANTER, FLBlocks.HANGING_PLANTER, FLBlocks.BONSAI_PLANTER,
+        Stream.of(FLBlocks.OVEN_BOTTOM, FLBlocks.OVEN_TOP, FLBlocks.OVEN_CHIMNEY, FLBlocks.OVEN_HOPPER,
+            FLBlocks.QUAD_PLANTER, FLBlocks.LARGE_PLANTER, FLBlocks.HANGING_PLANTER, FLBlocks.BONSAI_PLANTER,
             FLBlocks.IRON_COMPOSTER, FLBlocks.COMPOST_JAR, FLBlocks.HONEY_JAR, FLBlocks.ROTTEN_COMPOST_JAR, FLBlocks.GUANO_JAR, FLBlocks.CHEDDAR_WHEEL,
             FLBlocks.RAJYA_METOK_WHEEL, FLBlocks.CHEVRE_WHEEL, FLBlocks.SHOSHA_WHEEL, FLBlocks.FETA_WHEEL, FLBlocks.GOUDA_WHEEL, FLBlocks.SMALL_CHROMITE,
             FLBlocks.MIXING_BOWL, FLBlocks.BUTTERFLY_GRASS, FLBlocks.SPRINKLER, FLBlocks.DRIBBLER, FLBlocks.VAT, FLBlocks.HYDROPONIC_PLANTER, FLBlocks.STOVETOP_GRILL, FLBlocks.STOVETOP_POT,
@@ -89,6 +91,11 @@ public class FLClientEvents
         FLBlocks.FOOD_SHELVES.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
         FLBlocks.HANGERS.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
         FLBlocks.JARBNETS.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
+        FLBlocks.CURED_OVEN_BOTTOM.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
+        FLBlocks.CURED_OVEN_TOP.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
+        FLBlocks.CURED_OVEN_HOPPER.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
+        FLBlocks.CURED_OVEN_CHIMNEY.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
+        FLBlocks.INSULATED_OVEN_BOTTOM.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
 
         event.enqueueWork(() -> {
             MenuScreens.register(FLContainerTypes.BEEHIVE.get(), BeehiveScreen::new);
@@ -163,6 +170,11 @@ public class FLClientEvents
         event.registerEntityRenderer(FLEntities.SEED_BALL.get(), ThrownItemRenderer::new);
     }
 
+    public static void onLayers(EntityRenderersEvent.RegisterLayerDefinitions event)
+    {
+        event.registerLayerDefinition(FLClientHelpers.modelIdentifier("peel"), PeelModel::createBodyLayer);
+    }
+
     public static void onTextureStitch(TextureStitchEvent.Pre event)
     {
         for (String name : new String[] {"green_bean", "maize", "jute", "tomato", "sugarcane"})
@@ -207,6 +219,8 @@ public class FLClientEvents
             event.addSprite(metal.getSheet());
         }
         event.addSprite(FLHelpers.identifier("block/pineapple"));
+
+        event.addSprite(FLHelpers.identifier("entity/peel"));
     }
 
     public static void onModelRegister(ModelRegistryEvent event)

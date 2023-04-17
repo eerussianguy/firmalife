@@ -148,6 +148,10 @@ public final class FLTooltips
             if (entity instanceof OvenLike oven)
             {
                 BlockEntityTooltips.heat(tooltip, oven.getTemperature());
+                if (oven.getTemperature() > 100 && oven instanceof OvenTopBlockEntity)
+                {
+                    tooltip.accept(Helpers.translatable("firmalife.jade.needs_peel"));
+                }
                 if (state.getBlock() instanceof ICure cure && !cure.isCured())
                 {
                     if (oven.getTemperature() < FLConfig.SERVER.ovenCureTemperature.get())
@@ -174,7 +178,7 @@ public final class FLTooltips
                 }
 
             }
-            if (!AbstractOvenBlock.insulated(level, pos, state))
+            if (state.getBlock() instanceof AbstractOvenBlock block && !block.isInsulated(level, pos, state))
             {
                 tooltip.accept(Helpers.translatable("firmalife.jade.not_insulated"));
             }

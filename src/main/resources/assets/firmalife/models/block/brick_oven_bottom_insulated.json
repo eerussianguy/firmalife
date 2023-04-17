@@ -1,0 +1,10 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "firmalife:block/oven_bottom",
+  "textures": {
+    "main": "minecraft:block/bricks",
+    "side": "firmalife:block/oven_insulation",
+    "front": "firmalife:block/brick_oven_bottom_insulated",
+    "top": "firmalife:block/brick_oven_surface"
+  }
+}

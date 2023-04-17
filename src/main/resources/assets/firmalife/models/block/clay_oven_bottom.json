@@ -1,0 +1,10 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "firmalife:block/oven_bottom",
+  "textures": {
+    "main": "firmalife:block/unfired_bricks",
+    "side": "firmalife:block/unfired_bricks",
+    "front": "firmalife:block/clay_oven_bottom",
+    "top": "firmalife:block/clay_oven_surface"
+  }
+}

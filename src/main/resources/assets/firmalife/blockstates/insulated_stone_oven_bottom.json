@@ -1,0 +1,240 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "multipart": [
+    {
+      "when": {
+        "facing": "east",
+        "lit": true
+      },
+      "apply": {
+        "model": "firmalife:block/oven_fire",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "lit": true
+      },
+      "apply": {
+        "model": "firmalife:block/oven_fire"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "lit": true
+      },
+      "apply": {
+        "model": "firmalife:block/oven_fire",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "lit": true
+      },
+      "apply": {
+        "model": "firmalife:block/oven_fire",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "logs": 1
+      },
+      "apply": {
+        "model": "firmalife:block/oven_logs_1",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "logs": 1
+      },
+      "apply": {
+        "model": "firmalife:block/oven_logs_1"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "logs": 1
+      },
+      "apply": {
+        "model": "firmalife:block/oven_logs_1",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "logs": 1
+      },
+      "apply": {
+        "model": "firmalife:block/oven_logs_1",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "logs": 2
+      },
+      "apply": {
+        "model": "firmalife:block/oven_logs_2",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "logs": 2
+      },
+      "apply": {
+        "model": "firmalife:block/oven_logs_2"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "logs": 2
+      },
+      "apply": {
+        "model": "firmalife:block/oven_logs_2",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "logs": 2
+      },
+      "apply": {
+        "model": "firmalife:block/oven_logs_2",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "logs": 3
+      },
+      "apply": {
+        "model": "firmalife:block/oven_logs_3",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "logs": 3
+      },
+      "apply": {
+        "model": "firmalife:block/oven_logs_3"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "logs": 3
+      },
+      "apply": {
+        "model": "firmalife:block/oven_logs_3",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "logs": 3
+      },
+      "apply": {
+        "model": "firmalife:block/oven_logs_3",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "logs": 4
+      },
+      "apply": {
+        "model": "firmalife:block/oven_logs_4",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "logs": 4
+      },
+      "apply": {
+        "model": "firmalife:block/oven_logs_4"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "logs": 4
+      },
+      "apply": {
+        "model": "firmalife:block/oven_logs_4",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "logs": 4
+      },
+      "apply": {
+        "model": "firmalife:block/oven_logs_4",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east"
+      },
+      "apply": {
+        "model": "firmalife:block/stone_oven_bottom_insulated",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north"
+      },
+      "apply": {
+        "model": "firmalife:block/stone_oven_bottom_insulated"
+      }
+    },
+    {
+      "when": {
+        "facing": "south"
+      },
+      "apply": {
+        "model": "firmalife:block/stone_oven_bottom_insulated",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west"
+      },
+      "apply": {
+        "model": "firmalife:block/stone_oven_bottom_insulated",
+        "y": 270
+      }
+    },
+    {
+      "apply": {
+        "model": "firmalife:block/stone_oven_particle"
+      }
+    }
+  ]
+}

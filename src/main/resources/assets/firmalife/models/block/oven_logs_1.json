@@ -1,22 +1,22 @@
 {
 	"credit": "Made with Blockbench",
+	"parent": "block/block",
 	"textures": {
-		"1": "tfc:block/log_pile_side",
-		"particle": "tfc:block/log_pile_side"
+		"2": "tfc:block/log_pile_side"
 	},
 	"elements": [
 		{
 			"name": "log",
-			"from": [7, 4, 1],
-			"to": [9, 6, 9],
-			"rotation": {"angle": 22.5, "axis": "y", "origin": [6, 6, 6]},
+			"from": [4, 0.1, 1],
+			"to": [7, 3.1, 9],
+			"rotation": {"angle": 0, "axis": "y", "origin": [6, 2, 6]},
 			"faces": {
-				"north": {"uv": [0, 0, 2, 2], "texture": "#1"},
-				"east": {"uv": [0, 0, 8, 2], "texture": "#1"},
-				"south": {"uv": [0, 0, 2, 2], "texture": "#1"},
-				"west": {"uv": [0, 0, 8, 2], "texture": "#1"},
-				"up": {"uv": [0, 0, 2, 8], "texture": "#1"},
-				"down": {"uv": [0, 0, 2, 8], "texture": "#1"}
+				"north": {"uv": [9, 13, 12, 16], "texture": "#2"},
+				"east": {"uv": [0, 0, 8, 2], "texture": "#2"},
+				"south": {"uv": [4, 13, 7, 16], "texture": "#2"},
+				"west": {"uv": [1, 13, 9, 16], "texture": "#2"},
+				"up": {"uv": [4, 1, 7, 9], "rotation": 180, "texture": "#2"},
+				"down": {"uv": [4, 7, 7, 15], "rotation": 180, "texture": "#2"}
 			}
 		}
 	]

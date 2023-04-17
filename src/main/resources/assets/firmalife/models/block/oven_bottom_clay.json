@@ -1,8 +1,0 @@
-{
-  "__comment__": "This file was automatically created by mcresources",
-  "parent": "firmalife:block/oven_bottom",
-  "textures": {
-    "0": "firmalife:block/unfired_bricks",
-    "particle": "firmalife:block/unfired_bricks"
-  }
-}

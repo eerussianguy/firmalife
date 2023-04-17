@@ -1,0 +1,9 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "top": "firmalife:block/tile_oven_hopper_top",
+    "side": "firmalife:block/tile_oven_side",
+    "front": "firmalife:block/tile_oven_hopper_front"
+  }
+}

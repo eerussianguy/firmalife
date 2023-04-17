@@ -1,0 +1,10 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "firmalife:block/oven_top",
+  "textures": {
+    "main": "firmalife:block/rustic_bricks",
+    "side": "firmalife:block/rustic_oven_side",
+    "front": "firmalife:block/rustic_oven_top",
+    "top": "firmalife:block/rustic_bricks"
+  }
+}

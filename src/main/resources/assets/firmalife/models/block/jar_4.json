@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"0": "firmalife:block/greenhouse/iron_glass",
-		"1": "minecraft:block/honey_block_side",
+        "1": "tfc:block/empty",
 		"2": "firmalife:block/greenhouse/treated_wood",
 		"particle": "firmalife:block/greenhouse/iron_glass"
 	},

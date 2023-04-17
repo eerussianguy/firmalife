@@ -8,32 +8,57 @@ from constants import *
 
 def generate(rm: ResourceManager):
     bot_variants = four_rotations_mp('firmalife:block/oven_fire', (90, None, 180, 270), 'lit', True)
-    for stage in ('bricks', 'clay'):
-        tex = 'minecraft:block/bricks' if stage == 'bricks' else 'firmalife:block/unfired_bricks'
-        for part in ('bottom', 'top'):
-            rm.block_model('oven_%s_%s' % (part, stage), parent='firmalife:block/oven_%s' % part, textures={'0': tex, 'particle': tex})
-        rm.block_model('oven_particle_%s' % stage, parent='tfc:block/empty', textures={'particle': tex})
     for i in range(1, 5):
         bot_variants += four_rotations_mp('firmalife:block/oven_logs_%s' % i, (90, None, 180, 270), 'logs', i)
+    variants = {
+        'brick': 'minecraft:block/bricks',
+        'rustic': 'firmalife:block/rustic_bricks',
+        'tile': 'firmalife:block/tiles',
+        'stone': 'firmalife:block/sealed_bricks',
+        'clay': 'firmalife:block/unfired_bricks'
+    }
+    for var, base_tex in variants.items():
+        bot_front = 'firmalife:block/%s_oven_bottom' % var
+        top_front = 'firmalife:block/%s_oven_top' % var
+        surface = 'firmalife:block/%s_oven_surface' % var
+        hop_front = 'firmalife:block/%s_oven_hopper_front' % var
+        hop_top = 'firmalife:block/%s_oven_hopper_top' % var
+        side = 'firmalife:block/%s_oven_side' % var if var != 'clay' else base_tex
 
-    rm.block_model('oven_chimney_bricks', parent='firmalife:block/oven_chimney', textures={'cured': 'minecraft:block/bricks', 'particle': 'minecraft:block/bricks'})
-    rm.block_model('oven_chimney_clay', parent='firmalife:block/oven_chimney', textures={'cured': 'firmalife:block/unfired_bricks', 'particle': 'firmalife:block/unfired_bricks'})
-    for stage in ('bricks', 'clay'):
-        pref = 'cured_' if stage == 'bricks' else ''
-        last_bot_variants = bot_variants.copy()
-        last_bot_variants += four_rotations_mp_free('firmalife:block/oven_bottom_%s' % stage, (90, None, 180, 270))
-        last_bot_variants += [{'model': 'firmalife:block/oven_particle_%s' % stage}]
-        rm.blockstate_multipart('%soven_bottom' % pref, *last_bot_variants).with_lang(lang('%sbottom oven', pref)).with_tag('firmalife:oven_blocks').with_block_loot('firmalife:%soven_bottom' % pref)
-        rm.item_model('%soven_bottom' % pref, parent='firmalife:block/oven_bottom_%s' % stage, no_textures=True)
-        rm.blockstate('%soven_top' % pref, variants={**four_rotations('firmalife:block/oven_top_%s' % stage, (90, None, 180, 270))}).with_lang(lang('%stop oven', pref)).with_tag('firmalife:oven_blocks').with_block_loot('firmalife:%soven_top' % pref)
-        rm.item_model('%soven_top' % pref, parent='firmalife:block/oven_top_%s' % stage, no_textures=True)
-        rm.blockstate('%soven_chimney' % pref, model='firmalife:block/oven_chimney_%s' % stage).with_lang(lang('%soven chimney', pref)).with_tag('firmalife:oven_blocks').with_tag('firmalife:chimneys').with_block_loot('firmalife:%soven_chimney' % pref)
-        rm.item_model('%soven_chimney' % pref, parent='firmalife:block/oven_chimney_%s' % stage, no_textures=True)
-        rm.blockstate('%soven_hopper' % pref, variants={**four_rotations('firmalife:block/%soven_hopper' % pref, (90, None, 180, 270))}).with_lang(lang('%soven hopper', pref)).with_tag('firmalife:oven_blocks').with_block_loot('firmalife:%soven_hopper' % pref)
-        rm.item_model('%soven_hopper' % pref, parent='firmalife:block/%soven_hopper' % pref, no_textures=True)
+        rm.block_model('%s_oven_bottom' % var, parent='firmalife:block/oven_bottom', textures={'main': base_tex, 'side': side, 'front': bot_front, 'top': surface})
+        rm.block_model('%s_oven_top' % var, parent='firmalife:block/oven_top', textures={'main': base_tex, 'side': side, 'front': top_front, 'top': base_tex})
+        rm.block_model('%s_oven_particle' % var, parent='tfc:block/empty', textures={'particle': base_tex})
+        rm.block_model('%s_oven_chimney' % var, parent='firmalife:block/oven_chimney', textures={'cured': base_tex})
+        rm.block_model('%s_oven_chimney_alt' % var, parent='firmalife:block/oven_chimney_alt', textures={'cured': base_tex})
+        rm.block_model('%s_oven_hopper' % var, parent='minecraft:block/orientable', textures={'top': hop_top, 'side': side, 'front': hop_front})
+        if var != 'clay':
+            rm.block_model('%s_oven_bottom_insulated' % var, parent='firmalife:block/oven_bottom', textures={'main': base_tex, 'side': 'firmalife:block/oven_insulation', 'front': bot_front + '_insulated', 'top': surface})
 
-    rm.block_model('cured_oven_hopper', parent='minecraft:block/orientable', textures={'top': 'firmalife:block/oven_hopper_top', 'side': 'minecraft:block/bricks', 'front': 'firmalife:block/oven_hopper_front'})
-    rm.block_model('oven_hopper', parent='minecraft:block/orientable', textures={'top': 'firmalife:block/clay_oven_hopper_top', 'side': 'firmalife:block/unfired_bricks', 'front': 'firmalife:block/clay_oven_hopper_front'})
+        pref = 'cured_%s_' % var
+        if var == 'brick':
+            pref = 'cured_'
+        elif var == 'clay':
+            pref = ''
+
+        for bottom_type in ('insulated_', 'cured_'):
+            if not (var == 'clay' and bottom_type == 'insulated_'):
+                fixed_pref = pref.replace('cured_', bottom_type)
+                last_bot_variants = bot_variants.copy()
+                last_bot_variants += four_rotations_mp_free('firmalife:block/%s_oven_bottom%s' % (var, '_insulated' if bottom_type == 'insulated_' else ''), (90, None, 180, 270))
+                last_bot_variants += [{'model': 'firmalife:block/%s_oven_particle' % var}]
+                rm.blockstate_multipart('%soven_bottom' % fixed_pref, *last_bot_variants).with_lang(lang('%sbottom oven', fixed_pref)).with_tag('firmalife:oven_blocks').with_block_loot('firmalife:%soven_bottom' % fixed_pref)
+                rm.item_model('%soven_bottom' % fixed_pref, parent='firmalife:block/%s_oven_bottom' % var, no_textures=True)
+
+        rm.blockstate('%soven_top' % pref, variants={**four_rotations('firmalife:block/%s_oven_top' % var, (90, None, 180, 270))}).with_lang(lang('%stop oven', pref)).with_tag('firmalife:oven_blocks').with_block_loot('firmalife:%soven_top' % pref)
+        rm.item_model('%soven_top' % pref, parent='firmalife:block/%s_oven_top' % var, no_textures=True)
+        rm.blockstate('%soven_chimney' % pref, variants={'alt=true': {'model': 'firmalife:block/%s_oven_chimney_alt' % var}, 'alt=false': {'model': 'firmalife:block/%s_oven_chimney' % var}}).with_lang(lang('%soven chimney', pref)).with_tag('firmalife:oven_blocks').with_tag('firmalife:chimneys').with_block_loot('firmalife:%soven_chimney' % pref)
+        rm.item_model('%soven_chimney' % pref, parent='firmalife:block/%s_oven_chimney' % var, no_textures=True)
+        rm.blockstate('%soven_hopper' % pref, variants={**four_rotations('firmalife:block/%s_oven_hopper' % var, (90, None, 180, 270))}).with_lang(lang('%soven hopper', pref)).with_tag('firmalife:oven_blocks').with_block_loot('firmalife:%soven_hopper' % pref)
+        rm.item_model('%soven_hopper' % pref, parent='firmalife:block/%s_oven_hopper' % var, no_textures=True)
+
+        if var != 'clay':
+            block = rm.blockstate('%s_countertop' % var).with_item_model().with_tag('firmalife:oven_blocks').with_tag('minecraft:mineable/pickaxe').with_block_loot('firmalife:%s_countertop' % var).with_lang(lang('%s countertop', var))
+            block.with_block_model(parent='minecraft:block/cube_column', textures={'end': 'firmalife:block/%s_countertop' % var, 'side': side})
 
     block = rm.blockstate('ashtray', variants=dict(('stage=%s' % i, {'model': 'firmalife:block/ashtray_%s' % i}) for i in range(0, 11)))
     block.with_lang(lang('ashtray')).with_tag('minecraft:mineable/pickaxe').with_block_loot('firmalife:ashtray')
@@ -184,6 +209,14 @@ def generate(rm: ResourceManager):
             rm.blockstate(name, variants=four_rotations('firmalife:block/%s' % name, (90, 0, 180, 270))).with_tag('tfc:mineable_with_sharp_tool').with_block_loot('firmalife:carved_pumpkin/%s' % carving).with_lang(lang('%s %s', carving, lang_part))
             rm.item_model('firmalife:%s' % name, parent='firmalife:block/%s' % name, no_textures=True)
 
+    for var in ('rustic_bricks', 'tiles'):
+        block = rm.block(var).make_slab().make_stairs().make_wall()
+        slab_loot(rm.block(var + '_slab'), 'firmalife:%s_slab' % var)
+        rm.block_loot('firmalife:%s_stairs' % var, 'firmalife:%s_stairs' % var)
+        rm.block_loot('firmalife:%s_wall' % var, 'firmalife:%s_wall' % var)
+        for extra in ('_slab', '_stairs', '_wall'):
+            rm.block('firmalife:%s%s' % (var, extra)).with_lang(lang('%s%s', var.replace('bricks', 'brick').replace('tiles', 'tile'), extra))
+
     for variant in ('gold', 'red', 'purple'):
         rm.block_model('plant/butterfly_grass_%s' % variant, parent='firmalife:block/tinted_cross_overlay', textures={'cross': 'firmalife:block/plant/butterfly_grass/base', 'overlay': 'firmalife:block/plant/butterfly_grass/%s' % variant})
     rm.blockstate('plant/butterfly_grass', variants={'': [{'model': 'firmalife:block/plant/butterfly_grass_%s' % variant, 'y': rot} for variant in ('gold', 'red', 'purple') for rot in (None, 90)]}, use_default_model=False).with_lang(lang('butterfly grass'))
@@ -299,6 +332,8 @@ def generate(rm: ResourceManager):
 
     contained_fluid(rm, 'hollow_shell', 'firmalife:item/hollow_shell', 'firmalife:item/hollow_shell_overlay').with_lang(lang('Hollow Shell')).with_tag('tfc:buckets')
 
+    peel(rm, 'peel', 'firmalife:item/peel')
+
     for jar, _, texture, _ in JARS:
         make_jar(rm, jar, texture)
     for fruit in TFC_FRUITS:
@@ -395,6 +430,24 @@ def four_rotations_mp(model: str, rots: Tuple[Any, Any, Any, Any], condition_nam
         [{'facing': 'south', condition_name: condition_value}, {'model': model, 'y': rots[2]}],
         [{'facing': 'west', condition_name: condition_value}, {'model': model, 'y': rots[3]}]
     ]
+
+def peel(rm: ResourceManager, name_parts: str, texture: str) -> 'ItemContext':
+    rm.item(name_parts).with_lang(lang(name_parts))
+    rm.item_model(name_parts + '_in_hand', {'particle': texture}, parent='minecraft:item/trident_in_hand')
+    rm.item_model(name_parts + '_gui', texture)
+    model = rm.domain + ':item/' + name_parts
+    # todo: 1.19 rename to forge:separate_transforms due to deprecation
+    return rm.custom_item_model(name_parts, 'forge:separate-perspective', {
+        'gui_light': 'front',
+        'base': {'parent': model + '_in_hand'},
+        'perspectives': {
+            'none': {'parent': model + '_gui'},
+            'fixed': {'parent': model + '_gui'},
+            'ground': {'parent': model + '_gui'},
+            'gui': {'parent': model + '_gui'}
+        }
+    })
+
 
 def greenhouse_stairs(rm: ResourceManager, name: str, frame: str, glass: str) -> 'BlockContext':
     block_name = '%s_greenhouse_roof' % name

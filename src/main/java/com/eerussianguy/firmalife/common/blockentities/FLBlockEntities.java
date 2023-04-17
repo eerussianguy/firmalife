@@ -28,9 +28,9 @@ public class FLBlockEntities
         FLBlocks.FRUIT_TREE_GROWING_BRANCHES.values()
     ).<Supplier<? extends Block>>flatMap(Helpers::flatten));
 
-    public static final RegistryObject<BlockEntityType<OvenBottomBlockEntity>> OVEN_BOTTOM = register("oven_bottom", OvenBottomBlockEntity::new, Stream.of(FLBlocks.OVEN_BOTTOM, FLBlocks.CURED_OVEN_BOTTOM));
-    public static final RegistryObject<BlockEntityType<OvenTopBlockEntity>> OVEN_TOP = register("oven_top", OvenTopBlockEntity::new, Stream.of(FLBlocks.OVEN_TOP, FLBlocks.CURED_OVEN_TOP));
-    public static final RegistryObject<BlockEntityType<OvenHopperBlockEntity>> OVEN_HOPPER = register("oven_hopper", OvenHopperBlockEntity::new, Stream.of(FLBlocks.OVEN_HOPPER, FLBlocks.CURED_OVEN_HOPPER));
+    public static final RegistryObject<BlockEntityType<OvenBottomBlockEntity>> OVEN_BOTTOM = register("oven_bottom", OvenBottomBlockEntity::new, Stream.concat(Stream.concat(Stream.of(FLBlocks.OVEN_BOTTOM), FLBlocks.CURED_OVEN_BOTTOM.values().stream()), FLBlocks.INSULATED_OVEN_BOTTOM.values().stream()));
+    public static final RegistryObject<BlockEntityType<OvenTopBlockEntity>> OVEN_TOP = register("oven_top", OvenTopBlockEntity::new, Stream.concat(Stream.of(FLBlocks.OVEN_TOP), FLBlocks.CURED_OVEN_TOP.values().stream()));
+    public static final RegistryObject<BlockEntityType<OvenHopperBlockEntity>> OVEN_HOPPER = register("oven_hopper", OvenHopperBlockEntity::new, Stream.concat(Stream.of(FLBlocks.OVEN_HOPPER), FLBlocks.CURED_OVEN_HOPPER.values().stream()));
     public static final RegistryObject<BlockEntityType<DryingMatBlockEntity>> DRYING_MAT = register("drying_mat", DryingMatBlockEntity::dryingMat, FLBlocks.DRYING_MAT);
     public static final RegistryObject<BlockEntityType<DryingMatBlockEntity>> SOLAR_DRIER = register("solar_drier", DryingMatBlockEntity::solarDrier, FLBlocks.SOLAR_DRIER);
     public static final RegistryObject<BlockEntityType<FLBeehiveBlockEntity>> BEEHIVE = register("beehive", FLBeehiveBlockEntity::new, FLBlocks.BEEHIVE);
@@ -47,6 +47,7 @@ public class FLBlockEntities
     public static final RegistryObject<BlockEntityType<StovetopGrillBlockEntity>> STOVETOP_GRILL = register("stovetop_grill", StovetopGrillBlockEntity::new, FLBlocks.STOVETOP_GRILL);
     public static final RegistryObject<BlockEntityType<StovetopPotBlockEntity>> STOVETOP_POT = register("stovetop_pot", StovetopPotBlockEntity::new, FLBlocks.STOVETOP_POT);
     public static final RegistryObject<BlockEntityType<IceFishingStationBlockEntity>> ICE_FISHING_STATION = register("ice_fishing_station", IceFishingStationBlockEntity::new, FLBlocks.ICE_FISHING_STATION);
+    public static final RegistryObject<BlockEntityType<JarringStationBlockEntity>> JARRING_STATION = register("jarring_station", JarringStationBlockEntity::new, FLBlocks.JARRING_STATION);
 
     public static final RegistryObject<BlockEntityType<LargePlanterBlockEntity>> LARGE_PLANTER = register("large_planter", LargePlanterBlockEntity::new, FLBlocks.LARGE_PLANTER);
     public static final RegistryObject<BlockEntityType<BonsaiPlanterBlockEntity>> BONSAI_PLANTER = register("bonsai_planter", BonsaiPlanterBlockEntity::new, FLBlocks.BONSAI_PLANTER);

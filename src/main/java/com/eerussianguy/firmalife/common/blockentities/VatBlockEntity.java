@@ -4,14 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blocks.VatBlock;
+import com.eerussianguy.firmalife.common.items.FLItems;
 import com.eerussianguy.firmalife.common.recipes.FLRecipeTypes;
 import com.eerussianguy.firmalife.common.recipes.VatRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.capability.IFluidHandler;
 import org.jetbrains.annotations.Nullable;
 
 import net.dries007.tfc.common.TFCTags;
@@ -37,6 +41,7 @@ public class VatBlockEntity extends BoilingBlockEntity<VatBlockEntity.VatInvento
         {
             vat.inventory.setStackInSlot(0, excess.remove(0));
         }
+        vat.handleJarring();
         vat.tickTemperature();
         vat.handleCooking();
     }
@@ -50,6 +55,25 @@ public class VatBlockEntity extends BoilingBlockEntity<VatBlockEntity.VatInvento
         super(FLBlockEntities.VAT.get(), pos, state, VatInventory::new, FLHelpers.blockEntityName("vat"));
 
         sidedInventory.on(new PartialItemHandler(inventory).insert(), Direction.Plane.HORIZONTAL);
+    }
+
+    public void handleJarring()
+    {
+        final FluidStack fluid = inventory.getFluidInTank(0);
+        final ItemStack stack = inventory.getStackInSlot(0);
+        if (fluid.hasTag() && fluid.getTag().contains("fruit", Tag.TAG_COMPOUND) && Helpers.isItem(stack, FLItems.EMPTY_JAR.get()))
+        {
+            final int jars = stack.getCount();
+            final int maxFill = fluid.getAmount() / 500;
+            if (jars <= maxFill && maxFill > 0)
+            {
+                final ItemStack newStack = ItemStack.of(fluid.getTag().getCompound("fruit"));
+                newStack.setCount(jars);
+                inventory.setStackInSlot(0, newStack);
+                inventory.drain(500 * jars, IFluidHandler.FluidAction.EXECUTE);
+                markForSync();
+            }
+        }
     }
 
     public void updateCachedRecipe()

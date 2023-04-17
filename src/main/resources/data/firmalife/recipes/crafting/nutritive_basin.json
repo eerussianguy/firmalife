@@ -3,7 +3,7 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "XYX",
-    "QWQ",
+    "XWX",
     "XZX"
   ],
   "key": {
@@ -12,9 +12,6 @@
     },
     "Y": {
       "item": "minecraft:glass"
-    },
-    "Q": {
-      "tag": "forge:rods/stainless_steel"
     },
     "W": {
       "tag": "tfc:seeds"

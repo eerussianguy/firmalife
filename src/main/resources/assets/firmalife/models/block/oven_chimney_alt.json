@@ -1,0 +1,60 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "block/block",
+	"textures": {
+		"particle": "#cured"
+	},
+	"elements": [
+		{
+			"from": [4, 0, 0],
+			"to": [12, 16, 4],
+			"faces": {
+				"north": {"uv": [0, 0, 8, 16], "texture": "#cured"},
+				"east": {"uv": [0, 0, 4, 16], "texture": "#cured"},
+				"south": {"uv": [0, 0, 8, 16], "texture": "#cured"},
+				"west": {"uv": [0, 0, 4, 16], "texture": "#cured"},
+				"up": {"uv": [0, 12, 8, 16], "texture": "#cured"},
+				"down": {"uv": [0, 0, 8, 4], "texture": "#cured"}
+			}
+		},
+		{
+			"from": [4, 0, 12],
+			"to": [12, 16, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 20]},
+			"faces": {
+				"north": {"uv": [0, 0, 8, 16], "texture": "#cured"},
+				"east": {"uv": [0, 0, 4, 16], "texture": "#cured"},
+				"south": {"uv": [0, 0, 8, 16], "texture": "#cured"},
+				"west": {"uv": [12, 0, 16, 16], "texture": "#cured"},
+				"up": {"uv": [0, 0, 8, 4], "texture": "#cured"},
+				"down": {"uv": [0, 0, 8, 4], "texture": "#cured"}
+			}
+		},
+		{
+			"from": [0, 0, 4],
+			"to": [4, 16, 12],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 20]},
+			"faces": {
+				"north": {"uv": [0, 0, 4, 16], "texture": "#cured"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#cured"},
+				"south": {"uv": [0, 0, 4, 16], "texture": "#cured"},
+				"west": {"uv": [4, 0, 12, 16], "texture": "#cured"},
+				"up": {"uv": [0, 0, 8, 4], "rotation": 90, "texture": "#cured"},
+				"down": {"uv": [0, 0, 8, 4], "rotation": 270, "texture": "#cured"}
+			}
+		},
+		{
+			"from": [12, 0, 4],
+			"to": [16, 16, 12],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 20]},
+			"faces": {
+				"north": {"uv": [0, 0, 4, 16], "texture": "#cured"},
+				"east": {"uv": [0, 0, 8, 16], "texture": "#cured"},
+				"south": {"uv": [0, 0, 4, 16], "texture": "#cured"},
+				"west": {"uv": [4, 0, 12, 16], "texture": "#cured"},
+				"up": {"uv": [0, 0, 8, 4], "rotation": 90, "texture": "#cured"},
+				"down": {"uv": [0, 0, 8, 4], "rotation": 270, "texture": "#cured"}
+			}
+		}
+	]
+}

@@ -2,6 +2,10 @@
   "__comment__": "This file was automatically created by mcresources",
   "replace": false,
   "values": [
+    "firmalife:brick_countertop",
+    "firmalife:rustic_countertop",
+    "firmalife:tile_countertop",
+    "firmalife:stone_countertop",
     "firmalife:ashtray",
     "firmalife:rusted_iron_greenhouse_roof_top",
     "firmalife:rusted_iron_greenhouse_roof",
@@ -110,6 +114,8 @@
     "firmalife:ore/rich_chromite/marble",
     "firmalife:sealed_bricks",
     "firmalife:embedded_pipe",
+    "firmalife:tiles",
+    "firmalife:rustic_bricks",
     "#firmalife:oven_blocks"
   ]
 }

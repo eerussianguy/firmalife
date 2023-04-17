@@ -2,19 +2,29 @@ package com.eerussianguy.firmalife.client;
 
 import java.util.Random;
 
+import com.eerussianguy.firmalife.common.FLHelpers;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.Vec3;
 
-import net.dries007.tfc.util.Helpers;
 import org.jetbrains.annotations.Nullable;
 
 public final class FLClientHelpers
 {
+    public static ModelLayerLocation modelIdentifier(String name, String part)
+    {
+        return new ModelLayerLocation(FLHelpers.identifier(name), part);
+    }
+
+    public static ModelLayerLocation modelIdentifier(String name)
+    {
+        return modelIdentifier(name, "main");
+    }
+
     public static void randomParticle(ParticleOptions particle, Random random, BlockPos pos, Level level, float ySpeed)
     {
         final double x = pos.getX() + Mth.nextFloat(random, 0.125f, 0.875f);

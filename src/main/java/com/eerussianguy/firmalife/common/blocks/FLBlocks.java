@@ -34,6 +34,7 @@ import com.eerussianguy.firmalife.common.items.FLItems;
 import com.eerussianguy.firmalife.common.items.JarsBlockItem;
 import com.eerussianguy.firmalife.common.util.*;
 import net.dries007.tfc.common.TFCItemGroup;
+import net.dries007.tfc.common.blocks.DecorationBlockRegistryObject;
 import net.dries007.tfc.common.blocks.ExtendedBlock;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.GroundcoverBlock;
@@ -42,7 +43,7 @@ import net.dries007.tfc.common.blocks.devices.JackOLanternBlock;
 import net.dries007.tfc.common.blocks.plant.PlantBlock;
 import net.dries007.tfc.common.blocks.rock.Ore;
 import net.dries007.tfc.common.blocks.rock.Rock;
-import net.dries007.tfc.common.blocks.wood.TFCTrapDoorBlock;
+import net.dries007.tfc.common.blocks.soil.SoilBlockType;
 import net.dries007.tfc.common.blocks.wood.Wood;
 import net.dries007.tfc.common.items.Food;
 import net.dries007.tfc.common.items.TFCItems;
@@ -56,15 +57,30 @@ public class FLBlocks
 {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, FirmaLife.MOD_ID);
 
-    public static final RegistryObject<Block> CURED_OVEN_BOTTOM = register("cured_oven_bottom", () -> new OvenBottomBlock(ExtendedProperties.of(Material.STONE).strength(4.0f).randomTicks().lightLevel(FLBlocks::lightEmission).sound(SoundType.STONE).noOcclusion().blockEntity(FLBlockEntities.OVEN_BOTTOM).serverTicks(OvenBottomBlockEntity::serverTick), null), DECORATIONS);
-    public static final RegistryObject<Block> CURED_OVEN_TOP = register("cured_oven_top", () -> new OvenTopBlock(ExtendedProperties.of(Material.STONE).strength(4.0f).randomTicks().sound(SoundType.STONE).noOcclusion().blockEntity(FLBlockEntities.OVEN_TOP).serverTicks(OvenTopBlockEntity::serverTick), null), DECORATIONS);
-    public static final RegistryObject<Block> CURED_OVEN_CHIMNEY = register("cured_oven_chimney", () -> new OvenChimneyBlock(Properties.of(Material.STONE).strength(4.0f).sound(SoundType.STONE).noOcclusion(), null), DECORATIONS);
-    public static final RegistryObject<Block> CURED_OVEN_HOPPER = register("cured_oven_hopper", () -> new OvenHopperBlock(ExtendedProperties.of(Material.STONE).strength(4.0f).sound(SoundType.STONE).blockEntity(FLBlockEntities.OVEN_HOPPER).serverTicks(OvenHopperBlockEntity::serverTick), null), DECORATIONS);
+    public static final Map<OvenType, RegistryObject<Block>> INSULATED_OVEN_BOTTOM = Helpers.mapOfKeys(OvenType.class, type -> register("insulated_" + type.getName() + "oven_bottom", () -> new InsulatedOvenBottomBlock(ExtendedProperties.of(Material.STONE).strength(4.0f).randomTicks().lightLevel(FLBlocks::lightEmission).sound(SoundType.STONE).noOcclusion().blockEntity(FLBlockEntities.OVEN_BOTTOM).serverTicks(OvenBottomBlockEntity::serverTick), null), DECORATIONS));
+    public static final Map<OvenType, RegistryObject<Block>> CURED_OVEN_BOTTOM = Helpers.mapOfKeys(OvenType.class, type -> register("cured_" + type.getName() + "oven_bottom", () -> new OvenBottomBlock(ExtendedProperties.of(Material.STONE).strength(4.0f).randomTicks().lightLevel(FLBlocks::lightEmission).sound(SoundType.STONE).noOcclusion().blockEntity(FLBlockEntities.OVEN_BOTTOM).serverTicks(OvenBottomBlockEntity::serverTick), null, INSULATED_OVEN_BOTTOM.get(type)), DECORATIONS));
+    public static final Map<OvenType, RegistryObject<Block>> CURED_OVEN_TOP = Helpers.mapOfKeys(OvenType.class, type -> register("cured_" + type.getName() + "oven_top", () -> new OvenTopBlock(ExtendedProperties.of(Material.STONE).strength(4.0f).randomTicks().sound(SoundType.STONE).noOcclusion().blockEntity(FLBlockEntities.OVEN_TOP).serverTicks(OvenTopBlockEntity::serverTick), null), DECORATIONS));
+    public static final Map<OvenType, RegistryObject<Block>> CURED_OVEN_CHIMNEY = Helpers.mapOfKeys(OvenType.class, type -> register("cured_" + type.getName() + "oven_chimney", () -> new OvenChimneyBlock(Properties.of(Material.STONE).strength(4.0f).sound(SoundType.STONE).noOcclusion(), null), DECORATIONS));
+    public static final Map<OvenType, RegistryObject<Block>> CURED_OVEN_HOPPER = Helpers.mapOfKeys(OvenType.class, type -> register("cured_" + type.getName() + "oven_hopper", () -> new OvenHopperBlock(ExtendedProperties.of(Material.STONE).strength(4.0f).sound(SoundType.STONE).blockEntity(FLBlockEntities.OVEN_HOPPER).serverTicks(OvenHopperBlockEntity::serverTick), null), DECORATIONS));
+    public static final Map<OvenType, RegistryObject<Block>> OVEN_COUNTERTOP = Helpers.mapOfKeys(OvenType.class, type -> register(type.getTrueName() + "_countertop", () -> new Block(Properties.of(Material.STONE).strength(4.0f).sound(SoundType.STONE)), DECORATIONS));
 
-    public static final RegistryObject<Block> OVEN_BOTTOM = register("oven_bottom", () -> new OvenBottomBlock(ExtendedProperties.of(Material.STONE).strength(4.0f).randomTicks().lightLevel(FLBlocks::lightEmission).sound(SoundType.STONE).noOcclusion().blockEntity(FLBlockEntities.OVEN_BOTTOM).serverTicks(OvenBottomBlockEntity::serverTick), FLBlocks.CURED_OVEN_BOTTOM), DECORATIONS);
-    public static final RegistryObject<Block> OVEN_TOP = register("oven_top", () -> new OvenTopBlock(ExtendedProperties.of(Material.STONE).strength(4.0f).randomTicks().sound(SoundType.STONE).noOcclusion().blockEntity(FLBlockEntities.OVEN_TOP).serverTicks(OvenTopBlockEntity::serverTick), FLBlocks.CURED_OVEN_TOP), DECORATIONS);
-    public static final RegistryObject<Block> OVEN_CHIMNEY = register("oven_chimney", () -> new OvenChimneyBlock(Properties.of(Material.STONE).strength(4.0f).sound(SoundType.STONE).noOcclusion(), FLBlocks.CURED_OVEN_CHIMNEY), DECORATIONS);
-    public static final RegistryObject<Block> OVEN_HOPPER = register("oven_hopper", () -> new OvenHopperBlock(ExtendedProperties.of(Material.STONE).strength(4.0f).sound(SoundType.STONE).blockEntity(FLBlockEntities.OVEN_HOPPER), FLBlocks.CURED_OVEN_HOPPER), DECORATIONS);
+    public static final RegistryObject<Block> OVEN_BOTTOM = register("oven_bottom", () -> new OvenBottomBlock(ExtendedProperties.of(Material.STONE).strength(4.0f).randomTicks().lightLevel(FLBlocks::lightEmission).sound(SoundType.STONE).noOcclusion().blockEntity(FLBlockEntities.OVEN_BOTTOM).serverTicks(OvenBottomBlockEntity::serverTick), FLBlocks.CURED_OVEN_BOTTOM.get(OvenType.BRICK)), DECORATIONS);
+    public static final RegistryObject<Block> OVEN_TOP = register("oven_top", () -> new OvenTopBlock(ExtendedProperties.of(Material.STONE).strength(4.0f).randomTicks().sound(SoundType.STONE).noOcclusion().blockEntity(FLBlockEntities.OVEN_TOP).serverTicks(OvenTopBlockEntity::serverTick), FLBlocks.CURED_OVEN_TOP.get(OvenType.BRICK)), DECORATIONS);
+    public static final RegistryObject<Block> OVEN_CHIMNEY = register("oven_chimney", () -> new OvenChimneyBlock(Properties.of(Material.STONE).strength(4.0f).sound(SoundType.STONE).noOcclusion(), FLBlocks.CURED_OVEN_CHIMNEY.get(OvenType.BRICK)), DECORATIONS);
+    public static final RegistryObject<Block> OVEN_HOPPER = register("oven_hopper", () -> new OvenHopperBlock(ExtendedProperties.of(Material.STONE).strength(4.0f).sound(SoundType.STONE).blockEntity(FLBlockEntities.OVEN_HOPPER), FLBlocks.CURED_OVEN_HOPPER.get(OvenType.BRICK)), DECORATIONS);
+
+    public static final RegistryObject<Block> RUSTIC_BRICKS = register("rustic_bricks", () -> new Block(Properties.of(Material.STONE).sound(SoundType.STONE).strength(2.0f, 10).requiresCorrectToolForDrops()), DECORATIONS);
+    public static final DecorationBlockRegistryObject RUSTIC_BRICK_DECOR = new DecorationBlockRegistryObject(
+        register("rustic_bricks_slab", () -> new SlabBlock(brickProperties()), DECORATIONS),
+        register("rustic_bricks_stairs", () -> new StairBlock(() -> RUSTIC_BRICKS.get().defaultBlockState(), brickProperties()), DECORATIONS),
+        register("rustic_bricks_wall", () -> new WallBlock(SoilBlockType.mudBrickProperties()), DECORATIONS)
+    );
+    public static final RegistryObject<Block> TILES = register("tiles", () -> new Block(Properties.of(Material.STONE).sound(SoundType.STONE).strength(2.0f, 10).requiresCorrectToolForDrops()), DECORATIONS);
+    public static final DecorationBlockRegistryObject TILE_DECOR = new DecorationBlockRegistryObject(
+        register("tiles_slab", () -> new SlabBlock(brickProperties()), DECORATIONS),
+        register("tiles_stairs", () -> new StairBlock(() -> RUSTIC_BRICKS.get().defaultBlockState(), brickProperties()), DECORATIONS),
+        register("tiles_wall", () -> new WallBlock(SoilBlockType.mudBrickProperties()), DECORATIONS)
+    );
 
     public static final RegistryObject<Block> ASHTRAY = register("ashtray", () -> new AshtrayBlock(ExtendedProperties.of(Material.METAL).sound(SoundType.METAL).strength(2f).randomTicks().blockEntity(FLBlockEntities.ASHTRAY)), DECORATIONS);
     public static final RegistryObject<Block> STOVETOP_GRILL = register("stovetop_grill", () -> new StovetopGrillBlock(ExtendedProperties.of(Material.METAL).sound(SoundType.METAL).strength(2f).blockEntity(FLBlockEntities.STOVETOP_GRILL).serverTicks(StovetopGrillBlockEntity::serverTick).noOcclusion()));
@@ -77,6 +93,7 @@ public class FLBlocks
     public static final RegistryObject<Block> MIXING_BOWL = register("mixing_bowl", () -> new MixingBowlBlock(ExtendedProperties.of(Material.DIRT).sound(SoundType.STONE).strength(1f).noOcclusion().blockEntity(FLBlockEntities.MIXING_BOWL).ticks(MixingBowlBlockEntity::serverTick, MixingBowlBlockEntity::clientTick)), DECORATIONS);
     public static final RegistryObject<Block> VAT = register("vat", () -> new VatBlock(ExtendedProperties.of(Material.METAL).sound(SoundType.METAL).strength(1f).noOcclusion().blockEntity(FLBlockEntities.VAT).serverTicks(VatBlockEntity::serverTick)), DECORATIONS);
     public static final RegistryObject<Block> ICE_FISHING_STATION = register("ice_fishing_station", () -> new IceFishingStationBlock(ExtendedProperties.of(Material.WOOD).sound(SoundType.WOOD).strength(1f).blockEntity(FLBlockEntities.ICE_FISHING_STATION).ticks(IceFishingStationBlockEntity::serverTick, IceFishingStationBlockEntity::clientTick)), DECORATIONS);
+    public static final RegistryObject<Block> JARRING_STATION = register("jarring_station", () -> new JarringStationBlock(ExtendedProperties.of(Material.METAL).sound(SoundType.METAL).strength(1f).noOcclusion().blockEntity(FLBlockEntities.JARRING_STATION).ticks(JarringStationBlockEntity::tick)), DECORATIONS);
 
     public static final RegistryObject<Block> HONEY_JAR = register("honey_jar", () -> new JarsBlock(jarProperties()), b -> new JarsBlockItem(b, new Item.Properties().tab(MISC)));
     public static final RegistryObject<Block> COMPOST_JAR = register("compost_jar", () -> new JarsBlock(jarProperties()), b -> new JarsBlockItem(b, new Item.Properties().tab(MISC)));
@@ -167,6 +184,11 @@ public class FLBlocks
         FRUIT_TREE_POTTED_SAPLINGS.forEach((plant, reg) -> pot.addPlant(FRUIT_TREE_SAPLINGS.get(plant).getId(), reg));
         POTTED_HERBS.forEach((herb, reg) -> pot.addPlant(HERBS.get(herb).getId(), reg));
         pot.addPlant(BUTTERFLY_GRASS.getId(), POTTED_BUTTERFLY_GRASS);
+    }
+
+    public static Properties brickProperties()
+    {
+        return Properties.of(Material.STONE).sound(SoundType.STONE).strength(2.0f, 10).requiresCorrectToolForDrops();
     }
 
     public static ExtendedProperties shelfProperties()

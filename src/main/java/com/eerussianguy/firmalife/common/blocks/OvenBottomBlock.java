@@ -3,9 +3,11 @@ package com.eerussianguy.firmalife.common.blocks;
 import java.util.Random;
 import java.util.function.Supplier;
 
+import com.eerussianguy.firmalife.common.items.FLItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -29,6 +31,7 @@ import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.devices.IBellowsConsumer;
 import net.dries007.tfc.util.Helpers;
 
+import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -39,17 +42,24 @@ public class OvenBottomBlock extends AbstractOvenBlock implements IBellowsConsum
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
     public static final IntegerProperty LOGS = FLStateProperties.LOGS;
 
-    public static final VoxelShape[] SHAPES = Helpers.computeHorizontalShapes(d -> Shapes.or(
-        Helpers.rotateShape(d, 1, 0, 0, 15, 4, 15),
-        Helpers.rotateShape(d, 1, 11, 0, 15, 16, 15),
-        Helpers.rotateShape(d, 0, 0, 0, 1, 16, 16),
-        Helpers.rotateShape(d, 15, 0, 0, 16, 16, 16),
-        Helpers.rotateShape(d, 1, 0, 15, 15, 16, 16)
+    public static final VoxelShape[] SHAPES = Helpers.computeHorizontalShapes(d -> Shapes.join(
+        Shapes.block(),
+        Helpers.rotateShape(d, 4, 0, 0, 12, 11, 15),
+        BooleanOp.ONLY_FIRST
     ));
+
+    @Nullable
+    private final Supplier<? extends Block> insulated;
 
     public OvenBottomBlock(ExtendedProperties properties, @Nullable Supplier<? extends Block> curedBlock)
     {
+        this(properties, curedBlock, null);
+    }
+
+    public OvenBottomBlock(ExtendedProperties properties, @Nullable Supplier<? extends Block> curedBlock, @Nullable Supplier<? extends Block> insulated)
+    {
         super(properties, curedBlock);
+        this.insulated = insulated;
         registerDefaultState(getStateDefinition().any().setValue(LOGS, 0).setValue(FACING, Direction.NORTH).setValue(LIT, false).setValue(HAS_CHIMNEY, false));
     }
 
@@ -58,7 +68,7 @@ public class OvenBottomBlock extends AbstractOvenBlock implements IBellowsConsum
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
     {
         final ItemStack item = player.getItemInHand(hand);
-        if (!item.isEmpty() && item.is(TFCTags.Items.FIREPIT_FUEL))
+        if (!item.isEmpty() && Helpers.isItem(item, TFCTags.Items.FIREPIT_FUEL))
         {
             final var res1 = FLHelpers.consumeInventory(level, pos, FLBlockEntities.OVEN_BOTTOM, (oven, inv) -> {
                 if (inv.getStackInSlot(OvenBottomBlockEntity.SLOT_FUEL_MAX).isEmpty())
@@ -69,6 +79,13 @@ public class OvenBottomBlock extends AbstractOvenBlock implements IBellowsConsum
                 return InteractionResult.SUCCESS;
             });
             return res1 == InteractionResult.PASS ? InteractionResult.SUCCESS : res1;
+        }
+        else if (Helpers.isItem(item, FLItems.OVEN_INSULATION.get()) && insulated != null)
+        {
+            item.shrink(1);
+            level.setBlockAndUpdate(pos, Helpers.copyProperties(insulated.get().defaultBlockState(), state));
+            Helpers.playSound(level, pos, SoundEvents.METAL_PLACE);
+            return InteractionResult.sidedSuccess(level.isClientSide);
         }
         return InteractionResult.PASS;
     }
@@ -102,14 +119,14 @@ public class OvenBottomBlock extends AbstractOvenBlock implements IBellowsConsum
     @SuppressWarnings("deprecation")
     public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos)
     {
-        return state.getValue(LIT) && !insulated(level, currentPos, state) ? state.setValue(LIT, false) : state;
+        return state.getValue(LIT) && !isInsulated(level, currentPos, state) ? state.setValue(LIT, false) : state;
     }
 
     @Override
     @SuppressWarnings("deprecation")
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, Random rand)
     {
-        if (state.getValue(LIT) && !insulated(level, pos, state))
+        if (state.getValue(LIT) && !isInsulated(level, pos, state))
         {
             level.setBlockAndUpdate(pos, state.setValue(LIT, false));
         }

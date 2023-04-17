@@ -66,6 +66,5 @@
 				"down": {"uv": [0, 0, 16, 1], "texture": "#log"}
 			}
 		}
-	],
-	"__comment__": "This file was automatically created by mcresources"
+	]
 }

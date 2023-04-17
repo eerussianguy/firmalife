@@ -14,7 +14,9 @@ public enum ExtraFluid implements StringRepresentable
     CURDLED_GOAT_MILK(0xFFeeeed9),
     CREAM(0xFFFCF6C7),
     PINA_COLADA(0xFFE4C06A),
-    CHOCOLATE(0xFF875633);
+    CHOCOLATE(0xFF875633),
+    SUGAR_WATER(0xFF99EEFF),
+    FRUITY_FLUID(0xFFFF6619);
 
     private final String id;
     private final int color;

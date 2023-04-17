@@ -3,6 +3,7 @@ package com.eerussianguy.firmalife.common.blocks;
 import java.util.Random;
 import java.util.function.Supplier;
 
+import com.eerussianguy.firmalife.common.items.FinishItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -26,6 +27,7 @@ import com.eerussianguy.firmalife.config.FLConfig;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.util.Helpers;
 
+import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -33,18 +35,11 @@ import org.jetbrains.annotations.Nullable;
 
 public class OvenTopBlock extends AbstractOvenBlock
 {
-    public static final VoxelShape[] SHAPES = Helpers.computeHorizontalShapes(d -> Shapes.or(
-        Helpers.rotateShape(d, 1, 0, 0, 15, 1, 15),
-        Helpers.rotateShape(d, 1, 11, 0, 15, 16, 15),
-        Helpers.rotateShape(d, 10, 10, 0, 15, 11, 15),
-        Helpers.rotateShape(d, 1, 10, 0, 6, 11, 15),
-        Helpers.rotateShape(d, 1, 9, 0, 4, 10, 15),
-        Helpers.rotateShape(d, 12, 9, 0, 15, 10, 15),
-        Helpers.rotateShape(d, 0, 0, 0, 1, 16, 16),
-        Helpers.rotateShape(d, 15, 0, 0, 16, 16, 16),
-        Helpers.rotateShape(d, 1, 0, 15, 15, 16, 16)
+    public static final VoxelShape[] SHAPES = Helpers.computeHorizontalShapes(d -> Shapes.join(
+        Shapes.block(),
+        Helpers.rotateShape(d, 2, 0, 0, 14, 11, 15),
+        BooleanOp.ONLY_FIRST
     ));
-
 
     public OvenTopBlock(ExtendedProperties properties, @Nullable Supplier<? extends Block> curedBlock)
     {
@@ -64,6 +59,7 @@ public class OvenTopBlock extends AbstractOvenBlock
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
     {
         final ItemStack item = player.getItemInHand(hand);
+        if (item.getItem() instanceof FinishItem) return InteractionResult.PASS;
         return FLHelpers.consumeInventory(level, pos, FLBlockEntities.OVEN_TOP, (oven, inv) -> {
             final boolean peel = Helpers.isItem(item, FLTags.Items.USABLE_ON_OVEN);
             if (peel || (item.isEmpty() && player.isShiftKeyDown()))
@@ -80,6 +76,13 @@ public class OvenTopBlock extends AbstractOvenBlock
             }
             return InteractionResult.PASS;
         });
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public int getLightBlock(BlockState state, BlockGetter level, BlockPos pos)
+    {
+        return level.getBlockState(pos.below()).getBlock() instanceof OvenBottomBlock ? 0 : super.getLightBlock(state, level, pos);
     }
 
     @Override
@@ -117,7 +120,7 @@ public class OvenTopBlock extends AbstractOvenBlock
 
     private void extinguish(LevelAccessor level, BlockPos pos, BlockState state)
     {
-        if (!insulated(level, pos, state))
+        if (!isInsulated(level, pos, state))
         {
             level.getBlockEntity(pos, FLBlockEntities.OVEN_TOP.get()).ifPresent(OvenTopBlockEntity::extinguish);
         }

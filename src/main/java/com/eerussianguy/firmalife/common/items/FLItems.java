@@ -5,6 +5,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.function.Supplier;
 
+import com.eerussianguy.firmalife.common.blocks.OvenType;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
@@ -43,7 +44,8 @@ public class FLItems
     public static final RegistryObject<Item> FRUIT_LEAF = register("fruit_leaf", MISC);
     public static final RegistryObject<Item> EMPTY_JAR = register("empty_jar", MISC);
     public static final RegistryObject<Item> HOLLOW_SHELL = register("hollow_shell",  () -> new HollowShellItem(prop(), FLConfig.SERVER.hollowShellCapacity, FLTags.Fluids.USABLE_IN_HOLLOW_SHELL, false, false));
-    public static final RegistryObject<Item> PEEL = register("peel", MISC);
+    public static final RegistryObject<Item> OVEN_INSULATION = register("oven_insulation", () -> new PeelItem(prop()));
+    public static final RegistryObject<Item> PEEL = register("peel", () -> new PeelItem(prop()));
     public static final RegistryObject<Item> PIE_PAN = register("pie_pan", MISC);
     public static final RegistryObject<Item> PINEAPPLE_FIBER = register("pineapple_fiber", MISC);
     public static final RegistryObject<Item> PINEAPPLE_LEATHER = register("pineapple_leather", MISC);
@@ -58,6 +60,7 @@ public class FLItems
     public static final Map<Spice, RegistryObject<Item>> SPICES = Helpers.mapOfKeys(Spice.class, spice -> register("spice/" + spice.name(), MISC));
     public static final Map<FLFood, RegistryObject<Item>> FOODS = Helpers.mapOfKeys(FLFood.class, food -> register("food/" + food.name(), () -> new DecayingContainerItem(new Item.Properties().food(food.getFoodProperties()).tab(FOOD))));
     public static final Map<FLFruit, RegistryObject<Item>> FRUITS = Helpers.mapOfKeys(FLFruit.class, food -> register("food/" + food.name(), () -> new DecayingItem(new Item.Properties().food(food.getFoodProperties()).tab(FOOD))));
+    public static final Map<OvenType, RegistryObject<Item>> FINISHES = Helpers.mapOfKeys(OvenType.class, type -> type != OvenType.BRICK, type -> register(type.getTrueName() + "_finish", () -> new FinishItem(prop(), type)));
 
     public static final RegistryObject<DynamicBowlFood> FILLED_PIE = registerContainerFood("food/filled_pie", false);
     public static final RegistryObject<DynamicBowlFood> COOKED_PIE = registerContainerFood("food/cooked_pie");

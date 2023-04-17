@@ -1,0 +1,15 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "firmalife:sealed_bricks"
+    },
+    {
+      "tag": "tfc:chisels"
+    }
+  ],
+  "result": {
+    "item": "firmalife:stone_countertop"
+  }
+}

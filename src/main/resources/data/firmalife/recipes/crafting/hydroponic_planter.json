@@ -14,11 +14,11 @@
       "item": "firmalife:treated_lumber"
     },
     "Z": {
-      "item": "tfc:wrought_iron_grill"
+      "tag": "forge:ingots/wrought_iron"
     }
   },
   "result": {
     "item": "firmalife:hydroponic_planter",
-    "count": 3
+    "count": 2
   }
 }

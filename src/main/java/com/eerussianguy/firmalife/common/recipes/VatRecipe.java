@@ -2,6 +2,7 @@ package com.eerussianguy.firmalife.common.recipes;
 
 import com.eerussianguy.firmalife.common.blockentities.VatBlockEntity;
 import com.google.gson.JsonObject;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -29,8 +30,9 @@ public class VatRecipe implements ISimpleRecipe<VatBlockEntity.VatInventory>
     private final FluidStack outputFluid;
     private final int length;
     private final float temperature;
+    private final ItemStack jarOutput;
 
-    public VatRecipe(ResourceLocation id, ItemStackIngredient ingredient, FluidStackIngredient fluidInput, ItemStackProvider output, FluidStack outputFluid, int length, float temperature)
+    public VatRecipe(ResourceLocation id, ItemStackIngredient ingredient, FluidStackIngredient fluidInput, ItemStackProvider output, FluidStack outputFluid, int length, float temperature, ItemStack jarOutput)
     {
         this.id = id;
         this.inputItem = ingredient;
@@ -39,6 +41,7 @@ public class VatRecipe implements ISimpleRecipe<VatBlockEntity.VatInventory>
         this.outputFluid = outputFluid;
         this.length = length;
         this.temperature = temperature;
+        this.jarOutput = jarOutput;
     }
 
     public void assembleOutputs(VatBlockEntity.VatInventory inventory)
@@ -113,6 +116,13 @@ public class VatRecipe implements ISimpleRecipe<VatBlockEntity.VatInventory>
             outputFluid.setAmount(Math.min(VatBlockEntity.CAPACITY, amount));
             inventory.fill(outputFluid, IFluidHandler.FluidAction.EXECUTE);
         }
+        final FluidStack current = inventory.getFluidInTank(0);
+        if (!current.isEmpty() && !jarOutput.isEmpty())
+        {
+            final CompoundTag tag = new CompoundTag();
+            tag.put("fruit", jarOutput.save(new CompoundTag()));
+            current.setTag(tag);
+        }
     }
 
     @Override
@@ -180,6 +190,11 @@ public class VatRecipe implements ISimpleRecipe<VatBlockEntity.VatInventory>
         return temperature;
     }
 
+    public ItemStack getJarOutput()
+    {
+        return jarOutput;
+    }
+
     public static class Serializer extends RecipeSerializerImpl<VatRecipe>
     {
         @Override
@@ -192,7 +207,8 @@ public class VatRecipe implements ISimpleRecipe<VatBlockEntity.VatInventory>
                 json.has("output_item") ? ItemStackProvider.fromJson(json.getAsJsonObject("output_item")) : ItemStackProvider.empty(),
                 json.has("output_fluid") ? JsonHelpers.getFluidStack(json, "output_fluid") : FluidStack.EMPTY,
                 JsonHelpers.getAsInt(json, "length", 600),
-                JsonHelpers.getAsFloat(json, "temperature", 300f)
+                JsonHelpers.getAsFloat(json, "temperature", 300f),
+                json.has("jar") ? JsonHelpers.getItemStack(json, "jar") : ItemStack.EMPTY
             );
         }
 
@@ -206,7 +222,8 @@ public class VatRecipe implements ISimpleRecipe<VatBlockEntity.VatInventory>
             final FluidStack outputFluid = buffer.readFluidStack();
             final int length = buffer.readVarInt();
             final float temp = buffer.readFloat();
-            return new VatRecipe(id, ingredient, fluidIngredient, output, outputFluid, length, temp);
+            final ItemStack jar = buffer.readItem();
+            return new VatRecipe(id, ingredient, fluidIngredient, output, outputFluid, length, temp, jar);
         }
 
         @Override
@@ -218,6 +235,7 @@ public class VatRecipe implements ISimpleRecipe<VatBlockEntity.VatInventory>
             buffer.writeFluidStack(recipe.outputFluid);
             buffer.writeVarInt(recipe.length);
             buffer.writeFloat(recipe.temperature);
+            buffer.writeItem(recipe.jarOutput);
         }
     }
 }
