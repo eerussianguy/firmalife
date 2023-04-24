@@ -71,13 +71,13 @@ public class JarringStationBlockEntityRenderer implements BlockEntityRenderer<Ja
                 poseStack.popPose();
             }
         });
-        if (station.getPourTicks() > 0)
-        {
-            poseStack.pushPose();
-            final FluidStack fs = new FluidStack(FLFluids.EXTRA_FLUIDS.get(ExtraFluid.FRUITY_FLUID).getSource(), 100);
-
-            RenderHelpers.renderFluidFace(poseStack, fs, buffers, 1f / 16, 1f / 16, 15f / 16, 15f / 16, 11.5f / 16, combinedOverlay, combinedLight);
-            poseStack.popPose();
-        }
+//        if (station.getPourTicks() > 0)
+//        {
+//            poseStack.pushPose();
+//            final FluidStack fs = new FluidStack(FLFluids.EXTRA_FLUIDS.get(ExtraFluid.FRUITY_FLUID).getSource(), 100);
+//
+//            RenderHelpers.renderFluidFace(poseStack, fs, buffers, 1f / 16, 1f / 16, 15f / 16, 15f / 16, 11.5f / 16, combinedOverlay, combinedLight);
+//            poseStack.popPose();
+//        }
     }
 }
