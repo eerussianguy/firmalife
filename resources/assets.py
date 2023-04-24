@@ -69,6 +69,9 @@ def generate(rm: ResourceManager):
     block = rm.blockstate('ice_fishing_station', variants={**four_rotations('firmalife:block/ice_fishing_station', (90, None, 180, 270))})
     block.with_block_loot('firmalife:ice_fishing_station').with_item_model().with_lang(lang('ice fishing station')).with_tag('minecraft:mineable/axe')
 
+    block = rm.blockstate('jarring_station', variants={**four_rotations('firmalife:block/jarring_station', (90, None, 180, 270))})
+    block.with_block_loot('firmalife:jarring_station').with_item_model().with_lang(lang('jarring station')).with_tag('minecraft:mineable/pickaxe')
+
     rm.blockstate('drying_mat', model='firmalife:block/drying_mat').with_item_model().with_tag('tfc:mineable_with_sharp_tool').with_lang(lang('drying mat')).with_block_loot('firmalife:drying_mat')
     rm.blockstate('solar_drier', model='firmalife:block/solar_drier').with_item_model().with_tag('minecraft:mineable/axe').with_lang(lang('solar drier')).with_block_loot('firmalife:solar_drier')
     rm.blockstate('hollow_shell', model='firmalife:block/hollow_shell').with_lang(lang('hollow shell')).with_block_loot('firmalife:hollow_shell')
@@ -210,12 +213,12 @@ def generate(rm: ResourceManager):
             rm.item_model('firmalife:%s' % name, parent='firmalife:block/%s' % name, no_textures=True)
 
     for var in ('rustic_bricks', 'tiles'):
-        block = rm.block(var).make_slab().make_stairs().make_wall()
+        block = rm.block(var).make_slab().make_stairs().make_wall().with_tag('firmalife:oven_blocks')
         slab_loot(rm.block(var + '_slab'), 'firmalife:%s_slab' % var)
         rm.block_loot('firmalife:%s_stairs' % var, 'firmalife:%s_stairs' % var)
         rm.block_loot('firmalife:%s_wall' % var, 'firmalife:%s_wall' % var)
         for extra in ('_slab', '_stairs', '_wall'):
-            rm.block('firmalife:%s%s' % (var, extra)).with_lang(lang('%s%s', var.replace('bricks', 'brick').replace('tiles', 'tile'), extra))
+            rm.block('firmalife:%s%s' % (var, extra)).with_lang(lang('%s%s', var.replace('bricks', 'brick').replace('tiles', 'tile'), extra)).with_tag('firmalife:oven_blocks')
 
     for variant in ('gold', 'red', 'purple'):
         rm.block_model('plant/butterfly_grass_%s' % variant, parent='firmalife:block/tinted_cross_overlay', textures={'cross': 'firmalife:block/plant/butterfly_grass/base', 'overlay': 'firmalife:block/plant/butterfly_grass/%s' % variant})

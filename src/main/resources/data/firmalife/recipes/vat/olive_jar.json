@@ -1,0 +1,24 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "firmalife:vat",
+  "input_item": {
+    "ingredient": {
+      "type": "tfc:lacks_trait",
+      "trait": "firmalife:dried",
+      "ingredient": {
+        "item": "tfc:food/olive"
+      }
+    }
+  },
+  "input_fluid": {
+    "ingredient": "firmalife:sugar_water",
+    "amount": 500
+  },
+  "output_fluid": {
+    "fluid": "firmalife:fruity_fluid",
+    "amount": 500
+  },
+  "jar": {
+    "item": "firmalife:olive_jar"
+  }
+}

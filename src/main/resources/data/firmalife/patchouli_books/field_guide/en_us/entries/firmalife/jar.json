@@ -79,6 +79,15 @@
       "type": "patchouli:text",
       "text": "$(li)Fruit Preserves$()$(li)Guano Jar$()$(li)Honey Jar$()$(li)Rotten Compost Jar$()$(li)Compost Jar$()",
       "title": "Jar Types"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Using the $(l:firmalife:firmalife/oven_appliances#vat)Vat$(), $(thing)Sugar Water$() can be made by adding sweetener to water. Then, adding fruit causes $(thing)Fruity Fluid$() to be made. Putting a jar in the vat can then fill it. Be careful: trying to pipe or transport fruity fluid through too many transfers could ruin it!"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/jarring_station",
+      "text": "The $(thing)Jarring Station$(), if placed with its spout facing a vat of $(thing)Fruity Fluid$(), will automatically fill up to 9 jars placed inside."
     }
   ],
   "read_by_default": true,

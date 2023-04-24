@@ -1,5 +1,6 @@
 package com.eerussianguy.firmalife.common.recipes;
 
+import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.VatBlockEntity;
 import com.google.gson.JsonObject;
 import net.minecraft.nbt.CompoundTag;

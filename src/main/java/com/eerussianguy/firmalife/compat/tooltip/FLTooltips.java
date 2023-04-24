@@ -50,6 +50,7 @@ public final class FLTooltips
             r.accept(SHELF_OR_HANGER, HangerBlock.class);
             r.accept(VAT, VatBlock.class);
             r.accept(FRUIT_TREE_SAPLING, FLFruitTreeSaplingBlock.class);
+            r.accept(JARBNET, JarbnetBlock.class);
         }
 
         public static final BlockEntityTooltip VAT = (level, state, pos, entity, tooltip) -> {
@@ -192,6 +193,13 @@ public final class FLTooltips
             if (entity instanceof TickCounterBlockEntity counter && state.getBlock() instanceof FruitTreeSaplingBlock sapling)
             {
                 timeLeft(level, tooltip, (long) (sapling.getTreeGrowthDays() * ICalendar.TICKS_IN_DAY * TFCConfig.SERVER.globalFruitSaplingGrowthModifier.get()) - counter.getTicksSinceUpdate(), Helpers.translatable("tfc.jade.ready_to_grow"));
+            }
+        };
+
+        public static final BlockEntityTooltip JARBNET = (level, state, pos, entity, tooltip) -> {
+            if (entity instanceof JarbnetBlockEntity counter && state.getValue(JarbnetBlock.LIT))
+            {
+                timeLeft(level, tooltip, TFCConfig.SERVER.candleTicks.get() - counter.getTicksSinceUpdate());
             }
         };
 

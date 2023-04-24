@@ -20,6 +20,7 @@
     },
     {
       "type": "patchouli:crafting",
+      "anchor": "vat",
       "recipe": "firmalife:crafting/vat",
       "text": "The $(thing)Vat$() produces some select boiling recipes in bulk. It has one slot for items, and 10,000mB of fluid space, similar to a barrel."
     },

@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 import com.eerussianguy.firmalife.client.model.PeelModel;
 import com.eerussianguy.firmalife.client.screen.StovetopGrillScreen;
 import com.eerussianguy.firmalife.client.screen.StovetopPotScreen;
+import com.eerussianguy.firmalife.common.blockentities.JarringStationBlockEntity;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.block.BlockColor;
@@ -72,7 +73,7 @@ public class FLClientEvents
             FLBlocks.IRON_COMPOSTER, FLBlocks.COMPOST_JAR, FLBlocks.HONEY_JAR, FLBlocks.ROTTEN_COMPOST_JAR, FLBlocks.GUANO_JAR, FLBlocks.CHEDDAR_WHEEL,
             FLBlocks.RAJYA_METOK_WHEEL, FLBlocks.CHEVRE_WHEEL, FLBlocks.SHOSHA_WHEEL, FLBlocks.FETA_WHEEL, FLBlocks.GOUDA_WHEEL, FLBlocks.SMALL_CHROMITE,
             FLBlocks.MIXING_BOWL, FLBlocks.BUTTERFLY_GRASS, FLBlocks.SPRINKLER, FLBlocks.DRIBBLER, FLBlocks.VAT, FLBlocks.HYDROPONIC_PLANTER, FLBlocks.STOVETOP_GRILL, FLBlocks.STOVETOP_POT,
-            FLBlocks.DARK_LADDER
+            FLBlocks.DARK_LADDER, FLBlocks.JARRING_STATION
         ).forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
 
         ItemBlockRenderTypes.setRenderLayer(FLBlocks.SOLAR_DRIER.get(), translucent);
@@ -166,6 +167,7 @@ public class FLClientEvents
         event.registerBlockEntityRenderer(FLBlockEntities.STOVETOP_GRILL.get(), ctx -> new StovetopGrillBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.STOVETOP_POT.get(), ctx -> new StovetopPotBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.ICE_FISHING_STATION.get(), ctx -> new IceFishingStationBlockEntityRenderer());
+        event.registerBlockEntityRenderer(FLBlockEntities.JARRING_STATION.get(), ctx -> new JarringStationBlockEntityRenderer());
 
         event.registerEntityRenderer(FLEntities.SEED_BALL.get(), ThrownItemRenderer::new);
     }
@@ -227,5 +229,6 @@ public class FLClientEvents
     {
         ForgeModelBakery.addSpecialModel(MixingBowlBlockEntityRenderer.SPOON_LOCATION);
         ForgeModelBakery.addSpecialModel(JarbnetBlockEntityRenderer.JUG_LOCATION);
+        ForgeModelBakery.addSpecialModel(JarringStationBlockEntityRenderer.EMPTY_JAR_LOCATION);
     }
 }

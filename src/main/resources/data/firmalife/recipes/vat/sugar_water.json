@@ -1,0 +1,17 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "firmalife:vat",
+  "input_item": {
+    "ingredient": {
+      "tag": "firmalife:sweetener"
+    }
+  },
+  "input_fluid": {
+    "ingredient": "minecraft:water",
+    "amount": 1000
+  },
+  "output_fluid": {
+    "fluid": "firmalife:sugar_water",
+    "amount": 500
+  }
+}

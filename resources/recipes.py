@@ -66,6 +66,7 @@ def generate(rm: ResourceManager):
     rm.crafting_shaped('crafting/nutritive_basin', ['XYX', 'XWX', 'XZX'], {'X': 'minecraft:brick', 'Y': 'minecraft:glass', 'W': '#tfc:seeds', 'Z': '#forge:sheets/stainless_steel'}, 'firmalife:nutritive_basin').with_advancement('minecraft:brick')
     rm.crafting_shaped('crafting/hydroponic_planter', ['YY', 'XX', 'Z '], {'Y': 'tfc:compost', 'X': 'firmalife:treated_lumber', 'Z': '#forge:ingots/wrought_iron'}, '2 firmalife:hydroponic_planter').with_advancement('firmalife:treated_lumber')
     rm.crafting_shaped('crafting/vat', ['X X', 'YXY'], {'X': '#forge:sheets/stainless_steel', 'Y': 'firmalife:beeswax'}, 'firmalife:vat').with_advancement('#forge:sheets/stainless_steel')
+    rm.crafting_shaped('crafting/jarring_station', ['X X', 'ZZZ'], {'X': '#forge:sheets/stainless_steel', 'Z': 'firmalife:treated_lumber'}, 'firmalife:jarring_station').with_advancement('#forge:sheets/stainless_steel')
     rm.crafting_shapeless('crafting/oven_hopper', ('firmalife:oven_bottom', 'minecraft:hopper'), 'firmalife:oven_hopper').with_advancement('minecraft:hopper')
     rm.crafting_shaped('crafting/beehive_frame', ['X X', ' X ', 'X X'], {'X': '#tfc:lumber'}, 'firmalife:beehive_frame').with_advancement('#tfc:lumber')
     rm.crafting_shaped('crafting/beehive', ['XYX', 'XZX', 'XYX'], {'X': '#tfc:lumber', 'Y': 'firmalife:beehive_frame', 'Z': 'tfc:thatch'}, 'firmalife:beehive').with_advancement('#tfc:lumber')
@@ -103,6 +104,7 @@ def generate(rm: ResourceManager):
     rm.crafting_shapeless('crafting/stone_finish', ('firmalife:sealed_bricks', 'minecraft:brick'), '16 firmalife:stone_finish').with_advancement('minecraft:brick')
     rm.crafting_shapeless('crafting/tile_finish', ('minecraft:clay_ball', '#forge:cobblestone', 'minecraft:brick'), '16 firmalife:tile_finish').with_advancement('minecraft:brick')
     rm.crafting_shapeless('crafting/oven_insulation', ('#forge:sheets/wrought_iron', 'firmalife:beeswax', '#tfc:flux'), 'firmalife:oven_insulation').with_advancement('#forge:sheets/wrought_iron')
+    rm.crafting_shapeless('crafting/brick_countertop', ('minecraft:bricks', '#tfc:chisels'), 'firmalife:brick_countertop').with_advancement('minecraft:bricks')
     rm.crafting_shapeless('crafting/stone_countertop', ('firmalife:sealed_bricks', '#tfc:chisels'), 'firmalife:stone_countertop').with_advancement('firmalife:sealed_bricks')
     rm.crafting_shapeless('crafting/rustic_countertop', ('firmalife:rustic_bricks', '#tfc:chisels'), 'firmalife:rustic_countertop').with_advancement('firmalife:rustic_bricks')
     rm.crafting_shapeless('crafting/tile_countertop', ('firmalife:tiles', '#tfc:chisels'), 'firmalife:tile_countertop').with_advancement('firmalife:tiles')
@@ -159,10 +161,14 @@ def generate(rm: ResourceManager):
         make_jar(rm, jar, remainder, ing)
     for fruit in TFC_FRUITS:
         make_jar(rm, fruit)
-        simple_pot_recipe(rm, '%s_jar' % fruit, [utils.ingredient('firmalife:empty_jar'), utils.ingredient('#firmalife:sweetener'), not_rotten(has_trait('tfc:food/%s' % fruit, 'firmalife:dried', True))], '1000 minecraft:water', None, ['firmalife:%s_jar' % fruit])
+        ing = not_rotten(has_trait('tfc:food/%s' % fruit, 'firmalife:dried', True))
+        simple_pot_recipe(rm, '%s_jar' % fruit, [utils.ingredient('firmalife:empty_jar'), utils.ingredient('#firmalife:sweetener'), ing], '1000 minecraft:water', None, ['firmalife:%s_jar' % fruit])
+        vat_recipe(rm, '%s_jar' % fruit, ing, '500 firmalife:sugar_water', output_fluid='500 firmalife:fruity_fluid', jar='firmalife:%s_jar' % fruit)
     for fruit in FL_FRUITS:
         make_jar(rm, fruit)
-        simple_pot_recipe(rm, '%s_jar' % fruit, [utils.ingredient('firmalife:empty_jar'), utils.ingredient('#firmalife:sweetener'), not_rotten(has_trait('firmalife:food/%s' % fruit, 'firmalife:dried', True))], '1000 minecraft:water', None, ['firmalife:%s_jar' % fruit])
+        ing = not_rotten(has_trait('firmalife:food/%s' % fruit, 'firmalife:dried', True))
+        simple_pot_recipe(rm, '%s_jar' % fruit, [utils.ingredient('firmalife:empty_jar'), utils.ingredient('#firmalife:sweetener'), ing], '1000 minecraft:water', None, ['firmalife:%s_jar' % fruit])
+        vat_recipe(rm, '%s_jar' % fruit, ing, '500 firmalife:sugar_water', output_fluid='500 firmalife:fruity_fluid', jar='firmalife:%s_jar' % fruit)
 
     beet = not_rotten('tfc:food/beet')
     simple_pot_recipe(rm, 'beet_sugar', [beet, beet, beet, beet, beet], '1000 tfc:salt_water', output_items=['minecraft:sugar', 'minecraft:sugar', 'minecraft:sugar'])
@@ -545,14 +551,15 @@ def fluid_ingredient(data_in: Json) -> Json:
         else:
             return fluid
 
-def vat_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, input_item: Optional[Json] = None, input_fluid: Optional[Json] = None, output_item: Optional[Json] = None, output_fluid: Optional[Json] = None, length: int = None, temp: float = None):
+def vat_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, input_item: Optional[Json] = None, input_fluid: Optional[Json] = None, output_item: Optional[Json] = None, output_fluid: Optional[Json] = None, length: int = None, temp: float = None, jar: str = None):
     rm.recipe(('vat', name_parts), 'firmalife:vat', {
         'input_item': item_stack_ingredient(input_item) if input_item is not None else None,
         'input_fluid': fluid_stack_ingredient(input_fluid) if input_fluid is not None else None,
         'output_item': item_stack_provider(output_item) if output_item is not None else None,
         'output_fluid': fluid_stack(output_fluid) if output_fluid is not None else None,
         'length': length,
-        'temperature': temp
+        'temperature': temp,
+        'jar': utils.item_stack(jar) if jar is not None else None
     })
 
 def barrel_instant_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, input_item: Optional[Json] = None, input_fluid: Optional[Json] = None, output_item: Optional[Json] = None, output_fluid: Optional[Json] = None, sound: Optional[str] = None):

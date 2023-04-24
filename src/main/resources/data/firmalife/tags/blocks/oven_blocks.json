@@ -29,6 +29,14 @@
     "firmalife:oven_bottom",
     "firmalife:oven_top",
     "firmalife:oven_chimney",
-    "firmalife:oven_hopper"
+    "firmalife:oven_hopper",
+    "firmalife:rustic_bricks",
+    "firmalife:rustic_bricks_slab",
+    "firmalife:rustic_bricks_stairs",
+    "firmalife:rustic_bricks_wall",
+    "firmalife:tiles",
+    "firmalife:tiles_slab",
+    "firmalife:tiles_stairs",
+    "firmalife:tiles_wall"
   ]
 }

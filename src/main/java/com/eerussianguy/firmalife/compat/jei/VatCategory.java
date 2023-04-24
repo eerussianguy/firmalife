@@ -1,5 +1,6 @@
 package com.eerussianguy.firmalife.compat.jei;
 
+import java.util.ArrayList;
 import java.util.List;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.recipes.VatRecipe;
@@ -42,7 +43,12 @@ public class VatCategory extends BaseRecipeCategory<VatRecipe>
         final List<FluidStack> inputFluid = collapse(recipe.getInputFluid());
         final List<ItemStack> inputItem = collapse(recipe.getInputItem());
         final FluidStack outputFluid = recipe.getOutputFluid();
-        final List<ItemStack> outputItem = collapse(inputItem, recipe.getOutputItem());
+        final List<ItemStack> outputItem = new ArrayList<>(collapse(inputItem, recipe.getOutputItem()));
+
+        if (!recipe.getJarOutput().isEmpty())
+        {
+            outputItem.add(recipe.getJarOutput());
+        }
 
         if (!inputFluid.isEmpty())
         {

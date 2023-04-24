@@ -2,7 +2,7 @@
   "__comment__": "This file was automatically created by mcresources",
   "replace": false,
   "values": [
-    "#tfc:usable_in_pot",
-    "firmalife:fruity_fluid"
+    "firmalife:fruity_fluid",
+    "firmalife:flowing_fruity_fluid"
   ]
 }

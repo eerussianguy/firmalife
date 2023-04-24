@@ -8,6 +8,7 @@ import com.eerussianguy.firmalife.common.items.JarsBlockItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.Tag;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -24,43 +25,39 @@ public class JarringStationBlockEntity extends TickableInventoryBlockEntity<Item
 {
     public static void tick(Level level, BlockPos pos, BlockState state, JarringStationBlockEntity station)
     {
-        if ((level.getGameTime() + 1) % 60 == 0 && state.hasProperty(JarringStationBlock.FACING) && level.getBlockEntity(pos.relative(state.getValue(JarringStationBlock.FACING))) instanceof VatBlockEntity vat)
+        station.checkForLastTickSync();
+        if (station.pourTicks > 0) station.pourTicks--;
+
+        if (level.getGameTime() % 60 == 0 && state.hasProperty(JarringStationBlock.FACING) && level.getBlockEntity(pos.relative(state.getValue(JarringStationBlock.FACING))) instanceof VatBlockEntity vat)
         {
-            final var reset = new AtomicBoolean(true);
             vat.getCapability(Capabilities.FLUID).ifPresent(cap -> {
                 final FluidStack fluid = cap.getFluidInTank(0);
                 int available = fluid.getAmount() / 500;
-                if (available > 0 && fluid.hasTag() && fluid.getTag().contains("jar", Tag.TAG_COMPOUND))
+                if (available > 0 && fluid.hasTag() && fluid.getTag().contains("fruit", Tag.TAG_COMPOUND))
                 {
-                    final ItemStack stack = ItemStack.of(fluid.getTag().getCompound("jar"));
+                    final ItemStack stack = ItemStack.of(fluid.getTag().getCompound("fruit"));
                     for (int i = 0; i < SLOTS; i++)
                     {
                         if (station.inventory.getStackInSlot(i).getItem() == FLItems.EMPTY_JAR.get())
                         {
-                            reset.set(false);
-                            if (station.pourTicks-- == 0)
-                            {
-                                station.inventory.setStackInSlot(i, Helpers.copyWithSize(stack, 1));
-                                cap.drain(500, IFluidHandler.FluidAction.EXECUTE);
-                                available--;
-                                station.markForSync();
-                                vat.markForSync();
-                            }
+                            Helpers.playSound(level, pos, SoundEvents.BOTTLE_FILL);
+                            station.inventory.setStackInSlot(i, Helpers.copyWithSize(stack, 1));
+                            cap.drain(500, IFluidHandler.FluidAction.EXECUTE);
+                            available--;
+                            station.markForSync();
+                            vat.markForSync();
+                            station.pourTicks = 45;
                         }
                         if (available == 0) break;
                     }
                 }
             });
-            if (reset.get())
-            {
-                station.pourTicks = 2;
-            }
         }
     }
 
     public static final int SLOTS = 9;
 
-    private int pourTicks = 2;
+    private int pourTicks = 0;
 
     public JarringStationBlockEntity(BlockPos pos, BlockState state)
     {
@@ -70,10 +67,15 @@ public class JarringStationBlockEntity extends TickableInventoryBlockEntity<Item
             .on(new PartialItemHandler(inventory).insert(0, 1, 2, 3, 4, 5, 6, 7, 8), Direction.Plane.HORIZONTAL);
     }
 
+    public int getPourTicks()
+    {
+        return pourTicks;
+    }
+
     @Override
     public boolean isItemValid(int slot, ItemStack stack)
     {
-        return stack.getItem() instanceof JarsBlockItem;
+        return stack.getItem() instanceof JarsBlockItem || stack.getItem() == FLItems.EMPTY_JAR.get();
     }
 
     @Override
