@@ -1,0 +1,84 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "firmalife:story/oven",
+  "criteria": {
+    "oven_insulation": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "firmalife:oven_insulation"
+            ]
+          }
+        ]
+      }
+    },
+    "rustic_finish": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "firmalife:rustic_finish"
+            ]
+          }
+        ]
+      }
+    },
+    "stone_finish": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "firmalife:stone_finish"
+            ]
+          }
+        ]
+      }
+    },
+    "tile_finish": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "firmalife:tile_finish"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "display": {
+    "icon": {
+      "item": "firmalife:oven_insulation"
+    },
+    "title": {
+      "translate": "firmalife.advancements.story.oven_finishes.title"
+    },
+    "description": {
+      "translate": "firmalife.advancements.story.oven_finishes.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "firmalife:textures/block/sealed_bricks.png"
+  },
+  "requirements": [
+    [
+      "oven_insulation"
+    ],
+    [
+      "rustic_finish"
+    ],
+    [
+      "stone_finish"
+    ],
+    [
+      "tile_finish"
+    ]
+  ]
+}

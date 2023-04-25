@@ -1,0 +1,39 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "firmalife:story/root",
+  "criteria": {
+    "ore/small_chromite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "firmalife:ore/small_chromite"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "display": {
+    "icon": {
+      "item": "firmalife:ore/small_chromite"
+    },
+    "title": {
+      "translate": "firmalife.advancements.story.chromite.title"
+    },
+    "description": {
+      "translate": "firmalife.advancements.story.chromite.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "firmalife:textures/block/sealed_bricks.png"
+  },
+  "requirements": [
+    [
+      "ore/small_chromite"
+    ]
+  ]
+}

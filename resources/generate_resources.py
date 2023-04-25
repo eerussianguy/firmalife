@@ -11,6 +11,7 @@ import metal_stuff
 import recipes
 import data
 import world_gen
+import advancements
 
 
 class ModificationLoggingResourceManager(ResourceManager):
@@ -52,6 +53,7 @@ def generate_all(rm: ResourceManager):
     data.generate(rm)
     metal_stuff.generate(rm)
     world_gen.generate(rm)
+    advancements.generate(rm)
 
     rm.flush()
 

@@ -1,0 +1,114 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "firmalife:story/greenhouse",
+  "criteria": {
+    "hanging": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "firmalife:hanging_planter"
+            ]
+          }
+        ]
+      }
+    },
+    "bonsai": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "firmalife:bonsai_planter"
+            ]
+          }
+        ]
+      }
+    },
+    "quad": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "firmalife:quad_planter"
+            ]
+          }
+        ]
+      }
+    },
+    "large": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "firmalife:large_planter"
+            ]
+          }
+        ]
+      }
+    },
+    "trellis": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "firmalife:trellis_planter"
+            ]
+          }
+        ]
+      }
+    },
+    "hydroponic": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "firmalife:hydroponic_planter"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "display": {
+    "icon": {
+      "item": "firmalife:large_planter"
+    },
+    "title": {
+      "translate": "firmalife.advancements.story.planters.title"
+    },
+    "description": {
+      "translate": "firmalife.advancements.story.planters.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "firmalife:textures/block/sealed_bricks.png"
+  },
+  "requirements": [
+    [
+      "hanging"
+    ],
+    [
+      "bonsai"
+    ],
+    [
+      "quad"
+    ],
+    [
+      "large"
+    ],
+    [
+      "trellis"
+    ],
+    [
+      "hydroponic"
+    ]
+  ]
+}

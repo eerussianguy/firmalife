@@ -1,0 +1,37 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "firmalife:story/jars",
+  "criteria": {
+    "jarbnets": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "firmalife:jarbnets"
+          }
+        ]
+      }
+    }
+  },
+  "display": {
+    "icon": {
+      "item": "firmalife:wood/jarbnet/palm"
+    },
+    "title": {
+      "translate": "firmalife.advancements.story.jarbnet.title"
+    },
+    "description": {
+      "translate": "firmalife.advancements.story.jarbnet.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "firmalife:textures/block/sealed_bricks.png"
+  },
+  "requirements": [
+    [
+      "jarbnets"
+    ]
+  ]
+}

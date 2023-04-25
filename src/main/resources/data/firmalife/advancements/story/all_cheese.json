@@ -1,0 +1,114 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "firmalife:story/cheese_wheel",
+  "criteria": {
+    "gouda": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "firmalife:food/gouda"
+            ]
+          }
+        ]
+      }
+    },
+    "chevre": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "firmalife:food/chevre"
+            ]
+          }
+        ]
+      }
+    },
+    "cheddar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "firmalife:food/cheddar"
+            ]
+          }
+        ]
+      }
+    },
+    "feta": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "firmalife:food/feta"
+            ]
+          }
+        ]
+      }
+    },
+    "rayja_metok": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "firmalife:food/rayja_metok"
+            ]
+          }
+        ]
+      }
+    },
+    "shosha": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "firmalife:food/shosha"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "display": {
+    "icon": {
+      "item": "firmalife:food/gouda"
+    },
+    "title": {
+      "translate": "firmalife.advancements.story.all_cheese.title"
+    },
+    "description": {
+      "translate": "firmalife.advancements.story.all_cheese.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "firmalife:textures/block/sealed_bricks.png"
+  },
+  "requirements": [
+    [
+      "gouda"
+    ],
+    [
+      "chevre"
+    ],
+    [
+      "cheddar"
+    ],
+    [
+      "feta"
+    ],
+    [
+      "rayja_metok"
+    ],
+    [
+      "shosha"
+    ]
+  ]
+}

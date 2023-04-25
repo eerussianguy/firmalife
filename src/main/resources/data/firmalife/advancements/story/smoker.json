@@ -1,0 +1,33 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "firmalife:story/root",
+  "criteria": {
+    "block_placed_condition": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "firmalife:wool_string"
+      }
+    }
+  },
+  "display": {
+    "icon": {
+      "item": "tfc:food/venison"
+    },
+    "title": {
+      "translate": "firmalife.advancements.story.smoker.title"
+    },
+    "description": {
+      "translate": "firmalife.advancements.story.smoker.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "firmalife:textures/block/sealed_bricks.png"
+  },
+  "requirements": [
+    [
+      "block_placed_condition"
+    ]
+  ]
+}

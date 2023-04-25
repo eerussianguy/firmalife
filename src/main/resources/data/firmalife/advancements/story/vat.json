@@ -1,0 +1,39 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "firmalife:story/oven",
+  "criteria": {
+    "vat": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "firmalife:vat"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "display": {
+    "icon": {
+      "item": "firmalife:vat"
+    },
+    "title": {
+      "translate": "firmalife.advancements.story.vat.title"
+    },
+    "description": {
+      "translate": "firmalife.advancements.story.vat.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "firmalife:textures/block/sealed_bricks.png"
+  },
+  "requirements": [
+    [
+      "vat"
+    ]
+  ]
+}

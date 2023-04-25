@@ -1,0 +1,30 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "firmalife:story/greenhouse",
+  "criteria": {
+    "special_condition": {
+      "trigger": "firmalife:big_stainless_greenhouse"
+    }
+  },
+  "display": {
+    "icon": {
+      "item": "firmalife:stainless_steel_greenhouse_wall"
+    },
+    "title": {
+      "translate": "firmalife.advancements.story.big_greenhouse.title"
+    },
+    "description": {
+      "translate": "firmalife.advancements.story.big_greenhouse.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "firmalife:textures/block/sealed_bricks.png"
+  },
+  "requirements": [
+    [
+      "special_condition"
+    ]
+  ]
+}

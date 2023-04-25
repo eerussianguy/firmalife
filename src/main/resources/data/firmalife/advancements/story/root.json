@@ -1,0 +1,29 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "criteria": {
+    "in_game_condition": {
+      "trigger": "minecraft:tick"
+    }
+  },
+  "display": {
+    "icon": {
+      "item": "firmalife:empty_jar"
+    },
+    "title": {
+      "translate": "firmalife.advancements.story.root.title"
+    },
+    "description": {
+      "translate": "firmalife.advancements.story.root.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false,
+    "background": "firmalife:textures/block/sealed_bricks.png"
+  },
+  "requirements": [
+    [
+      "in_game_condition"
+    ]
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "firmalife:story/oven",
+  "criteria": {
+    "oven_hopper": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "firmalife:oven_hopper"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "display": {
+    "icon": {
+      "item": "firmalife:oven_hopper"
+    },
+    "title": {
+      "translate": "firmalife.advancements.story.oven_hopper.title"
+    },
+    "description": {
+      "translate": "firmalife.advancements.story.oven_hopper.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "firmalife:textures/block/sealed_bricks.png"
+  },
+  "requirements": [
+    [
+      "oven_hopper"
+    ]
+  ]
+}

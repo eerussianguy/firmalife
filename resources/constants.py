@@ -109,7 +109,7 @@ CLEANING_PAIRS: Dict[str, str] = {
     'exposed_copper': 'copper',
     'weathered_treated_wood': 'treated_wood'
 }
-PLANTERS = ('hanging', 'bonsai', 'quad', 'large', 'trellis')
+PLANTERS = ('hanging', 'bonsai', 'quad', 'large', 'trellis', 'hydroponic')
 
 CARVINGS = {
     'none': ['XXXXX', 'XXXXX', 'XXXXX', 'X   X', 'XXXXX'],
@@ -220,7 +220,7 @@ DEFAULT_LANG = {
     'firmalife.bee.parasitic_infection': 'Parasitic Infection: %s',
     **{'firmalife.bee.disease%s' % i: d for i, d in enumerate(GENETIC_DISEASES)},
     **{'firmalife.bee.infection%s' % i: d for i, d in enumerate(PARASITIC_INFECTIONS)},
-    'firmalife.beehive.honey': 'Honey: %s / 16',
+    'firmalife.beehive.honey': 'Honey: %s / 12',
     'firmalife.beehive.bee': 'Frame %s: ',
     'firmalife.beehive.bee_cold': 'Too cold! Minimum: %s C, Current: %s C',
     'firmalife.beehive.has_queen': 'Has Queen. ',

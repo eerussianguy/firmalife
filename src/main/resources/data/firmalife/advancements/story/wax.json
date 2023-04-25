@@ -1,0 +1,39 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "firmalife:story/hive",
+  "criteria": {
+    "beeswax": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "firmalife:beeswax"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "display": {
+    "icon": {
+      "item": "firmalife:beeswax"
+    },
+    "title": {
+      "translate": "firmalife.advancements.story.wax.title"
+    },
+    "description": {
+      "translate": "firmalife.advancements.story.wax.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "firmalife:textures/block/sealed_bricks.png"
+  },
+  "requirements": [
+    [
+      "beeswax"
+    ]
+  ]
+}

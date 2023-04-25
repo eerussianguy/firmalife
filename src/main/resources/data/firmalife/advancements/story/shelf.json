@@ -1,0 +1,37 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "firmalife:story/cellar",
+  "criteria": {
+    "food_shelves": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "firmalife:food_shelves"
+          }
+        ]
+      }
+    }
+  },
+  "display": {
+    "icon": {
+      "item": "firmalife:wood/food_shelf/kapok"
+    },
+    "title": {
+      "translate": "firmalife.advancements.story.shelf.title"
+    },
+    "description": {
+      "translate": "firmalife.advancements.story.shelf.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "firmalife:textures/block/sealed_bricks.png"
+  },
+  "requirements": [
+    [
+      "food_shelves"
+    ]
+  ]
+}

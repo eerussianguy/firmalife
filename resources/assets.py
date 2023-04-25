@@ -180,7 +180,7 @@ def generate(rm: ResourceManager):
         block = rm.blockstate('%s_wheel' % cheese, variants=dict(
             ('age=%s,count=%s' % (a, c), {'model': 'firmalife:block/cheese/%s_%s_%s' % (cheese, a, c)})
             for a in ('fresh', 'aged', 'vintage') for c in range(1, 5)
-        )).with_lang(lang('%s cheese wheel', cheese)).with_tag('cheese_wheels')
+        )).with_lang(lang('%s cheese wheel', cheese)).with_tag('cheese_wheels').with_item_tag('cheese_wheels')
         block.with_block_loot([{
             'name': 'firmalife:food/%s' % cheese,
             'functions': [loot_tables.set_count(c)],
@@ -252,12 +252,12 @@ def generate(rm: ResourceManager):
         flower_pot_cross(rm, herb, 'firmalife:plant/potted/%s' % herb, 'plant/flowerpot/%s' % herb, 'firmalife:block/plant/%s/1' % herb, 'firmalife:plant/%s' % herb)
 
     for wood in TFC_WOODS.keys():
-        block = rm.blockstate('firmalife:wood/food_shelf/%s' % wood, variants=four_rotations('firmalife:block/wood/food_shelf/%s' % wood, (270, 180, None, 90)))
+        block = rm.blockstate('firmalife:wood/food_shelf/%s' % wood, variants=four_rotations('firmalife:block/wood/food_shelf/%s' % wood, (270, 180, None, 90))).with_tag('food_shelves').with_item_tag('food_shelves')
         block.with_block_loot('firmalife:wood/food_shelf/%s' % wood).with_lang(lang('%s food shelf', wood)).with_tag('minecraft:mineable/axe')
         rm.item_model('firmalife:wood/food_shelf/%s' % wood, parent='firmalife:block/wood/food_shelf/%s' % wood, no_textures=True)
         rm.block_model('firmalife:wood/food_shelf/%s' % wood, parent='firmalife:block/food_shelf_base', textures={'wood': 'tfc:block/wood/planks/%s' % wood})
 
-        block = rm.blockstate('firmalife:wood/hanger/%s' % wood, model='firmalife:block/wood/hanger/%s' % wood)
+        block = rm.blockstate('firmalife:wood/hanger/%s' % wood, model='firmalife:block/wood/hanger/%s' % wood).with_tag('hangers').with_item_tag('hangers')
         block.with_block_loot('firmalife:wood/hanger/%s' % wood).with_lang(lang('%s hanger' % wood)).with_tag('minecraft:mineable/axe')
         rm.item_model('firmalife:wood/hanger/%s' % wood, parent='firmalife:block/wood/hanger/%s' % wood, no_textures=True)
         rm.block_model('firmalife:wood/hanger/%s' % wood, parent='firmalife:block/hanger_base', textures={'wood': 'tfc:block/wood/planks/%s' % wood, 'string': 'minecraft:block/white_wool'})
@@ -266,7 +266,7 @@ def generate(rm: ResourceManager):
             **four_rotations('firmalife:block/wood/jarbnet/%s' % wood, (90, None, 180, 270), suffix=',open=true'),
             **four_rotations('firmalife:block/wood/jarbnet/%s_shut' % wood, (90, None, 180, 270), suffix=',open=false'),
         })
-        block.with_block_loot('firmalife:wood/jarbnet/%s' % wood).with_lang(lang('%s jarbnet', wood)).with_tag('minecraft:mineable/axe')
+        block.with_block_loot('firmalife:wood/jarbnet/%s' % wood).with_lang(lang('%s jarbnet', wood)).with_tag('minecraft:mineable/axe').with_tag('jarbnets').with_item_tag('jarbnets')
         rm.item_model('firmalife:wood/jarbnet/%s' % wood, parent='firmalife:block/wood/jarbnet/%s' % wood, no_textures=True)
         textures = {'planks': 'tfc:block/wood/planks/%s' % wood, 'sheet': 'tfc:block/wood/sheet/%s' % wood, 'log': 'tfc:block/wood/log/%s' % wood}
         rm.block_model('firmalife:wood/jarbnet/%s' % wood, parent='firmalife:block/jarbnet', textures=textures)

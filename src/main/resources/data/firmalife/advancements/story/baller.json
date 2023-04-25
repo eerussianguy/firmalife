@@ -1,0 +1,39 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "firmalife:story/root",
+  "criteria": {
+    "seed_ball": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "firmalife:seed_ball"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "display": {
+    "icon": {
+      "item": "firmalife:seed_ball"
+    },
+    "title": {
+      "translate": "firmalife.advancements.story.baller.title"
+    },
+    "description": {
+      "translate": "firmalife.advancements.story.baller.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "firmalife:textures/block/sealed_bricks.png"
+  },
+  "requirements": [
+    [
+      "seed_ball"
+    ]
+  ]
+}

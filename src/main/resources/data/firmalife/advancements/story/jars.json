@@ -1,0 +1,39 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "firmalife:story/hive",
+  "criteria": {
+    "empty_jar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "firmalife:empty_jar"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "display": {
+    "icon": {
+      "item": "firmalife:empty_jar"
+    },
+    "title": {
+      "translate": "firmalife.advancements.story.jars.title"
+    },
+    "description": {
+      "translate": "firmalife.advancements.story.jars.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "firmalife:textures/block/sealed_bricks.png"
+  },
+  "requirements": [
+    [
+      "empty_jar"
+    ]
+  ]
+}

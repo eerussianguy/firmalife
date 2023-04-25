@@ -1,0 +1,25 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "firmalife:wood/hanger/acacia",
+    "firmalife:wood/hanger/ash",
+    "firmalife:wood/hanger/aspen",
+    "firmalife:wood/hanger/birch",
+    "firmalife:wood/hanger/blackwood",
+    "firmalife:wood/hanger/chestnut",
+    "firmalife:wood/hanger/douglas_fir",
+    "firmalife:wood/hanger/hickory",
+    "firmalife:wood/hanger/kapok",
+    "firmalife:wood/hanger/maple",
+    "firmalife:wood/hanger/oak",
+    "firmalife:wood/hanger/palm",
+    "firmalife:wood/hanger/pine",
+    "firmalife:wood/hanger/rosewood",
+    "firmalife:wood/hanger/sequoia",
+    "firmalife:wood/hanger/spruce",
+    "firmalife:wood/hanger/sycamore",
+    "firmalife:wood/hanger/white_cedar",
+    "firmalife:wood/hanger/willow"
+  ]
+}

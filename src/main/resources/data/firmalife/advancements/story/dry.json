@@ -1,0 +1,39 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "firmalife:story/root",
+  "criteria": {
+    "drying_mat": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "firmalife:drying_mat"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "display": {
+    "icon": {
+      "item": "firmalife:drying_mat"
+    },
+    "title": {
+      "translate": "firmalife.advancements.story.dry.title"
+    },
+    "description": {
+      "translate": "firmalife.advancements.story.dry.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "firmalife:textures/block/sealed_bricks.png"
+  },
+  "requirements": [
+    [
+      "drying_mat"
+    ]
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "firmalife:story/mixer",
+  "criteria": {
+    "foods/chocolate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "firmalife:foods/chocolate"
+          }
+        ]
+      }
+    }
+  },
+  "display": {
+    "icon": {
+      "item": "firmalife:food/dark_chocolate"
+    },
+    "title": {
+      "translate": "firmalife.advancements.story.chocolate.title"
+    },
+    "description": {
+      "translate": "firmalife.advancements.story.chocolate.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "firmalife:textures/block/sealed_bricks.png"
+  },
+  "requirements": [
+    [
+      "foods/chocolate"
+    ]
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "firmalife:story/oven",
+  "criteria": {
+    "food/cooked_pie": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "firmalife:food/cooked_pie"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "display": {
+    "icon": {
+      "item": "firmalife:food/cooked_pie"
+    },
+    "title": {
+      "translate": "firmalife.advancements.story.pie.title"
+    },
+    "description": {
+      "translate": "firmalife.advancements.story.pie.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "firmalife:textures/block/sealed_bricks.png"
+  },
+  "requirements": [
+    [
+      "food/cooked_pie"
+    ]
+  ]
+}

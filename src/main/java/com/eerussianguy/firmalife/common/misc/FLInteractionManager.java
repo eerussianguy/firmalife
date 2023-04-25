@@ -1,8 +1,10 @@
 package com.eerussianguy.firmalife.common.misc;
 
 import com.eerussianguy.firmalife.common.blocks.OvenBottomBlock;
+import com.eerussianguy.firmalife.common.util.FLAdvancements;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.crafting.Ingredient;
 
@@ -33,6 +35,10 @@ public class FLInteractionManager
             {
                 level.setBlockAndUpdate(abovePos, FLBlocks.STOVETOP_GRILL.get().defaultBlockState());
                 if (context.getPlayer() == null || !context.getPlayer().isCreative()) stack.shrink(1);
+                if (context.getPlayer() instanceof ServerPlayer server)
+                {
+                    FLAdvancements.STOVETOP_GRILL.trigger(server);
+                }
                 return InteractionResult.SUCCESS;
             }
 
@@ -48,6 +54,10 @@ public class FLInteractionManager
             {
                 level.setBlockAndUpdate(abovePos, FLBlocks.STOVETOP_POT.get().defaultBlockState());
                 if (context.getPlayer() == null || !context.getPlayer().isCreative()) stack.shrink(1);
+                if (context.getPlayer() instanceof ServerPlayer server)
+                {
+                    FLAdvancements.STOVETOP_POT.trigger(server);
+                }
                 return InteractionResult.SUCCESS;
             }
 

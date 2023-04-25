@@ -1,0 +1,54 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "firmalife:story/oven",
+  "criteria": {
+    "taco": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "firmalife:food/taco"
+            ]
+          }
+        ]
+      }
+    },
+    "burrito": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "firmalife:food/burrito"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "display": {
+    "icon": {
+      "item": "firmalife:food/burrito"
+    },
+    "title": {
+      "translate": "firmalife.advancements.story.burrito_taco.title"
+    },
+    "description": {
+      "translate": "firmalife.advancements.story.burrito_taco.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "firmalife:textures/block/sealed_bricks.png"
+  },
+  "requirements": [
+    [
+      "taco"
+    ],
+    [
+      "burrito"
+    ]
+  ]
+}

@@ -1,5 +1,6 @@
 package com.eerussianguy.firmalife;
 
+import com.eerussianguy.firmalife.common.util.FLAdvancements;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.InterModComms;
@@ -84,6 +85,7 @@ public class FirmaLife
             FLInteractionManager.init();
             FLFoodTraits.init();
             FLBlocks.registerFlowerPotFlowers();
+            FLAdvancements.init();
             TFCConfig.SERVER.enablePumpkinCarving.set(false);
         });
         FLItemStackModifiers.init();

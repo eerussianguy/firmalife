@@ -1,0 +1,37 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "firmalife:story/climate_station",
+  "criteria": {
+    "greenhouse": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "firmalife:greenhouse"
+          }
+        ]
+      }
+    }
+  },
+  "display": {
+    "icon": {
+      "item": "firmalife:copper_greenhouse_wall"
+    },
+    "title": {
+      "translate": "firmalife.advancements.story.greenhouse.title"
+    },
+    "description": {
+      "translate": "firmalife.advancements.story.greenhouse.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "firmalife:textures/block/sealed_bricks.png"
+  },
+  "requirements": [
+    [
+      "greenhouse"
+    ]
+  ]
+}

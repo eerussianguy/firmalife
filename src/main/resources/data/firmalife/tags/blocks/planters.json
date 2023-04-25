@@ -6,6 +6,7 @@
     "firmalife:bonsai_planter",
     "firmalife:quad_planter",
     "firmalife:large_planter",
-    "firmalife:trellis_planter"
+    "firmalife:trellis_planter",
+    "firmalife:hydroponic_planter"
   ]
 }

@@ -1,0 +1,25 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "firmalife:wood/jarbnet/acacia",
+    "firmalife:wood/jarbnet/ash",
+    "firmalife:wood/jarbnet/aspen",
+    "firmalife:wood/jarbnet/birch",
+    "firmalife:wood/jarbnet/blackwood",
+    "firmalife:wood/jarbnet/chestnut",
+    "firmalife:wood/jarbnet/douglas_fir",
+    "firmalife:wood/jarbnet/hickory",
+    "firmalife:wood/jarbnet/kapok",
+    "firmalife:wood/jarbnet/maple",
+    "firmalife:wood/jarbnet/oak",
+    "firmalife:wood/jarbnet/palm",
+    "firmalife:wood/jarbnet/pine",
+    "firmalife:wood/jarbnet/rosewood",
+    "firmalife:wood/jarbnet/sequoia",
+    "firmalife:wood/jarbnet/spruce",
+    "firmalife:wood/jarbnet/sycamore",
+    "firmalife:wood/jarbnet/white_cedar",
+    "firmalife:wood/jarbnet/willow"
+  ]
+}

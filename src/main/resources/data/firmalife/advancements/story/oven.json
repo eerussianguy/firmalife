@@ -1,0 +1,57 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "firmalife:story/root",
+  "criteria": {
+    "ob": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "firmalife:oven_bottom"
+            ]
+          }
+        ]
+      }
+    },
+    "ot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "firmalife:oven_chimney"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "display": {
+    "icon": {
+      "item": "firmalife:oven_bottom"
+    },
+    "title": {
+      "translate": "firmalife.advancements.story.oven.title"
+    },
+    "description": {
+      "translate": "firmalife.advancements.story.oven.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "firmalife:textures/block/sealed_bricks.png"
+  },
+  "requirements": [
+    [
+      "ot"
+    ],
+    [
+      "oc"
+    ],
+    [
+      "ob"
+    ]
+  ]
+}

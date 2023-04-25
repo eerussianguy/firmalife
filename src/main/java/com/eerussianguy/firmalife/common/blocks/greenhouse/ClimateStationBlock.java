@@ -3,9 +3,14 @@ package com.eerussianguy.firmalife.common.blocks.greenhouse;
 import java.util.Random;
 import java.util.Set;
 
+import com.eerussianguy.firmalife.common.FLHelpers;
+import com.eerussianguy.firmalife.common.blocks.FLBlocks;
+import com.eerussianguy.firmalife.common.util.FLAdvancements;
+import com.eerussianguy.firmalife.common.util.GreenhouseType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -100,9 +105,17 @@ public class ClimateStationBlock extends DeviceBlock
         else
         {
             either.ifLeft(info -> {
+                if (info.positions().size() > 200 && player instanceof ServerPlayer server && info.type().id.toString().contains("stainless_steel"))
+                {
+                    FLAdvancements.BIG_STAINLESS_GREENHOUSE.trigger(server);
+                }
                 player.displayClientMessage(new TranslatableComponent(MOD_ID + ".greenhouse.found", info.positions().size()), true);
             });
             either.ifRight(positions -> {
+                if (positions.size() > 200 && player instanceof ServerPlayer server)
+                {
+                    FLAdvancements.BIG_CELLAR.trigger(server);
+                }
                 player.displayClientMessage(new TranslatableComponent(MOD_ID + ".cellar.found", positions.size()), true);
             });
             return InteractionResult.sidedSuccess(level.isClientSide);
@@ -113,7 +126,7 @@ public class ClimateStationBlock extends DeviceBlock
     @SuppressWarnings("deprecation")
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, Random random)
     {
-        if (random.nextInt(5) == 0)
+        if (random.nextInt(4) == 0)
         {
             super.randomTick(state, level, pos, random); // causes a block tick
         }

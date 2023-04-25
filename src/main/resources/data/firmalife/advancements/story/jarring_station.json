@@ -1,0 +1,39 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "firmalife:story/preserves",
+  "criteria": {
+    "jarring_station": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "firmalife:jarring_station"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "display": {
+    "icon": {
+      "item": "firmalife:jarring_station"
+    },
+    "title": {
+      "translate": "firmalife.advancements.story.jarring_station.title"
+    },
+    "description": {
+      "translate": "firmalife.advancements.story.jarring_station.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "firmalife:textures/block/sealed_bricks.png"
+  },
+  "requirements": [
+    [
+      "jarring_station"
+    ]
+  ]
+}

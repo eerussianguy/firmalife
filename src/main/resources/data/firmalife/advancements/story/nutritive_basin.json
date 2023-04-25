@@ -1,0 +1,39 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "firmalife:story/greenhouse",
+  "criteria": {
+    "nutritive_basin": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "firmalife:nutritive_basin"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "display": {
+    "icon": {
+      "item": "firmalife:nutritive_basin"
+    },
+    "title": {
+      "translate": "firmalife.advancements.story.nutritive_basin.title"
+    },
+    "description": {
+      "translate": "firmalife.advancements.story.nutritive_basin.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "firmalife:textures/block/sealed_bricks.png"
+  },
+  "requirements": [
+    [
+      "nutritive_basin"
+    ]
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "firmalife:story/cellar",
+  "criteria": {
+    "special_condition": {
+      "trigger": "firmalife:big_cellar"
+    }
+  },
+  "display": {
+    "icon": {
+      "item": "firmalife:sealed_door"
+    },
+    "title": {
+      "translate": "firmalife.advancements.story.big_cellar.title"
+    },
+    "description": {
+      "translate": "firmalife.advancements.story.big_cellar.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "firmalife:textures/block/sealed_bricks.png"
+  },
+  "requirements": [
+    [
+      "special_condition"
+    ]
+  ]
+}
