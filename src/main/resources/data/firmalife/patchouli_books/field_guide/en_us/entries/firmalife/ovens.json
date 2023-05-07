@@ -11,12 +11,12 @@
     {
       "type": "tfc:clay_knapping_recipe",
       "recipe": "tfc:clay_knapping/oven_top",
-      "text": "The recipe for the bottom oven."
+      "text": "The recipe for the top oven."
     },
     {
       "type": "tfc:clay_knapping_recipe",
       "recipe": "tfc:clay_knapping/oven_bottom",
-      "text": "The recipe for the top oven."
+      "text": "The recipe for the bottom oven."
     },
     {
       "type": "tfc:clay_knapping_recipe",
@@ -112,7 +112,7 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/oven_insulation",
-      "text": "Crafting oven insulation for your Bottom Oven allows you to remove the need for insulatinig it on the sides and back. It does not remove the need for the chimney. Use $(item)$(k:key.use)$() to apply it."
+      "text": "Crafting oven insulation for your Bottom Oven allows you to remove the need for insulating it on the sides and back. It does not remove the need for the chimney. Use $(item)$(k:key.use)$() to apply it."
     },
     {
       "type": "patchouli:crafting",
