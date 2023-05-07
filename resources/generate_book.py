@@ -180,8 +180,8 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False):
         )),
         entry('ovens', 'Ovens', 'firmalife:cured_oven_top', pages=(
             text('$(thing)Ovens$() are a great way of cooking lots of food in a way that improves their shelf life. Oven-baked food decays at 90% of the rate of regular food. Ovens are a multiblock structure consisting of a $(thing)Bottom Oven$(), $(thing)Top Oven$(), and optionally $(thing)Chimneys$(). These blocks start off as clay, and must be $(thing)Cured$() by raising their temperature to a certain amount for long enough.$(br)$(l:firmalife:firmalife/oven_appliances)Oven Appliances$() extend oven functionality.'),
-            clay_knapping('tfc:clay_knapping/oven_top', 'The recipe for the bottom oven.'),
-            clay_knapping('tfc:clay_knapping/oven_bottom', 'The recipe for the top oven.'),
+            clay_knapping('tfc:clay_knapping/oven_top', 'The recipe for the top oven.'),
+            clay_knapping('tfc:clay_knapping/oven_bottom', 'The recipe for the bottom oven.'),
             clay_knapping('tfc:clay_knapping/oven_chimney', 'The recipe for the oven chimney    .'),
             crafting('tfc:crafting/bricks', text_contents='Ovens are insulated with $(thing)Bricks$(), other oven blocks, or anything that can insulate a Forge. This means you can use stone blocks, if you want!'),
             crafting('firmalife:crafting/peel', text_contents='The $(thing)Peel$() is the only safe way to remove hot items from an Oven. Just $(item)$(k:key.use)$() on it while holding it to retrieve items. Otherwise, you may get burned!'),
