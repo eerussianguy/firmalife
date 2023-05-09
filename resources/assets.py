@@ -69,6 +69,8 @@ def generate(rm: ResourceManager):
     block = rm.blockstate('ice_fishing_station', variants={**four_rotations('firmalife:block/ice_fishing_station', (90, None, 180, 270))})
     block.with_block_loot('firmalife:ice_fishing_station').with_item_model().with_lang(lang('ice fishing station')).with_tag('minecraft:mineable/axe')
 
+    block = rm.blockstate('plate').with_item_model().with_lang(lang('plate')).with_tag('minecraft:mineable/axe').with_block_loot('firmalife:plate')
+
     block = rm.blockstate('jarring_station', variants={**four_rotations('firmalife:block/jarring_station', (90, None, 180, 270))})
     block.with_block_loot('firmalife:jarring_station').with_item_model().with_lang(lang('jarring station')).with_tag('minecraft:mineable/pickaxe')
 
@@ -519,7 +521,7 @@ def greenhouse_door(rm: ResourceManager, name: str, bot: str, upper: str) -> 'Bl
     return block
 
 def greenhouse_tags(block: BlockContext, greenhouse_name: str) -> 'BlockContext':
-    block.with_tag('%s_greenhouse' % greenhouse_name)
+    block.with_tag('%s_greenhouse' % greenhouse_name).with_item_tag('%s_greenhouse' % greenhouse_name)
     if greenhouse_name in ('weathered_treated_wood', 'treated_wood'):
         block.with_tag('minecraft:mineable/axe')
     else:

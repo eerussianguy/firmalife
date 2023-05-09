@@ -1,11 +1,16 @@
 package com.eerussianguy.firmalife.common.misc;
 
 import java.util.List;
+import java.util.Map;
 
 import com.google.gson.JsonObject;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.common.loot.LootModifier;
@@ -31,6 +36,14 @@ public class AddItemModifier extends LootModifier
     @Override
     protected List<ItemStack> doApply(List<ItemStack> loot, LootContext context)
     {
+        if (context.hasParam(LootContextParams.TOOL))
+        {
+            final Map<Enchantment, Integer> enchants = EnchantmentHelper.deserializeEnchantments(context.getParam(LootContextParams.TOOL).getEnchantmentTags());
+            if (enchants.containsKey(Enchantments.SILK_TOUCH))
+            {
+                return loot;
+            }
+        }
         if (context.getRandom().nextFloat() < chance)
         {
             loot.add(item.copy());

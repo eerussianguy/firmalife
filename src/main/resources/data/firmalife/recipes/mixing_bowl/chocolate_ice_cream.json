@@ -1,0 +1,19 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "firmalife:mixing_bowl",
+  "ingredients": [
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "firmalife:food/vanilla_ice_cream"
+      }
+    }
+  ],
+  "fluid_ingredient": {
+    "ingredient": "firmalife:chocolate",
+    "amount": 1000
+  },
+  "output_item": {
+    "item": "firmalife:food/chocolate_ice_cream"
+  }
+}

@@ -90,7 +90,7 @@ def generate(rm: ResourceManager):
     rm.domain = 'tfc'
     rm.crafting_shapeless('crafting/pumpkin_pie', ('firmalife:food/cooked_pumpkin_pie',), 'minecraft:pumpkin_pie').with_advancement('firmalife:food/cooked_pumpkin_pie')
     rm.domain = 'firmalife'
-    rm.crafting_shapeless('crafting/pineapple_fiber', (not_rotten(has_trait('firmalife:food/pineapple', trait='firmalife:dried'))), 'firmalife:pineapple_fiber').with_advancement('firmalife:food/pineapple')
+    damage_shapeless(rm, 'crafting/pineapple_fiber', (not_rotten(has_trait('firmalife:food/pineapple', trait='firmalife:dried')), '#tfc:knives'), 'firmalife:pineapple_fiber').with_advancement('firmalife:food/pineapple')
     damage_shapeless(rm, 'crafting/pineapple_yarn', ('tfc:spindle', 'firmalife:pineapple_fiber'), '8 firmalife:pineapple_yarn').with_advancement('firmalife:pineapple_fiber')
     rm.crafting_shapeless('crafting/toast_with_jam', ('firmalife:food/toast', '#firmalife:foods/preserves'), 'firmalife:food/toast_with_jam').with_advancement('firmalife:food/toast')
     rm.crafting_shapeless('crafting/toast_with_butter', ('firmalife:food/toast', 'firmalife:food/butter'), 'firmalife:food/toast_with_butter').with_advancement('firmalife:food/toast')
@@ -104,12 +104,14 @@ def generate(rm: ResourceManager):
     rm.crafting_shapeless('crafting/stone_finish', ('firmalife:sealed_bricks', 'minecraft:brick'), '16 firmalife:stone_finish').with_advancement('minecraft:brick')
     rm.crafting_shapeless('crafting/tile_finish', ('minecraft:clay_ball', '#forge:cobblestone', 'minecraft:brick'), '16 firmalife:tile_finish').with_advancement('minecraft:brick')
     rm.crafting_shapeless('crafting/oven_insulation', ('#forge:sheets/wrought_iron', 'firmalife:beeswax', '#tfc:flux'), 'firmalife:oven_insulation').with_advancement('#forge:sheets/wrought_iron')
-    rm.crafting_shapeless('crafting/brick_countertop', ('minecraft:bricks', '#tfc:chisels'), 'firmalife:brick_countertop').with_advancement('minecraft:bricks')
-    rm.crafting_shapeless('crafting/stone_countertop', ('firmalife:sealed_bricks', '#tfc:chisels'), 'firmalife:stone_countertop').with_advancement('firmalife:sealed_bricks')
-    rm.crafting_shapeless('crafting/rustic_countertop', ('firmalife:rustic_bricks', '#tfc:chisels'), 'firmalife:rustic_countertop').with_advancement('firmalife:rustic_bricks')
-    rm.crafting_shapeless('crafting/tile_countertop', ('firmalife:tiles', '#tfc:chisels'), 'firmalife:tile_countertop').with_advancement('firmalife:tiles')
+    damage_shapeless(rm, 'crafting/brick_countertop', ('minecraft:bricks', '#tfc:chisels'), 'firmalife:brick_countertop').with_advancement('minecraft:bricks')
+    damage_shapeless(rm, 'crafting/stone_countertop', ('firmalife:sealed_bricks', '#tfc:chisels'), 'firmalife:stone_countertop').with_advancement('firmalife:sealed_bricks')
+    damage_shapeless(rm, 'crafting/rustic_countertop', ('firmalife:rustic_bricks', '#tfc:chisels'), 'firmalife:rustic_countertop').with_advancement('firmalife:rustic_bricks')
+    damage_shapeless(rm, 'crafting/tile_countertop', ('firmalife:tiles', '#tfc:chisels'), 'firmalife:tile_countertop').with_advancement('firmalife:tiles')
     craft_decorations('crafting/rustic_bricks', 'firmalife:rustic_bricks')
     craft_decorations('crafting/tiles', 'firmalife:tiles')
+    rm.crafting_shapeless('crafting/banana_split', (not_rotten('firmalife:food/vanilla_ice_cream'), not_rotten('firmalife:food/strawberry_ice_cream'), not_rotten('firmalife:food/chocolate_ice_cream'), not_rotten('firmalife:food/pineapple'), not_rotten('tfc:food/cherry'), not_rotten('tfc:food/banana'), not_rotten('tfc:food/banana')), 'firmalife:food/banana_split').with_advancement('firmalife:food/vanilla_ice_cream')
+    rm.crafting_shapeless('crafting/plate', ('firmalife:treated_lumber', 'firmalife:treated_lumber', 'minecraft:white_dye', 'tfc:glue'), 'firmalife:plate').with_advancement('firmalife:treated_lumber')
 
     for i in range(1, 9):
         advanced_shapeless(rm, 'crafting/masa_%s' % i, (
@@ -162,12 +164,12 @@ def generate(rm: ResourceManager):
     for fruit in TFC_FRUITS:
         make_jar(rm, fruit)
         ing = not_rotten(has_trait('tfc:food/%s' % fruit, 'firmalife:dried', True))
-        simple_pot_recipe(rm, '%s_jar' % fruit, [utils.ingredient('firmalife:empty_jar'), utils.ingredient('#firmalife:sweetener'), ing], '1000 minecraft:water', None, ['firmalife:%s_jar' % fruit])
+        simple_pot_recipe(rm, '%s_jar' % fruit, [utils.ingredient('firmalife:empty_jar'), utils.ingredient('#firmalife:sweetener'), ing], '1000 minecraft:water', None, ['firmalife:%s_jar' % fruit], duration=1000)
         vat_recipe(rm, '%s_jar' % fruit, ing, '500 firmalife:sugar_water', output_fluid='500 firmalife:fruity_fluid', jar='firmalife:%s_jar' % fruit)
     for fruit in FL_FRUITS:
         make_jar(rm, fruit)
         ing = not_rotten(has_trait('firmalife:food/%s' % fruit, 'firmalife:dried', True))
-        simple_pot_recipe(rm, '%s_jar' % fruit, [utils.ingredient('firmalife:empty_jar'), utils.ingredient('#firmalife:sweetener'), ing], '1000 minecraft:water', None, ['firmalife:%s_jar' % fruit])
+        simple_pot_recipe(rm, '%s_jar' % fruit, [utils.ingredient('firmalife:empty_jar'), utils.ingredient('#firmalife:sweetener'), ing], '1000 minecraft:water', None, ['firmalife:%s_jar' % fruit], duration=1000)
         vat_recipe(rm, '%s_jar' % fruit, ing, '500 firmalife:sugar_water', output_fluid='500 firmalife:fruity_fluid', jar='firmalife:%s_jar' % fruit)
 
     beet = not_rotten('tfc:food/beet')
@@ -231,6 +233,7 @@ def generate(rm: ResourceManager):
     drying_recipe(rm, 'cinnamon', 'firmalife:cinnamon_bark', item_stack_provider('firmalife:spice/cinnamon'))
     drying_recipe(rm, 'dry_grass', 'tfc:thatch', item_stack_provider('tfc:groundcover/dead_grass'))
     drying_recipe(rm, 'tofu', 'firmalife:food/soy_mixture', item_stack_provider('firmalife:food/tofu', copy_food=True))
+    drying_recipe(rm, 'vanilla', 'firmalife:plant/vanilla', item_stack_provider('firmalife:spice/vanilla'))
     for choc in ('milk', 'white', 'dark'):
         drying_recipe(rm, '%s_chocolate' % choc, 'firmalife:food/%s_chocolate_blend' % choc, item_stack_provider('firmalife:food/%s_chocolate' % choc))
     for dirt in ('loam', 'sandy_loam', 'silty_loam', 'silt'):
@@ -246,6 +249,9 @@ def generate(rm: ResourceManager):
     mixing_recipe(rm, 'dark_chocolate_blend', ingredients=[utils.ingredient('#firmalife:sweetener'), not_rotten('firmalife:food/cocoa_powder'), not_rotten('firmalife:food/cocoa_powder')], fluid='1000 #tfc:milks', output_item='2 firmalife:food/dark_chocolate_blend')
     mixing_recipe(rm, 'white_chocolate_blend', ingredients=[utils.ingredient('#firmalife:sweetener'), not_rotten('firmalife:food/cocoa_butter'), not_rotten('firmalife:food/cocoa_butter')], fluid='1000 #tfc:milks', output_item='2 firmalife:food/white_chocolate_blend')
     mixing_recipe(rm, 'milk_chocolate_blend', ingredients=[utils.ingredient('#firmalife:sweetener'), not_rotten('firmalife:food/cocoa_butter'), not_rotten('firmalife:food/cocoa_powder')], fluid='1000 #tfc:milks', output_item='2 firmalife:food/milk_chocolate_blend')
+    mixing_recipe(rm, 'vanilla_ice_cream', ingredients=[utils.ingredient('#firmalife:sweetener'), utils.ingredient('firmalife:spice/vanilla'), utils.ingredient('firmalife:ice_shavings')], fluid='1000 firmalife:cream', output_item='2 firmalife:food/vanilla_ice_cream')
+    mixing_recipe(rm, 'chocolate_ice_cream', ingredients=[not_rotten('firmalife:food/vanilla_ice_cream')], fluid='1000 firmalife:chocolate', output_item='firmalife:food/chocolate_ice_cream')
+    mixing_recipe(rm, 'strawberry_ice_cream', ingredients=[not_rotten('firmalife:food/vanilla_ice_cream'), not_rotten('tfc:food/strawberry')], fluid='1000 firmalife:chocolate', output_item='firmalife:food/strawberry_ice_cream')
 
     meal_shapeless(rm, 'crafting/filled_pie', (not_rotten('firmalife:food/pie_dough'), '#firmalife:foods/preserves', '#firmalife:pie_pans'), 'firmalife:food/filled_pie', 'firmalife:pie').with_advancement('firmalife:food/pie_dough')
     meal_shapeless(rm, 'crafting/raw_pizza', (not_rotten('firmalife:food/pizza_dough'), not_rotten('#firmalife:foods/pizza_ingredients'), not_rotten('#firmalife:foods/pizza_ingredients'), not_rotten('firmalife:food/shredded_cheese'), not_rotten('firmalife:food/tomato_sauce')), 'firmalife:food/raw_pizza', 'firmalife:pizza').with_advancement('firmalife:food/pizza_dough')

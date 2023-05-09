@@ -67,7 +67,12 @@ public enum FLFood
     TACO_SHELL,
     TOMATO_SAUCE,
     TOMATO_SAUCE_MIX,
-    SALSA;
+    SALSA,
+    VANILLA_ICE_CREAM,
+    STRAWBERRY_ICE_CREAM,
+    CHOCOLATE_ICE_CREAM,
+    BANANA_SPLIT,
+    ;
 
     private final boolean meat, fast;
 

@@ -1,0 +1,21 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "firmalife:treated_lumber"
+    },
+    {
+      "item": "firmalife:treated_lumber"
+    },
+    {
+      "item": "minecraft:white_dye"
+    },
+    {
+      "item": "tfc:glue"
+    }
+  ],
+  "result": {
+    "item": "firmalife:plate"
+  }
+}

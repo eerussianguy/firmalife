@@ -94,6 +94,7 @@ public class FLBlocks
     public static final RegistryObject<Block> VAT = register("vat", () -> new VatBlock(ExtendedProperties.of(Material.METAL).sound(SoundType.METAL).strength(1f).noOcclusion().blockEntity(FLBlockEntities.VAT).serverTicks(VatBlockEntity::serverTick)), DECORATIONS);
     public static final RegistryObject<Block> ICE_FISHING_STATION = register("ice_fishing_station", () -> new IceFishingStationBlock(ExtendedProperties.of(Material.WOOD).sound(SoundType.WOOD).strength(1f).blockEntity(FLBlockEntities.ICE_FISHING_STATION).ticks(IceFishingStationBlockEntity::serverTick, IceFishingStationBlockEntity::clientTick)), DECORATIONS);
     public static final RegistryObject<Block> JARRING_STATION = register("jarring_station", () -> new JarringStationBlock(ExtendedProperties.of(Material.METAL).sound(SoundType.METAL).strength(1f).noOcclusion().blockEntity(FLBlockEntities.JARRING_STATION).ticks(JarringStationBlockEntity::tick)), DECORATIONS);
+    public static final RegistryObject<Block> PLATE = register("plate", () -> ConsumingBlock.plate(ExtendedProperties.of(Material.WOOD).sound(SoundType.WOOD).strength(1f).noOcclusion().blockEntity(FLBlockEntities.PLATE)), DECORATIONS);
 
     public static final RegistryObject<Block> HONEY_JAR = register("honey_jar", () -> new JarsBlock(jarProperties()), b -> new JarsBlockItem(b, new Item.Properties().tab(MISC)));
     public static final RegistryObject<Block> COMPOST_JAR = register("compost_jar", () -> new JarsBlock(jarProperties()), b -> new JarsBlockItem(b, new Item.Properties().tab(MISC)));

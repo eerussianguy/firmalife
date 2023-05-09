@@ -50,13 +50,13 @@
         ]
       }
     },
-    "rayja_metok": {
+    "rajya_metok": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "firmalife:food/rayja_metok"
+              "firmalife:food/rajya_metok"
             ]
           }
         ]

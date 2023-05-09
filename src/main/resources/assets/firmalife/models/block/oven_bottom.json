@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"parent": "block/block",
 	"textures": {
-		"particle": "firmalife:block/rustic_bricks",
+		"particle": "#main",
 		"main": "firmalife:block/rustic_bricks",
 		"side": "firmalife:block/rustic_oven_side",
 		"front": "firmalife:block/rustic_oven_bottom",
@@ -56,12 +56,15 @@
 			}
 		},
 		{
-			"from": [0, 0.1, 0],
-			"to": [16, 0, 16],
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
+			"from": [0.1, 0, 0.1],
+			"to": [15.9, 0.5, 15.9],
 			"faces": {
-				"up": {"uv": [0, 0, 16, 16], "rotation": 270, "texture": "#gravel"},
-				"down": {"uv": [0, 0, 16, 16], "rotation": 270, "texture": "#gravel"}
+				"north": {"uv": [0, 0, 15.8, 0.5], "texture": "#gravel"},
+				"east": {"uv": [0, 0, 15.8, 0.5], "texture": "#gravel"},
+				"south": {"uv": [0, 0, 15.8, 0.5], "texture": "#gravel"},
+				"west": {"uv": [0, 0, 15.8, 0.5], "texture": "#gravel"},
+				"up": {"uv": [0, 0, 15.8, 15.8], "texture": "#gravel"},
+				"down": {"uv": [0, 0, 15.8, 15.8], "texture": "#gravel"}
 			}
 		}
 	]

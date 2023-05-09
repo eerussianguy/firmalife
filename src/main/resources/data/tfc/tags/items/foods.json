@@ -44,6 +44,10 @@
     "firmalife:food/tomato_sauce",
     "firmalife:food/salsa",
     "firmalife:food/pineapple",
-    "firmalife:food/nightshade_berry"
+    "firmalife:food/nightshade_berry",
+    "firmalife:food/vanilla_ice_cream",
+    "firmalife:food/chocolate_ice_cream",
+    "firmalife:food/strawberry_ice_cream",
+    "firmalife:food/banana_split"
   ]
 }

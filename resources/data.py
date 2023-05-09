@@ -84,6 +84,7 @@ def generate(rm: ResourceManager):
     rm.block_tag('pipe_replaceable', '#tfc:dirt', '#tfc:grass', '#minecraft:base_stone_overworld', '#forge:gravel', '#minecraft:sand', '#tfc:can_carve')
     rm.block_tag('tfc:thorny_bushes', 'firmalife:plant/pineapple_bush')
     rm.block_tag('minecraft:climbable', 'firmalife:dark_ladder')
+    rm.block_tag('drops_ice_shavings', 'minecraft:ice')
 
     rm.block_tag('minecraft:mineable/axe', *['firmalife:plant/%s_branch' % t for t in FRUITS], *['firmalife:plant/%s_growing_branch' % t for t in FRUITS])
     rm.block_tag('tfc:mineable_with_sharp_tool', *['firmalife:plant/%s_leaves' % t for t in FRUITS], *['firmalife:plant/%s_sapling' % t for t in FRUITS])
@@ -197,7 +198,7 @@ def generate(rm: ResourceManager):
     decayable(rm, 'butter', 'firmalife:food/butter', Category.other)
     decayable(rm, 'pie_dough', 'firmalife:food/pie_dough', Category.other)
     decayable(rm, 'pizza_dough', 'firmalife:food/pizza_dough', Category.other)
-    food_item(rm, 'pumpkin_chunks', 'firmalife:food/pumpkin_chunks', Category.fruit, 4, 1, 5, 1.5, fruit=1)
+    food_item(rm, 'pumpkin_chunks', 'firmalife:food/pumpkin_chunks', Category.fruit, 4, 1, 5, 1.5, fruit=0.75)
     decayable(rm, 'pumpkin_pie_dough', 'firmalife:food/pumpkin_pie_dough', Category.other)
     decayable(rm, 'raw_pumpkin_pie', 'firmalife:food/raw_pumpkin_pie', Category.other)
     decayable(rm, 'cooked_pumpkin_pie', 'firmalife:food/cooked_pumpkin_pie', Category.other)
@@ -215,8 +216,12 @@ def generate(rm: ResourceManager):
     food_item(rm, 'taco_shell', 'firmalife:food/taco_shell', Category.grain, 4, 1, 0, 0.8, grain=0.6)
     food_item(rm, 'tomato_sauce', 'firmalife:food/tomato_sauce', Category.vegetable, 1, 1, 1, 1, veg=0.75)
     food_item(rm, 'salsa', 'firmalife:food/salsa', Category.vegetable, 1, 1, 1, 0.8, veg=0.5)
-    food_item(rm, 'pineapple', 'firmalife:food/pineapple', Category.fruit, 4, 1, 1, 0.85, fruit=1.0)
+    food_item(rm, 'pineapple', 'firmalife:food/pineapple', Category.fruit, 4, 1, 1, 0.85, fruit=0.75)
     food_item(rm, 'nightshade_berry', 'firmalife:food/nightshade_berry', Category.other, 4, 1, 1, 0.85, fruit=3.0)
+    food_item(rm, 'vanilla_ice_cream', 'firmalife:food/vanilla_ice_cream', Category.other, 4, 1, 1, 5, dairy=0.75)
+    food_item(rm, 'chocolate_ice_cream', 'firmalife:food/chocolate_ice_cream', Category.other, 4, 1.5, 1, 5, dairy=0.5, grain=0.25)
+    food_item(rm, 'strawberry_ice_cream', 'firmalife:food/strawberry_ice_cream', Category.other, 4, 1.5, 1, 5, dairy=0.5, fruit=0.5)
+    food_item(rm, 'banana_split', 'firmalife:food/banana_split', Category.other, 4, 2, 1, 5, fruit=3.5, dairy=1.75, grain=0.25)
 
     item_size(rm, 'jars', '#firmalife:jars', Size.very_large, Weight.medium)
     item_size(rm, 'beehive_frame', 'firmalife:beehive_frame', Size.very_small, Weight.very_heavy)
@@ -231,10 +236,11 @@ def generate(rm: ResourceManager):
         climate_range(rm, 'plant/%s_bush' % berry, hydration=(hydration_from_rainfall(data[0]), 100, 0), temperature=(data[2], data[3], 0))
 
     ### MISC DATA ###
-    global_loot_modifiers(rm, 'firmalife:fruit_leaf', 'firmalife:rennet', 'firmalife:rennet_three')
+    global_loot_modifiers(rm, 'firmalife:fruit_leaf', 'firmalife:rennet', 'firmalife:rennet_three', 'firmalife:ice_shavings')
     global_loot_modifier(rm, 'rennet', 'firmalife:add_item', {'item': utils.item_stack('2 firmalife:rennet')}, match_entity_tag('firmalife:drops_rennet'))
     global_loot_modifier(rm, 'rennet_three', 'firmalife:add_item', {'item': utils.item_stack('3 firmalife:rennet')}, match_entity_tag('firmalife:drops_three_rennet'))
     global_loot_modifier(rm, 'fruit_leaf', 'firmalife:add_item', {'item': utils.item_stack('firmalife:fruit_leaf'), 'chance': 0.5}, match_block_ingredient('firmalife:drops_fruit_leaf'))
+    global_loot_modifier(rm, 'ice_shavings', 'firmalife:add_item', {'item': utils.item_stack('firmalife:ice_shavings')}, match_block_ingredient('firmalife:drops_ice_shavings'))
 
 
 def greenhouse(rm: ResourceManager, name: str, block_ingredient: str, tier: int):

@@ -44,6 +44,7 @@ public class FLItems
     public static final RegistryObject<Item> FRUIT_LEAF = register("fruit_leaf", MISC);
     public static final RegistryObject<Item> EMPTY_JAR = register("empty_jar", MISC);
     public static final RegistryObject<Item> HOLLOW_SHELL = register("hollow_shell",  () -> new HollowShellItem(prop(), FLConfig.SERVER.hollowShellCapacity, FLTags.Fluids.USABLE_IN_HOLLOW_SHELL, false, false));
+    public static final RegistryObject<Item> ICE_SHAVINGS = register("ice_shavings", MISC);
     public static final RegistryObject<Item> OVEN_INSULATION = register("oven_insulation", () -> new PeelItem(prop()));
     public static final RegistryObject<Item> PEEL = register("peel", () -> new PeelItem(prop()));
     public static final RegistryObject<Item> PIE_PAN = register("pie_pan", MISC);

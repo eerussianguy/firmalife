@@ -20,6 +20,18 @@
         "items": [
           {
             "items": [
+              "firmalife:oven_top"
+            ]
+          }
+        ]
+      }
+    },
+    "oc": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
               "firmalife:oven_chimney"
             ]
           }

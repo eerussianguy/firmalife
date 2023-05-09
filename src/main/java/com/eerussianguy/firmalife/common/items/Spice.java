@@ -4,5 +4,7 @@ public enum Spice
 {
     BASIL_LEAVES,
     CINNAMON,
-    GROUND_CINNAMON;
+    GROUND_CINNAMON,
+    VANILLA,
+    ;
 }

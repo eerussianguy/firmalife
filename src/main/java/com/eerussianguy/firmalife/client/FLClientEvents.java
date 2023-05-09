@@ -168,6 +168,7 @@ public class FLClientEvents
         event.registerBlockEntityRenderer(FLBlockEntities.STOVETOP_POT.get(), ctx -> new StovetopPotBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.ICE_FISHING_STATION.get(), ctx -> new IceFishingStationBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.JARRING_STATION.get(), ctx -> new JarringStationBlockEntityRenderer());
+        event.registerBlockEntityRenderer(FLBlockEntities.PLATE.get(), ctx -> new PlateBlockEntityRenderer());
 
         event.registerEntityRenderer(FLEntities.SEED_BALL.get(), ThrownItemRenderer::new);
     }

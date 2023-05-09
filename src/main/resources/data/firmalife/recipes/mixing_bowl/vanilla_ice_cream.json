@@ -1,0 +1,23 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "firmalife:mixing_bowl",
+  "ingredients": [
+    {
+      "tag": "firmalife:sweetener"
+    },
+    {
+      "item": "firmalife:spice/vanilla"
+    },
+    {
+      "item": "firmalife:ice_shavings"
+    }
+  ],
+  "fluid_ingredient": {
+    "ingredient": "firmalife:cream",
+    "amount": 1000
+  },
+  "output_item": {
+    "item": "firmalife:food/vanilla_ice_cream",
+    "count": 2
+  }
+}
