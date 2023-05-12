@@ -14,6 +14,7 @@ import com.eerussianguy.firmalife.common.container.FLContainerProviders;
 import net.minecraft.world.level.Level;
 
 import net.dries007.tfc.common.TFCTags;
+import net.dries007.tfc.common.capabilities.food.FoodCapability;
 import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.util.BlockItemPlacement;
 import net.dries007.tfc.util.InteractionManager;
@@ -24,7 +25,7 @@ public class FLInteractionManager
     {
         InteractionManager.register(new BlockItemPlacement(TFCItems.WOOL_YARN, FLBlocks.WOOL_STRING));
 
-        InteractionManager.register(Ingredient.of(FLTags.Items.PUMPKIN_KNAPPING), false, true, InteractionManager.createKnappingInteraction((s, p) -> p.getInventory().contains(TFCTags.Items.KNIVES), FLContainerProviders.PUMPKIN_KNAPPING));
+        InteractionManager.register(Ingredient.of(FLTags.Items.PUMPKIN_KNAPPING), false, true, InteractionManager.createKnappingInteraction((s, p) -> p.getInventory().contains(TFCTags.Items.KNIVES) && s.getCapability(FoodCapability.CAPABILITY).map(f -> !f.isRotten()).orElse(false), FLContainerProviders.PUMPKIN_KNAPPING));
 
         InteractionManager.register(Ingredient.of(TFCItems.WROUGHT_IRON_GRILL.get()), false, (stack, context) -> {
             final Level level = context.getLevel();
