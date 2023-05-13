@@ -6,8 +6,10 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 import com.eerussianguy.firmalife.common.blocks.OvenType;
+import com.eerussianguy.firmalife.common.util.FLArmorMaterials;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraftforge.registries.DeferredRegister;
@@ -29,6 +31,7 @@ import net.dries007.tfc.util.Helpers;
 
 import static net.dries007.tfc.common.TFCItemGroup.FOOD;
 import static net.dries007.tfc.common.TFCItemGroup.MISC;
+import static net.minecraft.world.item.CreativeModeTab.*;
 
 @SuppressWarnings("unused")
 public class FLItems
@@ -57,6 +60,11 @@ public class FLItems
     public static final RegistryObject<Item> SPOON = register("spoon", MISC);
     public static final RegistryObject<Item> TREATED_LUMBER = register("treated_lumber", MISC);
     public static final RegistryObject<Item> WATERING_CAN = register("watering_can", () -> new WateringCanItem(prop().defaultDurability(20)));
+
+    public static final RegistryObject<Item> BEEKEEPER_HELMET = register("beekeeper_helmet", () -> new ArmorItem(FLArmorMaterials.BEEKEEPER, EquipmentSlot.HEAD, new Item.Properties().tab(TAB_COMBAT)));
+    public static final RegistryObject<Item> BEEKEEPER_CHESTPLATE = register("beekeeper_chestplate", () -> new ArmorItem(FLArmorMaterials.BEEKEEPER, EquipmentSlot.CHEST, new Item.Properties().tab(TAB_COMBAT)));
+    public static final RegistryObject<Item> BEEKEEPER_LEGGINGS = register("beekeeper_leggings", () -> new ArmorItem(FLArmorMaterials.BEEKEEPER, EquipmentSlot.LEGS, new Item.Properties().tab(TAB_COMBAT)));
+    public static final RegistryObject<Item> BEEKEEPER_BOOTS = register("beekeeper_boots", () -> new ArmorItem(FLArmorMaterials.BEEKEEPER, EquipmentSlot.FEET, new Item.Properties().tab(TAB_COMBAT)));
 
     public static final Map<Spice, RegistryObject<Item>> SPICES = Helpers.mapOfKeys(Spice.class, spice -> register("spice/" + spice.name(), MISC));
     public static final Map<FLFood, RegistryObject<Item>> FOODS = Helpers.mapOfKeys(FLFood.class, food -> register("food/" + food.name(), () -> new DecayingContainerItem(new Item.Properties().food(food.getFoodProperties()).tab(FOOD))));

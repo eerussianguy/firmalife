@@ -2,10 +2,12 @@ package com.eerussianguy.firmalife.common.misc;
 
 import java.util.Random;
 
+import com.eerussianguy.firmalife.common.FLTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 
@@ -45,10 +47,18 @@ public class SwarmEffect extends MobEffect
     @Override
     public void applyEffectTick(LivingEntity entity, int amplifier)
     {
-        if (!entity.isInWaterOrRain() && FLConfig.SERVER.enableBeeSwarm.get())
+        if (!entity.isInWaterOrRain() && FLConfig.SERVER.enableBeeSwarm.get() && !hasBeeArmor(entity))
         {
             entity.hurt(FLDamageSources.SWARM, 0.5F);
         }
         particles(entity.getLevel(), entity.blockPosition(), entity.getRandom());
+    }
+
+    private boolean hasBeeArmor(LivingEntity entity)
+    {
+        return Helpers.isItem(entity.getItemBySlot(EquipmentSlot.HEAD), FLTags.Items.BEEKEEPER_ARMOR)
+             && Helpers.isItem(entity.getItemBySlot(EquipmentSlot.CHEST), FLTags.Items.BEEKEEPER_ARMOR)
+             && Helpers.isItem(entity.getItemBySlot(EquipmentSlot.LEGS), FLTags.Items.BEEKEEPER_ARMOR)
+             && Helpers.isItem(entity.getItemBySlot(EquipmentSlot.FEET), FLTags.Items.BEEKEEPER_ARMOR);
     }
 }

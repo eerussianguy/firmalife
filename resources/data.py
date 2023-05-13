@@ -65,6 +65,7 @@ def generate(rm: ResourceManager):
     rm.item_tag('foods/cooked_meats_and_substitutes', '#tfc:foods/cooked_meats', 'firmalife:food/tofu')
     rm.item_tag('forge:leather', 'firmalife:pineapple_leather')
     rm.item_tag('usable_in_stovetop_soup', '#tfc:foods/usable_in_soup')
+    rm.item_tag('beekeeper_armor', *['firmalife:beekeeper_%s' % p for p in ('chestplate', 'leggings', 'helmet', 'boots')])
 
     block_and_item_tag(rm, 'tfc:wild_fruits', 'firmalife:plant/pineapple_bush', 'firmalife:plant/nightshade_bush', 'firmalife:plant/fig_sapling', 'firmalife:plant/cocoa_sapling')
 

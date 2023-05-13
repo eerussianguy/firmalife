@@ -2,6 +2,7 @@ package com.eerussianguy.firmalife.client;
 
 import java.util.List;
 
+import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.util.Plantable;
 import com.google.common.base.Stopwatch;
 import net.minecraft.network.chat.Component;
@@ -13,6 +14,8 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.capabilities.bee.BeeCapability;
+
+import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.SelfTests;
 
 public class FLClientForgeEvents
@@ -46,6 +49,10 @@ public class FLClientForgeEvents
             if (plantable != null)
             {
                 plantable.addTooltipInfo(text);
+            }
+            if (Helpers.isItem(stack, FLTags.Items.BEEKEEPER_ARMOR))
+            {
+                text.add(Helpers.translatable("firmalife.tooltip.beekeeper_armor"));
             }
         }
     }

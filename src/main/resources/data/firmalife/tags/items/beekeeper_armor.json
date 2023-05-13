@@ -1,0 +1,10 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "firmalife:beekeeper_chestplate",
+    "firmalife:beekeeper_leggings",
+    "firmalife:beekeeper_helmet",
+    "firmalife:beekeeper_boots"
+  ]
+}

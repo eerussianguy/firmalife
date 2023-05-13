@@ -44,6 +44,7 @@ public class FLTags
         public static final TagKey<Item> CONTAINS_PIE_PAN = create("contains_pie_pan");
         public static final TagKey<Item> CAN_BE_HUNG = create("can_be_hung");
         public static final TagKey<Item> USABLE_IN_STOVETOP_SOUP = create("usable_in_stovetop_soup");
+        public static final TagKey<Item> BEEKEEPER_ARMOR = create("beekeeper_armor");
 
         private static TagKey<Item> create(String id)
         {
