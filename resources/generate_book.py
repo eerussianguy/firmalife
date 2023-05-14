@@ -51,7 +51,7 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False):
         entry('differences_from_tfc', 'Differences from TFC', 'tfc:food/wheat_bread', pages=(
             text('Firmalife makes a few changes to how things operate in regular TFC. This chapter exists to help direct you towards areas where this is very different.'),
             text('$(l:firmalife:firmalife/cheese)Cheese$() is made through a more complex process. It can be placed in world, and has the option of aging in a $(l:firmalife:firmalife/cellar)Cellar$().', title='Cheese Aging'),
-            text('$(l:firmalife:firmalife/bread)Bread$() is made through a more complex process, requiring yeast and sweetener. The regular TFC bread recipie makes flatbread, which is worse nutritionally.', title='Bread Making'),
+            text('$(l:firmalife:firmalife/bread)Bread$() is made through a more complex process, requiring yeast and sweetener. The regular TFC bread recipe makes flatbread, which is worse nutritionally.', title='Bread Making'),
             text('Firmalife has a greater emphasis on sugar. While it can still be obtained through sugar cane, consider using honey (from bees) or making sugar from beets!', title='Sweeteners'),
         )),
         entry('cheese', 'Cheese', 'firmalife:food/gouda', pages=(
