@@ -217,9 +217,11 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False):
             two_tall_block_spotlight('', '', 'firmalife:cured_oven_bottom', 'firmalife:vat'),
             text('Pots and Grills from TFC can be placed on top of a $(thing)Bottom Oven$(). These devices will get heat automatically from the bottom oven. They come with a couple restrictions: Each has only 4 slots, and the pot is only used for making soup. It cannot execute regular pot recipes.'),
         )),
-        entry('bread', 'Bread', 'tfc:food/rye_bread', pages=(
+        entry('bread', 'Bread', 'tfc:food/barley_bread', pages=(
             text('To make $(thing)Bread$(), one first must get $(thing)Yeast$(). To get your first yeast, seal $(l:firmalife:firmalife/drying)Dried Fruit$() in a Barrel of $(thing)Water$(). After three days, $(thing)Yeast Starter$() will form.$(br)From now on, your yeast can be fed by sealing Yeast Starter in a Barrel with $(thing)Flour$(). This causes it to multiply. 1 flour per 100mB of Yeast produces 600mB of Yeast. That\'s a good deal!'),
             crafting('firmalife:crafting/barley_dough', text_contents='Yeast Starter, Sweetener, and Flour can be combined to make $(thing)Dough$(). Dough can be cooked like normal to produce $(thing)Bread!$().'),
+            crafting('firmalife:crafting/barley_slice', text_contents='Once baked, you can use a $(thing)knife$() to cut bread into slices. These can then either be used for $(l:tfc:mechanics/sandwiches)sandwich making$(), or cooked into $(thing)toast$() which can be spread with $(thing)butter$() or preserves.', title='Sliced Bread'),
+            crafting('firmalife:crafting/toast_with_butter', 'firmalife:crafting/toast_with_jam', title='Toast')
         )),
         entry('more_fertilizer', 'More Fertilizer Options', 'firmalife:iron_composter', pages=(
             text('Given a greater need for fertilization in Firmalife, there are more options for getting $(l:mechanics/fertilizers)fertilizers$().'),
