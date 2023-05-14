@@ -17,7 +17,7 @@
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/barley_slice",
       "title": "Sliced Bread",
-      "text": "Once baked, you can use a $(thing)knife$() to cut bread into slices. These can then either be used for $(l:tfc:mechanics/sandwiches)sandwich making$(), or cooked into $(thing)toast$() which can be spread with $(thing)butter$() or preserves."
+      "text": "Once baked, you can use a $(thing)knife$() to cut bread into $(thing)slices$(). These can then either be used for $(l:tfc:mechanics/sandwiches)sandwich making$(), or cooked into $(thing)toast$() which can be spread with $(thing)butter$() or preserves."
     },
     {
       "type": "patchouli:crafting",
