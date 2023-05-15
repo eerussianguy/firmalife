@@ -2,7 +2,7 @@
   "__comment__": "This file was automatically created by mcresources",
   "name": "Bread",
   "category": "firmalife:firmalife",
-  "icon": "tfc:food/rye_bread",
+  "icon": "tfc:food/barley_bread",
   "pages": [
     {
       "type": "patchouli:text",
@@ -12,6 +12,18 @@
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/barley_dough",
       "text": "Yeast Starter, Sweetener, and Flour can be combined to make $(thing)Dough$(). Dough can be cooked like normal to produce $(thing)Bread!$()."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/barley_slice",
+      "title": "Sliced Bread",
+      "text": "Once baked, you can use a $(thing)knife$() to cut bread into $(thing)slices$(). These can then either be used for $(l:tfc:mechanics/sandwiches)sandwich making$(), or cooked into $(thing)toast$() which can be spread with $(thing)butter$() or preserves."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/toast_with_butter",
+      "recipe2": "firmalife:crafting/toast_with_jam",
+      "title": "Toast"
     }
   ],
   "read_by_default": true,
