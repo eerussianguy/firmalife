@@ -2,7 +2,7 @@
   "__comment__": "This file was automatically created by mcresources",
   "name": "Oven Appliances",
   "category": "firmalife:firmalife",
-  "icon": "tfc:vat",
+  "icon": "firmalife:vat",
   "pages": [
     {
       "type": "patchouli:text",
