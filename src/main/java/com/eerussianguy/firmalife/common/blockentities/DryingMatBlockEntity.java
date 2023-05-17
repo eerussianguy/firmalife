@@ -3,6 +3,7 @@ package com.eerussianguy.firmalife.common.blockentities;
 import java.util.function.Supplier;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -11,6 +12,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.recipes.DryingRecipe;
 import com.eerussianguy.firmalife.config.FLConfig;
+
+import net.dries007.tfc.common.capabilities.PartialItemHandler;
 import net.dries007.tfc.common.recipes.inventory.ItemStackInventory;
 
 public class DryingMatBlockEntity extends SimpleItemRecipeBlockEntity<DryingRecipe>
@@ -45,6 +48,10 @@ public class DryingMatBlockEntity extends SimpleItemRecipeBlockEntity<DryingReci
     public DryingMatBlockEntity(BlockEntityType<DryingMatBlockEntity> type, BlockPos pos, BlockState state, Supplier<Integer> dryTicks)
     {
         super(type, pos, state, FLHelpers.blockEntityName("drying_mat"), dryTicks);
+
+        sidedInventory
+            .on(new PartialItemHandler(inventory).extract(0), Direction.DOWN)
+            .on(new PartialItemHandler(inventory).insert(0), Direction.Plane.HORIZONTAL);
     }
 
     @Override

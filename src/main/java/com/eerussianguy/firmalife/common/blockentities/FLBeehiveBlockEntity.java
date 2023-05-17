@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
@@ -32,6 +33,7 @@ import net.dries007.tfc.common.blockentities.IFarmland;
 import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
 import net.dries007.tfc.common.blocks.soil.ConnectedGrassBlock;
 import net.dries007.tfc.common.blocks.soil.DirtBlock;
+import net.dries007.tfc.common.capabilities.PartialItemHandler;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.ICalendar;
@@ -71,6 +73,10 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
         lastAreaTick = Calendars.SERVER.getTicks();
         cachedBees = new IBee[] {null, null, null, null};
         honey = 0;
+
+        sidedInventory
+            .on(new PartialItemHandler(inventory).insert(0, 1, 2, 3), Direction.Plane.HORIZONTAL)
+            .on(new PartialItemHandler(inventory).extract(0, 1, 2, 3), Direction.DOWN);
     }
 
     @Override

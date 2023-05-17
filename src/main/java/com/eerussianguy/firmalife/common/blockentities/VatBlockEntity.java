@@ -54,7 +54,8 @@ public class VatBlockEntity extends BoilingBlockEntity<VatBlockEntity.VatInvento
     {
         super(FLBlockEntities.VAT.get(), pos, state, VatInventory::new, FLHelpers.blockEntityName("vat"));
 
-        sidedInventory.on(new PartialItemHandler(inventory).insert(), Direction.Plane.HORIZONTAL);
+        sidedInventory
+            .on(new PartialItemHandler(inventory).insert(), Direction.Plane.HORIZONTAL);
     }
 
     public void handleJarring()

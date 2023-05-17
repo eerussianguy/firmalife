@@ -40,6 +40,7 @@ STILL_BUSHES = {
     'nightshade': (200, 400, 7, 24),
     'pineapple': (250, 500, 20, 32),
 }
+ARMOR_SECTIONS = ('helmet', 'chestplate', 'leggings', 'boots')
 
 TFC_GRAINS = ('wheat', 'rye', 'barley', 'rice', 'maize', 'oat')
 TFC_FRUIT_TREES = ('cherry', 'green_apple', 'lemon', 'olive', 'orange', 'peach', 'plum', 'red_apple')

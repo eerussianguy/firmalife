@@ -1,6 +1,5 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
-import java.util.concurrent.atomic.AtomicBoolean;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blocks.JarringStationBlock;
 import com.eerussianguy.firmalife.common.items.FLItems;

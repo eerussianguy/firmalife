@@ -1,0 +1,21 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:leather_leggings"
+    },
+    {
+      "item": "tfc:burlap_cloth"
+    },
+    {
+      "item": "tfc:burlap_cloth"
+    },
+    {
+      "item": "tfc:powder/wood_ash"
+    }
+  ],
+  "result": {
+    "item": "firmalife:beekeeper_leggings"
+  }
+}

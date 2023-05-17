@@ -13,6 +13,7 @@ import com.eerussianguy.firmalife.common.blocks.ICure;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.common.recipes.WrappedHeatingRecipe;
 import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
+import net.dries007.tfc.common.capabilities.PartialItemHandler;
 import net.dries007.tfc.common.capabilities.food.FoodCapability;
 import net.dries007.tfc.common.capabilities.heat.HeatCapability;
 import net.dries007.tfc.common.recipes.inventory.ItemStackInventory;
@@ -124,6 +125,10 @@ public class OvenTopBlockEntity extends ApplianceBlockEntity<ApplianceBlockEntit
         cureTicks = 0;
         cachedRecipes = new WrappedHeatingRecipe[4];
         cookTicks = new int[] {0, 0, 0, 0};
+
+        sidedInventory
+            .on(new PartialItemHandler(inventory).insert(0, 1, 2, 3), Direction.UP)
+            .on(new PartialItemHandler(inventory).extract(0, 1, 2, 3), d -> d != Direction.UP);
     }
 
     @Override

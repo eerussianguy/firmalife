@@ -113,6 +113,9 @@ def generate(rm: ResourceManager):
     rm.crafting_shapeless('crafting/banana_split', (not_rotten('firmalife:food/vanilla_ice_cream'), not_rotten('firmalife:food/strawberry_ice_cream'), not_rotten('firmalife:food/chocolate_ice_cream'), not_rotten('firmalife:food/pineapple'), not_rotten('tfc:food/cherry'), not_rotten('tfc:food/banana'), not_rotten('tfc:food/banana')), 'firmalife:food/banana_split').with_advancement('firmalife:food/vanilla_ice_cream')
     rm.crafting_shapeless('crafting/plate', ('firmalife:treated_lumber', 'firmalife:treated_lumber', 'minecraft:white_dye', 'tfc:glue'), 'firmalife:plate').with_advancement('firmalife:treated_lumber')
 
+    for section in ARMOR_SECTIONS:
+        rm.crafting_shapeless('crafting/beekeeper_%s' % section, ('minecraft:leather_%s' % section, 'tfc:burlap_cloth', 'tfc:burlap_cloth', 'tfc:powder/wood_ash'), 'firmalife:beekeeper_%s' % section).with_advancement('tfc:burlap_cloth')
+
     for i in range(1, 9):
         advanced_shapeless(rm, 'crafting/masa_%s' % i, (
             fluid_item_ingredient('100 minecraft:water'),

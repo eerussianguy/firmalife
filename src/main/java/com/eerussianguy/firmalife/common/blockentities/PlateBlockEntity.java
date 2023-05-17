@@ -2,6 +2,7 @@ package com.eerussianguy.firmalife.common.blockentities;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -9,6 +10,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.items.ItemStackHandler;
 
 import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
+import net.dries007.tfc.common.capabilities.PartialItemHandler;
 import net.dries007.tfc.common.capabilities.food.FoodCapability;
 import net.dries007.tfc.util.Helpers;
 
@@ -19,6 +21,10 @@ public class PlateBlockEntity extends InventoryBlockEntity<ItemStackHandler>
     public PlateBlockEntity(BlockPos pos, BlockState state)
     {
         super(FLBlockEntities.PLATE.get(), pos, state, defaultInventory(1), FLHelpers.blockEntityName("plate"));
+
+        sidedInventory
+            .on(new PartialItemHandler(inventory).insert(0), Direction.Plane.HORIZONTAL)
+            .on(new PartialItemHandler(inventory).extract(0), Direction.DOWN);
     }
 
 

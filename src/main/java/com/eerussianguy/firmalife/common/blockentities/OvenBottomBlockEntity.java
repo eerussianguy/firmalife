@@ -2,6 +2,7 @@ package com.eerussianguy.firmalife.common.blockentities;
 
 import com.eerussianguy.firmalife.config.FLConfig;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
@@ -19,6 +20,7 @@ import com.eerussianguy.firmalife.common.blocks.ICure;
 import com.eerussianguy.firmalife.common.blocks.OvenBottomBlock;
 import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
 import net.dries007.tfc.common.capabilities.Capabilities;
+import net.dries007.tfc.common.capabilities.PartialItemHandler;
 import net.dries007.tfc.common.capabilities.heat.HeatCapability;
 import net.dries007.tfc.common.items.Powder;
 import net.dries007.tfc.common.items.TFCItems;
@@ -133,6 +135,14 @@ public class OvenBottomBlockEntity extends TickableInventoryBlockEntity<ItemStac
         super(FLBlockEntities.OVEN_BOTTOM.get(), pos, state, defaultInventory(4), FLHelpers.blockEntityName("oven_bottom"));
         temperature = burnTemperature = burnTicks = airTicks = cureTicks = 0;
         lastPlayerTick = Calendars.SERVER.getTicks();
+
+        if (state.hasProperty(OvenBottomBlock.FACING))
+        {
+            final Direction face = state.getValue(OvenBottomBlock.FACING);
+            sidedInventory
+                .on(new PartialItemHandler(inventory).insert(0, 1, 2, 3), d -> d == face.getClockWise() || d == face.getCounterClockWise())
+                .on(new PartialItemHandler(inventory).extract(0, 1, 2, 3), d -> d == face.getOpposite() || d == Direction.DOWN);
+        }
     }
 
     @Override

@@ -3,12 +3,14 @@ package com.eerussianguy.firmalife.common.blockentities;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blocks.JarbnetBlock;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.items.ItemStackHandler;
 
 import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
+import net.dries007.tfc.common.capabilities.PartialItemHandler;
 import net.dries007.tfc.common.items.CandleBlockItem;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.calendar.Calendars;
@@ -22,6 +24,9 @@ public class JarbnetBlockEntity extends InventoryBlockEntity<ItemStackHandler>
     public JarbnetBlockEntity(BlockPos pos, BlockState state)
     {
         super(FLBlockEntities.JARBNET.get(), pos, state, defaultInventory(SLOTS), FLHelpers.blockEntityName("jarbnet"));
+        sidedInventory
+            .on(new PartialItemHandler(inventory).insert(0, 1, 2, 3, 4, 5), Direction.Plane.HORIZONTAL)
+            .on(new PartialItemHandler(inventory).extract(0, 1, 2, 3, 4, 5), Direction.DOWN);
     }
 
     @Override
