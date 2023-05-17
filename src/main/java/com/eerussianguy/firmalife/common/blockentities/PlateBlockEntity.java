@@ -45,7 +45,7 @@ public class PlateBlockEntity extends InventoryBlockEntity<ItemStackHandler>
     public void setRotation(Player player)
     {
         this.rot = player.getYRot();
-        setChanged();
+        markForSync();
     }
 
     public float getRotation()
@@ -69,7 +69,7 @@ public class PlateBlockEntity extends InventoryBlockEntity<ItemStackHandler>
     public void setAndUpdateSlots(int slot)
     {
         super.setAndUpdateSlots(slot);
-        setChanged();
+        markForSync();
     }
 
     public ItemStack viewStack()

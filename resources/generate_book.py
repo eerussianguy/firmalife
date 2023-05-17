@@ -226,7 +226,7 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False):
         entry('more_fertilizer', 'More Fertilizer Options', 'firmalife:iron_composter', pages=(
             text('Given a greater need for fertilization in Firmalife, there are more options for getting $(l:mechanics/fertilizers)fertilizers$().'),
             drying_recipe('firmalife:drying/dry_grass', 'Thatch can be $(l:firmalife:firmalife/drying)Dried$() into $(thing)Dry Grass$(), which can be used in a Composter as a brown item.'),
-            crafting('firmalife:crafting/iron_composter', text_contents='The Composter can be upgraded to an $(thing)Iron Composter$(), which works the same, except it produces compost four times as fast.'),
+            crafting('firmalife:crafting/iron_composter', text_contents='The Composter can be upgraded to an $(thing)Iron Composter$(), which works the same, except it produces compost in four days. Iron Composters will also feed a hopper directly below with compost when ready.'),
             multimultiblock('The possible fill levels of the iron composter', *[block_spotlight('', '', 'firmalife:iron_composter[type=normal,stage=%s]' % i) for i in range(0, 9)]),
         )),
         entry('mixing_bowl', 'Mixing Bowl', 'firmalife:mixing_bowl', pages=(
