@@ -62,6 +62,7 @@ def generate(rm: ResourceManager):
     rm.item_tag('contains_pie_pan', 'firmalife:food/cooked_pumpkin_pie')
     rm.item_tag('can_be_hung', '#tfc:foods/meats', 'tfc:food/garlic')
     rm.item_tag('tfc:compost_greens_low', 'firmalife:fruit_leaf')
+    rm.item_tag('tfc:compost_greens', 'firmalife:food/nightshade_berry')
     rm.item_tag('foods/cooked_meats_and_substitutes', '#tfc:foods/cooked_meats', 'firmalife:food/tofu')
     rm.item_tag('forge:leather', 'firmalife:pineapple_leather')
     rm.item_tag('usable_in_stovetop_soup', '#tfc:foods/usable_in_soup')

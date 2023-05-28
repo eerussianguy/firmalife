@@ -9,5 +9,5 @@ import net.minecraftforge.common.capabilities.CapabilityToken;
 public class FLPlayerDataCapability
 {
     public static final Capability<FLPlayerData> CAPABILITY = CapabilityManager.get(new CapabilityToken<>() {});
-    public static final ResourceLocation KEY = FLHelpers.identifier("player_glow");
+    public static final ResourceLocation KEY = FLHelpers.identifier("player_data");
 }

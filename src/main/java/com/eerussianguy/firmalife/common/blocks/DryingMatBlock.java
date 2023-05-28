@@ -37,6 +37,7 @@ public class DryingMatBlock extends BottomSupportedDeviceBlock
                 else if (!inv.getStackInSlot(0).isEmpty() && held.isEmpty() && player.isShiftKeyDown())
                 {
                     mat.markForSync();
+                    FLHelpers.roundCreationDate(inv.getStackInSlot(0));
                     return FLHelpers.takeOne(level, 0, inv, player);
                 }
                 return InteractionResult.PASS;

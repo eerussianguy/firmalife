@@ -36,6 +36,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.JsonOps;
 import net.dries007.tfc.common.blockentities.TickCounterBlockEntity;
 import net.dries007.tfc.common.capabilities.Capabilities;
+import net.dries007.tfc.common.capabilities.food.FoodCapability;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.JsonHelpers;
 
@@ -193,6 +194,11 @@ public class FLHelpers
     public static String getEnumTranslationKey(Enum<?> anEnum, String enumName)
     {
         return String.join(".", MOD_ID, "enum", enumName, anEnum.name()).toLowerCase(Locale.ROOT);
+    }
+
+    public static void roundCreationDate(ItemStack stack)
+    {
+        stack.getCapability(FoodCapability.CAPABILITY).ifPresent(cap -> cap.setCreationDate(FoodCapability.getRoundedCreationDate(cap.getCreationDate())));
     }
 
     public static ResourceLocation[] arrayOfResourceLocationsFromJson(JsonObject json, String field)

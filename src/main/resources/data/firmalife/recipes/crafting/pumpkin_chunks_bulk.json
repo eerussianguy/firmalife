@@ -8,28 +8,52 @@
         "tag": "tfc:hammers"
       },
       {
-        "item": "tfc:pumpkin"
+        "type": "tfc:not_rotten",
+        "ingredient": {
+          "item": "tfc:pumpkin"
+        }
       },
       {
-        "item": "tfc:pumpkin"
+        "type": "tfc:not_rotten",
+        "ingredient": {
+          "item": "tfc:pumpkin"
+        }
       },
       {
-        "item": "tfc:pumpkin"
+        "type": "tfc:not_rotten",
+        "ingredient": {
+          "item": "tfc:pumpkin"
+        }
       },
       {
-        "item": "tfc:pumpkin"
+        "type": "tfc:not_rotten",
+        "ingredient": {
+          "item": "tfc:pumpkin"
+        }
       },
       {
-        "item": "tfc:pumpkin"
+        "type": "tfc:not_rotten",
+        "ingredient": {
+          "item": "tfc:pumpkin"
+        }
       },
       {
-        "item": "tfc:pumpkin"
+        "type": "tfc:not_rotten",
+        "ingredient": {
+          "item": "tfc:pumpkin"
+        }
       },
       {
-        "item": "tfc:pumpkin"
+        "type": "tfc:not_rotten",
+        "ingredient": {
+          "item": "tfc:pumpkin"
+        }
       },
       {
-        "item": "tfc:pumpkin"
+        "type": "tfc:not_rotten",
+        "ingredient": {
+          "item": "tfc:pumpkin"
+        }
       }
     ],
     "result": {

@@ -195,9 +195,12 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
                 if (!seed.isEmpty())
                 {
                     seed.setCount(seedAmount);
+                    FLHelpers.roundCreationDate(seed);
                     ItemHandlerHelper.giveItemToPlayer(player, seed);
                 }
-                ItemHandlerHelper.giveItemToPlayer(player, plant.getCrop());
+                ItemStack crop = plant.getCrop();
+                FLHelpers.roundCreationDate(crop);
+                ItemHandlerHelper.giveItemToPlayer(player, crop);
                 planter.setGrowth(slot, resetGrowthTo());
                 return InteractionResult.sidedSuccess(level.isClientSide);
             }

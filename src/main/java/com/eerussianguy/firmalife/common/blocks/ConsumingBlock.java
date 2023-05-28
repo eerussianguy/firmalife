@@ -12,6 +12,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.devices.BottomSupportedDeviceBlock;
@@ -46,8 +47,9 @@ public class ConsumingBlock extends BottomSupportedDeviceBlock
                 final IFood cap = Helpers.getCapability(stack, FoodCapability.CAPABILITY);
                 if (!stack.isEmpty() && cap != null && player.isShiftKeyDown() && player.getFoodData() instanceof TFCFoodData data && data.needsFood())
                 {
-                    data.eat(cap);
+                    final ItemStack newItem = stack.getItem().finishUsingItem(stack, level, player);
                     stack.shrink(1);
+                    ItemHandlerHelper.giveItemToPlayer(player, newItem);
                     Helpers.playSound(level, pos, SoundEvents.GENERIC_EAT);
                     return InteractionResult.sidedSuccess(level.isClientSide);
                 }

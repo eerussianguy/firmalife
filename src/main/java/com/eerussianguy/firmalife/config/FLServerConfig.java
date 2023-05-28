@@ -1,7 +1,11 @@
 package com.eerussianguy.firmalife.config;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Function;
 
+import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import net.minecraftforge.common.ForgeConfigSpec.*;
 
 import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
@@ -26,6 +30,7 @@ public class FLServerConfig
     public final DoubleValue greenhouseGrowthDays;
     public final DoubleValue greenhouseWaterDays;
     public final DoubleValue greenhouseNutrientDays;
+    public final Map<FLFoodTraits.Default, DoubleValue> foodTraits;
 
 
     FLServerConfig(Builder innerBuilder)
@@ -52,6 +57,14 @@ public class FLServerConfig
         greenhouseGrowthDays = builder.apply("greenhouseGrowthDays").comment("The average amount of days for a crop in a greenhouse to grow. For normal crops, this is 24 days.").defineInRange("greenhouseGrowthDays", 20d, Double.MIN_VALUE, Double.MAX_VALUE);
         greenhouseWaterDays = builder.apply("greenhouseWaterDays").comment("The average amount of days for a crop in a greenhouse to consume all its water.").defineInRange("greenhouseWaterDays", 12d, 0, Double.MAX_VALUE);
         greenhouseNutrientDays = builder.apply("greenhouseNutrientDays").comment("The average amount of days for a crop to consume all of a nutrient. You should probably not configure this value unless you know what it does in the code. For regular crops this value is 12.").defineInRange("greenhouseNutrientDays", 8d, 0, Double.MAX_VALUE);
+
+        innerBuilder.pop().push("foodTraits");
+
+        foodTraits = new HashMap<>();
+        Arrays.stream(FLFoodTraits.Default.values()).forEach(trait ->
+            foodTraits.put(trait, builder.apply("trait" + trait.getCapitalizedName() + "Modifier").comment("The modifier for the '" + trait.getCapitalizedName() + "' food trait. Values less than 1 extend food lifetime, values greater than one decrease it. A value of zero stops decay.")
+                .defineInRange("trait" + trait.getCapitalizedName() + "Modifier", trait.getMod(), 0, Double.MAX_VALUE))
+        );
 
         innerBuilder.pop();
     }
