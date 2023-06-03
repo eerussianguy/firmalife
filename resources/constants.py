@@ -186,6 +186,7 @@ DEFAULT_LANG = {
     'firmalife.tooltip.seed_ball_disabled': 'This server has disabled seed balls!',
     'firmalife.tooltip.planter_usable': 'Plantable in a %s',
     'firmalife.tooltip.beekeeper_armor': 'Protects from bees if full suit is worn',
+    'firmalife.tooltip.knapping.rotten': 'This item is rotten and cannot be knapped.',
     'firmalife.cellar.found': 'Found a cellar of %s blocks',
     'firmalife.cellar.valid_block': 'In a valid cellar',
     'firmalife.cellar.invalid_block': 'Invalid cellar',

@@ -34,9 +34,9 @@ public class FLContainerTypes
     public static final RegistryObject<MenuType<StovetopPotContainer>> STOVETOP_POT = FLContainerTypes.<StovetopPotBlockEntity, StovetopPotContainer>registerBlock("stovetop_pot", FLBlockEntities.STOVETOP_POT, StovetopPotContainer::create);
     public static final RegistryObject<MenuType<KnappingContainer>> PUMPKIN = FLContainerTypes.registerItem("pumpkin", FLContainerTypes::createPumpkin);
 
-    public static KnappingContainer createPumpkin(ItemStack stack, InteractionHand hand, Inventory playerInventory, int windowId)
+    public static KnappingContainer createPumpkin(ItemStack stack, InteractionHand hand, int slot, Inventory playerInventory, int windowId)
     {
-        return new KnappingContainer(PUMPKIN.get(), FLRecipeTypes.PUMPKIN_KNAPPING.get(), windowId, playerInventory, stack, hand, 1, false, false, TFCSounds.KNAP_LEATHER.get()).init(playerInventory, 20);
+        return new KnappingContainer(PUMPKIN.get(), FLRecipeTypes.PUMPKIN_KNAPPING.get(), windowId, playerInventory, stack, hand, slot, 1, false, false, TFCSounds.KNAP_LEATHER.get()).init(playerInventory, 20);
     }
 
     private static <T extends InventoryBlockEntity<?>, C extends BlockEntityContainer<T>> RegistryObject<MenuType<C>> registerBlock(String name, Supplier<BlockEntityType<T>> type, BlockEntityContainer.Factory<T, C> factory)
