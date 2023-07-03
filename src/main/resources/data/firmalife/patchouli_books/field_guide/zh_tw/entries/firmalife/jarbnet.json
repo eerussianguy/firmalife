@@ -1,0 +1,18 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "罐頭櫃",
+  "category": "firmalife:firmalife",
+  "icon": "firmalife:wood/jarbnet/pine",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "罐頭櫃是一個裝飾性方塊, 同時它能夠儲存$(l:firmalife:firmalife/jars)空罐子$(), 蠟燭, 以及水罐. 他可以透過$(item)$(k:key.sneak)$()同時空手來開關. 如果櫃子裡面存放的是蠟燭, 它可以被點亮併發出亮光."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/wood/acacia_jarbnet"
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 6
+}

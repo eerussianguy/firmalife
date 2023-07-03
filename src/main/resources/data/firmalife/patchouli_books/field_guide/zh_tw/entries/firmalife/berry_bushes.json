@@ -1,0 +1,41 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "漿果灌木",
+  "category": "firmalife:firmalife",
+  "icon": "firmalife:plant/pineapple_bush",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Firmalife添加了一些新的漿果灌木, 並且他們有著有趣的用途."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "firmalife:food/nightshade_berry",
+      "link_recipes": false,
+      "text": "首先是龍葵. 龍葵是一種有毒的漿果. 當它被用於製作湯時, 會製作出有毒的 $(thing)發臭的湯$(). 它可以在降雨量為200-400mm 且氣溫為7-24 C的森林中被發現."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "firmalife:food/pineapple",
+      "link_recipes": false,
+      "text": "菠蘿灌木可以在降水量為 250-500mm 並且溫度為 20-32 C 的森林中被發現. 菠蘿的功能和其他水果一樣, 但是它還可以被用於製作$(thing)菠蘿布$()."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/pineapple_fiber",
+      "text": "被$(l:firmalife:firmalife/drying)烘乾$()的菠蘿可以被製成菠蘿纖維."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/pineapple_yarn",
+      "text": "菠蘿線由$(thing)紡錘$()和菠蘿纖維合成而來."
+    },
+    {
+      "type": "tfc:loom_recipe",
+      "recipe": "firmalife:loom/pineapple_leather",
+      "text": "最後, 菠蘿布可以在$(l:tfc:mechanics/weaving)織機$()上編制出來. 菠蘿布可以作為常規皮革的植物替代品, 用於皮革塑形和合成, 以及其他用途!"
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 22
+}

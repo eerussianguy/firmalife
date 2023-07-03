@@ -18,6 +18,11 @@
       "text": "要使用干燥垫, 把它放置在阳光下, 然后按$(item)$(k:key.use)$()来放置一个物品. 在半天之后, 物品就会被烘干. 如果下雨了, 这个烘干过程就需要重新开始."
     },
     {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/solar_drier",
+      "text": "太阳能干燥器拥有与干燥垫相同的作用, 但是效率比干燥垫高12倍."
+    },
+    {
       "type": "firmalife:drying_recipe",
       "recipe": "firmalife:drying/drying_fruit",
       "text": "干燥垫一般用来烘干水果. 烘干的水果有更长的保质期, 并且在某些配方中会用到."
@@ -34,5 +39,5 @@
     }
   ],
   "read_by_default": true,
-  "sortnum": 8
+  "sortnum": 13
 }

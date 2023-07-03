@@ -38,7 +38,7 @@
     },
     {
       "type": "tfc:multimultiblock",
-      "text": "Gouda奶酪轮的老化顺序: $(thing)新鲜$(), $(thing)老化$(), 以及$(thing)Vintage$().",
+      "text": "奶酪轮的老化顺序: $(thing)新鲜的$(), $(thing)陈年的$(), 以及$(thing)窖藏的$().",
       "multiblocks": [
         {
           "pattern": [
@@ -83,5 +83,5 @@
     }
   ],
   "read_by_default": true,
-  "sortnum": 0
+  "sortnum": 1
 }

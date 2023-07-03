@@ -18,6 +18,11 @@
       "text": "要使用乾燥墊, 把它放置在陽光下, 然後按$(item)$(k:key.use)$()來放置一個物品. 在半天之後, 物品就會被烘乾. 如果下雨了, 這個烘乾過程就需要重新開始."
     },
     {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/solar_drier",
+      "text": "太陽能幹燥器擁有與乾燥墊相同的作用, 但是效率比干燥墊高12倍."
+    },
+    {
       "type": "firmalife:drying_recipe",
       "recipe": "firmalife:drying/drying_fruit",
       "text": "乾燥墊一般用來烘乾水果. 烘乾的水果有更長的保質期, 並且在某些配方中會用到."
@@ -34,5 +39,5 @@
     }
   ],
   "read_by_default": true,
-  "sortnum": 8
+  "sortnum": 13
 }

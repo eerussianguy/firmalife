@@ -79,8 +79,17 @@
       "type": "patchouli:text",
       "text": "$(li)水果罐頭$()$(li)鳥糞罐子$()$(li)蜂蜜罐子$()$(li)腐爛的堆肥罐子$()$(li)堆肥罐子$()",
       "title": "罐子的種類"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "使用$(l:firmalife:firmalife/oven_appliances#vat)大缸$(), 甜味劑和水可以製成$(thing)糖水$(). 進而, 向糖水中新增水果, 這會生成$(thing)果醬$(). 將空罐子放到大缸裡, 這樣罐子就會被裝滿. 小心: 試圖透過過多的過程來泵出或運輸果醬可能會毀了果醬!"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/jarring_station",
+      "text": "如果將$(thing)裝罐臺$()的壺口一面對準裝滿$(thing)果醬$()的大缸, $(thing)裝罐臺$()中的空罐子會自動填滿果醬."
     }
   ],
   "read_by_default": true,
-  "sortnum": 6
+  "sortnum": 11
 }

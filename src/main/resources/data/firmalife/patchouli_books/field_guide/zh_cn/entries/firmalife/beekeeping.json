@@ -28,7 +28,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "在物品栏有$(thing)刀$()的情况下, 手持一个满的巢脾按$(item)$(k:key.use)$()可以获得有用的$(thing)蜂蜡$(). 注意, 这个操作会杀死巢脾中的蜂王!"
+      "text": "对着物品栏中的满的巢脾在拎起$(thing)小刀$()的时候使用$(item)$(k:key.use)$(), 就可以获得有用的$(thing)蜂蜡$(). 注意, 这个操作会杀死巢脾中的蜂王!"
     },
     {
       "type": "patchouli:crafting",
@@ -48,8 +48,12 @@
     {
       "type": "patchouli:text",
       "text": "$(li)$(thing)生育能力$(): 提高配种的可能性.$()$(li)$(thing)作物亲和力$(): 给农作物传递少量营养物质的可能性.$()$(li)$(thing)自然修复$(): 造成新的花或荷叶在蜂箱附近生成.$()$(li)$(thing)冷静度$(): 降低蜜蜂攻击你的可能性$()."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "具有高$(thing)突变体$()能力的蜜蜂会有概率产生带有$(thing)遗传病$()的后代. 患病的蜜蜂会将疾病传染给后代, 同时不会产生蜂蜜."
     }
   ],
   "read_by_default": true,
-  "sortnum": 5
+  "sortnum": 10
 }

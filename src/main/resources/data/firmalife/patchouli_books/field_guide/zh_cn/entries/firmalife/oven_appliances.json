@@ -1,0 +1,65 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "烤炉器具",
+  "category": "firmalife:firmalife",
+  "icon": "firmalife:vat",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l:firmalife:firmalife/ovens)烤炉$()拥有很多能够与其交互的设施, 这些设施增强了烤炉的功能性. 这得益于烤炉本身的模块化结构."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/oven_hopper",
+      "text": "$(thing)烤炉漏斗$()可以向任意其面向的烤炉底输入原木. 它可以容纳16个原木(4组, 每组4个, 类似于原木堆), 它还可以吸收顶部的掉落物进入其内部容器. 也可以与其他模组交互, 进行自动化补充."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/ashtray",
+      "text": "$(thing)烟灰收集器$()在被放置在$(thing)烤炉底方块$()下面的时候, 可以收集$(thing)草木灰$(). 每次燃料消耗时, 它都有50%的概率获得草木灰. 草木灰可以通过$(item)$(k:key.use)$()拿出, 也可以通过左键重新放回收集器."
+    },
+    {
+      "type": "patchouli:crafting",
+      "anchor": "vat",
+      "recipe": "firmalife:crafting/vat",
+      "text": "$(thing)大缸$()用于批量执行一些陶锅配方. 它拥有一个物品槽, 以及10,000mB的流体槽, 这与与大桶类似."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "例如, 大缸可以使用1份橄榄糊和200mB的水来制作$(thing)毛橄榄油$(). 拿着流体和物品$(item)$(k:key.use)$()大缸, 将他们加入大缸内部. 空手并且按住$(item)$(k:key.sneak)$(), 右键来启封/密封大缸. 大缸只有被密封后才会沸腾."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "大缸必须被放在$(thing)烤炉底$()上. 如果大缸中的内容物根据配方将产生超出了容量的生成物, 大缸将不会沸腾, 所以需要确保大缸中的材料不会多到生成物溢出溢出--特别是配方中产生的液体要多于消耗掉液体的情况!"
+    },
+    {
+      "type": "patchouli:multiblock",
+      "multiblock": {
+        "pattern": [
+          [
+            "X"
+          ],
+          [
+            "Y"
+          ],
+          [
+            "0"
+          ]
+        ],
+        "mapping": {
+          "X": "firmalife:vat",
+          "Y": "firmalife:cured_oven_bottom"
+        }
+      },
+      "name": "",
+      "text": "",
+      "enable_visualize": false
+    },
+    {
+      "type": "patchouli:text",
+      "text": "TFC中的陶锅和烤架也可以被放置在$(thing)烤炉底$()上面. 这两种设施将自动从烤炉底获取热量. 但是这样会带有一些限制: 这两样设施将只剩下4个物品槽, 并且陶锅将只能用于制作汤, 并不能完成其他的陶锅配方."
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 16
+}
