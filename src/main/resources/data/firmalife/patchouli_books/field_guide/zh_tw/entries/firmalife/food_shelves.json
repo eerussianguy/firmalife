@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(thing)食物架$() 是一種用於儲存食物的裝置. 它只會在有效的$(l:firmalife:firmalife/cellar)地窖$()中工作. 食物架可以容納一整組相同的食品. 放入和取出物品可以透過$(item)$(k:key.use)$()來實現. 放置在有效的食物櫃中的食物會獲得比在大缸中更好的保鮮效果."
+      "text": "$(thing)食物架$()是一種用於儲存食物的裝置. 它只會在有效的$(l:firmalife:firmalife/cellar)地窖$()中工作. 食物架可以容納一整組相同的食品. 放入和取出物品可以透過$(item)$(k:key.use)$()來實現. 放置在有效的食物櫃中的食物會獲得比在大缸中更好的保鮮效果."
     },
     {
       "type": "patchouli:crafting",
