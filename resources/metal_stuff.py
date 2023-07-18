@@ -76,6 +76,8 @@ def generate(rm: ResourceManager):
         for item, item_data in METAL_ITEMS.items():
             if item == 'ingot' or (item_data.mold and 'tool' in metal_data.types and metal_data.tier <= 2):
                 casting_recipe(rm, '%s_%s' % (metal, item), item, metal, item_data.smelt_amount, 0.1 if item == 'ingot' else 1)
+            if item == 'ingot':
+                casting_recipe(rm, '%s_%s_fire' % (metal, item), 'fire_ingot', metal, item_data.smelt_amount, 0.01, 'firmalife:metal/ingot/stainless_steel')
         rm.blockstate(('fluid', 'metal', metal)).with_block_model({'particle': 'block/lava_still'}, parent=None).with_lang(lang('Molten %s', metal))
         rm.lang('fluid.firmalife.metal.%s' % metal, lang('Molten %s', metal))
         rm.fluid_tag(metal, 'firmalife:metal/%s' % metal, 'firmalife:metal/flowing_%s' % metal)

@@ -3,6 +3,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
+      "type": "forge:nbt",
       "item": "firmalife:food/cooked_pumpkin_pie"
     }
   ],

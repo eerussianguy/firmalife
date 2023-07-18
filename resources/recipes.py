@@ -88,7 +88,7 @@ def generate(rm: ResourceManager):
     rm.crafting_shapeless('crafting/garlic_bread', ('firmalife:food/toast', 'firmalife:food/butter', 'tfc:food/garlic'), 'firmalife:food/garlic_bread').with_advancement('tfc:food/garlic')
     damage_shapeless(rm, 'crafting/salsa', ('tfc:food/tomato', 'tfc:powder/salt', 'firmalife:plant/cilantro', '#tfc:knives'), '5 firmalife:food/salsa').with_advancement('tfc:food/tomato')
     rm.domain = 'tfc'
-    rm.crafting_shapeless('crafting/pumpkin_pie', ('firmalife:food/cooked_pumpkin_pie',), 'minecraft:pumpkin_pie').with_advancement('firmalife:food/cooked_pumpkin_pie')
+    rm.crafting_shapeless('crafting/pumpkin_pie', ({'type': 'forge:nbt', 'item': 'firmalife:food/cooked_pumpkin_pie'},), 'minecraft:pumpkin_pie').with_advancement('firmalife:food/cooked_pumpkin_pie')
     rm.domain = 'firmalife'
     damage_shapeless(rm, 'crafting/pineapple_fiber', (not_rotten(has_trait('firmalife:food/pineapple', trait='firmalife:dried')), '#tfc:knives'), 'firmalife:pineapple_fiber').with_advancement('firmalife:food/pineapple')
     damage_shapeless(rm, 'crafting/pineapple_yarn', ('tfc:spindle', 'firmalife:pineapple_fiber'), '8 firmalife:pineapple_yarn').with_advancement('firmalife:pineapple_fiber')
@@ -526,11 +526,11 @@ def fluid_stack(data_in: Json) -> Json:
         'amount': amount
     }
 
-def casting_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, mold: str, metal: str, amount: int, break_chance: float):
+def casting_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, mold: str, metal: str, amount: int, break_chance: float, item: str = None):
     rm.recipe(('casting', name_parts), 'tfc:casting', {
         'mold': {'item': 'tfc:ceramic/%s_mold' % mold},
         'fluid': fluid_stack_ingredient('%d firmalife:metal/%s' % (amount, metal)),
-        'result': utils.item_stack('firmalife:metal/%s/%s' % (mold, metal)),
+        'result': utils.item_stack('firmalife:metal/%s/%s' % (mold, metal)) if item is None else utils.item_stack(item),
         'break_chance': break_chance
     })
 
