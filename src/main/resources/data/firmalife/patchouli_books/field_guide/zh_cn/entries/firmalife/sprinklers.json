@@ -1,0 +1,47 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "洒水器",
+  "category": "firmalife:firmalife",
+  "icon": "firmalife:squirting_moisture_transducer",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(thing)洒水器$()是一种能够浇灌以其为中心下方5x6x5范围的设备. 洒水器可以自动从其上方的任何液体容器中抽出水来. 在看到它滴出水滴时就表明它在正确工作."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "multiblock": {
+        "pattern": [
+          [
+            "X"
+          ],
+          [
+            "Y"
+          ],
+          [
+            "0"
+          ]
+        ],
+        "mapping": {
+          "X": "tfc:wood/barrel/pine",
+          "Y": "firmalife:sprinkler"
+        }
+      },
+      "name": "简易的洒水器安装方式",
+      "text": "最简单的洒水器使用方法是将其安装在装满水的木桶下面.",
+      "enable_visualize": false
+    },
+    {
+      "type": "tfc:anvil_recipe",
+      "recipe": "firmalife:anvil/sprinkler",
+      "text": "洒水器由$(thing)红钢薄板$()制作而成."
+    },
+    {
+      "type": "tfc:anvil_recipe",
+      "recipe": "firmalife:anvil/dribbler",
+      "text": "滴灌器由$(thing)不锈钢薄板$()制作而成. 它以类似于洒水器的方式工作, 但是只能灌溉它正下方的7格空间"
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 8
+}

@@ -26,12 +26,12 @@
     {
       "type": "patchouli:crafting",
       "recipe": "tfc:crafting/bricks",
-      "text": "烤炉用$(thing)砖块$(), 烤炉方块, 或者任何能够包裹一个木炭炉的方块构成. 如果你想的话, 你甚至可以使用石块."
+      "text": "烤炉需要用$(thing)砖块$(), 其他烤炉方块, 或者任何能够包裹一个木炭炉的方块构成. 如果你想的话, 你甚至可以使用石块."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/peel",
-      "text": "$(thing)烤炉铲$()是从烤炉中取出炙热物体的安全方式. 拿着烤炉铲然后按$(item)$(k:key.use)$()就可以取出物品, 否则你会被烫到!"
+      "text": "$(thing)烤炉铲$()是从烤炉中取出炙热物体的唯一安全方式. 拿着烤炉铲然后按$(item)$(k:key.use)$()就可以取出物品, 否则你会被烫到!"
     },
     {
       "type": "patchouli:text",
@@ -108,8 +108,31 @@
     {
       "type": "patchouli:text",
       "text": "硬化烤炉方块是很简单的, 但是需要一点耐心. 只要正常的点燃你的烤炉底, 然后等待就可以了. 如果烤炉方块连续80秒保持600度, 这个烤炉方块和周围的方块就会硬化. 硬化的效果会一直向上传导到烟囱."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/oven_insulation",
+      "text": "使用被包裹的烤炉底替换普通烤炉底让您可以移除烤炉侧面和背面的包裹方块. 但是这并不代表您可以移除烤炉烟囱. 使用$(item)$(k:key.use)$()来应用它."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/brick_countertop",
+      "text": "台面是一种装饰性方块, 它能够被算作烤炉的包裹方块, 同时外观与其他烤炉方块相匹配. 它们是您装饰厨房的好选择."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "烤炉还可以使用$(thing)饰面$()来改变外观. 这些饰面可以用于基础的烤炉组成方块(或是砖块自身). 饰面可以混合搭配. 按下$(item)$(k:key.use)$()来使用这些饰面."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/rustic_finish",
+      "recipe2": "firmalife:crafting/stone_finish"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/tile_finish"
     }
   ],
   "read_by_default": true,
-  "sortnum": 10
+  "sortnum": 15
 }

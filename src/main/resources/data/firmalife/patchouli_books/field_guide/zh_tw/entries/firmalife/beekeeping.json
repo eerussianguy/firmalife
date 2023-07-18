@@ -28,7 +28,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "在物品欄有$(thing)刀$()的情況下, 手持一個滿的巢脾按$(item)$(k:key.use)$()可以獲得有用的$(thing)蜂蠟$(). 注意, 這個操作會殺死巢脾中的蜂王!"
+      "text": "對著物品欄中的滿的巢脾在拎起$(thing)小刀$()的時候使用$(item)$(k:key.use)$(), 就可以獲得有用的$(thing)蜂蠟$(). 注意, 這個操作會殺死巢脾中的蜂王!"
     },
     {
       "type": "patchouli:crafting",
@@ -48,8 +48,12 @@
     {
       "type": "patchouli:text",
       "text": "$(li)$(thing)生育能力$(): 提高配種的可能性.$()$(li)$(thing)作物親和力$(): 給農作物傳遞少量營養物質的可能性.$()$(li)$(thing)自然修復$(): 造成新的花或荷葉在蜂箱附近生成.$()$(li)$(thing)冷靜度$(): 降低蜜蜂攻擊你的可能性$()."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "具有高$(thing)突變體$()能力的蜜蜂會有機率產生帶有$(thing)遺傳病$()的後代. 患病的蜜蜂會將疾病傳染給後代, 同時不會產生蜂蜜."
     }
   ],
   "read_by_default": true,
-  "sortnum": 5
+  "sortnum": 10
 }

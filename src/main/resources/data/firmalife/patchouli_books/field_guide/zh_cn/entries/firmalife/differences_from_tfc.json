@@ -1,0 +1,29 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "同TFC的区别",
+  "category": "firmalife:firmalife",
+  "icon": "tfc:food/wheat_bread",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Firmalife对常规TFC中的运作方式进行了一些更改. 本章则用于帮助您了解这些与TFC不同的部分."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l:firmalife:firmalife/cheese)奶酪$()需要通过更加复杂的流程才能被制作出来. 它可以被放置在世界中, 并且可以被选择放置在$(l:firmalife:firmalife/cellar)地窖$()中老化.",
+      "title": "奶酪老化"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l:firmalife:firmalife/bread)面包$()同样也需要更复杂的制作流程. 面包的制作需要酵母和甜味剂. 而常规的TFC面包配方只能做出粗饼, 粗饼只含有少量的营养.",
+      "title": "制作面包"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Firmalife更加强调了糖的重要性. 虽然糖仍然可以从甘蔗中提取, 但是您也可以同时考虑利用蜂蜜(来源于蜜蜂)或者是甜菜来制糖!",
+      "title": "甜味剂"
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 0
+}

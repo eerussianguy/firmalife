@@ -1,0 +1,27 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "巧克力",
+  "category": "firmalife:firmalife",
+  "icon": "firmalife:food/dark_chocolate",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(thing)巧克力製作$()需要幾個處理步驟, 並且獎勵並不多. 重要的是在遊玩Firmalife時, 成為巧克力師是為了您的個人享受和樂趣, 而不是試圖從任何給定的輸入中獲取最大價值."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "要開始進行巧克力的製作, 可可豆必須先在$(l:firmalife:firmalife/ovens)烤爐$()中進行$(thing)烘烤$()並製成$(thing)烘焙過的可可豆$(). 然後, 將烘焙過的可可豆與$(thing)小刀$()合成以將可可豆製成$(thing)可可粉$()以及$(thing)可可脂$()."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "使用$(l:firmalife:firmalife/mixing_bowl)攪拌碗$()來混合可可粉, 可可脂和甜味劑(糖或是蜂蜜), 最終制得$(thing)巧克力糊$(). 可可脂和可可粉的比例決定了最終的產物: $(br)$(li)1份可可粉, 1份可可脂, 1份甜味劑: 牛奶巧克力$()$(li)2份可可粉, 1份甜味劑: 黑巧克力$()$(li)2份可可脂, 1份甜味劑: 白巧克力$()"
+    },
+    {
+      "type": "firmalife:drying_recipe",
+      "recipe": "firmalife:drying/dark_chocolate",
+      "text": "最後, 將巧克力糊放在$(l:firmalife:firmalife/drying)烘乾墊$()上烘乾成$(thing)巧克力$()."
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 23
+}
