@@ -23,8 +23,12 @@
     {
       "type": "patchouli:text",
       "text": "$(thing)蜂蜡$()可以通过$(l:firmalife:firmalife/beekeeping)养蜂$()获得.$(br)地窖可以用来$(l:firmalife:firmalife/cheese#aging)老化奶酪$()."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "地窖可以用于食物保鲜, 例如使用$(l:firmalife:firmalife/food_shelves)食物架$()和$(l:firmalife:firmalife/hangers)悬挂架$(). 地窖在平均气温偏低时会拥有更好的食物保鲜表现. 在低于0 C 时, 食物腐败速度会变得稍慢. 在低于 -12 C 时, 腐败速度会变得尤为缓慢."
     }
   ],
   "read_by_default": true,
-  "sortnum": 2
+  "sortnum": 3
 }

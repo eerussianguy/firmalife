@@ -12,8 +12,20 @@
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/barley_dough",
       "text": "酵種, 甜味劑, 加上面粉, 就可以合成$(thing)麵糰$(). 把麵糰烤熟就可以得到$(thing)麵包$()了!"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/barley_slice",
+      "title": "麵包切片",
+      "text": "麵包烘焙好之後, 您可以使用$(thing)小刀$()來將麵包切成$(thing)麵包片$(). 麵包片既可以被用於$(l:tfc:mechanics/sandwiches)製作三明治$(), 也可以製作成$(thing)吐司$()並塗抹上$(thing)黃油$()或是果醬."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/toast_with_butter",
+      "recipe2": "firmalife:crafting/toast_with_jam",
+      "title": "吐司"
     }
   ],
   "read_by_default": true,
-  "sortnum": 11
+  "sortnum": 17
 }

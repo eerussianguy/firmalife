@@ -1,0 +1,18 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "罐头柜",
+  "category": "firmalife:firmalife",
+  "icon": "firmalife:wood/jarbnet/pine",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "罐头柜是一个装饰性方块, 同时它能够存储$(l:firmalife:firmalife/jars)空罐子$(), 蜡烛, 以及水罐. 他可以通过$(item)$(k:key.sneak)$()同时空手来开关. 如果柜子里面存放的是蜡烛, 它可以被点亮并发出亮光."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/wood/acacia_jarbnet"
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 6
+}

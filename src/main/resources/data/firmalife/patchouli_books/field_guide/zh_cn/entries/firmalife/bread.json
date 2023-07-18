@@ -12,8 +12,20 @@
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/barley_dough",
       "text": "酵种, 甜味剂, 加上面粉, 就可以合成$(thing)面团$(). 把面团烤熟就可以得到$(thing)面包$()了!"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/barley_slice",
+      "title": "面包切片",
+      "text": "面包烘焙好之后, 您可以使用$(thing)小刀$()来将面包切成$(thing)面包片$(). 面包片既可以被用于$(l:tfc:mechanics/sandwiches)制作三明治$(), 也可以制作成$(thing)吐司$()并涂抹上$(thing)黄油$()或是果酱."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/toast_with_butter",
+      "recipe2": "firmalife:crafting/toast_with_jam",
+      "title": "吐司"
     }
   ],
   "read_by_default": true,
-  "sortnum": 11
+  "sortnum": 17
 }

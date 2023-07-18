@@ -58,8 +58,18 @@
     {
       "type": "patchouli:text",
       "text": "格子種植盆有一種獨特的$(thing)繁殖$()灌木的功能. 如果一個格子種植盆放在另一個的上方, 並且下面的那個種植盆有一個成熟的莓果灌木, 那麼它就有可能生長到上方的種植盆裡. 格子種植盆可以種植所有的莓果灌木, 但$(thing)蔓越莓灌木$()除外. 它們需要$(thing)鐵$()或更高等級的溫室才能正常工作. 這些灌木喜歡氮."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/hydroponic_planter",
+      "text": "$(thing)水培種植盆$()可以種植大米和蔓越莓灌木. 它的工作方式同四槽種植盆一樣, 但是水培種植盆不需要澆水. 但是, 它必須要放在$(thing)營養盆$()的上面. 沒有營養盆水培種植盆將不會工作."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/nutritive_basin",
+      "text": "營養盆中需要灌滿水, 手持水桶$(item)$(k:key.use)$()以灌水."
     }
   ],
   "read_by_default": true,
-  "sortnum": 4
+  "sortnum": 9
 }
