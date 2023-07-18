@@ -1,0 +1,13 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "firmalife:food/filled_pie",
+    "firmalife:food/cooked_pie",
+    "firmalife:food/stinky_soup",
+    "firmalife:food/raw_pizza",
+    "firmalife:food/cooked_pizza",
+    "firmalife:food/burrito",
+    "firmalife:food/taco"
+  ]
+}

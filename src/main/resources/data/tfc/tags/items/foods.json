@@ -48,6 +48,13 @@
     "firmalife:food/vanilla_ice_cream",
     "firmalife:food/chocolate_ice_cream",
     "firmalife:food/strawberry_ice_cream",
-    "firmalife:food/banana_split"
+    "firmalife:food/banana_split",
+    "firmalife:food/filled_pie",
+    "firmalife:food/cooked_pie",
+    "firmalife:food/stinky_soup",
+    "firmalife:food/raw_pizza",
+    "firmalife:food/cooked_pizza",
+    "firmalife:food/burrito",
+    "firmalife:food/taco"
   ]
 }

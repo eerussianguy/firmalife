@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.Supplier;
 
+import com.eerussianguy.firmalife.config.FLConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -45,7 +46,8 @@ public class StringBlock extends DeviceBlock
     {
         BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
         mutable.set(pos);
-        for (int i = 0; i < 4; i++)
+        final int range = FLConfig.SERVER.smokingFirepitRange.get();
+        for (int i = 0; i < range; i++)
         {
             mutable.move(0, -1, 0);
             final BlockState stateAt = level.getBlockState(mutable);

@@ -1,0 +1,18 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:barrel_sealed",
+  "input_item": {
+    "ingredient": {
+      "item": "firmalife:raw_honey"
+    }
+  },
+  "input_fluid": {
+    "ingredient": "minecraft:water",
+    "amount": 100
+  },
+  "output_fluid": {
+    "fluid": "firmalife:mead",
+    "amount": 100
+  },
+  "duration": 72000
+}

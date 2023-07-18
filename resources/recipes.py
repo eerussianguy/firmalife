@@ -207,6 +207,7 @@ def generate(rm: ResourceManager):
     barrel_sealed_recipe(rm, 'yak_milk_curd', 'Yak Curd', 1000, 'firmalife:cheesecloth', '1000 firmalife:curdled_yak_milk', output_item='firmalife:food/yak_curd')
     barrel_sealed_recipe(rm, 'cream', 'Cream', 1000, 'firmalife:cheesecloth', '1000 #tfc:milks', output_item='firmalife:cheesecloth', output_fluid='1000 firmalife:cream')
     barrel_sealed_recipe(rm, 'nixtamal', 'Nixtamal', 1000, not_rotten('firmalife:food/cured_maize'), '100 minecraft:water', output_item='firmalife:food/nixtamal')
+    barrel_sealed_recipe(rm, 'mead', 'Mead', 72000, 'firmalife:raw_honey', '100 minecraft:water', output_fluid='100 firmalife:mead')
 
     barrel_sealed_recipe(rm, 'shosha', 'Shosha Wheel', 16000, '3 firmalife:food/yak_curd', '750 tfc:salt_water', output_item='firmalife:shosha_wheel')
     barrel_sealed_recipe(rm, 'feta', 'Feta Wheel', 16000, '3 firmalife:food/goat_curd', '750 tfc:salt_water', output_item='firmalife:feta_wheel')

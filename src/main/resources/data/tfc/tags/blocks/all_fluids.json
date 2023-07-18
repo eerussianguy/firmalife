@@ -1,0 +1,18 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "firmalife:fluid/yeast_starter",
+    "firmalife:fluid/coconut_milk",
+    "firmalife:fluid/yak_milk",
+    "firmalife:fluid/goat_milk",
+    "firmalife:fluid/curdled_yak_milk",
+    "firmalife:fluid/curdled_goat_milk",
+    "firmalife:fluid/pina_colada",
+    "firmalife:fluid/cream",
+    "firmalife:fluid/chocolate",
+    "firmalife:fluid/sugar_water",
+    "firmalife:fluid/fruity_fluid",
+    "firmalife:fluid/mead"
+  ]
+}

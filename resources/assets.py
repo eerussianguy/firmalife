@@ -311,7 +311,11 @@ def generate(rm: ResourceManager):
                 'conditions': [loot_tables.block_state_property('firmalife:plant/%s_leaves[lifecycle=fruiting]' % fruit)]
             }, {
                 'name': 'firmalife:plant/%s_leaves' % fruit,
-                'conditions': [loot_tables.or_condition(loot_tables.match_tag('forge:shears'), loot_tables.silk_touch())]
+                'conditions': [{
+                    "condition": "minecraft:alternative",
+                    "terms": [loot_tables.match_tag('forge:shears'), loot_tables.silk_touch()]
+                }]
+                # 'conditions': [loot_tables.or_condition(loot_tables.match_tag('forge:shears'), loot_tables.silk_touch())]
             }, {
                 'name': 'minecraft:stick',
                 'conditions': [loot_tables.match_tag('tfc:sharp_tools'), loot_tables.random_chance(0.2)],
@@ -543,7 +547,7 @@ def door_loot(block: BlockContext, loot: str) -> 'BlockContext':
     return block.with_block_loot({'name': loot, 'conditions': [loot_tables.block_state_property(loot + '[half=lower]')]})
 
 def water_based_fluid(rm: ResourceManager, name: str):
-    rm.blockstate(('fluid', name)).with_block_model({'particle': 'minecraft:block/water_still'}, parent=None).with_lang(lang(name))
+    rm.blockstate(('fluid', name)).with_block_model({'particle': 'minecraft:block/water_still'}, parent=None).with_lang(lang(name)).with_tag('tfc:all_fluids')
     rm.fluid_tag(name, 'firmalife:%s' % name, 'firmalife:flowing_%s' % name)
     rm.fluid_tag('minecraft:water', 'firmalife:%s' % name, 'firmalife:flowing_%s' % name)  # Need to use water fluid tag for behavior
     rm.fluid_tag('mixable', 'firmalife:%s' % name, 'firmalife:flowing_%s' % name)

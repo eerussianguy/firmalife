@@ -22,6 +22,10 @@ public class StringBlockEntity extends SimpleItemRecipeBlockEntity<SmokingRecipe
 {
     public static void serverTick(Level level, BlockPos pos, BlockState state, StringBlockEntity string)
     {
+        if (string.needsRecipeUpdate)
+        {
+            string.updateCache();
+        }
         if (level.getGameTime() % 40 == 0)
         {
             if (string.cachedRecipe == null)
@@ -40,7 +44,7 @@ public class StringBlockEntity extends SimpleItemRecipeBlockEntity<SmokingRecipe
                 firepit.getCapability(Capabilities.ITEM).ifPresent(inv -> {
                     for (int i = FirepitBlockEntity.SLOT_FUEL_CONSUME; i < FirepitBlockEntity.SLOT_FUEL_INPUT; i++)
                     {
-                        ItemStack item = inv.getStackInSlot(i);
+                        final ItemStack item = inv.getStackInSlot(i);
                         if (!item.isEmpty() && !Helpers.isItem(item, FLTags.Items.SMOKING_FUEL))
                         {
                             FoodCapability.applyTrait(item, FLFoodTraits.RANCID_SMOKED);
@@ -74,5 +78,6 @@ public class StringBlockEntity extends SimpleItemRecipeBlockEntity<SmokingRecipe
     {
         assert level != null;
         cachedRecipe = SmokingRecipe.getRecipe(level, new ItemStackInventory(readStack()));
+        needsRecipeUpdate = false;
     }
 }

@@ -67,7 +67,7 @@ public final class FLTooltips
         public static final BlockEntityTooltip DRYING_MAT = (level, state, pos, entity, tooltip) -> {
             if (state.getBlock() instanceof DryingMatBlock block && entity instanceof DryingMatBlockEntity mat && !mat.viewStack().isEmpty())
             {
-                if (mat.getCachedRecipe() != null)
+                if (mat.getCachedRecipe() != null && mat.getTicksLeft() > 0)
                 {
                     tooltip.accept(Helpers.translatable("tfc.jade.time_left", delta(level, mat.getTicksLeft())));
                 }
@@ -77,6 +77,7 @@ public final class FLTooltips
         public static final BlockEntityTooltip STRING = (level, state, pos, entity, tooltip) -> {
             if (state.getBlock() instanceof StringBlock block && entity instanceof StringBlockEntity mat)
             {
+                tooltip.accept(Helpers.translatable("firmalife.jade." + (StringBlock.findFirepit(level, pos) != null ? "has_firepit" : "no_firepit")));
                 final ItemStack item = mat.viewStack();
                 if (!item.isEmpty())
                 {

@@ -21,6 +21,7 @@ public abstract class SimpleItemRecipeBlockEntity<T extends SimpleItemRecipe> ex
     private final Supplier<Integer> duration;
     protected long startTick;
     @Nullable protected T cachedRecipe;
+    protected boolean needsRecipeUpdate = false;
 
     public SimpleItemRecipeBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state, Component defaultName, Supplier<Integer> duration)
     {
@@ -33,7 +34,7 @@ public abstract class SimpleItemRecipeBlockEntity<T extends SimpleItemRecipe> ex
     {
         startTick = nbt.getLong("startTick");
         super.loadAdditional(nbt);
-        updateCache();
+        needsRecipeUpdate = true;
     }
 
     @Override
@@ -96,8 +97,7 @@ public abstract class SimpleItemRecipeBlockEntity<T extends SimpleItemRecipe> ex
 
     public void resetCounter()
     {
-        assert level != null;
-        startTick = Calendars.get(level).getTicks();
+        startTick = Calendars.SERVER.getTicks();
         markForSync();
     }
 

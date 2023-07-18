@@ -73,10 +73,10 @@ public class FLItems
 
     public static final RegistryObject<DynamicBowlFood> FILLED_PIE = registerContainerFood("food/filled_pie", false);
     public static final RegistryObject<DynamicBowlFood> COOKED_PIE = registerContainerFood("food/cooked_pie");
-    public static final RegistryObject<SandwichItem> RAW_PIZZA = registerDynamicFood("food/raw_pizza", false);
-    public static final RegistryObject<SandwichItem> COOKED_PIZZA = registerDynamicFood("food/cooked_pizza");
-    public static final RegistryObject<SandwichItem> BURRITO = registerDynamicFood("food/burrito");
-    public static final RegistryObject<SandwichItem> TACO = registerDynamicFood("food/taco");
+    public static final RegistryObject<DecayingItem> RAW_PIZZA = registerDynamicFood("food/raw_pizza", false);
+    public static final RegistryObject<DecayingItem> COOKED_PIZZA = registerDynamicFood("food/cooked_pizza");
+    public static final RegistryObject<DecayingItem> BURRITO = registerDynamicFood("food/burrito");
+    public static final RegistryObject<DecayingItem> TACO = registerDynamicFood("food/taco");
     public static final RegistryObject<Item> NIGHTSHADE_BERRY = register("food/nightshade_berry", () -> new DecayingItem(new Item.Properties().tab(FOOD).food(new FoodProperties.Builder().nutrition(4).saturationMod(0.3f).effect(() -> new MobEffectInstance(MobEffects.HARM, 1, 10), 0.5f).build())));
     public static final RegistryObject<DynamicBowlFood> STINKY_SOUP = register("food/stinky_soup", () -> new DynamicBowlFood(new Item.Properties().tab(FOOD).food(new FoodProperties.Builder().nutrition(4).saturationMod(0.3f).effect(() -> new MobEffectInstance(MobEffects.HARM, 1, 10), 0.5f).build())));
 
@@ -101,14 +101,14 @@ public class FLItems
         return new Item.Properties().tab(MISC);
     }
 
-    private static RegistryObject<SandwichItem> registerDynamicFood(String name)
+    private static RegistryObject<DecayingItem> registerDynamicFood(String name)
     {
         return registerDynamicFood(name, true);
     }
 
-    private static RegistryObject<SandwichItem> registerDynamicFood(String name, boolean edible)
+    private static RegistryObject<DecayingItem> registerDynamicFood(String name, boolean edible)
     {
-        return register(name, () -> new SandwichItem(foodProperties(edible)));
+        return register(name, () -> new DecayingItem(foodProperties(edible)));
     }
 
     private static RegistryObject<DynamicBowlFood> registerContainerFood(String name)

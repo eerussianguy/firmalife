@@ -17,6 +17,7 @@ public class FLServerConfig
     public final IntValue dryingTicks;
     public final IntValue solarDryingTicks;
     public final IntValue smokingTicks;
+    public final IntValue smokingFirepitRange;
     public final IntValue ironComposterTicks;
     public final IntValue ovenCureTicks;
     public final IntValue ovenCureTemperature;
@@ -44,6 +45,7 @@ public class FLServerConfig
         dryingTicks = builder.apply("dryingTicks").comment("Ticks to dry something on a drying mat (24000 ticks = 1 day)").defineInRange("dryingTicks", 12000, 1, Integer.MAX_VALUE);
         solarDryingTicks = builder.apply("solarDryingTicks").comment("Ticks to dry something on a solar drier (24000 ticks = 1 day)").defineInRange("solarDryingTicks", 1000, 1, Integer.MAX_VALUE);
         smokingTicks = builder.apply("smokingTicks").comment("Ticks to smoke something on a string (24000 ticks = 1 day)").defineInRange("smokingTicks", 8000, 1, Integer.MAX_VALUE);
+        smokingFirepitRange = builder.apply("smokingFirepitRange").comment("Number of blocks below the firepit that wool string will search for valid smoking firepits.").defineInRange("smokingFirepitRange", 6, 1, Integer.MAX_VALUE);
         ironComposterTicks = builder.apply("ironComposterTicks").comment("Ticks for an iron composter to finish (24000 ticks = 1 day)").defineInRange("ironComposterTicks", 96000, 1, Integer.MAX_VALUE);
         ovenCureTicks = builder.apply("ovenCureTicks").comment("Ticks for an oven to cure (24000 ticks = 1 day)").defineInRange("ovenCureTicks", 2000, 1, Integer.MAX_VALUE);
         ovenCureTemperature = builder.apply("ovenCureTemperature").comment("Minimum temperature for an oven to start the curing process (24000 ticks = 1 day)").defineInRange("ovenCureTemperature", 600, 1, Integer.MAX_VALUE);

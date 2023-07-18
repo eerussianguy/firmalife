@@ -30,6 +30,10 @@ public class DryingMatBlockEntity extends SimpleItemRecipeBlockEntity<DryingReci
 
     public static void serverTick(Level level, BlockPos pos, BlockState state, DryingMatBlockEntity mat)
     {
+        if (mat.needsRecipeUpdate)
+        {
+            mat.resetCounter();
+        }
         // reset when it rains
         if (level.getGameTime() % 60 == 0 && level.isRainingAt(pos.above()))
         {
@@ -66,5 +70,6 @@ public class DryingMatBlockEntity extends SimpleItemRecipeBlockEntity<DryingReci
     {
         assert level != null;
         cachedRecipe = DryingRecipe.getRecipe(level, new ItemStackInventory(readStack()));
+        needsRecipeUpdate = false;
     }
 }

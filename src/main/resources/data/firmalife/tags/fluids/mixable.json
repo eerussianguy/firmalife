@@ -23,6 +23,8 @@
     "firmalife:sugar_water",
     "firmalife:flowing_sugar_water",
     "firmalife:fruity_fluid",
-    "firmalife:flowing_fruity_fluid"
+    "firmalife:flowing_fruity_fluid",
+    "firmalife:mead",
+    "firmalife:flowing_mead"
   ]
 }

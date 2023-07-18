@@ -90,11 +90,12 @@ def generate(rm: ResourceManager):
 
     rm.block_tag('minecraft:mineable/axe', *['firmalife:plant/%s_branch' % t for t in FRUITS], *['firmalife:plant/%s_growing_branch' % t for t in FRUITS])
     rm.block_tag('tfc:mineable_with_sharp_tool', *['firmalife:plant/%s_leaves' % t for t in FRUITS], *['firmalife:plant/%s_sapling' % t for t in FRUITS])
+    rm.block_tag('tfc:replaceable_plants', *['firmalife:plant/%s' % p for p in HERBS], 'firmalife:plant/butterfly_grass')
 
     rm.entity_tag('drops_rennet', 'tfc:goat', 'tfc:yak')
     rm.entity_tag('drops_three_rennet', 'tfc:cow', 'tfc:sheep', 'tfc:musk_ox')
 
-    rm.fluid_tag('tfc:alcohols', 'firmalife:pina_colada')
+    rm.fluid_tag('tfc:alcohols', 'firmalife:pina_colada', 'firmalife:mead')
     rm.fluid_tag('tfc:milks', 'firmalife:yak_milk', 'firmalife:goat_milk', 'firmalife:coconut_milk')
     rm.fluid_tag('tfc:drinkables', 'firmalife:chocolate')
     rm.fluid_tag('tfc:ingredients', *['firmalife:%s' % fluid for fluid in EXTRA_FLUIDS])
@@ -224,6 +225,13 @@ def generate(rm: ResourceManager):
     food_item(rm, 'chocolate_ice_cream', 'firmalife:food/chocolate_ice_cream', Category.other, 4, 1.5, 1, 5, dairy=0.5, grain=0.25)
     food_item(rm, 'strawberry_ice_cream', 'firmalife:food/strawberry_ice_cream', Category.other, 4, 1.5, 1, 5, dairy=0.5, fruit=0.5)
     food_item(rm, 'banana_split', 'firmalife:food/banana_split', Category.other, 4, 2, 1, 5, fruit=3.5, dairy=1.75, grain=0.25)
+    dynamic_food_item(rm, 'filled_pie', 'firmalife:food/filled_pie', 'dynamic_bowl')
+    dynamic_food_item(rm, 'cooked_pie', 'firmalife:food/cooked_pie', 'dynamic_bowl')
+    dynamic_food_item(rm, 'stinky_soup', 'firmalife:food/stinky_soup', 'dynamic_bowl')
+    dynamic_food_item(rm, 'raw_pizza', 'firmalife:food/raw_pizza', 'dynamic')
+    dynamic_food_item(rm, 'cooked_pizza', 'firmalife:food/cooked_pizza', 'dynamic')
+    dynamic_food_item(rm, 'burrito', 'firmalife:food/burrito', 'dynamic')
+    dynamic_food_item(rm, 'taco', 'firmalife:food/taco', 'dynamic')
 
     item_size(rm, 'jars', '#firmalife:jars', Size.very_large, Weight.medium)
     item_size(rm, 'beehive_frame', 'firmalife:beehive_frame', Size.very_small, Weight.very_heavy)
@@ -326,6 +334,13 @@ def match_block_ingredient(tag: str):
         'condition': 'firmalife:block_ingredient',
         'ingredient': {'tag': tag}
     }
+
+def dynamic_food_item(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredient: utils.Json, handler_type: str):
+    rm.item_tag('tfc:foods', ingredient)
+    rm.data(('tfc', 'food_items', name_parts), {
+        'ingredient': utils.ingredient(ingredient),
+        'type': handler_type
+    })
 
 def decayable(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredient: utils.Json, category: Category, decay: float = 3):
     food_item(rm, name_parts, ingredient, category, 4, 0, 0, decay)
