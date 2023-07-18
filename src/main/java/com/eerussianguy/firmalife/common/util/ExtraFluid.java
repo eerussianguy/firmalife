@@ -17,7 +17,7 @@ public enum ExtraFluid implements StringRepresentable
     CHOCOLATE(0xFF875633),
     SUGAR_WATER(0xFF99EEFF),
     FRUITY_FLUID(0xFFFF6619),
-    MEAD(0xc79f28);
+    MEAD(0xFFc79f28);
 
     private final String id;
     private final int color;
