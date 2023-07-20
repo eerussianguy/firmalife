@@ -9,7 +9,7 @@
     "amount": 100
   },
   "result": {
-    "item": "firmalife:metal/ingot/stainless_steel"
+    "item": "firmalife:metal/ingot/chromium"
   },
   "break_chance": 0.01
 }
