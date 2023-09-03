@@ -1,7 +1,9 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
 import java.util.function.Supplier;
-
+import com.eerussianguy.firmalife.common.FLHelpers;
+import com.eerussianguy.firmalife.common.recipes.DryingRecipe;
+import com.eerussianguy.firmalife.config.FLConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
@@ -9,12 +11,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
-import com.eerussianguy.firmalife.common.FLHelpers;
-import com.eerussianguy.firmalife.common.recipes.DryingRecipe;
-import com.eerussianguy.firmalife.config.FLConfig;
-
 import net.dries007.tfc.common.capabilities.PartialItemHandler;
 import net.dries007.tfc.common.recipes.inventory.ItemStackInventory;
+import net.dries007.tfc.util.EnvironmentHelpers;
 
 public class DryingMatBlockEntity extends SimpleItemRecipeBlockEntity<DryingRecipe>
 {
@@ -35,7 +34,7 @@ public class DryingMatBlockEntity extends SimpleItemRecipeBlockEntity<DryingReci
             mat.resetCounter();
         }
         // reset when it rains
-        if (level.getGameTime() % 60 == 0 && level.isRainingAt(pos.above()))
+        if (level.getGameTime() % 60 == 0 && EnvironmentHelpers.isRainingOrSnowing(level, pos) && level.canSeeSky(pos))
         {
             mat.resetCounter();
         }

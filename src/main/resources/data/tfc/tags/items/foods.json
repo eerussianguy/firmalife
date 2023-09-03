@@ -28,7 +28,6 @@
     "firmalife:food/pumpkin_chunks",
     "firmalife:food/pumpkin_pie_dough",
     "firmalife:food/raw_pumpkin_pie",
-    "firmalife:food/cooked_pumpkin_pie",
     "firmalife:food/cocoa_beans",
     "firmalife:food/fig",
     "firmalife:food/roasted_cocoa_beans",
@@ -55,6 +54,7 @@
     "firmalife:food/raw_pizza",
     "firmalife:food/cooked_pizza",
     "firmalife:food/burrito",
-    "firmalife:food/taco"
+    "firmalife:food/taco",
+    "minecraft:pumpkin_pie"
   ]
 }

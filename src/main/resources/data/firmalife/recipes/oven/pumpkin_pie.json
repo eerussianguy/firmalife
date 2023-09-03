@@ -8,7 +8,12 @@
     }
   },
   "result_item": {
-    "item": "firmalife:food/cooked_pumpkin_pie"
+    "stack": {
+      "item": "minecraft:pumpkin_pie"
+    },
+    "modifiers": [
+      "firmalife:add_pie_pan"
+    ]
   },
   "temperature": 400,
   "duration": 1000

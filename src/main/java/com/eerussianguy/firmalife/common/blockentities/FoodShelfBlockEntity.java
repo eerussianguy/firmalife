@@ -126,7 +126,6 @@ public class FoodShelfBlockEntity extends InventoryBlockEntity<ItemStackHandler>
             ItemStack stack = inventory.extractItem(0, player.isShiftKeyDown() ? Integer.MAX_VALUE : 1, false);
             if (stack.isEmpty()) return InteractionResult.PASS;
             FoodCapability.removeTrait(stack, getFoodTrait());
-            FLHelpers.roundCreationDate(stack);
             ItemHandlerHelper.giveItemToPlayer(player, stack);
             res = InteractionResult.sidedSuccess(level.isClientSide);
         }

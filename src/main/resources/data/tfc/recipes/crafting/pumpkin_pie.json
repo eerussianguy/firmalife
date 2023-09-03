@@ -1,13 +1,8 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
+  "conditions": [
     {
-      "type": "forge:nbt",
-      "item": "firmalife:food/cooked_pumpkin_pie"
+      "type": "forge:false"
     }
-  ],
-  "result": {
-    "item": "minecraft:pumpkin_pie"
-  }
+  ]
 }

@@ -131,7 +131,7 @@ FRUITS: Dict[str, Fruit] = {
     'fig': Fruit(20, 35, 125, 215)
 }
 
-DISABLED_TFC_RECIPES = ('barrel/curdling', 'barrel/cheese', 'barrel/milk_vinegar')
+DISABLED_TFC_RECIPES = ('barrel/curdling', 'barrel/cheese', 'barrel/milk_vinegar', 'crafting/pumpkin_pie')
 
 GENETIC_DISEASES = ['Malformed Rectum', 'Malphigian Tubule Iridescence', 'Rectal Stones', 'Poor Osmoregulation', 'Nosemosis', 'Broken Wings']
 PARASITIC_INFECTIONS = ['Chalkbrood', 'Stonebrood', 'Foulbrood', 'Wax Moths', 'Hive Beetles', 'Mites']

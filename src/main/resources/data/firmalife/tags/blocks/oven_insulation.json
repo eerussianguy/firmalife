@@ -6,6 +6,7 @@
     "#tfc:forge_insulation",
     "#firmalife:oven_blocks",
     "minecraft:brick_stairs",
-    "minecraft:brick_slab"
+    "minecraft:brick_slab",
+    "firmalife:sealed_bricks"
   ]
 }

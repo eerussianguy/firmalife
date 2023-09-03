@@ -57,9 +57,8 @@ def generate(rm: ResourceManager):
     rm.item_tag('pumpkin_knapping', 'tfc:pumpkin')
     rm.item_tag('foods/heatable', 'firmalife:food/raw_pizza', 'firmalife:food/filled_pie', 'firmalife:food/raw_pumpkin_pie', 'firmalife:food/corn_tortilla', 'firmalife:food/masa', '#firmalife:foods/slices', 'firmalife:food/cocoa_beans', 'firmalife:food/bacon')
     rm.item_tag('foods/dynamic', 'firmalife:food/raw_pizza', 'firmalife:food/filled_pie', 'firmalife:food/cooked_pizza', 'firmalife:food/cooked_pie', 'firmalife:food/burrito', 'firmalife:food/taco', 'firmalife:food/stinky_soup')
-    rm.item_tag('foods/washable', 'firmalife:food/filled_pie', 'firmalife:food/cooked_pie', 'firmalife:food/raw_pumpkin_pie', 'firmalife:food/cooked_pumpkin_pie', 'firmalife:food/stinky_soup')
+    rm.item_tag('foods/washable', 'firmalife:food/filled_pie', 'firmalife:food/cooked_pie', 'firmalife:food/raw_pumpkin_pie', 'minecraft:pumpkin_pie', 'firmalife:food/stinky_soup')
     rm.item_tag('pie_pans', 'firmalife:pie_pan')
-    rm.item_tag('contains_pie_pan', 'firmalife:food/cooked_pumpkin_pie')
     rm.item_tag('can_be_hung', '#tfc:foods/meats', 'tfc:food/garlic')
     rm.item_tag('tfc:compost_greens_low', 'firmalife:fruit_leaf')
     rm.item_tag('tfc:compost_greens', 'firmalife:food/nightshade_berry')
@@ -70,7 +69,7 @@ def generate(rm: ResourceManager):
 
     block_and_item_tag(rm, 'tfc:wild_fruits', 'firmalife:plant/pineapple_bush', 'firmalife:plant/nightshade_bush', 'firmalife:plant/fig_sapling', 'firmalife:plant/cocoa_sapling')
 
-    rm.block_tag('oven_insulation', 'minecraft:bricks', '#tfc:forge_insulation', '#firmalife:oven_blocks', 'minecraft:brick_stairs', 'minecraft:brick_slab')
+    rm.block_tag('oven_insulation', 'minecraft:bricks', '#tfc:forge_insulation', '#firmalife:oven_blocks', 'minecraft:brick_stairs', 'minecraft:brick_slab', 'firmalife:sealed_bricks')
     rm.block_tag('minecraft:mineable/pickaxe', '#firmalife:oven_blocks')
     rm.block_tag('planters', *['firmalife:%s_planter' % p for p in PLANTERS])
     rm.block_tag('bee_restoration_plants', *['tfc:plant/%s' % p for p in TFC_FLOWERS])
@@ -204,7 +203,6 @@ def generate(rm: ResourceManager):
     food_item(rm, 'pumpkin_chunks', 'firmalife:food/pumpkin_chunks', Category.fruit, 4, 1, 5, 1.5, fruit=0.75)
     decayable(rm, 'pumpkin_pie_dough', 'firmalife:food/pumpkin_pie_dough', Category.other)
     decayable(rm, 'raw_pumpkin_pie', 'firmalife:food/raw_pumpkin_pie', Category.other)
-    decayable(rm, 'cooked_pumpkin_pie', 'firmalife:food/cooked_pumpkin_pie', Category.other)
     decayable(rm, 'cocoa_beans', 'firmalife:food/cocoa_beans', Category.other, decay=0.25)
     food_item(rm, 'fig', 'firmalife:food/fig', Category.fruit, 4, 1, 5, 0.8, fruit=0.9)
     decayable(rm, 'roasted_cocoa_beans', 'firmalife:food/roasted_cocoa_beans', Category.other)
@@ -232,6 +230,10 @@ def generate(rm: ResourceManager):
     dynamic_food_item(rm, 'cooked_pizza', 'firmalife:food/cooked_pizza', 'dynamic')
     dynamic_food_item(rm, 'burrito', 'firmalife:food/burrito', 'dynamic')
     dynamic_food_item(rm, 'taco', 'firmalife:food/taco', 'dynamic')
+
+    rm.domain = 'tfc'
+    dynamic_food_item(rm, 'pumpkin_pie', 'minecraft:pumpkin_pie', 'dynamic_bowl')
+    rm.domain = 'firmalife'
 
     item_size(rm, 'jars', '#firmalife:jars', Size.very_large, Weight.medium)
     item_size(rm, 'beehive_frame', 'firmalife:beehive_frame', Size.very_small, Weight.very_heavy)

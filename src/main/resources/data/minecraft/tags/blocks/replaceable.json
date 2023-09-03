@@ -2,6 +2,7 @@
   "__comment__": "This file was automatically created by mcresources",
   "replace": false,
   "values": [
-    "firmalife:food/cooked_pumpkin_pie"
+    "firmalife:fluid/metal/stainless_steel",
+    "firmalife:fluid/metal/chromium"
   ]
 }

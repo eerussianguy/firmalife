@@ -81,15 +81,10 @@ def generate(rm: ResourceManager):
     rm.crafting_shapeless('crafting/pickled_egg', ('minecraft:clay_ball', 'tfc:powder/wood_ash', 'tfc:powder/salt', 'tfc:food/boiled_egg'), 'firmalife:food/pickled_egg')
     rm.crafting_shaped('crafting/seed_ball', [' X ', 'XYX', ' X '], {'X': '#tfc:seeds', 'Y': 'tfc:compost'}, 'firmalife:seed_ball').with_advancement('tfc:compost')
     rm.crafting_shapeless('crafting/raw_pumpkin_pie', ('firmalife:food/pumpkin_pie_dough', 'firmalife:pie_pan'), 'firmalife:food/raw_pumpkin_pie').with_advancement('firmalife:food/pumpkin_pie_dough')
-    #rm.crafting_shaped('crafting/squirting_moisture_transducer', ['XYX', 'XZX', 'XYX'], {'X': '#forge:sheets/stainless_steel', 'Y': 'tfc:brass_mechanisms', 'Z': '#forge:rods/nickel'}, 'firmalife:squirting_moisture_transducer').with_advancement('#forge:rods/stainless_steel')
-    #rm.crafting_shaped('crafting/embedded_pipe', ['XY', 'XY', 'ZZ'], {'X': '#forge:rods/stainless_steel', 'Y': '#forge:rods/copper', 'Z': 'firmalife:beeswax'}, '6 firmalife:embedded_pipe').with_advancement('#forge:rods/stainless_steel')
     rm.crafting_shaped('crafting/treated_wood', ['XX', 'XX'], {'X': 'firmalife:treated_lumber'}, 'firmalife:treated_wood').with_advancement('firmalife:treated_lumber')
     damage_shapeless(rm, 'crafting/pumpkin_chunks_bulk', ('#tfc:hammers', *(not_rotten('tfc:pumpkin') for _ in range(0, 8))), '8 firmalife:food/pumpkin_chunks').with_advancement('tfc:pumpkin')
     rm.crafting_shapeless('crafting/garlic_bread', ('firmalife:food/toast', 'firmalife:food/butter', 'tfc:food/garlic'), 'firmalife:food/garlic_bread').with_advancement('tfc:food/garlic')
     damage_shapeless(rm, 'crafting/salsa', ('tfc:food/tomato', 'tfc:powder/salt', 'firmalife:plant/cilantro', '#tfc:knives'), '5 firmalife:food/salsa').with_advancement('tfc:food/tomato')
-    rm.domain = 'tfc'
-    rm.crafting_shapeless('crafting/pumpkin_pie', ({'type': 'forge:nbt', 'item': 'firmalife:food/cooked_pumpkin_pie'},), 'minecraft:pumpkin_pie').with_advancement('firmalife:food/cooked_pumpkin_pie')
-    rm.domain = 'firmalife'
     damage_shapeless(rm, 'crafting/pineapple_fiber', (not_rotten(has_trait('firmalife:food/pineapple', trait='firmalife:dried')), '#tfc:knives'), 'firmalife:pineapple_fiber').with_advancement('firmalife:food/pineapple')
     damage_shapeless(rm, 'crafting/pineapple_yarn', ('tfc:spindle', 'firmalife:pineapple_fiber'), '8 firmalife:pineapple_yarn').with_advancement('firmalife:pineapple_fiber')
     rm.crafting_shapeless('crafting/toast_with_jam', ('firmalife:food/toast', '#firmalife:foods/preserves'), 'firmalife:food/toast_with_jam').with_advancement('firmalife:food/toast')
@@ -223,7 +218,7 @@ def generate(rm: ResourceManager):
 
     oven_recipe(rm, 'cooked_pie', not_rotten('firmalife:food/filled_pie'), 400, result_item=item_stack_provider('firmalife:food/cooked_pie', other_modifier='firmalife:copy_dynamic_food', remove_trait='firmalife:raw'))
     oven_recipe(rm, 'cooked_pizza', not_rotten('firmalife:food/raw_pizza'), 400, result_item=item_stack_provider('firmalife:food/cooked_pizza', other_modifier='firmalife:copy_dynamic_food', remove_trait='firmalife:raw'))
-    oven_recipe(rm, 'pumpkin_pie', not_rotten('firmalife:food/raw_pumpkin_pie'), 400, result_item=item_stack_provider('firmalife:food/cooked_pumpkin_pie'))
+    oven_recipe(rm, 'pumpkin_pie', not_rotten('firmalife:food/raw_pumpkin_pie'), 400, result_item=item_stack_provider('minecraft:pumpkin_pie', other_modifier='firmalife:add_pie_pan'))
     oven_recipe(rm, 'roasted_cocoa_beans', not_rotten('firmalife:food/cocoa_beans'), 400, result_item=item_stack_provider('firmalife:food/roasted_cocoa_beans'))
     oven_recipe(rm, 'taco_shell', not_rotten('firmalife:food/corn_tortilla'), 400, result_item=item_stack_provider('firmalife:food/taco_shell'))
 

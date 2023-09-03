@@ -67,7 +67,7 @@ public class FLItems
     public static final RegistryObject<Item> BEEKEEPER_BOOTS = register("beekeeper_boots", () -> new ArmorItem(FLArmorMaterials.BEEKEEPER, EquipmentSlot.FEET, new Item.Properties().tab(TAB_COMBAT)));
 
     public static final Map<Spice, RegistryObject<Item>> SPICES = Helpers.mapOfKeys(Spice.class, spice -> register("spice/" + spice.name(), MISC));
-    public static final Map<FLFood, RegistryObject<Item>> FOODS = Helpers.mapOfKeys(FLFood.class, food -> register("food/" + food.name(), () -> new DecayingContainerItem(new Item.Properties().food(food.getFoodProperties()).tab(FOOD))));
+    public static final Map<FLFood, RegistryObject<Item>> FOODS = Helpers.mapOfKeys(FLFood.class, food -> register("food/" + food.name(), () -> new DecayingItem(new Item.Properties().food(food.getFoodProperties()).tab(FOOD))));
     public static final Map<FLFruit, RegistryObject<Item>> FRUITS = Helpers.mapOfKeys(FLFruit.class, food -> register("food/" + food.name(), () -> new DecayingItem(new Item.Properties().food(food.getFoodProperties()).tab(FOOD))));
     public static final Map<OvenType, RegistryObject<Item>> FINISHES = Helpers.mapOfKeys(OvenType.class, type -> type != OvenType.BRICK, type -> register(type.getTrueName() + "_finish", () -> new FinishItem(prop(), type)));
 
