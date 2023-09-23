@@ -41,7 +41,12 @@ public class DryingMatBlockEntity extends SimpleItemRecipeBlockEntity<DryingReci
 
         if (mat.cachedRecipe != null)
         {
-            if (mat.getTicksLeft() <= 0)
+            if (!mat.cachedRecipe.matches(new ItemStackInventory(mat.inventory.getStackInSlot(0)), level))
+            {
+                mat.cachedRecipe = null;
+                mat.resetCounter();
+            }
+            else if (mat.getTicksLeft() <= 0)
             {
                 mat.finish();
             }

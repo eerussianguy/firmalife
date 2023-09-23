@@ -23,6 +23,8 @@
     "firmalife:plant/cocoa_leaves",
     "firmalife:plant/fig_leaves",
     "firmalife:plant/cocoa_sapling",
-    "firmalife:plant/fig_sapling"
+    "firmalife:plant/fig_sapling",
+    "firmalife:plant/nightshade_bush",
+    "firmalife:plant/pineapple_bush"
   ]
 }
