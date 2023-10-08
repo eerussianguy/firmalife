@@ -2,6 +2,7 @@ package com.eerussianguy.firmalife.common.util;
 
 import com.google.gson.JsonObject;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -11,6 +12,7 @@ import net.dries007.tfc.common.recipes.ingredients.BlockIngredient;
 import net.dries007.tfc.common.recipes.ingredients.BlockIngredients;
 import net.dries007.tfc.network.DataManagerSyncPacket;
 import net.dries007.tfc.util.DataManager;
+import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.JsonHelpers;
 import net.dries007.tfc.util.collections.IndirectHashCollection;
 import org.jetbrains.annotations.Nullable;
@@ -49,12 +51,14 @@ public class GreenhouseType
     public final ResourceLocation id;
     public final BlockIngredient ingredient;
     public final int tier;
+    private final String translationKey;
 
     private GreenhouseType(ResourceLocation id, JsonObject json)
     {
         this.id = id;
         this.ingredient = BlockIngredients.fromJson(JsonHelpers.get(json, "ingredient"));
         this.tier = JsonHelpers.getAsInt(json, "tier");
+        this.translationKey = "greenhouse." + id.getNamespace() + "." + id.getPath();
     }
 
     private GreenhouseType(ResourceLocation id, FriendlyByteBuf buffer)
@@ -62,12 +66,18 @@ public class GreenhouseType
         this.id = id;
         this.ingredient = BlockIngredients.fromNetwork(buffer);
         this.tier = buffer.readVarInt();
+        this.translationKey = "greenhouse." + id.getNamespace() + "." + id.getPath();
     }
 
     public void encode(FriendlyByteBuf buffer)
     {
         ingredient.toNetwork(buffer);
         buffer.writeVarInt(tier);
+    }
+
+    public Component getTitle()
+    {
+        return Helpers.translatable(translationKey);
     }
 
     public static class Packet extends DataManagerSyncPacket<GreenhouseType> { }

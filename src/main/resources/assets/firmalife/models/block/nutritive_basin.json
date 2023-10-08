@@ -4,7 +4,7 @@
 	"textures": {
 		"0": "firmalife:block/nutritive_basin",
 		"1": "firmalife:block/potting_soil_wet",
-		"2": "tfc:block/plant/eel_grass/0",
+		"2": "firmalife:block/nutritive_basin_grass",
 		"3": "firmalife:block/nutritive_basin_side",
 		"particle": "firmalife:block/nutritive_basin"
 	},

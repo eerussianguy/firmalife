@@ -29,6 +29,8 @@ import com.eerussianguy.firmalife.common.util.Mechanics;
 import com.mojang.datafixers.util.Either;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.devices.DeviceBlock;
+import net.dries007.tfc.util.Helpers;
+
 import org.jetbrains.annotations.Nullable;
 
 import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
@@ -109,14 +111,14 @@ public class ClimateStationBlock extends DeviceBlock
                 {
                     FLAdvancements.BIG_STAINLESS_GREENHOUSE.trigger(server);
                 }
-                player.displayClientMessage(new TranslatableComponent(MOD_ID + ".greenhouse.found", info.positions().size()), true);
+                player.displayClientMessage(Helpers.translatable(MOD_ID + ".greenhouse.found", info.type().getTitle(), info.positions().size()), true);
             });
             either.ifRight(positions -> {
                 if (positions.size() > 200 && player instanceof ServerPlayer server)
                 {
                     FLAdvancements.BIG_CELLAR.trigger(server);
                 }
-                player.displayClientMessage(new TranslatableComponent(MOD_ID + ".cellar.found", positions.size()), true);
+                player.displayClientMessage(Helpers.translatable(MOD_ID + ".cellar.found", positions.size()), true);
             });
             return InteractionResult.sidedSuccess(level.isClientSide);
         }
