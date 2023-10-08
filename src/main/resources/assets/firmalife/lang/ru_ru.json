@@ -579,7 +579,7 @@
   "firmalife.greenhouse.wrong_tier": "Для роста растения необходимо использовать в создании теплицы материал получше",
   "firmalife.greenhouse.wrong_type": "Это растение не может расти в данном лотке. Необходим ",
   "firmalife.greenhouse.no_basin": "Гидропонный лоток требует питательный резервуар под ним.",
-  "firmalife.greenhouse.found": "Обнаружена теплица размером %s блока(блоков)",
+  "firmalife.greenhouse.found": "%s Обнаружена теплица размером %s блока(блоков)",
   "firmalife.planter.growth_water": "Рост: %s, Вода: %s",
   "firmalife.transducer.no_pipes": "Сейчас пусто. Добавьте вставляемые трубы щелчком правой кнопки мыши!",
   "firmalife.transducer.current_pipes": "Запас труб: %s",

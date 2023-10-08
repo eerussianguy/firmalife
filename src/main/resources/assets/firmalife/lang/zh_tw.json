@@ -444,7 +444,7 @@
   "firmalife.greenhouse.dehydrated": "此種植盆需要用噴壺澆水",
   "firmalife.greenhouse.wrong_tier": "此作物需要更高等級的溫室",
   "firmalife.greenhouse.wrong_type": "此作物不能在這個種植盆生長. 它需要",
-  "firmalife.greenhouse.found": "成功識別%s個方塊的溫室",
+  "firmalife.greenhouse.found": "%s成功識別%s個方塊的溫室",
   "firmalife.planter.growth_water": "成長: %s, 水分: %s",
   "firmalife.transducer.no_pipes": "目前沒有剩餘管道, 右鍵以新增嵌入式管道!",
   "firmalife.transducer.current_pipes": "剩餘管道庫存: %s",

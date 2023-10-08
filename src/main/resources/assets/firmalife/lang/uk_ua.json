@@ -398,7 +398,7 @@
   "firmalife.greenhouse.dehydrated": "Земля в лотках занадто суха, необхідно використовувати Лійку",
   "firmalife.greenhouse.wrong_tier": "Для росту рослини необхідно використовувати кращий основний матеріал для теплиці",
   "firmalife.greenhouse.wrong_type": "Ця рослина не може рости в цьому лотку. Необхідний ",
-  "firmalife.greenhouse.found": "Виявлено теплицю розміром %s блока (блоків)",
+  "firmalife.greenhouse.found": "%s Виявлено теплицю розміром %s блока (блоків)",
   "firmalife.planter.growth_water": "Ріст: %s, Вода: %s",
   "firmalife.bee.queen": "Є королева",
   "firmalife.bee.no_queen": "Нема королеви",

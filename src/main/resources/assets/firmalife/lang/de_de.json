@@ -571,7 +571,7 @@
   "firmalife.greenhouse.wrong_tier": "Für diese Saat wird ein Gewächshaus aus besseren Materialien benötigt",
   "firmalife.greenhouse.wrong_type": "Diese Saat wächst nicht in diesem Pflanzbehälter. Sie wächst in ",
   "firmalife.greenhouse.no_basin": "Hydroponische Pflanzbehälter müssen auf ein Nährstofftank platziert werden.",
-  "firmalife.greenhouse.found": "Geächshaus mit %s Blöcken gefunden",
+  "firmalife.greenhouse.found": "%s Geächshaus mit %s Blöcken gefunden",
   "firmalife.planter.growth_water": "Wachstum: %s, Wasser: %s",
   "firmalife.transducer.no_pipes": "Momentan leer. Füge eingebettete Rohre mit Rechtsklick hinzu!",
   "firmalife.transducer.current_pipes": "Rohr Inventar: %s",
