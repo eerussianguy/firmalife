@@ -6,17 +6,17 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(thing)烤炉$()是烹饪大量食物并提高保质期的好办法. 烤炉烤制的食物比一般食物变质慢10%. 烤炉是由$(thing)烤炉底$(),$(thing)烤炉顶$(),可选的$(thing)烤炉烟囱$()组成的多方块结构. 这些方块刚开始都是粘土材质, 然后需要加热足够长的时间来$(thing)硬化$()."
+      "text": "$(thing)Ovens$() are a great way of cooking lots of food in a way that improves their shelf life. Oven-baked food decays at 90% of the rate of regular food. Ovens are a multiblock structure consisting of a $(thing)Bottom Oven$(), $(thing)Top Oven$(), and optionally $(thing)Chimneys$(). These blocks start off as clay, and must be $(thing)Cured$() by raising their temperature to a certain amount for long enough.$(br)$(l:firmalife:firmalife/oven_appliances)Oven Appliances$() extend oven functionality."
     },
     {
       "type": "tfc:clay_knapping_recipe",
       "recipe": "tfc:clay_knapping/oven_top",
-      "text": "烤炉底的合成配方."
+      "text": "烤炉顶的合成配方."
     },
     {
       "type": "tfc:clay_knapping_recipe",
       "recipe": "tfc:clay_knapping/oven_bottom",
-      "text": "烤炉顶的合成配方."
+      "text": "烤炉底的合成配方."
     },
     {
       "type": "tfc:clay_knapping_recipe",
@@ -26,12 +26,12 @@
     {
       "type": "patchouli:crafting",
       "recipe": "tfc:crafting/bricks",
-      "text": "烤炉需要用$(thing)砖块$(), 其他烤炉方块, 或者任何能够包裹一个木炭炉的方块构成. 如果你想的话, 你甚至可以使用石块."
+      "text": "烤炉用$(thing)砖块$(), 烤炉方块, 或者任何能够包裹一个木炭炉的方块构成. 如果你想的话, 你甚至可以使用石块."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/peel",
-      "text": "$(thing)烤炉铲$()是从烤炉中取出炙热物体的唯一安全方式. 拿着烤炉铲然后按$(item)$(k:key.use)$()就可以取出物品, 否则你会被烫到!"
+      "text": "$(thing)烤炉铲$()是从烤炉中取出炙热物体的安全方式. 拿着烤炉铲然后按$(item)$(k:key.use)$()就可以取出物品, 否则你会被烫到!"
     },
     {
       "type": "patchouli:text",
@@ -61,9 +61,9 @@
             ]
           ],
           "mapping": {
-            "0": "firmalife:cured_oven_top[facing=south]",
-            "T": "firmalife:cured_oven_top[facing=south]",
-            "B": "firmalife:cured_oven_bottom[facing=south]",
+            "0": "firmalife:cured_oven_top[facing=north]",
+            "T": "firmalife:cured_oven_top[facing=north]",
+            "B": "firmalife:cured_oven_bottom[facing=north]",
             "W": "minecraft:bricks",
             "C": "firmalife:cured_oven_chimney"
           }
@@ -88,9 +88,9 @@
             ]
           ],
           "mapping": {
-            "0": "firmalife:oven_top[facing=south]",
-            "T": "firmalife:oven_top[facing=south]",
-            "B": "firmalife:oven_bottom[facing=south]",
+            "0": "firmalife:oven_top[facing=north]",
+            "T": "firmalife:oven_top[facing=north]",
+            "B": "firmalife:oven_bottom[facing=north]",
             "W": "minecraft:bricks",
             "C": "firmalife:oven_chimney"
           }
@@ -112,16 +112,16 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/oven_insulation",
-      "text": "使用被包裹的烤炉底替换普通烤炉底让您可以移除烤炉侧面和背面的包裹方块. 但是这并不代表您可以移除烤炉烟囱. 使用$(item)$(k:key.use)$()来应用它."
+      "text": "Crafting oven insulation for your Bottom Oven allows you to remove the need for insulating it on the sides and back. It does not remove the need for the chimney. Use $(item)$(k:key.use)$() to apply it."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/brick_countertop",
-      "text": "台面是一种装饰性方块, 它能够被算作烤炉的包裹方块, 同时外观与其他烤炉方块相匹配. 它们是您装饰厨房的好选择."
+      "text": "Countertops are aesthetic blocks that count as oven insulation, and have an appearance that matches that of oven blocks. They are a nice aesthetic choice for your kitchen."
     },
     {
       "type": "patchouli:text",
-      "text": "烤炉还可以使用$(thing)饰面$()来改变外观. 这些饰面可以用于基础的烤炉组成方块(或是砖块自身). 饰面可以混合搭配. 按下$(item)$(k:key.use)$()来使用这些饰面."
+      "text": "Ovens also have $(thing)Finishes$() that can be used to change their appearance. These finishes are applied to the basic brick stage of the oven (or brick blocks themselves), and are cosmetic. Finishes can be mixed and matched. They are applied with $(item)$(k:key.use)$()."
     },
     {
       "type": "patchouli:crafting",

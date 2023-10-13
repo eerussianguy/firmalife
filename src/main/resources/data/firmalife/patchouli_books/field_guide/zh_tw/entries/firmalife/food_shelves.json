@@ -1,17 +1,17 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "name": "食物架",
+  "name": "Food Shelves",
   "category": "firmalife:firmalife",
   "icon": "firmalife:wood/food_shelf/pine",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(thing)食物架$()是一種用於儲存食物的裝置. 它只會在有效的$(l:firmalife:firmalife/cellar)地窖$()中工作. 食物架可以容納一整組相同的食品. 放入和取出物品可以透過$(item)$(k:key.use)$()來實現. 放置在有效的食物櫃中的食物會獲得比在大缸中更好的保鮮效果."
+      "text": "The $(thing)Food Shelf$() is a device for storing food. It can only be used in a valid $(l:firmalife:firmalife/cellar)Cellar$(). Food shelves can contain a full stack of one food item. Adding and removing the item can be done with $(item)$(k:key.use)$(). Items in valid food shelves receive a decay modifier that is better than vessels."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/wood/acacia_shelf",
-      "text": "食物架由木板和木材製作而成."
+      "text": "The food shelf is made from planks and lumber."
     }
   ],
   "read_by_default": true,

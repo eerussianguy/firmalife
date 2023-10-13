@@ -16,7 +16,7 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/iron_composter",
-      "text": "堆肥桶可以被升级为$(thing)铁堆肥桶$(), 它堆肥的速度是普通堆肥桶的四倍."
+      "text": "The Composter can be upgraded to an $(thing)Iron Composter$(), which works the same, except it produces compost in four days. Iron Composters will also feed a hopper directly below with compost when ready."
     },
     {
       "type": "tfc:multimultiblock",

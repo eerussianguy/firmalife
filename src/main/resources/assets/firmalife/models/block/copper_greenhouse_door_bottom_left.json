@@ -1,0 +1,8 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "block/door_bottom_left",
+  "textures": {
+    "top": "firmalife:block/greenhouse/copper_door_top",
+    "bottom": "firmalife:block/greenhouse/copper_door_bottom"
+  }
+}

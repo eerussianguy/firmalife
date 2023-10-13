@@ -1,25 +1,25 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "name": "巧克力",
+  "name": "Chocolate",
   "category": "firmalife:firmalife",
   "icon": "firmalife:food/dark_chocolate",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(thing)巧克力制作$()需要几个处理步骤, 并且奖励并不多. 重要的是在游玩Firmalife时, 成为巧克力师是为了您的个人享受和乐趣, 而不是试图从任何给定的输入中获取最大价值."
+      "text": "$(thing)Chocolate-making$() takes a few processing steps, for not much of a reward. It's important to remember, when playing Firmalife, that being a chocolatier is for your personal enjoyment and pleasure, rather than for trying to extract maximum value from any given input."
     },
     {
       "type": "patchouli:text",
-      "text": "要开始进行巧克力的制作, 可可豆必须先在$(l:firmalife:firmalife/ovens)烤炉$()中进行$(thing)烘烤$()并制成$(thing)烘焙过的可可豆$(). 然后, 将烘焙过的可可豆与$(thing)小刀$()合成以将可可豆制成$(thing)可可粉$()以及$(thing)可可脂$()."
+      "text": "To start chocolate processing, cocoa beans must first be $(thing)roasted$() in an $(l:firmalife:firmalife/ovens)Oven$() to make $(thing)Roasted Cocoa Beans$(). Then, craft the roasted beans with a $(thing)Knife$() to split the beans into $(thing)Cocoa Powder$() and $(thing)Cocoa Powder$()."
     },
     {
       "type": "patchouli:text",
-      "text": "使用$(l:firmalife:firmalife/mixing_bowl)搅拌碗$()来混合可可粉, 可可脂和甜味剂(糖或是蜂蜜), 最终制得$(thing)巧克力糊$(). 可可脂和可可粉的比例决定了最终的产物: $(br)$(li)1份可可粉, 1份可可脂, 1份甜味剂: 牛奶巧克力$()$(li)2份可可粉, 1份甜味剂: 黑巧克力$()$(li)2份可可脂, 1份甜味剂: 白巧克力$()"
+      "text": "The $(l:firmalife:firmalife/mixing_bowl)Mixing Bowl$() is used to mix cocoa powder, butter, and sweetener (sugar or honey) to make $(thing)Chocolate Blends$(). The ratio of cocoa butter to powder determines what comes out:$(br)$(li)1 Powder, 1 Butter, 1 Sweetener: Milk Chocolate$()$(li)2 Powder, 1 Sweetener: Dark Chocolate$()$(li)2 Butter, 1 Sweetener: White Chocolate$()"
     },
     {
       "type": "firmalife:drying_recipe",
       "recipe": "firmalife:drying/dark_chocolate",
-      "text": "最后, 将巧克力糊放在$(l:firmalife:firmalife/drying)烘干垫$()上烘干成$(thing)巧克力$()."
+      "text": "Finally, chocolate is dried on a $(l:firmalife:firmalife/drying)Drying Mat$() to make $(thing)Chocolate$()."
     }
   ],
   "read_by_default": true,

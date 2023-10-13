@@ -20,7 +20,7 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/solar_drier",
-      "text": "太陽能幹燥器擁有與乾燥墊相同的作用, 但是效率比干燥墊高12倍."
+      "text": "The solar drier functions the same as the drying mat, but 12x as fast."
     },
     {
       "type": "firmalife:drying_recipe",

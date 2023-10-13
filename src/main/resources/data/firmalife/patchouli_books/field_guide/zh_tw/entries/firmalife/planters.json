@@ -62,12 +62,12 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/hydroponic_planter",
-      "text": "$(thing)水培種植盆$()可以種植大米和蔓越莓灌木. 它的工作方式同四槽種植盆一樣, 但是水培種植盆不需要澆水. 但是, 它必須要放在$(thing)營養盆$()的上面. 沒有營養盆水培種植盆將不會工作."
+      "text": "$(thing)Hydroponic Planters$() grow rice and cranberry bushes. They work the same as a quad planter, except that they do not need to be watered. Instead, a $(thing)Nutritive Vat$() must be placed below them. Without the vat they will not grow."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/nutritive_basin",
-      "text": "營養盆中需要灌滿水, 手持水桶$(item)$(k:key.use)$()以灌水."
+      "text": "Nutritive basins must be filled with water, using $(item)$(k:key.use)$()."
     }
   ],
   "read_by_default": true,

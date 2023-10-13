@@ -25,7 +25,7 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/chevre_wheel",
-      "recipe2": "firmalife:crafting/cheddar_wheel"
+      "recipe2": "firmalife:crafting/rajya_metok_wheel"
     },
     {
       "type": "patchouli:text",
@@ -38,7 +38,7 @@
     },
     {
       "type": "tfc:multimultiblock",
-      "text": "奶酪轮的老化顺序: $(thing)新鲜的$(), $(thing)陈年的$(), 以及$(thing)窖藏的$().",
+      "text": "Gouda奶酪轮的老化顺序: $(thing)新鲜$(), $(thing)老化$(), 以及$(thing)Vintage$().",
       "multiblocks": [
         {
           "pattern": [

@@ -179,10 +179,10 @@ def generate(rm: ResourceManager):
 
     ### MISC DATA ###
     global_loot_modifiers(rm, 'firmalife:fruit_leaf', 'firmalife:rennet', 'firmalife:rennet_three', 'firmalife:ice_shavings')
-    global_loot_modifier(rm, 'rennet', 'firmalife:add_item', {'item': utils.item_stack('2 firmalife:rennet')}, match_entity_tag('firmalife:drops_rennet'))
-    global_loot_modifier(rm, 'rennet_three', 'firmalife:add_item', {'item': utils.item_stack('3 firmalife:rennet')}, match_entity_tag('firmalife:drops_three_rennet'))
-    global_loot_modifier(rm, 'fruit_leaf', 'firmalife:add_item', {'item': utils.item_stack('firmalife:fruit_leaf'), 'chance': 0.5}, match_block_ingredient('firmalife:drops_fruit_leaf'))
-    global_loot_modifier(rm, 'ice_shavings', 'firmalife:add_item', {'item': utils.item_stack('firmalife:ice_shavings')}, match_block_ingredient('firmalife:drops_ice_shavings'))
+    global_loot_modifier(rm, 'rennet', 'firmalife:add_item', {'item': item_stack_codec('2 firmalife:rennet')}, match_entity_tag('firmalife:drops_rennet'))
+    global_loot_modifier(rm, 'rennet_three', 'firmalife:add_item', {'item': item_stack_codec('3 firmalife:rennet')}, match_entity_tag('firmalife:drops_three_rennet'))
+    global_loot_modifier(rm, 'fruit_leaf', 'firmalife:add_item', {'item': item_stack_codec('firmalife:fruit_leaf'), 'chance': 0.5}, match_block_ingredient('firmalife:drops_fruit_leaf'))
+    global_loot_modifier(rm, 'ice_shavings', 'firmalife:add_item', {'item': item_stack_codec('firmalife:ice_shavings')}, match_block_ingredient('firmalife:drops_ice_shavings'))
 
 
 def greenhouse(rm: ResourceManager, name: str, block_ingredient: str, tier: int):
@@ -244,6 +244,13 @@ def global_loot_modifier(rm: ResourceManager, name: str, mod_type: str, data_in:
         'conditions': [c for c in conditions],
         **data_in
     })
+
+def item_stack_codec(data_in: str):
+    stack = utils.item_stack(data_in)
+    return {
+        'id': stack['item'],
+        'Count': stack['count'] if 'count' in stack else 1
+    }
 
 # note for the mcresources dev: these work exactly the same as tags so if you implement this, do it like that
 def global_loot_modifiers(rm: ResourceManager, *modifiers: str):

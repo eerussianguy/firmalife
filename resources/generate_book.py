@@ -7,6 +7,7 @@ from constants import FRUITS, STILL_BUSHES
 from patchouli import *
 from i18n import I18n
 
+BOOK_LANGUAGES = ('en_us', 'zh_cn', 'zh_tw')
 
 class LocalInstance:
     INSTANCE_DIR = os.getenv('LOCAL_MINECRAFT_INSTANCE')  # The location of a local .minecraft directory, for testing in external minecraft instance (as hot reloading works much better)
@@ -22,24 +23,20 @@ class LocalInstance:
         return None
 
 def main():
-    parser = ArgumentParser('generate_book.py')
-    parser.add_argument('--translate', type=str, default='en_us')
+    for language in BOOK_LANGUAGES:
+        rm = ResourceManager('tfc', '../src/main/resources')
+        i18n = I18n.create(language)
 
-    args = parser.parse_args()
+        print('Writing book %s' % language)
+        make_book(rm, i18n)
 
-    rm = ResourceManager('tfc', '../src/main/resources')
-    i18n = I18n.create(args.translate)
+        i18n.flush()
 
-    print('Writing book')
-    make_book(rm, i18n)
+        if LocalInstance.wrap(rm) and language == 'en_us':
+            print('Copying into local instance at: %s' % LocalInstance.INSTANCE_DIR)
+            make_book(rm, I18n.create('en_us'), local_instance=True)
 
-    i18n.flush()
-
-    if LocalInstance.wrap(rm):
-        print('Copying into local instance at: %s' % LocalInstance.INSTANCE_DIR)
-        make_book(rm, I18n.create('en_us'), local_instance=True)
-
-    print('Done')
+        print('Done')
 
 def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False):
     rm.domain = 'firmalife'  # DOMAIN CHANGE

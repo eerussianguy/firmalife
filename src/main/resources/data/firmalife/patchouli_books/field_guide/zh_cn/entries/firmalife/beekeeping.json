@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(thing)蜂箱$()是养殖蜜蜂的地方. 蜂箱里面需要有至少一个$(thing)巢脾$()让蜜蜂生活. 如果要从一个有蜂居住的蜂箱中拆除巢脾, 最好在夜晚行动, 或者在蜂箱下生一堆$(thing)篝火$(). 否则被拆家的蜜蜂就会袭击你."
+      "text": "$(thing)Beehives$() are a place to house bees. Beehives need $(thing)Beehive Frames$() inside them for the bees to live. Removing frames from an active hive will cause the bees to attack you, unless done at night, or with a $(thing)Firepit$() underneath the hive active. Beehives can share flowers. The benefit of flowers diminishes after 60 flowers."
     },
     {
       "type": "patchouli:crafting",
@@ -15,7 +15,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "如果蜂箱周围5个方块的半径内, 有至少10朵花. 那么空的巢脾就有可能出现$(thing)蜂王$(). 这可以从蜂箱周围的粒子效果看出来."
+      "text": "Beehives know about the area in a 5 block radius from them. If there are at least 10 flowers around the hive, there is a chance an empty frame will be populated with a $(thing)Queen$(). This is indicated by bee particles flying around the hive. Having 4 empty frames in a hive greatly increases the chances of bees moving in."
     },
     {
       "type": "patchouli:text",
@@ -28,7 +28,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "对着物品栏中的满的巢脾在拎起$(thing)小刀$()的时候使用$(item)$(k:key.use)$(), 就可以获得有用的$(thing)蜂蜡$(). 注意, 这个操作会杀死巢脾中的蜂王!"
+      "text": "在物品栏有$(thing)刀$()的情况下, 手持一个满的巢脾按$(item)$(k:key.use)$()可以获得有用的$(thing)蜂蜡$(). 注意, 这个操作会杀死巢脾中的蜂王!"
     },
     {
       "type": "patchouli:crafting",
@@ -51,7 +51,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "具有高$(thing)突变体$()能力的蜜蜂会有概率产生带有$(thing)遗传病$()的后代. 患病的蜜蜂会将疾病传染给后代, 同时不会产生蜂蜜."
+      "text": "Bees with high Mutant ability have a chance of developing a $(thing)Genetic Disease$(). Diseased bees pass on their disease to their offspring, and don't produce honey."
     }
   ],
   "read_by_default": true,

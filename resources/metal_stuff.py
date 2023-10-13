@@ -71,8 +71,8 @@ def generate(rm: ResourceManager):
                 item_heat(rm, ('metal', metal + '_' + item), item_name, metal_data.ingot_heat_capacity(), metal_data.melt_temperature, mb=item_data.smelt_amount)
 
         if 'part' in metal_data.types:
-            rm.block_tag('minecraft:stairs', 'tfc:metal/block/%s_stairs' % metal)
-            rm.block_tag('minecraft:slabs', 'tfc:metal/block/%s_slab' % metal)
+            rm.block_tag('minecraft:stairs', 'firmalife:metal/block/%s_stairs' % metal)
+            rm.block_tag('minecraft:slabs', 'firmalife:metal/block/%s_slab' % metal)
 
         def item(_variant: str) -> str:
             return 'firmalife:metal/%s/%s' % (_variant, metal)
@@ -102,7 +102,7 @@ def generate(rm: ResourceManager):
         rm.fluid_tag(metal, 'firmalife:metal/%s' % metal, 'firmalife:metal/flowing_%s' % metal)
         rm.fluid_tag('tfc:molten_metals', *['firmalife:metal/%s' % metal])
 
-        item = rm.custom_item_model(('bucket', 'metal', metal), 'forge:bucket', {
+        item = rm.custom_item_model(('bucket', 'metal', metal), 'forge:fluid_container', {
             'parent': 'forge:item/bucket',
             'fluid': 'firmalife:metal/%s' % metal
         })
@@ -123,7 +123,7 @@ def generate(rm: ResourceManager):
                 rm.block(('metal', 'block', '%s_slab' % metal)).with_lang(lang('%s plated slab', metal))
                 rm.block(('metal', 'block', '%s_stairs' % metal)).with_lang(lang('%s plated stairs', metal)).with_block_loot('firmalife:metal/block/%s_stairs' % metal)
                 block.make_stairs()
-                slab_loot(rm, 'tfc:metal/block/%s_slab' % metal)
+                slab_loot(rm, 'firmalife:metal/block/%s_slab' % metal)
 
 def chromium_ore_heats(rm: ResourceManager):
     ore = 'chromite'

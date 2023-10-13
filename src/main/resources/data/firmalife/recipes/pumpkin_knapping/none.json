@@ -1,6 +1,7 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "type": "firmalife:pumpkin_knapping",
+  "type": "tfc:knapping",
+  "knapping_type": "firmalife:pumpkin",
   "pattern": [
     "XXXXX",
     "XXXXX",

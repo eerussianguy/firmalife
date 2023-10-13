@@ -1,27 +1,27 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "name": "同TFC的区别",
+  "name": "Differences from TFC",
   "category": "firmalife:firmalife",
   "icon": "tfc:food/wheat_bread",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Firmalife对常规TFC中的运作方式进行了一些更改. 本章则用于帮助您了解这些与TFC不同的部分."
+      "text": "Firmalife makes a few changes to how things operate in regular TFC. This chapter exists to help direct you towards areas where this is very different."
     },
     {
       "type": "patchouli:text",
-      "text": "$(l:firmalife:firmalife/cheese)奶酪$()需要通过更加复杂的流程才能被制作出来. 它可以被放置在世界中, 并且可以被选择放置在$(l:firmalife:firmalife/cellar)地窖$()中老化.",
-      "title": "奶酪老化"
+      "text": "$(l:firmalife:firmalife/cheese)Cheese$() is made through a more complex process. It can be placed in world, and has the option of aging in a $(l:firmalife:firmalife/cellar)Cellar$().",
+      "title": "Cheese Aging"
     },
     {
       "type": "patchouli:text",
-      "text": "$(l:firmalife:firmalife/bread)面包$()同样也需要更复杂的制作流程. 面包的制作需要酵母和甜味剂. 而常规的TFC面包配方只能做出粗饼, 粗饼只含有少量的营养.",
-      "title": "制作面包"
+      "text": "$(l:firmalife:firmalife/bread)Bread$() is made through a more complex process, requiring yeast and sweetener. The regular TFC bread recipe makes flatbread, which is worse nutritionally.",
+      "title": "Bread Making"
     },
     {
       "type": "patchouli:text",
-      "text": "Firmalife更加强调了糖的重要性. 虽然糖仍然可以从甘蔗中提取, 但是您也可以同时考虑利用蜂蜜(来源于蜜蜂)或者是甜菜来制糖!",
-      "title": "甜味剂"
+      "text": "Firmalife has a greater emphasis on sugar. While it can still be obtained through sugar cane, consider using honey (from bees) or making sugar from beets!",
+      "title": "Sweeteners"
     }
   ],
   "read_by_default": true,

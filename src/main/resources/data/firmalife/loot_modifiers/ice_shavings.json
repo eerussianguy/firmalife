@@ -10,6 +10,7 @@
     }
   ],
   "item": {
-    "item": "firmalife:ice_shavings"
+    "id": "firmalife:ice_shavings",
+    "Count": 1
   }
 }

@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(thing)罐子$()是储存特定物品的一种方式. 他们可以放在地面上, 最多一组四个. 他们最大的用途是无限制的储存$(l:firmalife:firmalife/beekeeping)蜂蜜$()."
+      "text": "$(thing)Jars$() are a way of storing certain items. They can be placed on the ground as blocks, in groups of up to four. They are most useful as a way of storing $(l:firmalife:firmalife/beekeeping)Honey$() indefinitely."
     },
     {
       "type": "tfc:multimultiblock",
@@ -82,12 +82,12 @@
     },
     {
       "type": "patchouli:text",
-      "text": "使用$(l:firmalife:firmalife/oven_appliances#vat)大缸$(), 甜味剂和水可以制成$(thing)糖水$(). 进而, 向糖水中添加水果, 这会生成$(thing)果酱$(). 将空罐子放到大缸里, 这样罐子就会被装满. 小心: 试图通过过多的过程来泵出或运输果酱可能会毁了果酱!"
+      "text": "Using the $(l:firmalife:firmalife/oven_appliances#vat)Vat$(), $(thing)Sugar Water$() can be made by adding sweetener to water. Then, adding fruit causes $(thing)Fruity Fluid$() to be made. Putting a jar in the vat can then fill it. Be careful: trying to pipe or transport fruity fluid through too many transfers could ruin it!"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/jarring_station",
-      "text": "如果将$(thing)装罐台$()的壶口一面对准装满$(thing)果酱$()的大缸, $(thing)装罐台$()中的空罐子会自动填满果酱."
+      "text": "The $(thing)Jarring Station$(), if placed with its spout facing a vat of $(thing)Fruity Fluid$(), will automatically fill up to 9 jars placed inside."
     }
   ],
   "read_by_default": true,

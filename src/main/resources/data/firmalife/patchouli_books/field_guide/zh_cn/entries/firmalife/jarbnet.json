@@ -1,12 +1,12 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "name": "罐头柜",
+  "name": "Jarbnets",
   "category": "firmalife:firmalife",
   "icon": "firmalife:wood/jarbnet/pine",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "罐头柜是一个装饰性方块, 同时它能够存储$(l:firmalife:firmalife/jars)空罐子$(), 蜡烛, 以及水罐. 他可以通过$(item)$(k:key.sneak)$()同时空手来开关. 如果柜子里面存放的是蜡烛, 它可以被点亮并发出亮光."
+      "text": "The jarbnet is a cosmetic storage block for $(l:firmalife:firmalife/jars)Jars$(), Candles, and Jugs. It can be opened and closed by clicking with an empty hand and $(item)$(k:key.sneak)$() pressed. If candles are inside, it can be lit to produce a small amount of light."
     },
     {
       "type": "patchouli:crafting",

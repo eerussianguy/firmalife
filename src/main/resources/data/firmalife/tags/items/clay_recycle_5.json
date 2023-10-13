@@ -1,0 +1,9 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "firmalife:oven_top",
+    "firmalife:oven_bottom",
+    "firmalife:oven_chimney"
+  ]
+}

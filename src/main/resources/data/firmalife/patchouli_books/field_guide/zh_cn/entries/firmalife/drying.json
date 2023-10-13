@@ -20,7 +20,7 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/solar_drier",
-      "text": "太阳能干燥器拥有与干燥垫相同的作用, 但是效率比干燥垫高12倍."
+      "text": "The solar drier functions the same as the drying mat, but 12x as fast."
     },
     {
       "type": "firmalife:drying_recipe",

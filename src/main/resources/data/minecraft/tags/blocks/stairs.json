@@ -11,7 +11,7 @@
     "firmalife:weathered_treated_wood_greenhouse_roof",
     "firmalife:treated_wood_greenhouse_roof",
     "firmalife:stainless_steel_greenhouse_roof",
-    "tfc:metal/block/stainless_steel_stairs",
-    "tfc:metal/block/chromium_stairs"
+    "firmalife:metal/block/stainless_steel_stairs",
+    "firmalife:metal/block/chromium_stairs"
   ]
 }

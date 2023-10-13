@@ -27,8 +27,7 @@ def generate(rm: ResourceManager):
     story.advancement('wax', icon('firmalife:beeswax'), 'Does this hurt the bee?', 'Get some beeswax from a hive.', 'hive', inventory_changed('firmalife:beeswax'))
     story.advancement('jars', icon('firmalife:empty_jar'), 'minecraft.jar', 'Craft an empty jar.', 'hive', inventory_changed('firmalife:empty_jar'))
     story.advancement('jarbnet', icon('firmalife:wood/jarbnet/palm'), 'Cupholder', 'Craft a jarbnet.', 'jars', inventory_changed('#firmalife:jarbnets'))
-    story.advancement('preserves', icon('firmalife:blueberry_jar'), 'Cannery', 'Craft fruit preserves.', 'jars', inventory_changed('#firmalife:foods/preserves'))
-    story.advancement('jarring_station', icon('firmalife:jarring_station'), 'Industrial Cannery', 'Craft a jarring station.', 'preserves', inventory_changed('firmalife:jarring_station'), frame='challenge')
+    story.advancement('jarring_station', icon('firmalife:jarring_station'), 'Industrial Cannery', 'Craft a jarring station.', 'jars', inventory_changed('firmalife:jarring_station'), frame='challenge')
     story.advancement('smoker', icon('tfc:food/venison'), 'Up in Smoke', 'Place some string for smoking.', 'root', placed_block('firmalife:wool_string'))
     story.advancement('dry', icon('firmalife:drying_mat'), 'Hydrophobic', 'Craft a drying mat.', 'root', inventory_changed('firmalife:drying_mat'))
     story.advancement('oven', icon('firmalife:oven_bottom'), 'Bread Machine', 'Craft a top and bottom oven, and a chimney.', 'root', multiple(inventory_changed('firmalife:oven_bottom', name='ob'), inventory_changed('firmalife:oven_top', name='ot'), inventory_changed('firmalife:oven_chimney', name='oc')), requirements=[['ot'], ['oc'], ['ob']])
@@ -98,7 +97,7 @@ def item_use_on_block(block: str, item: str, name: str = 'item_use_on_block_cond
     }}}
 
 def placed_block(block: str, name: str = 'block_placed_condition') -> Json:
-    return {name: {'trigger': 'minecraft:placed_block', 'conditions': {'block': block}}}
+    return {name: {'trigger': 'minecraft:placed_block', 'conditions': {'location': [{'block': block, 'condition': 'minecraft:block_state_property'}]}}}
 
 def root_trigger() -> Json:
     return {'in_game_condition': {'trigger': 'minecraft:tick'}}

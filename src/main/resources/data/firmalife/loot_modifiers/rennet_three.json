@@ -11,7 +11,7 @@
     }
   ],
   "item": {
-    "item": "firmalife:rennet",
-    "count": 3
+    "id": "firmalife:rennet",
+    "Count": 3
   }
 }

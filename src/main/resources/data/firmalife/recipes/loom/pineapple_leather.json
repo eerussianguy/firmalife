@@ -2,9 +2,11 @@
   "__comment__": "This file was automatically created by mcresources",
   "type": "tfc:loom",
   "ingredient": {
-    "item": "firmalife:pineapple_yarn"
+    "ingredient": {
+      "item": "firmalife:pineapple_yarn"
+    },
+    "count": 16
   },
-  "input_count": 16,
   "result": {
     "item": "firmalife:pineapple_leather"
   },

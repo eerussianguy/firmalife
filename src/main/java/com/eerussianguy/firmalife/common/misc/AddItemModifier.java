@@ -22,7 +22,7 @@ public class AddItemModifier extends LootModifier
 {
     public static final Codec<AddItemModifier> CODEC = RecordCodecBuilder.create(instance -> codecStart(instance)
         .and(ItemStack.CODEC.fieldOf("item").forGetter(c -> c.item))
-        .and(Codec.FLOAT.fieldOf("chance").forGetter(c -> c.chance)
+        .and(Codec.FLOAT.optionalFieldOf("chance", 1f).forGetter(c -> c.chance)
     ).apply(instance, AddItemModifier::new));
 
     private final ItemStack item;

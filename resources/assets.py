@@ -2,6 +2,7 @@ import itertools
 
 from mcresources import ResourceManager, ItemContext, BlockContext, block_states
 from mcresources import utils, loot_tables
+from mcresources.type_definitions import JsonObject, Json
 
 from constants import *
 
@@ -140,7 +141,7 @@ def generate(rm: ResourceManager):
     rm.blockstate('stovetop_grill').with_lang(lang('stovetop grill')).with_tag('minecraft:mineable/pickaxe').with_block_loot('tfc:wrought_iron_grill')
     rm.blockstate('stovetop_pot').with_lang(lang('stovetop pot')).with_tag('minecraft:mineable/pickaxe').with_block_loot('tfc:ceramic/pot')
 
-    rm.block_model('dribbler', parent='firmalife:block/sprinkler', textures={'0': 'firmalife:block/metal/full/stainless_steel'})
+    rm.block_model('dribbler', parent='firmalife:block/sprinkler', textures={'0': 'firmalife:block/metal/block/stainless_steel'})
     rm.blockstate('sprinkler', model='firmalife:block/sprinkler').with_lang(lang('sprinkler')).with_tag('minecraft:mineable/pickaxe').with_block_loot('firmalife:sprinkler')
     rm.item_model('sprinkler', parent='firmalife:block/sprinkler', no_textures=True)
     rm.blockstate('dribbler', model='firmalife:block/dribbler').with_lang(lang('dribbler')).with_tag('minecraft:mineable/pickaxe').with_block_loot('firmalife:dribbler')
@@ -160,7 +161,8 @@ def generate(rm: ResourceManager):
     rm.blockstate_multipart('iron_composter', *states).with_lang(lang('iron composter')).with_block_loot('firmalife:iron_composter').with_tag('minecraft:mineable/pickaxe')
     rm.item_model('iron_composter', parent='firmalife:block/iron_composter', no_textures=True)
 
-    rm.block('sealed').make_door().make_trapdoor().make_wall(texture='firmalife:block/sealed_bricks')
+    block = rm.block('sealed').make_trapdoor().make_wall(texture='firmalife:block/sealed_bricks')
+    make_door(block)
     rm.block('sealed_trapdoor').with_lang(lang('sealed trapdoor')).with_tag('minecraft:mineable/pickaxe').with_block_loot('firmalife:sealed_trapdoor')
     rm.block('sealed_wall').with_lang(lang('sealed wall')).with_tag('minecraft:mineable/pickaxe').with_block_loot('firmalife:sealed_wall').with_item_tag('minecraft:walls').with_tag('minecraft:walls')
     block = rm.block('firmalife:sealed_door').with_tag('minecraft:doors').with_lang(lang('sealed door')).with_tag('minecraft:mineable/pickaxe')
@@ -290,7 +292,7 @@ def generate(rm: ResourceManager):
                     'name': 'firmalife:plant/%s_sapling' % fruit,
                     'conditions': loot_tables.all_of(
                         loot_tables.any_of(*[
-                            loot_tables.block_state_property('tfc:plant/%s_branch[up=true,%s=true]' % (fruit, direction))
+                            loot_tables.block_state_property('firmalife:plant/%s_branch[up=true,%s=true]' % (fruit, direction))
                             for direction in ('west', 'east', 'north', 'south')
                         ]),
                         loot_tables.match_tag('tfc:axes')
@@ -441,8 +443,7 @@ def peel(rm: ResourceManager, name_parts: str, texture: str) -> 'ItemContext':
     rm.item_model(name_parts + '_in_hand', {'particle': texture}, parent='minecraft:item/trident_in_hand')
     rm.item_model(name_parts + '_gui', texture)
     model = rm.domain + ':item/' + name_parts
-    # todo: 1.19 rename to forge:separate_transforms due to deprecation
-    return rm.custom_item_model(name_parts, 'forge:separate-perspective', {
+    return rm.custom_item_model(name_parts, 'forge:separate_transforms', {
         'gui_light': 'front',
         'base': {'parent': model + '_in_hand'},
         'perspectives': {
@@ -503,18 +504,20 @@ def greenhouse_wall(rm: ResourceManager, name: str, frame: str, glass: str) -> '
 
 def greenhouse_door(rm: ResourceManager, name: str, bot: str, upper: str) -> 'BlockContext':
     door = '%s_greenhouse_door' % name
-    door_model = 'greenhouse/%s_door' % name
-    block = 'firmalife:block/greenhouse/%s_door' % name
-    bottom = block + '_bottom'
-    bottom_hinge = block + '_bottom_hinge'
-    top = block + '_top'
-    top_hinge = block + '_top_hinge'
-
-    block = rm.blockstate(door, variants=block_states.door_blockstate(bottom, bottom_hinge, top, top_hinge)).with_lang(lang('%s greenhouse door', name))
-    rm.block_model(door_model + '_bottom', {'bottom': bot}, parent='block/door_bottom')
-    rm.block_model(door_model + '_bottom_hinge', {'bottom': bot}, parent='block/door_bottom_rh')
-    rm.block_model(door_model + '_top', {'top': upper}, parent='block/door_top')
-    rm.block_model(door_model + '_top_hinge', {'top': upper}, parent='block/door_top_rh')
+    block = rm.block(door).with_lang(lang('%s door', door))
+    make_door(rm.block('%s_greenhouse' % name), top_texture=upper, bottom_texture=bot)
+    # door_model = 'greenhouse/%s_door' % name
+    # block = 'firmalife:block/greenhouse/%s_door' % name
+    # bottom = block + '_bottom'
+    # bottom_hinge = block + '_bottom_hinge'
+    # top = block + '_top'
+    # top_hinge = block + '_top_hinge'
+    #
+    # block = rm.blockstate(door, variants=door_blockstate()).with_lang(lang('%s greenhouse door', name))
+    # rm.block_model(door_model + '_bottom', {'bottom': bot}, parent='block/door_bottom')
+    # rm.block_model(door_model + '_bottom_hinge', {'bottom': bot}, parent='block/door_bottom_rh')
+    # rm.block_model(door_model + '_top', {'top': upper}, parent='block/door_top')
+    # rm.block_model(door_model + '_top_hinge', {'top': upper}, parent='block/door_top_rh')
     rm.item_model(door)
     door_loot(block, 'firmalife:%s' % door)
     greenhouse_tags(block, name).with_tag('minecraft:doors').with_item_tag('minecraft:doors')
@@ -547,7 +550,7 @@ def water_based_fluid(rm: ResourceManager, name: str):
     rm.fluid_tag('minecraft:water', 'firmalife:%s' % name, 'firmalife:flowing_%s' % name)  # Need to use water fluid tag for behavior
     rm.fluid_tag('mixable', 'firmalife:%s' % name, 'firmalife:flowing_%s' % name)
 
-    item = rm.custom_item_model(('bucket', name), 'forge:bucket', {
+    item = rm.custom_item_model(('bucket', name), 'forge:fluid_container', {
         'parent': 'forge:item/bucket',
         'fluid': 'firmalife:%s' % name
     })
@@ -562,3 +565,66 @@ def four_ways(model: str) -> List[Dict[str, Any]]:
         {'model': model, 'y': 270}
     ]
 
+def make_door(block_context: BlockContext, door_suffix: str = '_door', top_texture: Optional[str] = None, bottom_texture: Optional[str] = None) -> 'BlockContext':
+    """
+    Generates all blockstates and models required for a standard door
+    """
+    door = block_context.res.join() + door_suffix
+    block = block_context.res.join('block/') + door_suffix
+    bottom = block + '_bottom'
+    top = block + '_top'
+
+    if top_texture is None:
+        top_texture = top
+    if bottom_texture is None:
+        bottom_texture = bottom
+
+    block_context.rm.blockstate(door, variants=door_blockstate(block))
+    for model in ('bottom_left', 'bottom_left_open', 'bottom_right', 'bottom_right_open', 'top_left', 'top_left_open', 'top_right', 'top_right_open'):
+        block_context.rm.block_model(door + '_' + model, {'top': top_texture, 'bottom': bottom_texture}, parent='block/door_%s' % model)
+    block_context.rm.item_model(door)
+    return block_context
+
+def door_blockstate(base: str) -> JsonObject:
+    left = base + '_bottom_left'
+    left_open = base + '_bottom_left_open'
+    right = base + '_bottom_right'
+    right_open = base + '_bottom_right_open'
+    top_left = base + '_top_left'
+    top_left_open = base + '_top_left_open'
+    top_right = base + '_top_right'
+    top_right_open = base + '_top_right_open'
+    return {
+        'facing=east,half=lower,hinge=left,open=false': {'model': left},
+        'facing=east,half=lower,hinge=left,open=true': {'model': left_open, 'y': 90},
+        'facing=east,half=lower,hinge=right,open=false': {'model': right},
+        'facing=east,half=lower,hinge=right,open=true': {'model': right_open, 'y': 270},
+        'facing=east,half=upper,hinge=left,open=false': {'model': top_left},
+        'facing=east,half=upper,hinge=left,open=true': {'model': top_left_open, 'y': 90},
+        'facing=east,half=upper,hinge=right,open=false': {'model': top_right},
+        'facing=east,half=upper,hinge=right,open=true': {'model': top_right_open, 'y': 270},
+        'facing=north,half=lower,hinge=left,open=false': {'model': left, 'y': 270},
+        'facing=north,half=lower,hinge=left,open=true': {'model': left_open},
+        'facing=north,half=lower,hinge=right,open=false': {'model': right, 'y': 270},
+        'facing=north,half=lower,hinge=right,open=true': {'model': right_open, 'y': 180},
+        'facing=north,half=upper,hinge=left,open=false': {'model': top_left, 'y': 270},
+        'facing=north,half=upper,hinge=left,open=true': {'model': top_left_open},
+        'facing=north,half=upper,hinge=right,open=false': {'model': top_right, 'y': 270},
+        'facing=north,half=upper,hinge=right,open=true': {'model': top_right_open, 'y': 180},
+        'facing=south,half=lower,hinge=left,open=false': {'model': left, 'y': 90},
+        'facing=south,half=lower,hinge=left,open=true': {'model': left_open, 'y': 180},
+        'facing=south,half=lower,hinge=right,open=false': {'model': right, 'y': 90},
+        'facing=south,half=lower,hinge=right,open=true': {'model': right_open},
+        'facing=south,half=upper,hinge=left,open=false': {'model': top_left, 'y': 90},
+        'facing=south,half=upper,hinge=left,open=true': {'model': top_left_open, 'y': 180},
+        'facing=south,half=upper,hinge=right,open=false': {'model': top_right, 'y': 90},
+        'facing=south,half=upper,hinge=right,open=true': {'model': top_right_open},
+        'facing=west,half=lower,hinge=left,open=false': {'model': left, 'y': 180},
+        'facing=west,half=lower,hinge=left,open=true': {'model': left_open, 'y': 270},
+        'facing=west,half=lower,hinge=right,open=false': {'model': right, 'y': 180},
+        'facing=west,half=lower,hinge=right,open=true': {'model': right_open, 'y': 90},
+        'facing=west,half=upper,hinge=left,open=false': {'model': top_left, 'y': 180},
+        'facing=west,half=upper,hinge=left,open=true': {'model': top_left_open, 'y': 270},
+        'facing=west,half=upper,hinge=right,open=false': {'model': top_right, 'y': 180},
+        'facing=west,half=upper,hinge=right,open=true': {'model': top_right_open, 'y': 90}
+    }

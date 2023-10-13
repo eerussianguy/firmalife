@@ -47,7 +47,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "有一些方块可以在温室中工作:$(br)$(li)$(l:firmalife:firmalife/planters)种植盆$(), 用来种植农作物$()"
+      "text": "There are many blocks that operate inside Greenhouses:$(br)$(li)$(l:firmalife:firmalife/planters)Planters$(), for growing crops$(), and $(br)$(li)$(l:firmalife:firmalife/sprinklers)Sprinklers$(), various devices that add water to planters."
     }
   ],
   "read_by_default": true,

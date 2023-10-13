@@ -1,6 +1,6 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "parent": "firmalife:story/preserves",
+  "parent": "firmalife:story/jars",
   "criteria": {
     "jarring_station": {
       "trigger": "minecraft:inventory_changed",

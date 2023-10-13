@@ -5,7 +5,12 @@
     "block_placed_condition": {
       "trigger": "minecraft:placed_block",
       "conditions": {
-        "block": "firmalife:wool_string"
+        "location": [
+          {
+            "block": "firmalife:wool_string",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
       }
     }
   },

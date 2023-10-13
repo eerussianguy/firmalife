@@ -2,6 +2,6 @@
   "__comment__": "This file was automatically created by mcresources",
   "parent": "firmalife:block/sprinkler",
   "textures": {
-    "0": "firmalife:block/metal/full/stainless_steel"
+    "0": "firmalife:block/metal/block/stainless_steel"
   }
 }

@@ -18,7 +18,7 @@
                   "terms": [
                     {
                       "condition": "minecraft:block_state_property",
-                      "block": "tfc:plant/fig_branch",
+                      "block": "firmalife:plant/fig_branch",
                       "properties": {
                         "up": "true",
                         "west": "true"
@@ -26,7 +26,7 @@
                     },
                     {
                       "condition": "minecraft:block_state_property",
-                      "block": "tfc:plant/fig_branch",
+                      "block": "firmalife:plant/fig_branch",
                       "properties": {
                         "up": "true",
                         "east": "true"
@@ -34,7 +34,7 @@
                     },
                     {
                       "condition": "minecraft:block_state_property",
-                      "block": "tfc:plant/fig_branch",
+                      "block": "firmalife:plant/fig_branch",
                       "properties": {
                         "up": "true",
                         "north": "true"
@@ -42,7 +42,7 @@
                     },
                     {
                       "condition": "minecraft:block_state_property",
-                      "block": "tfc:plant/fig_branch",
+                      "block": "firmalife:plant/fig_branch",
                       "properties": {
                         "up": "true",
                         "south": "true"

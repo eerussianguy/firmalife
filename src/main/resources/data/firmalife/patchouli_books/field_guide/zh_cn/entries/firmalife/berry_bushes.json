@@ -1,39 +1,39 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "name": "浆果灌木",
+  "name": "Berry Bushes",
   "category": "firmalife:firmalife",
   "icon": "firmalife:plant/pineapple_bush",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Firmalife添加了一些新的浆果灌木, 并且他们有着有趣的用途."
+      "text": "Firmalife adds some berry bushes with interesting uses."
     },
     {
       "type": "patchouli:spotlight",
       "item": "firmalife:food/nightshade_berry",
       "link_recipes": false,
-      "text": "首先是龙葵. 龙葵是一种有毒的浆果. 当它被用于制作汤时, 会制作出有毒的 $(thing)发臭的汤$(). 它可以在降雨量为200-400mm 且气温为7-24 C的森林中被发现."
+      "text": "First is nightshade. Nightshade is a poisonous berry. When put into soup, it makes poisonous $(thing)Stinky Soup$(). It is found between 200-400mm of rain and 7-24 C temperature in forests."
     },
     {
       "type": "patchouli:spotlight",
       "item": "firmalife:food/pineapple",
       "link_recipes": false,
-      "text": "菠萝灌木可以在降水量为 250-500mm 并且温度为 20-32 C 的森林中被发现. 菠萝的功能和其他水果一样, 但是它还可以被用于制作$(thing)菠萝布$()."
+      "text": "Pineapple bushes are found 250-500mm of rainfall and 20-32 C temperature in forests. Pineapples are like any other fruit, except that they can be made into $(thing)Pineapple Leather$()."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/pineapple_fiber",
-      "text": "被$(l:firmalife:firmalife/drying)烘干$()的菠萝可以被制成菠萝纤维."
+      "text": "Pineapples that have been $(l:firmalife:firmalife/drying)Dried$() can be crafted into pineapple fiber."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/pineapple_yarn",
-      "text": "菠萝线由$(thing)纺锤$()和菠萝纤维合成而来."
+      "text": "Pineapple yarn is made by crafting a $(thing)Spindle$() with the fiber."
     },
     {
       "type": "tfc:loom_recipe",
       "recipe": "firmalife:loom/pineapple_leather",
-      "text": "最后, 菠萝布可以在$(l:tfc:mechanics/weaving)织机$()上编制出来. 菠萝布可以作为常规皮革的植物替代品, 用于皮革塑形和合成, 以及其他用途!"
+      "text": "Finally, pineapple leather can be me woven in a $(l:tfc:mechanics/weaving)Loom$(). It is a plant substitute for regular leather than can be used for knapping, crafting, and other uses!"
     }
   ],
   "read_by_default": true,

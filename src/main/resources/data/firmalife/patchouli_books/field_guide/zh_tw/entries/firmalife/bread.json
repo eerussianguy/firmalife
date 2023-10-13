@@ -2,7 +2,7 @@
   "__comment__": "This file was automatically created by mcresources",
   "name": "麵包",
   "category": "firmalife:firmalife",
-  "icon": "tfc:food/rye_bread",
+  "icon": "tfc:food/barley_bread",
   "pages": [
     {
       "type": "patchouli:text",
@@ -16,14 +16,14 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/barley_slice",
-      "title": "麵包切片",
-      "text": "麵包烘焙好之後, 您可以使用$(thing)小刀$()來將麵包切成$(thing)麵包片$(). 麵包片既可以被用於$(l:tfc:mechanics/sandwiches)製作三明治$(), 也可以製作成$(thing)吐司$()並塗抹上$(thing)黃油$()或是果醬."
+      "title": "Sliced Bread",
+      "text": "Once baked, you can use a $(thing)knife$() to cut bread into $(thing)slices$(). These can then either be used for $(l:tfc:mechanics/sandwiches)sandwich making$(), or cooked into $(thing)toast$() which can be spread with $(thing)butter$() or preserves."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/toast_with_butter",
       "recipe2": "firmalife:crafting/toast_with_jam",
-      "title": "吐司"
+      "title": "Toast"
     }
   ],
   "read_by_default": true,

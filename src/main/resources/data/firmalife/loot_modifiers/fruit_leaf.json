@@ -10,7 +10,8 @@
     }
   ],
   "item": {
-    "item": "firmalife:fruit_leaf"
+    "id": "firmalife:fruit_leaf",
+    "Count": 1
   },
   "chance": 0.5
 }

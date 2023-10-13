@@ -159,10 +159,6 @@ def generate(rm: ResourceManager):
 
     for jar, remainder, _, ing in JARS:
         make_jar(rm, jar, remainder, ing)
-    for fruit in TFC_FRUITS:
-        ing = not_rotten(has_trait('tfc:food/%s' % fruit, 'firmalife:dried', True))
-        simple_pot_recipe(rm, '%s_jar' % fruit, [utils.ingredient('firmalife:empty_jar'), utils.ingredient('#firmalife:sweetener'), ing], '1000 minecraft:water', None, ['firmalife:%s_jar' % fruit], duration=1000)
-        vat_recipe(rm, '%s_jar' % fruit, ing, '500 firmalife:sugar_water', output_fluid='500 firmalife:fruity_fluid', jar='firmalife:%s_jar' % fruit)
     for fruit in FL_FRUITS:
         make_jar(rm, fruit)
         ing = not_rotten(has_trait('firmalife:food/%s' % fruit, 'firmalife:dried', True))
@@ -209,7 +205,7 @@ def generate(rm: ResourceManager):
 
     quern_recipe(rm, 'masa', not_rotten('firmalife:food/nixtamal'), 'firmalife:food/masa_flour', count=4)
 
-    loom_recipe(rm, 'pineapple_leather', 'firmalife:pineapple_yarn', 16, 'firmalife:pineapple_leather', 16, 'firmalife:block/pineapple')
+    loom_recipe(rm, 'pineapple_leather', '16 firmalife:pineapple_yarn', 'firmalife:pineapple_leather', 16, 'firmalife:block/pineapple')
 
     clay_knapping(rm, 'oven_top', ['XXXXX', 'XX XX', 'X   X', 'X   X', 'XXXXX'], 'firmalife:oven_top')
     clay_knapping(rm, 'oven_bottom', ['XX XX', 'X   X', 'X   X', 'XX XX', 'XXXXX'], 'firmalife:oven_bottom')
@@ -222,6 +218,8 @@ def generate(rm: ResourceManager):
     oven_recipe(rm, 'taco_shell', not_rotten('firmalife:food/corn_tortilla'), 400, result_item=item_stack_provider('firmalife:food/taco_shell'))
 
     # Firmalife Recipes
+    knapping_type(rm, 'pumpkin', '1 #firmalife:pumpkin_knapping', None, 'tfc:item.knapping.leather', False, False, False, 'tfc:pumpkin')
+
     for carving, pattern in CARVINGS.items():
         pumpkin_knapping(rm, carving, pattern, 'firmalife:carved_pumpkin/%s' % carving)
     pumpkin_knapping(rm, 'face', ['XXXXX', 'X X X', 'XXXXX', 'X   X', 'XXXXX'], 'minecraft:carved_pumpkin')
@@ -613,15 +611,25 @@ def delegate_recipe(rm: ResourceManager, name_parts: ResourceIdentifier, recipe_
     return RecipeContext(rm, res)
 
 def pumpkin_knapping(rm: ResourceManager, name_parts: ResourceIdentifier, pattern: List[str], result: Json, outside_slot_required: bool = None):
-    knapping_recipe(rm, 'firmalife:pumpkin_knapping', name_parts, pattern, result, outside_slot_required)
+    knapping_recipe(rm, name_parts, 'firmalife:pumpkin', pattern, result, None, outside_slot_required)
 
 def clay_knapping(rm: ResourceManager, name_parts: ResourceIdentifier, pattern: List[str], result: Json, outside_slot_required: bool = None):
-    knapping_recipe(rm, 'tfc:clay_knapping', name_parts, pattern, result, outside_slot_required)
+    stack = utils.item_stack(result)
+    if ('count' in stack and stack['count'] == 1) or 'count' not in stack:
+        rm.item_tag('clay_recycle_5', stack['item'])
+    else:
+        rm.item_tag('clay_recycle_1', stack['item'])
+    knapping_recipe(rm, name_parts, 'tfc:clay', pattern, result, None, outside_slot_required)
 
-def knapping_recipe(rm: ResourceManager, knapping_type: str, name_parts: utils.ResourceIdentifier, pattern: List[str], result: utils.Json, outside_slot_required: bool = None):
-    rm.recipe((knapping_type, name_parts), knapping_type, {
+
+def knapping_recipe(rm: ResourceManager, name_parts: ResourceIdentifier, knap_type: str, pattern: List[str], result: Json, ingredient: Json, outside_slot_required: bool):
+    for part in pattern:
+        assert 0 < len(part) < 6, 'Incorrect length: %s' % part
+    rm.recipe((knap_type.split(':')[1] + '_knapping', name_parts), 'tfc:knapping', {
+        'knapping_type': knap_type,
         'outside_slot_required': outside_slot_required,
         'pattern': pattern,
+        'ingredient': None if ingredient is None else utils.ingredient(ingredient),
         'result': utils.item_stack(result)
     })
 
@@ -642,12 +650,23 @@ def quern_recipe(rm: ResourceManager, name: ResourceIdentifier, item: str, resul
         'result': result
     })
 
-def loom_recipe(rm: ResourceManager, name: utils.ResourceIdentifier, ingredient: Json, input_count: int, result: Json, steps: int, in_progress_texture: str):
+def loom_recipe(rm: ResourceManager, name: utils.ResourceIdentifier, ingredient: Json, result: Json, steps: int, in_progress_texture: str):
     return rm.recipe(('loom', name), 'tfc:loom', {
-        'ingredient': utils.ingredient(ingredient),
-        'input_count': input_count,
+        'ingredient': item_stack_ingredient(ingredient),
         'result': utils.item_stack(result),
         'steps_required': steps,
         'in_progress_texture': in_progress_texture
+    })
+
+
+def knapping_type(rm: ResourceManager, name_parts: ResourceIdentifier, item_input: Json, amount_to_consume: Optional[int], click_sound: str, consume_after_complete: bool, use_disabled_texture: bool, spawns_particles: bool, jei_icon_item: Json):
+    rm.data(('tfc', 'knapping_types', name_parts), {
+        'input': item_stack_ingredient(item_input),
+        'amount_to_consume': amount_to_consume,
+        'click_sound': click_sound,
+        'consume_after_complete': consume_after_complete,
+        'use_disabled_texture': use_disabled_texture,
+        'spawns_particles': spawns_particles,
+        'jei_icon_item': utils.item_stack(jei_icon_item)
     })
 

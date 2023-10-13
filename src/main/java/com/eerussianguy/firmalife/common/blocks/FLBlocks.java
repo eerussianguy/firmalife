@@ -172,11 +172,11 @@ public class FLBlocks
     );
 
     public static final Map<FLMetal, RegistryObject<LiquidBlock>> METAL_FLUIDS = Helpers.mapOfKeys(FLMetal.class, metal ->
-        registerNoItem("fluid/metal/" + metal.name(), () -> new LiquidBlock(FLFluids.METALS.get(metal).source(), Properties.of().noCollission().strength(100f).noLootTable()))
+        registerNoItem("fluid/metal/" + metal.name(), () -> new LiquidBlock(FLFluids.METALS.get(metal).source(), Properties.copy(Blocks.LAVA).noLootTable()))
     );
 
     public static final Map<ExtraFluid, RegistryObject<LiquidBlock>> EXTRA_FLUIDS = Helpers.mapOfKeys(ExtraFluid.class, fluid ->
-        registerNoItem("fluid/" + fluid.getSerializedName(), () -> new LiquidBlock(FLFluids.EXTRA_FLUIDS.get(fluid).source(), Properties.of().noCollission().strength(100f).noLootTable()))
+        registerNoItem("fluid/" + fluid.getSerializedName(), () -> new LiquidBlock(FLFluids.EXTRA_FLUIDS.get(fluid).source(), Properties.copy(Blocks.WATER).noLootTable()))
     );
 
     public static void registerFlowerPotFlowers()
