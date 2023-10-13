@@ -1,0 +1,87 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "乳酪",
+  "category": "tfc:firmalife",
+  "icon": "firmalife:food/gouda",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "在Firmalife中製造$(thing)乳酪$()要稍微複雜一點. 一共有兩種奶: $(thing)犛牛奶$()和$(thing)山羊奶$(). 給$(l:mechanics/animal_husbandry#yak)犛牛$()和$(l:mechanics/animal_husbandry#goat)山羊$()擠奶可以得到它們. 當然, 給$(l:mechanics/animal_husbandry#cow)奶牛$()擠奶仍然可以獲得傳統的牛奶."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "牛奶首先要用$(thing)凝乳酶$()製成$(thing)凝固的牛奶$(). 凝乳酶可以從$(thing)反芻$()動物的胃獲得. 這些動物包括$(l:mechanics/animal_husbandry#yak)犛牛$(), $(l:mechanics/animal_husbandry#cow)奶牛$(), $(l:mechanics/animal_husbandry#sheep)綿羊$(), $(l:mechanics/animal_husbandry#goat)山羊$(), 和$(l:mechanics/animal_husbandry#musk_ox)麝牛$(). 把牛奶和凝乳酶一起密封在$(l:mechanics/barrels)大桶$()4小時就可以凝固."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/cheesecloth",
+      "text": "凝固的牛奶和$(thing)乳酪布$()一起密封在大桶中就可以製成$(thing)凝乳$(). 乳酪布是不能重複使用的."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/cheddar_wheel",
+      "text": "現在你可以製造$(thing)幹乳酪$()了. 你可以用$(thing)犛牛奶凝乳$()製作$(thing)Rajya Metok乳酪$(), 可以用$(thing)山羊奶凝乳$()製作$(thing)Chevre乳酪$(), 以及用$(thing)牛奶凝乳$()製造$(thing)Cheddar乳酪$()."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/chevre_wheel",
+      "recipe2": "firmalife:crafting/rajya_metok_wheel"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "你也可以選擇製作$(thing)溼乳酪$(). 把凝乳密封在裝有$(thing)鹹水$()的大桶中即可. 你可以用$(thing)犛牛奶凝乳$()製作$(thing)Shosha乳酪$(), 可以用$(thing)山羊奶凝乳$()製作$(thing)Feta乳酪$(), 以及用$(thing)牛奶凝乳$()製造$(thing)Gouda乳酪$()."
+    },
+    {
+      "type": "patchouli:text",
+      "anchor": "aging",
+      "text": "Cheese wheels are blocks that should be placed in order to help them last. To improve their quality and shelf life, cheese wheels should be $(thing)Aged$() in a $(l:tfc:firmalife/cellar)Cellar$(). In order to obtain edible cheese from a cheese wheel, it should be sliced off the wheel by clicking $(item)$(k:key.use)$() with a $(thing)Knife$(). If the block is simply broken, the aging is lost!"
+    },
+    {
+      "type": "tfc:multimultiblock",
+      "text": "Gouda乳酪輪的老化順序: $(thing)新鮮$(), $(thing)老化$(), 以及$(thing)Vintage$().",
+      "multiblocks": [
+        {
+          "pattern": [
+            [
+              "X"
+            ],
+            [
+              "0"
+            ]
+          ],
+          "mapping": {
+            "X": "firmalife:gouda_wheel[age=fresh]"
+          }
+        },
+        {
+          "pattern": [
+            [
+              "X"
+            ],
+            [
+              "0"
+            ]
+          ],
+          "mapping": {
+            "X": "firmalife:gouda_wheel[age=aged]"
+          }
+        },
+        {
+          "pattern": [
+            [
+              "X"
+            ],
+            [
+              "0"
+            ]
+          ],
+          "mapping": {
+            "X": "firmalife:gouda_wheel[age=vintage]"
+          }
+        }
+      ]
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 1
+}

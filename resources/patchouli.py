@@ -1,4 +1,4 @@
-from typing import NamedTuple, Tuple, List, Mapping
+from typing import NamedTuple, Tuple, List, Mapping, Any
 
 from mcresources import ResourceManager, utils
 from mcresources.type_definitions import JsonObject, ResourceLocation
@@ -20,6 +20,17 @@ class Component(NamedTuple):
     y: int
     data: JsonObject
 
+class SubstitutionStr(NamedTuple):
+    value: str
+    params: Tuple[Any, ...]
+
+    def __str__(self) -> str: return self.value
+
+def defer(text_contents: str, *params) -> SubstitutionStr:
+    return SubstitutionStr(text_contents, params)
+
+
+TranslatableStr = str | SubstitutionStr
 
 class Page(NamedTuple):
     type: str
@@ -28,10 +39,9 @@ class Page(NamedTuple):
     anchor_id: str | None  # Anchor for referencing from other pages
     link_ids: List[str]  # Items that are linked to this page
     translation_keys: Tuple[str, ...]  # Keys into 'data' that need to be passed through the Translation
-    firmalife: bool
 
     def anchor(self, anchor_id: str) -> 'Page':
-        return Page(self.type, self.data, self.custom, anchor_id, self.link_ids, self.translation_keys, self.firmalife)
+        return Page(self.type, self.data, self.custom, anchor_id, self.link_ids, self.translation_keys)
 
     def link(self, *link_ids: str) -> 'Page':
         for link_id in link_ids:
@@ -63,26 +73,13 @@ class Book:
         self.i18n = i18n
         self.local_instance = local_instance
 
-        if self.i18n.lang == 'en_us':  # Only generate the book.json if we're in the root language
-            rm.data(('patchouli_books', self.root_name, 'book'), {
-                'extend': 'tfc:field_guide',
-                'name': 'firmalife field_guide extension',
-                'landing_text': 'firmalife field_guide extension',
-                'use_resource_pack': True,
-                #'subtitle': '${version}',
-                # Even though we don't use the book item, we still need patchy to make a book item for us, as it controls the title
-                # If neither we nor patchy make a book item, this will show up as 'Air'. So we make one to allow the title to work properly.
-                #'dont_generate_book': False,
-                #'show_progress': False,
-                #'macros': macros
-            })
 
     def template(self, template_id: str, *components: Component):
         self.rm.data(('patchouli_books', self.root_name, 'en_us', 'templates', template_id), {
             'components': [{
                 'type': c.type, 'x': c.x, 'y': c.y, **c.data
             } for c in components]
-        })
+        }, root_domain='assets')
 
     def category(self, category_id: str, name: str, description: str, icon: str, parent: str | None = None, is_sorted: bool = False, entries: Tuple[Entry, ...] = ()):
         """
@@ -102,7 +99,7 @@ class Book:
             'icon': icon,
             'parent': parent,
             'sortnum': self.category_count
-        })
+        }, root_domain='assets')
         self.category_count += 1
 
         category_res: ResourceLocation = utils.resource_location(self.rm.domain, category_id)
@@ -160,7 +157,7 @@ class Book:
                 'category': self.category_prefix(category_res.path),
                 'icon': e.icon,
                 'pages': [{
-                    'type': self.prefix(p.type, p.firmalife) if p.custom else p.type,
+                    'type': self.prefix(p.type) if p.custom else p.type,
                     'anchor': p.anchor_id,
                     **p.data
                 } for p in real_pages],
@@ -168,15 +165,13 @@ class Book:
                 'read_by_default': True,
                 'sortnum': i if is_sorted else None,
                 'extra_recipe_mappings': extra_recipe_mappings
-            })
+            }, root_domain='assets')
 
     def category_prefix(self, path: str) -> str:
-        return ('patchouli' if self.local_instance else 'firmalife') + ':' + path
+        return ('patchouli' if self.local_instance else 'tfc') + ':' + path
 
-    def prefix(self, path: str, firmalife: bool) -> str:
+    def prefix(self, path: str) -> str:
         """ In a local instance, domains are all under patchouli, otherwise under tfc """
-        if firmalife:
-            return ('patchouli' if self.local_instance else 'firmalife') + ':' + path
         return ('patchouli' if self.local_instance else 'tfc') + ':' + path
 
 
@@ -302,9 +297,6 @@ def multimultiblock(text_content: str, *pages) -> Page:
     return page('multimultiblock', {'text': text_content, 'multiblocks': [p.data['multiblock'] if 'multiblock' in p.data else p.data['multiblock_id'] for p in pages]}, custom=True, translation_keys=('text',))
 
 
-def leather_knapping(recipe: str, text_content: str) -> Page: return recipe_page('leather_knapping_recipe', recipe, text_content)
-def clay_knapping(recipe: str, text_content: str) -> Page: return recipe_page('clay_knapping_recipe', recipe, text_content)
-def fire_clay_knapping(recipe: str, text_content: str) -> Page: return recipe_page('fire_clay_knapping_recipe', recipe, text_content)
 def heat_recipe(recipe: str, text_content: str) -> Page: return recipe_page('heat_recipe', recipe, text_content)
 def quern_recipe(recipe: str, text_content: str) -> Page: return recipe_page('quern_recipe', recipe, text_content)
 def anvil_recipe(recipe: str, text_content: str) -> Page: return recipe_page('anvil_recipe', recipe, text_content)
@@ -352,8 +344,8 @@ def recipe_page(recipe_type: str, recipe: str, text_content: str) -> Page:
     return page(recipe_type, {'recipe': recipe, 'text': text_content}, custom=True, translation_keys=('text',))
 
 
-def page(page_type: str, page_data: JsonObject, custom: bool = False, translation_keys: Tuple[str, ...] = (), firmalife: bool = False) -> Page:
-    return Page(page_type, page_data, custom, None, [], translation_keys, firmalife)
+def page(page_type: str, page_data: JsonObject, custom: bool = False, translation_keys: Tuple[str, ...] = ()) -> Page:
+    return Page(page_type, page_data, custom, None, [], translation_keys)
 
 
 # Components
@@ -369,6 +361,3 @@ def header_component(x: int, y: int) -> Component:
 def seperator_component(x: int, y: int) -> Component:
     return Component('patchouli:separator', x, y, {})
 
-
-#def custom_component(x: int, y: int, class_name: str, data: JsonObject) -> Component:
-#    return Component('patchouli:custom', x, y, {'class': 'net.dries007.tfc.compat.patchouli.component.' + class_name, **data})

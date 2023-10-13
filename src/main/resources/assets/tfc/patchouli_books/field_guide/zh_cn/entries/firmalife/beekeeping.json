@@ -1,0 +1,59 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "养蜂",
+  "category": "tfc:firmalife",
+  "icon": "firmalife:beehive",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(thing)Beehives$() are a place to house bees. Beehives need $(thing)Beehive Frames$() inside them for the bees to live. Removing frames from an active hive will cause the bees to attack you, unless done at night, or with a $(thing)Firepit$() underneath the hive active. Beehives can share flowers. The benefit of flowers diminishes after 60 flowers."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/beehive",
+      "recipe2": "firmalife:crafting/beehive_frame"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Beehives know about the area in a 5 block radius from them. If there are at least 10 flowers around the hive, there is a chance an empty frame will be populated with a $(thing)Queen$(). This is indicated by bee particles flying around the hive. Having 4 empty frames in a hive greatly increases the chances of bees moving in."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "如果一个蜂箱有两个带蜂王的巢脾, 加上一个空的巢脾, 它们就有可能$(thing)配种$()并在空的巢脾上产生一个新的蜂王. 新的蜂王会继承它的祖先的$(thing)能力$(). $(thing)能力$()是蜜蜂拥有的一些不同特点, 这决定了它们如何影响周围的环境. 这些能力有1-10的等级, 其中10是最大的."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/honey_jar_open",
+      "text": "Bees also produce $(thing)Honey$(). Using $(item)$(k:key.use)$() with an $(l:tfc:firmalife/jar)Empty Jar$() on a hive that visibly has honey gives you a $(thing)Honey Jar$(). Opening a Honey Jar gives you $(thing)Raw Honey$(), a $(thing)Sugar$() substitute."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "在物品栏有$(thing)刀$()的情况下, 手持一个满的巢脾按$(item)$(k:key.use)$()可以获得有用的$(thing)蜂蜡$(). 注意, 这个操作会杀死巢脾中的蜂王!"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/treated_lumber",
+      "text": "蜂蜡最重要的作用是制作$(thing)防腐木材$()."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(li)蜜蜂可以帮种植盆提供营养.$()$(li)注意, 用刀刮蜂脾会牺牲蜂王!$()$(li)把身体弄湿可以防止蜜蜂攻击你.$()",
+      "title": "养蜂提示"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(li)$(thing)耐寒性$(): 可以让蜜蜂在更低的温度下生产蜂蜜. 10级的耐寒性可以忍受-16°C的低温, 而1级的耐寒性可以忍受2°C的低温.$()$(li)$(thing)生产力$(): 提高蜂蜜生产的速度.$()$(li)$(thing)突变体$(): 提高配种时传给下一代的能力值的标准差.$().",
+      "title": "能力列表"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(li)$(thing)生育能力$(): 提高配种的可能性.$()$(li)$(thing)作物亲和力$(): 给农作物传递少量营养物质的可能性.$()$(li)$(thing)自然修复$(): 造成新的花或荷叶在蜂箱附近生成.$()$(li)$(thing)冷静度$(): 降低蜜蜂攻击你的可能性$()."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Bees with high Mutant ability have a chance of developing a $(thing)Genetic Disease$(). Diseased bees pass on their disease to their offspring, and don't produce honey."
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 10
+}

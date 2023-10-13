@@ -25,7 +25,7 @@ def generate(rm: ResourceManager):
     story.advancement('nutritive_basin', icon('firmalife:nutritive_basin'), 'Balance (TM)', 'Craft a nutritive basin.', 'greenhouse', inventory_changed('firmalife:nutritive_basin'))
     story.advancement('hive', icon('firmalife:beehive'), 'So they just move in on their own?', 'Craft a beehive.', 'root', inventory_changed('firmalife:beehive'))
     story.advancement('wax', icon('firmalife:beeswax'), 'Does this hurt the bee?', 'Get some beeswax from a hive.', 'hive', inventory_changed('firmalife:beeswax'))
-    story.advancement('jars', icon('tfc:empty_jar_with_lid'), 'minecraft.jar', 'Craft an empty jar.', 'hive', inventory_changed('firmalife:empty_jar'))
+    story.advancement('jars', icon('tfc:empty_jar_with_lid'), 'minecraft.jar', 'Craft an empty jar.', 'hive', inventory_changed('tfc:empty_jar_with_lid'))
     story.advancement('jarbnet', icon('firmalife:wood/jarbnet/palm'), 'Cupholder', 'Craft a jarbnet.', 'jars', inventory_changed('#firmalife:jarbnets'))
     story.advancement('jarring_station', icon('firmalife:jarring_station'), 'Industrial Cannery', 'Craft a jarring station.', 'jars', inventory_changed('firmalife:jarring_station'), frame='challenge')
     story.advancement('smoker', icon('tfc:food/venison'), 'Up in Smoke', 'Place some string for smoking.', 'root', placed_block('firmalife:wool_string'))

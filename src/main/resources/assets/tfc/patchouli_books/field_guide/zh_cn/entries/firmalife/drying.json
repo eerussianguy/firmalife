@@ -1,0 +1,43 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "烘干",
+  "category": "tfc:firmalife",
+  "icon": "firmalife:drying_mat",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(thing)干燥垫$()是用来烘干物品的. 它使用$(thing)果树叶子$()制成. 果树叶子可以打碎$(thing)果树$()的叶子得到."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/drying_mat",
+      "text": "干燥垫的合成配方."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "要使用干燥垫, 把它放置在阳光下, 然后按$(item)$(k:key.use)$()来放置一个物品. 在半天之后, 物品就会被烘干. 如果下雨了, 这个烘干过程就需要重新开始."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/solar_drier",
+      "text": "The solar drier functions the same as the drying mat, but 12x as fast."
+    },
+    {
+      "type": "tfc:drying_recipe",
+      "recipe": "firmalife:drying/drying_fruit",
+      "text": "干燥垫一般用来烘干水果. 烘干的水果有更长的保质期, 并且在某些配方中会用到."
+    },
+    {
+      "type": "tfc:drying_recipe",
+      "recipe": "firmalife:drying/tofu",
+      "text": "豆腐需要用干燥垫制作."
+    },
+    {
+      "type": "tfc:drying_recipe",
+      "recipe": "firmalife:drying/cinnamon",
+      "text": "肉桂需要用干燥垫制作."
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 12
+}

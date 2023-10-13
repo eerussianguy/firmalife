@@ -1,0 +1,55 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "溫室",
+  "category": "tfc:firmalife",
+  "icon": "firmalife:sealed_bricks",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The $(thing)Greenhouse$() is a multiblock device controlled by a $(l:tfc:firmalife/climate_station)Climate Station$(). It allows growing crops year round. The Greenhouse has an array of types and blocks to choose from. However, building a greenhouse is quite simple. Like the $(l:tfc:firmalife/cellar)Cellar$(), it should be an enclosed area of blocks belonging to the same $(thing)Greenhouse Type$(). The floor of the greenhouse may be any solid block."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "屬於同一種$(thing)溫室型別$()的建築方塊可以互相替換使用. 大多數的溫室方塊都會$(thing)老化$(). 例如, $(thing)防腐木$()材質的溫室方塊會慢慢變成$(thing)風化的防腐木$(). 由於這兩種方塊都屬於同一種溫室型別, 所以這種情況下溫室還是能繼續正常工作."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "以下是所有的$(thing)溫室型別$(), 並且它們可能老化變成:$(br)$(br)$(li)防腐木: 風化的 $()$(li)銅: 斑駁的, 風化的, 氧化的$()$(li)鐵: 生鏽的$() $(li)不鏽鋼 (不會老化)$()",
+      "title": "溫室型別"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "一共有四種$(thing)溫室方塊$(): 牆壁, 門, 屋簷, 屋頂. 屋簷和屋頂看起來像是樓梯和臺階. 你可以任意組合這四種方塊用於建造你的溫室."
+    },
+    {
+      "type": "tfc:multimultiblock",
+      "text": "每種型別的溫室的一個範例",
+      "multiblocks": [
+        "firmalife:treated_wood_greenhouse",
+        "firmalife:copper_greenhouse",
+        "firmalife:iron_greenhouse",
+        "firmalife:stainless_steel_greenhouse"
+      ]
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The next two pages contain recipes for the four main greenhouse block types. While they are only shown for Iron greenhouses, the iron rods in the recipe can be replaced with $(thing)Treated Lumber$(), $(thing)Copper Rods$(), or $(thing)Stainless Steel Rods$(). For information on Stainless Steel, see $(l:tfc:firmalife/stainless_steel)this linked page$()."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/greenhouse/iron_greenhouse_wall",
+      "recipe2": "firmalife:crafting/greenhouse/iron_greenhouse_roof"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/greenhouse/iron_greenhouse_door",
+      "recipe2": "firmalife:crafting/greenhouse/iron_greenhouse_roof_top"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "There are many blocks that operate inside Greenhouses:$(br)$(li)$(l:tfc:firmalife/planters)Planters$(), for growing crops$(), and $(br)$(li)$(l:tfc:firmalife/sprinklers)Sprinklers$(), various devices that add water to planters."
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 7
+}

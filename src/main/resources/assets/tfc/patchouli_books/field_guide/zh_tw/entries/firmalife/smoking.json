@@ -1,0 +1,49 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "熏製",
+  "category": "tfc:firmalife",
+  "icon": "tfc:food/venison",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "羊毛紗用來懸掛物品以便$(thing)熏製$(). 按$(item)$(k:key.use)$()來放置羊毛紗."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "multiblock": {
+        "pattern": [
+          [
+            "X"
+          ],
+          [
+            "Y"
+          ],
+          [
+            "0"
+          ]
+        ],
+        "mapping": {
+          "X": "firmalife:wool_string",
+          "Y": "tfc:firepit[lit=true]"
+        }
+      },
+      "name": "熏製",
+      "text": "在篝火上方的羊毛紗.",
+      "enable_visualize": false
+    },
+    {
+      "type": "patchouli:text",
+      "text": "熏製被用來儲存$(thing)肉類$()和$(l:mechanics/dairy)乳酪$(). 肉類在熏製之前需要先$(thing)滷製$(), 只要把肉類密封在含有$(thing)滷水$()的$(thing)大桶$()中即可. 你也可以先用鹽醃製. 乳酪在熏製之前沒有這些要求."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "要開始熏製, 首先將物品放在篝火上方的線上, 篝火必須線上的下方的4個方塊以內. 在熏製過程中, 線會產生一些煙霧. 重要的一點是, 篝火必須要使用$(thing)原木$()作為燃料, 如果用$(thing)泥炭$()會導致食物具有$(thing)噁心$()效果!"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "熏製的過程需要遊戲內的8小時. 烤肉快樂!"
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 13
+}

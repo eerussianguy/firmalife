@@ -2,13 +2,13 @@
   "__comment__": "This file was automatically created by mcresources",
   "parent": "firmalife:story/hive",
   "criteria": {
-    "empty_jar": {
+    "empty_jar_with_lid": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "firmalife:empty_jar"
+              "tfc:empty_jar_with_lid"
             ]
           }
         ]
@@ -33,7 +33,7 @@
   },
   "requirements": [
     [
-      "empty_jar"
+      "empty_jar_with_lid"
     ]
   ]
 }

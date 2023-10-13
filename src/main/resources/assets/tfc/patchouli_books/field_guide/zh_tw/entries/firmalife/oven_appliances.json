@@ -1,0 +1,65 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "Oven Appliances",
+  "category": "tfc:firmalife",
+  "icon": "firmalife:vat",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l:tfc:firmalife/ovens)Ovens$() have a number of devices that interact with them, that extend their functionality. This is because ovens are modular in nature."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/oven_hopper",
+      "text": "The $(thing)Oven Hopper$() will input logs into any Bottom Oven that it is facing. It holds 16 logs (4 stacks of 4, like a log pile), and its inventory is fed by dropping items in the top. It can also be fed via automation from other mods."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/ashtray",
+      "text": "The $(thing)Ashtray$() collects $(thing)Wood Ash$() when placed below a $(thing)Bottom Oven Block$(). There is a 0.5 chance it gains ash when fuel is consumed. Ash is extracted with $(item)$(k:key.use)$() and inserted via attacking it."
+    },
+    {
+      "type": "patchouli:crafting",
+      "anchor": "vat",
+      "recipe": "firmalife:crafting/vat",
+      "text": "The $(thing)Vat$() produces some select boiling recipes in bulk. It has one slot for items, and 10,000mB of fluid space, similar to a barrel."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "For example, the vat can be used to make $(thing)Olive Oil Water$() using a ratio of 1 Olive Paste to 200 mB Water. To use a vat, $(item)$(k:key.use)$() it with fluids and items to add them to the inventory. With an empty hand and $(item)$(k:key.sneak)$() held, click to seal and unseal the vat. A vat will not boil until it is sealed."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Vats should be placed on the block above a $(thing)Bottom Oven$(). If the vat would overflow on completion of the recipe, it will not boil, so be sure not to overfill it -- especially with recipes that produce more fluid than they consume!"
+    },
+    {
+      "type": "patchouli:multiblock",
+      "multiblock": {
+        "pattern": [
+          [
+            "X"
+          ],
+          [
+            "Y"
+          ],
+          [
+            "0"
+          ]
+        ],
+        "mapping": {
+          "X": "firmalife:vat",
+          "Y": "firmalife:cured_oven_bottom"
+        }
+      },
+      "name": "",
+      "text": "",
+      "enable_visualize": false
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Pots and Grills from TFC can be placed on top of a $(thing)Bottom Oven$(). These devices will get heat automatically from the bottom oven. They come with a couple restrictions: Each has only 4 slots, and the pot is only used for making soup. It cannot execute regular pot recipes."
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 15
+}

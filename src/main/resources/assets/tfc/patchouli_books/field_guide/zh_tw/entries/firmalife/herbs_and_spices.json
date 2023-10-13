@@ -1,0 +1,66 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "草藥和香料",
+  "category": "tfc:firmalife",
+  "icon": "firmalife:spice/basil_leaves",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "在Firmalife中, 有很多可以收集和種植的具有烹飪效果的小植物. 獲得這些植物的最簡單的辦法就是用$(thing)種子球$(). 按$(item)$(k:key.use)$()就可以把$(thing)種子球$()扔出去, 就像雪球一樣. 這會在目標區域生成一些$(thing)蝴蝶草$()."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/seed_ball",
+      "text": "The recipe for the seed ball requires $(l:tfc:firmalife/more_fertilizer)Compost$() and 4 $(thing)Seeds$()."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "multiblock": {
+        "pattern": [
+          [
+            "X"
+          ],
+          [
+            "0"
+          ]
+        ],
+        "mapping": {
+          "X": "firmalife:plant/butterfly_grass"
+        }
+      },
+      "name": "",
+      "text": "一種蝴蝶草.",
+      "enable_visualize": false
+    },
+    {
+      "type": "patchouli:text",
+      "text": "蝴蝶草會隨著時間的推移而成熟。它成熟時可能會傳播到周圍的方塊，或者變成新的東西。已被一株蝴蝶草傳播過的方塊不會被另一株再次傳播."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "multiblock": {
+        "pattern": [
+          [
+            "X"
+          ],
+          [
+            "0"
+          ]
+        ],
+        "mapping": {
+          "X": "firmalife:plant/basil"
+        }
+      },
+      "name": "",
+      "text": "Basil香草是一種可能由蝴蝶草擴散產生的植物.",
+      "enable_visualize": false
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/basil_leaves",
+      "text": "Basil香草的葉子可以用來製作披薩."
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 19
+}

@@ -1,0 +1,147 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "更多的肥料获取途径",
+  "category": "tfc:firmalife",
+  "icon": "firmalife:iron_composter",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Firmalife中对肥料的需求更大, 因此有更多的获取$(l:mechanics/fertilizers)肥料$()的途径."
+    },
+    {
+      "type": "tfc:drying_recipe",
+      "recipe": "firmalife:drying/dry_grass",
+      "text": "Thatch can be $(l:tfc:firmalife/drying)Dried$() into $(thing)Dry Grass$(), which can be used in a Composter as a brown item."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/iron_composter",
+      "text": "The Composter can be upgraded to an $(thing)Iron Composter$(), which works the same, except it produces compost in four days. Iron Composters will also feed a hopper directly below with compost when ready."
+    },
+    {
+      "type": "tfc:multimultiblock",
+      "text": "铁堆肥桶的几种填充状态",
+      "multiblocks": [
+        {
+          "pattern": [
+            [
+              "X"
+            ],
+            [
+              "0"
+            ]
+          ],
+          "mapping": {
+            "X": "firmalife:iron_composter[type=normal,stage=0]"
+          }
+        },
+        {
+          "pattern": [
+            [
+              "X"
+            ],
+            [
+              "0"
+            ]
+          ],
+          "mapping": {
+            "X": "firmalife:iron_composter[type=normal,stage=1]"
+          }
+        },
+        {
+          "pattern": [
+            [
+              "X"
+            ],
+            [
+              "0"
+            ]
+          ],
+          "mapping": {
+            "X": "firmalife:iron_composter[type=normal,stage=2]"
+          }
+        },
+        {
+          "pattern": [
+            [
+              "X"
+            ],
+            [
+              "0"
+            ]
+          ],
+          "mapping": {
+            "X": "firmalife:iron_composter[type=normal,stage=3]"
+          }
+        },
+        {
+          "pattern": [
+            [
+              "X"
+            ],
+            [
+              "0"
+            ]
+          ],
+          "mapping": {
+            "X": "firmalife:iron_composter[type=normal,stage=4]"
+          }
+        },
+        {
+          "pattern": [
+            [
+              "X"
+            ],
+            [
+              "0"
+            ]
+          ],
+          "mapping": {
+            "X": "firmalife:iron_composter[type=normal,stage=5]"
+          }
+        },
+        {
+          "pattern": [
+            [
+              "X"
+            ],
+            [
+              "0"
+            ]
+          ],
+          "mapping": {
+            "X": "firmalife:iron_composter[type=normal,stage=6]"
+          }
+        },
+        {
+          "pattern": [
+            [
+              "X"
+            ],
+            [
+              "0"
+            ]
+          ],
+          "mapping": {
+            "X": "firmalife:iron_composter[type=normal,stage=7]"
+          }
+        },
+        {
+          "pattern": [
+            [
+              "X"
+            ],
+            [
+              "0"
+            ]
+          ],
+          "mapping": {
+            "X": "firmalife:iron_composter[type=normal,stage=8]"
+          }
+        }
+      ]
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 17
+}

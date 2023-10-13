@@ -136,8 +136,8 @@ public class FLClientEvents
     {
         for (FLFruit fruit : FLFruit.values())
         {
-            event.register(FLHelpers.identifier("block/jar/" + fruit));
-            event.register(FLHelpers.identifier("block/jar/" + fruit + "_unsealed"));
+            event.register(FLHelpers.identifier("block/jar/" + fruit.getSerializedName()));
+            event.register(FLHelpers.identifier("block/jar/" + fruit.getSerializedName() + "_unsealed"));
         }
         event.register(FLHelpers.identifier("block/jar/compost"));
         event.register(FLHelpers.identifier("block/jar/rotten_compost"));
