@@ -2,6 +2,7 @@ package com.eerussianguy.firmalife.compat.jei;
 
 import java.util.List;
 
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 
@@ -54,11 +55,11 @@ public class MixingCategory extends BaseRecipeCategory<MixingBowlRecipe>
             fluidOutput.setFluidRenderer(1, false, 16, 16);
         }
 
-        if (!recipe.getResultItem().isEmpty())
+        if (!recipe.getResultItem(registryAccess()).isEmpty())
         {
             IRecipeSlotBuilder output = builder.addSlot(RecipeIngredientRole.OUTPUT, 86, 26);
             output.setBackground(slot, -1, -1);
-            output.addItemStack(recipe.getResultItem());
+            output.addItemStack(recipe.getResultItem(registryAccess()));
         }
 
         final FluidStack outputFluid = recipe.getDisplayFluid();
@@ -72,7 +73,7 @@ public class MixingCategory extends BaseRecipeCategory<MixingBowlRecipe>
     }
 
     @Override
-    public void draw(MixingBowlRecipe recipe, IRecipeSlotsView recipeSlots, PoseStack stack, double mouseX, double mouseY)
+    public void draw(MixingBowlRecipe recipe, IRecipeSlotsView recipeSlots, GuiGraphics stack, double mouseX, double mouseY)
     {
         arrow.draw(stack, 47, 45);
         arrowAnimated.draw(stack, 47, 45);

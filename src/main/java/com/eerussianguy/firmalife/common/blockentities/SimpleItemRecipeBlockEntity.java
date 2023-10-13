@@ -85,10 +85,11 @@ public abstract class SimpleItemRecipeBlockEntity<T extends SimpleItemRecipe> ex
 
     public void finish()
     {
+        assert level != null;
         final T recipe = this.cachedRecipe;
         if (recipe != null)
         {
-            final ItemStack out = recipe.assemble(new ItemStackInventory(readStack()));
+            final ItemStack out = recipe.assemble(new ItemStackInventory(readStack()), level.registryAccess());
             inventory.setStackInSlot(0, out);
             updateCache();
             markForSync();

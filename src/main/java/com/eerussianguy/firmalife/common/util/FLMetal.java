@@ -3,7 +3,6 @@ package com.eerussianguy.firmalife.common.util;
 import java.util.Locale;
 
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
@@ -13,7 +12,6 @@ import net.minecraftforge.common.util.NonNullFunction;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
 import net.dries007.tfc.common.TFCArmorMaterials;
-import net.dries007.tfc.common.TFCItemGroup;
 import net.dries007.tfc.common.TFCTiers;
 import net.dries007.tfc.util.Metal;
 import net.dries007.tfc.util.registry.RegistryMetal;
@@ -76,11 +74,11 @@ public enum FLMetal implements RegistryMetal
     public enum ItemType
     {
         // Generic
-        INGOT(metal -> new Item(new Item.Properties().tab(TFCItemGroup.METAL))),
-        DOUBLE_INGOT(metal -> new Item(new Item.Properties().tab(TFCItemGroup.METAL))),
-        SHEET(metal -> new Item(new Item.Properties().tab(TFCItemGroup.METAL))),
-        DOUBLE_SHEET(metal -> new Item(new Item.Properties().tab(TFCItemGroup.METAL))),
-        ROD(metal -> new Item(new Item.Properties().tab(TFCItemGroup.METAL)));
+        INGOT(metal -> new Item(new Item.Properties())),
+        DOUBLE_INGOT(metal -> new Item(new Item.Properties())),
+        SHEET(metal -> new Item(new Item.Properties())),
+        DOUBLE_SHEET(metal -> new Item(new Item.Properties())),
+        ROD(metal -> new Item(new Item.Properties()));
 
         private final NonNullFunction<FLMetal, Item> itemFactory;
 

@@ -77,7 +77,7 @@ public class GreenhouseType
 
     public Component getTitle()
     {
-        return Helpers.translatable(translationKey);
+        return Component.translatable(translationKey);
     }
 
     public static class Packet extends DataManagerSyncPacket<GreenhouseType> { }

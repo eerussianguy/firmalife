@@ -92,7 +92,7 @@ public class OvenTopBlockEntity extends ApplianceBlockEntity<ApplianceBlockEntit
                         {
                             // Convert input
                             final ItemStackInventory inventory = new ItemStackInventory(inputStack);
-                            final ItemStack outputItem = recipe.assemble(inventory);
+                            final ItemStack outputItem = recipe.assemble(inventory, level.registryAccess());
 
                             // Output transformations
                             outputItem.getCapability(HeatCapability.CAPABILITY).ifPresent(outputCap -> outputCap.setTemperature(oven.temperature));

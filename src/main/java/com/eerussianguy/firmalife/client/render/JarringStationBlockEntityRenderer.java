@@ -18,6 +18,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.client.model.data.EmptyModelData;
+import net.minecraftforge.client.model.data.ModelData;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
 
@@ -61,11 +62,11 @@ public class JarringStationBlockEntityRenderer implements BlockEntityRenderer<Ja
                     {
                         final BakedModel baked = mc.getModelManager().getModel(EMPTY_JAR_LOCATION);
                         final VertexConsumer buffer = buffers.getBuffer(RenderType.cutout());
-                        mc.getBlockRenderer().getModelRenderer().renderModel(poseStack.last(), buffer, null, baked, 1f, 1f, 1f, combinedLight, combinedOverlay, EmptyModelData.INSTANCE);
+                        mc.getBlockRenderer().getModelRenderer().renderModel(poseStack.last(), buffer, null, baked, 1f, 1f, 1f, combinedLight, combinedOverlay, ModelData.EMPTY, RenderType.translucent());
                     }
                     else if (item.getItem() instanceof JarsBlockItem jars)
                     {
-                        mc.getBlockRenderer().renderSingleBlock(jars.getBlock().defaultBlockState(), poseStack, buffers, combinedLight, combinedOverlay, EmptyModelData.INSTANCE);
+                        mc.getBlockRenderer().renderSingleBlock(jars.getBlock().defaultBlockState(), poseStack, buffers, combinedLight, combinedOverlay, ModelData.EMPTY, RenderType.translucent());
                     }
                 }
                 poseStack.popPose();

@@ -6,6 +6,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.TagKey;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -58,7 +59,7 @@ public abstract class MutatingPlantBlock extends PlantBlock
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel level, final BlockPos pos, Random rand)
+    public void randomTick(BlockState state, ServerLevel level, final BlockPos pos, RandomSource rand)
     {
         super.randomTick(state, level, pos, rand);
         if (state.getValue(AGE) == 3)
@@ -68,7 +69,7 @@ public abstract class MutatingPlantBlock extends PlantBlock
                 level.setBlockAndUpdate(pos, state.setValue(AGE, 1));
                 BlockPos offsetPos = pos.relative(Direction.Plane.HORIZONTAL.getRandomDirection(rand));
                 BlockState stateAt = level.getBlockState(offsetPos);
-                if (stateAt.getMaterial().isReplaceable() && stateAt.getBlock() != this && state.canSurvive(level, offsetPos))
+                if (stateAt.canBeReplaced() && stateAt.getBlock() != this && state.canSurvive(level, offsetPos))
                 {
                     level.setBlockAndUpdate(offsetPos, state.setValue(AGE, 1).setValue(MATURE, true));
                 }

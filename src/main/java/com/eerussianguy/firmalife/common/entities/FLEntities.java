@@ -13,7 +13,7 @@ import com.eerussianguy.firmalife.FirmaLife;
 
 public class FLEntities
 {
-    public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, FirmaLife.MOD_ID);
+    public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, FirmaLife.MOD_ID);
 
     public static final RegistryObject<EntityType<SeedBall>> SEED_BALL = register("seed_ball", EntityType.Builder.<SeedBall>of(SeedBall::new, MobCategory.MISC).sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(10));
 

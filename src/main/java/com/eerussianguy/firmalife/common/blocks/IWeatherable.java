@@ -5,6 +5,7 @@ import java.util.function.Supplier;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -13,7 +14,7 @@ import org.jetbrains.annotations.Nullable;
 
 public interface IWeatherable
 {
-    default void randomTick(BlockState state, ServerLevel level, BlockPos pos, Random random)
+    default void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random)
     {
         Supplier<? extends Block> next = getNext();
         if (next != null && random.nextInt(weatherChance()) == 0)

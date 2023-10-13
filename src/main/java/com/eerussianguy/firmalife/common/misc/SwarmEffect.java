@@ -5,6 +5,7 @@ import java.util.Random;
 import com.eerussianguy.firmalife.common.FLTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -16,7 +17,7 @@ import net.dries007.tfc.util.Helpers;
 
 public class SwarmEffect extends MobEffect
 {
-    public static void particles(Level level, BlockPos pos, Random rand)
+    public static void particles(Level level, BlockPos pos, RandomSource rand)
     {
         final double x = pos.getX() + 0.5;
         final double y = pos.getY() + 0.5;
@@ -51,7 +52,7 @@ public class SwarmEffect extends MobEffect
         {
             entity.hurt(FLDamageSources.SWARM, 0.5F);
         }
-        particles(entity.getLevel(), entity.blockPosition(), entity.getRandom());
+        particles(entity.level(), entity.blockPosition(), entity.getRandom());
     }
 
     private boolean hasBeeArmor(LivingEntity entity)

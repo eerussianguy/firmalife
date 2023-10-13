@@ -5,6 +5,7 @@ import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.InteractionHand;
@@ -79,14 +80,14 @@ public class IceFishingStationBlock extends FourWayDeviceBlock
                 {
                     inside.getOrCreateTag().put("bait", held.split(1).save(new CompoundTag()));
                     station.markForSync();
-                    player.displayClientMessage(Helpers.translatable("firmalife.fishing.bait_added"), true);
+                    player.displayClientMessage(Component.translatable("firmalife.fishing.bait_added"), true);
                     return InteractionResult.sidedSuccess(level.isClientSide);
                 }
                 else if (station.hasBait())
                 {
                     if (!Helpers.isFluid(level.getBlockState(station.getBaitPos(state)).getFluidState(), FluidTags.WATER))
                     {
-                        player.displayClientMessage(Helpers.translatable("firmalife.fishing.no_water"), true);
+                        player.displayClientMessage(Component.translatable("firmalife.fishing.no_water"), true);
                         return InteractionResult.FAIL;
                     }
                     level.setBlockAndUpdate(pos, state.setValue(CAST, true));
@@ -94,7 +95,7 @@ public class IceFishingStationBlock extends FourWayDeviceBlock
                 }
                 else
                 {
-                    player.displayClientMessage(Helpers.translatable("firmalife.fishing.no_bait"), true);
+                    player.displayClientMessage(Component.translatable("firmalife.fishing.no_bait"), true);
                 }
             }
             else if (state.getValue(CAST))

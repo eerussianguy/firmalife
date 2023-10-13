@@ -40,7 +40,7 @@ public class JarringStationBlockEntity extends TickableInventoryBlockEntity<Item
                         if (station.inventory.getStackInSlot(i).getItem() == FLItems.EMPTY_JAR.get())
                         {
                             Helpers.playSound(level, pos, SoundEvents.BOTTLE_FILL);
-                            station.inventory.setStackInSlot(i, Helpers.copyWithSize(stack, 1));
+                            station.inventory.setStackInSlot(i, stack.copyWithCount(1));
                             cap.drain(500, IFluidHandler.FluidAction.EXECUTE);
                             available--;
                             station.markForSync();

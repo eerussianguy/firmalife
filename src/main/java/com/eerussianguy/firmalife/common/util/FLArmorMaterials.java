@@ -6,6 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.crafting.Ingredient;
 
@@ -62,28 +63,26 @@ public enum FLArmorMaterials implements ArmorMaterial
     }
 
     @Override
-    public int getDurabilityForSlot(EquipmentSlot slot)
+    public int getDurabilityForType(ArmorItem.Type slot)
     {
         return switch (slot)
             {
-                case FEET -> this.feetDamage;
-                case LEGS -> this.legDamage;
-                case CHEST -> this.chestDamage;
-                case HEAD -> this.headDamage;
-                default -> 0;
+                case BOOTS -> this.feetDamage;
+                case LEGGINGS -> this.legDamage;
+                case CHESTPLATE -> this.chestDamage;
+                case HELMET -> this.headDamage;
             };
     }
 
     @Override
-    public int getDefenseForSlot(EquipmentSlot slot)
+    public int getDefenseForType(ArmorItem.Type slot)
     {
         return switch (slot)
             {
-                case FEET -> this.feetReduction;
-                case LEGS -> this.legReduction;
-                case CHEST -> this.chestReduction;
-                case HEAD -> this.headReduction;
-                default -> 0;
+                case BOOTS -> this.feetReduction;
+                case LEGGINGS -> this.legReduction;
+                case CHESTPLATE -> this.chestReduction;
+                case HELMET -> this.headReduction;
             };
     }
 

@@ -6,6 +6,7 @@ import com.eerussianguy.firmalife.common.blockentities.VatBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -64,7 +65,7 @@ public class VatBlock extends SealableDeviceBlock
     }
 
     @Override
-    public void animateTick(BlockState state, Level level, BlockPos pos, Random rand)
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource rand)
     {
         if (level.getBlockEntity(pos) instanceof VatBlockEntity vat && vat.isBoiling())
         {

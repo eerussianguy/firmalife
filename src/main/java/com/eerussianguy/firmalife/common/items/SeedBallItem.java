@@ -28,7 +28,7 @@ public class SeedBallItem extends Item
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> text, TooltipFlag flags)
     {
-        text.add(Helpers.translatable("firmalife.tooltip.seed_ball"));
+        text.add(Component.translatable("firmalife.tooltip.seed_ball"));
     }
 
     @Override
@@ -37,7 +37,7 @@ public class SeedBallItem extends Item
         final ItemStack held = player.getItemInHand(hand);
         if (!FLConfig.SERVER.enableSeedBalls.get())
         {
-            player.displayClientMessage(Helpers.translatable("firmalife.tooltip.seed_ball_disabled"), true);
+            player.displayClientMessage(Component.translatable("firmalife.tooltip.seed_ball_disabled"), true);
             return InteractionResultHolder.pass(held);
         }
 

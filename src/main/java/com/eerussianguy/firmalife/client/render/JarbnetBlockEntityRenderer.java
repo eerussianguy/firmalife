@@ -5,6 +5,7 @@ import com.eerussianguy.firmalife.common.blockentities.JarbnetBlockEntity;
 import com.eerussianguy.firmalife.common.blocks.JarbnetBlock;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Axis;
 import com.mojang.math.Vector3f;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -18,6 +19,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.CandleBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.model.data.EmptyModelData;
+import net.minecraftforge.client.model.data.ModelData;
 
 import net.dries007.tfc.common.capabilities.Capabilities;
 import net.dries007.tfc.common.items.CandleBlockItem;
@@ -49,7 +51,7 @@ public class JarbnetBlockEntityRenderer implements BlockEntityRenderer<JarbnetBl
                     poseStack.pushPose();
                     poseStack.translate(0.5, 0.5, 0.5);
                     poseStack.scale(0.8f, 0.8f, 0.8f);
-                    poseStack.mulPose(Vector3f.YP.rotationDegrees(angle));
+                    poseStack.mulPose(Axis.YP.rotationDegrees(angle));
 
                     final var renderer = Minecraft.getInstance().getBlockRenderer();
 
@@ -77,14 +79,14 @@ public class JarbnetBlockEntityRenderer implements BlockEntityRenderer<JarbnetBl
                                     state = state.setValue(CandleBlock.LIT, true);
                                 }
                             }
-                            renderer.renderSingleBlock(state, poseStack, buffers, combinedLight, combinedOverlay, EmptyModelData.INSTANCE);
+                            renderer.renderSingleBlock(state, poseStack, buffers, combinedLight, combinedOverlay, ModelData.EMPTY, RenderType.cutout());
                         }
                         else if (isJug)
                         {
                             final Minecraft mc = Minecraft.getInstance();
                             final BakedModel baked = mc.getModelManager().getModel(JUG_LOCATION);
                             final VertexConsumer buffer = buffers.getBuffer(RenderType.cutout());
-                            mc.getBlockRenderer().getModelRenderer().renderModel(poseStack.last(), buffer, null, baked, 1f, 1f, 1f, combinedLight, combinedOverlay, EmptyModelData.INSTANCE);
+                            mc.getBlockRenderer().getModelRenderer().renderModel(poseStack.last(), buffer, null, baked, 1f, 1f, 1f, combinedLight, combinedOverlay, ModelData.EMPTY, RenderType.cutout());
                         }
                         poseStack.popPose();
                     }

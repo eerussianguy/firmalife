@@ -1,12 +1,12 @@
 package com.eerussianguy.firmalife.common.blocks;
 
-import java.util.Random;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.misc.FLDamageSources;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -57,11 +57,11 @@ public class AshtrayBlock extends DeviceBlock
 
     @Override
     @SuppressWarnings("deprecation")
-    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, Random rand)
+    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand)
     {
         if (level.getBlockEntity(pos.below()) instanceof AbstractFirepitBlockEntity<?> firepit && firepit.getTemperature() > 0 && state.getValue(STAGE) > 0)
         {
-            level.explode(null, FLDamageSources.ASH, null, pos.getX(), pos.getY(), pos.getZ(), 10f, true, Explosion.BlockInteraction.BREAK);
+            level.explode(null, FLDamageSources.ASH, null, pos.getX(), pos.getY(), pos.getZ(), 10f, true, Level.ExplosionInteraction.BLOCK);
         }
     }
 

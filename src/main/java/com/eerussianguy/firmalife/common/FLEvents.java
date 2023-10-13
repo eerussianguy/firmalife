@@ -1,13 +1,11 @@
 package com.eerussianguy.firmalife.common;
 
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.packs.PackType;
 
 import java.io.IOException;
 import java.nio.file.Path;
 
-import javax.annotation.Nonnull;
-
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.packs.metadata.pack.PackMetadataSection;
 import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.server.packs.repository.PackSource;
@@ -15,9 +13,11 @@ import net.minecraftforge.event.AddPackFindersEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.resource.PathResourcePack;
 
 import com.eerussianguy.firmalife.FirmaLife;
+import net.minecraftforge.forgespi.locating.IModFile;
+import net.minecraftforge.resource.PathPackResources;
+import org.jetbrains.annotations.NotNull;
 
 public class FLEvents
 {
@@ -34,25 +34,30 @@ public class FLEvents
         {
             if (event.getPackType() == PackType.CLIENT_RESOURCES)
             {
-                var modFile = ModList.get().getModFileById(FirmaLife.MOD_ID).getFile();
-                var resourcePath = modFile.getFilePath();
-                var pack = new PathResourcePack(modFile.getFileName() + ":overload", resourcePath)
-                {
-                    @Nonnull
+                final IModFile modFile = ModList.get().getModFileById(FirmaLife.MOD_ID).getFile();
+                final Path resourcePath = modFile.getFilePath();
+                try (PathPackResources pack = new PathPackResources(modFile.getFileName() + ":overload", true, resourcePath){
+
+                    private final IModFile file = ModList.get().getModFileById(FirmaLife.MOD_ID).getFile();
+
+                    @NotNull
                     @Override
-                    protected Path resolve(@Nonnull String... paths)
+                    protected Path resolve(String @NotNull ... paths)
                     {
-                        return modFile.findResource(paths);
+                        return file.findResource(paths);
                     }
-                };
-                var metadata = pack.getMetadataSection(PackMetadataSection.SERIALIZER);
-                if (metadata != null)
+                })
                 {
-                    FirmaLife.LOGGER.info("Injecting firmalife override pack");
-                    event.addRepositorySource((consumer, constructor) ->
-                        consumer.accept(constructor.create("builtin/firmalife_data", new TextComponent("Firmalife Resources"), true, () -> pack, metadata, Pack.Position.TOP, PackSource.BUILT_IN, false))
-                    );
+                    final PackMetadataSection metadata = pack.getMetadataSection(PackMetadataSection.TYPE);
+                    if (metadata != null)
+                    {
+                        FirmaLife.LOGGER.info("Injecting firmalife override pack");
+                        event.addRepositorySource(consumer ->
+                            consumer.accept(Pack.readMetaAndCreate("firmalife_data", Component.literal("Firmalife Resources"), true, id -> pack, PackType.CLIENT_RESOURCES, Pack.Position.TOP, PackSource.BUILT_IN))
+                        );
+                    }
                 }
+
             }
         }
         catch (IOException e)

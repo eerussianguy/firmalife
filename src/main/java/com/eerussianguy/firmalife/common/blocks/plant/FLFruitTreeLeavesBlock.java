@@ -1,9 +1,9 @@
 package com.eerussianguy.firmalife.common.blocks.plant;
 
-import java.util.Random;
 import java.util.function.Supplier;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -24,7 +24,7 @@ public class FLFruitTreeLeavesBlock extends FruitTreeLeavesBlock
     }
 
     @Override
-    public void animateTick(BlockState state, Level level, BlockPos pos, Random rand)
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource rand)
     {
         if (state.getValue(LIFECYCLE) == Lifecycle.FLOWERING && Helpers.isBlock(this, FLTags.Blocks.BUZZING_LEAVES) && rand.nextInt(100) == 0)
         {

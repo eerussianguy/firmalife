@@ -104,7 +104,7 @@ public class FLFoodTraits
         {
             if (this.translationKey != null)
             {
-                MutableComponent component = Helpers.translatable(this.translationKey);
+                MutableComponent component = Component.translatable(this.translationKey);
                 if (this.decayModifier.get() > 1.0F)
                 {
                     component.withStyle(ChatFormatting.RED);

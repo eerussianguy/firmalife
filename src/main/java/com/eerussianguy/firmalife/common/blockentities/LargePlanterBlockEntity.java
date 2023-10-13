@@ -112,13 +112,13 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     }
 
     @Override
-    public long getLastUpdateTick()
+    public long getLastCalendarUpdateTick()
     {
         return lastUpdateTick;
     }
 
     @Override
-    public void setLastUpdateTick(long ticks)
+    public void setLastCalendarUpdateTick(long ticks)
     {
         lastUpdateTick = ticks;
     }
@@ -209,7 +209,7 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
         {
             complaint = "air_needed";
         }
-        return complaint == null ? null : Helpers.translatable("firmalife.greenhouse." + complaint);
+        return complaint == null ? null : Component.translatable("firmalife.greenhouse." + complaint);
     }
 
     @Nullable

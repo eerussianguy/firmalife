@@ -6,6 +6,7 @@ import java.util.function.Supplier;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
@@ -96,7 +97,7 @@ public abstract class AbstractOvenBlock extends FourWayDeviceBlock implements IC
     }
 
     @Override
-    public void animateTick(BlockState state, Level level, BlockPos pos, Random random)
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random)
     {
         FLClientHelpers.randomParticle(ParticleTypes.SMOKE, random, pos, level, 0.05f);
         FLClientHelpers.randomParticle(ParticleTypes.FLAME, random, pos, level, 0.05f);

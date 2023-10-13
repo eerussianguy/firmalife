@@ -52,7 +52,7 @@ public class FLClientForgeEvents
             }
             if (Helpers.isItem(stack, FLTags.Items.BEEKEEPER_ARMOR))
             {
-                text.add(Helpers.translatable("firmalife.tooltip.beekeeper_armor"));
+                text.add(Component.translatable("firmalife.tooltip.beekeeper_armor"));
             }
         }
     }

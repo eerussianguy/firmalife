@@ -6,7 +6,6 @@ import java.util.stream.Stream;
 import com.eerussianguy.firmalife.client.model.PeelModel;
 import com.eerussianguy.firmalife.client.screen.StovetopGrillScreen;
 import com.eerussianguy.firmalife.client.screen.StovetopPotScreen;
-import com.eerussianguy.firmalife.common.blockentities.JarringStationBlockEntity;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.block.BlockColor;
@@ -21,7 +20,6 @@ import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.client.event.*;
-import net.minecraftforge.client.model.ForgeModelBakery;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -36,7 +34,6 @@ import com.eerussianguy.firmalife.common.entities.FLEntities;
 import com.eerussianguy.firmalife.common.entities.FLParticles;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.common.items.FLItems;
-import com.eerussianguy.firmalife.common.util.FLMetal;
 import net.dries007.tfc.client.TFCColors;
 import net.dries007.tfc.client.particle.GlintParticleProvider;
 import net.dries007.tfc.client.screen.KnappingScreen;
@@ -52,7 +49,6 @@ public class FLClientEvents
 
         bus.addListener(FLClientEvents::clientSetup);
         bus.addListener(FLClientEvents::registerEntityRenderers);
-        bus.addListener(FLClientEvents::onTextureStitch);
         bus.addListener(FLClientEvents::onLayers);
         bus.addListener(FLClientEvents::onModelRegister);
         bus.addListener(FLClientEvents::onBlockColors);
@@ -114,7 +110,7 @@ public class FLClientEvents
         });
     }
 
-    public static void onBlockColors(ColorHandlerEvent.Block event)
+    public static void onBlockColors(RegisterColorHandlersEvent.Block event)
     {
         final BlockColors registry = event.getBlockColors();
         final BlockColor grassColor = (state, level, pos, tintIndex) -> TFCColors.getGrassColor(pos, tintIndex);
@@ -124,7 +120,7 @@ public class FLClientEvents
         registry.register(tallGrassColor, FLBlocks.POTTED_BUTTERFLY_GRASS.get());
     }
 
-    public static void onItemColors(ColorHandlerEvent.Item event)
+    public static void onItemColors(RegisterColorHandlersEvent.Item event)
     {
         final ItemColors registry = event.getItemColors();
         final ItemColor grassColor = (stack, tintIndex) -> TFCColors.getGrassColor(null, tintIndex);
@@ -132,7 +128,7 @@ public class FLClientEvents
         Stream.of(FLBlocks.BUTTERFLY_GRASS).forEach(reg -> registry.register(grassColor, reg.get()));
     }
 
-    public static void registerParticleFactories(ParticleFactoryRegisterEvent event)
+    public static void registerParticleFactories(RegisterParticleProvidersEvent event)
     {
         ParticleEngine engine = Minecraft.getInstance().particleEngine;
         engine.register(FLParticles.GROWTH.get(), set -> new GlintParticleProvider(set, ChatFormatting.GREEN));
@@ -178,58 +174,11 @@ public class FLClientEvents
         event.registerLayerDefinition(FLClientHelpers.modelIdentifier("peel"), PeelModel::createBodyLayer);
     }
 
-    public static void onTextureStitch(TextureStitchEvent.Pre event)
-    {
-        for (String name : new String[] {"green_bean", "maize", "jute", "tomato", "sugarcane"})
-        {
-            for (int i = 0; i < 5; i++)
-            {
-                event.addSprite(FLHelpers.identifier("block/crop/" + name + "_" + i));
-            }
-        }
-        for (String name : new String[] {"cranberry"})
-        {
-            for (int i = 0; i < 4; i++)
-            {
-                event.addSprite(FLHelpers.identifier("block/crop/" + name + "_" + i));
-            }
-        }
-        for (String name : new String[] {"papyrus"})
-        {
-            for (int i = 0; i < 6; i++)
-            {
-                event.addSprite(FLHelpers.identifier("block/crop/" + name + "_" + i));
-            }
-        }
-        for (String name : new String[] {"squash", "banana"})
-        {
-            for (int i = 0; i < 5; i++)
-            {
-                event.addSprite(FLHelpers.identifier("block/crop/" + name + "_" + i));
-            }
-            event.addSprite(FLHelpers.identifier("block/crop/" + name + "_fruit"));
-        }
-        for (String name : new String[] {"melon", "pumpkin"})
-        {
-            for (int i = 0; i < 7; i++)
-            {
-                event.addSprite(FLHelpers.identifier("block/crop/" + name + "_" + i));
-            }
-            event.addSprite(FLHelpers.identifier("block/crop/" + name + "_fruit"));
-        }
-        for (FLMetal metal : FLMetal.values())
-        {
-            event.addSprite(metal.getSheet());
-        }
-        event.addSprite(FLHelpers.identifier("block/pineapple"));
 
-        event.addSprite(FLHelpers.identifier("entity/peel"));
-    }
-
-    public static void onModelRegister(ModelRegistryEvent event)
+    public static void onModelRegister(ModelEvent.RegisterAdditional event)
     {
-        ForgeModelBakery.addSpecialModel(MixingBowlBlockEntityRenderer.SPOON_LOCATION);
-        ForgeModelBakery.addSpecialModel(JarbnetBlockEntityRenderer.JUG_LOCATION);
-        ForgeModelBakery.addSpecialModel(JarringStationBlockEntityRenderer.EMPTY_JAR_LOCATION);
+        event.register(MixingBowlBlockEntityRenderer.SPOON_LOCATION);
+        event.register(JarbnetBlockEntityRenderer.JUG_LOCATION);
+        event.register(JarringStationBlockEntityRenderer.EMPTY_JAR_LOCATION);
     }
 }

@@ -1,16 +1,13 @@
 package com.eerussianguy.firmalife.common.blocks.greenhouse;
 
-import java.util.Random;
 import java.util.Set;
 
-import com.eerussianguy.firmalife.common.FLHelpers;
-import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.util.FLAdvancements;
-import com.eerussianguy.firmalife.common.util.GreenhouseType;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -111,14 +108,14 @@ public class ClimateStationBlock extends DeviceBlock
                 {
                     FLAdvancements.BIG_STAINLESS_GREENHOUSE.trigger(server);
                 }
-                player.displayClientMessage(Helpers.translatable(MOD_ID + ".greenhouse.found", info.type().getTitle(), info.positions().size()), true);
+                player.displayClientMessage(Component.translatable(MOD_ID + ".greenhouse.found", info.type().getTitle(), info.positions().size()), true);
             });
             either.ifRight(positions -> {
                 if (positions.size() > 200 && player instanceof ServerPlayer server)
                 {
                     FLAdvancements.BIG_CELLAR.trigger(server);
                 }
-                player.displayClientMessage(Helpers.translatable(MOD_ID + ".cellar.found", positions.size()), true);
+                player.displayClientMessage(Component.translatable(MOD_ID + ".cellar.found", positions.size()), true);
             });
             return InteractionResult.sidedSuccess(level.isClientSide);
         }
@@ -126,7 +123,7 @@ public class ClimateStationBlock extends DeviceBlock
 
     @Override
     @SuppressWarnings("deprecation")
-    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, Random random)
+    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random)
     {
         if (random.nextInt(4) == 0)
         {
@@ -136,7 +133,7 @@ public class ClimateStationBlock extends DeviceBlock
 
     @Override
     @SuppressWarnings("deprecation")
-    public void tick(BlockState state, ServerLevel level, BlockPos pos, Random random)
+    public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random)
     {
         check(level, pos, state);
     }

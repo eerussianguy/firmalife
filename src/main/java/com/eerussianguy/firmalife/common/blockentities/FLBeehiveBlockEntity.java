@@ -422,13 +422,13 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
     }
 
     @Override
-    public long getLastUpdateTick()
+    public long getLastCalendarUpdateTick()
     {
         return lastPlayerTick;
     }
 
     @Override
-    public void setLastUpdateTick(long tick)
+    public void setLastCalendarUpdateTick(long tick)
     {
         lastPlayerTick = tick;
     }

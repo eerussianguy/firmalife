@@ -58,7 +58,7 @@ public final class FLTooltips
             {
                 if (vat.isBoiling())
                 {
-                    tooltip.accept(Helpers.translatable("firmalife.jade.boiling"));
+                    tooltip.accept(Component.translatable("firmalife.jade.boiling"));
                 }
                 heat(tooltip, vat.getTemperature());
             }
@@ -69,7 +69,7 @@ public final class FLTooltips
             {
                 if (mat.getCachedRecipe() != null && mat.getTicksLeft() > 0)
                 {
-                    tooltip.accept(Helpers.translatable("tfc.jade.time_left", delta(level, mat.getTicksLeft())));
+                    tooltip.accept(Component.translatable("tfc.jade.time_left", delta(level, mat.getTicksLeft())));
                 }
             }
         };
@@ -77,7 +77,7 @@ public final class FLTooltips
         public static final BlockEntityTooltip STRING = (level, state, pos, entity, tooltip) -> {
             if (state.getBlock() instanceof StringBlock block && entity instanceof StringBlockEntity mat)
             {
-                tooltip.accept(Helpers.translatable("firmalife.jade." + (StringBlock.findFirepit(level, pos) != null ? "has_firepit" : "no_firepit")));
+                tooltip.accept(Component.translatable("firmalife.jade." + (StringBlock.findFirepit(level, pos) != null ? "has_firepit" : "no_firepit")));
                 final ItemStack item = mat.viewStack();
                 if (!item.isEmpty())
                 {
@@ -85,7 +85,7 @@ public final class FLTooltips
                     final List<FoodTrait> traits = food == null ? null : food.getTraits();
                     if (mat.getCachedRecipe() != null)
                     {
-                        tooltip.accept(Helpers.translatable("tfc.jade.time_left", delta(level, mat.getTicksLeft())));
+                        tooltip.accept(Component.translatable("tfc.jade.time_left", delta(level, mat.getTicksLeft())));
                     }
                     else if (traits != null)
                     {
@@ -113,14 +113,14 @@ public final class FLTooltips
             {
                 if (state.getValue(CheeseWheelBlock.AGING))
                 {
-                    tooltip.accept(Helpers.translatable("firmalife.jade.aging"));
+                    tooltip.accept(Component.translatable("firmalife.jade.aging"));
                 }
                 else
                 {
-                    tooltip.accept(Helpers.translatable("firmalife.jade.not_aging"));
+                    tooltip.accept(Component.translatable("firmalife.jade.not_aging"));
                 }
-                tooltip.accept(Helpers.translatable("firmalife.jade.slices", state.getValue(CheeseWheelBlock.COUNT)));
-                tooltip.accept(Helpers.translatable("firmalife.jade.food_age", FLHelpers.translateEnum(state.getValue(CheeseWheelBlock.AGE))));
+                tooltip.accept(Component.translatable("firmalife.jade.slices", state.getValue(CheeseWheelBlock.COUNT)));
+                tooltip.accept(Component.translatable("firmalife.jade.food_age", FLHelpers.translateEnum(state.getValue(CheeseWheelBlock.AGE))));
             }
         };
 
@@ -129,11 +129,11 @@ public final class FLTooltips
             {
                 if (shelf.isClimateValid())
                 {
-                    tooltip.accept(Helpers.translatable("firmalife.cellar.valid_block"));
+                    tooltip.accept(Component.translatable("firmalife.cellar.valid_block"));
                 }
                 else
                 {
-                    tooltip.accept(Helpers.translatable("firmalife.cellar.invalid_block"));
+                    tooltip.accept(Component.translatable("firmalife.cellar.invalid_block"));
                 }
                 shelf.getCapability(Capabilities.ITEM).ifPresent(inv -> {
                     ItemStack stack = inv.getStackInSlot(0);
@@ -152,17 +152,17 @@ public final class FLTooltips
                 BlockEntityTooltips.heat(tooltip, oven.getTemperature());
                 if (oven.getTemperature() > 100 && oven instanceof OvenTopBlockEntity)
                 {
-                    tooltip.accept(Helpers.translatable("firmalife.jade.needs_peel"));
+                    tooltip.accept(Component.translatable("firmalife.jade.needs_peel"));
                 }
                 if (state.getBlock() instanceof ICure cure && !cure.isCured())
                 {
                     if (oven.getTemperature() < FLConfig.SERVER.ovenCureTemperature.get())
                     {
-                        tooltip.accept(Helpers.translatable("firmalife.jade.cannot_cure"));
+                        tooltip.accept(Component.translatable("firmalife.jade.cannot_cure"));
                     }
                     else
                     {
-                        tooltip.accept(Helpers.translatable("firmalife.jade.cure_time_left", delta(level, FLConfig.SERVER.ovenCureTicks.get() - oven.getCureTicks())));
+                        tooltip.accept(Component.translatable("firmalife.jade.cure_time_left", delta(level, FLConfig.SERVER.ovenCureTicks.get() - oven.getCureTicks())));
                     }
                 }
                 if (entity instanceof OvenTopBlockEntity top)
@@ -173,7 +173,7 @@ public final class FLTooltips
                             final int ticksLeft = top.getTicksLeft(i);
                             if (ticksLeft > 0)
                             {
-                                tooltip.accept(Helpers.translatable("firmalife.jade.cook_left", delta(level, ticksLeft)));
+                                tooltip.accept(Component.translatable("firmalife.jade.cook_left", delta(level, ticksLeft)));
                             }
                         }
                     });
@@ -182,18 +182,18 @@ public final class FLTooltips
             }
             if (state.getBlock() instanceof AbstractOvenBlock block && !block.isInsulated(level, pos, state))
             {
-                tooltip.accept(Helpers.translatable("firmalife.jade.not_insulated"));
+                tooltip.accept(Component.translatable("firmalife.jade.not_insulated"));
             }
             if (!state.getValue(AbstractOvenBlock.HAS_CHIMNEY))
             {
-                tooltip.accept(Helpers.translatable("firmalife.jade.no_chimney"));
+                tooltip.accept(Component.translatable("firmalife.jade.no_chimney"));
             }
         };
 
         public static final BlockEntityTooltip FRUIT_TREE_SAPLING = (level, state, pos, entity, tooltip) -> {
             if (entity instanceof TickCounterBlockEntity counter && state.getBlock() instanceof FruitTreeSaplingBlock sapling)
             {
-                timeLeft(level, tooltip, (long) (sapling.getTreeGrowthDays() * ICalendar.TICKS_IN_DAY * TFCConfig.SERVER.globalFruitSaplingGrowthModifier.get()) - counter.getTicksSinceUpdate(), Helpers.translatable("tfc.jade.ready_to_grow"));
+                timeLeft(level, tooltip, (long) (sapling.getTreeGrowthDays() * ICalendar.TICKS_IN_DAY * TFCConfig.SERVER.globalFruitSaplingGrowthModifier.get()) - counter.getTicksSinceUpdate(), Component.translatable("tfc.jade.ready_to_grow"));
             }
         };
 

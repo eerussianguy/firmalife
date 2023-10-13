@@ -63,14 +63,14 @@ public class SquirtingMoistureTransducerBlock extends BottomSupportedDeviceBlock
             ItemStack item = inv.getStackInSlot(0);
             if (item.isEmpty())
             {
-                text.add(Helpers.translatable("firmalife.transducer.no_pipes"));
+                text.add(Component.translatable("firmalife.transducer.no_pipes"));
             }
             else
             {
-                text.add(Helpers.translatable("firmalife.transducer.current_pipes", item.getCount()));
+                text.add(Component.translatable("firmalife.transducer.current_pipes", item.getCount()));
             }
-            text.add(Helpers.translatable("firmalife.transducer.pipe_length", transducer.getCachedMoisture()));
-            text.add(Helpers.translatable("firmalife.transducer.pipe_wanted", SquirtingMoistureTransducerBlockEntity.getMinPipes(level, pos)));
+            text.add(Component.translatable("firmalife.transducer.pipe_length", transducer.getCachedMoisture()));
+            text.add(Component.translatable("firmalife.transducer.pipe_wanted", SquirtingMoistureTransducerBlockEntity.getMinPipes(level, pos)));
         });
     }
 

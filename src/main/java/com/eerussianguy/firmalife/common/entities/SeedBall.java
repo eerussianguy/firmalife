@@ -38,6 +38,7 @@ public class SeedBall extends ThrowableItemProjectile
         super(FLEntities.SEED_BALL.get(), entity, level);
     }
 
+
     @Override
     protected Item getDefaultItem()
     {
@@ -53,8 +54,8 @@ public class SeedBall extends ThrowableItemProjectile
 
             for(int i = 0; i < 8; ++i)
             {
-                this.level.addParticle(itemParticle, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
-                this.level.addParticle(TFCParticles.STEAM.get(), getX(), getY(), getZ(), Helpers.triangle(level.random), 1, Helpers.triangle(level.random));
+                this.level().addParticle(itemParticle, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
+                this.level().addParticle(TFCParticles.STEAM.get(), getX(), getY(), getZ(), Helpers.triangle(level().random), 1, Helpers.triangle(level().random));
             }
         }
     }
@@ -64,11 +65,11 @@ public class SeedBall extends ThrowableItemProjectile
     protected void onHit(HitResult hit)
     {
         super.onHit(hit);
-        if (!this.level.isClientSide)
+        if (!this.level().isClientSide)
         {
-            Helpers.playSound(level, blockPosition(), SoundEvents.ROOTED_DIRT_PLACE);
-            spread(level, blockPosition());
-            this.level.broadcastEntityEvent(this, (byte) 3);
+            Helpers.playSound(level(), blockPosition(), SoundEvents.ROOTED_DIRT_PLACE);
+            spread(level(), blockPosition());
+            this.level().broadcastEntityEvent(this, (byte) 3);
             this.discard();
         }
     }

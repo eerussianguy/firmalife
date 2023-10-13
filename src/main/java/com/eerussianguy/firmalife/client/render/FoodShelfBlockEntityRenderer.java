@@ -41,7 +41,7 @@ public class FoodShelfBlockEntityRenderer implements BlockEntityRenderer<FoodShe
         poseStack.pushPose();
         poseStack.translate(0.5, 0.5, 0.5);
         poseStack.scale(0.45f, 0.45f, 0.45f);
-        poseStack.mulPose(Vector3f.YP.rotationDegrees(angle));
+        poseStack.mulPose(Axis.YP.rotationDegrees(angle));
         var currentDraws = 0;
         for (int i = 0; i < 4; i++)
         {
@@ -63,7 +63,7 @@ public class FoodShelfBlockEntityRenderer implements BlockEntityRenderer<FoodShe
                     currentDraws += 1;
                 }
                 poseStack.translate(0, 0, 0.175f);
-                itemRenderer.renderStatic(stack, ItemTransforms.TransformType.FIXED, combinedLight, combinedOverlay, poseStack, buffer, 0);
+                itemRenderer.renderStatic(stack, ItemDisplayContext.FIXED, combinedLight, combinedOverlay, poseStack, buffer, 0);
             }
             poseStack.popPose();
         }

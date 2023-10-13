@@ -1,7 +1,9 @@
 package com.eerussianguy.firmalife.common.recipes;
 
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
@@ -9,7 +11,7 @@ import net.dries007.tfc.common.recipes.HeatingRecipe;
 import net.dries007.tfc.common.recipes.inventory.ItemStackInventory;
 import org.jetbrains.annotations.Nullable;
 
-public record WrappedHeatingRecipe(ResourceLocation id, Function<ItemStackInventory, ItemStack> output, float temperature, int duration, boolean oven)
+public record WrappedHeatingRecipe(ResourceLocation id, BiFunction<ItemStackInventory, RegistryAccess, ItemStack> output, float temperature, int duration, boolean oven)
 {
     @Nullable
     public static WrappedHeatingRecipe getRecipe(ItemStack stack)
@@ -38,8 +40,8 @@ public record WrappedHeatingRecipe(ResourceLocation id, Function<ItemStackInvent
         return temperature >= this.temperature;
     }
 
-    public ItemStack assemble(ItemStackInventory inventory)
+    public ItemStack assemble(ItemStackInventory inventory, RegistryAccess access)
     {
-        return output.apply(inventory);
+        return output.apply(inventory, access);
     }
 }

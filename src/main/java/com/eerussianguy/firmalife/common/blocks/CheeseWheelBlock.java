@@ -1,11 +1,11 @@
 package com.eerussianguy.firmalife.common.blocks;
 
-import java.util.Random;
 import java.util.function.Supplier;
 
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -102,7 +102,7 @@ public class CheeseWheelBlock extends BottomSupportedDeviceBlock implements Clim
 
     @Override
     @SuppressWarnings("deprecation")
-    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, Random rand)
+    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand)
     {
         level.getBlockEntity(pos, FLBlockEntities.TICK_COUNTER.get()).ifPresent(counter -> {
             if (state.getValue(AGING))

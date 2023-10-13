@@ -5,8 +5,9 @@ import net.minecraft.world.item.ItemStack;
 
 import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
+
+import net.dries007.tfc.common.capabilities.food.DynamicBowlHandler;
 import net.dries007.tfc.common.capabilities.food.FoodCapability;
-import net.dries007.tfc.common.items.DynamicBowlFood;
 import net.dries007.tfc.common.recipes.RecipeHelpers;
 import net.dries007.tfc.util.Helpers;
 
@@ -29,7 +30,7 @@ public enum PieModifier implements CustomFoodModifier<PieModifier>
                 if (Helpers.isItem(item, FLTags.Items.PIE_PANS))
                 {
                     ret.getCapability(FoodCapability.CAPABILITY).ifPresent(cap -> {
-                        if (cap instanceof DynamicBowlFood.DynamicBowlHandler handler)
+                        if (cap instanceof DynamicBowlHandler handler)
                         {
                             handler.setBowl(item);
                         }

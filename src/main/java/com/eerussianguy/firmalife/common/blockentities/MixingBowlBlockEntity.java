@@ -5,6 +5,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.player.Player;
@@ -156,7 +157,7 @@ public class MixingBowlBlockEntity extends TickableInventoryBlockEntity<MixingBo
 
     private boolean complain(Player player, String name)
     {
-        player.displayClientMessage(Helpers.translatable("firmalife.bowl." + name), true);
+        player.displayClientMessage(Component.translatable("firmalife.bowl." + name), true);
         return false;
     }
 
@@ -166,7 +167,7 @@ public class MixingBowlBlockEntity extends TickableInventoryBlockEntity<MixingBo
         final MixingBowlRecipe recipe = getRecipe();
         if (recipe != null && recipe.matches(inventory, level))
         {
-            ItemStack outputStack = recipe.assemble(inventory);
+            ItemStack outputStack = recipe.assemble(inventory, level.registryAccess());
             int count = outputStack.getCount();
             for (int i = 0; i < SLOTS; i++)
             {
@@ -176,7 +177,7 @@ public class MixingBowlBlockEntity extends TickableInventoryBlockEntity<MixingBo
             {
                 if (count > 0)
                 {
-                    inventory.setStackInSlot(i, Helpers.copyWithSize(outputStack, 1));
+                    inventory.setStackInSlot(i, outputStack.copyWithCount(1));
                     count--;
                 }
                 else

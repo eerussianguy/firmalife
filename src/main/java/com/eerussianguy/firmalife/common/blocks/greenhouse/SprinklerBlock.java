@@ -12,6 +12,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -57,7 +58,7 @@ public class SprinklerBlock extends DeviceBlock implements HoeOverlayBlock
     }
 
     @Override
-    public void animateTick(BlockState state, Level level, BlockPos pos, Random random)
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random)
     {
         if ((level.getGameTime() - 10) % 40 == 0)
         {
@@ -86,7 +87,7 @@ public class SprinklerBlock extends DeviceBlock implements HoeOverlayBlock
     {
         if (level.getBlockEntity(pos) instanceof SprinklerBlockEntity sprinkler)
         {
-            text.add(Helpers.translatable(sprinkler.isValid() ? "firmalife.greenhouse.valid_block" : "firmalife.greenhouse.invalid_block"));
+            text.add(Component.translatable(sprinkler.isValid() ? "firmalife.greenhouse.valid_block" : "firmalife.greenhouse.invalid_block"));
         }
     }
 }

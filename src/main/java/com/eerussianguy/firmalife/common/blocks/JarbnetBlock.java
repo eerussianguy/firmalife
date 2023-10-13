@@ -12,6 +12,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -51,7 +52,7 @@ public class JarbnetBlock extends FourWayDeviceBlock
     public static final VoxelShape EAST_SHAPE = Helpers.rotateShape(Direction.EAST, 0, 0, 4, 16, 16, 16);
     public static final VoxelShape SOUTH_SHAPE = Helpers.rotateShape(Direction.SOUTH, 0, 0, 4, 16, 16, 16);
 
-    private static void addParticlesAndSound(Level level, double x, double y, double z, Random rand)
+    private static void addParticlesAndSound(Level level, double x, double y, double z, RandomSource rand)
     {
         final float value = rand.nextFloat();
         if (value < 0.3F)
@@ -72,7 +73,7 @@ public class JarbnetBlock extends FourWayDeviceBlock
     }
 
     @Override
-    public void animateTick(BlockState state, Level level, BlockPos pos, Random random)
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random)
     {
         if (state.getValue(LIT))
         {
@@ -99,7 +100,7 @@ public class JarbnetBlock extends FourWayDeviceBlock
 
     @Override
     @SuppressWarnings("deprecation")
-    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, Random rand)
+    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand)
     {
         if (level.getBlockEntity(pos) instanceof JarbnetBlockEntity jarbnet && state.getValue(LIT))
         {

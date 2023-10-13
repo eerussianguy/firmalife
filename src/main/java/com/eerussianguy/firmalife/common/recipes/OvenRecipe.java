@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 import com.google.gson.JsonObject;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -77,7 +78,7 @@ public class OvenRecipe implements ISimpleRecipe<ItemStackInventory>
     }
 
     @Override
-    public ItemStack getResultItem()
+    public ItemStack getResultItem(RegistryAccess access)
     {
         return outputItem.getEmptyStack();
     }
@@ -101,7 +102,7 @@ public class OvenRecipe implements ISimpleRecipe<ItemStackInventory>
     }
 
     @Override
-    public ItemStack assemble(ItemStackInventory inventory)
+    public ItemStack assemble(ItemStackInventory inventory, RegistryAccess access)
     {
         final ItemStack inputStack = inventory.getStack();
         final ItemStack outputStack = outputItem.getSingleStack(inputStack);

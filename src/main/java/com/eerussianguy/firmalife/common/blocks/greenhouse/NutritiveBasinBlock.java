@@ -5,6 +5,7 @@ import com.eerussianguy.firmalife.common.blocks.FLStateProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -69,7 +70,7 @@ public class NutritiveBasinBlock extends ExtendedBlock implements EntityBlockExt
     }
 
     @Override
-    public void animateTick(BlockState state, Level level, BlockPos pos, Random random)
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random)
     {
         if (random.nextFloat() < 0.2f)
         {

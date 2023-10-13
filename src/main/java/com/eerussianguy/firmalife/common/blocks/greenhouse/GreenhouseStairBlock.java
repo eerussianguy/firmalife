@@ -1,11 +1,11 @@
 package com.eerussianguy.firmalife.common.blocks.greenhouse;
 
-import java.util.Random;
 import java.util.function.Supplier;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -36,7 +36,7 @@ public class GreenhouseStairBlock extends GlassStairBlock implements IWeatherabl
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, Random rand)
+    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand)
     {
         IWeatherable.super.randomTick(state, level, pos, rand);
     }

@@ -15,6 +15,7 @@ import net.minecraftforge.items.ItemHandlerHelper;
 
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blockentities.PotBlockEntity;
+import net.dries007.tfc.common.capabilities.food.DynamicBowlHandler;
 import net.dries007.tfc.common.capabilities.food.FoodCapability;
 import net.dries007.tfc.common.capabilities.food.FoodData;
 import net.dries007.tfc.common.capabilities.food.IFood;
@@ -61,8 +62,8 @@ public class StinkySoupRecipe extends PotRecipe
             {
                 // set the internal bowl to the one we clicked with
                 stack.getCapability(FoodCapability.CAPABILITY)
-                    .filter(food -> food instanceof DynamicBowlFood.DynamicBowlHandler)
-                    .ifPresent(food -> ((DynamicBowlFood.DynamicBowlHandler) food).setBowl(clickedWith));
+                    .filter(food -> food instanceof DynamicBowlHandler)
+                    .ifPresent(food -> ((DynamicBowlHandler) food).setBowl(clickedWith));
 
                 // take the player's bowl, give a soup
                 clickedWith.shrink(1);
@@ -128,9 +129,9 @@ public class StinkySoupRecipe extends PotRecipe
 
             soupStack = new ItemStack(FLItems.STINKY_SOUP.get(), servings);
             soupStack.getCapability(FoodCapability.CAPABILITY)
-                .filter(food -> food instanceof DynamicBowlFood.DynamicBowlHandler)
+                .filter(food -> food instanceof DynamicBowlHandler)
                 .ifPresent(food -> {
-                    DynamicBowlFood.DynamicBowlHandler handler = (DynamicBowlFood.DynamicBowlHandler) food;
+                    DynamicBowlHandler handler = (DynamicBowlHandler) food;
                     handler.setCreationDate(created);
                     handler.setFood(data);
                 });

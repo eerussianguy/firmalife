@@ -2,11 +2,13 @@ package com.eerussianguy.firmalife.client.render;
 
 import com.eerussianguy.firmalife.common.blockentities.VatBlockEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.util.Mth;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -34,8 +36,8 @@ public class VatBlockEntityRenderer implements BlockEntityRenderer<VatBlockEntit
                 poseStack.pushPose();
                 poseStack.translate(0.5, 0.15625, 0.5);
                 poseStack.scale(0.5F, 0.5F, 0.5F);
-                poseStack.mulPose(RenderHelpers.rotateDegreesX(90.0F));
-                Minecraft.getInstance().getItemRenderer().renderStatic(itemStack, ItemTransforms.TransformType.FIXED, combinedLight, combinedOverlay, poseStack, buffers, 0);
+                poseStack.mulPose(Axis.XP.rotationDegrees(90.0F));
+                Minecraft.getInstance().getItemRenderer().renderStatic(itemStack, ItemDisplayContext.FIXED, combinedLight, combinedOverlay, poseStack, buffers, vat.getLevel(), 0);
                 poseStack.popPose();
             }
         });

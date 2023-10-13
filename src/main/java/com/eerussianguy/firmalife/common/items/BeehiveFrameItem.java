@@ -53,7 +53,7 @@ public class BeehiveFrameItem extends Item
         stack.getCapability(BeeCapability.CAPABILITY).ifPresent(bee -> {
             if (bee.hasQueen())
             {
-                tooltip.add(Helpers.translatable("firmalife.bee.may_scrape"));
+                tooltip.add(Component.translatable("firmalife.bee.may_scrape"));
             }
         });
     }

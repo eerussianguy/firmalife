@@ -8,6 +8,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -40,7 +41,7 @@ public class SquirtingMoistureTransducerBlockEntity extends TickableInventoryBlo
                 final double x = pos.getX() + 0.5;
                 final double y = pos.getY() + 1.1;
                 final double z = pos.getZ() + 0.5;
-                final Random random = level.random;
+                final RandomSource random = level.random;
                 serverLevel.sendParticles(ParticleTypes.BUBBLE, x + Helpers.triangle(random, 2), y + Helpers.triangle(random, 2) + 2, z + Helpers.triangle(random, 2), 15, 0.0, 0.0, 0.0, 1);
                 serverLevel.sendParticles(TFCParticles.STEAM.get(), x, y, z, 15, 0.0, 0.0, 0.0, 1);
                 FLHelpers.allPositionsCentered(pos, 4, 4).forEach(checkPos -> {

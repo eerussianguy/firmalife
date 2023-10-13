@@ -50,7 +50,7 @@ public class StovetopGrillBlock extends BottomSupportedDeviceBlock
     {
         if (!entity.fireImmune() && entity instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity) entity) && level.getBlockEntity(pos) instanceof StovetopGrillBlockEntity grill && grill.getTemperature() > 0)
         {
-            entity.hurt(TFCDamageSources.GRILL, 1.0F);
+            TFCDamageSources.grill(entity, 1.0F);
         }
         super.stepOn(level, pos, state, entity);
     }

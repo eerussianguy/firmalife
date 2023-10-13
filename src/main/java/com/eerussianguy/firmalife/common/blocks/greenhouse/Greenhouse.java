@@ -55,7 +55,7 @@ public enum Greenhouse
 
         public static ExtendedProperties properties(Greenhouse green)
         {
-            ExtendedProperties prop = ExtendedProperties.of(BlockBehaviour.Properties.of(Material.METAL).sound(green.sound).strength(4.0f).noOcclusion().randomTicks());
+            ExtendedProperties prop = ExtendedProperties.of(BlockBehaviour.Properties.of().sound(green.sound).strength(4.0f).noOcclusion().randomTicks());
             if (green.flammable) prop = prop.flammable(60, 30);
             return prop;
         }

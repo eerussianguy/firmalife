@@ -177,7 +177,7 @@ public class FLHelpers
 
     public static TranslatableComponent translateEnum(Enum<?> anEnum)
     {
-        return Helpers.translatable(getEnumTranslationKey(anEnum));
+        return Component.translatable(getEnumTranslationKey(anEnum));
     }
 
     /**

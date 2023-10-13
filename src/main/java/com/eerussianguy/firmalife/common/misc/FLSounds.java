@@ -16,6 +16,6 @@ public class FLSounds
 
     private static RegistryObject<SoundEvent> create(String name)
     {
-        return SOUNDS.register(name, () -> new SoundEvent(FLHelpers.identifier(name)));
+        return SOUNDS.register(name, () -> SoundEvent.createVariableRangeEvent(FLHelpers.identifier(name)));
     }
 }

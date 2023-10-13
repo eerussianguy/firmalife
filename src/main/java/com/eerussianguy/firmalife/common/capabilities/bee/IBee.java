@@ -3,16 +3,13 @@ package com.eerussianguy.firmalife.common.capabilities.bee;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraftforge.common.util.INBTSerializable;
-
-import net.dries007.tfc.util.Helpers;
 
 public interface IBee extends INBTSerializable<CompoundTag>
 {
@@ -55,7 +52,7 @@ public interface IBee extends INBTSerializable<CompoundTag>
     /**
      * Init two, perhaps three abilities chosen randomly
      */
-    default void initFreshAbilities(Random random)
+    default void initFreshAbilities(RandomSource random)
     {
         final int[] values = BeeAbility.fresh();
 
@@ -69,7 +66,7 @@ public interface IBee extends INBTSerializable<CompoundTag>
         setHasQueen(true);
     }
 
-    default void setAbilitiesFromParents(IBee parent1, IBee parent2, Random random)
+    default void setAbilitiesFromParents(IBee parent1, IBee parent2, RandomSource random)
     {
         int[] parent1Abilities = parent1.getAbilityMap();
         int[] parent2Abilities = parent2.getAbilityMap();
@@ -107,28 +104,28 @@ public interface IBee extends INBTSerializable<CompoundTag>
     {
         if (hasQueen())
         {
-            tooltip.add(new TranslatableComponent("firmalife.bee.queen").withStyle(ChatFormatting.GOLD));
+            tooltip.add(Component.translatable("firmalife.bee.queen").withStyle(ChatFormatting.GOLD));
             if (getGeneticDisease() != -1)
             {
-                tooltip.add(Helpers.translatable("firmalife.bee.genetic_disease", Helpers.translatable("firmalife.bee.disease" + getGeneticDisease())).withStyle(ChatFormatting.RED));
+                tooltip.add(Component.translatable("firmalife.bee.genetic_disease", Component.translatable("firmalife.bee.disease" + getGeneticDisease())).withStyle(ChatFormatting.RED));
             }
             if (getParasiticInfection() != -1)
             {
-                tooltip.add(Helpers.translatable("firmalife.bee.parasitic_infection", Helpers.translatable("firmalife.bee.infection" + getGeneticDisease())).withStyle(ChatFormatting.RED));
+                tooltip.add(Component.translatable("firmalife.bee.parasitic_infection", Component.translatable("firmalife.bee.infection" + getGeneticDisease())).withStyle(ChatFormatting.RED));
             }
-            tooltip.add(Helpers.translatable("firmalife.bee.abilities").withStyle(ChatFormatting.WHITE));
+            tooltip.add(Component.translatable("firmalife.bee.abilities").withStyle(ChatFormatting.WHITE));
             for (BeeAbility ability : BeeAbility.VALUES)
             {
                 final int amount = getAbility(ability);
                 if (amount > 0)
                 {
-                    tooltip.add(Helpers.translatable("firmalife.bee.ability." + ability.getSerializedName(), String.valueOf(amount)).withStyle(ChatFormatting.GRAY));
+                    tooltip.add(Component.translatable("firmalife.bee.ability." + ability.getSerializedName(), String.valueOf(amount)).withStyle(ChatFormatting.GRAY));
                 }
             }
         }
         else
         {
-            tooltip.add(new TranslatableComponent("firmalife.bee.no_queen").withStyle(ChatFormatting.RED));
+            tooltip.add(Component.translatable("firmalife.bee.no_queen").withStyle(ChatFormatting.RED));
         }
     }
 

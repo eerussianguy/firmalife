@@ -53,7 +53,7 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
 
     @Override
     @SuppressWarnings("deprecation")
-    public void tick(BlockState state, ServerLevel level, BlockPos pos, Random rand)
+    public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand)
     {
         if (!level.isClientSide && level.getBlockEntity(pos) instanceof LargePlanterBlockEntity planter && state.getBlock() == this)
         {
@@ -81,18 +81,18 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
             {
                 if (plant.getPlanterType() != getPlanterType())
                 {
-                    player.displayClientMessage(Helpers.translatable("firmalife.greenhouse.wrong_type").append(FLHelpers.translateEnum(plant.getPlanterType())), true);
+                    player.displayClientMessage(Component.translatable("firmalife.greenhouse.wrong_type").append(FLHelpers.translateEnum(plant.getPlanterType())), true);
                     return InteractionResult.sidedSuccess(level.isClientSide);
                 }
                 if (planter.getTier() < plant.getTier())
                 {
                     if (!planter.isClimateValid())
                     {
-                        player.displayClientMessage(Helpers.translatable("firmalife.greenhouse.climate_invalid"), true);
+                        player.displayClientMessage(Component.translatable("firmalife.greenhouse.climate_invalid"), true);
                     }
                     else
                     {
-                        player.displayClientMessage(Helpers.translatable("firmalife.greenhouse.wrong_tier"), true);
+                        player.displayClientMessage(Component.translatable("firmalife.greenhouse.wrong_tier"), true);
                     }
                     return InteractionResult.sidedSuccess(level.isClientSide);
                 }
@@ -135,20 +135,20 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
             if (target == null) return;
 
             final int slot = getUseSlot(target, pos);
-            text.add(Helpers.translatable("firmalife.planter.growth_water", String.format("%.2f", planter.getGrowth(slot)), String.format("%.2f", planter.getWater())));
+            text.add(Component.translatable("firmalife.planter.growth_water", String.format("%.2f", planter.getGrowth(slot)), String.format("%.2f", planter.getWater())));
             if (planter.getGrowth(slot) >= 1)
             {
-                text.add(Helpers.translatable("tfc.tooltip.farmland.mature"));
+                text.add(Component.translatable("tfc.tooltip.farmland.mature"));
             }
             final Component invalidReason = planter.getInvalidReason();
             final boolean valid = invalidReason == null;
-            text.add(Helpers.translatable(valid ? "firmalife.greenhouse.valid_block" : "firmalife.greenhouse.invalid_block"));
+            text.add(Component.translatable(valid ? "firmalife.greenhouse.valid_block" : "firmalife.greenhouse.invalid_block"));
             if (!valid)
             {
                 text.add(invalidReason);
             }
 
-            text.add(Helpers.translatable("tfc.tooltip.farmland.nutrients", format(planter, FarmlandBlockEntity.NutrientType.NITROGEN), format(planter, FarmlandBlockEntity.NutrientType.PHOSPHOROUS), format(planter, FarmlandBlockEntity.NutrientType.POTASSIUM)));
+            text.add(Component.translatable("tfc.tooltip.farmland.nutrients", format(planter, FarmlandBlockEntity.NutrientType.NITROGEN), format(planter, FarmlandBlockEntity.NutrientType.PHOSPHOROUS), format(planter, FarmlandBlockEntity.NutrientType.POTASSIUM)));
         }
     }
 

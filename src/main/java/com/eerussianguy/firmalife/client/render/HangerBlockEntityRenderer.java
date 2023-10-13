@@ -33,12 +33,12 @@ public class HangerBlockEntityRenderer implements BlockEntityRenderer<HangerBloc
         poseStack.translate(0.5, 0.5, 0.5);
         poseStack.scale(0.45f, 0.45f, 0.45f);
         int currentDraws = 0;
-        poseStack.mulPose(Vector3f.YP.rotationDegrees(timeD));
+        poseStack.mulPose(Axis.YP.rotationDegrees(timeD));
         poseStack.translate(0, 1f, 0);
         for (int i = 0; i < 4; i++)
         {
             poseStack.translate(0, -1f, 0);
-            poseStack.mulPose(Vector3f.YP.rotationDegrees((timeD + 22.5f) % 360));
+            poseStack.mulPose(Axis.YP.rotationDegrees((timeD + 22.5f) % 360));
             if (currentDraws >= filled * totalDraws)
             {
                 break;
@@ -47,7 +47,7 @@ public class HangerBlockEntityRenderer implements BlockEntityRenderer<HangerBloc
             {
                 currentDraws += 1;
             }
-            itemRenderer.renderStatic(stack, ItemTransforms.TransformType.FIXED, combinedLight, combinedOverlay, poseStack, buffer, 0);
+            itemRenderer.renderStatic(stack, ItemDisplayContext.FIXED, combinedLight, combinedOverlay, poseStack, buffer, 0);
         }
 
         poseStack.popPose();

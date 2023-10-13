@@ -7,7 +7,6 @@
     "defaultRequire": 1
   },
   "mixins": [
-    "ResourceCacheManagerMixin"
   ],
   "refmap": "firmalife.refmap.json"
 }

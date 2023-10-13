@@ -24,7 +24,7 @@ public class HydroponicPlanterBlockEntity extends QuadPlanterBlockEntity
     {
         if (!hasBasin())
         {
-            return Helpers.translatable("firmalife.greenhouse.no_basin");
+            return Component.translatable("firmalife.greenhouse.no_basin");
         }
         return super.getInvalidReason();
     }

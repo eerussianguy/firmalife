@@ -3,6 +3,7 @@ package com.eerussianguy.firmalife.client.screen;
 import com.eerussianguy.firmalife.common.blockentities.StovetopPotBlockEntity;
 import com.eerussianguy.firmalife.common.container.StovetopPotContainer;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 
@@ -18,7 +19,7 @@ public class StovetopPotScreen extends BlockEntityScreen<StovetopPotBlockEntity,
     }
 
     @Override
-    protected void renderLabels(PoseStack poseStack, int mouseX, int mouseY)
+    protected void renderLabels(GuiGraphics poseStack, int mouseX, int mouseY)
     {
         super.renderLabels(poseStack, mouseX, mouseY);
         Heat heat = Heat.getHeat(menu.getBlockEntity().getTemperature());

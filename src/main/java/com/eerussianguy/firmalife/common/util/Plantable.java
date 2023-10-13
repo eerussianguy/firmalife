@@ -164,7 +164,7 @@ public class Plantable extends ItemDefinition
 
     public void addTooltipInfo(List<Component> tooltip)
     {
-        tooltip.add(Helpers.translatable("firmalife.tooltip.planter_usable", FLHelpers.translateEnum(planter)));
+        tooltip.add(Component.translatable("firmalife.tooltip.planter_usable", FLHelpers.translateEnum(planter)));
     }
 
     public static class Packet extends DataManagerSyncPacket<Plantable> {}

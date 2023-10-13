@@ -27,16 +27,13 @@ public class IronComposterBlockEntity extends ComposterBlockEntity
         cursor.set(getBlockPos());
         final float rainfall = Climate.getRainfall(level, cursor);
         long readyTicks = FLConfig.SERVER.ironComposterTicks.get();
-        if (TFCConfig.SERVER.composterRainfallCheck.get())
+        if (rainfall < 150f) // inverted trapezoid wave
         {
-            if (rainfall < 150f) // inverted trapezoid wave
-            {
-                readyTicks *= (long) ((150f - rainfall) / 50f + 1f);
-            }
-            else if (rainfall > 350f)
-            {
-                readyTicks *= (long) ((rainfall - 350f) / 50f + 1f);
-            }
+            readyTicks *= (long) ((150f - rainfall) / 50f + 1f);
+        }
+        else if (rainfall > 350f)
+        {
+            readyTicks *= (long) ((rainfall - 350f) / 50f + 1f);
         }
         cursor.move(0, 1, 0);
         if (Helpers.isBlock(level.getBlockState(cursor), TFCTags.Blocks.SNOW))

@@ -9,6 +9,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.animal.AbstractFish;
 import net.minecraft.world.item.ItemStack;
@@ -70,7 +71,7 @@ public class IceFishingStationBlockEntity extends TickableInventoryBlockEntity<I
                 }
                 if (level.random.nextFloat() < 0.05f && level instanceof ServerLevel server)
                 {
-                    final Random random = level.random;
+                    final RandomSource random = level.random;
                     final BlockPos particlePos = pos.relative(state.getValue(IceFishingStationBlock.FACING));
                     Helpers.playSound(level, particlePos, SoundEvents.FISHING_BOBBER_SPLASH);
                     server.sendParticles(ParticleTypes.SPLASH, particlePos.getX() + random.nextFloat(), particlePos.getY() + (random.nextFloat() * 0.1f), particlePos.getZ() + random.nextFloat(), 3, 0, 0, 0, 1);

@@ -183,13 +183,13 @@ public class OvenBottomBlockEntity extends TickableInventoryBlockEntity<ItemStac
     }
 
     @Override
-    public long getLastUpdateTick()
+    public long getLastCalendarUpdateTick()
     {
         return lastPlayerTick;
     }
 
     @Override
-    public void setLastUpdateTick(long ticks)
+    public void setLastCalendarUpdateTick(long ticks)
     {
         lastPlayerTick = ticks;
     }

@@ -1,8 +1,8 @@
 package com.eerussianguy.firmalife.common.recipes;
 
-import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.VatBlockEntity;
 import com.google.gson.JsonObject;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -138,7 +138,7 @@ public class VatRecipe implements ISimpleRecipe<VatBlockEntity.VatInventory>
     }
 
     @Override
-    public ItemStack getResultItem()
+    public ItemStack getResultItem(RegistryAccess access)
     {
         return outputItem.getSingleStack(ItemStack.EMPTY);
     }

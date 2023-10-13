@@ -5,6 +5,7 @@ import java.util.function.Supplier;
 import com.eerussianguy.firmalife.common.blockentities.FLTickCounterBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -25,7 +26,7 @@ public class FLGrowingFruitTreeBranchBlock extends GrowingFruitTreeBranchBlock
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, Random rand)
+    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand)
     {
         int hydration = FruitTreeLeavesBlock.getHydration(level, pos);
         float temp = Climate.getTemperature(level, pos);

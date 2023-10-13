@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -40,7 +41,7 @@ public class WateringCanItem extends Item
             if (level.isClientSide && hit.getType() != HitResult.Type.MISS)
             {
                 final Vec3 vec = hit.getLocation();
-                final Random rand = entity.getRandom();
+                final RandomSource rand = entity.getRandom();
                 level.addParticle(ParticleTypes.SPLASH, vec.x, vec.y, vec.z, rand.nextFloat() - 0.5f, rand.nextFloat(), rand.nextFloat() - 0.5f);
             }
         }

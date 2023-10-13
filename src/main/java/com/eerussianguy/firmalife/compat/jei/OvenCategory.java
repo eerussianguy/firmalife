@@ -5,6 +5,7 @@ import java.util.List;
 import com.eerussianguy.firmalife.common.blocks.OvenType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.item.ItemStack;
 
@@ -46,7 +47,7 @@ public class OvenCategory extends BaseRecipeCategory<OvenRecipe>
     }
 
     @Override
-    public void draw(OvenRecipe recipe, IRecipeSlotsView recipeSlots, PoseStack stack, double mouseX, double mouseY)
+    public void draw(OvenRecipe recipe, IRecipeSlotsView recipeSlots, GuiGraphics stack, double mouseX, double mouseY)
     {
         fire.draw(stack, 48, 16);
         fireAnimated.draw(stack, 48, 16);
@@ -56,7 +57,7 @@ public class OvenCategory extends BaseRecipeCategory<OvenRecipe>
         {
             final Minecraft mc = Minecraft.getInstance();
             final Font font = mc.font;
-            font.draw(stack, color, 60f - font.width(color) / 2.0f, 4f, 0xFFFFFF);
+            stack.drawString(font, color, 60 - font.width(color) / 2, 4, 0xFFFFFF, false);
         }
     }
 }

@@ -4,6 +4,7 @@ import com.eerussianguy.firmalife.common.blocks.OvenBottomBlock;
 import com.eerussianguy.firmalife.common.util.FLAdvancements;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -30,12 +31,12 @@ public class FLInteractionManager
         InteractionManager.register(Ingredient.of(FLTags.Items.PUMPKIN_KNAPPING), false, true, InteractionManager.createKnappingInteraction((stack, player) -> {
                 if (!player.getInventory().contains(TFCTags.Items.KNIVES))
                 {
-                    player.displayClientMessage(Helpers.translatable("tfc.tooltip.knapping.knife_needed"), true);
+                    player.displayClientMessage(Component.translatable("tfc.tooltip.knapping.knife_needed"), true);
                     return false;
                 }
                 if (stack.getCapability(FoodCapability.CAPABILITY).map(IFood::isRotten).orElse(false))
                 {
-                    player.displayClientMessage(Helpers.translatable("tfc.tooltip.knapping.rotten"), true);
+                    player.displayClientMessage(Component.translatable("tfc.tooltip.knapping.rotten"), true);
                     return false;
                 }
                 return true;

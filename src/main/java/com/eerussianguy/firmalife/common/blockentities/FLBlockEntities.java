@@ -19,7 +19,7 @@ import net.dries007.tfc.util.registry.RegistrationHelpers;
 
 public class FLBlockEntities
 {
-    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, FirmaLife.MOD_ID);
+    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, FirmaLife.MOD_ID);
 
     public static final RegistryObject<BlockEntityType<FLTickCounterBlockEntity>> TICK_COUNTER = register("tick_counter", FLTickCounterBlockEntity::new, Stream.of(
         FLBlocks.CHEDDAR_WHEEL, FLBlocks.CHEVRE_WHEEL, FLBlocks.FETA_WHEEL, FLBlocks.SHOSHA_WHEEL, FLBlocks.RAJYA_METOK_WHEEL, FLBlocks.GOUDA_WHEEL,

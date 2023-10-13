@@ -1,9 +1,9 @@
 package com.eerussianguy.firmalife.common.blocks.plant;
 
-import java.util.Random;
 import java.util.function.Supplier;
 import com.eerussianguy.firmalife.common.blockentities.FLTickCounterBlockEntity;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -40,7 +40,7 @@ public class FLFruitTreeSaplingBlock extends FruitTreeSaplingBlock
     }
 
     @Override
-    public void createTree(Level level, BlockPos pos, BlockState state, Random random)
+    public void createTree(Level level, BlockPos pos, BlockState state, RandomSource random)
     {
         final boolean onBranch = Helpers.isBlock(level.getBlockState(pos.below()), TFCTags.Blocks.FRUIT_TREE_BRANCH);
         int internalSapling = onBranch ? 3 : state.getValue(TFCBlockStateProperties.SAPLINGS);

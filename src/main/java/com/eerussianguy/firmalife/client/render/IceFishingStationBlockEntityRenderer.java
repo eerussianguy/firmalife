@@ -49,9 +49,9 @@ public class IceFishingStationBlockEntityRenderer implements BlockEntityRenderer
                 };
             poseStack.pushPose();
             poseStack.translate(0.5, 0.4, 0.5);
-            poseStack.mulPose(Vector3f.YP.rotationDegrees(angle));
+            poseStack.mulPose(Axis.YP.rotationDegrees(angle));
             poseStack.scale(1.2f, 1.2f, 1.2f);
-            Minecraft.getInstance().getItemRenderer().renderStatic(rod, ItemTransforms.TransformType.FIXED, combinedLight, combinedOverlay, poseStack, buffers, 0);
+            Minecraft.getInstance().getItemRenderer().renderStatic(rod, ItemDisplayContext.FIXED, combinedLight, combinedOverlay, poseStack, buffers, 0);
             poseStack.popPose();
 
             if (state.getValue(IceFishingStationBlock.CAST))

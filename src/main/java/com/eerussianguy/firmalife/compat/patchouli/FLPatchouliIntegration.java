@@ -65,7 +65,7 @@ public class FLPatchouliIntegration
         final IStateMatcher top = api.predicateMatcher(greenBlock(greenhouse, Greenhouse.BlockType.ROOF_TOP), s -> Helpers.isBlock(s, tag) && s.getBlock() instanceof GreenhouseSlabBlock && s.getValue(SlabBlock.TYPE) == SlabType.BOTTOM);
         final IStateMatcher doorT = api.predicateMatcher(greenBlock(greenhouse, Greenhouse.BlockType.DOOR).setValue(GreenhouseDoorBlock.HALF, DoubleBlockHalf.UPPER).setValue(GreenhouseDoorBlock.FACING, Direction.EAST), s -> Helpers.isBlock(s, tag) && s.getBlock() instanceof GreenhouseDoorBlock);
         final IStateMatcher doorB = api.predicateMatcher(greenBlock(greenhouse, Greenhouse.BlockType.DOOR).setValue(GreenhouseDoorBlock.HALF, DoubleBlockHalf.LOWER).setValue(GreenhouseDoorBlock.FACING, Direction.EAST), s -> Helpers.isBlock(s, tag) && s.getBlock() instanceof GreenhouseDoorBlock);
-        final IStateMatcher solid = api.predicateMatcher(TFCBlocks.SOIL.get(SoilBlockType.DIRT).get(SoilBlockType.Variant.SILTY_LOAM).get(), s -> s.getMaterial().isSolid());
+        final IStateMatcher solid = api.predicateMatcher(TFCBlocks.SOIL.get(SoilBlockType.DIRT).get(SoilBlockType.Variant.SILTY_LOAM).get(), s -> true);
         final IStateMatcher station = api.predicateMatcher(FLBlocks.CLIMATE_STATION.get().defaultBlockState().setValue(ClimateStationBlock.STASIS, true), s -> Helpers.isBlock(s, FLBlocks.CLIMATE_STATION.get()));
 
         return api.makeMultiblock(new String[][] {

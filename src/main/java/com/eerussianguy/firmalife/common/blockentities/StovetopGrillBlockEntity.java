@@ -87,6 +87,7 @@ public class StovetopGrillBlockEntity extends ApplianceBlockEntity<StovetopGrill
 
     protected void handleCooking()
     {
+        assert level != null;
         for (int slot = 0; slot < SLOTS; slot++)
         {
             final ItemStack inputStack = inventory.getStackInSlot(slot);
@@ -96,7 +97,7 @@ public class StovetopGrillBlockEntity extends ApplianceBlockEntity<StovetopGrill
                 final HeatingRecipe recipe = cachedRecipes[finalSlot];
                 if (recipe != null && recipe.isValidTemperature(cap.getTemperature()))
                 {
-                    ItemStack output = recipe.assemble(new ItemStackInventory(inputStack));
+                    ItemStack output = recipe.assemble(new ItemStackInventory(inputStack), level.registryAccess());
                     FoodCapability.applyTrait(output, FoodTraits.WOOD_GRILLED);
                     inventory.setStackInSlot(finalSlot, output);
                     markForSync();

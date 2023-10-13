@@ -80,13 +80,13 @@ public abstract class ApplianceBlockEntity<C extends IItemHandlerModifiable & IN
     public void ranOutDueToCalendar() {}
 
     @Override
-    public long getLastUpdateTick()
+    public long getLastCalendarUpdateTick()
     {
         return lastUpdateTick;
     }
 
     @Override
-    public void setLastUpdateTick(long tick)
+    public void setLastCalendarUpdateTick(long tick)
     {
         lastUpdateTick = tick;
     }
