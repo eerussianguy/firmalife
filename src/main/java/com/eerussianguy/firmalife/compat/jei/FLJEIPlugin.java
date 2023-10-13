@@ -31,7 +31,6 @@ import mezz.jei.api.registration.IRecipeRegistration;
 import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.common.recipes.KnappingRecipe;
-import net.dries007.tfc.compat.jei.category.KnappingRecipeCategory;
 import net.dries007.tfc.util.Helpers;
 
 @JeiPlugin
@@ -83,7 +82,6 @@ public class FLJEIPlugin implements IModPlugin
         r.addRecipeCategories(new MixingCategory(MIXING_BOWL, gui));
         r.addRecipeCategories(new OvenCategory(OVEN, gui));
         r.addRecipeCategories(new VatCategory(VAT, gui));
-        r.addRecipeCategories(new KnappingRecipeCategory<>(PUMPKIN_KNAPPING, gui, new ItemStack(TFCBlocks.PUMPKIN.get()), PUMPKIN_TEXTURE, null));
     }
 
     @Override
@@ -94,7 +92,6 @@ public class FLJEIPlugin implements IModPlugin
         r.addRecipes(MIXING_BOWL, getRecipes(FLRecipeTypes.MIXING_BOWL.get()));
         r.addRecipes(OVEN, getRecipes(FLRecipeTypes.OVEN.get()));
         r.addRecipes(VAT, getRecipes(FLRecipeTypes.VAT.get()));
-        r.addRecipes(PUMPKIN_KNAPPING, getRecipes(FLRecipeTypes.PUMPKIN_KNAPPING.get(), recipe -> recipe.getSerializer() == FLRecipeSerializers.PUMPKIN_KNAPPING.get()));
     }
 
     @Override

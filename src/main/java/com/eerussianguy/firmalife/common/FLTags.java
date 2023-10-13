@@ -1,9 +1,8 @@
 package com.eerussianguy.firmalife.common;
 
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
 
@@ -30,7 +29,7 @@ public class FLTags
 
         private static TagKey<Block> create(String id)
         {
-            return TagKey.create(Registry.BLOCK_REGISTRY, FLHelpers.identifier(id));
+            return TagKey.create(Registries.BLOCK, FLHelpers.identifier(id));
         }
     }
 
@@ -47,7 +46,7 @@ public class FLTags
 
         private static TagKey<Item> create(String id)
         {
-            return TagKey.create(Registry.ITEM_REGISTRY, FLHelpers.identifier(id));
+            return TagKey.create(Registries.ITEM, FLHelpers.identifier(id));
         }
 
     }
@@ -60,17 +59,8 @@ public class FLTags
 
         private static TagKey<Fluid> create(String id)
         {
-            return TagKey.create(Registry.FLUID_REGISTRY, FLHelpers.identifier(id));
+            return TagKey.create(Registries.FLUID, FLHelpers.identifier(id));
         }
 
-    }
-
-    public static class Biomes
-    {
-
-        private static TagKey<Biome> create(String id)
-        {
-            return TagKey.create(Registry.BIOME_REGISTRY, FLHelpers.identifier(id));
-        }
     }
 }

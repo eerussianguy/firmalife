@@ -1,5 +1,6 @@
 package com.eerussianguy.firmalife.client.render;
 
+import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
@@ -7,12 +8,12 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.core.Direction;
 import net.minecraft.util.Mth;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 
 import com.eerussianguy.firmalife.common.blockentities.FoodShelfBlockEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Vector3f;
 import net.dries007.tfc.common.capabilities.Capabilities;
 
 public class FoodShelfBlockEntityRenderer implements BlockEntityRenderer<FoodShelfBlockEntity>
@@ -25,7 +26,7 @@ public class FoodShelfBlockEntityRenderer implements BlockEntityRenderer<FoodShe
         if (stack.isEmpty()) return;
 
         int totalDraws = 16;
-        int maxStackSize = Mth.clamp(stack.getItem().getItemStackLimit(stack), 1, 64);
+        int maxStackSize = Mth.clamp(stack.getItem().getMaxStackSize(stack), 1, 64);
         float filled = (float) stack.getCount() / (float) maxStackSize;
 
         final Direction facing = shelf.getBlockState().getValue(HorizontalDirectionalBlock.FACING);
@@ -63,7 +64,7 @@ public class FoodShelfBlockEntityRenderer implements BlockEntityRenderer<FoodShe
                     currentDraws += 1;
                 }
                 poseStack.translate(0, 0, 0.175f);
-                itemRenderer.renderStatic(stack, ItemDisplayContext.FIXED, combinedLight, combinedOverlay, poseStack, buffer, 0);
+                itemRenderer.renderStatic(stack, ItemDisplayContext.FIXED, combinedLight, combinedOverlay, poseStack, buffer, shelf.getLevel(), 0);
             }
             poseStack.popPose();
         }

@@ -50,7 +50,7 @@ public class SwarmEffect extends MobEffect
     {
         if (!entity.isInWaterOrRain() && FLConfig.SERVER.enableBeeSwarm.get() && !hasBeeArmor(entity))
         {
-            entity.hurt(FLDamageSources.SWARM, 0.5F);
+            FLDamageSources.swarm(entity, 0.5f);
         }
         particles(entity.level(), entity.blockPosition(), entity.getRandom());
     }

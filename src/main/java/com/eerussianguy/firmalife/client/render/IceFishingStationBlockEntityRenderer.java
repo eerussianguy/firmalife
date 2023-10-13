@@ -5,24 +5,18 @@ import com.eerussianguy.firmalife.common.blockentities.IceFishingStationBlockEnt
 import com.eerussianguy.firmalife.common.blocks.IceFishingStationBlock;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Constants;
-import com.mojang.math.Matrix4f;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import javax.annotation.Nullable;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.animal.AbstractFish;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
@@ -51,7 +45,7 @@ public class IceFishingStationBlockEntityRenderer implements BlockEntityRenderer
             poseStack.translate(0.5, 0.4, 0.5);
             poseStack.mulPose(Axis.YP.rotationDegrees(angle));
             poseStack.scale(1.2f, 1.2f, 1.2f);
-            Minecraft.getInstance().getItemRenderer().renderStatic(rod, ItemDisplayContext.FIXED, combinedLight, combinedOverlay, poseStack, buffers, 0);
+            Minecraft.getInstance().getItemRenderer().renderStatic(rod, ItemDisplayContext.FIXED, combinedLight, combinedOverlay, poseStack, buffers, station.getLevel(), 0);
             poseStack.popPose();
 
             if (state.getValue(IceFishingStationBlock.CAST))
@@ -73,7 +67,7 @@ public class IceFishingStationBlockEntityRenderer implements BlockEntityRenderer
         final PoseStack.Pose pose = poseStack.last();
         if (fish != null)
         {
-            final Vec3 off = fish.getLeashOffset();
+            final Vec3 off = fish.getLeashOffset(partialTick);
             dx = (float) (fish.xo - ropePos.x + off.x);
             dy = (float) (fish.yo - ropePos.y + off.y);
             dz = (float) (fish.zo - ropePos.z + off.z);

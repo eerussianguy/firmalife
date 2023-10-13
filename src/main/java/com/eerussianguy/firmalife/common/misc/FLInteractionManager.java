@@ -4,22 +4,15 @@ import com.eerussianguy.firmalife.common.blocks.OvenBottomBlock;
 import com.eerussianguy.firmalife.common.util.FLAdvancements;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.crafting.Ingredient;
 
-import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
-import com.eerussianguy.firmalife.common.container.FLContainerProviders;
 import net.minecraft.world.level.Level;
 
-import net.dries007.tfc.common.TFCTags;
-import net.dries007.tfc.common.capabilities.food.FoodCapability;
-import net.dries007.tfc.common.capabilities.food.IFood;
 import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.util.BlockItemPlacement;
-import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.InteractionManager;
 
 public class FLInteractionManager
@@ -28,19 +21,6 @@ public class FLInteractionManager
     {
         InteractionManager.register(new BlockItemPlacement(TFCItems.WOOL_YARN, FLBlocks.WOOL_STRING));
 
-        InteractionManager.register(Ingredient.of(FLTags.Items.PUMPKIN_KNAPPING), false, true, InteractionManager.createKnappingInteraction((stack, player) -> {
-                if (!player.getInventory().contains(TFCTags.Items.KNIVES))
-                {
-                    player.displayClientMessage(Component.translatable("tfc.tooltip.knapping.knife_needed"), true);
-                    return false;
-                }
-                if (stack.getCapability(FoodCapability.CAPABILITY).map(IFood::isRotten).orElse(false))
-                {
-                    player.displayClientMessage(Component.translatable("tfc.tooltip.knapping.rotten"), true);
-                    return false;
-                }
-                return true;
-        }, FLContainerProviders.PUMPKIN_KNAPPING));
 
         InteractionManager.register(Ingredient.of(TFCItems.WROUGHT_IRON_GRILL.get()), false, (stack, context) -> {
             final Level level = context.getLevel();

@@ -61,7 +61,7 @@ public enum FLPlant implements RegistryPlant
 
     public BlockBehaviour.Properties solid()
     {
-        return Block.Properties.of(Material.REPLACEABLE_PLANT).noOcclusion().sound(SoundType.GRASS).randomTicks();
+        return Block.Properties.of().replaceable().noOcclusion().sound(SoundType.GRASS).randomTicks();
     }
 
     public BlockBehaviour.Properties nonSolid()

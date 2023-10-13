@@ -27,7 +27,6 @@ import net.dries007.tfc.common.capabilities.food.FoodCapability;
 import net.dries007.tfc.common.capabilities.food.FoodData;
 import net.dries007.tfc.common.capabilities.food.IFood;
 import net.dries007.tfc.common.capabilities.food.Nutrient;
-import net.dries007.tfc.common.items.DynamicBowlFood;
 import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.common.recipes.SoupPotRecipe;
 import net.dries007.tfc.util.Helpers;

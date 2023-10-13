@@ -67,7 +67,7 @@ public class OvenTopBlock extends AbstractOvenBlock
             {
                 if (!peel && oven.getTemperature() > 100f && FLConfig.SERVER.ovenRequirePeel.get())
                 {
-                    player.hurt(FLDamageSources.OVEN, 0.5f);
+                    FLDamageSources.oven(player, 0.5f);
                 }
                 return FLHelpers.takeOneAny(level, OvenTopBlockEntity.SLOT_INPUT_START, OvenTopBlockEntity.SLOT_INPUT_END, inv, player);
             }

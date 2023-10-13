@@ -1,6 +1,5 @@
 package com.eerussianguy.firmalife.common.blocks;
 
-import java.util.Random;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.blockentities.StovetopGrillBlockEntity;
@@ -9,6 +8,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
@@ -56,7 +56,7 @@ public class StovetopGrillBlock extends BottomSupportedDeviceBlock
     }
 
     @Override
-    public void animateTick(BlockState state, Level level, BlockPos pos, Random rand)
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource rand)
     {
         FLHelpers.readInventory(level, pos, FLBlockEntities.STOVETOP_GRILL, (grill, cap) -> {
             for (int i = 0; i < StovetopGrillBlockEntity.SLOTS; i++)

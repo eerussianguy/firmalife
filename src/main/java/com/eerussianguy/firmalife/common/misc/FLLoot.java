@@ -21,7 +21,7 @@ public class FLLoot
     public static final DeferredRegister<LootItemConditionType> CONDITIONS = DeferredRegister.create(Registries.LOOT_CONDITION_TYPE, MOD_ID);
 
     public static final RegistryObject<LootItemConditionType> BLOCK_INGREDIENT = lootCondition("block_ingredient", new BlockIngredientLootCondition.Serializer());
-    public static final RegistryObject<AddItemModifier.Serializer> ADD_ITEM = glmSerializer("add_item", AddItemModifier.Serializer::new);
+    public static final RegistryObject<Codec<AddItemModifier>> ADD_ITEM = glmSerializer("add_item", () -> AddItemModifier.CODEC);
 
     private static RegistryObject<LootItemConditionType> lootCondition(String id, Serializer<? extends LootItemCondition> serializer)
     {

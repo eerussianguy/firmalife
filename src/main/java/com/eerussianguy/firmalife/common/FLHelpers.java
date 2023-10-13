@@ -17,7 +17,7 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -99,7 +99,7 @@ public class FLHelpers
 
     public static Component blockEntityName(String name)
     {
-        return new TranslatableComponent(MOD_ID + ".block_entity." + name);
+        return Component.translatable(MOD_ID + ".block_entity." + name);
     }
 
     public static <T extends BlockEntity> void readInventory(Level level, BlockPos pos, Supplier<BlockEntityType<T>> type, BiConsumer<T, IItemHandler> consumer)
@@ -175,7 +175,7 @@ public class FLHelpers
         return BlockPos.betweenClosed(center.offset(-radius, -height, -radius), center.offset(radius, height, radius));
     }
 
-    public static TranslatableComponent translateEnum(Enum<?> anEnum)
+    public static MutableComponent translateEnum(Enum<?> anEnum)
     {
         return Component.translatable(getEnumTranslationKey(anEnum));
     }

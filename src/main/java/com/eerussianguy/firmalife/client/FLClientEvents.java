@@ -56,6 +56,7 @@ public class FLClientEvents
         bus.addListener(FLClientEvents::registerParticleFactories);
     }
 
+    @SuppressWarnings("deprecation")
     public static void clientSetup(FMLClientSetupEvent event)
     {
         // Render Types
@@ -76,7 +77,7 @@ public class FLClientEvents
         ItemBlockRenderTypes.setRenderLayer(FLBlocks.NUTRITIVE_BASIN.get(), translucent);
 
         FLBlocks.CHROMITE_ORES.values().forEach(map -> map.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout)));
-        FLBlocks.FRUIT_PRESERVES.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), translucent));
+//        FLBlocks.FRUIT_PRESERVES.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), translucent));
         FLBlocks.FL_FRUIT_PRESERVES.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), translucent));
         FLBlocks.GREENHOUSE_BLOCKS.values().forEach(map -> map.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout)));
         FLBlocks.FRUIT_TREE_LEAVES.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), layer -> Minecraft.useFancyGraphics() ? layer == cutoutMipped : layer == solid));
@@ -98,7 +99,6 @@ public class FLClientEvents
             MenuScreens.register(FLContainerTypes.BEEHIVE.get(), BeehiveScreen::new);
             MenuScreens.register(FLContainerTypes.STOVETOP_GRILL.get(), StovetopGrillScreen::new);
             MenuScreens.register(FLContainerTypes.STOVETOP_POT.get(), StovetopPotScreen::new);
-            MenuScreens.register(FLContainerTypes.PUMPKIN.get(), KnappingScreen::new);
 
             TFCItems.FOOD.forEach((food, item) -> {
                 if (FLItems.TFC_FRUITS.contains(food))
@@ -112,26 +112,22 @@ public class FLClientEvents
 
     public static void onBlockColors(RegisterColorHandlersEvent.Block event)
     {
-        final BlockColors registry = event.getBlockColors();
-        final BlockColor grassColor = (state, level, pos, tintIndex) -> TFCColors.getGrassColor(pos, tintIndex);
         final BlockColor tallGrassColor = (state, level, pos, tintIndex) -> TFCColors.getTallGrassColor(pos, tintIndex);
 
-        registry.register(tallGrassColor, FLBlocks.BUTTERFLY_GRASS.get());
-        registry.register(tallGrassColor, FLBlocks.POTTED_BUTTERFLY_GRASS.get());
+        event.register(tallGrassColor, FLBlocks.BUTTERFLY_GRASS.get());
+        event.register(tallGrassColor, FLBlocks.POTTED_BUTTERFLY_GRASS.get());
     }
 
     public static void onItemColors(RegisterColorHandlersEvent.Item event)
     {
-        final ItemColors registry = event.getItemColors();
         final ItemColor grassColor = (stack, tintIndex) -> TFCColors.getGrassColor(null, tintIndex);
 
-        Stream.of(FLBlocks.BUTTERFLY_GRASS).forEach(reg -> registry.register(grassColor, reg.get()));
+        Stream.of(FLBlocks.BUTTERFLY_GRASS).forEach(reg -> event.register(grassColor, reg.get()));
     }
 
     public static void registerParticleFactories(RegisterParticleProvidersEvent event)
     {
-        ParticleEngine engine = Minecraft.getInstance().particleEngine;
-        engine.register(FLParticles.GROWTH.get(), set -> new GlintParticleProvider(set, ChatFormatting.GREEN));
+        event.registerSpriteSet(FLParticles.GROWTH.get(), set -> new GlintParticleProvider(set, ChatFormatting.GREEN));
     }
 
     private static void registerDryProperty(Supplier<Item> item)

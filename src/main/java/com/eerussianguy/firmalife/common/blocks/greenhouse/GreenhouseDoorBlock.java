@@ -4,19 +4,13 @@ import java.util.Random;
 import java.util.function.Supplier;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Level;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
-import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.phys.BlockHitResult;
 
 import com.eerussianguy.firmalife.common.blocks.IWeatherable;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
@@ -30,9 +24,9 @@ public class GreenhouseDoorBlock extends DoorBlock implements IWeatherable, IFor
     private final Supplier<? extends Block> next;
     private final ExtendedProperties properties;
 
-    public GreenhouseDoorBlock(ExtendedProperties properties, @Nullable Supplier<? extends Block> next)
+    public GreenhouseDoorBlock(ExtendedProperties properties, @Nullable Supplier<? extends Block> next, BlockSetType set)
     {
-        super(properties.properties());
+        super(properties.properties(), set);
         this.next = next;
         this.properties = properties;
     }
@@ -45,7 +39,7 @@ public class GreenhouseDoorBlock extends DoorBlock implements IWeatherable, IFor
 
     @Override
     @SuppressWarnings("deprecation")
-    public void randomTick(BlockState lower, ServerLevel level, BlockPos pos, Random rand)
+    public void randomTick(BlockState lower, ServerLevel level, BlockPos pos, RandomSource rand)
     {
         Supplier<? extends Block> next = getNext();
         if (next != null && rand.nextInt(weatherChance()) == 0)
@@ -70,29 +64,10 @@ public class GreenhouseDoorBlock extends DoorBlock implements IWeatherable, IFor
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit)
-    {
-        state = state.cycle(OPEN);
-        level.setBlock(pos, state, 10);
-        level.levelEvent(player, state.getValue(OPEN) ? getOpenSound() : getCloseSound(), pos, 0);
-        level.gameEvent(player, isOpen(state) ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pos);
-        return InteractionResult.sidedSuccess(level.isClientSide);
-    }
-
-    @Override
     public ExtendedProperties getExtendedProperties()
     {
         return properties;
     }
 
-    private int getCloseSound()
-    {
-        return material == Material.METAL ? 1011 : 1012;
-    }
-
-    private int getOpenSound()
-    {
-        return material == Material.METAL ? 1005 : 1006;
-    }
 
 }

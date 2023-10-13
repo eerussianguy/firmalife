@@ -274,8 +274,6 @@ DEFAULT_LANG = {
     'death.attack.firmalife.oven.player': '%1$s climbed into an oven to escape %2$s.',
     'death.attack.firmalife.swarm': '%1$s was stung to death by a swarm of bees!',
     'death.attack.firmalife.swarm.player': '%1$s was stung to death by a swarm of bees while trying to escape %2$s.',
-    'death.attack.firmalife.ash': '%1$s lit wood ash on fire and was exploded.',
-    'death.attack.firmalife.ash.player': '%1$s lit wood ash on fire and was exploded while trying to escape %2$s.',
     'subtitles.item.firmalife.hollow_shell.blow': 'Shell whistles',
 
     'item.firmalife.hollow_shell.filled': '%s Hollow Shell',

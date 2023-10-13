@@ -18,17 +18,17 @@ import net.dries007.tfc.util.climate.ClimateRange;
 
 public class FLFruitTreeLeavesBlock extends FruitTreeLeavesBlock
 {
-    public FLFruitTreeLeavesBlock(ExtendedProperties properties, Supplier<? extends Item> productItem, Lifecycle[] stages, Supplier<ClimateRange> climateRange)
+    public FLFruitTreeLeavesBlock(ExtendedProperties properties, Supplier<? extends Item> productItem, Lifecycle[] stages, Supplier<ClimateRange> climateRange, int color)
     {
-        super(properties, productItem, stages, climateRange);
+        super(properties, productItem, stages, climateRange, color);
     }
 
     @Override
-    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource rand)
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random)
     {
-        if (state.getValue(LIFECYCLE) == Lifecycle.FLOWERING && Helpers.isBlock(this, FLTags.Blocks.BUZZING_LEAVES) && rand.nextInt(100) == 0)
+        if (random.nextInt(100) == 0 && state.getValue(LIFECYCLE) == Lifecycle.FLOWERING && Helpers.isBlock(this, FLTags.Blocks.BUZZING_LEAVES))
         {
-            SwarmEffect.particles(level, pos, rand);
+            SwarmEffect.particles(level, pos, random);
         }
     }
 

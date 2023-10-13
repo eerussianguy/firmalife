@@ -1,16 +1,17 @@
 package com.eerussianguy.firmalife.client.render;
 
+import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.util.Mth;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 
 import com.eerussianguy.firmalife.common.blockentities.HangerBlockEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Vector3f;
 import net.dries007.tfc.client.RenderHelpers;
 import net.dries007.tfc.common.capabilities.Capabilities;
 
@@ -26,7 +27,7 @@ public class HangerBlockEntityRenderer implements BlockEntityRenderer<HangerBloc
         float timeD = RenderHelpers.itemTimeRotation();
 
         int totalDraws = 4;
-        int maxStackSize = Mth.clamp(stack.getItem().getItemStackLimit(stack), 1, 64);
+        int maxStackSize = Mth.clamp(stack.getItem().getMaxStackSize(stack), 1, 64);
         float filled = (float) stack.getCount() / (float) maxStackSize;
 
         poseStack.pushPose();
@@ -47,7 +48,7 @@ public class HangerBlockEntityRenderer implements BlockEntityRenderer<HangerBloc
             {
                 currentDraws += 1;
             }
-            itemRenderer.renderStatic(stack, ItemDisplayContext.FIXED, combinedLight, combinedOverlay, poseStack, buffer, 0);
+            itemRenderer.renderStatic(stack, ItemDisplayContext.FIXED, combinedLight, combinedOverlay, poseStack, buffer, hanger.getLevel(), 0);
         }
 
         poseStack.popPose();

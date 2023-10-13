@@ -9,10 +9,11 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.Material;
 
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
+
+import net.minecraft.world.level.block.state.properties.BlockSetType;
 import org.jetbrains.annotations.Nullable;
 
 public enum Greenhouse
@@ -31,12 +32,14 @@ public enum Greenhouse
     private final Greenhouse next;
     private final SoundType sound;
     private final boolean flammable;
+    private final BlockSetType blockSet;
 
     Greenhouse(SoundType sound, boolean flammable)
     {
         this.next = null;
         this.sound = sound;
         this.flammable = flammable;
+        this.blockSet = flammable ? BlockSetType.OAK : BlockSetType.STONE;
     }
 
     Greenhouse(SoundType sound, boolean flammable, Greenhouse next)
@@ -44,6 +47,7 @@ public enum Greenhouse
         this.next = next;
         this.sound = sound;
         this.flammable = flammable;
+        this.blockSet = flammable ? BlockSetType.OAK : BlockSetType.STONE;
     }
 
     public enum BlockType
@@ -51,7 +55,7 @@ public enum Greenhouse
         WALL((green, type) -> new GreenhouseWallBlock(properties(green), type.getNext(green))),
         ROOF((green, type) -> new GreenhouseStairBlock(properties(green), () -> FLBlocks.GREENHOUSE_BLOCKS.get(green).get(WALL).get().defaultBlockState(), type.getNext(green))),
         ROOF_TOP((green, type) -> new GreenhouseSlabBlock(properties(green), type.getNext(green))),
-        DOOR((green, type) -> new GreenhouseDoorBlock(properties(green), type.getNext(green)));
+        DOOR((green, type) -> new GreenhouseDoorBlock(properties(green), type.getNext(green), green.blockSet));
 
         public static ExtendedProperties properties(Greenhouse green)
         {
