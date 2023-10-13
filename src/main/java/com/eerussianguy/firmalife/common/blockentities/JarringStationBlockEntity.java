@@ -2,8 +2,6 @@ package com.eerussianguy.firmalife.common.blockentities;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blocks.JarringStationBlock;
-import com.eerussianguy.firmalife.common.items.FLItems;
-import com.eerussianguy.firmalife.common.items.JarsBlockItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.Tag;
@@ -15,9 +13,11 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
+import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
 import net.dries007.tfc.common.capabilities.Capabilities;
 import net.dries007.tfc.common.capabilities.PartialItemHandler;
+import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.util.Helpers;
 
 public class JarringStationBlockEntity extends TickableInventoryBlockEntity<ItemStackHandler>
@@ -37,7 +37,7 @@ public class JarringStationBlockEntity extends TickableInventoryBlockEntity<Item
                     final ItemStack stack = ItemStack.of(fluid.getTag().getCompound("fruit"));
                     for (int i = 0; i < SLOTS; i++)
                     {
-                        if (station.inventory.getStackInSlot(i).getItem() == FLItems.EMPTY_JAR.get())
+                        if (station.inventory.getStackInSlot(i).getItem() == TFCItems.EMPTY_JAR.get())
                         {
                             Helpers.playSound(level, pos, SoundEvents.BOTTLE_FILL);
                             station.inventory.setStackInSlot(i, stack.copyWithCount(1));
@@ -74,7 +74,7 @@ public class JarringStationBlockEntity extends TickableInventoryBlockEntity<Item
     @Override
     public boolean isItemValid(int slot, ItemStack stack)
     {
-        return stack.getItem() instanceof JarsBlockItem || stack.getItem() == FLItems.EMPTY_JAR.get();
+        return Helpers.isItem(stack, TFCTags.Items.JARS);
     }
 
     @Override

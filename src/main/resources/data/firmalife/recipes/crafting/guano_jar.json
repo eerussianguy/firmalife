@@ -11,10 +11,10 @@
       "item": "tfc:groundcover/guano"
     },
     "Y": {
-      "item": "firmalife:empty_jar"
+      "item": "tfc:empty_jar_with_lid"
     }
   },
   "result": {
-    "item": "firmalife:guano_jar"
+    "item": "firmalife:jar/guano"
   }
 }

@@ -1,10 +1,8 @@
 package com.eerussianguy.firmalife.common.blocks;
 
-import java.util.Random;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.blockentities.JarbnetBlockEntity;
-import com.eerussianguy.firmalife.common.items.JarsBlockItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -30,6 +28,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.items.CandleBlockItem;
 import net.dries007.tfc.common.items.JugItem;
@@ -41,7 +40,7 @@ public class JarbnetBlock extends FourWayDeviceBlock
     public static boolean isItemAllowed(ItemStack stack)
     {
         final Item item = stack.getItem();
-        return item instanceof JarsBlockItem || item instanceof JugItem || item instanceof CandleBlockItem;
+        return Helpers.isItem(item, TFCTags.Items.JARS) || item instanceof JugItem || item instanceof CandleBlockItem;
     }
 
     public static final BooleanProperty OPEN = BlockStateProperties.OPEN;

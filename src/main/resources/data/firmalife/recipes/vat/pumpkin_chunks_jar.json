@@ -19,6 +19,6 @@
     "amount": 500
   },
   "jar": {
-    "item": "firmalife:pumpkin_chunks_jar"
+    "item": "firmalife:jar/pumpkin_chunks"
   }
 }

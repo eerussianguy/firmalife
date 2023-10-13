@@ -11,10 +11,10 @@
       "item": "tfc:compost"
     },
     "Y": {
-      "item": "firmalife:empty_jar"
+      "item": "tfc:empty_jar_with_lid"
     }
   },
   "result": {
-    "item": "firmalife:compost_jar"
+    "item": "firmalife:jar/compost"
   }
 }

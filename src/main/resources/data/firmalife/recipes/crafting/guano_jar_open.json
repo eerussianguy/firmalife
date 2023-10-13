@@ -3,7 +3,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "firmalife:guano_jar"
+      "item": "firmalife:jar/guano"
     }
   ],
   "result": {

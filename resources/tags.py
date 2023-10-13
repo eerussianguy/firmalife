@@ -4,7 +4,7 @@ from constants import *
 def generate(rm: ResourceManager):
     ### TAGS ###
     rm.item_tag('usable_on_oven', 'firmalife:peel')
-    rm.item_tag('sweetener', 'minecraft:sugar', 'firmalife:raw_honey')
+    rm.item_tag('tfc:sweetener', 'firmalife:raw_honey')
     rm.item_tag('tfc:foods/flour', *['tfc:food/%s_flour' % g for g in TFC_GRAINS])
     rm.item_tag('tfc:foods/dough', *['firmalife:food/%s_dough' % g for g in TFC_GRAINS])
     rm.item_tag('firmalife:foods/extra_dough', *['firmalife:food/%s_dough' % g for g in TFC_GRAINS])

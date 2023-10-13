@@ -5,12 +5,15 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.function.Supplier;
 
+import com.eerussianguy.firmalife.common.FLHelpers;
+import com.eerussianguy.firmalife.common.blocks.JarsBlock;
 import com.eerussianguy.firmalife.common.blocks.OvenType;
 import com.eerussianguy.firmalife.common.util.FLArmorMaterials;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -39,7 +42,6 @@ public class FLItems
     public static final RegistryObject<Item> CINNAMON_BARK = register("cinnamon_bark");
     public static final RegistryObject<Item> CHEESECLOTH = register("cheesecloth");
     public static final RegistryObject<Item> FRUIT_LEAF = register("fruit_leaf");
-    public static final RegistryObject<Item> EMPTY_JAR = register("empty_jar");
     public static final RegistryObject<Item> HOLLOW_SHELL = register("hollow_shell",  () -> new HollowShellItem(prop(), FLConfig.SERVER.hollowShellCapacity, FLTags.Fluids.USABLE_IN_HOLLOW_SHELL, false, false));
     public static final RegistryObject<Item> ICE_SHAVINGS = register("ice_shavings");
     public static final RegistryObject<Item> OVEN_INSULATION = register("oven_insulation", () -> new PeelItem(prop()));
@@ -64,6 +66,14 @@ public class FLItems
     public static final Map<FLFood, RegistryObject<Item>> FOODS = Helpers.mapOfKeys(FLFood.class, food -> register("food/" + food.name(), () -> new Item(new Item.Properties().food(food.getFoodProperties()))));
     public static final Map<FLFruit, RegistryObject<Item>> FRUITS = Helpers.mapOfKeys(FLFruit.class, food -> register("food/" + food.name(), () -> new Item(new Item.Properties().food(food.getFoodProperties()))));
     public static final Map<OvenType, RegistryObject<Item>> FINISHES = Helpers.mapOfKeys(OvenType.class, type -> type != OvenType.BRICK, type -> register(type.getTrueName() + "_finish", () -> new FinishItem(prop(), type)));
+
+    public static final RegistryObject<Item> HONEY_JAR = register("jar/honey", () -> new JarItem(new Item.Properties(), FLHelpers.identifier("block/jar/honey"), true));
+    public static final RegistryObject<Item> COMPOST_JAR = register("jar/compost", () -> new JarItem(new Item.Properties(), FLHelpers.identifier("block/jar/compost"), true));
+    public static final RegistryObject<Item> ROTTEN_COMPOST_JAR = register("jar/rotten_compost", () -> new JarItem(new Item.Properties(), FLHelpers.identifier("block/jar/rotten_compost"), true));
+    public static final RegistryObject<Item> GUANO_JAR = register("jar/guano", () -> new JarItem(new Item.Properties(), FLHelpers.identifier("block/jar/guano"), true));
+    public static final Map<FLFruit, RegistryObject<Item>> FL_FRUIT_PRESERVES = Helpers.mapOfKeys(FLFruit.class, food -> register("jar/" + food.getSerializedName() , () -> new JarItem(new Item.Properties(), FLHelpers.identifier("block/jar/" + food.getSerializedName()), true)));
+    public static final Map<FLFruit, RegistryObject<Item>> FL_UNSEALED_FRUIT_PRESERVES = Helpers.mapOfKeys(FLFruit.class, food -> register("jar/" + food.getSerializedName() + "_unsealed" , () -> new JarItem(new Item.Properties(), FLHelpers.identifier("block/jar/" + food.getSerializedName()), false)));
+
 
     public static final RegistryObject<Item> FILLED_PIE = register("food/filled_pie"); // inedible
     public static final RegistryObject<Item> COOKED_PIE = register("food/cooked_pie", () -> new Item(foodProperties()));

@@ -1,5 +1,6 @@
 package com.eerussianguy.firmalife;
 
+import com.eerussianguy.firmalife.common.FLCreativeTabs;
 import com.eerussianguy.firmalife.common.util.FLAdvancements;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -60,6 +61,7 @@ public class FirmaLife
         FLParticles.PARTICLE_TYPES.register(bus);
         FLFeatures.FEATURES.register(bus);
         FLSounds.SOUNDS.register(bus);
+        FLCreativeTabs.CREATIVE_TABS.register(bus);
         FLLoot.registerAll(bus);
 
         FLPackets.init();

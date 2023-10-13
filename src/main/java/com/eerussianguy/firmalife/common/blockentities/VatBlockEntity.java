@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blocks.VatBlock;
-import com.eerussianguy.firmalife.common.items.FLItems;
 import com.eerussianguy.firmalife.common.recipes.FLRecipeTypes;
 import com.eerussianguy.firmalife.common.recipes.VatRecipe;
 import net.minecraft.core.BlockPos;
@@ -22,6 +21,7 @@ import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
 import net.dries007.tfc.common.capabilities.InventoryFluidTank;
 import net.dries007.tfc.common.capabilities.PartialItemHandler;
+import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.util.Helpers;
 
 public class VatBlockEntity extends BoilingBlockEntity<VatBlockEntity.VatInventory>
@@ -62,7 +62,7 @@ public class VatBlockEntity extends BoilingBlockEntity<VatBlockEntity.VatInvento
     {
         final FluidStack fluid = inventory.getFluidInTank(0);
         final ItemStack stack = inventory.getStackInSlot(0);
-        if (fluid.hasTag() && fluid.getTag().contains("fruit", Tag.TAG_COMPOUND) && Helpers.isItem(stack, FLItems.EMPTY_JAR.get()))
+        if (fluid.hasTag() && fluid.getTag().contains("fruit", Tag.TAG_COMPOUND) && Helpers.isItem(stack, TFCItems.EMPTY_JAR.get()))
         {
             final int jars = stack.getCount();
             final int maxFill = fluid.getAmount() / 500;

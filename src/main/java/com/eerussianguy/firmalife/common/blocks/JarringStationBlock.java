@@ -3,7 +3,6 @@ package com.eerussianguy.firmalife.common.blocks;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.blockentities.JarringStationBlockEntity;
-import com.eerussianguy.firmalife.common.items.FLItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -17,6 +16,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import net.dries007.tfc.common.blocks.ExtendedProperties;
+import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.util.Helpers;
 
 public class JarringStationBlock extends FourWayDeviceBlock
@@ -38,7 +38,7 @@ public class JarringStationBlock extends FourWayDeviceBlock
             {
                 return FLHelpers.takeOneAny(level, 0, JarringStationBlockEntity.SLOTS - 1, inv, player);
             }
-            else if (Helpers.isItem(item, FLItems.EMPTY_JAR.get()))
+            else if (Helpers.isItem(item, TFCItems.EMPTY_JAR.get()))
             {
                 return FLHelpers.insertOneAny(level, item, 0, JarringStationBlockEntity.SLOTS - 1, inv, player);
             }

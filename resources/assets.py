@@ -128,16 +128,6 @@ def generate(rm: ResourceManager):
         tex = 'firmalife:block/greenhouse/climate_station/%s' % variant
         rm.block_model('firmalife:climate_station_%s' % variant, {'west': tex, 'east': tex, 'north': tex, 'south': tex, 'particle': tex, 'up': 'firmalife:block/greenhouse/climate_station/top', 'down': 'firmalife:block/greenhouse/climate_station/end'}, 'block/cube')
 
-    trd = 'squirting_moisture_transducer'
-    rm.blockstate(trd, variants={
-        'stasis=true': {'model': 'firmalife:block/' + trd + '_on'},
-        'stasis=false': {'model': 'firmalife:block/' + trd + '_off'}
-    }).with_lang(lang(trd)).with_tag('minecraft:mineable/pickaxe').with_block_loot('firmalife:%s' % trd)
-    rm.item_model(trd, parent='firmalife:block/' + trd + '_on', no_textures=True)
-    for variant in ('on', 'off'):
-        tex = 'firmalife:block/%s_%s' % (trd, variant)
-        rm.block_model('firmalife:%s_%s' % (trd, variant), {'west': tex, 'east': tex, 'north': tex, 'south': tex, 'particle': tex, 'up': 'firmalife:block/%s_top' % trd, 'down': 'firmalife:block/%s_top' % trd})
-
     rm.blockstate('stovetop_grill').with_lang(lang('stovetop grill')).with_tag('minecraft:mineable/pickaxe').with_block_loot('tfc:wrought_iron_grill')
     rm.blockstate('stovetop_pot').with_lang(lang('stovetop pot')).with_tag('minecraft:mineable/pickaxe').with_block_loot('tfc:ceramic/pot')
 
@@ -343,10 +333,14 @@ def generate(rm: ResourceManager):
 
     peel(rm, 'peel', 'firmalife:item/peel')
 
-    for jar, _, texture, _ in JARS:
-        make_jar(rm, jar, texture)
+    for name, _, _ in JARS:
+        rm.block_model('jar/%s' % name, textures={'1': 'firmalife:block/jar/%s' % name}, parent='tfc:block/jar')
+        rm.item_model('jar/%s' % name, 'firmalife:item/jar/%s' % name).with_lang(lang('jar of %s', name)).with_tag('tfc:jars').with_tag('tfc:unsealed_jars')
     for fruit in FL_FRUITS:
-        make_jar(rm, fruit, 'firmalife:block/jar/%s' % fruit).with_tag('foods/preserves')
+        rm.block_model('jar/%s' % fruit, textures={'1': 'firmalife:block/jar/%s' % fruit}, parent='tfc:block/jar')
+        rm.block_model('jar/%s_unsealed' % fruit, textures={'1': 'firmalife:block/jar/%s' % fruit, '2': 'tfc:block/jar_no_lid'}, parent='tfc:block/jar')
+        rm.item_model('jar/%s' % fruit, 'firmalife:item/jar/%s' % fruit).with_lang(lang('%s jam', fruit)).with_tag('tfc:jars').with_tag('tfc:foods/sealed_preserves')
+        rm.item_model('jar/%s_unsealed' % fruit, 'firmalife:item/jar/%s_unsealed' % fruit).with_lang(lang('%s jam', fruit)).with_tag('tfc:jars').with_tag('tfc:foods/preserves')
 
     for block, tag in SIMPLE_BLOCKS.items():
         rm.blockstate(block).with_block_model().with_tag(tag).with_lang(lang(block)).with_item_model().with_block_loot('firmalife:%s' % block)
@@ -392,18 +386,11 @@ def simple_plant_data(rm: ResourceManager, p: str, bees: bool = True, straw: boo
     loot_alt = ({'name': p, 'conditions': [loot_tables.match_tag('tfc:knives')]}) if not straw else ({'name': p, 'conditions': [loot_tables.match_tag('forge:shears')]}, {'name': 'tfc:straw', 'conditions': [loot_tables.match_tag('tfc:sharp_tools')]})
     rm.block_loot(p, loot_alt)
 
-def make_jar(rm: ResourceManager, jar: str, texture: str, lang_override: str = None) -> ItemContext:
-    for i in range(1, 5):
-        rm.block_model('jar/%s_%s' % (jar, i), textures={'1': texture}, parent='firmalife:block/jar_%s' % i)
-    block = rm.blockstate('%s_jar' % jar, variants=dict(('count=%s' % i, {'model': 'firmalife:block/jar/%s_%s' % (jar, i)}) for i in range(1, 5)))
-    block.with_lang(lang('%s jar', jar) if lang_override is None else lang_override)
-    loot_pools = []
-    for i in range(1, 5):
-        loot_pools += [{'name': 'firmalife:%s_jar' % jar, 'conditions': [loot_tables.block_state_property('firmalife:%s_jar[count=%s]' % (jar, i))], 'functions': [loot_tables.set_count(i)]}]
-    block.with_block_loot(*loot_pools)
-    ctx = rm.item_model('firmalife:%s_jar' % jar, 'firmalife:item/jar/%s' % jar)
-    rm.item_tag('jars', 'firmalife:%s_jar' % jar)
-    return ctx
+def make_jar(rm: ResourceManager, fruit: str, texture: str, lang_override: str = None) -> ItemContext:
+    rm.block_model('jar/%s' % fruit, textures={'1': 'firmalife:block/jar/%s' % fruit}, parent='tfc:block/jar')
+    rm.block_model('jar/%s_unsealed' % fruit, textures={'1': 'firmalife:block/jar/%s' % fruit, '2': 'firmalife:block/jar_no_lid'}, parent='tfc:block/jar')
+    rm.item_model('jar/%s' % fruit, 'tfc:item/jar/%s' % fruit).with_lang(lang('%s jam', fruit)).with_tag('jars').with_tag('foods/sealed_preserves')
+    rm.item_model('jar/%s_unsealed' % fruit, 'tfc:item/jar/%s_unsealed' % fruit).with_lang(lang('%s jam', fruit)).with_tag('jars').with_tag('foods/preserves')
 
 def item_model_property(rm: ResourceManager, name_parts: utils.ResourceIdentifier, overrides: utils.Json, data: Dict[str, Any]) -> ItemContext:
     res = utils.resource_location(rm.domain, name_parts)

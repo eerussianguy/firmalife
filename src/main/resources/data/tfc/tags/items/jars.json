@@ -1,0 +1,16 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "firmalife:jar/honey",
+    "firmalife:jar/compost",
+    "firmalife:jar/rotten_compost",
+    "firmalife:jar/guano",
+    "firmalife:jar/pumpkin_chunks",
+    "firmalife:jar/pumpkin_chunks_unsealed",
+    "firmalife:jar/fig",
+    "firmalife:jar/fig_unsealed",
+    "firmalife:jar/pineapple",
+    "firmalife:jar/pineapple_unsealed"
+  ]
+}

@@ -50,7 +50,6 @@ def generate(rm: ResourceManager):
     rm.crafting_shaped('crafting/peel', ['X', 'Y'], {'X': 'minecraft:bowl', 'Y': '#forge:rods/wooden'}, 'firmalife:peel').with_advancement('#forge:rods/wooden')
     damage_shapeless(rm, 'crafting/spoon', ('#forge:rods/wooden', '#tfc:lumber', '#tfc:knives'), 'firmalife:spoon').with_advancement('#forge:rods/wooden')
     rm.crafting_shaped('crafting/mixing_bowl', ['XYX', 'YXY'], {'X': 'firmalife:treated_lumber', 'Y': 'tfc:glue'}, 'firmalife:mixing_bowl').with_advancement('firmalife:treated_lumber')
-    rm.crafting_shapeless('crafting/empty_jar', ('minecraft:glass', '#tfc:lumber'), (4, 'firmalife:empty_jar')).with_advancement('minecraft:glass')
     rm.crafting_shaped('crafting/drying_mat', ['XXX'], {'X': 'firmalife:fruit_leaf'}, 'firmalife:drying_mat').with_advancement('firmalife:fruit_leaf')
     rm.crafting_shaped('crafting/solar_drier', ['SGS', ' M ', 'WWW'], {'M': 'firmalife:drying_mat', 'S': '#forge:rods/stainless_steel', 'G': 'minecraft:glass', 'W': 'firmalife:treated_lumber'}, 'firmalife:solar_drier').with_advancement('firmalife:drying_mat')
     damage_shapeless(rm, 'crafting/basil_leaves', ('firmalife:plant/basil', '#tfc:knives'), (2, 'firmalife:spice/basil_leaves')).with_advancement('firmalife:plant/basil')
@@ -157,13 +156,22 @@ def generate(rm: ResourceManager):
     vat_recipe(rm, 'tomato_sauce', not_rotten('firmalife:food/tomato_sauce_mix'), '200 minecraft:water', output_item='firmalife:food/tomato_sauce')
     vat_recipe(rm, 'sugar_water', '#firmalife:sweetener', '1000 minecraft:water', output_fluid='500 firmalife:sugar_water')
 
-    for jar, remainder, _, ing in JARS:
+    for jar, remainder, ing in JARS:
         make_jar(rm, jar, remainder, ing)
     for fruit in FL_FRUITS:
         make_jar(rm, fruit)
         ing = not_rotten(has_trait('firmalife:food/%s' % fruit, 'firmalife:dried', True))
-        simple_pot_recipe(rm, '%s_jar' % fruit, [utils.ingredient('firmalife:empty_jar'), utils.ingredient('#firmalife:sweetener'), ing], '1000 minecraft:water', None, ['firmalife:%s_jar' % fruit], duration=1000)
-        vat_recipe(rm, '%s_jar' % fruit, ing, '500 firmalife:sugar_water', output_fluid='500 firmalife:fruity_fluid', jar='firmalife:%s_jar' % fruit)
+        vat_recipe(rm, '%s_jar' % fruit, ing, '500 firmalife:sugar_water', output_fluid='500 firmalife:fruity_fluid', jar='firmalife:jar/%s' % fruit)
+        for count in (2, 3, 4):
+            rm.recipe(('pot', 'jam_%s_%s' % (fruit, count)), 'tfc:pot_jam', {
+                'ingredients': [ing] * count + [utils.ingredient('#tfc:sweetener')],
+                'fluid_ingredient': fluid_stack_ingredient('100 minecraft:water'),
+                'duration': 500,
+                'temperature': 300,
+                'result': utils.item_stack('%s firmalife:jar/%s' % (count, fruit)),
+                'texture': 'firmalife:block/jar/%s' % fruit
+            })
+        rm.crafting_shapeless('crafting/unseal_%s_jar' % fruit, (not_rotten('firmalife:jar/%s' % fruit), ), 'firmalife:jar/%s_unsealed' % fruit).with_advancement('firmalife:jar/%s' % fruit)
 
     beet = not_rotten('tfc:food/beet')
     simple_pot_recipe(rm, 'beet_sugar', [beet, beet, beet, beet, beet], '1000 tfc:salt_water', output_items=['minecraft:sugar', 'minecraft:sugar', 'minecraft:sugar'])
@@ -185,7 +193,6 @@ def generate(rm: ResourceManager):
 
     barrel_instant_recipe(rm, 'clean_any_bowl', '#firmalife:foods/washable', '100 minecraft:water', output_item=item_stack_provider(other_modifier='firmalife:empty_pan'))
 
-    barrel_sealed_recipe(rm, 'cleaning_jar', 'Cleaning Jar', 1000, '#firmalife:jars', '1000 minecraft:water', output_item='firmalife:empty_jar')
     barrel_sealed_recipe(rm, 'yeast_starter', 'Yeast Starter', 24000 * 3, not_rotten(has_trait('#tfc:foods/fruits', 'firmalife:dried')), '100 minecraft:water', output_fluid='100 firmalife:yeast_starter')
     barrel_sealed_recipe(rm, 'feed_yeast', 'Feeding Yeast', 12000, not_rotten('#firmalife:feeds_yeast'), '100 firmalife:yeast_starter', output_fluid='600 firmalife:yeast_starter')
     barrel_sealed_recipe(rm, 'pina_colada', 'Pina Colada', 1000, not_rotten('firmalife:food/frothy_coconut'), '1000 tfc:rum', output_fluid='1000 firmalife:pina_colada')
@@ -364,13 +371,13 @@ def collapse_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, i
         'copy_input': copy_input
     })
 
-def make_jar(rm: ResourceManager, jar: str, remainder: int = -1, ing: str = None):
+def make_jar(rm: ResourceManager, jar: str, remainder: int = 1, ing: str = None):
     if ing is not None:
         if remainder == 8:
-            rm.crafting_shaped('crafting/%s_jar' % jar, ['XXX', 'XYX', 'XXX'], {'X': ing, 'Y': 'firmalife:empty_jar'}, 'firmalife:%s_jar' % jar).with_advancement('firmalife:empty_jar')
+            rm.crafting_shaped('crafting/%s_jar' % jar, ['XXX', 'XYX', 'XXX'], {'X': ing, 'Y': 'tfc:empty_jar_with_lid'}, 'firmalife:jar/%s' % jar).with_advancement('tfc:empty_jar')
         elif remainder == 1:
-            rm.crafting_shapeless('crafting/%s_jar' % jar, ('firmalife:empty_jar', ing), 'firmalife:%s_jar' % jar).with_advancement('firmalife:empty_jar')
-        rm.crafting_shapeless('crafting/%s_jar_open' % jar, ('firmalife:%s_jar' % jar), (remainder, ing))
+            rm.crafting_shapeless('crafting/%s_jar' % jar, ('tfc:empty_jar_with_lid', ing), 'firmalife:jar/%s' % jar).with_advancement('tfc:empty_jar')
+        rm.crafting_shapeless('crafting/%s_jar_open' % jar, ('firmalife:jar/%s' % jar), (remainder, ing))
 
 def fluid_item_ingredient(fluid: Json, delegate: Json = None):
     return {

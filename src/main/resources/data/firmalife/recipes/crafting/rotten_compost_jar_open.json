@@ -3,7 +3,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "firmalife:rotten_compost_jar"
+      "item": "firmalife:jar/rotten_compost"
     }
   ],
   "result": {

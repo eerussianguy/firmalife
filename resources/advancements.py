@@ -8,7 +8,7 @@ from constants import *
 def generate(rm: ResourceManager):
     story = AdvancementCategory(rm, 'story', 'firmalife:textures/block/sealed_bricks.png')
 
-    story.advancement('root', icon('firmalife:empty_jar'), 'Firmalife Story', 'Things to do with Firmalife.', None, root_trigger(), chat=False)
+    story.advancement('root', icon('tfc:empty_jar_with_lid'), 'Firmalife Story', 'Things to do with Firmalife.', None, root_trigger(), chat=False)
     story.advancement('rennet', icon('firmalife:rennet'), 'A Useful Stomach', 'Kill an animal for some rennet.', 'root', inventory_changed('firmalife:rennet'))
     story.advancement('cheese_wheel', icon('firmalife:chevre_wheel'), 'A Wheel of Cheese', 'Craft your first cheese wheel.', 'rennet', inventory_changed('#firmalife:cheese_wheels'))
     story.advancement('all_cheese', icon('firmalife:food/gouda'), 'Lactose Larry', 'Cut off a slice of every kind of cheese.', 'cheese_wheel', multiple(*[inventory_changed('firmalife:food/%s' % c, name=c) for c in ('gouda', 'chevre', 'cheddar', 'feta', 'rajya_metok', 'shosha')]), requirements=[[c] for c in ('gouda', 'chevre', 'cheddar', 'feta', 'rajya_metok', 'shosha')], frame='challenge')
@@ -25,7 +25,7 @@ def generate(rm: ResourceManager):
     story.advancement('nutritive_basin', icon('firmalife:nutritive_basin'), 'Balance (TM)', 'Craft a nutritive basin.', 'greenhouse', inventory_changed('firmalife:nutritive_basin'))
     story.advancement('hive', icon('firmalife:beehive'), 'So they just move in on their own?', 'Craft a beehive.', 'root', inventory_changed('firmalife:beehive'))
     story.advancement('wax', icon('firmalife:beeswax'), 'Does this hurt the bee?', 'Get some beeswax from a hive.', 'hive', inventory_changed('firmalife:beeswax'))
-    story.advancement('jars', icon('firmalife:empty_jar'), 'minecraft.jar', 'Craft an empty jar.', 'hive', inventory_changed('firmalife:empty_jar'))
+    story.advancement('jars', icon('tfc:empty_jar_with_lid'), 'minecraft.jar', 'Craft an empty jar.', 'hive', inventory_changed('firmalife:empty_jar'))
     story.advancement('jarbnet', icon('firmalife:wood/jarbnet/palm'), 'Cupholder', 'Craft a jarbnet.', 'jars', inventory_changed('#firmalife:jarbnets'))
     story.advancement('jarring_station', icon('firmalife:jarring_station'), 'Industrial Cannery', 'Craft a jarring station.', 'jars', inventory_changed('firmalife:jarring_station'), frame='challenge')
     story.advancement('smoker', icon('tfc:food/venison'), 'Up in Smoke', 'Place some string for smoking.', 'root', placed_block('firmalife:wool_string'))

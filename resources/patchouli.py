@@ -67,7 +67,8 @@ class Book:
             rm.data(('patchouli_books', self.root_name, 'book'), {
                 'extend': 'tfc:field_guide',
                 'name': 'firmalife field_guide extension',
-                'landing_text': 'firmalife field_guide extension'
+                'landing_text': 'firmalife field_guide extension',
+                'use_resource_pack': True,
                 #'subtitle': '${version}',
                 # Even though we don't use the book item, we still need patchy to make a book item for us, as it controls the title
                 # If neither we nor patchy make a book item, this will show up as 'Air'. So we make one to allow the title to work properly.

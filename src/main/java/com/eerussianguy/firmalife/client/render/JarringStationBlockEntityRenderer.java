@@ -2,10 +2,6 @@ package com.eerussianguy.firmalife.client.render;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.JarringStationBlockEntity;
-import com.eerussianguy.firmalife.common.blocks.FLFluids;
-import com.eerussianguy.firmalife.common.items.FLItems;
-import com.eerussianguy.firmalife.common.items.JarsBlockItem;
-import com.eerussianguy.firmalife.common.util.ExtraFluid;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Minecraft;
@@ -18,6 +14,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.model.data.ModelData;
 
 import net.dries007.tfc.common.capabilities.Capabilities;
+import net.dries007.tfc.common.items.JarItem;
+import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.util.Helpers;
 
 public class JarringStationBlockEntityRenderer implements BlockEntityRenderer<JarringStationBlockEntity>
@@ -52,15 +50,15 @@ public class JarringStationBlockEntityRenderer implements BlockEntityRenderer<Ja
                 if (!item.isEmpty())
                 {
                     final Minecraft mc = Minecraft.getInstance();
-                    if (Helpers.isItem(item, FLItems.EMPTY_JAR.get()))
+                    if (Helpers.isItem(item, TFCItems.EMPTY_JAR.get()))
                     {
                         final BakedModel baked = mc.getModelManager().getModel(EMPTY_JAR_LOCATION);
                         final VertexConsumer buffer = buffers.getBuffer(RenderType.cutout());
                         mc.getBlockRenderer().getModelRenderer().renderModel(poseStack.last(), buffer, null, baked, 1f, 1f, 1f, combinedLight, combinedOverlay, ModelData.EMPTY, RenderType.translucent());
                     }
-                    else if (item.getItem() instanceof JarsBlockItem jars)
+                    else if (item.getItem() instanceof JarItem jars)
                     {
-                        mc.getBlockRenderer().renderSingleBlock(jars.getBlock().defaultBlockState(), poseStack, buffers, combinedLight, combinedOverlay, ModelData.EMPTY, RenderType.translucent());
+//                        mc.getBlockRenderer().renderSingleBlock(jars.getBlock().defaultBlockState(), poseStack, buffers, combinedLight, combinedOverlay, ModelData.EMPTY, RenderType.translucent());
                     }
                 }
                 poseStack.popPose();

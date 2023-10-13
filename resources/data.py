@@ -159,7 +159,6 @@ def generate(rm: ResourceManager):
     dynamic_food_item(rm, 'pumpkin_pie', 'minecraft:pumpkin_pie', 'dynamic_bowl')
     rm.domain = 'firmalife'
 
-    item_size(rm, 'jars', '#firmalife:jars', Size.very_large, Weight.medium)
     item_size(rm, 'beehive_frame', 'firmalife:beehive_frame', Size.very_small, Weight.very_heavy)
     item_size(rm, 'cheese_wheels', '#firmalife:cheese_wheels', Size.very_large, Weight.very_heavy)
     item_size(rm, 'dynamic_foods', '#firmalife:foods/dynamic', Size.very_small, Weight.very_heavy)

@@ -1,0 +1,10 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "firmalife:jar/honey",
+    "firmalife:jar/compost",
+    "firmalife:jar/rotten_compost",
+    "firmalife:jar/guano"
+  ]
+}

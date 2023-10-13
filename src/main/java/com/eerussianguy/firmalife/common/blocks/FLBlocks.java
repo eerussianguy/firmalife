@@ -1,6 +1,5 @@
 package com.eerussianguy.firmalife.common.blocks;
 
-import java.util.Locale;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -30,7 +29,6 @@ import com.eerussianguy.firmalife.common.blocks.plant.FLFruitBlocks;
 import com.eerussianguy.firmalife.common.blocks.plant.MutatingPlantBlock;
 import com.eerussianguy.firmalife.common.items.FLFood;
 import com.eerussianguy.firmalife.common.items.FLItems;
-import com.eerussianguy.firmalife.common.items.JarsBlockItem;
 import com.eerussianguy.firmalife.common.util.*;
 import net.dries007.tfc.common.blocks.DecorationBlockRegistryObject;
 import net.dries007.tfc.common.blocks.ExtendedBlock;
@@ -90,12 +88,6 @@ public class FLBlocks
     public static final RegistryObject<Block> JARRING_STATION = register("jarring_station", () -> new JarringStationBlock(ExtendedProperties.of().sound(SoundType.METAL).strength(1f).noOcclusion().blockEntity(FLBlockEntities.JARRING_STATION).ticks(JarringStationBlockEntity::tick)));
     public static final RegistryObject<Block> PLATE = register("plate", () -> ConsumingBlock.plate(ExtendedProperties.of().sound(SoundType.WOOD).strength(1f).noOcclusion().blockEntity(FLBlockEntities.PLATE)));
 
-    public static final RegistryObject<Block> HONEY_JAR = register("honey_jar", () -> new JarsBlock(jarProperties()), b -> new JarsBlockItem(b, new Item.Properties()));
-    public static final RegistryObject<Block> COMPOST_JAR = register("compost_jar", () -> new JarsBlock(jarProperties()), b -> new JarsBlockItem(b, new Item.Properties()));
-    public static final RegistryObject<Block> ROTTEN_COMPOST_JAR = register("rotten_compost_jar", () -> new JarsBlock(jarProperties()), b -> new JarsBlockItem(b, new Item.Properties()));
-    public static final RegistryObject<Block> GUANO_JAR = register("guano_jar", () -> new JarsBlock(jarProperties()), b -> new JarsBlockItem(b, new Item.Properties()));
-//    public static final Map<Food, RegistryObject<Block>> FRUIT_PRESERVES = Helpers.mapOfKeys(Food.class, FLItems.TFC_FRUITS::contains, food -> register(food.name().toLowerCase(Locale.ROOT) + "_jar", () -> new JarsBlock(jarProperties()), b -> new JarsBlockItem(b, new Item.Properties())));
-    public static final Map<FLFruit, RegistryObject<Block>> FL_FRUIT_PRESERVES = Helpers.mapOfKeys(FLFruit.class, food -> register(food.name().toLowerCase(Locale.ROOT) + "_jar", () -> new JarsBlock(jarProperties()), b -> new JarsBlockItem(b, new Item.Properties())));
 
     public static final RegistryObject<Block> CHEDDAR_WHEEL = register("cheddar_wheel", () -> new CheeseWheelBlock(wheelProperties(), FLItems.FOODS.get(FLFood.CHEDDAR)));
     public static final RegistryObject<Block> CHEVRE_WHEEL = register("chevre_wheel", () -> new CheeseWheelBlock(wheelProperties(), FLItems.FOODS.get(FLFood.CHEVRE)));
@@ -119,9 +111,7 @@ public class FLBlocks
     public static final RegistryObject<Block> DARK_LADDER = register("dark_ladder", () -> new FLLadderBlock(Properties.of().strength(0.4F).sound(SoundType.LADDER).noOcclusion()));
 
     public static final RegistryObject<Block> HOLLOW_SHELL = registerNoItem("hollow_shell", () -> new GroundcoverBlock(ExtendedProperties.of().strength(0.05F, 0.0F).sound(SoundType.NETHER_WART).noCollission(), GroundcoverBlock.SMALL, FLItems.HOLLOW_SHELL));
-    public static final RegistryObject<Block> EMBEDDED_PIPE = register("embedded_pipe", () -> new Block(Properties.of().sound(SoundType.COPPER).strength(2f)));
     public static final RegistryObject<Block> TREATED_WOOD = register("treated_wood", () -> new ExtendedBlock(ExtendedProperties.of().sound(SoundType.WOOL).strength(2f).flammableLikePlanks()));
-    public static final RegistryObject<Block> SQUIRTING_MOISTURE_TRANSDUCER = register("squirting_moisture_transducer", () -> new SquirtingMoistureTransducerBlock(ExtendedProperties.of().strength(8f).sound(SoundType.LANTERN).blockEntity(FLBlockEntities.SQUIRTING_MOISTURE_TRANSDUCER).serverTicks(SquirtingMoistureTransducerBlockEntity::serverTick)));
     public static final RegistryObject<Block> SPRINKLER = register("sprinkler", () -> SprinklerBlock.createSprinkler(ExtendedProperties.of().requiresCorrectToolForDrops().strength(4.0f).sound(SoundType.METAL).blockEntity(FLBlockEntities.SPRINKLER).serverTicks(SprinklerBlockEntity::serverTick).noOcclusion()));
     public static final RegistryObject<Block> DRIBBLER = register("dribbler", () -> SprinklerBlock.createDribbler(ExtendedProperties.of().requiresCorrectToolForDrops().strength(4.0f).sound(SoundType.METAL).blockEntity(FLBlockEntities.SPRINKLER).serverTicks(SprinklerBlockEntity::serverTick).noOcclusion()));
     public static final RegistryObject<Block> NUTRITIVE_BASIN = register("nutritive_basin", () -> new NutritiveBasinBlock(ExtendedProperties.of().strength(4f).sound(SoundType.WOOD)));

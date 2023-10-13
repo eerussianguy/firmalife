@@ -2,8 +2,8 @@ package com.eerussianguy.firmalife.common.blocks;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
+import com.eerussianguy.firmalife.common.items.FLItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -31,14 +31,13 @@ import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.capabilities.bee.BeeAbility;
 import com.eerussianguy.firmalife.common.capabilities.bee.BeeCapability;
 import com.eerussianguy.firmalife.common.capabilities.bee.IBee;
-import com.eerussianguy.firmalife.common.items.FLItems;
 import com.eerussianguy.firmalife.common.misc.FLEffects;
 import com.eerussianguy.firmalife.common.misc.SwarmEffect;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
-import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.blocks.devices.FirepitBlock;
 import net.dries007.tfc.common.blocks.soil.HoeOverlayBlock;
 import net.dries007.tfc.common.capabilities.Capabilities;
+import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.climate.Climate;
 import org.jetbrains.annotations.Nullable;
@@ -105,13 +104,13 @@ public class FLBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBloc
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
     {
         ItemStack held = player.getItemInHand(hand);
-        if (Helpers.isItem(held, FLItems.EMPTY_JAR.get()) && !player.isShiftKeyDown())
+        if (Helpers.isItem(held, TFCItems.EMPTY_JAR_WITH_LID.get()) && !player.isShiftKeyDown())
         {
             level.getBlockEntity(pos, FLBlockEntities.BEEHIVE.get()).ifPresent(hive -> {
                 if (hive.takeHoney(1) > 0)
                 {
                     held.shrink(1);
-                    ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(FLBlocks.HONEY_JAR.get()));
+                    ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(FLItems.HONEY_JAR.get()));
                 }
             });
             return InteractionResult.sidedSuccess(level.isClientSide);

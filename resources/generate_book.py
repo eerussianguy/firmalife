@@ -1,5 +1,4 @@
 import os
-from argparse import ArgumentParser
 
 from mcresources.type_definitions import ResourceIdentifier
 

@@ -6,6 +6,8 @@ import java.util.stream.Stream;
 import com.eerussianguy.firmalife.client.model.PeelModel;
 import com.eerussianguy.firmalife.client.screen.StovetopGrillScreen;
 import com.eerussianguy.firmalife.client.screen.StovetopPotScreen;
+import com.eerussianguy.firmalife.common.FLCreativeTabs;
+import com.eerussianguy.firmalife.common.util.FLFruit;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.block.BlockColor;
@@ -54,6 +56,8 @@ public class FLClientEvents
         bus.addListener(FLClientEvents::onBlockColors);
         bus.addListener(FLClientEvents::onItemColors);
         bus.addListener(FLClientEvents::registerParticleFactories);
+        bus.addListener(FLClientEvents::registerModels);
+        bus.addListener(FLCreativeTabs::onBuildCreativeTab);
     }
 
     @SuppressWarnings("deprecation")
@@ -67,7 +71,7 @@ public class FLClientEvents
 
         Stream.of(FLBlocks.OVEN_BOTTOM, FLBlocks.OVEN_TOP, FLBlocks.OVEN_CHIMNEY, FLBlocks.OVEN_HOPPER,
             FLBlocks.QUAD_PLANTER, FLBlocks.LARGE_PLANTER, FLBlocks.HANGING_PLANTER, FLBlocks.BONSAI_PLANTER,
-            FLBlocks.IRON_COMPOSTER, FLBlocks.COMPOST_JAR, FLBlocks.HONEY_JAR, FLBlocks.ROTTEN_COMPOST_JAR, FLBlocks.GUANO_JAR, FLBlocks.CHEDDAR_WHEEL,
+            FLBlocks.IRON_COMPOSTER, FLBlocks.CHEDDAR_WHEEL,
             FLBlocks.RAJYA_METOK_WHEEL, FLBlocks.CHEVRE_WHEEL, FLBlocks.SHOSHA_WHEEL, FLBlocks.FETA_WHEEL, FLBlocks.GOUDA_WHEEL, FLBlocks.SMALL_CHROMITE,
             FLBlocks.MIXING_BOWL, FLBlocks.BUTTERFLY_GRASS, FLBlocks.SPRINKLER, FLBlocks.DRIBBLER, FLBlocks.VAT, FLBlocks.HYDROPONIC_PLANTER, FLBlocks.STOVETOP_GRILL, FLBlocks.STOVETOP_POT,
             FLBlocks.DARK_LADDER, FLBlocks.JARRING_STATION
@@ -77,8 +81,6 @@ public class FLClientEvents
         ItemBlockRenderTypes.setRenderLayer(FLBlocks.NUTRITIVE_BASIN.get(), translucent);
 
         FLBlocks.CHROMITE_ORES.values().forEach(map -> map.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout)));
-//        FLBlocks.FRUIT_PRESERVES.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), translucent));
-        FLBlocks.FL_FRUIT_PRESERVES.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), translucent));
         FLBlocks.GREENHOUSE_BLOCKS.values().forEach(map -> map.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout)));
         FLBlocks.FRUIT_TREE_LEAVES.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), layer -> Minecraft.useFancyGraphics() ? layer == cutoutMipped : layer == solid));
         FLBlocks.FRUIT_TREE_SAPLINGS.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
@@ -128,6 +130,19 @@ public class FLClientEvents
     public static void registerParticleFactories(RegisterParticleProvidersEvent event)
     {
         event.registerSpriteSet(FLParticles.GROWTH.get(), set -> new GlintParticleProvider(set, ChatFormatting.GREEN));
+    }
+
+    public static void registerModels(ModelEvent.RegisterAdditional event)
+    {
+        for (FLFruit fruit : FLFruit.values())
+        {
+            event.register(FLHelpers.identifier("block/jar/" + fruit));
+            event.register(FLHelpers.identifier("block/jar/" + fruit + "_unsealed"));
+        }
+        event.register(FLHelpers.identifier("block/jar/compost"));
+        event.register(FLHelpers.identifier("block/jar/rotten_compost"));
+        event.register(FLHelpers.identifier("block/jar/guano"));
+        event.register(FLHelpers.identifier("block/jar/honey"));
     }
 
     private static void registerDryProperty(Supplier<Item> item)

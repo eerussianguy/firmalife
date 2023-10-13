@@ -3,7 +3,6 @@ package com.eerussianguy.firmalife.common.blockentities;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
-import com.eerussianguy.firmalife.common.blocks.StovetopPotBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -38,7 +37,6 @@ public class FLBlockEntities
     public static final RegistryObject<BlockEntityType<StringBlockEntity>> STRING = register("string", StringBlockEntity::new, FLBlocks.WOOL_STRING);
     public static final RegistryObject<BlockEntityType<MixingBowlBlockEntity>> MIXING_BOWL = register("mixing_bowl", MixingBowlBlockEntity::new, FLBlocks.MIXING_BOWL);
     public static final RegistryObject<BlockEntityType<BerryBushBlockEntity>> BERRY_BUSH = register("berry_bush", FLBerryBushBlockEntity::new, Stream.of(FLBlocks.FRUIT_TREE_LEAVES.values(), FLBlocks.STATIONARY_BUSHES.values()).<Supplier<? extends Block>>flatMap(Helpers::flatten));
-    public static final RegistryObject<BlockEntityType<SquirtingMoistureTransducerBlockEntity>> SQUIRTING_MOISTURE_TRANSDUCER = register("squirting_moisture_transducer", SquirtingMoistureTransducerBlockEntity::new, FLBlocks.SQUIRTING_MOISTURE_TRANSDUCER);
     public static final RegistryObject<BlockEntityType<FoodShelfBlockEntity>> FOOD_SHELF = register("food_shelf", FoodShelfBlockEntity::new, Stream.of(FLBlocks.FOOD_SHELVES.values()).<Supplier<? extends Block>>flatMap(Helpers::flatten));
     public static final RegistryObject<BlockEntityType<HangerBlockEntity>> HANGER = register("hanger", HangerBlockEntity::new, Stream.of(FLBlocks.HANGERS.values()).<Supplier<? extends Block>>flatMap(Helpers::flatten));
     public static final RegistryObject<BlockEntityType<JarbnetBlockEntity>> JARBNET = register("jarbnet", JarbnetBlockEntity::new, Stream.of(FLBlocks.JARBNETS.values()).<Supplier<? extends Block>>flatMap(Helpers::flatten));
