@@ -1,0 +1,9 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "block/slab_top",
+  "textures": {
+    "bottom": "firmalife:block/metal/block/chromium",
+    "top": "firmalife:block/metal/block/chromium",
+    "side": "firmalife:block/metal/block/chromium"
+  }
+}

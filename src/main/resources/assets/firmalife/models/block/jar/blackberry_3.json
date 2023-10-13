@@ -1,7 +1,0 @@
-{
-  "__comment__": "This file was automatically created by mcresources",
-  "parent": "firmalife:block/jar_3",
-  "textures": {
-    "1": "firmalife:block/jar/blackberry"
-  }
-}

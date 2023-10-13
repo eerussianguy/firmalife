@@ -1,7 +1,7 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "ingredient": {
-    "tag": "forge:rods/chromium"
+    "item": "firmalife:metal/rod/chromium"
   },
   "heat_capacity": 1.429,
   "forging_temperature": 750,

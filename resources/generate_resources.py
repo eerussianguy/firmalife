@@ -10,6 +10,7 @@ import assets
 import metal_stuff
 import recipes
 import data
+import tags
 import world_gen
 import advancements
 
@@ -51,6 +52,7 @@ def generate_all(rm: ResourceManager):
     assets.generate(rm)
     recipes.generate(rm)
     data.generate(rm)
+    tags.generate(rm)
     metal_stuff.generate(rm)
     world_gen.generate(rm)
     advancements.generate(rm)

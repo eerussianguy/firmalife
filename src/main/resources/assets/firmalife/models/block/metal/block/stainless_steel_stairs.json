@@ -1,0 +1,9 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "block/stairs",
+  "textures": {
+    "bottom": "firmalife:block/metal/block/stainless_steel",
+    "top": "firmalife:block/metal/block/stainless_steel",
+    "side": "firmalife:block/metal/block/stainless_steel"
+  }
+}

@@ -7,6 +7,9 @@
   "ingots": {
     "tag": "forge:ingots/chromium"
   },
+  "double_ingots": {
+    "tag": "forge:double_ingots/chromium"
+  },
   "sheets": {
     "tag": "forge:sheets/chromium"
   }

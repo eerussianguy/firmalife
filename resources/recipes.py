@@ -160,7 +160,6 @@ def generate(rm: ResourceManager):
     for jar, remainder, _, ing in JARS:
         make_jar(rm, jar, remainder, ing)
     for fruit in TFC_FRUITS:
-        make_jar(rm, fruit)
         ing = not_rotten(has_trait('tfc:food/%s' % fruit, 'firmalife:dried', True))
         simple_pot_recipe(rm, '%s_jar' % fruit, [utils.ingredient('firmalife:empty_jar'), utils.ingredient('#firmalife:sweetener'), ing], '1000 minecraft:water', None, ['firmalife:%s_jar' % fruit], duration=1000)
         vat_recipe(rm, '%s_jar' % fruit, ing, '500 firmalife:sugar_water', output_fluid='500 firmalife:fruity_fluid', jar='firmalife:%s_jar' % fruit)

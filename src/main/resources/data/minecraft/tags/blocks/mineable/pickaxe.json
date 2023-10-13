@@ -117,6 +117,8 @@
     "firmalife:embedded_pipe",
     "firmalife:tiles",
     "firmalife:rustic_bricks",
-    "#firmalife:oven_blocks"
+    "#firmalife:oven_blocks",
+    "firmalife:metal/block/stainless_steel",
+    "firmalife:metal/block/chromium"
   ]
 }

@@ -19,6 +19,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.OnDatapackSyncEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.network.PacketDistributor;
@@ -32,6 +33,7 @@ import com.eerussianguy.firmalife.common.util.GreenhouseType;
 import com.eerussianguy.firmalife.common.util.Plantable;
 import net.dries007.tfc.common.entities.TFCEntities;
 import net.dries007.tfc.common.items.CandleBlockItem;
+import net.dries007.tfc.config.TFCConfig;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.events.AnimalProductEvent;
 import net.dries007.tfc.util.events.StartFireEvent;
@@ -46,6 +48,7 @@ public class FLForgeEvents
         bus.addListener(FLForgeEvents::addReloadListeners);
         bus.addListener(FLForgeEvents::onDataPackSync);
         bus.addListener(FLForgeEvents::onAnimalProduce);
+        bus.addListener(FLForgeEvents::onLogin);
         //bus.addListener(FLForgeEvents::onEntityCaps); use generic listener
     }
 
@@ -55,6 +58,11 @@ public class FLForgeEvents
         {
             event.addCapability(FLPlayerDataCapability.KEY, new FLPlayerData(player));
         }
+    }
+
+    public static void onLogin(PlayerEvent.PlayerLoggedInEvent event)
+    {
+        TFCConfig.SERVER.enablePumpkinCarving.set(false);
     }
 
     public static void addReloadListeners(AddReloadListenerEvent event)

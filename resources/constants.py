@@ -83,6 +83,7 @@ TFC_WOODS: Dict[str, Wood] = {
     'douglas_fir': Wood(707, 1500),
     'hickory': Wood(762, 2000),
     'kapok': Wood(645, 1000),
+    'mangrove': Wood(655, 1000),
     'maple': Wood(745, 2000),
     'oak': Wood(728, 2250),
     'palm': Wood(730, 1250),

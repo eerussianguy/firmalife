@@ -1,0 +1,14 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "variants": {
+    "type=bottom": {
+      "model": "firmalife:block/metal/block/chromium_slab"
+    },
+    "type=top": {
+      "model": "firmalife:block/metal/block/chromium_slab_top"
+    },
+    "type=double": {
+      "model": "firmalife:block/metal/block/chromium"
+    }
+  }
+}

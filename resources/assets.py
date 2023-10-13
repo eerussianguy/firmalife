@@ -216,7 +216,7 @@ def generate(rm: ResourceManager):
 
     for var in ('rustic_bricks', 'tiles'):
         block = rm.block(var).make_slab().make_stairs().make_wall().with_tag('firmalife:oven_blocks')
-        slab_loot(rm.block(var + '_slab'), 'firmalife:%s_slab' % var)
+        slab_loot(rm, 'firmalife:%s_slab' % var)
         rm.block_loot('firmalife:%s_stairs' % var, 'firmalife:%s_stairs' % var)
         rm.block_loot('firmalife:%s_wall' % var, 'firmalife:%s_wall' % var)
         for extra in ('_slab', '_stairs', '_wall'):
@@ -288,11 +288,13 @@ def generate(rm: ResourceManager):
             if prefix == '':
                 block.with_block_loot({
                     'name': 'firmalife:plant/%s_sapling' % fruit,
-                    'conditions': [{
-                        'condition': 'minecraft:alternative',
-                        'terms': [loot_tables.block_state_property('firmalife:plant/%s_branch[up=true,%s=true]' % (fruit, direction)) for direction in ('west', 'east', 'north', 'south')]
-                    },
-                        loot_tables.match_tag('tfc:axes')]
+                    'conditions': loot_tables.all_of(
+                        loot_tables.any_of(*[
+                            loot_tables.block_state_property('tfc:plant/%s_branch[up=true,%s=true]' % (fruit, direction))
+                            for direction in ('west', 'east', 'north', 'south')
+                        ]),
+                        loot_tables.match_tag('tfc:axes')
+                    )
                 }, {
                     'name': 'minecraft:stick',
                     'functions': [loot_tables.set_count(1, 4)]
@@ -311,11 +313,7 @@ def generate(rm: ResourceManager):
                 'conditions': [loot_tables.block_state_property('firmalife:plant/%s_leaves[lifecycle=fruiting]' % fruit)]
             }, {
                 'name': 'firmalife:plant/%s_leaves' % fruit,
-                'conditions': [{
-                    "condition": "minecraft:alternative",
-                    "terms": [loot_tables.match_tag('forge:shears'), loot_tables.silk_touch()]
-                }]
-                # 'conditions': [loot_tables.or_condition(loot_tables.match_tag('forge:shears'), loot_tables.silk_touch())]
+                'conditions': [loot_tables.any_of(loot_tables.match_tag('forge:shears'), loot_tables.silk_touch())]
             }, {
                 'name': 'minecraft:stick',
                 'conditions': [loot_tables.match_tag('tfc:sharp_tools'), loot_tables.random_chance(0.2)],
@@ -345,8 +343,6 @@ def generate(rm: ResourceManager):
 
     for jar, _, texture, _ in JARS:
         make_jar(rm, jar, texture)
-    for fruit in TFC_FRUITS:
-        make_jar(rm, fruit, 'firmalife:block/jar/%s' % fruit).with_tag('foods/preserves')
     for fruit in FL_FRUITS:
         make_jar(rm, fruit, 'firmalife:block/jar/%s' % fruit).with_tag('foods/preserves')
 
@@ -485,7 +481,7 @@ def greenhouse_slab(rm: ResourceManager, name: str, frame: str, glass: str) -> '
     rm.block_model('greenhouse/%s_roof_top' % name, textures, parent='firmalife:block/greenhouse_roof_top')
     rm.block_model('greenhouse/%s_roof_top_upper' % name, textures, parent='firmalife:block/greenhouse_roof_top_upper')
     rm.item_model(block_name, parent='firmalife:block/greenhouse/%s_roof_top' % name, no_textures=True)
-    slab_loot(block, 'firmalife:%s' % block_name)
+    slab_loot(rm, 'firmalife:%s' % block_name)
     greenhouse_tags(block, name).with_tag('minecraft:slabs')
     return block
 
@@ -532,8 +528,8 @@ def greenhouse_tags(block: BlockContext, greenhouse_name: str) -> 'BlockContext'
         block.with_tag('minecraft:mineable/pickaxe')
     return block
 
-def slab_loot(block: BlockContext, loot: str) -> 'BlockContext':
-    return block.with_block_loot({
+def slab_loot(rm: ResourceManager, loot: str):
+    return rm.block_loot(loot, {
         'name': loot,
         'functions': [{
             'function': 'minecraft:set_count',
@@ -542,7 +538,6 @@ def slab_loot(block: BlockContext, loot: str) -> 'BlockContext':
             'add': False
         }]
     })
-
 def door_loot(block: BlockContext, loot: str) -> 'BlockContext':
     return block.with_block_loot({'name': loot, 'conditions': [loot_tables.block_state_property(loot + '[half=lower]')]})
 

@@ -4,6 +4,7 @@ from mcresources import ResourceManager, utils
 
 from constants import lang
 from data import item_heat
+from assets import slab_loot
 from recipes import anvil_recipe, Rules, welding_recipe, heat_recipe, casting_recipe
 
 class Metal(NamedTuple):
@@ -17,7 +18,13 @@ class Metal(NamedTuple):
     def ingot_heat_capacity(self) -> float: return 1 / self.heat_capacity_base
 
 
-MetalItem = NamedTuple('MetalItem', type=str, smelt_amount=int, parent_model=str, tag=Optional[str], mold=bool)
+class MetalItem(NamedTuple):
+    type: str
+    smelt_amount: int
+    parent_model: str
+    tag: Optional[str]
+    mold: bool
+    durability: bool
 
 FL_METALS: Dict[str, Metal] = {
     'stainless_steel': Metal(4, {'part'}, 0.35, 1540, None),
@@ -25,12 +32,20 @@ FL_METALS: Dict[str, Metal] = {
 }
 
 METAL_ITEMS: Dict[str, MetalItem] = {
-    'ingot': MetalItem('all', 100, 'item/generated', 'forge:ingots', True),
-    'double_ingot': MetalItem('part', 200, 'item/generated', 'forge:double_ingots', False),
-    'sheet': MetalItem('part', 200, 'item/generated', 'forge:sheets', False),
-    'double_sheet': MetalItem('part', 400, 'item/generated', 'forge:double_sheets', False),
-    'rod': MetalItem('part', 50, 'item/handheld_rod', 'forge:rods', False),
+    'ingot': MetalItem('all', 100, 'item/generated', 'forge:ingots', True, False),
+    'double_ingot': MetalItem('part', 200, 'item/generated', 'forge:double_ingots', False, False),
+    'sheet': MetalItem('part', 200, 'item/generated', 'forge:sheets', False, False),
+    'double_sheet': MetalItem('part', 400, 'item/generated', 'forge:double_sheets', False, False),
+    'rod': MetalItem('part', 50, 'item/handheld_rod', 'forge:rods', False, False),
 }
+
+METAL_BLOCKS: Dict[str, MetalItem] = {
+    'block': MetalItem('part', 100, 'block/block', None, False, False),
+    'block_slab': MetalItem('part', 50, 'block/block', None, False, False),
+    'block_stairs': MetalItem('part', 75, 'block/block', None, False, False)
+}
+
+METAL_ITEMS_AND_BLOCKS = {**METAL_ITEMS, **METAL_BLOCKS}
 
 def generate(rm: ResourceManager):
     chromium_ore_heats(rm)
@@ -41,19 +56,23 @@ def generate(rm: ResourceManager):
             'melt_temperature': metal_data.melt_temperature,
             'specific_heat_capacity': metal_data.specific_heat_capacity(),
             'ingots': utils.ingredient('#forge:ingots/%s' % metal),
+            'double_ingots': utils.ingredient('#forge:double_ingots/%s' % metal),
             'sheets': utils.ingredient('#forge:sheets/%s' % metal)
         })
-        for item, item_data in METAL_ITEMS.items():
+
+        for item, item_data in METAL_ITEMS_AND_BLOCKS.items():
             if item_data.type in metal_data.types or item_data.type == 'all':
-                item_name = 'firmalife:metal/%s/%s' % (item, metal)
+                item_name = 'firmalife:metal/block/%s_%s' % (metal, item.replace('block_', '')) if 'block_' in item else 'firmalife:metal/%s/%s' % (item, metal)
                 if item_data.tag is not None:
                     rm.item_tag(item_data.tag, '#%s/%s' % (item_data.tag, metal))
                     rm.item_tag(item_data.tag + '/' + metal, item_name)
-                    ingredient = utils.item_stack('#%s/%s' % (item_data.tag, metal))
-                else:
-                    ingredient = utils.item_stack(item_name)
+
                 rm.item_tag('tfc:metal_item/%s' % metal, item_name)
-                item_heat(rm, ('metal', metal + '_' + item), ingredient, metal_data.ingot_heat_capacity(), metal_data.melt_temperature, mb=item_data.smelt_amount)
+                item_heat(rm, ('metal', metal + '_' + item), item_name, metal_data.ingot_heat_capacity(), metal_data.melt_temperature, mb=item_data.smelt_amount)
+
+        if 'part' in metal_data.types:
+            rm.block_tag('minecraft:stairs', 'tfc:metal/block/%s_stairs' % metal)
+            rm.block_tag('minecraft:slabs', 'tfc:metal/block/%s_slab' % metal)
 
         def item(_variant: str) -> str:
             return 'firmalife:metal/%s/%s' % (_variant, metal)
@@ -90,8 +109,21 @@ def generate(rm: ResourceManager):
         item.with_lang(lang('molten %s bucket', metal))
         rm.lang('metal.firmalife.%s' % metal, lang(metal))
 
+        rm.item_tag('forge:ingots/%s' % metal)
         rm.item_tag('tfc:pileable_ingots', '#forge:ingots/%s' % metal)
-        rm.item_tag('tfc:pileable_sheets', '#forge:sheets/%s' % metal)
+        if len(metal_data.types) > 0:
+            rm.item_tag('forge:sheets/%s' % metal)
+            rm.item_tag('tfc:pileable_double_ingots', '#forge:double_ingots/%s' % metal)
+            rm.item_tag('tfc:pileable_sheets', '#forge:sheets/%s' % metal)
+
+        for metal_block in METAL_BLOCKS:
+            if metal_block == 'block' or metal_block == 'block_stairs' or metal_block == 'block_slab':
+                block = rm.blockstate(('metal', 'block', metal)).with_block_model().with_lang(lang('%s plated block', metal)).with_item_model().with_block_loot('firmalife:metal/block/%s' % metal).with_tag('minecraft:mineable/pickaxe')
+                block.make_slab()
+                rm.block(('metal', 'block', '%s_slab' % metal)).with_lang(lang('%s plated slab', metal))
+                rm.block(('metal', 'block', '%s_stairs' % metal)).with_lang(lang('%s plated stairs', metal)).with_block_loot('firmalife:metal/block/%s_stairs' % metal)
+                block.make_stairs()
+                slab_loot(rm, 'tfc:metal/block/%s_slab' % metal)
 
 def chromium_ore_heats(rm: ResourceManager):
     ore = 'chromite'

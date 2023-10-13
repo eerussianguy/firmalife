@@ -1,0 +1,9 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "ingredient": {
+    "item": "firmalife:metal/block/chromium_slab"
+  },
+  "heat_capacity": 1.429,
+  "forging_temperature": 750,
+  "welding_temperature": 1000
+}

@@ -7,6 +7,9 @@
   "ingots": {
     "tag": "forge:ingots/stainless_steel"
   },
+  "double_ingots": {
+    "tag": "forge:double_ingots/stainless_steel"
+  },
   "sheets": {
     "tag": "forge:sheets/stainless_steel"
   }

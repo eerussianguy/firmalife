@@ -86,7 +86,6 @@ public class FirmaLife
             FLFoodTraits.init();
             FLBlocks.registerFlowerPotFlowers();
             FLAdvancements.init();
-            TFCConfig.SERVER.enablePumpkinCarving.set(false);
         });
         FLItemStackModifiers.init();
         FLPatchouliIntegration.registerMultiBlocks();

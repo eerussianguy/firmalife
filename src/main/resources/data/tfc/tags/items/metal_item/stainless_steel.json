@@ -6,6 +6,9 @@
     "firmalife:metal/double_ingot/stainless_steel",
     "firmalife:metal/sheet/stainless_steel",
     "firmalife:metal/double_sheet/stainless_steel",
-    "firmalife:metal/rod/stainless_steel"
+    "firmalife:metal/rod/stainless_steel",
+    "firmalife:metal/block/stainless_steel",
+    "firmalife:metal/block/stainless_steel_slab",
+    "firmalife:metal/block/stainless_steel_stairs"
   ]
 }
