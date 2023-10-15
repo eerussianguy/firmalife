@@ -98,7 +98,17 @@ def generate(rm: ResourceManager):
         greenhouse_wall(rm, greenhouse, 'firmalife:block/greenhouse/%s' % greenhouse, 'firmalife:block/greenhouse/%s_glass' % greenhouse)
         greenhouse_door(rm, greenhouse, 'firmalife:block/greenhouse/%s_door_bottom' % greenhouse, 'firmalife:block/greenhouse/%s_door_top' % greenhouse)
 
-    for planter in ('quad_planter', 'large_planter', 'bonsai_planter', 'hanging_planter'):
+    planter = 'large_planter'
+    for state in ('wet', 'dry'):
+        rm.block_model('%s_%s' % (planter, state), parent='firmalife:block/%s' % planter, textures={'soil': 'firmalife:block/potting_soil_%s' % state})
+        rm.custom_block_model('%s_%s_dynamic' % (planter, state), 'firmalife:large_planter', {'base': {'parent': 'firmalife:block/%s_%s' % (planter, state)}})
+    rm.blockstate(planter, variants={
+        'watered=true': {'model': 'firmalife:block/%s_wet_dynamic' % planter},
+        'watered=false': {'model': 'firmalife:block/%s_dry_dynamic' % planter}
+    }).with_lang(lang(planter)).with_block_loot('firmalife:%s' % planter).with_tag('minecraft:mineable/axe').with_tag('minecraft:mineable/pickaxe')
+    rm.item_model(planter, parent='firmalife:block/%s_dry' % planter, no_textures=True)
+
+    for planter in ('quad_planter', 'bonsai_planter', 'hanging_planter'):
         for state in ('wet', 'dry'):
             rm.block_model('%s_%s' % (planter, state), parent='firmalife:block/%s' % planter, textures={'soil': 'firmalife:block/potting_soil_%s' % state})
         rm.blockstate(planter, variants={

@@ -3,7 +3,9 @@ package com.eerussianguy.firmalife.client;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
+import com.eerussianguy.firmalife.client.model.LargePlanterBakedModel;
 import com.eerussianguy.firmalife.client.model.PeelModel;
+import com.eerussianguy.firmalife.client.model.DynamicBlockModel;
 import com.eerussianguy.firmalife.client.screen.StovetopGrillScreen;
 import com.eerussianguy.firmalife.client.screen.StovetopPotScreen;
 import com.eerussianguy.firmalife.common.FLCreativeTabs;
@@ -11,11 +13,8 @@ import com.eerussianguy.firmalife.common.util.FLFruit;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.block.BlockColor;
-import net.minecraft.client.color.block.BlockColors;
 import net.minecraft.client.color.item.ItemColor;
-import net.minecraft.client.color.item.ItemColors;
 import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
@@ -38,7 +37,6 @@ import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.common.items.FLItems;
 import net.dries007.tfc.client.TFCColors;
 import net.dries007.tfc.client.particle.GlintParticleProvider;
-import net.dries007.tfc.client.screen.KnappingScreen;
 import net.dries007.tfc.common.capabilities.food.FoodCapability;
 import net.dries007.tfc.common.items.TFCItems;
 
@@ -57,6 +55,7 @@ public class FLClientEvents
         bus.addListener(FLClientEvents::onItemColors);
         bus.addListener(FLClientEvents::registerParticleFactories);
         bus.addListener(FLClientEvents::registerModels);
+        bus.addListener(FLClientEvents::registerLoaders);
         bus.addListener(FLCreativeTabs::onBuildCreativeTab);
     }
 
@@ -143,6 +142,13 @@ public class FLClientEvents
         event.register(FLHelpers.identifier("block/jar/rotten_compost"));
         event.register(FLHelpers.identifier("block/jar/guano"));
         event.register(FLHelpers.identifier("block/jar/honey"));
+        event.register(FLHelpers.identifier("block/large_planter_wet"));
+        event.register(FLHelpers.identifier("block/large_planter_dry"));
+    }
+
+    public static void registerLoaders(ModelEvent.RegisterGeometryLoaders event)
+    {
+        event.register("large_planter", new DynamicBlockModel.Loader(LargePlanterBakedModel::new));
     }
 
     private static void registerDryProperty(Supplier<Item> item)
@@ -160,7 +166,7 @@ public class FLClientEvents
         event.registerBlockEntityRenderer(FLBlockEntities.DRYING_MAT.get(), ctx -> new DryingMatBlockEntityRenderer(2f / 16));
         event.registerBlockEntityRenderer(FLBlockEntities.SOLAR_DRIER.get(), ctx -> new DryingMatBlockEntityRenderer(1f / 16));
         event.registerBlockEntityRenderer(FLBlockEntities.STRING.get(), ctx -> new StringBlockEntityRenderer());
-        event.registerBlockEntityRenderer(FLBlockEntities.LARGE_PLANTER.get(), ctx -> new LargePlanterBlockEntityRenderer());
+//        event.registerBlockEntityRenderer(FLBlockEntities.LARGE_PLANTER.get(), ctx -> new LargePlanterBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.QUAD_PLANTER.get(), ctx -> new QuadPlanterBlockEntityRenderer<>());
         event.registerBlockEntityRenderer(FLBlockEntities.HYDROPONIC_PLANTER.get(), ctx -> new HydroponicPlanterBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.TRELLIS_PLANTER.get(), ctx -> new TrellisPlanterBlockEntityRenderer());

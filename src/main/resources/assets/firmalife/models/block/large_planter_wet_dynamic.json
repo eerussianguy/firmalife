@@ -1,0 +1,7 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "loader": "firmalife:large_planter",
+  "base": {
+    "parent": "firmalife:block/large_planter_wet"
+  }
+}

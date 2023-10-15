@@ -8,6 +8,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.items.ItemStackHandler;
@@ -169,6 +170,9 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     public void updateCache()
     {
         cachedPlant = Plantable.get(inventory.getStackInSlot(0));
+        markForSync();
+        if (level != null)
+            level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
     }
 
     public boolean checkValid()

@@ -83,12 +83,6 @@
 			"origin": [8, 8, 8],
 			"color": 0,
 			"children": [5]
-		},
-		{
-			"name": "crop1",
-			"origin": [4, 6, 4],
-			"color": 0,
-			"children": []
 		}
 	]
 }

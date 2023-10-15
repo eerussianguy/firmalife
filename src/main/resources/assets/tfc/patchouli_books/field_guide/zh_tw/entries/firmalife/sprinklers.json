@@ -2,7 +2,7 @@
   "__comment__": "This file was automatically created by mcresources",
   "name": "Sprinklers",
   "category": "tfc:firmalife",
-  "icon": "firmalife:squirting_moisture_transducer",
+  "icon": "firmalife:sprinkler",
   "pages": [
     {
       "type": "patchouli:text",

@@ -97,7 +97,7 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False):
             text('There are many blocks that operate inside Greenhouses:$(br)$(li)$(l:tfc:firmalife/planters)Planters$(), for growing crops$(), and $(br)$(li)$(l:tfc:firmalife/sprinklers)Sprinklers$(), various devices that add water to planters.'),
             empty_last_page()
         )),
-        entry('sprinklers', 'Sprinklers', 'firmalife:squirting_moisture_transducer', pages=(
+        entry('sprinklers', 'Sprinklers', 'firmalife:sprinkler', pages=(
             text('The $(thing)Sprinkler$() is a device that sprinkles water in a 5x6x5 area centered on the block below the sprinkler block. It automatically fills with water from any fluid tank or pipe placed above it. You know it is working when it drips out water particles.'),
             two_tall_block_spotlight('Starter Sprinkler Setup', 'The easiest way to set up a sprinkler is with a barrel of water.', 'firmalife:sprinkler', 'tfc:wood/barrel/pine'),
             anvil_recipe('firmalife:anvil/sprinkler', 'The sprinkler is made with a $(thing)Red Steel Sheet$().'),
