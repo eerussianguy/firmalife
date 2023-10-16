@@ -98,26 +98,20 @@ def generate(rm: ResourceManager):
         greenhouse_wall(rm, greenhouse, 'firmalife:block/greenhouse/%s' % greenhouse, 'firmalife:block/greenhouse/%s_glass' % greenhouse)
         greenhouse_door(rm, greenhouse, 'firmalife:block/greenhouse/%s_door_bottom' % greenhouse, 'firmalife:block/greenhouse/%s_door_top' % greenhouse)
 
-    planter = 'large_planter'
-    for state in ('wet', 'dry'):
-        rm.block_model('%s_%s' % (planter, state), parent='firmalife:block/%s' % planter, textures={'soil': 'firmalife:block/potting_soil_%s' % state})
-        rm.custom_block_model('%s_%s_dynamic' % (planter, state), 'firmalife:large_planter', {'base': {'parent': 'firmalife:block/%s_%s' % (planter, state)}})
-    rm.blockstate(planter, variants={
-        'watered=true': {'model': 'firmalife:block/%s_wet_dynamic' % planter},
-        'watered=false': {'model': 'firmalife:block/%s_dry_dynamic' % planter}
-    }).with_lang(lang(planter)).with_block_loot('firmalife:%s' % planter).with_tag('minecraft:mineable/axe').with_tag('minecraft:mineable/pickaxe')
-    rm.item_model(planter, parent='firmalife:block/%s_dry' % planter, no_textures=True)
-
-    for planter in ('quad_planter', 'bonsai_planter', 'hanging_planter'):
+    for planter in ('quad_planter', 'large_planter', 'bonsai_planter', 'hanging_planter'):
         for state in ('wet', 'dry'):
             rm.block_model('%s_%s' % (planter, state), parent='firmalife:block/%s' % planter, textures={'soil': 'firmalife:block/potting_soil_%s' % state})
+            rm.custom_block_model('%s_%s_dynamic' % (planter, state), 'firmalife:%s' % planter, {'base': {'parent': 'firmalife:block/%s_%s' % (planter, state)}})
         rm.blockstate(planter, variants={
-            'watered=true': {'model': 'firmalife:block/%s_wet' % planter},
-            'watered=false': {'model': 'firmalife:block/%s_dry' % planter}
+            'watered=true': {'model': 'firmalife:block/%s_wet_dynamic' % planter},
+            'watered=false': {'model': 'firmalife:block/%s_dry_dynamic' % planter}
         }).with_lang(lang(planter)).with_block_loot('firmalife:%s' % planter).with_tag('minecraft:mineable/axe').with_tag('minecraft:mineable/pickaxe')
         rm.item_model(planter, parent='firmalife:block/%s_dry' % planter, no_textures=True)
-    rm.blockstate('trellis_planter', model='firmalife:block/trellis_planter').with_lang(lang('trellis planter')).with_block_loot('firmalife:trellis_planter').with_tag('minecraft:mineable/axe').with_tag('minecraft:mineable/pickaxe').with_item_model()
-    rm.blockstate('hydroponic_planter', model='firmalife:block/hydroponic_planter').with_lang(lang('hydroponic planter')).with_block_loot('firmalife:hydroponic_planter').with_tag('minecraft:mineable/axe').with_tag('minecraft:mineable/pickaxe').with_item_model()
+
+    for planter in ('trellis_planter', 'hydroponic_planter'):
+        rm.custom_block_model('%s_dynamic' % planter, 'firmalife:%s' % planter, {'base': {'parent': 'firmalife:block/%s' % planter}})
+    rm.blockstate('trellis_planter', model='firmalife:block/trellis_planter_dynamic').with_lang(lang('trellis planter')).with_block_loot('firmalife:trellis_planter').with_tag('minecraft:mineable/axe').with_tag('minecraft:mineable/pickaxe').with_item_model()
+    rm.blockstate('hydroponic_planter', model='firmalife:block/hydroponic_planter_dynamic').with_lang(lang('hydroponic planter')).with_block_loot('firmalife:hydroponic_planter').with_tag('minecraft:mineable/axe').with_tag('minecraft:mineable/pickaxe').with_item_model()
 
     rm.blockstate('vat', variants={
         'sealed=false': {'model': 'firmalife:block/vat'},
@@ -395,12 +389,6 @@ def simple_plant_data(rm: ResourceManager, p: str, bees: bool = True, straw: boo
         rm.block_tag('bee_restoration_plants', p)
     loot_alt = ({'name': p, 'conditions': [loot_tables.match_tag('tfc:knives')]}) if not straw else ({'name': p, 'conditions': [loot_tables.match_tag('forge:shears')]}, {'name': 'tfc:straw', 'conditions': [loot_tables.match_tag('tfc:sharp_tools')]})
     rm.block_loot(p, loot_alt)
-
-def make_jar(rm: ResourceManager, fruit: str, texture: str, lang_override: str = None) -> ItemContext:
-    rm.block_model('jar/%s' % fruit, textures={'1': 'firmalife:block/jar/%s' % fruit}, parent='tfc:block/jar')
-    rm.block_model('jar/%s_unsealed' % fruit, textures={'1': 'firmalife:block/jar/%s' % fruit, '2': 'firmalife:block/jar_no_lid'}, parent='tfc:block/jar')
-    rm.item_model('jar/%s' % fruit, 'tfc:item/jar/%s' % fruit).with_lang(lang('%s jam', fruit)).with_tag('jars').with_tag('foods/sealed_preserves')
-    rm.item_model('jar/%s_unsealed' % fruit, 'tfc:item/jar/%s_unsealed' % fruit).with_lang(lang('%s jam', fruit)).with_tag('jars').with_tag('foods/preserves')
 
 def item_model_property(rm: ResourceManager, name_parts: utils.ResourceIdentifier, overrides: utils.Json, data: Dict[str, Any]) -> ItemContext:
     res = utils.resource_location(rm.domain, name_parts)

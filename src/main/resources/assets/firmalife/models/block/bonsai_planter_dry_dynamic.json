@@ -1,0 +1,7 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "loader": "firmalife:bonsai_planter",
+  "base": {
+    "parent": "firmalife:block/bonsai_planter_dry"
+  }
+}

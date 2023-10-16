@@ -1,0 +1,7 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "loader": "firmalife:hydroponic_planter",
+  "base": {
+    "parent": "firmalife:block/hydroponic_planter"
+  }
+}

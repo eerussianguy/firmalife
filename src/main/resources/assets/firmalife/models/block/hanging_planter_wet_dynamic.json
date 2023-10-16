@@ -1,0 +1,7 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "loader": "firmalife:hanging_planter",
+  "base": {
+    "parent": "firmalife:block/hanging_planter_wet"
+  }
+}

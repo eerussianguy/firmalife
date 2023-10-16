@@ -3,9 +3,14 @@ package com.eerussianguy.firmalife.client;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
+import com.eerussianguy.firmalife.client.model.BonsaiPlanterBlockModel;
+import com.eerussianguy.firmalife.client.model.HangingPlanterBlockModel;
+import com.eerussianguy.firmalife.client.model.HydroponicPlanterBlockModel;
 import com.eerussianguy.firmalife.client.model.LargePlanterBakedModel;
 import com.eerussianguy.firmalife.client.model.PeelModel;
 import com.eerussianguy.firmalife.client.model.DynamicBlockModel;
+import com.eerussianguy.firmalife.client.model.QuadPlanterBlockModel;
+import com.eerussianguy.firmalife.client.model.TrellisPlanterBlockModel;
 import com.eerussianguy.firmalife.client.screen.StovetopGrillScreen;
 import com.eerussianguy.firmalife.client.screen.StovetopPotScreen;
 import com.eerussianguy.firmalife.common.FLCreativeTabs;
@@ -149,6 +154,11 @@ public class FLClientEvents
     public static void registerLoaders(ModelEvent.RegisterGeometryLoaders event)
     {
         event.register("large_planter", new DynamicBlockModel.Loader(LargePlanterBakedModel::new));
+        event.register("hanging_planter", new DynamicBlockModel.Loader(HangingPlanterBlockModel::new));
+        event.register("bonsai_planter", new DynamicBlockModel.Loader(BonsaiPlanterBlockModel::new));
+        event.register("quad_planter", new DynamicBlockModel.Loader(QuadPlanterBlockModel::new));
+        event.register("hydroponic_planter", new DynamicBlockModel.Loader(HydroponicPlanterBlockModel::new));
+        event.register("trellis_planter", new DynamicBlockModel.Loader(TrellisPlanterBlockModel::new));
     }
 
     private static void registerDryProperty(Supplier<Item> item)
@@ -166,12 +176,6 @@ public class FLClientEvents
         event.registerBlockEntityRenderer(FLBlockEntities.DRYING_MAT.get(), ctx -> new DryingMatBlockEntityRenderer(2f / 16));
         event.registerBlockEntityRenderer(FLBlockEntities.SOLAR_DRIER.get(), ctx -> new DryingMatBlockEntityRenderer(1f / 16));
         event.registerBlockEntityRenderer(FLBlockEntities.STRING.get(), ctx -> new StringBlockEntityRenderer());
-//        event.registerBlockEntityRenderer(FLBlockEntities.LARGE_PLANTER.get(), ctx -> new LargePlanterBlockEntityRenderer());
-        event.registerBlockEntityRenderer(FLBlockEntities.QUAD_PLANTER.get(), ctx -> new QuadPlanterBlockEntityRenderer<>());
-        event.registerBlockEntityRenderer(FLBlockEntities.HYDROPONIC_PLANTER.get(), ctx -> new HydroponicPlanterBlockEntityRenderer());
-        event.registerBlockEntityRenderer(FLBlockEntities.TRELLIS_PLANTER.get(), ctx -> new TrellisPlanterBlockEntityRenderer());
-        event.registerBlockEntityRenderer(FLBlockEntities.BONSAI_PLANTER.get(), ctx -> new BonsaiPlanterBlockEntityRenderer());
-        event.registerBlockEntityRenderer(FLBlockEntities.HANGING_PLANTER.get(), ctx -> new HangingPlanterBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.VAT.get(), ctx -> new VatBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.MIXING_BOWL.get(), ctx -> new MixingBowlBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.HANGER.get(), ctx -> new HangerBlockEntityRenderer());
@@ -182,6 +186,7 @@ public class FLClientEvents
         event.registerBlockEntityRenderer(FLBlockEntities.ICE_FISHING_STATION.get(), ctx -> new IceFishingStationBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.JARRING_STATION.get(), ctx -> new JarringStationBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.PLATE.get(), ctx -> new PlateBlockEntityRenderer());
+        event.registerBlockEntityRenderer(FLBlockEntities.HYDROPONIC_PLANTER.get(), ctx -> new HydroponicPlanterBlockEntityRenderer());
 
         event.registerEntityRenderer(FLEntities.SEED_BALL.get(), ThrownItemRenderer::new);
     }

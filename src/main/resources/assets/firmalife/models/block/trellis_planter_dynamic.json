@@ -1,0 +1,7 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "loader": "firmalife:trellis_planter",
+  "base": {
+    "parent": "firmalife:block/trellis_planter"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "loader": "firmalife:quad_planter",
+  "base": {
+    "parent": "firmalife:block/quad_planter_dry"
+  }
+}

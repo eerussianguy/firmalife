@@ -2,10 +2,10 @@
   "__comment__": "This file was automatically created by mcresources",
   "variants": {
     "watered=true": {
-      "model": "firmalife:block/bonsai_planter_wet"
+      "model": "firmalife:block/bonsai_planter_wet_dynamic"
     },
     "watered=false": {
-      "model": "firmalife:block/bonsai_planter_dry"
+      "model": "firmalife:block/bonsai_planter_dry_dynamic"
     }
   }
 }
