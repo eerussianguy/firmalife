@@ -8,6 +8,7 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
@@ -64,6 +65,16 @@ public class JarringStationBlockEntity extends TickableInventoryBlockEntity<Item
         sidedInventory
             .on(new PartialItemHandler(inventory).extract(0, 1, 2, 3, 4, 5, 6, 7, 8), Direction.DOWN)
             .on(new PartialItemHandler(inventory).insert(0, 1, 2, 3, 4, 5, 6, 7, 8), Direction.Plane.HORIZONTAL);
+    }
+
+    @Override
+    public void setAndUpdateSlots(int slot)
+    {
+        super.setAndUpdateSlots(slot);
+        if (level != null)
+        {
+            level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
+        }
     }
 
     @Override

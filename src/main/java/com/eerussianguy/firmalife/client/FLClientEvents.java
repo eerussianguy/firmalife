@@ -7,6 +7,7 @@ import com.eerussianguy.firmalife.client.model.BonsaiPlanterBlockModel;
 import com.eerussianguy.firmalife.client.model.HangingPlanterBlockModel;
 import com.eerussianguy.firmalife.client.model.HydroponicPlanterBlockModel;
 import com.eerussianguy.firmalife.client.model.JarbnetBlockModel;
+import com.eerussianguy.firmalife.client.model.JarringStationBlockModel;
 import com.eerussianguy.firmalife.client.model.LargePlanterBakedModel;
 import com.eerussianguy.firmalife.client.model.PeelModel;
 import com.eerussianguy.firmalife.client.model.DynamicBlockModel;
@@ -159,6 +160,7 @@ public class FLClientEvents
         event.register("hydroponic_planter", new DynamicBlockModel.Loader(HydroponicPlanterBlockModel::new));
         event.register("trellis_planter", new DynamicBlockModel.Loader(TrellisPlanterBlockModel::new));
         event.register("jarbnet", new DynamicBlockModel.Loader(JarbnetBlockModel::new));
+        event.register("jarring_station", new DynamicBlockModel.Loader(JarringStationBlockModel::new));
     }
 
     private static void registerDryProperty(Supplier<Item> item)
@@ -182,7 +184,6 @@ public class FLClientEvents
         event.registerBlockEntityRenderer(FLBlockEntities.FOOD_SHELF.get(), ctx -> new FoodShelfBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.STOVETOP_GRILL.get(), ctx -> new StovetopGrillBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.STOVETOP_POT.get(), ctx -> new StovetopPotBlockEntityRenderer());
-        event.registerBlockEntityRenderer(FLBlockEntities.JARRING_STATION.get(), ctx -> new JarringStationBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.PLATE.get(), ctx -> new PlateBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.HYDROPONIC_PLANTER.get(), ctx -> new HydroponicPlanterBlockEntityRenderer());
 
@@ -199,6 +200,5 @@ public class FLClientEvents
     {
         event.register(MixingBowlBlockEntityRenderer.SPOON_LOCATION);
         event.register(JarbnetBlockModel.JUG_LOCATION);
-        event.register(JarringStationBlockEntityRenderer.EMPTY_JAR_LOCATION);
     }
 }

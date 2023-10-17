@@ -2,18 +2,18 @@
   "__comment__": "This file was automatically created by mcresources",
   "variants": {
     "facing=east": {
-      "model": "firmalife:block/jarring_station",
+      "model": "firmalife:block/jarring_station_dynamic",
       "y": 90
     },
     "facing=north": {
-      "model": "firmalife:block/jarring_station"
+      "model": "firmalife:block/jarring_station_dynamic"
     },
     "facing=south": {
-      "model": "firmalife:block/jarring_station",
+      "model": "firmalife:block/jarring_station_dynamic",
       "y": 180
     },
     "facing=west": {
-      "model": "firmalife:block/jarring_station",
+      "model": "firmalife:block/jarring_station_dynamic",
       "y": 270
     }
   }

@@ -1,0 +1,7 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "loader": "firmalife:jarring_station",
+  "base": {
+    "parent": "firmalife:block/jarring_station"
+  }
+}

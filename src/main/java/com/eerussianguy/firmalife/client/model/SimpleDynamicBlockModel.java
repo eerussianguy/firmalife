@@ -55,7 +55,7 @@ public abstract class SimpleDynamicBlockModel<T extends BlockEntity> extends Dyn
         return quads.isEmpty() ? DynamicBlockModel.StaticModelData.EMPTY : new DynamicBlockModel.StaticModelData(quads);
     }
 
-    abstract void render(T blockEntity, PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay);
+    protected abstract void render(T blockEntity, PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay);
 
-    abstract BlockEntityType<T> type();
+    protected abstract BlockEntityType<T> type();
 }
