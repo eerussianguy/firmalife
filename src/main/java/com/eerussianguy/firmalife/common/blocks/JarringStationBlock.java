@@ -38,7 +38,7 @@ public class JarringStationBlock extends FourWayDeviceBlock
             {
                 return FLHelpers.takeOneAny(level, 0, JarringStationBlockEntity.SLOTS - 1, inv, player);
             }
-            else if (Helpers.isItem(item, TFCItems.EMPTY_JAR.get()))
+            else if (Helpers.isItem(item, TFCItems.EMPTY_JAR_WITH_LID.get()))
             {
                 return FLHelpers.insertOneAny(level, item, 0, JarringStationBlockEntity.SLOTS - 1, inv, player);
             }

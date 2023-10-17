@@ -6,14 +6,12 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
-import com.eerussianguy.firmalife.common.blocks.JarsBlock;
 import com.eerussianguy.firmalife.common.blocks.OvenType;
 import com.eerussianguy.firmalife.common.util.FLArmorMaterials;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
-import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;

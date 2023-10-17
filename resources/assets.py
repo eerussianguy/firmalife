@@ -67,9 +67,6 @@ def generate(rm: ResourceManager):
         rm.block_model('ashtray_%s' % i, parent='minecraft:block/cube_column', textures={'side': 'firmalife:block/ashtray_side_%s' % i, 'end': 'firmalife:block/ashtray_top'})
     rm.item_model('ashtray', parent='firmalife:block/ashtray_0', no_textures=True)
 
-    block = rm.blockstate('ice_fishing_station', variants={**four_rotations('firmalife:block/ice_fishing_station', (90, None, 180, 270))})
-    block.with_block_loot('firmalife:ice_fishing_station').with_item_model().with_lang(lang('ice fishing station')).with_tag('minecraft:mineable/axe')
-
     block = rm.blockstate('plate').with_item_model().with_lang(lang('plate')).with_tag('minecraft:mineable/axe').with_block_loot('firmalife:plate')
 
     block = rm.blockstate('jarring_station', variants={**four_rotations('firmalife:block/jarring_station', (90, None, 180, 270))})

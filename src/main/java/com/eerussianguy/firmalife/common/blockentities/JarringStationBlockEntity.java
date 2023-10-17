@@ -37,7 +37,7 @@ public class JarringStationBlockEntity extends TickableInventoryBlockEntity<Item
                     final ItemStack stack = ItemStack.of(fluid.getTag().getCompound("fruit"));
                     for (int i = 0; i < SLOTS; i++)
                     {
-                        if (station.inventory.getStackInSlot(i).getItem() == TFCItems.EMPTY_JAR.get())
+                        if (station.inventory.getStackInSlot(i).getItem() == TFCItems.EMPTY_JAR_WITH_LID.get())
                         {
                             Helpers.playSound(level, pos, SoundEvents.BOTTLE_FILL);
                             station.inventory.setStackInSlot(i, stack.copyWithCount(1));
@@ -64,11 +64,6 @@ public class JarringStationBlockEntity extends TickableInventoryBlockEntity<Item
         sidedInventory
             .on(new PartialItemHandler(inventory).extract(0, 1, 2, 3, 4, 5, 6, 7, 8), Direction.DOWN)
             .on(new PartialItemHandler(inventory).insert(0, 1, 2, 3, 4, 5, 6, 7, 8), Direction.Plane.HORIZONTAL);
-    }
-
-    public int getPourTicks()
-    {
-        return pourTicks;
     }
 
     @Override
