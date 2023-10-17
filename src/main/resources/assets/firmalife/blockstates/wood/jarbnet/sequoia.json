@@ -2,33 +2,33 @@
   "__comment__": "This file was automatically created by mcresources",
   "variants": {
     "facing=east,open=true": {
-      "model": "firmalife:block/wood/jarbnet/sequoia",
+      "model": "firmalife:block/wood/jarbnet/sequoia_dynamic",
       "y": 90
     },
     "facing=north,open=true": {
-      "model": "firmalife:block/wood/jarbnet/sequoia"
+      "model": "firmalife:block/wood/jarbnet/sequoia_dynamic"
     },
     "facing=south,open=true": {
-      "model": "firmalife:block/wood/jarbnet/sequoia",
+      "model": "firmalife:block/wood/jarbnet/sequoia_dynamic",
       "y": 180
     },
     "facing=west,open=true": {
-      "model": "firmalife:block/wood/jarbnet/sequoia",
+      "model": "firmalife:block/wood/jarbnet/sequoia_dynamic",
       "y": 270
     },
     "facing=east,open=false": {
-      "model": "firmalife:block/wood/jarbnet/sequoia_shut",
+      "model": "firmalife:block/wood/jarbnet/sequoia_shut_dynamic",
       "y": 90
     },
     "facing=north,open=false": {
-      "model": "firmalife:block/wood/jarbnet/sequoia_shut"
+      "model": "firmalife:block/wood/jarbnet/sequoia_shut_dynamic"
     },
     "facing=south,open=false": {
-      "model": "firmalife:block/wood/jarbnet/sequoia_shut",
+      "model": "firmalife:block/wood/jarbnet/sequoia_shut_dynamic",
       "y": 180
     },
     "facing=west,open=false": {
-      "model": "firmalife:block/wood/jarbnet/sequoia_shut",
+      "model": "firmalife:block/wood/jarbnet/sequoia_shut_dynamic",
       "y": 270
     }
   }

@@ -1,0 +1,7 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "loader": "firmalife:jarbnet",
+  "base": {
+    "parent": "firmalife:block/wood/jarbnet/blackwood"
+  }
+}

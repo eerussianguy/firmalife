@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 import com.eerussianguy.firmalife.client.model.BonsaiPlanterBlockModel;
 import com.eerussianguy.firmalife.client.model.HangingPlanterBlockModel;
 import com.eerussianguy.firmalife.client.model.HydroponicPlanterBlockModel;
+import com.eerussianguy.firmalife.client.model.JarbnetBlockModel;
 import com.eerussianguy.firmalife.client.model.LargePlanterBakedModel;
 import com.eerussianguy.firmalife.client.model.PeelModel;
 import com.eerussianguy.firmalife.client.model.DynamicBlockModel;
@@ -74,7 +75,7 @@ public class FLClientEvents
         final RenderType translucent = RenderType.translucent();
 
         Stream.of(FLBlocks.OVEN_BOTTOM, FLBlocks.OVEN_TOP, FLBlocks.OVEN_CHIMNEY, FLBlocks.OVEN_HOPPER,
-            FLBlocks.QUAD_PLANTER, FLBlocks.LARGE_PLANTER, FLBlocks.HANGING_PLANTER, FLBlocks.BONSAI_PLANTER,
+            FLBlocks.QUAD_PLANTER, FLBlocks.LARGE_PLANTER, FLBlocks.HANGING_PLANTER, FLBlocks.BONSAI_PLANTER, FLBlocks.TRELLIS_PLANTER,
             FLBlocks.IRON_COMPOSTER, FLBlocks.CHEDDAR_WHEEL,
             FLBlocks.RAJYA_METOK_WHEEL, FLBlocks.CHEVRE_WHEEL, FLBlocks.SHOSHA_WHEEL, FLBlocks.FETA_WHEEL, FLBlocks.GOUDA_WHEEL, FLBlocks.SMALL_CHROMITE,
             FLBlocks.MIXING_BOWL, FLBlocks.BUTTERFLY_GRASS, FLBlocks.SPRINKLER, FLBlocks.DRIBBLER, FLBlocks.VAT, FLBlocks.HYDROPONIC_PLANTER, FLBlocks.STOVETOP_GRILL, FLBlocks.STOVETOP_POT,
@@ -147,8 +148,6 @@ public class FLClientEvents
         event.register(FLHelpers.identifier("block/jar/rotten_compost"));
         event.register(FLHelpers.identifier("block/jar/guano"));
         event.register(FLHelpers.identifier("block/jar/honey"));
-        event.register(FLHelpers.identifier("block/large_planter_wet"));
-        event.register(FLHelpers.identifier("block/large_planter_dry"));
     }
 
     public static void registerLoaders(ModelEvent.RegisterGeometryLoaders event)
@@ -159,6 +158,7 @@ public class FLClientEvents
         event.register("quad_planter", new DynamicBlockModel.Loader(QuadPlanterBlockModel::new));
         event.register("hydroponic_planter", new DynamicBlockModel.Loader(HydroponicPlanterBlockModel::new));
         event.register("trellis_planter", new DynamicBlockModel.Loader(TrellisPlanterBlockModel::new));
+        event.register("jarbnet", new DynamicBlockModel.Loader(JarbnetBlockModel::new));
     }
 
     private static void registerDryProperty(Supplier<Item> item)
@@ -179,7 +179,6 @@ public class FLClientEvents
         event.registerBlockEntityRenderer(FLBlockEntities.VAT.get(), ctx -> new VatBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.MIXING_BOWL.get(), ctx -> new MixingBowlBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.HANGER.get(), ctx -> new HangerBlockEntityRenderer());
-        event.registerBlockEntityRenderer(FLBlockEntities.JARBNET.get(), ctx -> new JarbnetBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.FOOD_SHELF.get(), ctx -> new FoodShelfBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.STOVETOP_GRILL.get(), ctx -> new StovetopGrillBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.STOVETOP_POT.get(), ctx -> new StovetopPotBlockEntityRenderer());
@@ -200,7 +199,7 @@ public class FLClientEvents
     public static void onModelRegister(ModelEvent.RegisterAdditional event)
     {
         event.register(MixingBowlBlockEntityRenderer.SPOON_LOCATION);
-        event.register(JarbnetBlockEntityRenderer.JUG_LOCATION);
+        event.register(JarbnetBlockModel.JUG_LOCATION);
         event.register(JarringStationBlockEntityRenderer.EMPTY_JAR_LOCATION);
     }
 }

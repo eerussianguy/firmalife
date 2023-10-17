@@ -261,14 +261,16 @@ def generate(rm: ResourceManager):
         rm.block_model('firmalife:wood/hanger/%s' % wood, parent='firmalife:block/hanger_base', textures={'wood': 'tfc:block/wood/planks/%s' % wood, 'string': 'minecraft:block/white_wool'})
 
         block = rm.blockstate('firmalife:wood/jarbnet/%s' % wood, variants={
-            **four_rotations('firmalife:block/wood/jarbnet/%s' % wood, (90, None, 180, 270), suffix=',open=true'),
-            **four_rotations('firmalife:block/wood/jarbnet/%s_shut' % wood, (90, None, 180, 270), suffix=',open=false'),
+            **four_rotations('firmalife:block/wood/jarbnet/%s_dynamic' % wood, (90, None, 180, 270), suffix=',open=true'),
+            **four_rotations('firmalife:block/wood/jarbnet/%s_shut_dynamic' % wood, (90, None, 180, 270), suffix=',open=false'),
         })
         block.with_block_loot('firmalife:wood/jarbnet/%s' % wood).with_lang(lang('%s jarbnet', wood)).with_tag('minecraft:mineable/axe').with_tag('jarbnets').with_item_tag('jarbnets')
         rm.item_model('firmalife:wood/jarbnet/%s' % wood, parent='firmalife:block/wood/jarbnet/%s' % wood, no_textures=True)
         textures = {'planks': 'tfc:block/wood/planks/%s' % wood, 'sheet': 'tfc:block/wood/sheet/%s' % wood, 'log': 'tfc:block/wood/log/%s' % wood}
         rm.block_model('firmalife:wood/jarbnet/%s' % wood, parent='firmalife:block/jarbnet', textures=textures)
         rm.block_model('firmalife:wood/jarbnet/%s_shut' % wood, parent='firmalife:block/jarbnet_shut', textures=textures)
+        rm.custom_block_model('firmalife:wood/jarbnet/%s_dynamic' % wood, 'firmalife:jarbnet', {'base': {'parent': 'firmalife:block/wood/jarbnet/%s' % wood}})
+        rm.custom_block_model('firmalife:wood/jarbnet/%s_shut_dynamic' % wood, 'firmalife:jarbnet', {'base': {'parent': 'firmalife:block/wood/jarbnet/%s_shut' % wood}})
 
     for fruit in FRUITS.keys():
         for prefix in ('', 'growing_'):
