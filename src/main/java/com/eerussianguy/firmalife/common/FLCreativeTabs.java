@@ -131,6 +131,7 @@ public final class FLCreativeTabs
             accept(out, FLBlocks.JACK_O_LANTERNS, carving);
         }
 
+        accept(out, FLItems.REINFORCED_GLASS);
         for (Greenhouse greenhouse : Greenhouse.values())
         {
             for (Greenhouse.BlockType blockType : Greenhouse.BlockType.values())

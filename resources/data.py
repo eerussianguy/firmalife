@@ -103,7 +103,7 @@ def generate(rm: ResourceManager):
     # Food: HUNGER, SATURATION, WATER, DECAY
     decayable(rm, 'frothy_coconut', 'firmalife:food/frothy_coconut', Category.vegetable)
     food_item(rm, 'tofu', 'firmalife:food/tofu', Category.vegetable, 4, 2, 2, 0.75, protein=1.5)
-    decayable(rm, 'soy_mixture', 'firmalife:food/soy_mixture', Category.vegetable)
+    decayable(rm, 'soy_mixture', 'firmalife:food/soy_mixture', Category.other)
     decayable(rm, 'yak_curd', 'firmalife:food/yak_curd', Category.dairy)
     decayable(rm, 'goat_curd', 'firmalife:food/goat_curd', Category.dairy)
     decayable(rm, 'milk_curd', 'firmalife:food/milk_curd', Category.dairy)

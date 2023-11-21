@@ -153,7 +153,7 @@ def generate(rm: ResourceManager):
     vat_recipe(rm, 'soy_mixture', not_rotten('tfc:food/soybean'), '1000 tfc:salt_water', output_item='firmalife:food/soy_mixture')
     vat_recipe(rm, 'cured_maize', not_rotten('tfc:food/maize_grain'), '1000 tfc:limewater', output_item='firmalife:food/cured_maize')
     vat_recipe(rm, 'tomato_sauce', not_rotten('firmalife:food/tomato_sauce_mix'), '200 minecraft:water', output_item='firmalife:food/tomato_sauce')
-    vat_recipe(rm, 'sugar_water', '#firmalife:sweetener', '1000 minecraft:water', output_fluid='500 firmalife:sugar_water')
+    vat_recipe(rm, 'sugar_water', '#tfc:sweetener', '1000 minecraft:water', output_fluid='500 firmalife:sugar_water')
 
     for jar, remainder, ing in JARS:
         make_jar(rm, jar, remainder, ing)
@@ -177,7 +177,7 @@ def generate(rm: ResourceManager):
     simple_pot_recipe(rm, 'soy_mixture', [not_rotten('tfc:food/soybean'), not_rotten('tfc:food/soybean'), utils.ingredient('tfc:powder/salt'), utils.ingredient('tfc:powder/salt')], '1000 minecraft:water', output_items=['firmalife:food/soy_mixture', 'firmalife:food/soy_mixture'])
     simple_pot_recipe(rm, 'cured_maize', [not_rotten('tfc:food/maize_grain')], '1000 tfc:limewater', output_items=['firmalife:food/cured_maize'], duration=3000)
     simple_pot_recipe(rm, 'tomato_sauce', [not_rotten('tfc:food/tomato'), utils.ingredient('tfc:powder/salt'), not_rotten('tfc:food/garlic')], '1000 minecraft:water', output_items=['firmalife:food/tomato_sauce', 'firmalife:food/tomato_sauce', 'firmalife:food/tomato_sauce', 'firmalife:food/tomato_sauce', 'firmalife:food/tomato_sauce'])
-    simple_pot_recipe(rm, 'chocolate', [utils.ingredient('#firmalife:sweetener'), not_rotten('#firmalife:foods/chocolate')], '1000 #tfc:milks', output_fluid='1000 firmalife:chocolate')
+    simple_pot_recipe(rm, 'chocolate', [utils.ingredient('#tfc:sweetener'), not_rotten('#firmalife:foods/chocolate')], '1000 #tfc:milks', output_fluid='1000 firmalife:chocolate')
 
     soup_food = not_rotten(utils.ingredient('#tfc:foods/usable_in_soup'))
     for duration, count in ((1000, 3), (1150, 4), (1300, 5)):
@@ -245,13 +245,13 @@ def generate(rm: ResourceManager):
     smoking_recipe(rm, 'cheese', not_rotten(lacks_trait('#firmalife:foods/cheeses', 'firmalife:smoked')), item_stack_provider(copy_input=True, add_trait='firmalife:smoked'))
 
     mixing_recipe(rm, 'butter', ingredients=[utils.ingredient('tfc:powder/salt')], fluid='1000 firmalife:cream', output_item='firmalife:food/butter')
-    mixing_recipe(rm, 'pie_dough', ingredients=[not_rotten('firmalife:food/butter'), not_rotten('#tfc:foods/flour'), utils.ingredient('#firmalife:sweetener')], fluid='1000 minecraft:water', output_item='firmalife:food/pie_dough')
-    mixing_recipe(rm, 'pumpkin_pie_dough', ingredients=[utils.ingredient('minecraft:egg'), not_rotten('tfc:food/pumpkin_chunks'), not_rotten('tfc:food/pumpkin_chunks'), not_rotten('#tfc:foods/flour'), utils.ingredient('#firmalife:sweetener')], fluid='1000 minecraft:water', output_item='firmalife:food/pumpkin_pie_dough')
+    mixing_recipe(rm, 'pie_dough', ingredients=[not_rotten('firmalife:food/butter'), not_rotten('#tfc:foods/flour'), utils.ingredient('#tfc:sweetener')], fluid='1000 minecraft:water', output_item='firmalife:food/pie_dough')
+    mixing_recipe(rm, 'pumpkin_pie_dough', ingredients=[utils.ingredient('minecraft:egg'), not_rotten('tfc:food/pumpkin_chunks'), not_rotten('tfc:food/pumpkin_chunks'), not_rotten('#tfc:foods/flour'), utils.ingredient('#tfc:sweetener')], fluid='1000 minecraft:water', output_item='firmalife:food/pumpkin_pie_dough')
     mixing_recipe(rm, 'pizza_dough', ingredients=[not_rotten('#tfc:foods/dough'), utils.ingredient('tfc:powder/salt'), utils.ingredient('firmalife:spice/basil_leaves')], fluid='1000 tfc:olive_oil', output_item='4 firmalife:food/pizza_dough')
-    mixing_recipe(rm, 'dark_chocolate_blend', ingredients=[utils.ingredient('#firmalife:sweetener'), not_rotten('firmalife:food/cocoa_powder'), not_rotten('firmalife:food/cocoa_powder')], fluid='1000 #tfc:milks', output_item='2 firmalife:food/dark_chocolate_blend')
-    mixing_recipe(rm, 'white_chocolate_blend', ingredients=[utils.ingredient('#firmalife:sweetener'), not_rotten('firmalife:food/cocoa_butter'), not_rotten('firmalife:food/cocoa_butter')], fluid='1000 #tfc:milks', output_item='2 firmalife:food/white_chocolate_blend')
-    mixing_recipe(rm, 'milk_chocolate_blend', ingredients=[utils.ingredient('#firmalife:sweetener'), not_rotten('firmalife:food/cocoa_butter'), not_rotten('firmalife:food/cocoa_powder')], fluid='1000 #tfc:milks', output_item='2 firmalife:food/milk_chocolate_blend')
-    mixing_recipe(rm, 'vanilla_ice_cream', ingredients=[utils.ingredient('#firmalife:sweetener'), utils.ingredient('firmalife:spice/vanilla'), utils.ingredient('firmalife:ice_shavings')], fluid='1000 firmalife:cream', output_item='2 firmalife:food/vanilla_ice_cream')
+    mixing_recipe(rm, 'dark_chocolate_blend', ingredients=[utils.ingredient('#tfc:sweetener'), not_rotten('firmalife:food/cocoa_powder'), not_rotten('firmalife:food/cocoa_powder')], fluid='1000 #tfc:milks', output_item='2 firmalife:food/dark_chocolate_blend')
+    mixing_recipe(rm, 'white_chocolate_blend', ingredients=[utils.ingredient('#tfc:sweetener'), not_rotten('firmalife:food/cocoa_butter'), not_rotten('firmalife:food/cocoa_butter')], fluid='1000 #tfc:milks', output_item='2 firmalife:food/white_chocolate_blend')
+    mixing_recipe(rm, 'milk_chocolate_blend', ingredients=[utils.ingredient('#tfc:sweetener'), not_rotten('firmalife:food/cocoa_butter'), not_rotten('firmalife:food/cocoa_powder')], fluid='1000 #tfc:milks', output_item='2 firmalife:food/milk_chocolate_blend')
+    mixing_recipe(rm, 'vanilla_ice_cream', ingredients=[utils.ingredient('#tfc:sweetener'), utils.ingredient('firmalife:spice/vanilla'), utils.ingredient('firmalife:ice_shavings')], fluid='1000 firmalife:cream', output_item='2 firmalife:food/vanilla_ice_cream')
     mixing_recipe(rm, 'chocolate_ice_cream', ingredients=[not_rotten('firmalife:food/vanilla_ice_cream')], fluid='1000 firmalife:chocolate', output_item='firmalife:food/chocolate_ice_cream')
     mixing_recipe(rm, 'strawberry_ice_cream', ingredients=[not_rotten('firmalife:food/vanilla_ice_cream'), not_rotten('tfc:food/strawberry')], fluid='1000 firmalife:chocolate', output_item='firmalife:food/strawberry_ice_cream')
 
@@ -274,58 +274,22 @@ def generate(rm: ResourceManager):
         rm.crafting_shaped('crafting/greenhouse/%s_greenhouse_roof_top' % greenhouse, ['XYX', 'YXY'], mapping, (8, 'firmalife:%s_greenhouse_roof_top' % greenhouse)).with_advancement(rod)
         rm.crafting_shaped('crafting/greenhouse/%s_greenhouse_roof' % greenhouse, ['Y  ', 'XY ', 'XXY'], mapping, (4, 'firmalife:%s_greenhouse_roof' % greenhouse)).with_advancement(rod)
         rm.crafting_shaped('crafting/greenhouse/%s_greenhouse_door' % greenhouse, ['XY', 'XY', 'XY'], mapping, (2, 'firmalife:%s_greenhouse_door' % greenhouse)).with_advancement(rod)
+        mapping['Y'] = 'firmalife:reinforced_glass'
+        rm.crafting_shaped('crafting/greenhouse/%s_greenhouse_trapdoor' % greenhouse, ['XYX', 'YXY'], mapping, (8, 'firmalife:%s_greenhouse_trapdoor' % greenhouse)).with_advancement(rod)
+        rm.crafting_shaped('crafting/greenhouse/%s_greenhouse_panel_roof' % greenhouse, ['Y  ', 'XY ', 'XXY'], mapping, (4, 'firmalife:%s_greenhouse_panel_roof' % greenhouse)).with_advancement(rod)
+        rm.crafting_shaped('crafting/greenhouse/%s_greenhouse_panel_wall' % greenhouse, ['XYX', 'XYX', 'XYX'], mapping, (8, 'firmalife:%s_greenhouse_panel_wall' % greenhouse)).with_advancement(rod)
 
     # Grain Stuff
     for grain in TFC_GRAINS:
         damage_shapeless(rm, 'crafting/%s_slice' % grain, ('tfc:food/%s_bread' % grain, '#tfc:knives'), '2 firmalife:food/%s_slice' % grain).with_advancement('tfc:food/%s_bread' % grain)
 
-        rm.crafting_shapeless('crafting/%s_dough' % grain, (not_rotten('tfc:food/%s_flour' % grain), fluid_item_ingredient('100 firmalife:yeast_starter'), '#firmalife:sweetener'), (4, 'firmalife:food/%s_dough' % grain)).with_advancement('tfc:food/%s_grain' % grain)
+        rm.crafting_shapeless('crafting/%s_dough' % grain, (not_rotten('tfc:food/%s_flour' % grain), fluid_item_ingredient('100 firmalife:yeast_starter'), '#tfc:sweetener'), (4, 'firmalife:food/%s_dough' % grain)).with_advancement('tfc:food/%s_grain' % grain)
 
         oven_recipe(rm, grain + '_bread', not_rotten('firmalife:food/%s_dough' % grain), 200, result_item=item_stack_provider('tfc:food/%s_bread' % grain))
         heat_recipe(rm, 'toast', not_rotten('#firmalife:foods/slices'), 200, result_item=item_stack_provider('firmalife:food/toast'))
         rm.domain = 'tfc'  # DOMAIN CHANGE
         heat_recipe(rm, grain + '_dough', not_rotten('tfc:food/%s_dough' % grain), 200, result_item=item_stack_provider('firmalife:food/%s_flatbread' % grain, copy_food=True))
         rm.domain = 'firmalife'  # DOMAIN RESET
-
-        # for bread in ('slice', 'flatbread'):
-        #     sandwich_modifier = {
-        #         'food': {
-        #             'hunger': 4,
-        #             'water': 0.5,
-        #             'saturation': 1,
-        #             'decay_modifier': 4.5
-        #         },
-        #         'portions': [{
-        #             'ingredient': utils.ingredient('#tfc:sandwich_bread'),
-        #             'nutrient_modifier': 0.5,
-        #             'saturation_modifier': 0.5,
-        #             'water_modifier': 0.5,
-        #         }, {
-        #             'nutrient_modifier': 0.8,
-        #             'water_modifier': 0.8,
-        #             'saturation_modifier': 0.8,
-        #         }]
-        #     }
-        #     food = 'firmalife:food/%s_%s' % (grain, bread)
-        #     sandwich_pattern = ['ZX ', 'YYY', ' X ']
-        #     sandwich_ingredients = {'X': not_rotten('firmalife:food/%s_%s' % (grain, bread)), 'Y': not_rotten('#tfc:foods/usable_in_sandwich'), 'Z': '#tfc:knives'}
-        #     jam_sandwich_ingredients = {'X': not_rotten('firmalife:food/%s_%s' % (grain, bread)), 'Y': not_rotten('#tfc:foods/usable_in_jam_sandwich'), 'Z': '#tfc:knives'}
-        #     delegate_recipe(rm, 'crafting/%s_sandwich' % grain, 'tfc:damage_inputs_shaped_crafting', {
-        #         'type': 'tfc:advanced_shaped_crafting',
-        #         'pattern': sandwich_pattern,
-        #         'key': utils.item_stack_dict(sandwich_ingredients, ''.join(sandwich_pattern)[0]),
-        #         'result': item_stack_provider('2 tfc:food/%s_bread_sandwich' % grain, meal=sandwich_modifier),
-        #         'input_row': 0,
-        #         'input_column': 0,
-        #     }).with_advancement('tfc:food/%s_bread' % grain)
-        #     delegate_recipe(rm, 'crafting/%s_sandwich_with_jam' % grain, 'tfc:damage_inputs_shaped_crafting', {
-        #         'type': 'tfc:advanced_shaped_crafting',
-        #         'pattern': sandwich_pattern,
-        #         'key': utils.item_stack_dict(jam_sandwich_ingredients, ''.join(sandwich_pattern)[0]),
-        #         'result': item_stack_provider('2 tfc:food/%s_bread_jam_sandwich' % grain, meal=sandwich_modifier),
-        #         'input_row': 0,
-        #         'input_column': 0,
-        #     }).with_advancement('tfc:food/%s_bread' % grain)
 
     heat_recipe(rm, 'corn_tortilla', not_rotten('firmalife:food/masa'), 200, result_item=item_stack_provider('firmalife:food/corn_tortilla', copy_food=True))
     heat_recipe(rm, 'bacon', not_rotten('firmalife:food/bacon'), 200, result_item=item_stack_provider('firmalife:food/cooked_bacon', copy_food=True))
@@ -347,6 +311,8 @@ def generate(rm: ResourceManager):
     anvil_recipe(rm, 'sprinkler', '#forge:sheets/red_steel', 'firmalife:sprinkler', 6, Rules.bend_last, Rules.punch_second_last, Rules.shrink_third_last)
     anvil_recipe(rm, 'dribbler', '#forge:sheets/stainless_steel', 'firmalife:dribbler', 6, Rules.bend_last, Rules.punch_second_last, Rules.shrink_third_last)
 
+    glass_recipe(rm, 'reinforced_glass_pane', ['flatten', 'soda_ash', 'table_pour'], 'tfc:silica_glass_batch', 'firmalife:reinforced_poured_glass')
+
     for recipe in DISABLED_TFC_RECIPES:
         rm.domain = 'tfc' # DOMAIN CHANGE
         disable_recipe(rm, recipe)
@@ -355,6 +321,13 @@ def generate(rm: ResourceManager):
 def disable_recipe(rm: ResourceManager, name_parts: ResourceIdentifier):
     # noinspection PyTypeChecker
     rm.recipe(name_parts, None, {}, conditions='forge:false')
+
+def glass_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, steps: List[str], batch: str, result: str):
+    rm.recipe(('glassworking', name_parts), 'tfc:glassworking', {
+        'operations': steps,
+        'batch': utils.ingredient(batch),
+        'result': utils.item_stack(result)
+    })
 
 def write_crafting_recipe(rm: ResourceManager, name_parts: ResourceIdentifier, data: Json) -> RecipeContext:
     res = utils.resource_location(rm.domain, name_parts)

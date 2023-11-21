@@ -166,6 +166,9 @@ def generate(rm: ResourceManager):
     rm.blockstate('dark_ladder', variants=four_rotations('firmalife:block/dark_ladder', (90, None, 180, 270))).with_block_model(textures={'texture': 'firmalife:block/dark_ladder', 'particle': 'firmalife:block/dark_ladder'}, parent='minecraft:block/ladder').with_lang(lang('dark ladder')).with_tag('minecraft:mineable/pickaxe').with_block_loot('firmalife:dark_ladder')
     rm.item_model('dark_ladder', 'firmalife:block/dark_ladder')
 
+    rm.blockstate('reinforced_poured_glass').with_block_model({'all': 'firmalife:block/reinforced_glass'}, parent='tfc:block/template_poured_glass').with_lang(lang('reinforced poured glass')).with_block_loot('firmalife:reinforced_glass')
+    rm.item_model('reinforced_poured_glass', 'firmalife:block/reinforced_poured_glass')
+
     rm.blockstate('nutritive_basin', variants={
         'watered=false': {'model': 'firmalife:block/nutritive_basin'},
         'watered=true': {'model': 'firmalife:block/nutritive_basin_water'},

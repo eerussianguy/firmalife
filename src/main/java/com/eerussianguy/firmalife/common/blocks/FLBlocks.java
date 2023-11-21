@@ -10,6 +10,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
@@ -17,6 +18,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -34,6 +36,7 @@ import net.dries007.tfc.common.blocks.DecorationBlockRegistryObject;
 import net.dries007.tfc.common.blocks.ExtendedBlock;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.GroundcoverBlock;
+import net.dries007.tfc.common.blocks.PouredGlassBlock;
 import net.dries007.tfc.common.blocks.devices.JackOLanternBlock;
 import net.dries007.tfc.common.blocks.plant.PlantBlock;
 import net.dries007.tfc.common.blocks.rock.Ore;
@@ -86,7 +89,7 @@ public class FLBlocks
     public static final RegistryObject<Block> VAT = register("vat", () -> new VatBlock(ExtendedProperties.of().sound(SoundType.METAL).strength(1f).noOcclusion().blockEntity(FLBlockEntities.VAT).serverTicks(VatBlockEntity::serverTick)));
     public static final RegistryObject<Block> JARRING_STATION = register("jarring_station", () -> new JarringStationBlock(ExtendedProperties.of().sound(SoundType.METAL).strength(1f).noOcclusion().blockEntity(FLBlockEntities.JARRING_STATION).ticks(JarringStationBlockEntity::tick)));
     public static final RegistryObject<Block> PLATE = register("plate", () -> ConsumingBlock.plate(ExtendedProperties.of().sound(SoundType.WOOD).strength(1f).noOcclusion().blockEntity(FLBlockEntities.PLATE)));
-
+    public static final RegistryObject<Block> REINFORCED_POURED_GLASS = register("reinforced_poured_glass", () -> new PouredGlassBlock(ExtendedProperties.of().strength(0.3F).sound(SoundType.GLASS).pushReaction(PushReaction.DESTROY).noOcclusion().requiresCorrectToolForDrops(), FLItems.REINFORCED_GLASS));
 
     public static final RegistryObject<Block> CHEDDAR_WHEEL = register("cheddar_wheel", () -> new CheeseWheelBlock(wheelProperties(), FLItems.FOODS.get(FLFood.CHEDDAR)));
     public static final RegistryObject<Block> CHEVRE_WHEEL = register("chevre_wheel", () -> new CheeseWheelBlock(wheelProperties(), FLItems.FOODS.get(FLFood.CHEVRE)));

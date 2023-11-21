@@ -1,0 +1,20 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XYX",
+    "YXY"
+  ],
+  "key": {
+    "X": {
+      "item": "tfc:metal/rod/wrought_iron"
+    },
+    "Y": {
+      "item": "firmalife:reinforced_glass"
+    }
+  },
+  "result": {
+    "item": "firmalife:iron_greenhouse_trapdoor",
+    "count": 8
+  }
+}

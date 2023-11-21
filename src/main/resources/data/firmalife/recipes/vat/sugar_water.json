@@ -3,7 +3,7 @@
   "type": "firmalife:vat",
   "input_item": {
     "ingredient": {
-      "tag": "firmalife:sweetener"
+      "tag": "tfc:sweetener"
     }
   },
   "input_fluid": {

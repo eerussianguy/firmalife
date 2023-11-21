@@ -57,6 +57,7 @@ def generate(rm: ResourceManager):
     rm.block_tag('minecraft:mineable/axe', *['firmalife:plant/%s_branch' % t for t in FRUITS], *['firmalife:plant/%s_growing_branch' % t for t in FRUITS])
     rm.block_tag('tfc:mineable_with_sharp_tool', *['firmalife:plant/%s_leaves' % t for t in FRUITS], *['firmalife:plant/%s_sapling' % t for t in FRUITS], *['firmalife:plant/%s_bush' % b for b in STILL_BUSHES.keys()])
     rm.block_tag('tfc:replaceable_plants', *['firmalife:plant/%s' % p for p in HERBS], 'firmalife:plant/butterfly_grass')
+    rm.block_tag('tfc:mineable_with_glass_saw', 'firmalife:reinforced_poured_glass')
 
     rm.entity_tag('drops_rennet', 'tfc:goat', 'tfc:yak')
     rm.entity_tag('drops_three_rennet', 'tfc:cow', 'tfc:sheep', 'tfc:musk_ox')

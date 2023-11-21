@@ -3,7 +3,7 @@
   "type": "firmalife:mixing_bowl",
   "ingredients": [
     {
-      "tag": "firmalife:sweetener"
+      "tag": "tfc:sweetener"
     },
     {
       "item": "firmalife:spice/vanilla"

@@ -1,0 +1,21 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XYX",
+    "XYX",
+    "XYX"
+  ],
+  "key": {
+    "X": {
+      "item": "tfc:metal/rod/copper"
+    },
+    "Y": {
+      "item": "firmalife:reinforced_glass"
+    }
+  },
+  "result": {
+    "item": "firmalife:copper_greenhouse_panel_wall",
+    "count": 8
+  }
+}
