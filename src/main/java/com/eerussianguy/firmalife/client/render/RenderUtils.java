@@ -4,14 +4,11 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.resources.ResourceLocation;
 
 import net.dries007.tfc.client.RenderHelpers;
-import net.dries007.tfc.util.Helpers;
 
 public final class RenderUtils
 {
-    public static final ResourceLocation EMPTY_TEXTURE = Helpers.identifier("block/empty");
 
     public static void renderCross(float x, float z, float y1, float y2, PoseStack poseStack, VertexConsumer buffer, int combinedLight, int combinedOverlay, TextureAtlasSprite sprite, float u1, float v1, float u2, float v2)
     {

@@ -1,7 +1,0 @@
-{
-  "__comment__": "This file was automatically created by mcresources",
-  "parent": "tfc:block/jar",
-  "textures": {
-    "1": "firmalife:block/jar/pumpkin_chunks"
-  }
-}

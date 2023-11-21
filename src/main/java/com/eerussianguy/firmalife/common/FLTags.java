@@ -15,6 +15,9 @@ public class FLTags
         public static final TagKey<Block> OVEN_INSULATION = create("oven_insulation");
         public static final TagKey<Block> CHIMNEYS = create("chimneys");
         public static final TagKey<Block> GREENHOUSE = create("greenhouse");
+        public static final TagKey<Block> GREENHOUSE_FULL_WALLS = create("greenhouse_full_walls");
+        public static final TagKey<Block> GREENHOUSE_PANEL_WALLS = create("greenhouse_panel_walls");
+        public static final TagKey<Block> ALWAYS_VALID_GREENHOUSE_WALL = create("always_valid_greenhouse_wall");
         public static final TagKey<Block> ALL_TREATED_WOOD_GREENHOUSE = create("all_treated_wood_greenhouse");
         public static final TagKey<Block> ALL_IRON_GREENHOUSE = create("all_iron_greenhouse");
         public static final TagKey<Block> ALL_COPPER_GREENHOUSE = create("all_copper_greenhouse");

@@ -81,7 +81,6 @@ def generate(rm: ResourceManager):
     rm.crafting_shaped('crafting/seed_ball', [' X ', 'XYX', ' X '], {'X': '#tfc:seeds', 'Y': 'tfc:compost'}, 'firmalife:seed_ball').with_advancement('tfc:compost')
     rm.crafting_shapeless('crafting/raw_pumpkin_pie', ('firmalife:food/pumpkin_pie_dough', 'firmalife:pie_pan'), 'firmalife:food/raw_pumpkin_pie').with_advancement('firmalife:food/pumpkin_pie_dough')
     rm.crafting_shaped('crafting/treated_wood', ['XX', 'XX'], {'X': 'firmalife:treated_lumber'}, 'firmalife:treated_wood').with_advancement('firmalife:treated_lumber')
-    damage_shapeless(rm, 'crafting/pumpkin_chunks_bulk', ('#tfc:hammers', *(not_rotten('tfc:pumpkin') for _ in range(0, 8))), '8 firmalife:food/pumpkin_chunks').with_advancement('tfc:pumpkin')
     rm.crafting_shapeless('crafting/garlic_bread', ('firmalife:food/toast', 'firmalife:food/butter', 'tfc:food/garlic'), 'firmalife:food/garlic_bread').with_advancement('tfc:food/garlic')
     damage_shapeless(rm, 'crafting/salsa', ('tfc:food/tomato', 'tfc:powder/salt', 'firmalife:plant/cilantro', '#tfc:knives'), '5 firmalife:food/salsa').with_advancement('tfc:food/tomato')
     damage_shapeless(rm, 'crafting/pineapple_fiber', (not_rotten(has_trait('firmalife:food/pineapple', trait='firmalife:dried')), '#tfc:knives'), 'firmalife:pineapple_fiber').with_advancement('firmalife:food/pineapple')
@@ -230,7 +229,7 @@ def generate(rm: ResourceManager):
     for carving, pattern in CARVINGS.items():
         pumpkin_knapping(rm, carving, pattern, 'firmalife:carved_pumpkin/%s' % carving)
     pumpkin_knapping(rm, 'face', ['XXXXX', 'X X X', 'XXXXX', 'X   X', 'XXXXX'], 'minecraft:carved_pumpkin')
-    pumpkin_knapping(rm, 'chunks', [' X X ', 'X X X', ' X X ', 'X X X', ' X X '], 'firmalife:food/pumpkin_chunks')
+    pumpkin_knapping(rm, 'chunks', [' X X ', 'X X X', ' X X ', 'X X X', ' X X '], 'tfc:food/pumpkin_chunks')
 
     drying_recipe(rm, 'drying_fruit', not_rotten(lacks_trait('#tfc:foods/fruits', 'firmalife:dried')), item_stack_provider(copy_input=True, add_trait='firmalife:dried'))
     drying_recipe(rm, 'cinnamon', 'firmalife:cinnamon_bark', item_stack_provider('firmalife:spice/cinnamon'))
@@ -247,7 +246,7 @@ def generate(rm: ResourceManager):
 
     mixing_recipe(rm, 'butter', ingredients=[utils.ingredient('tfc:powder/salt')], fluid='1000 firmalife:cream', output_item='firmalife:food/butter')
     mixing_recipe(rm, 'pie_dough', ingredients=[not_rotten('firmalife:food/butter'), not_rotten('#tfc:foods/flour'), utils.ingredient('#firmalife:sweetener')], fluid='1000 minecraft:water', output_item='firmalife:food/pie_dough')
-    mixing_recipe(rm, 'pumpkin_pie_dough', ingredients=[utils.ingredient('minecraft:egg'), not_rotten('firmalife:food/pumpkin_chunks'), not_rotten('firmalife:food/pumpkin_chunks'), not_rotten('#tfc:foods/flour'), utils.ingredient('#firmalife:sweetener')], fluid='1000 minecraft:water', output_item='firmalife:food/pumpkin_pie_dough')
+    mixing_recipe(rm, 'pumpkin_pie_dough', ingredients=[utils.ingredient('minecraft:egg'), not_rotten('tfc:food/pumpkin_chunks'), not_rotten('tfc:food/pumpkin_chunks'), not_rotten('#tfc:foods/flour'), utils.ingredient('#firmalife:sweetener')], fluid='1000 minecraft:water', output_item='firmalife:food/pumpkin_pie_dough')
     mixing_recipe(rm, 'pizza_dough', ingredients=[not_rotten('#tfc:foods/dough'), utils.ingredient('tfc:powder/salt'), utils.ingredient('firmalife:spice/basil_leaves')], fluid='1000 tfc:olive_oil', output_item='4 firmalife:food/pizza_dough')
     mixing_recipe(rm, 'dark_chocolate_blend', ingredients=[utils.ingredient('#firmalife:sweetener'), not_rotten('firmalife:food/cocoa_powder'), not_rotten('firmalife:food/cocoa_powder')], fluid='1000 #tfc:milks', output_item='2 firmalife:food/dark_chocolate_blend')
     mixing_recipe(rm, 'white_chocolate_blend', ingredients=[utils.ingredient('#firmalife:sweetener'), not_rotten('firmalife:food/cocoa_butter'), not_rotten('firmalife:food/cocoa_butter')], fluid='1000 #tfc:milks', output_item='2 firmalife:food/white_chocolate_blend')
@@ -288,17 +287,45 @@ def generate(rm: ResourceManager):
         heat_recipe(rm, grain + '_dough', not_rotten('tfc:food/%s_dough' % grain), 200, result_item=item_stack_provider('firmalife:food/%s_flatbread' % grain, copy_food=True))
         rm.domain = 'firmalife'  # DOMAIN RESET
 
-        for bread in ('slice', 'flatbread'):
-            sandwich_pattern = ['ZX ', 'YYY', ' X ']
-            sandwich_ingredients = {'X': not_rotten('firmalife:food/%s_%s' % (grain, bread)), 'Y': not_rotten('#tfc:foods/usable_in_sandwich'), 'Z': '#tfc:knives'}
-            delegate_recipe(rm, 'crafting/%s_%s_sandwich' % (grain, bread), 'tfc:damage_inputs_shaped_crafting', {
-                'type': 'tfc:advanced_shaped_crafting',
-                'pattern': sandwich_pattern,
-                'key': utils.item_stack_dict(sandwich_ingredients, ''.join(sandwich_pattern)[0]),
-                'result': item_stack_provider('2 tfc:food/%s_bread_sandwich' % grain, other_modifier='tfc:sandwich'),
-                'input_row': 0,
-                'input_column': 0,
-            }).with_advancement('tfc:food/%s_bread' % grain)
+        # for bread in ('slice', 'flatbread'):
+        #     sandwich_modifier = {
+        #         'food': {
+        #             'hunger': 4,
+        #             'water': 0.5,
+        #             'saturation': 1,
+        #             'decay_modifier': 4.5
+        #         },
+        #         'portions': [{
+        #             'ingredient': utils.ingredient('#tfc:sandwich_bread'),
+        #             'nutrient_modifier': 0.5,
+        #             'saturation_modifier': 0.5,
+        #             'water_modifier': 0.5,
+        #         }, {
+        #             'nutrient_modifier': 0.8,
+        #             'water_modifier': 0.8,
+        #             'saturation_modifier': 0.8,
+        #         }]
+        #     }
+        #     food = 'firmalife:food/%s_%s' % (grain, bread)
+        #     sandwich_pattern = ['ZX ', 'YYY', ' X ']
+        #     sandwich_ingredients = {'X': not_rotten('firmalife:food/%s_%s' % (grain, bread)), 'Y': not_rotten('#tfc:foods/usable_in_sandwich'), 'Z': '#tfc:knives'}
+        #     jam_sandwich_ingredients = {'X': not_rotten('firmalife:food/%s_%s' % (grain, bread)), 'Y': not_rotten('#tfc:foods/usable_in_jam_sandwich'), 'Z': '#tfc:knives'}
+        #     delegate_recipe(rm, 'crafting/%s_sandwich' % grain, 'tfc:damage_inputs_shaped_crafting', {
+        #         'type': 'tfc:advanced_shaped_crafting',
+        #         'pattern': sandwich_pattern,
+        #         'key': utils.item_stack_dict(sandwich_ingredients, ''.join(sandwich_pattern)[0]),
+        #         'result': item_stack_provider('2 tfc:food/%s_bread_sandwich' % grain, meal=sandwich_modifier),
+        #         'input_row': 0,
+        #         'input_column': 0,
+        #     }).with_advancement('tfc:food/%s_bread' % grain)
+        #     delegate_recipe(rm, 'crafting/%s_sandwich_with_jam' % grain, 'tfc:damage_inputs_shaped_crafting', {
+        #         'type': 'tfc:advanced_shaped_crafting',
+        #         'pattern': sandwich_pattern,
+        #         'key': utils.item_stack_dict(jam_sandwich_ingredients, ''.join(sandwich_pattern)[0]),
+        #         'result': item_stack_provider('2 tfc:food/%s_bread_jam_sandwich' % grain, meal=sandwich_modifier),
+        #         'input_row': 0,
+        #         'input_column': 0,
+        #     }).with_advancement('tfc:food/%s_bread' % grain)
 
     heat_recipe(rm, 'corn_tortilla', not_rotten('firmalife:food/masa'), 200, result_item=item_stack_provider('firmalife:food/corn_tortilla', copy_food=True))
     heat_recipe(rm, 'bacon', not_rotten('firmalife:food/bacon'), 200, result_item=item_stack_provider('firmalife:food/cooked_bacon', copy_food=True))
@@ -444,7 +471,7 @@ def not_rotten(ingredient: Json) -> Json:
         'ingredient': utils.ingredient(ingredient)
     }
 
-def item_stack_provider(data_in: Json = None, copy_input: bool = False, copy_heat: bool = False, copy_food: bool = False, copy_oldest_food: bool = False, reset_food: bool = False, add_heat: float = None, add_trait: str = None, remove_trait: str = None, empty_bowl: bool = False, copy_forging: bool = False, other_modifier: str = None, other_other_modifier: str = None) -> Json:
+def item_stack_provider(data_in: Json = None, copy_input: bool = False, copy_heat: bool = False, copy_food: bool = False, copy_oldest_food: bool = False, reset_food: bool = False, add_heat: float = None, add_trait: str = None, remove_trait: str = None, empty_bowl: bool = False, copy_forging: bool = False, other_modifier: str = None, other_other_modifier: str = None, meal: Json = None) -> Json:
     if isinstance(data_in, dict):
         return data_in
     stack = utils.item_stack(data_in) if data_in is not None else None
@@ -460,7 +487,8 @@ def item_stack_provider(data_in: Json = None, copy_input: bool = False, copy_hea
         (other_other_modifier, other_other_modifier is not None),
         ({'type': 'tfc:add_heat', 'temperature': add_heat}, add_heat is not None),
         ({'type': 'tfc:add_trait', 'trait': add_trait}, add_trait is not None),
-        ({'type': 'tfc:remove_trait', 'trait': remove_trait}, remove_trait is not None)
+        ({'type': 'tfc:remove_trait', 'trait': remove_trait}, remove_trait is not None),
+        ({'type': 'tfc:meal', **(meal if meal is not None else {})}, meal is not None)
     ) if v]
     if modifiers:
         return {

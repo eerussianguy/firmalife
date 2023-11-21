@@ -1,0 +1,15 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "firmalife:rusted_iron_greenhouse_wall",
+    "firmalife:iron_greenhouse_wall",
+    "firmalife:oxidized_copper_greenhouse_wall",
+    "firmalife:weathered_copper_greenhouse_wall",
+    "firmalife:exposed_copper_greenhouse_wall",
+    "firmalife:copper_greenhouse_wall",
+    "firmalife:weathered_treated_wood_greenhouse_wall",
+    "firmalife:treated_wood_greenhouse_wall",
+    "firmalife:stainless_steel_greenhouse_wall"
+  ]
+}

@@ -1,11 +1,11 @@
 package com.eerussianguy.firmalife.common.recipes.data;
 
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 
 import net.dries007.tfc.common.capabilities.food.DynamicBowlHandler;
 import net.dries007.tfc.common.capabilities.food.FoodCapability;
 import net.dries007.tfc.common.capabilities.food.FoodHandler;
-import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.common.recipes.outputs.ItemStackModifier;
 
 public enum CopyDynamicFoodModifier implements ItemStackModifier.SingleInstance<CopyDynamicFoodModifier>
@@ -29,7 +29,7 @@ public enum CopyDynamicFoodModifier implements ItemStackModifier.SingleInstance<
                         ItemStack newBowl = inBowl.getBowl();
                         if (newBowl.isEmpty())
                         {
-                            newBowl = new ItemStack(TFCItems.BOWL.get());
+                            newBowl = new ItemStack(Items.BOWL);
                         }
                         outBowl.setBowl(newBowl);
                     }

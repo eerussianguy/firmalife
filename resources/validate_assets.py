@@ -63,7 +63,7 @@ def validate_models_used(model_locations, known_models):
         tested += 1
         if f not in fixed_km:
             forgiven = False
-            for check in ('jar_jug', 'spoon'):
+            for check in ('jar_jug', 'spoon', 'block/jar'):
                 if check in f:
                     forgiven = True
             if not forgiven:

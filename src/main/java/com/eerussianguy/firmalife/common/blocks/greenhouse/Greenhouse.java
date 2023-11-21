@@ -8,6 +8,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
@@ -53,8 +54,11 @@ public enum Greenhouse
     public enum BlockType
     {
         WALL((green, type) -> new GreenhouseWallBlock(properties(green), type.getNext(green))),
+        PANEL_WALL((green, type) -> new GreenhousePanelWallBlock(properties(green), type.getNext(green))),
+        PANEL_ROOF((green, type) -> new GreenhousePanelRoofBlock(properties(green), type.getNext(green))),
         ROOF((green, type) -> new GreenhouseStairBlock(properties(green), () -> FLBlocks.GREENHOUSE_BLOCKS.get(green).get(WALL).get().defaultBlockState(), type.getNext(green))),
         ROOF_TOP((green, type) -> new GreenhouseSlabBlock(properties(green), type.getNext(green))),
+        TRAPDOOR((green, type) -> new GreenhouseTrapDoorBlock(properties(green), BlockSetType.OAK, type.getNext(green))),
         DOOR((green, type) -> new GreenhouseDoorBlock(properties(green), type.getNext(green), green.blockSet));
 
         public static ExtendedProperties properties(Greenhouse green)

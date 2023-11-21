@@ -1,0 +1,65 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "variants": {
+    "down=false,facing=east,up=false": {
+      "model": "firmalife:block/greenhouse/oxidized_copper_panel_wall",
+      "y": 90
+    },
+    "down=false,facing=north,up=false": {
+      "model": "firmalife:block/greenhouse/oxidized_copper_panel_wall"
+    },
+    "down=false,facing=south,up=false": {
+      "model": "firmalife:block/greenhouse/oxidized_copper_panel_wall",
+      "y": 180
+    },
+    "down=false,facing=west,up=false": {
+      "model": "firmalife:block/greenhouse/oxidized_copper_panel_wall",
+      "y": 270
+    },
+    "down=true,facing=east,up=false": {
+      "model": "firmalife:block/greenhouse/oxidized_copper_panel_wall_down",
+      "y": 90
+    },
+    "down=true,facing=north,up=false": {
+      "model": "firmalife:block/greenhouse/oxidized_copper_panel_wall_down"
+    },
+    "down=true,facing=south,up=false": {
+      "model": "firmalife:block/greenhouse/oxidized_copper_panel_wall_down",
+      "y": 180
+    },
+    "down=true,facing=west,up=false": {
+      "model": "firmalife:block/greenhouse/oxidized_copper_panel_wall_down",
+      "y": 270
+    },
+    "down=false,facing=east,up=true": {
+      "model": "firmalife:block/greenhouse/oxidized_copper_panel_wall_up",
+      "y": 90
+    },
+    "down=false,facing=north,up=true": {
+      "model": "firmalife:block/greenhouse/oxidized_copper_panel_wall_up"
+    },
+    "down=false,facing=south,up=true": {
+      "model": "firmalife:block/greenhouse/oxidized_copper_panel_wall_up",
+      "y": 180
+    },
+    "down=false,facing=west,up=true": {
+      "model": "firmalife:block/greenhouse/oxidized_copper_panel_wall_up",
+      "y": 270
+    },
+    "down=true,facing=east,up=true": {
+      "model": "firmalife:block/greenhouse/oxidized_copper_panel_wall_both",
+      "y": 90
+    },
+    "down=true,facing=north,up=true": {
+      "model": "firmalife:block/greenhouse/oxidized_copper_panel_wall_both"
+    },
+    "down=true,facing=south,up=true": {
+      "model": "firmalife:block/greenhouse/oxidized_copper_panel_wall_both",
+      "y": 180
+    },
+    "down=true,facing=west,up=true": {
+      "model": "firmalife:block/greenhouse/oxidized_copper_panel_wall_both",
+      "y": 270
+    }
+  }
+}

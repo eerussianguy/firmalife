@@ -1,0 +1,65 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "variants": {
+    "cw=false,ccw=false,facing=east": {
+      "model": "firmalife:block/greenhouse/treated_wood_panel_roof",
+      "y": 90
+    },
+    "cw=false,ccw=false,facing=north": {
+      "model": "firmalife:block/greenhouse/treated_wood_panel_roof"
+    },
+    "cw=false,ccw=false,facing=south": {
+      "model": "firmalife:block/greenhouse/treated_wood_panel_roof",
+      "y": 180
+    },
+    "cw=false,ccw=false,facing=west": {
+      "model": "firmalife:block/greenhouse/treated_wood_panel_roof",
+      "y": 270
+    },
+    "cw=true,ccw=false,facing=east": {
+      "model": "firmalife:block/greenhouse/treated_wood_panel_roof_cw",
+      "y": 90
+    },
+    "cw=true,ccw=false,facing=north": {
+      "model": "firmalife:block/greenhouse/treated_wood_panel_roof_cw"
+    },
+    "cw=true,ccw=false,facing=south": {
+      "model": "firmalife:block/greenhouse/treated_wood_panel_roof_cw",
+      "y": 180
+    },
+    "cw=true,ccw=false,facing=west": {
+      "model": "firmalife:block/greenhouse/treated_wood_panel_roof_cw",
+      "y": 270
+    },
+    "cw=false,ccw=true,facing=east": {
+      "model": "firmalife:block/greenhouse/treated_wood_panel_roof_ccw",
+      "y": 90
+    },
+    "cw=false,ccw=true,facing=north": {
+      "model": "firmalife:block/greenhouse/treated_wood_panel_roof_ccw"
+    },
+    "cw=false,ccw=true,facing=south": {
+      "model": "firmalife:block/greenhouse/treated_wood_panel_roof_ccw",
+      "y": 180
+    },
+    "cw=false,ccw=true,facing=west": {
+      "model": "firmalife:block/greenhouse/treated_wood_panel_roof_ccw",
+      "y": 270
+    },
+    "cw=true,ccw=true,facing=east": {
+      "model": "firmalife:block/greenhouse/treated_wood_panel_roof_both",
+      "y": 90
+    },
+    "cw=true,ccw=true,facing=north": {
+      "model": "firmalife:block/greenhouse/treated_wood_panel_roof_both"
+    },
+    "cw=true,ccw=true,facing=south": {
+      "model": "firmalife:block/greenhouse/treated_wood_panel_roof_both",
+      "y": 180
+    },
+    "cw=true,ccw=true,facing=west": {
+      "model": "firmalife:block/greenhouse/treated_wood_panel_roof_both",
+      "y": 270
+    }
+  }
+}

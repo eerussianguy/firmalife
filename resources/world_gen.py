@@ -6,29 +6,29 @@ from mcresources.type_definitions import ResourceIdentifier, JsonObject, Json, V
 from constants import *
 
 def generate(rm: ResourceManager):
-    placed_feature_tag(rm, 'tfc:in_biome/veins', *['firmalife:vein/%s' % v for v in ORE_VEINS.keys()])
-
-    for vein_name, vein in ORE_VEINS.items():
-        rocks = expand_rocks(vein.rocks, vein_name)
-        configured_placed_feature(rm, ('vein', vein_name), 'tfc:%s_vein' % vein.type, {
-            'rarity': vein.rarity,
-            'min_y': utils.vertical_anchor(vein.min_y, 'absolute'),
-            'max_y': utils.vertical_anchor(vein.max_y, 'absolute'),
-            'size': vein.size,
-            'density': vein_density(vein.density),
-            'blocks': [{
-                'replace': ['tfc:rock/raw/%s' % rock],
-                'with': vein_ore_blocks(vein, rock)
-            } for rock in rocks],
-            'indicator': {
-                'rarity': 12,
-                'blocks': [{
-                    'block': 'firmalife:ore/small_%s' % vein.ore
-                }]
-            },
-            'random_name': vein_name,
-            'biomes': vein.biomes
-        })
+    # placed_feature_tag(rm, 'tfc:in_biome/veins', *['firmalife:vein/%s' % v for v in ORE_VEINS.keys()])
+    #
+    # for vein_name, vein in ORE_VEINS.items():
+    #     rocks = expand_rocks(vein.rocks, vein_name)
+    #     configured_placed_feature(rm, ('vein', vein_name), 'tfc:%s_vein' % vein.type, {
+    #         'rarity': vein.rarity,
+    #         'min_y': utils.vertical_anchor(vein.min_y, 'absolute'),
+    #         'max_y': utils.vertical_anchor(vein.max_y, 'absolute'),
+    #         'size': vein.size,
+    #         'density': vein_density(vein.density),
+    #         'blocks': [{
+    #             'replace': ['tfc:rock/raw/%s' % rock],
+    #             'with': vein_ore_blocks(vein, rock)
+    #         } for rock in rocks],
+    #         'indicator': {
+    #             'rarity': 12,
+    #             'blocks': [{
+    #                 'block': 'firmalife:ore/small_%s' % vein.ore
+    #             }]
+    #         },
+    #         'random_name': vein_name,
+    #         'biomes': vein.biomes
+    #     })
 
     for fruit, info in FRUITS.items():
         config = {

@@ -33,7 +33,7 @@ JARS: Sequence[Tuple[str, int, str]] = (
     ('guano', 8, 'tfc:groundcover/guano'),
 )
 CHEESE_WHEELS = ('rajya_metok', 'cheddar', 'gouda', 'feta', 'chevre', 'shosha')
-FL_FRUITS = ('pumpkin_chunks', 'fig', 'pineapple')
+FL_FRUITS = ('fig', 'pineapple')
 DEFAULT_FORGE_ORE_TAGS: Tuple[str, ...] = ('coal', 'diamond', 'emerald', 'gold', 'iron', 'lapis', 'netherite_scrap', 'quartz', 'redstone')
 STILL_BUSHES = {
     'nightshade': (200, 400, 7, 24),

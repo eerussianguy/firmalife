@@ -10,7 +10,6 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
 
 import net.dries007.tfc.common.recipes.ingredients.BlockIngredient;
-import net.dries007.tfc.common.recipes.ingredients.BlockIngredients;
 
 public record BlockIngredientLootCondition(BlockIngredient ingredient) implements LootItemCondition
 {
@@ -39,7 +38,7 @@ public record BlockIngredientLootCondition(BlockIngredient ingredient) implement
         @Override
         public BlockIngredientLootCondition deserialize(JsonObject json, JsonDeserializationContext context)
         {
-            return new BlockIngredientLootCondition(BlockIngredients.fromJson(json.get("ingredient")));
+            return new BlockIngredientLootCondition(BlockIngredient.fromJson(json.get("ingredient")));
         }
     }
 }

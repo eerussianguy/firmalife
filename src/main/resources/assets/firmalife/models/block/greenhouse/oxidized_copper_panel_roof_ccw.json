@@ -1,0 +1,8 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "firmalife:block/greenhouse_roof_panel_ccw",
+  "textures": {
+    "glass": "firmalife:block/greenhouse/oxidized_copper_glass_both",
+    "steel": "firmalife:block/greenhouse/oxidized_copper"
+  }
+}

@@ -9,10 +9,8 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
 import net.dries007.tfc.common.recipes.ingredients.BlockIngredient;
-import net.dries007.tfc.common.recipes.ingredients.BlockIngredients;
 import net.dries007.tfc.network.DataManagerSyncPacket;
 import net.dries007.tfc.util.DataManager;
-import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.JsonHelpers;
 import net.dries007.tfc.util.collections.IndirectHashCollection;
 import org.jetbrains.annotations.Nullable;
@@ -20,7 +18,7 @@ import org.jetbrains.annotations.Nullable;
 public class GreenhouseType
 {
     public static final DataManager<GreenhouseType> MANAGER = new DataManager<>(FLHelpers.identifier("greenhouse"), "greenhouse", GreenhouseType::new, GreenhouseType::new, GreenhouseType::encode, Packet::new);
-    public static final IndirectHashCollection<Block, GreenhouseType> CACHE = IndirectHashCollection.create(s -> s.ingredient.getValidBlocks(), MANAGER::getValues);
+    public static final IndirectHashCollection<Block, GreenhouseType> CACHE = IndirectHashCollection.create(s -> s.ingredient.blocks(), MANAGER::getValues);
 
     @Nullable
     public static GreenhouseType get(BlockState state)
@@ -56,7 +54,7 @@ public class GreenhouseType
     private GreenhouseType(ResourceLocation id, JsonObject json)
     {
         this.id = id;
-        this.ingredient = BlockIngredients.fromJson(JsonHelpers.get(json, "ingredient"));
+        this.ingredient = BlockIngredient.fromJson(JsonHelpers.get(json, "ingredient"));
         this.tier = JsonHelpers.getAsInt(json, "tier");
         this.translationKey = "greenhouse." + id.getNamespace() + "." + id.getPath();
     }
@@ -64,7 +62,7 @@ public class GreenhouseType
     private GreenhouseType(ResourceLocation id, FriendlyByteBuf buffer)
     {
         this.id = id;
-        this.ingredient = BlockIngredients.fromNetwork(buffer);
+        this.ingredient = BlockIngredient.fromNetwork(buffer);
         this.tier = buffer.readVarInt();
         this.translationKey = "greenhouse." + id.getNamespace() + "." + id.getPath();
     }

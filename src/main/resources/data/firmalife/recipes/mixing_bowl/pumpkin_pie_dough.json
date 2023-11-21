@@ -8,13 +8,13 @@
     {
       "type": "tfc:not_rotten",
       "ingredient": {
-        "item": "firmalife:food/pumpkin_chunks"
+        "item": "tfc:food/pumpkin_chunks"
       }
     },
     {
       "type": "tfc:not_rotten",
       "ingredient": {
-        "item": "firmalife:food/pumpkin_chunks"
+        "item": "tfc:food/pumpkin_chunks"
       }
     },
     {

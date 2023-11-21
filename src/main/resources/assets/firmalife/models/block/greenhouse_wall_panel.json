@@ -1,0 +1,23 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "block/block",
+	"textures": {
+		"particle": "#steel",
+		"steel": "firmalife:block/greenhouse/copper",
+		"glass": "firmalife:block/greenhouse/copper_glass"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 16, 2],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#glass"},
+				"east": {"uv": [0, 0, 2, 16], "texture": "#steel"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#glass"},
+				"west": {"uv": [0, 0, 2, 16], "texture": "#steel"},
+				"up": {"uv": [0, 0, 16, 2], "texture": "#steel"},
+				"down": {"uv": [0, 0, 16, 2], "texture": "#glass"}
+			}
+		}
+	]
+}

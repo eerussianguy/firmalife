@@ -46,6 +46,7 @@ def generate(rm: ResourceManager):
     block_and_item_tag(rm, 'all_treated_wood_greenhouse', '#firmalife:treated_wood_greenhouse', '#firmalife:weathered_treated_wood_greenhouse')
     block_and_item_tag(rm, 'greenhouse', '#firmalife:all_iron_greenhouse', '#firmalife:all_copper_greenhouse', '#firmalife:all_treated_wood_greenhouse', '#firmalife:stainless_steel_greenhouse')
     block_and_item_tag(rm, 'cellar_insulation', 'firmalife:sealed_bricks', 'firmalife:sealed_door', 'firmalife:sealed_trapdoor', 'firmalife:sealed_wall')
+    rm.block_tag('always_valid_greenhouse_wall', '#minecraft:doors', '#minecraft:trapdoors')
     rm.block_tag('drops_fruit_leaf', '#tfc:fruit_tree_leaves')
     rm.block_tag('buzzing_leaves', 'firmalife:plant/fig_leaves')
     rm.block_tag('pipe_replaceable', '#tfc:dirt', '#tfc:grass', '#minecraft:base_stone_overworld', '#forge:gravel', '#minecraft:sand', '#tfc:can_carve')

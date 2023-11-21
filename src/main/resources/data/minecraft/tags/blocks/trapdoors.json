@@ -1,0 +1,16 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "firmalife:rusted_iron_greenhouse_trapdoor",
+    "firmalife:iron_greenhouse_trapdoor",
+    "firmalife:oxidized_copper_greenhouse_trapdoor",
+    "firmalife:weathered_copper_greenhouse_trapdoor",
+    "firmalife:exposed_copper_greenhouse_trapdoor",
+    "firmalife:copper_greenhouse_trapdoor",
+    "firmalife:weathered_treated_wood_greenhouse_trapdoor",
+    "firmalife:treated_wood_greenhouse_trapdoor",
+    "firmalife:stainless_steel_greenhouse_trapdoor",
+    "firmalife:sealed_trapdoor"
+  ]
+}

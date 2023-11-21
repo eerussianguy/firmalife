@@ -142,7 +142,7 @@ public final class FLCreativeTabs
 
     public static void onBuildCreativeTab(BuildCreativeModeTabContentsEvent out)
     {
-        if (out.getTab() == TFCCreativeTabs.FOOD.get())
+        if (out.getTab() == TFCCreativeTabs.FOOD.tab().get())
         {
             FLItems.FOODS.values().forEach(reg -> accept(out, reg));
             FLItems.FRUITS.values().forEach(reg -> accept(out, reg));
@@ -154,7 +154,7 @@ public final class FLCreativeTabs
             accept(out, FLBlocks.FETA_WHEEL);
             accept(out, FLBlocks.SHOSHA_WHEEL);
         }
-        else if (out.getTab() == TFCCreativeTabs.METAL.get())
+        else if (out.getTab() == TFCCreativeTabs.METAL.tab().get())
         {
             for (FLMetal metal : FLMetal.values())
             {
@@ -168,7 +168,7 @@ public final class FLCreativeTabs
                 }
             }
         }
-        else if (out.getTab() == TFCCreativeTabs.FLORA.get())
+        else if (out.getTab() == TFCCreativeTabs.FLORA.tab().get())
         {
             accept(out, FLBlocks.BUTTERFLY_GRASS);
             FLBlocks.HERBS.values().forEach(reg -> accept(out, reg));
@@ -179,7 +179,7 @@ public final class FLCreativeTabs
             }
             FLBlocks.STATIONARY_BUSHES.values().forEach(reg -> accept(out, reg));
         }
-        else if (out.getTab() == TFCCreativeTabs.WOOD.get())
+        else if (out.getTab() == TFCCreativeTabs.WOOD.tab().get())
         {
             for (Wood wood : Wood.values())
             {
@@ -188,7 +188,7 @@ public final class FLCreativeTabs
                 accept(out, FLBlocks.JARBNETS, wood);
             }
         }
-        else if (out.getTab() == TFCCreativeTabs.ORES.get())
+        else if (out.getTab() == TFCCreativeTabs.ORES.tab().get())
         {
             accept(out, FLBlocks.SMALL_CHROMITE);
             FLItems.CHROMIUM_ORES.values().forEach(reg -> accept(out, reg));
@@ -200,7 +200,7 @@ public final class FLCreativeTabs
                 }
             }
         }
-        else if (out.getTab() == TFCCreativeTabs.MISC.get())
+        else if (out.getTab() == TFCCreativeTabs.MISC.tab().get())
         {
             FLItems.METAL_FLUID_BUCKETS.values().forEach(reg -> accept(out, reg));
             FLItems.EXTRA_FLUID_BUCKETS.values().forEach(reg -> accept(out, reg));

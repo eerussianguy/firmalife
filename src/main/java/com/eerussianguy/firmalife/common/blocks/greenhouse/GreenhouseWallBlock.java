@@ -42,7 +42,7 @@ public class GreenhouseWallBlock extends AbstractGlassBlock implements IWeathera
     }
 
     @Override
-    public boolean isRandomlyTicking(BlockState pState)
+    public boolean isRandomlyTicking(BlockState state)
     {
         return hasNext();
     }
@@ -70,7 +70,7 @@ public class GreenhouseWallBlock extends AbstractGlassBlock implements IWeathera
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
     {
-        builder.add(UP, DOWN);
+        super.createBlockStateDefinition(builder.add(UP, DOWN));
     }
 
     @Override
@@ -79,11 +79,11 @@ public class GreenhouseWallBlock extends AbstractGlassBlock implements IWeathera
     {
         if (facing == Direction.UP)
         {
-            state = state.setValue(UP, !(facingState.getBlock() instanceof GreenhouseWallBlock));
+            state = state.setValue(UP, !connects(facingState));
         }
         else if (facing == Direction.DOWN)
         {
-            state = state.setValue(DOWN, !(facingState.getBlock() instanceof GreenhouseWallBlock));
+            state = state.setValue(DOWN, !connects(facingState));
         }
         return state;
     }
@@ -99,6 +99,11 @@ public class GreenhouseWallBlock extends AbstractGlassBlock implements IWeathera
     @Override
     public boolean skipRendering(BlockState state, BlockState adjacent, Direction side)
     {
-        return adjacent.getBlock() instanceof GreenhouseWallBlock && Helpers.isBlock(adjacent, FLTags.Blocks.GREENHOUSE);
+        return connects(adjacent) && Helpers.isBlock(adjacent, FLTags.Blocks.GREENHOUSE);
+    }
+
+    public boolean connects(BlockState adjacent)
+    {
+        return Helpers.isBlock(adjacent, FLTags.Blocks.GREENHOUSE_FULL_WALLS);
     }
 }

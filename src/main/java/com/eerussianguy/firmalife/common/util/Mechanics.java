@@ -1,7 +1,6 @@
 package com.eerussianguy.firmalife.common.util;
 
 import java.util.*;
-import java.util.function.DoubleSupplier;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
@@ -11,25 +10,26 @@ import net.minecraft.core.Direction;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 
-import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blockentities.LargePlanterBlockEntity;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import net.dries007.tfc.common.recipes.ingredients.BlockIngredient;
-import net.dries007.tfc.common.recipes.ingredients.BlockIngredients;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.ICalendar;
 import org.jetbrains.annotations.Nullable;
+import vazkii.patchouli.api.TriPredicate;
 
 public final class Mechanics
 {
-    public static Set<BlockPos> floodfill(Level level, BlockPos startPos, BlockPos.MutableBlockPos mutable, BoundingBox bounds, Predicate<BlockState> wallPredicate, Predicate<BlockState> interiorPredicate, boolean testOrigin, int lastSize, Direction[] checkDirections)
+    public static Set<BlockPos> floodfill(Level level, BlockPos startPos, BlockPos.MutableBlockPos mutable, BoundingBox bounds, TriPredicate<BlockState, BlockPos, Direction> wallPredicate, Predicate<BlockState> interiorPredicate, boolean testOrigin, int lastSize, Direction[] checkDirections)
     {
-        if (testOrigin && !wallPredicate.test(level.getBlockState(startPos)))
+        if (testOrigin && !wallPredicate.test(level.getBlockState(startPos), startPos, Direction.UP))
         {
             return Collections.emptySet();
         }
@@ -53,7 +53,7 @@ public final class Mechanics
                 if (!filled.contains(mutable))
                 {
                     final BlockState stateAt = level.getBlockState(mutable);
-                    if (!wallPredicate.test(stateAt)) // proper walls prevent adding new blocks to the floodfill, essentially bounding it
+                    if (!wallPredicate.test(stateAt, mutable, direction)) // proper walls prevent adding new blocks to the floodfill, essentially bounding it
                     {
                         if (interiorPredicate.test(stateAt)) // only add positions that match our 'inside' predicate.
                         {
@@ -97,7 +97,8 @@ public final class Mechanics
             if (CELLAR.test(level.getBlockState(mutable)))
             {
                 final BoundingBox box = new BoundingBox(pos).inflatedBy(15);
-                Set<BlockPos> filled = floodfill(level, pos, mutable, box, CELLAR, s -> !Helpers.isBlock(s, FLBlocks.CLIMATE_STATION.get()), false, lastSize, Helpers.DIRECTIONS);
+
+                Set<BlockPos> filled = floodfill(level, pos, mutable, box, (s, p, dir) -> CELLAR.test(s), s -> !Helpers.isBlock(s, FLBlocks.CLIMATE_STATION.get()), false, lastSize, Helpers.DIRECTIONS);
                 return filled.isEmpty() ? null : filled;
             }
         }
@@ -121,7 +122,18 @@ public final class Mechanics
             if (greenhouse != null)
             {
                 final BoundingBox box = new BoundingBox(pos).inflatedBy(15);
-                Set<BlockPos> filled = floodfill(level, pos, mutable, box, greenhouse.ingredient, s -> !Helpers.isBlock(s, FLBlocks.CLIMATE_STATION.get()), false, lastSize, FLHelpers.NOT_DOWN);
+                final TriPredicate<BlockState, BlockPos, Direction> predicate = (wallState, wallPos, direction) -> {
+                    if (direction == Direction.DOWN)
+                        return !wallState.isAir();
+                    if (!greenhouse.ingredient.test(wallState))
+                        return false;
+                    if (direction == Direction.UP && wallState.getBlock() instanceof SlabBlock)
+                        return true;
+                    if (Helpers.isBlock(wallState, FLTags.Blocks.ALWAYS_VALID_GREENHOUSE_WALL))
+                        return true; // short circuit for stuff we know will pass (plus exempt doors)
+                    return wallState.isFaceSturdy(level, wallPos, direction.getOpposite());
+                };
+                Set<BlockPos> filled = floodfill(level, pos, mutable, box, predicate, s -> !Helpers.isBlock(s, FLBlocks.CLIMATE_STATION.get()), false, lastSize, Helpers.DIRECTIONS);
                 if (filled.isEmpty())
                 {
                     return null;
@@ -134,7 +146,7 @@ public final class Mechanics
 
     public record GreenhouseInfo(GreenhouseType type, Set<BlockPos> positions) { }
 
-    private static final BlockIngredient CELLAR = BlockIngredients.of(FLTags.Blocks.CELLAR_INSULATION);
+    private static final Predicate<BlockState> CELLAR = state -> Helpers.isBlock(state, FLTags.Blocks.CELLAR_INSULATION);
     private static final int UPDATE_INTERVAL = ICalendar.TICKS_IN_DAY;
 
     public static final Supplier<Float> GROWTH_FACTOR = () -> 1f / (FLConfig.SERVER.greenhouseGrowthDays.get().floatValue() * ICalendar.TICKS_IN_DAY); // same as tfc

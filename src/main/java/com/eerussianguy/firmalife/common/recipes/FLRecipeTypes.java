@@ -7,7 +7,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
-import net.dries007.tfc.common.recipes.KnappingRecipe;
 import net.dries007.tfc.common.recipes.PotRecipe;
 
 import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
@@ -19,7 +18,6 @@ public class FLRecipeTypes
     public static final RegistryObject<RecipeType<DryingRecipe>> DRYING = register("scraping");
     public static final RegistryObject<RecipeType<SmokingRecipe>> SMOKING = register("smoking");
     public static final RegistryObject<RecipeType<MixingBowlRecipe>> MIXING_BOWL = register("mixing_bowl");
-    public static final RegistryObject<RecipeType<KnappingRecipe>> PUMPKIN_KNAPPING = register("pumpkin_knapping");
     public static final RegistryObject<RecipeType<OvenRecipe>> OVEN = register("oven");
     public static final RegistryObject<RecipeType<VatRecipe>> VAT = register("vat");
 

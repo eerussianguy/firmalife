@@ -94,6 +94,9 @@ def generate(rm: ResourceManager):
         greenhouse_slab(rm, greenhouse, 'firmalife:block/greenhouse/%s' % greenhouse, 'firmalife:block/greenhouse/%s_glass' % greenhouse)
         greenhouse_stairs(rm, greenhouse, 'firmalife:block/greenhouse/%s' % greenhouse, 'firmalife:block/greenhouse/%s_glass' % greenhouse)
         greenhouse_wall(rm, greenhouse, 'firmalife:block/greenhouse/%s' % greenhouse, 'firmalife:block/greenhouse/%s_glass' % greenhouse)
+        greenhouse_panel_wall(rm, greenhouse, 'firmalife:block/greenhouse/%s' % greenhouse, 'firmalife:block/greenhouse/%s_glass' % greenhouse)
+        greenhouse_panel_roof(rm, greenhouse, 'firmalife:block/greenhouse/%s' % greenhouse, 'firmalife:block/greenhouse/%s_glass' % greenhouse)
+        greenhouse_trapdoor(rm, greenhouse, 'firmalife:block/greenhouse/%s_glass' % greenhouse)
         greenhouse_door(rm, greenhouse, 'firmalife:block/greenhouse/%s_door_bottom' % greenhouse, 'firmalife:block/greenhouse/%s_door_top' % greenhouse)
 
     for planter in ('quad_planter', 'large_planter', 'bonsai_planter', 'hanging_planter'):
@@ -155,7 +158,7 @@ def generate(rm: ResourceManager):
 
     block = rm.block('sealed').make_trapdoor().make_wall(texture='firmalife:block/sealed_bricks')
     make_door(block)
-    rm.block('sealed_trapdoor').with_lang(lang('sealed trapdoor')).with_tag('minecraft:mineable/pickaxe').with_block_loot('firmalife:sealed_trapdoor')
+    rm.block('sealed_trapdoor').with_lang(lang('sealed trapdoor')).with_tag('minecraft:mineable/pickaxe').with_block_loot('firmalife:sealed_trapdoor').with_tag('minecraft:trapdoors')
     rm.block('sealed_wall').with_lang(lang('sealed wall')).with_tag('minecraft:mineable/pickaxe').with_block_loot('firmalife:sealed_wall').with_item_tag('minecraft:walls').with_tag('minecraft:walls')
     block = rm.block('firmalife:sealed_door').with_tag('minecraft:doors').with_lang(lang('sealed door')).with_tag('minecraft:mineable/pickaxe')
     door_loot(block, 'firmalife:sealed_door')
@@ -484,6 +487,45 @@ def greenhouse_wall(rm: ResourceManager, name: str, frame: str, glass: str) -> '
         'down=true,up=true': {'model': 'firmalife:block/greenhouse/%s_wall_both' % name}
     }).with_block_loot('firmalife:%s_greenhouse_wall' % name).with_lang(lang('%s greenhouse wall', name))
     rm.item_model('%s_greenhouse_wall' % name, parent='firmalife:block/greenhouse/%s_wall_both' % name, no_textures=True)
+    greenhouse_tags(block, name).with_tag('greenhouse_full_walls')
+    return block
+
+def greenhouse_panel_wall(rm: ResourceManager, name: str, frame: str, glass: str) -> 'BlockContext':
+    rm.block_model('greenhouse/%s_panel_wall' % name, {'glass': glass + '_both', 'steel': frame}, parent='firmalife:block/greenhouse_wall_panel')
+    rm.block_model('greenhouse/%s_panel_wall_down' % name, {'glass': glass + '_down', 'steel': frame}, parent='firmalife:block/greenhouse_wall_panel')
+    rm.block_model('greenhouse/%s_panel_wall_up' % name, {'glass': glass + '_up', 'steel': frame}, parent='firmalife:block/greenhouse_wall_panel')
+    rm.block_model('greenhouse/%s_panel_wall_both' % name, {'glass': glass, 'steel': frame}, parent='firmalife:block/greenhouse_wall_panel')
+
+    block = rm.blockstate('%s_greenhouse_panel_wall' % name, variants={
+        **four_rotations('firmalife:block/greenhouse/%s_panel_wall' % name, (90, None, 180, 270), prefix='down=false,', suffix=',up=false'),
+        **four_rotations('firmalife:block/greenhouse/%s_panel_wall_down' % name, (90, None, 180, 270), prefix='down=true,', suffix=',up=false'),
+        **four_rotations('firmalife:block/greenhouse/%s_panel_wall_up' % name, (90, None, 180, 270), prefix='down=false,', suffix=',up=true'),
+        **four_rotations('firmalife:block/greenhouse/%s_panel_wall_both' % name, (90, None, 180, 270), prefix='down=true,', suffix=',up=true'),
+    }).with_block_loot('firmalife:%s_greenhouse_panel_wall' % name).with_lang(lang('%s greenhouse panel wall', name))
+    rm.item_model('%s_greenhouse_panel_wall' % name, parent='firmalife:block/greenhouse/%s_panel_wall_both' % name, no_textures=True)
+    greenhouse_tags(block, name).with_tag('greenhouse_panel_walls')
+    return block
+
+def greenhouse_panel_roof(rm: ResourceManager, name: str, frame: str, glass: str) -> 'BlockContext':
+    rm.block_model('greenhouse/%s_panel_roof' % name, {'glass': glass + '_both', 'steel': frame}, parent='firmalife:block/greenhouse_roof_panel')
+    rm.block_model('greenhouse/%s_panel_roof_cw' % name, {'glass': glass + '_both', 'steel': frame}, parent='firmalife:block/greenhouse_roof_panel_cw')
+    rm.block_model('greenhouse/%s_panel_roof_ccw' % name, {'glass': glass + '_both', 'steel': frame}, parent='firmalife:block/greenhouse_roof_panel_ccw')
+    rm.block_model('greenhouse/%s_panel_roof_both' % name, {'glass': glass + '_both', 'steel': frame}, parent='firmalife:block/greenhouse_roof_panel_both')
+
+    block = rm.blockstate('%s_greenhouse_panel_roof' % name, variants={
+        **four_rotations('firmalife:block/greenhouse/%s_panel_roof' % name, (90, None, 180, 270), prefix='cw=false,ccw=false,'),
+        **four_rotations('firmalife:block/greenhouse/%s_panel_roof_cw' % name, (90, None, 180, 270), prefix='cw=true,ccw=false,'),
+        **four_rotations('firmalife:block/greenhouse/%s_panel_roof_ccw' % name, (90, None, 180, 270), prefix='cw=false,ccw=true,'),
+        **four_rotations('firmalife:block/greenhouse/%s_panel_roof_both' % name, (90, None, 180, 270), prefix='cw=true,ccw=true,')
+    }).with_block_loot('firmalife:%s_greenhouse_panel_roof' % name).with_lang(lang('%s greenhouse panel roof', name))
+    rm.item_model('%s_greenhouse_panel_roof' % name, parent='firmalife:block/greenhouse/%s_panel_roof' % name, no_textures=True)
+    greenhouse_tags(block, name).with_tag('greenhouse_panel_roofs')
+    return block
+
+
+def greenhouse_trapdoor(rm: ResourceManager, name: str, glass: str) -> 'BlockContext':
+    rm.block('%s_greenhouse' % name).make_trapdoor(texture=glass)
+    block = rm.block('%s_greenhouse_trapdoor' % name).with_tag('minecraft:trapdoors').with_lang(lang('%s greenhouse trapdoor' % name))
     greenhouse_tags(block, name)
     return block
 
@@ -491,18 +533,6 @@ def greenhouse_door(rm: ResourceManager, name: str, bot: str, upper: str) -> 'Bl
     door = '%s_greenhouse_door' % name
     block = rm.block(door).with_lang(lang('%s door', door))
     make_door(rm.block('%s_greenhouse' % name), top_texture=upper, bottom_texture=bot)
-    # door_model = 'greenhouse/%s_door' % name
-    # block = 'firmalife:block/greenhouse/%s_door' % name
-    # bottom = block + '_bottom'
-    # bottom_hinge = block + '_bottom_hinge'
-    # top = block + '_top'
-    # top_hinge = block + '_top_hinge'
-    #
-    # block = rm.blockstate(door, variants=door_blockstate()).with_lang(lang('%s greenhouse door', name))
-    # rm.block_model(door_model + '_bottom', {'bottom': bot}, parent='block/door_bottom')
-    # rm.block_model(door_model + '_bottom_hinge', {'bottom': bot}, parent='block/door_bottom_rh')
-    # rm.block_model(door_model + '_top', {'top': upper}, parent='block/door_top')
-    # rm.block_model(door_model + '_top_hinge', {'top': upper}, parent='block/door_top_rh')
     rm.item_model(door)
     door_loot(block, 'firmalife:%s' % door)
     greenhouse_tags(block, name).with_tag('minecraft:doors').with_item_tag('minecraft:doors')

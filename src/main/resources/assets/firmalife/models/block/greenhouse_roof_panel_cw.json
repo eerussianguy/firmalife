@@ -1,0 +1,37 @@
+{
+	"credit": "Made with Blockbench",
+    "parent": "block/block",
+	"textures": {
+		"particle": "#steel",
+		"glass": "firmalife:block/greenhouse/copper_glass",
+		"steel": "firmalife:block/greenhouse/copper"
+	},
+	"elements": [
+		{
+			"from": [0, -2, 0],
+			"to": [16, 0, 22.6],
+			"rotation": {"angle": -45, "axis": "x", "origin": [0, 0, 0]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 2], "texture": "#steel"},
+				"east": {"uv": [0, 0, 16, 2], "texture": "#steel"},
+				"south": {"uv": [0, 0, 16, 2], "texture": "#steel"},
+				"west": {"uv": [0, 0, 16, 2], "texture": "#steel"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#glass"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#glass"}
+			}
+		},
+		{
+			"from": [-2, 0, 0],
+			"to": [0, 22.6, 2],
+			"rotation": {"angle": 45, "axis": "x", "origin": [0, 0, 0]},
+			"faces": {
+				"north": {"uv": [0, 0, 2, 16], "texture": "#steel"},
+				"east": {"uv": [0, 0, 2, 16], "texture": "#steel"},
+				"south": {"uv": [0, 0, 2, 16], "texture": "#steel"},
+				"west": {"uv": [0, 0, 2, 16], "texture": "#steel"},
+				"up": {"uv": [0, 0, 2, 2], "texture": "#steel"},
+				"down": {"uv": [0, 0, 2, 2], "texture": "#steel"}
+			}
+		}
+	]
+}
