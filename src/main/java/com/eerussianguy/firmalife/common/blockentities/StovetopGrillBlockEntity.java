@@ -38,7 +38,7 @@ public class StovetopGrillBlockEntity extends ApplianceBlockEntity<StovetopGrill
         grill.handleCooking();
     }
 
-    public static final int SLOTS = 4;
+    public static final int SLOTS = 5;
 
     private final HeatingRecipe[] cachedRecipes;
     private boolean needsRecipeUpdate = true;
@@ -48,8 +48,8 @@ public class StovetopGrillBlockEntity extends ApplianceBlockEntity<StovetopGrill
         super(FLBlockEntities.STOVETOP_GRILL.get(), pos, state, GrillInventory::new, FLHelpers.blockEntityName("stovetop_grill"));
 
         sidedInventory
-            .on(new PartialItemHandler(inventory).insert(0, 1, 2, 3), Direction.UP)
-            .on(new PartialItemHandler(inventory).extract(0, 1, 2, 3), Direction.Plane.HORIZONTAL);
+            .on(new PartialItemHandler(inventory).insert(0, 1, 2, 3, 4), Direction.UP)
+            .on(new PartialItemHandler(inventory).extract(0, 1, 2, 3, 4), Direction.Plane.HORIZONTAL);
         cachedRecipes = new HeatingRecipe[SLOTS];
     }
 

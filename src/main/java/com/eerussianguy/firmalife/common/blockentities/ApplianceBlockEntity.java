@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
@@ -22,6 +23,7 @@ import net.dries007.tfc.common.capabilities.SidedHandler;
 import net.dries007.tfc.common.capabilities.heat.HeatCapability;
 import net.dries007.tfc.common.capabilities.heat.IHeatBlock;
 import net.dries007.tfc.common.recipes.inventory.EmptyInventory;
+import net.dries007.tfc.util.IntArrayBuilder;
 import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.ICalendarTickable;
 
@@ -31,6 +33,7 @@ public abstract class ApplianceBlockEntity<C extends IItemHandlerModifiable & IN
     protected float temperature = 0;
     protected float targetTemperature = 0;
     protected int targetTemperatureStabilityTicks = 0;
+    protected final ContainerData syncableData;
 
     private final SidedHandler.Noop<IHeatBlock> sidedHeat;
 
@@ -40,6 +43,12 @@ public abstract class ApplianceBlockEntity<C extends IItemHandlerModifiable & IN
         lastUpdateTick = Calendars.SERVER.getTicks();
 
         sidedHeat = new SidedHandler.Noop<>(inventory);
+        syncableData = new IntArrayBuilder().add(() -> (int) temperature, value -> temperature = value);
+    }
+
+    public ContainerData getSyncableData()
+    {
+        return syncableData;
     }
 
     public void tickTemperature()
