@@ -40,7 +40,7 @@ def generate(rm: ResourceManager):
     story.advancement('mixer', icon('firmalife:mixing_bowl'), 'Mixer', 'Craft a mixing bowl.', 'wax', inventory_changed('firmalife:mixing_bowl'))
     story.advancement('chocolate', icon('firmalife:food/dark_chocolate'), 'Chocolatier', 'Make some chocolate.', 'mixer', inventory_changed('#firmalife:foods/chocolate'))
     story.advancement('chromite', icon('firmalife:ore/small_chromite'), 'Shiny and Chrome', 'Find some chromite.', 'root', inventory_changed('firmalife:ore/small_chromite'))
-    story.advancement('iron_composter', icon('firmalife:iron_composter'), 'Rusty Composter', 'Craft an iron composter', 'root', inventory_changed('firmalife:iron_composter'))
+    story.advancement('compost_tumbler', icon('firmalife:compost_tumbler'), 'Rusty Composter', 'Craft a composter tumbler', 'root', inventory_changed('firmalife:compost_tumbler'))
     story.advancement('pizza', icon('firmalife:food/cooked_pizza'), 'Pizzeria', 'Bake some pizza in an oven.', 'oven', inventory_changed('firmalife:food/cooked_pizza'))
     story.advancement('pie', icon('firmalife:food/cooked_pie'), 'Pie in the Face', 'Bake a pie.', 'oven', inventory_changed('firmalife:food/cooked_pie'))
     story.advancement('burrito_taco', icon('firmalife:food/burrito'), 'Taqueria', 'Make a burrito and a taco.', 'oven', multiple(inventory_changed('firmalife:food/taco', name='taco'), inventory_changed('firmalife:food/burrito', name='burrito')), requirements=[['taco'], ['burrito']], frame='challenge')

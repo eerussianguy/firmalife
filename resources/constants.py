@@ -11,7 +11,7 @@ class Wood(NamedTuple):
     duration: int
 
 SIMPLE_ITEMS = ('fruit_leaf', 'cinnamon_bark', 'beeswax', 'pineapple_fiber', 'pineapple_leather', 'pineapple_yarn', 'raw_honey', 'rennet', 'watering_can', 'treated_lumber', 'beehive_frame', 'cheesecloth', 'spoon',
-                'pie_pan', 'seed_ball', 'rustic_finish', 'stone_finish', 'tile_finish', 'oven_insulation', 'ice_shavings', 'beekeeper_helmet', 'beekeeper_chestplate', 'beekeeper_leggings', 'beekeeper_boots', 'reinforced_glass')
+                'pie_pan', 'seed_ball', 'rustic_finish', 'stone_finish', 'tile_finish', 'oven_insulation', 'ice_shavings', 'beekeeper_helmet', 'beekeeper_chestplate', 'beekeeper_leggings', 'beekeeper_boots', 'reinforced_glass', 'pottery_sherd')
 SIMPLE_FOODS = ('frothy_coconut', 'white_chocolate_blend', 'dark_chocolate_blend', 'milk_chocolate_blend', 'tofu', 'soy_mixture', 'yak_curd', 'goat_curd', 'milk_curd', 'cheddar', 'chevre', 'rajya_metok', 'gouda', 'feta', 'shosha', 'butter',
                 'pie_dough', 'filled_pie', 'cooked_pie', 'pizza_dough', 'raw_pizza', 'cooked_pizza', 'shredded_cheese', 'pickled_egg', 'pumpkin_pie_dough', 'raw_pumpkin_pie', 'cooked_pumpkin_pie', 'cocoa_beans', 'roasted_cocoa_beans',
                 'cocoa_butter', 'cocoa_powder', 'toast', 'dark_chocolate', 'milk_chocolate', 'white_chocolate', 'garlic_bread', 'cured_maize', 'nixtamal', 'masa', 'masa_flour', 'corn_tortilla', 'taco_shell', 'burrito', 'taco', 'salsa',
@@ -37,6 +37,7 @@ FL_FRUITS = ('fig', 'pineapple')
 DEFAULT_FORGE_ORE_TAGS: Tuple[str, ...] = ('coal', 'diamond', 'emerald', 'gold', 'iron', 'lapis', 'netherite_scrap', 'quartz', 'redstone')
 STILL_BUSHES = {
     'nightshade': (200, 400, 7, 24),
+
     'pineapple': (250, 500, 20, 32),
 }
 ARMOR_SECTIONS = ('helmet', 'chestplate', 'leggings', 'boots')
@@ -202,13 +203,19 @@ DEFAULT_LANG = {
     'firmalife.greenhouse.no_basin': 'Hydroponic planters require a nutritive basin underneath.',
     'firmalife.greenhouse.found': 'Found a %s greenhouse of %s blocks',
     'firmalife.planter.growth_water': 'Growth: %s, Water: %s',
-    'firmalife.transducer.no_pipes': 'Currently empty. Add embedded pipes with right click!',
-    'firmalife.transducer.current_pipes': 'Pipe Inventory: %s',
-    'firmalife.transducer.pipe_length': 'Current Pipes: %s',
-    'firmalife.transducer.pipe_wanted': 'Pipes needed due to the the local climate: %s',
-    'firmalife.fishing.no_bait': 'Small fishing bait is needed to cast this rod.',
-    'firmalife.fishing.bait_added': 'Bait added to rod.',
-    'firmalife.fishing.no_water': 'The rod needs water 5 blocks below to operate.',
+    'firmalife.tumbler.almost_ready': 'Compost almost ready!',
+    'firmalife.tumbler.rotten': 'Rotten!',
+    'firmalife.tumbler.ready': 'Ready',
+    'firmalife.tumbler.total': 'Total: %s / 32',
+    'firmalife.tumbler.component_pct': '%s - %s',
+    'firmalife.enum.additiontype.none': 'None',
+    'firmalife.enum.additiontype.poison': 'Poison',
+    'firmalife.enum.additiontype.green': 'Green',
+    'firmalife.enum.additiontype.brown': 'Brown',
+    'firmalife.enum.additiontype.fish': 'Fish',
+    'firmalife.enum.additiontype.charcoal': 'Charcoal',
+    'firmalife.enum.additiontype.bone': 'Bones',
+    'firmalife.enum.additiontype.pottery': 'Pottery',
 
     'firmalife.bee.queen': 'Queen',
     'firmalife.bee.no_queen': 'No Queen',
@@ -270,6 +277,19 @@ DEFAULT_LANG = {
     'firmalife.jade.needs_peel': 'Needs peel item to safely remove goods',
     'firmalife.jade.has_firepit': 'Has an eligible firepit',
     'firmalife.jade.no_firepit': 'No eligible firepit detected',
+
+    'config.jade.plugin_firmalife.fruit_tree_sapling': 'Fruit Tree Sapling',
+    'config.jade.plugin_firmalife.drying_mat': 'Drying Mat',
+    'config.jade.plugin_firmalife.solar_drier': 'Solar Drier',
+    'config.jade.plugin_firmalife.string': 'String',
+    'config.jade.plugin_firmalife.cheese': 'Cheese',
+    'config.jade.plugin_firmalife.oven_bottom': 'Oven Bottom',
+    'config.jade.plugin_firmalife.oven_top': 'Oven Top',
+    'config.jade.plugin_firmalife.shelf': 'Shelf',
+    'config.jade.plugin_firmalife.hanger': 'Hanger',
+    'config.jade.plugin_firmalife.vat': 'Vat',
+    'config.jade.plugin_firmalife.tumbler': 'Tumbler',
+    'config.jade.plugin_firmalife.jarbnet': 'Jarbnet',
 
     'death.attack.firmalife.oven': '%1$s died by sticking their hand in a hot oven.',
     'death.attack.firmalife.oven.player': '%1$s climbed into an oven to escape %2$s.',

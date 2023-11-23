@@ -62,7 +62,8 @@ repositories {
 dependencies {
     minecraft("net.minecraftforge", "forge", version = "$minecraftVersion-$forgeVersion")
     // TFC
-    implementation(fg.deobf("curse.maven:tfc-302973:${tfcVersion}"))
+//    implementation(fg.deobf("curse.maven:tfc-302973:${tfcVersion}"))
+    implementation(fg.deobf("tfc:TerraFirmaCraft-Forge-1.20.1:0.0.0-indev"))
 
     // JEI
     compileOnly(fg.deobf("mezz.jei:jei-$minecraftVersion-forge-api:$jeiVersion"))

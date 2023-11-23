@@ -20,8 +20,8 @@ public class TheOneProbeIntegration implements Function<ITheOneProbe, Void>
     @Override
     public Void apply(ITheOneProbe registry)
     {
-        FLTooltips.BlockEntities.register((tooltip, aClass) -> register(registry, tooltip, aClass));
-        FLTooltips.Entities.register((tooltip, aClass) -> register(registry, tooltip, aClass));
+        FLTooltips.BlockEntities.register((name, tooltip, aClass) -> register(registry, tooltip, aClass));
+        FLTooltips.Entities.register((name, tooltip, aClass) -> register(registry, tooltip, aClass));
         return null;
     }
 

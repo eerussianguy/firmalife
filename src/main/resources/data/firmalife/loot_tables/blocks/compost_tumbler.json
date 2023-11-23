@@ -8,7 +8,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "firmalife:iron_composter"
+          "name": "firmalife:compost_tumbler"
         }
       ],
       "conditions": [

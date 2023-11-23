@@ -2,7 +2,6 @@ package com.eerussianguy.firmalife.compat.tooltip;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.BiConsumer;
 
 import com.eerussianguy.firmalife.common.blocks.plant.FLFruitTreeSaplingBlock;
 import net.minecraft.network.chat.Component;
@@ -27,6 +26,7 @@ import net.dries007.tfc.common.capabilities.food.IFood;
 import net.dries007.tfc.compat.jade.common.BlockEntityTooltip;
 import net.dries007.tfc.compat.jade.common.BlockEntityTooltips;
 import net.dries007.tfc.compat.jade.common.EntityTooltip;
+import net.dries007.tfc.compat.jade.common.RegisterCallback;
 import net.dries007.tfc.config.TFCConfig;
 import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.ICalendar;
@@ -37,19 +37,25 @@ public final class FLTooltips
 {
     public static final class BlockEntities
     {
-        public static void register(BiConsumer<BlockEntityTooltip, Class<? extends Block>> r)
+        public static void register(RegisterCallback<BlockEntityTooltip, Block> r)
         {
-            r.accept(DRYING_MAT, DryingMatBlock.class);
-            r.accept(DRYING_MAT, SolarDrierBlock.class);
-            r.accept(STRING, StringBlock.class);
-            r.accept(CHEESE, CheeseWheelBlock.class);
-            r.accept(OVEN, OvenBottomBlock.class);
-            r.accept(OVEN, OvenTopBlock.class);
-            r.accept(SHELF_OR_HANGER, FoodShelfBlock.class);
-            r.accept(SHELF_OR_HANGER, HangerBlock.class);
-            r.accept(VAT, VatBlock.class);
-            r.accept(FRUIT_TREE_SAPLING, FLFruitTreeSaplingBlock.class);
-            r.accept(JARBNET, JarbnetBlock.class);
+            register(r, "drying_mat", DRYING_MAT, DryingMatBlock.class);
+            register(r, "solar_drier", DRYING_MAT, SolarDrierBlock.class);
+            register(r, "string", STRING, StringBlock.class);
+            register(r, "cheese", CHEESE, CheeseWheelBlock.class);
+            register(r, "oven_bottom", OVEN, OvenBottomBlock.class);
+            register(r, "oven_top", OVEN, OvenTopBlock.class);
+            register(r, "shelf", SHELF_OR_HANGER, FoodShelfBlock.class);
+            register(r, "hanger", SHELF_OR_HANGER, HangerBlock.class);
+            register(r, "vat", VAT, VatBlock.class);
+            register(r, "tumbler", TUMBLER, CompostTumblerBlock.class);
+            register(r, "fruit_tree_sapling", FRUIT_TREE_SAPLING, FLFruitTreeSaplingBlock.class);
+            register(r, "jarbnet", JARBNET, JarbnetBlock.class);
+        }
+
+        private static void register(RegisterCallback<BlockEntityTooltip, Block> r, String name, BlockEntityTooltip tooltip, Class<? extends Block> aClass)
+        {
+            r.register(FLHelpers.identifier(name), tooltip, aClass);
         }
 
         public static final BlockEntityTooltip VAT = (level, state, pos, entity, tooltip) -> {
@@ -60,6 +66,39 @@ public final class FLTooltips
                     tooltip.accept(Component.translatable("firmalife.jade.boiling"));
                 }
                 heat(tooltip, vat.getTemperature());
+            }
+        };
+
+        public static final BlockEntityTooltip TUMBLER = (level, state, pos, entity, tooltip) -> {
+            if (entity instanceof CompostTumblerBlockEntity tumbler)
+            {
+                if (tumbler.canWork())
+                {
+                    timeLeft(level, tooltip, tumbler.getReadyTicks() - tumbler.getTicksSinceUpdate(), Component.translatable("firmalife.tumbler.almost_ready"));
+                }
+                for (CompostTumblerBlockEntity.AdditionType type : CompostTumblerBlockEntity.AdditionType.VALUES)
+                {
+                    if (type != CompostTumblerBlockEntity.AdditionType.NONE && type != CompostTumblerBlockEntity.AdditionType.POISON)
+                    {
+                        final float pct = tumbler.getPercentage(type);
+                        if (pct > 0f)
+                        {
+                            tooltip.accept(Component.translatable("firmalife.tumbler.component_pct", FLHelpers.translateEnum(type), String.format("%.2f", pct)));
+                        }
+                    }
+                }
+                if (tumbler.isReady())
+                {
+                    if (tumbler.isRotten())
+                    {
+                        tooltip.accept(Component.translatable("firmalife.tumbler.rotten"));
+                    }
+                    else
+                    {
+                        tooltip.accept(Component.translatable("firmalife.tumbler.ready"));
+                    }
+                }
+                tooltip.accept(Component.translatable("firmalife.tumbler.total", tumbler.getTotal()));
             }
         };
 
@@ -207,7 +246,7 @@ public final class FLTooltips
 
     public static final class Entities
     {
-        public static void register(BiConsumer<EntityTooltip, Class<? extends Entity>> r)
+        public static void register(RegisterCallback<EntityTooltip, Entity> r)
         {
 
         }

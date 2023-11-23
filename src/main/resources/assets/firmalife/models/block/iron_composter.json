@@ -1,9 +1,0 @@
-{
-  "__comment__": "This file was automatically created by mcresources",
-  "parent": "tfc:block/composter/composter",
-  "textures": {
-    "0": "firmalife:block/iron_composter_bottom",
-    "1": "firmalife:block/iron_composter_side",
-    "particle": "firmalife:block/iron_composter_bottom"
-  }
-}

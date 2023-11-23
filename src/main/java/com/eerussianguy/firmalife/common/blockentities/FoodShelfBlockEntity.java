@@ -57,9 +57,8 @@ public class FoodShelfBlockEntity extends InventoryBlockEntity<ItemStackHandler>
     }
 
     @Override
-    public void onLoad()
+    public void onLoadAdditional()
     {
-        super.onLoad();
         updatePreservation(climateValid);
     }
 

@@ -48,6 +48,7 @@ public class FLItems
     public static final RegistryObject<Item> PINEAPPLE_FIBER = register("pineapple_fiber");
     public static final RegistryObject<Item> PINEAPPLE_LEATHER = register("pineapple_leather");
     public static final RegistryObject<Item> PINEAPPLE_YARN = register("pineapple_yarn");
+    public static final RegistryObject<Item> POTTERY_SHERD = register("pottery_sherd");
     public static final RegistryObject<Item> RAW_HONEY = register("raw_honey");
     public static final RegistryObject<Item> REINFORCED_GLASS = register("reinforced_glass");
     public static final RegistryObject<Item> RENNET = register("rennet");

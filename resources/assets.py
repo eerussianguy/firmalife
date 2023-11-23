@@ -148,13 +148,8 @@ def generate(rm: ResourceManager):
     }).with_lang(lang('wooden beehive')).with_tag('minecraft:mineable/axe').with_block_loot('firmalife:beehive')
     rm.item_model('beehive', parent='minecraft:block/beehive', no_textures=True)
 
-    rm.block_model('iron_composter', parent='tfc:block/composter/composter', textures={'0': 'firmalife:block/iron_composter_bottom', '1': 'firmalife:block/iron_composter_side', 'particle': 'firmalife:block/iron_composter_bottom'})
-    states = [({'model': 'firmalife:block/iron_composter'})]
-    for i in range(1, 9):
-        for age in ('normal', 'ready', 'rotten'):
-            states.append(({'type': age, 'stage': i}, {'model': 'tfc:block/composter/%s_%s' % (age, i)}),)
-    rm.blockstate_multipart('iron_composter', *states).with_lang(lang('iron composter')).with_block_loot('firmalife:iron_composter').with_tag('minecraft:mineable/pickaxe')
-    rm.item_model('iron_composter', parent='firmalife:block/iron_composter', no_textures=True)
+    rm.blockstate('compost_tumbler', variants=four_rotations('firmalife:block/compost_tumbler', (90, None, 180, 270))).with_lang(lang('compost tumbler')).with_block_loot('firmalife:compost_tumbler').with_tag('minecraft:mineable/pickaxe')
+    rm.item_model('compost_tumbler', parent='firmalife:block/compost_tumbler_inventory', no_textures=True)
 
     block = rm.block('sealed').make_trapdoor().make_wall(texture='firmalife:block/sealed_bricks')
     make_door(block)
@@ -167,7 +162,7 @@ def generate(rm: ResourceManager):
     rm.item_model('dark_ladder', 'firmalife:block/dark_ladder')
 
     rm.blockstate('reinforced_poured_glass').with_block_model({'all': 'firmalife:block/reinforced_glass'}, parent='tfc:block/template_poured_glass').with_lang(lang('reinforced poured glass')).with_block_loot('firmalife:reinforced_glass')
-    rm.item_model('reinforced_poured_glass', 'firmalife:block/reinforced_poured_glass')
+    rm.item_model('reinforced_poured_glass', 'firmalife:item/reinforced_glass')
 
     rm.blockstate('nutritive_basin', variants={
         'watered=false': {'model': 'firmalife:block/nutritive_basin'},

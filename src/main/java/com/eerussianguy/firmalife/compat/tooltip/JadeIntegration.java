@@ -25,8 +25,8 @@ public class JadeIntegration implements IWailaPlugin
     @Override
     public void registerClient(IWailaClientRegistration registry)
     {
-        BlockEntityTooltips.register((name, tooltip, block) -> register(registry, name, tooltip, block));
-        EntityTooltips.register((name, tooltip, entity) -> register(registry, name, tooltip, entity));
+        FLTooltips.BlockEntities.register((name, tooltip, block) -> register(registry, name, tooltip, block));
+        FLTooltips.Entities.register((name, tooltip, entity) -> register(registry, name, tooltip, entity));
     }
 
     private void register(IWailaClientRegistration registry, ResourceLocation name, BlockEntityTooltip blockEntityTooltip, Class<? extends Block> block)

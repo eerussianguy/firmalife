@@ -18,7 +18,7 @@ public class FLServerConfig
     public final IntValue solarDryingTicks;
     public final IntValue smokingTicks;
     public final IntValue smokingFirepitRange;
-    public final IntValue ironComposterTicks;
+    public final IntValue compostTumblerTicks;
     public final IntValue ovenCureTicks;
     public final IntValue ovenCureTemperature;
     public final DoubleValue ovenAshChance;
@@ -46,7 +46,7 @@ public class FLServerConfig
         solarDryingTicks = builder.apply("solarDryingTicks").comment("Ticks to dry something on a solar drier (24000 ticks = 1 day)").defineInRange("solarDryingTicks", 1000, 1, Integer.MAX_VALUE);
         smokingTicks = builder.apply("smokingTicks").comment("Ticks to smoke something on a string (24000 ticks = 1 day)").defineInRange("smokingTicks", 8000, 1, Integer.MAX_VALUE);
         smokingFirepitRange = builder.apply("smokingFirepitRange").comment("Number of blocks below the firepit that wool string will search for valid smoking firepits.").defineInRange("smokingFirepitRange", 6, 1, Integer.MAX_VALUE);
-        ironComposterTicks = builder.apply("ironComposterTicks").comment("Ticks for an iron composter to finish (24000 ticks = 1 day)").defineInRange("ironComposterTicks", 96000, 1, Integer.MAX_VALUE);
+        compostTumblerTicks = builder.apply("compostTumblerTicks").comment("Ticks for a composter tumbler to finish (24000 ticks = 1 day)").defineInRange("compostTumblerTicks", 96000, 1, Integer.MAX_VALUE);
         ovenCureTicks = builder.apply("ovenCureTicks").comment("Ticks for an oven to cure (24000 ticks = 1 day)").defineInRange("ovenCureTicks", 2000, 1, Integer.MAX_VALUE);
         ovenCureTemperature = builder.apply("ovenCureTemperature").comment("Minimum temperature for an oven to start the curing process (24000 ticks = 1 day)").defineInRange("ovenCureTemperature", 600, 1, Integer.MAX_VALUE);
         ovenRequirePeel = builder.apply("ovenRequirePeel").comment("If true, ovens will hurt the player if they touch it without a peel in hand.").define("ovenRequirePeel", true);

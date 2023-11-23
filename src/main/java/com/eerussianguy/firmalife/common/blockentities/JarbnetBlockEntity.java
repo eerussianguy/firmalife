@@ -44,9 +44,8 @@ public class JarbnetBlockEntity extends InventoryBlockEntity<ItemStackHandler>
     }
 
     @Override
-    public void onLoad()
+    public void onLoadAdditional()
     {
-        super.onLoad();
         updateState();
     }
 

@@ -2,7 +2,8 @@
   "__comment__": "This file was automatically created by mcresources",
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "XYX"
+    "XYX",
+    "AGA"
   ],
   "key": {
     "X": {
@@ -10,9 +11,15 @@
     },
     "Y": {
       "item": "tfc:composter"
+    },
+    "A": {
+      "tag": "tfc:axles"
+    },
+    "G": {
+      "item": "tfc:glue"
     }
   },
   "result": {
-    "item": "firmalife:iron_composter"
+    "item": "firmalife:compost_tumbler"
   }
 }

@@ -7,9 +7,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "tfc:composter"
-            ]
+            "tag": "tfc:fired_vessels"
           }
         ]
       }
@@ -17,7 +15,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "firmalife:crafting/iron_composter"
+        "recipe": "firmalife:crafting/pottery_sherd"
       }
     }
   },
@@ -29,7 +27,7 @@
   ],
   "rewards": {
     "recipes": [
-      "firmalife:crafting/iron_composter"
+      "firmalife:crafting/pottery_sherd"
     ]
   }
 }

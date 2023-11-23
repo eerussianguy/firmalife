@@ -39,7 +39,7 @@ public final class FLCreativeTabs
 
     public static final RegistryObject<CreativeModeTab> FIRMALIFE = register("firmalife", () -> new ItemStack(FLBlocks.CURED_OVEN_TOP.get(OvenType.BRICK).get()),  FLCreativeTabs::fillFirmalifeTab);
 
-    private static void fillFirmalifeTab(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output out)
+    public static void fillFirmalifeTab(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output out)
     {
         accept(out, FLItems.HONEY_JAR);
         accept(out, FLItems.COMPOST_JAR);
@@ -56,6 +56,7 @@ public final class FLCreativeTabs
         accept(out, FLItems.PINEAPPLE_YARN);
         accept(out, FLItems.PINEAPPLE_LEATHER);
         accept(out, FLItems.PINEAPPLE_FIBER);
+        accept(out, FLItems.POTTERY_SHERD);
         accept(out, FLItems.BEESWAX);
         accept(out, FLItems.RAW_HONEY);
         accept(out, FLItems.RENNET);
@@ -95,7 +96,7 @@ public final class FLCreativeTabs
         accept(out, FLBlocks.DRYING_MAT);
         accept(out, FLBlocks.SOLAR_DRIER);
         accept(out, FLBlocks.BEEHIVE);
-        accept(out, FLBlocks.IRON_COMPOSTER);
+        accept(out, FLBlocks.COMPOST_TUMBLER);
         accept(out, FLBlocks.MIXING_BOWL);
         accept(out, FLItems.SPOON);
         accept(out, FLBlocks.VAT);

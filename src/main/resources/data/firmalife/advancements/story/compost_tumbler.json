@@ -2,13 +2,13 @@
   "__comment__": "This file was automatically created by mcresources",
   "parent": "firmalife:story/root",
   "criteria": {
-    "iron_composter": {
+    "compost_tumbler": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "firmalife:iron_composter"
+              "firmalife:compost_tumbler"
             ]
           }
         ]
@@ -17,13 +17,13 @@
   },
   "display": {
     "icon": {
-      "item": "firmalife:iron_composter"
+      "item": "firmalife:compost_tumbler"
     },
     "title": {
-      "translate": "firmalife.advancements.story.iron_composter.title"
+      "translate": "firmalife.advancements.story.compost_tumbler.title"
     },
     "description": {
-      "translate": "firmalife.advancements.story.iron_composter.description"
+      "translate": "firmalife.advancements.story.compost_tumbler.description"
     },
     "frame": "task",
     "show_toast": true,
@@ -33,7 +33,7 @@
   },
   "requirements": [
     [
-      "iron_composter"
+      "compost_tumbler"
     ]
   ]
 }

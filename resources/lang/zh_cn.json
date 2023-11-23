@@ -133,8 +133,6 @@
   "More Fertilizer Options": "更多的肥料获取途径",
   "Given a greater need for fertilization in Firmalife, there are more options for getting $(l:mechanics/fertilizers)fertilizers$().": "Firmalife中对肥料的需求更大, 因此有更多的获取$(l:mechanics/fertilizers)肥料$()的途径.",
   "Thatch can be $(l:tfc:firmalife/drying)Dried$() into $(thing)Dry Grass$(), which can be used in a Composter as a brown item.": "Thatch can be $(l:tfc:firmalife/drying)Dried$() into $(thing)Dry Grass$(), which can be used in a Composter as a brown item.",
-  "The Composter can be upgraded to an $(thing)Iron Composter$(), which works the same, except it produces compost in four days. Iron Composters will also feed a hopper directly below with compost when ready.": "The Composter can be upgraded to an $(thing)Iron Composter$(), which works the same, except it produces compost in four days. Iron Composters will also feed a hopper directly below with compost when ready.",
-  "The possible fill levels of the iron composter": "铁堆肥桶的几种填充状态",
   "Mixing Bowl": "搅拌碗",
   "The mixing bowl is a way of mixing items and fluids together in a friendly way. $(item)$(k:key.use)$() on it with a $(thing)Spoon$() to add it to the bowl, which allows it to operate.": "搅拌碗是把物品和液体混合在一起的好方法. 拿一个$(thing)勺子$()对它$(item)$(k:key.use)$()就可以把勺子放进碗里, 然后搅拌碗就可以使用了.",
   "Requires a $(thing)Spoon$() to use.": "需要一个$(thing)勺子$()才能使用.",
