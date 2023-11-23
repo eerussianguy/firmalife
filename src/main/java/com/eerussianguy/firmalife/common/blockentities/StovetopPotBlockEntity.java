@@ -47,7 +47,7 @@ public class StovetopPotBlockEntity extends BoilingBlockEntity<StovetopPotBlockE
         pot.handleCooking();
     }
 
-    public static final int SLOTS = 4;
+    public static final int SLOTS = 5;
     private static final int DURATION = 1000;
     private static final float MIN_TEMP = 500f;
 

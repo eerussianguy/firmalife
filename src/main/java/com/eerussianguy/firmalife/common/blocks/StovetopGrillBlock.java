@@ -107,6 +107,7 @@ public class StovetopGrillBlock extends BottomSupportedDeviceBlock implements IH
             if (!stack.isEmpty() && inv != null && slot != -1 && current.isEmpty() && inv.isItemValid(slot, stack))
             {
                 ItemHandlerHelper.giveItemToPlayer(player, inv.insertItem(slot, stack.split(1), false));
+                grill.markForSync();
                 return InteractionResult.sidedSuccess(level.isClientSide);
             }
             if (stack.isEmpty() && slot != -1 && inv != null && !current.isEmpty())
