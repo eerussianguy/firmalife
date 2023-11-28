@@ -163,6 +163,9 @@ public class SprinklerPipeBlock extends ExtendedBlock implements DirectionProper
     private boolean connectsToPipeInDirection(BlockState state, Direction direction)
     {
         final Block block = state.getBlock();
-        return block == this || (block instanceof AbstractSprinklerBlock sprinkler && sprinkler.getPipeConnection().test(direction)) || (block == FLBlocks.IRRIGATION_TANK.get() && direction.getAxis().isHorizontal());
+        return block == this ||
+            (block instanceof AbstractSprinklerBlock sprinkler && sprinkler.getPipeConnection().test(direction)) ||
+            (block instanceof GreenhousePortBlock && state.getValue(GreenhousePortBlock.AXIS) == direction.getAxis()) ||
+            (block == FLBlocks.IRRIGATION_TANK.get() && direction.getAxis().isHorizontal());
     }
 }

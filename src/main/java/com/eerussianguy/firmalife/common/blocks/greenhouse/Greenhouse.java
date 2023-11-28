@@ -59,7 +59,8 @@ public enum Greenhouse
         ROOF((green, type) -> new GreenhouseStairBlock(properties(green), () -> FLBlocks.GREENHOUSE_BLOCKS.get(green).get(WALL).get().defaultBlockState(), type.getNext(green))),
         ROOF_TOP((green, type) -> new GreenhouseSlabBlock(properties(green), type.getNext(green))),
         TRAPDOOR((green, type) -> new GreenhouseTrapDoorBlock(properties(green), BlockSetType.OAK, type.getNext(green))),
-        DOOR((green, type) -> new GreenhouseDoorBlock(properties(green), type.getNext(green), green.blockSet));
+        DOOR((green, type) -> new GreenhouseDoorBlock(properties(green), type.getNext(green), green.blockSet)),
+        PORT((green, type) -> new GreenhousePortBlock(properties(green), type.getNext(green)));
 
         public static ExtendedProperties properties(Greenhouse green)
         {

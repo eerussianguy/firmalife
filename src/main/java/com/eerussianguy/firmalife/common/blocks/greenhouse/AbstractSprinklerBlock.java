@@ -29,8 +29,6 @@ public class AbstractSprinklerBlock extends DeviceBlock implements HoeOverlayBlo
 {
     public static final BooleanProperty STASIS = FLStateProperties.STASIS;
 
-
-
     private final Predicate<Direction> pipeConnection;
     private final Function<BlockPos, Iterable<BlockPos>> pathMaker;
     private final double dh;

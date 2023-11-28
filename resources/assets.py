@@ -94,6 +94,7 @@ def generate(rm: ResourceManager):
         greenhouse_slab(rm, greenhouse, 'firmalife:block/greenhouse/%s' % greenhouse, 'firmalife:block/greenhouse/%s_glass' % greenhouse)
         greenhouse_stairs(rm, greenhouse, 'firmalife:block/greenhouse/%s' % greenhouse, 'firmalife:block/greenhouse/%s_glass' % greenhouse)
         greenhouse_wall(rm, greenhouse, 'firmalife:block/greenhouse/%s' % greenhouse, 'firmalife:block/greenhouse/%s_glass' % greenhouse)
+        greenhouse_port(rm, greenhouse, 'firmalife:block/greenhouse/%s' % greenhouse, 'firmalife:block/greenhouse/%s_glass' % greenhouse)
         greenhouse_panel_wall(rm, greenhouse, 'firmalife:block/greenhouse/%s' % greenhouse, 'firmalife:block/greenhouse/%s_glass' % greenhouse)
         greenhouse_panel_roof(rm, greenhouse, 'firmalife:block/greenhouse/%s' % greenhouse, 'firmalife:block/greenhouse/%s_glass' % greenhouse)
         greenhouse_trapdoor(rm, greenhouse, 'firmalife:block/greenhouse/%s_glass' % greenhouse)
@@ -511,6 +512,20 @@ def greenhouse_wall(rm: ResourceManager, name: str, frame: str, glass: str) -> '
         'down=true,up=true': {'model': 'firmalife:block/greenhouse/%s_wall_both' % name}
     }).with_block_loot('firmalife:%s_greenhouse_wall' % name).with_lang(lang('%s greenhouse wall', name))
     rm.item_model('%s_greenhouse_wall' % name, parent='firmalife:block/greenhouse/%s_wall_both' % name, no_textures=True)
+    greenhouse_tags(block, name).with_tag('greenhouse_full_walls')
+    return block
+
+def greenhouse_port(rm: ResourceManager, name: str, frame: str, glass: str) -> 'BlockContext':
+    rm.block_model('greenhouse/%s_port_inv' % name, {'glass': glass + '_both', 'steel': frame}, parent='firmalife:block/greenhouse_port_inv')
+    block = rm.blockstate_multipart('%s_greenhouse_port' % name,
+        ({'axis': 'x'}, {'model': 'firmalife:block/pipe_inventory', 'x': 90, 'y': 90}),
+        ({'axis': 'z'}, {'model': 'firmalife:block/pipe_inventory', 'x': 90}),
+        ({'down': False, 'up': False}, {'model': 'firmalife:block/greenhouse/%s_wall' % name}),
+        ({'down': True, 'up': False}, {'model': 'firmalife:block/greenhouse/%s_wall_down' % name}),
+        ({'down': False, 'up': True}, {'model': 'firmalife:block/greenhouse/%s_wall_up' % name}),
+        ({'down': True, 'up': True}, {'model': 'firmalife:block/greenhouse/%s_wall_both' % name})
+    ).with_block_loot('firmalife:%s_greenhouse_port' % name).with_lang(lang('%s greenhouse port', name))
+    rm.item_model('%s_greenhouse_port' % name, parent='firmalife:block/greenhouse/%s_port_inv' % name, no_textures=True)
     greenhouse_tags(block, name).with_tag('greenhouse_full_walls')
     return block
 

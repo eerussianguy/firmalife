@@ -105,7 +105,7 @@ def generate(rm: ResourceManager):
     craft_decorations('crafting/tiles', 'firmalife:tiles')
     rm.crafting_shapeless('crafting/banana_split', (not_rotten('firmalife:food/vanilla_ice_cream'), not_rotten('firmalife:food/strawberry_ice_cream'), not_rotten('firmalife:food/chocolate_ice_cream'), not_rotten('firmalife:food/pineapple'), not_rotten('tfc:food/cherry'), not_rotten('tfc:food/banana'), not_rotten('tfc:food/banana')), 'firmalife:food/banana_split').with_advancement('firmalife:food/vanilla_ice_cream')
     rm.crafting_shapeless('crafting/plate', ('firmalife:treated_lumber', 'firmalife:treated_lumber', 'minecraft:white_dye', 'tfc:glue'), 'firmalife:plate').with_advancement('firmalife:treated_lumber')
-    rm.crafting_shapeless('crafting/oxidized_copper_pipe', ('firmalife:copper_pipe', 'firmalife:copper_pipe', 'firmalife:copper_pipe', 'firmalife:copper_pipe', 'tfc:powder/wood_ash'), 'firmalife:oxidized_copper_pipe').with_advancement('firmalife:copper_pipe')
+    rm.crafting_shapeless('crafting/oxidized_copper_pipe', ('firmalife:copper_pipe', 'firmalife:copper_pipe', 'firmalife:copper_pipe', 'firmalife:copper_pipe', 'tfc:powder/wood_ash'), '4 firmalife:oxidized_copper_pipe').with_advancement('firmalife:copper_pipe')
     rm.crafting_shapeless('crafting/irrigation_tank', ('#tfc:barrels', '#forge:sheets/bronze', 'firmalife:copper_pipe'), 'firmalife:irrigation_tank').with_advancement('firmalife:copper_pipe')
     rm.crafting_shaped('crafting/pumping_station', ['SRS', 'BBB', 'ZZZ'], {'S': '#forge:sheets/bronze', 'R': '#forge:dusts/redstone', 'B': 'tfc:brass_mechanisms', 'Z': '#tfc:axles'}, 'firmalife:pumping_station').with_advancement('tfc:brass_mechanisms')
 
