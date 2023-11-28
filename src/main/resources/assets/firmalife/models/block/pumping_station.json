@@ -1,0 +1,9 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "block/orientable",
+  "textures": {
+    "front": "firmalife:block/pumping_station_front",
+    "side": "firmalife:block/irrigation_tank",
+    "top": "firmalife:block/irrigation_tank_top"
+  }
+}

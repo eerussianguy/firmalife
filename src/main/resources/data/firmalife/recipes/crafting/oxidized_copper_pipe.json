@@ -1,0 +1,24 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "firmalife:copper_pipe"
+    },
+    {
+      "item": "firmalife:copper_pipe"
+    },
+    {
+      "item": "firmalife:copper_pipe"
+    },
+    {
+      "item": "firmalife:copper_pipe"
+    },
+    {
+      "item": "tfc:powder/wood_ash"
+    }
+  ],
+  "result": {
+    "item": "firmalife:oxidized_copper_pipe"
+  }
+}

@@ -10,17 +10,17 @@
     },
     {
       "type": "tfc:knapping_recipe",
-      "recipe": "tfc:clay_knapping/oven_top",
+      "recipe": "firmalife:clay_knapping/oven_top",
       "text": "烤炉顶的合成配方."
     },
     {
       "type": "tfc:knapping_recipe",
-      "recipe": "tfc:clay_knapping/oven_bottom",
+      "recipe": "firmalife:clay_knapping/oven_bottom",
       "text": "烤炉底的合成配方."
     },
     {
       "type": "tfc:knapping_recipe",
-      "recipe": "tfc:clay_knapping/oven_chimney",
+      "recipe": "firmalife:clay_knapping/oven_chimney",
       "text": "烤炉烟囱的合成配方."
     },
     {

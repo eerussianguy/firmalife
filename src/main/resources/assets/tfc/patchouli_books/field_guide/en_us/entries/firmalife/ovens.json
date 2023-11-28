@@ -10,17 +10,17 @@
     },
     {
       "type": "tfc:knapping_recipe",
-      "recipe": "tfc:clay_knapping/oven_top",
+      "recipe": "firmalife:clay_knapping/oven_top",
       "text": "The recipe for the top oven."
     },
     {
       "type": "tfc:knapping_recipe",
-      "recipe": "tfc:clay_knapping/oven_bottom",
+      "recipe": "firmalife:clay_knapping/oven_bottom",
       "text": "The recipe for the bottom oven."
     },
     {
       "type": "tfc:knapping_recipe",
-      "recipe": "tfc:clay_knapping/oven_chimney",
+      "recipe": "firmalife:clay_knapping/oven_chimney",
       "text": "The recipe for the oven chimney    ."
     },
     {

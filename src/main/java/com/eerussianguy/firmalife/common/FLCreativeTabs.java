@@ -106,12 +106,9 @@ public final class FLCreativeTabs
         accept(out, FLBlocks.LARGE_PLANTER);
         accept(out, FLBlocks.QUAD_PLANTER);
         accept(out, FLBlocks.HYDROPONIC_PLANTER);
-        accept(out, FLBlocks.NUTRITIVE_BASIN);
         accept(out, FLBlocks.BONSAI_PLANTER);
         accept(out, FLBlocks.HANGING_PLANTER);
         accept(out, FLBlocks.TRELLIS_PLANTER);
-        accept(out, FLBlocks.SPRINKLER);
-        accept(out, FLBlocks.DRIBBLER);
         accept(out, FLBlocks.SEALED_BRICKS);
         accept(out, FLBlocks.SEALED_DOOR);
         accept(out, FLBlocks.SEALED_WALL);
@@ -133,6 +130,11 @@ public final class FLCreativeTabs
         }
 
         accept(out, FLItems.REINFORCED_GLASS);
+        accept(out, FLBlocks.COPPER_PIPE);
+        accept(out, FLBlocks.OXIDIZED_COPPER_PIPE);
+        accept(out, FLBlocks.IRRIGATION_TANK);
+        accept(out, FLBlocks.PUMPING_STATION);
+        accept(out, FLItems.SPRINKLER);
         for (Greenhouse greenhouse : Greenhouse.values())
         {
             for (Greenhouse.BlockType blockType : Greenhouse.BlockType.values())

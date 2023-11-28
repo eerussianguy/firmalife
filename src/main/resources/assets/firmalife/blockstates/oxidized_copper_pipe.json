@@ -1,0 +1,120 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "multipart": [
+    {
+      "apply": {
+        "model": "firmalife:block/oxidized_pipe_center"
+      }
+    },
+    {
+      "when": {
+        "north": true
+      },
+      "apply": {
+        "model": "firmalife:block/oxidized_pipe_on",
+        "x": 270
+      }
+    },
+    {
+      "when": {
+        "north": false
+      },
+      "apply": {
+        "model": "firmalife:block/oxidized_pipe_off",
+        "x": 270
+      }
+    },
+    {
+      "when": {
+        "south": true
+      },
+      "apply": {
+        "model": "firmalife:block/oxidized_pipe_on",
+        "x": 90
+      }
+    },
+    {
+      "when": {
+        "south": false
+      },
+      "apply": {
+        "model": "firmalife:block/oxidized_pipe_off",
+        "x": 90
+      }
+    },
+    {
+      "when": {
+        "east": true
+      },
+      "apply": {
+        "model": "firmalife:block/oxidized_pipe_on",
+        "x": 90,
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "east": false
+      },
+      "apply": {
+        "model": "firmalife:block/oxidized_pipe_off",
+        "x": 90,
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "west": true
+      },
+      "apply": {
+        "model": "firmalife:block/oxidized_pipe_on",
+        "x": 90,
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "west": false
+      },
+      "apply": {
+        "model": "firmalife:block/oxidized_pipe_off",
+        "x": 90,
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "down": true
+      },
+      "apply": {
+        "model": "firmalife:block/oxidized_pipe_on"
+      }
+    },
+    {
+      "when": {
+        "down": false
+      },
+      "apply": {
+        "model": "firmalife:block/oxidized_pipe_off"
+      }
+    },
+    {
+      "when": {
+        "up": true
+      },
+      "apply": {
+        "model": "firmalife:block/oxidized_pipe_on",
+        "x": 180
+      }
+    },
+    {
+      "when": {
+        "up": false
+      },
+      "apply": {
+        "model": "firmalife:block/oxidized_pipe_off",
+        "x": 180
+      }
+    }
+  ]
+}

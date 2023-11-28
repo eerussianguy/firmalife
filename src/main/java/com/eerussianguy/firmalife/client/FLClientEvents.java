@@ -16,6 +16,7 @@ import com.eerussianguy.firmalife.client.model.TrellisPlanterBlockModel;
 import com.eerussianguy.firmalife.client.screen.StovetopGrillScreen;
 import com.eerussianguy.firmalife.client.screen.StovetopPotScreen;
 import com.eerussianguy.firmalife.common.FLCreativeTabs;
+import com.eerussianguy.firmalife.common.misc.SprinklerParticle;
 import com.eerussianguy.firmalife.common.util.FLFruit;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
@@ -39,7 +40,7 @@ import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.container.FLContainerTypes;
 import com.eerussianguy.firmalife.common.entities.FLEntities;
-import com.eerussianguy.firmalife.common.entities.FLParticles;
+import com.eerussianguy.firmalife.common.misc.FLParticles;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.common.items.FLItems;
 import net.dries007.tfc.client.TFCColors;
@@ -79,12 +80,11 @@ public class FLClientEvents
             FLBlocks.QUAD_PLANTER, FLBlocks.LARGE_PLANTER, FLBlocks.HANGING_PLANTER, FLBlocks.BONSAI_PLANTER, FLBlocks.TRELLIS_PLANTER,
             FLBlocks.COMPOST_TUMBLER, FLBlocks.CHEDDAR_WHEEL,
             FLBlocks.RAJYA_METOK_WHEEL, FLBlocks.CHEVRE_WHEEL, FLBlocks.SHOSHA_WHEEL, FLBlocks.FETA_WHEEL, FLBlocks.GOUDA_WHEEL, FLBlocks.SMALL_CHROMITE,
-            FLBlocks.MIXING_BOWL, FLBlocks.BUTTERFLY_GRASS, FLBlocks.SPRINKLER, FLBlocks.DRIBBLER, FLBlocks.VAT, FLBlocks.HYDROPONIC_PLANTER, FLBlocks.STOVETOP_GRILL, FLBlocks.STOVETOP_POT,
+            FLBlocks.MIXING_BOWL, FLBlocks.BUTTERFLY_GRASS, FLBlocks.VAT, FLBlocks.HYDROPONIC_PLANTER, FLBlocks.STOVETOP_GRILL, FLBlocks.STOVETOP_POT,
             FLBlocks.DARK_LADDER, FLBlocks.JARRING_STATION
         ).forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
 
         ItemBlockRenderTypes.setRenderLayer(FLBlocks.SOLAR_DRIER.get(), translucent);
-        ItemBlockRenderTypes.setRenderLayer(FLBlocks.NUTRITIVE_BASIN.get(), translucent);
 
         FLBlocks.CHROMITE_ORES.values().forEach(map -> map.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout)));
         FLBlocks.GREENHOUSE_BLOCKS.values().forEach(map -> map.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout)));
@@ -137,6 +137,7 @@ public class FLClientEvents
     public static void registerParticleFactories(RegisterParticleProvidersEvent event)
     {
         event.registerSpriteSet(FLParticles.GROWTH.get(), set -> new GlintParticleProvider(set, ChatFormatting.GREEN));
+        event.registerSpriteSet(FLParticles.SPRINKLER.get(), set -> SprinklerParticle.provider(set, SprinklerParticle::new));
     }
 
     public static void registerModels(ModelEvent.RegisterAdditional event)

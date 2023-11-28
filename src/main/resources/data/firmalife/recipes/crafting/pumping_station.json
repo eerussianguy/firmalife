@@ -1,0 +1,26 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SRS",
+    "BBB",
+    "ZZZ"
+  ],
+  "key": {
+    "S": {
+      "tag": "forge:sheets/bronze"
+    },
+    "R": {
+      "tag": "forge:dusts/redstone"
+    },
+    "B": {
+      "item": "tfc:brass_mechanisms"
+    },
+    "Z": {
+      "tag": "tfc:axles"
+    }
+  },
+  "result": {
+    "item": "firmalife:pumping_station"
+  }
+}

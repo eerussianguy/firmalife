@@ -1,0 +1,22 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "block/block",
+	"textures": {
+		"2": "firmalife:block/sprinkler_head",
+		"3": "tfc:block/metal/block/copper"
+	},
+	"elements": [
+		{
+			"from": [6, 0, 6],
+			"to": [10, 5, 10],
+			"faces": {
+				"north": {"uv": [6, 5, 10, 10], "texture": "#3"},
+				"east": {"uv": [6, 5, 10, 10], "texture": "#3"},
+				"south": {"uv": [6, 5, 10, 10], "texture": "#3"},
+				"west": {"uv": [6, 5, 10, 10], "texture": "#3"},
+				"up": {"uv": [0, 7, 4, 11], "texture": "#2"},
+				"down": {"uv": [0, 0, 0, 0], "texture": "#3"}
+			}
+		}
+	]
+}

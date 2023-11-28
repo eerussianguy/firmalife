@@ -1,0 +1,16 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:anvil",
+  "input": {
+    "tag": "forge:sheets/copper"
+  },
+  "result": {
+    "item": "firmalife:copper_pipe",
+    "count": 8
+  },
+  "tier": 1,
+  "rules": [
+    "draw_last",
+    "bend_not_last"
+  ]
+}

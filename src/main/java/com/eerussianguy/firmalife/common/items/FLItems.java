@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
+import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.blocks.OvenType;
 import com.eerussianguy.firmalife.common.util.FLArmorMaterials;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -54,6 +55,7 @@ public class FLItems
     public static final RegistryObject<Item> RENNET = register("rennet");
     public static final RegistryObject<Item> SEED_BALL = register("seed_ball", () -> new SeedBallItem(prop()));
     public static final RegistryObject<Item> SPOON = register("spoon");
+    public static final RegistryObject<Item> SPRINKLER = register("sprinkler", () -> new SprinklerItem(FLBlocks.SPRINKLER.get(), FLBlocks.FLOOR_SPRINKLER.get(), prop()));
     public static final RegistryObject<Item> TREATED_LUMBER = register("treated_lumber");
     public static final RegistryObject<Item> WATERING_CAN = register("watering_can", () -> new WateringCanItem(prop().defaultDurability(20)));
 

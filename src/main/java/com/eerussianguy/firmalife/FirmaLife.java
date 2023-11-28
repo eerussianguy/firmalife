@@ -21,7 +21,7 @@ import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.blocks.FLFluids;
 import com.eerussianguy.firmalife.common.container.FLContainerTypes;
 import com.eerussianguy.firmalife.common.entities.FLEntities;
-import com.eerussianguy.firmalife.common.entities.FLParticles;
+import com.eerussianguy.firmalife.common.misc.FLParticles;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.common.items.FLItems;
 import com.eerussianguy.firmalife.common.misc.FLEffects;
@@ -37,7 +37,6 @@ import com.eerussianguy.firmalife.compat.patchouli.FLPatchouliIntegration;
 import com.eerussianguy.firmalife.compat.tooltip.TheOneProbeIntegration;
 import com.eerussianguy.firmalife.config.FLConfig;
 import com.mojang.logging.LogUtils;
-import net.dries007.tfc.config.TFCConfig;
 import org.slf4j.Logger;
 
 @Mod(FirmaLife.MOD_ID)

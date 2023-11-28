@@ -281,7 +281,7 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     }
 
     @Override
-    public boolean addWater(float amount)
+    public boolean addWater(float amount, @Nullable Direction direction)
     {
         assert level != null;
         if (water < 0.99f)

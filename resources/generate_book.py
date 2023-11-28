@@ -97,17 +97,15 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False):
             text('There are many blocks that operate inside Greenhouses:$(br)$(li)$(l:tfc:firmalife/planters)Planters$(), for growing crops$(), and $(br)$(li)$(l:tfc:firmalife/sprinklers)Sprinklers$(), various devices that add water to planters.'),
             empty_last_page()
         )),
-        entry('sprinklers', 'Sprinklers', 'firmalife:sprinkler', pages=(
-            text('The $(thing)Sprinkler$() is a device that sprinkles water in a 5x6x5 area centered on the block below the sprinkler block. It automatically fills with water from any fluid tank or pipe placed above it. You know it is working when it drips out water particles.'),
-            two_tall_block_spotlight('Starter Sprinkler Setup', 'The easiest way to set up a sprinkler is with a barrel of water.', 'firmalife:sprinkler', 'tfc:wood/barrel/pine'),
-            anvil_recipe('firmalife:anvil/sprinkler', 'The sprinkler is made with a $(thing)Red Steel Sheet$().'),
-            anvil_recipe('firmalife:anvil/dribbler', 'The dribbler is made with a $(thing)Stainless Steel Sheet$(). It works like a sprinkler, but only waters the 7 blocks below it!'),
-            # text('The $(thing)Squirting Moisture Transducer$(), or the SMT, is an advanced device for watering planters. The SMT must be placed in a valid $(l:tfc:firmalife/greenhouse)Greenhouse$() to work.'),
-            # crafting('firmalife:crafting/squirting_moisture_transducer', text_contents='The SMT is crafted from $(l:tfc:firmalife/stainless_steel)Stainless Steel$().'),
-            # crafting('firmalife:crafting/embedded_pipe', text_contents='You may notice that the SMT does not work on its own. It must be used with a number of $(thing)Embedded Pipes$().'),
-            # text('When hovering over an SMT with a hoe, you will see that it wants $(thing)Embedded Pipes$(). To add pipes, $(item)$(k:key.use)$() on it while holding a pipe. The SMT can hold 32 pipes. The SMT will automatically drive pipes into the ground below it. The SMT can only drive pipes through natural blocks like dirt, grass, and rock, but not ore! The SMT will say in its hoe overlay when it has enough pipes to operate.'),
-            # text('Depending on the moisture content of its surrounding environment, the SMT has a minimum number of pipes to work. When it is operating, the SMT will water a box of 4 blocks in all directions every minute, releasing particles when doing so.'),
-            # empty_last_page(),
+        entry('irrigation', 'Irrigation', 'firmalife:sprinkler', pages=(
+            text('The $(thing)Sprinkler$() is a device that sprinkles water in a 5x6x5 area centered on the block below the sprinkler block. It automatically fills with water from any fluid tank or pipe placed above it. You know it is working when it drips out water particles. Sprinklers placed on the ground irrigate the same 5x6x5 area above.'),
+            anvil_recipe('firmalife:anvil/sprinkler', 'The sprinkler is made with a $(thing)Copper Sheet$().'),
+            text('Sprinklers must be connected to a system of pipes that feed it water in order to work. This is done by connecting a series of $(thing)Copper Pipes$() to them. Copper Pipes transport water up to 32 blocks to a sprinkler. They are connected to $(thing)Irrigation Tanks$() or $(thing)Pumping Stations$().'),
+            anvil_recipe('firmalife:anvil/copper_pipe', 'The copper pipe is made with a sheet.'),
+            two_tall_block_spotlight('', '', 'firmalife:pumping_station', 'firmalife:irrigation_tank'),
+            text('Pumping stations must be above a source block of water in order to work, and be connected to mechanical power. Irrigation tanks can also serve water through their ports on the sides, provided that they are stacked at most 3 blocks high above a pumping station on other tanks.'),
+            crafting('firmalife:crafting/pumping_station', 'firmalife:crafting/irrigation_tank'),
+            crafting('firmalife:crafting/oxidized_copper_pipe', text_contents='Oxidized pipes are the same as regular copper pipes, except they do not connect to the other kind of pipe.')
         )),
         entry('planters', 'Planters', 'firmalife:large_planter', pages=(
             text('$(thing)Planters$() are used to grow crops inside a $(l:tfc:firmalife/greenhouse)Greenhouse$(). To see the status of a planter, you can look at it while holding a $(thing)Hoe$(). Crops in planters consume $(l:mechanics/fertilizers)Nutrients$() in a similar way to $(l:mechanics/crops)Crops$(). Planters should be placed inside a valid Greenhouse and activated with a $(l:tfc:firmalife/climate_station)Climate Station$(). Planters need at least some natural sunlight to work.').anchor('planters'),
@@ -122,8 +120,8 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False):
             text('Hanging Planters grow $(thing)Squash$(), from their seeds, and $(thing)Bananas$(), from their saplings. Squash can be grown in any greenhouse, but Bananas require an $(thing)Iron$() or better greenhouse to grow. Hanging planters need to anchor to a solid block above them.'),
             crafting('firmalife:crafting/trellis_planter', text_contents='$(thing)Trellis Planters$() grow berry bushes. Berries can be picked with $(item)$(k:key.use)$().'),
             text('Trellis Planters have the unique property of $(thing)propagating$() berry bushes. If a trellis planter is placed on top of another, and the one below has a mature berry bush, it has a chance to grow upwards into the next one. Trellis planters can grow any berry bush except $(thing)Cranberries$(), but require an $(thing)Iron$() or better greenhouse to work. Bushes prefer Nitrogen.'),
-            crafting('firmalife:crafting/hydroponic_planter', text_contents='$(thing)Hydroponic Planters$() grow rice and cranberry bushes. They work the same as a quad planter, except that they do not need to be watered. Instead, a $(thing)Nutritive Vat$() must be placed below them. Without the vat they will not grow.'),
-            crafting('firmalife:crafting/nutritive_basin', text_contents='Nutritive basins must be filled with water, using $(item)$(k:key.use)$().'),
+            # crafting('firmalife:crafting/hydroponic_planter', text_contents='$(thing)Hydroponic Planters$() grow rice and cranberry bushes. They work the same as a quad planter, except that they do not need to be watered. Instead, a $(thing)Nutritive Vat$() must be placed below them. Without the vat they will not grow.'),
+            # crafting('firmalife:crafting/nutritive_basin', text_contents='Nutritive basins must be filled with water, using $(item)$(k:key.use)$().'),
         )),
         entry('beekeeping', 'Beekeeping', 'firmalife:beehive', pages=(
             text('$(thing)Beehives$() are a place to house bees. Beehives need $(thing)Beehive Frames$() inside them for the bees to live. Removing frames from an active hive will cause the bees to attack you, unless done at night, or with a $(thing)Firepit$() underneath the hive active. Beehives can share flowers. The benefit of flowers diminishes after 60 flowers.'),
@@ -165,9 +163,9 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False):
         )),
         entry('ovens', 'Ovens', 'firmalife:cured_oven_top', pages=(
             text('$(thing)Ovens$() are a great way of cooking lots of food in a way that improves their shelf life. Oven-baked food decays at 90% of the rate of regular food. Ovens are a multiblock structure consisting of a $(thing)Bottom Oven$(), $(thing)Top Oven$(), and optionally $(thing)Chimneys$(). These blocks start off as clay, and must be $(thing)Cured$() by raising their temperature to a certain amount for long enough.$(br)$(l:tfc:firmalife/oven_appliances)Oven Appliances$() extend oven functionality.'),
-            knapping('tfc:clay_knapping/oven_top', 'The recipe for the top oven.'),
-            knapping('tfc:clay_knapping/oven_bottom', 'The recipe for the bottom oven.'),
-            knapping('tfc:clay_knapping/oven_chimney', 'The recipe for the oven chimney    .'),
+            knapping('firmalife:clay_knapping/oven_top', 'The recipe for the top oven.'),
+            knapping('firmalife:clay_knapping/oven_bottom', 'The recipe for the bottom oven.'),
+            knapping('firmalife:clay_knapping/oven_chimney', 'The recipe for the oven chimney    .'),
             crafting('tfc:crafting/bricks', text_contents='Ovens are insulated with $(thing)Bricks$(), other oven blocks, or anything that can insulate a Forge. This means you can use stone blocks, if you want!'),
             crafting('firmalife:crafting/peel', text_contents='The $(thing)Peel$() is the only safe way to remove hot items from an Oven. Just $(item)$(k:key.use)$() on it while holding it to retrieve items. Otherwise, you may get burned!'),
             text('The Oven first consists of the Top Oven placed on top of the Bottom Oven. All sides of each oven part, besides the front face, should then be covered with Oven Insulation blocks, as covered two pages ago. You may choose to use $(thing)Oven Chimneys$() as insulation. Placing a stack of chimneys directly behind the oven causes the smoke from the oven to travel up and out of it. If you don\'t do this, smoke will quickly fill up your house, which is very distracting!'),
@@ -211,6 +209,14 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False):
         entry('more_fertilizer', 'More Fertilizer Options', 'firmalife:compost_tumbler', pages=(
             text('Given a greater need for fertilization in Firmalife, there are more options for getting $(l:mechanics/fertilizers)fertilizers$().'),
             drying_recipe('firmalife:drying/dry_grass', 'Thatch can be $(l:tfc:firmalife/drying)Dried$() into $(thing)Dry Grass$(), which can be used in a Composter as a brown item.'),
+            text('$(thing)Compost Tumblers$() are a great way to produce more fertilizer. They must be connected to mechanical power in order to work. It can only be interacted with when not powered, so consider connecting it to a clutch!'),
+            crafting('firmalife:crafting/compost_tumbler', text_contents='The compost tumbler is unique in that it takes more types of compost, and does not require precise ratios in order to work.'),
+            text('The tumbler can take green and brown items like a regular composter. It can also take pottery sherds, charcoal, fish, and bones in small amounts.'),
+            crafting('firmalife:crafting/pottery_sherd', text_contents='Smashing pottery with a hammer yields sherds.'),
+            text('While the regular composter takes 16 \'compost units\', the tumbler can hold 32. Green and brown items count the same, being on the range 1-4, but the new additions like fish always count for 1.'),
+            text('Adding too much weird stuff to the composter causes it to produce rotten compost. Further, you will not know it is rotten until the very end! If the compost is more than fifteen percent bones, fish, or pottery, or more than twenty percent charcoal. it will rot. Or, if there are 10 or more green units than brown units, it will rot.'),
+            text('Favorable amounts of certain additions can extend or shorten the length of time it takes for the compost to complete. Play around with it and see what happens.$(br)If 32 units are in the composter, 3 compost will be produced. If at least 24, 2 compost will be made. If 16 or more, 1 will be made. Below that, and there will be no compost.'),
+            empty_last_page(),
         )),
         entry('mixing_bowl', 'Mixing Bowl', 'firmalife:mixing_bowl', pages=(
             text('The mixing bowl is a way of mixing items and fluids together in a friendly way. $(item)$(k:key.use)$() on it with a $(thing)Spoon$() to add it to the bowl, which allows it to operate.'),

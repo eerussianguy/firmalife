@@ -6,6 +6,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.state.BlockState;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
+import org.jetbrains.annotations.Nullable;
 
 public class HangingPlanterBlockEntity extends LargePlanterBlockEntity
 {
@@ -20,5 +21,11 @@ public class HangingPlanterBlockEntity extends LargePlanterBlockEntity
     protected Direction airFindOffset()
     {
         return Direction.DOWN;
+    }
+
+    @Override
+    public boolean addWater(float amount, @Nullable Direction direction)
+    {
+        return direction != Direction.DOWN && super.addWater(amount, direction);
     }
 }

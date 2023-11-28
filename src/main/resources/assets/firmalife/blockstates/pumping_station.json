@@ -1,0 +1,20 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "variants": {
+    "facing=east": {
+      "model": "firmalife:block/pumping_station",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "firmalife:block/pumping_station"
+    },
+    "facing=south": {
+      "model": "firmalife:block/pumping_station",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "firmalife:block/pumping_station",
+      "y": 270
+    }
+  }
+}

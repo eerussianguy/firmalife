@@ -103,7 +103,7 @@ public class CompostTumblerBlockEntity extends InventoryBlockEntity<ItemStackHan
             ItemStack result;
             calculateRotten();
             getTotal();
-            final int count = total == MAX_COMPOST ? 3 : total > 24 ? 2 : 1;
+            final int count = total == MAX_COMPOST ? 3 : total >= 24 ? 2 : 1;
             if (rotten)
             {
                 result = new ItemStack(TFCItems.ROTTEN_COMPOST.get(), count);
@@ -191,7 +191,7 @@ public class CompostTumblerBlockEntity extends InventoryBlockEntity<ItemStackHan
         final float charcoalPct = charcoal / (float) MAX_COMPOST;
         final float potterPct = pottery / (float) MAX_COMPOST;
         final int greenBrownDiff = Mth.abs(green - brown);
-        if (bonePct > 0.15f || fishPct > 0.15f || charcoalPct > 0.2f || potterPct > 0.15f || greenBrownDiff > 10)
+        if (bonePct > 0.15f || fishPct > 0.15f || charcoalPct > 0.2f || potterPct > 0.15f || greenBrownDiff > 9)
         {
             rotten = true;
         }

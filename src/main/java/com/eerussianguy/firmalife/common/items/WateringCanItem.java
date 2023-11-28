@@ -32,7 +32,6 @@ public class WateringCanItem extends Item
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public void onUseTick(Level level, LivingEntity entity, ItemStack stack, int countLeft)
     {
         if (entity instanceof Player player)

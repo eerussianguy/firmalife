@@ -62,7 +62,6 @@ def generate(rm: ResourceManager):
     rm.crafting_shaped('crafting/trellis_planter', ['X X', 'X X', 'XYX'], {'X': 'minecraft:brick', 'Y': 'tfc:compost'}, 'firmalife:trellis_planter').with_advancement('tfc:compost')
     rm.crafting_shaped('crafting/bonsai_planter', ['X X', 'XYX', 'XXX'], {'X': 'minecraft:brick', 'Y': 'tfc:compost'}, 'firmalife:bonsai_planter').with_advancement('tfc:compost')
     rm.crafting_shaped('crafting/treated_lumber', ['XXX', 'XYX', 'XXX'], {'X': '#tfc:lumber', 'Y': 'firmalife:beeswax'}, '8 firmalife:treated_lumber').with_advancement('firmalife:beeswax')
-    rm.crafting_shaped('crafting/nutritive_basin', ['XYX', 'XWX', 'XZX'], {'X': 'minecraft:brick', 'Y': 'minecraft:glass', 'W': '#tfc:seeds', 'Z': '#forge:sheets/stainless_steel'}, 'firmalife:nutritive_basin').with_advancement('minecraft:brick')
     rm.crafting_shaped('crafting/hydroponic_planter', ['YY', 'XX', 'Z '], {'Y': 'tfc:compost', 'X': 'firmalife:treated_lumber', 'Z': '#forge:ingots/wrought_iron'}, '2 firmalife:hydroponic_planter').with_advancement('firmalife:treated_lumber')
     rm.crafting_shaped('crafting/vat', ['X X', 'YXY'], {'X': '#forge:sheets/stainless_steel', 'Y': 'firmalife:beeswax'}, 'firmalife:vat').with_advancement('#forge:sheets/stainless_steel')
     rm.crafting_shaped('crafting/jarring_station', ['X X', 'ZZZ'], {'X': '#forge:sheets/stainless_steel', 'Z': 'firmalife:treated_lumber'}, 'firmalife:jarring_station').with_advancement('#forge:sheets/stainless_steel')
@@ -106,6 +105,9 @@ def generate(rm: ResourceManager):
     craft_decorations('crafting/tiles', 'firmalife:tiles')
     rm.crafting_shapeless('crafting/banana_split', (not_rotten('firmalife:food/vanilla_ice_cream'), not_rotten('firmalife:food/strawberry_ice_cream'), not_rotten('firmalife:food/chocolate_ice_cream'), not_rotten('firmalife:food/pineapple'), not_rotten('tfc:food/cherry'), not_rotten('tfc:food/banana'), not_rotten('tfc:food/banana')), 'firmalife:food/banana_split').with_advancement('firmalife:food/vanilla_ice_cream')
     rm.crafting_shapeless('crafting/plate', ('firmalife:treated_lumber', 'firmalife:treated_lumber', 'minecraft:white_dye', 'tfc:glue'), 'firmalife:plate').with_advancement('firmalife:treated_lumber')
+    rm.crafting_shapeless('crafting/oxidized_copper_pipe', ('firmalife:copper_pipe', 'firmalife:copper_pipe', 'firmalife:copper_pipe', 'firmalife:copper_pipe', 'tfc:powder/wood_ash'), 'firmalife:oxidized_copper_pipe').with_advancement('firmalife:copper_pipe')
+    rm.crafting_shapeless('crafting/irrigation_tank', ('#tfc:barrels', '#forge:sheets/bronze', 'firmalife:copper_pipe'), 'firmalife:irrigation_tank').with_advancement('firmalife:copper_pipe')
+    rm.crafting_shaped('crafting/pumping_station', ['SRS', 'BBB', 'ZZZ'], {'S': '#forge:sheets/bronze', 'R': '#forge:dusts/redstone', 'B': 'tfc:brass_mechanisms', 'Z': '#tfc:axles'}, 'firmalife:pumping_station').with_advancement('tfc:brass_mechanisms')
 
     for section in ARMOR_SECTIONS:
         rm.crafting_shapeless('crafting/beekeeper_%s' % section, ('minecraft:leather_%s' % section, 'tfc:burlap_cloth', 'tfc:burlap_cloth', 'tfc:powder/wood_ash'), 'firmalife:beekeeper_%s' % section).with_advancement('tfc:burlap_cloth')
@@ -309,8 +311,8 @@ def generate(rm: ResourceManager):
 
     alloy_recipe(rm, 'stainless_steel', 'stainless_steel', ('firmalife:chromium', 0.2, 0.3), ('tfc:nickel', 0.1, 0.2), ('tfc:steel', 0.6, 0.8))
     anvil_recipe(rm, 'pie_pan', '#forge:sheets/cast_iron', '4 firmalife:pie_pan', 1, Rules.hit_last, Rules.hit_second_last, Rules.draw_third_last)
-    anvil_recipe(rm, 'sprinkler', '#forge:sheets/red_steel', 'firmalife:sprinkler', 6, Rules.bend_last, Rules.punch_second_last, Rules.shrink_third_last)
-    anvil_recipe(rm, 'dribbler', '#forge:sheets/stainless_steel', 'firmalife:dribbler', 6, Rules.bend_last, Rules.punch_second_last, Rules.shrink_third_last)
+    anvil_recipe(rm, 'sprinkler', '#forge:sheets/copper', 'firmalife:sprinkler', 1, Rules.hit_last, Rules.hit_second_last, Rules.punch_third_last)
+    anvil_recipe(rm, 'copper_pipe', '#forge:sheets/copper', '8 firmalife:copper_pipe', 1, Rules.draw_last, Rules.bend_not_last)
 
     glass_recipe(rm, 'reinforced_glass_pane', ['flatten', 'soda_ash', 'table_pour'], 'tfc:silica_glass_batch', 'firmalife:reinforced_poured_glass')
 

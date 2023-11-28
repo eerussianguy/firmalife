@@ -1,8 +1,12 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "variants": {
-    "": {
+    "axis=x": {
       "model": "firmalife:block/sprinkler"
+    },
+    "axis=z": {
+      "model": "firmalife:block/sprinkler",
+      "y": 90
     }
   }
 }

@@ -136,12 +136,6 @@ def generate(rm: ResourceManager):
     rm.blockstate('stovetop_grill').with_lang(lang('stovetop grill')).with_tag('minecraft:mineable/pickaxe').with_block_loot('tfc:wrought_iron_grill')
     rm.blockstate('stovetop_pot').with_lang(lang('stovetop pot')).with_tag('minecraft:mineable/pickaxe').with_block_loot('tfc:ceramic/pot')
 
-    rm.block_model('dribbler', parent='firmalife:block/sprinkler', textures={'0': 'firmalife:block/metal/block/stainless_steel'})
-    rm.blockstate('sprinkler', model='firmalife:block/sprinkler').with_lang(lang('sprinkler')).with_tag('minecraft:mineable/pickaxe').with_block_loot('firmalife:sprinkler')
-    rm.item_model('sprinkler', parent='firmalife:block/sprinkler', no_textures=True)
-    rm.blockstate('dribbler', model='firmalife:block/dribbler').with_lang(lang('dribbler')).with_tag('minecraft:mineable/pickaxe').with_block_loot('firmalife:dribbler')
-    rm.item_model('dribbler', parent='firmalife:block/dribbler', no_textures=True)
-
     rm.blockstate('beehive', variants={
         **four_rotations('minecraft:block/beehive_honey', (90, None, 180, 270), ',honey=true'),
         **four_rotations('minecraft:block/beehive', (90, None, 180, 270), ',honey=false')
@@ -164,10 +158,42 @@ def generate(rm: ResourceManager):
     rm.blockstate('reinforced_poured_glass').with_block_model({'all': 'firmalife:block/reinforced_glass'}, parent='tfc:block/template_poured_glass').with_lang(lang('reinforced poured glass')).with_block_loot('firmalife:reinforced_glass')
     rm.item_model('reinforced_poured_glass', 'firmalife:item/reinforced_glass')
 
-    rm.blockstate('nutritive_basin', variants={
-        'watered=false': {'model': 'firmalife:block/nutritive_basin'},
-        'watered=true': {'model': 'firmalife:block/nutritive_basin_water'},
-    }).with_block_loot('firmalife:nutritive_basin').with_lang(lang('nutritive basin')).with_tag('minecraft:mineable/axe').with_item_model()
+    block = rm.blockstate('pumping_station', variants=four_rotations('firmalife:block/pumping_station', (90, None, 180, 270)))
+    block.with_block_model({'front': 'firmalife:block/pumping_station_front', 'side': 'firmalife:block/irrigation_tank', 'top': 'firmalife:block/irrigation_tank_top'}, parent='block/orientable')
+    block.with_lang(lang('pumping station')).with_tag('minecraft:mineable/pickaxe').with_block_loot('firmalife:pumping_station').with_item_model()
+
+    block = rm.blockstate('irrigation_tank').with_block_model({'side': 'firmalife:block/irrigation_tank', 'end': 'firmalife:block/irrigation_tank_top'}, parent='block/cube_column')
+    block.with_lang(lang('irrigation tank')).with_tag('minecraft:mineable/pickaxe').with_block_loot('firmalife:irrigation_tank').with_item_model()
+
+    rm.blockstate('sprinkler', variants={'axis=x': {'model': 'firmalife:block/sprinkler'}, 'axis=z': {'model': 'firmalife:block/sprinkler', 'y': 90}}).with_block_loot('firmalife:sprinkler').with_lang(lang('sprinkler')).with_item_model().with_tag('minecraft:mineable/pickaxe')
+    rm.blockstate('floor_sprinkler').with_block_loot('firmalife:sprinkler').with_lang(lang('floor sprinkler')).with_tag('minecraft:mineable/pickaxe')
+
+    for pref in ('center', 'inventory', 'on', 'off'):
+        rm.block_model('oxidized_pipe_%s' % pref, {'0': 'firmalife:block/greenhouse/oxidized_copper'}, parent='firmalife:block/pipe_%s' % pref)
+
+    for pref in ('oxidized_', ''):
+        pipe_on = 'firmalife:block/%spipe_on' % pref
+        pipe_off = 'firmalife:block/%spipe_off' % pref
+
+        block = rm.blockstate_multipart(
+            '%scopper_pipe' % pref,
+            {'model': 'firmalife:block/%spipe_center' % pref},
+            ({'north': True}, {'model': pipe_on, 'x': 270}),
+            ({'north': False}, {'model': pipe_off, 'x': 270}),
+            ({'south': True}, {'model': pipe_on, 'x': 90}),
+            ({'south': False}, {'model': pipe_off, 'x': 90}),
+            ({'east': True}, {'model': pipe_on, 'x': 90, 'y': 270}),
+            ({'east': False}, {'model': pipe_off, 'x': 90, 'y': 270}),
+            ({'west': True}, {'model': pipe_on, 'x': 90, 'y': 90}),
+            ({'west': False}, {'model': pipe_off, 'x': 90, 'y': 90}),
+            ({'down': True}, {'model': pipe_on}),
+            ({'down': False}, {'model': pipe_off}),
+            ({'up': True}, {'model': pipe_on, 'x': 180}),
+            ({'up': False}, {'model': pipe_off, 'x': 180}),
+        )
+        block.with_block_loot('firmalife:%scopper_pipe' % pref)
+        block.with_lang(lang('%scopper_pipe', pref))
+        rm.item_model('%scopper_pipe' % pref, parent='firmalife:block/%spipe_inventory' % pref, no_textures=True)
 
     for cheese in CHEESE_WHEELS:
         for age in ('fresh', 'aged', 'vintage'):
