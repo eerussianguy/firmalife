@@ -31,5 +31,5 @@ public interface ClimateReceiver
         return false;
     }
 
-    void setValid(Level level, BlockPos pos, boolean valid, int tier, boolean cellar);
+    void setValid(Level level, BlockPos pos, boolean valid, int tier, ClimateType climate);
 }

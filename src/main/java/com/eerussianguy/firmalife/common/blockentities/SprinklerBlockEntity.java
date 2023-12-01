@@ -157,7 +157,7 @@ public class SprinklerBlockEntity extends TFCBlockEntity implements FluidTankCal
     }
 
     @Override
-    public void setValid(Level level, BlockPos pos, boolean valid, int tier, boolean cellar)
+    public void setValid(Level level, BlockPos pos, boolean valid, int tier, ClimateType climate)
     {
         if (valid != this.valid)
         {

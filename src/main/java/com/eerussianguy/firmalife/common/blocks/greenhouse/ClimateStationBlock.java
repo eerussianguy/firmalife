@@ -2,6 +2,7 @@ package com.eerussianguy.firmalife.common.blocks.greenhouse;
 
 import java.util.Set;
 
+import com.eerussianguy.firmalife.common.blockentities.ClimateType;
 import com.eerussianguy.firmalife.common.util.FLAdvancements;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -26,7 +27,6 @@ import com.eerussianguy.firmalife.common.util.Mechanics;
 import com.mojang.datafixers.util.Either;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.devices.DeviceBlock;
-import net.dries007.tfc.util.Helpers;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -49,7 +49,7 @@ public class ClimateStationBlock extends DeviceBlock
             level.getBlockEntity(pos, FLBlockEntities.CLIMATE_STATION.get()).ifPresent(station -> {
                 station.setPositions(positions);
                 station.updateValidity(true, info.type().tier);
-                station.setCellar(false);
+                station.setType(ClimateType.GREENHOUSE);
             });
             updateState(level, pos, state, true);
             return Either.left(info);
@@ -62,7 +62,7 @@ public class ClimateStationBlock extends DeviceBlock
                 level.getBlockEntity(pos, FLBlockEntities.CLIMATE_STATION.get()).ifPresent(station -> {
                     station.setPositions(cellarPositions);
                     station.updateValidity(true, 0);
-                    station.setCellar(true);
+                    station.setType(ClimateType.CELLAR);
                 });
                 updateState(level, pos, state, true);
                 return Either.right(cellarPositions);

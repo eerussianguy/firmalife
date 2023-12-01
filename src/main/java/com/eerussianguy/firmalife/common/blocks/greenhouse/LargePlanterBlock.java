@@ -1,8 +1,8 @@
 package com.eerussianguy.firmalife.common.blocks.greenhouse;
 
 import java.util.List;
-import java.util.Random;
 
+import com.eerussianguy.firmalife.common.blockentities.ClimateType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -118,10 +118,10 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
         super.setPlacedBy(level, pos, state, placer, stack); // basically a convenience thing when you place next to another planter
         for (Direction d : Helpers.DIRECTIONS)
         {
-            BlockPos rel = pos.relative(d);
+            final BlockPos rel = pos.relative(d);
             if (level.getBlockEntity(rel) instanceof LargePlanterBlockEntity planter && planter.checkValid())
             {
-                planter.setValid(level, rel, true, planter.getTier(), false);
+                planter.setValid(level, rel, true, planter.getTier(), ClimateType.GREENHOUSE);
             }
         }
     }

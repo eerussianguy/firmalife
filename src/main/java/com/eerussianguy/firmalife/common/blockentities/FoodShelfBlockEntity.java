@@ -150,9 +150,9 @@ public class FoodShelfBlockEntity extends InventoryBlockEntity<ItemStackHandler>
     }
 
     @Override
-    public void setValid(Level level, BlockPos pos, boolean valid, int tier, boolean cellar)
+    public void setValid(Level level, BlockPos pos, boolean valid, int tier, ClimateType climate)
     {
-        if (cellar)
+        if (climate == ClimateType.CELLAR)
         {
             climateValid = valid;
             updatePreservation(valid);

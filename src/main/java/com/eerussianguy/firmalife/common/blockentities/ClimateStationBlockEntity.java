@@ -12,20 +12,19 @@ import net.dries007.tfc.common.blockentities.TFCBlockEntity;
 public class ClimateStationBlockEntity extends TFCBlockEntity
 {
     private Set<BlockPos> positions;
-    private boolean isCellar;
+    private ClimateType type = ClimateType.GREENHOUSE;
 
     public ClimateStationBlockEntity(BlockPos pos, BlockState state)
     {
         super(FLBlockEntities.CLIMATE_STATION.get(), pos, state);
         positions = new HashSet<>();
-        isCellar = false;
     }
 
     @Override
     public void loadAdditional(CompoundTag nbt)
     {
         super.loadAdditional(nbt);
-        isCellar = nbt.getBoolean("cellar");
+        type = ClimateType.byId(nbt.getInt("climateType"));
         long[] array = nbt.getLongArray("positions");
         positions.clear();
         positions = new HashSet<>(array.length);
@@ -39,7 +38,7 @@ public class ClimateStationBlockEntity extends TFCBlockEntity
     public void saveAdditional(CompoundTag nbt)
     {
         super.saveAdditional(nbt);
-        nbt.putBoolean("cellar", isCellar);
+        nbt.putInt("climateType", type.ordinal());
         final long[] array = new long[positions.size()];
         int i = 0;
         for (BlockPos pos : positions)
@@ -57,14 +56,14 @@ public class ClimateStationBlockEntity extends TFCBlockEntity
             final ClimateReceiver receiver = ClimateReceiver.get(level, pos);
             if (receiver != null)
             {
-                receiver.setValid(level, pos, valid, tier, isCellar);
+                receiver.setValid(level, pos, valid, tier, type);
             }
         });
     }
 
-    public void setCellar(boolean cellar)
+    public void setType(ClimateType cellar)
     {
-        isCellar = cellar;
+        type = cellar;
     }
 
     public void setPositions(Set<BlockPos> positions)

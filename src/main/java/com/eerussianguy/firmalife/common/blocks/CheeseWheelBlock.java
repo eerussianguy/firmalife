@@ -2,6 +2,7 @@ package com.eerussianguy.firmalife.common.blocks;
 
 import java.util.function.Supplier;
 
+import com.eerussianguy.firmalife.common.blockentities.ClimateType;
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -139,13 +140,13 @@ public class CheeseWheelBlock extends BottomSupportedDeviceBlock implements Clim
     }
 
     @Override
-    public void setValid(Level level, BlockPos pos, boolean valid, int tier, boolean cellar)
+    public void setValid(Level level, BlockPos pos, boolean valid, int tier, ClimateType climate)
     {
         BlockState state = level.getBlockState(pos);
         if (state.getBlock() instanceof CheeseWheelBlock)
         {
             final boolean isAgingNow = state.getValue(AGING);
-            final boolean shouldAge = valid && cellar;
+            final boolean shouldAge = valid && climate == ClimateType.CELLAR;
             if (isAgingNow != shouldAge)
             {
                 level.setBlockAndUpdate(pos, state.setValue(AGING, shouldAge));

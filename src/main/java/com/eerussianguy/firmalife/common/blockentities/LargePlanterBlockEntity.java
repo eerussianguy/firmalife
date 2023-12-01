@@ -20,7 +20,6 @@ import com.eerussianguy.firmalife.common.util.Plantable;
 import net.dries007.tfc.common.blockentities.FarmlandBlockEntity;
 import net.dries007.tfc.common.blockentities.IFarmland;
 import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
-import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.ICalendarTickable;
 import org.jetbrains.annotations.Nullable;
@@ -43,8 +42,8 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     private float nitrogen, phosphorous, potassium, water;
     private long lastUpdateTick;
     private long lastGrowthTick;
-    private boolean climateValid;
-    private int tier;
+    protected boolean climateValid;
+    protected int tier;
 
     public LargePlanterBlockEntity(BlockPos pos, BlockState state)
     {
@@ -303,9 +302,9 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     }
 
     @Override
-    public void setValid(Level level, BlockPos pos, boolean valid, int tier, boolean cellar)
+    public void setValid(Level level, BlockPos pos, boolean valid, int tier, ClimateType climate)
     {
-        if (!cellar)
+        if (climate == ClimateType.GREENHOUSE)
         {
             this.climateValid = valid;
             this.tier = tier;
