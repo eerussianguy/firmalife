@@ -1,8 +1,3 @@
-import com.matthewprenger.cursegradle.CurseProject
-import com.matthewprenger.cursegradle.CurseRelation
-import groovy.json.JsonOutput
-import groovy.json.JsonSlurper
-
 plugins {
     id("java")
     id("idea")
@@ -22,7 +17,7 @@ val jeiVersion: String = "15.2.0.21"
 val patchouliVersion: String = "1.20.1-81-FORGE"
 val jadeVersion: String = "4614153"
 val topVersion: String = "4629624"
-val tfcVersion: String = "4895012"
+val tfcVersion: String = "4915584"
 
 val modId: String = "firmalife"
 
@@ -125,27 +120,6 @@ minecraft {
 
 mixin {
     add(sourceSets.main.get(), "firmalife.refmap.json")
-}
-
-curseforge {
-    apiKey = System.getenv("CURSEFORGE_API_KEY") ?: "nope"
-
-    project(closureOf<CurseProject> {
-        id = "453394"
-        changelog = "[Changelog ${version}](https://github.com/eerussianguy/firmalife/releases/tag/v${project.version})"
-        changelogType = "markdown"
-
-        releaseType = if (project.version.toString().contains("beta")) "beta" else if (project.version.toString().contains("alpha")) "alpha" else "release"
-        addGameVersion(minecraftVersion)
-
-        mainArtifact(tasks.jar.get())
-
-        relations(closureOf<CurseRelation> {
-            requiredDependency("patchouli")
-            requiredDependency("terrafirmacraft")
-            optionalDependency("jei")
-        })
-    })
 }
 
 tasks {

@@ -8,11 +8,8 @@ public class FLItemStackModifiers
 {
     public static void init()
     {
-        register("pie", PieModifier.INSTANCE);
         register("add_pie_pan", AddPiePanModifier.INSTANCE);
-        register("pizza", PizzaModifier.INSTANCE);
         register("copy_dynamic_food", CopyDynamicFoodModifier.INSTANCE);
-        register("burrito", BurritoModifier.INSTANCE);
         register("empty_pan", EmptyPanModifier.INSTANCE);
     }
 

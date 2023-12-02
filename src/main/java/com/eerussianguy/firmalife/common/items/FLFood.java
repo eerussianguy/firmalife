@@ -71,6 +71,10 @@ public enum FLFood
     STRAWBERRY_ICE_CREAM,
     CHOCOLATE_ICE_CREAM,
     BANANA_SPLIT,
+    BURRITO,
+    TACO,
+    COOKED_PIZZA,
+    COOKED_PIE,
     ;
 
     private final boolean meat, fast;

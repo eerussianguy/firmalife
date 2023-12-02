@@ -5,30 +5,106 @@ from mcresources.type_definitions import ResourceIdentifier, JsonObject, Json, V
 
 from constants import *
 
+POOR = 70, 25, 5  # = 1550
+NORMAL = 35, 40, 25  # = 2400
+RICH = 15, 25, 60  # = 2550
+
+class Vein(NamedTuple):
+    ore: str  # The name of the ore (as found in ORES)
+    vein_type: str  # Either 'cluster', 'pipe' or 'disc'
+    rarity: int
+    size: int
+    min_y: int
+    max_y: int
+    density: float
+    grade: tuple[int, int, int]  # (poor, normal, rich) weights
+    rocks: tuple[str, ...]  # Rock, or rock categories
+    biomes: str | None
+    height: int
+    radius: int
+    deposits: bool
+    indicator_rarity: int  # Above-ground indicators
+    underground_rarity: int  # Underground indicators
+    underground_count: int
+    project: bool | None  # Project to surface
+    project_offset: bool | None  # Project offset
+    near_lava: bool | None
+
+    @staticmethod
+    def new(
+        ore: str,
+        rarity: int,
+        size: int,
+        min_y: int,
+        max_y: int,
+        density: float,
+        rocks: tuple[str, ...],
+
+        vein_type: str = 'cluster',
+        grade: tuple[int, int, int] = (),
+        biomes: str = None,
+        height: int = 2,  # For disc type veins, `size` is the width
+        radius: int = 5,  # For pipe type veins, `size` is the height
+        deposits: bool = False,
+        indicator: int = 12,  # Indicator rarity
+        deep_indicator: tuple[int, int] = (1, 0),  # Pair of (rarity, count) for underground indicators
+        project: str | bool = None,  # Projects to surface. Either True or 'offset'
+        near_lava: bool | None = None,
+    ):
+        assert 0 < density < 1
+        assert isinstance(rocks, tuple), 'Forgot the trailing comma in a single element tuple: %s' % repr(rocks)
+        assert vein_type in ('cluster', 'disc', 'pipe')
+        assert project is None or project is True or project == 'offset'
+
+        underground_rarity, underground_count = deep_indicator
+        return Vein(ore, 'tfc:%s_vein' % vein_type, rarity, size, min_y, max_y, density, grade, rocks, biomes, height, radius, deposits, indicator, underground_rarity, underground_count, None if project is None else True, None if project != 'offset' else True, near_lava)
+
+    def config(self) -> dict[str, Any]:
+        cfg = {
+            'rarity': self.rarity,
+            'density': self.density,
+            'min_y': self.min_y,
+            'max_y': self.max_y,
+            'project': self.project,
+            'project_offset': self.project_offset,
+            'biomes': self.biomes,
+            'near_lava': self.near_lava,
+        }
+        if self.vein_type == 'tfc:cluster_vein':
+            cfg.update(size=self.size)
+        elif self.vein_type == 'tfc:pipe_vein':
+            cfg.update(min_skew=5, max_skew=13, min_slant=0, max_slant=2, sign=0, height=self.size, radius=self.radius)
+        else:
+            cfg.update(size=self.size, height=self.height)
+        return cfg
+
+ORE_VEINS: Dict[str, Vein] = {
+    'normal_chromite': Vein.new('chromite', 24, 20, 40, 130, 0.25, ('igneous_extrusive', 'metamorphic'), grade=POOR, deposits=True, indicator=14),
+    'deep_chromite': Vein.new('chromite', 45, 40, -80, 20, 0.6, ('igneous_intrusive', 'metamorphic'), grade=RICH, indicator=0, deep_indicator=(1, 4)),
+}
+
 def generate(rm: ResourceManager):
-    # placed_feature_tag(rm, 'tfc:in_biome/veins', *['firmalife:vein/%s' % v for v in ORE_VEINS.keys()])
-    #
-    # for vein_name, vein in ORE_VEINS.items():
-    #     rocks = expand_rocks(vein.rocks, vein_name)
-    #     configured_placed_feature(rm, ('vein', vein_name), 'tfc:%s_vein' % vein.type, {
-    #         'rarity': vein.rarity,
-    #         'min_y': utils.vertical_anchor(vein.min_y, 'absolute'),
-    #         'max_y': utils.vertical_anchor(vein.max_y, 'absolute'),
-    #         'size': vein.size,
-    #         'density': vein_density(vein.density),
-    #         'blocks': [{
-    #             'replace': ['tfc:rock/raw/%s' % rock],
-    #             'with': vein_ore_blocks(vein, rock)
-    #         } for rock in rocks],
-    #         'indicator': {
-    #             'rarity': 12,
-    #             'blocks': [{
-    #                 'block': 'firmalife:ore/small_%s' % vein.ore
-    #             }]
-    #         },
-    #         'random_name': vein_name,
-    #         'biomes': vein.biomes
-    #     })
+    placed_feature_tag(rm, 'tfc:in_biome/veins', *['firmalife:vein/%s' % v for v in ORE_VEINS.keys()])
+
+    for vein_name, vein in ORE_VEINS.items():
+        rocks = expand_rocks(vein.rocks)
+        configured_placed_feature(rm, ('vein', vein_name), vein.vein_type, {
+            **vein.config(),
+            'random_name': vein_name,
+            'blocks': [{
+                'replace': ['tfc:rock/raw/%s' % rock],
+                'with': vein_ore_blocks(vein, rock)
+            } for rock in rocks],
+            'indicator': {
+                'rarity': vein.indicator_rarity,
+                'depth': 35,
+                'underground_rarity': vein.underground_rarity,
+                'underground_count': vein.underground_count,
+                'blocks': [{
+                    'block': 'firmalife:ore/small_%s' % vein.ore
+                }]
+            },
+        })
 
     for fruit, info in FRUITS.items():
         config = {
@@ -181,39 +257,27 @@ def biome_tag(rm: ResourceManager, name_parts: ResourceIdentifier, *values: Reso
     return rm.tag(name_parts, 'worldgen/biome', *values)
 
 def vein_ore_blocks(vein: Vein, rock: str) -> List[Dict[str, Any]]:
+    poor, normal, rich = vein.grade
     ore_blocks = [{
-        'weight': vein.poor,
+        'weight': poor,
         'block': 'firmalife:ore/poor_%s/%s' % (vein.ore, rock)
     }, {
-        'weight': vein.normal,
+        'weight': normal,
         'block': 'firmalife:ore/normal_%s/%s' % (vein.ore, rock)
     }, {
-        'weight': vein.rich,
+        'weight': rich,
         'block': 'firmalife:ore/rich_%s/%s' % (vein.ore, rock)
     }]
-    if vein.spoiler_ore is not None and rock in vein.spoiler_rocks:
-        p = vein.spoiler_rarity * 0.01  # as a percentage of the overall vein
-        ore_blocks.append({
-            'weight': int(100 * p / (1 - p)),
-            'block': 'firmalife:ore/%s/%s' % (vein.spoiler_ore, rock)
-        })
-    elif vein.deposits:
-        ore_blocks.append({
-            'weight': 10,
-            'block': 'firmalife:deposit/%s/%s' % (vein.ore, rock)
-        })
     return ore_blocks
 
-def expand_rocks(rocks_list: List[str], path: Optional[str] = None) -> List[str]:
-    rocks = []
-    for rock_spec in rocks_list:
-        if rock_spec in TFC_ROCKS:
-            rocks.append(rock_spec)
-        elif rock_spec in ROCK_CATEGORIES:
-            rocks += [r for r, d in TFC_ROCKS.items() if d.category == rock_spec]
-        else:
-            raise RuntimeError('Unknown rock or rock category specification: %s at %s' % (rock_spec, path if path is not None else '??'))
-    return rocks
+def expand_rocks(rocks: list[str]) -> list[str]:
+    assert all(r in ROCKS or r in ROCK_CATEGORIES for r in rocks)
+    return [
+        rock
+        for spec in rocks
+        for rock in ([spec] if spec in ROCKS else [r for r, d in ROCKS.items() if d.category == spec])
+    ]
+
 
 def vein_density(density: int) -> float:
     assert 0 <= density <= 100, 'Invalid density: %s' % str(density)

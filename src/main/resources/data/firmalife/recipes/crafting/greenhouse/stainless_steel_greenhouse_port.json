@@ -1,0 +1,24 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ZZ",
+    "XY",
+    "ZZ"
+  ],
+  "key": {
+    "X": {
+      "item": "firmalife:metal/rod/stainless_steel"
+    },
+    "Y": {
+      "item": "firmalife:copper_pipe"
+    },
+    "Z": {
+      "item": "firmalife:reinforced_glass"
+    }
+  },
+  "result": {
+    "item": "firmalife:stainless_steel_greenhouse_port",
+    "count": 8
+  }
+}

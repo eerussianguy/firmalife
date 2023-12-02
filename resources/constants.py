@@ -3,7 +3,6 @@ from typing import Dict, List, NamedTuple, Sequence, Optional, Literal, Tuple, A
 OreGrade = NamedTuple('OreGrade', weight=int, grind_amount=int)
 RockCategory = Literal['sedimentary', 'metamorphic', 'igneous_extrusive', 'igneous_intrusive']
 Rock = NamedTuple('Rock', category=RockCategory, sand=str)
-Vein = NamedTuple('Vein', ore=str, type=str, rarity=int, size=int, min_y=int, max_y=int, density=float, poor=float, normal=float, rich=float, rocks=List[str], spoiler_ore=str, spoiler_rarity=int, spoiler_rocks=List[str], biomes=Optional[str], height=Optional[int], deposits=bool)
 Fruit = NamedTuple('Fruit', min_temp=float, max_temp=float, min_rain=float, max_rain=float)
 
 class Wood(NamedTuple):
@@ -96,6 +95,29 @@ TFC_WOODS: Dict[str, Wood] = {
     'willow': Wood(603, 1000)
 }
 
+ROCKS: Dict[str, Rock] = {
+    'granite': Rock('igneous_intrusive', 'white'),
+    'diorite': Rock('igneous_intrusive', 'white'),
+    'gabbro': Rock('igneous_intrusive', 'black'),
+    'shale': Rock('sedimentary', 'black'),
+    'claystone': Rock('sedimentary', 'brown'),
+    'limestone': Rock('sedimentary', 'white'),
+    'conglomerate': Rock('sedimentary', 'green'),
+    'dolomite': Rock('sedimentary', 'black'),
+    'chert': Rock('sedimentary', 'yellow'),
+    'chalk': Rock('sedimentary', 'white'),
+    'rhyolite': Rock('igneous_extrusive', 'red'),
+    'basalt': Rock('igneous_extrusive', 'red'),
+    'andesite': Rock('igneous_extrusive', 'red'),
+    'dacite': Rock('igneous_extrusive', 'yellow'),
+    'quartzite': Rock('metamorphic', 'white'),
+    'slate': Rock('metamorphic', 'yellow'),
+    'phyllite': Rock('metamorphic', 'brown'),
+    'schist': Rock('metamorphic', 'green'),
+    'gneiss': Rock('metamorphic', 'green'),
+    'marble': Rock('metamorphic', 'yellow')
+}
+
 ROCK_CATEGORIES: List[str] = ['sedimentary', 'metamorphic', 'igneous_extrusive', 'igneous_intrusive']
 ORE_GRADES: Dict[str, OreGrade] = {
     'normal': OreGrade(50, 5),
@@ -136,35 +158,6 @@ DISABLED_TFC_RECIPES = ('barrel/curdling', 'barrel/cheese', 'barrel/milk_vinegar
 
 GENETIC_DISEASES = ['Malformed Rectum', 'Malphigian Tubule Iridescence', 'Rectal Stones', 'Poor Osmoregulation', 'Nosemosis', 'Broken Wings']
 PARASITIC_INFECTIONS = ['Chalkbrood', 'Stonebrood', 'Foulbrood', 'Wax Moths', 'Hive Beetles', 'Mites']
-
-# Default parameters for common ore veins
-# rarity, size, min_y, max_y, density, poor, normal, rich
-POOR_METAL_ORE = (80, 15, 0, 100, 40, 40, 30, 10)
-NORMAL_METAL_ORE = (60, 20, -32, 75, 60, 20, 50, 30)
-DEEP_METAL_ORE = (100, 30, -64, 30, 70, 10, 30, 60)
-SURFACE_METAL_ORE = (20, 15, 60, 210, 50, 60, 30, 10)
-
-POOR_S_METAL_ORE = (100, 12, 0, 100, 40, 60, 30, 10)
-NORMAL_S_METAL_ORE = (70, 15, -32, 60, 60, 20, 50, 30)
-DEEP_S_METAL_ORE = (110, 25, -64, 30, 70, 10, 30, 60)
-
-DEEP_MINERAL_ORE = (90, 10, -48, 100, 60, 0, 0, 0)
-HIGH_MINERAL_ORE = (90, 10, 0, 210, 60, 0, 0, 0)
-
-def vein(ore: str, vein_type: str, rarity: int, size: int, min_y: int, max_y: int, density: float, poor: float, normal: float, rich: float, rocks: List[str], spoiler_ore: Optional[str] = None, spoiler_rarity: int = 0, spoiler_rocks: List[str] = None, biomes: str = None, height: int = 0, deposits: bool = False):
-    # Factory method to allow default values
-    return Vein(ore, vein_type, rarity, size, min_y, max_y, density, poor, normal, rich, rocks, spoiler_ore, spoiler_rarity, spoiler_rocks, biomes, height, deposits)
-
-
-def preset_vein(ore: str, vein_type: str, rocks: List[str], spoiler_ore: Optional[str] = None, spoiler_rarity: int = 0, spoiler_rocks: List[str] = None, biomes: str = None, height: int = 0, preset: Tuple[int, int, int, int, int, int, int, int] = None, deposits: bool = False):
-    assert preset is not None
-    return Vein(ore, vein_type, preset[0], preset[1], preset[2], preset[3], preset[4], preset[5], preset[6], preset[7], rocks, spoiler_ore, spoiler_rarity, spoiler_rocks, biomes, height, deposits)
-
-
-ORE_VEINS: Dict[str, Vein] = {
-    'normal_chromite': preset_vein('chromite', 'cluster', ['igneous_intrusive', 'metamorphic'], preset=NORMAL_METAL_ORE),
-    'deep_chromite': preset_vein('chromite', 'cluster', ['igneous_intrusive', 'metamorphic'], preset=DEEP_METAL_ORE),
-}
 
 DEFAULT_LANG = {
     'firmalife.creative_tab.firmalife': 'Firmalife Items',

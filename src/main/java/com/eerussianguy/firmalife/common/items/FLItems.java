@@ -78,11 +78,7 @@ public class FLItems
 
 
     public static final RegistryObject<Item> FILLED_PIE = register("food/filled_pie"); // inedible
-    public static final RegistryObject<Item> COOKED_PIE = register("food/cooked_pie", () -> new Item(foodProperties()));
     public static final RegistryObject<Item> RAW_PIZZA = register("food/raw_pizza"); // inedible
-    public static final RegistryObject<Item> COOKED_PIZZA = register("food/cooked_pizza", () -> new Item(foodProperties()));
-    public static final RegistryObject<Item> BURRITO = register("food/burrito", () -> new Item(foodProperties()));
-    public static final RegistryObject<Item> TACO = register("food/taco", () -> new Item(foodProperties()));
     public static final RegistryObject<Item> NIGHTSHADE_BERRY = register("food/nightshade_berry", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationMod(0.3f).effect(() -> new MobEffectInstance(MobEffects.HARM, 1, 10), 0.5f).build())));
     public static final RegistryObject<Item> STINKY_SOUP = register("food/stinky_soup", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationMod(0.3f).effect(() -> new MobEffectInstance(MobEffects.HARM, 1, 10), 0.5f).build())));
 

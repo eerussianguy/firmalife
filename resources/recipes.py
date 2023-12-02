@@ -62,7 +62,7 @@ def generate(rm: ResourceManager):
     rm.crafting_shaped('crafting/trellis_planter', ['X X', 'X X', 'XYX'], {'X': 'minecraft:brick', 'Y': 'tfc:compost'}, 'firmalife:trellis_planter').with_advancement('tfc:compost')
     rm.crafting_shaped('crafting/bonsai_planter', ['X X', 'XYX', 'XXX'], {'X': 'minecraft:brick', 'Y': 'tfc:compost'}, 'firmalife:bonsai_planter').with_advancement('tfc:compost')
     rm.crafting_shaped('crafting/treated_lumber', ['XXX', 'XYX', 'XXX'], {'X': '#tfc:lumber', 'Y': 'firmalife:beeswax'}, '8 firmalife:treated_lumber').with_advancement('firmalife:beeswax')
-    rm.crafting_shaped('crafting/hydroponic_planter', ['YY', 'XX', 'Z '], {'Y': 'tfc:compost', 'X': 'firmalife:treated_lumber', 'Z': '#forge:ingots/wrought_iron'}, '2 firmalife:hydroponic_planter').with_advancement('firmalife:treated_lumber')
+    # rm.crafting_shaped('crafting/hydroponic_planter', ['YY', 'XX', 'Z '], {'Y': 'tfc:compost', 'X': 'firmalife:treated_lumber', 'Z': '#forge:ingots/wrought_iron'}, '2 firmalife:hydroponic_planter').with_advancement('firmalife:treated_lumber')
     rm.crafting_shaped('crafting/vat', ['X X', 'YXY'], {'X': '#forge:sheets/stainless_steel', 'Y': 'firmalife:beeswax'}, 'firmalife:vat').with_advancement('#forge:sheets/stainless_steel')
     rm.crafting_shaped('crafting/jarring_station', ['X X', 'ZZZ'], {'X': '#forge:sheets/stainless_steel', 'Z': 'firmalife:treated_lumber'}, 'firmalife:jarring_station').with_advancement('#forge:sheets/stainless_steel')
     rm.crafting_shapeless('crafting/oven_hopper', ('firmalife:oven_bottom', 'minecraft:hopper'), 'firmalife:oven_hopper').with_advancement('minecraft:hopper')
@@ -258,10 +258,52 @@ def generate(rm: ResourceManager):
     mixing_recipe(rm, 'chocolate_ice_cream', ingredients=[not_rotten('firmalife:food/vanilla_ice_cream')], fluid='1000 firmalife:chocolate', output_item='firmalife:food/chocolate_ice_cream')
     mixing_recipe(rm, 'strawberry_ice_cream', ingredients=[not_rotten('firmalife:food/vanilla_ice_cream'), not_rotten('tfc:food/strawberry')], fluid='1000 firmalife:chocolate', output_item='firmalife:food/strawberry_ice_cream')
 
-    meal_shapeless(rm, 'crafting/filled_pie', (not_rotten('firmalife:food/pie_dough'), '#firmalife:foods/preserves', '#firmalife:pie_pans'), 'firmalife:food/filled_pie', 'firmalife:pie').with_advancement('firmalife:food/pie_dough')
-    meal_shapeless(rm, 'crafting/raw_pizza', (not_rotten('firmalife:food/pizza_dough'), not_rotten('#firmalife:foods/pizza_ingredients'), not_rotten('#firmalife:foods/pizza_ingredients'), not_rotten('firmalife:food/shredded_cheese'), not_rotten('firmalife:food/tomato_sauce')), 'firmalife:food/raw_pizza', 'firmalife:pizza').with_advancement('firmalife:food/pizza_dough')
-    meal_shapeless(rm, 'crafting/burrito', (not_rotten('#firmalife:foods/cooked_meats_and_substitutes'), not_rotten('firmalife:food/shredded_cheese'), not_rotten('firmalife:food/corn_tortilla'), not_rotten('#tfc:foods/vegetables'), not_rotten('firmalife:food/salsa')), 'firmalife:food/burrito', 'firmalife:burrito').with_advancement('firmalife:food/corn_tortilla')
-    meal_shapeless(rm, 'crafting/taco', (not_rotten('#firmalife:foods/cooked_meats_and_substitutes'), not_rotten('firmalife:food/shredded_cheese'), not_rotten('firmalife:food/taco_shell'), not_rotten('#tfc:foods/vegetables'), not_rotten('firmalife:food/salsa')), 'firmalife:food/taco', 'firmalife:burrito').with_advancement('firmalife:food/taco_shell')
+    pie_mod = {
+        'food': {
+            'hunger': 4,
+            'saturation': 1,
+            'water': 0.5,
+            'decay_modifier': 4.5,
+            'grain': 1.0,
+            'dairy': 0.5,
+            'fruit': 1.5,
+        },
+        'portions': [{
+            'nutrient_modifier': 0.8,
+            'water_modifier': 0.8,
+            'saturation_modifier': 0.8,
+        }]
+    }
+    pizza_mod = {
+        'food': {
+            'hunger': 4,
+            'saturation': 1,
+            'decay_modifier': 4.5,
+            'grain': 1.0,
+            'dairy': 0.25,
+        },
+        'portions': [{
+            'nutrient_modifier': 0.8,
+            'water_modifier': 0.8,
+            'saturation_modifier': 0.8,
+        }]
+    }
+    burrito_mod = {
+        'food': {
+            'hunger': 4,
+            'saturation': 4.0,
+            'decay_modifier': 4.5,
+        },
+        'portions': [{
+            'nutrient_modifier': 0.8,
+            'water_modifier': 0.8,
+            'saturation_modifier': 0.8,
+        }]
+    }
+    meal_shapeless(rm, 'crafting/filled_pie', (not_rotten('firmalife:food/pie_dough'), '#tfc:foods/preserves', '#firmalife:pie_pans'), 'firmalife:food/filled_pie', pie_mod).with_advancement('firmalife:food/pie_dough')
+    meal_shapeless(rm, 'crafting/raw_pizza', (not_rotten('firmalife:food/pizza_dough'), not_rotten('#firmalife:foods/pizza_ingredients'), not_rotten('#firmalife:foods/pizza_ingredients'), not_rotten('firmalife:food/shredded_cheese'), not_rotten('firmalife:food/tomato_sauce')), 'firmalife:food/raw_pizza', pizza_mod).with_advancement('firmalife:food/pizza_dough')
+    meal_shapeless(rm, 'crafting/burrito', (not_rotten('#firmalife:foods/cooked_meats_and_substitutes'), not_rotten('firmalife:food/shredded_cheese'), not_rotten('firmalife:food/corn_tortilla'), not_rotten('#tfc:foods/vegetables'), not_rotten('firmalife:food/salsa')), 'firmalife:food/burrito', burrito_mod).with_advancement('firmalife:food/corn_tortilla')
+    meal_shapeless(rm, 'crafting/taco', (not_rotten('#firmalife:foods/cooked_meats_and_substitutes'), not_rotten('firmalife:food/shredded_cheese'), not_rotten('firmalife:food/taco_shell'), not_rotten('#tfc:foods/vegetables'), not_rotten('firmalife:food/salsa')), 'firmalife:food/taco', burrito_mod).with_advancement('firmalife:food/taco_shell')
 
     # Greenhouse
     for block in GREENHOUSE_BLOCKS:
@@ -281,6 +323,7 @@ def generate(rm: ResourceManager):
         rm.crafting_shaped('crafting/greenhouse/%s_greenhouse_trapdoor' % greenhouse, ['XYX', 'YXY'], mapping, (8, 'firmalife:%s_greenhouse_trapdoor' % greenhouse)).with_advancement(rod)
         rm.crafting_shaped('crafting/greenhouse/%s_greenhouse_panel_roof' % greenhouse, ['Y  ', 'XY ', 'XXY'], mapping, (4, 'firmalife:%s_greenhouse_panel_roof' % greenhouse)).with_advancement(rod)
         rm.crafting_shaped('crafting/greenhouse/%s_greenhouse_panel_wall' % greenhouse, ['XYX', 'XYX', 'XYX'], mapping, (8, 'firmalife:%s_greenhouse_panel_wall' % greenhouse)).with_advancement(rod)
+        rm.crafting_shaped('crafting/greenhouse/%s_greenhouse_port' % greenhouse, ['ZZ', 'XY', 'ZZ'], {'X': rod, 'Y': 'firmalife:copper_pipe', 'Z': 'firmalife:reinforced_glass'}, (8, 'firmalife:%s_greenhouse_port' % greenhouse)).with_advancement(rod)
 
     # Grain Stuff
     for grain in TFC_GRAINS:
@@ -337,8 +380,8 @@ def write_crafting_recipe(rm: ResourceManager, name_parts: ResourceIdentifier, d
     rm.write((*rm.resource_dir, 'data', res.domain, 'recipes', 'crafting', res.path), data)
     return RecipeContext(rm, res)
 
-def meal_shapeless(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredients: Json, result: str, mod: str) -> RecipeContext:
-    return advanced_shapeless(rm, name_parts, ingredients, item_stack_provider(result, other_modifier=mod), primary_ingredient=utils.ingredient(ingredients[0]))
+def meal_shapeless(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredients: Json, result: str, meal_mod: Dict[str, Any]) -> RecipeContext:
+    return advanced_shapeless(rm, name_parts, ingredients, item_stack_provider(result, other_modifier={'type': 'tfc:meal', **meal_mod}), primary_ingredient=utils.ingredient(ingredients[0]))
 
 def advanced_shapeless(rm: ResourceManager, name_parts: ResourceIdentifier, ingredients: Json, result: Json, primary_ingredient: Json = None, group: str = None, conditions: Optional[Json] = None) -> RecipeContext:
     res = utils.resource_location(rm.domain, name_parts)
@@ -447,7 +490,7 @@ def not_rotten(ingredient: Json) -> Json:
         'ingredient': utils.ingredient(ingredient)
     }
 
-def item_stack_provider(data_in: Json = None, copy_input: bool = False, copy_heat: bool = False, copy_food: bool = False, copy_oldest_food: bool = False, reset_food: bool = False, add_heat: float = None, add_trait: str = None, remove_trait: str = None, empty_bowl: bool = False, copy_forging: bool = False, other_modifier: str = None, other_other_modifier: str = None, meal: Json = None) -> Json:
+def item_stack_provider(data_in: Json = None, copy_input: bool = False, copy_heat: bool = False, copy_food: bool = False, copy_oldest_food: bool = False, reset_food: bool = False, add_heat: float = None, add_trait: str = None, remove_trait: str = None, empty_bowl: bool = False, copy_forging: bool = False, other_modifier: str | Json = None, other_other_modifier: str = None, meal: Json = None) -> Json:
     if isinstance(data_in, dict):
         return data_in
     stack = utils.item_stack(data_in) if data_in is not None else None
@@ -613,13 +656,12 @@ def item_stack_ingredient(data_in: Json):
     else:
         return {'ingredient': {'item': item}, 'count': count}
 
-def delegate_recipe(rm: ResourceManager, name_parts: ResourceIdentifier, recipe_type: str, delegate: Json) -> RecipeContext:
-    res = utils.resource_location(rm.domain, name_parts)
-    rm.write((*rm.resource_dir, 'data', res.domain, 'recipes', res.path), {
+def delegate_recipe(rm: ResourceManager, name_parts: ResourceIdentifier, recipe_type: str, delegate: Json, data: Json = {}) -> RecipeContext:
+    return write_crafting_recipe(rm, name_parts, {
         'type': recipe_type,
-        'recipe': delegate
+        **data,
+        'recipe': delegate,
     })
-    return RecipeContext(rm, res)
 
 def pumpkin_knapping(rm: ResourceManager, name_parts: ResourceIdentifier, pattern: List[str], result: Json, outside_slot_required: bool = None):
     knapping_recipe(rm, name_parts, 'firmalife:pumpkin', pattern, result, None, outside_slot_required)

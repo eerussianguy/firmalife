@@ -2,23 +2,23 @@
   "__comment__": "This file was automatically created by mcresources",
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "YY",
-    "XX",
-    "Z "
+    "ZZ",
+    "XY",
+    "ZZ"
   ],
   "key": {
-    "Y": {
-      "item": "tfc:compost"
-    },
     "X": {
       "item": "firmalife:treated_lumber"
     },
+    "Y": {
+      "item": "firmalife:copper_pipe"
+    },
     "Z": {
-      "tag": "forge:ingots/wrought_iron"
+      "item": "firmalife:reinforced_glass"
     }
   },
   "result": {
-    "item": "firmalife:hydroponic_planter",
-    "count": 2
+    "item": "firmalife:treated_wood_greenhouse_port",
+    "count": 8
   }
 }

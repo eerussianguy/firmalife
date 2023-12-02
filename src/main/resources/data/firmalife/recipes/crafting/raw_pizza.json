@@ -38,7 +38,23 @@
       "item": "firmalife:food/raw_pizza"
     },
     "modifiers": [
-      "firmalife:pizza"
+      {
+        "type": "tfc:meal",
+        "food": {
+          "hunger": 4,
+          "saturation": 1,
+          "decay_modifier": 4.5,
+          "grain": 1.0,
+          "dairy": 0.25
+        },
+        "portions": [
+          {
+            "nutrient_modifier": 0.8,
+            "water_modifier": 0.8,
+            "saturation_modifier": 0.8
+          }
+        ]
+      }
     ]
   },
   "primary_ingredient": {

@@ -38,7 +38,21 @@
       "item": "firmalife:food/burrito"
     },
     "modifiers": [
-      "firmalife:burrito"
+      {
+        "type": "tfc:meal",
+        "food": {
+          "hunger": 4,
+          "saturation": 4.0,
+          "decay_modifier": 4.5
+        },
+        "portions": [
+          {
+            "nutrient_modifier": 0.8,
+            "water_modifier": 0.8,
+            "saturation_modifier": 0.8
+          }
+        ]
+      }
     ]
   },
   "primary_ingredient": {
