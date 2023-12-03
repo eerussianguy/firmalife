@@ -1,0 +1,21 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "firmalife:food/vanilla_ice_cream"
+      }
+    },
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "firmalife:food/chocolate_chip_cookie_dough"
+      }
+    }
+  ],
+  "result": {
+    "item": "firmalife:food/cookie_dough_ice_cream"
+  }
+}

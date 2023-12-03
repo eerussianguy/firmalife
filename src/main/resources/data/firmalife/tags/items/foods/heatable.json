@@ -9,6 +9,8 @@
     "firmalife:food/masa",
     "#firmalife:foods/slices",
     "firmalife:food/cocoa_beans",
-    "firmalife:food/bacon"
+    "firmalife:food/bacon",
+    "firmalife:food/cookie_dough",
+    "firmalife:food/chocolate_chip_cookie_dough"
   ]
 }

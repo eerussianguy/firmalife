@@ -22,7 +22,7 @@ def generate(rm: ResourceManager):
     rm.item_tag('tfc:usable_on_tool_rack', 'firmalife:spoon', 'firmalife:peel')
     rm.item_tag('pumpkin_knapping', 'tfc:pumpkin')
     rm.item_tag('tfc:any_knapping', '#firmalife:pumpkin_knapping')
-    rm.item_tag('foods/heatable', 'firmalife:food/raw_pizza', 'firmalife:food/filled_pie', 'firmalife:food/raw_pumpkin_pie', 'firmalife:food/corn_tortilla', 'firmalife:food/masa', '#firmalife:foods/slices', 'firmalife:food/cocoa_beans', 'firmalife:food/bacon')
+    rm.item_tag('foods/heatable', 'firmalife:food/raw_pizza', 'firmalife:food/filled_pie', 'firmalife:food/raw_pumpkin_pie', 'firmalife:food/corn_tortilla', 'firmalife:food/masa', '#firmalife:foods/slices', 'firmalife:food/cocoa_beans', 'firmalife:food/bacon', 'firmalife:food/cookie_dough', 'firmalife:food/chocolate_chip_cookie_dough')
     rm.item_tag('foods/dynamic', 'firmalife:food/raw_pizza', 'firmalife:food/filled_pie', 'firmalife:food/cooked_pizza', 'firmalife:food/cooked_pie', 'firmalife:food/burrito', 'firmalife:food/taco', 'firmalife:food/stinky_soup')
     rm.item_tag('foods/washable', 'firmalife:food/filled_pie', 'firmalife:food/cooked_pie', 'firmalife:food/raw_pumpkin_pie', 'minecraft:pumpkin_pie', 'firmalife:food/stinky_soup')
     rm.item_tag('pie_pans', 'firmalife:pie_pan')
@@ -33,10 +33,13 @@ def generate(rm: ResourceManager):
     rm.item_tag('forge:leather', 'firmalife:pineapple_leather')
     rm.item_tag('usable_in_stovetop_soup', '#tfc:foods/usable_in_soup')
     rm.item_tag('beekeeper_armor', *['firmalife:beekeeper_%s' % p for p in ARMOR_SECTIONS])
+    rm.item_tag('foods/raw_eggs', 'minecraft:egg')
+    rm.item_tag('foods/raw_fish', *['tfc:food/%s' % fish for fish in TFC_FISH_ITEMS])
+    rm.item_tag('foods/cooked_fish', *['tfc:food/cooked_%s' % fish for fish in TFC_FISH_ITEMS])
 
     block_and_item_tag(rm, 'tfc:wild_fruits', 'firmalife:plant/pineapple_bush', 'firmalife:plant/nightshade_bush', 'firmalife:plant/fig_sapling', 'firmalife:plant/cocoa_sapling')
 
-    rm.block_tag('oven_insulation', 'minecraft:bricks', '#tfc:forge_insulation', '#firmalife:oven_blocks', 'minecraft:brick_stairs', 'minecraft:brick_slab', 'firmalife:sealed_bricks')
+    rm.block_tag('oven_insulation', 'minecraft:bricks', '#tfc:forge_insulation', '#firmalife:oven_blocks', 'minecraft:brick_stairs', 'minecraft:brick_slab', 'firmalife:sealed_bricks', 'firmalife:chiseled_sealed_bricks', 'firmalife:polished_sealed_bricks')
     rm.block_tag('minecraft:mineable/pickaxe', '#firmalife:oven_blocks')
     rm.block_tag('planters', *['firmalife:%s_planter' % p for p in PLANTERS])
     rm.block_tag('bee_restoration_plants', *['tfc:plant/%s' % p for p in TFC_FLOWERS])

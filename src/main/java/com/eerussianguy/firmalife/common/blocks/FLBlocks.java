@@ -107,6 +107,8 @@ public class FLBlocks
     public static final RegistryObject<Block> TRELLIS_PLANTER = register("trellis_planter", () -> new TrellisPlanterBlock(ExtendedProperties.of().sound(SoundType.STONE).strength(1f).randomTicks().blockEntity(FLBlockEntities.TRELLIS_PLANTER).serverTicks(LargePlanterBlockEntity::serverTick)));
 
     public static final RegistryObject<Block> SEALED_BRICKS = register("sealed_bricks", () -> new Block(Properties.of().mapColor(MapColor.COLOR_BLACK).sound(SoundType.STONE).strength(2.0f, 10).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> POLISHED_SEALED_BRICKS = register("polished_sealed_bricks", () -> new Block(Properties.of().mapColor(MapColor.COLOR_BLACK).sound(SoundType.STONE).strength(2.0f, 10).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> CHISELED_SEALED_BRICKS = register("chiseled_sealed_bricks", () -> new Block(Properties.of().mapColor(MapColor.COLOR_BLACK).sound(SoundType.STONE).strength(2.0f, 10).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> SEALED_DOOR = register("sealed_door", () -> new DoorBlock(Properties.of().mapColor(MapColor.COLOR_BLACK).sound(SoundType.STONE).strength(2.0f, 10).requiresCorrectToolForDrops(), BlockSetType.STONE));
     public static final RegistryObject<Block> SEALED_TRAPDOOR = register("sealed_trapdoor", () -> new TrapDoorBlock(Properties.of().mapColor(MapColor.COLOR_BLACK).sound(SoundType.STONE).strength(2.0f, 10).requiresCorrectToolForDrops(), BlockSetType.STONE));
     public static final RegistryObject<Block> SEALED_WALL = register("sealed_wall", () -> new WallBlock(Properties.of().mapColor(MapColor.COLOR_BLACK).sound(SoundType.STONE).strength(2.0f, 10).requiresCorrectToolForDrops()));

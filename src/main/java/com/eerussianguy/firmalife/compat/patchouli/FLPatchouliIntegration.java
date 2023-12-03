@@ -2,6 +2,7 @@ package com.eerussianguy.firmalife.compat.patchouli;
 
 import java.util.function.Function;
 
+import com.eerussianguy.firmalife.common.util.Mechanics;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
@@ -51,7 +52,7 @@ public class FLPatchouliIntegration
             {"XXXXX", "XXXXX", "XXXXX", "XXXXX", "XXXXX"}
         },
             '0', api.airMatcher(),
-            'X', api.stateMatcher(FLBlocks.SEALED_BRICKS.get().defaultBlockState()),
+            'X', api.predicateMatcher(FLBlocks.SEALED_BRICKS.get().defaultBlockState(), Mechanics.CELLAR),
             'D', doorBottom,
             'E', doorTop
         );

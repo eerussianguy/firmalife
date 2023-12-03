@@ -1,0 +1,34 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "firmalife:mixing_bowl",
+  "ingredients": [
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "tag": "firmalife:foods/raw_eggs"
+      }
+    },
+    {
+      "item": "firmalife:spice/vanilla"
+    },
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "firmalife:food/butter"
+      }
+    },
+    {
+      "tag": "tfc:sweetener"
+    },
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "tag": "tfc:foods/flour"
+      }
+    }
+  ],
+  "output_item": {
+    "item": "firmalife:food/cookie_dough",
+    "count": 4
+  }
+}

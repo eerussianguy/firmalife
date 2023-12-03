@@ -132,7 +132,8 @@ public class StovetopGrillBlock extends BottomSupportedDeviceBlock implements IH
     }
 
     @Override
-    public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity)
+    @SuppressWarnings("deprecation")
+    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity)
     {
         if (!entity.fireImmune() && entity instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity) entity) && level.getBlockEntity(pos) instanceof StovetopGrillBlockEntity grill && grill.getTemperature() > 0)
         {

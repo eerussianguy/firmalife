@@ -69,7 +69,10 @@ public abstract class ApplianceBlockEntity<C extends IItemHandlerModifiable & IN
         }
     }
 
-    public void onTemperatureAdjusted() {}
+    public void onTemperatureAdjusted()
+    {
+        markForSync();
+    }
 
     @Override
     public void onCalendarUpdate(long ticks)

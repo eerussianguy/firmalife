@@ -1,0 +1,15 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "firmalife:oven",
+  "ingredient": {
+    "type": "tfc:not_rotten",
+    "ingredient": {
+      "item": "firmalife:food/chocolate_chip_cookie_dough"
+    }
+  },
+  "result_item": {
+    "item": "firmalife:food/chocolate_chip_cookie"
+  },
+  "temperature": 400,
+  "duration": 1000
+}

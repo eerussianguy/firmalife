@@ -7,6 +7,8 @@
     "#firmalife:oven_blocks",
     "minecraft:brick_stairs",
     "minecraft:brick_slab",
-    "firmalife:sealed_bricks"
+    "firmalife:sealed_bricks",
+    "firmalife:chiseled_sealed_bricks",
+    "firmalife:polished_sealed_bricks"
   ]
 }

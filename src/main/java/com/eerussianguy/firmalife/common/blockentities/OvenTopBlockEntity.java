@@ -149,6 +149,16 @@ public class OvenTopBlockEntity extends ApplianceBlockEntity<ApplianceBlockEntit
     }
 
     @Override
+    public void tickTemperature()
+    {
+        if (temperature != targetTemperature && targetTemperature <= 0f)
+        {
+            ranOutDueToCalendar();
+        }
+        super.tickTemperature();
+    }
+
+    @Override
     public int getCureTicks()
     {
         return cureTicks;

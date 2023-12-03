@@ -120,6 +120,10 @@ def generate(rm: ResourceManager):
     food_item(rm, 'pickled_egg', 'firmalife:food/pickled_egg', Category.other, 4, 2, 10, 0.3, protein=1.5, dairy=0.25)
     decayable(rm, 'chocolate_blends', '#firmalife:chocolate_blends', Category.dairy)
     food_item(rm, 'chocolate', '#firmalife:foods/chocolate', Category.other, 4, 1, 0, 0.3, dairy=0.5, grain=0.5)
+    food_item(rm, 'chocolate_chip_cookie', 'firmalife:food/chocolate_chip_cookie', Category.other, 4, 0.5, 0, 4.5, dairy=0.2, grain=1.0)
+    food_item(rm, 'cookie', 'firmalife:food/chocolate_chip_cookie', Category.other, 4, 0.5, 0, 4.5, dairy=0.1, grain=0.8)
+    decayable(rm, 'cookie_dough', 'firmalife:food/cookie_dough', Category.other)
+    decayable(rm, 'chocolate_chip_cookie_dough', 'firmalife:food/chocolate_chip_cookie_dough', Category.other)
     decayable(rm, 'doughs', '#firmalife:foods/extra_dough', Category.other, decay=2)
     decayable(rm, 'butter', 'firmalife:food/butter', Category.other)
     decayable(rm, 'pie_dough', 'firmalife:food/pie_dough', Category.other)
@@ -143,6 +147,7 @@ def generate(rm: ResourceManager):
     food_item(rm, 'pineapple', 'firmalife:food/pineapple', Category.fruit, 4, 1, 1, 0.85, fruit=0.75)
     food_item(rm, 'nightshade_berry', 'firmalife:food/nightshade_berry', Category.other, 4, 1, 1, 0.85, fruit=3.0)
     food_item(rm, 'vanilla_ice_cream', 'firmalife:food/vanilla_ice_cream', Category.other, 4, 1, 1, 5, dairy=0.75)
+    food_item(rm, 'cookie_dough_ice_cream', 'firmalife:food/cookie_dough_ice_cream', Category.other, 4, 1, 1, 5, dairy=1.0, grain=0.5)
     food_item(rm, 'chocolate_ice_cream', 'firmalife:food/chocolate_ice_cream', Category.other, 4, 1.5, 1, 5, dairy=0.5, grain=0.25)
     food_item(rm, 'strawberry_ice_cream', 'firmalife:food/strawberry_ice_cream', Category.other, 4, 1.5, 1, 5, dairy=0.5, fruit=0.5)
     food_item(rm, 'banana_split', 'firmalife:food/banana_split', Category.other, 4, 2, 1, 5, fruit=3.5, dairy=1.75, grain=0.25)
@@ -153,6 +158,8 @@ def generate(rm: ResourceManager):
     dynamic_food_item(rm, 'cooked_pizza', 'firmalife:food/cooked_pizza', 'dynamic')
     dynamic_food_item(rm, 'burrito', 'firmalife:food/burrito', 'dynamic')
     dynamic_food_item(rm, 'taco', 'firmalife:food/taco', 'dynamic')
+    dynamic_food_item(rm, 'maki_roll', 'firmalife:food/maki_roll', 'dynamic')
+    dynamic_food_item(rm, 'futo_maki_roll', 'firmalife:food/futo_maki_roll', 'dynamic')
 
     rm.domain = 'tfc'
     dynamic_food_item(rm, 'pumpkin_pie', 'minecraft:pumpkin_pie', 'dynamic_bowl')

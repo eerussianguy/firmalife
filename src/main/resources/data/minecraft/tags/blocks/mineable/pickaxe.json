@@ -143,6 +143,8 @@
     "firmalife:ore/poor_chromite/marble",
     "firmalife:ore/rich_chromite/marble",
     "firmalife:sealed_bricks",
+    "firmalife:chiseled_sealed_bricks",
+    "firmalife:polished_sealed_bricks",
     "firmalife:tiles",
     "firmalife:rustic_bricks",
     "#firmalife:oven_blocks",

@@ -1,0 +1,21 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:damage_inputs_shapeless_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+      {
+        "item": "firmalife:sealed_bricks"
+      },
+      {
+        "tag": "tfc:chisels"
+      },
+      {
+        "item": "tfc:mortar"
+      }
+    ],
+    "result": {
+      "item": "firmalife:chiseled_sealed_bricks"
+    }
+  }
+}

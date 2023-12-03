@@ -104,10 +104,13 @@ def generate(rm: ResourceManager):
     craft_decorations('crafting/rustic_bricks', 'firmalife:rustic_bricks')
     craft_decorations('crafting/tiles', 'firmalife:tiles')
     rm.crafting_shapeless('crafting/banana_split', (not_rotten('firmalife:food/vanilla_ice_cream'), not_rotten('firmalife:food/strawberry_ice_cream'), not_rotten('firmalife:food/chocolate_ice_cream'), not_rotten('firmalife:food/pineapple'), not_rotten('tfc:food/cherry'), not_rotten('tfc:food/banana'), not_rotten('tfc:food/banana')), 'firmalife:food/banana_split').with_advancement('firmalife:food/vanilla_ice_cream')
+    rm.crafting_shapeless('crafting/cookie_dough_ice_cream', (not_rotten('firmalife:food/vanilla_ice_cream'), not_rotten('firmalife:food/chocolate_chip_cookie_dough')), 'firmalife:food/cookie_dough_ice_cream').with_advancement('firmalife:food/vanilla_ice_cream')
     rm.crafting_shapeless('crafting/plate', ('firmalife:treated_lumber', 'firmalife:treated_lumber', 'minecraft:white_dye', 'tfc:glue'), 'firmalife:plate').with_advancement('firmalife:treated_lumber')
     rm.crafting_shapeless('crafting/oxidized_copper_pipe', ('firmalife:copper_pipe', 'firmalife:copper_pipe', 'firmalife:copper_pipe', 'firmalife:copper_pipe', 'tfc:powder/wood_ash'), '4 firmalife:oxidized_copper_pipe').with_advancement('firmalife:copper_pipe')
     rm.crafting_shapeless('crafting/irrigation_tank', ('#tfc:barrels', '#forge:sheets/bronze', 'firmalife:copper_pipe'), 'firmalife:irrigation_tank').with_advancement('firmalife:copper_pipe')
     rm.crafting_shaped('crafting/pumping_station', ['SRS', 'BBB', 'ZZZ'], {'S': '#forge:sheets/bronze', 'R': '#forge:dusts/redstone', 'B': 'tfc:brass_mechanisms', 'Z': '#tfc:axles'}, 'firmalife:pumping_station').with_advancement('tfc:brass_mechanisms')
+    damage_shapeless(rm, 'crafting/chiseled_sealed_bricks', ('firmalife:sealed_bricks', '#tfc:chisels', 'tfc:mortar'), 'firmalife:chiseled_sealed_bricks').with_advancement('firmalife:sealed_bricks')
+    damage_shapeless(rm, 'crafting/polished_sealed_bricks', ('firmalife:sealed_bricks', '#tfc:chisels'), 'firmalife:polished_sealed_bricks').with_advancement('firmalife:sealed_bricks')
 
     for section in ARMOR_SECTIONS:
         rm.crafting_shapeless('crafting/beekeeper_%s' % section, ('minecraft:leather_%s' % section, 'tfc:burlap_cloth', 'tfc:burlap_cloth', 'tfc:powder/wood_ash'), 'firmalife:beekeeper_%s' % section).with_advancement('tfc:burlap_cloth')
@@ -149,7 +152,7 @@ def generate(rm: ResourceManager):
     vat_recipe(rm, 'tallow', 'tfc:blubber', '200 minecraft:water', output_fluid='200 tfc:tallow')
     vat_recipe(rm, 'lye', 'tfc:powder/wood_ash', '200 minecraft:water', output_fluid='200 tfc:lye')
     vat_recipe(rm, 'cooked_rice', not_rotten('tfc:food/rice_grain'), '200 minecraft:water', output_item='tfc:food/cooked_rice')
-    vat_recipe(rm, 'boiled_egg', not_rotten('minecraft:egg'), '200 minecraft:water', output_item='tfc:food/boiled_egg')
+    vat_recipe(rm, 'boiled_egg', not_rotten('#firmalife:foods/raw_eggs'), '200 minecraft:water', output_item='tfc:food/boiled_egg')
     for color in COLORS:
         vat_recipe(rm, '%s_dye' % color, 'minecraft:%s_dye' % color, '1000 minecraft:water', output_fluid='1000 tfc:%s_dye' % color)
     vat_recipe(rm, 'beet_sugar', {'count': 5, 'ingredient': not_rotten('tfc:food/beet')}, '1000 tfc:salt_water', output_item='3 minecraft:sugar')
@@ -225,6 +228,8 @@ def generate(rm: ResourceManager):
     oven_recipe(rm, 'pumpkin_pie', not_rotten('firmalife:food/raw_pumpkin_pie'), 400, result_item=item_stack_provider('minecraft:pumpkin_pie', other_modifier='firmalife:add_pie_pan'))
     oven_recipe(rm, 'roasted_cocoa_beans', not_rotten('firmalife:food/cocoa_beans'), 400, result_item=item_stack_provider('firmalife:food/roasted_cocoa_beans'))
     oven_recipe(rm, 'taco_shell', not_rotten('firmalife:food/corn_tortilla'), 400, result_item=item_stack_provider('firmalife:food/taco_shell'))
+    oven_recipe(rm, 'sugar_cookie', not_rotten('firmalife:food/cookie_dough'), 400, result_item=item_stack_provider('firmalife:food/sugar_cookie'))
+    oven_recipe(rm, 'chocolate_chip_cookie', not_rotten('firmalife:food/chocolate_chip_cookie_dough'), 400, result_item=item_stack_provider('firmalife:food/chocolate_chip_cookie'))
 
     # Firmalife Recipes
     knapping_type(rm, 'pumpkin', '1 #firmalife:pumpkin_knapping', None, 'tfc:item.knapping.leather', False, False, False, 'tfc:pumpkin')
@@ -249,14 +254,16 @@ def generate(rm: ResourceManager):
 
     mixing_recipe(rm, 'butter', ingredients=[utils.ingredient('tfc:powder/salt')], fluid='1000 firmalife:cream', output_item='firmalife:food/butter')
     mixing_recipe(rm, 'pie_dough', ingredients=[not_rotten('firmalife:food/butter'), not_rotten('#tfc:foods/flour'), utils.ingredient('#tfc:sweetener')], fluid='1000 minecraft:water', output_item='firmalife:food/pie_dough')
-    mixing_recipe(rm, 'pumpkin_pie_dough', ingredients=[utils.ingredient('minecraft:egg'), not_rotten('tfc:food/pumpkin_chunks'), not_rotten('tfc:food/pumpkin_chunks'), not_rotten('#tfc:foods/flour'), utils.ingredient('#tfc:sweetener')], fluid='1000 minecraft:water', output_item='firmalife:food/pumpkin_pie_dough')
+    mixing_recipe(rm, 'pumpkin_pie_dough', ingredients=[utils.ingredient('#firmalife:foods/raw_eggs'), not_rotten('tfc:food/pumpkin_chunks'), not_rotten('tfc:food/pumpkin_chunks'), not_rotten('#tfc:foods/flour'), utils.ingredient('#tfc:sweetener')], fluid='1000 minecraft:water', output_item='firmalife:food/pumpkin_pie_dough')
     mixing_recipe(rm, 'pizza_dough', ingredients=[not_rotten('#tfc:foods/dough'), utils.ingredient('tfc:powder/salt'), utils.ingredient('firmalife:spice/basil_leaves')], fluid='1000 tfc:olive_oil', output_item='4 firmalife:food/pizza_dough')
     mixing_recipe(rm, 'dark_chocolate_blend', ingredients=[utils.ingredient('#tfc:sweetener'), not_rotten('firmalife:food/cocoa_powder'), not_rotten('firmalife:food/cocoa_powder')], fluid='1000 #tfc:milks', output_item='2 firmalife:food/dark_chocolate_blend')
     mixing_recipe(rm, 'white_chocolate_blend', ingredients=[utils.ingredient('#tfc:sweetener'), not_rotten('firmalife:food/cocoa_butter'), not_rotten('firmalife:food/cocoa_butter')], fluid='1000 #tfc:milks', output_item='2 firmalife:food/white_chocolate_blend')
     mixing_recipe(rm, 'milk_chocolate_blend', ingredients=[utils.ingredient('#tfc:sweetener'), not_rotten('firmalife:food/cocoa_butter'), not_rotten('firmalife:food/cocoa_powder')], fluid='1000 #tfc:milks', output_item='2 firmalife:food/milk_chocolate_blend')
     mixing_recipe(rm, 'vanilla_ice_cream', ingredients=[utils.ingredient('#tfc:sweetener'), utils.ingredient('firmalife:spice/vanilla'), utils.ingredient('firmalife:ice_shavings')], fluid='1000 firmalife:cream', output_item='2 firmalife:food/vanilla_ice_cream')
     mixing_recipe(rm, 'chocolate_ice_cream', ingredients=[not_rotten('firmalife:food/vanilla_ice_cream')], fluid='1000 firmalife:chocolate', output_item='firmalife:food/chocolate_ice_cream')
-    mixing_recipe(rm, 'strawberry_ice_cream', ingredients=[not_rotten('firmalife:food/vanilla_ice_cream'), not_rotten('tfc:food/strawberry')], fluid='1000 firmalife:chocolate', output_item='firmalife:food/strawberry_ice_cream')
+    mixing_recipe(rm, 'strawberry_ice_cream', ingredients=[not_rotten('firmalife:food/vanilla_ice_cream'), not_rotten('tfc:food/strawberry'), not_rotten('tfc:food/strawberry')], output_item='firmalife:food/strawberry_ice_cream')
+    mixing_recipe(rm, 'cookie_dough', ingredients=[not_rotten('#firmalife:foods/raw_eggs'), utils.ingredient('firmalife:spice/vanilla'), not_rotten('firmalife:food/butter'), utils.ingredient('#tfc:sweetener'), not_rotten('#tfc:foods/flour')], output_item='4 firmalife:food/cookie_dough')
+    mixing_recipe(rm, 'chocolate_chip_cookie_dough', ingredients=[not_rotten('#firmalife:foods/chocolate'), not_rotten('firmalife:food/cookie_dough'), not_rotten('firmalife:food/cookie_dough'), not_rotten('firmalife:food/cookie_dough'), not_rotten('firmalife:food/cookie_dough')], output_item='4 firmalife:food/chocolate_chip_cookie_dough')
 
     pie_mod = {
         'food': {
@@ -301,9 +308,13 @@ def generate(rm: ResourceManager):
         }]
     }
     meal_shapeless(rm, 'crafting/filled_pie', (not_rotten('firmalife:food/pie_dough'), '#tfc:foods/preserves', '#firmalife:pie_pans'), 'firmalife:food/filled_pie', pie_mod).with_advancement('firmalife:food/pie_dough')
-    meal_shapeless(rm, 'crafting/raw_pizza', (not_rotten('firmalife:food/pizza_dough'), not_rotten('#firmalife:foods/pizza_ingredients'), not_rotten('#firmalife:foods/pizza_ingredients'), not_rotten('firmalife:food/shredded_cheese'), not_rotten('firmalife:food/tomato_sauce')), 'firmalife:food/raw_pizza', pizza_mod).with_advancement('firmalife:food/pizza_dough')
+    meal_shapeless(rm, 'crafting/raw_pizza3', (not_rotten('firmalife:food/pizza_dough'), not_rotten('#firmalife:foods/pizza_ingredients'), not_rotten('#firmalife:foods/pizza_ingredients'), not_rotten('firmalife:food/shredded_cheese'), not_rotten('firmalife:food/tomato_sauce')), 'firmalife:food/raw_pizza', pizza_mod).with_advancement('firmalife:food/pizza_dough')
+    meal_shapeless(rm, 'crafting/raw_pizza2', (not_rotten('firmalife:food/pizza_dough'), not_rotten('#firmalife:foods/pizza_ingredients'), not_rotten('firmalife:food/shredded_cheese'), not_rotten('firmalife:food/tomato_sauce')), 'firmalife:food/raw_pizza', pizza_mod).with_advancement('firmalife:food/pizza_dough')
+    meal_shapeless(rm, 'crafting/raw_pizza', (not_rotten('firmalife:food/pizza_dough'), not_rotten('firmalife:food/shredded_cheese'), not_rotten('firmalife:food/tomato_sauce')), 'firmalife:food/raw_pizza', pizza_mod).with_advancement('firmalife:food/pizza_dough')
     meal_shapeless(rm, 'crafting/burrito', (not_rotten('#firmalife:foods/cooked_meats_and_substitutes'), not_rotten('firmalife:food/shredded_cheese'), not_rotten('firmalife:food/corn_tortilla'), not_rotten('#tfc:foods/vegetables'), not_rotten('firmalife:food/salsa')), 'firmalife:food/burrito', burrito_mod).with_advancement('firmalife:food/corn_tortilla')
     meal_shapeless(rm, 'crafting/taco', (not_rotten('#firmalife:foods/cooked_meats_and_substitutes'), not_rotten('firmalife:food/shredded_cheese'), not_rotten('firmalife:food/taco_shell'), not_rotten('#tfc:foods/vegetables'), not_rotten('firmalife:food/salsa')), 'firmalife:food/taco', burrito_mod).with_advancement('firmalife:food/taco_shell')
+    meal_shapeless(rm, 'crafting/maki_roll', (not_rotten('tfc:food/cooked_rice'), not_rotten('tfc:food/dried_seaweed'), not_rotten('#firmalife:foods/raw_fish')), 'firmalife:food/maki_roll', burrito_mod).with_advancement('tfc:food/cooked_rice')
+    meal_shapeless(rm, 'crafting/futo_maki_roll', (not_rotten('tfc:food/cooked_rice'), not_rotten('tfc:food/dried_seaweed'), not_rotten('tfc:food/shellfish')), 'firmalife:food/futo_maki_roll', burrito_mod).with_advancement('tfc:food/cooked_rice')
 
     # Greenhouse
     for block in GREENHOUSE_BLOCKS:

@@ -21,6 +21,9 @@
     "firmalife:food/pickled_egg",
     "#firmalife:chocolate_blends",
     "#firmalife:foods/chocolate",
+    "firmalife:food/chocolate_chip_cookie",
+    "firmalife:food/cookie_dough",
+    "firmalife:food/chocolate_chip_cookie_dough",
     "#firmalife:foods/extra_dough",
     "firmalife:food/butter",
     "firmalife:food/pie_dough",
@@ -44,6 +47,7 @@
     "firmalife:food/pineapple",
     "firmalife:food/nightshade_berry",
     "firmalife:food/vanilla_ice_cream",
+    "firmalife:food/cookie_dough_ice_cream",
     "firmalife:food/chocolate_ice_cream",
     "firmalife:food/strawberry_ice_cream",
     "firmalife:food/banana_split",
@@ -54,6 +58,8 @@
     "firmalife:food/cooked_pizza",
     "firmalife:food/burrito",
     "firmalife:food/taco",
+    "firmalife:food/maki_roll",
+    "firmalife:food/futo_maki_roll",
     "minecraft:pumpkin_pie"
   ]
 }

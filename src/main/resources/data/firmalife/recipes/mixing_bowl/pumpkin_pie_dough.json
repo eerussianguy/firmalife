@@ -3,7 +3,7 @@
   "type": "firmalife:mixing_bowl",
   "ingredients": [
     {
-      "item": "minecraft:egg"
+      "tag": "firmalife:foods/raw_eggs"
     },
     {
       "type": "tfc:not_rotten",

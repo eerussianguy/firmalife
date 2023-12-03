@@ -12,8 +12,8 @@ import net.minecraft.world.level.Level;
 
 public class FLDamageSources
 {
-    public static final ResourceKey<DamageType> OVEN = ResourceKey.create(Registries.DAMAGE_TYPE, FLHelpers.identifier("ash"));
-    public static final ResourceKey<DamageType> SWARM = ResourceKey.create(Registries.DAMAGE_TYPE, FLHelpers.identifier("ash"));
+    public static final ResourceKey<DamageType> OVEN = ResourceKey.create(Registries.DAMAGE_TYPE, FLHelpers.identifier("oven"));
+    public static final ResourceKey<DamageType> SWARM = ResourceKey.create(Registries.DAMAGE_TYPE, FLHelpers.identifier("swarm"));
 
     public static void oven(Entity entity, float amount)
     {

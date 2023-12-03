@@ -79,7 +79,6 @@ public class MixingBowlBlockEntity extends TickableInventoryBlockEntity<MixingBo
     }
 
     public static final int SLOTS = 5;
-    private static final int DEFAULT_COLOR = TFCFluids.ALPHA_MASK | 0xFFEF91;
 
     private final SidedHandler.Builder<IFluidHandler> sidedFluidInventory;
     private int rotationTimer = -1;
@@ -171,6 +170,10 @@ public class MixingBowlBlockEntity extends TickableInventoryBlockEntity<MixingBo
             int count = outputStack.getCount();
             for (int i = 0; i < SLOTS; i++)
             {
+                if (inventory.getStackInSlot(i).hasCraftingRemainingItem())
+                {
+                    Helpers.spawnItem(level, worldPosition, inventory.getStackInSlot(i).getCraftingRemainingItem().copy());
+                }
                 inventory.setStackInSlot(i, ItemStack.EMPTY);
             }
             for (int i = 0; i < SLOTS; i++)
