@@ -6,6 +6,6 @@
   "injectors": {
     "defaultRequire": 1
   },
-  "mixins": ["JugItemMixin", "MoldItemMixin"],
+  "mixins": [],
   "refmap": "firmalife.refmap.json"
 }
