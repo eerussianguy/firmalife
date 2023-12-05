@@ -39,7 +39,7 @@ public class GreenhouseDoorBlock extends DoorBlock implements IWeatherable, IFor
 
     @Override
     @SuppressWarnings("deprecation")
-    public void randomTick(BlockState lower, ServerLevel level, BlockPos pos, RandomSource rand)
+    public void onRandomTick(BlockState lower, ServerLevel level, BlockPos pos, RandomSource rand)
     {
         Supplier<? extends Block> next = getNext();
         if (next != null && rand.nextInt(weatherChance()) == 0)

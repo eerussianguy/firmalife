@@ -36,9 +36,9 @@ public class GreenhouseStairBlock extends GlassStairBlock implements IWeatherabl
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand)
+    public void onRandomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand)
     {
-        IWeatherable.super.randomTick(state, level, pos, rand);
+        IWeatherable.super.onRandomTick(state, level, pos, rand);
     }
 
     @Override

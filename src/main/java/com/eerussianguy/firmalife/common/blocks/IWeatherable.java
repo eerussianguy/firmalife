@@ -13,7 +13,7 @@ import org.jetbrains.annotations.Nullable;
 
 public interface IWeatherable
 {
-    default void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random)
+    default void onRandomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random)
     {
         Supplier<? extends Block> next = getNext();
         if (next != null && random.nextInt(weatherChance()) == 0)

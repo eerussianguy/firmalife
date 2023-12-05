@@ -84,7 +84,7 @@ def generate(rm: ResourceManager):
     damage_shapeless(rm, 'crafting/salsa', ('tfc:food/tomato', 'tfc:powder/salt', 'firmalife:plant/cilantro', '#tfc:knives'), '5 firmalife:food/salsa').with_advancement('tfc:food/tomato')
     damage_shapeless(rm, 'crafting/pineapple_fiber', (not_rotten(has_trait('firmalife:food/pineapple', trait='firmalife:dried')), '#tfc:knives'), 'firmalife:pineapple_fiber').with_advancement('firmalife:food/pineapple')
     damage_shapeless(rm, 'crafting/pineapple_yarn', ('tfc:spindle', 'firmalife:pineapple_fiber'), '8 firmalife:pineapple_yarn').with_advancement('firmalife:pineapple_fiber')
-    rm.crafting_shapeless('crafting/toast_with_jam', ('firmalife:food/toast', '#firmalife:foods/preserves'), 'firmalife:food/toast_with_jam').with_advancement('firmalife:food/toast')
+    rm.crafting_shapeless('crafting/toast_with_jam', ('firmalife:food/toast', '#tfc:foods/preserves'), 'firmalife:food/toast_with_jam').with_advancement('firmalife:food/toast')
     rm.crafting_shapeless('crafting/toast_with_butter', ('firmalife:food/toast', 'firmalife:food/butter'), 'firmalife:food/toast_with_butter').with_advancement('firmalife:food/toast')
     damage_shapeless(rm, 'crafting/bacon', (not_rotten(has_trait('tfc:food/pork', trait='firmalife:smoked')), '#tfc:knives', 'tfc:powder/salt'), '4 firmalife:food/bacon').with_advancement('tfc:food/cooked_pork')
     rm.crafting_shapeless('crafting/tomato_sauce_mix', (not_rotten('tfc:food/tomato'), utils.ingredient('tfc:powder/salt'), not_rotten('tfc:food/garlic')), '5 firmalife:food/tomato_sauce_mix').with_advancement('tfc:food/tomato')
@@ -177,6 +177,9 @@ def generate(rm: ResourceManager):
                 'texture': 'firmalife:block/jar/%s' % fruit
             })
         rm.crafting_shapeless('crafting/unseal_%s_jar' % fruit, (not_rotten('firmalife:jar/%s' % fruit), ), 'firmalife:jar/%s_unsealed' % fruit).with_advancement('firmalife:jar/%s' % fruit)
+    for fruit in TFC_FRUITS:
+        ing = not_rotten(has_trait('tfc:food/%s' % fruit, 'firmalife:dried', True))
+        vat_recipe(rm, '%s_jar' % fruit, ing, '500 firmalife:sugar_water', output_fluid='500 firmalife:fruity_fluid', jar='tfc:jar/%s' % fruit)
 
     beet = not_rotten('tfc:food/beet')
     simple_pot_recipe(rm, 'beet_sugar', [beet, beet, beet, beet, beet], '1000 tfc:salt_water', output_items=['minecraft:sugar', 'minecraft:sugar', 'minecraft:sugar'])

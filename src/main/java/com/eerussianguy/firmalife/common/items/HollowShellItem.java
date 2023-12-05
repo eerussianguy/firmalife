@@ -42,7 +42,7 @@ public class HollowShellItem extends FluidContainerItem
             {
                 final BlockPos pos = hit.getBlockPos().above();
                 BlockState state = FLBlocks.HOLLOW_SHELL.get().defaultBlockState();
-                if (state.canSurvive(level, pos))
+                if (state.canSurvive(level, pos) && level.getBlockState(pos).canBeReplaced())
                 {
                     Fluid fluid = level.getFluidState(pos).getType();
                     state = FluidHelpers.fillWithFluid(state, fluid);
