@@ -110,6 +110,8 @@ public final class FLCreativeTabs
         accept(out, FLBlocks.HANGING_PLANTER);
         accept(out, FLBlocks.TRELLIS_PLANTER);
         accept(out, FLBlocks.SEALED_BRICKS);
+        accept(out, FLBlocks.CHISELED_SEALED_BRICKS);
+        accept(out, FLBlocks.POLISHED_SEALED_BRICKS);
         accept(out, FLBlocks.SEALED_DOOR);
         accept(out, FLBlocks.SEALED_WALL);
         accept(out, FLBlocks.SEALED_TRAPDOOR);
