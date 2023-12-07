@@ -2,7 +2,7 @@
   "__comment__": "This file was automatically created by mcresources",
   "variants": {
     "": {
-      "model": "firmalife:block/wood/hanger/pine"
+      "model": "firmalife:block/wood/hanger/pine_dynamic"
     }
   }
 }

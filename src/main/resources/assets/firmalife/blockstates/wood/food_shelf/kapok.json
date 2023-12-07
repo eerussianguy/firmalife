@@ -2,18 +2,18 @@
   "__comment__": "This file was automatically created by mcresources",
   "variants": {
     "facing=east": {
-      "model": "firmalife:block/wood/food_shelf/kapok",
+      "model": "firmalife:block/wood/food_shelf/kapok_dynamic",
       "y": 270
     },
     "facing=north": {
-      "model": "firmalife:block/wood/food_shelf/kapok",
+      "model": "firmalife:block/wood/food_shelf/kapok_dynamic",
       "y": 180
     },
     "facing=south": {
-      "model": "firmalife:block/wood/food_shelf/kapok"
+      "model": "firmalife:block/wood/food_shelf/kapok_dynamic"
     },
     "facing=west": {
-      "model": "firmalife:block/wood/food_shelf/kapok",
+      "model": "firmalife:block/wood/food_shelf/kapok_dynamic",
       "y": 90
     }
   }

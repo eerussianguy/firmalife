@@ -276,13 +276,15 @@ def generate(rm: ResourceManager):
         flower_pot_cross(rm, herb, 'firmalife:plant/potted/%s' % herb, 'plant/flowerpot/%s' % herb, 'firmalife:block/plant/%s/1' % herb, 'firmalife:plant/%s' % herb)
 
     for wood in TFC_WOODS.keys():
-        block = rm.blockstate('firmalife:wood/food_shelf/%s' % wood, variants=four_rotations('firmalife:block/wood/food_shelf/%s' % wood, (270, 180, None, 90))).with_tag('food_shelves').with_item_tag('food_shelves')
+        block = rm.blockstate('firmalife:wood/food_shelf/%s' % wood, variants=four_rotations('firmalife:block/wood/food_shelf/%s_dynamic' % wood, (270, 180, None, 90))).with_tag('food_shelves').with_item_tag('food_shelves')
         block.with_block_loot('firmalife:wood/food_shelf/%s' % wood).with_lang(lang('%s food shelf', wood)).with_tag('minecraft:mineable/axe')
         rm.item_model('firmalife:wood/food_shelf/%s' % wood, parent='firmalife:block/wood/food_shelf/%s' % wood, no_textures=True)
+        rm.custom_block_model('firmalife:wood/food_shelf/%s_dynamic' % wood, 'firmalife:food_shelf', {'base': {'parent': 'firmalife:block/wood/food_shelf/%s' % wood}})
         rm.block_model('firmalife:wood/food_shelf/%s' % wood, parent='firmalife:block/food_shelf_base', textures={'wood': 'tfc:block/wood/planks/%s' % wood})
 
-        block = rm.blockstate('firmalife:wood/hanger/%s' % wood, model='firmalife:block/wood/hanger/%s' % wood).with_tag('hangers').with_item_tag('hangers')
+        block = rm.blockstate('firmalife:wood/hanger/%s' % wood, model='firmalife:block/wood/hanger/%s_dynamic' % wood).with_tag('hangers').with_item_tag('hangers')
         block.with_block_loot('firmalife:wood/hanger/%s' % wood).with_lang(lang('%s hanger' % wood)).with_tag('minecraft:mineable/axe')
+        rm.custom_block_model('firmalife:wood/hanger/%s_dynamic' % wood, 'firmalife:hanger', {'base': {'parent': 'firmalife:block/wood/hanger/%s' % wood}})
         rm.item_model('firmalife:wood/hanger/%s' % wood, parent='firmalife:block/wood/hanger/%s' % wood, no_textures=True)
         rm.block_model('firmalife:wood/hanger/%s' % wood, parent='firmalife:block/hanger_base', textures={'wood': 'tfc:block/wood/planks/%s' % wood, 'string': 'minecraft:block/white_wool'})
 
@@ -570,7 +572,7 @@ def greenhouse_trapdoor(rm: ResourceManager, name: str, glass: str) -> 'BlockCon
 
 def greenhouse_door(rm: ResourceManager, name: str, bot: str, upper: str) -> 'BlockContext':
     door = '%s_greenhouse_door' % name
-    block = rm.block(door).with_lang(lang('%s door', door))
+    block = rm.block(door).with_lang(lang(door))
     make_door(rm.block('%s_greenhouse' % name), top_texture=upper, bottom_texture=bot)
     rm.item_model(door)
     door_loot(block, 'firmalife:%s' % door)

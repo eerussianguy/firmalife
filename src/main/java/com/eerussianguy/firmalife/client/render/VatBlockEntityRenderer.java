@@ -1,11 +1,11 @@
 package com.eerussianguy.firmalife.client.render;
 
 import com.eerussianguy.firmalife.common.blockentities.VatBlockEntity;
+import com.eerussianguy.firmalife.common.blocks.VatBlock;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemDisplayContext;
@@ -20,6 +20,10 @@ public class VatBlockEntityRenderer implements BlockEntityRenderer<VatBlockEntit
     @Override
     public void render(VatBlockEntity vat, float partialTicks, PoseStack poseStack, MultiBufferSource buffers, int combinedLight, int combinedOverlay)
     {
+        if (!(vat.getBlockState().getBlock() instanceof VatBlock))
+            return;
+        if (vat.getBlockState().getValue(VatBlock.SEALED))
+            return;
         vat.getCapability(Capabilities.FLUID).ifPresent(cap -> {
             final FluidStack fluid = cap.getFluidInTank(0);
             if (!fluid.isEmpty())

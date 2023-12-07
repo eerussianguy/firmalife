@@ -4,6 +4,8 @@ import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 import com.eerussianguy.firmalife.client.model.BonsaiPlanterBlockModel;
+import com.eerussianguy.firmalife.client.model.FoodShelfBlockModel;
+import com.eerussianguy.firmalife.client.model.HangerBlockModel;
 import com.eerussianguy.firmalife.client.model.HangingPlanterBlockModel;
 import com.eerussianguy.firmalife.client.model.HydroponicPlanterBlockModel;
 import com.eerussianguy.firmalife.client.model.JarbnetBlockModel;
@@ -163,6 +165,8 @@ public class FLClientEvents
         event.register("trellis_planter", new DynamicBlockModel.Loader(TrellisPlanterBlockModel::new));
         event.register("jarbnet", new DynamicBlockModel.Loader(JarbnetBlockModel::new));
         event.register("jarring_station", new DynamicBlockModel.Loader(JarringStationBlockModel::new));
+        event.register("food_shelf", new DynamicBlockModel.Loader(FoodShelfBlockModel::new));
+        event.register("hanger", new DynamicBlockModel.Loader(HangerBlockModel::new));
     }
 
     private static void registerDryProperty(Supplier<Item> item)
@@ -182,8 +186,6 @@ public class FLClientEvents
         event.registerBlockEntityRenderer(FLBlockEntities.STRING.get(), ctx -> new StringBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.VAT.get(), ctx -> new VatBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.MIXING_BOWL.get(), ctx -> new MixingBowlBlockEntityRenderer());
-        event.registerBlockEntityRenderer(FLBlockEntities.HANGER.get(), ctx -> new HangerBlockEntityRenderer());
-        event.registerBlockEntityRenderer(FLBlockEntities.FOOD_SHELF.get(), ctx -> new FoodShelfBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.STOVETOP_GRILL.get(), ctx -> new StovetopGrillBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.STOVETOP_POT.get(), ctx -> new StovetopPotBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.PLATE.get(), ctx -> new PlateBlockEntityRenderer());

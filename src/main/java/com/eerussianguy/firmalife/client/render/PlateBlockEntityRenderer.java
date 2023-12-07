@@ -31,4 +31,10 @@ public class PlateBlockEntityRenderer implements BlockEntityRenderer<PlateBlockE
         }
         poseStack.popPose();
     }
+
+    @Override
+    public int getViewDistance()
+    {
+        return 12;
+    }
 }

@@ -96,4 +96,10 @@ public class MixingBowlBlockEntityRenderer implements BlockEntityRenderer<Mixing
             poseStack.popPose();
         }
     }
+
+    @Override
+    public int getViewDistance()
+    {
+        return 16;
+    }
 }

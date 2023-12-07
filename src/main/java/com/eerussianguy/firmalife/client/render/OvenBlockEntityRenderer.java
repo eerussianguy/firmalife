@@ -37,4 +37,10 @@ public class OvenBlockEntityRenderer implements BlockEntityRenderer<OvenTopBlock
             }
         });
     }
+
+    @Override
+    public int getViewDistance()
+    {
+        return 16;
+    }
 }

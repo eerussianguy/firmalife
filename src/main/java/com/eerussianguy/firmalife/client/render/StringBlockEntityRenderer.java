@@ -38,4 +38,10 @@ public class StringBlockEntityRenderer implements BlockEntityRenderer<StringBloc
         }
         poseStack.popPose();
     }
+
+    @Override
+    public int getViewDistance()
+    {
+        return 16;
+    }
 }

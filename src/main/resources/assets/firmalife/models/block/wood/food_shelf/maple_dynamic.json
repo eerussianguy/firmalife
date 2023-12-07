@@ -1,0 +1,7 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "loader": "firmalife:food_shelf",
+  "base": {
+    "parent": "firmalife:block/wood/food_shelf/maple"
+  }
+}

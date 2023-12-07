@@ -31,4 +31,10 @@ public record DryingMatBlockEntityRenderer(float offset) implements BlockEntityR
         }
         poseStack.popPose();
     }
+
+    @Override
+    public int getViewDistance()
+    {
+        return 16;
+    }
 }
