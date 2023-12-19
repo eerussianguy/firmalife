@@ -43,13 +43,13 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False):
     book.template('drying_recipe', custom_component(0, 0, 'DryingComponent', {'recipe': '#recipe'}), text_component(0, 45))
 
     book.category('firmalife', 'Firmalife', 'All about the Firmalife addon', 'firmalife:cured_oven_top', is_sorted=True, entries=(
-        entry('differences_from_tfc', 'Differences from TFC', 'tfc:food/wheat_bread', pages=(
+        entry('differences_from_tfc', 'Differences from TFC', 'tfc:textures/item/food/wheat_bread.png', pages=(
             text('Firmalife makes a few changes to how things operate in regular TFC. This chapter exists to help direct you towards areas where this is very different.'),
             text('$(l:tfc:firmalife/cheese)Cheese$() is made through a more complex process. It can be placed in world, and has the option of aging in a $(l:tfc:firmalife/cellar)Cellar$().', title='Cheese Aging'),
             text('$(l:tfc:firmalife/bread)Bread$() is made through a more complex process, requiring yeast and sweetener. The regular TFC bread recipe makes flatbread, which is worse nutritionally.', title='Bread Making'),
             text('Firmalife has a greater emphasis on sugar. While it can still be obtained through sugar cane, consider using honey (from bees) or making sugar from beets!', title='Sweeteners'),
         )),
-        entry('cheese', 'Cheese', 'firmalife:food/gouda', pages=(
+        entry('cheese', 'Cheese', 'firmalife:textures/item/food/gouda.png', pages=(
             text('Making $(thing)cheese$() in Firmalife is a little more involved than in vanilla TFC. There are two new kinds of milk: $(thing)Yak Milk$(), and $(thing)Goat Milk$(). These are obtained from milking the $(l:mechanics/animal_husbandry#yak)Yak$() and $(l:mechanics/animal_husbandry#goat)Goat$(), respectively. Milking the $(l:mechanics/animal_husbandry#cow)Cow$() still produces the old kind of milk.'),
             text('Like usual, milk must be $(thing)curdled$() first. To curdle milk, you need $(thing)Rennet$(). Rennet comes from the stomach of $(thing)Ruminant$() animals. This includes $(l:mechanics/animal_husbandry#yak)Yaks$(), $(l:mechanics/animal_husbandry#cow)Cows$(), $(l:mechanics/animal_husbandry#sheep)Sheep$(), $(l:mechanics/animal_husbandry#goat)Goats$(), and $(l:mechanics/animal_husbandry#musk_ox)Musk Oxen$(). To curdle milk, seal it in a $(l:mechanics/barrels)Barrel$() with Rennet for 4 hours.'),
             crafting('firmalife:crafting/cheesecloth', text_contents='Curdled milk must be converted to $(thing)Curds$() by sealing it in a barrel with $(thing)Cheesecloth$(). Cheesecloth is not reusable.'),
@@ -153,7 +153,7 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False):
             drying_recipe('firmalife:drying/cinnamon', 'Cinnamon is made using a drying mat.'),
             empty_last_page()
         )),
-        entry('smoking', 'Smoking', 'tfc:food/venison', pages=(
+        entry('smoking', 'Smoking', 'tfc:textures/item/food/venison.png', pages=(
             text('Wool string is used to hang items for $(thing)Smoking$(). To place it, just use $(item)$(k:key.use)$().'),
             two_tall_block_spotlight('Smoking', 'A piece of string above a firepit.', 'tfc:firepit[lit=true]', 'firmalife:wool_string'),
             text('Smoking is used to preserve $(thing)Meat$() and $(l:mechanics/dairy)Cheese$(). To smoke meat, it must have first been $(thing)Brined$() by sealing it in a $(thing)Barrel$() with $(thing)Brine$(). You may also salt it first. Cheese does not have this requirement.'),
@@ -200,7 +200,7 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False):
             two_tall_block_spotlight('', '', 'firmalife:cured_oven_bottom', 'firmalife:vat'),
             text('Pots and Grills from TFC can be placed on top of a $(thing)Bottom Oven$(). These devices will get heat automatically from the bottom oven. They come with a couple restrictions: Each has only 4 slots, and the pot is only used for making soup. It cannot execute regular pot recipes.'),
         )),
-        entry('bread', 'Bread', 'tfc:food/barley_bread', pages=(
+        entry('bread', 'Bread', 'tfc:textures/item/food/barley_bread.png', pages=(
             text('To make $(thing)Bread$(), one first must get $(thing)Yeast$(). To get your first yeast, seal $(l:tfc:firmalife/drying)Dried Fruit$() in a Barrel of $(thing)Water$(). After three days, $(thing)Yeast Starter$() will form.$(br)From now on, your yeast can be fed by sealing Yeast Starter in a Barrel with $(thing)Flour$(). This causes it to multiply. 1 flour per 100mB of Yeast produces 600mB of Yeast. That\'s a good deal!'),
             crafting('firmalife:crafting/barley_dough', text_contents='Yeast Starter, Sweetener, and Flour can be combined to make $(thing)Dough$(). Dough can be cooked like normal to produce $(thing)Bread!$().'),
             crafting('firmalife:crafting/barley_slice', text_contents='Once baked, you can use a $(thing)knife$() to cut bread into $(thing)slices$(). These can then either be used for $(l:tfc:mechanics/sandwiches)sandwich making$(), or cooked into $(thing)toast$() which can be spread with $(thing)butter$() or preserves.', title='Sliced Bread'),
@@ -244,7 +244,7 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False):
             crafting('firmalife:crafting/pineapple_yarn', text_contents='Pineapple yarn is made by crafting a $(thing)Spindle$() with the fiber.'),
             loom_recipe('firmalife:loom/pineapple_leather', text_content='Finally, pineapple leather can be me woven in a $(l:tfc:mechanics/weaving)Loom$(). It is a plant substitute for regular leather than can be used for knapping, crafting, and other uses!')
         )),
-        entry('chocolate', 'Chocolate', 'firmalife:food/dark_chocolate', pages=(
+        entry('chocolate', 'Chocolate', 'firmalife:textures/item/food/dark_chocolate.png', pages=(
             text('$(thing)Chocolate-making$() takes a few processing steps, for not much of a reward. It\'s important to remember, when playing Firmalife, that being a chocolatier is for your personal enjoyment and pleasure, rather than for trying to extract maximum value from any given input.'),
             text('To start chocolate processing, cocoa beans must first be $(thing)roasted$() in an $(l:tfc:firmalife/ovens)Oven$() to make $(thing)Roasted Cocoa Beans$(). Then, craft the roasted beans with a $(thing)Knife$() to split the beans into $(thing)Cocoa Powder$() and $(thing)Cocoa Powder$().'),
             text('The $(l:tfc:firmalife/mixing_bowl)Mixing Bowl$() is used to mix cocoa powder, butter, and sweetener (sugar or honey) to make $(thing)Chocolate Blends$(). The ratio of cocoa butter to powder determines what comes out:$(br)$(li)1 Powder, 1 Butter, 1 Sweetener: Milk Chocolate$()$(li)2 Powder, 1 Sweetener: Dark Chocolate$()$(li)2 Butter, 1 Sweetener: White Chocolate$()'),
