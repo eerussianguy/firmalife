@@ -2,7 +2,7 @@
   "__comment__": "This file was automatically created by mcresources",
   "name": "Differences from TFC",
   "category": "tfc:firmalife",
-  "icon": "tfc:food/wheat_bread",
+  "icon": "tfc:textures/item/food/wheat_bread.png",
   "pages": [
     {
       "type": "patchouli:text",
