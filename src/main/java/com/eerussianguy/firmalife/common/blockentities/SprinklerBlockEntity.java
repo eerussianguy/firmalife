@@ -5,6 +5,7 @@ import java.util.Queue;
 import java.util.Set;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.blocks.greenhouse.AbstractSprinklerBlock;
+import com.eerussianguy.firmalife.common.blocks.greenhouse.GreenhousePortBlock;
 import com.eerussianguy.firmalife.common.blocks.greenhouse.PumpingStationBlock;
 import com.eerussianguy.firmalife.common.blocks.greenhouse.SprinklerBlock;
 import com.eerussianguy.firmalife.common.blocks.greenhouse.SprinklerPipeBlock;
@@ -105,7 +106,7 @@ public class SprinklerBlockEntity extends TFCBlockEntity implements FluidTankCal
                 }
                 else if (
                     direction.getAxis().isHorizontal() && // be horizontal
-                    prev.state.getValue(DirectionPropertyBlock.getProperty(direction)) && // The current pipe still connects in this direction (to nothing)
+                    isPipeInDirection(prev.state, direction) && // The current pipe still connects in this direction (to nothing)
                     stateAdj.getBlock() == FLBlocks.PUMPING_STATION.get() || stateAdj.getBlock() == FLBlocks.IRRIGATION_TANK.get() && // next to port
                     PumpingStationBlock.hasConnection(level, cursor)
                 )
@@ -120,7 +121,13 @@ public class SprinklerBlockEntity extends TFCBlockEntity implements FluidTankCal
 
     private static boolean isPipe(BlockState state)
     {
-        return state.getBlock() instanceof SprinklerPipeBlock;
+        return state.getBlock() instanceof SprinklerPipeBlock || state.getBlock() instanceof GreenhousePortBlock;
+    }
+
+
+    private static boolean isPipeInDirection(BlockState state, Direction direction)
+    {
+        return state.getBlock() instanceof SprinklerPipeBlock ? state.getValue(DirectionPropertyBlock.getProperty(direction)) : state.getValue(GreenhousePortBlock.AXIS) == direction.getAxis();
     }
 
     private static final int MAX_COST = 32;

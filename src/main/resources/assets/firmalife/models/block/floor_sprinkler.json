@@ -4,6 +4,7 @@
 	"textures": {
 		"2": "firmalife:block/sprinkler_head",
 		"3": "tfc:block/metal/block/copper"
+		"particle": "tfc:block/metal/block/copper"
 	},
 	"elements": [
 		{

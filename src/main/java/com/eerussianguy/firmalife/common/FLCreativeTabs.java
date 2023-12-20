@@ -91,7 +91,8 @@ public final class FLCreativeTabs
         }
         accept(out, FLBlocks.OVEN_BOTTOM);
         accept(out, FLBlocks.OVEN_TOP);
-        accept(out, FLBlocks.CHEDDAR_WHEEL);
+        accept(out, FLBlocks.OVEN_CHIMNEY);
+        accept(out, FLBlocks.OVEN_HOPPER);
         accept(out, FLBlocks.ASHTRAY);
         accept(out, FLBlocks.DRYING_MAT);
         accept(out, FLBlocks.SOLAR_DRIER);

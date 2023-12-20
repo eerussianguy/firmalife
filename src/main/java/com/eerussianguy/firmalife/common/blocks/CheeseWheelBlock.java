@@ -91,6 +91,7 @@ public class CheeseWheelBlock extends BottomSupportedDeviceBlock implements Clim
                 Helpers.playSound(level, pos, getSoundType(state, level, pos, player).getBreakSound());
                 level.setBlockAndUpdate(pos, state.setValue(COUNT, count - 1));
             }
+            return InteractionResult.sidedSuccess(level.isClientSide);
         }
         return InteractionResult.PASS;
     }
