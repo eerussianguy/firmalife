@@ -15,7 +15,7 @@ SIMPLE_FOODS = ('frothy_coconut', 'white_chocolate_blend', 'dark_chocolate_blend
                 'pie_dough', 'filled_pie', 'cooked_pie', 'pizza_dough', 'raw_pizza', 'cooked_pizza', 'shredded_cheese', 'pickled_egg', 'pumpkin_pie_dough', 'raw_pumpkin_pie', 'cooked_pumpkin_pie', 'cocoa_beans', 'roasted_cocoa_beans',
                 'cocoa_butter', 'cocoa_powder', 'toast', 'dark_chocolate', 'milk_chocolate', 'white_chocolate', 'garlic_bread', 'cured_maize', 'nixtamal', 'masa', 'masa_flour', 'corn_tortilla', 'taco_shell', 'burrito', 'taco', 'salsa',
                 'tomato_sauce', 'nightshade_berry', 'stinky_soup', 'toast_with_jam', 'toast_with_butter', 'bacon', 'cooked_bacon', 'tomato_sauce_mix', 'vanilla_ice_cream', 'strawberry_ice_cream', 'chocolate_ice_cream', 'banana_split',
-                'cookie_dough', 'sugar_cookie', 'chocolate_chip_cookie_dough', 'chocolate_chip_cookie', 'cookie_dough_ice_cream', 'maki_roll', 'futo_maki_roll')
+                'cookie_dough', 'sugar_cookie', 'chocolate_chip_cookie_dough', 'chocolate_chip_cookie', 'cookie_dough_ice_cream', 'maki_roll', 'futo_maki_roll', 'hardtack', 'hardtack_dough')
 SIMPLE_SPICES = ('ground_cinnamon', 'cinnamon', 'basil_leaves', 'vanilla')
 SIMPLE_BLOCKS: Dict[str, str] = {
     'sealed_bricks': 'minecraft:mineable/pickaxe',

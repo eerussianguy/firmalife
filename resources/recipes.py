@@ -233,6 +233,7 @@ def generate(rm: ResourceManager):
     oven_recipe(rm, 'taco_shell', not_rotten('firmalife:food/corn_tortilla'), 400, result_item=item_stack_provider('firmalife:food/taco_shell'))
     oven_recipe(rm, 'sugar_cookie', not_rotten('firmalife:food/cookie_dough'), 400, result_item=item_stack_provider('firmalife:food/sugar_cookie'))
     oven_recipe(rm, 'chocolate_chip_cookie', not_rotten('firmalife:food/chocolate_chip_cookie_dough'), 400, result_item=item_stack_provider('firmalife:food/chocolate_chip_cookie'))
+    oven_recipe(rm, 'hardtack', not_rotten('firmalife:food/hardtack_dough'), 400, result_item=item_stack_provider('firmalife:food/hardtack'))
 
     # Firmalife Recipes
     knapping_type(rm, 'pumpkin', '1 #firmalife:pumpkin_knapping', None, 'tfc:item.knapping.leather', False, False, False, 'tfc:pumpkin')
@@ -267,6 +268,7 @@ def generate(rm: ResourceManager):
     mixing_recipe(rm, 'strawberry_ice_cream', ingredients=[not_rotten('firmalife:food/vanilla_ice_cream'), not_rotten('tfc:food/strawberry'), not_rotten('tfc:food/strawberry')], output_item='firmalife:food/strawberry_ice_cream')
     mixing_recipe(rm, 'cookie_dough', ingredients=[not_rotten('#firmalife:foods/raw_eggs'), utils.ingredient('firmalife:spice/vanilla'), not_rotten('firmalife:food/butter'), utils.ingredient('#tfc:sweetener'), not_rotten('#tfc:foods/flour')], output_item='4 firmalife:food/cookie_dough')
     mixing_recipe(rm, 'chocolate_chip_cookie_dough', ingredients=[not_rotten('#firmalife:foods/chocolate'), not_rotten('firmalife:food/cookie_dough'), not_rotten('firmalife:food/cookie_dough'), not_rotten('firmalife:food/cookie_dough'), not_rotten('firmalife:food/cookie_dough')], output_item='4 firmalife:food/chocolate_chip_cookie_dough')
+    mixing_recipe(rm, 'hardtack_dough', ingredients=[not_rotten('#tfc:foods/flour'), utils.ingredient('tfc:powder/salt')], fluid='1000 minecraft:water', output_item='4 firmalife:food/hardtack_dough')
 
     pie_mod = {
         'food': {

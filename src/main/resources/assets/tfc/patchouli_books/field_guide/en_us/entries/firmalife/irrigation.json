@@ -58,6 +58,11 @@
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/oxidized_copper_pipe",
       "text": "Oxidized pipes are the same as regular copper pipes, except they do not connect to the other kind of pipe."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/greenhouse/iron_greenhouse_port",
+      "text": "Greenhouse ports have a single pipe inside of them. They can be used to pass water through the walls of greenhouses!"
     }
   ],
   "read_by_default": true,

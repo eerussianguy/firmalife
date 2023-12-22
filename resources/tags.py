@@ -22,7 +22,7 @@ def generate(rm: ResourceManager):
     rm.item_tag('tfc:usable_on_tool_rack', 'firmalife:spoon', 'firmalife:peel')
     rm.item_tag('pumpkin_knapping', 'tfc:pumpkin')
     rm.item_tag('tfc:any_knapping', '#firmalife:pumpkin_knapping')
-    rm.item_tag('foods/heatable', 'firmalife:food/raw_pizza', 'firmalife:food/filled_pie', 'firmalife:food/raw_pumpkin_pie', 'firmalife:food/corn_tortilla', 'firmalife:food/masa', '#firmalife:foods/slices', 'firmalife:food/cocoa_beans', 'firmalife:food/bacon', 'firmalife:food/cookie_dough', 'firmalife:food/chocolate_chip_cookie_dough')
+    rm.item_tag('foods/heatable', 'firmalife:food/raw_pizza', 'firmalife:food/filled_pie', 'firmalife:food/raw_pumpkin_pie', 'firmalife:food/corn_tortilla', 'firmalife:food/masa', '#firmalife:foods/slices', 'firmalife:food/cocoa_beans', 'firmalife:food/bacon', 'firmalife:food/cookie_dough', 'firmalife:food/chocolate_chip_cookie_dough', 'firmalife:food/hardtack_dough')
     rm.item_tag('foods/dynamic', 'firmalife:food/raw_pizza', 'firmalife:food/filled_pie', 'firmalife:food/cooked_pizza', 'firmalife:food/cooked_pie', 'firmalife:food/burrito', 'firmalife:food/taco', 'firmalife:food/stinky_soup')
     rm.item_tag('foods/washable', 'firmalife:food/filled_pie', 'firmalife:food/cooked_pie', 'firmalife:food/raw_pumpkin_pie', 'minecraft:pumpkin_pie', 'firmalife:food/stinky_soup')
     rm.item_tag('pie_pans', 'firmalife:pie_pan')

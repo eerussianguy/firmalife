@@ -82,6 +82,8 @@ public enum FLFood
     CHOCOLATE_CHIP_COOKIE,
     MAKI_ROLL,
     FUTO_MAKI_ROLL,
+    HARDTACK,
+    HARDTACK_DOUGH,
     ;
 
     private final boolean meat, fast;
