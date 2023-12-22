@@ -2,7 +2,7 @@
   "__comment__": "This file was automatically created by mcresources",
   "name": "Chocolate",
   "category": "tfc:firmalife",
-  "icon": "firmalife:food/dark_chocolate",
+  "icon": "firmalife:textures/item/food/dark_chocolate.png",
   "pages": [
     {
       "type": "patchouli:text",

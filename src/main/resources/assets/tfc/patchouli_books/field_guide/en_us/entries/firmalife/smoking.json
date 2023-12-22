@@ -2,7 +2,7 @@
   "__comment__": "This file was automatically created by mcresources",
   "name": "Smoking",
   "category": "tfc:firmalife",
-  "icon": "tfc:food/venison",
+  "icon": "tfc:textures/item/food/venison.png",
   "pages": [
     {
       "type": "patchouli:text",
