@@ -1,8 +1,8 @@
 
 ### Fixes
 
-- Fixed greenhouse ports not working
-- Fixed missing particles from floor sprinklers
-- Added some info to the jade tooltip / hoe overlay for what causes sprinklers not to work
-- Add some missing creative mode tab items
-- Fix cutting cheese not swinging the players arm and consuming the action.
+- Added hardtack
+- Fixed the floor sprinkler having a broken model
+- Add some more greenhouse documentation to the book
+- Fix a bad link in the book
+- Fix book entries with food icons rotting
