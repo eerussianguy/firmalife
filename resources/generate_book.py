@@ -82,7 +82,7 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False):
             crafting('firmalife:crafting/wood/acacia_hanger', text_contents='The hanger is made from planks and string.'),
         )),
         entry('jarbnet', 'Jarbnets', 'firmalife:wood/jarbnet/pine', pages=(
-            text('The jarbnet is a cosmetic storage block for $(l:tfc:firmalife/jars)Jars$(), Candles, and Jugs. It can be opened and closed by clicking with an empty hand and $(item)$(k:key.sneak)$() pressed. If candles are inside, it can be lit to produce a small amount of light.'),
+            text('The jarbnet is a cosmetic storage block for $(l:tfc:mechanics/jarring)Jars$(), Candles, and Jugs. It can be opened and closed by clicking with an empty hand and $(item)$(k:key.sneak)$() pressed. If candles are inside, it can be lit to produce a small amount of light.'),
             crafting('firmalife:crafting/wood/acacia_jarbnet'),
         )),
         entry('greenhouse', 'Greenhouse', 'firmalife:sealed_bricks', pages=(
