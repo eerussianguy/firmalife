@@ -17,6 +17,11 @@ An addon for TFC.
     versionRange="[0,)"
     ordering="AFTER"
     side="BOTH"
+    [dependencies.firmalife.mc-publish]
+        ignore=false
+        modrinth="terrafirmacraft"
+        curseforge="terrafirmacraft"
+
 [[dependencies.firmalife]]
     modId="forge"
     mandatory=true

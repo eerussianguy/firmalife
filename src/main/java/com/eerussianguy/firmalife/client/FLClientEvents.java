@@ -1,8 +1,10 @@
 package com.eerussianguy.firmalife.client;
 
+import java.util.Objects;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
+import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.client.model.BonsaiPlanterBlockModel;
 import com.eerussianguy.firmalife.client.model.FoodShelfBlockModel;
 import com.eerussianguy.firmalife.client.model.HangerBlockModel;
@@ -30,7 +32,9 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.client.event.*;
+import net.minecraftforge.client.model.DynamicFluidContainerModel;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -45,6 +49,9 @@ import com.eerussianguy.firmalife.common.entities.FLEntities;
 import com.eerussianguy.firmalife.common.misc.FLParticles;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.common.items.FLItems;
+import net.minecraftforge.registries.ForgeRegistries;
+
+import net.dries007.tfc.TerraFirmaCraft;
 import net.dries007.tfc.client.TFCColors;
 import net.dries007.tfc.client.particle.GlintParticleProvider;
 import net.dries007.tfc.common.capabilities.food.FoodCapability;
@@ -134,6 +141,14 @@ public class FLClientEvents
         final ItemColor grassColor = (stack, tintIndex) -> TFCColors.getGrassColor(null, tintIndex);
 
         Stream.of(FLBlocks.BUTTERFLY_GRASS).forEach(reg -> event.register(grassColor, reg.get()));
+
+        for (Fluid fluid : ForgeRegistries.FLUIDS.getValues())
+        {
+            if (Objects.requireNonNull(ForgeRegistries.FLUIDS.getKey(fluid)).getNamespace().equals(FirmaLife.MOD_ID))
+            {
+                event.register(new DynamicFluidContainerModel.Colors(), fluid.getBucket());
+            }
+        }
     }
 
     public static void registerParticleFactories(RegisterParticleProvidersEvent event)

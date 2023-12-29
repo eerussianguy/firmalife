@@ -5,34 +5,25 @@
     {
       "type": "tfc:not_rotten",
       "ingredient": {
-        "item": "tfc:food/soybean"
+        "item": "tfc:food/maize_grain"
       }
     },
     {
       "type": "tfc:not_rotten",
       "ingredient": {
-        "item": "tfc:food/soybean"
+        "item": "tfc:food/maize_grain"
       }
-    },
-    {
-      "item": "tfc:powder/salt"
-    },
-    {
-      "item": "tfc:powder/salt"
     }
   ],
   "fluid_ingredient": {
-    "ingredient": "minecraft:water",
+    "ingredient": "tfc:limewater",
     "amount": 100
   },
-  "duration": 2000,
+  "duration": 3000,
   "temperature": 300,
   "item_output": [
     {
-      "item": "firmalife:food/soy_mixture"
-    },
-    {
-      "item": "firmalife:food/soy_mixture"
+      "item": "firmalife:food/cured_maize"
     }
   ]
 }
