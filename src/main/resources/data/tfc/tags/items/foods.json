@@ -62,7 +62,6 @@
     "firmalife:food/burrito",
     "firmalife:food/taco",
     "firmalife:food/maki_roll",
-    "firmalife:food/futo_maki_roll",
-    "minecraft:pumpkin_pie"
+    "firmalife:food/futo_maki_roll"
   ]
 }

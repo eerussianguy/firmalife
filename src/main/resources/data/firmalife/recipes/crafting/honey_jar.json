@@ -3,7 +3,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "tfc:empty_jar_with_lid"
+      "item": "tfc:empty_jar"
     },
     {
       "item": "firmalife:raw_honey"

@@ -100,7 +100,7 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False):
             crafting('firmalife:crafting/greenhouse/iron_greenhouse_panel_wall', 'firmalife:crafting/greenhouse/iron_greenhouse_port'),
         )),
         entry('irrigation', 'Irrigation', 'firmalife:sprinkler', pages=(
-            text('The $(thing)Sprinkler$() is a device that sprinkles water in a 5x6x5 area centered on the block below the sprinkler block. It automatically fills with water from any fluid tank or pipe placed above it. You know it is working when it drips out water particles. Sprinklers placed on the ground irrigate the same 5x6x5 area above.'),
+            text('The $(thing)Sprinkler$() is a device that sprinkles water in a 5x6x5 area centered on the block below the sprinkler block. You know it is working when it drips out water particles. Sprinklers placed facing up irrigate the same 5x6x5 area above.'),
             anvil_recipe('firmalife:anvil/sprinkler', 'The sprinkler is made with a $(thing)Copper Sheet$().'),
             text('Sprinklers must be connected to a system of pipes that feed it water in order to work. This is done by connecting a series of $(thing)Copper Pipes$() to them. Copper Pipes transport water up to 32 blocks to a sprinkler. They are connected to $(thing)Irrigation Tanks$() or $(thing)Pumping Stations$().'),
             anvil_recipe('firmalife:anvil/copper_pipe', 'The copper pipe is made with a sheet.'),

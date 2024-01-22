@@ -73,8 +73,8 @@ public class FLItems
     public static final RegistryObject<Item> COMPOST_JAR = register("jar/compost", () -> new JarItem(new Item.Properties(), FLHelpers.identifier("block/jar/compost"), true));
     public static final RegistryObject<Item> ROTTEN_COMPOST_JAR = register("jar/rotten_compost", () -> new JarItem(new Item.Properties(), FLHelpers.identifier("block/jar/rotten_compost"), true));
     public static final RegistryObject<Item> GUANO_JAR = register("jar/guano", () -> new JarItem(new Item.Properties(), FLHelpers.identifier("block/jar/guano"), true));
-    public static final Map<FLFruit, RegistryObject<Item>> FL_FRUIT_PRESERVES = Helpers.mapOfKeys(FLFruit.class, food -> register("jar/" + food.getSerializedName() , () -> new JarItem(new Item.Properties(), FLHelpers.identifier("block/jar/" + food.getSerializedName()), true)));
-    public static final Map<FLFruit, RegistryObject<Item>> FL_UNSEALED_FRUIT_PRESERVES = Helpers.mapOfKeys(FLFruit.class, food -> register("jar/" + food.getSerializedName() + "_unsealed" , () -> new JarItem(new Item.Properties(), FLHelpers.identifier("block/jar/" + food.getSerializedName()), false)));
+    public static final Map<FLFruit, RegistryObject<Item>> FL_FRUIT_PRESERVES = Helpers.mapOfKeys(FLFruit.class, food -> register("jar/" + food.getSerializedName() , () -> new JarItem(new Item.Properties(), FLHelpers.identifier("block/jar/" + food.getSerializedName()), false)));
+    public static final Map<FLFruit, RegistryObject<Item>> FL_UNSEALED_FRUIT_PRESERVES = Helpers.mapOfKeys(FLFruit.class, food -> register("jar/" + food.getSerializedName() + "_unsealed" , () -> new JarItem(new Item.Properties(), FLHelpers.identifier("block/jar/" + food.getSerializedName()), true)));
 
 
     public static final RegistryObject<Item> FILLED_PIE = register("food/filled_pie"); // inedible

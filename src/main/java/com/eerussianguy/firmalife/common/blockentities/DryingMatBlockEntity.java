@@ -31,7 +31,7 @@ public class DryingMatBlockEntity extends SimpleItemRecipeBlockEntity<DryingReci
     {
         if (mat.needsRecipeUpdate)
         {
-            mat.resetCounter();
+            mat.updateCache();
         }
         // reset when it rains
         if (level.getGameTime() % 60 == 0 && EnvironmentHelpers.isRainingOrSnowing(level, pos) && level.canSeeSky(pos))

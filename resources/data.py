@@ -112,7 +112,7 @@ def generate(rm: ResourceManager):
     food_item(rm, 'toast_with_jam', 'firmalife:food/toast_with_jam', Category.other, 4, 2, 1, 2, grain=1, fruit=0.75)
     food_item(rm, 'toast_with_butter', 'firmalife:food/toast_with_butter', Category.other, 4, 2, 1, 2, grain=1, dairy=0.25)
     food_item(rm, 'bacon', 'firmalife:food/bacon', Category.meat, 4, 0, 0, 2, protein=0.5)
-    food_item(rm, 'cooked_bacon', 'firmalife:food/cooked_bacon', Category.cooked_meat, 4, 2, 0, 2, protein=0.5)
+    food_item(rm, 'cooked_bacon', 'firmalife:food/cooked_bacon', Category.cooked_meat, 4, 2, 0, 2, protein=0.75)
     food_item(rm, 'garlic_bread', 'firmalife:food/garlic_bread', Category.other, 4, 2, 0, 2, grain=1, veg=1, dairy=0.1)
     food_item(rm, 'flatbreads', '#firmalife:foods/flatbreads', Category.grain, 4, 0.75, 0, 1, grain=0.5)
     food_item(rm, 'cheeses', '#firmalife:foods/cheeses', Category.dairy, 4, 2, 0, 0.3, dairy=3)
@@ -162,10 +162,6 @@ def generate(rm: ResourceManager):
     dynamic_food_item(rm, 'taco', 'firmalife:food/taco', 'dynamic')
     dynamic_food_item(rm, 'maki_roll', 'firmalife:food/maki_roll', 'dynamic')
     dynamic_food_item(rm, 'futo_maki_roll', 'firmalife:food/futo_maki_roll', 'dynamic')
-
-    rm.domain = 'tfc'
-    dynamic_food_item(rm, 'pumpkin_pie', 'minecraft:pumpkin_pie', 'dynamic_bowl')
-    rm.domain = 'firmalife'
 
     item_size(rm, 'beehive_frame', 'firmalife:beehive_frame', Size.very_small, Weight.very_heavy)
     item_size(rm, 'cheese_wheels', '#firmalife:cheese_wheels', Size.very_large, Weight.very_heavy)

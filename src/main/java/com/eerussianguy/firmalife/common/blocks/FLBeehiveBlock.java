@@ -104,7 +104,7 @@ public class FLBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBloc
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
     {
         ItemStack held = player.getItemInHand(hand);
-        if (Helpers.isItem(held, TFCItems.EMPTY_JAR_WITH_LID.get()) && !player.isShiftKeyDown())
+        if (Helpers.isItem(held, TFCItems.EMPTY_JAR.get()) && !player.isShiftKeyDown())
         {
             level.getBlockEntity(pos, FLBlockEntities.BEEHIVE.get()).ifPresent(hive -> {
                 if (hive.takeHoney(1) > 0)
@@ -136,7 +136,7 @@ public class FLBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBloc
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random)
     {
-        if (state.getValue(BEES) && level.getGameTime() % 24000 < 12000)
+        if (state.getValue(BEES) && level.getGameTime() % 24000 > 12000)
         {
             SwarmEffect.particles(level, pos, random);
         }

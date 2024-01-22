@@ -164,7 +164,6 @@ def generate(rm: ResourceManager):
     for jar, remainder, ing in JARS:
         make_jar(rm, jar, remainder, ing)
     for fruit in FL_FRUITS:
-        make_jar(rm, fruit)
         ing = not_rotten(has_trait('firmalife:food/%s' % fruit, 'firmalife:dried', True))
         vat_recipe(rm, '%s_jar' % fruit, ing, '500 firmalife:sugar_water', output_fluid='500 firmalife:fruity_fluid', jar='firmalife:jar/%s' % fruit)
         for count in (2, 3, 4):
@@ -434,12 +433,13 @@ def collapse_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, i
         'copy_input': copy_input
     })
 
-def make_jar(rm: ResourceManager, jar: str, remainder: int = 1, ing: str = None):
+def make_jar(rm: ResourceManager, jar: str, remainder: int = 1, ing: str = None, sealed: bool = False):
+    jar_name = 'tfc:empty_jar'
     if ing is not None:
         if remainder == 8:
-            rm.crafting_shaped('crafting/%s_jar' % jar, ['XXX', 'XYX', 'XXX'], {'X': ing, 'Y': 'tfc:empty_jar_with_lid'}, 'firmalife:jar/%s' % jar).with_advancement('tfc:empty_jar')
+            rm.crafting_shaped('crafting/%s_jar' % jar, ['XXX', 'XYX', 'XXX'], {'X': ing, 'Y': jar_name}, 'firmalife:jar/%s' % jar).with_advancement('tfc:empty_jar')
         elif remainder == 1:
-            rm.crafting_shapeless('crafting/%s_jar' % jar, ('tfc:empty_jar_with_lid', ing), 'firmalife:jar/%s' % jar).with_advancement('tfc:empty_jar')
+            rm.crafting_shapeless('crafting/%s_jar' % jar, (jar_name, ing), 'firmalife:jar/%s' % jar).with_advancement('tfc:empty_jar')
         rm.crafting_shapeless('crafting/%s_jar_open' % jar, ('firmalife:jar/%s' % jar), (remainder, ing))
 
 def fluid_item_ingredient(fluid: Json, delegate: Json = None):

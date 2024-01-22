@@ -32,7 +32,7 @@ public class FoodShelfBlockModel extends SimpleDynamicBlockModel<FoodShelfBlockE
         final ItemStack stack = shelf.getCapability(Capabilities.ITEM).map(cap -> cap.getStackInSlot(0)).orElse(ItemStack.EMPTY);
         if (stack.isEmpty() || shelf.getLevel() == null) return;
 
-        int totalDraws = 16;
+        int totalDraws = Math.min(stack.getCount(), 16);
         int maxStackSize = Mth.clamp(stack.getItem().getMaxStackSize(stack), 1, 64);
         float filled = (float) stack.getCount() / (float) maxStackSize;
 
