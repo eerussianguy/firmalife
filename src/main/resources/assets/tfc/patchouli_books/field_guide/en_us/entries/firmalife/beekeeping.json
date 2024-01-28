@@ -24,7 +24,7 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/honey_jar_open",
-      "text": "Bees also produce $(thing)Honey$(). Using $(item)$(k:key.use)$() with an $(l:tfc:firmalife/jar)Empty Jar$() on a hive that visibly has honey gives you a $(thing)Honey Jar$(). Opening a Honey Jar gives you $(thing)Raw Honey$(), a $(thing)Sugar$() substitute."
+      "text": "Bees also produce $(thing)Honey$(). Using $(item)$(k:key.use)$() with an Empty Jar on a hive that visibly has honey gives you a $(thing)Honey Jar$(). Opening a Honey Jar gives you $(thing)Raw Honey$(), a $(thing)Sugar$() substitute."
     },
     {
       "type": "patchouli:text",

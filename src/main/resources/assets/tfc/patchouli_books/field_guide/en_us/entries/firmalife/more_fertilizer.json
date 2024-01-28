@@ -11,7 +11,7 @@
     {
       "type": "tfc:drying_recipe",
       "recipe": "firmalife:drying/dry_grass",
-      "text": "Thatch can be $(l:tfc:firmalife/drying)Dried$() into $(thing)Dry Grass$(), which can be used in a Composter as a brown item."
+      "text": "Thatch can be $(l:firmalife/drying)Dried$() into $(thing)Dry Grass$(), which can be used in a Composter as a brown item."
     },
     {
       "type": "patchouli:text",

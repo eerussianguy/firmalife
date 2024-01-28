@@ -1,0 +1,66 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "ハーブとスパイス",
+  "category": "tfc:firmalife",
+  "icon": "firmalife:spice/basil_leaves",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Firmalifeには、自分で採取して育てることができる、料理効果のある小さな植物がたくさんあります。$(br2)これらの植物を入手する最も簡単な方法は、$(thing)シードボール$()を使うことです。$(br2)シードボールを使うには、雪玉のように$(item)$(k:key.use)$()して投げるだけ。$(br)すると、その場所に$(thing)バタフライグラス$()が出現します。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/seed_ball",
+      "text": "シードボールのレシピには、$(l:tfc:firmalife/more_fertilizer)コンポスト$()と4粒の$(thing)種$()が必要です。"
+    },
+    {
+      "type": "patchouli:multiblock",
+      "multiblock": {
+        "pattern": [
+          [
+            "X"
+          ],
+          [
+            "0"
+          ]
+        ],
+        "mapping": {
+          "X": "firmalife:plant/butterfly_grass"
+        }
+      },
+      "name": "",
+      "text": "バタフライグラスの苗。",
+      "enable_visualize": false
+    },
+    {
+      "type": "patchouli:text",
+      "text": "バタフライグラスは時間とともに成熟します。$(br2)成熟すると、周囲のブロックに広がったり、新しいものに変化するチャンスがあります。$(br2)他の草ブロックによって拡散されたバタフライグラスブロックは、それ以上拡散することはありません。"
+    },
+    {
+      "type": "patchouli:multiblock",
+      "multiblock": {
+        "pattern": [
+          [
+            "X"
+          ],
+          [
+            "0"
+          ]
+        ],
+        "mapping": {
+          "X": "firmalife:plant/basil"
+        }
+      },
+      "name": "",
+      "text": "バジルはバタフライグラスから出現する植物のひとつです。",
+      "enable_visualize": false
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/basil_leaves",
+      "text": "バジルの葉はピザに使います。"
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 19
+}

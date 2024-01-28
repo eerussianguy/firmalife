@@ -1,0 +1,31 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "パン",
+  "category": "tfc:firmalife",
+  "icon": "tfc:textures/item/food/barley_bread.png",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(thing)パン$()を作るには、まず$(thing)イースト$()を手に入れましょう。最初のイーストを手に入れるには、$(l:tfc:firmalife/drying)ドライフルーツ$()を$(thing)水$()の入った樽に入れ密封します。3日後、$(thing)イーストスターター$()が形成されます。これ以降、イーストスターターは$(thing)小麦粉$()の入った樽に入れ密封することで増やせます。イースト100MBに対して小麦粉1個で600MBのイーストができるため、とってもお得！"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/barley_dough",
+      "text": "イーストスターター、甘味料、小麦粉を合わせて$(thing)生地$()を作ることができます。$(br2)生地は通常通り調理して$(thing)パン$()を作ることができます。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/barley_slice",
+      "title": "スライスしたパン",
+      "text": "パンが焼き上がったら$(thing)ナイフ$()で切り分けられます。$(br2)$(l:tfc:mechanics/sandwiches)サンドイッチ$()にしたり、$(thing)バター$()やジャムを塗った$(thing)トースト$()にしたりできます。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/toast_with_butter",
+      "recipe2": "firmalife:crafting/toast_with_jam",
+      "title": "トースト"
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 16
+}

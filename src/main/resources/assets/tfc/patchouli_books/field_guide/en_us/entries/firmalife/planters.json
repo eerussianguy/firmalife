@@ -7,7 +7,7 @@
     {
       "type": "patchouli:text",
       "anchor": "planters",
-      "text": "$(thing)Planters$() are used to grow crops inside a $(l:tfc:firmalife/greenhouse)Greenhouse$(). To see the status of a planter, you can look at it while holding a $(thing)Hoe$(). Crops in planters consume $(l:mechanics/fertilizers)Nutrients$() in a similar way to $(l:mechanics/crops)Crops$(). Planters should be placed inside a valid Greenhouse and activated with a $(l:tfc:firmalife/climate_station)Climate Station$(). Planters need at least some natural sunlight to work."
+      "text": "$(thing)Planters$() are used to grow crops inside a $(l:firmalife/greenhouse)Greenhouse$(). To see the status of a planter, you can look at it while holding a $(thing)Hoe$(). Crops in planters consume $(l:mechanics/fertilizers)Nutrients$() in a similar way to $(l:mechanics/crops)Crops$(). Planters should be placed inside a valid Greenhouse and activated with a $(l:firmalife/climate_station)Climate Station$(). Planters need at least some natural sunlight to work."
     },
     {
       "type": "patchouli:crafting",

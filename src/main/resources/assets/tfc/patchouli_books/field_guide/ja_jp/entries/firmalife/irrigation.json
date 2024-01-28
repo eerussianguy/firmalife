@@ -1,0 +1,70 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "耕作地を潤す",
+  "category": "tfc:firmalife",
+  "icon": "firmalife:sprinkler",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "スプリンクラーは、スプリンクラーの下のブロックを中心に5x6x5の範囲に水を撒く装置です。$(br2)水の粒が滴り落ちていれば、機能しています。$(br2)上向きに置かれたスプリンクラーは、同じ5x6x5の面積を潤します。"
+    },
+    {
+      "type": "tfc:anvil_recipe",
+      "recipe": "firmalife:anvil/sprinkler",
+      "text": "スプリンクラーは$(thing)銅のプレート$()で作られます。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "スプリンクラーを作動させるには、水を供給するパイプシステムに接続する必要があります。$(br2)そのためには、スプリンクラーを$(thing)銅パイプ$()で$(thing)農業用タンク$()または$(thing)ポンプステーション$()と接続します。$(br2)銅パイプは、スプリンクラーまで最大32ブロック離れた所から水を送ります。"
+    },
+    {
+      "type": "tfc:anvil_recipe",
+      "recipe": "firmalife:anvil/copper_pipe",
+      "text": "銅パイプはシートで作られます。"
+    },
+    {
+      "type": "patchouli:multiblock",
+      "multiblock": {
+        "pattern": [
+          [
+            "X"
+          ],
+          [
+            "Y"
+          ],
+          [
+            "0"
+          ]
+        ],
+        "mapping": {
+          "X": "firmalife:irrigation_tank",
+          "Y": "firmalife:pumping_station"
+        }
+      },
+      "name": "",
+      "text": "",
+      "enable_visualize": false
+    },
+    {
+      "type": "patchouli:text",
+      "text": "ポンプステーションを作動させるには、水源ブロックの上に設置し、機械動力に接続しなければなりません。$(br2)ポンプステーションの上には農業用タンクを最大3ブロック積み上げることができ、側面にあるポートから水を供給できます。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/pumping_station",
+      "recipe2": "firmalife:crafting/irrigation_tank"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/oxidized_copper_pipe",
+      "text": "$(br)酸化したパイプは、他の種類のパイプと接続しないことを除けば、通常の銅パイプと同じです。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/greenhouse/iron_greenhouse_port",
+      "text": "$(br)温室ポートには、中に1本のパイプが入っています。温室の壁に水を通すために使用されます！"
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 8
+}

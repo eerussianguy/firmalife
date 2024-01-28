@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The $(thing)Climate Station$() is a block that manages the $(l:tfc:firmalife/greenhouse)Greenhouse$() and the $(l:tfc:firmalife/cellar)Cellar$(). When its corresponding multiblock is built correctly, it will show water on its sides. When it is invalid, it will show ice. The Climate Station must be placed on the first level of the multiblock, touching a wall."
+      "text": " $(thing)气象站$() 是一个方块，它能控制 $(l:tfc:firmalife/greenhouse)温室$() 与 $(l:tfc:firmalife/cellar)地窖$(). 当其相应的多方块结构被正确建造时，其两个侧面将显示水的样子。 当它没有起作用时，侧面将会是冰的样子. 气候站必须放置在多方块结构的第一层，并与墙壁接触。"
     },
     {
       "type": "tfc:multimultiblock",
@@ -42,13 +42,13 @@
     },
     {
       "type": "patchouli:text",
-      "text": "$(li)It updates periodically on its own, or when placed/broken.$()$(li)When a climate station updates, it tells all the blocks inside the multiblock that they can operate. For example, it lets $(l:tfc:firmalife/cheese)Cheese$() begin aging.$()$(li)Press $(item)$(k:key.use)$() to force update the Climate Station and the blocks inside the multiblock.",
+      "text": "$(li)它会自行定期更新状态，放置或破坏该方块时也会更新状态。$()$(li)当气象站的状态更新时，它会使多方块结构内的所有方块开始正常的进行各种进程。举个例子，它能让$(l:tfc:firmalife/cheese)奶酪$()开始老化。$()$(li)使用$(item)$(k:key.use)$()点击它以强制使其更新整个多方块结构内所有方块的状态。",
       "title": "气象站提示"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/climate_station",
-      "text": "气象站的合成方法."
+      "text": "气象站的合成方法。"
     }
   ],
   "read_by_default": true,

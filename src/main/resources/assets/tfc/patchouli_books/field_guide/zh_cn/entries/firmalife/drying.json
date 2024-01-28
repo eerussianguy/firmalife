@@ -20,7 +20,7 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/solar_drier",
-      "text": "The solar drier functions the same as the drying mat, but 12x as fast."
+      "text": "太阳作为烘干机的功能与烘干垫相同，但速度是烘干垫的12倍."
     },
     {
       "type": "tfc:drying_recipe",

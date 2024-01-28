@@ -1,0 +1,41 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "ベリーの茂み",
+  "category": "tfc:firmalife",
+  "icon": "firmalife:plant/pineapple_bush",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Firmalifeは、面白い使い方をするベリー類の茂みを追加しました。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "firmalife:food/nightshade_berry",
+      "link_recipes": false,
+      "text": "まずはナイトシェードです。$(br2)ナイトシェードは毒のあるベリーです。$(br2)スープにすると毒のある$(thing)臭いスープ$()になります。$(br2)雨量200～400mm、気温7～24℃の森林に生息しています。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "firmalife:food/pineapple",
+      "link_recipes": false,
+      "text": "パイナップルの茂みは、降雨量250～500mm、気温20～32℃の森林に生息しています。$(br2)パイナップルは、$(thing)人工皮革$()に加工できることを除けば、他の果物と同じです。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/pineapple_fiber",
+      "text": "$(l:tfc:firmalife/drying)乾燥$()させたパイナップルは人工繊維に加工できます。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/pineapple_yarn",
+      "text": "人工織り糸は、$(thing)紡錘$()によって作れます。"
+    },
+    {
+      "type": "tfc:loom_recipe",
+      "recipe": "firmalife:loom/pineapple_leather",
+      "text": "最後に、人工皮革は$(l:tfc:mechanics/weaving)織機$()で編むことができます。$(br2)人工皮革は、通常のレザーの代用品であり、革の加工やクラフト、その他の用途に使用できます！"
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 21
+}

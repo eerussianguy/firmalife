@@ -1,39 +1,39 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "name": "Berry Bushes",
+  "name": "浆果丛",
   "category": "tfc:firmalife",
   "icon": "firmalife:plant/pineapple_bush",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Firmalife adds some berry bushes with interesting uses."
+      "text": "Firmalife添加了一些有趣用途的浆果灌木."
     },
     {
       "type": "patchouli:spotlight",
       "item": "firmalife:food/nightshade_berry",
       "link_recipes": false,
-      "text": "First is nightshade. Nightshade is a poisonous berry. When put into soup, it makes poisonous $(thing)Stinky Soup$(). It is found between 200-400mm of rain and 7-24 C temperature in forests."
+      "text": "第一个是夜颠茄. 夜颠茄是一个有毒的浆果. 当将其放入汤中时, 它会制造除一碗有毒的 $(thing)很臭的汤$(). 它可以在降雨量在200-400毫米之间、温度在7-24摄氏度区间内的森林里找到."
     },
     {
       "type": "patchouli:spotlight",
       "item": "firmalife:food/pineapple",
       "link_recipes": false,
-      "text": "Pineapple bushes are found 250-500mm of rainfall and 20-32 C temperature in forests. Pineapples are like any other fruit, except that they can be made into $(thing)Pineapple Leather$()."
+      "text": "凤梨灌木丛能在降雨量介于250-500mm之间与温度介于20-32摄氏度区间内的森林中找到。凤梨特性基本与其他水果一致，除了他们能被制作成 $(thing)凤梨皮$()."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/pineapple_fiber",
-      "text": "Pineapples that have been $(l:tfc:firmalife/drying)Dried$() can be crafted into pineapple fiber."
+      "text": " $(l:tfc:firmalife/drying)已经干了$()的凤梨能被制成菠萝纤维."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/pineapple_yarn",
-      "text": "Pineapple yarn is made by crafting a $(thing)Spindle$() with the fiber."
+      "text": "菠萝丝是通过使用 $(thing)纺锤$() 与纤维合成得到的."
     },
     {
       "type": "tfc:loom_recipe",
       "recipe": "firmalife:loom/pineapple_leather",
-      "text": "Finally, pineapple leather can be me woven in a $(l:tfc:mechanics/weaving)Loom$(). It is a plant substitute for regular leather than can be used for knapping, crafting, and other uses!"
+      "text": "最后,菠萝皮能在 $(l:tfc:mechanics/weaving)织布机$()中被加工. 它是普通皮革的植物替代品，可用于装饰、合成或其他用途！"
     }
   ],
   "read_by_default": true,

@@ -15,12 +15,12 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/cheesecloth",
-      "text": "凝固的牛奶和$(thing)奶酪布$()一起密封在大桶中就可以制成$(thing)凝乳$(). 奶酪布是不能重复使用的."
+      "text": "凝固的牛奶和$(thing)奶酪布$()一起密封在大桶中就可以制成$(thing)凝乳$()。奶酪布是不能重复使用的."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/cheddar_wheel",
-      "text": "现在你可以制造$(thing)干奶酪$()了. 你可以用$(thing)牦牛奶凝乳$()制作$(thing)Rajya Metok奶酪$(), 可以用$(thing)山羊奶凝乳$()制作$(thing)Chevre奶酪$(), 以及用$(thing)牛奶凝乳$()制造$(thing)Cheddar奶酪$()."
+      "text": "现在你可以制造$(thing)干奶酪$()了。你可以用$(thing)牦牛奶凝乳$()制作$(thing)Rajya Metok奶酪$()，可以用$(thing)山羊奶凝乳$()制作$(thing)Chevre奶酪$()，以及用$(thing)牛奶凝乳$()制造$(thing)Cheddar奶酪$()。"
     },
     {
       "type": "patchouli:crafting",
@@ -34,7 +34,7 @@
     {
       "type": "patchouli:text",
       "anchor": "aging",
-      "text": "Cheese wheels are blocks that should be placed in order to help them last. To improve their quality and shelf life, cheese wheels should be $(thing)Aged$() in a $(l:tfc:firmalife/cellar)Cellar$(). In order to obtain edible cheese from a cheese wheel, it should be sliced off the wheel by clicking $(item)$(k:key.use)$() with a $(thing)Knife$(). If the block is simply broken, the aging is lost!"
+      "text": "奶酪轮是应该被放置的方块，以帮助它们能持续更长时间。为了提高其质量和保质期，奶酪轮应该 $(thing)老化$() 在一个 $(l:tfc:firmalife/cellar)地窖$()中. 为了从奶酪轮中获得可食用的奶酪, 应该通过点击 $(item)$(k:key.use)$()用一把 $(thing)刀$()从奶酪轮中切块. 如果奶酪块破损了，老化就消失了!"
     },
     {
       "type": "tfc:multimultiblock",

@@ -23,7 +23,7 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/pineapple_fiber",
-      "text": "Pineapples that have been $(l:tfc:firmalife/drying)Dried$() can be crafted into pineapple fiber."
+      "text": "Pineapples that have been $(l:firmalife/drying)Dried$() can be crafted into pineapple fiber."
     },
     {
       "type": "patchouli:crafting",

@@ -1,17 +1,17 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "name": "Hangers",
+  "name": "吊架",
   "category": "tfc:firmalife",
   "icon": "firmalife:wood/hanger/pine",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The $(thing)Hanger$() is a device for storing meat or garlic. It can only be used in a valid $(l:tfc:firmalife/cellar)Cellar$(). Food shelves can contain a full stack of one item. Adding and removing the item can be done with $(item)$(k:key.use)$(). Items in valid food shelves receive a decay modifier that is better than shelves or vessels."
+      "text": "$(thing)吊架$() 是一个用于存储肉类与大蒜的设备.它仅能在一个有效的 $(l:tfc:firmalife/cellar)地窖$()中起作用. 食物橱架可以容纳整整一组的单个物品. 增添与移除物品能通过按 $(item)$(k:key.use)$(). 一个有效的食物橱架上的食物会比在容器的得到更好的存储."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/wood/acacia_hanger",
-      "text": "The hanger is made from planks and string."
+      "text": "吊架是通过木板和线合成的。"
     }
   ],
   "read_by_default": true,

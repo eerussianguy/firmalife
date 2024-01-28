@@ -1,0 +1,43 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "乾燥",
+  "category": "tfc:firmalife",
+  "icon": "firmalife:drying_mat",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(thing)乾燥マット$()はアイテムを乾燥させるために使います。$(br2)果樹の葉を砕いて得られる$(thing)フルーツリーフ$()を使用して作成できます。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/drying_mat",
+      "text": "乾燥マットのレシピ。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "乾燥マットの使い方は、天日干しにしたいものを持ち$(item)$(k:key.use)$()で配置します。$(br2)半日もすれば乾きますが、雨が降った場合は乾燥工程をやり直す必要があります。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/solar_drier",
+      "text": "ソーラー乾燥機の機能は乾燥マットと同じですが、速度が12倍になります。"
+    },
+    {
+      "type": "tfc:drying_recipe",
+      "recipe": "firmalife:drying/drying_fruit",
+      "text": "果物を乾燥させるのは、ドライマットの一般的な使い方です。$(br2)乾燥させた果物は鮮度が長持ちし、さまざまなレシピに使用されます。"
+    },
+    {
+      "type": "tfc:drying_recipe",
+      "recipe": "firmalife:drying/tofu",
+      "text": "豆腐は乾燥マットを使って作られます。"
+    },
+    {
+      "type": "tfc:drying_recipe",
+      "recipe": "firmalife:drying/cinnamon",
+      "text": "シナモンは乾燥マットを使って作られます。"
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 12
+}

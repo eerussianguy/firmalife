@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "To make $(thing)Bread$(), one first must get $(thing)Yeast$(). To get your first yeast, seal $(l:tfc:firmalife/drying)Dried Fruit$() in a Barrel of $(thing)Water$(). After three days, $(thing)Yeast Starter$() will form.$(br)From now on, your yeast can be fed by sealing Yeast Starter in a Barrel with $(thing)Flour$(). This causes it to multiply. 1 flour per 100mB of Yeast produces 600mB of Yeast. That's a good deal!"
+      "text": "想要制作 $(thing)面包$(), 第一要务就是获取 $(thing)酵母$(). 要获取你的第一个酵母,封存 $(l:tfc:firmalife/drying)干枯的植物$() 在一个装满 $(thing)水$()的木桶中. 许多天后, $(thing)酵母发酵剂$() 将会形成.$(br)从现在起，你的酵母可以通过用 $(thing)面粉$()将酵母发酵剂密封在桶里来喂养。 这导致它成倍增加。每100毫升酵母1个面粉产生600毫升酵母。这可是个好生意！"
     },
     {
       "type": "patchouli:crafting",
@@ -16,14 +16,14 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/barley_slice",
-      "title": "Sliced Bread",
-      "text": "Once baked, you can use a $(thing)knife$() to cut bread into $(thing)slices$(). These can then either be used for $(l:tfc:mechanics/sandwiches)sandwich making$(), or cooked into $(thing)toast$() which can be spread with $(thing)butter$() or preserves."
+      "title": "切片面包",
+      "text": "烘烤后, 你就可以用一把 $(thing)刀$() 以将面包切成 $(thing)切片$(). 这些随后也可以用在 $(l:tfc:mechanics/sandwiches)三明治制作$()中, 或被烹饪成 $(thing)吐司$() ，它可以涂上 $(thing)黄油$()直接吃或者保存起来。"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/toast_with_butter",
       "recipe2": "firmalife:crafting/toast_with_jam",
-      "title": "Toast"
+      "title": "吐司"
     }
   ],
   "read_by_default": true,

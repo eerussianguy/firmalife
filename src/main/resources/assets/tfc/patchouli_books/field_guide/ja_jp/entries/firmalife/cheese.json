@@ -1,0 +1,87 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "チーズ",
+  "category": "tfc:firmalife",
+  "icon": "firmalife:textures/item/food/gouda.png",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Firmalifeでの$(thing)チーズ$()作りは、バニラのTFCよりも少し複雑です。$(br2)追加されたミルクは2種類あり、$(thing)ヤクミルク$()と$(thing)ヤギミルク$()です。$(br2)これらはそれぞれ$(l:mechanics/animal_husbandry#yak)ヤク$()と$(l:mechanics/animal_husbandry#goat)ヤギ$()から搾乳されます。$(br2)$(l:mechanics/animal_husbandry#cow)牛$()からも、今まで通り牛乳がとれます。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "いつものように、まず牛乳を$(thing)凝乳$()させる必要があります。$(br)牛乳を凝乳させるには$(thing)レンネット$()を使用します。$(br2)$(thing)レンネット$()は反芻動物の胃から取れます。$(br)$(l:mechanics/animal_husbandry#yak)ヤク$()、$(l:mechanics/animal_husbandry#cow)ウシ$()、$(l:mechanics/animal_husbandry#sheep)ヒツジ$()、$(l:mechanics/animal_husbandry#goat)ヤギ$()、$(l:mechanics/animal_husbandry#musk_ox)ジャコウウシ$()などがこれにあたります。$(br2)牛乳を凝乳させるには、牛乳とレンネットを入れた$(l:mechanics/barrels)樽$()を4時間密封することで得られます。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/cheesecloth",
+      "text": "凝乳は、$(thing)チーズクロス$()を樽に密封して$(thing)カード$()に変える必要があります。$(br2)残念ながらチーズクロスは再利用できません。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/cheddar_wheel",
+      "text": "これで$(thing)ドライチーズ$()を作る準備が整いました。$(br2)$(thing)ヤクの凝乳$()から$(thing)ラジャ・メトック$()、$(br)$(thing)ヤギの凝乳$()から$(thing)シェーブル$()、$(br)$(thing)牛乳の凝乳$()から$(thing)チェダー$()$(br)を作ることができます。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/chevre_wheel",
+      "recipe2": "firmalife:crafting/rajya_metok_wheel"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "もうひとつの選択肢は、$(thing)ウェットチーズ$()が作れます。$(br2)凝乳を$(thing)塩水$()の樽に密封して作られます。$(br2)$(thing)ヤクの凝乳$()から$(thing)ショーシャ$()、$(br)$(thing)ヤギの凝乳$()から$(thing)フェタ$()、$(br)$(thing)牛乳の凝乳$()から$(thing)ゴーダ$()$(br2)を作ることができます。"
+    },
+    {
+      "type": "patchouli:text",
+      "anchor": "aging",
+      "text": "チーズホイールは、長持ちさせるためにワールドに設置するブロックです。$(br)品質と保存期間を向上させるため、チーズホイールは$(l:tfc:firmalife/cellar)貯蔵庫$()で$(thing)熟成$()させる必要があります。$(br)チーズホイールから食用チーズを得るには、ナイフを持ちチーズホイールに$(item)$(k:key.use)$()をして切り取ります。$(br)ブロックを壊してしまうと、熟成が失われてしまうので注意してください！"
+    },
+    {
+      "type": "tfc:multimultiblock",
+      "text": "ゴーダの熟成段階： $(thing)新鮮$()、$(thing)熟成$()、$(thing)完熟$()",
+      "multiblocks": [
+        {
+          "pattern": [
+            [
+              "X"
+            ],
+            [
+              "0"
+            ]
+          ],
+          "mapping": {
+            "X": "firmalife:gouda_wheel[age=fresh]"
+          }
+        },
+        {
+          "pattern": [
+            [
+              "X"
+            ],
+            [
+              "0"
+            ]
+          ],
+          "mapping": {
+            "X": "firmalife:gouda_wheel[age=aged]"
+          }
+        },
+        {
+          "pattern": [
+            [
+              "X"
+            ],
+            [
+              "0"
+            ]
+          ],
+          "mapping": {
+            "X": "firmalife:gouda_wheel[age=vintage]"
+          }
+        }
+      ]
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 1
+}

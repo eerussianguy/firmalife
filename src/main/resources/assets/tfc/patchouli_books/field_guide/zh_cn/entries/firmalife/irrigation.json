@@ -1,26 +1,26 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "name": "Irrigation",
+  "name": "灌溉",
   "category": "tfc:firmalife",
   "icon": "firmalife:sprinkler",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The $(thing)Sprinkler$() is a device that sprinkles water in a 5x6x5 area centered on the block below the sprinkler block. You know it is working when it drips out water particles. Sprinklers placed facing up irrigate the same 5x6x5 area above."
+      "text": "$(thing)洒水器$() 是一种可以将水喷洒在以其下方方块为中心的5x6x5区域的装置。 它会自动从上方的任何水箱或管道中装满水。当它周围有水的粒子效果时，你就知道它起作用了。 放置在地面上的洒水器能灌溉上方相同的5x6x5的区域."
     },
     {
       "type": "tfc:anvil_recipe",
       "recipe": "firmalife:anvil/sprinkler",
-      "text": "The sprinkler is made with a $(thing)Copper Sheet$()."
+      "text": "洒水器的合成材料有 $(thing)铜片$()."
     },
     {
       "type": "patchouli:text",
-      "text": "Sprinklers must be connected to a system of pipes that feed it water in order to work. This is done by connecting a series of $(thing)Copper Pipes$() to them. Copper Pipes transport water up to 32 blocks to a sprinkler. They are connected to $(thing)Irrigation Tanks$() or $(thing)Pumping Stations$()."
+      "text": "洒水器必须连接到一个供水管道系统才能工作. 这可以通过连接到一系列 $(thing)铜制水管$() 系统中被完成. 铜制水管能将32方块以外的水输送至洒水器。 他们被连接到 $(thing)灌溉水箱$() 或是 $(thing)水泵站$()中."
     },
     {
       "type": "tfc:anvil_recipe",
       "recipe": "firmalife:anvil/copper_pipe",
-      "text": "The copper pipe is made with a sheet."
+      "text": "铜制水管是由薄片制成的。"
     },
     {
       "type": "patchouli:multiblock",
@@ -47,7 +47,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Pumping stations must be above a source block of water in order to work, and be connected to mechanical power. Irrigation tanks can also serve water through their ports on the sides, provided that they are stacked at most 3 blocks high above a pumping station on other tanks."
+      "text": "水泵站必须位于水源方块正上方时才能起作用, 它需要被连接上动力. 灌溉水箱也可以通过侧面的端口供水, 前提是它们比其他储罐连接的泵站高出最多3个方块的高度."
     },
     {
       "type": "patchouli:crafting",
@@ -57,7 +57,7 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/oxidized_copper_pipe",
-      "text": "Oxidized pipes are the same as regular copper pipes, except they do not connect to the other kind of pipe."
+      "text": "氧化水管的作用与普通铜管相同，只是它们不与其他类型的管道连接。"
     },
     {
       "type": "patchouli:crafting",

@@ -6,11 +6,11 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The $(thing)Greenhouse$() is a multiblock device controlled by a $(l:tfc:firmalife/climate_station)Climate Station$(). It allows growing crops year round. The Greenhouse has an array of types and blocks to choose from. However, building a greenhouse is quite simple. Like the $(l:tfc:firmalife/cellar)Cellar$(), it should be an enclosed area of blocks belonging to the same $(thing)Greenhouse Type$(). The floor of the greenhouse may be non-air block."
+      "text": "$(thing)温室$()是一个多方块结构，通过 $(l:tfc:firmalife/climate_station)气候站$()来控制. 它可以让一整年都能来种庄稼. 建造温室有一系列类型的方块可供选择， 然而，建造一个温室很简单. 比如像 $(l:tfc:firmalife/cellar)地窖$(), 它应该是一个由方块围成的封闭区域，归属于同一个$(thing)温室种类$(). 温室的地板可以是任何固体方块."
     },
     {
       "type": "patchouli:text",
-      "text": "The walls of greenhouses must be solid faces. Panel walls should be placed so that the face that is on the exterior of the block (eg. the face you can place a torch on) faces into the greenhouse. The same applies for roofs, except that slabs are always considered valid roof blocks. Trapdoors and doors are also always valid and require no special placement."
+      "text": "温室的墙壁需要是实心的方块。板墙的放置应使方块外部的面（例如，可以放置火把的面）朝向温室。这点同样适用于屋顶，不过半砖可以被视为有效的屋顶方块。活板门与门也被视为实心方块，无需特殊放置。"
     },
     {
       "type": "patchouli:text",
@@ -23,7 +23,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "There are four types of regular $(thing)Greenhouse Blocks$(): Walls, Doors, Roofs, and Roof Tops. Roofs and Roof Tops are stairs and slabs, respectively. There are also thinner versions of these blocks, also known as panel walls, trapdoors, and panel roofs. These can be combined however you choose to form the structure of the greenhouse."
+      "text": "一共有四种$(thing)温室方块$()：墙壁，门，屋檐，屋顶。屋檐和屋顶看起来像是楼梯和台阶。你可以任意组合这四种方块用于建造你的温室。"
     },
     {
       "type": "tfc:multimultiblock",
@@ -37,11 +37,11 @@
     },
     {
       "type": "patchouli:text",
-      "text": "There are many blocks that operate inside Greenhouses:$(br)$(li)$(l:tfc:firmalife/planters)Planters$(), for growing crops$(), and $(br)$(li)$(l:tfc:firmalife/sprinklers)Sprinklers$(), various devices that add water to planters."
+      "text": "温室中，有这么些方块是有作用的：$(br)$(li)$(l:tfc:firmalife/planters)花盆$()，用来在上面种植作物$()，与$(br)$(li)$(l:tfc:firmalife/sprinklers)洒水器$()，为花盆加水的各种设备。"
     },
     {
       "type": "patchouli:text",
-      "text": "The next four pages contain recipes for the main greenhouse block types. While they are only shown for Iron greenhouses, the iron rods in the recipe can be replaced with $(thing)Treated Lumber$(), $(thing)Copper Rods$(), or $(thing)Stainless Steel Rods$(). For information on Stainless Steel, see $(l:tfc:firmalife/stainless_steel)this linked page$()."
+      "text": "接下来的四页包含主要温室方块的配方。虽然铁棒的参与合成仅在铁制温室中被展示，它们也能替换成 $(thing)防腐木材$()，$(thing)铜棒$()，或是 $(thing)不锈钢棒$()。想要获取关于不锈钢的更多信息, 请跳转 $(l:tfc:firmalife/stainless_steel)此页$()。"
     },
     {
       "type": "patchouli:crafting",

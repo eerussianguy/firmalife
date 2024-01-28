@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(thing)Beehives$() are a place to house bees. Beehives need $(thing)Beehive Frames$() inside them for the bees to live. Removing frames from an active hive will cause the bees to attack you, unless done at night, or with a $(thing)Firepit$() underneath the hive active. Beehives can share flowers. The benefit of flowers diminishes after 60 flowers."
+      "text": "$(thing)蜂箱$() 是用来养蜂的地方. 蜂箱需要 $(thing)蜂箱框架$() 在蜂箱里以让蜜蜂存活. 从活跃的蜂箱中移除框架会导致蜜蜂攻击你，除非是在晚上,或是有一个 $(thing)火堆$() 在蜂箱下. 蜂箱有传粉的作用. 在作用到60朵花后，增益会减少."
     },
     {
       "type": "patchouli:crafting",
@@ -15,7 +15,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Beehives know about the area in a 5 block radius from them. If there are at least 10 flowers around the hive, there is a chance an empty frame will be populated with a $(thing)Queen$(). This is indicated by bee particles flying around the hive. Having 4 empty frames in a hive greatly increases the chances of bees moving in."
+      "text": "蜜蜂对周围五个方块半径内有效. 如果蜂箱周围至少有10朵花, 那就有几率在一个空的框架中有 $(thing)蜂王$(). 在蜂箱周围的粒子效果会突出这一点。在一个蜂箱中放入4个框架将大大增加蜜蜂进入的机会。"
     },
     {
       "type": "patchouli:text",
@@ -24,7 +24,7 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/honey_jar_open",
-      "text": "Bees also produce $(thing)Honey$(). Using $(item)$(k:key.use)$() with an $(l:tfc:firmalife/jar)Empty Jar$() on a hive that visibly has honey gives you a $(thing)Honey Jar$(). Opening a Honey Jar gives you $(thing)Raw Honey$(), a $(thing)Sugar$() substitute."
+      "text": "蜜蜂还会生产 $(thing)蜂蜜$(). 使用 $(item)$(k:key.use)$() 带有 $(l:tfc:firmalife/jar)Empty Jar$() 在看上去有蜂蜜的蜂箱上将会给你一个 $(thing)蜂蜜罐$(). 打开蜂蜜罐后，你将得到 $(thing)生蜂蜜$(), 一个 $(thing)代糖$() 品."
     },
     {
       "type": "patchouli:text",
@@ -51,7 +51,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Bees with high Mutant ability have a chance of developing a $(thing)Genetic Disease$(). Diseased bees pass on their disease to their offspring, and don't produce honey."
+      "text": "具有高突变能力的蜜蜂将可能会换上 $(thing)遗传疾病$(). 患有遗传疾病的蜜蜂会将疾病传给后代，他们并不产蜜。"
     }
   ],
   "read_by_default": true,

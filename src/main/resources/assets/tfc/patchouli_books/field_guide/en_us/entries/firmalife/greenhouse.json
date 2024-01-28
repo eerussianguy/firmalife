@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The $(thing)Greenhouse$() is a multiblock device controlled by a $(l:tfc:firmalife/climate_station)Climate Station$(). It allows growing crops year round. The Greenhouse has an array of types and blocks to choose from. However, building a greenhouse is quite simple. Like the $(l:tfc:firmalife/cellar)Cellar$(), it should be an enclosed area of blocks belonging to the same $(thing)Greenhouse Type$(). The floor of the greenhouse may be non-air block."
+      "text": "The $(thing)Greenhouse$() is a multiblock device controlled by a $(l:firmalife/climate_station)Climate Station$(). It allows growing crops year round. The Greenhouse has an array of types and blocks to choose from. However, building a greenhouse is quite simple. Like the $(l:firmalife/cellar)Cellar$(), it should be an enclosed area of blocks belonging to the same $(thing)Greenhouse Type$(). The floor of the greenhouse may be non-air block."
     },
     {
       "type": "patchouli:text",
@@ -37,11 +37,11 @@
     },
     {
       "type": "patchouli:text",
-      "text": "There are many blocks that operate inside Greenhouses:$(br)$(li)$(l:tfc:firmalife/planters)Planters$(), for growing crops$(), and $(br)$(li)$(l:tfc:firmalife/sprinklers)Sprinklers$(), various devices that add water to planters."
+      "text": "There are many blocks that operate inside Greenhouses:$(br)$(li)$(l:firmalife/planters)Planters$(), for growing crops$(), and $(br)$(li)$(l:firmalife/irrigation)Sprinklers$(), various devices that add water to planters."
     },
     {
       "type": "patchouli:text",
-      "text": "The next four pages contain recipes for the main greenhouse block types. While they are only shown for Iron greenhouses, the iron rods in the recipe can be replaced with $(thing)Treated Lumber$(), $(thing)Copper Rods$(), or $(thing)Stainless Steel Rods$(). For information on Stainless Steel, see $(l:tfc:firmalife/stainless_steel)this linked page$()."
+      "text": "The next four pages contain recipes for the main greenhouse block types. While they are only shown for Iron greenhouses, the iron rods in the recipe can be replaced with $(thing)Treated Lumber$(), $(thing)Copper Rods$(), or $(thing)Stainless Steel Rods$(). For information on Stainless Steel, see $(l:firmalife/stainless_steel)this linked page$()."
     },
     {
       "type": "patchouli:crafting",

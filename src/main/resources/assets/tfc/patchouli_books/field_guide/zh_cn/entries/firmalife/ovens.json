@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(thing)Ovens$() are a great way of cooking lots of food in a way that improves their shelf life. Oven-baked food decays at 90% of the rate of regular food. Ovens are a multiblock structure consisting of a $(thing)Bottom Oven$(), $(thing)Top Oven$(), and optionally $(thing)Chimneys$(). These blocks start off as clay, and must be $(thing)Cured$() by raising their temperature to a certain amount for long enough.$(br)$(l:tfc:firmalife/oven_appliances)Oven Appliances$() extend oven functionality."
+      "text": "$(thing)烤炉$() 是一种很好的烹饪方式，可以提高食物的保质期. 经过烤炉烤制的食物的腐烂速度是正常食物的10%. 烤炉是一个多方块结构，通过 $(thing)烤炉底部$(), $(thing)烤炉顶部$(), 与可选的 $(thing)烟囱$()一起建造出来. 这些方块的前身是粘土, 而且必须要经过 $(thing)Cured$() 通过提高他们的环境温度到一个特定的值，并维持很长时间的方式.$(br)$(l:tfc:firmalife/oven_appliances)烤炉用具$() 能扩展烤炉的很多能力."
     },
     {
       "type": "tfc:knapping_recipe",
@@ -112,16 +112,16 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/oven_insulation",
-      "text": "Crafting oven insulation for your Bottom Oven allows you to remove the need for insulating it on the sides and back. It does not remove the need for the chimney. Use $(item)$(k:key.use)$() to apply it."
+      "text": "为您的底部烤炉制作烤炉隔热材料，使您无需在侧面和背面进行隔热。但是这并不能消除对烟囱的需求。 按 $(item)$(k:key.use)$() 以应用."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/brick_countertop",
-      "text": "Countertops are aesthetic blocks that count as oven insulation, and have an appearance that matches that of oven blocks. They are a nice aesthetic choice for your kitchen."
+      "text": "台面是一种美观的方块，可作为烤箱隔热材料，其外观与烤箱方块相匹配。对于你的厨房来说，它们能提升一定的美观度。"
     },
     {
       "type": "patchouli:text",
-      "text": "Ovens also have $(thing)Finishes$() that can be used to change their appearance. These finishes are applied to the basic brick stage of the oven (or brick blocks themselves), and are cosmetic. Finishes can be mixed and matched. They are applied with $(item)$(k:key.use)$()."
+      "text": "烤箱同时也有 $(thing)装饰面$() 以改变外观. 这些饰面应用于烤箱的基本砖台（或砖块本身），并且是装饰性的。饰面可以混合搭配。按 $(item)$(k:key.use)$()键就可以应用他们啦！"
     },
     {
       "type": "patchouli:crafting",

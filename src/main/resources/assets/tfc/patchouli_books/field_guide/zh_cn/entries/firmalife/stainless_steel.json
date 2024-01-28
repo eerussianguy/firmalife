@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(thing)Stainless Steel$() and $(thing)Chromium$() are $(thing)Steel-tier$() metals added by Firmalife. They are used in the construction of $(l:tfc:firmalife/greenhouse)Stainless Steel Greenhouses$()."
+      "text": "$(thing)不锈钢$() 与 $(thing)铬$() 是 $(thing)钢层$() 金属 .它们被用在 $(l:tfc:firmalife/greenhouse)不锈钢温室$()的建造中."
     },
     {
       "type": "patchouli:spotlight",

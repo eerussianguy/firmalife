@@ -1,36 +1,36 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "name": "Oven Appliances",
+  "name": "烤箱用具",
   "category": "tfc:firmalife",
   "icon": "firmalife:vat",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(l:tfc:firmalife/ovens)Ovens$() have a number of devices that interact with them, that extend their functionality. This is because ovens are modular in nature."
+      "text": "$(l:tfc:firmalife/ovens)烤箱$() 有许多可以进行交互的设备, 这扩展了他们的功能. 这是因为烤箱在现实中本就是模块化的."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/oven_hopper",
-      "text": "The $(thing)Oven Hopper$() will input logs into any Bottom Oven that it is facing. It holds 16 logs (4 stacks of 4, like a log pile), and its inventory is fed by dropping items in the top. It can also be fed via automation from other mods."
+      "text": "$(thing)烘箱料斗$() 可以将原木输入其所面对的任何底部烤炉。它能持有16个原木 (4组，每组4个),它的物品栏是通过在顶部向下丢物品来提供的. 它也能通过其他MOD实现自动化输入."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/ashtray",
-      "text": "The $(thing)Ashtray$() collects $(thing)Wood Ash$() when placed below a $(thing)Bottom Oven Block$(). There is a 0.5 chance it gains ash when fuel is consumed. Ash is extracted with $(item)$(k:key.use)$() and inserted via attacking it."
+      "text": "$(thing)烟缸$() 收集 $(thing)木头灰烬$() 当它被放置在 $(thing)底部烤箱方块$()以下的区域时. 当每个燃料被消耗时，它有0.5的机会获得灰烬。 灰烬可以通过按 $(item)$(k:key.use)$()来提取，也能通过左键来增添灰烬。"
     },
     {
       "type": "patchouli:crafting",
       "anchor": "vat",
       "recipe": "firmalife:crafting/vat",
-      "text": "The $(thing)Vat$() produces some select boiling recipes in bulk. It has one slot for items, and 10,000mB of fluid space, similar to a barrel."
+      "text": "$(thing)蒸馏罐$() 能够批量生产被选择的的蒸馏配方. 它有一个物品插槽, 与10,000mB的流体存储空间, 与一个木桶类似."
     },
     {
       "type": "patchouli:text",
-      "text": "For example, the vat can be used to make $(thing)Olive Oil Water$() using a ratio of 1 Olive Paste to 200 mB Water. To use a vat, $(item)$(k:key.use)$() it with fluids and items to add them to the inventory. With an empty hand and $(item)$(k:key.sneak)$() held, click to seal and unseal the vat. A vat will not boil until it is sealed."
+      "text": "举个例子，蒸馏罐能用来制作 $(thing)橄榄油/水$() ，使用一个橄榄酱与200mB水的比例。要使用一个蒸馏罐，手里拿着流体与物品朝着他按 $(item)$(k:key.use)$() 以把他们放入其中. 按住 $(item)$(k:key.sneak)$() 并空手, 可以点击以封存或启封蒸馏罐. 蒸馏罐若未被密封，将不会沸腾。"
     },
     {
       "type": "patchouli:text",
-      "text": "Vats should be placed on the block above a $(thing)Bottom Oven$(). If the vat would overflow on completion of the recipe, it will not boil, so be sure not to overfill it -- especially with recipes that produce more fluid than they consume!"
+      "text": "蒸馏罐应该放置在 $(thing)烤箱底部方块$()之上的位置. 如果蒸馏灌在配方完成后会溢出物品，它就不会沸腾，所以一定不要加满-- 尤其是在制造那些产生液体比消耗液体更多的配方时！"
     },
     {
       "type": "patchouli:multiblock",
@@ -57,7 +57,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Pots and Grills from TFC can be placed on top of a $(thing)Bottom Oven$(). These devices will get heat automatically from the bottom oven. They come with a couple restrictions: Each has only 4 slots, and the pot is only used for making soup. It cannot execute regular pot recipes."
+      "text": "群峦传说中的锅与烤架能被放置在一个$(thing)烤箱顶部$()之上. 这些设备将自动从烤箱的底部获得热量。它们有几个限制：每个设备只有4个物品槽，而且锅只能用于煮汤，而无法使用常规的配方。"
     }
   ],
   "read_by_default": true,

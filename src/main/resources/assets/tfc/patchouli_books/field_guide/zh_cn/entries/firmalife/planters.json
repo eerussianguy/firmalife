@@ -7,7 +7,7 @@
     {
       "type": "patchouli:text",
       "anchor": "planters",
-      "text": "$(thing)Planters$() are used to grow crops inside a $(l:tfc:firmalife/greenhouse)Greenhouse$(). To see the status of a planter, you can look at it while holding a $(thing)Hoe$(). Crops in planters consume $(l:mechanics/fertilizers)Nutrients$() in a similar way to $(l:mechanics/crops)Crops$(). Planters should be placed inside a valid Greenhouse and activated with a $(l:tfc:firmalife/climate_station)Climate Station$(). Planters need at least some natural sunlight to work."
+      "text": "$(thing)种植盆$() 是用来在 $(l:tfc:firmalife/greenhouse)温室$()里种植作物的物品. 要查看作物的状态,你能拿着一个 $(thing)锄头$()并看向它. 在种植盆中的作物将消耗 $(l:mechanics/fertilizers)营养物$() ，方式与 $(l:mechanics/crops)作物$()相似. 种植盆应被放置在一个有效的温室内，并用 $(l:tfc:firmalife/climate_station)气象站$()加以控制. 种植盆也需要起码一点点的阳光才能起作用。"
     },
     {
       "type": "patchouli:crafting",

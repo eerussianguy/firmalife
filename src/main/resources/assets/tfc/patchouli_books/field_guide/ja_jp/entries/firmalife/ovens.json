@@ -1,0 +1,138 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "オーブン",
+  "category": "tfc:firmalife",
+  "icon": "firmalife:cured_oven_top",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(thing)オーブンは$()、食品の保存性を高めるための調理に最適です。オーブンで焼いた食品は通常の90％の割合で腐敗が進行します。オーブンは、$(thing)オーブンかまど$()、$(thing)オーブン$()、オプションで$(thing)煙突$()からなるマルチブロックです。これらのブロックは粘土の状態で設置し、一定の温度まで十分に温度を上げ、$(thing)硬化$()させる必要があります。$(l:tfc:firmalife/oven_appliances)オーブン機器$()はオーブンの機能を拡張します。"
+    },
+    {
+      "type": "tfc:knapping_recipe",
+      "recipe": "firmalife:clay_knapping/oven_top",
+      "text": "オーブンのレシピ"
+    },
+    {
+      "type": "tfc:knapping_recipe",
+      "recipe": "firmalife:clay_knapping/oven_bottom",
+      "text": "オーブンかまどのレシピ"
+    },
+    {
+      "type": "tfc:knapping_recipe",
+      "recipe": "firmalife:clay_knapping/oven_chimney",
+      "text": "オーブンの煙突のレシピ"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "tfc:crafting/bricks",
+      "text": "オーブンは、$(thing)レンガ$()や他のオーブンブロックなど、炉を断熱できるものなら何を使っても断熱できます。$(br2)つまり、様々な石のブロックが使えます！"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/peel",
+      "text": "$(thing)ピール$()はオーブンから熱いものを取り出す安全な方法です。$(br2)(ピール持ち$(item)$(k:key.use)$()を押せばアイテムを取り出せます。そうでなければ、やけどをする恐れがあります！)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "オーブンは、まずオーブンかまどの上にオーブンブロックを置きます。その後、各オーブン部品の前面以外すべての側面を、2ページ前で説明したような断熱ブロックで覆います。$(br)$(thing)オーブンの煙突$()は断熱材としても使えます。$(br)オーブンの真後ろに煙突を設置することで、オーブンの煙が上昇し排出されます。そうしないと、すぐに煙が家中に充満してしまい、非常に気が散ってしまいます！"
+    },
+    {
+      "type": "tfc:multimultiblock",
+      "text": "オーブン構造の例、未硬化と硬化。",
+      "multiblocks": [
+        {
+          "pattern": [
+            [
+              "     ",
+              "  C  "
+            ],
+            [
+              "     ",
+              "  C  "
+            ],
+            [
+              "WT0TW",
+              "WWCWW"
+            ],
+            [
+              "WBBBW",
+              "WWCWW"
+            ]
+          ],
+          "mapping": {
+            "0": "firmalife:cured_oven_top[facing=north]",
+            "T": "firmalife:cured_oven_top[facing=north]",
+            "B": "firmalife:cured_oven_bottom[facing=north]",
+            "W": "minecraft:bricks",
+            "C": "firmalife:cured_oven_chimney"
+          }
+        },
+        {
+          "pattern": [
+            [
+              "     ",
+              "  C  "
+            ],
+            [
+              "     ",
+              "  C  "
+            ],
+            [
+              "WT0TW",
+              "WWCWW"
+            ],
+            [
+              "WBBBW",
+              "WWCWW"
+            ]
+          ],
+          "mapping": {
+            "0": "firmalife:oven_top[facing=north]",
+            "T": "firmalife:oven_top[facing=north]",
+            "B": "firmalife:oven_bottom[facing=north]",
+            "W": "minecraft:bricks",
+            "C": "firmalife:oven_chimney"
+          }
+        }
+      ]
+    },
+    {
+      "type": "patchouli:text",
+      "text": "オーブンかまどには燃料を入れます。$(br2)$(item)$(k:key.use)$()を押すことで、燃料を出し入れできます。$(br2)オーブンかまどは、$(thing)火おこし器$()などで点火する部分です。$(br2)オーブンかまど内の熱をオーブンに伝えます。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "オーブンには調理したいアイテムが入ります。$(br)オーブンはオーブンかまどから熱を受け取り、時間をかけてゆっくりと放出します。$(br)つまり、燃料がなくなっても、オーブンは少しの間働き続けます。$(br)オーブンに調理したいアイテムを追加するには、$(item)$(k:key.use)$()を押すだけです。$(br)アイテムを入れたら、$(thing)ピールを使って$()取り出すのを忘れずに。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "オーブンブロックの硬化は簡単ですが、強度が必要です。$(br2)通常通りにオーブンかまどを稼働させ、待つだけです。$(br2)オーブンブロックが約80秒間600度以上になると、それ自体が硬化し、周りのオーブンブロックも硬化します。$(br2)硬化は、近くの煙突の上まで伝わります。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/oven_insulation",
+      "text": "オーブンかまど用の断熱材を作ることで、側面と背面を断熱する必要がなくなります。$(br)煙突の必要性がなくなるわけではありません。$(br)適用するには$(item)$(k:key.use)$()を使用します。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/brick_countertop",
+      "text": "カウンタートップは、オーブンの断熱材としてカウントされる装飾ブロックであり、オーブンブロックと同じ外観を持ちます。$(br2)キッチンの見た目を損ないません。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "オーブンには、外観を変えるための$(thing)上塗り$()もあります。$(br2)これらの上塗りは、オーブンの基本的なレンガの段階（またはレンガのブロックそのもの）に施されるもので、装飾品です。$(br2)上塗りは組み合わせが可能です。$(item)$(k:key.use)$()で行います。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/rustic_finish",
+      "recipe2": "firmalife:crafting/stone_finish"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/tile_finish"
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 14
+}

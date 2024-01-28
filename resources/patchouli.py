@@ -1,17 +1,20 @@
-from typing import NamedTuple, Tuple, List, Mapping, Any
+import json
+import os
+import re
+from typing import NamedTuple, Tuple, List, Mapping, Set, Any, Dict
 
 from mcresources import ResourceManager, utils
-from mcresources.type_definitions import JsonObject, ResourceLocation
+from mcresources.type_definitions import JsonObject, ResourceLocation, ResourceIdentifier
 
-from i18n import I18n
 from constants import ROCK_CATEGORIES, lang
+from i18n import I18n
 
-import re
-
-
-NON_TEXT_FIRST_PAGE = 'NON_TEXT_FIRST_PAGE'
-PAGE_BREAK = 'PAGE_BREAK'
-EMPTY_LAST_PAGE = 'EMPTY_LAST_PAGE'
+NON_TEXT_FIRST_PAGE = 'non_text_first_page'
+PAGE_BREAK = 'page_break'
+EMPTY_LAST_PAGE = 'empty_last_page'
+TABLE_PAGE = 'table'
+TABLE_PAGE_SMALL = 'table_small'
+TABLE_KEYS = {'strings': '#strings', 'columns': '#columns', 'first_column_width': '#first_column_width', 'column_width': '#column_width', 'row_height': '#row_height', 'left_buffer': '#left_buffer', 'top_buffer': '#top_buffer', 'title': '#title', 'legend': '#legend', 'draw_background': '#draw_background'}
 
 
 class Component(NamedTuple):
@@ -20,17 +23,20 @@ class Component(NamedTuple):
     y: int
     data: JsonObject
 
+
 class SubstitutionStr(NamedTuple):
     value: str
     params: Tuple[Any, ...]
 
     def __str__(self) -> str: return self.value
 
+
 def defer(text_contents: str, *params) -> SubstitutionStr:
     return SubstitutionStr(text_contents, params)
 
 
 TranslatableStr = str | SubstitutionStr
+
 
 class Page(NamedTuple):
     type: str
@@ -53,7 +59,19 @@ class Page(NamedTuple):
     def translate(self, i18n: I18n):
         for key in self.translation_keys:
             if key in self.data and self.data[key] is not None:
-                self.data[key] = i18n.translate(self.data[key])
+                value = self.data[key]
+                if isinstance(value, SubstitutionStr):
+                    try:
+                        self.data[key] = i18n.translate(value.value).format(*value.params)
+                    except IndexError as e:
+                        raise ValueError('Error performing replacement for lang %s\n  \'%s\' -> \'%s\'' % (i18n.lang, value.value, i18n.translate(value.value))) from e
+                else:
+                    self.data[key] = i18n.translate(value)
+
+    def iter_all_text(self):
+        for key in self.translation_keys:
+            if key in self.data and self.data[key] is not None:
+                yield str(self.data[key])
 
 
 class Entry(NamedTuple):
@@ -64,22 +82,36 @@ class Entry(NamedTuple):
     advancement: str | None
 
 
+class Category(NamedTuple):
+    category_id: str
+    name: str
+    description: str
+    icon: str
+    parent: str | None
+    is_sorted: bool
+    entries: Tuple[Entry, ...]
+
+
 class Book:
 
-    def __init__(self, rm: ResourceManager, root_name: str, macros: JsonObject, i18n: I18n, local_instance: bool):
+    def __init__(self, rm: ResourceManager, root_name: str, macros: JsonObject, i18n: I18n, local_instance: bool, reverse_translate: bool):
         self.rm: ResourceManager = rm
         self.root_name = root_name
         self.category_count = 10
         self.i18n = i18n
         self.local_instance = local_instance
+        self.reverse_translate = reverse_translate
 
+        self.categories: List[Category] = []
+        self.macros = macros
 
     def template(self, template_id: str, *components: Component):
-        self.rm.data(('patchouli_books', self.root_name, 'en_us', 'templates', template_id), {
-            'components': [{
-                'type': c.type, 'x': c.x, 'y': c.y, **c.data
-            } for c in components]
-        }, root_domain='assets')
+        if self.i18n.is_root():  # Templates are only required in root
+            self.rm.data(('patchouli_books', self.root_name, self.i18n.lang, 'templates', template_id), {
+                'components': [{
+                    'type': c.type, 'x': c.x, 'y': c.y, **c.data
+                } for c in components]
+            }, root_domain='assets')
 
     def category(self, category_id: str, name: str, description: str, icon: str, parent: str | None = None, is_sorted: bool = False, entries: Tuple[Entry, ...] = ()):
         """
@@ -93,13 +125,45 @@ class Book:
 
         https://vazkiimods.github.io/Patchouli/docs/reference/category-json/
         """
-        self.rm.data(('patchouli_books', self.root_name, self.i18n.lang, 'categories', category_id), {
-            'name': self.i18n.translate(name),
-            'description': self.i18n.translate(description),
-            'icon': icon,
-            'parent': parent,
-            'sortnum': self.category_count
-        }, root_domain='assets')
+        self.categories.append(Category(category_id, name, description, icon, parent, is_sorted, entries))
+
+    def build(self):
+        # Only generate the book.json if we're in the root language
+        # if self.i18n.lang == 'en_us':
+        #     self.rm.data(('patchouli_books', self.root_name, 'book'), {
+        #         'name': 'tfc.field_guide.book_name',
+        #         'landing_text': 'tfc.field_guide.book_landing_text',
+        #         'subtitle': '${version}',
+        #         # Even though we don't use the book item, we still need patchy to make a book item for us, as it controls the title
+        #         # If neither we nor patchy make a book item, this will show up as 'Air'. So we make one to allow the title to work properly.
+        #         'dont_generate_book': False,
+        #         'show_progress': False,
+        #         'macros': self.macros,
+        #         'use_resource_pack': not self.local_instance,  # Required since 1.20 for mod books
+        #     })
+
+        # Find all valid link targets
+        link_targets = {}
+        for c in self.categories:
+            for e in c.entries:
+                link_targets['%s/%s' % (c.category_id, e.entry_id)] = {p.anchor_id for p in e.pages if p.anchor_id is not None}
+
+        for c in self.categories:
+            self.build_category(link_targets, c.category_id, c.name, c.description, c.icon, c.parent, c.is_sorted, c.entries)
+
+    def build_category(self, link_targets: Mapping[str, Set[str]], category_id: str, name: str, description: str, icon: str, parent: str | None, is_sorted: bool, entries: Tuple[Entry, ...]):
+        if self.reverse_translate:
+            data = self.load_data(('patchouli_books', self.root_name, self.i18n.lang, 'categories', category_id))
+            self.i18n.after[name] = data['name']
+            self.i18n.after[description] = data['description']
+        else:
+            self.rm.data(('patchouli_books', self.root_name, self.i18n.lang, 'categories', category_id), {
+                'name': self.i18n.translate(name),
+                'description': self.i18n.translate(description),
+                'icon': icon,
+                'parent': parent,
+                'sortnum': self.category_count,
+            }, root_domain='assets')
         self.category_count += 1
 
         category_res: ResourceLocation = utils.resource_location(self.rm.domain, category_id)
@@ -124,6 +188,10 @@ class Book:
                 elif p.type == EMPTY_LAST_PAGE:
                     allow_empty_last_page = True
                     assert j == len(pages) - 1, 'An empty_last_page() was used but it was not the last page?\n  at: %s' % str(e.name)
+                elif p.type == TABLE_PAGE or p.type == TABLE_PAGE_SMALL:
+                    assert len(real_pages) % 2 == 0, 'A table() requires that it starts on a new page!'
+                    real_pages.append(p)
+                    real_pages.append(blank())  # Tables take up two pages
                 else:
                     real_pages.append(p)
 
@@ -147,14 +215,43 @@ class Book:
                     assert link not in seen_links, 'Duplicate link "%s" on page %s' % (link, p)
                     seen_links.add(link)
 
+            # Validate all internal links of the form $(l:...)
+            for p in real_pages:
+                for page_text in p.iter_all_text():
+                    for match in re.finditer(r'\$\(l:([^)]*)\)', page_text):
+                        key = match.group(1)
+                        if key.startswith('http'):
+                            continue  # Don't validate external links
+                        if '#' in key:
+                            target, anchor = key.split('#')
+                        else:
+                            target, anchor = key, None
+                        assert (target in link_targets or 'mechanics' in target or 'the_world' in target), 'Link target \'%s\' not found for link \'%s\'\n  at page: %s\n  at entry: \'%s\'' % (target, key, p, e.entry_id)
+                        if anchor is not None and target in link_targets:
+                            assert anchor in link_targets[target], 'Link anchor \'%s\' not found for link \'%s\'\n  at page: %s\n  at entry: \'%s\'' % (anchor, key, p, e.entry_id)
+
             # Separately translate each page
+            if self.reverse_translate:
+                rev_entry = self.load_data(('patchouli_books', self.root_name, self.i18n.lang, 'entries', category_res.path, e.entry_id))
+                if rev_entry:
+                    rev_pages = rev_entry['pages']
+                    for p, rp in zip(real_pages, rev_pages):
+                        for key in p.translation_keys:
+                            if key in p.data and p.data[key] is not None and key in rp:
+                                self.i18n.after[str(p.data[key])] = rp[key]
+
+                    self.i18n.after[e.name] = rev_entry['name']
+                else:
+                    print('Warning: missing book entry: %s/%s' % (category_res.path, e.entry_id))
+                continue
+
             entry_name = self.i18n.translate(e.name)
             for p in real_pages:
                 p.translate(self.i18n)
 
             self.rm.data(('patchouli_books', self.root_name, self.i18n.lang, 'entries', category_res.path, e.entry_id), {
                 'name': entry_name,
-                'category': self.category_prefix(category_res.path),
+                'category': self.prefix(category_res.path),
                 'icon': e.icon,
                 'pages': [{
                     'type': self.prefix(p.type) if p.custom else p.type,
@@ -167,12 +264,26 @@ class Book:
                 'extra_recipe_mappings': extra_recipe_mappings
             }, root_domain='assets')
 
-    def category_prefix(self, path: str) -> str:
-        return ('patchouli' if self.local_instance else 'tfc') + ':' + path
-
     def prefix(self, path: str) -> str:
         """ In a local instance, domains are all under patchouli, otherwise under tfc """
         return ('patchouli' if self.local_instance else 'tfc') + ':' + path
+
+    def load_data(self, name_parts: ResourceIdentifier) -> JsonObject:
+        res = utils.resource_location(self.rm.domain, name_parts)
+        path = os.path.join(*self.rm.resource_dir, 'assets', res.domain, res.path) + '.json'
+        if os.path.isfile(path):
+            # if 'ja_jp' in path:
+            #     js = None
+            #     with open(path, 'r', encoding='utf-8-sig') as f:
+            #         js = json.load(f)
+            #     if js is not None:
+            #         print('Rewriting ' + path)
+            #         with open(path, 'w', encoding='utf-8') as file:
+            #             json.dump(js, file, indent=2, ensure_ascii=False)
+            #     return js
+            # else:
+            with open(path, 'r', encoding='utf-8') as f:
+                return json.load(f)
 
 
 def entry(entry_id: str, name: str, icon: str, advancement: str | None = None, pages: Tuple[Page, ...] = ()) -> Entry:
@@ -185,10 +296,16 @@ def entry(entry_id: str, name: str, icon: str, advancement: str | None = None, p
 
     https://vazkiimods.github.io/Patchouli/docs/reference/entry-json/
     """
+    if icon.startswith('tfc:food/'):  # Food items decay - this is a stupid hack to just replace them with their .png image, so they don't! Wizard!
+        icon = icon.replace('tfc:', 'tfc:textures/item/') + '.png'
+    # This is a heuristic, it is not accurate (as crafting recipes also generate ctrl-links). But it is useful as a start
+    # requires `import warnings`
+    # if all(not p.link_ids for p in pages):
+    #     warnings.warn('Entry \'%s\' does not have any .link()s' % entry_id, stacklevel=2)
     return Entry(entry_id, name, icon, pages, advancement)
 
 
-def text(text_contents: str, title: str | None = None) -> Page:
+def text(text_contents: TranslatableStr, title: TranslatableStr | None = None) -> Page:
     """
     Text pages should always be the first page in any entry. If a text page is the first page in an entry, it'll display the header you see in the left page. For all other pages, it'll display as you can see in the right one.
     :param text_contents: The text to display on this page. This text can be formatted.
@@ -198,7 +315,7 @@ def text(text_contents: str, title: str | None = None) -> Page:
     return page('patchouli:text', {'text': text_contents, 'title': title}, translation_keys=('text', 'title'))
 
 
-def image(*images: str, text_contents: str | None = None, title: str = None, border: bool = True) -> Page:
+def image(*images: str, text_contents: TranslatableStr | None = None, title: TranslatableStr = None, border: bool = True) -> Page:
     """
     :param images: An array with images to display. Images should be in resource location format. For example, the value botania:textures/gui/entries/banners.png will point to /assets/botania/textures/gui/entries/banners.png in the resource pack. For best results, make your image file 256 by 256, but only place content in the upper left 200 by 200 area. This area is then rendered at a 0.5x scale compared to the rest of the book in pixel size.
     If there's more than one image in this array, arrow buttons are shown like in the picture, allowing the viewer to switch between images.
@@ -210,7 +327,7 @@ def image(*images: str, text_contents: str | None = None, title: str = None, bor
     return page('patchouli:image', {'images': images, 'text': text_contents, 'title': title, 'border': border}, translation_keys=('text', 'title'))
 
 
-def entity(entity_type: str, text_contents: str = None, title: str = None, scale: float = 0.7, offset: float = None, rotate: bool = None, default_rotation: float = None) -> Page:
+def entity(entity_type: str, text_contents: TranslatableStr = None, title: TranslatableStr = None, scale: float = 0.7, offset: float = None, rotate: bool = None, default_rotation: float = None) -> Page:
     """
     :param entity_type: The entity type
     :param text_contents: The text to display under the entity display
@@ -222,10 +339,10 @@ def entity(entity_type: str, text_contents: str = None, title: str = None, scale
     """
     if title == '':
         title = ' '  # Patchy will draw a title on name == null || name.isEmpty() which is dumb
-    return page('patchouli:entity', {'entity': entity_type, 'scale': scale, 'offset': offset, 'rotate': rotate, 'default_rotation': default_rotation, 'name': title, 'text': text_contents})
+    return page('patchouli:entity', {'entity': entity_type, 'scale': scale, 'offset': offset, 'rotate': rotate, 'default_rotation': default_rotation, 'name': title, 'text': text_contents}, translation_keys=('name', 'text'))
 
 
-def crafting(first_recipe: str, second_recipe: str | None = None, title: str | None = None, text_contents: str | None = None) -> Page:
+def crafting(first_recipe: str, second_recipe: str | None = None, title: TranslatableStr | None = None, text_contents: TranslatableStr | None = None) -> Page:
     """
     :param first_recipe: The ID of the first recipe you want to show.
     :param second_recipe: The ID of the second recipe you want to show. Displaying two recipes is optional.
@@ -233,12 +350,12 @@ def crafting(first_recipe: str, second_recipe: str | None = None, title: str | N
     :param text_contents: The text to display on this page, under the recipes. This text can be formatted.
     Note: the text will not display if there are two recipes with two different outputs, and "title" is not set. This is the case of the image displayed, in which both recipes have the output names displayed, and there's no space for text.
     """
+    if second_recipe is not None:
+        assert ' ' not in second_recipe
     return page('patchouli:crafting', {'recipe': first_recipe, 'recipe2': second_recipe, 'title': title, 'text': text_contents}, translation_keys=('text', 'title'))
 
 
-# todo: other default page types: (smelting, entity, link) as we need them
-
-def item_spotlight(item: str | Tuple[str, ...], title: str | None = None, link_recipe: bool = False, text_contents: str | None = None) -> Page:
+def item_spotlight(item: str | Tuple[str, ...], title: TranslatableStr | None = None, link_recipe: bool = False, text_contents: TranslatableStr | None = None) -> Page:
     """
     :param item: An ItemStack String representing the item to be spotlighted.
     :param title: A custom title to show instead on top of the item. If this is empty or not defined, it'll use the item's name instead.
@@ -246,21 +363,26 @@ def item_spotlight(item: str | Tuple[str, ...], title: str | None = None, link_r
     :param text_contents: The text to display on this page, under the item. This text can be formatted.
     """
     if isinstance(item, tuple):
+        assert all(re.match('[a-z]+:[a-z_/]+', i) for i in item), 'item_spotlight() item may be a tuple of item names, or a tag, specified with #foo:bar syntax'
         item = ','.join(item)
+    elif isinstance(item, str):
+        assert re.match('#?[a-z]+:[a-z/_]+', item), 'item_spotlight() item may be a tuple of item names, or a tag, specified with #foo:bar syntax'
+        if item.startswith('#'):  # Patchy format for tags
+            item = 'tag:' + item[1:]
     return page('patchouli:spotlight', {'item': item, 'title': title, 'link_recipes': link_recipe, 'text': text_contents}, translation_keys=('title', 'text'))
 
 
-def block_spotlight(title: str, text_content: str, block: str, lower: str | None = None) -> Page:
+def block_spotlight(title: TranslatableStr, text_content: TranslatableStr, block: str, lower: str | None = None) -> Page:
     """ A shortcut for making a single block multiblock that is meant to act the same as item_spotlight() but for blocks """
     return multiblock(title, text_content, False, pattern=(('X',), ('0',)), mapping={'X': block, '0': lower})
 
 
-def two_tall_block_spotlight(title: str, text_content: str, lower: str, upper: str) -> Page:
+def two_tall_block_spotlight(title: TranslatableStr, text_content: TranslatableStr, lower: str, upper: str) -> Page:
     """ A shortcut for making a single block multiblock for a double tall block, such as crops or tall grass """
     return multiblock(title, text_content, False, pattern=(('X',), ('Y',), ('0',)), mapping={'X': upper, 'Y': lower})
 
 
-def multiblock(title: str, text_content: str, enable_visualize: bool, pattern: Tuple[Tuple[str, ...], ...] | None = None, mapping: Mapping[str, str] | None = None, offset: Tuple[int, int, int] | None = None, multiblock_id: str | None = None) -> Page:
+def multiblock(title: TranslatableStr = '', text_content: TranslatableStr = '', enable_visualize: bool = False, pattern: Tuple[Tuple[str, ...], ...] | None = None, mapping: Mapping[str, str] | None = None, offset: Tuple[int, int, int] | None = None, multiblock_id: str | None = None) -> Page:
     """
     Page type: "patchouli:multiblock"
 
@@ -289,35 +411,41 @@ def empty() -> Page:
     return page('patchouli:empty', {})
 
 
+def blank() -> Page:
+    return page('patchouli:empty', {'draw_filler': False})
+
+
 # ==============
 # TFC Page Types
 # ==============
 
-def multimultiblock(text_content: str, *pages) -> Page:
+
+def multimultiblock(text_content: TranslatableStr, *pages) -> Page:
     return page('multimultiblock', {'text': text_content, 'multiblocks': [p.data['multiblock'] if 'multiblock' in p.data else p.data['multiblock_id'] for p in pages]}, custom=True, translation_keys=('text',))
 
 
-def heat_recipe(recipe: str, text_content: str) -> Page: return recipe_page('heat_recipe', recipe, text_content)
-def quern_recipe(recipe: str, text_content: str) -> Page: return recipe_page('quern_recipe', recipe, text_content)
-def anvil_recipe(recipe: str, text_content: str) -> Page: return recipe_page('anvil_recipe', recipe, text_content)
-def welding_recipe(recipe: str, text_content: str) -> Page: return recipe_page('welding_recipe', recipe, text_content)
-def sealed_barrel_recipe(recipe: str, text_content: str) -> Page: return recipe_page('sealed_barrel_recipe', recipe, text_content)
-def instant_barrel_recipe(recipe: str, text_content: str) -> Page: return recipe_page('instant_barrel_recipe', recipe, text_content)
-def loom_recipe(recipe: str, text_content: str) -> Page: return recipe_page('loom_recipe', recipe, text_content)
+def knapping(recipe: str, text_content: TranslatableStr) -> Page: return recipe_page('knapping_recipe', recipe, text_content)
+def heat_recipe(recipe: str, text_content: TranslatableStr) -> Page: return recipe_page('heat_recipe', recipe, text_content)
+def quern_recipe(recipe: str, text_content: TranslatableStr) -> Page: return recipe_page('quern_recipe', recipe, text_content)
+def anvil_recipe(recipe: str, text_content: TranslatableStr) -> Page: return recipe_page('anvil_recipe', recipe, text_content)
+def welding_recipe(recipe: str, text_content: TranslatableStr) -> Page: return recipe_page('welding_recipe', recipe, text_content)
+def sealed_barrel_recipe(recipe: str, text_content: TranslatableStr) -> Page: return recipe_page('sealed_barrel_recipe', recipe, text_content)
+def instant_barrel_recipe(recipe: str, text_content: TranslatableStr) -> Page: return recipe_page('instant_barrel_recipe', recipe, text_content)
+def loom_recipe(recipe: str, text_content: TranslatableStr) -> Page: return recipe_page('loom_recipe', recipe, text_content)
+def glassworking_recipe(recipe: str, text_content: TranslatableStr) -> Page: return recipe_page('glassworking_recipe', recipe, text_content)
 
-
-def rock_knapping_typical(recipe_with_category_format: str, text_content: str) -> Page:
+def rock_knapping_typical(recipe_with_category_format: str, text_content: TranslatableStr) -> Page:
     return page('rock_knapping_recipe', {'recipes': [recipe_with_category_format % c for c in ROCK_CATEGORIES], 'text': text_content}, custom=True, translation_keys=('text',))
 
 
-#def alloy_recipe(title: str, alloy_name: str, text_content: str) -> Page:
-#    # Components can be copied from alloy_recipe() declarations in
-#    alloy_components = ALLOYS[alloy_name]
-#    recipe = ''.join(['$(li)%d - %d %% : $(thing)%s$()' % (round(100 * lo), round(100 * hi), lang(alloy)) for (alloy, lo, hi) in alloy_components])
-#    return item_spotlight('tfc:metal/ingot/%s' % alloy_name, title, False, '$(br)$(bold)Requirements:$()$(br)' + recipe + '$(br2)' + text_content)
+def alloy_recipe(title: str, alloy_name: str, text_content: TranslatableStr) -> Page:
+    # Components can be copied from alloy_recipe() declarations in
+    alloy_components = ALLOYS[alloy_name]
+    recipe = ''.join(['$(li)%d - %d %% : $(thing)%s$()' % (round(100 * lo), round(100 * hi), lang(alloy)) for (alloy, lo, hi) in alloy_components])
+    return item_spotlight('tfc:metal/ingot/%s' % alloy_name, title, False, '$(br)$(bold)Requirements:$()$(br)' + recipe + '$(br2)' + text_content)
 
 
-def fertilizer(item: str, text_contents: str, n: float = 0, p: float = 0, k: float = 0) -> Page:
+def fertilizer(item: str, text_contents: TranslatableStr, n: float = 0, p: float = 0, k: float = 0) -> Page:
     text_contents += ' $(br)'
     if n > 0:
         text_contents += '$(li)$(b)Nitrogen: %d$()' % (n * 100)
@@ -340,8 +468,35 @@ def empty_last_page() -> Page:
     return page(EMPTY_LAST_PAGE, {})
 
 
-def recipe_page(recipe_type: str, recipe: str, text_content: str) -> Page:
+def recipe_page(recipe_type: str, recipe: str, text_content: TranslatableStr) -> Page:
     return page(recipe_type, {'recipe': recipe, 'text': text_content}, custom=True, translation_keys=('text',))
+
+
+def table(strings: List[str | Dict], text_content: TranslatableStr, title: TranslatableStr, keywords: Dict[str, Any], legend: List[Dict[str, Any]], columns: int, first_column_width: int, column_width: int, row_height: int, left_buffer: int, top_buffer: int, draw_background: bool = True, small: bool = False) -> Page:
+    fixed_strings = []
+    for string in strings:
+        fixed_str = string
+        if keywords:
+            for k, v in keywords.items():
+                if k == string:
+                    fixed_str = v
+        if isinstance(fixed_str, str):
+            fixed_strings.append({'text': fixed_str})
+        else:
+            fixed_strings.append(fixed_str)
+    return page(TABLE_PAGE_SMALL if small else TABLE_PAGE, {
+        'strings': fixed_strings,
+        'text': text_content,
+        'title': title,
+        'legend': legend,
+        'columns': columns,
+        'first_column_width': first_column_width,
+        'column_width': column_width,
+        'row_height': row_height,
+        'left_buffer': left_buffer,
+        'top_buffer': top_buffer,
+        'draw_background': draw_background
+    }, custom=True, translation_keys=('text', 'title'))
 
 
 def page(page_type: str, page_data: JsonObject, custom: bool = False, translation_keys: Tuple[str, ...] = ()) -> Page:
@@ -361,3 +516,6 @@ def header_component(x: int, y: int) -> Component:
 def seperator_component(x: int, y: int) -> Component:
     return Component('patchouli:separator', x, y, {})
 
+
+def custom_component(x: int, y: int, class_name: str, data: JsonObject) -> Component:
+    return Component('patchouli:custom', x, y, {'class': 'net.dries007.tfc.compat.patchouli.component.' + class_name, **data})

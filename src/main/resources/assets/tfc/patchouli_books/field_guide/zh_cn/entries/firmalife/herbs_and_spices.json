@@ -11,7 +11,7 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/seed_ball",
-      "text": "The recipe for the seed ball requires $(l:tfc:firmalife/more_fertilizer)Compost$() and 4 $(thing)Seeds$()."
+      "text": "种子球的配方需要$(l:tfc:firmalife/more_fertilizer)堆肥$()与四个$(thing)种子$()。"
     },
     {
       "type": "patchouli:multiblock",
