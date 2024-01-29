@@ -1,5 +1,5 @@
 {
-  "__comment__": "このファイルはTomaMinによって自動的に作成されました。",
+  "__comment__": "このファイルはTomaMinによって作成されました。",
   "block.firmalife.insulated_oven_bottom": "断熱されたオーブンかまど",
   "block.firmalife.cured_oven_bottom": "硬化したオーブンかまど",
   "block.firmalife.cured_oven_top": "硬化したオーブン",
@@ -651,7 +651,7 @@
   "firmalife.bee.infection5": "ダニ",
   "firmalife.beehive.honey": "蜂蜜：%s / 12",
   "firmalife.beehive.bee": "フレーム %s：",
-  "firmalife.beehive.bee_cold": "寒すぎる！最低 s C",
+  "firmalife.beehive.bee_cold": "寒すぎる！最低 %s C",
   "firmalife.beehive.has_queen": "嬢王蜂入り",
   "firmalife.beehive.no_queen": "空",
   "firmalife.beehive.flowers": "花: %s",
