@@ -341,6 +341,24 @@ def generate(rm: ResourceManager):
         rm.crafting_shaped('crafting/greenhouse/%s_greenhouse_panel_wall' % greenhouse, ['XYX', 'XYX', 'XYX'], mapping, (8, 'firmalife:%s_greenhouse_panel_wall' % greenhouse)).with_advancement(rod)
         rm.crafting_shaped('crafting/greenhouse/%s_greenhouse_port' % greenhouse, ['ZZ', 'XY', 'ZZ'], {'X': rod, 'Y': 'firmalife:copper_pipe', 'Z': 'firmalife:reinforced_glass'}, (8, 'firmalife:%s_greenhouse_port' % greenhouse)).with_advancement(rod)
 
+    sandwich_modifier = {
+        'food': {
+            'hunger': 4,
+            'water': 0.5,
+            'saturation': 1,
+            'decay_modifier': 4.5
+        },
+        'portions': [{
+            'ingredient': utils.ingredient('#tfc:sandwich_bread'),
+            'nutrient_modifier': 0.5,
+            'saturation_modifier': 0.5,
+            'water_modifier': 0.5,
+        }, {
+            'nutrient_modifier': 0.8,
+            'water_modifier': 0.8,
+            'saturation_modifier': 0.8,
+        }]
+    }
     # Grain Stuff
     for grain in TFC_GRAINS:
         damage_shapeless(rm, 'crafting/%s_slice' % grain, ('tfc:food/%s_bread' % grain, '#tfc:knives'), '2 firmalife:food/%s_slice' % grain).with_advancement('tfc:food/%s_bread' % grain)
@@ -352,6 +370,29 @@ def generate(rm: ResourceManager):
         rm.domain = 'tfc'  # DOMAIN CHANGE
         heat_recipe(rm, grain + '_dough', not_rotten('tfc:food/%s_dough' % grain), 200, result_item=item_stack_provider('firmalife:food/%s_flatbread' % grain, copy_food=True))
         rm.domain = 'firmalife'  # DOMAIN RESET
+
+        for sandwich_bread in ('slice', 'flatbread'):
+            f_item = 'firmalife:food/%s_%s' % (grain, sandwich_bread)
+            sandwich_pattern = ['ZX ', 'YYY', ' X ']
+            sandwich_ingredients = {'X': not_rotten(f_item), 'Y': not_rotten('#tfc:foods/usable_in_sandwich'), 'Z': '#tfc:knives'}
+            jam_sandwich_pattern = ['ZX ', 'JYY', ' X ']
+            jam_sandwich_ingredients = {'X': not_rotten(f_item), 'Y': not_rotten('#tfc:foods/usable_in_jam_sandwich'), 'Z': '#tfc:knives', 'J': '#tfc:foods/preserves'}
+            delegate_recipe(rm, 'crafting/%s_sandwich_%s' % (grain, sandwich_bread), 'tfc:damage_inputs_shaped_crafting', {
+                'type': 'tfc:advanced_shaped_crafting',
+                'pattern': sandwich_pattern,
+                'key': utils.item_stack_dict(sandwich_ingredients, ''.join(sandwich_pattern)[0]),
+                'result': item_stack_provider('2 tfc:food/%s_bread_sandwich' % grain, meal=sandwich_modifier),
+                'input_row': 0,
+                'input_column': 0,
+            }).with_advancement(f_item)
+            delegate_recipe(rm, 'crafting/%s_sandwich_%s_with_jam' % (grain, sandwich_bread), 'tfc:damage_inputs_shaped_crafting', {
+                'type': 'tfc:advanced_shaped_crafting',
+                'pattern': jam_sandwich_pattern,
+                'key': utils.item_stack_dict(jam_sandwich_ingredients, ''.join(jam_sandwich_pattern)[0]),
+                'result': item_stack_provider('2 tfc:food/%s_bread_jam_sandwich' % grain, meal=sandwich_modifier),
+                'input_row': 0,
+                'input_column': 0,
+            }).with_advancement(f_item)
 
     heat_recipe(rm, 'corn_tortilla', not_rotten('firmalife:food/masa'), 200, result_item=item_stack_provider('firmalife:food/corn_tortilla', copy_food=True))
     heat_recipe(rm, 'bacon', not_rotten('firmalife:food/bacon'), 200, result_item=item_stack_provider('firmalife:food/cooked_bacon', copy_food=True))
