@@ -58,6 +58,11 @@
     {
       "type": "patchouli:text",
       "text": "格子種植盆有一種獨特的$(thing)繁殖$()灌木的功能. 如果一個格子種植盆放在另一個的上方, 並且下面的那個種植盆有一個成熟的莓果灌木, 那麼它就有可能生長到上方的種植盆裡. 格子種植盆可以種植所有的莓果灌木, 但$(thing)蔓越莓灌木$()除外. 它們需要$(thing)鐵$()或更高等級的溫室才能正常工作. 這些灌木喜歡氮."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/hydroponic_planter",
+      "text": "$(thing)Hydroponic Planters$() grow rice and cranberry bushes. They work the same as a quad planter, except that they do not need to be watered. Instead, they must have an $(li)$(l:firmalife/irrigation)Sprinkler Pipe$() below them that is supplying water. Without the pipe they will not grow."
     }
   ],
   "read_by_default": true,

@@ -1,7 +1,9 @@
 package com.eerussianguy.firmalife.common.blocks.greenhouse;
 
+import java.util.List;
 import java.util.Set;
 
+import com.eerussianguy.firmalife.common.blockentities.ClimateStationBlockEntity;
 import com.eerussianguy.firmalife.common.blockentities.ClimateType;
 import com.eerussianguy.firmalife.common.util.FLAdvancements;
 import net.minecraft.core.BlockPos;
@@ -27,12 +29,13 @@ import com.eerussianguy.firmalife.common.util.Mechanics;
 import com.mojang.datafixers.util.Either;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.devices.DeviceBlock;
+import net.dries007.tfc.common.blocks.soil.HoeOverlayBlock;
 
 import org.jetbrains.annotations.Nullable;
 
 import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
 
-public class ClimateStationBlock extends DeviceBlock
+public class ClimateStationBlock extends DeviceBlock implements HoeOverlayBlock
 {
     private static void denyAll(Level level, BlockPos pos)
     {
@@ -96,10 +99,12 @@ public class ClimateStationBlock extends DeviceBlock
     @SuppressWarnings("deprecation")
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit)
     {
-        Either<Mechanics.GreenhouseInfo, Set<BlockPos>> either = check(level, pos, state);
+        // set the fallback type if we can
+        final boolean willConsumeAction = level.getBlockEntity(pos) instanceof ClimateStationBlockEntity station && station.setFavorite(player.getItemInHand(hand));
+        final Either<Mechanics.GreenhouseInfo, Set<BlockPos>> either = check(level, pos, state);
         if (either == null)
         {
-            return InteractionResult.PASS;
+            return willConsumeAction ? InteractionResult.sidedSuccess(level.isClientSide) : InteractionResult.PASS;
         }
         else
         {
@@ -156,5 +161,21 @@ public class ClimateStationBlock extends DeviceBlock
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
     {
         builder.add(STASIS);
+    }
+
+    @Override
+    public void addHoeOverlayInfo(Level level, BlockPos pos, BlockState state, List<Component> tooltip, boolean debug)
+    {
+        if (level.getBlockEntity(pos) instanceof ClimateStationBlockEntity station)
+        {
+            if (station.getFavoriteType() != null)
+            {
+                tooltip.add(Component.translatable("firmalife.greenhouse.expects", station.getFavoriteType().getTitle()));
+            }
+            else if (station.favoriteIsCellar())
+            {
+                tooltip.add(Component.translatable("firmalife.cellar.expects"));
+            }
+        }
     }
 }

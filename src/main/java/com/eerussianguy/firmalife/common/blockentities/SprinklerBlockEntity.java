@@ -56,21 +56,21 @@ public class SprinklerBlockEntity extends TFCBlockEntity implements FluidTankCal
      * @return A fluid if found, otherwise {@code null}
      */
     @Nullable
-    private static Fluid searchForFluid(Level level, BlockPos start, Direction pipeDirection)
+    public static Fluid searchForFluid(Level level, BlockPos start, Direction pipeDirection)
     {
         final BlockPos.MutableBlockPos cursor = new BlockPos.MutableBlockPos();
         final Queue<Path> queue = new ArrayDeque<>();
         final Set<BlockPos> seen = new ObjectOpenHashSet<>(64);
 
-        final BlockPos above = start.relative(pipeDirection);
-        final BlockState stateAbove = level.getBlockState(above);
+        final BlockPos pipePos = start.relative(pipeDirection);
+        final BlockState pipeState = level.getBlockState(pipePos);
 
-        if (!isPipe(stateAbove))
+        if (!isPipe(pipeState))
         {
             return null;
         }
 
-        enqueueConnections(cursor, level, new Path(stateAbove, above, 1), seen, queue);
+        enqueueConnections(cursor, level, new Path(pipeState, pipePos, 1), seen, queue);
 
         while (!queue.isEmpty())
         {
@@ -94,7 +94,9 @@ public class SprinklerBlockEntity extends TFCBlockEntity implements FluidTankCal
             if (!seen.contains(cursor))
             {
                 final BlockState stateAdj = level.getBlockState(cursor);
-                if (isPipe(stateAdj)) // If there are two adjacent pipes, we know they connect as per expected behavior, and so don't have to check the property
+                // If there are two adjacent pipes, we know they connect as per expected behavior, and so don't have to check the property
+                // well that's not quite true, since we have the second kind of pipe we have a special case where if they're both pipes they must be the same kind of pipe.
+                if (isPipe(stateAdj) && !(prev.state.getBlock() instanceof SprinklerPipeBlock && stateAdj.getBlock() instanceof SprinklerPipeBlock && stateAdj.getBlock() != prev.state.getBlock()))
                 {
                     if (prev.cost < MAX_COST)
                     {

@@ -153,7 +153,7 @@ public class SprinklerPipeBlock extends ExtendedBlock implements DirectionProper
         }
         if (openSides == 1)
         {
-            // If we only have a single open side, then we always treat this as a straight pipe.
+            // If we only have a single open side, then we always treat `this` as a straight pipe.
             return state.setValue(DirectionPropertyBlock.getProperty(openDirection.getOpposite()), true);
         }
 
@@ -165,6 +165,7 @@ public class SprinklerPipeBlock extends ExtendedBlock implements DirectionProper
         final Block block = state.getBlock();
         return block == this ||
             (block instanceof AbstractSprinklerBlock sprinkler && sprinkler.getPipeConnection().test(direction)) ||
+            (direction == Direction.UP && block instanceof HydroponicPlanterBlock) ||
             (block instanceof GreenhousePortBlock && state.getValue(GreenhousePortBlock.AXIS) == direction.getAxis()) ||
             (block == FLBlocks.IRRIGATION_TANK.get() && direction.getAxis().isHorizontal());
     }

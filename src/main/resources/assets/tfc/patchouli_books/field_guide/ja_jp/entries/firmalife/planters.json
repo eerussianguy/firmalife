@@ -58,6 +58,11 @@
     {
       "type": "patchouli:text",
       "text": "トレリス・プランターには、ベリーの低木を$(thing)繁殖させる$()ユニークな性質があります。$(br)トレリスプランターが縦に置かれ、下のプランターに成熟したベリーの低木があればベリーが上のプランターへと成長するチャンスがあります。$(br2)トレリスプランターは、$(thing)クランベリー$()以外のどんなベリーの低木も育てることができますが、作業には$(thing)鉄$()かそれ以上の温室が必要です。$(br2)低木は窒素を栄養とします。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/hydroponic_planter",
+      "text": "$(thing)Hydroponic Planters$() grow rice and cranberry bushes. They work the same as a quad planter, except that they do not need to be watered. Instead, they must have an $(li)$(l:firmalife/irrigation)Sprinkler Pipe$() below them that is supplying water. Without the pipe they will not grow."
     }
   ],
   "read_by_default": true,

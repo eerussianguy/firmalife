@@ -5,6 +5,8 @@
     "firmalife:sealed_bricks",
     "firmalife:sealed_door",
     "firmalife:sealed_trapdoor",
-    "firmalife:sealed_wall"
+    "firmalife:sealed_wall",
+    "firmalife:polished_sealed_bricks",
+    "firmalife:chiseled_sealed_bricks"
   ]
 }

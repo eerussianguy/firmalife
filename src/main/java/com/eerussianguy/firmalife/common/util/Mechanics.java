@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
+import com.eerussianguy.firmalife.common.blockentities.ClimateStationBlockEntity;
 import com.eerussianguy.firmalife.config.FLConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -96,13 +97,22 @@ public final class Mechanics
             mutable.setWithOffset(pos, d);
             if (CELLAR.test(level.getBlockState(mutable)))
             {
-                final BoundingBox box = new BoundingBox(pos).inflatedBy(15);
-
-                Set<BlockPos> filled = floodfill(level, pos, mutable, box, (s, p, dir) -> CELLAR.test(s), s -> !Helpers.isBlock(s, FLBlocks.CLIMATE_STATION.get()), false, lastSize, Helpers.DIRECTIONS);
-                return filled.isEmpty() ? null : filled;
+                return tryFindCellarInfo(level, pos, lastSize, mutable);
             }
         }
+        if (level.getBlockEntity(pos) instanceof ClimateStationBlockEntity station && station.favoriteIsCellar())
+        {
+            return tryFindCellarInfo(level, pos, lastSize, mutable);
+        }
         return null;
+    }
+
+    @Nullable
+    private static Set<BlockPos> tryFindCellarInfo(Level level, BlockPos pos, int lastSize, BlockPos.MutableBlockPos mutable)
+    {
+        final BoundingBox box = new BoundingBox(pos).inflatedBy(15);
+        final Set<BlockPos> filled = floodfill(level, pos, mutable, box, (s, p, dir) -> CELLAR.test(s), s -> !Helpers.isBlock(s, FLBlocks.CLIMATE_STATION.get()), false, lastSize, Helpers.DIRECTIONS);
+        return filled.isEmpty() ? null : filled;
     }
 
     @Nullable
@@ -118,30 +128,44 @@ public final class Mechanics
         for (Direction d : Helpers.DIRECTIONS)
         {
             mutable.setWithOffset(pos, d);
-            GreenhouseType greenhouse = GreenhouseType.get(level.getBlockState(mutable));
+            final GreenhouseType greenhouse = GreenhouseType.get(level.getBlockState(mutable));
             if (greenhouse != null)
             {
-                final BoundingBox box = new BoundingBox(pos).inflatedBy(15);
-                final TriPredicate<BlockState, BlockPos, Direction> predicate = (wallState, wallPos, direction) -> {
-                    if (direction == Direction.DOWN)
-                        return !wallState.isAir();
-                    if (!greenhouse.ingredient.test(wallState))
-                        return false;
-                    if (direction == Direction.UP && wallState.getBlock() instanceof SlabBlock)
-                        return true;
-                    if (Helpers.isBlock(wallState, FLTags.Blocks.ALWAYS_VALID_GREENHOUSE_WALL))
-                        return true; // short circuit for stuff we know will pass (plus exempt doors)
-                    return wallState.isFaceSturdy(level, wallPos, direction.getOpposite());
-                };
-                Set<BlockPos> filled = floodfill(level, pos, mutable, box, predicate, s -> !Helpers.isBlock(s, FLBlocks.CLIMATE_STATION.get()), false, lastSize, Helpers.DIRECTIONS);
-                if (filled.isEmpty())
-                {
-                    return null;
-                }
-                return new GreenhouseInfo(greenhouse, filled);
+                return tryFindGreenhouseInfo(level, pos, lastSize, mutable, greenhouse);
             }
         }
+        if (level.getBlockEntity(pos) instanceof ClimateStationBlockEntity station && station.getFavoriteType() != null)
+        {
+            return tryFindGreenhouseInfo(level, pos, lastSize, mutable, station.getFavoriteType());
+        }
         return null;
+    }
+
+    @Nullable
+    private static GreenhouseInfo tryFindGreenhouseInfo(Level level, BlockPos pos, int lastSize, BlockPos.MutableBlockPos mutable, GreenhouseType greenhouse)
+    {
+        final BoundingBox box = new BoundingBox(pos).inflatedBy(15);
+        final TriPredicate<BlockState, BlockPos, Direction> predicate = (wallState, wallPos, direction) -> {
+            if (direction == Direction.DOWN)
+                return !wallState.isAir();
+            if (!greenhouse.ingredient.test(wallState))
+                return false;
+            if (direction == Direction.UP && wallState.getBlock() instanceof SlabBlock)
+                return true;
+            if (Helpers.isBlock(wallState, FLTags.Blocks.ALWAYS_VALID_GREENHOUSE_WALL))
+                return true; // short circuit for stuff we know will pass (plus exempt doors)
+            return wallState.isFaceSturdy(level, wallPos, direction.getOpposite());
+        };
+        Set<BlockPos> filled = floodfill(level, pos, mutable, box, predicate, s -> !Helpers.isBlock(s, FLBlocks.CLIMATE_STATION.get()), false, lastSize, Helpers.DIRECTIONS);
+        if (filled.isEmpty())
+        {
+            return null;
+        }
+        if (level.getBlockEntity(pos) instanceof ClimateStationBlockEntity station)
+        {
+            station.setFavorite(greenhouse);
+        }
+        return new GreenhouseInfo(greenhouse, filled);
     }
 
     public record GreenhouseInfo(GreenhouseType type, Set<BlockPos> positions) { }

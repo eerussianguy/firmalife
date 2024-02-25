@@ -15,6 +15,9 @@ public class HydroponicPlanterBlockEntityRenderer implements BlockEntityRenderer
     @Override
     public void render(HydroponicPlanterBlockEntity planter, float partialTicks, PoseStack poseStack, MultiBufferSource buffers, int combinedLight, int combinedOverlay)
     {
-        RenderHelpers.renderFluidFace(poseStack, new FluidStack(Fluids.WATER, 100), buffers, 1f / 16, 1f / 16, 15f / 16, 15f / 16, 5f / 16, combinedOverlay, combinedLight);
+        if (planter.hasPipe())
+        {
+            RenderHelpers.renderFluidFace(poseStack, new FluidStack(Fluids.WATER, 100), buffers, 1f / 16, 1f / 16, 15f / 16, 15f / 16, 5f / 16, combinedOverlay, combinedLight);
+        }
     }
 }

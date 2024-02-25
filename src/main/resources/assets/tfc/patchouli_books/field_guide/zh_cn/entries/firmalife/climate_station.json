@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": " $(thing)气象站$() 是一个方块，它能控制 $(l:tfc:firmalife/greenhouse)温室$() 与 $(l:tfc:firmalife/cellar)地窖$(). 当其相应的多方块结构被正确建造时，其两个侧面将显示水的样子。 当它没有起作用时，侧面将会是冰的样子. 气候站必须放置在多方块结构的第一层，并与墙壁接触。"
+      "text": "The $(thing)Climate Station$() is a block that manages the $(l:firmalife/greenhouse)Greenhouse$() and the $(l:firmalife/cellar)Cellar$(). When its corresponding multiblock is built correctly, it will show water on its sides. When it is invalid, it will show ice. The Climate Station must be placed on the first level of the multiblock, touching a wall. If it is not touching a wall, you may $(item)$(k:key.use)$() it with a block that is part of the multiblock you are trying to make to tell it what to look for."
     },
     {
       "type": "tfc:multimultiblock",

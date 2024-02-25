@@ -62,7 +62,7 @@ def generate(rm: ResourceManager):
     rm.crafting_shaped('crafting/trellis_planter', ['X X', 'X X', 'XYX'], {'X': 'minecraft:brick', 'Y': 'tfc:compost'}, 'firmalife:trellis_planter').with_advancement('tfc:compost')
     rm.crafting_shaped('crafting/bonsai_planter', ['X X', 'XYX', 'XXX'], {'X': 'minecraft:brick', 'Y': 'tfc:compost'}, 'firmalife:bonsai_planter').with_advancement('tfc:compost')
     rm.crafting_shaped('crafting/treated_lumber', ['XXX', 'XYX', 'XXX'], {'X': '#tfc:lumber', 'Y': 'firmalife:beeswax'}, '8 firmalife:treated_lumber').with_advancement('firmalife:beeswax')
-    # rm.crafting_shaped('crafting/hydroponic_planter', ['YY', 'XX', 'Z '], {'Y': 'tfc:compost', 'X': 'firmalife:treated_lumber', 'Z': '#forge:ingots/wrought_iron'}, '2 firmalife:hydroponic_planter').with_advancement('firmalife:treated_lumber')
+    rm.crafting_shaped('crafting/hydroponic_planter', ['YY', 'XX', 'Z '], {'Y': 'tfc:compost', 'X': 'firmalife:treated_lumber', 'Z': '#forge:ingots/wrought_iron'}, '2 firmalife:hydroponic_planter').with_advancement('firmalife:treated_lumber')
     rm.crafting_shaped('crafting/vat', ['X X', 'YXY'], {'X': '#forge:sheets/stainless_steel', 'Y': 'firmalife:beeswax'}, 'firmalife:vat').with_advancement('#forge:sheets/stainless_steel')
     rm.crafting_shaped('crafting/jarring_station', ['X X', 'ZZZ'], {'X': '#forge:sheets/stainless_steel', 'Z': 'firmalife:treated_lumber'}, 'firmalife:jarring_station').with_advancement('#forge:sheets/stainless_steel')
     rm.crafting_shapeless('crafting/oven_hopper', ('firmalife:oven_bottom', 'minecraft:hopper'), 'firmalife:oven_hopper').with_advancement('minecraft:hopper')
@@ -184,7 +184,7 @@ def generate(rm: ResourceManager):
     simple_pot_recipe(rm, 'beet_sugar', [beet, beet, beet, beet, beet], '100 tfc:salt_water', output_items=['minecraft:sugar', 'minecraft:sugar', 'minecraft:sugar'])
     simple_pot_recipe(rm, 'beet_sugar_freshwater', [beet, beet, beet, beet, utils.ingredient('tfc:powder/salt')], '100 minecraft:water', output_items=['minecraft:sugar', 'minecraft:sugar'])
     simple_pot_recipe(rm, 'soy_mixture', [not_rotten('tfc:food/soybean'), not_rotten('tfc:food/soybean'), utils.ingredient('tfc:powder/salt'), utils.ingredient('tfc:powder/salt')], '100 minecraft:water', output_items=['firmalife:food/soy_mixture', 'firmalife:food/soy_mixture'])
-    simple_pot_recipe_5(rm, 'cured_maize', not_rotten('tfc:food/maize_grain'), '100 tfc:limewater', output_items=['firmalife:food/cured_maize'], duration=3000)
+    simple_pot_recipe_5(rm, 'cured_maize', not_rotten('tfc:food/maize_grain'), '100 tfc:limewater', output_items='firmalife:food/cured_maize', duration=3000)
     simple_pot_recipe(rm, 'tomato_sauce', [not_rotten('tfc:food/tomato'), utils.ingredient('tfc:powder/salt'), not_rotten('tfc:food/garlic')], '100 minecraft:water', output_items=['firmalife:food/tomato_sauce', 'firmalife:food/tomato_sauce', 'firmalife:food/tomato_sauce', 'firmalife:food/tomato_sauce', 'firmalife:food/tomato_sauce'])
     simple_pot_recipe(rm, 'chocolate', [utils.ingredient('#tfc:sweetener'), not_rotten('#firmalife:foods/chocolate')], '1000 #tfc:milks', output_fluid='1000 firmalife:chocolate')
 
@@ -593,7 +593,7 @@ def welding_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, fi
 
 def simple_pot_recipe_5(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredient: Json, fluid: str, output_fluid: str = None, output_items: Json = None, duration: int = 2000, temp: int = 300):
     for i in range(1, 6):
-        simple_pot_recipe(rm, name_parts + '_' + str(i), [*[ingredient] * i], fluid, output_fluid, output_items, duration, temp)
+        simple_pot_recipe(rm, name_parts + '_' + str(i), [*[ingredient] * i], fluid, output_fluid, [*[output_items] * i], duration, temp)
 
 def simple_pot_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredients: Json, fluid: str, output_fluid: str = None, output_items: Json = None, duration: int = 2000, temp: int = 300):
     rm.recipe(('pot', name_parts), 'tfc:pot', {

@@ -38,7 +38,7 @@ public class GreenhouseType
     {
         for (GreenhouseType def : MANAGER.getValues())
         {
-            if (def.id == id)
+            if (def.id.equals(id))
             {
                 return def;
             }
