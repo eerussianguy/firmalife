@@ -188,8 +188,12 @@ public class MixingBowlBlockEntity extends TickableInventoryBlockEntity<MixingBo
                     break;
                 }
             }
-            inventory.drain(FluidHelpers.BUCKET_VOLUME, IFluidHandler.FluidAction.EXECUTE);
-            inventory.fill(recipe.getResultFluid(), IFluidHandler.FluidAction.EXECUTE);
+            inventory.drain(recipe.getFluidIngredient().amount(), IFluidHandler.FluidAction.EXECUTE);
+            if (!recipe.getResultFluid().isEmpty())
+            {
+                inventory.drain(FluidHelpers.BUCKET_VOLUME, IFluidHandler.FluidAction.EXECUTE);
+                inventory.fill(recipe.getResultFluid(), IFluidHandler.FluidAction.EXECUTE);
+            }
         }
         markForSync();
     }

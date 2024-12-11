@@ -94,7 +94,7 @@ public class FLBee extends Bee
         }
         else if (tickCount % 400 == 0)
         {
-            if (Calendars.get(this.level()).getTotalCalendarDays() > daySpawned && daySpawned >= 0)
+            if ((Calendars.get(this.level()).getTotalCalendarDays() > daySpawned && daySpawned >= 0) || isAngry())
             {
                 this.discard();
             }

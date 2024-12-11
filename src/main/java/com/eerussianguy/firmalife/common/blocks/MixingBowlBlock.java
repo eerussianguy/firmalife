@@ -38,7 +38,7 @@ public class MixingBowlBlock extends BottomSupportedDeviceBlock
     @SuppressWarnings("deprecation")
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
     {
-        ItemStack held = player.getItemInHand(hand);
+        final ItemStack held = player.getItemInHand(hand);
         return level.getBlockEntity(pos, FLBlockEntities.MIXING_BOWL.get()).map(bowl -> {
             if (!bowl.isMixing())
             {

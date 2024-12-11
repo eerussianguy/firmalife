@@ -1,0 +1,26 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "planter": "large",
+  "ingredient": {
+    "item": "tfc:seeds/yellow_bell_pepper"
+  },
+  "seed": {
+    "item": "tfc:seeds/yellow_bell_pepper"
+  },
+  "crop": {
+    "item": "tfc:food/yellow_bell_pepper"
+  },
+  "nutrient": "potassium",
+  "stages": 6,
+  "texture": [
+    "tfc:block/crop/yellow_bell_pepper_0",
+    "tfc:block/crop/yellow_bell_pepper_1",
+    "tfc:block/crop/yellow_bell_pepper_2",
+    "tfc:block/crop/yellow_bell_pepper_3",
+    "tfc:block/crop/yellow_bell_pepper_4",
+    "tfc:block/crop/yellow_bell_pepper_5",
+    "tfc:block/crop/yellow_bell_pepper_6"
+  ],
+  "specials": [],
+  "extra_seed_chance": 0.5
+}

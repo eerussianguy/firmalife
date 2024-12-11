@@ -64,6 +64,8 @@ def generate(rm: ResourceManager):
     simple_plantable(rm, 'green_bean', 'nitrogen', 4, planter='large', firmalife=True)
     simple_plantable(rm, 'tomato', 'potassium', 4, planter='large', firmalife=True)
     simple_plantable(rm, 'sugarcane', 'potassium', 4, planter='large', firmalife=True)
+    simple_plantable(rm, 'red_bell_pepper', 'potassium', 6, planter='large')
+    simple_plantable(rm, 'yellow_bell_pepper', 'potassium', 6, planter='large')
     plantable(rm, 'jute', 'tfc:seeds/jute', 'tfc:jute', 'potassium', ['firmalife:block/crop/jute_%s' % i for i in range(0, 5)], 4, 'large')
     plantable(rm, 'papyrus', 'tfc:seeds/papyrus', 'tfc:papyrus', 'potassium', ['firmalife:block/crop/papyrus_%s' % i for i in range(0, 6)], 5, 'large')
     plantable(rm, 'red_grapes', 'firmalife:seeds/red_grape', 'firmalife:food/red_grapes', 'nitrogen', ['firmalife:block/crop/%s' % c for c in ('grape_leaves', 'grape_leaves_dead', 'grape_leaves_flowering', 'grape_leaves_red')], 0, 'trellis', tier=15, seed_chance=0.1)
