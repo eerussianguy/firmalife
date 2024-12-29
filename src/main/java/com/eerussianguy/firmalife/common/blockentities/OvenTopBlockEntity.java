@@ -17,6 +17,7 @@ import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
 import net.dries007.tfc.common.capabilities.PartialItemHandler;
 import net.dries007.tfc.common.capabilities.food.FoodCapability;
 import net.dries007.tfc.common.capabilities.heat.HeatCapability;
+import net.dries007.tfc.common.capabilities.heat.IHeat;
 import net.dries007.tfc.common.recipes.inventory.ItemStackInventory;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.calendar.ICalendarTickable;
@@ -80,12 +81,14 @@ public class OvenTopBlockEntity extends ApplianceBlockEntity<ApplianceBlockEntit
             final ItemStack inputStack = oven.inventory.getStackInSlot(i);
             if (!inputStack.isEmpty())
             {
-                inputStack.getCapability(HeatCapability.CAPABILITY).ifPresent(cap -> {
+                final IHeat cap = HeatCapability.get(inputStack);
+                if (cap != null)
+                {
                     // Always heat up the item regardless if it is melting or not
                     final float targetTemp = oven.isInsulated ? oven.temperature : oven.temperature * 0.5f;
                     if (cap.getTemperature() < targetTemp)
                     {
-                        final float modifier = FoodCapability.hasTrait(inputStack, FLFoodTraits.OVEN_BAKED) ? 2f : 2 + targetTemp + 0.0025f; // Breaks even at 400 C
+                        final float modifier = FoodCapability.hasTrait(inputStack, FLFoodTraits.OVEN_BAKED) ? 2f : 2 + (targetTemp * 0.0025f); // Breaks even at 400 C
                         HeatCapability.addTemp(cap, targetTemp, modifier);
                     }
 
@@ -109,7 +112,7 @@ public class OvenTopBlockEntity extends ApplianceBlockEntity<ApplianceBlockEntit
                             oven.needsRecipeUpdate = true;
                         }
                     }
-                });
+                }
             }
         }
     }

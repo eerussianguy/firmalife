@@ -3,10 +3,13 @@
   "type": "firmalife:vat",
   "input_item": {
     "ingredient": {
-      "type": "tfc:lacks_trait",
-      "trait": "firmalife:dried",
+      "type": "tfc:not_rotten",
       "ingredient": {
-        "item": "firmalife:food/white_grapes"
+        "type": "tfc:lacks_trait",
+        "trait": "firmalife:dried",
+        "ingredient": {
+          "item": "firmalife:food/white_grapes"
+        }
       }
     }
   },

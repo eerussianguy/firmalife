@@ -3,22 +3,26 @@
   "type": "tfc:pot_jam",
   "ingredients": [
     {
-      "type": "tfc:not_rotten",
       "ingredient": {
-        "type": "tfc:lacks_trait",
-        "trait": "firmalife:dried",
+        "type": "tfc:not_rotten",
         "ingredient": {
-          "item": "firmalife:food/fig"
+          "type": "tfc:lacks_trait",
+          "trait": "firmalife:dried",
+          "ingredient": {
+            "item": "firmalife:food/fig"
+          }
         }
       }
     },
     {
-      "type": "tfc:not_rotten",
       "ingredient": {
-        "type": "tfc:lacks_trait",
-        "trait": "firmalife:dried",
+        "type": "tfc:not_rotten",
         "ingredient": {
-          "item": "firmalife:food/fig"
+          "type": "tfc:lacks_trait",
+          "trait": "firmalife:dried",
+          "ingredient": {
+            "item": "firmalife:food/fig"
+          }
         }
       }
     },

@@ -33,11 +33,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "While the regular composter takes 16 'compost units', the tumbler can hold 32. Green and brown items count the same, being on the range 1-4, but the new additions like fish always count for 1."
-    },
-    {
-      "type": "patchouli:text",
-      "text": "Adding too much weird stuff to the composter causes it to produce rotten compost. Further, you will not know it is rotten until the very end! If the compost is more than fifteen percent bones, fish, or pottery, or more than twenty percent charcoal. it will rot. Or, if there are 10 or more green units than brown units, it will rot."
+      "text": "Green and brown items count the same, being on the range 1-4, but the new additions like fish always count for 1. Adding too much weird stuff to the composter causes it to produce rotten compost. Further, you will not know it is rotten until the very end! If the compost is more than fifteen percent bones, fish, or pottery, or more than twenty percent charcoal. it will rot. Or, if there are 10 or more green units than brown units, it will rot."
     },
     {
       "type": "patchouli:text",

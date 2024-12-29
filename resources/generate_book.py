@@ -265,10 +265,8 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False, rev
             crafting('firmalife:crafting/compost_tumbler', text_contents='The compost tumbler is unique in that it takes more types of compost, and does not require precise ratios in order to work.'),
             text('The tumbler can take green and brown items like a regular composter. It can also take pottery sherds, charcoal, fish, and bones in small amounts.'),
             crafting('firmalife:crafting/pottery_sherd', text_contents='Smashing pottery with a hammer yields sherds.'),
-            text('While the regular composter takes 16 \'compost units\', the tumbler can hold 32. Green and brown items count the same, being on the range 1-4, but the new additions like fish always count for 1.'),
-            text('Adding too much weird stuff to the composter causes it to produce rotten compost. Further, you will not know it is rotten until the very end! If the compost is more than fifteen percent bones, fish, or pottery, or more than twenty percent charcoal. it will rot. Or, if there are 10 or more green units than brown units, it will rot.'),
+            text('Green and brown items count the same, being on the range 1-4, but the new additions like fish always count for 1. Adding too much weird stuff to the composter causes it to produce rotten compost. Further, you will not know it is rotten until the very end! If the compost is more than fifteen percent bones, fish, or pottery, or more than twenty percent charcoal. it will rot. Or, if there are 10 or more green units than brown units, it will rot.'),
             text('Favorable amounts of certain additions can extend or shorten the length of time it takes for the compost to complete. Play around with it and see what happens.$(br)If 32 units are in the composter, 3 compost will be produced. If at least 24, 2 compost will be made. If 16 or more, 1 will be made. Below that, and there will be no compost.'),
-            empty_last_page(),
         )),
         entry('mixing_bowl', 'Mixing Bowl', 'firmalife:mixing_bowl', pages=(
             text('The mixing bowl is a way of mixing items and fluids together in a friendly way. $(item)$(k:key.use)$() on it with a $(thing)Spoon$() to add it to the bowl, which allows it to operate.'),

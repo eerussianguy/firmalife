@@ -3,7 +3,10 @@
   "type": "firmalife:vat",
   "input_item": {
     "ingredient": {
-      "item": "firmalife:food/tomato_sauce_mix"
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "firmalife:food/tomato_sauce_mix"
+      }
     }
   },
   "input_fluid": {

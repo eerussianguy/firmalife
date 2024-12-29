@@ -3,42 +3,50 @@
   "type": "tfc:pot_jam",
   "ingredients": [
     {
-      "type": "tfc:not_rotten",
       "ingredient": {
-        "type": "tfc:lacks_trait",
-        "trait": "firmalife:dried",
+        "type": "tfc:not_rotten",
         "ingredient": {
-          "item": "firmalife:food/red_grapes"
+          "type": "tfc:lacks_trait",
+          "trait": "firmalife:dried",
+          "ingredient": {
+            "item": "firmalife:food/red_grapes"
+          }
         }
       }
     },
     {
-      "type": "tfc:not_rotten",
       "ingredient": {
-        "type": "tfc:lacks_trait",
-        "trait": "firmalife:dried",
+        "type": "tfc:not_rotten",
         "ingredient": {
-          "item": "firmalife:food/red_grapes"
+          "type": "tfc:lacks_trait",
+          "trait": "firmalife:dried",
+          "ingredient": {
+            "item": "firmalife:food/red_grapes"
+          }
         }
       }
     },
     {
-      "type": "tfc:not_rotten",
       "ingredient": {
-        "type": "tfc:lacks_trait",
-        "trait": "firmalife:dried",
+        "type": "tfc:not_rotten",
         "ingredient": {
-          "item": "firmalife:food/red_grapes"
+          "type": "tfc:lacks_trait",
+          "trait": "firmalife:dried",
+          "ingredient": {
+            "item": "firmalife:food/red_grapes"
+          }
         }
       }
     },
     {
-      "type": "tfc:not_rotten",
       "ingredient": {
-        "type": "tfc:lacks_trait",
-        "trait": "firmalife:dried",
+        "type": "tfc:not_rotten",
         "ingredient": {
-          "item": "firmalife:food/red_grapes"
+          "type": "tfc:lacks_trait",
+          "trait": "firmalife:dried",
+          "ingredient": {
+            "item": "firmalife:food/red_grapes"
+          }
         }
       }
     },

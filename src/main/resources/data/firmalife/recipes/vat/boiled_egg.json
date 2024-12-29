@@ -3,7 +3,10 @@
   "type": "firmalife:vat",
   "input_item": {
     "ingredient": {
-      "tag": "firmalife:foods/raw_eggs"
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "tag": "firmalife:foods/raw_eggs"
+      }
     }
   },
   "input_fluid": {

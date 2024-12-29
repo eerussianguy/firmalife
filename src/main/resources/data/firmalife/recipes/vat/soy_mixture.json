@@ -3,7 +3,10 @@
   "type": "firmalife:vat",
   "input_item": {
     "ingredient": {
-      "item": "tfc:food/soybean"
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "tfc:food/soybean"
+      }
     }
   },
   "input_fluid": {

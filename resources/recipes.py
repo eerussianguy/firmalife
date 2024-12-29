@@ -163,20 +163,20 @@ def generate(rm: ResourceManager):
     vat_recipe(rm, 'olive_oil_water', 'tfc:olive_paste', '200 minecraft:water', output_fluid='200 tfc:olive_oil_water')
     vat_recipe(rm, 'tallow', 'tfc:blubber', '200 minecraft:water', output_fluid='200 tfc:tallow')
     vat_recipe(rm, 'lye', 'tfc:powder/wood_ash', '200 minecraft:water', output_fluid='200 tfc:lye')
-    vat_recipe(rm, 'cooked_rice', not_rotten('tfc:food/rice_grain'), '200 minecraft:water', output_item='tfc:food/cooked_rice')
-    vat_recipe(rm, 'boiled_egg', not_rotten('#firmalife:foods/raw_eggs'), '200 minecraft:water', output_item='tfc:food/boiled_egg')
+    vat_recipe(rm, 'cooked_rice', {'ingredient': not_rotten('tfc:food/rice_grain')}, '200 minecraft:water', output_item='tfc:food/cooked_rice')
+    vat_recipe(rm, 'boiled_egg', {'ingredient': not_rotten('#firmalife:foods/raw_eggs')}, '200 minecraft:water', output_item='tfc:food/boiled_egg')
     for color in COLORS:
         vat_recipe(rm, '%s_dye' % color, 'minecraft:%s_dye' % color, '1000 minecraft:water', output_fluid='1000 tfc:%s_dye' % color)
     vat_recipe(rm, 'beet_sugar', {'count': 5, 'ingredient': not_rotten('tfc:food/beet')}, '1000 tfc:salt_water', output_item='3 minecraft:sugar')
-    vat_recipe(rm, 'soy_mixture', not_rotten('tfc:food/soybean'), '1000 tfc:salt_water', output_item='firmalife:food/soy_mixture')
-    vat_recipe(rm, 'cured_maize', not_rotten('tfc:food/maize_grain'), '1000 tfc:limewater', output_item='firmalife:food/cured_maize')
-    vat_recipe(rm, 'tomato_sauce', not_rotten('firmalife:food/tomato_sauce_mix'), '200 minecraft:water', output_item='firmalife:food/tomato_sauce')
+    vat_recipe(rm, 'soy_mixture', {'ingredient': not_rotten('tfc:food/soybean')}, '1000 tfc:salt_water', output_item='firmalife:food/soy_mixture')
+    vat_recipe(rm, 'cured_maize', {'ingredient': not_rotten('tfc:food/maize_grain')}, '1000 tfc:limewater', output_item='firmalife:food/cured_maize')
+    vat_recipe(rm, 'tomato_sauce', {'ingredient': not_rotten('firmalife:food/tomato_sauce_mix')}, '200 minecraft:water', output_item='firmalife:food/tomato_sauce')
     vat_recipe(rm, 'sugar_water', '#tfc:sweetener', '1000 minecraft:water', output_fluid='500 firmalife:sugar_water')
 
     for jar, remainder, ing in JARS:
         make_jar(rm, jar, remainder, ing)
     for fruit in FL_FRUITS:
-        ing = not_rotten(lacks_trait('firmalife:food/%s' % fruit, 'firmalife:dried'))
+        ing = {'ingredient': not_rotten(lacks_trait('firmalife:food/%s' % fruit, 'firmalife:dried'))}
         vat_recipe(rm, '%s_jar' % fruit, ing, '500 firmalife:sugar_water', jar='firmalife:jar/%s' % fruit, output_texture='firmalife:block/jar/%s' % fruit)
         for count in (2, 3, 4):
             rm.recipe(('pot', 'jam_%s_%s' % (fruit, count)), 'tfc:pot_jam', {
@@ -189,7 +189,7 @@ def generate(rm: ResourceManager):
             })
         rm.crafting_shapeless('crafting/unseal_%s_jar' % fruit, (not_rotten('firmalife:jar/%s' % fruit), ), 'firmalife:jar/%s_unsealed' % fruit).with_advancement('firmalife:jar/%s' % fruit)
     for fruit in TFC_FRUITS:
-        ing = not_rotten(has_trait('tfc:food/%s' % fruit, 'firmalife:dried', True))
+        ing = {'ingredient': not_rotten(lacks_trait('tfc:food/%s' % fruit, 'firmalife:dried'))}
         vat_recipe(rm, '%s_jar' % fruit, ing, '500 firmalife:sugar_water', jar='tfc:jar/%s' % fruit, output_texture='tfc:block/jar/%s' % fruit)
 
     beet = not_rotten('tfc:food/beet')
@@ -596,7 +596,7 @@ def has_trait(ingredient: Json, trait: str, invert: bool = False) -> Json:
     return {
         'type': 'tfc:lacks_trait' if invert else 'tfc:has_trait',
         'trait': trait,
-        'ingredient': utils.ingredient(ingredient)
+        'ingredient': utils.ingredient(ingredient),
     }
 
 def lacks_trait(ingredient: Json, trait: str) -> Json:

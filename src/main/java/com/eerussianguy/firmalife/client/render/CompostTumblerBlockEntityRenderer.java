@@ -17,6 +17,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -73,7 +74,7 @@ public class CompostTumblerBlockEntityRenderer implements BlockEntityRenderer<Co
 
         if (!isRotating)
         {
-            modelRenderer.tesselateWithAO(level, baked, state, pos, poseStack, buffer, true, level.getRandom(), combinedLight, combinedOverlay, ModelData.EMPTY, RenderType.cutout());
+            modelRenderer.tesselateWithAO(level, baked, state, pos, poseStack, buffer, true, RandomSource.create(), combinedLight, combinedOverlay, ModelData.EMPTY, RenderType.cutout());
 
             ResourceLocation texture = NORMAL_TEXTURE;
             if (composter.isRotten())
