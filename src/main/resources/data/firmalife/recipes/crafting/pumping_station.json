@@ -8,7 +8,7 @@
   ],
   "key": {
     "S": {
-      "tag": "forge:sheets/bronze"
+      "tag": "forge:sheets/any_bronze"
     },
     "R": {
       "tag": "forge:dusts/redstone"

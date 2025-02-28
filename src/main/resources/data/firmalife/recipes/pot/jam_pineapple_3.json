@@ -3,38 +3,32 @@
   "type": "tfc:pot_jam",
   "ingredients": [
     {
+      "type": "tfc:not_rotten",
       "ingredient": {
-        "type": "tfc:not_rotten",
+        "type": "tfc:lacks_trait",
+        "trait": "firmalife:dried",
         "ingredient": {
-          "type": "tfc:lacks_trait",
-          "trait": "firmalife:dried",
-          "ingredient": {
-            "item": "firmalife:food/pineapple"
-          }
+          "item": "firmalife:food/pineapple"
         }
       }
     },
     {
+      "type": "tfc:not_rotten",
       "ingredient": {
-        "type": "tfc:not_rotten",
+        "type": "tfc:lacks_trait",
+        "trait": "firmalife:dried",
         "ingredient": {
-          "type": "tfc:lacks_trait",
-          "trait": "firmalife:dried",
-          "ingredient": {
-            "item": "firmalife:food/pineapple"
-          }
+          "item": "firmalife:food/pineapple"
         }
       }
     },
     {
+      "type": "tfc:not_rotten",
       "ingredient": {
-        "type": "tfc:not_rotten",
+        "type": "tfc:lacks_trait",
+        "trait": "firmalife:dried",
         "ingredient": {
-          "type": "tfc:lacks_trait",
-          "trait": "firmalife:dried",
-          "ingredient": {
-            "item": "firmalife:food/pineapple"
-          }
+          "item": "firmalife:food/pineapple"
         }
       }
     },

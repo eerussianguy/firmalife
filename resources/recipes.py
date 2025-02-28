@@ -110,9 +110,7 @@ def generate(rm: ResourceManager):
     rm.crafting_shapeless('crafting/plate', ('firmalife:treated_lumber', 'firmalife:treated_lumber', 'minecraft:white_dye', 'tfc:glue'), 'firmalife:plate').with_advancement('firmalife:treated_lumber')
     rm.crafting_shapeless('crafting/oxidized_copper_pipe', ('firmalife:copper_pipe', 'firmalife:copper_pipe', 'firmalife:copper_pipe', 'firmalife:copper_pipe', 'tfc:powder/wood_ash'), '4 firmalife:oxidized_copper_pipe').with_advancement('firmalife:copper_pipe')
     rm.crafting_shapeless('crafting/irrigation_tank', ('#tfc:barrels', '#forge:sheets/bronze', 'firmalife:copper_pipe'), 'firmalife:irrigation_tank').with_advancement('firmalife:copper_pipe')
-    rm.crafting_shaped('crafting/pumping_station', ['SRS', 'BBB', 'ZZZ'], {'S': '#forge:sheets/bronze', 'R': '#forge:dusts/redstone', 'B': 'tfc:brass_mechanisms', 'Z': '#tfc:axles'}, 'firmalife:pumping_station').with_advancement('tfc:brass_mechanisms')
-    rm.crafting_shaped('crafting/pumping_station2', ['SRS', 'BBB', 'ZZZ'], {'S': '#forge:sheets/black_bronze', 'R': '#forge:dusts/redstone', 'B': 'tfc:brass_mechanisms', 'Z': '#tfc:axles'}, 'firmalife:pumping_station').with_advancement('tfc:brass_mechanisms')
-    rm.crafting_shaped('crafting/pumping_station3', ['SRS', 'BBB', 'ZZZ'], {'S': '#forge:sheets/bismuth_bronze', 'R': '#forge:dusts/redstone', 'B': 'tfc:brass_mechanisms', 'Z': '#tfc:axles'}, 'firmalife:pumping_station').with_advancement('tfc:brass_mechanisms')
+    rm.crafting_shaped('crafting/pumping_station', ['SRS', 'BBB', 'ZZZ'], {'S': '#forge:sheets/any_bronze', 'R': '#forge:dusts/redstone', 'B': 'tfc:brass_mechanisms', 'Z': '#tfc:axles'}, 'firmalife:pumping_station').with_advancement('tfc:brass_mechanisms')
     damage_shapeless(rm, 'crafting/chiseled_sealed_bricks', ('firmalife:polished_sealed_bricks', '#tfc:chisels'), 'firmalife:chiseled_sealed_bricks').with_advancement('firmalife:sealed_bricks')
     damage_shapeless(rm, 'crafting/polished_sealed_bricks', ('firmalife:sealed_bricks', '#tfc:chisels', 'tfc:mortar'), 'firmalife:polished_sealed_bricks').with_advancement('firmalife:sealed_bricks')
     damage_shapeless(rm, 'crafting/barrel_stave', ('firmalife:treated_lumber', 'firmalife:treated_lumber', '#forge:sheets/wrought_iron', '#tfc:hammers'), 'firmalife:barrel_stave').with_advancement('#forge:sheets/wrought_iron')
@@ -176,8 +174,8 @@ def generate(rm: ResourceManager):
     for jar, remainder, ing in JARS:
         make_jar(rm, jar, remainder, ing)
     for fruit in FL_FRUITS:
-        ing = {'ingredient': not_rotten(lacks_trait('firmalife:food/%s' % fruit, 'firmalife:dried'))}
-        vat_recipe(rm, '%s_jar' % fruit, ing, '500 firmalife:sugar_water', jar='firmalife:jar/%s' % fruit, output_texture='firmalife:block/jar/%s' % fruit)
+        ing = not_rotten(lacks_trait('firmalife:food/%s' % fruit, 'firmalife:dried'))
+        vat_recipe(rm, '%s_jar' % fruit, {'ingredient': ing}, '500 firmalife:sugar_water', jar='firmalife:jar/%s' % fruit, output_texture='firmalife:block/jar/%s' % fruit)
         for count in (2, 3, 4):
             rm.recipe(('pot', 'jam_%s_%s' % (fruit, count)), 'tfc:pot_jam', {
                 'ingredients': [ing] * count + [utils.ingredient('#tfc:sweetener')],
@@ -554,6 +552,16 @@ def damage_shapeless(rm: ResourceManager, name_parts: ResourceIdentifier, ingred
         }
     })
     return RecipeContext(rm, res)
+
+def damage_shaped(rm: ResourceManager, name_parts: utils.ResourceIdentifier, pattern: Sequence[str], ingredients: Json, result: Json, group: str = None, conditions: Optional[Json] = None) -> RecipeContext:
+    return delegate_recipe(rm, name_parts, 'tfc:damage_inputs_shaped_crafting', {
+        'type': 'minecraft:crafting_shaped',
+        'group': group,
+        'pattern': pattern,
+        'key': utils.item_stack_dict(ingredients, ''.join(pattern)[0]),
+        'result': utils.item_stack(result),
+        'conditions': utils.recipe_condition(conditions)
+    })
 
 def chisel_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredient: utils.Json, result: str, mode: str):
     rm.recipe(('chisel', mode, name_parts), 'tfc:chisel', {

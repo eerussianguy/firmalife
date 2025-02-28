@@ -5,7 +5,7 @@ from mcresources import ResourceManager, utils
 from constants import lang
 from data import item_heat
 from assets import slab_loot
-from recipes import anvil_recipe, Rules, welding_recipe, heat_recipe, casting_recipe
+from recipes import anvil_recipe, Rules, welding_recipe, heat_recipe, casting_recipe, damage_shaped
 
 class Metal(NamedTuple):
     tier: int
@@ -48,6 +48,12 @@ METAL_BLOCKS: Dict[str, MetalItem] = {
 METAL_ITEMS_AND_BLOCKS = {**METAL_ITEMS, **METAL_BLOCKS}
 
 def generate(rm: ResourceManager):
+    def craft_decorations(recipe_name: str, base_block: str, has_wall: bool = True):
+        rm.crafting_shaped(recipe_name + '_slab', ['XXX'], base_block, (6, base_block + '_slab')).with_advancement(base_block)
+        rm.crafting_shaped(recipe_name + '_stairs', ['X  ', 'XX ', 'XXX'], base_block, (8, base_block + '_stairs')).with_advancement(base_block)
+        if has_wall:
+            rm.crafting_shaped(recipe_name + '_wall', ['XXX', 'XXX'], base_block, (6, base_block + '_wall')).with_advancement(base_block)
+
     chromium_ore_heats(rm)
     for metal, metal_data in FL_METALS.items():
         rm.data(('tfc', 'metals', metal), {
@@ -69,10 +75,13 @@ def generate(rm: ResourceManager):
 
                 rm.item_tag('tfc:metal_item/%s' % metal, item_name)
                 item_heat(rm, ('metal', metal + '_' + item), item_name, metal_data.ingot_heat_capacity(), metal_data.melt_temperature, mb=item_data.smelt_amount)
+                heat_recipe(rm, ('metal', '%s_%s' % (metal, item)), item_name, metal_data.melt_temperature, None, '%d firmalife:metal/%s' % (item_data.smelt_amount, metal))
 
         if 'part' in metal_data.types:
             rm.block_tag('minecraft:stairs', 'firmalife:metal/block/%s_stairs' % metal)
             rm.block_tag('minecraft:slabs', 'firmalife:metal/block/%s_slab' % metal)
+            damage_shaped(rm, 'crafting/metal/block/%s' % metal, [' SH', 'SWS', ' S '], {'S': '#forge:sheets/%s' % metal, 'W': '#minecraft:planks', 'H': '#tfc:hammers'}, '8 firmalife:metal/block/%s' % metal)
+            craft_decorations('crafting/metal/block/%s' % metal, 'firmalife:metal/block/%s' % metal, has_wall=False)
 
         def item(_variant: str) -> str:
             return 'firmalife:metal/%s/%s' % (_variant, metal)
@@ -89,9 +98,6 @@ def generate(rm: ResourceManager):
         welding_recipe(rm, '%s_double_ingot' % metal, item('ingot'), item('ingot'), item('double_ingot'), metal_data.tier - 1)
         welding_recipe(rm, '%s_double_sheet' % metal, item('sheet'), item('sheet'), item('double_sheet'), metal_data.tier - 1)
 
-        for item, item_data in METAL_ITEMS.items():
-            if item_data.type == 'all' or item_data.type in metal_data.types:
-                heat_recipe(rm, ('metal', '%s_%s' % (metal, item)), 'firmalife:metal/%s/%s' % (item, metal), metal_data.melt_temperature, None, '%d firmalife:metal/%s' % (item_data.smelt_amount, metal))
         for item, item_data in METAL_ITEMS.items():
             if item == 'ingot' or (item_data.mold and 'tool' in metal_data.types and metal_data.tier <= 2):
                 casting_recipe(rm, '%s_%s' % (metal, item), item, metal, item_data.smelt_amount, 0.1 if item == 'ingot' else 1)

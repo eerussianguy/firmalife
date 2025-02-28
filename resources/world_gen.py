@@ -79,8 +79,8 @@ class Vein(NamedTuple):
         return cfg
 
 ORE_VEINS: Dict[str, Vein] = {
-    'normal_chromite': Vein.new('chromite', 40, 20, 40, 130, 0.25, ('igneous_extrusive', 'metamorphic'), grade=POOR, deposits=True, indicator=14),
-    'deep_chromite': Vein.new('chromite', 60, 45, -80, 20, 0.6, ('igneous_intrusive', 'metamorphic'), grade=RICH, indicator=0, deep_indicator=(1, 4)),
+    'normal_chromite': Vein.new('chromite', 50, 8, 40, 130, 0.25, ('igneous_extrusive', 'metamorphic'), grade=POOR, deposits=True, indicator=14),
+    'deep_chromite': Vein.new('chromite', 90, 15, -80, 20, 0.6, ('igneous_intrusive', 'metamorphic'), grade=RICH, indicator=0, deep_indicator=(1, 4)),
 }
 
 def generate(rm: ResourceManager):

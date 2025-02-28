@@ -1,0 +1,9 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "tfc:metal/sheet/bronze",
+    "tfc:metal/sheet/black_bronze",
+    "tfc:metal/sheet/bismuth_bronze"
+  ]
+}

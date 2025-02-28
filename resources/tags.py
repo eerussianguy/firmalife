@@ -31,6 +31,7 @@ def generate(rm: ResourceManager):
     rm.item_tag('tfc:compost_greens', 'firmalife:food/nightshade_berry')
     rm.item_tag('foods/cooked_meats_and_substitutes', '#tfc:foods/cooked_meats', 'firmalife:food/tofu')
     rm.item_tag('forge:leather', 'firmalife:pineapple_leather')
+    rm.item_tag('forge:sheets/any_bronze', 'tfc:metal/sheet/bronze', 'tfc:metal/sheet/black_bronze', 'tfc:metal/sheet/bismuth_bronze')
     rm.item_tag('usable_in_stovetop_soup', '#tfc:foods/usable_in_soup')
     rm.item_tag('beekeeper_armor', *['firmalife:beekeeper_%s' % p for p in ARMOR_SECTIONS])
     rm.item_tag('foods/raw_eggs', 'minecraft:egg')

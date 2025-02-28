@@ -8,7 +8,7 @@
         "items": [
           {
             "items": [
-              "tfc:brass_mechanisms"
+              "firmalife:metal/block/stainless_steel"
             ]
           }
         ]
@@ -17,7 +17,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "firmalife:crafting/pumping_station3"
+        "recipe": "firmalife:crafting/metal/block/stainless_steel_stairs"
       }
     }
   },
@@ -29,7 +29,7 @@
   ],
   "rewards": {
     "recipes": [
-      "firmalife:crafting/pumping_station3"
+      "firmalife:crafting/metal/block/stainless_steel_stairs"
     ]
   }
 }
