@@ -11,7 +11,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
@@ -19,7 +18,6 @@ import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blockentities.LargePlanterBlockEntity;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
-import net.dries007.tfc.common.recipes.ingredients.BlockIngredient;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.ICalendar;
@@ -146,14 +144,14 @@ public final class Mechanics
     {
         final BoundingBox box = new BoundingBox(pos).inflatedBy(15);
         final TriPredicate<BlockState, BlockPos, Direction> predicate = (wallState, wallPos, direction) -> {
+            if (Helpers.isBlock(wallState, FLTags.Blocks.ALWAYS_VALID_GREENHOUSE_WALL))
+                return true; // short circuit for stuff we know will pass (plus exempt doors)
             if (direction == Direction.DOWN)
                 return !wallState.isAir();
             if (!greenhouse.ingredient.test(wallState))
                 return false;
             if (direction == Direction.UP && wallState.getBlock() instanceof SlabBlock)
                 return true;
-            if (Helpers.isBlock(wallState, FLTags.Blocks.ALWAYS_VALID_GREENHOUSE_WALL))
-                return true; // short circuit for stuff we know will pass (plus exempt doors)
             return wallState.isFaceSturdy(level, wallPos, direction.getOpposite());
         };
         Set<BlockPos> filled = floodfill(level, pos, mutable, box, predicate, s -> !Helpers.isBlock(s, FLBlocks.CLIMATE_STATION.get()), false, lastSize, Helpers.DIRECTIONS);
