@@ -98,7 +98,7 @@ public class FLClientEvents
             FLBlocks.MIXING_BOWL, FLBlocks.BUTTERFLY_GRASS, FLBlocks.VAT, FLBlocks.HYDROPONIC_PLANTER, FLBlocks.STOVETOP_GRILL, FLBlocks.STOVETOP_POT,
             FLBlocks.DARK_LADDER, FLBlocks.JARRING_STATION, FLBlocks.GRAPE_TRELLIS_POST_RED, FLBlocks.GRAPE_TRELLIS_POST_WHITE, FLBlocks.GRAPE_TRELLIS_POST,
             FLBlocks.GRAPE_STRING, FLBlocks.GRAPE_STRING_RED, FLBlocks.GRAPE_STRING_WHITE, FLBlocks.GRAPE_STRING_PLANT_RED, FLBlocks.GRAPE_STRING_PLANT_WHITE,
-            FLBlocks.GRAPE_FLUFF_RED, FLBlocks.GRAPE_FLUFF_WHITE, FLBlocks.WILD_WHITE_GRAPES, FLBlocks.WILD_RED_GRAPES
+            FLBlocks.GRAPE_FLUFF_RED, FLBlocks.GRAPE_FLUFF_WHITE, FLBlocks.WILD_WHITE_GRAPES, FLBlocks.WILD_RED_GRAPES, FLBlocks.PUMPING_STATION, FLBlocks.IRRIGATION_TANK
         ).forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
 
         ItemBlockRenderTypes.setRenderLayer(FLBlocks.SOLAR_DRIER.get(), translucent);
@@ -236,6 +236,7 @@ public class FLClientEvents
         event.registerBlockEntityRenderer(FLBlockEntities.COMPOST_TUMBLER.get(), ctx -> new CompostTumblerBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.STOMPING_BARREL.get(), ctx -> new StompingBarrelBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.BARREL_PRESS.get(), ctx -> new BarrelPressBlockEntityRenderer());
+        event.registerBlockEntityRenderer(FLBlockEntities.PUMPING_STATION.get(), ctx -> new PumpingStationBlockEntityRenderer());
 
         event.registerEntityRenderer(FLEntities.SEED_BALL.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(FLEntities.FLBEE.get(), FLBeeRenderer::new);
