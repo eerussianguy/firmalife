@@ -280,11 +280,9 @@ def generate(rm: ResourceManager):
     rm.item_model('reinforced_poured_glass', 'firmalife:item/reinforced_glass')
 
     block = rm.blockstate('pumping_station', variants=four_rotations('firmalife:block/pumping_station', (90, None, 180, 270)))
-    block.with_block_model({'front': 'firmalife:block/pumping_station_front', 'side': 'firmalife:block/irrigation_tank', 'top': 'firmalife:block/irrigation_tank_top'}, parent='block/orientable')
     block.with_lang(lang('pumping station')).with_tag('minecraft:mineable/pickaxe').with_block_loot('firmalife:pumping_station').with_item_model()
 
-    block = rm.blockstate('irrigation_tank').with_block_model({'side': 'firmalife:block/irrigation_tank', 'end': 'firmalife:block/irrigation_tank_top'}, parent='block/cube_column')
-    block.with_lang(lang('irrigation tank')).with_tag('minecraft:mineable/pickaxe').with_block_loot('firmalife:irrigation_tank').with_item_model()
+    rm.blockstate('irrigation_tank').with_lang(lang('irrigation tank')).with_tag('minecraft:mineable/pickaxe').with_block_loot('firmalife:irrigation_tank').with_item_model()
 
     rm.blockstate('sprinkler', variants={'axis=x': {'model': 'firmalife:block/sprinkler'}, 'axis=z': {'model': 'firmalife:block/sprinkler', 'y': 90}}).with_block_loot('firmalife:sprinkler').with_lang(lang('sprinkler')).with_item_model().with_tag('minecraft:mineable/pickaxe')
     rm.blockstate('floor_sprinkler').with_block_loot('firmalife:sprinkler').with_lang(lang('floor sprinkler')).with_tag('minecraft:mineable/pickaxe')

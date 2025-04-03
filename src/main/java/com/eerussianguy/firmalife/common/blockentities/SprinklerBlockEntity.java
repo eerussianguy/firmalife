@@ -138,7 +138,7 @@ public class SprinklerBlockEntity extends TFCBlockEntity implements FluidTankCal
                 else if (
                     direction.getAxis().isHorizontal() && // be horizontal
                     isPipeInDirection(prev.state, direction) && // The current pipe still connects in this direction (to nothing)
-                    stateAdj.getBlock() == FLBlocks.PUMPING_STATION.get() || stateAdj.getBlock() == FLBlocks.IRRIGATION_TANK.get() && // next to port
+                    (stateAdj.getBlock() == FLBlocks.PUMPING_STATION.get() || stateAdj.getBlock() == FLBlocks.IRRIGATION_TANK.get()) && // next to port
                     PumpingStationBlock.hasConnection(level, cursor)
                 )
                 {

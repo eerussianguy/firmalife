@@ -121,7 +121,7 @@ public class VatBlock extends SealableDeviceBlock
                             }
                             else
                             {
-                                final ItemStack give = inventory.extractItem(0, 1, false);
+                                final ItemStack give = inventory.extractItem(0, 64, false);
                                 if (give.isEmpty()) return InteractionResult.PASS;
                                 ItemHandlerHelper.giveItemToPlayer(player, give);
                             }

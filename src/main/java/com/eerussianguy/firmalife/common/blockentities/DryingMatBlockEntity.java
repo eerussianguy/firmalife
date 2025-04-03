@@ -40,7 +40,7 @@ public class DryingMatBlockEntity extends SimpleItemRecipeBlockEntity<DryingReci
             mat.resetCounter();
         }
 
-        if (mat.cachedRecipe != null)
+        if (mat.cachedRecipe != null && level.getGameTime() % 20 == 0)
         {
             if (!mat.cachedRecipe.matches(new ItemStackInventory(mat.inventory.getStackInSlot(0)), level))
             {
@@ -57,10 +57,6 @@ public class DryingMatBlockEntity extends SimpleItemRecipeBlockEntity<DryingReci
     public DryingMatBlockEntity(BlockEntityType<DryingMatBlockEntity> type, BlockPos pos, BlockState state, Supplier<Integer> dryTicks)
     {
         super(type, pos, state, FLHelpers.blockEntityName("drying_mat"), dryTicks);
-
-        sidedInventory
-            .on(new PartialItemHandler(inventory).extract(0), Direction.DOWN)
-            .on(new PartialItemHandler(inventory).insert(0), Direction.Plane.HORIZONTAL);
     }
 
     @Override

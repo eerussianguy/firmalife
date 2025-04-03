@@ -68,7 +68,7 @@ public class FLServerConfig
         greenhouseRadius = builder.apply("greenhouseRadius").comment("The max bounded distance from the climate station a greenhouse wall can be. Higher numbers = more lag.").defineInRange("greenhouseRadius", 15, 1, 128);
         cellarRadius = builder.apply("cellarRadius").comment("The max bounded distance from the climate station a cellar wall can be. Higher numbers = more lag.").defineInRange("cellarRadius", 15, 1, 128);
         mechanicalPowerCheatMode = builder.apply("mechanicalPowerCheatMode").comment("If true, the tumbler and the pumping station work magically with a redstone signal and no power required.").define("mechanicalPowerCheatMode", false);
-        usePipesForSprinklers = builder.apply("usePipesForSprinklers").comment("If true, sprinkler will not accept firmalife pipes and will instead require something that exposes a fluid capability, eg. a barrel.").define("usePipesForSprinklers", true);
+        usePipesForSprinklers = builder.apply("usePipesForSprinklers").comment("If false, sprinklers will not accept Firmalife pipes and will instead require something that exposes a fluid capability, eg. a barrel.").define("usePipesForSprinklers", true);
 
         innerBuilder.pop().push("foodTraits");
 
