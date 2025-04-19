@@ -14,6 +14,7 @@
     },
     {
       "type": "patchouli:crafting",
+      "anchor": "cheesecloth",
       "recipe": "firmalife:crafting/cheesecloth",
       "text": "Curdled milk must be converted to $(thing)Curds$() by sealing it in a barrel with $(thing)Cheesecloth$(). Cheesecloth is not reusable."
     },

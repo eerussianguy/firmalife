@@ -14,6 +14,7 @@
     },
     {
       "type": "patchouli:crafting",
+      "anchor": "cheesecloth",
       "recipe": "firmalife:crafting/cheesecloth",
       "text": "凝固的牛奶和$(thing)奶酪布$()一起密封在大桶中就可以制成$(thing)凝乳$()。奶酪布是不能重复使用的."
     },

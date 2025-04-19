@@ -94,7 +94,7 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False, rev
         entry('cheese', 'Cheese', 'firmalife:textures/item/food/gouda.png', pages=(
             text('Making $(thing)cheese$() in Firmalife is a little more involved than in vanilla TFC. There are two new kinds of milk: $(thing)Yak Milk$(), and $(thing)Goat Milk$(). These are obtained from milking the $(l:mechanics/animal_husbandry#yak)Yak$() and $(l:mechanics/animal_husbandry#goat)Goat$(), respectively. Milking the $(l:mechanics/animal_husbandry#cow)Cow$() still produces the old kind of milk.'),
             text('Like usual, milk must be $(thing)curdled$() first. To curdle milk, you need $(thing)Rennet$(). Rennet comes from the stomach of $(thing)Ruminant$() animals. This includes $(l:mechanics/animal_husbandry#yak)Yaks$(), $(l:mechanics/animal_husbandry#cow)Cows$(), $(l:mechanics/animal_husbandry#sheep)Sheep$(), $(l:mechanics/animal_husbandry#goat)Goats$(), and $(l:mechanics/animal_husbandry#musk_ox)Musk Oxen$(). To curdle milk, seal it in a $(l:mechanics/barrels)Barrel$() with Rennet for 4 hours.'),
-            crafting('firmalife:crafting/cheesecloth', text_contents='Curdled milk must be converted to $(thing)Curds$() by sealing it in a barrel with $(thing)Cheesecloth$(). Cheesecloth is not reusable.'),
+            crafting('firmalife:crafting/cheesecloth', text_contents='Curdled milk must be converted to $(thing)Curds$() by sealing it in a barrel with $(thing)Cheesecloth$(). Cheesecloth is not reusable.').anchor('cheesecloth'),
             crafting('firmalife:crafting/cheddar_wheel', text_contents='You are ready to make $(thing)Dry Cheese$() if you wish. You can make $(thing)Rajya Metok$() from $(thing)Yak Curds$(), $(thing)Chevre$() from $(thing)Goat Curds$(), and $(thing)Cheddar$() from $(thing)Milk Curds$().'),
             crafting('firmalife:crafting/chevre_wheel', 'firmalife:crafting/rajya_metok_wheel'),
             text('Your other option is to make $(thing)Wet Cheeses$(). These are made by sealing the curds in a barrel of $(thing)Salt Water$(). You can make $(thing)Shosha$() from $(thing)Yak Curds$(), $(thing)Feta$() from $(thing)Goat Curds$(), and $(thing)Gouda$() from $(thing)Milk Curds$().'),
@@ -326,6 +326,34 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False, rev
             crafting('firmalife:crafting/wood/pine_keg', text_contents='The $(thing)Keg$() is a 2x2x2 barrel block that can contain loads of items or fluids. Perfect for your vinery!'),
             crafting('firmalife:crafting/wood/hickory_wine_shelf', text_contents='The $(thing)Wine Shelf$() is the perfect accessory for your vinery, allowing you to display and store your wine bottles in style.'),
             empty_last_page(),
+        )),
+        entry('pie', 'Pie', 'firmalife:textures/item/food/cooked_pie.png', pages=(
+            text('Firmalife allows the creation of a variety of delectable baked goods. This chapter will give you all you need to start eating delicious and creative meals for breakfast, lunch, and dinner.'),
+            text('$(thing)Butter is the base of many such foods. Using a $(l:firmalife/mixing_bowl)Mixing Bowl$(), combine 1000 mB of $(thing)Cream$() with one item of $(thing)Salt$(). Cream is made by sealing 1000 mB of milk in a barrel with a $(l:mechanics/firmalife#cheesecloth)Cheesecloth$().'),
+            text('One useful meal is the $(thing)Pie$(). In your mixing bowl, combine butter, flower, and a sweetener (sugar, honey) to make $(thing)Pie Dough$(). To directly make $(thing)Pumpkin Pie$(), mix in an egg, two pumpkin chunks, flour, and sweetener. Craft it with a $(thing)Pie Pan$() and bake it in an $(l:firmalife/ovens)Oven$() to complete the recipe.'),
+            crafting('firmalife:crafting/raw_pumpkin_pie', text_contents='$(thing)Pie Pans$() can be smithed in an Anvil from $(thing)Cast Iron$().'),
+            crafting('firmalife:crafting/filled_pie', text_contents='Pie Dough, Preserves, and a Pie Pan will net you a $(thing)Filled Pie$(), which can then be finished in the oven for a delicious pie.'),
+            empty_last_page(),
+        )),
+        entry('pizza', 'Pizza', 'firmalife:textures/item/food/cooked_pizza.png', pages=(
+            text('To make $(thing)Pizza$(), mix Dough, Salt, Basil Leaves, and 100 mB of oil in a $(l:firmalife/mixing_bowl)Mixing Bowl$(). Oil can be olive oil, or soybean oil (the product of soybean paste sealed in a barrel of water).'),
+            crafting('firmalife:crafting/shredded_cheese', text_contents='You\'ll need some shredded cheese to start with.').anchor('shredded_cheese'),
+            text('To make $(thing)Tomato Sauce$(), boil a tomato, salt, garlic, and water all together in a pot. Alternatively, using a $(l:firmalife/oven_appliances#vat)Vat$(), boil the crafted version of those ingredients, also known as $(thing)Tomato Sauce Mix$().').anchor('tomato_sauce'),
+            crafting('firmalife:crafting/raw_pizza3', text_contents='Pizza is made from 1-3 of vegetables, cooked meats, or fruits, one shredded cheese, and one tomato sauce.'),
+        )),
+        entry('pasta', 'Pasta', 'firmalife:textures/item/food/cooked_pasta.png', pages=(
+            text('There are two types of $(thing)Noodles$(): Egg and Rice. Rice flour, maize flour, salt, and 1000 mB of milk together in a $(l:firmalife/mixing_bowl)Mixing Bowl$() makes $(thing)Rice Noodles$(). Flour, an egg, salt, and 1000 mB of milk makes $(thing)Egg Noodles$().'),
+            crafting('firmalife:crafting/lasagna', text_contents='$(thing)Lasagna$() can be made directly from egg noodles with $(l:firmalife/pizza#tomato_sauce)Tomato Sauce$(), cooked meat, and oregano, which can then be baked in an $(l:firmalife/ovens)Oven$().'),
+            text('Pasta is then completed by boiling it in water. For either kind of noodles, it must be retrieved from the pot by clicking with a $(thing)Bowl$().'),
+            crafting('firmalife:crafting/tomato_pasta', text_contents='Crafting cooked egg noodles (pasta) with tomato sauce makes delicious pasta with tomato sauce!'),
+        )),
+        entry('burritos_and_tacos', 'Burritos and Tacos', 'firmalife:textures/item/food/burrito.png', pages=(
+            text('The journey of making a $(thing)Tortilla$() is a long process, but rewarding. Start with $(thing)Maize Grain$(). Boil it in a pot of $(thing)Limewater$(), and seal it in a barrel of water to make $(thing)Nixtamal$(). Then crush it in a $(thing)Quern$() to make $(thing)Masa Flour$().'),
+            text('Crafting the Masa Flour with a bucket of water makes $(thing)Masa$(), the dough of a tortilla. This can be heated to make a $(thing)Corn Tortilla$(). Baking a Tortilla in an oven makes a $(thing)Taco Shell$().'),
+            crafting('firmalife:crafting/tortilla_chips', 'firmalife:crafting/nachos'),
+            crafting('firmalife:crafting/salsa', text_contents='A tomato, cilantro, salt, and a knife will yield you $(thing)Salsa$().'),
+            crafting('firmalife:crafting/burrito', text_contents='The $(thing)Burrito$() is made from cooked meat, $(l:firmalife/pizza#shredded_cheese)Shredded Cheese$(), $(l:firmalife/pizza#tomato_sauce)Tomato Sauce$(), a vegetable, and Salsa.'),
+            crafting('firmalife:crafting/taco', text_contents='The $(thing)Taco$() is made from the same ingredients, except with a $(thing)Taco Shell$().'),
         ))
     ))
 

@@ -14,6 +14,7 @@
     },
     {
       "type": "patchouli:crafting",
+      "anchor": "cheesecloth",
       "recipe": "firmalife:crafting/cheesecloth",
       "text": "凝乳した牛乳は、$(thing)チーズクロス$()と一緒に樽に密封することで$(thing)カード$()に変える必要があります。$(br2)残念ながら、チーズクロスは再利用できません。"
     },
