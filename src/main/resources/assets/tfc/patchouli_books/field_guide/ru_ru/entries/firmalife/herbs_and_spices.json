@@ -1,0 +1,66 @@
+{
+  "comment": "Этот файл был автоматически создан mcresources",
+  "name": "Травы и специи",
+  "category": "tfc:firmalife",
+  "icon": "firmalife:spice/basil_leaves",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "В Firmalife есть ряд небольших растений, которые вы можете собирать и выращивать самостоятельно, и которые обладают кулинарными свойствами. Проще всего получить эти растения с помощью $(thing)семенного шарика$(). Чтобы использовать $(thing)семенной шарик$(), просто $(item)$(k:key.use)$(), чтобы бросить его, как снежок. Это породит $(thing)бабочковые травы$() в этой области."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/seed_ball",
+      "text": "Для создания семенного шарика требуется $(l:firmalife/more_fertilizer)компост$() и 4 $(thing)семени$()."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "multiblock": {
+        "pattern": [
+          [
+            "X"
+          ],
+          [
+            "0"
+          ]
+        ],
+        "mapping": {
+          "X": "firmalife:plant/butterfly_grass"
+        }
+      },
+      "name": "",
+      "text": "Растение бабочковой травы.",
+      "enable_visualize": false
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Бабочковые травы созревают со временем. Когда одна из них созревает, есть шанс, что она распространится на окружающие блоки или превратится во что-то новое. Блоки бабочковой травы, которые были распространены другим блоком травы, больше не распространяются."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "multiblock": {
+        "pattern": [
+          [
+            "X"
+          ],
+          [
+            "0"
+          ]
+        ],
+        "mapping": {
+          "X": "firmalife:plant/basil"
+        }
+      },
+      "name": "",
+      "text": "Базилик — одно из растений, которое может появиться из бабочковой травы.",
+      "enable_visualize": false
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/basil_leaves",
+      "text": "Листья базилика используются в пицце."
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 19
+}

@@ -1,0 +1,70 @@
+{
+  "comment": "Этот файл был автоматически создан mcresources",
+  "name": "Орошение",
+  "category": "tfc:firmalife",
+  "icon": "firmalife:sprinkler",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(thing)Спринклер$() — это устройство, которое разбрызгивает воду на площадь 5x6x5 блоков, центрированной на блоке под спринклером. Вы поймете, что он работает, когда из него капают частицы воды. Спринклеры, установленные вверх тормашками, орошают ту же площадь 5x6x5 блоков сверху."
+    },
+    {
+      "type": "tfc:anvil_recipe",
+      "recipe": "firmalife:anvil/sprinkler",
+      "text": "Спринклер изготавливается с помощью $(thing)медной пластины$()."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Для работы спринклеры должны быть подключены к системе труб, которые подают им воду. Это делается путем подключения к ним серии $(thing)медных труб$(). Медные трубы транспортируют воду на расстояние до 32 блоков к спринклеру. Они подключаются к $(thing)резервуарам для орошения$() или $(thing)насосным станциям$()."
+    },
+    {
+      "type": "tfc:anvil_recipe",
+      "recipe": "firmalife:anvil/copper_pipe",
+      "text": "Медная труба изготавливается из пластины."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "multiblock": {
+        "pattern": [
+          [
+            "X"
+          ],
+          [
+            "Y"
+          ],
+          [
+            "0"
+          ]
+        ],
+        "mapping": {
+          "X": "firmalife:irrigation_tank",
+          "Y": "firmalife:pumping_station"
+        }
+      },
+      "name": "",
+      "text": "",
+      "enable_visualize": false
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Насосные станции должны находиться над источником воды, чтобы работать, и быть подключенными к механическому приводу. Резервуары для орошения также могут подавать воду через свои порты по бокам, при условии, что они уложены не более чем в 3 блока высотой над насосной станцией или другими резервуарами."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/pumping_station",
+      "recipe2": "firmalife:crafting/irrigation_tank"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/oxidized_copper_pipe",
+      "text": "Окисленные трубы такие же, как и обычные медные трубы, за исключением того, что они не подключаются к другому типу труб."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/greenhouse/iron_greenhouse_port",
+      "text": "Порты теплицы имеют внутри одну трубу. Их можно использовать для прохождения воды через стены теплиц!"
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 8
+}

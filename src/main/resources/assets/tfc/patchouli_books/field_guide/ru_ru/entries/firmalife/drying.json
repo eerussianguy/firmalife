@@ -1,0 +1,43 @@
+{
+  "comment": "Этот файл был автоматически создан mcresources",
+  "name": "Сушка",
+  "category": "tfc:firmalife",
+  "icon": "firmalife:drying_mat",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(thing)Сушильный коврик$() используется для сушки предметов. Он изготавливается из $(thing)листьев фруктовых деревьев$(), которые получаются при разрушении листьев $(thing)фруктовых деревьев$()."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/drying_mat",
+      "text": "Рецепт сушильного коврика."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Чтобы использовать сушильный коврик, положите его на солнце и добавьте на него предмет с помощью $(item)$(k:key.use)$(). Через полдня он высохнет. Если пойдет дождь, процесс сушки необходимо начать заново."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/solar_drier",
+      "text": "Солнечная сушилка работает так же, как сушильный коврик, но в 12 раз быстрее."
+    },
+    {
+      "type": "tfc:drying_recipe",
+      "recipe": "firmalife:drying/drying_fruit",
+      "text": "Сушка фруктов — распространенное применение сушильного коврика. Сушеные фрукты используются в некоторых рецептах и хранятся дольше."
+    },
+    {
+      "type": "tfc:drying_recipe",
+      "recipe": "firmalife:drying/tofu",
+      "text": "Тофу делается с помощью сушильного коврика."
+    },
+    {
+      "type": "tfc:drying_recipe",
+      "recipe": "firmalife:drying/cinnamon",
+      "text": "Корица делается с помощью сушильного коврика."
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 12
+}

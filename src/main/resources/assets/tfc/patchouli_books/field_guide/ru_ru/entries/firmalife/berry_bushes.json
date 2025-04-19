@@ -1,0 +1,41 @@
+{
+  "comment": "Этот файл был автоматически создан mcresources",
+  "name": "Ягодные кусты",
+  "category": "tfc:firmalife",
+  "icon": "firmalife:plant/pineapple_bush",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Firmalife добавляет несколько ягодных кустов. Информацию о диких виноградных кустах см. в разделе $(l:firmalife/wine)виноделие$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "firmalife:food/nightshade_berry",
+      "link_recipes": false,
+      "text": "Первое — это паслён. Паслён — ядовитая ягода. При добавлении в суп он делает ядовитый $(thing)Вонючий суп$(). Он встречается при 200-400 мм осадков и температуре 7-24°C в лесах."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "firmalife:food/pineapple",
+      "link_recipes": false,
+      "text": "Ананасные кусты встречаются при 250-500 мм осадков и температуре 20-32°C в лесах. Ананасы похожи на любые другие фрукты, за исключением того, что из них можно сделать $(thing)Ананасовую кожу$()."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/pineapple_fiber",
+      "text": "Сушеные ананасы $(l:firmalife/drying)Сушеные$() могут быть переработаны в ананасовое волокно."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/pineapple_yarn",
+      "text": "Ананасная пряжа изготавливается путем крафта $(thing)Прялки$() с волокном."
+    },
+    {
+      "type": "tfc:loom_recipe",
+      "recipe": "firmalife:loom/pineapple_leather",
+      "text": "Наконец, ананасовая кожа может быть соткана на $(l:tfc:mechanics/weaving)ткацком станке$(). Это растительная замена обычной коже, которая может использоваться для обработки кремня, крафта и других целей!"
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 21
+}
