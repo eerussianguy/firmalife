@@ -1,5 +1,5 @@
 {
-  "comment": "Этот файл был автоматически создан mcresources",
+  "__comment__": "This file was automatically created by mcresources",
   "name": "Виноделие",
   "category": "tfc:firmalife",
   "icon": "firmalife:textures/item/food/white_grapes.png",
@@ -86,9 +86,23 @@
     },
     {
       "type": "patchouli:text",
-	  "text": "Вино должно быть укупорено $(thing)пробкой$(), изготовленной путем вымачивания $(thing)обработанной древесины$() в $(thing)известковой воде$() в течение дня. Когда все будет готово, используйте слот для бутылки, чтобы наполнить вино, или нажмите $(item)$(k:key.use)$() с бутылкой в руке."
+      "text": "Вино должно быть укупорено $(thing)пробкой$(), изготовленной путем вымачивания $(thing)обработанной древесины$() в $(thing)известковой воде$() в течение дня. Когда все будет готово, используйте слот для бутылки, чтобы наполнить вино, или нажмите $(item)$(k:key.use)$() с бутылкой в руке."
+    },
+    {
+      "type": "tfc:glassworking_recipe",
+      "recipe": "firmalife:glassworking/olivine_wine_bottle",
+      "text": "Wine must be bottled in a proper wine bottle, made of non-silica glass."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/bottle_label",
+      "text": "$(thing)Bottle labels$() can be renamed in a scribing station, and will add their name to the wine's tooltip."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Wine must be provided with a $(thing)Cork$(), made by soaking $(thing)Treated Lumber$() in $(thing)Limewater$() for a day. When all is complete, use the bottle slot to fill the wine, or by pressing $(item)$(k:key.use)$() with a bottle in hand."
     }
   ],
-"read_by_default": true,
-  "sortnum": 12
+  "read_by_default": true,
+  "sortnum": 23
 }

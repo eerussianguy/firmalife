@@ -10,17 +10,17 @@
     },
     {
       "type": "patchouli:text",
-      "text": "いつものように、まず牛乳を$(thing)凝乳$()させる必要があります。$(br)牛乳を凝乳させるには$(thing)レンネット$()を使用します。$(br2)$(thing)レンネット$()は反芻動物の胃から取れます。$(br)$(l:mechanics/animal_husbandry#yak)ヤク$()、$(l:mechanics/animal_husbandry#cow)ウシ$()、$(l:mechanics/animal_husbandry#sheep)ヒツジ$()、$(l:mechanics/animal_husbandry#goat)ヤギ$()、$(l:mechanics/animal_husbandry#musk_ox)ジャコウウシ$()などがこれにあたります。$(br2)牛乳を凝乳させるには、牛乳とレンネットを入れた$(l:mechanics/barrels)樽$()を4時間密封することで得られます。"
+      "text": "いつものように、まず牛乳を$(thing)凝乳$()させる必要があります。$(br)牛乳を凝乳させるには$(thing)レンネット$()を使用します。$(br2)$(thing)レンネット$()は反芻動物の胃から取れます。$(br)$(l:mechanics/animal_husbandry#yak)ヤク$()、$(l:mechanics/animal_husbandry#cow)ウシ$()、$(l:mechanics/animal_husbandry#sheep)ヒツジ$()、$(l:mechanics/animal_husbandry#goat)ヤギ$()、$(l:mechanics/animal_husbandry#musk_ox)ジャコウウシ$()などがこれにあたります。$(br2)牛乳を凝乳させるには、牛乳とレンネットを一緒に$(l:mechanics/barrels)樽$()に密封して4時間保管します。"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/cheesecloth",
-      "text": "凝乳は、$(thing)チーズクロス$()を樽に密封して$(thing)カード$()に変える必要があります。$(br2)残念ながらチーズクロスは再利用できません。"
+      "text": "凝乳した牛乳は、$(thing)チーズクロス$()と一緒に樽に密封することで$(thing)カード$()に変える必要があります。$(br2)残念ながら、チーズクロスは再利用できません。"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/cheddar_wheel",
-      "text": "これで$(thing)ドライチーズ$()を作る準備が整いました。$(br2)$(thing)ヤクの凝乳$()から$(thing)ラジャ・メトック$()、$(br)$(thing)ヤギの凝乳$()から$(thing)シェーブル$()、$(br)$(thing)牛乳の凝乳$()から$(thing)チェダー$()$(br)を作ることができます。"
+      "text": "これで$(thing)ドライチーズ$()を作る準備が整いました。$(br2)$(thing)ヤクの凝乳$()から$(thing)ラジャメトック$()、$(br)$(thing)ヤギの凝乳$()から$(thing)シェーブル$()、$(br)$(thing)牛乳の凝乳$()から$(thing)チェダー$()$(br)を作ることができます。"
     },
     {
       "type": "patchouli:crafting",
@@ -38,7 +38,7 @@
     },
     {
       "type": "tfc:multimultiblock",
-      "text": "ゴーダの熟成段階： $(thing)新鮮$()、$(thing)熟成$()、$(thing)完熟$()",
+      "text": "ゴーダの熟成段階： $(thing)新鮮$()、$(thing)少し熟成$()、$(thing)完全な熟成$()",
       "multiblocks": [
         {
           "pattern": [

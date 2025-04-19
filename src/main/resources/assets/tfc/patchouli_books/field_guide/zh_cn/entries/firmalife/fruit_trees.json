@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Firmalife在群峦传说的基础上增加了一些结果植物，"
+      "text": "Firmalife在群峦传说的基础上增加了一些结果植物."
     },
     {
       "type": "patchouli:text",
@@ -15,7 +15,7 @@
     {
       "type": "patchouli:text",
       "anchor": "cocoa",
-      "text": "$(bold)$(l:the_world/climate#temperature)温度$(): 20 - 35 °C$(br)$(bold)$(l:mechanics/hydration)降雨量$(): 220 - 400mm$(br2)可可树主要生长在高温湿润的地区，在四月到五月间开花，于六月成熟，可以结出可可豆。可可豆是制作$(l:tfc:firmalife/chocolate)巧克力$()的主要原料。",
+      "text": "$(bold)$(l:the_world/climate#temperature)温度$(): 20 - 35 °C$(br)$(bold)$(l:mechanics/hydration)降雨量$(): 220 - 400mm$(br2)可可树是用来制作 $(l:tfc:firmalife/chocolate)巧克力$()的.",
       "title": "可可树"
     },
     {
@@ -95,7 +95,7 @@
     {
       "type": "patchouli:text",
       "anchor": "fig",
-      "text": "$(bold)$(l:the_world/climate#temperature)温度$(): 20 - 35 °C$(br)$(bold)$(l:mechanics/hydration)降雨量$(): 125 - 215mm$(br2)无花果树主要生长在高温干旱的地区，在三月到四月间开花，于五月成熟，可以结出无花果。",
+      "text": "$(bold)$(l:the_world/climate#temperature)温度$(): 20 - 35 °C$(br)$(bold)$(l:mechanics/hydration)降雨量$(): 125 - 215mm$(br2)",
       "title": "无花果树"
     },
     {

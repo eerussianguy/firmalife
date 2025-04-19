@@ -49,6 +49,10 @@
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/climate_station",
       "text": "氣象站的合成方法."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "A note about greenhouse construction: The largest greenhouse is 31x31x31, centered on the climate station, or 15 blocks in each direction. Centering the climate station in the greenhouse will allow you to take advantage of the full size range. You can also internally subdivide a greenhouse into multiple by using walls and multiple climate stations to make it larger."
     }
   ],
   "read_by_default": true,

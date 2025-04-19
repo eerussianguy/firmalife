@@ -6,14 +6,14 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(thing)ステンレス鋼$()と$(thing)クロム$()は、Firmalife が追加した$(thing)スチール級$()金属です。$(br2)$(l:tfc:firmalife/greenhouse)ステンレス鋼の温室$()の建設に使用されます。"
+      "text": "$(thing)ステンレス鋼$()と$(thing)クロム$()は、Firmalifeが追加した$(thing)スチール級$()金属です。$(br2)$(l:tfc:firmalife/greenhouse)ステンレス鋼の温室$()の建設に使用されます。"
     },
     {
       "type": "patchouli:spotlight",
       "item": "firmalife:metal/ingot/stainless_steel",
       "title": "ステンレス鋼",
       "link_recipes": false,
-      "text": "$(br)$(bold)必要条件:$()$(br)$(li)20 - 30 % : $(thing)クロム$()$(li)10 - 20 % : $(thing)ニッケル$()$(li)60 - 80 % : $(thing)鋼$()$(br2)"
+      "text": "$(br)$(bold)材料:$()$(br)$(li)20 - 30 % : $(thing)クロム$()$(li)10 - 20 % : $(thing)ニッケル$()$(li)60 - 80 % : $(thing)鋼$()$(br2)"
     },
     {
       "type": "patchouli:spotlight",

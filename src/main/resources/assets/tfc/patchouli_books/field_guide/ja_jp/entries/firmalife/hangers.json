@@ -6,12 +6,12 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(thing)吊るし棚$()は肉やニンニクを保存するための器具です。$(br)有効な$(l:tfc:firmalife/cellar)貯蔵庫$()でのみ使用できます。$(br2)吊るし棚には、1つのアイテムをスタックいっぱいに収納することができ、アイテムの追加と削除は$(item)$(k:key.use)$()を押すことでできます。$(br2)有効な吊るし棚のアイテムは、棚や壺よりも鮮度を保つ効果が優れています。"
+      "text": "$(thing)吊るし棚$()は肉やニンニクを保存するための器具です。$(br)有効な$(l:tfc:firmalife/cellar)貯蔵庫$()でのみ使用できます。$(br2)吊るし棚には、1つのアイテムをスタックいっぱいに収納することができ、アイテムの追加と削除は$(item)$(k:key.use)$()を押すことでできます。$(br2)吊るし棚のアイテムは、棚や壺よりも鮮度を保つ効果が優れています。"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/wood/acacia_hanger",
-      "text": "吊るし棚は板と紐で作成できます。"
+      "text": "吊るし棚は板材と紐で作成できます。"
     }
   ],
   "read_by_default": true,

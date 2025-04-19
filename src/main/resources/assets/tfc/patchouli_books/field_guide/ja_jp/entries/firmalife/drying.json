@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(thing)乾燥マット$()はアイテムを乾燥させるために使います。$(br2)果樹の葉を砕いて得られる$(thing)フルーツリーフ$()を使用して作成できます。"
+      "text": "$(thing)乾燥マット$()はアイテムを乾燥させるために使います。$(br2)果樹の葉を壊して得られる$(thing)果樹の葉$()を使用して作成できます。"
     },
     {
       "type": "patchouli:crafting",
@@ -20,12 +20,12 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/solar_drier",
-      "text": "ソーラー乾燥機の機能は乾燥マットと同じですが、速度が12倍になります。"
+      "text": "太陽光乾燥機の機能は乾燥マットと同じですが、速度が12倍になります。"
     },
     {
       "type": "tfc:drying_recipe",
       "recipe": "firmalife:drying/drying_fruit",
-      "text": "果物を乾燥させるのは、ドライマットの一般的な使い方です。$(br2)乾燥させた果物は鮮度が長持ちし、さまざまなレシピに使用されます。"
+      "text": "果物を乾燥させるのは、乾燥マットの一般的な使い方です。$(br2)乾燥させた果物は鮮度が長持ちし、さまざまなレシピに使用されます。"
     },
     {
       "type": "tfc:drying_recipe",

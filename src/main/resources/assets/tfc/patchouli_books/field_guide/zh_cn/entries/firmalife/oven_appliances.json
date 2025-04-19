@@ -6,31 +6,31 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(l:tfc:firmalife/ovens)烤箱$()有许多可以进行交互的设备，这扩展了他们的功能。这是因为烤箱在现实中本就是模块化的."
+      "text": "$(l:tfc:firmalife/ovens)烤箱$() 有许多可以进行交互的设备, 这扩展了他们的功能. 这是因为烤箱在现实中本就是模块化的."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/oven_hopper",
-      "text": "$(thing)烤箱漏斗$()可以将原木输入其所面对的任何底部烤炉。它能容纳有 16 个原木 (一共 4 组，每组 4 个)，它的物品栏是通过在顶部向下丢物品来提供的。它也能通过其他模组实现自动化输入。"
+      "text": "$(thing)烘箱料斗$() 可以将原木输入其所面对的任何底部烤炉。它能持有16个原木 (4组，每组4个),它的物品栏是通过在顶部向下丢物品来提供的. 它也能通过其他MOD实现自动化输入."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/ashtray",
-      "text": "$(thing)烟灰收集器$()可以用来收集$(thing)草木灰$()，它需要被放置在 $(thing)底部烤箱方块$()以下的区域。当每个燃料被消耗时，它有 0.5 的机会获得草木灰。草木灰可以通过按 $(item)$(k:key.use)$()来提取，也能通过左键来增添草木灰。"
+      "text": "$(thing)烟缸$() 收集 $(thing)木头灰烬$() 当它被放置在 $(thing)底部烤箱方块$()以下的区域时. 当每个燃料被消耗时，它有0.5的机会获得灰烬。 灰烬可以通过按 $(item)$(k:key.use)$()来提取，也能通过左键来增添灰烬。"
     },
     {
       "type": "patchouli:crafting",
       "anchor": "vat",
       "recipe": "firmalife:crafting/vat",
-      "text": "$(thing)不锈钢锅$()能够批量进行烧煮配方。与木桶类似，它有一个物品插槽，可以容纳 10,000mB 的流体。"
+      "text": "$(thing)蒸馏罐$() 能够批量生产被选择的的蒸馏配方. 它有一个物品插槽, 与10,000mB的流体存储空间, 与一个木桶类似."
     },
     {
       "type": "patchouli:text",
-      "text": "举个例子，不锈钢锅能用来制作$(thing)橄榄油/水$() ，按一个橄榄糊与 200mB 水的比例。要使用一个不锈钢锅，手里拿着流体与物品朝着他按$(item)$(k:key.use)$()以把物品放入其中。空手按住 $(item)$(k:key.sneak)$()，可以点击以封存或启封不锈钢锅。不锈钢锅若未被密封，将不会沸腾。"
+      "text": "举个例子，蒸馏罐能用来制作 $(thing)橄榄油/水$() ，使用一个橄榄酱与200mB水的比例。要使用一个蒸馏罐，手里拿着流体与物品朝着他按 $(item)$(k:key.use)$() 以把他们放入其中. 按住 $(item)$(k:key.sneak)$() 并空手, 可以点击以封存或启封蒸馏罐. 蒸馏罐若未被密封，将不会沸腾。"
     },
     {
       "type": "patchouli:text",
-      "text": "不锈钢锅应该放置在 $(thing)烤箱底部方块$()之上的位置。如果不锈钢锅在配方完成后会溢出物品，它就不会沸腾，所以一定不要加满——尤其是在制造那些产生液体比消耗液体更多的配方时！"
+      "text": "蒸馏罐应该放置在 $(thing)烤箱底部方块$()之上的位置. 如果蒸馏灌在配方完成后会溢出物品，它就不会沸腾，所以一定不要加满-- 尤其是在制造那些产生液体比消耗液体更多的配方时！"
     },
     {
       "type": "patchouli:multiblock",
@@ -56,8 +56,21 @@
       "enable_visualize": false
     },
     {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/jarring_station",
+      "text": "The $(thing)Jarring Station$() is used to fill jars from the vat. The jarring station has a spout on one side that should point to the station."
+    },
+    {
       "type": "patchouli:text",
-      "text": "群峦的陶锅和烤架可以放在$(thing)烤箱底$()上。这些设备会自动从底部烤箱获得热量。不过陶锅只能用于煮汤，不能执行其他锅具配方。"
+      "text": "Using the Vat, Sugar Water can be made by adding sweetener to water. Then, adding fruit causes $(thing)Fruity Fluid$() to be made. Clicking it with an $(thing)Empty Jar With Lid$() will fill it. Be careful: trying to pipe or transport fruity fluid through too many transfers could ruin it!"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "With $(item)$(k:key.use)$(), add empty jars with lids to the jarring station. When it detects fruity fluid, it will automatically fill the jars with $(thing)Jam$() and seal them, requiring 500 mB of fruity fluid per jar."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Pots and Grills from TFC can be placed on top of a $(thing)Bottom Oven$(). These devices will get heat automatically from the bottom oven. The pot is only able to be used for making soup. It cannot execute regular pot recipes."
     }
   ],
   "read_by_default": true,

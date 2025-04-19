@@ -7,62 +7,62 @@
     {
       "type": "patchouli:text",
       "anchor": "planters",
-      "text": "$(thing)种植盆$()是用来 $(l:tfc:firmalife/greenhouse)温室$()里种植作物的方块。要查看作物的状态，你能拿着一个 $(thing)锄头$()并看向它。在种植盆中作物将消耗$(l:mechanics/fertilizers)肥料$()，方式与 $(l:mechanics/crops)作物$()相似。种植盆应被放置在一个有效的温室内，并用 $(l:tfc:firmalife/climate_station)气象站$()加以控制。种植盆也起码需要一点点的阳光才能起作用。"
+      "text": "$(thing)种植盆$() 是用来在 $(l:tfc:firmalife/greenhouse)温室$()里种植作物的物品. 要查看作物的状态,你能拿着一个 $(thing)锄头$()并看向它. 在种植盆中的作物将消耗 $(l:mechanics/fertilizers)营养物$() ，方式与 $(l:mechanics/crops)作物$()相似. 种植盆应被放置在一个有效的温室内，并用 $(l:tfc:firmalife/climate_station)气象站$()加以控制. 种植盆也需要起码一点点的阳光才能起作用。"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/watering_can",
-      "text": "种植盆必须要$(thing)浇水$()才能生长。你需要使用$(thing)喷壶$()，它用一个$(thing)木桶$()，任意一个装$(thing)水$()的容器，以及$(thing)木材$()来合成。手持喷壶按$(item)$(k:key.use)$()就可以给附近的植物浇水，对着水源按$(item)$(k:key.use)$()就可以重新灌满水。"
+      "text": "种植盆必须要$(thing)浇水$()才能生长. 你需要使用$(thing)喷壶$(), 它用$(thing)木桶$(), 一个装$(thing)水$()的容器, 以及$(thing)木材$()来合成. 手持喷壶按$(item)$(k:key.use)$()就可以给附近的植物浇水, 对着水源按$(item)$(k:key.use)$()就可以重新灌满水."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/large_planter",
-      "text": "$(thing)大号种植盆$()是最简单的一种种植盆。它可以用种子种植一株农作物,，并且在农作物成熟后按$(item)$(k:key.use)$()收获。"
+      "text": "$(thing)大号种植盆$()是最简单的一种种植盆. 它可以用种子种植一株农作物, 并且在农作物成熟后按$(item)$(k:key.use)$()收获."
     },
     {
       "type": "patchouli:text",
-      "text": "大号种植盆可以种植$(thing)各种两格高作物$()以及各种$(thing)谷物$()。但如果要种植谷物, 你需要一个$(thing)铜$()或更高等级的温室。"
+      "text": "大号种植盆可以种植$(thing)绿豆$(), $(thing)西红柿$(), $(thing)甘蔗$(), $(thing)黄麻$(), and $(thing)谷物$(). 但如果要种植谷物, 你需要一个$(thing)铜$()或更高等级的温室."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/quad_planter",
-      "text": "$(thing)四槽种植盆$()可以一次种植四株农作物。这些农作物都会从同一个养料池汲取营养, 并且在成熟后可以按$(item)$(k:key.use)$()来单独收获。"
+      "text": "$(thing)四槽种植盆$()可以一次种植四株农作物. 这些农作物都会从同一个养料池汲取营养, 并且在成熟后可以按$(item)$(k:key.use)$()来单独收获."
     },
     {
       "type": "patchouli:text",
-      "text": "四槽种植盆可以种植大部分单格高的$(thing)蔬菜$()。这些农作物都可以在任意等级的温室中种植。"
+      "text": "四槽种植盆可以种植$(thing)甜菜$(), $(thing)卷心菜$(), $(thing)胡萝卜$(), $(thing)大蒜$(), $(thing)洋葱$(), $(thing)马铃薯$(), 和$(thing)大豆$(). 这些农作物都可以在任意等级的温室中种植."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/bonsai_planter",
-      "text": "$(thing)盆栽种植盆$()可以用树苗来种植小型果树。按$(item)$(k:key.use)$()就可以收获水果."
+      "text": "$(thing)盆栽种植盆$()可以用树苗来种植小型果树. 按$(item)$(k:key.use)$()就可以收获水果."
     },
     {
       "type": "patchouli:text",
-      "text": "盆栽种植盆可以种植除$(thing)香蕉$()外的任何果树，而香蕉需要$(thing)悬挂种植盆$()。他们都会消耗氮作为主要的营养，并且需要$(thing)铁$()或更高等级的温室才能种植。"
+      "text": "盆栽种植盆可以种植除$(thing)香蕉$()外的任何果树, 而香蕉需要$(thing)悬挂的种植盆$(). 他们都会消耗氮作为主要的营养, 并且需要$(thing)铁$()或更高等级的温室才能种植."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/hanging_planter",
-      "text": "$(thing)悬挂种植盆$()可以倒着种植农作物。成熟后可以按$(item)$(k:key.use)$()收获."
+      "text": "$(thing)悬挂的种植盆$()可以倒着种植农作物. 成熟后可以按$(item)$(k:key.use)$()收获."
     },
     {
       "type": "patchouli:text",
-      "text": "悬挂的种植盆可以用种子种植$(thing)南瓜$()、$(thing)西瓜$()、$(thing)西葫芦$()、$(thing)香蕉$()。西葫芦可以在任意等级的温室种植，但香蕉需要$(thing)铁$()或更高等级的温室。悬挂的种植盆必须被挂在一个固体方块的下方。"
+      "text": "悬挂的种植盆可以用种子种植$(thing)西葫芦$(), 以及用树苗种植$(thing)香蕉$(). 西葫芦可以在任意等级的温室种植, 但香蕉需要$(thing)铁$()或更高等级的温室. 悬挂的种植盆必须被挂在一个固体方块的下方."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/trellis_planter",
-      "text": "$(thing)格子种植架$()可以种植各种莓果灌木。莓果可以按$(item)$(k:key.use)$()收获。"
+      "text": "$(thing)格子种植盆$()可以种植各种莓果灌木. 莓果可以按$(item)$(k:key.use)$()收获."
     },
     {
       "type": "patchouli:text",
-      "text": "格子种植架有一种独特的$(thing)繁殖$()灌木的功能. 如果一个格子种植架放在另一个的上方, 并且下面的那个种植架有一个成熟的莓果灌木，那么它就有可能生长到上方的种植架里、格子种植架可以种植除$(thing)蔓越莓$()外所有的莓果灌木。它们需要$(thing)铁$()或更高等级的温室才能正常工作。这些灌木喜欢氮."
+      "text": "格子种植盆有一种独特的$(thing)繁殖$()灌木的功能. 如果一个格子种植盆放在另一个的上方, 并且下面的那个种植盆有一个成熟的莓果灌木, 那么它就有可能生长到上方的种植盆里. 格子种植盆可以种植所有的莓果灌木, 但$(thing)蔓越莓灌木$()除外. 它们需要$(thing)铁$()或更高等级的温室才能正常工作. 这些灌木喜欢氮."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/hydroponic_planter",
-      "text": "$(thing)水培种植盆$() 可以种植水稻和蔓越莓灌木。它们的工作原理与四轮花盆相同，只是不需要浇水。相反，它们下面必须有一个$(l:firmalife/irrigation)喷水管$()来供水。没有水管，它们就无法生长。"
+      "text": "$(thing)Hydroponic Planters$() grow rice and cranberry bushes. They work the same as a quad planter, except that they do not need to be watered. Instead, they must have an $(li)$(l:firmalife/irrigation)Sprinkler Pipe$() below them that is supplying water. Without the pipe they will not grow."
     }
   ],
   "read_by_default": true,

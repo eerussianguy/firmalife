@@ -165,7 +165,7 @@
   "Fig Tree": "イチジクの木",
   "The monthly stages of a Fig tree": "イチジクの木の成長",
   "Berry Bushes": "ベリーの茂み",
-  "Firmalife adds some berry bushes with interesting uses.": "Firmalifeは、面白い使い方をするベリー類の茂みを追加しました。",
+  "Firmalife adds some berry bushes. For information on wild grape bushes, see $(l:firmalife/wine)winemaking$().": "Firmalife adds some berry bushes. For information on wild grape bushes, see $(l:firmalife/wine)winemaking$().",
   "First is nightshade. Nightshade is a poisonous berry. When put into soup, it makes poisonous $(thing)Stinky Soup$(). It is found between 200-400mm of rain and 7-24 C temperature in forests.": "まずはナイトシェードです。$(br2)ナイトシェードは毒のあるベリーです。$(br)スープにすると毒のある$(thing)臭いスープ$()になります。$(br2)降水量 200 - 400 mm$(br)気温 7 - 24 ℃$(br)の森林に生息しています。",
   "Pineapple bushes are found 250-500mm of rainfall and 20-32 C temperature in forests. Pineapples are like any other fruit, except that they can be made into $(thing)Pineapple Leather$().": "パイナップルの茂みは、$(br)降水量 250 - 500 mm$(br)気温 20 - 32 ℃$(br)の森林に生息しています。$(br2)パイナップルは、$(thing)人工皮革$()に加工できることを除けば、他の果物と同じです。",
   "Pineapples that have been $(l:firmalife/drying)Dried$() can be crafted into pineapple fiber.": "$(l:tfc:firmalife/drying)乾燥$()させたパイナップルは人工繊維に加工できます。",

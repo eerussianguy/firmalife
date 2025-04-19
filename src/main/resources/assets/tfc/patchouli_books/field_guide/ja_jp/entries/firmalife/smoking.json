@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(thing)燻製$()にしたいアイテムを吊るすためには羊毛の糸を使います。$(br2)$(item)$(k:key.use)$()でアイテムが吊るせます。"
+      "text": "$(thing)燻製$()にしたいアイテムを吊るすには羊毛の糸を使います。$(br2)$(item)$(k:key.use)$()でアイテムが吊るせます。"
     },
     {
       "type": "patchouli:multiblock",

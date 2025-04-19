@@ -1,5 +1,5 @@
 {
-  "comment": "Этот файл был автоматически создан mcresources",
+  "__comment__": "This file was automatically created by mcresources",
   "name": "Хлеб",
   "category": "tfc:firmalife",
   "icon": "tfc:textures/item/food/barley_bread.png",

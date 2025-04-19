@@ -1,17 +1,17 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "name": "香料植物",
+  "name": "草药和香料",
   "category": "tfc:firmalife",
   "icon": "firmalife:spice/basil_leaves",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "在Firmalife中，有很多可以收集和种植的具有烹饪效果的小植物。运气好的话，它们可能会在蜂箱周围生成。或者，更简单的办法就是用$(thing)种子球$()。按$(item)$(k:key.use)$()就可以把$(thing)种子球$()扔出去，就像雪球一样。这会在目标区域生成一些$(thing)蝴蝶草$()。"
+      "text": "在Firmalife中, 有很多可以收集和种植的具有烹饪效果的小植物. 获得这些植物的最简单的办法就是用$(thing)种子球$(). 按$(item)$(k:key.use)$()就可以把$(thing)种子球$()扔出去, 就像雪球一样. 这会在目标区域生成一些$(thing)蝴蝶草$()."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/seed_ball",
-      "text": "种子球的配方需要$(l:tfc:firmalife/more_fertilizer)堆肥$()与四个任意$(thing)种子$()。"
+      "text": "种子球的配方需要$(l:tfc:firmalife/more_fertilizer)堆肥$()与四个$(thing)种子$()。"
     },
     {
       "type": "patchouli:multiblock",
@@ -29,12 +29,12 @@
         }
       },
       "name": "",
-      "text": "一种蝴蝶草。",
+      "text": "一种蝴蝶草.",
       "enable_visualize": false
     },
     {
       "type": "patchouli:text",
-      "text": "蝴蝶草会随着时间的推移而成熟。它成熟时可能会传播到周围的方块，或者变成新的东西。已被一株蝴蝶草传播过的方块不会被另一株再次传播。"
+      "text": "蝴蝶草会随着时间的推移而成熟。它成熟时可能会传播到周围的方块，或者变成新的东西。已被一株蝴蝶草传播过的方块不会被另一株再次传播."
     },
     {
       "type": "patchouli:multiblock",
@@ -52,13 +52,13 @@
         }
       },
       "name": "",
-      "text": "罗勒是一种可能由蝴蝶草扩散产生的植物。",
+      "text": "Basil香草是一种可能由蝴蝶草扩散产生的植物.",
       "enable_visualize": false
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/basil_leaves",
-      "text": "罗勒的叶子可以用来制作披萨。"
+      "text": "Basil香草的叶子可以用来制作披萨."
     }
   ],
   "read_by_default": true,

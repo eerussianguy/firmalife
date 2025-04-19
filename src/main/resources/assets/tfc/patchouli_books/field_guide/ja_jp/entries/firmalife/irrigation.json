@@ -1,6 +1,6 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "name": "耕作地を潤す",
+  "name": "温室を潤す",
   "category": "tfc:firmalife",
   "icon": "firmalife:sprinkler",
   "pages": [
@@ -20,7 +20,7 @@
     {
       "type": "tfc:anvil_recipe",
       "recipe": "firmalife:anvil/copper_pipe",
-      "text": "銅パイプはシートで作られます。"
+      "text": "銅パイプは銅のプレートで作られます。"
     },
     {
       "type": "patchouli:multiblock",
@@ -47,7 +47,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "ポンプステーションを作動させるには、水源ブロックの上に設置し、機械動力に接続しなければなりません。$(br2)ポンプステーションの上には農業用タンクを最大3ブロック積み上げることができ、側面にあるポートから水を供給できます。"
+      "text": "ポンプステーションを作動させるには、水源ブロックの上に設置し、機械的な動力に接続しなければなりません。$(br2)ポンプステーションの上には農業用タンクを最大3ブロック積み上げることができ、側面にあるポートから水を供給できます。"
     },
     {
       "type": "patchouli:crafting",

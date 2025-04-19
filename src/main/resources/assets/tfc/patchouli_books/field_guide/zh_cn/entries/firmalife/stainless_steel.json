@@ -6,20 +6,20 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(thing)不锈钢$()与$(thing)铬$()是$(thing)钢$()等级的金属。它们可以被用在 $(l:tfc:firmalife/greenhouse)不锈钢温室$()的建造中。"
+      "text": "$(thing)不锈钢$() 与 $(thing)铬$() 是 $(thing)钢层$() 金属 .它们被用在 $(l:tfc:firmalife/greenhouse)不锈钢温室$()的建造中."
     },
     {
       "type": "patchouli:spotlight",
       "item": "firmalife:metal/ingot/stainless_steel",
       "title": "不锈钢",
       "link_recipes": false,
-      "text": "$(br)$(bold)合金配方：$()$(br)$(li)20 - 30 %：$(thing)铬$()$(li)10 - 20 % ：$(thing)镍$()$(li)60 - 80 % ：$(thing)钢$()"
+      "text": "$(br)$(bold)条件:$()$(br)$(li)20 - 30 % : $(thing)铬$()$(li)10 - 20 % : $(thing)镍$()$(li)60 - 80 % : $(thing)钢$()$(br2)"
     },
     {
       "type": "patchouli:spotlight",
       "item": "firmalife:ore/small_chromite",
       "link_recipes": false,
-      "text": "铬尖晶石是一种熔融后可以得到铬的矿石。它们在$(thing)侵入岩$()和$(thing)变质岩$()可以找到。"
+      "text": "铬铁矿是一种熔融后可以得到铬的矿石. 它在$(thing)侵入岩$()和$(thing)变质岩$()可以找到."
     },
     {
       "type": "patchouli:text",

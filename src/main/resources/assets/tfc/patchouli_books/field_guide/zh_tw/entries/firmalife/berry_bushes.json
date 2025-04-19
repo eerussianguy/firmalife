@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Firmalife adds some berry bushes with interesting uses."
+      "text": "Firmalife adds some berry bushes. For information on wild grape bushes, see $(l:firmalife/wine)winemaking$()."
     },
     {
       "type": "patchouli:spotlight",

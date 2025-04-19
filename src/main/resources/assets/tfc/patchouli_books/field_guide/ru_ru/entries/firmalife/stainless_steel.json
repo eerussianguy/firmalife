@@ -1,5 +1,5 @@
 {
-  "comment": "Этот файл был автоматически создан mcresources",
+  "__comment__": "This file was automatically created by mcresources",
   "name": "Нержавеющая сталь",
   "category": "tfc:firmalife",
   "icon": "firmalife:metal/ingot/stainless_steel",

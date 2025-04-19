@@ -10,7 +10,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "$(l:tfc:firmalife/cheese)チーズ$()はより複雑な工程を経て作られます。$(br2)チーズを設置し、$(l:tfc:firmalife/cellar)貯蔵庫$()で熟成させることもできます。",
+      "text": "$(l:tfc:firmalife/cheese)チーズ$()はより複雑な工程を経て作られます。$(br2)チーズを設置し、$(l:tfc:firmalife/cellar)貯蔵庫$()で熟成させることも可能です。",
       "title": "チーズの熟成"
     },
     {

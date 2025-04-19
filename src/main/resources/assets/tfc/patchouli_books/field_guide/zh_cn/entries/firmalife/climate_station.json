@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(thing)气象站$()是一个用来控制$(l:firmalife/greenhouse)温室$()和$(l:firmalife/cellar)地窖$() 的方块。当其对应的结构正确构建时，其侧面将显示水。当其无效时，将显示冰。气候站需要放置在结构的第一层，接触墙壁。如果它没有接触墙壁，您可以手持一个来自该结构的方块（比如密封砖、温室墙方块）对其$(item)$(k:key.use)$()以进行识别。"
+      "text": "The $(thing)Climate Station$() is a block that manages the $(l:firmalife/greenhouse)Greenhouse$() and the $(l:firmalife/cellar)Cellar$(). When its corresponding multiblock is built correctly, it will show water on its sides. When it is invalid, it will show ice. The Climate Station must be placed on the first level of the multiblock, touching a wall. If it is not touching a wall, you may $(item)$(k:key.use)$() it with a block that is part of the multiblock you are trying to make to tell it what to look for."
     },
     {
       "type": "tfc:multimultiblock",
@@ -49,6 +49,10 @@
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/climate_station",
       "text": "气象站的合成方法。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "A note about greenhouse construction: The largest greenhouse is 31x31x31, centered on the climate station, or 15 blocks in each direction. Centering the climate station in the greenhouse will allow you to take advantage of the full size range. You can also internally subdivide a greenhouse into multiple by using walls and multiple climate stations to make it larger."
     }
   ],
   "read_by_default": true,

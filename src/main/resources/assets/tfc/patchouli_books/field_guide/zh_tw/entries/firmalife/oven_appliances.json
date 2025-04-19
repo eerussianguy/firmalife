@@ -56,6 +56,19 @@
       "enable_visualize": false
     },
     {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/jarring_station",
+      "text": "The $(thing)Jarring Station$() is used to fill jars from the vat. The jarring station has a spout on one side that should point to the station."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Using the Vat, Sugar Water can be made by adding sweetener to water. Then, adding fruit causes $(thing)Fruity Fluid$() to be made. Clicking it with an $(thing)Empty Jar With Lid$() will fill it. Be careful: trying to pipe or transport fruity fluid through too many transfers could ruin it!"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "With $(item)$(k:key.use)$(), add empty jars with lids to the jarring station. When it detects fruity fluid, it will automatically fill the jars with $(thing)Jam$() and seal them, requiring 500 mB of fruity fluid per jar."
+    },
+    {
       "type": "patchouli:text",
       "text": "Pots and Grills from TFC can be placed on top of a $(thing)Bottom Oven$(). These devices will get heat automatically from the bottom oven. The pot is only able to be used for making soup. It cannot execute regular pot recipes."
     }

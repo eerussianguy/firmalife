@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Firmalifeは、TFCで追加されたものに加えて、果樹する植物を追加しています。"
+      "text": "Firmalifeは、TFCで追加されたものに加えて、果樹も追加しています。"
     },
     {
       "type": "patchouli:text",
@@ -15,8 +15,8 @@
     {
       "type": "patchouli:text",
       "anchor": "cocoa",
-      "text": "$(bold)$(l:the_world/climate#temperature)気温$()：20～35℃、$(br)$(bold)$(l:mechanics/hydration)降雨量$()：220～400mm$(br2)カカオの木は$(l:tfc:firmalife/chocolate)チョコレート$()の原料になります。",
-      "title": "ココアの木"
+      "text": "$(bold)$(l:the_world/climate#temperature)気温$()：20 - 35 ℃$(br)$(bold)$(l:mechanics/hydration)降雨量$()：220 - 400 mm$(br2)カカオの木は$(l:tfc:firmalife/chocolate)チョコレート$()の原料になります。",
+      "title": "カカオの木"
     },
     {
       "type": "tfc:multimultiblock",
@@ -95,7 +95,7 @@
     {
       "type": "patchouli:text",
       "anchor": "fig",
-      "text": "$(bold)$(l:the_world/climate#temperature)温度$()：20～35℃$(br)$(bold)$(l:mechanics/hydration)降雨量$()：125～215mm(br2)",
+      "text": "$(bold)$(l:the_world/climate#temperature)温度$()：20 - 35 ℃$(br)$(bold)$(l:mechanics/hydration)降雨量$()：125 - 215 mm$(br2)",
       "title": "イチジクの木"
     },
     {
