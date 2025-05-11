@@ -134,7 +134,7 @@ public class VatRecipe implements ISimpleRecipe<VatBlockEntity.VatInventory>
         return inputItem.test(container.getStackInSlot(0))
             && inputFluid.test(container.getFluidInTank(0))
             && (inputFluid.amount() == 0
-            || outputFluid.getAmount() == 0
+            || inputItem.count() == 0
             || (inputItem.count() > 0 && inputFluid.amount() > 0 && container.getFluidInTank(0).getAmount() / this.inputFluid.amount() <= container.getStackInSlot(0).getCount() / this.inputItem.count())
             );
     }
