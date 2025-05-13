@@ -69,6 +69,7 @@ public class FLItems
     public static final RegistryObject<Item> EMPTY_VOLCANIC_WINE_BOTTLE = register("empty_volcanic_wine_bottle", () -> new WineBottleItem(prop(), FLHelpers.identifier("block/empty_volcanic_wine_bottle")));
     public static final RegistryObject<Item> EMPTY_OLIVINE_WINE_BOTTLE = register("empty_olivine_wine_bottle", () -> new WineBottleItem(prop(), FLHelpers.identifier("block/empty_olivine_wine_bottle")));
     public static final RegistryObject<Item> CORK = register("cork");
+    public static final RegistryObject<Item> TIRAGE_MIXTURE = register("tirage_mixture");
     public static final RegistryObject<Item> BARREL_STAVE = register("barrel_stave");
     public static final RegistryObject<Item> BOTTLE_LABEL = register("bottle_label");
     public static final RegistryObject<Item> RED_GRAPE_SEEDS = register("seeds/red_grape", () -> new GrapeSeedItem(new Item.Properties(), FLBlocks.GRAPE_STRING_PLANT_RED));

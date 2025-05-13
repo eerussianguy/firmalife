@@ -86,7 +86,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "左端のスロットには最大16個のブドウを入れることができます。ワイン1本を作るには4つのブドウが必要です。中央の4つのスロットは、ブドウを他の材料と混ぜるためのものですが、これはオプションです。赤または白のブドウのみを使用すると、赤ワインまたは白ワインが得られます。白ワインに少なくとも1つの赤ブドウを加えるとロゼになります。白ワインに砂糖を加えるとデザートワインになります。"
+      "text": "The leftmost slot can contain up to 16 grapes. Four grape items are needed for a bottle of wine. The four central slots are for mixing the grapes with other ingredients, but this is optional. Using only red or white grapes yields red or white wine. Adding at least one red grape to white wine makes Rose. Adding sugar to white wine makes dessert wine. Adding tirage mixture (yeast and sweetener in a barrel) makes sparkling wine."
     },
     {
       "type": "tfc:glassworking_recipe",

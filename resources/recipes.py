@@ -211,6 +211,7 @@ def generate(rm: ResourceManager):
             'temperature': 300
         })
 
+    barrel_instant_recipe(rm, 'tirage', '#tfc:sweetener', '100 firmalife:yeast_starter', output_item='firmalife:tirage_mixture')
     barrel_instant_recipe(rm, 'clean_any_bowl', '#firmalife:foods/washable', '100 minecraft:water', output_item=item_stack_provider(other_modifier='firmalife:empty_pan'))
     for glass in ('olivine', 'volcanic', 'hematitic'):
         barrel_instant_recipe(rm, 'clean_%s_wine_bottle' % glass, 'firmalife:%s_wine_bottle' % glass, '100 minecraft:water', output_item='firmalife:empty_%s_wine_bottle' % glass)

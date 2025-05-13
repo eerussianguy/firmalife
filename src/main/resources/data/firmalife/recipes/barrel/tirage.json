@@ -1,0 +1,16 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:barrel_instant",
+  "input_item": {
+    "ingredient": {
+      "tag": "tfc:sweetener"
+    }
+  },
+  "input_fluid": {
+    "ingredient": "firmalife:yeast_starter",
+    "amount": 100
+  },
+  "output_item": {
+    "item": "firmalife:tirage_mixture"
+  }
+}

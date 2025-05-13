@@ -86,7 +86,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Вино должно быть укупорено $(thing)пробкой$(), изготовленной путем вымачивания $(thing)обработанной древесины$() в $(thing)известковой воде$() в течение дня. Когда все будет готово, используйте слот для бутылки, чтобы наполнить вино, или нажмите $(item)$(k:key.use)$() с бутылкой в руке."
+      "text": "The leftmost slot can contain up to 16 grapes. Four grape items are needed for a bottle of wine. The four central slots are for mixing the grapes with other ingredients, but this is optional. Using only red or white grapes yields red or white wine. Adding at least one red grape to white wine makes Rose. Adding sugar to white wine makes dessert wine. Adding tirage mixture (yeast and sweetener in a barrel) makes sparkling wine."
     },
     {
       "type": "tfc:glassworking_recipe",

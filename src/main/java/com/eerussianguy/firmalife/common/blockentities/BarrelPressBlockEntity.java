@@ -167,6 +167,10 @@ public class BarrelPressBlockEntity extends TickableInventoryBlockEntity<ItemSta
             {
                 return WineType.DESSERT;
             }
+            if (hasAtLeastThisMuchOfThisInOtherSlots(s -> s.getItem() == FLItems.TIRAGE_MIXTURE.get(), 1))
+            {
+                return WineType.SPARKLING;
+            }
             return WineType.WHITE;
         }
         return null;
