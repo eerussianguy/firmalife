@@ -23,11 +23,11 @@ public class OvenHopperBlockEntity extends TickableInventoryBlockEntity<ItemStac
     public static void serverTick(Level level, BlockPos pos, BlockState state, OvenHopperBlockEntity hopper)
     {
         hopper.checkForLastTickSync();
-        if ((level.getGameTime() + 10) % 20 == 0) // insert
+        if ((level.getGameTime() + 10) % 20 == 0 && state.getValue(OvenHopperBlock.ENABLED)) // insert
         {
             Helpers.gatherAndConsumeItems(level, new AABB(0, 1, 0, 1, 1.5125, 1).move(pos), hopper.inventory, 0, SLOTS - 1);
         }
-        if (level.getGameTime() % 40 == 0) // extract
+        if (level.getGameTime() % 40 == 0 && state.getValue(OvenHopperBlock.ENABLED)) // extract
         {
             final Direction dir = state.getValue(OvenHopperBlock.FACING);
             final BlockPos offsetPos = pos.relative(dir);

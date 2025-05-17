@@ -6,10 +6,12 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.crafting.Ingredient;
 
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 
 import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.util.BlockItemPlacement;
@@ -19,7 +21,17 @@ public class FLInteractionManager
 {
     public static void init()
     {
-        InteractionManager.register(new BlockItemPlacement(TFCItems.WOOL_YARN, FLBlocks.WOOL_STRING));
+        InteractionManager.register(new BlockItemPlacement(TFCItems.WOOL_YARN, FLBlocks.WOOL_STRING) {
+            @Override
+            public InteractionResult postPlacement(BlockPlaceContext context)
+            {
+                final Level level = context.getLevel();
+                final BlockPos pos = context.getClickedPos();
+                final BlockState state = level.getBlockState(pos);
+                state.getBlock().setPlacedBy(level, pos, state, context.getPlayer(), context.getItemInHand());
+                return super.postPlacement(context);
+            }
+        });
 
 
         InteractionManager.register(Ingredient.of(TFCItems.WROUGHT_IRON_GRILL.get()), false, (stack, context) -> {
