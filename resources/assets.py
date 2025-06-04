@@ -133,12 +133,12 @@ def generate(rm: ResourceManager):
     rm.blockstate('grape_string_plant_red', variants=dict(
        ('axis=%s,lifecycle=%s,stage=%s' % (a, l, s), {'model': 'firmalife:block/%s_%s' % (m, s), 'y': y if y != 0 else None})
         for a, y in (('x', 90), ('z', 0)) for s in range(0, 3) for l, m in (('dormant', 'grape_dead'), ('healthy', 'grape'), ('fruiting', 'grape'), ('flowering', 'grape'))
-    )).with_lang(lang('red grape plant')).with_tag('tfc:mineable_with_sharp_tool').with_block_loot('tfc:jute_fiber')
+    )).with_lang(lang('red grape plant')).with_tag('tfc:mineable_with_sharp_tool').with_block_loot('tfc:jute_fiber', 'firmalife:seeds/red_grape')
 
     rm.blockstate('grape_string_plant_white', variants=dict(
         ('axis=%s,lifecycle=%s,stage=%s' % (a, l, s), {'model': 'firmalife:block/%s_%s' % (m, s), 'y': y if y != 0 else None})
         for a, y in (('x', 90), ('z', 0)) for s in range(0, 3) for l, m in (('dormant', 'grape_dead'), ('healthy', 'grape'), ('fruiting', 'grape'), ('flowering', 'grape'))
-    )).with_lang(lang('white grape plant')).with_tag('tfc:mineable_with_sharp_tool').with_block_loot('tfc:jute_fiber')
+    )).with_lang(lang('white grape plant')).with_tag('tfc:mineable_with_sharp_tool').with_block_loot('tfc:jute_fiber', 'firmalife:seeds/white_grape')
 
     rm.blockstate('grape_string_red', variants={
         'axis=x,lifecycle=dormant': {'model': 'firmalife:block/grape_top_dead', 'y': 90},
