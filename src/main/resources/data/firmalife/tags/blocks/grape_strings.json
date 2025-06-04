@@ -2,8 +2,7 @@
   "__comment__": "This file was automatically created by mcresources",
   "replace": false,
   "values": [
-    "#tfc:fruit_tree_leaves",
-    "#firmalife:grape_strings",
-    "#firmalife:grape_trellis_posts_plant"
+    "firmalife:grape_string_red",
+    "firmalife:grape_string_white"
   ]
 }
