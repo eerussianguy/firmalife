@@ -62,7 +62,6 @@ def generate(rm: ResourceManager):
     rm.block_tag('always_valid_greenhouse_wall', '#minecraft:doors', '#minecraft:trapdoors')
     rm.block_tag('grape_strings', 'firmalife:grape_string_red', 'firmalife:grape_string_white')
     rm.block_tag('grape_trellis_posts_plant', 'firmalife:grape_trellis_post_red', 'firmalife:grape_trellis_post_white')
-    rm.block_tag('grape_trellis_posts', 'firmalife:grape_trellis_posts', '#firmalife:grape_trellis_posts_plant')
     rm.block_tag('drops_fruit_leaf', '#tfc:fruit_tree_leaves', '#firmalife:grape_strings', '#firmalife:grape_trellis_posts_plant')
     rm.block_tag('buzzing_leaves', 'firmalife:plant/fig_leaves')
     rm.block_tag('pipe_replaceable', '#tfc:dirt', '#tfc:grass', '#minecraft:base_stone_overworld', '#forge:gravel', '#minecraft:sand', '#tfc:can_carve')
