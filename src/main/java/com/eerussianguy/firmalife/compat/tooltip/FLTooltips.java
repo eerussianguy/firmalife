@@ -3,6 +3,7 @@ package com.eerussianguy.firmalife.compat.tooltip;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.eerussianguy.firmalife.common.blocks.greenhouse.PumpingStationBlock;
 import com.eerussianguy.firmalife.common.blocks.plant.FLFruitTreeSaplingBlock;
 import com.eerussianguy.firmalife.common.capabilities.wine.WineType;
 import net.minecraft.network.chat.Component;
@@ -54,6 +55,7 @@ public final class FLTooltips
             register(r, "fruit_tree_sapling", FRUIT_TREE_SAPLING, FLFruitTreeSaplingBlock.class);
             register(r, "jarbnet", JARBNET, JarbnetBlock.class);
             register(r, "barrel_press", BARREL_PRESS, JarbnetBlock.class);
+            register(r, "pumping_station", BlockEntityTooltips.ROTATING, PumpingStationBlock.class);
         }
 
         private static void register(RegisterCallback<BlockEntityTooltip, Block> r, String name, BlockEntityTooltip tooltip, Class<? extends Block> aClass)

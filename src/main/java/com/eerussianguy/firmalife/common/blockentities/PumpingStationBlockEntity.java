@@ -11,7 +11,6 @@ import net.minecraft.world.level.material.Fluids;
 import net.dries007.tfc.common.blockentities.TFCBlockEntity;
 import net.dries007.tfc.common.blockentities.rotation.RotationSinkBlockEntity;
 import net.dries007.tfc.common.blocks.RiverWaterBlock;
-import net.dries007.tfc.common.blocks.rotation.CrankshaftBlock;
 import net.dries007.tfc.util.rotation.NetworkAction;
 import net.dries007.tfc.util.rotation.Node;
 import net.dries007.tfc.util.rotation.SinkNode;

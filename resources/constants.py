@@ -316,6 +316,7 @@ DEFAULT_LANG = {
     'config.jade.plugin_firmalife.vat': 'Vat',
     'config.jade.plugin_firmalife.tumbler': 'Tumbler',
     'config.jade.plugin_firmalife.jarbnet': 'Jarbnet',
+    'config.jade.plugin_firmalife.pumping_station': 'Pumping Station',
     'config.jade.plugin_firmalife.barrel_press': 'Barrel Press',
 
     'death.attack.firmalife.oven': '%1$s died by sticking their hand in a hot oven.',

@@ -5,8 +5,7 @@
     "to_place": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "firmalife:plant/wild_white_grapes",
-        "Properties": {}
+        "Name": "firmalife:plant/wild_white_grapes"
       }
     }
   }

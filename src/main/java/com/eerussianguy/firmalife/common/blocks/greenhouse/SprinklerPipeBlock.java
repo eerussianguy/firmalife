@@ -167,6 +167,7 @@ public class SprinklerPipeBlock extends ExtendedBlock implements DirectionProper
             (block instanceof AbstractSprinklerBlock sprinkler && sprinkler.getPipeConnection().test(direction)) ||
             (direction == Direction.UP && block instanceof HydroponicPlanterBlock) ||
             (block instanceof GreenhousePortBlock && state.getValue(GreenhousePortBlock.AXIS) == direction.getAxis()) ||
-            (block == FLBlocks.IRRIGATION_TANK.get() && direction.getAxis().isHorizontal());
+            (block == FLBlocks.IRRIGATION_TANK.get() && direction.getAxis().isHorizontal()) ||
+            (block == FLBlocks.PUMPING_STATION.get() && direction.getAxis().isHorizontal() && !(state.getValue(PumpingStationBlock.FACING) == direction.getOpposite()));
     }
 }
