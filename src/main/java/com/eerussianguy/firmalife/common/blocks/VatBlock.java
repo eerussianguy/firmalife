@@ -117,15 +117,16 @@ public class VatBlock extends SealableDeviceBlock
                         return vat.getCapability(Capabilities.ITEM).map(inventory -> {
                             if (inventory.isItemValid(0, stack) && !stack.isEmpty())
                             {
-                                FLHelpers.insertOne(level, stack, 0, inventory, player);
+                                player.setItemInHand(hand, inventory.insertItem(0, stack, false));
+                                vat.markForSync();
                             }
                             else
                             {
                                 final ItemStack give = inventory.extractItem(0, 64, false);
+                                vat.markForSync();
                                 if (give.isEmpty()) return InteractionResult.PASS;
                                 ItemHandlerHelper.giveItemToPlayer(player, give);
                             }
-                            vat.markForSync();
                             return InteractionResult.sidedSuccess(level.isClientSide);
                         }).orElse(InteractionResult.PASS);
                     }
