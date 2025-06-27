@@ -17,7 +17,8 @@
       "predicate": {
         "type": "would_survive",
         "state": {
-          "Name": "firmalife:plant/wild_red_grapes"
+          "Name": "firmalife:plant/wild_red_grapes",
+          "Properties": {}
         }
       }
     }

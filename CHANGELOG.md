@@ -1,4 +1,3 @@
 ### Changes
-- Rewrote string placement mechanics to make them more consistent. Strings will place in a complete line all at once rather than being individually placed, and can no longer 'float'.
-- Made vat recipes more flexible
-- Added sparkling wine
+- Fruit leaves are now dropped by trellises and top jute strings that have grape plants on them.
+- Grape seeds are now dropped by the bottom jute strings that have grape plants on them.
