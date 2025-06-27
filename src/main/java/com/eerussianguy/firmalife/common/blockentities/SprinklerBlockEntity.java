@@ -71,7 +71,7 @@ public class SprinklerBlockEntity extends TFCBlockEntity implements FluidTankCal
             final BlockEntity be = level.getBlockEntity(checkPos);
             if (be != null)
             {
-                final IFluidHandler cap = Helpers.getCapability(be, Capabilities.FLUID);
+                final IFluidHandler cap = be.getCapability(Capabilities.FLUID, pipeDirection.getOpposite()).resolve().orElse(null);
                 if (cap != null)
                 {
                     final Fluid fluid = cap.getFluidInTank(0).getFluid();
@@ -79,9 +79,12 @@ public class SprinklerBlockEntity extends TFCBlockEntity implements FluidTankCal
                     {
                         if (drain)
                         {
-                            cap.drain(1, IFluidHandler.FluidAction.EXECUTE);
+                            final FluidStack drained = cap.drain(1, IFluidHandler.FluidAction.EXECUTE);
+                            if (!drained.isEmpty())
+                            {
+                                return drained.getFluid();
+                            }
                         }
-                        return fluid;
                     }
                 }
             }

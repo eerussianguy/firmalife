@@ -71,7 +71,7 @@ public class SprinklerItem extends BlockItem
         return state != null && this.canPlace(context, state) ? state : null;
     }
 
-    private boolean isPipe(Level level, BlockPos pos)
+    public boolean isPipe(Level level, BlockPos pos)
     {
         return level.getBlockState(pos).getBlock() instanceof SprinklerPipeBlock || !FLConfig.SERVER.usePipesForSprinklers.get();
     }
