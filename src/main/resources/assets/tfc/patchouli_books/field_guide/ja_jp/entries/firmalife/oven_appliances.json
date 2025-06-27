@@ -30,7 +30,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "釜は$(thing)オーブンかまど$()の上に置きます。$(br2)レシピの完成時に釜があふれる場合は沸騰しないので、生産量が多いレシピでは入れすぎないように注意してください！"
+      "text": "Vats should be placed on the block above a $(thing)Bottom Oven$(). If the vat would overflow on completion of the recipe, it will not boil, so be sure not to overfill it -- especially with recipes that produce more fluid than they consume! Vats can be opened and closed with $(thing)Redstone$()."
     },
     {
       "type": "patchouli:multiblock",

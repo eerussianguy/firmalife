@@ -23,6 +23,10 @@
       "text": "太陽光乾燥機の機能は乾燥マットと同じですが、速度が12倍になります。"
     },
     {
+      "type": "patchouli:text",
+      "text": "Drying mats can be automated. Pushing a piston head against a drying mat will pop the item off. Dropping an item onto a drying mat will place it on the mat."
+    },
+    {
       "type": "tfc:drying_recipe",
       "recipe": "firmalife:drying/drying_fruit",
       "text": "果物を乾燥させるのは、乾燥マットの一般的な使い方です。$(br2)乾燥させた果物は鮮度が長持ちし、さまざまなレシピに使用されます。"

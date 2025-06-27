@@ -23,6 +23,10 @@
       "text": "Солнечная сушилка работает так же, как сушильный коврик, но в 12 раз быстрее."
     },
     {
+      "type": "patchouli:text",
+      "text": "Drying mats can be automated. Pushing a piston head against a drying mat will pop the item off. Dropping an item onto a drying mat will place it on the mat."
+    },
+    {
       "type": "tfc:drying_recipe",
       "recipe": "firmalife:drying/drying_fruit",
       "text": "Сушка фруктов — распространенное применение сушильного коврика. Сушеные фрукты используются в некоторых рецептах и хранятся дольше."

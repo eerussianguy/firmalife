@@ -871,6 +871,7 @@
   "config.jade.plugin_firmalife.vat": "釜",
   "config.jade.plugin_firmalife.tumbler": "タンブラー",
   "config.jade.plugin_firmalife.jarbnet": "収納棚",
+  "config.jade.plugin_firmalife.pumping_station": "Pumping Station",
   "config.jade.plugin_firmalife.barrel_press": "圧搾機",
   "death.attack.firmalife.oven": "%1$sは熱いオーブンに手を突っ込んで死んだ。",
   "death.attack.firmalife.oven.player": "%1$sは%2$sから逃げるためにオーブンに入った。",

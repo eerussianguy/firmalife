@@ -870,6 +870,7 @@
   "config.jade.plugin_firmalife.vat": "Vat",
   "config.jade.plugin_firmalife.tumbler": "Tumbler",
   "config.jade.plugin_firmalife.jarbnet": "Jarbnet",
+  "config.jade.plugin_firmalife.pumping_station": "Pumping Station",
   "config.jade.plugin_firmalife.barrel_press": "Barrel Press",
   "death.attack.firmalife.oven": "%1$s은(는) 뜨거운 오븐에 손을 집어넣어 죽었습니다.",
   "death.attack.firmalife.oven.player": "%1$s은(는) %2$s로부터 도망치다 오븐 위에 올라가 죽었습니다.",

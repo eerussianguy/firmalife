@@ -878,6 +878,7 @@
   "config.jade.plugin_firmalife.vat": "不锈钢锅",
   "config.jade.plugin_firmalife.tumbler": "堆肥器",
   "config.jade.plugin_firmalife.jarbnet": "Jarbnet",
+  "config.jade.plugin_firmalife.pumping_station": "Pumping Station",
   "config.jade.plugin_firmalife.barrel_press": "Barrel Press",
   "death.attack.firmalife.oven": "%1$s被炽热的烤炉烫成烤乳猪",
   "death.attack.firmalife.oven.player": "%1$s在试图逃离%2$s时企图当成圣诞老人钻进了炽热的烤炉",

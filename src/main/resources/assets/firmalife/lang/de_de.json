@@ -872,6 +872,7 @@
   "config.jade.plugin_firmalife.vat": "Vat",
   "config.jade.plugin_firmalife.tumbler": "Tumbler",
   "config.jade.plugin_firmalife.jarbnet": "Jarbnet",
+  "config.jade.plugin_firmalife.pumping_station": "Pumping Station",
   "config.jade.plugin_firmalife.barrel_press": "Barrel Press",
   "death.attack.firmalife.oven": "%1$s hat seine Hand in einen heisen Ofen gesteckt und starb.",
   "death.attack.firmalife.oven.player": "%1$s kletterte in einen Ofen beim Versuch %2$s zu entkommen.",

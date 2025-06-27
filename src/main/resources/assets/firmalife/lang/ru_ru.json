@@ -871,6 +871,7 @@
   "config.jade.plugin_firmalife.vat": "Чан",
   "config.jade.plugin_firmalife.tumbler": "Тумблер",
   "config.jade.plugin_firmalife.jarbnet": "Шкафчик",
+  "config.jade.plugin_firmalife.pumping_station": "Pumping Station",
   "config.jade.plugin_firmalife.barrel_press": "Бочка с прессом",
   "death.attack.firmalife.oven": "%1$s умер, сунув руку в горячую печь.",
   "death.attack.firmalife.oven.player": "%1$s залез в печь, чтобы спастись от %2$s.",
