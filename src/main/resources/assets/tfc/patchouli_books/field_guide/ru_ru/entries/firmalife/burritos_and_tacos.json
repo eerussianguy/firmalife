@@ -1,16 +1,16 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "name": "Burritos and Tacos",
+  "name": "Буррито и Тако",
   "category": "tfc:firmalife",
   "icon": "firmalife:textures/item/food/burrito.png",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The journey of making a $(thing)Tortilla$() is a long process, but rewarding. Start with $(thing)Maize Grain$(). Boil it in a pot of $(thing)Limewater$(), and seal it in a barrel of water to make $(thing)Nixtamal$(). Then crush it in a $(thing)Quern$() to make $(thing)Masa Flour$()."
+      "text": "Путь приготовления $(thing)Тортильи$() - это долгий, но полезный процесс. Начните с $(thing)Зерна кукурузы$(). Отварите его в чане с $(thing)Гашеной известью$(), и запечатайте в бочке с водой, чтобы получить $(thing)Никстамаль$(). Затем измельчите его в $(thing)Жёрнове$(), чтобы получить $(thing)муку Маса$()."
     },
     {
       "type": "patchouli:text",
-      "text": "Crafting the Masa Flour with a bucket of water makes $(thing)Masa$(), the dough of a tortilla. This can be heated to make a $(thing)Corn Tortilla$(). Baking a Tortilla in an oven makes a $(thing)Taco Shell$()."
+      "text": "Смешивание кукурузной муки Маса с ведром воды создаст $(thing)Масу$() - тесто для тортильи. Его можно нагреть, чтобы сделать $(thing)Кукурузную тортилью$(). Выпекание тортильи в печи создает $(thing)Оболочку тако$()."
     },
     {
       "type": "patchouli:crafting",
@@ -20,17 +20,17 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/salsa",
-      "text": "A tomato, cilantro, salt, and a knife will yield you $(thing)Salsa$()."
+      "text": "Помидор, кинза, соль и нож позволят вам получить $(thing)Сальсу$()."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/burrito",
-      "text": "The $(thing)Burrito$() is made from cooked meat, $(l:firmalife/pizza#shredded_cheese)Shredded Cheese$(), $(l:firmalife/pizza#tomato_sauce)Tomato Sauce$(), a vegetable, and Salsa."
+      "text": "$(thing)Буррито$() состоит из приготовленного мяса, $(l:firmalife/pizza#shredded_cheese)Тертого сыра$(), $(l:firmalife/pizza#tomato_sauce)Томатного соуса$(), овощей и сальсы."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/taco",
-      "text": "The $(thing)Taco$() is made from the same ingredients, except with a $(thing)Taco Shell$()."
+      "text": "$(thing)Тако$() готовится из тех же ингредиентов, за исключением $(thing)Оболочки тако$()."
     }
   ],
   "read_by_default": true,

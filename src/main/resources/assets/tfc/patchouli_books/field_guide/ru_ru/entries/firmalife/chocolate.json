@@ -19,7 +19,7 @@
     {
       "type": "tfc:drying_recipe",
       "recipe": "firmalife:drying/dark_chocolate",
-      "text": "Наконец, шоколад сушится на $(l:firmalife/drying)сушильном коврике$(), чтобы получить $(thing)шоколад$()."
+      "text": "Наконец, шоколад сушится на $(l:firmalife/drying)сушильном коврике$(), чтобы получить $(thing)Шоколад$()."
     }
   ],
   "read_by_default": true,

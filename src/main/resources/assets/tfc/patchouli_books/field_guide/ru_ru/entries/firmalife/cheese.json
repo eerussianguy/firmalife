@@ -10,18 +10,18 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Как обычно, молоко сначала должно быть $(thing)свернуто$(). Для свертывания молока вам нужен $(thing)сычужный фермент$(). Сычужный фермент получают из желудка $(thing)жвачных$() животных. К ним относятся $(l:mechanics/animal_husbandry#yak)яки$(), $(l:mechanics/animal_husbandry#cow)коровы$(), $(l:mechanics/animal_husbandry#sheep)овцы$(), $(l:mechanics/animal_husbandry#goat)козы$() и $(l:mechanics/animal_husbandry#musk_ox)мускусные быки$(). Для свертывания молока запечатайте его в $(l:mechanics/barrels)бочке$() с сычужным ферментом на 4 часа."
+      "text": "Как обычно, молоко сначала должно быть $(thing)свернуто$(). Для свертывания молока вам нужен $(thing)сычуг$(). Сычуг получают из желудка $(thing)жвачных$() животных. К ним относятся $(l:mechanics/animal_husbandry#yak)яки$(), $(l:mechanics/animal_husbandry#cow)коровы$(), $(l:mechanics/animal_husbandry#sheep)овцы$(), $(l:mechanics/animal_husbandry#goat)козы$() и $(l:mechanics/animal_husbandry#musk_ox)мускусные быки$(). Для свертывания молока запечатайте его в $(l:mechanics/barrels)бочке$() с сычугом на 4 часа."
     },
     {
       "type": "patchouli:crafting",
       "anchor": "cheesecloth",
       "recipe": "firmalife:crafting/cheesecloth",
-      "text": "Свернувшееся молоко должно быть преобразовано в $(thing)творог$(), запечатав его в бочке с $(thing)сырной тканью$(). Сырная ткань не многоразовая."
+      "text": "Свернувшееся молоко (простокваша) должна быть преобразована в $(thing)творог$(), запечатав его в бочке с $(thing)марлей$(). Марля не многоразовая."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/cheddar_wheel",
-      "text": "Вы готовы сделать $(thing)твердый сыр$(), если хотите. Вы можете сделать $(thing)Раджа Меток$() из $(thing)творога яка$(), $(thing)Шевр$() из $(thing)козьего творога$() и $(thing)Чеддер$() из $(thing)коровьего творога$()."
+      "text": "Вы готовы сделать $(thing)твердый сыр$(), если хотите. Вы можете сделать $(thing)Райя-Меток$() из $(thing)творога яка$(), $(thing)Шевр$() из $(thing)козьего творога$() и $(thing)Чеддер$() из $(thing)коровьего творога$()."
     },
     {
       "type": "patchouli:crafting",
@@ -39,7 +39,7 @@
     },
     {
       "type": "tfc:multimultiblock",
-      "text": "Стадии созревания головки Гауды: $(thing)свежий$(), $(thing)выдержанный$() и $(thing)винный$().",
+      "text": "Стадии созревания головки Гауды: $(thing)свежий$(), $(thing)выдержанный$() и $(thing)винтажный$().",
       "multiblocks": [
         {
           "pattern": [

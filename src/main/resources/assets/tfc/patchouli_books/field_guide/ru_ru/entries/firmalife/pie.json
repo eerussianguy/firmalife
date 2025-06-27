@@ -1,30 +1,30 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "name": "Pie",
+  "name": "Пирог",
   "category": "tfc:firmalife",
   "icon": "firmalife:textures/item/food/cooked_pie.png",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Firmalife allows the creation of a variety of delectable baked goods. This chapter will give you all you need to start eating delicious and creative meals for breakfast, lunch, and dinner."
+      "text": "Firmalife позволяет создавать разнообразную восхитительную выпечку. Эта глава даст вам все необходимое, чтобы начать есть вкусные и оригинальные блюда на завтрак, обед и ужин."
     },
     {
       "type": "patchouli:text",
-      "text": "$(thing)Butter is the base of many such foods. Using a $(l:firmalife/mixing_bowl)Mixing Bowl$(), combine 1000 mB of $(thing)Cream$() with one item of $(thing)Salt$(). Cream is made by sealing 1000 mB of milk in a barrel with a $(l:mechanics/firmalife#cheesecloth)Cheesecloth$()."
+      "text": "$(thing)Масло$() является основой для многих таких продуктов. Используя $(l:firmalife/mixing_bowl)Миску для смешивания$(), смешайте 1000 мБ $(thing)Сливок$() с одним предметом $(thing)Соли$(). Сливки получаются путем запечатывания 1000 мБ молока в бочке с $(l:mechanics/firmalife#cheesecloth)Марлей$()."
     },
     {
       "type": "patchouli:text",
-      "text": "One useful meal is the $(thing)Pie$(). In your mixing bowl, combine butter, flower, and a sweetener (sugar, honey) to make $(thing)Pie Dough$(). To directly make $(thing)Pumpkin Pie$(), mix in an egg, two pumpkin chunks, flour, and sweetener. Craft it with a $(thing)Pie Pan$() and bake it in an $(l:firmalife/ovens)Oven$() to complete the recipe."
+      "text": "Одним из полезных блюд является $(thing)Пирог$(). В вашей миске для смешивания смешайте масло, муку и подсластитель (сахар, мед), чтобы сделать $(thing)Тесто для пирога$(). Чтобы напрямую сделать $(thing)Тыквенный пирог$(), смешайте яйцо, две тыквенной мякоти, муку и подсластитель и 1000 мБ воды. Скрафтите его с помощью $(thing)Формы для пирога$() и запеките в $(l:firmalife/ovens)Печи$(), чтобы завершить рецепт."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/raw_pumpkin_pie",
-      "text": "$(thing)Pie Pans$() can be smithed in an Anvil from $(thing)Cast Iron$()."
+      "text": "$(thing)Формы для пирога$() можно выковать на Наковальне из $(thing)Чугуна$()."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/filled_pie",
-      "text": "Pie Dough, Preserves, and a Pie Pan will net you a $(thing)Filled Pie$(), which can then be finished in the oven for a delicious pie."
+      "text": "Тесто для пирога, Варенье и Форма для пирога позволят вам получить $(thing)Пирог с начинкой$(), который затем можно довести до готовности в духовке для получения вкусного пирога."
     }
   ],
   "read_by_default": true,
