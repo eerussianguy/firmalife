@@ -1,6 +1,5 @@
 package com.eerussianguy.firmalife.common.blocks;
 
-import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.VatBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
@@ -12,6 +11,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -21,10 +21,12 @@ import net.minecraftforge.items.ItemHandlerHelper;
 
 import net.dries007.tfc.client.particle.TFCParticles;
 import net.dries007.tfc.common.TFCTags;
+import net.dries007.tfc.common.blockentities.BarrelBlockEntity;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.devices.SealableDeviceBlock;
 import net.dries007.tfc.common.capabilities.Capabilities;
 import net.dries007.tfc.common.fluids.FluidHelpers;
+import net.dries007.tfc.config.TFCConfig;
 import net.dries007.tfc.util.Helpers;
 
 public class VatBlock extends SealableDeviceBlock
@@ -56,6 +58,16 @@ public class VatBlock extends SealableDeviceBlock
     public VatBlock(ExtendedProperties properties)
     {
         super(properties);
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public void neighborChanged(BlockState state, Level level, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving)
+    {
+        if (level.getBlockEntity(pos) instanceof VatBlockEntity vat)
+        {
+            handleNeighborChanged(state, level, pos, () -> toggleSeal(level, pos, state), () -> toggleSeal(level, pos, state));
+        }
     }
 
     @Override

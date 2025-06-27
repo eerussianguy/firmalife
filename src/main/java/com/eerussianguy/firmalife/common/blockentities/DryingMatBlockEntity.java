@@ -6,15 +6,18 @@ import com.eerussianguy.firmalife.common.recipes.DryingRecipe;
 import com.eerussianguy.firmalife.config.FLConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.minecraftforge.items.ItemStackHandler;
 
 import net.dries007.tfc.common.capabilities.PartialItemHandler;
 import net.dries007.tfc.common.recipes.inventory.ItemStackInventory;
 import net.dries007.tfc.util.EnvironmentHelpers;
+import net.dries007.tfc.util.Helpers;
 
 public class DryingMatBlockEntity extends SimpleItemRecipeBlockEntity<DryingRecipe>
 {
@@ -39,6 +42,11 @@ public class DryingMatBlockEntity extends SimpleItemRecipeBlockEntity<DryingReci
         {
             mat.resetCounter();
         }
+        if (level.getGameTime() % 100L == 0L)
+        {
+            final AABB bounds = new AABB(pos.getX() - 0.2, pos.getY() - 0.2, pos.getZ() - 0.2, pos.getX() + 1.2, pos.getY() + 0.3, pos.getZ() + 1.2);
+            Helpers.gatherAndConsumeItems(level, bounds, mat.inventory, 0, 0);
+        }
 
         if (mat.cachedRecipe != null && level.getGameTime() % 20 == 0)
         {
@@ -57,6 +65,26 @@ public class DryingMatBlockEntity extends SimpleItemRecipeBlockEntity<DryingReci
     public DryingMatBlockEntity(BlockEntityType<DryingMatBlockEntity> type, BlockPos pos, BlockState state, Supplier<Integer> dryTicks)
     {
         super(type, pos, state, FLHelpers.blockEntityName("drying_mat"), dryTicks);
+    }
+
+    @Override
+    public void setAndUpdateSlots(int slot)
+    {
+        super.setAndUpdateSlots(slot);
+        markForSync();
+        if (slot == 0)
+            resetCounter();
+    }
+
+    public void ejectItem(Direction d)
+    {
+        ItemStack item = inventory.getStackInSlot(0);
+        if (!item.isEmpty())
+        {
+            item = inventory.extractItem(0, 64, false);
+            level.addFreshEntity(new ItemEntity(level, worldPosition.getX() + 0.5, worldPosition.getY() + 0.5, worldPosition.getZ() + 0.5, item, d.getStepX() * 0.3, 0.2, d.getStepZ() * 0.3));
+            markForSync();
+        }
     }
 
     @Override
