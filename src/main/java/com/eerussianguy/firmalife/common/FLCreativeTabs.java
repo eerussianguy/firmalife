@@ -125,6 +125,8 @@ public final class FLCreativeTabs
         accept(out, FLBlocks.BONSAI_PLANTER);
         accept(out, FLBlocks.HANGING_PLANTER);
         accept(out, FLBlocks.TRELLIS_PLANTER);
+        accept(out, FLBlocks.PICKER);
+        accept(out, FLBlocks.SWEEPER);
         accept(out, FLBlocks.GRAPE_TRELLIS_POST);
         accept(out, FLBlocks.SEALED_BRICKS);
         accept(out, FLBlocks.CHISELED_SEALED_BRICKS);

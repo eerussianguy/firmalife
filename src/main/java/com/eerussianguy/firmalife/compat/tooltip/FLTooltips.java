@@ -70,6 +70,10 @@ public final class FLTooltips
                 {
                     tooltip.accept(Component.translatable("firmalife.jade.boiling"));
                 }
+                else if (!vat.hasOutput() && !state.getValue(VatBlock.SEALED))
+                {
+                    tooltip.accept(Component.translatable("firmalife.jade.close_lid"));
+                }
                 if (vat.hasOutput())
                 {
                     tooltip.accept(vat.getOutput().getHoverName());

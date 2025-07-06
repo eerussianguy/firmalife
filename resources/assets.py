@@ -79,6 +79,11 @@ def generate(rm: ResourceManager):
     block = rm.blockstate('mixing_bowl', model='firmalife:block/mixing_bowl').with_item_model().with_tag('minecraft:mineable/axe').with_lang(lang('mixing bowl'))
     block.with_block_loot({'name': 'firmalife:mixing_bowl'}, {'name': 'firmalife:spoon', 'conditions': [loot_tables.block_state_property('firmalife:mixing_bowl[spoon=true]')]})
 
+    rm.blockstate('picker', model='firmalife:block/picker_base').with_tag('minecraft:mineable/pickaxe').with_lang(lang('picker')).with_block_loot('firmalife:picker')
+    rm.item_model('picker', parent='firmalife:block/picker', no_textures=True)
+    rm.blockstate('sweeper', model='tfc:block/empty').with_tag('minecraft:mineable/pickaxe').with_lang(lang('sweeper')).with_block_loot('firmalife:sweeper')
+    rm.item_model('sweeper', parent='firmalife:block/sweeper_item', no_textures=True)
+
     for fruit in TFC_FRUITS:
         rm.item_model(('not_dried', fruit), 'tfc:item/food/%s' % fruit)
         rm.item_model(('dried', fruit), 'firmalife:item/dried/dried_%s' % fruit)

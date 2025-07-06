@@ -14,4 +14,10 @@ public class BonsaiPlanterBlockEntity extends LargePlanterBlockEntity
     {
         super(FLBlockEntities.BONSAI_PLANTER.get(), pos, state, defaultInventory(LARGE_PLANTER_SLOTS), NAME);
     }
+
+    @Override
+    public float resetGrowthTo()
+    {
+        return 0.2f;
+    }
 }

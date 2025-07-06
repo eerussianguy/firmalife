@@ -1,0 +1,29 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"parent": "block/block",
+	"textures": {
+		"1": "firmalife:block/sweeper_arm",
+		"particle": "firmalife:block/metal/smooth/stainless_steel"
+	},
+	"elements": [
+		{
+			"from": [-8, 6.1, -2],
+			"to": [8, 6.1, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 4, 22]},
+			"faces": {
+				"up": {"uv": [0, 0, 16, 16], "rotation": 180, "texture": "#1"},
+				"down": {"uv": [0, 0, 16, 16], "rotation": 180, "texture": "#1"}
+			}
+		},
+		{
+			"from": [-8, 6, 13],
+			"to": [8, 6, 22],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 4, 22]},
+			"faces": {
+				"up": {"uv": [0, 0, 16, 9], "rotation": 180, "texture": "#1"},
+				"down": {"uv": [0, 0, 16, 9], "rotation": 180, "texture": "#1"}
+			}
+		}
+	]
+}

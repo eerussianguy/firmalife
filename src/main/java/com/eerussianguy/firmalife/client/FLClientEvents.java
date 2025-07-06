@@ -187,6 +187,8 @@ public class FLClientEvents
         event.register(FLHelpers.identifier("block/jar/guano"));
         event.register(FLHelpers.identifier("block/jar/honey"));
         event.register(FLHelpers.identifier("block/barrel_press_piston"));
+        event.register(FLHelpers.identifier("block/picker_arms"));
+        event.register(FLHelpers.identifier("block/sweeper_arm"));
 
         for (Item item : ForgeRegistries.ITEMS.getValues())
         {
@@ -237,6 +239,8 @@ public class FLClientEvents
         event.registerBlockEntityRenderer(FLBlockEntities.STOMPING_BARREL.get(), ctx -> new StompingBarrelBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.BARREL_PRESS.get(), ctx -> new BarrelPressBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.PUMPING_STATION.get(), ctx -> new PumpingStationBlockEntityRenderer());
+        event.registerBlockEntityRenderer(FLBlockEntities.PICKER.get(), ctx -> new PickerBlockEntityRenderer());
+        event.registerBlockEntityRenderer(FLBlockEntities.SWEEPER.get(), ctx -> new SweeperBlockEntityRenderer());
 
         event.registerEntityRenderer(FLEntities.SEED_BALL.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(FLEntities.FLBEE.get(), FLBeeRenderer::new);

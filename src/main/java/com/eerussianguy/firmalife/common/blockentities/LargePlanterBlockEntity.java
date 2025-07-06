@@ -1,5 +1,6 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
+import com.eerussianguy.firmalife.common.blocks.PickerBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -208,9 +209,16 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
         {
             complaint = "dehydrated";
         }
-        else if (airFind != null && !level.getBlockState(worldPosition.relative(airFind)).isAir())
+        else
         {
-            complaint = "air_needed";
+            if (airFind != null)
+            {
+                BlockState state = level.getBlockState(worldPosition.relative(airFind));
+                if (!state.isAir() && !(state.getBlock() instanceof PickerBlock && airFind == Direction.UP))
+                {
+                    complaint = "air_needed";
+                }
+            }
         }
         return complaint == null ? null : Component.translatable("firmalife.greenhouse." + complaint);
     }
@@ -320,5 +328,10 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     public void afterGrowthTickStep(boolean wasGrowing)
     {
 
+    }
+
+    public float resetGrowthTo()
+    {
+        return 0;
     }
 }

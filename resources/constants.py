@@ -298,6 +298,7 @@ DEFAULT_LANG = {
     'firmalife.jade.cook_left': '%s: %s',
     'firmalife.jade.cook_left_temp': '%s: %s (%s)',
     'firmalife.jade.boiling': 'Boiling',
+    'firmalife.jade.close_lid': 'Shift+right click to close the lid and allow boiling',
     'firmalife.jade.not_insulated': 'Not insulated! Items can only heat half as hot!',
     'firmalife.jade.no_chimney': 'Missing chimney!',
     'firmalife.jade.needs_peel': 'Needs peel item to safely remove goods',

@@ -55,5 +55,11 @@ public class TrellisPlanterBlockEntity extends LargePlanterBlockEntity
 
         }
     }
+
+    @Override
+    public float resetGrowthTo()
+    {
+        return 0.2f;
+    }
 }
 

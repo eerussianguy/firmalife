@@ -28,4 +28,10 @@ public class HangingPlanterBlockEntity extends LargePlanterBlockEntity
     {
         return direction != Direction.DOWN && super.addWater(amount, direction);
     }
+
+    @Override
+    public float resetGrowthTo()
+    {
+        return 0.2f;
+    }
 }

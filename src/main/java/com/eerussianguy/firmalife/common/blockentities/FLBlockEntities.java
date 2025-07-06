@@ -61,6 +61,8 @@ public class FLBlockEntities
     public static final RegistryObject<BlockEntityType<ClimateStationBlockEntity>> CLIMATE_STATION = register("climate_station", ClimateStationBlockEntity::new, FLBlocks.CLIMATE_STATION);
     public static final RegistryObject<BlockEntityType<SprinklerBlockEntity>> SPRINKLER = register("sprinkler", SprinklerBlockEntity::new, Stream.of(FLBlocks.SPRINKLER, FLBlocks.FLOOR_SPRINKLER));
     public static final RegistryObject<BlockEntityType<PumpingStationBlockEntity>> PUMPING_STATION = register("pumping_station", PumpingStationBlockEntity::new, Stream.of(FLBlocks.PUMPING_STATION));
+    public static final RegistryObject<BlockEntityType<PickerBlockEntity>> PICKER = register("picker", PickerBlockEntity::new, Stream.of(FLBlocks.PICKER));
+    public static final RegistryObject<BlockEntityType<SweeperBlockEntity>> SWEEPER = register("sweeper", SweeperBlockEntity::new, Stream.of(FLBlocks.SWEEPER));
 
     private static <T extends BlockEntity> RegistryObject<BlockEntityType<T>> register(String name, BlockEntityType.BlockEntitySupplier<T> factory, Supplier<? extends Block> block)
     {

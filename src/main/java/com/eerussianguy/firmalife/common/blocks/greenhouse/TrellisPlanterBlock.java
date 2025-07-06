@@ -24,12 +24,6 @@ public class TrellisPlanterBlock extends LargePlanterBlock
     }
 
     @Override
-    protected float resetGrowthTo()
-    {
-        return 0.2f;
-    }
-
-    @Override
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context)
     {
         return TRELLIS_SHAPE;
