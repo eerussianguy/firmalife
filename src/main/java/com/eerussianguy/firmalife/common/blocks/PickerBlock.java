@@ -2,11 +2,13 @@ package com.eerussianguy.firmalife.common.blocks;
 
 import com.eerussianguy.firmalife.common.blockentities.PickerBlockEntity;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -26,6 +28,16 @@ public class PickerBlock extends DeviceBlock
     public PickerBlock(ExtendedProperties properties)
     {
         super(properties, InventoryRemoveBehavior.NOOP);
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public void neighborChanged(BlockState state, Level level, BlockPos pos, Block neighborBlock, BlockPos neighborPos, boolean movedByPiston)
+    {
+        if (level.getSignal(pos.above(), Direction.UP) > 0 && level.getBlockEntity(pos) instanceof PickerBlockEntity picker)
+        {
+            picker.push();
+        }
     }
 
     @Override

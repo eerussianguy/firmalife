@@ -1,9 +1,11 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
 import com.eerussianguy.firmalife.common.blocks.greenhouse.LargePlanterBlock;
+import com.eerussianguy.firmalife.config.FLConfig;
 import com.mojang.math.Constants;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.Mth;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -20,10 +22,22 @@ public class SweeperBlockEntity extends TickableBlockEntity implements RotationS
     {
         sweeper.checkForLastTickSync();
 
-        if (!sweeper.getRotationNode().isConnectedToNetwork())
-            return;
+        float angle = sweeper.getRotationAngle(0f) * Constants.RAD_TO_DEG - 90f;
 
-        final float angle = sweeper.getRotationAngle(0f) * Constants.RAD_TO_DEG;
+        if (!sweeper.getRotationNode().isConnectedToNetwork())
+        {
+            if (FLConfig.SERVER.mechanicalPowerCheatMode.get() && level.hasNeighborSignal(pos))
+            {
+                angle = 360f - ((level.getGameTime() % 80) / 80f * 360f) - 90f;
+            }
+            else
+            {
+                return;
+            }
+        }
+        if (angle < 0)
+            angle += 360f;
+
         int x = 0;
         int z = 0;
         if (angle > 0 && angle < 5)

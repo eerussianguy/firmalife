@@ -49,7 +49,7 @@ public class PickerBlockEntityRenderer implements BlockEntityRenderer<PickerBloc
                 for (int z = 0; z <= 1; z++)
                 {
                     poseStack.pushPose();
-                    poseStack.translate(0f, 1f - ext, 0f);
+                    poseStack.translate(0f, 0.99f - ext, 0f);
                     RenderHelpers.renderTexturedCuboid(poseStack, buffer, sprite, combinedLight, combinedOverlay, (2.5f + x * 9) / 16f, 0f, (2.5f + z * 9) / 16f, (4.5f + x * 9)  / 16f, ext, (4.5f + z * 9)  / 16f);
                     poseStack.popPose();
                 }

@@ -62,7 +62,21 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/hydroponic_planter",
-      "text": "$(thing)Hydroponic Planters$() grow rice and cranberry bushes. They work the same as a quad planter, except that they do not need to be watered. Instead, they must have an $(li)$(l:firmalife/irrigation)Sprinkler Pipe$() below them that is supplying water. Without the pipe they will not grow."
+      "text": "$(thing)Hydroponic Planters$() grow rice and cranberry bushes. They work the same as a quad planter, except that they do not need to be watered."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Hydroponic Planters must instead, have a $(li)$(l:firmalife/irrigation)Sprinkler Pipe$() below them that is supplying water. Without the pipe they will not grow. There is no hard limit to how many hydroponic planters may be fed by one station."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/sweeper",
+      "text": "$(thing)Sweepers$() are used to harvest planters other than Quad and Hydroponic planters. They must be connected to a rotating $(thing)Axle$() on their bottom face."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/picker",
+      "text": "$(thing)Pickers$() can be powered via redstone signal from above. They extend down to pick the crops from Quad and Hydroponic planters."
     }
   ],
   "read_by_default": true,

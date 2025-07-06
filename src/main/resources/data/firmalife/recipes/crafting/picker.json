@@ -2,25 +2,22 @@
   "__comment__": "This file was automatically created by mcresources",
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "SRS",
-    "BBB",
-    "ZZZ"
+    "SB",
+    "RR",
+    "RR"
   ],
   "key": {
     "S": {
-      "tag": "forge:sheets/black_bronze"
+      "tag": "forge:sheets/stainless_steel"
     },
     "R": {
-      "tag": "forge:dusts/redstone"
+      "tag": "forge:rods/stainless_steel"
     },
     "B": {
       "item": "tfc:brass_mechanisms"
-    },
-    "Z": {
-      "tag": "tfc:axles"
     }
   },
   "result": {
-    "item": "firmalife:pumping_station"
+    "item": "firmalife:picker"
   }
 }

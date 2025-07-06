@@ -52,6 +52,8 @@ def generate(rm: ResourceManager):
     rm.crafting_shaped('crafting/mixing_bowl', ['XYX', 'YXY'], {'X': 'firmalife:treated_lumber', 'Y': 'tfc:glue'}, 'firmalife:mixing_bowl').with_advancement('firmalife:treated_lumber')
     rm.crafting_shaped('crafting/drying_mat', ['XXX'], {'X': 'firmalife:fruit_leaf'}, 'firmalife:drying_mat').with_advancement('firmalife:fruit_leaf')
     rm.crafting_shaped('crafting/solar_drier', ['SGS', ' M ', 'WWW'], {'M': 'firmalife:drying_mat', 'S': '#forge:rods/stainless_steel', 'G': 'minecraft:glass', 'W': 'firmalife:treated_lumber'}, 'firmalife:solar_drier').with_advancement('firmalife:drying_mat')
+    rm.crafting_shaped('crafting/sweeper', ['SR', ' R'], {'S': 'tfc:metal/saw_blade/steel', 'R': '#forge:rods/stainless_steel'}, 'firmalife:sweeper')
+    rm.crafting_shaped('crafting/picker', ['SB', 'RR', 'RR'], {'S': '#forge:sheets/stainless_steel', 'R': '#forge:rods/stainless_steel', 'B': 'tfc:brass_mechanisms'}, 'firmalife:picker')
     damage_shapeless(rm, 'crafting/basil_leaves', ('firmalife:plant/basil', '#tfc:knives'), (2, 'firmalife:spice/basil_leaves')).with_advancement('firmalife:plant/basil')
     rm.crafting_shapeless('crafting/bee_candle', ('firmalife:beeswax', '#forge:string'), '4 tfc:candle').with_advancement('firmalife:beeswax')
     rm.crafting_shaped('crafting/sealed_bricks', ['XXX', 'XYX', 'XXX'], {'X': '#forge:stone_bricks', 'Y': 'firmalife:beeswax'}, '8 firmalife:sealed_bricks').with_advancement('firmalife:beeswax')

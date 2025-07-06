@@ -1,3 +1,16 @@
 ### Changes
-- Fruit leaves are now dropped by trellises and top jute strings that have grape plants on them.
-- Grape seeds are now dropped by the bottom jute strings that have grape plants on them.
+- Added the Picker and Sweeper, two devices for automating greenhouse harvesting.
+  - The Picker is redstone or touch-activated, and picks crops from Quad or Hydroponic planters placed below.
+  - The Sweeper is mechanically driven (or via config, redstone-driven) and cuts planters other than Quad or Hydroponic in a 1 block radius around it.
+- Made grape plants able to drop fruit leaves.
+- Made grape seeds obtainable from grape plant bottoms.
+- Vats will attempt to insert all the items in the player's hand rather than one at a time.
+- Made stomping barrels able to be used when jumping in the center. (#199)
+- Fixed several bugs with pumping stations and sprinkler pipes, including visual issues and situations where flow would not operate as expected in certain pipe configurations.
+- Reintroduce drying mat automation.
+    - A piston pushing up to the side of a drying mat will kick items off of it.
+    - Dropped items will self-insert into the drying mat.
+- Allow vats to be closed and opened via redstone signal.
+- Added a tooltip to the vat to indicate that it should be closed to allow boiling in Jade.
+- Fixed a bug where sprinklers did not work with modded pipes.
+- Updated the book, including the ru_ru localization.
