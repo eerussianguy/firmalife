@@ -42,7 +42,7 @@ public class PumpingStationBlockEntity extends TFCBlockEntity implements Rotatio
     public boolean isPumping()
     {
         assert level != null;
-        if ((node.rotation() != null && node.rotation().speed() > 0f) || (FLConfig.SERVER.mechanicalPowerCheatMode.get() && level.getDirectSignalTo(worldPosition) > 0))
+        if ((node.rotation() != null && node.rotation().positiveSpeed() > 0f) || (FLConfig.SERVER.mechanicalPowerCheatMode.get() && level.getDirectSignalTo(worldPosition) > 0))
         {
             final BlockState state = level.getBlockState(worldPosition.below());
             return state.getFluidState().getType() == Fluids.WATER || state.getBlock() instanceof RiverWaterBlock;
