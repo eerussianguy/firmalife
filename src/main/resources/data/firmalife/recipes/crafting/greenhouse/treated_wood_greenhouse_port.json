@@ -2,19 +2,14 @@
   "__comment__": "This file was automatically created by mcresources",
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "ZZ",
-    "XY",
-    "ZZ"
+    "XY"
   ],
   "key": {
     "X": {
-      "item": "firmalife:treated_lumber"
+      "item": "firmalife:treated_wood_greenhouse_wall"
     },
     "Y": {
       "item": "firmalife:copper_pipe"
-    },
-    "Z": {
-      "item": "firmalife:reinforced_glass"
     }
   },
   "result": {

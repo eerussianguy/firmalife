@@ -6,7 +6,7 @@
       "tag": "tfc:barrels"
     },
     {
-      "tag": "forge:sheets/bronze"
+      "tag": "forge:sheets/any_bronze"
     },
     {
       "item": "firmalife:copper_pipe"

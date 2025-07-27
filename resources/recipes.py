@@ -111,7 +111,7 @@ def generate(rm: ResourceManager):
     rm.crafting_shapeless('crafting/cookie_dough_ice_cream', (not_rotten('firmalife:food/vanilla_ice_cream'), not_rotten('firmalife:food/chocolate_chip_cookie_dough')), 'firmalife:food/cookie_dough_ice_cream').with_advancement('firmalife:food/vanilla_ice_cream')
     rm.crafting_shapeless('crafting/plate', ('firmalife:treated_lumber', 'firmalife:treated_lumber', 'minecraft:white_dye', 'tfc:glue'), 'firmalife:plate').with_advancement('firmalife:treated_lumber')
     rm.crafting_shapeless('crafting/oxidized_copper_pipe', ('firmalife:copper_pipe', 'firmalife:copper_pipe', 'firmalife:copper_pipe', 'firmalife:copper_pipe', 'tfc:powder/wood_ash'), '4 firmalife:oxidized_copper_pipe').with_advancement('firmalife:copper_pipe')
-    rm.crafting_shapeless('crafting/irrigation_tank', ('#tfc:barrels', '#forge:sheets/bronze', 'firmalife:copper_pipe'), 'firmalife:irrigation_tank').with_advancement('firmalife:copper_pipe')
+    rm.crafting_shapeless('crafting/irrigation_tank', ('#tfc:barrels', '#forge:sheets/any_bronze', 'firmalife:copper_pipe'), 'firmalife:irrigation_tank').with_advancement('firmalife:copper_pipe')
     rm.crafting_shaped('crafting/pumping_station', ['SRS', 'BBB', 'ZZZ'], {'S': '#forge:sheets/any_bronze', 'R': '#forge:dusts/redstone', 'B': 'tfc:brass_mechanisms', 'Z': '#tfc:axles'}, 'firmalife:pumping_station').with_advancement('tfc:brass_mechanisms')
     damage_shapeless(rm, 'crafting/chiseled_sealed_bricks', ('firmalife:polished_sealed_bricks', '#tfc:chisels'), 'firmalife:chiseled_sealed_bricks').with_advancement('firmalife:sealed_bricks')
     damage_shapeless(rm, 'crafting/polished_sealed_bricks', ('firmalife:sealed_bricks', '#tfc:chisels', 'tfc:mortar'), 'firmalife:polished_sealed_bricks').with_advancement('firmalife:sealed_bricks')
@@ -384,7 +384,7 @@ def generate(rm: ResourceManager):
         rm.crafting_shaped('crafting/greenhouse/%s_greenhouse_trapdoor' % greenhouse, ['XYX', 'YXY'], mapping, (8, 'firmalife:%s_greenhouse_trapdoor' % greenhouse)).with_advancement(rod)
         rm.crafting_shaped('crafting/greenhouse/%s_greenhouse_panel_roof' % greenhouse, ['Y  ', 'XY ', 'XXY'], mapping, (4, 'firmalife:%s_greenhouse_panel_roof' % greenhouse)).with_advancement(rod)
         rm.crafting_shaped('crafting/greenhouse/%s_greenhouse_panel_wall' % greenhouse, ['XYX', 'XYX', 'XYX'], mapping, (8, 'firmalife:%s_greenhouse_panel_wall' % greenhouse)).with_advancement(rod)
-        rm.crafting_shaped('crafting/greenhouse/%s_greenhouse_port' % greenhouse, ['ZZ', 'XY', 'ZZ'], {'X': rod, 'Y': 'firmalife:copper_pipe', 'Z': 'firmalife:reinforced_glass'}, (8, 'firmalife:%s_greenhouse_port' % greenhouse)).with_advancement(rod)
+        rm.crafting_shaped('crafting/greenhouse/%s_greenhouse_port' % greenhouse, ['XY'], {'X': 'firmalife:%s_greenhouse_wall' % greenhouse, 'Y': 'firmalife:copper_pipe'}, (8, 'firmalife:%s_greenhouse_port' % greenhouse)).with_advancement(rod)
 
     sandwich_modifier = {
         'food': {
