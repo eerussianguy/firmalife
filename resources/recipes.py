@@ -111,7 +111,7 @@ def generate(rm: ResourceManager):
     rm.crafting_shapeless('crafting/cookie_dough_ice_cream', (not_rotten('firmalife:food/vanilla_ice_cream'), not_rotten('firmalife:food/chocolate_chip_cookie_dough')), 'firmalife:food/cookie_dough_ice_cream').with_advancement('firmalife:food/vanilla_ice_cream')
     rm.crafting_shapeless('crafting/plate', ('firmalife:treated_lumber', 'firmalife:treated_lumber', 'minecraft:white_dye', 'tfc:glue'), 'firmalife:plate').with_advancement('firmalife:treated_lumber')
     rm.crafting_shapeless('crafting/oxidized_copper_pipe', ('firmalife:copper_pipe', 'firmalife:copper_pipe', 'firmalife:copper_pipe', 'firmalife:copper_pipe', 'tfc:powder/wood_ash'), '4 firmalife:oxidized_copper_pipe').with_advancement('firmalife:copper_pipe')
-    rm.crafting_shapeless('crafting/irrigation_tank', ('#tfc:barrels', '#forge:sheets/any_bronze', 'firmalife:copper_pipe'), 'firmalife:irrigation_tank').with_advancement('firmalife:copper_pipe')
+    no_remainder_shapeless(rm, 'crafting/irrigation_tank', ('#tfc:barrels', '#forge:sheets/any_bronze', 'firmalife:copper_pipe'), 'firmalife:irrigation_tank').with_advancement('firmalife:copper_pipe')
     rm.crafting_shaped('crafting/pumping_station', ['SRS', 'BBB', 'ZZZ'], {'S': '#forge:sheets/any_bronze', 'R': '#forge:dusts/redstone', 'B': 'tfc:brass_mechanisms', 'Z': '#tfc:axles'}, 'firmalife:pumping_station').with_advancement('tfc:brass_mechanisms')
     damage_shapeless(rm, 'crafting/chiseled_sealed_bricks', ('firmalife:polished_sealed_bricks', '#tfc:chisels'), 'firmalife:chiseled_sealed_bricks').with_advancement('firmalife:sealed_bricks')
     damage_shapeless(rm, 'crafting/polished_sealed_bricks', ('firmalife:sealed_bricks', '#tfc:chisels', 'tfc:mortar'), 'firmalife:polished_sealed_bricks').with_advancement('firmalife:sealed_bricks')
@@ -541,6 +541,15 @@ def fluid_item_ingredient(fluid: Json, delegate: Json = None):
         'ingredient': delegate,
         'fluid_ingredient': fluid_stack_ingredient(fluid)
     }
+
+def no_remainder_shapeless(rm: ResourceManager, name_parts: ResourceIdentifier, ingredients: Json, result: Json, group: str = None, conditions: utils.Json = None) -> RecipeContext:
+    return delegate_recipe(rm, name_parts, 'tfc:no_remainder_shapeless_crafting', {
+        'type': 'minecraft:crafting_shapeless',
+        'group': group,
+        'ingredients': utils.item_stack_list(ingredients),
+        'result': utils.item_stack(result),
+        'conditions': utils.recipe_condition(conditions)
+    })
 
 def damage_shapeless(rm: ResourceManager, name_parts: ResourceIdentifier, ingredients: Json, result: Json, group: str = None, conditions: utils.Json = None) -> RecipeContext:
     res = utils.resource_location(rm.domain, name_parts)
