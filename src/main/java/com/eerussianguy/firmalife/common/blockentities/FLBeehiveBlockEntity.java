@@ -419,7 +419,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
             if (level.getBlockEntity(pos) instanceof IFarmland farmland)
             {
                 final float cropAffinity = (float) bee.getAbility(BeeAbility.CROP_AFFINITY); // 0 -> 10 scale
-                if (cropAffinity > 1)
+                if (cropAffinity >= 1 && level.random.nextInt(50) == 0)
                 {
                     final int which = level.random.nextInt(3); // 0, 1, 2
                     final float nut = level.random.nextFloat() * cropAffinity * 0.01f;
