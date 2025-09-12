@@ -81,8 +81,8 @@ public class FLBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBloc
                         anyBees = true;
                         calmChance += bee.getAbility(BeeAbility.CALMNESS);
                     }
-                    calmChance /= 40f;
                 }
+                calmChance /= 40f;
                 return anyBees && level.random.nextFloat() > calmChance;
         }).orElse(false)).orElse(false);
     }
