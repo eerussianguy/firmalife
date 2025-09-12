@@ -1,4 +1,5 @@
 ### Changes
-- Fix the pumping station not accepting negative rotation speeds.
-- Changed the greenhouse port recipe to be fairer.
-- Allow crafting irrigation tanks with any bronze.
+- Nerfed crop affinity. It will affect a random selection of crop blocks at a time instead of all of them.
+- Fixed calmness being calculated incorrectly
+- Fix irrigation tank recipe
+- Changed some textures
