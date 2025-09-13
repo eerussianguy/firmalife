@@ -1,12 +1,12 @@
 {
-  "name": "Dairy Products",
+  "name": "Молочные продукты",
   "category": "tfc:mechanics",
   "icon": "tfc:textures/item/food/cheese.png",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(l:firmalife/cheese)See the Firmalife entry for the correct information.$()",
-      "title": "Dairy"
+      "text": "$(l:firmalife/cheese)Правильную информацию см. в записи Firmalife.$()",
+      "title": "Молочные продукты"
     }
   ],
   "read_by_default": true
