@@ -30,7 +30,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Vats should be placed on the block above a $(thing)Bottom Oven$(). If the vat would overflow on completion of the recipe, it will not boil, so be sure not to overfill it -- especially with recipes that produce more fluid than they consume! Vats can be opened and closed with $(thing)Redstone$()."
+      "text": "Чан следует размещать на блок $(thing)нижней части печи$(). Если чан переполнится по завершении рецепта, он не закипит, поэтому не переполняйте его, особенно в случае рецептов, в которых образуется больше жидкости, чем потребляется! Чан можно открывать и закрывать с помощью $(thing)редстоуна$()."
     },
     {
       "type": "patchouli:multiblock",
