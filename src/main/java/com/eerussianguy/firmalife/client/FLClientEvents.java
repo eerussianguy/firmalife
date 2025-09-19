@@ -50,14 +50,13 @@ import com.eerussianguy.firmalife.client.screen.BarrelPressScreen;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
-import com.eerussianguy.firmalife.common.container.FLContainerTypes;
+import com.eerussianguy.firmalife.common.container.FLMenuTypes;
 import com.eerussianguy.firmalife.common.entities.FLEntities;
 import com.eerussianguy.firmalife.common.misc.FLParticles;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.common.items.FLItems;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import net.dries007.tfc.TerraFirmaCraft;
 import net.dries007.tfc.client.TFCColors;
 import net.dries007.tfc.client.particle.GlintParticleProvider;
 import net.dries007.tfc.common.capabilities.food.FoodCapability;
@@ -125,11 +124,11 @@ public class FLClientEvents
         ItemBlockRenderTypes.setRenderLayer(FLBlocks.REINFORCED_POURED_GLASS.get(), translucent);
 
         event.enqueueWork(() -> {
-            MenuScreens.register(FLContainerTypes.BEEHIVE.get(), BeehiveScreen::new);
-            MenuScreens.register(FLContainerTypes.BARREL_PRESS.get(), BarrelPressScreen::new);
-            MenuScreens.register(FLContainerTypes.STOVETOP_GRILL.get(), StovetopGrillScreen::new);
-            MenuScreens.register(FLContainerTypes.STOVETOP_POT.get(), StovetopPotScreen::new);
-            MenuScreens.register(FLContainerTypes.BIG_BARREL.get(), BigBarrelScreen::new);
+            MenuScreens.register(FLMenuTypes.BEEHIVE.get(), BeehiveScreen::new);
+            MenuScreens.register(FLMenuTypes.BARREL_PRESS.get(), BarrelPressScreen::new);
+            MenuScreens.register(FLMenuTypes.STOVETOP_GRILL.get(), StovetopGrillScreen::new);
+            MenuScreens.register(FLMenuTypes.STOVETOP_POT.get(), StovetopPotScreen::new);
+            MenuScreens.register(FLMenuTypes.BIG_BARREL.get(), BigBarrelScreen::new);
 
             TFCItems.FOOD.forEach((food, item) -> {
                 if (FLItems.TFC_FRUITS.contains(food))

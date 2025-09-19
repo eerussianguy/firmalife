@@ -91,12 +91,12 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
             }
             else if (plant != null)
             {
-                if (plant.getPlanterType() != getPlanterType())
+                if (plant.planter() != getPlanterType())
                 {
-                    player.displayClientMessage(Component.translatable("firmalife.greenhouse.wrong_type").append(FLHelpers.translateEnum(plant.getPlanterType())), true);
+                    player.displayClientMessage(Component.translatable("firmalife.greenhouse.wrong_type").append(FLHelpers.translateEnum(plant.planter())), true);
                     return InteractionResult.sidedSuccess(level.isClientSide);
                 }
-                if (planter.getTier() < plant.getTier())
+                if (planter.getTier() < plant.tier())
                 {
                     if (!planter.isClimateValid())
                     {
@@ -202,7 +202,7 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
                 {
                     inv.extractItem(slot, 1, false); // discard the internal ingredient
                 }
-                final int seedAmount = level.random.nextFloat() < plant.getExtraSeedChance() ? 2 : 1;
+                final int seedAmount = level.random.nextFloat() < plant.extraSeedChance() ? 2 : 1;
                 ItemStack seed = plant.getSeed();
                 if (!seed.isEmpty())
                 {

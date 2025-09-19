@@ -19,7 +19,7 @@ public class StovetopPotContainer extends BlockEntityContainer<StovetopPotBlockE
 
     public StovetopPotContainer(StovetopPotBlockEntity pot, int windowId)
     {
-        super(FLContainerTypes.STOVETOP_POT.get(), windowId, pot);
+        super(FLMenuTypes.STOVETOP_POT.get(), windowId, pot);
         addDataSlots(pot.getSyncableData());
     }
 

@@ -1,8 +1,7 @@
 package com.eerussianguy.firmalife.common.misc;
 
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonSerializationContext;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
@@ -13,6 +12,9 @@ import net.dries007.tfc.common.recipes.ingredients.BlockIngredient;
 
 public record BlockIngredientLootCondition(BlockIngredient ingredient) implements LootItemCondition
 {
+    public static final MapCodec<BlockIngredientLootCondition> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+        BlockIngredient.CODEC.fieldOf("ingredient").forGetter(e -> e.ingredient)
+    ).apply(instance, BlockIngredientLootCondition::new));
 
     @Override
     public LootItemConditionType getType()
@@ -27,18 +29,4 @@ public record BlockIngredientLootCondition(BlockIngredient ingredient) implement
         return state != null && ingredient.test(state);
     }
 
-    public static class Serializer implements net.minecraft.world.level.storage.loot.Serializer<BlockIngredientLootCondition>
-    {
-        @Override
-        public void serialize(JsonObject json, BlockIngredientLootCondition condition, JsonSerializationContext context)
-        {
-            // impossible...
-        }
-
-        @Override
-        public BlockIngredientLootCondition deserialize(JsonObject json, JsonDeserializationContext context)
-        {
-            return new BlockIngredientLootCondition(BlockIngredient.fromJson(json.get("ingredient")));
-        }
-    }
 }

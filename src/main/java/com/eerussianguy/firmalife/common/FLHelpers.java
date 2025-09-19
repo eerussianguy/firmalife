@@ -6,19 +6,21 @@ import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
-
-import com.google.gson.JsonArray;
+import com.eerussianguy.firmalife.FirmaLife;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.mojang.datafixers.util.Function10;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.JsonOps;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
@@ -27,25 +29,19 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemHandlerHelper;
-
-import com.eerussianguy.firmalife.FirmaLife;
-import com.mojang.serialization.Codec;
-import com.mojang.serialization.JsonOps;
+import net.neoforged.neoforge.capabilities.ICapabilityProvider;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.ItemHandlerHelper;
 import org.jetbrains.annotations.Nullable;
 
 import net.dries007.tfc.common.blockentities.TickCounterBlockEntity;
-import net.dries007.tfc.common.capabilities.Capabilities;
-import net.dries007.tfc.common.capabilities.food.FoodCapability;
-import net.dries007.tfc.common.capabilities.food.FoodTrait;
+import net.dries007.tfc.common.capabilities.ItemCapabilities;
+import net.dries007.tfc.common.component.food.FoodCapability;
+import net.dries007.tfc.common.component.food.FoodTrait;
 import net.dries007.tfc.util.Helpers;
-import net.dries007.tfc.util.JsonHelpers;
 
-import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
+import static com.eerussianguy.firmalife.FirmaLife.*;
 
 public class FLHelpers
 {
@@ -159,7 +155,7 @@ public class FLHelpers
     public static <T extends BlockEntity> InteractionResult consumeInventory(Level level, BlockPos pos, Supplier<BlockEntityType<T>> type, BiFunction<T, IItemHandler, InteractionResult> consumer)
     {
         return level.getBlockEntity(pos, type.get()).map(be ->
-            be.getCapability(Capabilities.ITEM).map(inv -> consumer.apply(be, inv)).orElse(InteractionResult.PASS)
+            be.getCapability(ItemCapabilities.ITEM).map(inv -> consumer.apply(be, inv)).orElse(InteractionResult.PASS)
         ).orElse(InteractionResult.PASS);
     }
 
@@ -194,7 +190,8 @@ public class FLHelpers
         return InteractionResult.PASS;
     }
 
-    public static ItemStack mergeInsertStack(IItemHandler inventory, int slot, ItemStack stack) {
+    public static ItemStack mergeInsertStack(IItemHandler inventory, int slot, ItemStack stack)
+    {
         ItemStack existing = Helpers.removeStack(inventory, slot);
         ItemStack remainder = stack.copy();
         ItemStack merged = FoodCapability.mergeItemStacks(existing, remainder);
@@ -240,12 +237,12 @@ public class FLHelpers
 
     public static ResourceLocation res(String string)
     {
-        return new ResourceLocation(string);
+        return ResourceLocation.parse(string);
     }
 
     public static ResourceLocation res(String namespace, String path)
     {
-        return new ResourceLocation(namespace, path);
+        return ResourceLocation.fromNamespaceAndPath(namespace, path);
     }
 
     public static Iterable<BlockPos> allPositionsCentered(BlockPos center, int radius, int height)
@@ -279,38 +276,52 @@ public class FLHelpers
         stack.getCapability(FoodCapability.CAPABILITY).ifPresent(cap -> cap.setCreationDate(FoodCapability.getRoundedCreationDate(cap.getCreationDate())));
     }
 
-    public static ResourceLocation[] arrayOfResourceLocationsFromJson(JsonObject json, String field)
+    public static <B, C, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10> StreamCodec<B, C> composite(
+        final StreamCodec<? super B, T1> codec1, final Function<C, T1> getter1,
+        final StreamCodec<? super B, T2> codec2, final Function<C, T2> getter2,
+        final StreamCodec<? super B, T3> codec3, final Function<C, T3> getter3,
+        final StreamCodec<? super B, T4> codec4, final Function<C, T4> getter4,
+        final StreamCodec<? super B, T5> codec5, final Function<C, T5> getter5,
+        final StreamCodec<? super B, T6> codec6, final Function<C, T6> getter6,
+        final StreamCodec<? super B, T7> codec7, final Function<C, T7> getter7,
+        final StreamCodec<? super B, T8> codec8, final Function<C, T8> getter8,
+        final StreamCodec<? super B, T9> codec9, final Function<C, T9> getter9,
+        final StreamCodec<? super B, T10> codec10, final Function<C, T10> getter10,
+        final Function10<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, C> function)
     {
-        final JsonArray array = JsonHelpers.getAsJsonArray(json, field);
-        final ResourceLocation[] textures = new ResourceLocation[array.size()];
-        int i = 0;
-        for (JsonElement element : array)
+        return new StreamCodec<>()
         {
-            textures[i] = FLHelpers.res(element.getAsString());
-            i++;
-        }
-        return textures;
-    }
+            @Override
+            public C decode(B buffer)
+            {
+                T1 t1 = codec1.decode(buffer);
+                T2 t2 = codec2.decode(buffer);
+                T3 t3 = codec3.decode(buffer);
+                T4 t4 = codec4.decode(buffer);
+                T5 t5 = codec5.decode(buffer);
+                T6 t6 = codec6.decode(buffer);
+                T7 t7 = codec7.decode(buffer);
+                T8 t8 = codec8.decode(buffer);
+                T9 t9 = codec9.decode(buffer);
+                T10 t10 = codec10.decode(buffer);
+                return function.apply(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10);
+            }
 
-    public static ResourceLocation[] arrayOfResourceLocationsFromNetwork(FriendlyByteBuf buffer)
-    {
-        final int length = buffer.readVarInt();
-        if (length == 0) return new ResourceLocation[] {};
-        final ResourceLocation[] textures = new ResourceLocation[length];
-        for (int i = 0; i < length; i++)
-        {
-            textures[i] = FLHelpers.res(buffer.readUtf());
-        }
-        return textures;
-    }
-
-    public static void arrayOfResourceLocationsToNetwork(FriendlyByteBuf buffer, ResourceLocation[] textures)
-    {
-        buffer.writeVarInt(textures.length);
-        for (ResourceLocation res : textures)
-        {
-            buffer.writeUtf(res.toString());
-        }
+            @Override
+            public void encode(B buffer, C codec)
+            {
+                codec1.encode(buffer, getter1.apply(codec));
+                codec2.encode(buffer, getter2.apply(codec));
+                codec3.encode(buffer, getter3.apply(codec));
+                codec4.encode(buffer, getter4.apply(codec));
+                codec5.encode(buffer, getter5.apply(codec));
+                codec6.encode(buffer, getter6.apply(codec));
+                codec7.encode(buffer, getter7.apply(codec));
+                codec8.encode(buffer, getter8.apply(codec));
+                codec9.encode(buffer, getter9.apply(codec));
+                codec10.encode(buffer, getter10.apply(codec));
+            }
+        };
     }
 
 

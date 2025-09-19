@@ -13,32 +13,29 @@ import com.eerussianguy.firmalife.common.items.FLItems;
 import com.eerussianguy.firmalife.common.util.Carving;
 import com.eerussianguy.firmalife.common.util.FLMetal;
 import com.eerussianguy.firmalife.common.util.FLSelfTests;
+import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
-import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.IForgeRegistry;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
-import net.dries007.tfc.TerraFirmaCraft;
 import net.dries007.tfc.common.TFCCreativeTabs;
-import net.dries007.tfc.common.blocks.DecorationBlockRegistryObject;
+import net.dries007.tfc.common.blocks.DecorationBlockHolder;
 import net.dries007.tfc.common.blocks.rock.Ore;
 import net.dries007.tfc.common.blocks.rock.Rock;
 import net.dries007.tfc.common.blocks.wood.Wood;
 import net.dries007.tfc.util.Metal;
-import net.dries007.tfc.util.SelfTests;
 
 @SuppressWarnings("unused")
 public final class FLCreativeTabs
 {
-    public static final DeferredRegister<CreativeModeTab> CREATIVE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, FirmaLife.MOD_ID);
+    public static final DeferredRegister<CreativeModeTab> CREATIVE_TAB = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, FirmaLife.MOD_ID);
 
-    public static final RegistryObject<CreativeModeTab> FIRMALIFE = register("firmalife", () -> new ItemStack(FLBlocks.CURED_OVEN_TOP.get(OvenType.BRICK).get()),  FLCreativeTabs::fillFirmalifeTab);
+    public static final TFCCreativeTabs.Id FIRMALIFE = register("firmalife", () -> new ItemStack(FLBlocks.CURED_OVEN_TOP.get(OvenType.BRICK).get()),  FLCreativeTabs::fillFirmalifeTab);
 
     public static void fillFirmalifeTab(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output out)
     {
@@ -243,13 +240,14 @@ public final class FLCreativeTabs
         }
     }
 
-    private static RegistryObject<CreativeModeTab> register(String name, Supplier<ItemStack> icon, CreativeModeTab.DisplayItemsGenerator displayItems)
+    private static TFCCreativeTabs.Id register(String name, Supplier<ItemStack> icon, CreativeModeTab.DisplayItemsGenerator displayItems)
     {
-        return CREATIVE_TABS.register(name, () -> CreativeModeTab.builder()
+        final var holder = CREATIVE_TAB.register(name, () -> CreativeModeTab.builder()
             .icon(icon)
             .title(Component.translatable("firmalife.creative_tab." + name))
             .displayItems(displayItems)
             .build());
+        return new TFCCreativeTabs.Id(holder, displayItems);
     }
 
     private static <T extends ItemLike, R extends Supplier<T>, K1, K2> void accept(CreativeModeTab.Output out, Map<K1, Map<K2, R>> map, K1 key1, K2 key2)
@@ -279,14 +277,14 @@ public final class FLCreativeTabs
         out.accept(reg.get());
     }
 
-    private static void accept(CreativeModeTab.Output out, DecorationBlockRegistryObject decoration)
+    private static void accept(CreativeModeTab.Output out, DecorationBlockHolder decoration)
     {
-        out.accept(decoration.stair().get());
-        out.accept(decoration.slab().get());
-        out.accept(decoration.wall().get());
+        out.accept(decoration.stair());
+        out.accept(decoration.slab());
+        out.accept(decoration.wall());
     }
 
-    private static <T> void consumeOurs(IForgeRegistry<T> registry, Consumer<T> consumer)
+    private static <T> void consumeOurs(Registry<T> registry, Consumer<T> consumer)
     {
         for (T value : registry)
         {

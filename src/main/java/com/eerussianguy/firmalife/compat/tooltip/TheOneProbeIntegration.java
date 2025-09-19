@@ -12,11 +12,20 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
 import mcjty.theoneprobe.api.*;
-import net.dries007.tfc.compat.jade.common.BlockEntityTooltip;
-import net.dries007.tfc.compat.jade.common.EntityTooltip;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.InterModComms;
+import net.neoforged.fml.event.lifecycle.InterModEnqueueEvent;
+
+import net.dries007.tfc.util.tooltip.BlockEntityTooltip;
+import net.dries007.tfc.util.tooltip.EntityTooltip;
 
 public class TheOneProbeIntegration implements Function<ITheOneProbe, Void>
 {
+    public static void init(IEventBus bus)
+    {
+        bus.addListener((InterModEnqueueEvent event) -> InterModComms.sendTo("theoneprobe", "getTheOneProbe", TheOneProbeIntegration::new));
+    }
+
     @Override
     public Void apply(ITheOneProbe registry)
     {

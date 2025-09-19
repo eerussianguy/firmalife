@@ -18,7 +18,7 @@ public class BeehiveContainer extends BlockEntityContainer<FLBeehiveBlockEntity>
 
     public BeehiveContainer(FLBeehiveBlockEntity blockEntity, Inventory playerInv, int windowId)
     {
-        super(FLContainerTypes.BEEHIVE.get(), windowId, blockEntity);
+        super(FLMenuTypes.BEEHIVE.get(), windowId, blockEntity);
     }
 
     @Override

@@ -2,7 +2,6 @@ package com.eerussianguy.firmalife.common.container;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.BigBarrelBlockEntity;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -20,7 +19,7 @@ public class BigBarrelContainer extends BlockEntityContainer<BigBarrelBlockEntit
 
     private BigBarrelContainer(int windowId, BigBarrelBlockEntity blockEntity)
     {
-        super(FLContainerTypes.BIG_BARREL.get(), windowId, blockEntity);
+        super(FLMenuTypes.BIG_BARREL.get(), windowId, blockEntity);
     }
 
     @Override

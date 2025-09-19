@@ -20,7 +20,7 @@ public class StovetopGrillContainer extends BlockEntityContainer<StovetopGrillBl
 
     public StovetopGrillContainer(StovetopGrillBlockEntity grill, int windowId)
     {
-        super(FLContainerTypes.STOVETOP_GRILL.get(), windowId, grill);
+        super(FLMenuTypes.STOVETOP_GRILL.get(), windowId, grill);
 
         addDataSlots(grill.getSyncableData());
     }

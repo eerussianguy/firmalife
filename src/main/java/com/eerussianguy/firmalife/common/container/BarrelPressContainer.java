@@ -17,7 +17,7 @@ public class BarrelPressContainer extends BlockEntityContainer<BarrelPressBlockE
 
     public BarrelPressContainer(BarrelPressBlockEntity blockEntity, Inventory playerInv, int windowId)
     {
-        super(FLContainerTypes.BARREL_PRESS.get(), windowId, blockEntity);
+        super(FLMenuTypes.BARREL_PRESS.get(), windowId, blockEntity);
     }
 
     @Override

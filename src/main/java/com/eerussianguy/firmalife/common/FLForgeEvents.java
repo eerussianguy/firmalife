@@ -34,7 +34,7 @@ import net.minecraftforge.network.PacketDistributor;
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.blocks.FLFluids;
-import com.eerussianguy.firmalife.common.network.FLPackets;
+import com.eerussianguy.firmalife.common.util.FLDataManagers;
 import com.eerussianguy.firmalife.common.util.ExtraFluid;
 import com.eerussianguy.firmalife.common.util.GreenhouseType;
 import com.eerussianguy.firmalife.common.util.Plantable;
@@ -94,8 +94,8 @@ public class FLForgeEvents
         final ServerPlayer player = event.getPlayer();
         final PacketDistributor.PacketTarget target = player == null ? PacketDistributor.ALL.noArg() : PacketDistributor.PLAYER.with(() -> player);
 
-        FLPackets.send(target, GreenhouseType.MANAGER.createSyncPacket());
-        FLPackets.send(target, Plantable.MANAGER.createSyncPacket());
+        FLDataManagers.send(target, GreenhouseType.MANAGER.createSyncPacket());
+        FLDataManagers.send(target, Plantable.MANAGER.createSyncPacket());
     }
 
     public static void onFireStart(StartFireEvent event)
