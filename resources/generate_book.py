@@ -4,8 +4,8 @@ from patchouli import *
 from argparse import ArgumentParser
 from typing import Optional
 
-BOOK_LANGUAGES = ('en_us', 'zh_cn', 'zh_tw', 'ja_jp', 'ru_ru')
-MOD_LANGUAGES = ('en_us', 'de_de', 'ko_kr', 'ru_ru', 'uk_ua', 'zh_cn', 'zh_tw', 'ja_jp')
+BOOK_LANGUAGES = ('en_us', 'ja_jp', 'pt_br', 'ru_ru', 'zh_cn', 'zh_tw')
+MOD_LANGUAGES = ('de_de', 'en_us', 'ja_jp', 'ko_kr', 'pt_br', 'ru_ru', 'uk_ua', 'zh_cn', 'zh_tw')
 
 class LocalInstance:
     INSTANCE_DIR = None
