@@ -2,10 +2,13 @@ package com.eerussianguy.firmalife.common.blocks.greenhouse;
 
 import java.util.List;
 import java.util.Set;
-
 import com.eerussianguy.firmalife.common.blockentities.ClimateStationBlockEntity;
 import com.eerussianguy.firmalife.common.blockentities.ClimateType;
+import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
+import com.eerussianguy.firmalife.common.blocks.FLStateProperties;
 import com.eerussianguy.firmalife.common.util.FLAdvancements;
+import com.eerussianguy.firmalife.common.util.Mechanics;
+import com.mojang.datafixers.util.Either;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -22,18 +25,13 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import org.jetbrains.annotations.Nullable;
 
-import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
-import com.eerussianguy.firmalife.common.blocks.FLStateProperties;
-import com.eerussianguy.firmalife.common.util.Mechanics;
-import com.mojang.datafixers.util.Either;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.devices.DeviceBlock;
 import net.dries007.tfc.common.blocks.soil.HoeOverlayBlock;
 
-import org.jetbrains.annotations.Nullable;
-
-import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
+import static com.eerussianguy.firmalife.FirmaLife.*;
 
 public class ClimateStationBlock extends DeviceBlock implements HoeOverlayBlock
 {

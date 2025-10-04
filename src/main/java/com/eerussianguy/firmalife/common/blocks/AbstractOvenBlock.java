@@ -1,8 +1,8 @@
 package com.eerussianguy.firmalife.common.blocks;
 
-import java.util.Random;
 import java.util.function.Supplier;
-
+import com.eerussianguy.firmalife.client.FLClientHelpers;
+import com.eerussianguy.firmalife.common.FLTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -13,12 +13,10 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import org.jetbrains.annotations.Nullable;
 
-import com.eerussianguy.firmalife.client.FLClientHelpers;
-import com.eerussianguy.firmalife.common.FLTags;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.util.Helpers;
-import org.jetbrains.annotations.Nullable;
 
 public abstract class AbstractOvenBlock extends FourWayDeviceBlock implements ICure
 {

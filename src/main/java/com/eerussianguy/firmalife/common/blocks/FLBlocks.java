@@ -4,38 +4,80 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.function.ToIntFunction;
+import com.eerussianguy.firmalife.FirmaLife;
+import com.eerussianguy.firmalife.common.FLTags;
+import com.eerussianguy.firmalife.common.blockentities.BarrelPressBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.CompostTumblerBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.DryingMatBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.FLBeehiveBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
+import com.eerussianguy.firmalife.common.blockentities.GrapePlantBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.HydroponicPlanterBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.JarringStationBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.LargePlanterBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.MixingBowlBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.OvenBottomBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.OvenHopperBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.OvenTopBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.PickerBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.SprinklerBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.StovetopGrillBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.StovetopPotBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.StringBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.SweeperBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.VatBlockEntity;
+import com.eerussianguy.firmalife.common.blocks.greenhouse.BonsaiPlanterBlock;
+import com.eerussianguy.firmalife.common.blocks.greenhouse.ClimateStationBlock;
+import com.eerussianguy.firmalife.common.blocks.greenhouse.FloorSprinklerBlock;
+import com.eerussianguy.firmalife.common.blocks.greenhouse.Greenhouse;
+import com.eerussianguy.firmalife.common.blocks.greenhouse.HangingPlanterBlock;
+import com.eerussianguy.firmalife.common.blocks.greenhouse.HydroponicPlanterBlock;
+import com.eerussianguy.firmalife.common.blocks.greenhouse.LargePlanterBlock;
+import com.eerussianguy.firmalife.common.blocks.greenhouse.PumpingStationBlock;
+import com.eerussianguy.firmalife.common.blocks.greenhouse.QuadPlanterBlock;
+import com.eerussianguy.firmalife.common.blocks.greenhouse.SprinklerBlock;
+import com.eerussianguy.firmalife.common.blocks.greenhouse.SprinklerPipeBlock;
+import com.eerussianguy.firmalife.common.blocks.greenhouse.TrellisPlanterBlock;
+import com.eerussianguy.firmalife.common.blocks.plant.FLFruitBlocks;
 import com.eerussianguy.firmalife.common.blocks.plant.GrapeFluffBlock;
 import com.eerussianguy.firmalife.common.blocks.plant.GrapeGroundPlantOnStringBlock;
 import com.eerussianguy.firmalife.common.blocks.plant.GrapeStringBlock;
 import com.eerussianguy.firmalife.common.blocks.plant.GrapeStringWithPlantBlock;
 import com.eerussianguy.firmalife.common.blocks.plant.GrapeTrellisPostBlock;
 import com.eerussianguy.firmalife.common.blocks.plant.GrapeTrellisPostWithPlantBlock;
+import com.eerussianguy.firmalife.common.blocks.plant.MutatingPlantBlock;
 import com.eerussianguy.firmalife.common.capabilities.wine.WineType;
+import com.eerussianguy.firmalife.common.items.FLFood;
+import com.eerussianguy.firmalife.common.items.FLItems;
+import com.eerussianguy.firmalife.common.util.Carving;
+import com.eerussianguy.firmalife.common.util.ExtraFluid;
+import com.eerussianguy.firmalife.common.util.FLFruit;
+import com.eerussianguy.firmalife.common.util.FLMetal;
+import com.eerussianguy.firmalife.common.util.FLPlant;
 import javax.annotation.Nullable;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CarvedPumpkinBlock;
+import net.minecraft.world.level.block.DoorBlock;
+import net.minecraft.world.level.block.FlowerPotBlock;
+import net.minecraft.world.level.block.LiquidBlock;
+import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.TrapDoorBlock;
+import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
-
-import com.eerussianguy.firmalife.FirmaLife;
-import com.eerussianguy.firmalife.common.FLTags;
-import com.eerussianguy.firmalife.common.blockentities.*;
-import com.eerussianguy.firmalife.common.blocks.greenhouse.*;
-import com.eerussianguy.firmalife.common.blocks.plant.FLFruitBlocks;
-import com.eerussianguy.firmalife.common.blocks.plant.MutatingPlantBlock;
-import com.eerussianguy.firmalife.common.items.FLFood;
-import com.eerussianguy.firmalife.common.items.FLItems;
-import com.eerussianguy.firmalife.common.util.*;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import net.dries007.tfc.common.blocks.DecorationBlockHolder;
@@ -43,13 +85,13 @@ import net.dries007.tfc.common.blocks.ExtendedBlock;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.GroundcoverBlock;
 import net.dries007.tfc.common.blocks.PouredGlassBlock;
+import net.dries007.tfc.common.blocks.TFCBlocks.Id;
 import net.dries007.tfc.common.blocks.crop.WildCropBlock;
 import net.dries007.tfc.common.blocks.devices.JackOLanternBlock;
 import net.dries007.tfc.common.blocks.plant.PlantBlock;
 import net.dries007.tfc.common.blocks.rock.Ore;
 import net.dries007.tfc.common.blocks.rock.Rock;
 import net.dries007.tfc.common.blocks.wood.Wood;
-import net.dries007.tfc.common.blocks.TFCBlocks.Id;
 import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.Metal;
@@ -123,12 +165,12 @@ public class FLBlocks
     public static final Id<Block> SEALED_BRICKS = register("sealed_bricks", () -> new Block(Properties.of().mapColor(MapColor.COLOR_BLACK).sound(SoundType.STONE).strength(2.0f, 10).requiresCorrectToolForDrops()));
     public static final Id<Block> POLISHED_SEALED_BRICKS = register("polished_sealed_bricks", () -> new Block(Properties.of().mapColor(MapColor.COLOR_BLACK).sound(SoundType.STONE).strength(2.0f, 10).requiresCorrectToolForDrops()));
     public static final Id<Block> CHISELED_SEALED_BRICKS = register("chiseled_sealed_bricks", () -> new Block(Properties.of().mapColor(MapColor.COLOR_BLACK).sound(SoundType.STONE).strength(2.0f, 10).requiresCorrectToolForDrops()));
-    public static final Id<Block> SEALED_DOOR = register("sealed_door", () -> new DoorBlock(Properties.of().mapColor(MapColor.COLOR_BLACK).sound(SoundType.STONE).strength(2.0f, 10).requiresCorrectToolForDrops(), BlockSetType.STONE));
-    public static final Id<Block> SEALED_TRAPDOOR = register("sealed_trapdoor", () -> new TrapDoorBlock(Properties.of().mapColor(MapColor.COLOR_BLACK).sound(SoundType.STONE).strength(2.0f, 10).requiresCorrectToolForDrops(), BlockSetType.STONE));
+    public static final Id<Block> SEALED_DOOR = register("sealed_door", () -> new DoorBlock(BlockSetType.STONE, Properties.of().mapColor(MapColor.COLOR_BLACK).sound(SoundType.STONE).strength(2.0f, 10).requiresCorrectToolForDrops()));
+    public static final Id<Block> SEALED_TRAPDOOR = register("sealed_trapdoor", () -> new TrapDoorBlock(BlockSetType.STONE, Properties.of().mapColor(MapColor.COLOR_BLACK).sound(SoundType.STONE).strength(2.0f, 10).requiresCorrectToolForDrops()));
     public static final Id<Block> SEALED_WALL = register("sealed_wall", () -> new WallBlock(Properties.of().mapColor(MapColor.COLOR_BLACK).sound(SoundType.STONE).strength(2.0f, 10).requiresCorrectToolForDrops()));
     public static final Id<Block> DARK_LADDER = register("dark_ladder", () -> new FLLadderBlock(Properties.of().mapColor(MapColor.COLOR_BLACK).strength(0.4F).sound(SoundType.LADDER).noOcclusion()));
 
-    public static final Id<Block> HOLLOW_SHELL = registerNoItem("hollow_shell", () -> new GroundcoverBlock(ExtendedProperties.of().strength(0.05F, 0.0F).sound(SoundType.NETHER_WART).noCollission(), GroundcoverBlock.SMALL, FLItems.HOLLOW_SHELL));
+    public static final Id<Block> HOLLOW_SHELL = registerNoItem("hollow_shell", () -> new GroundcoverBlock(ExtendedProperties.of().strength(0.05F, 0.0F).sound(SoundType.NETHER_WART).noCollission(), GroundcoverBlock.SMALL));
     public static final Id<Block> TREATED_WOOD = register("treated_wood", () -> new ExtendedBlock(ExtendedProperties.of().mapColor(MapColor.COLOR_BROWN).sound(SoundType.WOOL).strength(2f).flammableLikePlanks()));
     public static final Id<Block> PUMPING_STATION = register("pumping_station", () -> new PumpingStationBlock(ExtendedProperties.of().mapColor(MapColor.COLOR_ORANGE).requiresCorrectToolForDrops().noOcclusion().strength(4f).sound(SoundType.METAL).blockEntity(FLBlockEntities.PUMPING_STATION)));
     public static final Id<Block> IRRIGATION_TANK = register("irrigation_tank", () -> new Block(Properties.of().mapColor(MapColor.COLOR_ORANGE).requiresCorrectToolForDrops().noOcclusion().strength(4f).sound(SoundType.METAL)));
@@ -200,15 +242,15 @@ public class FLBlocks
     );
 
     public static final Map<FLMetal, Id<LiquidBlock>> METAL_FLUIDS = Helpers.mapOf(FLMetal.class, metal ->
-        registerNoItem("fluid/metal/" + metal.name(), () -> new LiquidBlock(FLFluids.METALS.get(metal).source(), Properties.copy(Blocks.LAVA).noLootTable()))
+        registerNoItem("fluid/metal/" + metal.name(), () -> new LiquidBlock(FLFluids.METALS.get(metal).source(), Properties.ofFullCopy(Blocks.LAVA).noLootTable()))
     );
 
     public static final Map<ExtraFluid, Id<LiquidBlock>> EXTRA_FLUIDS = Helpers.mapOf(ExtraFluid.class, fluid ->
-        registerNoItem("fluid/" + fluid.getSerializedName(), () -> new LiquidBlock(FLFluids.EXTRA_FLUIDS.get(fluid).source(), Properties.copy(Blocks.WATER).noLootTable()))
+        registerNoItem("fluid/" + fluid.getSerializedName(), () -> new LiquidBlock(FLFluids.EXTRA_FLUIDS.get(fluid).source(), Properties.ofFullCopy(Blocks.WATER).noLootTable()))
     );
 
     public static final Map<WineType, Id<LiquidBlock>> WINE_FLUIDS = Helpers.mapOf(WineType.class, fluid ->
-        registerNoItem("fluid/" + fluid.getSerializedName(), () -> new LiquidBlock(FLFluids.WINE_FLUIDS.get(fluid).source(), Properties.copy(Blocks.WATER).noLootTable()))
+        registerNoItem("fluid/" + fluid.getSerializedName(), () -> new LiquidBlock(FLFluids.WINE_FLUIDS.get(fluid).source(), Properties.ofFullCopy(Blocks.WATER).noLootTable()))
     );
 
 

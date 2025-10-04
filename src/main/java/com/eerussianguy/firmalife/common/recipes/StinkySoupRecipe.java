@@ -2,50 +2,55 @@ package com.eerussianguy.firmalife.common.recipes;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 import com.eerussianguy.firmalife.common.items.FLItems;
-import com.google.gson.JsonObject;
-import net.minecraft.core.RegistryAccess;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraftforge.items.ItemHandlerHelper;
+import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blockentities.PotBlockEntity;
-import net.dries007.tfc.common.capabilities.food.DynamicBowlHandler;
-import net.dries007.tfc.common.capabilities.food.FoodCapability;
-import net.dries007.tfc.common.capabilities.food.FoodData;
-import net.dries007.tfc.common.capabilities.food.IFood;
-import net.dries007.tfc.common.capabilities.food.Nutrient;
+import net.dries007.tfc.common.component.food.FoodCapability;
+import net.dries007.tfc.common.component.food.FoodData;
+import net.dries007.tfc.common.component.food.IFood;
+import net.dries007.tfc.common.component.food.Nutrient;
 import net.dries007.tfc.common.fluids.TFCFluids;
 import net.dries007.tfc.common.recipes.PotRecipe;
-import net.dries007.tfc.common.recipes.SoupPotRecipe;
-import net.dries007.tfc.common.recipes.ingredients.FluidStackIngredient;
-import net.dries007.tfc.compat.jade.common.BlockEntityTooltip;
-import net.dries007.tfc.compat.jade.common.BlockEntityTooltips;
+import net.dries007.tfc.common.recipes.outputs.PotOutput;
 import net.dries007.tfc.util.Helpers;
+import net.dries007.tfc.util.tooltip.BlockEntityTooltip;
+import net.dries007.tfc.util.tooltip.BlockEntityTooltips;
 
 import static net.dries007.tfc.common.recipes.SoupPotRecipe.*;
 
 public class StinkySoupRecipe extends PotRecipe
 {
-    public static final OutputType OUTPUT_TYPE = nbt -> {
-        ItemStack stack = ItemStack.of(nbt.getCompound("item"));
+    public static final PotOutput.OutputType OUTPUT_TYPE = (provider, nbt) -> {
+        ItemStack stack = ItemStack.parseOptional(provider, nbt.getCompound("item"));
         return new StinkOutput(stack);
     };
 
-    public StinkySoupRecipe(ResourceLocation id, List<Ingredient> itemIngredients, FluidStackIngredient fluidIngredient, int duration, float minTemp)
+    public static final MapCodec<StinkySoupRecipe> CODEC = PotRecipe.CODEC.xmap(StinkySoupRecipe::new, Function.identity());
+    public static final StreamCodec<RegistryFriendlyByteBuf, StinkySoupRecipe> STREAM_CODEC = PotRecipe.STREAM_CODEC.map(StinkySoupRecipe::new, Function.identity());
+
+    public StinkySoupRecipe(PotRecipe base)
     {
-        super(id, itemIngredients, fluidIngredient, duration, minTemp);
+        super(base);
     }
 
-    public record StinkOutput(ItemStack stack) implements Output
+    public record StinkOutput(ItemStack stack) implements PotOutput
     {
         @Override
         public boolean isEmpty()
@@ -102,7 +107,7 @@ public class StinkySoupRecipe extends PotRecipe
     }
 
     @Override
-    public Output getOutput(PotBlockEntity.PotInventory inventory)
+    public PotOutput getOutput(PotBlockEntity.PotInventory inventory)
     {
         int ingredientCount = 0;
         float water = 20, saturation = 2;
@@ -161,18 +166,4 @@ public class StinkySoupRecipe extends PotRecipe
         return FLRecipeSerializers.STINKY_SOUP.get();
     }
 
-    public static class Serializer extends PotRecipe.Serializer<StinkySoupRecipe>
-    {
-        @Override
-        protected StinkySoupRecipe fromJson(ResourceLocation recipeId, JsonObject json, List<Ingredient> ingredients, FluidStackIngredient fluidIngredient, int duration, float minTemp)
-        {
-            return new StinkySoupRecipe(recipeId, ingredients, fluidIngredient, duration, minTemp);
-        }
-
-        @Override
-        protected StinkySoupRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer, List<Ingredient> ingredients, FluidStackIngredient fluidIngredient, int duration, float minTemp)
-        {
-            return new StinkySoupRecipe(recipeId, ingredients, fluidIngredient, duration, minTemp);
-        }
-    }
 }

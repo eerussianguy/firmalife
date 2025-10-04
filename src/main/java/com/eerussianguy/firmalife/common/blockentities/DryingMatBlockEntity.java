@@ -91,14 +91,14 @@ public class DryingMatBlockEntity extends SimpleItemRecipeBlockEntity<DryingReci
     public boolean isItemValid(int slot, ItemStack stack)
     {
         assert level != null;
-        return DryingRecipe.getRecipe(level, new ItemStackInventory(stack)) != null;
+        return DryingRecipe.getRecipe(stack) != null;
     }
 
     @Override
     public void updateCache()
     {
         assert level != null;
-        cachedRecipe = DryingRecipe.getRecipe(level, new ItemStackInventory(readStack()));
+        cachedRecipe = DryingRecipe.getRecipe(readStack()));
         needsRecipeUpdate = false;
     }
 }

@@ -1,15 +1,14 @@
 package com.eerussianguy.firmalife.common.blocks.plant;
 
 import java.util.function.Supplier;
-
+import com.eerussianguy.firmalife.common.FLTags;
+import com.eerussianguy.firmalife.common.misc.SwarmEffect;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
-import com.eerussianguy.firmalife.common.FLTags;
-import com.eerussianguy.firmalife.common.misc.SwarmEffect;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.plant.fruit.FruitTreeLeavesBlock;
 import net.dries007.tfc.common.blocks.plant.fruit.Lifecycle;

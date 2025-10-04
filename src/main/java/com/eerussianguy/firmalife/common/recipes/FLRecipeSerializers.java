@@ -17,15 +17,15 @@ public class FLRecipeSerializers
 {
     public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZER = DeferredRegister.create(Registries.RECIPE_SERIALIZER, MOD_ID);
 
-    public static final Id<SimpleItemRecipe.Serializer<DryingRecipe>> DRYING = register("drying", () -> new SimpleItemRecipe.Serializer<>(DryingRecipe::new));
-    public static final Id<SimpleItemRecipe.Serializer<SmokingRecipe>> SMOKING = register("smoking", () -> new SimpleItemRecipe.Serializer<>(SmokingRecipe::new));
-    public static final Id<StompingRecipe.StompingSerializer> STOMPING = register("stomping", StompingRecipe.StompingSerializer::new);
-    public static final Id<MixingBowlRecipe.Serializer> MIXING_BOWL = register("mixing_bowl", MixingBowlRecipe.Serializer::new);
-    public static final Id<OvenRecipe.Serializer> OVEN = register("oven", OvenRecipe.Serializer::new);
-    public static final Id<StinkySoupRecipe.Serializer> STINKY_SOUP = register("stinky_soup", StinkySoupRecipe.Serializer::new);
-    public static final Id<BowlPotRecipe.Serializer> BOWL_POT = register("bowl_pot", BowlPotRecipe.Serializer::new);
-    public static final Id<VatRecipe.Serializer> VAT = register("vat", VatRecipe.Serializer::new);
-    public static final Id<StompingRecipe.StompingSerializer> PRESS = register("press", PressRecipe.StompingSerializer::new);
+    public static final Id<DryingRecipe> DRYING = register("drying", DryingRecipe.CODEC, DryingRecipe.STREAM_CODEC);
+    public static final Id<SmokingRecipe> SMOKING = register("smoking", SmokingRecipe.CODEC, SmokingRecipe.STREAM_CODEC);
+    public static final Id<StompingRecipe> STOMPING = register("stomping", StompingRecipe.CODEC, StompingRecipe.STREAM_CODEC);
+    public static final Id<MixingBowlRecipe> MIXING_BOWL = register("mixing_bowl", MixingBowlRecipe.CODEC, MixingBowlRecipe.STREAM_CODEC);
+    public static final Id<OvenRecipe> OVEN = register("oven", OvenRecipe.CODEC, OvenRecipe.STREAM_CODEC);
+    public static final Id<StinkySoupRecipe> STINKY_SOUP = register("stinky_soup", StinkySoupRecipe.CODEC, StinkySoupRecipe.STREAM_CODEC);
+    public static final Id<BowlPotRecipe> BOWL_POT = register("bowl_pot", BowlPotRecipe.CODEC, BowlPotRecipe.STREAM_CODEC);
+    public static final Id<VatRecipe> VAT = register("vat", VatRecipe.CODEC, VatRecipe.STREAM_CODEC);
+    public static final Id<PressRecipe> PRESS = register("press", PressRecipe.P_CODEC, PressRecipe.P_STREAM_CODEC);
 
     private static <R extends Recipe<?>> Id<R> register(String name, MapCodec<R> codec, StreamCodec<RegistryFriendlyByteBuf, R> stream)
     {

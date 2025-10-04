@@ -2,25 +2,27 @@ package com.eerussianguy.firmalife.common.blocks.plant;
 
 import java.awt.Color;
 import java.util.function.Supplier;
-
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.FlowerPotBlock;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.items.FLFood;
 import com.eerussianguy.firmalife.common.items.FLItems;
 import com.eerussianguy.firmalife.common.util.FLClimateRanges;
 import com.eerussianguy.firmalife.common.util.FLFruit;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FlowerPotBlock;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 
 import net.dries007.tfc.common.blockentities.BerryBushBlockEntity;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
-import net.dries007.tfc.common.blocks.plant.fruit.*;
+import net.dries007.tfc.common.blocks.plant.fruit.FruitTreeBranchBlock;
+import net.dries007.tfc.common.blocks.plant.fruit.FruitTreeLeavesBlock;
+import net.dries007.tfc.common.blocks.plant.fruit.Lifecycle;
+import net.dries007.tfc.common.blocks.plant.fruit.StationaryBerryBushBlock;
+import net.dries007.tfc.util.calendar.ICalendar;
 
 import static net.dries007.tfc.common.blocks.plant.fruit.Lifecycle.*;
 
@@ -44,7 +46,7 @@ public final class FLFruitBlocks
 
         public Block createSapling()
         {
-            return new FLFruitTreeSaplingBlock(ExtendedProperties.of().noCollission().randomTicks().strength(0).sound(SoundType.GRASS).blockEntity(FLBlockEntities.TICK_COUNTER).flammableLikeLeaves(), FLBlocks.FRUIT_TREE_GROWING_BRANCHES.get(this), 8, FLClimateRanges.FRUIT_TREES.get(this), stages);
+            return new FLFruitTreeSaplingBlock(ExtendedProperties.of().noCollission().randomTicks().strength(0).sound(SoundType.GRASS).blockEntity(FLBlockEntities.TICK_COUNTER).flammableLikeLeaves(), FLBlocks.FRUIT_TREE_GROWING_BRANCHES.get(this), 8 * ICalendar.CALENDAR_TICKS_IN_DAY, FLClimateRanges.FRUIT_TREES.get(this), stages);
         }
 
         public Block createPottedSapling()

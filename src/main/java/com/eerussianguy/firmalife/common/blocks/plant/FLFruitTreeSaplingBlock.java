@@ -10,9 +10,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.PipeBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.ticks.TickPriority;
 import org.jetbrains.annotations.Nullable;
 
 import net.dries007.tfc.common.TFCTags;
+import net.dries007.tfc.common.blockentities.TickCounterBlockEntity;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.TFCBlockStateProperties;
 import net.dries007.tfc.common.blocks.plant.fruit.FruitTreeSaplingBlock;
@@ -22,14 +24,9 @@ import net.dries007.tfc.util.climate.ClimateRange;
 
 public class FLFruitTreeSaplingBlock extends FruitTreeSaplingBlock
 {
-    public FLFruitTreeSaplingBlock(ExtendedProperties properties, Supplier<? extends Block> block, int treeGrowthDays, Supplier<ClimateRange> climateRange, Lifecycle[] stages)
+    public FLFruitTreeSaplingBlock(ExtendedProperties properties, Supplier<? extends Block> block, int growthTicks, Supplier<ClimateRange> climateRange, Lifecycle[] stages)
     {
-        super(properties, block, treeGrowthDays, climateRange, stages);
-    }
-
-    public FLFruitTreeSaplingBlock(ExtendedProperties properties, Supplier<? extends Block> block, Supplier<Integer> treeGrowthDays, Supplier<ClimateRange> climateRange, Lifecycle[] stages)
-    {
-        super(properties, block, treeGrowthDays, climateRange, stages);
+        super(properties, block, () -> growthTicks, climateRange, stages);
     }
 
     @Override
@@ -40,12 +37,15 @@ public class FLFruitTreeSaplingBlock extends FruitTreeSaplingBlock
     }
 
     @Override
-    public void createTree(Level level, BlockPos pos, BlockState state, RandomSource random)
+    public void createTree(Level level, BlockPos pos, BlockState state, RandomSource random, long ticksToAdd)
     {
         final boolean onBranch = Helpers.isBlock(level.getBlockState(pos.below()), TFCTags.Blocks.FRUIT_TREE_BRANCH);
         int internalSapling = onBranch ? 3 : state.getValue(TFCBlockStateProperties.SAPLINGS);
         if (internalSapling == 1 && random.nextBoolean()) internalSapling += 1;
         level.setBlockAndUpdate(pos, block.get().defaultBlockState().setValue(PipeBlock.DOWN, true).setValue(TFCBlockStateProperties.SAPLINGS, internalSapling).setValue(TFCBlockStateProperties.STAGE_3, onBranch ? 1 : 0));
         FLTickCounterBlockEntity.reset(level, pos);
+        TickCounterBlockEntity.addTicks(level, pos, ticksToAdd);
+        level.scheduleTick(pos, this.block.get(), 20, TickPriority.NORMAL);
+
     }
 }

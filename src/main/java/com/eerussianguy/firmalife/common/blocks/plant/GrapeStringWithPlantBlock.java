@@ -8,7 +8,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -24,13 +23,14 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.items.ItemHandlerHelper;
+import net.neoforged.neoforge.items.ItemHandlerHelper;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.TFCBlockStateProperties;
 import net.dries007.tfc.common.blocks.plant.fruit.Lifecycle;
-import net.dries007.tfc.common.capabilities.food.FoodCapability;
-import net.dries007.tfc.common.capabilities.food.FoodTrait;
+import net.dries007.tfc.common.component.food.FoodCapability;
+import net.dries007.tfc.common.component.food.FoodTrait;
 import net.dries007.tfc.util.Helpers;
 
 public class GrapeStringWithPlantBlock extends GrapeStringBlock implements IGrape
@@ -65,8 +65,7 @@ public class GrapeStringWithPlantBlock extends GrapeStringBlock implements IGrap
     }
 
     @Override
-    @SuppressWarnings("deprecation")
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
+    public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult result)
     {
         if (state.getValue(LIFECYCLE) == Lifecycle.FRUITING)
         {
@@ -74,13 +73,13 @@ public class GrapeStringWithPlantBlock extends GrapeStringBlock implements IGrap
             final ItemStack stack = grapeItem.get().getDefaultInstance();
             if (level.getBlockEntity(pos.below()) instanceof GrapePlantBlockEntity grape)
             {
-                final List<FoodTrait> traits = grape.scanAndReport();
-                for (FoodTrait trait : traits)
+                final List<DeferredHolder<FoodTrait, FoodTrait>> traits = grape.scanAndReport();
+                for (DeferredHolder<FoodTrait, FoodTrait> trait : traits)
                 {
                     FoodCapability.applyTrait(stack, trait);
                 }
             }
-            FoodCapability.updateFoodDecayOnCreate(stack);
+            FoodCapability.setCreationDate(stack, FoodCapability.getRoundedCreationDate());
             ItemHandlerHelper.giveItemToPlayer(player, stack);
             level.setBlockAndUpdate(pos, state.setValue(LIFECYCLE, Lifecycle.HEALTHY));
             return InteractionResult.sidedSuccess(level.isClientSide);
@@ -126,7 +125,6 @@ public class GrapeStringWithPlantBlock extends GrapeStringBlock implements IGrap
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context)
     {
         return state.getValue(AXIS) == Direction.Axis.X ? SHAPE_X : SHAPE_Z;
@@ -139,7 +137,6 @@ public class GrapeStringWithPlantBlock extends GrapeStringBlock implements IGrap
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public VoxelShape getBlockSupportShape(BlockState state, BlockGetter level, BlockPos pos)
     {
         return Shapes.empty();

@@ -19,6 +19,7 @@ import com.eerussianguy.firmalife.common.misc.FLEffects;
 import com.eerussianguy.firmalife.common.misc.FLInteractionManager;
 import com.eerussianguy.firmalife.common.misc.FLLoot;
 import com.eerussianguy.firmalife.common.misc.FLSounds;
+import com.eerussianguy.firmalife.common.util.FLArmorMaterials;
 import com.eerussianguy.firmalife.common.util.FLDataManagers;
 import com.eerussianguy.firmalife.common.recipes.FLRecipeSerializers;
 import com.eerussianguy.firmalife.common.recipes.FLRecipeTypes;
@@ -64,6 +65,8 @@ public class FirmaLife
         FLFeatures.FEATURE.register(bus);
         FLSounds.SOUND.register(bus);
         FLCreativeTabs.CREATIVE_TAB.register(bus);
+        FLAdvancements.TRIGGER_TYPE.register(bus);
+        FLArmorMaterials.ARMOR_MATERIAL.register(bus);
         FLLoot.registerAll(bus);
 
         FLDataManagers.init();
@@ -71,7 +74,7 @@ public class FirmaLife
         bus.addListener(this::setup);
 
         FLConfig.init();
-        FLEvents.init();
+        FLEvents.init(bus);
         FLForgeEvents.init();
         if (FMLEnvironment.dist == Dist.CLIENT)
         {
@@ -91,7 +94,6 @@ public class FirmaLife
             FLInteractionManager.init();
             FLFoodTraits.init();
             FLBlocks.registerFlowerPotFlowers();
-            FLAdvancements.init();
         });
         FLItemStackModifiers.init();
         FLPatchouliIntegration.registerMultiBlocks();

@@ -1,10 +1,9 @@
 package com.eerussianguy.firmalife.common.blocks;
 
+import com.eerussianguy.firmalife.common.util.FoodAge;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-
-import com.eerussianguy.firmalife.common.util.FoodAge;
 
 public class FLStateProperties
 {

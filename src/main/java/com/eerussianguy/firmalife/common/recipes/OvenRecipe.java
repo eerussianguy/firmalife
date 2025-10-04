@@ -4,9 +4,17 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+import com.eerussianguy.firmalife.common.blockentities.OvenTopBlockEntity;
 import com.google.gson.JsonObject;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -15,16 +23,30 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 
-import net.dries007.tfc.common.capabilities.heat.HeatCapability;
 import net.dries007.tfc.common.recipes.*;
-import net.dries007.tfc.common.recipes.inventory.ItemStackInventory;
 import net.dries007.tfc.common.recipes.outputs.ItemStackProvider;
-import net.dries007.tfc.util.JsonHelpers;
 import net.dries007.tfc.util.collections.IndirectHashCollection;
+import net.dries007.tfc.world.Codecs;
+
 import org.jetbrains.annotations.Nullable;
 
-public class OvenRecipe implements ISimpleRecipe<ItemStackInventory>
+public class OvenRecipe implements ISimpleRecipe<OvenTopBlockEntity.OvenInventory>
 {
+    public static final MapCodec<OvenRecipe> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+        Ingredient.CODEC.fieldOf("ingredient").forGetter(c -> c.ingredient),
+        ItemStackProvider.CODEC.fieldOf("result").forGetter(c -> c.outputItem),
+        Codec.FLOAT.fieldOf("temperature").forGetter(c -> c.temperature),
+        Codecs.POSITIVE_INT.fieldOf("duration").forGetter(c -> c.duration)
+    ).apply(i, OvenRecipe::new));
+
+    public static final StreamCodec<RegistryFriendlyByteBuf, OvenRecipe> STREAM_CODEC = StreamCodec.composite(
+        Ingredient.CONTENTS_STREAM_CODEC, c -> c.ingredient,
+        ItemStackProvider.STREAM_CODEC, c -> c.outputItem,
+        ByteBufCodecs.FLOAT, c -> c.temperature,
+        ByteBufCodecs.INT, c -> c.duration,
+        OvenRecipe::new
+    );
+
     public static final IndirectHashCollection<Item, OvenRecipe> CACHE = IndirectHashCollection.createForRecipe(OvenRecipe::getValidItems, FLRecipeTypes.OVEN);
 
     @Nullable
@@ -34,27 +56,18 @@ public class OvenRecipe implements ISimpleRecipe<ItemStackInventory>
     }
 
     @Nullable
-    public static OvenRecipe getRecipe(ItemStackInventory wrapper)
+    public static OvenRecipe getRecipe(ItemStack input)
     {
-        for (OvenRecipe recipe : CACHE.getAll(wrapper.getStack().getItem()))
-        {
-            if (recipe.matches(wrapper, null))
-            {
-                return recipe;
-            }
-        }
-        return null;
+        return RecipeHelpers.getRecipe(CACHE, input, input.getItem());
     }
 
-    private final ResourceLocation id;
     private final Ingredient ingredient;
     private final ItemStackProvider outputItem;
     private final float temperature;
     private final int duration;
 
-    public OvenRecipe(ResourceLocation id, Ingredient ingredient, ItemStackProvider outputItem, float temperature, int duration)
+    public OvenRecipe(Ingredient ingredient, ItemStackProvider outputItem, float temperature, int duration)
     {
-        this.id = id;
         this.ingredient = ingredient;
         this.outputItem = outputItem;
         this.temperature = temperature;
@@ -102,7 +115,7 @@ public class OvenRecipe implements ISimpleRecipe<ItemStackInventory>
     }
 
     @Override
-    public ItemStack assemble(ItemStackInventory inventory, RegistryAccess access)
+    public ItemStack assemble(HolderLookup.Provider access)
     {
         final ItemStack inputStack = inventory.getStack();
         final ItemStack outputStack = outputItem.getSingleStack(inputStack);

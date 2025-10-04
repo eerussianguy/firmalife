@@ -9,6 +9,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -16,8 +17,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
 import com.eerussianguy.firmalife.config.FLConfig;
-import net.minecraftforge.items.ItemHandlerHelper;
-import net.minecraftforge.items.ItemStackHandler;
+import net.neoforged.neoforge.items.ItemHandlerHelper;
+import net.neoforged.neoforge.items.ItemStackHandler;
 
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
@@ -66,25 +67,25 @@ public class CompostTumblerBlockEntity extends TickableInventoryBlockEntity<Item
         };
     }
 
-    public InteractionResult use(ItemStack stack, Player player, boolean client)
+    public ItemInteractionResult use(ItemStack stack, Player player, boolean client)
     {
         assert level != null;
         if (isReady() && !isRotating())
         {
             ItemHandlerHelper.giveItemToPlayer(player, inventory.extractItem(SLOT_COMPOST, 64, false));
             reset();
-            return InteractionResult.sidedSuccess(level.isClientSide);
+            return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
         if (!inventory.getStackInSlot(SLOT_COMPOST).isEmpty())
-            return InteractionResult.PASS;
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         final int total = getTotal();
         if (total >= MAX_COMPOST || rotten)
         {
-            return InteractionResult.PASS;
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
         final Compost compost = getCompost(stack);
         if (compost.isEmpty())
-            return InteractionResult.PASS;
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         final int toAdd = Math.min(MAX_COMPOST - compost.amount, compost.amount);
         switch (compost.type)
         {
@@ -100,7 +101,7 @@ public class CompostTumblerBlockEntity extends TickableInventoryBlockEntity<Item
             stack.shrink(1);
         markForSync();
         resetCounter();
-        return InteractionResult.sidedSuccess(client);
+        return ItemInteractionResult.sidedSuccess(client);
     }
 
     public void checkReady()

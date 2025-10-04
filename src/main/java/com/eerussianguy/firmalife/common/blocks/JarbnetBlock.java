@@ -12,7 +12,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -112,10 +112,8 @@ public class JarbnetBlock extends FourWayDeviceBlock
     }
 
     @Override
-    @SuppressWarnings("deprecation")
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
+    public ItemInteractionResult useItemOn(ItemStack held, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
     {
-        final ItemStack held = player.getItemInHand(hand);
         if (held.isEmpty())
         {
             if (player.isShiftKeyDown())
@@ -136,18 +134,18 @@ public class JarbnetBlock extends FourWayDeviceBlock
                     Helpers.playSound(level, pos, SoundEvents.WOODEN_TRAPDOOR_OPEN);
                 }
                 level.setBlockAndUpdate(pos, newState);
-                return InteractionResult.sidedSuccess(level.isClientSide);
+                return ItemInteractionResult.sidedSuccess(level.isClientSide);
             }
             else
             {
-                return FLHelpers.consumeInventory(level, pos, FLBlockEntities.JARBNET, (jar, inv) -> FLHelpers.takeOneAny(level, 0, JarbnetBlockEntity.SLOTS - 1, inv, player));
+                return FLHelpers.consumeItemInventory(level, pos, FLBlockEntities.JARBNET, (jar, inv) -> FLHelpers.takeOneAny(level, 0, JarbnetBlockEntity.SLOTS - 1, inv, player));
             }
         }
         else if (isItemAllowed(held))
         {
-            return FLHelpers.consumeInventory(level, pos, FLBlockEntities.JARBNET, (jar, inv) -> FLHelpers.insertOneAny(level, held, 0, JarbnetBlockEntity.SLOTS - 1, inv, player));
+            return FLHelpers.consumeItemInventory(level, pos, FLBlockEntities.JARBNET, (jar, inv) -> FLHelpers.insertOneAny(level, held, 0, JarbnetBlockEntity.SLOTS - 1, inv, player));
         }
-        return InteractionResult.PASS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     @Override
@@ -157,7 +155,6 @@ public class JarbnetBlock extends FourWayDeviceBlock
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext pContext)
     {
         return switch (state.getValue(FACING))

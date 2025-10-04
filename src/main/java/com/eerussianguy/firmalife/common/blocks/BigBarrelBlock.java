@@ -4,7 +4,7 @@ import com.eerussianguy.firmalife.common.blockentities.BigBarrelBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -13,7 +13,6 @@ import net.minecraft.world.phys.BlockHitResult;
 
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.fluids.FluidHelpers;
-import net.dries007.tfc.util.Helpers;
 
 public class BigBarrelBlock extends TwoByTwoBlock
 {
@@ -23,21 +22,21 @@ public class BigBarrelBlock extends TwoByTwoBlock
     }
 
     @Override
-    public InteractionResult useCoreBlock(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit)
+    public ItemInteractionResult useCoreBlock(ItemStack held, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit)
     {
         if (level.getBlockEntity(pos) instanceof BigBarrelBlockEntity barrel)
         {
             final ItemStack stack = player.getItemInHand(hand);
             if (FluidHelpers.transferBetweenBlockEntityAndItem(stack, barrel, player, hand))
             {
-                return InteractionResult.SUCCESS;
+                return ItemInteractionResult.SUCCESS;
             }
             else if (!level.isClientSide() && player instanceof ServerPlayer serverPlayer)
             {
-                Helpers.openScreen(serverPlayer, barrel, barrel.getBlockPos());
+                serverPlayer.openMenu(state.getMenuProvider(level, pos));
             }
-            return InteractionResult.SUCCESS;
+            return ItemInteractionResult.SUCCESS;
         }
-        return InteractionResult.PASS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 }

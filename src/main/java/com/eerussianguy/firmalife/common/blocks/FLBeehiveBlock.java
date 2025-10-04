@@ -2,9 +2,15 @@ package com.eerussianguy.firmalife.common.blocks;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.function.Consumer;
 import com.eerussianguy.firmalife.common.FLHelpers;
+import com.eerussianguy.firmalife.common.blockentities.FLBeehiveBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
+import com.eerussianguy.firmalife.common.capabilities.bee.BeeAbility;
+import com.eerussianguy.firmalife.common.capabilities.bee.BeeCapability;
+import com.eerussianguy.firmalife.common.capabilities.bee.IBee;
 import com.eerussianguy.firmalife.common.items.FLItems;
+import com.eerussianguy.firmalife.common.misc.FLEffects;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -13,7 +19,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -24,23 +30,16 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.neoforged.neoforge.items.ItemHandlerHelper;
+import net.neoforged.neoforge.items.ItemStackHandler;
+import org.jetbrains.annotations.Nullable;
 
-import net.minecraftforge.items.ItemHandlerHelper;
-
-import com.eerussianguy.firmalife.common.blockentities.FLBeehiveBlockEntity;
-import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
-import com.eerussianguy.firmalife.common.capabilities.bee.BeeAbility;
-import com.eerussianguy.firmalife.common.capabilities.bee.BeeCapability;
-import com.eerussianguy.firmalife.common.capabilities.bee.IBee;
-import com.eerussianguy.firmalife.common.misc.FLEffects;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.devices.FirepitBlock;
 import net.dries007.tfc.common.blocks.soil.HoeOverlayBlock;
-import net.dries007.tfc.common.capabilities.Capabilities;
 import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.climate.Climate;
-import org.jetbrains.annotations.Nullable;
 
 public class FLBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBlock
 {
@@ -69,27 +68,27 @@ public class FLBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBloc
             }
 
         }
-        return level.getBlockEntity(pos, FLBlockEntities.BEEHIVE.get()).map(hive ->
-            hive.getCapability(Capabilities.ITEM).map(inv -> {
-                boolean anyBees = false;
-                float calmChance = 0;
-                for (int i = 0; i < FLBeehiveBlockEntity.FRAME_SLOTS; i++)
+        return level.getBlockEntity(pos, FLBlockEntities.BEEHIVE.get()).map(hive -> {
+            final ItemStackHandler inv = hive.getInventory();
+            boolean anyBees = false;
+            float calmChance = 0;
+            for (int i = 0; i < FLBeehiveBlockEntity.FRAME_SLOTS; i++)
+            {
+                final IBee bee = inv.getStackInSlot(i).getCapability(BeeCapability.CAPABILITY).resolve().orElse(null);
+                if (bee != null && bee.hasQueen())
                 {
-                    final IBee bee = inv.getStackInSlot(i).getCapability(BeeCapability.CAPABILITY).resolve().orElse(null);
-                    if (bee != null && bee.hasQueen())
-                    {
-                        anyBees = true;
-                        calmChance += bee.getAbility(BeeAbility.CALMNESS);
-                    }
+                    anyBees = true;
+                    calmChance += bee.getAbility(BeeAbility.CALMNESS);
                 }
-                calmChance /= 40f;
-                return anyBees && level.random.nextFloat() > calmChance;
-        }).orElse(false)).orElse(false);
+            }
+            calmChance /= 40f;
+            return anyBees && level.random.nextFloat() > calmChance;
+        }).orElse(false);
     }
 
     public static void attack(Player player)
     {
-        player.addEffect(new MobEffectInstance(FLEffects.SWARM.get(), 100));
+        player.addEffect(new MobEffectInstance(FLEffects.SWARM.holder(), 100));
     }
 
     public static final BooleanProperty HONEY = FLStateProperties.HONEY;
@@ -102,10 +101,8 @@ public class FLBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBloc
     }
 
     @Override
-    @SuppressWarnings("deprecation")
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
+    public ItemInteractionResult useItemOn(ItemStack held, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
     {
-        final ItemStack held = player.getItemInHand(hand);
         if (Helpers.isItem(held, TFCItems.EMPTY_JAR.get()) && !player.isShiftKeyDown())
         {
             level.getBlockEntity(pos, FLBlockEntities.BEEHIVE.get()).ifPresent(hive -> {
@@ -115,11 +112,11 @@ public class FLBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBloc
                     ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(FLItems.HONEY_JAR.get()));
                 }
             });
-            return InteractionResult.sidedSuccess(level.isClientSide);
+            return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
         else if (Helpers.isItem(held, FLItems.BEEHIVE_FRAME.get()))
         {
-            final var res = FLHelpers.consumeInventory(level, pos, FLBlockEntities.BEEHIVE, (hive, inv) ->
+            final var res = FLHelpers.consumeItemInventory(level, pos, FLBlockEntities.BEEHIVE, (hive, inv) ->
                 FLHelpers.insertOneAny(level, held, 0, FLBeehiveBlockEntity.FRAME_SLOTS - 1, inv, player)
             );
             if (res.consumesAction())
@@ -127,7 +124,7 @@ public class FLBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBloc
         }
         else if (held.isEmpty() && player.isShiftKeyDown())
         {
-            final var res = FLHelpers.consumeInventory(level, pos, FLBlockEntities.BEEHIVE, (hive, inv) ->
+            final var res = FLHelpers.consumeItemInventory(level, pos, FLBlockEntities.BEEHIVE, (hive, inv) ->
                 FLHelpers.takeOneAny(level, 0, FLBeehiveBlockEntity.FRAME_SLOTS - 1, inv, player)
             );
             if (res.consumesAction())
@@ -141,11 +138,11 @@ public class FLBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBloc
         {
             if (player instanceof ServerPlayer serverPlayer)
             {
-                level.getBlockEntity(pos, FLBlockEntities.BEEHIVE.get()).ifPresent(nest -> Helpers.openScreen(serverPlayer, nest, pos));
+                level.getBlockEntity(pos, FLBlockEntities.BEEHIVE.get()).ifPresent(nest -> serverPlayer.openMenu(state.getMenuProvider(level, pos)));
             }
-            return InteractionResult.sidedSuccess(level.isClientSide);
+            return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
-        return InteractionResult.PASS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     @Override
@@ -166,12 +163,12 @@ public class FLBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBloc
     }
 
     @Override
-    public void addHoeOverlayInfo(Level level, BlockPos pos, BlockState blockState, List<Component> text, boolean debug)
+    public void addHoeOverlayInfo(Level level, BlockPos pos, BlockState blockState, Consumer<Component> tooltip, boolean debug)
     {
         level.getBlockEntity(pos, FLBlockEntities.BEEHIVE.get()).ifPresent(hive -> {
             if (hive.getHoney() > 0)
             {
-                text.add(Component.translatable("firmalife.beehive.honey", String.valueOf(hive.getHoney())).withStyle(ChatFormatting.GOLD));
+                tooltip.accept(Component.translatable("firmalife.beehive.honey", String.valueOf(hive.getHoney())).withStyle(ChatFormatting.GOLD));
             }
             final float temp = Climate.getTemperature(level, pos);
             int ord = 0;
@@ -199,29 +196,28 @@ public class FLBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBloc
                     if (bee != null)
                         noQueen++;
                 }
-                text.add(beeText);
+                tooltip.accept(beeText);
             }
             final int flowers = hive.getFlowers(bees, false);
-            text.add(Component.translatable("firmalife.beehive.flowers", flowers));
+            tooltip.accept(Component.translatable("firmalife.beehive.flowers", flowers));
             if (flowers < FLBeehiveBlockEntity.MIN_FLOWERS)
             {
-                text.add(Component.translatable("firmalife.beehive.min_flowers"));
+                tooltip.accept(Component.translatable("firmalife.beehive.min_flowers"));
             }
             else
             {
                 if (bees.size() < 4 && noQueen != 0)
                 {
                     int breed = hive.getBreedTickChanceInverted(bees, flowers);
-                    if (breed == 0) text.add(Component.translatable("firmalife.beehive.breed_chance_100"));
-                    else text.add(Component.translatable("firmalife.beehive.breed_chance", breed));
+                    if (breed == 0) tooltip.accept(Component.translatable("firmalife.beehive.breed_chance_100"));
+                    else tooltip.accept(Component.translatable("firmalife.beehive.breed_chance", breed));
                 }
                 if (!bees.isEmpty())
                 {
                     int honey = hive.getHoneyTickChanceInverted(bees, flowers);
-                    if (honey == 0) text.add(Component.translatable("firmalife.beehive.honey_chance_100"));
-                    else text.add(Component.translatable("firmalife.beehive.honey_chance", honey));
+                    if (honey == 0) tooltip.accept(Component.translatable("firmalife.beehive.honey_chance_100"));
+                    else tooltip.accept(Component.translatable("firmalife.beehive.honey_chance", honey));
                 }
-
             }
 
         });

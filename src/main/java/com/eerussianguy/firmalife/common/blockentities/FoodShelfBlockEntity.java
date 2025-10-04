@@ -1,30 +1,34 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
+import java.util.Set;
 import com.eerussianguy.firmalife.config.FLConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.items.ItemHandlerHelper;
-import net.minecraftforge.items.ItemStackHandler;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
+import net.neoforged.neoforge.items.ItemHandlerHelper;
+import net.neoforged.neoforge.items.ItemStackHandler;
+import net.neoforged.neoforge.registries.DeferredHolder;
+
 import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
-import net.dries007.tfc.common.capabilities.food.FoodCapability;
-import net.dries007.tfc.common.capabilities.food.FoodTrait;
+import net.dries007.tfc.common.component.food.FoodCapability;
+import net.dries007.tfc.common.component.food.FoodTrait;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.climate.Climate;
 
 public class FoodShelfBlockEntity extends InventoryBlockEntity<ItemStackHandler> implements ClimateReceiver
 {
-    private static final FoodTrait[] POSSIBLE = {FLFoodTraits.SHELVED, FLFoodTraits.SHELVED_2, FLFoodTraits.SHELVED_3};
+    private static final Set<DeferredHolder<FoodTrait, FoodTrait>> POSSIBLE = Set.of(FLFoodTraits.SHELVED, FLFoodTraits.SHELVED_2, FLFoodTraits.SHELVED_3);
 
     private boolean climateValid = false;
 
@@ -105,26 +109,25 @@ public class FoodShelfBlockEntity extends InventoryBlockEntity<ItemStackHandler>
             final float temp = Climate.getAverageTemperature(level, getBlockPos());
             if (temp < FLConfig.SERVER.cellarLevel3Temperature.get())
             {
-                return FLFoodTraits.SHELVED_3;
+                return FLFoodTraits.SHELVED_3.get();
             }
             if (temp < FLConfig.SERVER.cellarLevel2Temperature.get())
             {
-                return FLFoodTraits.SHELVED_2;
+                return FLFoodTraits.SHELVED_2.get();
             }
         }
-        return FLFoodTraits.SHELVED;
+        return FLFoodTraits.SHELVED.get();
     }
 
-    public FoodTrait[] getPossibleTraits()
+    public Set<DeferredHolder<FoodTrait, FoodTrait>> getPossibleTraits()
     {
         return POSSIBLE;
     }
 
-    public InteractionResult use(Player player, InteractionHand hand)
+    public ItemInteractionResult use(ItemStack held)
     {
         assert level != null;
         var res = InteractionResult.PASS;
-        final ItemStack held = player.getItemInHand(hand);
         if (!held.isEmpty() && isItemValid(0, held))
         {
             if (climateValid)

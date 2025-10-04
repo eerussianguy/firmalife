@@ -1,6 +1,5 @@
 package com.eerussianguy.firmalife.common.blocks.plant;
 
-import java.util.Random;
 import java.util.function.Supplier;
 import com.eerussianguy.firmalife.common.blockentities.FLTickCounterBlockEntity;
 import net.minecraft.core.BlockPos;

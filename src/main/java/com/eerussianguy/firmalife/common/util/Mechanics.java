@@ -148,7 +148,7 @@ public final class Mechanics
                 return true; // short circuit for stuff we know will pass (plus exempt doors)
             if (direction == Direction.DOWN)
                 return !wallState.isAir();
-            if (!greenhouse.ingredient.test(wallState))
+            if (!greenhouse.ingredient().test(wallState))
                 return false;
             if (direction == Direction.UP && wallState.getBlock() instanceof SlabBlock)
                 return true;
@@ -169,13 +169,14 @@ public final class Mechanics
     public record GreenhouseInfo(GreenhouseType type, Set<BlockPos> positions) { }
 
     public static final Predicate<BlockState> CELLAR = state -> Helpers.isBlock(state, FLTags.Blocks.CELLAR_INSULATION);
-    private static final int UPDATE_INTERVAL = ICalendar.TICKS_IN_DAY;
+    private static final int UPDATE_INTERVAL = ICalendar.CALENDAR_TICKS_IN_DAY;
 
     public static final Supplier<Float> GROWTH_FACTOR = () -> 1f / (FLConfig.SERVER.greenhouseGrowthDays.get().floatValue() * ICalendar.TICKS_IN_DAY); // same as tfc
     public static final Supplier<Float> NUTRIENT_CONSUMPTION = () -> 1f / (FLConfig.SERVER.greenhouseNutrientDays.get().floatValue() * ICalendar.TICKS_IN_DAY); //  12 -> 8 days
     public static final Supplier<Float> WATER_CONSUMPTION = () -> 1f / (FLConfig.SERVER.greenhouseWaterDays.get().floatValue() * ICalendar.TICKS_IN_DAY); // 12 days
     public static final float NUTRIENT_GROWTH_FACTOR = 0.5f;
 
+    // todo: update to new tfc plant growth model?
     public static boolean growthTick(Level level, BlockPos pos, BlockState state, LargePlanterBlockEntity planter)
     {
         final long firstTick = planter.getLastGrowthTick(), thisTick = Calendars.SERVER.getTicks();

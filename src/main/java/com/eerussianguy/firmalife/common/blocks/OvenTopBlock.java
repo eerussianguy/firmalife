@@ -1,13 +1,18 @@
 package com.eerussianguy.firmalife.common.blocks;
 
 import java.util.function.Supplier;
-
+import com.eerussianguy.firmalife.common.FLHelpers;
+import com.eerussianguy.firmalife.common.FLTags;
+import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
+import com.eerussianguy.firmalife.common.blockentities.OvenTopBlockEntity;
 import com.eerussianguy.firmalife.common.items.FinishItem;
+import com.eerussianguy.firmalife.common.misc.FLDamageSources;
+import com.eerussianguy.firmalife.config.FLConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
@@ -15,21 +20,14 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-
-import com.eerussianguy.firmalife.common.FLHelpers;
-import com.eerussianguy.firmalife.common.FLTags;
-import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
-import com.eerussianguy.firmalife.common.blockentities.OvenTopBlockEntity;
-import com.eerussianguy.firmalife.common.misc.FLDamageSources;
-import com.eerussianguy.firmalife.config.FLConfig;
-import net.dries007.tfc.common.blocks.ExtendedProperties;
-import net.dries007.tfc.util.Helpers;
-
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
+
+import net.dries007.tfc.common.blocks.ExtendedProperties;
+import net.dries007.tfc.util.Helpers;
 
 public class OvenTopBlock extends AbstractOvenBlock
 {
@@ -53,12 +51,11 @@ public class OvenTopBlock extends AbstractOvenBlock
     }
 
     @Override
-    @SuppressWarnings("deprecation")
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
+    public ItemInteractionResult useItemOn(ItemStack item, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
     {
-        final ItemStack item = player.getItemInHand(hand);
-        if (item.getItem() instanceof FinishItem) return InteractionResult.PASS;
-        return FLHelpers.consumeInventory(level, pos, FLBlockEntities.OVEN_TOP, (oven, inv) -> {
+        if (item.getItem() instanceof FinishItem)
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        return FLHelpers.consumeItemInventory(level, pos, FLBlockEntities.OVEN_TOP, (oven, inv) -> {
             final boolean peel = Helpers.isItem(item, FLTags.Items.USABLE_ON_OVEN);
             if (peel || (item.isEmpty() && player.isShiftKeyDown()))
             {
@@ -72,12 +69,11 @@ public class OvenTopBlock extends AbstractOvenBlock
             {
                 return FLHelpers.insertOneAny(level, item, OvenTopBlockEntity.SLOT_INPUT_START, OvenTopBlockEntity.SLOT_INPUT_END, inv, player);
             }
-            return InteractionResult.PASS;
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         });
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public int getLightBlock(BlockState state, BlockGetter level, BlockPos pos)
     {
         return level.getBlockState(pos.below()).getBlock() instanceof OvenBottomBlock ? 0 : super.getLightBlock(state, level, pos);

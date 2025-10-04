@@ -2,7 +2,6 @@ package com.eerussianguy.firmalife.common.blocks;
 
 import com.eerussianguy.firmalife.common.blockentities.PickerBlockEntity;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
@@ -24,8 +23,7 @@ public class SweeperBlock extends DeviceBlock
     }
 
     @Override
-    @SuppressWarnings("deprecation")
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
+    public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult result)
     {
         if (level.getBlockEntity(pos) instanceof PickerBlockEntity picker)
         {
@@ -36,7 +34,6 @@ public class SweeperBlock extends DeviceBlock
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context)
     {
         return AxleBlock.SHAPE_Y;

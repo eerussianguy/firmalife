@@ -3,16 +3,14 @@ package com.eerussianguy.firmalife.common.blocks;
 import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Function;
-
 import com.eerussianguy.firmalife.common.capabilities.wine.WineType;
+import com.eerussianguy.firmalife.common.items.FLItems;
+import com.eerussianguy.firmalife.common.util.ExtraFluid;
+import com.eerussianguy.firmalife.common.util.FLMetal;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Fluid;
-
-import com.eerussianguy.firmalife.common.items.FLItems;
-import com.eerussianguy.firmalife.common.util.ExtraFluid;
-import com.eerussianguy.firmalife.common.util.FLMetal;
 import net.minecraft.world.level.pathfinder.PathType;
 import net.neoforged.neoforge.common.SoundActions;
 import net.neoforged.neoforge.fluids.BaseFlowingFluid;
@@ -26,7 +24,7 @@ import net.dries007.tfc.common.fluids.MoltenFluid;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.registry.RegistrationHelpers;
 
-import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
+import static com.eerussianguy.firmalife.FirmaLife.*;
 import static net.dries007.tfc.common.fluids.TFCFluids.*;
 
 public class FLFluids

@@ -3,46 +3,57 @@ package com.eerussianguy.firmalife.common.recipes;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import net.minecraft.core.RegistryAccess;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.GsonHelper;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 
-import net.minecraftforge.fluids.FluidStack;
 
 import com.eerussianguy.firmalife.common.blockentities.MixingBowlBlockEntity;
-import net.dries007.tfc.common.capabilities.food.FoodCapability;
+
+import net.dries007.tfc.common.component.food.FoodCapability;
 import net.dries007.tfc.common.recipes.ISimpleRecipe;
-import net.dries007.tfc.common.recipes.RecipeSerializerImpl;
-import net.dries007.tfc.common.recipes.ingredients.FluidStackIngredient;
 import net.dries007.tfc.util.Helpers;
-import net.dries007.tfc.util.JsonHelpers;
-import org.jetbrains.annotations.Nullable;
+
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 
 public class MixingBowlRecipe implements ISimpleRecipe<MixingBowlBlockEntity.MixingBowlInventory>
 {
-    private final ResourceLocation id;
+    public static final MapCodec<MixingBowlRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+        Ingredient.CODEC.listOf().fieldOf("item_ingredients").forGetter(c -> c.itemIngredients),
+        SizedFluidIngredient.FLAT_CODEC.fieldOf("fluid_ingredients").forGetter(c -> c.fluidIngredient),
+        ItemStack.CODEC.fieldOf("result_item").forGetter(c -> c.resultItem),
+        FluidStack.CODEC.fieldOf("result_fluid").forGetter(c -> c.resultFluid)
+    ).apply(instance, MixingBowlRecipe::new));
+
+    public static final StreamCodec<RegistryFriendlyByteBuf, MixingBowlRecipe> STREAM_CODEC = StreamCodec.composite(
+        Ingredient.CONTENTS_STREAM_CODEC.apply(ByteBufCodecs.list(5)), c -> c.itemIngredients,
+        SizedFluidIngredient.STREAM_CODEC, c -> c.fluidIngredient,
+        ItemStack.STREAM_CODEC, c -> c.resultItem,
+        FluidStack.STREAM_CODEC, c -> c.resultFluid,
+        MixingBowlRecipe::new
+    );
+
     private final List<Ingredient> itemIngredients;
-    private final FluidStackIngredient fluidIngredient;
+    private final SizedFluidIngredient fluidIngredient;
     private final ItemStack resultItem;
     private final FluidStack resultFluid;
 
-    protected MixingBowlRecipe(ResourceLocation id, List<Ingredient> itemIngredients, FluidStackIngredient fluidIngredient, ItemStack resultItem, FluidStack resultFluid)
+    protected MixingBowlRecipe(List<Ingredient> itemIngredients, SizedFluidIngredient fluidIngredient, ItemStack resultItem, FluidStack resultFluid)
     {
-        this.id = id;
         this.itemIngredients = itemIngredients;
         this.fluidIngredient = fluidIngredient;
         this.resultItem = resultItem;
         this.resultFluid = resultFluid;
-        FoodCapability.setStackNonDecaying(this.resultItem);
+        FoodCapability.setNonDecaying(resultItem);
     }
 
     @Override
@@ -65,7 +76,13 @@ public class MixingBowlRecipe implements ISimpleRecipe<MixingBowlBlockEntity.Mix
         return itemIngredients.isEmpty() ? stacks.isEmpty() : Helpers.perfectMatchExists(stacks, itemIngredients);
     }
 
-    public FluidStackIngredient getFluidIngredient()
+    @Override
+    public ItemStack assemble(MixingBowlBlockEntity.MixingBowlInventory inventory, HolderLookup.Provider provider)
+    {
+        return resultItem.copy();
+    }
+
+    public SizedFluidIngredient getFluidIngredient()
     {
         return fluidIngredient;
     }
@@ -86,15 +103,9 @@ public class MixingBowlRecipe implements ISimpleRecipe<MixingBowlBlockEntity.Mix
     }
 
     @Override
-    public ItemStack getResultItem(RegistryAccess access)
+    public ItemStack getResultItem(HolderLookup.Provider access)
     {
-        return resultItem;
-    }
-
-    @Override
-    public ResourceLocation getId()
-    {
-        return id;
+        return resultItem.copy();
     }
 
     @Override
@@ -109,53 +120,4 @@ public class MixingBowlRecipe implements ISimpleRecipe<MixingBowlBlockEntity.Mix
         return FLRecipeTypes.MIXING_BOWL.get();
     }
 
-    public static class Serializer extends RecipeSerializerImpl<MixingBowlRecipe>
-    {
-        @Override
-        public MixingBowlRecipe fromJson(ResourceLocation id, JsonObject json)
-        {
-            final List<Ingredient> ingredients = new ArrayList<>();
-            if (json.has("ingredients"))
-            {
-                final JsonArray array = GsonHelper.getAsJsonArray(json, "ingredients");
-                for (JsonElement element : array)
-                {
-                    ingredients.add(Ingredient.fromJson(element));
-                }
-            }
-            final FluidStackIngredient fluidIngredient = json.has("fluid_ingredient") ? FluidStackIngredient.fromJson(GsonHelper.getAsJsonObject(json, "fluid_ingredient")) : FluidStackIngredient.EMPTY;
-            final ItemStack result = json.has("output_item") ? JsonHelpers.getItemStack(json, "output_item") : ItemStack.EMPTY;
-            final FluidStack fluidResult = json.has("output_fluid") ? JsonHelpers.getFluidStack(json, "output_fluid") : FluidStack.EMPTY;
-            return new MixingBowlRecipe(id, ingredients, fluidIngredient, result, fluidResult);
-        }
-
-        @Nullable
-        @Override
-        public MixingBowlRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buffer)
-        {
-            final int count = buffer.readVarInt();
-            final List<Ingredient> ingredients = new ArrayList<>(count);
-            for (int i = 0; i < count; i++)
-            {
-                ingredients.add(Ingredient.fromNetwork(buffer));
-            }
-            final FluidStackIngredient fluidIngredient = FluidStackIngredient.fromNetwork(buffer);
-            final ItemStack result = buffer.readItem();
-            final FluidStack fluidOut = buffer.readFluidStack();
-            return new MixingBowlRecipe(id, ingredients, fluidIngredient, result, fluidOut);
-        }
-
-        @Override
-        public void toNetwork(FriendlyByteBuf buffer, MixingBowlRecipe recipe)
-        {
-            buffer.writeVarInt(recipe.itemIngredients.size());
-            for (Ingredient ingredient : recipe.itemIngredients)
-            {
-                ingredient.toNetwork(buffer);
-            }
-            recipe.fluidIngredient.toNetwork(buffer);
-            buffer.writeItem(recipe.resultItem);
-            buffer.writeFluidStack(recipe.resultFluid);
-        }
-    }
 }

@@ -6,7 +6,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
@@ -17,13 +17,12 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.items.ItemHandlerHelper;
+import net.neoforged.neoforge.items.ItemHandlerHelper;
 
 import net.dries007.tfc.client.particle.TFCParticles;
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.devices.SealableDeviceBlock;
-import net.dries007.tfc.common.capabilities.Capabilities;
 import net.dries007.tfc.common.fluids.FluidHelpers;
 import net.dries007.tfc.util.Helpers;
 
@@ -59,7 +58,6 @@ public class VatBlock extends SealableDeviceBlock
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public void neighborChanged(BlockState state, Level level, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving)
     {
         if (level.getBlockEntity(pos) instanceof VatBlockEntity vat)
@@ -92,12 +90,10 @@ public class VatBlock extends SealableDeviceBlock
     }
 
     @Override
-    @SuppressWarnings("deprecation")
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
+    public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
     {
         if (level.getBlockEntity(pos) instanceof VatBlockEntity vat)
         {
-            final ItemStack stack = player.getItemInHand(hand);
             if (!vat.isBoiling())
             {
                 if (vat.hasOutput())
@@ -106,44 +102,43 @@ public class VatBlock extends SealableDeviceBlock
                     {
                         stack.shrink(1);
                         ItemHandlerHelper.giveItemToPlayer(player, vat.takeOutput());
-                        return InteractionResult.sidedSuccess(level.isClientSide);
+                        return ItemInteractionResult.sidedSuccess(level.isClientSide);
                     }
-                    return InteractionResult.FAIL;
+                    return ItemInteractionResult.FAIL;
                 }
                 if (stack.isEmpty() && player.isShiftKeyDown())
                 {
                     toggleSeal(level, pos, state);
-                    return InteractionResult.sidedSuccess(level.isClientSide);
+                    return ItemInteractionResult.sidedSuccess(level.isClientSide);
                 }
                 if (!state.getValue(SEALED))
                 {
                     if (FluidHelpers.transferBetweenBlockEntityAndItem(stack, vat, player, hand))
                     {
                         vat.markForSync();
-                        return InteractionResult.sidedSuccess(level.isClientSide);
+                        return ItemInteractionResult.sidedSuccess(level.isClientSide);
                     }
                     else
                     {
-                        return vat.getCapability(Capabilities.ITEM).map(inventory -> {
-                            if (inventory.isItemValid(0, stack) && !stack.isEmpty())
-                            {
-                                player.setItemInHand(hand, inventory.insertItem(0, stack, false));
-                                vat.markForSync();
-                            }
-                            else
-                            {
-                                final ItemStack give = inventory.extractItem(0, 64, false);
-                                vat.markForSync();
-                                if (give.isEmpty()) return InteractionResult.PASS;
-                                ItemHandlerHelper.giveItemToPlayer(player, give);
-                            }
-                            return InteractionResult.sidedSuccess(level.isClientSide);
-                        }).orElse(InteractionResult.PASS);
+                        final VatBlockEntity.VatInventory inventory = vat.getInventory();
+                        if (inventory.isItemValid(0, stack) && !stack.isEmpty())
+                        {
+                            player.setItemInHand(hand, inventory.insertItem(0, stack, false));
+                            vat.markForSync();
+                        }
+                        else
+                        {
+                            final ItemStack give = inventory.extractItem(0, 64, false);
+                            vat.markForSync();
+                            if (give.isEmpty()) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+                            ItemHandlerHelper.giveItemToPlayer(player, give);
+                        }
+                        return ItemInteractionResult.sidedSuccess(level.isClientSide);
                     }
                 }
             }
         }
-        return InteractionResult.PASS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
 }

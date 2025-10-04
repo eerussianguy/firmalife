@@ -3,8 +3,9 @@ package com.eerussianguy.firmalife.common.blocks.plant;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
@@ -28,7 +29,7 @@ public class GrapeFluffBlock extends GroundcoverBlock implements ISlowEntities
 
     public GrapeFluffBlock(ExtendedProperties properties)
     {
-        super(properties, GroundcoverBlock.PIXEL_HIGH, null);
+        super(properties, GroundcoverBlock.PIXEL_HIGH);
         registerDefaultState(getStateDefinition().any().setValue(LIFECYCLE, Lifecycle.HEALTHY).setValue(getFluidProperty(), getFluidProperty().keyFor(Fluids.EMPTY)));
     }
 
@@ -45,9 +46,9 @@ public class GrapeFluffBlock extends GroundcoverBlock implements ISlowEntities
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
+    public ItemInteractionResult useItemOn(ItemStack held, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
     {
-        return InteractionResult.PASS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     @Override

@@ -1,8 +1,7 @@
 package com.eerussianguy.firmalife.common.blocks.greenhouse;
 
-import java.util.Random;
 import java.util.function.Supplier;
-
+import com.eerussianguy.firmalife.common.blocks.IWeatherable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -11,12 +10,11 @@ import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
+import org.jetbrains.annotations.Nullable;
 
-import com.eerussianguy.firmalife.common.blocks.IWeatherable;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.IForgeBlockExtension;
 import net.dries007.tfc.util.Helpers;
-import org.jetbrains.annotations.Nullable;
 
 public class GreenhouseDoorBlock extends DoorBlock implements IWeatherable, IForgeBlockExtension
 {

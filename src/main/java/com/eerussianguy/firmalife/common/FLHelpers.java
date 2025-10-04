@@ -2,6 +2,8 @@ package com.eerussianguy.firmalife.common;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -15,6 +17,7 @@ import com.mojang.serialization.JsonOps;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
@@ -24,21 +27,23 @@ import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.neoforge.capabilities.ICapabilityProvider;
+import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
 import org.jetbrains.annotations.Nullable;
 
 import net.dries007.tfc.common.blockentities.TickCounterBlockEntity;
-import net.dries007.tfc.common.capabilities.ItemCapabilities;
 import net.dries007.tfc.common.component.food.FoodCapability;
 import net.dries007.tfc.common.component.food.FoodTrait;
+import net.dries007.tfc.common.component.food.FoodTraits;
+import net.dries007.tfc.common.component.food.IFood;
 import net.dries007.tfc.util.Helpers;
 
 import static com.eerussianguy.firmalife.FirmaLife.*;
@@ -87,7 +92,7 @@ public class FLHelpers
             for (FoodTrait trait : list)
             {
                 final CompoundTag newTag = new CompoundTag();
-                newTag.putString("trait", FoodTrait.getId(trait).toString());
+                newTag.putString("trait", Objects.requireNonNull(FoodTraits.REGISTRY.getKey(trait)).toString());
                 listTag.add(newTag);
             }
             nbt.put(key, listTag);
@@ -102,7 +107,7 @@ public class FLHelpers
             final ListTag excessNbt = nbt.getList(key, Tag.TAG_COMPOUND);
             for (int i = 0; i < excessNbt.size(); i++)
             {
-                final FoodTrait trait = FoodTrait.getTrait(FLHelpers.res(excessNbt.getCompound(i).getString("trait")));
+                final FoodTrait trait = FoodTraits.REGISTRY.get(FLHelpers.res(excessNbt.getCompound(i).getString("trait")));
                 if (trait != null)
                 {
                     list.add(trait);
@@ -111,20 +116,20 @@ public class FLHelpers
         }
     }
 
-    public static void writeItemStackList(List<ItemStack> list, CompoundTag nbt, String key)
+    public static void writeItemStackList(List<ItemStack> list, CompoundTag nbt, String key, HolderLookup.Provider access)
     {
         if (!list.isEmpty())
         {
             final ListTag listTag = new ListTag();
             for (ItemStack stack : list)
             {
-                listTag.add(stack.save(new CompoundTag()));
+                listTag.add(stack.save(access, new CompoundTag()));
             }
             nbt.put(key, listTag);
         }
     }
 
-    public static void readItemStackList(List<ItemStack> list, CompoundTag nbt, String key)
+    public static void readItemStackList(List<ItemStack> list, CompoundTag nbt, String key, HolderLookup.Provider access)
     {
         list.clear();
         if (nbt.contains(key))
@@ -132,14 +137,9 @@ public class FLHelpers
             final ListTag excessNbt = nbt.getList(key, Tag.TAG_COMPOUND);
             for (int i = 0; i < excessNbt.size(); i++)
             {
-                list.add(ItemStack.of(excessNbt.getCompound(i)));
+                list.add(ItemStack.parseOptional(access, excessNbt.getCompound(i)));
             }
         }
-    }
-
-    public static <T> JsonElement codecToJson(Codec<T> codec, T instance)
-    {
-        return codec.encodeStart(JsonOps.INSTANCE, instance).getOrThrow(false, Util.prefix("Error encoding: ", FirmaLife.LOGGER::error));
     }
 
     public static Component blockEntityName(String name)
@@ -149,36 +149,56 @@ public class FLHelpers
 
     public static <T extends BlockEntity> void readInventory(Level level, BlockPos pos, Supplier<BlockEntityType<T>> type, BiConsumer<T, IItemHandler> consumer)
     {
-        level.getBlockEntity(pos, type.get()).ifPresent(be -> be.getCapability(Capabilities.ITEM).ifPresent(inv -> consumer.accept(be, inv)));
+        level.getBlockEntity(pos, type.get()).ifPresent(be -> Optional.ofNullable(Helpers.getCapability(Capabilities.ItemHandler.BLOCK, be)).ifPresent(inv -> consumer.accept(be, inv)));
     }
 
     public static <T extends BlockEntity> InteractionResult consumeInventory(Level level, BlockPos pos, Supplier<BlockEntityType<T>> type, BiFunction<T, IItemHandler, InteractionResult> consumer)
     {
-        return level.getBlockEntity(pos, type.get()).map(be ->
-            be.getCapability(ItemCapabilities.ITEM).map(inv -> consumer.apply(be, inv)).orElse(InteractionResult.PASS)
+        return level.getBlockEntity(pos, type.get()).map(be -> {
+                final IItemHandler inv = Helpers.getCapability(Capabilities.ItemHandler.BLOCK, be);
+                if (inv != null)
+                {
+                    return consumer.apply(be, inv);
+                }
+                return InteractionResult.PASS;
+            }
         ).orElse(InteractionResult.PASS);
     }
 
-    public static InteractionResult insertOne(Level level, ItemStack item, int slot, IItemHandler inv, Player player)
+    public static <T extends BlockEntity> ItemInteractionResult consumeItemInventory(Level level, BlockPos pos, Supplier<BlockEntityType<T>> type, BiFunction<T, IItemHandler, ItemInteractionResult> consumer)
     {
-        if (!inv.isItemValid(slot, item)) return InteractionResult.PASS;
+        return level.getBlockEntity(pos, type.get()).map(be -> {
+                final IItemHandler inv = Helpers.getCapability(Capabilities.ItemHandler.BLOCK, be);
+                if (inv != null)
+                {
+                    return consumer.apply(be, inv);
+                }
+                return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+            }
+        ).orElse(ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION);
+    }
+
+
+    public static ItemInteractionResult insertOne(Level level, ItemStack item, int slot, IItemHandler inv, Player player)
+    {
+        if (!inv.isItemValid(slot, item)) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         return completeInsertion(level, item, inv, player, slot);
     }
 
-    public static InteractionResult takeOne(Level level, int slot, IItemHandler inv, Player player)
+    public static ItemInteractionResult takeOne(Level level, int slot, IItemHandler inv, Player player)
     {
         ItemStack stack = inv.extractItem(slot, 1, false);
-        if (stack.isEmpty()) return InteractionResult.PASS;
+        if (stack.isEmpty()) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         ItemHandlerHelper.giveItemToPlayer(player, stack);
-        return InteractionResult.sidedSuccess(level.isClientSide);
+        return ItemInteractionResult.sidedSuccess(level.isClientSide);
     }
 
-    public static InteractionResult insertOneAny(Level level, ItemStack item, int start, int end, ICapabilityProvider provider, Player player)
+    public static ItemInteractionResult insertOneAny(Level level, ItemStack item, int start, int end, BlockEntity provider, Player player)
     {
-        return provider.getCapability(Capabilities.ITEM).map(inv -> insertOneAny(level, item, start, end, inv, player)).orElse(InteractionResult.PASS);
+        return Optional.ofNullable(Helpers.getCapability(Capabilities.ItemHandler.BLOCK, provider)).map(inv -> insertOneAny(level, item, start, end, inv, player)).orElse(ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION);
     }
 
-    public static InteractionResult insertOneAny(Level level, ItemStack item, int start, int end, IItemHandler inv, Player player)
+    public static ItemInteractionResult insertOneAny(Level level, ItemStack item, int start, int end, IItemHandler inv, Player player)
     {
         for (int i = start; i <= end; i++)
         {
@@ -187,7 +207,7 @@ public class FLHelpers
                 return completeInsertion(level, item, inv, player, i);
             }
         }
-        return InteractionResult.PASS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     public static ItemStack mergeInsertStack(IItemHandler inventory, int slot, ItemStack stack)
@@ -199,29 +219,29 @@ public class FLHelpers
         return remainder;
     }
 
-    private static InteractionResult completeInsertion(Level level, ItemStack item, IItemHandler inv, Player player, int slot)
+    private static ItemInteractionResult completeInsertion(Level level, ItemStack item, IItemHandler inv, Player player, int slot)
     {
         ItemStack stack = inv.insertItem(slot, item.split(1), false);
-        if (stack.isEmpty()) return InteractionResult.sidedSuccess(level.isClientSide);
+        if (stack.isEmpty()) return ItemInteractionResult.sidedSuccess(level.isClientSide);
         ItemHandlerHelper.giveItemToPlayer(player, stack);
-        return InteractionResult.sidedSuccess(level.isClientSide);
+        return ItemInteractionResult.sidedSuccess(level.isClientSide);
     }
 
-    public static InteractionResult takeOneAny(Level level, int start, int end, ICapabilityProvider provider, Player player)
+    public static ItemInteractionResult takeOneAny(Level level, int start, int end, BlockEntity provider, Player player)
     {
-        return provider.getCapability(Capabilities.ITEM).map(inv -> takeOneAny(level, start, end, inv, player)).orElse(InteractionResult.PASS);
+        return Optional.ofNullable(Helpers.getCapability(Capabilities.ItemHandler.BLOCK, provider)).map(inv -> takeOneAny(level, start, end, inv, player)).orElse(ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION);
     }
 
-    public static InteractionResult takeOneAny(Level level, int start, int end, IItemHandler inv, Player player)
+    public static ItemInteractionResult takeOneAny(Level level, int start, int end, IItemHandler inv, Player player)
     {
         for (int i = start; i <= end; i++)
         {
             ItemStack stack = inv.extractItem(i, 1, false);
             if (stack.isEmpty()) continue;
             ItemHandlerHelper.giveItemToPlayer(player, stack);
-            return InteractionResult.sidedSuccess(level.isClientSide);
+            return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
-        return InteractionResult.PASS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     @Nullable
@@ -273,7 +293,11 @@ public class FLHelpers
 
     public static void roundCreationDate(ItemStack stack)
     {
-        stack.getCapability(FoodCapability.CAPABILITY).ifPresent(cap -> cap.setCreationDate(FoodCapability.getRoundedCreationDate(cap.getCreationDate())));
+        final IFood cap = FoodCapability.get(stack);
+        if (cap != null)
+        {
+            FoodCapability.setCreationDate(stack, FoodCapability.getRoundedCreationDate(cap.getCreationDate()));
+        }
     }
 
     public static <B, C, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10> StreamCodec<B, C> composite(

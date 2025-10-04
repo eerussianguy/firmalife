@@ -12,12 +12,11 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
@@ -25,16 +24,12 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.items.ItemHandlerHelper;
+import net.neoforged.neoforge.items.ItemHandlerHelper;
 
 import net.dries007.tfc.client.IHighlightHandler;
-import net.dries007.tfc.common.TFCDamageSources;
+import net.dries007.tfc.common.TFCDamageTypes;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.devices.BottomSupportedDeviceBlock;
-import net.dries007.tfc.common.capabilities.Capabilities;
-import net.dries007.tfc.util.Helpers;
-
-import static net.dries007.tfc.common.blockentities.GrillBlockEntity.*;
 
 
 public class StovetopGrillBlock extends BottomSupportedDeviceBlock implements IHighlightHandler
@@ -77,38 +72,33 @@ public class StovetopGrillBlock extends BottomSupportedDeviceBlock implements IH
         super.animateTick(state, level, pos, rand);
         if (level.getBlockEntity(pos) instanceof StovetopGrillBlockEntity grill && grill.getTemperature() > 0f)
         {
-            final var inv = Helpers.getCapability(grill, Capabilities.ITEM);
-            if (inv != null)
-            {
-                SLOT_CENTERS.forEach((slot, vec) -> {
-                    if (!inv.getStackInSlot(slot).isEmpty() && rand.nextFloat() < 0.4f)
-                    {
-                        final double x = vec.x + pos.getX();
-                        final double y = vec.y + pos.getY();
-                        final double z = vec.z + pos.getZ();
-                        level.playLocalSound(x, y, z, SoundEvents.FURNACE_FIRE_CRACKLE, SoundSource.BLOCKS, 0.25F, rand.nextFloat() * 0.7F + 0.4F, false);
-                        level.addParticle(ParticleTypes.SMOKE, x, y, z, 0, 0, 0);
-                    }
-                });
-            }
+            final var inv = grill.getInventory();
+            SLOT_CENTERS.forEach((slot, vec) -> {
+                if (!inv.getStackInSlot(slot).isEmpty() && rand.nextFloat() < 0.4f)
+                {
+                    final double x = vec.x + pos.getX();
+                    final double y = vec.y + pos.getY();
+                    final double z = vec.z + pos.getZ();
+                    level.playLocalSound(x, y, z, SoundEvents.FURNACE_FIRE_CRACKLE, SoundSource.BLOCKS, 0.25F, rand.nextFloat() * 0.7F + 0.4F, false);
+                    level.addParticle(ParticleTypes.SMOKE, x, y, z, 0, 0, 0);
+                }
+            });
         }
     }
 
     @Override
-    @SuppressWarnings("deprecation")
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
+    public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
     {
         if (level.getBlockEntity(pos) instanceof StovetopGrillBlockEntity grill)
         {
-            final ItemStack stack = player.getItemInHand(hand);
-            final var inv = Helpers.getCapability(grill, Capabilities.ITEM);
+            final var inv = grill.getInventory();
             final int slot = getSlotForSelection(result);
             final ItemStack current = slot == -1 || inv == null ? ItemStack.EMPTY : inv.getStackInSlot(slot);
             if (!stack.isEmpty() && inv != null && slot != -1 && current.isEmpty() && inv.isItemValid(slot, stack))
             {
                 ItemHandlerHelper.giveItemToPlayer(player, inv.insertItem(slot, stack.split(1), false));
                 grill.markForSync();
-                return InteractionResult.sidedSuccess(level.isClientSide);
+                return ItemInteractionResult.sidedSuccess(level.isClientSide);
             }
             if (stack.isEmpty() && slot != -1 && inv != null && !current.isEmpty())
             {
@@ -116,28 +106,28 @@ public class StovetopGrillBlock extends BottomSupportedDeviceBlock implements IH
                 if (!inv.isItemValid(slot, current) || player.isShiftKeyDown())
                 {
                     ItemHandlerHelper.giveItemToPlayer(player, inv.extractItem(slot, 64, false));
-                    return InteractionResult.sidedSuccess(level.isClientSide);
+                    return ItemInteractionResult.sidedSuccess(level.isClientSide);
                 }
             }
             else
             {
                 if (player instanceof ServerPlayer serverPlayer)
                 {
-                    Helpers.openScreen(serverPlayer, grill, pos);
+                    serverPlayer.openMenu(state.getMenuProvider(level, pos));
                 }
-                return InteractionResult.SUCCESS;
+                return ItemInteractionResult.SUCCESS;
             }
         }
-        return InteractionResult.PASS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     @Override
     @SuppressWarnings("deprecation")
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity)
     {
-        if (!entity.fireImmune() && entity instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity) entity) && level.getBlockEntity(pos) instanceof StovetopGrillBlockEntity grill && grill.getTemperature() > 0)
+        if (!entity.fireImmune() && entity instanceof LivingEntity && level.getBlockEntity(pos) instanceof StovetopGrillBlockEntity grill && grill.getTemperature() > 0)
         {
-            TFCDamageSources.grill(entity, 1.0F);
+            TFCDamageTypes.grill(entity, 1.0F);
         }
         super.stepOn(level, pos, state, entity);
     }

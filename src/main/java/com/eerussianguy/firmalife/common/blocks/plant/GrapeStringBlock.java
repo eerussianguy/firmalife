@@ -34,7 +34,6 @@ public class GrapeStringBlock extends DeviceBlock
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos pos, BlockPos facingPos)
     {
         final Direction.Axis axis = state.getValue(AXIS);
@@ -46,7 +45,6 @@ public class GrapeStringBlock extends DeviceBlock
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos)
     {
         final Direction dir = state.getValue(AXIS) == Direction.Axis.X ? Direction.EAST : Direction.SOUTH;
@@ -59,7 +57,6 @@ public class GrapeStringBlock extends DeviceBlock
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context)
     {
         return state.getValue(AXIS) == Direction.Axis.X ? SHAPE_X : SHAPE_Z;
@@ -72,7 +69,7 @@ public class GrapeStringBlock extends DeviceBlock
     }
 
     @Override
-    public ItemStack getCloneItemStack(BlockState state, HitResult target, BlockGetter level, BlockPos pos, Player player)
+    public ItemStack getCloneItemStack(BlockState state, HitResult target, LevelReader level, BlockPos pos, Player player)
     {
         return new ItemStack(TFCItems.JUTE_FIBER.get());
     }

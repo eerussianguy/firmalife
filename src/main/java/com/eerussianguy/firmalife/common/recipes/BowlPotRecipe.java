@@ -2,58 +2,67 @@ package com.eerussianguy.firmalife.common.recipes;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.google.gson.JsonObject;
-import net.minecraft.core.RegistryAccess;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraftforge.items.ItemHandlerHelper;
 
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blockentities.PotBlockEntity;
-import net.dries007.tfc.common.capabilities.food.DynamicBowlHandler;
-import net.dries007.tfc.common.capabilities.food.FoodCapability;
-import net.dries007.tfc.common.capabilities.food.FoodData;
-import net.dries007.tfc.common.capabilities.food.FoodHandler;
-import net.dries007.tfc.common.capabilities.food.IFood;
+import net.dries007.tfc.common.component.food.FoodCapability;
+import net.dries007.tfc.common.component.food.FoodData;
+import net.dries007.tfc.common.component.food.IFood;
 import net.dries007.tfc.common.fluids.TFCFluids;
 import net.dries007.tfc.common.recipes.PotRecipe;
-import net.dries007.tfc.common.recipes.ingredients.FluidStackIngredient;
-import net.dries007.tfc.compat.jade.common.BlockEntityTooltip;
-import net.dries007.tfc.compat.jade.common.BlockEntityTooltips;
+import net.dries007.tfc.common.recipes.outputs.PotOutput;
 import net.dries007.tfc.util.Helpers;
-import net.dries007.tfc.util.JsonHelpers;
+import net.dries007.tfc.util.tooltip.BlockEntityTooltip;
+import net.dries007.tfc.util.tooltip.BlockEntityTooltips;
 
 public class BowlPotRecipe extends PotRecipe
 {
-    public static final OutputType OUTPUT_TYPE = nbt -> {
-        ItemStack stack = ItemStack.of(nbt.getCompound("item"));
+    public static final MapCodec<BowlPotRecipe> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+        PotRecipe.CODEC.forGetter(c -> c),
+        ItemStack.CODEC.fieldOf("item_output").forGetter(c -> c.itemOutput),
+        FoodData.CODEC.fieldOf("food").forGetter(c -> c.food)
+    ).apply(i, BowlPotRecipe::new));
+
+    public static final StreamCodec<RegistryFriendlyByteBuf, BowlPotRecipe> STREAM_CODEC = StreamCodec.composite(
+        PotRecipe.STREAM_CODEC, c -> c,
+        ItemStack.STREAM_CODEC, c -> c.itemOutput,
+        FoodData.STREAM_CODEC, c -> c.food,
+        BowlPotRecipe::new
+    );
+
+    public static final PotOutput.OutputType OUTPUT_TYPE = (provider, nbt) -> {
+        ItemStack stack = ItemStack.parseOptional(provider, nbt.getCompound("item"));
         return new BowlOutput(stack);
     };
     private final ItemStack itemOutput;
     private final FoodData food;
 
-    public BowlPotRecipe(ResourceLocation id, List<Ingredient> itemIngredients, FluidStackIngredient fluidIngredient, int duration, float minTemp, ItemStack itemOutput, FoodData food)
+    public BowlPotRecipe(PotRecipe base, ItemStack itemOutput, FoodData food)
     {
-        super(id, itemIngredients, fluidIngredient, duration, minTemp);
-        this.itemOutput = FoodCapability.setStackNonDecaying(itemOutput);
+        super(base);
+        this.itemOutput = FoodCapability.setNonDecaying(itemOutput);
         this.food = food;
     }
 
     @Override
-    public ItemStack getResultItem(RegistryAccess access)
+    public ItemStack getResultItem(HolderLookup.Provider access)
     {
         return itemOutput;
     }
 
     @Override
-    public Output getOutput(PotBlockEntity.PotInventory inv)
+    public PotOutput getOutput(PotBlockEntity.PotInventory inv)
     {
         final ItemStack item = itemOutput.copy();
         final IFood cap = Helpers.getCapability(item, FoodCapability.CAPABILITY);
@@ -71,7 +80,7 @@ public class BowlPotRecipe extends PotRecipe
         return FLRecipeSerializers.BOWL_POT.get();
     }
 
-    public record BowlOutput(ItemStack stack) implements PotRecipe.Output
+    public record BowlOutput(ItemStack stack) implements PotOutput
     {
         @Override
         public boolean isEmpty()
@@ -127,26 +136,4 @@ public class BowlPotRecipe extends PotRecipe
         }
     }
 
-    public static class Serializer extends PotRecipe.Serializer<BowlPotRecipe>
-    {
-        @Override
-        protected BowlPotRecipe fromJson(ResourceLocation recipeId, JsonObject json, List<Ingredient> ingredients, FluidStackIngredient fluidIngredient, int duration, float minTemp)
-        {
-            return new BowlPotRecipe(recipeId, ingredients, fluidIngredient, duration, minTemp, JsonHelpers.getItemStack(json, "item_output"), FoodData.read(json.getAsJsonObject("food")));
-        }
-
-        @Override
-        protected BowlPotRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer, List<Ingredient> ingredients, FluidStackIngredient fluidIngredient, int duration, float minTemp)
-        {
-            return new BowlPotRecipe(recipeId, ingredients, fluidIngredient, duration, minTemp, buffer.readItem(), FoodData.decode(buffer));
-        }
-
-        @Override
-        public void toNetwork(FriendlyByteBuf buffer, BowlPotRecipe recipe)
-        {
-            super.toNetwork(buffer, recipe);
-            buffer.writeItem(recipe.itemOutput);
-            recipe.food.encode(buffer);
-        }
-    }
 }

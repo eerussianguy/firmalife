@@ -12,13 +12,13 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.Tags;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import org.jetbrains.annotations.NotNull;
 
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blockentities.TickableBlockEntity;
 import net.dries007.tfc.common.blocks.plant.fruit.Lifecycle;
-import net.dries007.tfc.common.capabilities.food.FoodTrait;
+import net.dries007.tfc.common.component.food.FoodTrait;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.ICalendar;
@@ -147,7 +147,7 @@ public class GrapePlantBlockEntity extends TickableBlockEntity implements ICalen
         return state.getValue(GrapeGroundPlantOnStringBlock.AXIS) == Direction.Axis.X ? Direction.EAST : Direction.SOUTH;
     }
 
-    public List<FoodTrait> scanAndReport()
+    public List<DeferredHolder<FoodTrait, FoodTrait>> scanAndReport()
     {
         assert level != null;
 
@@ -188,7 +188,7 @@ public class GrapePlantBlockEntity extends TickableBlockEntity implements ICalen
             }
         }
 
-        final List<FoodTrait> traits = new ArrayList<>();
+        final List<DeferredHolder<FoodTrait, FoodTrait>> traits = new ArrayList<>();
         if (anyBees)
         {
             traits.add(FLFoodTraits.BEE_POLLINATED);

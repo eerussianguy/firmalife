@@ -6,7 +6,7 @@ import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
@@ -15,7 +15,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.items.ItemHandlerHelper;
+import net.neoforged.neoforge.items.ItemHandlerHelper;
 
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.devices.DeviceBlock;
@@ -30,17 +30,16 @@ public class BarrelPressBlock extends DeviceBlock
 
     @Override
     @SuppressWarnings("deprecation")
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
+    public ItemInteractionResult useItemOn(ItemStack held, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
     {
-        return FLHelpers.consumeInventory(level, pos, FLBlockEntities.BARREL_PRESS, (press, inv) -> {
-            final ItemStack held = player.getItemInHand(hand);
+        return FLHelpers.consumeItemInventory(level, pos, FLBlockEntities.BARREL_PRESS, (press, inv) -> {
             if (press.hasOutput() && Helpers.isItem(held, FLTags.Items.EMPTY_WINE_BOTTLES))
             {
                 final ItemStack newStack = press.tryFillWine(level, pos, held);
                 if (!newStack.isEmpty())
                 {
                     ItemHandlerHelper.giveItemToPlayer(player, newStack);
-                    return InteractionResult.sidedSuccess(level.isClientSide);
+                    return ItemInteractionResult.sidedSuccess(level.isClientSide);
                 }
             }
             if (held.isEmpty() && player.isShiftKeyDown() && !press.hasOutput())
@@ -49,9 +48,9 @@ public class BarrelPressBlock extends DeviceBlock
             }
             else if (player instanceof ServerPlayer server)
             {
-                Helpers.openScreen(server, press, pos);
+                server.openMenu(state.getMenuProvider(level, pos));
             }
-            return InteractionResult.SUCCESS;
+            return ItemInteractionResult.SUCCESS;
         });
     }
 

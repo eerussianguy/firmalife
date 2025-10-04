@@ -5,7 +5,7 @@ import com.eerussianguy.firmalife.common.blocks.FLStateProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -45,12 +45,10 @@ public class GrapeTrellisPostBlock extends ExtendedBlock
     }
 
     @Override
-    @SuppressWarnings("deprecation")
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
+    public ItemInteractionResult useItemOn(ItemStack held, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
     {
         if (result.getDirection().getAxis().isVertical())
-            return InteractionResult.PASS;
-        final ItemStack held = player.getItemInHand(hand);
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         if (Helpers.isItem(held, TFCItems.JUTE_FIBER.get()))
         {
             final BlockState string = FLBlocks.GRAPE_STRING.get().defaultBlockState().setValue(AXIS, result.getDirection().getAxis());
@@ -59,12 +57,12 @@ public class GrapeTrellisPostBlock extends ExtendedBlock
             {
                 if (!player.isCreative())
                     held.shrink(1);
-                Helpers.playPlaceSound(level, pos, string);
+                Helpers.playPlaceSound(player, level, pos, string);
                 level.setBlockAndUpdate(potentialPos, string);
-                return InteractionResult.SUCCESS;
+                return ItemInteractionResult.SUCCESS;
             }
         }
-        return InteractionResult.PASS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     @Nullable

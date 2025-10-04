@@ -1,5 +1,6 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
+import java.util.Set;
 import com.eerussianguy.firmalife.config.FLConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
@@ -7,13 +8,15 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
-import net.dries007.tfc.common.capabilities.food.FoodTrait;
+import net.neoforged.neoforge.registries.DeferredHolder;
+
+import net.dries007.tfc.common.component.food.FoodTrait;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.climate.Climate;
 
 public class HangerBlockEntity extends FoodShelfBlockEntity
 {
-    private static final FoodTrait[] POSSIBLE = {FLFoodTraits.HUNG, FLFoodTraits.HUNG_2, FLFoodTraits.HUNG_3};
+    private static final Set<DeferredHolder<FoodTrait, FoodTrait>> POSSIBLE = Set.of(FLFoodTraits.HUNG, FLFoodTraits.HUNG_2, FLFoodTraits.HUNG_3);
 
     public HangerBlockEntity(BlockPos pos, BlockState state)
     {
@@ -28,14 +31,14 @@ public class HangerBlockEntity extends FoodShelfBlockEntity
             final float temp = Climate.getAverageTemperature(level, getBlockPos());
             if (temp < FLConfig.SERVER.cellarLevel3Temperature.get())
             {
-                return FLFoodTraits.HUNG_3;
+                return FLFoodTraits.HUNG_3.get();
             }
             if (temp < FLConfig.SERVER.cellarLevel2Temperature.get())
             {
-                return FLFoodTraits.HUNG_2;
+                return FLFoodTraits.HUNG_2.get();
             }
         }
-        return FLFoodTraits.HUNG;
+        return FLFoodTraits.HUNG.get();
     }
 
     @Override
@@ -45,7 +48,7 @@ public class HangerBlockEntity extends FoodShelfBlockEntity
     }
 
     @Override
-    public FoodTrait[] getPossibleTraits()
+    public Set<DeferredHolder<FoodTrait, FoodTrait>> getPossibleTraits()
     {
         return POSSIBLE;
     }

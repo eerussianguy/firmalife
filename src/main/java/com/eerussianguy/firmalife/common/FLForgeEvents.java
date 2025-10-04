@@ -21,23 +21,17 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CarvedPumpkinBlock;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.AddReloadListenerEvent;
-import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.event.OnDatapackSyncEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.event.level.LevelEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.network.PacketDistributor;
 
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.blocks.FLFluids;
-import com.eerussianguy.firmalife.common.util.FLDataManagers;
 import com.eerussianguy.firmalife.common.util.ExtraFluid;
-import com.eerussianguy.firmalife.common.util.GreenhouseType;
-import com.eerussianguy.firmalife.common.util.Plantable;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.event.level.LevelEvent;
+import net.neoforged.neoforge.fluids.FluidStack;
+
 import net.dries007.tfc.common.entities.TFCEntities;
 import net.dries007.tfc.common.items.CandleBlockItem;
 import net.dries007.tfc.config.TFCConfig;
@@ -50,12 +44,10 @@ public class FLForgeEvents
 {
     public static void init()
     {
-        final IEventBus bus = MinecraftForge.EVENT_BUS;
+        final IEventBus bus = NeoForge.EVENT_BUS;
 
         bus.addListener(FLForgeEvents::onFireStart);
         bus.addListener(FLForgeEvents::onFireStop);
-        bus.addListener(FLForgeEvents::addReloadListeners);
-        bus.addListener(FLForgeEvents::onDataPackSync);
         bus.addListener(FLForgeEvents::onAnimalProduce);
         bus.addListener(FLForgeEvents::onLogin);
         bus.addListener(FLForgeEvents::onLevelLoad);
@@ -81,21 +73,6 @@ public class FLForgeEvents
     public static void onLogin(PlayerEvent.PlayerLoggedInEvent event)
     {
         TFCConfig.SERVER.enablePumpkinCarving.set(false);
-    }
-
-    public static void addReloadListeners(AddReloadListenerEvent event)
-    {
-        event.addListener(GreenhouseType.MANAGER);
-        event.addListener(Plantable.MANAGER);
-    }
-
-    public static void onDataPackSync(OnDatapackSyncEvent event)
-    {
-        final ServerPlayer player = event.getPlayer();
-        final PacketDistributor.PacketTarget target = player == null ? PacketDistributor.ALL.noArg() : PacketDistributor.PLAYER.with(() -> player);
-
-        FLDataManagers.send(target, GreenhouseType.MANAGER.createSyncPacket());
-        FLDataManagers.send(target, Plantable.MANAGER.createSyncPacket());
     }
 
     public static void onFireStart(StartFireEvent event)

@@ -7,6 +7,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -198,7 +199,7 @@ public class StovetopPotBlockEntity extends BoilingBlockEntity<StovetopPotBlockE
         }
     }
 
-    public InteractionResult interactWithOutput(Player player, ItemStack clickedWith)
+    public ItemInteractionResult interactWithOutput(Player player, ItemStack clickedWith)
     {
         if (Helpers.isItem(clickedWith.getItem(), TFCTags.Items.SOUP_BOWLS) && !soupStack.isEmpty())
         {
@@ -211,9 +212,9 @@ public class StovetopPotBlockEntity extends BoilingBlockEntity<StovetopPotBlockE
             clickedWith.shrink(1);
             ItemHandlerHelper.giveItemToPlayer(player, soupStack.split(1));
             markForSync();
-            return InteractionResult.SUCCESS;
+            return ItemInteractionResult.SUCCESS;
         }
-        return InteractionResult.PASS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     @Override

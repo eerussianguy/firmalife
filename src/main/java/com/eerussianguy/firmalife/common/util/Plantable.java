@@ -59,8 +59,8 @@ public record Plantable(Ingredient ingredient, PlanterType planter, int tier, in
     public static final StreamCodec<RegistryFriendlyByteBuf, Plantable> STREAM_CODEC = FLHelpers.composite(
         Ingredient.CONTENTS_STREAM_CODEC, c -> c.ingredient,
         PlanterType.STREAM_CODEC, c -> c.planter,
-        ByteBufCodecs.INT, c -> c.tier,
-        ByteBufCodecs.INT, c -> c.stages,
+        ByteBufCodecs.VAR_INT, c -> c.tier,
+        ByteBufCodecs.VAR_INT, c -> c.stages,
         ByteBufCodecs.FLOAT, c -> c.extraSeedChance,
         ItemStack.STREAM_CODEC, c -> c.seed,
         ItemStack.STREAM_CODEC, c -> c.crop,

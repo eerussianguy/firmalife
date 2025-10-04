@@ -3,7 +3,6 @@ package com.eerussianguy.firmalife.common.blocks;
 import com.eerussianguy.firmalife.common.blockentities.PickerBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
@@ -31,7 +30,6 @@ public class PickerBlock extends DeviceBlock
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public void neighborChanged(BlockState state, Level level, BlockPos pos, Block neighborBlock, BlockPos neighborPos, boolean movedByPiston)
     {
         if (level.getSignal(pos.above(), Direction.UP) > 0 && level.getBlockEntity(pos) instanceof PickerBlockEntity picker)
@@ -41,8 +39,7 @@ public class PickerBlock extends DeviceBlock
     }
 
     @Override
-    @SuppressWarnings("deprecation")
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
+    public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult result)
     {
         if (level.getBlockEntity(pos) instanceof PickerBlockEntity picker)
         {
@@ -53,7 +50,6 @@ public class PickerBlock extends DeviceBlock
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context)
     {
         return SHAPE;

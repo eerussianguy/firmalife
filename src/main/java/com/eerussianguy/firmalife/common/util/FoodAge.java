@@ -6,7 +6,9 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.util.StringRepresentable;
 
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
-import net.dries007.tfc.common.capabilities.food.FoodTrait;
+import net.neoforged.neoforge.registries.DeferredHolder;
+
+import net.dries007.tfc.common.component.food.FoodTrait;
 
 public enum FoodAge implements StringRepresentable
 {
@@ -17,9 +19,9 @@ public enum FoodAge implements StringRepresentable
     private final int id;
     private final String name;
     private final ChatFormatting format;
-    private final FoodTrait trait;
+    private final DeferredHolder<FoodTrait, FoodTrait> trait;
 
-    FoodAge(int id, ChatFormatting format, FoodTrait trait)
+    FoodAge(int id, ChatFormatting format, DeferredHolder<FoodTrait, FoodTrait> trait)
     {
         this.id = id;
         this.name = name().toLowerCase(Locale.ROOT);
@@ -43,7 +45,7 @@ public enum FoodAge implements StringRepresentable
         return this.format;
     }
 
-    public FoodTrait getTrait()
+    public DeferredHolder<FoodTrait, FoodTrait> getTrait()
     {
         return trait;
     }

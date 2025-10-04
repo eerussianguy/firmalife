@@ -1,43 +1,67 @@
 package com.eerussianguy.firmalife.common.recipes;
 
-import com.eerussianguy.firmalife.common.FLHelpers;
+import java.util.Optional;
 import com.eerussianguy.firmalife.common.blockentities.VatBlockEntity;
-import com.google.gson.JsonObject;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistryAccess;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.IFluidHandler;
-import org.jetbrains.annotations.Nullable;
+import net.neoforged.neoforge.common.crafting.SizedIngredient;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 
 import net.dries007.tfc.common.recipes.ISimpleRecipe;
-import net.dries007.tfc.common.recipes.RecipeSerializerImpl;
-import net.dries007.tfc.common.recipes.ingredients.FluidStackIngredient;
-import net.dries007.tfc.common.recipes.ingredients.ItemStackIngredient;
 import net.dries007.tfc.common.recipes.outputs.ItemStackProvider;
+import net.dries007.tfc.network.StreamCodecs;
 import net.dries007.tfc.util.Helpers;
-import net.dries007.tfc.util.JsonHelpers;
+import net.dries007.tfc.world.Codecs;
 
 public class VatRecipe implements ISimpleRecipe<VatBlockEntity.VatInventory>
 {
-    private final ResourceLocation id;
-    private final ItemStackIngredient inputItem;
-    private final FluidStackIngredient inputFluid;
+    public static final MapCodec<VatRecipe> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+        SizedIngredient.FLAT_CODEC.fieldOf("input_item").forGetter(c -> c.inputItem),
+        SizedFluidIngredient.FLAT_CODEC.fieldOf("input_fluid").forGetter(c -> c.inputFluid),
+        ItemStackProvider.CODEC.fieldOf("output_item").forGetter(c -> c.outputItem),
+        FluidStack.CODEC.fieldOf("output_fluid").forGetter(c -> c.outputFluid),
+        Codecs.POSITIVE_INT.fieldOf("length").forGetter(c -> c.length),
+        Codec.FLOAT.fieldOf("temperature").forGetter(c -> c.temperature),
+        ItemStack.CODEC.fieldOf("jar_output").forGetter(c -> c.jarOutput),
+        ResourceLocation.CODEC.optionalFieldOf("output_texture").forGetter(c -> c.outputTexture)
+    ).apply(i, VatRecipe::new));
+
+    public static final StreamCodec<RegistryFriendlyByteBuf, VatRecipe> STREAM_CODEC = StreamCodecs.composite(
+        SizedIngredient.STREAM_CODEC, c -> c.inputItem,
+        SizedFluidIngredient.STREAM_CODEC, c -> c.inputFluid,
+        ItemStackProvider.STREAM_CODEC, c -> c.outputItem,
+        FluidStack.STREAM_CODEC, c -> c.outputFluid,
+        ByteBufCodecs.INT, c -> c.length,
+        ByteBufCodecs.FLOAT, c -> c.temperature,
+        ItemStack.STREAM_CODEC, c -> c.jarOutput,
+        ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), c -> c.outputTexture,
+        VatRecipe::new
+    );
+
+    private final SizedIngredient inputItem;
+    private final SizedFluidIngredient inputFluid;
     private final ItemStackProvider outputItem;
     private final FluidStack outputFluid;
     private final int length;
     private final float temperature;
     private final ItemStack jarOutput;
-    private final @Nullable ResourceLocation outputTexture;
+    private final Optional<ResourceLocation> outputTexture;
 
-    public VatRecipe(ResourceLocation id, ItemStackIngredient ingredient, FluidStackIngredient fluidInput, ItemStackProvider output, FluidStack outputFluid, int length, float temperature, ItemStack jarOutput, @Nullable ResourceLocation outputTexture)
+    public VatRecipe(SizedIngredient ingredient, SizedFluidIngredient fluidInput, ItemStackProvider output, FluidStack outputFluid, int length, float temperature, ItemStack jarOutput, Optional<ResourceLocation> outputTexture)
     {
-        this.id = id;
         this.inputItem = ingredient;
         this.inputFluid = fluidInput;
         this.outputItem = output;
@@ -72,7 +96,7 @@ public class VatRecipe implements ISimpleRecipe<VatBlockEntity.VatInventory>
         if (!outputFluid.isEmpty())
         {
             int capacity = VatBlockEntity.CAPACITY;
-            if (outputFluid.isFluidEqual(fluid))
+            if (FluidStack.isSameFluidSameComponents(outputFluid, fluid))
             {
                 capacity -= fluid.getAmount();
             }
@@ -113,7 +137,7 @@ public class VatRecipe implements ISimpleRecipe<VatBlockEntity.VatInventory>
         else
         {
             int amount = outputFluid.getAmount() * multiplier;
-            if (outputFluid.isFluidEqual(fluid))
+            if (FluidStack.isSameFluidSameComponents(outputFluid, fluid))
             {
                 amount = amount + fluid.getAmount();
             }
@@ -140,15 +164,15 @@ public class VatRecipe implements ISimpleRecipe<VatBlockEntity.VatInventory>
     }
 
     @Override
-    public ItemStack getResultItem(RegistryAccess access)
+    public ItemStack assemble(VatBlockEntity.VatInventory vatInventory, HolderLookup.Provider provider)
     {
-        return outputItem.getSingleStack(ItemStack.EMPTY);
+        return null;
     }
 
     @Override
-    public ResourceLocation getId()
+    public ItemStack getResultItem(RegistryAccess access)
     {
-        return id;
+        return outputItem.getSingleStack(ItemStack.EMPTY);
     }
 
     @Override
@@ -163,12 +187,12 @@ public class VatRecipe implements ISimpleRecipe<VatBlockEntity.VatInventory>
         return FLRecipeTypes.VAT.get();
     }
 
-    public ItemStackIngredient getInputItem()
+    public SizedIngredient getInputItem()
     {
         return inputItem;
     }
 
-    public FluidStackIngredient getInputFluid()
+    public SizedFluidIngredient getInputFluid()
     {
         return inputFluid;
     }
@@ -198,56 +222,9 @@ public class VatRecipe implements ISimpleRecipe<VatBlockEntity.VatInventory>
         return jarOutput;
     }
 
-    @Nullable
-    public ResourceLocation getOutputTexture()
+    public Optional<ResourceLocation> getOutputTexture()
     {
         return outputTexture;
     }
 
-    public static class Serializer extends RecipeSerializerImpl<VatRecipe>
-    {
-        @Override
-        public VatRecipe fromJson(ResourceLocation id, JsonObject json)
-        {
-            return new VatRecipe(
-                id,
-                json.has("input_item") ? ItemStackIngredient.fromJson(json.getAsJsonObject("input_item")) : ItemStackIngredient.EMPTY,
-                json.has("input_fluid") ? FluidStackIngredient.fromJson(json.getAsJsonObject("input_fluid")) : FluidStackIngredient.EMPTY,
-                json.has("output_item") ? ItemStackProvider.fromJson(json.getAsJsonObject("output_item")) : ItemStackProvider.empty(),
-                json.has("output_fluid") ? JsonHelpers.getFluidStack(json, "output_fluid") : FluidStack.EMPTY,
-                JsonHelpers.getAsInt(json, "length", 600),
-                JsonHelpers.getAsFloat(json, "temperature", 300f),
-                json.has("jar") ? JsonHelpers.getItemStack(json, "jar") : ItemStack.EMPTY,
-                FLHelpers.ofJsonNullable(json, j -> FLHelpers.res(JsonHelpers.getAsString(json, "output_texture")), "output_texture")
-            );
-        }
-
-        @Nullable
-        @Override
-        public VatRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buffer)
-        {
-            final ItemStackIngredient ingredient = ItemStackIngredient.fromNetwork(buffer);
-            final FluidStackIngredient fluidIngredient = FluidStackIngredient.fromNetwork(buffer);
-            final ItemStackProvider output = ItemStackProvider.fromNetwork(buffer);
-            final FluidStack outputFluid = buffer.readFluidStack();
-            final int length = buffer.readVarInt();
-            final float temp = buffer.readFloat();
-            final ItemStack jar = buffer.readItem();
-            final ResourceLocation outputTexture = Helpers.decodeNullable(buffer, FriendlyByteBuf::readResourceLocation);
-            return new VatRecipe(id, ingredient, fluidIngredient, output, outputFluid, length, temp, jar, outputTexture);
-        }
-
-        @Override
-        public void toNetwork(FriendlyByteBuf buffer, VatRecipe recipe)
-        {
-            recipe.inputItem.toNetwork(buffer);
-            recipe.inputFluid.toNetwork(buffer);
-            recipe.outputItem.toNetwork(buffer);
-            buffer.writeFluidStack(recipe.outputFluid);
-            buffer.writeVarInt(recipe.length);
-            buffer.writeFloat(recipe.temperature);
-            buffer.writeItem(recipe.jarOutput);
-            Helpers.encodeNullable(recipe.outputTexture, buffer, (res, buf) -> buf.writeResourceLocation(res));
-        }
-    }
 }

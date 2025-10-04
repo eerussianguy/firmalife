@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
-import net.minecraftforge.common.ForgeConfigSpec.*;
+import net.neoforged.neoforge.common.ModConfigSpec.*;
 
 import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
 

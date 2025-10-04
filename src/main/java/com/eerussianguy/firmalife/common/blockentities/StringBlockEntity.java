@@ -12,9 +12,6 @@ import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.common.recipes.SmokingRecipe;
 import com.eerussianguy.firmalife.config.FLConfig;
 import net.dries007.tfc.common.blockentities.FirepitBlockEntity;
-import net.dries007.tfc.common.capabilities.Capabilities;
-import net.dries007.tfc.common.capabilities.food.FoodCapability;
-import net.dries007.tfc.common.recipes.inventory.ItemStackInventory;
 import net.dries007.tfc.util.Helpers;
 
 public class StringBlockEntity extends SimpleItemRecipeBlockEntity<SmokingRecipe>
@@ -73,7 +70,7 @@ public class StringBlockEntity extends SimpleItemRecipeBlockEntity<SmokingRecipe
         {
             return FoodCapability.areStacksStackableExceptCreationDate(stack, current);
         }
-        return SmokingRecipe.getRecipe(level, new ItemStackInventory(stack)) != null;
+        return SmokingRecipe.getRecipe(stack) != null;
     }
 
     @Override
@@ -93,7 +90,7 @@ public class StringBlockEntity extends SimpleItemRecipeBlockEntity<SmokingRecipe
     public void updateCache()
     {
         assert level != null;
-        cachedRecipe = SmokingRecipe.getRecipe(level, new ItemStackInventory(readStack()));
+        cachedRecipe = SmokingRecipe.getRecipe(readStack());
         needsRecipeUpdate = false;
     }
 }

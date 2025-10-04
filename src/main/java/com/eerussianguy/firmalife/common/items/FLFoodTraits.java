@@ -1,19 +1,13 @@
 package com.eerussianguy.firmalife.common.items;
 
-import java.util.List;
 import java.util.Locale;
 import java.util.Set;
-import java.util.function.Supplier;
-import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.config.FLConfig;
 import com.google.common.collect.ImmutableSet;
-import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.world.item.ItemStack;
-import org.jetbrains.annotations.Nullable;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
-import net.dries007.tfc.common.capabilities.food.FoodTrait;
+import net.dries007.tfc.common.component.food.FoodTrait;
+import net.dries007.tfc.common.component.food.FoodTraits;
 
 public class FLFoodTraits
 {
@@ -67,64 +61,30 @@ public class FLFoodTraits
 
     public static void init() { }
 
-    public static final FoodTrait DRIED = register(Default.DRIED);
-    public static final FoodTrait FRESH = register(Default.FRESH);
-    public static final FoodTrait AGED = register(Default.AGED);
-    public static final FoodTrait VINTAGE = register(Default.VINTAGE);
-    public static final FoodTrait OVEN_BAKED = register(Default.OVEN_BAKED);
-    public static final FoodTrait SMOKED = register(Default.SMOKED);
-    public static final FoodTrait RANCID_SMOKED = register(Default.RANCID_SMOKED);
-    public static final FoodTrait SHELVED = register(Default.SHELVED);
-    public static final FoodTrait SHELVED_2 = register(Default.SHELVED_2);
-    public static final FoodTrait SHELVED_3 = register(Default.SHELVED_3);
-    public static final FoodTrait HUNG = register(Default.HUNG);
-    public static final FoodTrait HUNG_2 = register(Default.HUNG_2);
-    public static final FoodTrait HUNG_3 = register(Default.HUNG_3);
-    public static final FoodTrait FERMENTED = register(Default.FERMENTED);
-    public static final FoodTrait BEE_POLLINATED = register(Default.BEE_POLLINATED);
-    public static final FoodTrait DIRT_GROWN = register(Default.DIRT_GROWN);
-    public static final FoodTrait GRAVEL_GROWN = register(Default.GRAVEL_GROWN);
-    public static final FoodTrait SLOPE_GROWN = register(Default.SLOPE_GROWN);
+    public static final DeferredHolder<FoodTrait, FoodTrait> DRIED = register(Default.DRIED);
+    public static final DeferredHolder<FoodTrait, FoodTrait> FRESH = register(Default.FRESH);
+    public static final DeferredHolder<FoodTrait, FoodTrait> AGED = register(Default.AGED);
+    public static final DeferredHolder<FoodTrait, FoodTrait> VINTAGE = register(Default.VINTAGE);
+    public static final DeferredHolder<FoodTrait, FoodTrait> OVEN_BAKED = register(Default.OVEN_BAKED);
+    public static final DeferredHolder<FoodTrait, FoodTrait> SMOKED = register(Default.SMOKED);
+    public static final DeferredHolder<FoodTrait, FoodTrait> RANCID_SMOKED = register(Default.RANCID_SMOKED);
+    public static final DeferredHolder<FoodTrait, FoodTrait> SHELVED = register(Default.SHELVED);
+    public static final DeferredHolder<FoodTrait, FoodTrait> SHELVED_2 = register(Default.SHELVED_2);
+    public static final DeferredHolder<FoodTrait, FoodTrait> SHELVED_3 = register(Default.SHELVED_3);
+    public static final DeferredHolder<FoodTrait, FoodTrait> HUNG = register(Default.HUNG);
+    public static final DeferredHolder<FoodTrait, FoodTrait> HUNG_2 = register(Default.HUNG_2);
+    public static final DeferredHolder<FoodTrait, FoodTrait> HUNG_3 = register(Default.HUNG_3);
+    public static final DeferredHolder<FoodTrait, FoodTrait> FERMENTED = register(Default.FERMENTED);
+    public static final DeferredHolder<FoodTrait, FoodTrait> BEE_POLLINATED = register(Default.BEE_POLLINATED);
+    public static final DeferredHolder<FoodTrait, FoodTrait> DIRT_GROWN = register(Default.DIRT_GROWN);
+    public static final DeferredHolder<FoodTrait, FoodTrait> GRAVEL_GROWN = register(Default.GRAVEL_GROWN);
+    public static final DeferredHolder<FoodTrait, FoodTrait> SLOPE_GROWN = register(Default.SLOPE_GROWN);
 
-    public static final Set<FoodTrait> WINE_TRAITS = ImmutableSet.of(BEE_POLLINATED, DIRT_GROWN, GRAVEL_GROWN, SLOPE_GROWN);
+    public static final Set<DeferredHolder<FoodTrait, FoodTrait>> WINE_TRAITS = ImmutableSet.of(BEE_POLLINATED, DIRT_GROWN, GRAVEL_GROWN, SLOPE_GROWN);
 
-    private static FoodTrait register(FLFoodTraits.Default trait)
+    private static DeferredHolder<FoodTrait, FoodTrait> register(FLFoodTraits.Default trait)
     {
-        return FoodTrait.register(FLHelpers.identifier(trait.name), new WrappedFT(() -> FLConfig.SERVER.foodTraits.get(trait).get().floatValue(), "firmalife.tooltip.food_trait." + trait.name));
+        return FoodTraits.TRAITS.register(trait.name.toLowerCase(Locale.ROOT), () -> new FoodTrait(FLConfig.SERVER.foodTraits.get(trait), "tfc.tooltip.food_trait." + trait.name.toLowerCase(Locale.ROOT)));
     }
 
-    private static class WrappedFT extends FoodTrait
-    {
-        private final Supplier<Float> decayModifier;
-        @Nullable private final String translationKey;
-
-        public WrappedFT(Supplier<Float> decayModifier, @Nullable String translationKey)
-        {
-            super(1f, translationKey);
-            this.decayModifier = decayModifier;
-            this.translationKey = translationKey;
-        }
-
-        @Override
-        public float getDecayModifier()
-        {
-            return decayModifier.get();
-        }
-
-        @Override
-        public void addTooltipInfo(ItemStack stack, List<Component> text)
-        {
-            if (this.translationKey != null)
-            {
-                MutableComponent component = Component.translatable(this.translationKey);
-                if (this.decayModifier.get() > 1.0F)
-                {
-                    component.withStyle(ChatFormatting.RED);
-                }
-
-                text.add(component);
-            }
-        }
-
-    }
 }

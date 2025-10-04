@@ -1,14 +1,17 @@
 package com.eerussianguy.firmalife.common.blocks;
 
 import java.util.function.Supplier;
-
+import com.eerussianguy.firmalife.common.FLHelpers;
+import com.eerussianguy.firmalife.common.blockentities.ClimateReceiver;
 import com.eerussianguy.firmalife.common.blockentities.ClimateType;
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
+import com.eerussianguy.firmalife.common.util.FoodAge;
+import com.eerussianguy.firmalife.config.FLConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -19,7 +22,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
@@ -28,13 +30,9 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.neoforged.neoforge.items.ItemHandlerHelper;
+import org.jetbrains.annotations.Nullable;
 
-import net.minecraftforge.items.ItemHandlerHelper;
-
-import com.eerussianguy.firmalife.common.FLHelpers;
-import com.eerussianguy.firmalife.common.blockentities.ClimateReceiver;
-import com.eerussianguy.firmalife.common.util.FoodAge;
-import com.eerussianguy.firmalife.config.FLConfig;
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.TFCBlockStateProperties;
@@ -42,11 +40,9 @@ import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.blocks.devices.BarrelBlock;
 import net.dries007.tfc.common.blocks.devices.BarrelRackBlock;
 import net.dries007.tfc.common.blocks.devices.BottomSupportedDeviceBlock;
-import net.dries007.tfc.common.capabilities.food.FoodCapability;
-import net.dries007.tfc.common.items.TFCItems;
+import net.dries007.tfc.common.component.food.FoodCapability;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.calendar.ICalendar;
-import org.jetbrains.annotations.Nullable;
 
 public class CheeseWheelBlock extends BottomSupportedDeviceBlock implements ClimateReceiver
 {
@@ -79,17 +75,16 @@ public class CheeseWheelBlock extends BottomSupportedDeviceBlock implements Clim
 
     @Override
     @SuppressWarnings("deprecation")
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit)
+    public ItemInteractionResult useItemOn(ItemStack held, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit)
     {
-        final ItemStack held = player.getItemInHand(hand);
         if (held.isEmpty() && player.isShiftKeyDown())
         {
             if (state.getValue(RACK) && level.getBlockState(pos.above()).isAir() && hit.getLocation().y - pos.getY() > 0.875f)
             {
-                Helpers.playPlaceSound(level, pos, TFCBlocks.BARREL_RACK.get().defaultBlockState());
+                Helpers.playPlaceSound(player, level, pos, TFCBlocks.BARREL_RACK.get().defaultBlockState());
                 level.setBlockAndUpdate(pos, state.setValue(RACK, false));
                 ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(TFCBlocks.BARREL_RACK.get()));
-                return InteractionResult.sidedSuccess(level.isClientSide);
+                return ItemInteractionResult.sidedSuccess(level.isClientSide);
             }
         }
         else if (Helpers.isItem(held, TFCBlocks.BARREL_RACK.get().asItem()) && !state.getValue(RACK))
@@ -97,15 +92,15 @@ public class CheeseWheelBlock extends BottomSupportedDeviceBlock implements Clim
             if (!player.isCreative())
                 held.shrink(1);
             level.setBlockAndUpdate(pos, state.setValue(RACK, true));
-            Helpers.playPlaceSound(level, pos, TFCBlocks.BARREL_RACK.get().defaultBlockState());
-            return InteractionResult.sidedSuccess(level.isClientSide);
+            Helpers.playPlaceSound(player, level, pos, TFCBlocks.BARREL_RACK.get().defaultBlockState());
+            return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
-        if (Helpers.isItem(held, TFCTags.Items.KNIVES))
+        if (Helpers.isItem(held, TFCTags.Items.TOOLS_KNIFE))
         {
             final int count = state.getValue(COUNT);
             ItemStack drop = new ItemStack(slice.get());
             FoodCapability.applyTrait(drop, state.getValue(AGE).getTrait());
-            drop.getCapability(FoodCapability.CAPABILITY).ifPresent(cap -> cap.setCreationDate(FoodCapability.getRoundedCreationDate()));
+            FoodCapability.setCreationDate(drop, FoodCapability.getRoundedCreationDate());
             ItemHandlerHelper.giveItemToPlayer(player, drop);
             FLHelpers.resetCounter(level, pos);
             if (count - 1 == 0)
@@ -117,9 +112,9 @@ public class CheeseWheelBlock extends BottomSupportedDeviceBlock implements Clim
                 Helpers.playSound(level, pos, getSoundType(state, level, pos, player).getBreakSound());
                 level.setBlockAndUpdate(pos, state.setValue(COUNT, count - 1));
             }
-            return InteractionResult.sidedSuccess(level.isClientSide);
+            return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
-        return InteractionResult.PASS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     @Override

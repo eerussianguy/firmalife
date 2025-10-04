@@ -10,6 +10,5 @@
 package com.eerussianguy.firmalife.common.blocks.plant;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-
 import net.minecraft.FieldsAreNonnullByDefault;
 import net.minecraft.MethodsReturnNonnullByDefault;

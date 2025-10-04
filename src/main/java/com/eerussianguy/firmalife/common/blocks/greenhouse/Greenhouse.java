@@ -3,19 +3,16 @@ package com.eerussianguy.firmalife.common.blocks.greenhouse;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
-
+import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-
-import com.eerussianguy.firmalife.common.blocks.FLBlocks;
-import net.dries007.tfc.common.blocks.ExtendedProperties;
-
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import org.jetbrains.annotations.Nullable;
+
+import net.dries007.tfc.common.blocks.ExtendedProperties;
 
 public enum Greenhouse
 {
