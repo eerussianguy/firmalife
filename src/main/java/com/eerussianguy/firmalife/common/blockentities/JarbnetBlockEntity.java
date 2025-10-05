@@ -4,11 +4,12 @@ import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blocks.JarbnetBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.items.ItemStackHandler;
+import net.neoforged.neoforge.items.ItemStackHandler;
 
 import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
 import net.dries007.tfc.common.capabilities.PartialItemHandler;
@@ -98,16 +99,16 @@ public class JarbnetBlockEntity extends InventoryBlockEntity<ItemStackHandler>
     }
 
     @Override
-    public void loadAdditional(CompoundTag nbt)
+    public void loadAdditional(CompoundTag nbt, HolderLookup.Provider access)
     {
         this.lastUpdateTick = nbt.getLong("tick");
-        super.loadAdditional(nbt);
+        super.loadAdditional(nbt, access);
     }
 
     @Override
-    public void saveAdditional(CompoundTag nbt)
+    public void saveAdditional(CompoundTag nbt, HolderLookup.Provider access)
     {
         nbt.putLong("tick", this.lastUpdateTick);
-        super.saveAdditional(nbt);
+        super.saveAdditional(nbt, access);
     }
 }

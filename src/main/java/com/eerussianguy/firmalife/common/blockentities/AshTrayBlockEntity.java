@@ -1,6 +1,6 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
-import com.eerussianguy.firmalife.common.FLHelpers;
+import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.common.blocks.AshtrayBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -19,7 +19,7 @@ public class AshTrayBlockEntity extends InventoryBlockEntity<ItemStackHandler>
 {
     public AshTrayBlockEntity(BlockPos pos, BlockState state)
     {
-        super(FLBlockEntities.ASHTRAY.get(), pos, state, defaultInventory(1), FLHelpers.blockEntityName("ashtray"));
+        super(FLBlockEntities.ASHTRAY.get(), pos, state, defaultInventory(1), FirmaLife.MOD_ID);
 
         sidedInventory.on(new PartialItemHandler(inventory).extract(0), d -> d != Direction.UP);
     }

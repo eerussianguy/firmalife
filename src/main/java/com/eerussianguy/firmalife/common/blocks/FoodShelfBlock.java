@@ -42,6 +42,6 @@ public class FoodShelfBlock extends FourWayDeviceBlock
     @Override
     public ItemInteractionResult useItemOn(ItemStack held, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
     {
-        return level.getBlockEntity(pos, FLBlockEntities.FOOD_SHELF.get()).map(shelf -> shelf.use(held)).orElse(ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION);
+        return level.getBlockEntity(pos, FLBlockEntities.FOOD_SHELF.get()).map(shelf -> shelf.use(held, player)).orElse(ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION);
     }
 }

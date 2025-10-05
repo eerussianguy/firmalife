@@ -1,6 +1,6 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
-import com.eerussianguy.firmalife.common.FLHelpers;
+import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.common.blocks.JarringStationBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -9,7 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.items.ItemStackHandler;
+import net.neoforged.neoforge.items.ItemStackHandler;
 
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
@@ -51,7 +51,7 @@ public class JarringStationBlockEntity extends TickableInventoryBlockEntity<Item
 
     public JarringStationBlockEntity(BlockPos pos, BlockState state)
     {
-        super(FLBlockEntities.JARRING_STATION.get(), pos, state, defaultInventory(SLOTS), FLHelpers.blockEntityName("jarring_station"));
+        super(FLBlockEntities.JARRING_STATION.get(), pos, state, defaultInventory(SLOTS), FirmaLife.MOD_ID);
         sidedInventory
             .on(new PartialItemHandler(inventory).extractAll(), Direction.DOWN)
             .on(new PartialItemHandler(inventory).insertAll(), Direction.Plane.HORIZONTAL);

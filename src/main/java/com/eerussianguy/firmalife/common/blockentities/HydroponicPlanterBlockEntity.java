@@ -1,6 +1,6 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
-import com.eerussianguy.firmalife.common.FLHelpers;
+import com.eerussianguy.firmalife.FirmaLife;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -32,7 +32,7 @@ public class HydroponicPlanterBlockEntity extends QuadPlanterBlockEntity
 
     public HydroponicPlanterBlockEntity(BlockPos pos, BlockState state)
     {
-        super(FLBlockEntities.HYDROPONIC_PLANTER.get(), pos, state, FLHelpers.blockEntityName("hydroponic_planter"));
+        super(FLBlockEntities.HYDROPONIC_PLANTER.get(), pos, state, FirmaLife.MOD_ID);
     }
 
     @Override

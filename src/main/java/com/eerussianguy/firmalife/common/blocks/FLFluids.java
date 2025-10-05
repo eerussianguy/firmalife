@@ -32,7 +32,6 @@ public class FLFluids
     public static final DeferredRegister<Fluid> FLUID = DeferredRegister.create(Registries.FLUID, MOD_ID);
     public static final DeferredRegister<FluidType> FLUID_TYPES = DeferredRegister.create(NeoForgeRegistries.FLUID_TYPES, MOD_ID);
 
-
     public static final Map<FLMetal, FluidHolder<BaseFlowingFluid>> METALS = Helpers.mapOf(FLMetal.class, metal -> register(
         "metal/" + metal.getSerializedName(),
         properties -> properties

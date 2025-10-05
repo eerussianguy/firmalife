@@ -1,20 +1,18 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
+import com.eerussianguy.firmalife.FirmaLife;
+import com.eerussianguy.firmalife.common.FLHelpers;
+import com.eerussianguy.firmalife.common.util.Plantable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.items.ItemStackHandler;
-
-import com.eerussianguy.firmalife.common.FLHelpers;
-import com.eerussianguy.firmalife.common.util.Plantable;
 import org.jetbrains.annotations.Nullable;
 
 public class QuadPlanterBlockEntity extends LargePlanterBlockEntity
 {
-    public static final Component NAME = FLHelpers.blockEntityName("quad_planter");
     private static final int NUM_SLOTS = 4;
 
     private final Plantable[] cachedPlants;
@@ -22,12 +20,12 @@ public class QuadPlanterBlockEntity extends LargePlanterBlockEntity
 
     public QuadPlanterBlockEntity(BlockPos pos, BlockState state)
     {
-        this(FLBlockEntities.QUAD_PLANTER.get(), pos, state, NAME);
+        this(FLBlockEntities.QUAD_PLANTER.get(), pos, state, FirmaLife.MOD_ID);
     }
 
-    public QuadPlanterBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state, Component name)
+    public QuadPlanterBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state, String modId)
     {
-        super(type, pos, state, defaultInventory(NUM_SLOTS), name);
+        super(type, pos, state, defaultInventory(NUM_SLOTS), modId);
         cachedPlants = new Plantable[] {null, null, null, null};
         growth = new float[] {0, 0, 0, 0};
     }

@@ -13,6 +13,7 @@ import com.eerussianguy.firmalife.config.FLConfig;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -20,14 +21,14 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import org.jetbrains.annotations.Nullable;
 
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blockentities.TFCBlockEntity;
 import net.dries007.tfc.common.blocks.DirectionPropertyBlock;
-import net.dries007.tfc.common.capabilities.Capabilities;
 import net.dries007.tfc.common.capabilities.FluidTankCallback;
 import net.dries007.tfc.util.Helpers;
 
@@ -71,7 +72,7 @@ public class SprinklerBlockEntity extends TFCBlockEntity implements FluidTankCal
             final BlockEntity be = level.getBlockEntity(checkPos);
             if (be != null)
             {
-                final IFluidHandler cap = be.getCapability(Capabilities.FLUID, pipeDirection.getOpposite()).resolve().orElse(null);
+                final IFluidHandler cap = Helpers.getCapability(Capabilities.FluidHandler.BLOCK, be, pipeDirection.getOpposite());
                 if (cap != null)
                 {
                     final Fluid fluid = cap.getFluidInTank(0).getFluid();
@@ -184,17 +185,17 @@ public class SprinklerBlockEntity extends TFCBlockEntity implements FluidTankCal
     }
 
     @Override
-    public void loadAdditional(CompoundTag tag)
+    public void loadAdditional(CompoundTag tag, HolderLookup.Provider access)
     {
         this.valid = tag.getBoolean("valid");
-        super.loadAdditional(tag);
+        super.loadAdditional(tag, access);
     }
 
     @Override
-    public void saveAdditional(CompoundTag tag)
+    public void saveAdditional(CompoundTag tag, HolderLookup.Provider access)
     {
         tag.putBoolean("valid", valid);
-        super.saveAdditional(tag);
+        super.saveAdditional(tag, access);
     }
 
     @Override

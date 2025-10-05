@@ -1,22 +1,21 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
-import com.eerussianguy.firmalife.common.FLHelpers;
+import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.common.blocks.CompostTumblerBlock;
 import com.eerussianguy.firmalife.common.items.FLItems;
+import com.eerussianguy.firmalife.config.FLConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Mth;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-
-import com.eerussianguy.firmalife.config.FLConfig;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
@@ -54,7 +53,7 @@ public class CompostTumblerBlockEntity extends TickableInventoryBlockEntity<Item
 
     public CompostTumblerBlockEntity(BlockPos pos, BlockState state)
     {
-        super(FLBlockEntities.COMPOST_TUMBLER.get(), pos, state, defaultInventory(1), FLHelpers.blockEntityName("compost_tumbler"));
+        super(FLBlockEntities.COMPOST_TUMBLER.get(), pos, state, defaultInventory(1), FirmaLife.MOD_ID);
 
         final Direction connection = state.getValue(CompostTumblerBlock.FACING).getOpposite();
 
@@ -152,7 +151,7 @@ public class CompostTumblerBlockEntity extends TickableInventoryBlockEntity<Item
     }
 
     @Override
-    public void loadAdditional(CompoundTag nbt)
+    public void loadAdditional(CompoundTag nbt, HolderLookup.Provider access)
     {
         green = nbt.getInt("green");
         brown = nbt.getInt("brown");
@@ -162,11 +161,11 @@ public class CompostTumblerBlockEntity extends TickableInventoryBlockEntity<Item
         charcoal = nbt.getInt("charcoal");
         rotten = nbt.getBoolean("rotten");
         lastUpdateTick = nbt.getLong("tick");
-        super.loadAdditional(nbt);
+        super.loadAdditional(nbt, access);
     }
 
     @Override
-    public void saveAdditional(CompoundTag nbt)
+    public void saveAdditional(CompoundTag nbt, HolderLookup.Provider access)
     {
         nbt.putInt("green", green);
         nbt.putInt("brown", brown);
@@ -176,7 +175,7 @@ public class CompostTumblerBlockEntity extends TickableInventoryBlockEntity<Item
         nbt.putInt("charcoal", charcoal);
         nbt.putBoolean("rotten", rotten);
         nbt.putLong("tick", lastUpdateTick);
-        super.saveAdditional(nbt);
+        super.saveAdditional(nbt, access);
     }
 
     public int getTotal()

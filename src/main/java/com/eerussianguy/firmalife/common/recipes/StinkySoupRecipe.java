@@ -1,31 +1,26 @@
 package com.eerussianguy.firmalife.common.recipes;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Function;
 import com.eerussianguy.firmalife.common.items.FLItems;
-import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.RegistryFriendlyByteBuf;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
+import net.neoforged.neoforge.items.ItemHandlerHelper;
 
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blockentities.PotBlockEntity;
+import net.dries007.tfc.common.component.TFCComponents;
 import net.dries007.tfc.common.component.food.FoodCapability;
 import net.dries007.tfc.common.component.food.FoodData;
 import net.dries007.tfc.common.component.food.IFood;
 import net.dries007.tfc.common.component.food.Nutrient;
+import net.dries007.tfc.common.component.item.ItemComponent;
 import net.dries007.tfc.common.fluids.TFCFluids;
 import net.dries007.tfc.common.recipes.PotRecipe;
 import net.dries007.tfc.common.recipes.outputs.PotOutput;
@@ -65,27 +60,24 @@ public class StinkySoupRecipe extends PotRecipe
         }
 
         @Override
-        public InteractionResult onInteract(PotBlockEntity entity, Player player, ItemStack clickedWith)
+        public ItemInteractionResult onInteract(PotBlockEntity entity, Player player, ItemStack clickedWith)
         {
             if (Helpers.isItem(clickedWith.getItem(), TFCTags.Items.SOUP_BOWLS) && !stack.isEmpty())
             {
                 // set the internal bowl to the one we clicked with
-                stack.getCapability(FoodCapability.CAPABILITY)
-                    .filter(food -> food instanceof DynamicBowlHandler)
-                    .ifPresent(food -> ((DynamicBowlHandler) food).setBowl(clickedWith.copyWithCount(1)));
-
+                stack.set(TFCComponents.BOWL, new ItemComponent(clickedWith.copyWithCount(1)));
                 // take the player's bowl, give a soup
                 clickedWith.shrink(1);
                 ItemHandlerHelper.giveItemToPlayer(player, stack.split(1));
-                return InteractionResult.SUCCESS;
+                return ItemInteractionResult.sidedSuccess(player.level().isClientSide);
             }
-            return InteractionResult.PASS;
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
 
         @Override
-        public void write(CompoundTag nbt)
+        public void write(HolderLookup.Provider provider, CompoundTag nbt)
         {
-            nbt.put("item", stack.save(new CompoundTag()));
+            nbt.put("item", stack.save(provider, new CompoundTag()));
         }
 
         @Override
@@ -98,10 +90,8 @@ public class StinkySoupRecipe extends PotRecipe
         public BlockEntityTooltip getTooltip()
         {
             return ((level, blockState, blockPos, blockEntity, tooltip) -> {
-                final List<Component> text = new ArrayList<>();
                 BlockEntityTooltips.itemWithCount(tooltip, this.stack);
-                FoodCapability.addTooltipInfo(this.stack, text);
-                text.forEach(tooltip);
+                FoodCapability.addTooltipInfo(this.stack, tooltip);
             });
         }
     }
@@ -116,7 +106,7 @@ public class StinkySoupRecipe extends PotRecipe
         for (int i = PotBlockEntity.SLOT_EXTRA_INPUT_START; i <= PotBlockEntity.SLOT_EXTRA_INPUT_END; i++)
         {
             ItemStack stack = inventory.getStackInSlot(i);
-            IFood food = stack.getCapability(FoodCapability.CAPABILITY).resolve().orElse(null);
+            IFood food = FoodCapability.get(stack);
             if (food != null)
             {
                 if (food.isRotten()) // this should mostly not happen since the ingredients are not rotten to start, but worth checking
@@ -143,18 +133,12 @@ public class StinkySoupRecipe extends PotRecipe
                 final int idx = nutrient.ordinal();
                 nutrition[idx] *= multiplier;
             }
-            FoodData data = FoodData.create(SOUP_HUNGER_VALUE, water, saturation, nutrition, SOUP_DECAY_MODIFIER);
+            final FoodData data = new FoodData(SOUP_HUNGER_VALUE, water, saturation, 0, nutrition, SOUP_DECAY_MODIFIER);
             int servings = (int) (ingredientCount / 2f) + 1;
-            long created = FoodCapability.getRoundedCreationDate();
 
             soupStack = new ItemStack(FLItems.STINKY_SOUP.get(), servings);
-            soupStack.getCapability(FoodCapability.CAPABILITY)
-                .filter(food -> food instanceof DynamicBowlHandler)
-                .ifPresent(food -> {
-                    DynamicBowlHandler handler = (DynamicBowlHandler) food;
-                    handler.setCreationDate(created);
-                    handler.setFood(data);
-                });
+
+            FoodCapability.setFoodForDynamicItemOnCreate(soupStack, data);
         }
 
         return new StinkOutput(soupStack);

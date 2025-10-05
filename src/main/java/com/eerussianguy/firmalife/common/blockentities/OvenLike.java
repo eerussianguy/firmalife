@@ -1,13 +1,13 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
+import com.eerussianguy.firmalife.common.blocks.AbstractOvenBlock;
+import com.eerussianguy.firmalife.common.blocks.FLStateProperties;
+import com.eerussianguy.firmalife.config.FLConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
-import com.eerussianguy.firmalife.common.blocks.AbstractOvenBlock;
-import com.eerussianguy.firmalife.common.blocks.FLStateProperties;
-import com.eerussianguy.firmalife.config.FLConfig;
 import net.dries007.tfc.util.Helpers;
 
 public interface OvenLike

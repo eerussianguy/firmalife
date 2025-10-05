@@ -4,6 +4,7 @@ import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.container.StovetopGrillContainer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -15,12 +16,11 @@ import org.jetbrains.annotations.Nullable;
 
 import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
 import net.dries007.tfc.common.capabilities.PartialItemHandler;
-import net.dries007.tfc.common.capabilities.food.FoodCapability;
-import net.dries007.tfc.common.capabilities.food.FoodTraits;
-import net.dries007.tfc.common.capabilities.heat.HeatCapability;
+import net.dries007.tfc.common.component.food.FoodCapability;
+import net.dries007.tfc.common.component.food.FoodTraits;
+import net.dries007.tfc.common.component.heat.HeatCapability;
+import net.dries007.tfc.common.component.heat.IHeat;
 import net.dries007.tfc.common.recipes.HeatingRecipe;
-import net.dries007.tfc.common.recipes.inventory.ItemStackInventory;
-import net.dries007.tfc.util.Helpers;
 
 public class StovetopGrillBlockEntity extends ApplianceBlockEntity<StovetopGrillBlockEntity.GrillInventory>
 {
@@ -68,13 +68,13 @@ public class StovetopGrillBlockEntity extends ApplianceBlockEntity<StovetopGrill
     @Override
     public boolean isItemValid(int slot, ItemStack stack)
     {
-        return Helpers.mightHaveCapability(stack, HeatCapability.CAPABILITY);
+        return HeatCapability.get(stack) != null;
     }
 
     @Override
-    public void loadAdditional(CompoundTag nbt)
+    public void loadAdditional(CompoundTag nbt, HolderLookup.Provider access)
     {
-        super.loadAdditional(nbt);
+        super.loadAdditional(nbt, access);
         needsRecipeUpdate = true;
     }
 
@@ -92,17 +92,19 @@ public class StovetopGrillBlockEntity extends ApplianceBlockEntity<StovetopGrill
         {
             final ItemStack inputStack = inventory.getStackInSlot(slot);
             final int finalSlot = slot;
-            inputStack.getCapability(HeatCapability.CAPABILITY, null).ifPresent(cap -> {
+            final IHeat cap = HeatCapability.get(inputStack);
+            if (cap != null)
+            {
                 HeatCapability.addTemp(cap, temperature);
                 final HeatingRecipe recipe = cachedRecipes[finalSlot];
                 if (recipe != null && recipe.isValidTemperature(cap.getTemperature()))
                 {
-                    ItemStack output = recipe.assemble(new ItemStackInventory(inputStack), level.registryAccess());
+                    ItemStack output = recipe.assembleItem(inputStack);
                     FoodCapability.applyTrait(output, FoodTraits.WOOD_GRILLED);
                     inventory.setStackInSlot(finalSlot, output);
                     markForSync();
                 }
-            });
+            }
         }
     }
 
@@ -112,7 +114,7 @@ public class StovetopGrillBlockEntity extends ApplianceBlockEntity<StovetopGrill
         for (int slot = 0; slot < SLOTS; slot++)
         {
             final ItemStack stack = inventory.getStackInSlot(slot);
-            cachedRecipes[slot] = stack.isEmpty() ? null : HeatingRecipe.getRecipe(new ItemStackInventory(stack));
+            cachedRecipes[slot] = stack.isEmpty() ? null : HeatingRecipe.getRecipe(stack);
         }
     }
 

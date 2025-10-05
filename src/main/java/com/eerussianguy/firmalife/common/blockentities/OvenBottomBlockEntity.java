@@ -1,8 +1,13 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
+import com.eerussianguy.firmalife.common.FLHelpers;
+import com.eerussianguy.firmalife.common.FLTags;
+import com.eerussianguy.firmalife.common.blocks.ICure;
+import com.eerussianguy.firmalife.common.blocks.OvenBottomBlock;
 import com.eerussianguy.firmalife.config.FLConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
@@ -11,23 +16,17 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.neoforged.neoforge.items.ItemStackHandler;
 
-import net.minecraftforge.items.ItemStackHandler;
-
-import com.eerussianguy.firmalife.common.FLHelpers;
-import com.eerussianguy.firmalife.common.FLTags;
-import com.eerussianguy.firmalife.common.blocks.ICure;
-import com.eerussianguy.firmalife.common.blocks.OvenBottomBlock;
 import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
-import net.dries007.tfc.common.capabilities.Capabilities;
 import net.dries007.tfc.common.capabilities.PartialItemHandler;
-import net.dries007.tfc.common.capabilities.heat.HeatCapability;
+import net.dries007.tfc.common.component.heat.HeatCapability;
 import net.dries007.tfc.common.items.Powder;
 import net.dries007.tfc.common.items.TFCItems;
-import net.dries007.tfc.util.Fuel;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.ICalendarTickable;
+import net.dries007.tfc.util.data.Fuel;
 
 /**
  * Consumes fuel like a charcoal forge but has no other functionality (like, executing recipes)
@@ -195,7 +194,7 @@ public class OvenBottomBlockEntity extends TickableInventoryBlockEntity<ItemStac
     }
 
     @Override
-    public void loadAdditional(CompoundTag nbt)
+    public void loadAdditional(CompoundTag nbt, HolderLookup.Provider access)
     {
         temperature = nbt.getFloat("temperature");
         burnTicks = nbt.getInt("burnTicks");
@@ -203,11 +202,11 @@ public class OvenBottomBlockEntity extends TickableInventoryBlockEntity<ItemStac
         burnTemperature = nbt.getFloat("burnTemperature");
         lastPlayerTick = nbt.getLong("lastPlayerTick");
         cureTicks = nbt.getInt("cureTicks");
-        super.loadAdditional(nbt);
+        super.loadAdditional(nbt, access);
     }
 
     @Override
-    public void saveAdditional(CompoundTag nbt)
+    public void saveAdditional(CompoundTag nbt, HolderLookup.Provider access)
     {
         nbt.putFloat("temperature", temperature);
         nbt.putInt("burnTicks", burnTicks);
@@ -215,7 +214,7 @@ public class OvenBottomBlockEntity extends TickableInventoryBlockEntity<ItemStac
         nbt.putFloat("burnTemperature", burnTemperature);
         nbt.putLong("lastPlayerTick", lastPlayerTick);
         nbt.putInt("cureTicks", cureTicks);
-        super.saveAdditional(nbt);
+        super.saveAdditional(nbt, access);
     }
 
     @Override
@@ -251,8 +250,8 @@ public class OvenBottomBlockEntity extends TickableInventoryBlockEntity<ItemStac
             Fuel fuel = Fuel.get(fuelStack);
             if (fuel != null)
             {
-                burnTicks += fuel.getDuration();
-                burnTemperature = fuel.getTemperature();
+                burnTicks += fuel.duration();
+                burnTemperature = fuel.temperature();
             }
             onFuelConsumed();
             markForSync();
@@ -265,14 +264,13 @@ public class OvenBottomBlockEntity extends TickableInventoryBlockEntity<ItemStac
         assert level != null;
         if (level.getRandom().nextFloat() < FLConfig.SERVER.ovenAshChance.get() && level.getBlockEntity(getBlockPos().below()) instanceof AshTrayBlockEntity tray)
         {
-            tray.getCapability(Capabilities.ITEM).ifPresent(inv -> {
-                final ItemStack leftover = inv.insertItem(0, new ItemStack(TFCItems.POWDERS.get(Powder.WOOD_ASH).get()), false);
-                if (leftover.isEmpty())
-                {
-                    Helpers.playSound(level, getBlockPos(), SoundEvents.SAND_PLACE);
-                    tray.updateBlockState();
-                }
-            });
+            final var inv = tray.getInventory();
+            final ItemStack leftover = inv.insertItem(0, new ItemStack(TFCItems.POWDERS.get(Powder.WOOD_ASH).get()), false);
+            if (leftover.isEmpty())
+            {
+                Helpers.playSound(level, getBlockPos(), SoundEvents.SAND_PLACE);
+                tray.updateBlockState();
+            }
         }
     }
 

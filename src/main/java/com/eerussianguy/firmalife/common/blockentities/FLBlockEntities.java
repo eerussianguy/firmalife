@@ -2,19 +2,16 @@ package com.eerussianguy.firmalife.common.blockentities;
 
 import java.util.function.Supplier;
 import java.util.stream.Stream;
-
+import com.eerussianguy.firmalife.FirmaLife;
+import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-
-import com.eerussianguy.firmalife.FirmaLife;
-import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import net.dries007.tfc.common.blockentities.BerryBushBlockEntity;
 import net.dries007.tfc.common.blockentities.TFCBlockEntities.Id;
-import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.registry.RegistrationHelpers;
 
 public class FLBlockEntities
@@ -40,11 +37,11 @@ public class FLBlockEntities
     public static final Id<BerryBushBlockEntity> BERRY_BUSH = register("berry_bush", FLBerryBushBlockEntity::new, Stream.of(FLBlocks.FRUIT_TREE_LEAVES.values().stream(), FLBlocks.STATIONARY_BUSHES.values().stream()).flatMap(e -> e));
     public static final Id<FoodShelfBlockEntity> FOOD_SHELF = register("food_shelf", FoodShelfBlockEntity::new, FLBlocks.FOOD_SHELVES.values().stream());
     public static final Id<HangerBlockEntity> HANGER = register("hanger", HangerBlockEntity::new, FLBlocks.HANGERS.values().stream());
-    public static final Id<JarbnetBlockEntity> JARBNET = register("jarbnet", JarbnetBlockEntity::new, FLBlocks.JARBNETS.values().stream()));
-    public static final Id<BigBarrelBlockEntity> BIG_BARREL = register("big_barrel", BigBarrelBlockEntity::new, FLBlocks.BIG_BARRELS.values().stream()));
-    public static final Id<WineShelfBlockEntity> WINE_SHELF = register("wine_shelf", WineShelfBlockEntity::new, FLBlocks.WINE_SHELVES.values().stream()));
-    public static final Id<StompingBarrelBlockEntity> STOMPING_BARREL = register("stomping_barrel", StompingBarrelBlockEntity::new, FLBlocks.STOMPING_BARRELS.values().stream()));
-    public static final Id<BarrelPressBlockEntity> BARREL_PRESS = register("barrel_press", BarrelPressBlockEntity::new, FLBlocks.BARREL_PRESSES.values().stream()));
+    public static final Id<JarbnetBlockEntity> JARBNET = register("jarbnet", JarbnetBlockEntity::new, FLBlocks.JARBNETS.values().stream());
+    public static final Id<BigBarrelBlockEntity> BIG_BARREL = register("big_barrel", BigBarrelBlockEntity::new, FLBlocks.BIG_BARRELS.values().stream());
+    public static final Id<WineShelfBlockEntity> WINE_SHELF = register("wine_shelf", WineShelfBlockEntity::new, FLBlocks.WINE_SHELVES.values().stream());
+    public static final Id<StompingBarrelBlockEntity> STOMPING_BARREL = register("stomping_barrel", StompingBarrelBlockEntity::new, FLBlocks.STOMPING_BARRELS.values().stream());
+    public static final Id<BarrelPressBlockEntity> BARREL_PRESS = register("barrel_press", BarrelPressBlockEntity::new, FLBlocks.BARREL_PRESSES.values().stream());
     public static final Id<VatBlockEntity> VAT = register("vat", VatBlockEntity::new, FLBlocks.VAT);
     public static final Id<AshTrayBlockEntity> ASHTRAY = register("ashtray", AshTrayBlockEntity::new, FLBlocks.ASHTRAY);
     public static final Id<StovetopGrillBlockEntity> STOVETOP_GRILL = register("stovetop_grill", StovetopGrillBlockEntity::new, FLBlocks.STOVETOP_GRILL);

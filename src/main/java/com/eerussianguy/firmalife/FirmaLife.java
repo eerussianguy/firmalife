@@ -57,6 +57,7 @@ public class FirmaLife
         FLFluids.FLUID_TYPES.register(bus);
         FLBlockEntities.BLOCK_ENTITY.register(bus);
         FLRecipeTypes.RECIPE_TYPE.register(bus);
+        FLRecipeTypes.POT_OUTPUT_TYPE.register(bus);
         FLRecipeSerializers.RECIPE_SERIALIZER.register(bus);
         FLMenuTypes.MENU.register(bus);
         FLEffects.EFFECT.register(bus);
@@ -97,7 +98,6 @@ public class FirmaLife
         });
         FLItemStackModifiers.init();
         FLPatchouliIntegration.registerMultiBlocks();
-        FLRecipeTypes.init();
     }
 
 }

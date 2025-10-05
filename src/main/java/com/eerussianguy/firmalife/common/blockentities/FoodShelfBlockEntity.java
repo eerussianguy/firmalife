@@ -1,11 +1,13 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
 import java.util.Set;
+import com.eerussianguy.firmalife.common.FLHelpers;
+import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.config.FLConfig;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -13,9 +15,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-
-import com.eerussianguy.firmalife.common.FLHelpers;
-import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -58,16 +57,16 @@ public class FoodShelfBlockEntity extends InventoryBlockEntity<ItemStackHandler>
     }
 
     @Override
-    public void loadAdditional(CompoundTag nbt)
+    public void loadAdditional(CompoundTag nbt, HolderLookup.Provider access)
     {
-        super.loadAdditional(nbt);
+        super.loadAdditional(nbt, access);
         climateValid = nbt.getBoolean("climateValid");
     }
 
     @Override
-    public void saveAdditional(CompoundTag nbt)
+    public void saveAdditional(CompoundTag nbt, HolderLookup.Provider access)
     {
-        super.saveAdditional(nbt);
+        super.saveAdditional(nbt, access);
         nbt.putBoolean("climateValid", climateValid);
     }
 
@@ -99,24 +98,24 @@ public class FoodShelfBlockEntity extends InventoryBlockEntity<ItemStackHandler>
             FoodCapability.removeTrait(currentWithoutTrait, getFoodTrait());
             return FoodCapability.areStacksStackableExceptCreationDate(stack, currentWithoutTrait);
         }
-        return stack.getCapability(FoodCapability.CAPABILITY).isPresent();
+        return FoodCapability.get(stack) != null;
     }
 
-    public FoodTrait getFoodTrait()
+    public Holder<FoodTrait> getFoodTrait()
     {
         if (level != null)
         {
             final float temp = Climate.getAverageTemperature(level, getBlockPos());
             if (temp < FLConfig.SERVER.cellarLevel3Temperature.get())
             {
-                return FLFoodTraits.SHELVED_3.get();
+                return FLFoodTraits.SHELVED_3;
             }
             if (temp < FLConfig.SERVER.cellarLevel2Temperature.get())
             {
-                return FLFoodTraits.SHELVED_2.get();
+                return FLFoodTraits.SHELVED_2;
             }
         }
-        return FLFoodTraits.SHELVED.get();
+        return FLFoodTraits.SHELVED;
     }
 
     public Set<DeferredHolder<FoodTrait, FoodTrait>> getPossibleTraits()
@@ -124,28 +123,27 @@ public class FoodShelfBlockEntity extends InventoryBlockEntity<ItemStackHandler>
         return POSSIBLE;
     }
 
-    public ItemInteractionResult use(ItemStack held)
+    public ItemInteractionResult use(ItemStack held, Player player)
     {
         assert level != null;
-        var res = InteractionResult.PASS;
+        var res = ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         if (!held.isEmpty() && isItemValid(0, held))
         {
             if (climateValid)
             {
                 FoodCapability.applyTrait(held, getFoodTrait());
             }
-            player.setItemInHand(hand, Helpers.mergeInsertStack(inventory, 0, held));
+            ItemHandlerHelper.giveItemToPlayer(player, FoodCapability.removeTrait(Helpers.mergeInsertStack(inventory, 0, held), getFoodTrait()));
 
-            FoodCapability.removeTrait(player.getItemInHand(hand), getFoodTrait());
-            res = InteractionResult.sidedSuccess(level.isClientSide);
+            res = ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
         else if (held.isEmpty())
         {
             ItemStack stack = inventory.extractItem(0, player.isShiftKeyDown() ? Integer.MAX_VALUE : 1, false);
-            if (stack.isEmpty()) return InteractionResult.PASS;
+            if (stack.isEmpty()) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
             FoodCapability.removeTrait(stack, getFoodTrait());
             ItemHandlerHelper.giveItemToPlayer(player, stack);
-            res = InteractionResult.sidedSuccess(level.isClientSide);
+            res = ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
         updatePreservation(climateValid);
         markForSync();
@@ -161,7 +159,7 @@ public class FoodShelfBlockEntity extends InventoryBlockEntity<ItemStackHandler>
         else
         {
             final ItemStack stack = inventory.getStackInSlot(0);
-            for (FoodTrait trait : getPossibleTraits())
+            for (Holder<FoodTrait> trait : getPossibleTraits())
             {
                 FoodCapability.removeTrait(stack, trait);
             }

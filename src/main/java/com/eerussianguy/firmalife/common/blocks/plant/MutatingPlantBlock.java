@@ -1,10 +1,8 @@
 package com.eerussianguy.firmalife.common.blocks.plant;
 
-import java.util.Optional;
+import com.eerussianguy.firmalife.common.FLHelpers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Holder;
-import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.TagKey;
@@ -77,15 +75,11 @@ public abstract class MutatingPlantBlock extends PlantBlock
             }
             else if (rand.nextInt(8) == 0)
             {
-                getRandomElement(BuiltInRegistries.BLOCK, mutant, rand).ifPresent(block ->
+                FLHelpers.getRandomElement(BuiltInRegistries.BLOCK, mutant, rand).ifPresent(block ->
                     level.setBlockAndUpdate(pos, block.defaultBlockState())
                 );
             }
         }
     }
 
-    private static <T> Optional<T> getRandomElement(Registry<T> registry, TagKey<T> tag, RandomSource random)
-    {
-        return registry.getTag(tag).flatMap((set) -> set.getRandomElement(random)).map(Holder::value);
-    }
 }

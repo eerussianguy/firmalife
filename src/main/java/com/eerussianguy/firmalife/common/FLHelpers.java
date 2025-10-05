@@ -17,7 +17,9 @@ import com.mojang.serialization.JsonOps;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
@@ -26,6 +28,8 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.TagKey;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -82,6 +86,11 @@ public class FLHelpers
         {
             counter.resetCounter();
         }
+    }
+
+    public static <T> Optional<T> getRandomElement(Registry<T> registry, TagKey<T> tag, RandomSource random)
+    {
+        return registry.getTag(tag).flatMap((set) -> set.getRandomElement(random)).map(Holder::value);
     }
 
     public static void writeTraitList(List<FoodTrait> list, CompoundTag nbt, String key)
@@ -242,17 +251,6 @@ public class FLHelpers
             return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-    }
-
-    @Nullable
-    public static <T> T ofJsonNullable(JsonObject json, Function<JsonObject, T> getter, String key)
-    {
-        return json.has(key) ? getter.apply(json) : null;
-    }
-
-    public static <T> T ofJsonDefaulting(JsonObject json, Function<JsonObject, T> getter, String key, T defaultValue)
-    {
-        return json.has(key) ? getter.apply(json) : defaultValue;
     }
 
     public static ResourceLocation res(String string)

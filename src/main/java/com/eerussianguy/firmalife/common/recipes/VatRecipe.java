@@ -148,7 +148,7 @@ public class VatRecipe implements ISimpleRecipe<VatBlockEntity.VatInventory>
         if (!jar.isEmpty())
         {
             jar.setCount(jar.getCount() * multiplier);
-            vat.setOutput(jar, outputTexture);
+            vat.setOutput(jar, outputTexture.orElse(null));
         }
     }
 
@@ -167,12 +167,6 @@ public class VatRecipe implements ISimpleRecipe<VatBlockEntity.VatInventory>
     public ItemStack assemble(VatBlockEntity.VatInventory vatInventory, HolderLookup.Provider provider)
     {
         return null;
-    }
-
-    @Override
-    public ItemStack getResultItem(RegistryAccess access)
-    {
-        return outputItem.getSingleStack(ItemStack.EMPTY);
     }
 
     @Override

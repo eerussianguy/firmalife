@@ -8,14 +8,14 @@ import com.eerussianguy.firmalife.common.recipes.FLRecipeTypes;
 import com.eerussianguy.firmalife.common.recipes.VatRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.IFluidHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -23,6 +23,7 @@ import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
 import net.dries007.tfc.common.capabilities.InventoryFluidTank;
 import net.dries007.tfc.common.capabilities.PartialItemHandler;
+import net.dries007.tfc.common.recipes.input.NonEmptyInput;
 import net.dries007.tfc.util.Helpers;
 
 public class VatBlockEntity extends BoilingBlockEntity<VatBlockEntity.VatInventory>
@@ -40,9 +41,8 @@ public class VatBlockEntity extends BoilingBlockEntity<VatBlockEntity.VatInvento
         final List<ItemStack> excess = vat.inventory.excess;
         if (!excess.isEmpty() && vat.inventory.getStackInSlot(0).isEmpty())
         {
-            vat.inventory.setStackInSlot(0, excess.remove(0));
+            vat.inventory.setStackInSlot(0, excess.removeFirst());
         }
-        vat.handleJarring();
         vat.tickTemperature();
         vat.handleCooking();
     }
@@ -62,20 +62,20 @@ public class VatBlockEntity extends BoilingBlockEntity<VatBlockEntity.VatInvento
     }
 
     @Override
-    public void loadAdditional(CompoundTag nbt)
+    public void loadAdditional(CompoundTag nbt, HolderLookup.Provider access)
     {
-        super.loadAdditional(nbt);
-        jarOutput = nbt.contains("jarOutput", Tag.TAG_COMPOUND) ? ItemStack.of(nbt.getCompound("jarOutput")) : ItemStack.EMPTY;
+        super.loadAdditional(nbt, access);
+        jarOutput = nbt.contains("jarOutput", Tag.TAG_COMPOUND) ? ItemStack.parseOptional(access, nbt.getCompound("jarOutput")) : ItemStack.EMPTY;
         lastTexture = nbt.contains("lastTexture", Tag.TAG_STRING) ? FLHelpers.res(nbt.getString("lastTexture")) : null;
     }
 
     @Override
-    public void saveAdditional(CompoundTag nbt)
+    public void saveAdditional(CompoundTag nbt, HolderLookup.Provider access)
     {
-        super.saveAdditional(nbt);
+        super.saveAdditional(nbt, access);
         if (!jarOutput.isEmpty())
         {
-            nbt.put("jarOutput", jarOutput.serializeNBT());
+            nbt.put("jarOutput", jarOutput.save(access));
         }
         if (lastTexture != null)
         {
@@ -121,31 +121,12 @@ public class VatBlockEntity extends BoilingBlockEntity<VatBlockEntity.VatInvento
         return lastTexture;
     }
 
-    public void handleJarring()
-    {
-        final FluidStack fluid = inventory.getFluidInTank(0);
-        final ItemStack stack = inventory.getStackInSlot(0);
-        if (fluid.hasTag() && fluid.getTag().contains("fruit", Tag.TAG_COMPOUND) && Helpers.isItem(stack, TFCTags.Items.EMPTY_JAR_WITH_LID))
-        {
-            final int jars = stack.getCount();
-            final int maxFill = fluid.getAmount() / 500;
-            if (jars <= maxFill && maxFill > 0)
-            {
-                final ItemStack newStack = ItemStack.of(fluid.getTag().getCompound("fruit"));
-                newStack.setCount(jars);
-                inventory.setStackInSlot(0, newStack);
-                inventory.drain(500 * jars, IFluidHandler.FluidAction.EXECUTE);
-                markForSync();
-            }
-        }
-    }
-
     public void updateCachedRecipe()
     {
         assert level != null;
         if (inventory.excess.isEmpty())
         {
-            cachedRecipe = level.getRecipeManager().getRecipeFor(FLRecipeTypes.VAT.get(), inventory, level).orElse(null);
+            cachedRecipe = level.getRecipeManager().getRecipeFor(FLRecipeTypes.VAT.get(), inventory, level).map(RecipeHolder::value).orElse(null);
         }
         else
         {
@@ -203,7 +184,7 @@ public class VatBlockEntity extends BoilingBlockEntity<VatBlockEntity.VatInvento
         return cachedRecipe != null && temperature > cachedRecipe.getTemperature();
     }
 
-    public static class VatInventory extends BoilingInventory
+    public static class VatInventory extends BoilingInventory implements NonEmptyInput
     {
         private final List<ItemStack> excess;
         private final VatBlockEntity vat;
@@ -231,18 +212,18 @@ public class VatBlockEntity extends BoilingBlockEntity<VatBlockEntity.VatInvento
         }
 
         @Override
-        public CompoundTag serializeNBT()
+        public CompoundTag serializeNBT(HolderLookup.Provider access)
         {
-            CompoundTag nbt = super.serializeNBT();
-            FLHelpers.writeItemStackList(excess, nbt, "excess");
+            CompoundTag nbt = super.serializeNBT(access);
+            FLHelpers.writeItemStackList(excess, nbt, "excess", access);
             return nbt;
         }
 
         @Override
-        public void deserializeNBT(CompoundTag nbt)
+        public void deserializeNBT(HolderLookup.Provider access, CompoundTag nbt)
         {
-            super.deserializeNBT(nbt);
-            FLHelpers.readItemStackList(excess, nbt, "excess");
+            super.deserializeNBT(access, nbt);
+            FLHelpers.readItemStackList(excess, nbt, "excess", access);
         }
     }
 }

@@ -8,13 +8,16 @@ import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.common.util.FLClimateRanges;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import org.jetbrains.annotations.NotNull;
 
+import net.dries007.tfc.client.overworld.SolarCalculator;
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blockentities.TickableBlockEntity;
 import net.dries007.tfc.common.blocks.plant.fruit.Lifecycle;
@@ -91,7 +94,7 @@ public class GrapePlantBlockEntity extends TickableBlockEntity implements ICalen
                 markForSync();
             }
             lifecycle = Lifecycle.HEALTHY;
-            final Month month = Calendars.get(level).getCalendarMonthOfYear();
+            final Month month = Calendars.get(level).getHemispheralCalendarMonthOfYear(SolarCalculator.getInNorthernHemisphere(worldPosition, level));
             if (month == Month.JUNE)
             {
                 lifecycle = Lifecycle.FLOWERING;
@@ -251,7 +254,7 @@ public class GrapePlantBlockEntity extends TickableBlockEntity implements ICalen
                         {
                             dirtCount += 1;
                         }
-                        else if (Helpers.isBlock(state, Tags.Blocks.GRAVEL))
+                        else if (Helpers.isBlock(state, Tags.Blocks.GRAVELS))
                         {
                             gravelCount += 1;
                         }
@@ -316,24 +319,24 @@ public class GrapePlantBlockEntity extends TickableBlockEntity implements ICalen
     }
 
     @Override
-    public void loadAdditional(CompoundTag nbt)
+    public void loadAdditional(CompoundTag nbt, HolderLookup.Provider access)
     {
         lastUpdateTick = nbt.getLong("tick");
         lastGrowthTick = nbt.getLong("lastGrowthTick");
         growth = nbt.getFloat("growth");
         hasBees = nbt.getBoolean("hasBees");
         soilData = nbt.getIntArray("soilData");
-        super.loadAdditional(nbt);
+        super.loadAdditional(nbt, access);
     }
 
     @Override
-    public void saveAdditional(CompoundTag nbt)
+    public void saveAdditional(CompoundTag nbt, HolderLookup.Provider access)
     {
         nbt.putLong("tick", lastUpdateTick);
         nbt.putLong("lastGrowthTick", lastGrowthTick);
         nbt.putFloat("growth", growth);
         nbt.putBoolean("hasBees", hasBees);
         nbt.putIntArray("soilData", soilData);
-        super.saveAdditional(nbt);
+        super.saveAdditional(nbt, access);
     }
 }

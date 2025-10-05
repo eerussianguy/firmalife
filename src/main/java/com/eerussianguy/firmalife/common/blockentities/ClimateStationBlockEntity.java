@@ -1,14 +1,14 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
-
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.util.GreenhouseType;
 import com.eerussianguy.firmalife.common.util.Mechanics;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
@@ -20,7 +20,7 @@ public class ClimateStationBlockEntity extends TFCBlockEntity
 {
     private Set<BlockPos> positions;
     private ClimateType type = ClimateType.GREENHOUSE;
-    @Nullable private ResourceLocation favoriteGreenhouseType = null;
+    @Nullable private GreenhouseType favoriteGreenhouseType = null;
     private boolean favoriteIsCellar = false;
 
     public ClimateStationBlockEntity(BlockPos pos, BlockState state)
@@ -30,9 +30,9 @@ public class ClimateStationBlockEntity extends TFCBlockEntity
     }
 
     @Override
-    public void loadAdditional(CompoundTag nbt)
+    public void loadAdditional(CompoundTag nbt, HolderLookup.Provider access)
     {
-        super.loadAdditional(nbt);
+        super.loadAdditional(nbt, access);
         type = ClimateType.byId(nbt.getInt("climateType"));
         long[] array = nbt.getLongArray("positions");
         positions.clear();
@@ -43,15 +43,15 @@ public class ClimateStationBlockEntity extends TFCBlockEntity
         }
         if (nbt.contains("favoriteType"))
         {
-            favoriteGreenhouseType = FLHelpers.res(nbt.getString("favoriteType"));
+            favoriteGreenhouseType = GreenhouseType.MANAGER.get(FLHelpers.res(nbt.getString("favoriteType")));
         }
         favoriteIsCellar = nbt.getBoolean("favoriteIsCellar");
     }
 
     @Override
-    public void saveAdditional(CompoundTag nbt)
+    public void saveAdditional(CompoundTag nbt, HolderLookup.Provider access)
     {
-        super.saveAdditional(nbt);
+        super.saveAdditional(nbt, access);
         nbt.putInt("climateType", type.ordinal());
         final long[] array = new long[positions.size()];
         int i = 0;
@@ -62,7 +62,7 @@ public class ClimateStationBlockEntity extends TFCBlockEntity
         }
         nbt.putLongArray("positions", array);
         if (favoriteGreenhouseType != null)
-            nbt.putString("favoriteType", favoriteGreenhouseType.toString());
+            nbt.putString("favoriteType", Objects.requireNonNull(GreenhouseType.MANAGER.getId(favoriteGreenhouseType)).toString());
         nbt.putBoolean("favoriteIsCellar", favoriteIsCellar);
     }
 
@@ -110,7 +110,7 @@ public class ClimateStationBlockEntity extends TFCBlockEntity
 
     public void setFavorite(GreenhouseType type)
     {
-        favoriteGreenhouseType = type.id;
+        favoriteGreenhouseType = type.;
         favoriteIsCellar = false;
     }
 
@@ -123,11 +123,7 @@ public class ClimateStationBlockEntity extends TFCBlockEntity
     @Nullable
     public GreenhouseType getFavoriteType()
     {
-        if (favoriteGreenhouseType != null)
-        {
-            return GreenhouseType.get(favoriteGreenhouseType);
-        }
-        return null;
+        return favoriteGreenhouseType;
     }
 
     public boolean favoriteIsCellar()

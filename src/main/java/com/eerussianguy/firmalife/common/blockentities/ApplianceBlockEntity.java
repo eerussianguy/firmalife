@@ -1,7 +1,8 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
+import com.eerussianguy.firmalife.FirmaLife;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.inventory.ContainerData;
@@ -9,19 +10,19 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.common.util.INBTSerializable;
 import net.neoforged.neoforge.items.IItemHandlerModifiable;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import net.neoforged.neoforge.items.ItemStackHandler;
 
 import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
 import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
 import net.dries007.tfc.common.capabilities.DelegateItemHandler;
 import net.dries007.tfc.common.capabilities.InventoryItemHandler;
-import net.dries007.tfc.common.capabilities.SidedHandler;
 import net.dries007.tfc.common.component.heat.HeatCapability;
+import net.dries007.tfc.common.component.heat.IHeatConsumer;
+import net.dries007.tfc.util.SyncableContainerData;
 import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.ICalendarTickable;
 
-public abstract class ApplianceBlockEntity<C extends IItemHandlerModifiable & INBTSerializable<CompoundTag> & IHeatBlock> extends TickableInventoryBlockEntity<C> implements ICalendarTickable
+public abstract class ApplianceBlockEntity<C extends IItemHandlerModifiable & INBTSerializable<CompoundTag> & IHeatConsumer> extends TickableInventoryBlockEntity<C> implements ICalendarTickable
 {
     private long lastUpdateTick;
     protected float temperature = 0;
@@ -29,15 +30,12 @@ public abstract class ApplianceBlockEntity<C extends IItemHandlerModifiable & IN
     protected int targetTemperatureStabilityTicks = 0;
     protected final ContainerData syncableData;
 
-    private final SidedHandler.Noop<IHeatBlock> sidedHeat;
-
     public ApplianceBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state, InventoryFactory<C> inventoryFactory, Component name)
     {
-        super(type, pos, state, inventoryFactory, name);
+        super(type, pos, state, inventoryFactory, FirmaLife.MOD_ID);
         lastUpdateTick = Calendars.SERVER.getTicks();
 
-        sidedHeat = new SidedHandler.Noop<>(inventory);
-        syncableData = new IntArrayBuilder().add(() -> (int) temperature, value -> temperature = value);
+        syncableData = new SyncableContainerData().add(() -> (int) temperature, value -> temperature = value);
     }
 
     public ContainerData getSyncableData()
@@ -103,37 +101,38 @@ public abstract class ApplianceBlockEntity<C extends IItemHandlerModifiable & IN
     }
 
     @Override
-    public void loadAdditional(CompoundTag nbt)
+    public void loadAdditional(CompoundTag nbt, HolderLookup.Provider access)
     {
         lastUpdateTick = nbt.getLong("lastTick");
         temperature = nbt.getFloat("temperature");
         targetTemperature = nbt.getFloat("targetTemperature");
         targetTemperatureStabilityTicks = nbt.getInt("targetTemperatureStabilityTicks");
-        super.loadAdditional(nbt);
+        super.loadAdditional(nbt, access);
     }
 
     @Override
-    public void saveAdditional(CompoundTag nbt)
+    public void saveAdditional(CompoundTag nbt, HolderLookup.Provider access)
     {
         nbt.putLong("lastTick", lastUpdateTick);
         nbt.putFloat("temperature", temperature);
         nbt.putFloat("targetTemperature", targetTemperature);
         nbt.putInt("targetTemperatureStabilityTicks", targetTemperatureStabilityTicks);
-        super.saveAdditional(nbt);
+        super.saveAdditional(nbt, access);
     }
 
-    @NotNull
-    @Override
-    public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side)
-    {
-        if (cap == HeatCapability.BLOCK_CAPABILITY)
-        {
-            return sidedHeat.getSidedHandler(side).cast();
-        }
-        return super.getCapability(cap, side);
-    }
+    // todo: convert to new cap registration
+//    @NotNull
+//    @Override
+//    public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side)
+//    {
+//        if (cap == HeatCapability.BLOCK_CAPABILITY)
+//        {
+//            return sidedHeat.getSidedHandler(side).cast();
+//        }
+//        return super.getCapability(cap, side);
+//    }
 
-    public static class ApplianceInventory implements EmptyInventory, DelegateItemHandler, INBTSerializable<CompoundTag>, CrucibleLikeHeatBlock
+    public static class ApplianceInventory implements IHeatConsumer, DelegateItemHandler, INBTSerializable<CompoundTag>, CrucibleLikeHeatBlock
     {
         private final ApplianceBlockEntity<?> appliance;
         protected final ItemStackHandler inventory;
@@ -151,17 +150,17 @@ public abstract class ApplianceBlockEntity<C extends IItemHandlerModifiable & IN
         }
 
         @Override
-        public CompoundTag serializeNBT()
+        public CompoundTag serializeNBT(HolderLookup.Provider lookup)
         {
             CompoundTag nbt = new CompoundTag();
-            nbt.put("inventory", inventory.serializeNBT());
+            nbt.put("inventory", inventory.serializeNBT(lookup));
             return nbt;
         }
 
         @Override
-        public void deserializeNBT(CompoundTag nbt)
+        public void deserializeNBT(HolderLookup.Provider lookup, CompoundTag nbt)
         {
-            inventory.deserializeNBT(nbt.getCompound("inventory"));
+            inventory.deserializeNBT(lookup, nbt.getCompound("inventory"));
         }
 
         @Override

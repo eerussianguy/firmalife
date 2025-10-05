@@ -1,6 +1,7 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
 import java.util.function.Supplier;
+import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.recipes.DryingRecipe;
 import com.eerussianguy.firmalife.config.FLConfig;
@@ -12,10 +13,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
-import net.minecraftforge.items.ItemStackHandler;
 
-import net.dries007.tfc.common.capabilities.PartialItemHandler;
-import net.dries007.tfc.common.recipes.inventory.ItemStackInventory;
 import net.dries007.tfc.util.EnvironmentHelpers;
 import net.dries007.tfc.util.Helpers;
 
@@ -50,7 +48,7 @@ public class DryingMatBlockEntity extends SimpleItemRecipeBlockEntity<DryingReci
 
         if (mat.cachedRecipe != null && level.getGameTime() % 20 == 0)
         {
-            if (!mat.cachedRecipe.matches(new ItemStackInventory(mat.inventory.getStackInSlot(0)), level))
+            if (!mat.cachedRecipe.matches(mat.inventory.getStackInSlot(0), level))
             {
                 mat.cachedRecipe = null;
                 mat.resetCounter();
@@ -64,7 +62,7 @@ public class DryingMatBlockEntity extends SimpleItemRecipeBlockEntity<DryingReci
 
     public DryingMatBlockEntity(BlockEntityType<DryingMatBlockEntity> type, BlockPos pos, BlockState state, Supplier<Integer> dryTicks)
     {
-        super(type, pos, state, FLHelpers.blockEntityName("drying_mat"), dryTicks);
+        super(type, pos, state, FirmaLife.MOD_ID, dryTicks);
     }
 
     @Override

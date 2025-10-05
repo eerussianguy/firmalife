@@ -21,7 +21,7 @@ public class FLInteractionManager
 {
     public static void init()
     {
-        InteractionManager.register(new BlockItemPlacement(TFCItems.WOOL_YARN, FLBlocks.WOOL_STRING) {
+        InteractionManager.registerBlock(new BlockItemPlacement(TFCItems.WOOL_YARN, FLBlocks.WOOL_STRING) {
             @Override
             public InteractionResult postPlacement(BlockPlaceContext context)
             {
@@ -34,7 +34,7 @@ public class FLInteractionManager
         });
 
 
-        InteractionManager.register(Ingredient.of(TFCItems.WROUGHT_IRON_GRILL.get()), false, (stack, context) -> {
+        InteractionManager.register(Ingredient.of(TFCItems.WROUGHT_IRON_GRILL), InteractionManager.Target.BLOCKS, (stack, context) -> {
             final Level level = context.getLevel();
             final BlockPos pos = context.getClickedPos();
             final BlockPos abovePos = pos.above();
@@ -53,7 +53,7 @@ public class FLInteractionManager
             return InteractionResult.PASS;
         });
 
-        InteractionManager.register(Ingredient.of(TFCItems.POT.get()), false, (stack, context) -> {
+        InteractionManager.register(Ingredient.of(TFCItems.POT), InteractionManager.Target.BLOCKS, (stack, context) -> {
             final Level level = context.getLevel();
             final BlockPos pos = context.getClickedPos();
             final BlockPos abovePos = pos.above();

@@ -1,7 +1,13 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
+import com.eerussianguy.firmalife.common.FLHelpers;
+import com.eerussianguy.firmalife.common.FLTags;
+import com.eerussianguy.firmalife.common.blocks.MixingBowlBlock;
+import com.eerussianguy.firmalife.common.recipes.FLRecipeTypes;
+import com.eerussianguy.firmalife.common.recipes.MixingBowlRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -12,29 +18,24 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.util.INBTSerializable;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraftforge.fluids.capability.templates.FluidTank;
-import net.minecraftforge.items.IItemHandlerModifiable;
-import net.minecraftforge.items.ItemStackHandler;
-
-import com.eerussianguy.firmalife.common.FLHelpers;
-import com.eerussianguy.firmalife.common.FLTags;
-import com.eerussianguy.firmalife.common.blocks.MixingBowlBlock;
-import com.eerussianguy.firmalife.common.recipes.FLRecipeTypes;
-import com.eerussianguy.firmalife.common.recipes.MixingBowlRecipe;
-import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
-import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
-import net.dries007.tfc.common.capabilities.*;
-import net.dries007.tfc.common.fluids.FluidHelpers;
-import net.dries007.tfc.common.fluids.TFCFluids;
-import net.dries007.tfc.common.recipes.inventory.EmptyInventory;
-import net.dries007.tfc.util.Helpers;
+import net.neoforged.neoforge.common.util.INBTSerializable;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
+import net.neoforged.neoforge.items.IItemHandlerModifiable;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
+import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
+import net.dries007.tfc.common.capabilities.DelegateFluidHandler;
+import net.dries007.tfc.common.capabilities.DelegateItemHandler;
+import net.dries007.tfc.common.capabilities.InventoryItemHandler;
+import net.dries007.tfc.common.capabilities.PartialItemHandler;
+import net.dries007.tfc.common.fluids.FluidHelpers;
+import net.dries007.tfc.common.recipes.input.NonEmptyInput;
+import net.dries007.tfc.util.Helpers;
 
 public class MixingBowlBlockEntity extends TickableInventoryBlockEntity<MixingBowlBlockEntity.MixingBowlInventory>
 {
@@ -80,7 +81,7 @@ public class MixingBowlBlockEntity extends TickableInventoryBlockEntity<MixingBo
 
     public static final int SLOTS = 5;
 
-    private final SidedHandler.Builder<IFluidHandler> sidedFluidInventory;
+//    private final SidedHandler.Builder<IFluidHandler> sidedFluidInventory;
     private int rotationTimer = -1;
 
     public MixingBowlBlockEntity(BlockPos pos, BlockState state)
@@ -91,8 +92,8 @@ public class MixingBowlBlockEntity extends TickableInventoryBlockEntity<MixingBo
             .on(new PartialItemHandler(inventory).extract(0, 1, 2, 3, 4), Direction.Plane.HORIZONTAL)
             .on(new PartialItemHandler(inventory).insert(0, 1, 2, 3, 4), Direction.UP);
 
-        sidedFluidInventory = new SidedHandler.Builder<IFluidHandler>(inventory)
-            .on(inventory, Direction.Plane.HORIZONTAL);
+//        sidedFluidInventory = new SidedHandler.Builder<IFluidHandler>(inventory)
+//            .on(inventory, Direction.Plane.HORIZONTAL);
     }
 
     @Override
@@ -204,19 +205,20 @@ public class MixingBowlBlockEntity extends TickableInventoryBlockEntity<MixingBo
         assert level != null;
         return level.getRecipeManager().getRecipeFor(FLRecipeTypes.MIXING_BOWL.get(), inventory, level).orElse(null);
     }
+    // todo: water cap
+//
+//    @NotNull
+//    @Override
+//    public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side)
+//    {
+//        if (cap == Capabilities.FLUID)
+//        {
+//            return sidedFluidInventory.getSidedHandler(side).cast();
+//        }
+//        return super.getCapability(cap, side);
+//    }
 
-    @NotNull
-    @Override
-    public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side)
-    {
-        if (cap == Capabilities.FLUID)
-        {
-            return sidedFluidInventory.getSidedHandler(side).cast();
-        }
-        return super.getCapability(cap, side);
-    }
-
-    public static class MixingBowlInventory implements EmptyInventory, DelegateItemHandler, DelegateFluidHandler, INBTSerializable<CompoundTag>
+    public static class MixingBowlInventory implements NonEmptyInput, DelegateItemHandler, DelegateFluidHandler, INBTSerializable<CompoundTag>
     {
         private final MixingBowlBlockEntity bowl;
         private final ItemStackHandler inventory;
@@ -254,19 +256,19 @@ public class MixingBowlBlockEntity extends TickableInventoryBlockEntity<MixingBo
         }
 
         @Override
-        public CompoundTag serializeNBT()
+        public CompoundTag serializeNBT(HolderLookup.Provider access)
         {
             CompoundTag nbt = new CompoundTag();
-            nbt.put("inventory", inventory.serializeNBT());
-            nbt.put("tank", tank.writeToNBT(new CompoundTag()));
+            nbt.put("inventory", inventory.serializeNBT(access));
+            nbt.put("tank", tank.writeToNBT(access, new CompoundTag()));
             return nbt;
         }
 
         @Override
-        public void deserializeNBT(CompoundTag nbt)
+        public void deserializeNBT(HolderLookup.Provider access, CompoundTag nbt)
         {
-            inventory.deserializeNBT(nbt.getCompound("inventory"));
-            tank.readFromNBT(nbt.getCompound("tank"));
+            inventory.deserializeNBT(access, nbt.getCompound("inventory"));
+            tank.readFromNBT(access, nbt.getCompound("tank"));
         }
     }
 }

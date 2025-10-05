@@ -16,7 +16,6 @@ public enum ExtraFluid implements StringRepresentable
     PINA_COLADA(0xFFE4C06A),
     CHOCOLATE(0xFF875633),
     SUGAR_WATER(0xFF99EEFF),
-    FRUITY_FLUID(0xFFFF6619),
     MEAD(0xFFc79f28),
     SOYBEAN_OIL(0xFFdbc99a),
     ;

@@ -3,6 +3,7 @@ package com.eerussianguy.firmalife.common.blockentities;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
+import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blocks.FLFluids;
@@ -13,13 +14,13 @@ import com.eerussianguy.firmalife.common.items.FLFood;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.common.items.FLItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -28,11 +29,17 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.Nullable;
 
+import net.dries007.tfc.client.overworld.SolarCalculator;
 import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
 import net.dries007.tfc.common.component.food.FoodCapability;
+import net.dries007.tfc.common.component.food.FoodTrait;
+import net.dries007.tfc.common.component.food.FoodTraits;
+import net.dries007.tfc.common.component.food.IFood;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.climate.Climate;
@@ -99,7 +106,7 @@ public class BarrelPressBlockEntity extends TickableInventoryBlockEntity<ItemSta
 
     public BarrelPressBlockEntity(BlockPos pos, BlockState state)
     {
-        super(FLBlockEntities.BARREL_PRESS.get(), pos, state, defaultInventory(SLOTS), FLHelpers.blockEntityName("barrel_press"));
+        super(FLBlockEntities.BARREL_PRESS.get(), pos, state, defaultInventory(SLOTS), FirmaLife.MOD_ID);
     }
 
     public ItemInteractionResult push()
@@ -124,16 +131,20 @@ public class BarrelPressBlockEntity extends TickableInventoryBlockEntity<ItemSta
         final WineType wine = getWineType();
         if (wine == null)
             return;
-        final var climate = KoppenClimateClassification.classify(Climate.getAverageTemperature(level, worldPosition), Climate.getRainfall(level, worldPosition));
+        final var climate = KoppenClimateClassification.classify(Climate.getAverageTemperature(level, worldPosition), Climate.getRainfall(level, worldPosition), Climate.getRainfallVariance(level, worldPosition), SolarCalculator.getInNorthernHemisphere(worldPosition, level));
 
         final List<FoodTrait> traits = new ArrayList<>();
-        grapes.getCapability(FoodCapability.CAPABILITY).ifPresent(cap -> {
-            for (FoodTrait trait : cap.getTraits())
-            {
-                if (FLFoodTraits.WINE_TRAITS.contains(trait))
+        final IFood food = FoodCapability.get(grapes);
+        if (food != null)
+        {
+
+            food.getTraits().forEach(trait -> {
+                if (FoodTraits.REGISTRY.createIntrusiveHolder(trait).is(FLTags.Traits.WINE))
+                {
                     traits.add(trait);
-            }
-        });
+                }
+            });
+        }
         output = new WineOutput(wine, climate, servings, traits);
 
         for (int i = SLOT_GRAPES; i < SLOT_WINE_IN; i++)
@@ -239,7 +250,7 @@ public class BarrelPressBlockEntity extends TickableInventoryBlockEntity<ItemSta
     {
         if (slot == SLOT_GRAPES && Helpers.isItem(stack, FLTags.Items.CAN_BE_PRESSED_LIKE_GRAPES))
         {
-            return stack.getCapability(FoodCapability.CAPABILITY).map(cap -> cap.hasTrait(FLFoodTraits.FERMENTED)).orElse(false);
+            return FoodCapability.hasTrait(stack, FLFoodTraits.FERMENTED);
         }
         if (slot == SLOT_WINE_OUT)
             return false; // only code can add an item here
@@ -263,9 +274,9 @@ public class BarrelPressBlockEntity extends TickableInventoryBlockEntity<ItemSta
     }
 
     @Override
-    public void saveAdditional(CompoundTag tag)
+    public void saveAdditional(CompoundTag tag, HolderLookup.Provider access)
     {
-        super.saveAdditional(tag);
+        super.saveAdditional(tag, access);
         tag.putLong("pushed", this.lastPushed);
         tag.putBoolean("didAction", didAction);
         if (output != null)
@@ -273,9 +284,9 @@ public class BarrelPressBlockEntity extends TickableInventoryBlockEntity<ItemSta
     }
 
     @Override
-    public void loadAdditional(CompoundTag tag)
+    public void loadAdditional(CompoundTag tag, HolderLookup.Provider access)
     {
-        super.loadAdditional(tag);
+        super.loadAdditional(tag, access);
         this.lastPushed = tag.getLong("pushed");
         this.didAction = tag.getBoolean("didAction");
         if (tag.contains("output", Tag.TAG_COMPOUND))
@@ -307,7 +318,7 @@ public class BarrelPressBlockEntity extends TickableInventoryBlockEntity<ItemSta
     public static class WineOutput
     {
         private WineType wine = WineType.RED;
-        private KoppenClimateClassification koppen = KoppenClimateClassification.TEMPERATE;
+        private KoppenClimateClassification koppen = KoppenClimateClassification.AF;
         private int servings = 0;
         private List<FoodTrait> traits;
 

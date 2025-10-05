@@ -5,8 +5,8 @@ import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.container.StovetopPotContainer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -15,20 +15,20 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemHandlerHelper;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.items.ItemHandlerHelper;
 import org.jetbrains.annotations.Nullable;
 
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
 import net.dries007.tfc.common.capabilities.InventoryFluidTank;
 import net.dries007.tfc.common.capabilities.PartialItemHandler;
-import net.dries007.tfc.common.capabilities.food.DynamicBowlHandler;
-import net.dries007.tfc.common.capabilities.food.FoodCapability;
-import net.dries007.tfc.common.capabilities.food.FoodData;
-import net.dries007.tfc.common.capabilities.food.IFood;
-import net.dries007.tfc.common.capabilities.food.Nutrient;
+import net.dries007.tfc.common.component.TFCComponents;
+import net.dries007.tfc.common.component.food.FoodCapability;
+import net.dries007.tfc.common.component.food.FoodData;
+import net.dries007.tfc.common.component.food.IFood;
+import net.dries007.tfc.common.component.food.Nutrient;
+import net.dries007.tfc.common.component.item.ItemComponent;
 import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.common.recipes.SoupPotRecipe;
 import net.dries007.tfc.util.Helpers;
@@ -78,7 +78,7 @@ public class StovetopPotBlockEntity extends BoilingBlockEntity<StovetopPotBlockE
         if (inventory.getFluidInTank(0).getAmount() >= 100 && temperature > MIN_TEMP)
         {
             int found = 0;
-            for (ItemStack stack : Helpers.iterate((IItemHandler) inventory))
+            for (ItemStack stack : Helpers.iterate(inventory))
             {
                 if (!stack.isEmpty())
                 {
@@ -145,7 +145,7 @@ public class StovetopPotBlockEntity extends BoilingBlockEntity<StovetopPotBlockE
         for (int i = 0; i < SLOTS; i++)
         {
             ItemStack stack = inventory.getStackInSlot(i);
-            IFood food = stack.getCapability(FoodCapability.CAPABILITY).resolve().orElse(null);
+            IFood food = FoodCapability.get(stack);
             if (food != null)
             {
                 if (food.isRotten()) // this should mostly not happen since the ingredients are not rotten to start, but worth checking
@@ -179,18 +179,11 @@ public class StovetopPotBlockEntity extends BoilingBlockEntity<StovetopPotBlockE
                     maxNutrient = nutrient;
                 }
             }
-            FoodData data = FoodData.create(SoupPotRecipe.SOUP_HUNGER_VALUE, water, saturation, nutrition, SoupPotRecipe.SOUP_DECAY_MODIFIER);
+            FoodData data = new FoodData(SoupPotRecipe.SOUP_HUNGER_VALUE, water, saturation, 0, nutrition, SoupPotRecipe.SOUP_DECAY_MODIFIER);
             int servings = (int) (ingredientCount / 2f) + 1;
-            long created = FoodCapability.getRoundedCreationDate();
 
             soupStack = new ItemStack(TFCItems.SOUPS.get(maxNutrient).get(), servings);
-            soupStack.getCapability(FoodCapability.CAPABILITY)
-                .filter(food -> food instanceof DynamicBowlHandler)
-                .ifPresent(food -> {
-                    DynamicBowlHandler handler = (DynamicBowlHandler) food;
-                    handler.setCreationDate(created);
-                    handler.setFood(data);
-                });
+            FoodCapability.setFoodForDynamicItemOnCreate(soupStack, data);
         }
 
         if (!soupStack.isEmpty())
@@ -204,9 +197,7 @@ public class StovetopPotBlockEntity extends BoilingBlockEntity<StovetopPotBlockE
         if (Helpers.isItem(clickedWith.getItem(), TFCTags.Items.SOUP_BOWLS) && !soupStack.isEmpty())
         {
             // set the internal bowl to the one we clicked with
-            soupStack.getCapability(FoodCapability.CAPABILITY)
-                .filter(food -> food instanceof DynamicBowlHandler)
-                .ifPresent(food -> ((DynamicBowlHandler) food).setBowl(clickedWith.copyWithCount(1)));
+            soupStack.set(TFCComponents.BOWL, new ItemComponent(clickedWith.copyWithCount(1)));
 
             // take the player's bowl, give a soup
             clickedWith.shrink(1);
@@ -218,22 +209,22 @@ public class StovetopPotBlockEntity extends BoilingBlockEntity<StovetopPotBlockE
     }
 
     @Override
-    public void loadAdditional(CompoundTag nbt)
+    public void loadAdditional(CompoundTag nbt, HolderLookup.Provider access)
     {
-        super.loadAdditional(nbt);
+        super.loadAdditional(nbt, access);
         if (nbt.contains("soup"))
         {
-            soupStack = ItemStack.of(nbt.getCompound("soup"));
+            soupStack = ItemStack.parseOptional(access, nbt.getCompound("soup"));
         }
     }
 
     @Override
-    public void saveAdditional(CompoundTag nbt)
+    public void saveAdditional(CompoundTag nbt, HolderLookup.Provider access)
     {
-        super.saveAdditional(nbt);
+        super.saveAdditional(nbt, access);
         if (!soupStack.isEmpty())
         {
-            nbt.put("soup", soupStack.save(new CompoundTag()));
+            nbt.put("soup", soupStack.save(access, new CompoundTag()));
         }
     }
 

@@ -1,7 +1,5 @@
 package com.eerussianguy.firmalife.common.misc;
 
-import java.util.Random;
-
 import com.eerussianguy.firmalife.common.FLTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -35,7 +33,7 @@ public class SwarmEffect extends MobEffect
     }
 
     @Override
-    public boolean isDurationEffectTick(int time, int amp)
+    public boolean shouldApplyEffectTickThisTick(int time, int amp)
     {
         int j = 25 >> amp;
         if (j > 0)
@@ -46,13 +44,14 @@ public class SwarmEffect extends MobEffect
     }
 
     @Override
-    public void applyEffectTick(LivingEntity entity, int amplifier)
+    public boolean applyEffectTick(LivingEntity entity, int amplifier)
     {
         if (!entity.isInWaterOrRain() && FLConfig.SERVER.enableBeeSwarm.get() && !hasBeeArmor(entity))
         {
             FLDamageSources.swarm(entity, 0.5f);
         }
         particles(entity.level(), entity.blockPosition(), entity.getRandom());
+        return true;
     }
 
     private boolean hasBeeArmor(LivingEntity entity)

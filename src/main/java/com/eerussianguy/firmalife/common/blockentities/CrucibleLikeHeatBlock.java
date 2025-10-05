@@ -1,8 +1,8 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
-import net.dries007.tfc.common.capabilities.heat.IHeatBlock;
+import net.dries007.tfc.common.component.heat.IHeatConsumer;
 
-public interface CrucibleLikeHeatBlock extends IHeatBlock
+public interface CrucibleLikeHeatBlock extends IHeatConsumer
 {
     void setTargetTemperature(float temp);
 
@@ -17,7 +17,6 @@ public interface CrucibleLikeHeatBlock extends IHeatBlock
         resetStability();
     }
 
-    @Override
     default void setTemperatureIfWarmer(float temperature)
     {
         // Override to still cause an update to the stability ticks

@@ -2,6 +2,7 @@ package com.eerussianguy.firmalife.common.blockentities;
 
 import com.eerussianguy.firmalife.common.blocks.greenhouse.LargePlanterBlock;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -46,17 +47,17 @@ public class PickerBlockEntity extends TickableBlockEntity
     }
 
     @Override
-    protected void saveAdditional(CompoundTag tag)
+    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider access)
     {
-        super.saveAdditional(tag);
+        super.saveAdditional(tag, access);
         tag.putLong("pushed", this.lastPushed);
         tag.putBoolean("justPushed", this.justPushed);
     }
 
     @Override
-    protected void loadAdditional(CompoundTag tag)
+    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider access)
     {
-        super.loadAdditional(tag);
+        super.loadAdditional(tag, access);
         this.lastPushed = tag.getLong("pushed");
         this.justPushed = tag.getBoolean("justPushed");
     }

@@ -777,7 +777,7 @@ def water_based_fluid(rm: ResourceManager, name: str):
     })
     item.with_lang(lang('%s bucket', name))
 
-    rm.lang('fluid.firmalife.%s' % name, lang(name) if name != 'fruity_fluid' else 'UNUSED')
+    rm.lang('fluid.firmalife.%s' % name, lang(name))
 
 def four_ways(model: str) -> List[Dict[str, Any]]:
     return [

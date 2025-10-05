@@ -1,7 +1,7 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
+import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.common.FLHelpers;
-import com.eerussianguy.firmalife.common.blocks.ICure;
 import com.eerussianguy.firmalife.common.blocks.OvenHopperBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -10,11 +10,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
-import net.minecraftforge.items.ItemStackHandler;
+import net.neoforged.neoforge.items.ItemStackHandler;
 
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
-import net.dries007.tfc.common.capabilities.Capabilities;
 import net.dries007.tfc.common.capabilities.PartialItemHandler;
 import net.dries007.tfc.util.Helpers;
 
@@ -37,18 +36,17 @@ public class OvenHopperBlockEntity extends TickableInventoryBlockEntity<ItemStac
                 if (idx != -1)
                 {
                     final ItemStack stack = hopper.inventory.getStackInSlot(idx);
-                    oven.getCapability(Capabilities.ITEM).ifPresent(inv -> {
-                        final ItemStack newStack = stack.copy();
-                        newStack.setCount(1);
-                        if (inv.insertItem(OvenBottomBlockEntity.SLOT_FUEL_MAX, newStack, true).isEmpty())
-                        {
-                            inv.insertItem(OvenBottomBlockEntity.SLOT_FUEL_MAX, newStack, false);
-                            stack.shrink(1);
-                            oven.markForSync();
-                            hopper.markForSync();
-                            Helpers.playSound(level, pos, SoundEvents.WOOD_PLACE);
-                        }
-                    });
+                    final var inv = oven.getInventory();
+                    final ItemStack newStack = stack.copy();
+                    newStack.setCount(1);
+                    if (inv.insertItem(OvenBottomBlockEntity.SLOT_FUEL_MAX, newStack, true).isEmpty())
+                    {
+                        inv.insertItem(OvenBottomBlockEntity.SLOT_FUEL_MAX, newStack, false);
+                        stack.shrink(1);
+                        oven.markForSync();
+                        hopper.markForSync();
+                        Helpers.playSound(level, pos, SoundEvents.WOOD_PLACE);
+                    }
                 }
             }
         }
@@ -57,7 +55,7 @@ public class OvenHopperBlockEntity extends TickableInventoryBlockEntity<ItemStac
 
     public OvenHopperBlockEntity(BlockPos pos, BlockState state)
     {
-        super(FLBlockEntities.OVEN_HOPPER.get(), pos, state, defaultInventory(SLOTS), FLHelpers.blockEntityName("oven_hopper"));
+        super(FLBlockEntities.OVEN_HOPPER.get(), pos, state, defaultInventory(SLOTS), FirmaLife.MOD_ID);
 
         sidedInventory
             .on(new PartialItemHandler(inventory).insert(0, 1, 2, 3), Direction.UP)

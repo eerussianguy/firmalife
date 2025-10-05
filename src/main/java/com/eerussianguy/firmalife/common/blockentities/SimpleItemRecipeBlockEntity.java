@@ -1,47 +1,45 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
 import java.util.function.Supplier;
-
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.items.ItemStackHandler;
-
-import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
-import net.dries007.tfc.common.recipes.SimpleItemRecipe;
-import net.dries007.tfc.common.recipes.inventory.ItemStackInventory;
-import net.dries007.tfc.util.calendar.Calendars;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class SimpleItemRecipeBlockEntity<T extends SimpleItemRecipe> extends InventoryBlockEntity<ItemStackHandler>
+import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
+import net.dries007.tfc.common.recipes.ItemRecipe;
+import net.dries007.tfc.util.calendar.Calendars;
+
+public abstract class SimpleItemRecipeBlockEntity<T extends ItemRecipe> extends InventoryBlockEntity<ItemStackHandler>
 {
     private final Supplier<Integer> duration;
     protected long startTick;
     @Nullable protected T cachedRecipe;
     protected boolean needsRecipeUpdate = false;
 
-    public SimpleItemRecipeBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state, Component defaultName, Supplier<Integer> duration)
+    public SimpleItemRecipeBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state, String modId, Supplier<Integer> duration)
     {
-        super(type, pos, state, defaultInventory(1), defaultName);
+        super(type, pos, state, defaultInventory(1), modId);
         this.duration = duration;
     }
 
     @Override
-    public void loadAdditional(CompoundTag nbt)
+    public void loadAdditional(CompoundTag nbt, HolderLookup.Provider access)
     {
         startTick = nbt.getLong("startTick");
-        super.loadAdditional(nbt);
+        super.loadAdditional(nbt, access);
         needsRecipeUpdate = true;
     }
 
     @Override
-    public void saveAdditional(CompoundTag nbt)
+    public void saveAdditional(CompoundTag nbt, HolderLookup.Provider access)
     {
         nbt.putLong("startTick", startTick);
-        super.saveAdditional(nbt);
+        super.saveAdditional(nbt, access);
     }
 
     @Override
@@ -97,7 +95,7 @@ public abstract class SimpleItemRecipeBlockEntity<T extends SimpleItemRecipe> ex
         if (recipe != null)
         {
             final int ct = readStack().getCount();
-            final ItemStack out = recipe.assemble(new ItemStackInventory(readStack()), level.registryAccess());
+            final ItemStack out = recipe.assemble(readStack());
             out.setCount(out.getCount() * ct);
             inventory.setStackInSlot(0, out);
             updateCache();

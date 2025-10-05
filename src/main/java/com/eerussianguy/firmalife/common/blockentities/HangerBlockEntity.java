@@ -1,13 +1,13 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
 import java.util.Set;
-import com.eerussianguy.firmalife.config.FLConfig;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.state.BlockState;
-
 import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
+import com.eerussianguy.firmalife.config.FLConfig;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 import net.dries007.tfc.common.component.food.FoodTrait;
@@ -24,21 +24,21 @@ public class HangerBlockEntity extends FoodShelfBlockEntity
     }
 
     @Override
-    public FoodTrait getFoodTrait()
+    public Holder<FoodTrait> getFoodTrait()
     {
         if (level != null)
         {
             final float temp = Climate.getAverageTemperature(level, getBlockPos());
             if (temp < FLConfig.SERVER.cellarLevel3Temperature.get())
             {
-                return FLFoodTraits.HUNG_3.get();
+                return FLFoodTraits.HUNG_3;
             }
             if (temp < FLConfig.SERVER.cellarLevel2Temperature.get())
             {
-                return FLFoodTraits.HUNG_2.get();
+                return FLFoodTraits.HUNG_2;
             }
         }
-        return FLFoodTraits.HUNG.get();
+        return FLFoodTraits.HUNG;
     }
 
     @Override

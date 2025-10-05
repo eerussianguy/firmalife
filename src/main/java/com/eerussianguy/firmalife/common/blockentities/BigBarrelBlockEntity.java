@@ -1,9 +1,9 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
-import com.eerussianguy.firmalife.common.FLHelpers;
+import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.common.container.BigBarrelContainer;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -11,8 +11,9 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.common.util.INBTSerializable;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
-import org.jetbrains.annotations.NotNull;
+import net.neoforged.neoforge.items.IItemHandlerModifiable;
 import org.jetbrains.annotations.Nullable;
 
 import net.dries007.tfc.common.TFCTags;
@@ -23,8 +24,6 @@ import net.dries007.tfc.common.capabilities.DelegateItemHandler;
 import net.dries007.tfc.common.capabilities.FluidTankCallback;
 import net.dries007.tfc.common.capabilities.InventoryFluidTank;
 import net.dries007.tfc.common.capabilities.InventoryItemHandler;
-import net.dries007.tfc.common.capabilities.PartialFluidHandler;
-import net.dries007.tfc.common.capabilities.SidedHandler;
 import net.dries007.tfc.common.component.size.ItemSizeManager;
 import net.dries007.tfc.common.component.size.Size;
 import net.dries007.tfc.common.fluids.FluidHelpers;
@@ -39,16 +38,14 @@ public class BigBarrelBlockEntity extends InventoryBlockEntity<BigBarrelBlockEnt
     public static final int SLOT_FLUID_CONTAINER_OUT = 37;
     public static final int CAPACITY = 80000;
 
-    private final SidedHandler.Builder<IFluidHandler> sidedFluidInventory;
-
     public BigBarrelBlockEntity(BlockPos pos, BlockState state)
     {
-        super(FLBlockEntities.BIG_BARREL.get(), pos, state, BigBarrelInventory::new, FLHelpers.blockEntityName("big_barrel"));
-
-        sidedFluidInventory = new SidedHandler.Builder<>(inventory);
-        sidedFluidInventory
-            .on(new PartialFluidHandler(inventory).insert(), d -> d.getAxis().isHorizontal())
-            .on(new PartialFluidHandler(inventory).extract(), d -> d.getAxis().isVertical());
+        super(FLBlockEntities.BIG_BARREL.get(), pos, state, BigBarrelInventory::new, FirmaLife.MOD_ID);
+//
+//        sidedFluidInventory = new SidedHandler.Builder<>(inventory);
+//        sidedFluidInventory
+//            .on(new PartialFluidHandler(inventory).insert(), d -> d.getAxis().isHorizontal())
+//            .on(new PartialFluidHandler(inventory).extract(), d -> d.getAxis().isVertical());
     }
 
     @Override
@@ -110,16 +107,17 @@ public class BigBarrelBlockEntity extends InventoryBlockEntity<BigBarrelBlockEnt
         }
     }
 
-    @NotNull
-    @Override
-    public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side)
-    {
-        if (cap == Capabilities.FLUID)
-        {
-            return sidedFluidInventory.getSidedHandler(side).cast();
-        }
-        return super.getCapability(cap, side);
-    }
+    // todo fix
+//    @NotNull
+//    @Override
+//    public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side)
+//    {
+//        if (cap == Capabilities.FLUID)
+//        {
+//            return sidedFluidInventory.getSidedHandler(side).cast();
+//        }
+//        return super.getCapability(cap, side);
+//    }
 
     @Nullable
     @Override
@@ -128,7 +126,7 @@ public class BigBarrelBlockEntity extends InventoryBlockEntity<BigBarrelBlockEnt
         return BigBarrelContainer.create(this, player.getInventory(), containerId);
     }
 
-    public static class BigBarrelInventory implements EmptyInventory, DelegateItemHandler, INBTSerializable<CompoundTag>, DelegateFluidHandler, FluidTankCallback
+    public static class BigBarrelInventory implements DelegateItemHandler, INBTSerializable<CompoundTag>, DelegateFluidHandler, FluidTankCallback
     {
         private final InventoryItemHandler inventory;
         private final InventoryFluidTank tank;
@@ -157,19 +155,19 @@ public class BigBarrelBlockEntity extends InventoryBlockEntity<BigBarrelBlockEnt
         }
 
         @Override
-        public CompoundTag serializeNBT()
+        public CompoundTag serializeNBT(HolderLookup.Provider access)
         {
             final CompoundTag nbt = new CompoundTag();
-            nbt.put("inventory", inventory.serializeNBT());
-            nbt.put("tank", tank.writeToNBT(new CompoundTag()));
+            nbt.put("inventory", inventory.serializeNBT(access));
+            nbt.put("tank", tank.writeToNBT(access, new CompoundTag()));
             return nbt;
         }
 
         @Override
-        public void deserializeNBT(CompoundTag nbt)
+        public void deserializeNBT(HolderLookup.Provider access, CompoundTag nbt)
         {
-            inventory.deserializeNBT(nbt.getCompound("inventory"));
-            tank.readFromNBT(nbt.getCompound("tank"));
+            inventory.deserializeNBT(access, nbt.getCompound("inventory"));
+            tank.readFromNBT(access, nbt.getCompound("tank"));
         }
     }
 }

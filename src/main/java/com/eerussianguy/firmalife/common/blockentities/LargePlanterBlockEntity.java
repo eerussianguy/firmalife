@@ -1,8 +1,13 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
+import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.common.blocks.PickerBlock;
+import com.eerussianguy.firmalife.common.blocks.greenhouse.LargePlanterBlock;
+import com.eerussianguy.firmalife.common.util.Mechanics;
+import com.eerussianguy.firmalife.common.util.Plantable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
@@ -12,19 +17,14 @@ import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.items.ItemStackHandler;
+import org.jetbrains.annotations.Nullable;
 
-import com.eerussianguy.firmalife.common.FLHelpers;
-import com.eerussianguy.firmalife.common.blocks.greenhouse.LargePlanterBlock;
-import com.eerussianguy.firmalife.common.util.Mechanics;
-import com.eerussianguy.firmalife.common.util.Plantable;
 import net.dries007.tfc.common.blockentities.FarmlandBlockEntity;
 import net.dries007.tfc.common.blockentities.IFarmland;
 import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
 import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.ICalendarTickable;
-
-import net.neoforged.neoforge.items.ItemStackHandler;
-import org.jetbrains.annotations.Nullable;
 
 public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemStackHandler> implements ICalendarTickable, ClimateReceiver, IFarmland
 {
@@ -34,7 +34,6 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
         planter.checkForLastTickSync();
     }
 
-    public static final Component NAME = FLHelpers.blockEntityName("large_planter");
     protected static final int LARGE_PLANTER_SLOTS = 1;
 
     @Nullable
@@ -49,12 +48,12 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
 
     public LargePlanterBlockEntity(BlockPos pos, BlockState state)
     {
-        this(FLBlockEntities.LARGE_PLANTER.get(), pos, state, defaultInventory(LARGE_PLANTER_SLOTS), NAME);
+        this(FLBlockEntities.LARGE_PLANTER.get(), pos, state, defaultInventory(LARGE_PLANTER_SLOTS), FirmaLife.MOD_ID);
     }
 
-    public LargePlanterBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state, InventoryFactory<ItemStackHandler> inventoryFactory, Component defaultName)
+    public LargePlanterBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state, InventoryFactory<ItemStackHandler> inventoryFactory, String modId)
     {
-        super(type, pos, state, inventoryFactory, defaultName);
+        super(type, pos, state, inventoryFactory, modId);
         cachedPlant = null;
         climateValid = false;
         growth = 0;
@@ -126,9 +125,9 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     }
 
     @Override
-    public void loadAdditional(CompoundTag nbt)
+    public void loadAdditional(CompoundTag nbt, HolderLookup.Provider access)
     {
-        super.loadAdditional(nbt);
+        super.loadAdditional(nbt, access);
         lastUpdateTick = nbt.getLong("lastUpdateTick");
         lastGrowthTick = nbt.getLong("lastGrowthTick");
         climateValid = nbt.getBoolean("climateValid");
@@ -148,9 +147,9 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     }
 
     @Override
-    public void saveAdditional(CompoundTag nbt)
+    public void saveAdditional(CompoundTag nbt, HolderLookup.Provider access)
     {
-        super.saveAdditional(nbt);
+        super.saveAdditional(nbt, access);
         nbt.putLong("lastUpdateTick", lastUpdateTick);
         nbt.putLong("lastGrowthTick", lastGrowthTick);
         nbt.putBoolean("climateValid", climateValid);
@@ -280,6 +279,48 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
             case PHOSPHOROUS -> phosphorous = amount;
         }
         markForSync();
+    }
+
+    @Override
+    public void setNutrientWithoutSync(FarmlandBlockEntity.NutrientType nutrientType, float v)
+    {
+
+    }
+
+    @Override
+    public float getAdditionalWater()
+    {
+        return 0;
+    }
+
+    @Override
+    public void waterTick()
+    {
+
+    }
+
+    @Override
+    public void setAdditionalWater(float amount)
+    {
+
+    }
+
+    @Override
+    public void setAdditionalWaterWithoutSync(float amount)
+    {
+
+    }
+
+    @Override
+    public long getLastWaterTick()
+    {
+        return 0;
+    }
+
+    @Override
+    public void setLastWaterTick(long l)
+    {
+
     }
 
     @Override

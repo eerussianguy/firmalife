@@ -6,6 +6,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
 
+import net.dries007.tfc.common.component.food.FoodTrait;
+import net.dries007.tfc.common.component.food.FoodTraits;
 import net.dries007.tfc.util.Helpers;
 
 @SuppressWarnings("unused")
@@ -74,5 +76,15 @@ public class FLTags
             return TagKey.create(Registries.FLUID, FLHelpers.identifier(id));
         }
 
+    }
+
+    public static class Traits
+    {
+        public static final TagKey<FoodTrait> WINE = create("wine"); // todo fill
+
+        private static TagKey<FoodTrait> create(String id)
+        {
+        return TagKey.create(FoodTraits.KEY, FLHelpers.identifier(id));
+        }
     }
 }

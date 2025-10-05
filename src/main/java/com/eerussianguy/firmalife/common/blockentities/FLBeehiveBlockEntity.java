@@ -3,17 +3,23 @@ package com.eerussianguy.firmalife.common.blockentities;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
+import com.eerussianguy.firmalife.FirmaLife;
+import com.eerussianguy.firmalife.common.FLHelpers;
+import com.eerussianguy.firmalife.common.FLTags;
+import com.eerussianguy.firmalife.common.blocks.FLBeehiveBlock;
 import com.eerussianguy.firmalife.common.blocks.greenhouse.LargePlanterBlock;
+import com.eerussianguy.firmalife.common.capabilities.bee.BeeAbility;
+import com.eerussianguy.firmalife.common.capabilities.bee.BeeCapability;
+import com.eerussianguy.firmalife.common.capabilities.bee.IBee;
+import com.eerussianguy.firmalife.common.container.BeehiveContainer;
 import com.eerussianguy.firmalife.common.entities.FLBee;
 import com.eerussianguy.firmalife.common.entities.FLEntities;
 import com.eerussianguy.firmalife.common.items.FLItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
-import net.minecraft.nbt.Tag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
@@ -27,24 +33,17 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-
-import com.eerussianguy.firmalife.common.FLHelpers;
-import com.eerussianguy.firmalife.common.FLTags;
-import com.eerussianguy.firmalife.common.blocks.FLBeehiveBlock;
-import com.eerussianguy.firmalife.common.capabilities.bee.BeeAbility;
-import com.eerussianguy.firmalife.common.capabilities.bee.BeeCapability;
-import com.eerussianguy.firmalife.common.capabilities.bee.IBee;
-import com.eerussianguy.firmalife.common.container.BeehiveContainer;
+import net.neoforged.neoforge.items.ItemStackHandler;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import net.dries007.tfc.common.blockentities.FarmlandBlockEntity;
 import net.dries007.tfc.common.blockentities.IFarmland;
-import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
 import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
 import net.dries007.tfc.common.blocks.plant.PlantBlock;
 import net.dries007.tfc.common.blocks.plant.ShortGrassBlock;
 import net.dries007.tfc.common.blocks.soil.ConnectedGrassBlock;
 import net.dries007.tfc.common.blocks.soil.DirtBlock;
-import net.dries007.tfc.common.capabilities.InventoryItemHandler;
 import net.dries007.tfc.common.capabilities.PartialItemHandler;
 import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.util.Helpers;
@@ -52,10 +51,6 @@ import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.ICalendar;
 import net.dries007.tfc.util.calendar.ICalendarTickable;
 import net.dries007.tfc.util.climate.Climate;
-
-import net.neoforged.neoforge.items.ItemStackHandler;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStackHandler> implements ICalendarTickable
 {
@@ -96,7 +91,6 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
     public static final int SLOT_JAR_IN = 4;
     public static final int SLOT_JAR_OUT = 5;
 
-    private static final Component NAME = FLHelpers.blockEntityName("beehive");
     private static final FarmlandBlockEntity.NutrientType N = FarmlandBlockEntity.NutrientType.NITROGEN;
     private static final FarmlandBlockEntity.NutrientType P = FarmlandBlockEntity.NutrientType.PHOSPHOROUS;
     private static final FarmlandBlockEntity.NutrientType K = FarmlandBlockEntity.NutrientType.POTASSIUM;
@@ -110,7 +104,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
 
     public FLBeehiveBlockEntity(BlockPos pos, BlockState state)
     {
-        super(FLBlockEntities.BEEHIVE.get(), pos, state, be -> new FixedISH(be, TOTAL_SLOTS), NAME);
+        super(FLBlockEntities.BEEHIVE.get(), pos, state, defaultInventory(TOTAL_SLOTS), FirmaLife.MOD_ID);
         lastPlayerTick = Integer.MIN_VALUE;
         lastAreaTick = Calendars.SERVER.getTicks();
         cachedBees = new IBee[] {null, null, null, null};
@@ -123,9 +117,9 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
     }
 
     @Override
-    public void saveAdditional(CompoundTag nbt)
+    public void saveAdditional(CompoundTag nbt, HolderLookup.Provider access)
     {
-        super.saveAdditional(nbt);
+        super.saveAdditional(nbt, access);
         nbt.putLong("lastTick", lastPlayerTick);
         nbt.putLong("lastAreaTick", lastAreaTick);
         nbt.putInt("honey", honey);
@@ -134,9 +128,9 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
     }
 
     @Override
-    public void loadAdditional(CompoundTag nbt)
+    public void loadAdditional(CompoundTag nbt, HolderLookup.Provider access)
     {
-        super.loadAdditional(nbt);
+        super.loadAdditional(nbt, access);
         updateCache();
         lastPlayerTick = nbt.getLong("lastTick");
         lastAreaTick = nbt.getLong("lastAreaTick");
@@ -435,7 +429,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
                     final boolean airAbove = level.getBlockState(above).isAir();
                     if (airAbove && state.getBlock() == Blocks.WATER && state.getFluidState().isSource())
                     {
-                        Helpers.getRandomElement(ForgeRegistries.BLOCKS, FLTags.Blocks.BEE_RESTORATION_WATER_PLANTS, level.random).ifPresent(plant -> {
+                        FLHelpers.getRandomElement(BuiltInRegistries.BLOCK, FLTags.Blocks.BEE_RESTORATION_WATER_PLANTS, level.random).ifPresent(plant -> {
                             if (plant.defaultBlockState().canSurvive(level, pos))
                             {
                                 level.setBlockAndUpdate(pos, plant.defaultBlockState());
@@ -448,7 +442,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
                     }
                     else if (state.isAir() && level.getBlockState(pos.below()).getBlock() instanceof ConnectedGrassBlock)
                     {
-                        Helpers.getRandomElement(ForgeRegistries.BLOCKS, FLTags.Blocks.BEE_RESTORATION_PLANTS, level.random).ifPresent(plant -> level.setBlockAndUpdate(pos, plant.defaultBlockState()));
+                        FLHelpers.getRandomElement(BuiltInRegistries.BLOCK, FLTags.Blocks.BEE_RESTORATION_PLANTS, level.random).ifPresent(plant -> level.setBlockAndUpdate(pos, plant.defaultBlockState()));
                     }
                 }
             }
@@ -544,29 +538,4 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
         lastPlayerTick = tick;
     }
 
-    public static class FixedISH extends InventoryItemHandler
-    {
-        public FixedISH(InventoryBlockEntity<ItemStackHandler> be, int slots)
-        {
-            super(be, slots);
-        }
-
-        @Override
-        public void deserializeNBT(CompoundTag nbt)
-        {
-            setSize(stacks.size());
-            ListTag tagList = nbt.getList("Items", Tag.TAG_COMPOUND);
-            for (int i = 0; i < tagList.size(); i++)
-            {
-                CompoundTag itemTags = tagList.getCompound(i);
-                int slot = itemTags.getInt("Slot");
-
-                if (slot >= 0 && slot < stacks.size())
-                {
-                    stacks.set(slot, ItemStack.of(itemTags));
-                }
-            }
-            onLoad();
-        }
-    }
 }

@@ -1,18 +1,19 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
+import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.items.ItemStackHandler;
+import net.neoforged.neoforge.items.ItemStackHandler;
 
 import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
 import net.dries007.tfc.common.capabilities.PartialItemHandler;
-import net.dries007.tfc.common.capabilities.food.FoodCapability;
-import net.dries007.tfc.util.Helpers;
+import net.dries007.tfc.common.component.food.FoodCapability;
 
 public class PlateBlockEntity extends InventoryBlockEntity<ItemStackHandler>
 {
@@ -20,7 +21,7 @@ public class PlateBlockEntity extends InventoryBlockEntity<ItemStackHandler>
 
     public PlateBlockEntity(BlockPos pos, BlockState state)
     {
-        super(FLBlockEntities.PLATE.get(), pos, state, defaultInventory(1), FLHelpers.blockEntityName("plate"));
+        super(FLBlockEntities.PLATE.get(), pos, state, defaultInventory(1), FirmaLife.MOD_ID);
 
         sidedInventory
             .on(new PartialItemHandler(inventory).insert(0), Direction.Plane.HORIZONTAL)
@@ -29,16 +30,16 @@ public class PlateBlockEntity extends InventoryBlockEntity<ItemStackHandler>
 
 
     @Override
-    public void loadAdditional(CompoundTag nbt)
+    public void loadAdditional(CompoundTag nbt, HolderLookup.Provider access)
     {
-        super.loadAdditional(nbt);
+        super.loadAdditional(nbt, access);
         rot = nbt.getFloat("rot");
     }
 
     @Override
-    public void saveAdditional(CompoundTag nbt)
+    public void saveAdditional(CompoundTag nbt, HolderLookup.Provider access)
     {
-        super.saveAdditional(nbt);
+        super.saveAdditional(nbt, access);
         nbt.putFloat("rot", rot);
     }
 
@@ -62,7 +63,7 @@ public class PlateBlockEntity extends InventoryBlockEntity<ItemStackHandler>
     @Override
     public boolean isItemValid(int slot, ItemStack stack)
     {
-        return Helpers.getCapability(stack, FoodCapability.CAPABILITY) != null;
+        return FoodCapability.get(stack) != null;
     }
 
     @Override

@@ -2,9 +2,11 @@ package com.eerussianguy.firmalife.common.blockentities;
 
 import java.util.Collections;
 import java.util.List;
+import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.recipes.StompingRecipe;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
@@ -13,14 +15,14 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.items.ItemStackHandler;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.Nullable;
 
 import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
-import net.dries007.tfc.common.capabilities.food.FoodCapability;
-import net.dries007.tfc.common.capabilities.food.FoodTrait;
-import net.dries007.tfc.common.capabilities.food.IFood;
-import net.dries007.tfc.common.recipes.inventory.ItemStackInventory;
+import net.dries007.tfc.common.component.food.FoodCapability;
+import net.dries007.tfc.common.component.food.FoodTrait;
+import net.dries007.tfc.common.component.food.FoodTraits;
+import net.dries007.tfc.common.component.food.IFood;
 import net.dries007.tfc.util.Helpers;
 
 public class StompingBarrelBlockEntity extends InventoryBlockEntity<ItemStackHandler>
@@ -35,7 +37,7 @@ public class StompingBarrelBlockEntity extends InventoryBlockEntity<ItemStackHan
 
     public StompingBarrelBlockEntity(BlockPos pos, BlockState state)
     {
-        super(FLBlockEntities.STOMPING_BARREL.get(), pos, state, defaultInventory(1), FLHelpers.blockEntityName("stomping_barrel"));
+        super(FLBlockEntities.STOMPING_BARREL.get(), pos, state, defaultInventory(1), FirmaLife.MOD_ID);
     }
 
     public void stomp(Entity entity)
@@ -44,7 +46,7 @@ public class StompingBarrelBlockEntity extends InventoryBlockEntity<ItemStackHan
         if (entity instanceof LivingEntity)
         {
             final ItemStack current = inventory.getStackInSlot(0);
-            final StompingRecipe recipe = StompingRecipe.getRecipe(level, new ItemStackInventory(current));
+            final StompingRecipe recipe = StompingRecipe.getRecipe(current);
             if (recipe == null)
                 return;
             stomps += 1;
@@ -53,11 +55,12 @@ public class StompingBarrelBlockEntity extends InventoryBlockEntity<ItemStackHan
 
             if (stomps > 16)
             {
-                final List<FoodTrait> traits = current.getCapability(FoodCapability.CAPABILITY).map(IFood::getTraits).orElse(Collections.emptyList());
-                final ItemStack newStack = recipe.assemble(new ItemStackInventory(current), level.registryAccess());
+                final IFood food = FoodCapability.get(current);
+                final List<FoodTrait> traits = food != null ? food.getTraits() : Collections.emptyList();
+                final ItemStack newStack = recipe.assemble(current);
                 newStack.setCount(newStack.getCount() * current.getCount());
                 for (FoodTrait trait : traits)
-                    FoodCapability.applyTrait(newStack, trait);
+                    FoodCapability.applyTrait(newStack, FoodTraits.REGISTRY.createIntrusiveHolder(trait));
                 if (newStack.getCount() > MAX_GRAPES)
                 {
                     Helpers.spawnItem(level, worldPosition, newStack.split(newStack.getCount() - MAX_GRAPES));
@@ -95,9 +98,9 @@ public class StompingBarrelBlockEntity extends InventoryBlockEntity<ItemStackHan
     }
 
     @Override
-    public void loadAdditional(CompoundTag nbt)
+    public void loadAdditional(CompoundTag nbt, HolderLookup.Provider access)
     {
-        super.loadAdditional(nbt);
+        super.loadAdditional(nbt, access);
         stomps = nbt.getInt("stomps");
         isOutputMode = nbt.getBoolean("isOutput");
         if (nbt.contains("texture", Tag.TAG_STRING))
@@ -106,9 +109,9 @@ public class StompingBarrelBlockEntity extends InventoryBlockEntity<ItemStackHan
     }
 
     @Override
-    public void saveAdditional(CompoundTag nbt)
+    public void saveAdditional(CompoundTag nbt, HolderLookup.Provider access)
     {
-        super.saveAdditional(nbt);
+        super.saveAdditional(nbt, access);
         nbt.putInt("stomps", stomps);
         nbt.putBoolean("isOutput", isOutputMode);
         if (texture != null)
@@ -130,7 +133,7 @@ public class StompingBarrelBlockEntity extends InventoryBlockEntity<ItemStackHan
             return;
         }
         // only if there is no stomps and a valid recipe do we switch to a new recipe
-        final StompingRecipe recipe = StompingRecipe.getRecipe(level, new ItemStackInventory(current));
+        final StompingRecipe recipe = StompingRecipe.getRecipe(current);
         if (stomps == 0 && recipe != null)
         {
             texture = recipe.getInputTexture();

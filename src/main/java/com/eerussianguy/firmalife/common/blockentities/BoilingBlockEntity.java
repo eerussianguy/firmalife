@@ -1,7 +1,7 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
@@ -11,41 +11,40 @@ import net.neoforged.neoforge.common.util.INBTSerializable;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.items.IItemHandlerModifiable;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
 import net.dries007.tfc.common.capabilities.DelegateFluidHandler;
 import net.dries007.tfc.common.capabilities.FluidTankCallback;
 import net.dries007.tfc.common.capabilities.InventoryFluidTank;
-import net.dries007.tfc.common.capabilities.PartialFluidHandler;
-import net.dries007.tfc.common.capabilities.SidedHandler;
+import net.dries007.tfc.common.component.heat.IHeatConsumer;
 import net.dries007.tfc.util.calendar.ICalendarTickable;
 
-public abstract class BoilingBlockEntity<C extends IItemHandlerModifiable & INBTSerializable<CompoundTag> & IHeatBlock & IFluidHandler> extends ApplianceBlockEntity<C> implements ICalendarTickable, FluidTankCallback
+public abstract class BoilingBlockEntity<C extends IItemHandlerModifiable & INBTSerializable<CompoundTag> & IHeatConsumer & IFluidHandler> extends ApplianceBlockEntity<C> implements ICalendarTickable, FluidTankCallback
 {
     protected int boilingTicks = 0;
     protected boolean needsRecipeUpdate = true;
-    private final SidedHandler.Builder<IFluidHandler> sidedFluidInventory;
 
     public BoilingBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state, InventoryFactory<C> inventoryFactory, Component name)
     {
         super(type, pos, state, inventoryFactory, name);
 
-        sidedFluidInventory = new SidedHandler.Builder<>(inventory);
-        sidedFluidInventory.on(new PartialFluidHandler(inventory).insert(), Direction.UP)
-            .on(new PartialFluidHandler(inventory).extract(), Direction.Plane.HORIZONTAL);
+//        sidedFluidInventory = new SidedHandler.Builder<>(inventory);
+//        sidedFluidInventory.on(new PartialFluidHandler(inventory).insert(), Direction.UP)
+//            .on(new PartialFluidHandler(inventory).extract(), Direction.Plane.HORIZONTAL);
     }
 
-    @NotNull
-    @Override
-    public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side)
-    {
-        if (cap == Capabilities.FLUID)
-        {
-            return sidedFluidInventory.getSidedHandler(side).cast();
-        }
-        return super.getCapability(cap, side);
-    }
+    // todo new fluid cap registratio
+//
+//    @NotNull
+//    @Override
+//    public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side)
+//    {
+//        if (cap == Capabilities.FLUID)
+//        {
+//            return sidedFluidInventory.getSidedHandler(side).cast();
+//        }
+//        return super.getCapability(cap, side);
+//    }
 
     @Override
     public void ranOutDueToCalendar()
@@ -68,18 +67,18 @@ public abstract class BoilingBlockEntity<C extends IItemHandlerModifiable & INBT
     }
 
     @Override
-    public void loadAdditional(CompoundTag nbt)
+    public void loadAdditional(CompoundTag nbt, HolderLookup.Provider access)
     {
         boilingTicks = nbt.getInt("boilingTicks");
         needsRecipeUpdate = true;
-        super.loadAdditional(nbt);
+        super.loadAdditional(nbt, access);
     }
 
     @Override
-    public void saveAdditional(CompoundTag nbt)
+    public void saveAdditional(CompoundTag nbt, HolderLookup.Provider access)
     {
         nbt.putInt("boilingTicks", boilingTicks);
-        super.saveAdditional(nbt);
+        super.saveAdditional(nbt, access);
     }
 
     abstract boolean isBoiling();
@@ -110,18 +109,18 @@ public abstract class BoilingBlockEntity<C extends IItemHandlerModifiable & INBT
         }
 
         @Override
-        public CompoundTag serializeNBT()
+        public CompoundTag serializeNBT(HolderLookup.Provider access)
         {
-            CompoundTag nbt = super.serializeNBT();
-            nbt.put("tank", tank.writeToNBT(new CompoundTag()));
+            CompoundTag nbt = super.serializeNBT(access);
+            nbt.put("tank", tank.writeToNBT(access, new CompoundTag()));
             return nbt;
         }
 
         @Override
-        public void deserializeNBT(CompoundTag nbt)
+        public void deserializeNBT(HolderLookup.Provider access, CompoundTag nbt)
         {
-            super.deserializeNBT(nbt);
-            tank.readFromNBT(nbt.getCompound("tank"));
+            super.deserializeNBT(access, nbt);
+            tank.readFromNBT(access, nbt.getCompound("tank"));
         }
     }
 }
