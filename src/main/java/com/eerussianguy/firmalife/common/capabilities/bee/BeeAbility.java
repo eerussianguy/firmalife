@@ -3,7 +3,15 @@ package com.eerussianguy.firmalife.common.capabilities.bee;
 import java.util.Arrays;
 import java.util.Locale;
 
+import com.mojang.serialization.Codec;
+import io.netty.buffer.ByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.util.ExtraCodecs;
+import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
+
+import net.dries007.tfc.network.StreamCodecs;
 
 public enum BeeAbility implements StringRepresentable
 {
@@ -15,6 +23,9 @@ public enum BeeAbility implements StringRepresentable
     NATURE_RESTORATION, // rejuvenates the world around the hive
     CALMNESS; // willingness of bees to not attack the keeper
 
+    public static final Codec<BeeAbility> CODEC = StringRepresentable.fromEnum(BeeAbility::values);
+    public static final StreamCodec<ByteBuf, BeeAbility> STREAM_CODEC = StreamCodecs.forEnum(BeeAbility::values);
+
     public static float getMinTemperature(int hardiness)
     {
         return -2 * hardiness + 4;
@@ -25,6 +36,11 @@ public enum BeeAbility implements StringRepresentable
         final int[] ints = new int[BeeAbility.SIZE];
         Arrays.fill(ints, 0);
         return ints;
+    }
+
+    public static BeeAbility random(RandomSource random)
+    {
+        return VALUES[random.nextInt(SIZE)];
     }
 
     public static final BeeAbility[] VALUES = values();

@@ -59,8 +59,6 @@ public class FLFoodTraits
     }
 
 
-    public static void init() { }
-
     public static final DeferredHolder<FoodTrait, FoodTrait> DRIED = register(Default.DRIED);
     public static final DeferredHolder<FoodTrait, FoodTrait> FRESH = register(Default.FRESH);
     public static final DeferredHolder<FoodTrait, FoodTrait> AGED = register(Default.AGED);

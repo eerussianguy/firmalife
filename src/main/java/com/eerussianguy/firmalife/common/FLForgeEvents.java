@@ -10,7 +10,6 @@ import com.eerussianguy.firmalife.common.capabilities.player.FLPlayerDataCapabil
 import com.eerussianguy.firmalife.common.util.FLSelfTests;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;

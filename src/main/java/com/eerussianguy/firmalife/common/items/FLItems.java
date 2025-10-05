@@ -8,6 +8,9 @@ import java.util.function.Supplier;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.blocks.OvenType;
+import com.eerussianguy.firmalife.common.capabilities.FLComponents;
+import com.eerussianguy.firmalife.common.capabilities.bee.BeeComponent;
+import com.eerussianguy.firmalife.common.capabilities.wine.WineComponent;
 import com.eerussianguy.firmalife.common.capabilities.wine.WineType;
 import com.eerussianguy.firmalife.common.util.FLArmorMaterials;
 import net.minecraft.core.registries.Registries;
@@ -39,7 +42,7 @@ public class FLItems
 
     public static final EnumSet<Food> TFC_FRUITS = EnumSet.of(Food.BANANA, Food.BLACKBERRY, Food.BLUEBERRY, Food.BUNCHBERRY, Food.CHERRY, Food.CLOUDBERRY, Food.CRANBERRY, Food.ELDERBERRY, Food.GOOSEBERRY, Food.GREEN_APPLE, Food.LEMON, Food.OLIVE, Food.ORANGE, Food.PEACH, Food.PLUM, Food.RASPBERRY, Food.RED_APPLE, Food.SNOWBERRY, Food.STRAWBERRY, Food.WINTERGREEN_BERRY);
 
-    public static final ItemId BEEHIVE_FRAME = register("beehive_frame", () -> new BeehiveFrameItem(prop()));
+    public static final ItemId BEEHIVE_FRAME = register("beehive_frame", () -> new BeehiveFrameItem(prop().component(FLComponents.BEE.get(), BeeComponent.DEFAULT)));
     public static final ItemId BEESWAX = register("beeswax", () -> new HoneycombItem(prop()));
     public static final ItemId CINNAMON_BARK = register("cinnamon_bark");
     public static final ItemId CHEESECLOTH = register("cheesecloth");
@@ -64,9 +67,9 @@ public class FLItems
     public static final ItemId EMPTY_JAR_WITH_STAINLESS_STEEL_LID = register("empty_jar_with_stainless_steel_lid");
     public static final ItemId TREATED_LUMBER = register("treated_lumber");
     public static final ItemId WATERING_CAN = register("watering_can", () -> new WateringCanItem(prop().durability(20)));
-    public static final ItemId HEMATITIC_WINE_BOTTLE = register("hematitic_wine_bottle", () -> new FilledWineBottleItem(prop(), FLHelpers.identifier("block/hematitic_wine_bottle")));
-    public static final ItemId VOLCANIC_WINE_BOTTLE = register("volcanic_wine_bottle", () -> new FilledWineBottleItem(prop(), FLHelpers.identifier("block/volcanic_wine_bottle")));
-    public static final ItemId OLIVINE_WINE_BOTTLE = register("olivine_wine_bottle", () -> new FilledWineBottleItem(prop(), FLHelpers.identifier("block/olivine_wine_bottle")));
+    public static final ItemId HEMATITIC_WINE_BOTTLE = register("hematitic_wine_bottle", () -> new FilledWineBottleItem(prop().component(FLComponents.WINE.get(), WineComponent.DEFAULT), FLHelpers.identifier("block/hematitic_wine_bottle")));
+    public static final ItemId VOLCANIC_WINE_BOTTLE = register("volcanic_wine_bottle", () -> new FilledWineBottleItem(prop().component(FLComponents.WINE.get(), WineComponent.DEFAULT), FLHelpers.identifier("block/volcanic_wine_bottle")));
+    public static final ItemId OLIVINE_WINE_BOTTLE = register("olivine_wine_bottle", () -> new FilledWineBottleItem(prop().component(FLComponents.WINE.get(), WineComponent.DEFAULT), FLHelpers.identifier("block/olivine_wine_bottle")));
     public static final ItemId EMPTY_HEMATITIC_WINE_BOTTLE = register("empty_hematitic_wine_bottle", () -> new WineBottleItem(prop(), FLHelpers.identifier("block/empty_hematitic_wine_bottle")));
     public static final ItemId EMPTY_VOLCANIC_WINE_BOTTLE = register("empty_volcanic_wine_bottle", () -> new WineBottleItem(prop(), FLHelpers.identifier("block/empty_volcanic_wine_bottle")));
     public static final ItemId EMPTY_OLIVINE_WINE_BOTTLE = register("empty_olivine_wine_bottle", () -> new WineBottleItem(prop(), FLHelpers.identifier("block/empty_olivine_wine_bottle")));

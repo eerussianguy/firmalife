@@ -2,18 +2,20 @@ package com.eerussianguy.firmalife.common.blockentities;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.FLTags;
-import com.eerussianguy.firmalife.common.blocks.FLFluids;
-import com.eerussianguy.firmalife.common.capabilities.wine.WineCapability;
+import com.eerussianguy.firmalife.common.capabilities.FLComponents;
+import com.eerussianguy.firmalife.common.capabilities.wine.WineComponent;
 import com.eerussianguy.firmalife.common.capabilities.wine.WineType;
 import com.eerussianguy.firmalife.common.container.BarrelPressContainer;
 import com.eerussianguy.firmalife.common.items.FLFood;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.common.items.FLItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -133,15 +135,15 @@ public class BarrelPressBlockEntity extends TickableInventoryBlockEntity<ItemSta
             return;
         final var climate = KoppenClimateClassification.classify(Climate.getAverageTemperature(level, worldPosition), Climate.getRainfall(level, worldPosition), Climate.getRainfallVariance(level, worldPosition), SolarCalculator.getInNorthernHemisphere(worldPosition, level));
 
-        final List<FoodTrait> traits = new ArrayList<>();
+        final List<Holder<FoodTrait>> traits = new ArrayList<>();
         final IFood food = FoodCapability.get(grapes);
         if (food != null)
         {
-
             food.getTraits().forEach(trait -> {
-                if (FoodTraits.REGISTRY.createIntrusiveHolder(trait).is(FLTags.Traits.WINE))
+                final Holder<FoodTrait> holder = FoodTraits.REGISTRY.createIntrusiveHolder(trait);
+                if (holder.is(FLTags.Traits.WINE))
                 {
-                    traits.add(trait);
+                    traits.add(holder);
                 }
             });
         }
@@ -196,21 +198,28 @@ public class BarrelPressBlockEntity extends TickableInventoryBlockEntity<ItemSta
                 return ItemStack.EMPTY;
             final ItemStack label = inventory.extractItem(SLOT_LABEL, 1, false);
             final ItemStack bottle = newWine.getDefaultInstance();
-            bottle.getCapability(WineCapability.CAPABILITY).ifPresent(cap -> {
-                cap.setCreationDate(Calendars.get(level).getTicks());
-                cap.setWineType(output.wine);
-                cap.setClimate(output.koppen);
-                cap.setTraits(output.traits);
-                cap.getFluidHandler().fill((new FluidStack(FLFluids.WINE_FLUIDS.get(output.wine).getSource(), 2000)), IFluidHandler.FluidAction.EXECUTE);
-                if (!label.isEmpty() && label.hasCustomHoverName())
-                    cap.setLabelText(label.getHoverName().getString());
-            });
+            bottle.set(FLComponents.WINE, new WineComponent(
+                Calendars.get(level).getTicks(),
+                -1L,
+                Optional.ofNullable(!label.isEmpty() ? label.getHoverName().getString() : null),
+                output.wine,
+                output.koppen,
+                List.copyOf(output.traits)
+            ));
+//            cap.getFluidHandler().fill((new FluidStack(FLFluids.WINE_FLUIDS.get(output.wine).getSource(), 2000)), IFluidHandler.FluidAction.EXECUTE);
+//todo fluid
 
             current.shrink(1);
-            output.servings--;
+            int newServings = output.servings - 1;
             inventory.setStackInSlot(SLOT_WINE_IN, ItemStack.EMPTY);
-            if (output.servings <= 0)
+            if (newServings <= 0)
+            {
                 output = null;
+            }
+            else
+            {
+                output = new WineOutput(output.wine, output.koppen, newServings, List.copyOf(output.traits));
+            }
 
             Helpers.playSound(level, pos, SoundEvents.BOTTLE_FILL);
             return bottle;
@@ -290,7 +299,7 @@ public class BarrelPressBlockEntity extends TickableInventoryBlockEntity<ItemSta
         this.lastPushed = tag.getLong("pushed");
         this.didAction = tag.getBoolean("didAction");
         if (tag.contains("output", Tag.TAG_COMPOUND))
-            output = new WineOutput(tag);
+            output = WineOutput.of(tag.getCompound("output"));
 
         needsSlotUpdate = true;
     }
@@ -315,32 +324,23 @@ public class BarrelPressBlockEntity extends TickableInventoryBlockEntity<ItemSta
         return BarrelPressContainer.create(this, inv, windowID);
     }
 
-    public static class WineOutput
+    public record WineOutput(
+        WineType wine,
+        KoppenClimateClassification koppen,
+        int servings,
+        List<Holder<FoodTrait>> traits
+    )
     {
-        private WineType wine = WineType.RED;
-        private KoppenClimateClassification koppen = KoppenClimateClassification.AF;
-        private int servings = 0;
-        private List<FoodTrait> traits;
-
-        public WineOutput(WineType type, KoppenClimateClassification koppen, int servings, List<FoodTrait> traits)
+        public static WineOutput of(CompoundTag tag)
         {
-            this.wine = type;
-            this.koppen = koppen;
-            this.servings = servings;
-            this.traits = traits;
-        }
-
-        public WineOutput(CompoundTag tag)
-        {
-            if (tag.contains("output", Tag.TAG_COMPOUND))
-            {
-                final CompoundTag outputTag = tag.getCompound("output");
-                wine = WineType.VALUES[outputTag.getInt("wineType")];
-                koppen = WineType.KOPPEN_VALUES[outputTag.getInt("climate")];
-                servings = outputTag.getInt("servings");
-                traits = new ArrayList<>();
-                FLHelpers.readTraitList(traits, outputTag, "traits");
-            }
+            final List<Holder<FoodTrait>> traits = new ArrayList<>();
+            FLHelpers.readTraitList(traits, tag, "traits");
+            return new WineOutput(
+                WineType.VALUES[tag.getInt("wineType")],
+                WineType.KOPPEN_VALUES[tag.getInt("climate")],
+                tag.getInt("servings"),
+                traits
+            );
         }
 
         public void save(CompoundTag tag)
@@ -351,21 +351,6 @@ public class BarrelPressBlockEntity extends TickableInventoryBlockEntity<ItemSta
             outputTag.putInt("servings", servings);
             FLHelpers.writeTraitList(traits, outputTag, "traits");
             tag.put("output", outputTag);
-        }
-
-        public int getServings()
-        {
-            return servings;
-        }
-
-        public WineType getType()
-        {
-            return wine;
-        }
-
-        public KoppenClimateClassification getClimate()
-        {
-            return koppen;
         }
     }
 }

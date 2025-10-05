@@ -36,7 +36,7 @@ public class DryingMatBlockEntity extends SimpleItemRecipeBlockEntity<DryingReci
             mat.updateCache();
         }
         // reset when it rains
-        if (level.getGameTime() % 60 == 0 && EnvironmentHelpers.isRainingOrSnowing(level, pos) && level.canSeeSky(pos))
+        if (level.getGameTime() % 60 == 0 && level.isRainingAt(pos))
         {
             mat.resetCounter();
         }
@@ -48,7 +48,7 @@ public class DryingMatBlockEntity extends SimpleItemRecipeBlockEntity<DryingReci
 
         if (mat.cachedRecipe != null && level.getGameTime() % 20 == 0)
         {
-            if (!mat.cachedRecipe.matches(mat.inventory.getStackInSlot(0), level))
+            if (!mat.cachedRecipe.matches(mat.inventory.getStackInSlot(0)))
             {
                 mat.cachedRecipe = null;
                 mat.resetCounter();
@@ -96,7 +96,7 @@ public class DryingMatBlockEntity extends SimpleItemRecipeBlockEntity<DryingReci
     public void updateCache()
     {
         assert level != null;
-        cachedRecipe = DryingRecipe.getRecipe(readStack()));
+        cachedRecipe = DryingRecipe.getRecipe(readStack());
         needsRecipeUpdate = false;
     }
 }

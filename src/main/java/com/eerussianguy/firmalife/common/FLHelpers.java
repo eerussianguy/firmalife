@@ -8,15 +8,10 @@ import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
-import com.eerussianguy.firmalife.FirmaLife;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.mojang.datafixers.util.Function10;
 import com.mojang.serialization.Codec;
-import com.mojang.serialization.JsonOps;
-import net.minecraft.Util;
+import io.netty.buffer.ByteBuf;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.Registry;
@@ -30,6 +25,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
+import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -48,7 +44,9 @@ import net.dries007.tfc.common.component.food.FoodCapability;
 import net.dries007.tfc.common.component.food.FoodTrait;
 import net.dries007.tfc.common.component.food.FoodTraits;
 import net.dries007.tfc.common.component.food.IFood;
+import net.dries007.tfc.network.StreamCodecs;
 import net.dries007.tfc.util.Helpers;
+import net.dries007.tfc.util.climate.KoppenClimateClassification;
 
 import static com.eerussianguy.firmalife.FirmaLife.*;
 
@@ -56,7 +54,8 @@ public class FLHelpers
 {
     public static final boolean ASSERTIONS_ENABLED = detectAssertionsEnabled();
 
-    public static Direction[] NOT_DOWN = new Direction[] {Direction.WEST, Direction.EAST, Direction.NORTH, Direction.SOUTH, Direction.UP};
+    public static final Codec<KoppenClimateClassification> KOPPEN_CODEC = StringRepresentable.fromEnum(KoppenClimateClassification::values);
+    public static final StreamCodec<ByteBuf, KoppenClimateClassification> KOPPEN_STREAM_CODEC = StreamCodecs.forEnum(KoppenClimateClassification::values);
 
     public static ResourceLocation identifier(String id)
     {
@@ -93,22 +92,22 @@ public class FLHelpers
         return registry.getTag(tag).flatMap((set) -> set.getRandomElement(random)).map(Holder::value);
     }
 
-    public static void writeTraitList(List<FoodTrait> list, CompoundTag nbt, String key)
+    public static void writeTraitList(List<Holder<FoodTrait>> list, CompoundTag nbt, String key)
     {
         if (!list.isEmpty())
         {
             final ListTag listTag = new ListTag();
-            for (FoodTrait trait : list)
+            for (Holder<FoodTrait> trait : list)
             {
                 final CompoundTag newTag = new CompoundTag();
-                newTag.putString("trait", Objects.requireNonNull(FoodTraits.REGISTRY.getKey(trait)).toString());
+                newTag.putString("trait", trait.getRegisteredName());
                 listTag.add(newTag);
             }
             nbt.put(key, listTag);
         }
     }
 
-    public static void readTraitList(List<FoodTrait> list, CompoundTag nbt, String key)
+    public static void readTraitList(List<Holder<FoodTrait>> list, CompoundTag nbt, String key)
     {
         list.clear();
         if (nbt.contains(key))
@@ -116,11 +115,7 @@ public class FLHelpers
             final ListTag excessNbt = nbt.getList(key, Tag.TAG_COMPOUND);
             for (int i = 0; i < excessNbt.size(); i++)
             {
-                final FoodTrait trait = FoodTraits.REGISTRY.get(FLHelpers.res(excessNbt.getCompound(i).getString("trait")));
-                if (trait != null)
-                {
-                    list.add(trait);
-                }
+                FoodTraits.REGISTRY.getHolder(FLHelpers.res(excessNbt.getCompound(i).getString("trait"))).ifPresent(list::add);
             }
         }
     }

@@ -8,9 +8,9 @@ import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blocks.FLBeehiveBlock;
 import com.eerussianguy.firmalife.common.blocks.greenhouse.LargePlanterBlock;
+import com.eerussianguy.firmalife.common.capabilities.FLComponents;
 import com.eerussianguy.firmalife.common.capabilities.bee.BeeAbility;
-import com.eerussianguy.firmalife.common.capabilities.bee.BeeCapability;
-import com.eerussianguy.firmalife.common.capabilities.bee.IBee;
+import com.eerussianguy.firmalife.common.capabilities.bee.BeeComponent;
 import com.eerussianguy.firmalife.common.container.BeehiveContainer;
 import com.eerussianguy.firmalife.common.entities.FLBee;
 import com.eerussianguy.firmalife.common.entities.FLEntities;
@@ -95,7 +95,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
     private static final FarmlandBlockEntity.NutrientType P = FarmlandBlockEntity.NutrientType.PHOSPHOROUS;
     private static final FarmlandBlockEntity.NutrientType K = FarmlandBlockEntity.NutrientType.POTASSIUM;
 
-    private final IBee[] cachedBees;
+    private final BeeComponent[] cachedBees;
 
     private int beesInWorld;
     private long lastPlayerTick, lastAreaTick;
@@ -107,7 +107,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
         super(FLBlockEntities.BEEHIVE.get(), pos, state, defaultInventory(TOTAL_SLOTS), FirmaLife.MOD_ID);
         lastPlayerTick = Integer.MIN_VALUE;
         lastAreaTick = Calendars.SERVER.getTicks();
-        cachedBees = new IBee[] {null, null, null, null};
+        cachedBees = new BeeComponent[] {null, null, null, null};
         honey = 0;
         beesInWorld = 0;
 
@@ -190,7 +190,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
         }
     }
 
-    public IBee[] getCachedBees()
+    public BeeComponent[] getCachedBees()
     {
         if (level != null && level.isClientSide) updateCache();
         return cachedBees;
@@ -213,51 +213,64 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
 
         final float temp = Climate.getTemperature(level, worldPosition);
         // collect bees that exist and have queens
-        final List<IBee> usableBees = getUsableBees(temp);
+        final List<BeeComponent> usableBees = getUsableBees(temp);
         // perform area of effect actions
         final int flowers = getFlowers(usableBees, true);
 
         final int breedTickChanceInverted = getBreedTickChanceInverted(usableBees, flowers);
         if (flowers > MIN_FLOWERS && (breedTickChanceInverted == 0 || level.random.nextInt(breedTickChanceInverted) == 0))
         {
-            IBee parent1 = null;
-            IBee parent2 = null;
-            IBee uninitializedBee = null;
+            BeeComponent parent1 = null;
+            BeeComponent parent2 = null;
+            BeeComponent newBee;
+            int freeSlot = -1;
             for (int i = 0; i < FRAME_SLOTS; i++)
             {
-                final IBee bee = inventory.getStackInSlot(i).getCapability(BeeCapability.CAPABILITY).resolve().orElse(null);
+                final BeeComponent bee = getBee(i);
                 if (bee != null)
                 {
                     if (bee.hasQueen())
                     {
-                        if (parent1 == null) parent1 = bee;
-                        else if (parent2 == null) parent2 = bee;
+                        if (parent1 == null)
+                        {
+                            parent1 = bee;
+                        }
+                        else if (parent2 == null)
+                        {
+                            parent2 = bee;
+                        }
                     }
-                    else if (uninitializedBee == null)
+                    else
                     {
-                        uninitializedBee = bee;
+                        freeSlot = i;
                     }
                 }
             }
-            if (uninitializedBee != null)
+            if (parent2 == null) // if we have one or no parents
             {
-                if (parent2 == null) // if we have one or no parents
-                {
-                    uninitializedBee.initFreshAbilities(level.random);
-                }
-                else if (parent1.hasQueen() && parent2.hasQueen())
-                {
-                    uninitializedBee.setAbilitiesFromParents(parent1, parent2, level.random);
-                }
+                newBee = BeeComponent.initFreshAbilities(level.random);
+            }
+            else
+            {
+                newBee = BeeComponent.initFreshAbilities(level.random);
+            }
+            if (freeSlot != -1)
+            {
+                setBee(freeSlot, newBee);
             }
         }
         final int honeyChanceInverted = getHoneyTickChanceInverted(usableBees, flowers);
         if (flowers > MIN_FLOWERS && (honeyChanceInverted == 0 || level.random.nextInt(honeyChanceInverted) == 0))
         {
-            usableBees.removeIf(IBee::hasGeneticDisease);
+            usableBees.removeIf(BeeComponent::hasGeneticDisease);
             addHoney(usableBees.size());
         }
 
+    }
+
+    private void setBee(int slot, BeeComponent data)
+    {
+        inventory.getStackInSlot(slot).set(FLComponents.BEE.get(), data);
     }
 
     private void controlEntitiesTick()
@@ -272,7 +285,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
             final float temp = Climate.getTemperature(level, worldPosition);
 
             // collect bees that exist and have queens
-            final List<IBee> usableBees = getUsableBees(temp);
+            final List<BeeComponent> usableBees = getUsableBees(temp);
 
             final Direction direction = getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
             final BlockPos posInFront = worldPosition.relative(direction);
@@ -293,14 +306,13 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
         }
     }
 
-    @NotNull
-    public List<IBee> getUsableBees(float temp)
+    public List<BeeComponent> getUsableBees(float temp)
     {
         return Arrays.stream(cachedBees).filter(bee -> bee != null && bee.hasQueen() && temp > BeeAbility.getMinTemperature(bee.getAbility(BeeAbility.HARDINESS))).collect(Collectors.toList());
     }
 
     @SuppressWarnings("deprecation")
-    public int getFlowers(List<IBee> bees, boolean tick)
+    public int getFlowers(List<BeeComponent> bees, boolean tick)
     {
         assert level != null;
         int flowers = 0;
@@ -324,7 +336,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
                     }
                     else
                     {
-                        for (IBee bee : bees)
+                        for (BeeComponent bee : bees)
                         {
                             tickPosition(pos, state, bee);
                         }
@@ -340,10 +352,10 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
         return Helpers.isBlock(state, BlockTags.FLOWERS) || (state.getBlock() instanceof PlantBlock && !(state.getBlock() instanceof ShortGrassBlock)) || (state.getBlock() instanceof LargePlanterBlock && state.getValue(LargePlanterBlock.WATERED));
     }
 
-    public int getHoneyTickChanceInverted(List<IBee> bees, int flowers)
+    public int getHoneyTickChanceInverted(List<BeeComponent> bees, int flowers)
     {
         int chance = 30;
-        for (IBee bee : bees)
+        for (BeeComponent bee : bees)
         {
             if (bee.hasQueen())
             {
@@ -357,10 +369,10 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
         return Math.max(0, chance - Mth.ceil((0.2 * Math.min(flowers, 60))));
     }
 
-    public int getBreedTickChanceInverted(List<IBee> bees, int flowers)
+    public int getBreedTickChanceInverted(List<BeeComponent> bees, int flowers)
     {
         int chance = 0;
-        for (IBee bee : bees)
+        for (BeeComponent bee : bees)
         {
             if (bee.hasQueen())
             {
@@ -401,7 +413,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
         return honey;
     }
 
-    private void tickPosition(BlockPos pos, BlockState state, @Nullable IBee bee)
+    private void tickPosition(BlockPos pos, BlockState state, @Nullable BeeComponent bee)
     {
         assert level != null;
         if (bee != null)
@@ -488,18 +500,9 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
     }
 
     @Nullable
-    private IBee getBee(int slot)
+    private BeeComponent getBee(int slot)
     {
-        final ItemStack stack = inventory.getStackInSlot(slot);
-        if (!stack.isEmpty())
-        {
-            var opt = stack.getCapability(BeeCapability.CAPABILITY).resolve();
-            if (opt.isPresent())
-            {
-                return opt.get();
-            }
-        }
-        return null;
+        return inventory.getStackInSlot(slot).get(FLComponents.BEE);
     }
 
     @Override
@@ -507,7 +510,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
     {
         if (slot < FRAME_SLOTS)
         {
-            return stack.getCapability(BeeCapability.CAPABILITY).isPresent();
+            return stack.get(FLComponents.BEE) != null;
         }
         if (slot == SLOT_JAR_IN)
         {

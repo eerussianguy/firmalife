@@ -1,6 +1,7 @@
 package com.eerussianguy.firmalife;
 
 import com.eerussianguy.firmalife.common.FLCreativeTabs;
+import com.eerussianguy.firmalife.common.capabilities.FLComponents;
 import com.eerussianguy.firmalife.common.util.FLAdvancements;
 
 import com.eerussianguy.firmalife.client.FLClientEvents;
@@ -68,6 +69,7 @@ public class FirmaLife
         FLCreativeTabs.CREATIVE_TAB.register(bus);
         FLAdvancements.TRIGGER_TYPE.register(bus);
         FLArmorMaterials.ARMOR_MATERIAL.register(bus);
+        FLComponents.COMPONENT.register(bus);
         FLLoot.registerAll(bus);
 
         FLDataManagers.init();
@@ -93,7 +95,6 @@ public class FirmaLife
         // Vanilla registries are not thread safe
         event.enqueueWork(() -> {
             FLInteractionManager.init();
-            FLFoodTraits.init();
             FLBlocks.registerFlowerPotFlowers();
         });
         FLItemStackModifiers.init();

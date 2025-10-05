@@ -2,11 +2,12 @@ package com.eerussianguy.firmalife.common.items;
 
 import java.util.List;
 import com.eerussianguy.firmalife.common.FLHelpers;
-import com.eerussianguy.firmalife.common.capabilities.wine.IWine;
-import com.eerussianguy.firmalife.common.capabilities.wine.WineCapability;
+import com.eerussianguy.firmalife.common.capabilities.FLComponents;
+import com.eerussianguy.firmalife.common.capabilities.wine.WineComponent;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -19,6 +20,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
+import net.neoforged.neoforge.capabilities.Capabilities;
 
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.fluids.FluidHelpers;
@@ -47,18 +49,23 @@ public class FilledWineBottleItem extends WineBottleItem
     @Override
     public boolean overrideOtherStackedOnMe(ItemStack stack, ItemStack other, Slot slot, ClickAction action, Player player, SlotAccess carried)
     {
-        if (action == ClickAction.SECONDARY && Helpers.isItem(other, TFCTags.Items.KNIVES))
+        if (action == ClickAction.SECONDARY && Helpers.isItem(other, TFCTags.Items.TOOLS_KNIFE))
         {
-            return stack.getCapability(WineCapability.CAPABILITY).map(wine -> {
+            final WineComponent wine = stack.get(FLComponents.WINE);
+            if (wine != null)
+            {
                 if (wine.isSealed())
                 {
                     player.playSound(SoundEvents.BAMBOO_BREAK);
-                    wine.setOpenDate(Calendars.get(player.level()).getTicks());
-                    other.hurtAndBreak(1, player, p -> {});
+                    stack.set(FLComponents.WINE, WineComponent.opened(wine, Calendars.get(player.level()).getTicks()));
+                    if (player.level() instanceof ServerLevel server)
+                    {
+                        other.hurtAndBreak(1, server, player, i -> {});
+                    }
                     return true;
                 }
                 return false;
-            }).orElse(false);
+            }
         }
         return false;
     }
@@ -66,19 +73,18 @@ public class FilledWineBottleItem extends WineBottleItem
     @Override
     public Component getName(ItemStack stack)
     {
-        final IWine wine = Helpers.getCapability(stack, WineCapability.CAPABILITY);
-        return wine != null && wine.getCreationDate() > 0 ? Component.translatable("firmalife.wine." + (wine.isSealed() ? "sealed" : "unsealed"), FLHelpers.translateEnum(wine.getWineType())) : super.getName(stack);
+        final WineComponent wine = stack.get(FLComponents.WINE);
+        return wine != null && wine.creationDate() > 0 ? Component.translatable("firmalife.wine." + (wine.isSealed() ? "sealed" : "unsealed"), FLHelpers.translateEnum(wine.wineType())) : super.getName(stack);
     }
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag debug)
     {
-        stack.getCapability(WineCapability.CAPABILITY).ifPresent(wine -> {
-            if (wine.isSealed())
-            {
-                tooltip.add(Component.translatable("firmalife.wine.how_to_open").withStyle(ChatFormatting.GRAY));
-            }
-        });
+        final WineComponent wine = stack.get(FLComponents.WINE);
+        if (wine != null && wine.isSealed())
+        {
+            tooltip.add(Component.translatable("firmalife.wine.how_to_open").withStyle(ChatFormatting.GRAY));
+        }
     }
 
     @Override

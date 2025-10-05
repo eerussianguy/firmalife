@@ -1,9 +1,13 @@
 package com.eerussianguy.firmalife.common.capabilities.wine;
 
 import java.util.Locale;
+import com.mojang.serialization.Codec;
+import io.netty.buffer.ByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.util.StringRepresentable;
 import org.jetbrains.annotations.NotNull;
 
+import net.dries007.tfc.network.StreamCodecs;
 import net.dries007.tfc.util.climate.KoppenClimateClassification;
 
 public enum WineType implements StringRepresentable
@@ -15,6 +19,8 @@ public enum WineType implements StringRepresentable
     DESSERT(0xFFf2ebdf)
     ;
 
+    public static final Codec<WineType> CODEC = StringRepresentable.fromEnum(WineType::values);
+    public static final StreamCodec<ByteBuf, WineType> STREAM_CODEC = StreamCodecs.forEnum(WineType::values);
     public static final WineType[] VALUES = values();
     public static final KoppenClimateClassification[] KOPPEN_VALUES = KoppenClimateClassification.values();
 
