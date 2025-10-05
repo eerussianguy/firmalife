@@ -26,6 +26,7 @@ import com.eerussianguy.firmalife.common.util.FLMetal;
 import com.eerussianguy.firmalife.config.FLConfig;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import net.dries007.tfc.common.Lore;
 import net.dries007.tfc.common.blocks.rock.Ore;
 import net.dries007.tfc.common.items.*;
 import net.dries007.tfc.util.Helpers;
@@ -76,29 +77,30 @@ public class FLItems
     public static final ItemId RED_GRAPE_SEEDS = register("seeds/red_grape", () -> new GrapeSeedItem(new Item.Properties(), FLBlocks.GRAPE_STRING_PLANT_RED));
     public static final ItemId WHITE_GRAPE_SEEDS = register("seeds/white_grape", () -> new GrapeSeedItem(new Item.Properties(), FLBlocks.GRAPE_STRING_PLANT_WHITE));
 
-    public static final ItemId BEEKEEPER_HELMET = register("beekeeper_helmet", () -> new ArmorItem(FLArmorMaterials.BEEKEEPER, ArmorItem.Type.HELMET, new Item.Properties()));
-    public static final ItemId BEEKEEPER_CHESTPLATE = register("beekeeper_chestplate", () -> new ArmorItem(FLArmorMaterials.BEEKEEPER, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
-    public static final ItemId BEEKEEPER_LEGGINGS = register("beekeeper_leggings", () -> new ArmorItem(FLArmorMaterials.BEEKEEPER, ArmorItem.Type.LEGGINGS, new Item.Properties()));
-    public static final ItemId BEEKEEPER_BOOTS = register("beekeeper_boots", () -> new ArmorItem(FLArmorMaterials.BEEKEEPER, ArmorItem.Type.BOOTS, new Item.Properties()));
+    public static final ItemId BEEKEEPER_HELMET = register("beekeeper_helmet", () -> new ArmorItem(FLArmorMaterials.BEEKEEPER.holder(), ArmorItem.Type.HELMET, new Item.Properties()));
+    public static final ItemId BEEKEEPER_CHESTPLATE = register("beekeeper_chestplate", () -> new ArmorItem(FLArmorMaterials.BEEKEEPER.holder(), ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+    public static final ItemId BEEKEEPER_LEGGINGS = register("beekeeper_leggings", () -> new ArmorItem(FLArmorMaterials.BEEKEEPER.holder(), ArmorItem.Type.LEGGINGS, new Item.Properties()));
+    public static final ItemId BEEKEEPER_BOOTS = register("beekeeper_boots", () -> new ArmorItem(FLArmorMaterials.BEEKEEPER.holder(), ArmorItem.Type.BOOTS, new Item.Properties()));
 
     public static final Map<Spice, ItemId> SPICES = Helpers.mapOf(Spice.class, spice -> register("spice/" + spice.name()));
     public static final Map<FLFood, ItemId> FOODS = Helpers.mapOf(FLFood.class, food -> register("food/" + food.name(), () -> new Item(new Item.Properties().food(food.getFoodProperties()))));
     public static final Map<FLFruit, ItemId> FRUITS = Helpers.mapOf(FLFruit.class, food -> register("food/" + food.name(), () -> new Item(new Item.Properties().food(food.getFoodProperties()))));
     public static final Map<OvenType, ItemId> FINISHES = Helpers.mapOf(OvenType.class, type -> type != OvenType.BRICK, type -> register(type.getTrueName() + "_finish", () -> new FinishItem(prop(), type)));
 
-    public static final ItemId HONEY_JAR = register("jar/honey", () -> new JarItem(new Item.Properties(), FLHelpers.identifier("block/jar/honey"), true));
-    public static final ItemId COMPOST_JAR = register("jar/compost", () -> new JarItem(new Item.Properties(), FLHelpers.identifier("block/jar/compost"), true));
-    public static final ItemId ROTTEN_COMPOST_JAR = register("jar/rotten_compost", () -> new JarItem(new Item.Properties(), FLHelpers.identifier("block/jar/rotten_compost"), true));
-    public static final ItemId GUANO_JAR = register("jar/guano", () -> new JarItem(new Item.Properties(), FLHelpers.identifier("block/jar/guano"), true));
-    public static final Map<FLFruit, ItemId> FL_FRUIT_PRESERVES = Helpers.mapOf(FLFruit.class, food -> register("jar/" + food.getSerializedName() , () -> new JarItem(new Item.Properties(), FLHelpers.identifier("block/jar/" + food.getSerializedName()), false)));
-    public static final Map<FLFruit, ItemId> FL_UNSEALED_FRUIT_PRESERVES = Helpers.mapOf(FLFruit.class, food -> register("jar/" + food.getSerializedName() + "_unsealed" , () -> new JarItem(new Item.Properties(), FLHelpers.identifier("block/jar/" + food.getSerializedName()), true)));
+    // todo: make jars work (porting)
+    public static final ItemId HONEY_JAR = register("jar/honey", () -> new Item(new Item.Properties().component(Lore.TYPE, Lore.UNSEALED).craftRemainder(TFCItems.EMPTY_JAR.asItem())));
+    public static final ItemId COMPOST_JAR = register("jar/compost", () -> new Item(new Item.Properties().component(Lore.TYPE, Lore.UNSEALED).craftRemainder(TFCItems.EMPTY_JAR.asItem())));
+    public static final ItemId ROTTEN_COMPOST_JAR = register("jar/rotten_compost", () -> new Item(new Item.Properties().component(Lore.TYPE, Lore.UNSEALED).craftRemainder(TFCItems.EMPTY_JAR.asItem())));
+    public static final ItemId GUANO_JAR = register("jar/guano", () -> new Item(new Item.Properties().component(Lore.TYPE, Lore.UNSEALED).craftRemainder(TFCItems.EMPTY_JAR.asItem())));
+    public static final Map<FLFruit, ItemId> FL_FRUIT_PRESERVES = Helpers.mapOf(FLFruit.class, food -> register("jar/" + food.getSerializedName() , () -> new Item(new Item.Properties().component(Lore.TYPE, Lore.UNSEALED).craftRemainder(TFCItems.EMPTY_JAR.asItem()))));
+    public static final Map<FLFruit, ItemId> FL_UNSEALED_FRUIT_PRESERVES = Helpers.mapOf(FLFruit.class, food -> register("jar/" + food.getSerializedName() + "_unsealed" , () -> new Item(new Item.Properties().component(Lore.TYPE, Lore.UNSEALED).craftRemainder(TFCItems.EMPTY_JAR.asItem()))));
 
 
     public static final ItemId FILLED_PIE = register("food/filled_pie"); // inedible
     public static final ItemId RAW_PUMPKIN_PIE = register("food/raw_pumpkin_pie"); // inedible
     public static final ItemId RAW_PIZZA = register("food/raw_pizza"); // inedible
-    public static final ItemId NIGHTSHADE_BERRY = register("food/nightshade_berry", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationMod(0.3f).effect(() -> new MobEffectInstance(MobEffects.HARM, 1, 10), 0.5f).build())));
-    public static final ItemId STINKY_SOUP = register("food/stinky_soup", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationMod(0.3f).effect(() -> new MobEffectInstance(MobEffects.HARM, 1, 10), 0.5f).build())));
+    public static final ItemId NIGHTSHADE_BERRY = register("food/nightshade_berry", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationModifier(0.3f).effect(() -> new MobEffectInstance(MobEffects.HARM, 1, 10), 0.5f).build())));
+    public static final ItemId STINKY_SOUP = register("food/stinky_soup", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationModifier(0.3f).effect(() -> new MobEffectInstance(MobEffects.HARM, 1, 10), 0.5f).build())));
 
     public static final Map<Ore.Grade, ItemId> CHROMIUM_ORES = Helpers.mapOf(Ore.Grade.class, grade -> register("ore/" + grade.name() + "_chromite"));
 
@@ -109,15 +111,15 @@ public class FLItems
     );
 
     public static final Map<FLMetal, ItemId> METAL_FLUID_BUCKETS = Helpers.mapOf(FLMetal.class, metal ->
-        register("bucket/metal/" + metal.name(), () -> new BucketItem(FLFluids.METALS.get(metal).source(), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)))
+        register("bucket/metal/" + metal.name(), () -> new BucketItem(FLFluids.METALS.get(metal).getSource(), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)))
     );
 
     public static final Map<ExtraFluid, ItemId> EXTRA_FLUID_BUCKETS = Helpers.mapOf(ExtraFluid.class, fluid ->
-        register("bucket/" + fluid.getSerializedName(), () -> new BucketItem(FLFluids.EXTRA_FLUIDS.get(fluid).source(), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)))
+        register("bucket/" + fluid.getSerializedName(), () -> new BucketItem(FLFluids.EXTRA_FLUIDS.get(fluid).getSource(), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)))
     );
 
     public static final Map<WineType, ItemId> WINE_FLUID_BUCKETS = Helpers.mapOf(WineType.class, fluid ->
-        register("bucket/" + fluid.getSerializedName(), () -> new BucketItem(FLFluids.WINE_FLUIDS.get(fluid).source(), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)))
+        register("bucket/" + fluid.getSerializedName(), () -> new BucketItem(FLFluids.WINE_FLUIDS.get(fluid).getSource(), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)))
     );
 
 

@@ -15,8 +15,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.registries.RegistryObject;
 
+import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.util.Helpers;
 
 public class FinishItem extends Item
@@ -86,7 +86,7 @@ public class FinishItem extends Item
         return InteractionResult.PASS;
     }
 
-    private Block grab(Map<OvenType, RegistryObject<Block>> map)
+    private Block grab(Map<OvenType, TFCBlocks.Id<Block>> map)
     {
         return map.get(OvenType.BRICK).get();
     }

@@ -14,18 +14,16 @@ public class GlassStairBlock extends StairBlock
 {
     public GlassStairBlock(Supplier<BlockState> state, Properties properties)
     {
-        super(state, properties);
+        super(state.get(), properties);
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public VoxelShape getVisualShape(BlockState pState, BlockGetter pReader, BlockPos pPos, CollisionContext pContext)
     {
         return Shapes.empty();
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public float getShadeBrightness(BlockState pState, BlockGetter pLevel, BlockPos pPos)
     {
         return 1.0F;
@@ -38,7 +36,6 @@ public class GlassStairBlock extends StairBlock
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public boolean skipRendering(BlockState state, BlockState adjacent, Direction side)
     {
         return adjacent.getBlock() instanceof GlassStairBlock && state.getValue(HALF) == adjacent.getValue(HALF) && state.getValue(FACING) == adjacent.getValue(FACING);

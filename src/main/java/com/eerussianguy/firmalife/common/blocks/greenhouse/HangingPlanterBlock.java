@@ -34,14 +34,12 @@ public class HangingPlanterBlock extends LargePlanterBlock
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos pos, BlockPos facingPos)
     {
         return facing == Direction.UP && !facingState.isFaceSturdy(level, facingPos, Direction.DOWN) ? Blocks.AIR.defaultBlockState() : super.updateShape(state, facing, facingState, level, pos, facingPos);
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos)
     {
         return canSurvive(level, pos);

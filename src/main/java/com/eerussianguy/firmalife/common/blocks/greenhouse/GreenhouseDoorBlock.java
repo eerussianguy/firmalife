@@ -24,7 +24,7 @@ public class GreenhouseDoorBlock extends DoorBlock implements IWeatherable, IFor
 
     public GreenhouseDoorBlock(ExtendedProperties properties, @Nullable Supplier<? extends Block> next, BlockSetType set)
     {
-        super(properties.properties(), set);
+        super(set, properties.properties());
         this.next = next;
         this.properties = properties;
     }
@@ -36,7 +36,6 @@ public class GreenhouseDoorBlock extends DoorBlock implements IWeatherable, IFor
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public void onRandomTick(BlockState lower, ServerLevel level, BlockPos pos, RandomSource rand)
     {
         Supplier<? extends Block> next = getNext();

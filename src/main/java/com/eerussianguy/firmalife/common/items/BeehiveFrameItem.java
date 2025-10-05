@@ -31,7 +31,7 @@ public class BeehiveFrameItem extends Item
     @Override
     public boolean overrideOtherStackedOnMe(ItemStack stack, ItemStack other, Slot slot, ClickAction action, Player player, SlotAccess carried)
     {
-        if (action == ClickAction.SECONDARY && Helpers.isItem(other, TFCTags.Items.KNIVES))
+        if (action == ClickAction.SECONDARY && Helpers.isItem(other, TFCTags.Items.TOOLS_KNIFE))
         {
             return stack.getCapability(BeeCapability.CAPABILITY).map(bee -> {
                 if (bee.hasQueen())
@@ -47,8 +47,9 @@ public class BeehiveFrameItem extends Item
         return false;
     }
 
+
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag advanced)
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag advanced)
     {
         stack.getCapability(BeeCapability.CAPABILITY).ifPresent(bee -> {
             if (bee.hasQueen())
@@ -56,13 +57,6 @@ public class BeehiveFrameItem extends Item
                 tooltip.add(Component.translatable("firmalife.bee.may_scrape"));
             }
         });
-    }
-
-    @Nullable
-    @Override
-    public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundTag nbt)
-    {
-        return new BeeHandler(stack);
     }
 
 }

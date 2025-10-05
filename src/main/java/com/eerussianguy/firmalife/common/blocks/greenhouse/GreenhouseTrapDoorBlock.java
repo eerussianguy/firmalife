@@ -24,20 +24,18 @@ public class GreenhouseTrapDoorBlock extends TrapDoorBlock implements IWeatherab
 
     public GreenhouseTrapDoorBlock(ExtendedProperties properties, BlockSetType type, @Nullable Supplier<? extends Block> next)
     {
-        super(properties.properties(), type);
+        super(type, properties.properties());
         this.properties = properties;
         this.next = next;
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public VoxelShape getVisualShape(BlockState pState, BlockGetter pReader, BlockPos pPos, CollisionContext pContext)
     {
         return Shapes.empty();
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public float getShadeBrightness(BlockState pState, BlockGetter pLevel, BlockPos pPos)
     {
         return 1.0F;
@@ -50,7 +48,6 @@ public class GreenhouseTrapDoorBlock extends TrapDoorBlock implements IWeatherab
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public boolean skipRendering(BlockState state, BlockState adjacent, Direction side)
     {
         return adjacent.getBlock() instanceof GreenhouseTrapDoorBlock

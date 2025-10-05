@@ -24,6 +24,7 @@ import com.eerussianguy.firmalife.client.screen.StovetopPotScreen;
 import com.eerussianguy.firmalife.common.FLCreativeTabs;
 import com.eerussianguy.firmalife.common.capabilities.bee.BeeCapability;
 import com.eerussianguy.firmalife.common.capabilities.bee.IBee;
+import com.eerussianguy.firmalife.common.items.PeelItem;
 import com.eerussianguy.firmalife.common.items.WineBottleItem;
 import com.eerussianguy.firmalife.common.misc.SprinklerParticle;
 import com.eerussianguy.firmalife.common.util.FLFruit;
@@ -36,13 +37,8 @@ import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.material.Fluid;
-import net.minecraftforge.client.event.*;
-import net.minecraftforge.client.model.DynamicFluidContainerModel;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import com.eerussianguy.firmalife.client.render.*;
 import com.eerussianguy.firmalife.client.screen.BeehiveScreen;
@@ -55,20 +51,25 @@ import com.eerussianguy.firmalife.common.entities.FLEntities;
 import com.eerussianguy.firmalife.common.misc.FLParticles;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.common.items.FLItems;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.ModelEvent;
+import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
+import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
+import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
+import net.neoforged.neoforge.client.model.DynamicFluidContainerModel;
 
 import net.dries007.tfc.client.TFCColors;
 import net.dries007.tfc.client.particle.GlintParticleProvider;
-import net.dries007.tfc.common.capabilities.food.FoodCapability;
+import net.dries007.tfc.common.component.food.FoodCapability;
 import net.dries007.tfc.common.items.TFCItems;
 
 public class FLClientEvents
 {
 
-    public static void init()
+    public static void init(IEventBus bus)
     {
-        final IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-
         bus.addListener(FLClientEvents::clientSetup);
         bus.addListener(FLClientEvents::registerEntityRenderers);
         bus.addListener(FLClientEvents::onLayers);
@@ -78,6 +79,7 @@ public class FLClientEvents
         bus.addListener(FLClientEvents::registerParticleFactories);
         bus.addListener(FLClientEvents::registerModels);
         bus.addListener(FLClientEvents::registerLoaders);
+        bus.addListener(FLClientEvents::registerExtensions);
         bus.addListener(FLCreativeTabs::onBuildCreativeTab);
     }
 
@@ -157,13 +159,14 @@ public class FLClientEvents
 
         Stream.of(FLBlocks.BUTTERFLY_GRASS).forEach(reg -> event.register(grassColor, reg.get()));
 
-        for (Fluid fluid : ForgeRegistries.FLUIDS.getValues())
-        {
-            if (Objects.requireNonNull(ForgeRegistries.FLUIDS.getKey(fluid)).getNamespace().equals(FirmaLife.MOD_ID))
+
+        BuiltInRegistries.FLUID.entrySet().forEach(entry -> {
+            if (Objects.requireNonNull(entry.getKey().location().getNamespace()).equals(FirmaLife.MOD_ID))
             {
                 event.register(new DynamicFluidContainerModel.Colors(), fluid.getBucket());
             }
-        }
+        });
+
         event.register(new DynamicFluidContainerModel.Colors(), FLItems.HOLLOW_SHELL.get());
         event.register(new DynamicFluidContainerModel.Colors(), FLItems.WINE_GLASS.get());
     }
@@ -189,13 +192,12 @@ public class FLClientEvents
         event.register(FLHelpers.identifier("block/picker_arms"));
         event.register(FLHelpers.identifier("block/sweeper_arm"));
 
-        for (Item item : ForgeRegistries.ITEMS.getValues())
-        {
+        BuiltInRegistries.ITEM.forEach(item -> {
             if (item instanceof WineBottleItem wine)
             {
                 event.register(wine.getModelLocation());
             }
-        }
+        });
     }
 
     public static void registerLoaders(ModelEvent.RegisterGeometryLoaders event)
@@ -257,5 +259,10 @@ public class FLClientEvents
         event.register(JarbnetBlockModel.JUG_LOCATION);
         event.register(CompostTumblerBlockEntityRenderer.OPEN_MODEL);
         event.register(CompostTumblerBlockEntityRenderer.CLOSED_MODEL);
+    }
+
+    public static void registerExtensions(RegisterClientExtensionsEvent event)
+    {
+        event.registerItem(PeelItem.Extension.INSTANCE, FLItems.PEEL.get());
     }
 }

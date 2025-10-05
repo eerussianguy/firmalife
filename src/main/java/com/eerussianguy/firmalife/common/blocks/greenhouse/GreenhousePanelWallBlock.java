@@ -34,7 +34,6 @@ public class GreenhousePanelWallBlock extends GreenhouseWallBlock
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context)
     {
         return SHAPES[state.getValue(FACING).get2DDataValue()];
@@ -59,7 +58,6 @@ public class GreenhousePanelWallBlock extends GreenhouseWallBlock
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving)
     {
         super.onRemove(state, level, pos, newState, isMoving);
@@ -93,14 +91,12 @@ public class GreenhousePanelWallBlock extends GreenhouseWallBlock
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public BlockState rotate(BlockState state, Rotation rot)
     {
         return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public BlockState mirror(BlockState state, Mirror mirror)
     {
         return state.rotate(mirror.getRotation(state.getValue(FACING)));

@@ -16,7 +16,6 @@ import net.minecraft.world.level.Level;
 import com.eerussianguy.firmalife.common.entities.SeedBall;
 import com.eerussianguy.firmalife.config.FLConfig;
 import net.dries007.tfc.util.Helpers;
-import org.jetbrains.annotations.Nullable;
 
 public class SeedBallItem extends Item
 {
@@ -26,7 +25,7 @@ public class SeedBallItem extends Item
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> text, TooltipFlag flags)
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> text, TooltipFlag flags)
     {
         text.add(Component.translatable("firmalife.tooltip.seed_ball"));
     }

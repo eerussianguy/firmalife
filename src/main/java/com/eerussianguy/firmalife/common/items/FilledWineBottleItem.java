@@ -4,9 +4,7 @@ import java.util.List;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.capabilities.wine.IWine;
 import com.eerussianguy.firmalife.common.capabilities.wine.WineCapability;
-import com.eerussianguy.firmalife.common.capabilities.wine.WineHandler;
 import net.minecraft.ChatFormatting;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
@@ -18,14 +16,11 @@ import net.minecraft.world.inventory.ClickAction;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.items.ItemHandlerHelper;
-import org.jetbrains.annotations.Nullable;
 
 import net.dries007.tfc.common.TFCTags;
-import net.dries007.tfc.common.capabilities.Capabilities;
 import net.dries007.tfc.common.fluids.FluidHelpers;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.calendar.Calendars;
@@ -41,7 +36,7 @@ public class FilledWineBottleItem extends WineBottleItem
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand)
     {
         final ItemStack stack = player.getItemInHand(hand);
-        final BlockHitResult hit = Helpers.rayTracePlayer(level, player, net.minecraft.world.level.ClipContext.Fluid.SOURCE_ONLY);
+        final BlockHitResult hit = getPlayerPOVHitResult(level, player, ClipContext.Fluid.SOURCE_ONLY);
         if (FluidHelpers.transferBetweenWorldAndItem(stack, level, hit, player, hand, false, false, false))
         {
             return InteractionResultHolder.success(player.getItemInHand(hand));
@@ -76,7 +71,7 @@ public class FilledWineBottleItem extends WineBottleItem
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag debug)
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag debug)
     {
         stack.getCapability(WineCapability.CAPABILITY).ifPresent(wine -> {
             if (wine.isSealed())
@@ -96,11 +91,5 @@ public class FilledWineBottleItem extends WineBottleItem
     public boolean hasCraftingRemainingItem(ItemStack stack)
     {
         return stack.getCapability(Capabilities.FLUID_ITEM).map((cap) -> !cap.getFluidInTank(0).isEmpty()).orElse(false);
-    }
-
-    @Override
-    public @Nullable ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundTag nbt)
-    {
-        return new WineHandler(stack);
     }
 }

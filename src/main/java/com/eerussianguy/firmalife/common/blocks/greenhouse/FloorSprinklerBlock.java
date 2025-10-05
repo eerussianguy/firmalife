@@ -20,7 +20,6 @@ public class FloorSprinklerBlock extends AbstractSprinklerBlock
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context)
     {
         return SHAPE;

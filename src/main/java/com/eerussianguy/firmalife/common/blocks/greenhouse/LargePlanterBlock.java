@@ -53,7 +53,6 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand)
     {
         if (!level.isClientSide && level.getBlockEntity(pos) instanceof LargePlanterBlockEntity planter && state.getBlock() == this)
@@ -66,7 +65,6 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit)
     {
         final ItemStack held = player.getItemInHand(hand);
@@ -136,7 +134,7 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
     }
 
     @Override
-    public void addHoeOverlayInfo(Level level, BlockPos pos, BlockState state, List<Component> text, boolean debug)
+    public void addHoeOverlayInfo(Level level, BlockPos pos, BlockState state, Consumer<Component> text, boolean debug)
     {
         if (!level.isClientSide) return;
         if (level.getBlockEntity(pos) instanceof LargePlanterBlockEntity planter)
@@ -145,20 +143,20 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
             if (target == null) return;
 
             final int slot = getUseSlot(target, pos);
-            text.add(Component.translatable("firmalife.planter.growth_water", String.format("%.2f", planter.getGrowth(slot)), String.format("%.2f", planter.getWater())));
+            text.accept(Component.translatable("firmalife.planter.growth_water", String.format("%.2f", planter.getGrowth(slot)), String.format("%.2f", planter.getWater())));
             if (planter.getGrowth(slot) >= 1)
             {
-                text.add(Component.translatable("tfc.tooltip.farmland.mature"));
+                text.accept(Component.translatable("tfc.tooltip.farmland.mature"));
             }
             final Component invalidReason = planter.getInvalidReason();
             final boolean valid = invalidReason == null;
-            text.add(Component.translatable(valid ? "firmalife.greenhouse.valid_block" : "firmalife.greenhouse.invalid_block"));
+            text.accept(Component.translatable(valid ? "firmalife.greenhouse.valid_block" : "firmalife.greenhouse.invalid_block"));
             if (!valid)
             {
-                text.add(invalidReason);
+                text.accept(invalidReason);
             }
 
-            text.add(Component.translatable("tfc.tooltip.farmland.nutrients", format(planter, FarmlandBlockEntity.NutrientType.NITROGEN), format(planter, FarmlandBlockEntity.NutrientType.PHOSPHOROUS), format(planter, FarmlandBlockEntity.NutrientType.POTASSIUM)));
+            text.accept(Component.translatable("tfc.tooltip.farmland.nutrients", format(planter, FarmlandBlockEntity.NutrientType.NITROGEN), format(planter, FarmlandBlockEntity.NutrientType.PHOSPHOROUS), format(planter, FarmlandBlockEntity.NutrientType.POTASSIUM)));
         }
     }
 
@@ -225,7 +223,6 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context)
     {
         return LARGE_SHAPE;

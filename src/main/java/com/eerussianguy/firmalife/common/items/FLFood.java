@@ -98,24 +98,22 @@ public enum FLFood
     DEHYDRATED_SOYBEANS,
     ;
 
-    private final boolean meat, fast;
+    private final boolean fast;
 
     FLFood()
     {
-        this(false, false);
+        this(false);
     }
 
-    FLFood(boolean meat, boolean fast)
+    FLFood(boolean fast)
     {
-        this.meat = meat;
         this.fast = fast;
     }
 
     public FoodProperties getFoodProperties()
     {
         FoodProperties.Builder builder = new FoodProperties.Builder();
-        if (meat) builder.meat();
         if (fast) builder.fast();
-        return builder.nutrition(4).saturationMod(0.3f).build();
+        return builder.nutrition(4).saturationModifier(0.3f).build();
     }
 }

@@ -78,7 +78,7 @@ public class FirmaLife
         FLForgeEvents.init();
         if (FMLEnvironment.dist == Dist.CLIENT)
         {
-            FLClientEvents.init();
+            FLClientEvents.init(bus);
             FLClientForgeEvents.init();
         }
 

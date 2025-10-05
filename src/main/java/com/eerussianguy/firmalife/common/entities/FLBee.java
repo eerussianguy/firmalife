@@ -51,7 +51,7 @@ public class FLBee extends Bee
     public void readAdditionalSaveData(CompoundTag tag)
     {
         this.spawnPos = null;
-        setSpawnPos(NbtUtils.readBlockPos(tag.getCompound("spawnPos")));
+        setSpawnPos(NbtUtils.readBlockPos(tag, "spawnPos").orElse(BlockPos.ZERO));
         this.daySpawned = tag.contains("daySpawned", CompoundTag.TAG_LONG) ? tag.getLong("daySpawned") : -1L;
         super.readAdditionalSaveData(tag);
     }

@@ -1,12 +1,14 @@
 package com.eerussianguy.firmalife.common.blocks.greenhouse;
 
-import java.util.List;
+import java.util.Objects;
 import java.util.Set;
+import java.util.function.Consumer;
 import com.eerussianguy.firmalife.common.blockentities.ClimateStationBlockEntity;
 import com.eerussianguy.firmalife.common.blockentities.ClimateType;
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.blocks.FLStateProperties;
 import com.eerussianguy.firmalife.common.util.FLAdvancements;
+import com.eerussianguy.firmalife.common.util.GreenhouseType;
 import com.eerussianguy.firmalife.common.util.Mechanics;
 import com.mojang.datafixers.util.Either;
 import net.minecraft.core.BlockPos;
@@ -15,7 +17,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -49,7 +51,7 @@ public class ClimateStationBlock extends DeviceBlock implements HoeOverlayBlock
             final Set<BlockPos> positions = info.positions();
             level.getBlockEntity(pos, FLBlockEntities.CLIMATE_STATION.get()).ifPresent(station -> {
                 station.setPositions(positions);
-                station.updateValidity(true, info.type().tier);
+                station.updateValidity(true, info.type().tier());
                 station.setType(ClimateType.GREENHOUSE);
             });
             updateState(level, pos, state, true);
@@ -94,20 +96,19 @@ public class ClimateStationBlock extends DeviceBlock implements HoeOverlayBlock
     }
 
     @Override
-    @SuppressWarnings("deprecation")
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit)
+    public ItemInteractionResult useItemOn(ItemStack held, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit)
     {
         // set the fallback type if we can
-        final boolean willConsumeAction = level.getBlockEntity(pos) instanceof ClimateStationBlockEntity station && station.setFavorite(player.getItemInHand(hand));
+        final boolean willConsumeAction = level.getBlockEntity(pos) instanceof ClimateStationBlockEntity station && station.setFavorite(held);
         final Either<Mechanics.GreenhouseInfo, Set<BlockPos>> either = check(level, pos, state);
         if (either == null)
         {
-            return willConsumeAction ? InteractionResult.sidedSuccess(level.isClientSide) : InteractionResult.PASS;
+            return willConsumeAction ? ItemInteractionResult.sidedSuccess(level.isClientSide) : ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
         else
         {
             either.ifLeft(info -> {
-                if (info.positions().size() > 200 && player instanceof ServerPlayer server && info.type().id.toString().contains("stainless_steel"))
+                if (info.positions().size() > 200 && player instanceof ServerPlayer server && Objects.requireNonNull(GreenhouseType.MANAGER.getId(info.type())).toString().contains("stainless_steel"))
                 {
                     FLAdvancements.BIG_STAINLESS_GREENHOUSE.trigger(server);
                 }
@@ -120,12 +121,11 @@ public class ClimateStationBlock extends DeviceBlock implements HoeOverlayBlock
                 }
                 player.displayClientMessage(Component.translatable(MOD_ID + ".cellar.found", positions.size()), true);
             });
-            return InteractionResult.sidedSuccess(level.isClientSide);
+            return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random)
     {
         if (random.nextInt(4) == 0)
@@ -135,7 +135,6 @@ public class ClimateStationBlock extends DeviceBlock implements HoeOverlayBlock
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random)
     {
         check(level, pos, state);
@@ -162,17 +161,17 @@ public class ClimateStationBlock extends DeviceBlock implements HoeOverlayBlock
     }
 
     @Override
-    public void addHoeOverlayInfo(Level level, BlockPos pos, BlockState state, List<Component> tooltip, boolean debug)
+    public void addHoeOverlayInfo(Level level, BlockPos pos, BlockState state, Consumer<Component> tooltip, boolean debug)
     {
         if (level.getBlockEntity(pos) instanceof ClimateStationBlockEntity station)
         {
             if (station.getFavoriteType() != null)
             {
-                tooltip.add(Component.translatable("firmalife.greenhouse.expects", station.getFavoriteType().getTitle()));
+                tooltip.accept(Component.translatable("firmalife.greenhouse.expects", station.getFavoriteType().getTitle()));
             }
             else if (station.favoriteIsCellar())
             {
-                tooltip.add(Component.translatable("firmalife.cellar.expects"));
+                tooltip.accept(Component.translatable("firmalife.cellar.expects"));
             }
         }
     }

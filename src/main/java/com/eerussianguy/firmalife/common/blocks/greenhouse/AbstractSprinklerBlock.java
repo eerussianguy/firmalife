@@ -1,6 +1,7 @@
 package com.eerussianguy.firmalife.common.blocks.greenhouse;
 
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import com.eerussianguy.firmalife.common.blockentities.SprinklerBlockEntity;
@@ -83,12 +84,12 @@ public class AbstractSprinklerBlock extends DeviceBlock implements HoeOverlayBlo
     }
 
     @Override
-    public void addHoeOverlayInfo(Level level, BlockPos pos, BlockState state, List<Component> text, boolean debug)
+    public void addHoeOverlayInfo(Level level, BlockPos pos, BlockState state, Consumer<Component> text, boolean debug)
     {
-        text.add(Component.translatable(state.getValue(STASIS) ? "firmalife.greenhouse.valid_sprinkler" : "firmalife.greenhouse.invalid_sprinkler"));
+        text.accept(Component.translatable(state.getValue(STASIS) ? "firmalife.greenhouse.valid_sprinkler" : "firmalife.greenhouse.invalid_sprinkler"));
         if (level.getBlockEntity(pos) instanceof SprinklerBlockEntity sprinkler)
         {
-            text.add(Component.translatable(sprinkler.isValid() ? "firmalife.greenhouse.valid_generic" : "firmalife.greenhouse.invalid_generic"));
+            text.accept(Component.translatable(sprinkler.isValid() ? "firmalife.greenhouse.valid_generic" : "firmalife.greenhouse.invalid_generic"));
         }
     }
 }

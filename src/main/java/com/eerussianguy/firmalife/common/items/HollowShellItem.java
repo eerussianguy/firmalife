@@ -17,9 +17,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.minecraftforge.fluids.capability.IFluidHandler;
 
 import com.eerussianguy.firmalife.common.misc.FLSounds;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 
 import net.dries007.tfc.common.fluids.FluidHelpers;
 import net.dries007.tfc.common.items.FluidContainerItem;
@@ -29,7 +29,7 @@ public class HollowShellItem extends FluidContainerItem
 {
     public HollowShellItem(Properties properties, Supplier<Integer> capacity, TagKey<Fluid> whitelist, boolean canPlaceSourceBlocks, boolean canPlaceLiquidsInWorld)
     {
-        super(properties, capacity, whitelist, canPlaceSourceBlocks, canPlaceLiquidsInWorld);
+        super(properties, capacity, whitelist, canPlaceSourceBlocks, () -> canPlaceLiquidsInWorld);
     }
 
     @Override
@@ -37,7 +37,7 @@ public class HollowShellItem extends FluidContainerItem
     {
         if (player.isShiftKeyDown())
         {
-            final BlockHitResult hit = Helpers.rayTracePlayer(level, player, ClipContext.Fluid.NONE);
+            final BlockHitResult hit = getPlayerPOVHitResult(level, player, ClipContext.Fluid.NONE);
             if (hit.getType() != HitResult.Type.MISS && hit.getDirection() == Direction.UP)
             {
                 final BlockPos pos = hit.getBlockPos().above();
