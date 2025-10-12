@@ -6,7 +6,7 @@ import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.blockentities.OvenTopBlockEntity;
 import com.eerussianguy.firmalife.common.items.FinishItem;
-import com.eerussianguy.firmalife.common.misc.FLDamageSources;
+import com.eerussianguy.firmalife.common.misc.FLDamageTypes;
 import com.eerussianguy.firmalife.config.FLConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -61,7 +61,7 @@ public class OvenTopBlock extends AbstractOvenBlock
             {
                 if (!peel && oven.getTemperature() > 100f && FLConfig.SERVER.ovenRequirePeel.get() && !player.isCreative())
                 {
-                    FLDamageSources.oven(player, 0.5f);
+                    FLDamageTypes.oven(player, 0.5f);
                 }
                 return FLHelpers.takeOneAny(level, OvenTopBlockEntity.SLOT_INPUT_START, OvenTopBlockEntity.SLOT_INPUT_END, inv, player);
             }

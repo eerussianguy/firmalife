@@ -3,6 +3,7 @@ package com.eerussianguy.firmalife.common.blockentities;
 import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.common.container.BigBarrelContainer;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Inventory;
@@ -24,6 +25,8 @@ import net.dries007.tfc.common.capabilities.DelegateItemHandler;
 import net.dries007.tfc.common.capabilities.FluidTankCallback;
 import net.dries007.tfc.common.capabilities.InventoryFluidTank;
 import net.dries007.tfc.common.capabilities.InventoryItemHandler;
+import net.dries007.tfc.common.capabilities.PartialFluidHandler;
+import net.dries007.tfc.common.capabilities.SidedHandler;
 import net.dries007.tfc.common.component.size.ItemSizeManager;
 import net.dries007.tfc.common.component.size.Size;
 import net.dries007.tfc.common.fluids.FluidHelpers;
@@ -37,15 +40,22 @@ public class BigBarrelBlockEntity extends InventoryBlockEntity<BigBarrelBlockEnt
     public static final int SLOT_FLUID_CONTAINER_IN = 36;
     public static final int SLOT_FLUID_CONTAINER_OUT = 37;
     public static final int CAPACITY = 80000;
+    private final SidedHandler<IFluidHandler> sidedFluidInventory;
 
     public BigBarrelBlockEntity(BlockPos pos, BlockState state)
     {
         super(FLBlockEntities.BIG_BARREL.get(), pos, state, BigBarrelInventory::new, FirmaLife.MOD_ID);
-//
-//        sidedFluidInventory = new SidedHandler.Builder<>(inventory);
-//        sidedFluidInventory
-//            .on(new PartialFluidHandler(inventory).insert(), d -> d.getAxis().isHorizontal())
-//            .on(new PartialFluidHandler(inventory).extract(), d -> d.getAxis().isVertical());
+
+        sidedFluidInventory = new SidedHandler<>(inventory);
+        sidedFluidInventory
+            .on(PartialFluidHandler::insertOnly, d -> d.getAxis().isHorizontal())
+            .on(PartialFluidHandler::extractOnly, d -> d.getAxis().isVertical());
+    }
+
+    @Nullable
+    public IFluidHandler getSidedFluidInventory(@Nullable Direction dir)
+    {
+        return sidedFluidInventory.get(dir);
     }
 
     @Override

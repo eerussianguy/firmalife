@@ -22,8 +22,8 @@ import com.eerussianguy.firmalife.client.screen.BigBarrelScreen;
 import com.eerussianguy.firmalife.client.screen.StovetopGrillScreen;
 import com.eerussianguy.firmalife.client.screen.StovetopPotScreen;
 import com.eerussianguy.firmalife.common.FLCreativeTabs;
-import com.eerussianguy.firmalife.common.capabilities.bee.BeeCapability;
-import com.eerussianguy.firmalife.common.capabilities.bee.IBee;
+import com.eerussianguy.firmalife.common.capabilities.FLComponents;
+import com.eerussianguy.firmalife.common.capabilities.bee.BeeComponent;
 import com.eerussianguy.firmalife.common.items.PeelItem;
 import com.eerussianguy.firmalife.common.items.WineBottleItem;
 import com.eerussianguy.firmalife.common.misc.SprinklerParticle;
@@ -32,12 +32,13 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.item.ItemColor;
-import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 
 import com.eerussianguy.firmalife.client.render.*;
@@ -56,13 +57,16 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.client.model.DynamicFluidContainerModel;
+import net.neoforged.neoforge.client.model.geometry.IGeometryLoader;
 
 import net.dries007.tfc.client.TFCColors;
 import net.dries007.tfc.client.particle.GlintParticleProvider;
 import net.dries007.tfc.common.component.food.FoodCapability;
+import net.dries007.tfc.common.component.food.IFood;
 import net.dries007.tfc.common.items.TFCItems;
 
 public class FLClientEvents
@@ -73,7 +77,7 @@ public class FLClientEvents
         bus.addListener(FLClientEvents::clientSetup);
         bus.addListener(FLClientEvents::registerEntityRenderers);
         bus.addListener(FLClientEvents::onLayers);
-        bus.addListener(FLClientEvents::onModelRegister);
+        bus.addListener(FLClientEvents::onMenuRegister);
         bus.addListener(FLClientEvents::onBlockColors);
         bus.addListener(FLClientEvents::onItemColors);
         bus.addListener(FLClientEvents::registerParticleFactories);
@@ -126,12 +130,6 @@ public class FLClientEvents
         ItemBlockRenderTypes.setRenderLayer(FLBlocks.REINFORCED_POURED_GLASS.get(), translucent);
 
         event.enqueueWork(() -> {
-            MenuScreens.register(FLMenuTypes.BEEHIVE.get(), BeehiveScreen::new);
-            MenuScreens.register(FLMenuTypes.BARREL_PRESS.get(), BarrelPressScreen::new);
-            MenuScreens.register(FLMenuTypes.STOVETOP_GRILL.get(), StovetopGrillScreen::new);
-            MenuScreens.register(FLMenuTypes.STOVETOP_POT.get(), StovetopPotScreen::new);
-            MenuScreens.register(FLMenuTypes.BIG_BARREL.get(), BigBarrelScreen::new);
-
             TFCItems.FOOD.forEach((food, item) -> {
                 if (FLItems.TFC_FRUITS.contains(food))
                 {
@@ -140,9 +138,21 @@ public class FLClientEvents
             });
             FLItems.FRUITS.forEach((food, item) -> registerDryProperty(item));
 
-            ItemProperties.register(FLItems.BEEHIVE_FRAME.get(), FLHelpers.identifier("queen"), (stack, a, b, c) -> stack.getCapability(BeeCapability.CAPABILITY).map(IBee::hasQueen).orElse(false) ? 1f : 0f);
+            ItemProperties.register(FLItems.BEEHIVE_FRAME.get(), FLHelpers.identifier("queen"), (stack, a, b, c) -> {
+                final BeeComponent bee = stack.get(FLComponents.BEE.get());
+                return bee != null && bee.hasQueen() ? 1f : 0f;
+            });
 
         });
+    }
+
+    public static void onMenuRegister(RegisterMenuScreensEvent event)
+    {
+        event.register(FLMenuTypes.BEEHIVE.get(), BeehiveScreen::new);
+        event.register(FLMenuTypes.BARREL_PRESS.get(), BarrelPressScreen::new);
+        event.register(FLMenuTypes.STOVETOP_GRILL.get(), StovetopGrillScreen::new);
+        event.register(FLMenuTypes.STOVETOP_POT.get(), StovetopPotScreen::new);
+        event.register(FLMenuTypes.BIG_BARREL.get(), BigBarrelScreen::new);
     }
 
     public static void onBlockColors(RegisterColorHandlersEvent.Block event)
@@ -163,7 +173,7 @@ public class FLClientEvents
         BuiltInRegistries.FLUID.entrySet().forEach(entry -> {
             if (Objects.requireNonNull(entry.getKey().location().getNamespace()).equals(FirmaLife.MOD_ID))
             {
-                event.register(new DynamicFluidContainerModel.Colors(), fluid.getBucket());
+                event.register(new DynamicFluidContainerModel.Colors(), entry.getValue().getBucket());
             }
         });
 
@@ -181,46 +191,61 @@ public class FLClientEvents
     {
         for (FLFruit fruit : FLFruit.values())
         {
-            event.register(FLHelpers.identifier("block/jar/" + fruit.getSerializedName()));
-            event.register(FLHelpers.identifier("block/jar/" + fruit.getSerializedName() + "_unsealed"));
+            register(event, FLHelpers.identifier("block/jar/" + fruit.getSerializedName()));
+            register(event, FLHelpers.identifier("block/jar/" + fruit.getSerializedName() + "_unsealed"));
         }
-        event.register(FLHelpers.identifier("block/jar/compost"));
-        event.register(FLHelpers.identifier("block/jar/rotten_compost"));
-        event.register(FLHelpers.identifier("block/jar/guano"));
-        event.register(FLHelpers.identifier("block/jar/honey"));
-        event.register(FLHelpers.identifier("block/barrel_press_piston"));
-        event.register(FLHelpers.identifier("block/picker_arms"));
-        event.register(FLHelpers.identifier("block/sweeper_arm"));
+        register(event, FLHelpers.identifier("block/jar/compost"));
+        register(event, FLHelpers.identifier("block/jar/rotten_compost"));
+        register(event, FLHelpers.identifier("block/jar/guano"));
+        register(event, FLHelpers.identifier("block/jar/honey"));
 
         BuiltInRegistries.ITEM.forEach(item -> {
             if (item instanceof WineBottleItem wine)
             {
-                event.register(wine.getModelLocation());
+                register(event, wine.getModelLocation());
             }
         });
+
+
+        event.register(MixingBowlBlockEntityRenderer.SPOON_LOCATION);
+        event.register(CompostTumblerBlockEntityRenderer.OPEN_MODEL);
+        event.register(CompostTumblerBlockEntityRenderer.CLOSED_MODEL);
+        event.register(BarrelPressBlockEntityRenderer.PRESS);
+        event.register(SweeperBlockEntityRenderer.ARM);
+        event.register(PickerBlockEntityRenderer.ARMS);
+    }
+
+    private static void register(ModelEvent.RegisterAdditional event, ResourceLocation id)
+    {
+        event.register(ModelResourceLocation.standalone(id));
     }
 
     public static void registerLoaders(ModelEvent.RegisterGeometryLoaders event)
     {
-        event.register("large_planter", new DynamicBlockModel.Loader(LargePlanterBakedModel::new));
-        event.register("hanging_planter", new DynamicBlockModel.Loader(HangingPlanterBlockModel::new));
-        event.register("bonsai_planter", new DynamicBlockModel.Loader(BonsaiPlanterBlockModel::new));
-        event.register("quad_planter", new DynamicBlockModel.Loader(QuadPlanterBlockModel::new));
-        event.register("hydroponic_planter", new DynamicBlockModel.Loader(HydroponicPlanterBlockModel::new));
-        event.register("trellis_planter", new DynamicBlockModel.Loader(TrellisPlanterBlockModel::new));
-        event.register("jarbnet", new DynamicBlockModel.Loader(JarbnetBlockModel::new));
-        event.register("jarring_station", new DynamicBlockModel.Loader(JarringStationBlockModel::new));
-        event.register("food_shelf", new DynamicBlockModel.Loader(FoodShelfBlockModel::new));
-        event.register("hanger", new DynamicBlockModel.Loader(HangerBlockModel::new));
-        event.register("wine_shelf", new DynamicBlockModel.Loader(WineShelfBlockModel::new));
+        register(event, "large_planter", new DynamicBlockModel.Loader(LargePlanterBakedModel::new));
+        register(event, "hanging_planter", new DynamicBlockModel.Loader(HangingPlanterBlockModel::new));
+        register(event, "bonsai_planter", new DynamicBlockModel.Loader(BonsaiPlanterBlockModel::new));
+        register(event, "quad_planter", new DynamicBlockModel.Loader(QuadPlanterBlockModel::new));
+        register(event, "hydroponic_planter", new DynamicBlockModel.Loader(HydroponicPlanterBlockModel::new));
+        register(event, "trellis_planter", new DynamicBlockModel.Loader(TrellisPlanterBlockModel::new));
+        register(event, "jarbnet", new DynamicBlockModel.Loader(JarbnetBlockModel::new));
+        register(event, "jarring_station", new DynamicBlockModel.Loader(JarringStationBlockModel::new));
+        register(event, "food_shelf", new DynamicBlockModel.Loader(FoodShelfBlockModel::new));
+        register(event, "hanger", new DynamicBlockModel.Loader(HangerBlockModel::new));
+        register(event, "wine_shelf", new DynamicBlockModel.Loader(WineShelfBlockModel::new));
+    }
+
+    private static void register(ModelEvent.RegisterGeometryLoaders event, String id, IGeometryLoader<?> loader)
+    {
+        event.register(FLHelpers.identifier(id), loader);
     }
 
     private static void registerDryProperty(Supplier<Item> item)
     {
-        ItemProperties.register(item.get(), FLHelpers.identifier("dry"), (stack, a, b, c) ->
-            stack.getCapability(FoodCapability.CAPABILITY)
-                .map(cap -> cap.getTraits().contains(FLFoodTraits.DRIED))
-                .orElse(false) ? 1f : 0f);
+        ItemProperties.register(item.get(), FLHelpers.identifier("dry"), (stack, a, b, c) -> {
+            final IFood food = FoodCapability.get(stack);
+            return food != null && food.hasTrait(FLFoodTraits.DRIED) ? 1f : 0f;
+        });
     }
 
 
@@ -252,17 +277,9 @@ public class FLClientEvents
         event.registerLayerDefinition(FLClientHelpers.modelIdentifier("peel"), PeelModel::createBodyLayer);
     }
 
-
-    public static void onModelRegister(ModelEvent.RegisterAdditional event)
-    {
-        event.register(MixingBowlBlockEntityRenderer.SPOON_LOCATION);
-        event.register(JarbnetBlockModel.JUG_LOCATION);
-        event.register(CompostTumblerBlockEntityRenderer.OPEN_MODEL);
-        event.register(CompostTumblerBlockEntityRenderer.CLOSED_MODEL);
-    }
-
     public static void registerExtensions(RegisterClientExtensionsEvent event)
     {
         event.registerItem(PeelItem.Extension.INSTANCE, FLItems.PEEL.get());
     }
+
 }

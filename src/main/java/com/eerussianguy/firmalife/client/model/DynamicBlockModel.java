@@ -22,17 +22,16 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.client.model.SeparateTransformsModel;
-import net.minecraftforge.client.model.data.ModelData;
-import net.minecraftforge.client.model.data.ModelProperty;
-import net.minecraftforge.client.model.geometry.IGeometryBakingContext;
-import net.minecraftforge.client.model.geometry.IGeometryLoader;
-import net.minecraftforge.client.model.geometry.IUnbakedGeometry;
+import net.neoforged.neoforge.client.model.SeparateTransformsModel;
+import net.neoforged.neoforge.client.model.data.ModelData;
+import net.neoforged.neoforge.client.model.data.ModelProperty;
+import net.neoforged.neoforge.client.model.geometry.IGeometryBakingContext;
+import net.neoforged.neoforge.client.model.geometry.IGeometryLoader;
+import net.neoforged.neoforge.client.model.geometry.IUnbakedGeometry;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import net.dries007.tfc.client.RenderHelpers;
-
 
 public class DynamicBlockModel implements IUnbakedGeometry<DynamicBlockModel>
 {
@@ -46,11 +45,11 @@ public class DynamicBlockModel implements IUnbakedGeometry<DynamicBlockModel>
     }
 
     @Override
-    public BakedModel bake(IGeometryBakingContext context, ModelBaker baker, Function<Material, TextureAtlasSprite> spriteGetter, ModelState modelState, ItemOverrides overrides, ResourceLocation modelLocation)
+    public BakedModel bake(IGeometryBakingContext context, ModelBaker baker, Function<Material, TextureAtlasSprite> spriteGetter, ModelState modelState, ItemOverrides overrides)
     {
         return bakedModelFactory.apply(
             context.useAmbientOcclusion(), context.isGui3d(), context.useBlockLight(), overrides,
-            baseModel.bake(baker, baseModel, spriteGetter, modelState, modelLocation, context.useBlockLight())
+            baseModel.bake(baker, baseModel, spriteGetter, modelState, context.useBlockLight())
         );
     }
 

@@ -11,7 +11,6 @@ import net.minecraft.world.item.ItemStack;
 import com.eerussianguy.firmalife.common.blockentities.OvenTopBlockEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.dries007.tfc.client.RenderHelpers;
-import net.dries007.tfc.common.capabilities.Capabilities;
 
 public class OvenBlockEntityRenderer implements BlockEntityRenderer<OvenTopBlockEntity>
 {
@@ -21,21 +20,20 @@ public class OvenBlockEntityRenderer implements BlockEntityRenderer<OvenTopBlock
         if (oven.getLevel() == null)
             return;
         ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
-        oven.getCapability(Capabilities.ITEM).ifPresent(cap -> {
-            float timeD = RenderHelpers.itemTimeRotation();
-            poseStack.translate(0.25D, 0.25D, 0.25D);
-            poseStack.scale(0.5F, 0.5F, 0.5F);
-            for (int i = 0; i < cap.getSlots(); i++)
-            {
-                ItemStack stack = cap.getStackInSlot(i);
-                if (stack.isEmpty()) continue;
-                poseStack.pushPose();
-                poseStack.translate((i % 2 == 0 ? 1 : 0), 0, (i < 2 ? 1 : 0));
-                poseStack.mulPose(Axis.YP.rotationDegrees(timeD));
-                itemRenderer.renderStatic(stack, ItemDisplayContext.FIXED, light, overlay, poseStack, buffer, oven.getLevel(), 0);
-                poseStack.popPose();
-            }
-        });
+        final var cap = oven.getInventory();
+        float timeD = RenderHelpers.itemTimeRotation();
+        poseStack.translate(0.25D, 0.25D, 0.25D);
+        poseStack.scale(0.5F, 0.5F, 0.5F);
+        for (int i = 0; i < cap.getSlots(); i++)
+        {
+            ItemStack stack = cap.getStackInSlot(i);
+            if (stack.isEmpty()) continue;
+            poseStack.pushPose();
+            poseStack.translate((i % 2 == 0 ? 1 : 0), 0, (i < 2 ? 1 : 0));
+            poseStack.mulPose(Axis.YP.rotationDegrees(timeD));
+            itemRenderer.renderStatic(stack, ItemDisplayContext.FIXED, light, overlay, poseStack, buffer, oven.getLevel(), 0);
+            poseStack.popPose();
+        }
     }
 
     @Override

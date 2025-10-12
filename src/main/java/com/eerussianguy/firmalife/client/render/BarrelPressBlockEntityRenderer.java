@@ -9,16 +9,17 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.ModelBlockRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
-import net.minecraftforge.client.model.data.ModelData;
+import net.neoforged.neoforge.client.model.data.ModelData;
 
 import net.dries007.tfc.util.Helpers;
 
 public class BarrelPressBlockEntityRenderer implements BlockEntityRenderer<BarrelPressBlockEntity>
 {
-    private static final ResourceLocation PRESS = FLHelpers.identifier("block/barrel_press_piston");
+    public static final ModelResourceLocation PRESS = ModelResourceLocation.standalone(FLHelpers.identifier("block/barrel_press_piston"));
 
     @Override
     public void render(BarrelPressBlockEntity press, float partialTick, PoseStack poseStack, MultiBufferSource buffers, int combinedLight, int combinedOverlay)

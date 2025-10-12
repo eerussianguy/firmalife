@@ -11,12 +11,9 @@ import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.Direction;
 import net.minecraft.util.Mth;
-import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-
-import net.dries007.tfc.common.capabilities.Capabilities;
 
 public class FoodShelfBlockModel extends SimpleDynamicBlockModel<FoodShelfBlockEntity>
 {
@@ -29,7 +26,7 @@ public class FoodShelfBlockModel extends SimpleDynamicBlockModel<FoodShelfBlockE
     protected void render(FoodShelfBlockEntity shelf, PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay)
     {
         final ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
-        final ItemStack stack = shelf.getCapability(Capabilities.ITEM).map(cap -> cap.getStackInSlot(0)).orElse(ItemStack.EMPTY);
+        final ItemStack stack = shelf.getInventory().getStackInSlot(0);
         if (stack.isEmpty() || shelf.getLevel() == null) return;
 
         int totalDraws = Math.min(stack.getCount(), 16);

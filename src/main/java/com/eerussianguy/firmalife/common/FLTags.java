@@ -17,13 +17,17 @@ public class FLTags
     {
         public static final TagKey<Block> OVEN_BLOCKS = create("oven_blocks");
         public static final TagKey<Block> OVEN_INSULATION = create("oven_insulation");
+        public static final TagKey<Block> PLANTERS = create("planters");
         public static final TagKey<Block> CHIMNEYS = create("chimneys");
         public static final TagKey<Block> GREENHOUSE = create("greenhouse");
         public static final TagKey<Block> GREENHOUSE_FULL_WALLS = create("greenhouse_full_walls");
         public static final TagKey<Block> GREENHOUSE_PANEL_WALLS = create("greenhouse_panel_walls");
+        public static final TagKey<Block> GREENHOUSE_PANEL_ROOFS = create("greenhouse_panel_roofs");
         public static final TagKey<Block> ALWAYS_VALID_GREENHOUSE_WALL = create("always_valid_greenhouse_wall");
         public static final TagKey<Block> ALL_TREATED_WOOD_GREENHOUSE = create("all_treated_wood_greenhouse");
         public static final TagKey<Block> ALL_IRON_GREENHOUSE = create("all_iron_greenhouse");
+        public static final TagKey<Block> IRON_GREENHOUSE = create("iron_greenhouse");
+        public static final TagKey<Block> RUSTED_IRON_GREENHOUSE = create("rusted_iron_greenhouse");
         public static final TagKey<Block> ALL_COPPER_GREENHOUSE = create("all_copper_greenhouse");
         public static final TagKey<Block> STAINLESS_STEEL_GREENHOUSE = create("stainless_steel_greenhouse");
         public static final TagKey<Block> CELLAR_INSULATION = create("cellar_insulation");
@@ -32,6 +36,18 @@ public class FLTags
         public static final TagKey<Block> BUTTERFLY_GRASS_MUTANTS = create("butterfly_grass_mutants");
         public static final TagKey<Block> BUZZING_LEAVES = create("buzzing_leaves");
         public static final TagKey<Block> PIPE_REPLACEABLE = create("pipe_replaceable");
+        public static final TagKey<Block> GRAPE_STRINGS = create("grape_strings");
+        public static final TagKey<Block> GRAPE_TRELLIS_POSTS_PLANT = create("grape_trellis_posts_plant");
+        public static final TagKey<Block> DROPS_FRUIT_LEAF = create("drops_fruit_leaf");
+        public static final TagKey<Block> DROPS_ICE_SHAVINGS = create("drops_ice_shavings");
+        public static final TagKey<Block> FOOD_SHELVES = create("food_shelves");
+        public static final TagKey<Block> HANGERS = create("hangers");
+        public static final TagKey<Block> CHEESE_WHEELS = create("cheese_wheel");
+        public static final TagKey<Block> JARBNETS = create("jarbnets");
+        public static final TagKey<Block> BIG_BARRELS = create("big_barrels");
+        public static final TagKey<Block> STOMPING_BARRELS = create("stomping_barrels");
+        public static final TagKey<Block> BARREL_PRESSES = create("barrel_presses");
+        public static final TagKey<Block> WINE_SHELVES = create("wine_shelves");
 
         private static TagKey<Block> create(String id)
         {

@@ -15,9 +15,8 @@ import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.client.model.data.ModelData;
-import net.minecraftforge.client.model.pipeline.QuadBakingVertexConsumer;
-import org.jetbrains.annotations.NotNull;
+import net.neoforged.neoforge.client.model.data.ModelData;
+import net.neoforged.neoforge.client.model.pipeline.QuadBakingVertexConsumer;
 
 /**
  * Convenience impl of the dynamic block model for a known block entity and rendering method... basically a drop in replacement for a BER
@@ -31,7 +30,7 @@ public abstract class SimpleDynamicBlockModel<T extends BlockEntity> extends Dyn
 
     @Override
     @SuppressWarnings("unchecked")
-    public @NotNull ModelData getModelData(@NotNull BlockAndTintGetter level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull ModelData modelData)
+    public ModelData getModelData(BlockAndTintGetter level, BlockPos pos, BlockState state, ModelData modelData)
     {
         final BlockEntity blockEntity = level.getBlockEntity(pos);
         if (blockEntity != null && blockEntity.getType() == type())
@@ -48,7 +47,7 @@ public abstract class SimpleDynamicBlockModel<T extends BlockEntity> extends Dyn
         final int packedLight = LightTexture.pack(level.getBrightness(LightLayer.BLOCK, pos), level.getBrightness(LightLayer.SKY, pos));
         final int packedOverlay = OverlayTexture.NO_OVERLAY;
         final List<BakedQuad> quads = new ArrayList<>(24);
-        final VertexConsumer buffer = new QuadBakingVertexConsumer(quads::add);
+        final VertexConsumer buffer = new QuadBakingVertexConsumer();
         final PoseStack poseStack = new PoseStack();
 
         render(blockEntity, poseStack, buffer, packedLight, packedOverlay);

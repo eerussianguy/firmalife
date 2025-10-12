@@ -10,7 +10,7 @@ import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 
-public class FLDamageSources
+public class FLDamageTypes
 {
     public static final ResourceKey<DamageType> OVEN = ResourceKey.create(Registries.DAMAGE_TYPE, FLHelpers.identifier("oven"));
     public static final ResourceKey<DamageType> SWARM = ResourceKey.create(Registries.DAMAGE_TYPE, FLHelpers.identifier("swarm"));

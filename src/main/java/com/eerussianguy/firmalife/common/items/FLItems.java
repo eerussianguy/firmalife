@@ -67,9 +67,9 @@ public class FLItems
     public static final ItemId EMPTY_JAR_WITH_STAINLESS_STEEL_LID = register("empty_jar_with_stainless_steel_lid");
     public static final ItemId TREATED_LUMBER = register("treated_lumber");
     public static final ItemId WATERING_CAN = register("watering_can", () -> new WateringCanItem(prop().durability(20)));
-    public static final ItemId HEMATITIC_WINE_BOTTLE = register("hematitic_wine_bottle", () -> new FilledWineBottleItem(prop().component(FLComponents.WINE.get(), WineComponent.DEFAULT), FLHelpers.identifier("block/hematitic_wine_bottle")));
-    public static final ItemId VOLCANIC_WINE_BOTTLE = register("volcanic_wine_bottle", () -> new FilledWineBottleItem(prop().component(FLComponents.WINE.get(), WineComponent.DEFAULT), FLHelpers.identifier("block/volcanic_wine_bottle")));
-    public static final ItemId OLIVINE_WINE_BOTTLE = register("olivine_wine_bottle", () -> new FilledWineBottleItem(prop().component(FLComponents.WINE.get(), WineComponent.DEFAULT), FLHelpers.identifier("block/olivine_wine_bottle")));
+    public static final ItemId HEMATITIC_WINE_BOTTLE = register("hematitic_wine_bottle", () -> new FilledWineBottleItem(prop(), FLHelpers.identifier("block/hematitic_wine_bottle")));
+    public static final ItemId VOLCANIC_WINE_BOTTLE = register("volcanic_wine_bottle", () -> new FilledWineBottleItem(prop(), FLHelpers.identifier("block/volcanic_wine_bottle")));
+    public static final ItemId OLIVINE_WINE_BOTTLE = register("olivine_wine_bottle", () -> new FilledWineBottleItem(prop(), FLHelpers.identifier("block/olivine_wine_bottle")));
     public static final ItemId EMPTY_HEMATITIC_WINE_BOTTLE = register("empty_hematitic_wine_bottle", () -> new WineBottleItem(prop(), FLHelpers.identifier("block/empty_hematitic_wine_bottle")));
     public static final ItemId EMPTY_VOLCANIC_WINE_BOTTLE = register("empty_volcanic_wine_bottle", () -> new WineBottleItem(prop(), FLHelpers.identifier("block/empty_volcanic_wine_bottle")));
     public static final ItemId EMPTY_OLIVINE_WINE_BOTTLE = register("empty_olivine_wine_bottle", () -> new WineBottleItem(prop(), FLHelpers.identifier("block/empty_olivine_wine_bottle")));

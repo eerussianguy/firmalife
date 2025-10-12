@@ -22,7 +22,9 @@ import org.jetbrains.annotations.Nullable;
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
 import net.dries007.tfc.common.capabilities.InventoryFluidTank;
+import net.dries007.tfc.common.capabilities.PartialFluidHandler;
 import net.dries007.tfc.common.capabilities.PartialItemHandler;
+import net.dries007.tfc.common.capabilities.SidedHandler;
 import net.dries007.tfc.common.component.TFCComponents;
 import net.dries007.tfc.common.component.food.FoodCapability;
 import net.dries007.tfc.common.component.food.FoodData;
@@ -55,11 +57,21 @@ public class StovetopPotBlockEntity extends BoilingBlockEntity<StovetopPotBlockE
 
     private boolean hasRecipe = false;
     private ItemStack soupStack = ItemStack.EMPTY;
+    private final SidedHandler<IFluidHandler> sidedFluidInventory;
 
     public StovetopPotBlockEntity(BlockPos pos, BlockState state)
     {
         super(FLBlockEntities.STOVETOP_POT.get(), pos, state, StovetopPotInventory::new, FLHelpers.blockEntityName("stovetop_pot"));
         sidedInventory.on(new PartialItemHandler(inventory).insert(), Direction.Plane.HORIZONTAL);
+        sidedFluidInventory = new SidedHandler<IFluidHandler>(inventory)
+            .on(PartialFluidHandler::insertOnly, Direction.UP)
+            .on(PartialFluidHandler::extractOnly, Direction.Plane.HORIZONTAL);
+    }
+
+    @Nullable
+    public IFluidHandler getSidedFluidInventory(@Nullable Direction dir)
+    {
+        return sidedFluidInventory.get(dir);
     }
 
     @Override

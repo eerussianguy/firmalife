@@ -35,8 +35,8 @@ public class PeelModel extends Model
     }
 
     @Override
-    public void renderToBuffer(PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay, float r, float g, float b, float a)
+    public void renderToBuffer(PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay, int color)
     {
-        root.render(poseStack, buffer, packedLight, packedOverlay, r, g, b, a);
+        root.render(poseStack, buffer, packedLight, packedOverlay, color);
     }
 }

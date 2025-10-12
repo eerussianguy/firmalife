@@ -39,7 +39,7 @@ public class StompingBarrelBlockEntityRenderer implements BlockEntityRenderer<St
         {
             y *= Mth.lerp(barrel.getStomps() / 16f, 1f, 0.5f);
         }
-        RenderHelpers.renderTexturedFace(poseStack, buffer, 0xffffff, 2f / 16, 2f / 16, 14f / 16, 14f / 16, y, overlay, light, texture, false);
+        RenderHelpers.renderTexturedFace(poseStack, buffer, 0xffffff, 2f / 16, 2f / 16, 14f / 16, 14f / 16, y, overlay, light, texture);
 
         poseStack.popPose();
     }

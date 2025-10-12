@@ -13,8 +13,6 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 
-import net.dries007.tfc.common.capabilities.Capabilities;
-
 public class HangerBlockModel extends SimpleDynamicBlockModel<HangerBlockEntity>
 {
     public HangerBlockModel(boolean isAmbientOcclusion, boolean isGui3d, boolean isSideLit, ItemOverrides overrides, BakedModel baseModel)
@@ -26,7 +24,7 @@ public class HangerBlockModel extends SimpleDynamicBlockModel<HangerBlockEntity>
     protected void render(HangerBlockEntity hanger, PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay)
     {
         final ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
-        final ItemStack stack = hanger.getCapability(Capabilities.ITEM).map(cap -> cap.getStackInSlot(0)).orElse(ItemStack.EMPTY);
+        final ItemStack stack = hanger.getInventory().getStackInSlot(0);
         if (stack.isEmpty() || hanger.getLevel() == null) return;
 
         int maxStackSize = Mth.clamp(stack.getItem().getMaxStackSize(stack), 1, 64);

@@ -2,7 +2,6 @@ package com.eerussianguy.firmalife.common;
 
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
@@ -11,6 +10,7 @@ import java.util.function.Supplier;
 import com.mojang.datafixers.util.Function10;
 import com.mojang.serialization.Codec;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
@@ -35,9 +35,10 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
-import org.jetbrains.annotations.Nullable;
 
 import net.dries007.tfc.common.blockentities.TickCounterBlockEntity;
 import net.dries007.tfc.common.component.food.FoodCapability;
@@ -62,9 +63,15 @@ public class FLHelpers
         return FLHelpers.res(MOD_ID, id);
     }
 
-    public static Vec3 vec3(BlockPos pos)
+    public static ModelResourceLocation mrl(String id)
     {
-        return new Vec3(pos.getX(), pos.getY(), pos.getZ());
+        return ModelResourceLocation.standalone(identifier(id));
+    }
+
+    public static FluidStack getFluidInTank(BlockEntity blockEntity)
+    {
+        final IFluidHandler cap = Helpers.getCapability(Capabilities.FluidHandler.BLOCK, blockEntity);
+        return cap == null ? FluidStack.EMPTY : cap.getFluidInTank(0);
     }
 
     public static void returnItem(Player player, ItemStack stack)

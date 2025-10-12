@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.FLTags;
+import com.eerussianguy.firmalife.common.blocks.FLFluids;
 import com.eerussianguy.firmalife.common.capabilities.FLComponents;
 import com.eerussianguy.firmalife.common.capabilities.wine.WineComponent;
 import com.eerussianguy.firmalife.common.capabilities.wine.WineType;
@@ -38,6 +39,7 @@ import org.jetbrains.annotations.Nullable;
 
 import net.dries007.tfc.client.overworld.SolarCalculator;
 import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
+import net.dries007.tfc.common.capabilities.ItemCapabilities;
 import net.dries007.tfc.common.component.food.FoodCapability;
 import net.dries007.tfc.common.component.food.FoodTrait;
 import net.dries007.tfc.common.component.food.FoodTraits;
@@ -206,8 +208,11 @@ public class BarrelPressBlockEntity extends TickableInventoryBlockEntity<ItemSta
                 output.koppen,
                 List.copyOf(output.traits)
             ));
-//            cap.getFluidHandler().fill((new FluidStack(FLFluids.WINE_FLUIDS.get(output.wine).getSource(), 2000)), IFluidHandler.FluidAction.EXECUTE);
-//todo fluid
+            final var cap = bottle.getCapability(ItemCapabilities.FLUID);
+            if (cap != null)
+            {
+                cap.fill((new FluidStack(FLFluids.WINE_FLUIDS.get(output.wine).getSource(), 2000)), IFluidHandler.FluidAction.EXECUTE);
+            }
 
             current.shrink(1);
             int newServings = output.servings - 1;

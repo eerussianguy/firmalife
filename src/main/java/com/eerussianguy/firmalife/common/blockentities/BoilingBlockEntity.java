@@ -27,24 +27,7 @@ public abstract class BoilingBlockEntity<C extends IItemHandlerModifiable & INBT
     public BoilingBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state, InventoryFactory<C> inventoryFactory, Component name)
     {
         super(type, pos, state, inventoryFactory, name);
-
-//        sidedFluidInventory = new SidedHandler.Builder<>(inventory);
-//        sidedFluidInventory.on(new PartialFluidHandler(inventory).insert(), Direction.UP)
-//            .on(new PartialFluidHandler(inventory).extract(), Direction.Plane.HORIZONTAL);
     }
-
-    // todo new fluid cap registratio
-//
-//    @NotNull
-//    @Override
-//    public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side)
-//    {
-//        if (cap == Capabilities.FLUID)
-//        {
-//            return sidedFluidInventory.getSidedHandler(side).cast();
-//        }
-//        return super.getCapability(cap, side);
-//    }
 
     @Override
     public void ranOutDueToCalendar()

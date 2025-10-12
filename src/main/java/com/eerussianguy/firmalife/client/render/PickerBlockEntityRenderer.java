@@ -11,15 +11,16 @@ import net.minecraft.client.renderer.block.ModelBlockRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
-import net.minecraftforge.client.model.data.ModelData;
+import net.neoforged.neoforge.client.model.data.ModelData;
 
 import net.dries007.tfc.client.RenderHelpers;
 
 public class PickerBlockEntityRenderer implements BlockEntityRenderer<PickerBlockEntity>
 {
-    public static final ResourceLocation ARMS = FLHelpers.identifier("block/picker_arms");
+    public static final ModelResourceLocation ARMS = FLHelpers.mrl("block/picker_arms");
     public static final ResourceLocation STEEL = FLHelpers.identifier("block/vat");
 
     @Override
@@ -28,8 +29,6 @@ public class PickerBlockEntityRenderer implements BlockEntityRenderer<PickerBloc
         if (picker.getLevel() == null)
             return;
         final Minecraft mc = Minecraft.getInstance();
-        if (mc == null)
-            return;
         final ModelBlockRenderer modelRenderer = mc.getBlockRenderer().getModelRenderer();
         final BakedModel baked = mc.getModelManager().getModel(ARMS);
         final float ext = picker.getExtensionLength();

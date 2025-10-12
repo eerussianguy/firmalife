@@ -2,6 +2,7 @@ package com.eerussianguy.firmalife.common.items;
 
 import java.util.List;
 import com.eerussianguy.firmalife.common.FLHelpers;
+import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.capabilities.FLComponents;
 import com.eerussianguy.firmalife.common.capabilities.wine.WineComponent;
 import net.minecraft.ChatFormatting;
@@ -19,19 +20,43 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.phys.BlockHitResult;
-import net.neoforged.neoforge.capabilities.Capabilities;
 
 import net.dries007.tfc.common.TFCTags;
+import net.dries007.tfc.common.component.TFCComponents;
+import net.dries007.tfc.common.component.fluid.FluidComponent;
+import net.dries007.tfc.common.component.fluid.FluidContainerInfo;
 import net.dries007.tfc.common.fluids.FluidHelpers;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.calendar.Calendars;
 
 public class FilledWineBottleItem extends WineBottleItem
 {
+    private final FluidContainerInfo containerInfo;
+
     public FilledWineBottleItem(Properties properties, ResourceLocation modelLocation)
     {
-        super(properties, modelLocation);
+        super(properties.component(FLComponents.WINE.get(), WineComponent.DEFAULT).component(TFCComponents.FLUID, FluidComponent.EMPTY), modelLocation);
+
+        containerInfo = new FluidContainerInfo() {
+            @Override
+            public boolean canContainFluid(Fluid fluid)
+            {
+                return Helpers.isFluid(fluid, FLTags.Fluids.WINE);
+            }
+
+            @Override
+            public int fluidCapacity()
+            {
+                return 2000;
+            }
+        };
+    }
+
+    public FluidContainerInfo getContainerInfo()
+    {
+        return containerInfo;
     }
 
     @Override
@@ -96,6 +121,6 @@ public class FilledWineBottleItem extends WineBottleItem
     @Override
     public boolean hasCraftingRemainingItem(ItemStack stack)
     {
-        return stack.getCapability(Capabilities.FLUID_ITEM).map((cap) -> !cap.getFluidInTank(0).isEmpty()).orElse(false);
+        return !FluidHelpers.getContainedFluid(stack).isEmpty();
     }
 }

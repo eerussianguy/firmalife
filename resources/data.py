@@ -205,8 +205,6 @@ def generate(rm: ResourceManager):
         climate_range(rm, 'plant/%s_bush' % berry, hydration=(hydration_from_rainfall(data[0]), 100, 0), temperature=(data[2], data[3], 0))
     climate_range(rm, 'plant/grapes', hydration=(0, 100, 0), temperature=(0, 50, 0))
 
-    damage_type(rm, 'oven', exhaustion=0.1, effects='burning')
-    damage_type(rm, 'swarm')
     rm.tag('minecraft:bypasses_armor', 'damage_type', 'swarm', 'oven')
     rm.tag('minecraft:bypasses_effects', 'damage_type', 'swarm')
 
@@ -374,15 +372,6 @@ def climate_range(rm: ResourceManager, name_parts: utils.ResourceIdentifier, hyd
     if temperature is not None:
         data.update({'min_temperature': temperature[0], 'max_temperature': temperature[1], 'temperature_wiggle_range': temperature[2]})
     rm.data(('tfc', 'climate_ranges', name_parts), data)
-
-def damage_type(rm: ResourceManager, name_parts: utils.ResourceIdentifier, message_id: str = None, exhaustion: float = 0.0, scaling: str = 'when_caused_by_living_non_player', effects: str = None, message_type: str = None):
-    rm.data(('damage_type', name_parts), {
-        'message_id': message_id if message_id is not None else rm.domain + '.' + name_parts,
-        'exhaustion': exhaustion,
-        'scaling': scaling,
-        'effects': effects,
-        'death_message_type': message_type
-    })
 
 def hydration_from_rainfall(rainfall: int) -> int:
     return rainfall * 60 // 500

@@ -21,6 +21,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import net.dries007.tfc.common.TFCCreativeTabs;
@@ -166,6 +167,11 @@ public final class FLCreativeTabs
                 accept(out, FLBlocks.GREENHOUSE_BLOCKS, greenhouse, blockType);
             }
         }
+    }
+
+    public static void onTooltip(ItemTooltipEvent event)
+    {
+
     }
 
     public static void onBuildCreativeTab(BuildCreativeModeTabContentsEvent out)

@@ -110,7 +110,7 @@ public class ClimateStationBlockEntity extends TFCBlockEntity
 
     public void setFavorite(GreenhouseType type)
     {
-        favoriteGreenhouseType = type.;
+        favoriteGreenhouseType = type;
         favoriteIsCellar = false;
     }
 

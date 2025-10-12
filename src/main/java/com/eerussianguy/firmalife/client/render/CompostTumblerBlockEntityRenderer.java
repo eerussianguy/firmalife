@@ -13,6 +13,7 @@ import net.minecraft.client.renderer.block.ModelBlockRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
@@ -21,18 +22,16 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.client.model.data.ModelData;
-import net.minecraftforge.items.IItemHandler;
+import net.neoforged.neoforge.client.model.data.ModelData;
 
 import net.dries007.tfc.client.RenderHelpers;
-import net.dries007.tfc.common.capabilities.Capabilities;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.rotation.Rotation;
 
 public class CompostTumblerBlockEntityRenderer implements BlockEntityRenderer<CompostTumblerBlockEntity>
 {
-    public static final ResourceLocation CLOSED_MODEL = FLHelpers.identifier("block/compost_tumbler_closed");
-    public static final ResourceLocation OPEN_MODEL = FLHelpers.identifier("block/compost_tumbler_open");
+    public static final ModelResourceLocation CLOSED_MODEL = FLHelpers.mrl("block/compost_tumbler_closed");
+    public static final ModelResourceLocation OPEN_MODEL = FLHelpers.mrl("block/compost_tumbler_open");
 
     private static final ResourceLocation NORMAL_TEXTURE = Helpers.identifier("block/devices/composter/normal");
     private static final ResourceLocation READY_TEXTURE = Helpers.identifier("block/devices/composter/ready");
@@ -96,14 +95,11 @@ public class CompostTumblerBlockEntityRenderer implements BlockEntityRenderer<Co
             }
             else
             {
-                final IItemHandler inv = Helpers.getCapability(composter, Capabilities.ITEM);
-                if (inv != null)
+                final var inv = composter.getInventory();
+                final ItemStack compost = inv.getStackInSlot(CompostTumblerBlockEntity.SLOT_COMPOST);
+                if (!compost.isEmpty())
                 {
-                    final ItemStack compost = inv.getStackInSlot(CompostTumblerBlockEntity.SLOT_COMPOST);
-                    if (!compost.isEmpty())
-                    {
-                        height = 8f * compost.getCount() / 3f;
-                    }
+                    height = 8f * compost.getCount() / 3f;
                 }
             }
             if (height > 0f)

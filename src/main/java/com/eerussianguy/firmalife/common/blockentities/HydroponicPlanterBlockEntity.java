@@ -3,6 +3,7 @@ package com.eerussianguy.firmalife.common.blockentities;
 import com.eerussianguy.firmalife.FirmaLife;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.Level;
@@ -36,16 +37,16 @@ public class HydroponicPlanterBlockEntity extends QuadPlanterBlockEntity
     }
 
     @Override
-    public void loadAdditional(CompoundTag nbt)
+    public void loadAdditional(CompoundTag nbt, HolderLookup.Provider access)
     {
-        super.loadAdditional(nbt);
+        super.loadAdditional(nbt, access);
         hasPipe = nbt.getBoolean("hasPipe");
     }
 
     @Override
-    public void saveAdditional(CompoundTag nbt)
+    public void saveAdditional(CompoundTag nbt, HolderLookup.Provider access)
     {
-        super.saveAdditional(nbt);
+        super.saveAdditional(nbt, access);
         nbt.putBoolean("hasPipe", hasPipe);
     }
 

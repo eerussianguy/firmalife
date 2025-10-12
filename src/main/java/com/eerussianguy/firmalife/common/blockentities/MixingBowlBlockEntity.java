@@ -1,6 +1,6 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
-import com.eerussianguy.firmalife.common.FLHelpers;
+import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blocks.MixingBowlBlock;
 import com.eerussianguy.firmalife.common.recipes.FLRecipeTypes;
@@ -16,6 +16,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.common.util.INBTSerializable;
@@ -32,7 +33,9 @@ import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
 import net.dries007.tfc.common.capabilities.DelegateFluidHandler;
 import net.dries007.tfc.common.capabilities.DelegateItemHandler;
 import net.dries007.tfc.common.capabilities.InventoryItemHandler;
+import net.dries007.tfc.common.capabilities.PartialFluidHandler;
 import net.dries007.tfc.common.capabilities.PartialItemHandler;
+import net.dries007.tfc.common.capabilities.SidedHandler;
 import net.dries007.tfc.common.fluids.FluidHelpers;
 import net.dries007.tfc.common.recipes.input.NonEmptyInput;
 import net.dries007.tfc.util.Helpers;
@@ -81,32 +84,39 @@ public class MixingBowlBlockEntity extends TickableInventoryBlockEntity<MixingBo
 
     public static final int SLOTS = 5;
 
-//    private final SidedHandler.Builder<IFluidHandler> sidedFluidInventory;
+    private final SidedHandler<IFluidHandler> sidedFluidInventory;
     private int rotationTimer = -1;
 
     public MixingBowlBlockEntity(BlockPos pos, BlockState state)
     {
-        super(FLBlockEntities.MIXING_BOWL.get(), pos, state, MixingBowlInventory::new, FLHelpers.blockEntityName("mixing_bowl"));
+        super(FLBlockEntities.MIXING_BOWL.get(), pos, state, MixingBowlInventory::new, FirmaLife.MOD_ID);
 
         sidedInventory
             .on(new PartialItemHandler(inventory).extract(0, 1, 2, 3, 4), Direction.Plane.HORIZONTAL)
             .on(new PartialItemHandler(inventory).insert(0, 1, 2, 3, 4), Direction.UP);
 
-//        sidedFluidInventory = new SidedHandler.Builder<IFluidHandler>(inventory)
-//            .on(inventory, Direction.Plane.HORIZONTAL);
+        sidedFluidInventory = new SidedHandler<IFluidHandler>(inventory)
+            .on(PartialFluidHandler::extractOnly, Direction.Plane.HORIZONTAL)
+            .on(PartialFluidHandler::insertOnly, Direction.UP);;
+    }
+
+    @Nullable
+    public IFluidHandler getSidedFluidInventory(@Nullable Direction dir)
+    {
+        return sidedFluidInventory.get(dir);
     }
 
     @Override
-    public void loadAdditional(CompoundTag nbt)
+    public void loadAdditional(CompoundTag nbt, HolderLookup.Provider access)
     {
-        super.loadAdditional(nbt);
+        super.loadAdditional(nbt, access);
         this.rotationTimer = nbt.getInt("rotationTimer");
     }
 
     @Override
-    public void saveAdditional(CompoundTag nbt)
+    public void saveAdditional(CompoundTag nbt, HolderLookup.Provider access)
     {
-        super.saveAdditional(nbt);
+        super.saveAdditional(nbt, access);
         nbt.putInt("rotationTimer", rotationTimer);
     }
 
@@ -203,7 +213,7 @@ public class MixingBowlBlockEntity extends TickableInventoryBlockEntity<MixingBo
     public MixingBowlRecipe getRecipe()
     {
         assert level != null;
-        return level.getRecipeManager().getRecipeFor(FLRecipeTypes.MIXING_BOWL.get(), inventory, level).orElse(null);
+        return level.getRecipeManager().getRecipeFor(FLRecipeTypes.MIXING_BOWL.get(), inventory, level).map(RecipeHolder::value).orElse(null);
     }
     // todo: water cap
 //

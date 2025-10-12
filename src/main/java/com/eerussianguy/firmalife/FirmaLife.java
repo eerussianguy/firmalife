@@ -14,7 +14,6 @@ import com.eerussianguy.firmalife.common.blocks.FLFluids;
 import com.eerussianguy.firmalife.common.container.FLMenuTypes;
 import com.eerussianguy.firmalife.common.entities.FLEntities;
 import com.eerussianguy.firmalife.common.misc.FLParticles;
-import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.common.items.FLItems;
 import com.eerussianguy.firmalife.common.misc.FLEffects;
 import com.eerussianguy.firmalife.common.misc.FLInteractionManager;
@@ -75,6 +74,7 @@ public class FirmaLife
         FLDataManagers.init();
 
         bus.addListener(this::setup);
+        bus.addListener(FLComponents::register);
 
         FLConfig.init();
         FLEvents.init(bus);

@@ -8,6 +8,10 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.block.model.ItemOverrides;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.material.Fluids;
+import net.neoforged.neoforge.fluids.FluidStack;
+
+import net.dries007.tfc.client.RenderHelpers;
 
 
 public class HydroponicPlanterBlockModel extends QuadPlanterBlockModel<HydroponicPlanterBlockEntity>

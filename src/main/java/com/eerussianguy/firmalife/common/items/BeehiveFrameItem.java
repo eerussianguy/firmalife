@@ -2,8 +2,10 @@ package com.eerussianguy.firmalife.common.items;
 
 import java.util.List;
 
-import net.minecraft.nbt.CompoundTag;
+import com.eerussianguy.firmalife.common.capabilities.FLComponents;
+import com.eerussianguy.firmalife.common.capabilities.bee.BeeComponent;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.SlotAccess;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ClickAction;
@@ -11,15 +13,10 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.Level;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.items.ItemHandlerHelper;
+import net.neoforged.neoforge.items.ItemHandlerHelper;
 
-import com.eerussianguy.firmalife.common.capabilities.bee.BeeCapability;
-import com.eerussianguy.firmalife.common.capabilities.bee.BeeHandler;
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.util.Helpers;
-import org.jetbrains.annotations.Nullable;
 
 public class BeehiveFrameItem extends Item
 {
@@ -33,16 +30,16 @@ public class BeehiveFrameItem extends Item
     {
         if (action == ClickAction.SECONDARY && Helpers.isItem(other, TFCTags.Items.TOOLS_KNIFE))
         {
-            return stack.getCapability(BeeCapability.CAPABILITY).map(bee -> {
-                if (bee.hasQueen())
-                {
-                    slot.set(new ItemStack(this));
-                    ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(FLItems.BEESWAX.get()));
-                    other.hurtAndBreak(1, player, p -> {});
-                    return true;
-                }
-                return false;
-            }).orElse(false);
+            final BeeComponent bee = stack.get(FLComponents.BEE.get());
+            if (bee != null && bee.hasQueen())
+            {
+                slot.set(new ItemStack(this));
+                ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(FLItems.BEESWAX.get()));
+                if (player.level() instanceof ServerLevel server)
+                    other.hurtAndBreak(1, server, null, i -> {});
+                return true;
+            }
+            return false;
         }
         return false;
     }
@@ -51,12 +48,11 @@ public class BeehiveFrameItem extends Item
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag advanced)
     {
-        stack.getCapability(BeeCapability.CAPABILITY).ifPresent(bee -> {
-            if (bee.hasQueen())
-            {
-                tooltip.add(Component.translatable("firmalife.bee.may_scrape"));
-            }
-        });
+        final BeeComponent bee = stack.get(FLComponents.BEE.get());
+        if (bee != null && bee.hasQueen())
+        {
+            tooltip.add(Component.translatable("firmalife.bee.may_scrape"));
+        }
     }
 
 }

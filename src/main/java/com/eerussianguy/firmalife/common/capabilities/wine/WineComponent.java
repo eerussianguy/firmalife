@@ -14,11 +14,15 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.world.item.ItemStack;
+import net.neoforged.neoforge.fluids.FluidStack;
 
+import net.dries007.tfc.common.capabilities.ItemCapabilities;
 import net.dries007.tfc.common.component.food.FoodTrait;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.climate.KoppenClimateClassification;
+import net.dries007.tfc.util.tooltip.Tooltips;
 
 public record WineComponent(
     long creationDate,
@@ -60,16 +64,18 @@ public record WineComponent(
         return openDate == -1;
     }
 
-    public void acceptTooltipInfo(Consumer<Component> tooltip)
+    public void addTooltipInfo(Consumer<Component> tooltip, ItemStack stack)
     {
-        // todo: fluid container
-//        final FluidStack contained = getFluidHandler().getFluidInTank(0);
-//        if (contained.isEmpty())
-//        {
-//            tooltip.accept(Component.translatable("firmalife.wine.empty"));
-//            labelText.ifPresent(t -> tooltip.accept(Component.literal(t)));
-//            return;
-//        }
+        final var cap = stack.getCapability(ItemCapabilities.FLUID);
+        if (cap == null)
+            return;
+        final FluidStack contained = cap.getFluidInTank(0);
+        if (contained.isEmpty())
+        {
+            tooltip.accept(Component.translatable("firmalife.wine.empty"));
+            labelText.ifPresent(t -> tooltip.accept(Component.literal(t)));
+            return;
+        }
         if (isSealed())
         {
             labelText.ifPresent(t -> tooltip.accept(Component.literal(t)));
@@ -79,7 +85,7 @@ public record WineComponent(
         {
             labelText.ifPresent(t -> tooltip.accept(Component.literal(t)));
             tooltip.accept(Component.translatable("firmalife.wine.age_time_opened", Calendars.CLIENT.getTimeDelta(openDate - creationDate)));
-//            tooltip.accept(Tooltips.fluidUnits(contained.getAmount()).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.GRAY));
+            tooltip.accept(Tooltips.fluidUnits(contained.getAmount()).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.GRAY));
         }
         tooltip.accept(Helpers.translateEnum(climate).withStyle(ChatFormatting.DARK_GREEN).withStyle(ChatFormatting.ITALIC));
 

@@ -1,5 +1,6 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
+import java.util.List;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blocks.ICure;
 import com.eerussianguy.firmalife.common.blocks.OvenTopBlock;
@@ -7,18 +8,19 @@ import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.common.recipes.WrappedHeatingRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.NonNullList;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
 import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
+import net.dries007.tfc.common.capabilities.BlockCapabilities;
+import net.dries007.tfc.common.capabilities.ItemCapabilities;
 import net.dries007.tfc.common.capabilities.PartialItemHandler;
-import net.dries007.tfc.common.capabilities.food.FoodCapability;
-import net.dries007.tfc.common.capabilities.heat.HeatCapability;
-import net.dries007.tfc.common.capabilities.heat.IHeat;
-import net.dries007.tfc.common.recipes.inventory.ItemStackInventory;
+import net.dries007.tfc.common.component.food.FoodCapability;
+import net.dries007.tfc.common.component.heat.HeatCapability;
+import net.dries007.tfc.common.component.heat.IHeat;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.calendar.ICalendarTickable;
 
@@ -37,14 +39,14 @@ public class OvenTopBlockEntity extends ApplianceBlockEntity<ApplianceBlockEntit
             final float temperature = oven.temperature;
             final float targetTemperature = oven.targetTemperature;
             final int targetTemperatureStabilityTicks = oven.targetTemperatureStabilityTicks;
-            NonNullList<ItemStack> items = Helpers.extractAllItems(oven.inventory);
+            List<ItemStack> items = Helpers.copyToAndClear(oven.inventory);
 
             level.setBlockAndUpdate(pos, placeState);
             level.getBlockEntity(pos, FLBlockEntities.OVEN_TOP.get()).ifPresent(newOven -> {
                 newOven.temperature = temperature;
                 newOven.targetTemperature = targetTemperature;
                 newOven.targetTemperatureStabilityTicks = targetTemperatureStabilityTicks;
-                Helpers.insertAllItems(newOven.inventory, items);
+                Helpers.copyFrom(items, newOven.inventory);
                 newOven.markForSync();
             });
         });
@@ -98,11 +100,10 @@ public class OvenTopBlockEntity extends ApplianceBlockEntity<ApplianceBlockEntit
                         if (oven.cookTicks[slot]++ > recipe.duration())
                         {
                             // Convert input
-                            final ItemStackInventory inventory = new ItemStackInventory(inputStack);
-                            final ItemStack outputItem = recipe.assemble(inventory, level.registryAccess());
+                            final ItemStack outputItem = recipe.assemble(inputStack);
 
                             // Output transformations
-                            outputItem.getCapability(HeatCapability.CAPABILITY).ifPresent(outputCap -> outputCap.setTemperature(oven.temperature));
+                            HeatCapability.setTemperature(outputItem, oven.temperature);
                             FoodCapability.applyTrait(outputItem, FLFoodTraits.OVEN_BAKED);
                             FoodCapability.setCreationDate(outputItem, FoodCapability.getRoundedCreationDate());
 
@@ -141,22 +142,22 @@ public class OvenTopBlockEntity extends ApplianceBlockEntity<ApplianceBlockEntit
     }
 
     @Override
-    public void loadAdditional(CompoundTag nbt)
+    public void loadAdditional(CompoundTag nbt, HolderLookup.Provider access)
     {
         cookTicks = nbt.getIntArray("cookTicks");
         cureTicks = nbt.getInt("cureTicks");
         isInsulated = nbt.getBoolean("isInsulated");
         needsRecipeUpdate = true;
-        super.loadAdditional(nbt);
+        super.loadAdditional(nbt, access);
     }
 
     @Override
-    public void saveAdditional(CompoundTag nbt)
+    public void saveAdditional(CompoundTag nbt, HolderLookup.Provider access)
     {
         nbt.putIntArray("cookTicks", cookTicks);
         nbt.putInt("cureTicks", cureTicks);
         nbt.putBoolean("isInsulated", isInsulated);
-        super.saveAdditional(nbt);
+        super.saveAdditional(nbt, access);
     }
 
     @Override
@@ -197,7 +198,11 @@ public class OvenTopBlockEntity extends ApplianceBlockEntity<ApplianceBlockEntit
         {
             if (level.getBlockEntity(getBlockPos().relative(d)) instanceof OvenTopBlockEntity otherOven)
             {
-                otherOven.getCapability(HeatCapability.BLOCK_CAPABILITY).ifPresent(cap -> cap.setTemperatureIfWarmer(temperature - 100f));
+                final var cap = Helpers.getCapability(BlockCapabilities.HEAT, otherOven);
+                if (cap != null && cap.getTemperature() < temperature - 100f)
+                {
+                    cap.setTemperature(temperature - 100f);
+                }
             }
         }
     }
@@ -212,7 +217,7 @@ public class OvenTopBlockEntity extends ApplianceBlockEntity<ApplianceBlockEntit
     @Override
     public boolean isItemValid(int slot, ItemStack stack)
     {
-        return Helpers.mightHaveCapability(stack, HeatCapability.CAPABILITY);
+        return Helpers.mightHaveCapability(stack, ItemCapabilities.HEAT);
     }
 
     @Override

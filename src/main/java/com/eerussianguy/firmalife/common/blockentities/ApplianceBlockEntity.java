@@ -120,18 +120,6 @@ public abstract class ApplianceBlockEntity<C extends IItemHandlerModifiable & IN
         super.saveAdditional(nbt, access);
     }
 
-    // todo: convert to new cap registration
-//    @NotNull
-//    @Override
-//    public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side)
-//    {
-//        if (cap == HeatCapability.BLOCK_CAPABILITY)
-//        {
-//            return sidedHeat.getSidedHandler(side).cast();
-//        }
-//        return super.getCapability(cap, side);
-//    }
-
     public static class ApplianceInventory implements IHeatConsumer, DelegateItemHandler, INBTSerializable<CompoundTag>, CrucibleLikeHeatBlock
     {
         private final ApplianceBlockEntity<?> appliance;

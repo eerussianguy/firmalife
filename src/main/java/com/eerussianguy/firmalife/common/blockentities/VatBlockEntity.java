@@ -16,13 +16,16 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
 import net.dries007.tfc.common.capabilities.InventoryFluidTank;
+import net.dries007.tfc.common.capabilities.PartialFluidHandler;
 import net.dries007.tfc.common.capabilities.PartialItemHandler;
+import net.dries007.tfc.common.capabilities.SidedHandler;
 import net.dries007.tfc.common.recipes.input.NonEmptyInput;
 import net.dries007.tfc.util.Helpers;
 
@@ -52,6 +55,8 @@ public class VatBlockEntity extends BoilingBlockEntity<VatBlockEntity.VatInvento
     @Nullable private VatRecipe cachedRecipe = null;
     private ItemStack jarOutput = ItemStack.EMPTY;
     @Nullable private ResourceLocation lastTexture = null;
+    private final SidedHandler<IFluidHandler> sidedFluidInventory;
+
 
     public VatBlockEntity(BlockPos pos, BlockState state)
     {
@@ -59,6 +64,15 @@ public class VatBlockEntity extends BoilingBlockEntity<VatBlockEntity.VatInvento
 
         sidedInventory
             .on(new PartialItemHandler(inventory).insert(), Direction.Plane.HORIZONTAL);
+        sidedFluidInventory = new SidedHandler<IFluidHandler>(inventory)
+            .on(PartialFluidHandler::insertOnly, Direction.UP)
+            .on(PartialFluidHandler::extractOnly, Direction.Plane.HORIZONTAL);
+    }
+
+    @Nullable
+    public IFluidHandler getSidedFluidInventory(@Nullable Direction dir)
+    {
+        return sidedFluidInventory.get(dir);
     }
 
     @Override
