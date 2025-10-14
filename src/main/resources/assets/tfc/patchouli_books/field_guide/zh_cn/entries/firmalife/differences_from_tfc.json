@@ -10,7 +10,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "$(l:tfc:firmalife/cheese)奶酪$() 将通过更复杂的方式制作。它能被作为方块放置, 也可以被玩家选择存放在a $(l:tfc:firmalife/cellar)地窖$()中老化.",
+      "text": "$(l:tfc:firmalife/cheese)奶酪$() 将通过更复杂的方式制作。它能被作为方块放置, 也可以被玩家选择存放在a $(l:tfc:firmalife/cellar)地窖$()中熟化.",
       "title": "奶酪的老化"
     },
     {

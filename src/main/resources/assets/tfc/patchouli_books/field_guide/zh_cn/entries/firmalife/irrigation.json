@@ -62,7 +62,7 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/greenhouse/iron_greenhouse_port",
-      "text": "Greenhouse ports have a single pipe inside of them. They can be used to pass water through the walls of greenhouses!"
+      "text": "温室端口内部设有一根管道，可用于使水流贯通温室墙壁！"
     }
   ],
   "read_by_default": true,

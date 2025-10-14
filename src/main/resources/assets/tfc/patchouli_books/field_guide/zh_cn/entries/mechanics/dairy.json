@@ -1,0 +1,13 @@
+{
+  "name": "奶酪制品",
+  "category": "tfc:mechanics",
+  "icon": "tfc:textures/item/food/cheese.png",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l:firmalife/cheese)请查阅Firmalife模组条目以获取正确信息。$()",
+      "title": "乳制品"
+    }
+  ],
+  "read_by_default": true
+}

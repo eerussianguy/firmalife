@@ -1,0 +1,13 @@
+{
+  "name": "面包",
+  "category": "tfc:mechanics",
+  "icon": "tfc:textures/item/food/wheat_bread.png",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l:firmalife/bread)请查阅Firmalife模组条目以获取正确信息。$()",
+      "title": "面包"
+    }
+  ],
+  "read_by_default": true
+}

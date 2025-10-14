@@ -52,13 +52,13 @@
         }
       },
       "name": "",
-      "text": "Basil香草是一种可能由蝴蝶草扩散产生的植物.",
+      "text": "罗勒是一种可能由蝴蝶草扩散产生的植物.",
       "enable_visualize": false
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/basil_leaves",
-      "text": "Basil香草的叶子可以用来制作披萨."
+      "text": "罗勒叶可以用来制作披萨."
     }
   ],
   "read_by_default": true,

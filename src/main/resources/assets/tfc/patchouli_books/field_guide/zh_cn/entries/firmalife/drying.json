@@ -1,12 +1,12 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "name": "烘干",
+  "name": "晾干",
   "category": "tfc:firmalife",
   "icon": "firmalife:drying_mat",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(thing)干燥垫$()是用来烘干物品的. 它使用$(thing)果树叶子$()制成. 果树叶子可以打碎$(thing)果树$()的叶子得到."
+      "text": "$(thing)干燥垫$()是用来晾干物品的. 它使用$(thing)果树叶子$()制成. 果树叶子可以打碎$(thing)果树$()的叶子得到."
     },
     {
       "type": "patchouli:crafting",
@@ -15,21 +15,21 @@
     },
     {
       "type": "patchouli:text",
-      "text": "要使用干燥垫, 把它放置在阳光下, 然后按$(item)$(k:key.use)$()来放置一个物品. 在半天之后, 物品就会被烘干. 如果下雨了, 这个烘干过程就需要重新开始."
+      "text": "要使用干燥垫, 把它放置在阳光下, 然后按$(item)$(k:key.use)$()来放置一个物品. 在半天之后, 物品就会被晾干. 如果下雨了, 这个烘干过程就需要重新开始."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/solar_drier",
-      "text": "太阳作为烘干机的功能与烘干垫相同，但速度是烘干垫的12倍."
+      "text": "太阳能干燥垫的功能与干燥垫相同，但速度是干燥垫的12倍."
     },
     {
       "type": "patchouli:text",
-      "text": "Drying mats can be automated. Pushing a piston head against a drying mat will pop the item off. Dropping an item onto a drying mat will place it on the mat."
+      "text": "干燥垫能够实现自动化。使用活塞头推撞干燥垫会弹出物品，将物品丢在干燥垫上则会将其放置。"
     },
     {
       "type": "tfc:drying_recipe",
       "recipe": "firmalife:drying/drying_fruit",
-      "text": "干燥垫一般用来烘干水果. 烘干的水果有更长的保质期, 并且在某些配方中会用到."
+      "text": "干燥垫一般用来晾干水果. 干燥的水果有更长的保质期, 并且在某些配方中会用到."
     },
     {
       "type": "tfc:drying_recipe",
