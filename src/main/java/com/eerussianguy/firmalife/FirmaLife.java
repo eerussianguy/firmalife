@@ -97,7 +97,6 @@ public class FirmaLife
             FLInteractionManager.init();
             FLBlocks.registerFlowerPotFlowers();
         });
-        FLItemStackModifiers.init();
         FLPatchouliIntegration.registerMultiBlocks();
     }
 

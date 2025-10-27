@@ -16,7 +16,7 @@ public class BowlPotCategory extends PotRecipeCategory<PotRecipe>
 {
     public BowlPotCategory(RecipeType<PotRecipe> type, IGuiHelper helper)
     {
-        super(type, helper, helper.createBlankDrawable(175, 50));
+        super(type, helper,175, 50);
     }
 
     @Override

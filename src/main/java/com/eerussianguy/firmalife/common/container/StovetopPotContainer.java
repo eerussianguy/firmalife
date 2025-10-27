@@ -3,11 +3,11 @@ package com.eerussianguy.firmalife.common.container;
 import com.eerussianguy.firmalife.common.blockentities.StovetopPotBlockEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.items.IItemHandler;
+import net.neoforged.neoforge.items.IItemHandler;
 
-import net.dries007.tfc.common.capabilities.Capabilities;
+import net.dries007.tfc.common.capabilities.BlockCapabilities;
 import net.dries007.tfc.common.container.BlockEntityContainer;
-import net.dries007.tfc.common.container.CallbackSlot;
+import net.dries007.tfc.common.container.slot.CallbackSlot;
 import net.dries007.tfc.util.Helpers;
 
 public class StovetopPotContainer extends BlockEntityContainer<StovetopPotBlockEntity>
@@ -36,7 +36,7 @@ public class StovetopPotContainer extends BlockEntityContainer<StovetopPotBlockE
     @Override
     protected void addContainerSlots()
     {
-        final IItemHandler inv = Helpers.getCapability(blockEntity, Capabilities.ITEM);
+        final IItemHandler inv = Helpers.getCapability(BlockCapabilities.ITEM, blockEntity);
         if (inv != null)
         {
             for (int i = 0; i < StovetopPotBlockEntity.SLOTS; i++)

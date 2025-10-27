@@ -1,5 +1,6 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
+import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blocks.ICure;
@@ -20,7 +21,10 @@ import net.neoforged.neoforge.items.ItemStackHandler;
 
 import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
 import net.dries007.tfc.common.capabilities.PartialItemHandler;
+import net.dries007.tfc.common.component.TFCComponents;
 import net.dries007.tfc.common.component.heat.HeatCapability;
+import net.dries007.tfc.common.component.heat.HeatComponent;
+import net.dries007.tfc.common.component.heat.IHeat;
 import net.dries007.tfc.common.items.Powder;
 import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.util.Helpers;
@@ -46,7 +50,7 @@ public class OvenBottomBlockEntity extends TickableInventoryBlockEntity<ItemStac
             final long lastPlayerTick = oven.lastPlayerTick;
             final int airTicks = oven.airTicks;
 
-            NonNullList<ItemStack> items = Helpers.extractAllItems(oven.inventory);
+            NonNullList<ItemStack> items = FLHelpers.extractAllItems(oven.inventory);
 
             level.setBlockAndUpdate(pos, placeState);
             level.getBlockEntity(pos, FLBlockEntities.OVEN_BOTTOM.get()).ifPresent(newOven -> {
@@ -55,7 +59,7 @@ public class OvenBottomBlockEntity extends TickableInventoryBlockEntity<ItemStac
                 newOven.burnTemperature = burnTemperature;
                 newOven.lastPlayerTick = lastPlayerTick;
                 newOven.airTicks = airTicks;
-                Helpers.insertAllItems(newOven.inventory, items);
+                FLHelpers.insertAllItems(newOven.inventory, items);
                 newOven.markForSync();
             });
         });
@@ -104,7 +108,8 @@ public class OvenBottomBlockEntity extends TickableInventoryBlockEntity<ItemStac
             final BlockEntity above = level.getBlockEntity(pos.above());
             if (above != null)
             {
-                above.getCapability(HeatCapability.BLOCK_CAPABILITY).ifPresent(cap -> cap.setTemperatureIfWarmer(oven.temperature));
+                //TODO
+                //above.getCapability(HeatCapability.BLOCK_CAPABILITY).ifPresent(cap -> cap.setTemperatureIfWarmer(oven.temperature));
             }
             oven.markForSync();
         }
@@ -131,7 +136,7 @@ public class OvenBottomBlockEntity extends TickableInventoryBlockEntity<ItemStac
 
     public OvenBottomBlockEntity(BlockPos pos, BlockState state)
     {
-        super(FLBlockEntities.OVEN_BOTTOM.get(), pos, state, defaultInventory(4), FLHelpers.blockEntityName("oven_bottom"));
+        super(FLBlockEntities.OVEN_BOTTOM.get(), pos, state, defaultInventory(4), FirmaLife.MOD_ID);
         temperature = burnTemperature = burnTicks = airTicks = cureTicks = 0;
         lastPlayerTick = Calendars.SERVER.getTicks();
 

@@ -5,15 +5,11 @@ import com.eerussianguy.firmalife.common.blockentities.OvenTopBlockEntity;
 import com.eerussianguy.firmalife.common.blocks.JarbnetBlock;
 import com.eerussianguy.firmalife.common.blocks.OvenBottomBlock;
 import com.eerussianguy.firmalife.common.blocks.OvenTopBlock;
-import com.eerussianguy.firmalife.common.capabilities.player.FLPlayerData;
-import com.eerussianguy.firmalife.common.capabilities.player.FLPlayerDataCapability;
 import com.eerussianguy.firmalife.common.util.FLSelfTests;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -33,7 +29,6 @@ import net.neoforged.neoforge.fluids.FluidStack;
 
 import net.dries007.tfc.common.entities.TFCEntities;
 import net.dries007.tfc.common.items.CandleBlockItem;
-import net.dries007.tfc.config.TFCConfig;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.events.AnimalProductEvent;
 import net.dries007.tfc.util.events.DouseFireEvent;
@@ -57,21 +52,14 @@ public class FLForgeEvents
     {
         if (event.getLevel() instanceof ServerLevel level && level.dimension() == Level.OVERWORLD)
         {
-            FLSelfTests.runServerSelfTests();
-        }
-    }
-
-    public static void onEntityCaps(AttachCapabilitiesEvent<Entity> event)
-    {
-        if (event.getObject() instanceof Player player)
-        {
-            event.addCapability(FLPlayerDataCapability.KEY, new FLPlayerData(player));
+            FLSelfTests.runServerSelfTests(level.getServer());
         }
     }
 
     public static void onLogin(PlayerEvent.PlayerLoggedInEvent event)
     {
-        TFCConfig.SERVER.enablePumpkinCarving.set(false);
+        //TODO: Not possible anymore, requires mixin?
+        //TFCConfig.SERVER.enablePumpkinCarving.set(false);
     }
 
     public static void onFireStart(StartFireEvent event)

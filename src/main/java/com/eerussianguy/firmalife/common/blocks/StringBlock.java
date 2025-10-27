@@ -38,6 +38,9 @@ import org.jetbrains.annotations.Nullable;
 import net.dries007.tfc.common.blockentities.FirepitBlockEntity;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.devices.DeviceBlock;
+import net.dries007.tfc.common.component.food.FoodCapability;
+import net.dries007.tfc.common.component.food.FoodTrait;
+import net.dries007.tfc.common.component.food.IFood;
 import net.dries007.tfc.util.Helpers;
 
 public class StringBlock extends DeviceBlock
@@ -80,9 +83,10 @@ public class StringBlock extends DeviceBlock
             ItemStack stack = string.readStack();
             if (!stack.isEmpty())
             {
-                stack.getCapability(FoodCapability.CAPABILITY).ifPresent(food -> {
+                IFood food = FoodCapability.get(stack);
+                if (food != null) {
                     List<FoodTrait> traits = food.getTraits();
-                    if (traits.contains(FLFoodTraits.SMOKED) || traits.contains(FLFoodTraits.RANCID_SMOKED))
+                    if (traits.contains(FLFoodTraits.SMOKED.get()) || traits.contains(FLFoodTraits.RANCID_SMOKED.get()))
                     {
                         final double x = pos.getX() + 0.5;
                         final double y = pos.getY() + 0.55;
@@ -92,7 +96,7 @@ public class StringBlock extends DeviceBlock
                             level.addParticle(ParticleTypes.SMOKE, x, y, z, Helpers.triangle(random) / 10f, random.nextFloat() / 5f, Helpers.triangle(random) / 10f);
                         }
                     }
-                });
+                }
             }
         });
     }

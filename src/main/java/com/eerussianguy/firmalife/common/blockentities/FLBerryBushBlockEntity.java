@@ -15,7 +15,9 @@ public class FLBerryBushBlockEntity extends BerryBushBlockEntity
 
     protected FLBerryBushBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state)
     {
-        super(type, pos, state);
+        super(pos, state);
+        //TODO this ctor is not visible
+        //super(type, pos, state);
     }
 
     @Override

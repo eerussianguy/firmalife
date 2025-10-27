@@ -98,7 +98,7 @@ public class VatBlock extends SealableDeviceBlock
             {
                 if (vat.hasOutput())
                 {
-                    if (Helpers.isItem(stack, TFCTags.Items.EMPTY_JAR_WITH_LID))
+                    if (Helpers.isItem(stack, TFCTags.Items.EMPTY_JARS))
                     {
                         stack.shrink(1);
                         ItemHandlerHelper.giveItemToPlayer(player, vat.takeOutput());

@@ -6,13 +6,13 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.common.FLHelpers;
@@ -78,14 +78,14 @@ public class FLJEIPlugin implements IModPlugin
     @Override
     public void registerRecipes(IRecipeRegistration r)
     {
-        r.addRecipes(DRYING, recipes(FLRecipeTypes.DRYING.get()));
-        r.addRecipes(SMOKING, recipes(FLRecipeTypes.SMOKING.get()));
-        r.addRecipes(STOMPING, recipes(FLRecipeTypes.STOMPING.get()));
-        r.addRecipes(PRESS, recipes(FLRecipeTypes.PRESS.get()));
-        r.addRecipes(MIXING_BOWL, recipes(FLRecipeTypes.MIXING_BOWL.get()));
-        r.addRecipes(OVEN, recipes(FLRecipeTypes.OVEN.get()));
-        r.addRecipes(VAT, recipes(FLRecipeTypes.VAT.get()));
-        r.addRecipes(BOWL_POT, recipes(TFCRecipeTypes.POT.get(), recipe -> recipe.getSerializer() == FLRecipeSerializers.BOWL_POT.get()));
+        r.addRecipes(DRYING, recipes(FLRecipeTypes.DRYING));
+        r.addRecipes(SMOKING, recipes(FLRecipeTypes.SMOKING));
+        r.addRecipes(STOMPING, recipes(FLRecipeTypes.STOMPING));
+        r.addRecipes(PRESS, recipes(FLRecipeTypes.PRESS));
+        r.addRecipes(MIXING_BOWL, recipes(FLRecipeTypes.MIXING_BOWL));
+        r.addRecipes(OVEN, recipes(FLRecipeTypes.OVEN));
+        r.addRecipes(VAT, recipes(FLRecipeTypes.VAT));
+        r.addRecipes(BOWL_POT, recipes(TFCRecipeTypes.POT, recipe -> recipe.getSerializer() == FLRecipeSerializers.BOWL_POT.get()));
     }
 
     @Override
@@ -115,14 +115,19 @@ public class FLJEIPlugin implements IModPlugin
         r.addRecipeCatalyst(new ItemStack(item), type);
     }
 
-    private static <C extends Container, T extends Recipe<C>> List<T> recipes(net.minecraft.world.item.crafting.RecipeType<T> type, Predicate<T> filter)
+    // Copied from TFC
+    private static <C extends RecipeInput, T extends Recipe<C>> List<T> recipes(Supplier<net.minecraft.world.item.crafting.RecipeType<T>> type)
     {
-        return recipes(type).stream().filter(filter).collect(Collectors.toList());
+        return recipes(type, e -> true);
     }
 
-    private static <C extends Container, T extends Recipe<C>> List<T> recipes(net.minecraft.world.item.crafting.RecipeType<T> type)
+    private static <C extends RecipeInput, T extends Recipe<C>> List<T> recipes(Supplier<net.minecraft.world.item.crafting.RecipeType<T>> type, Predicate<T> filter)
     {
-        return ClientHelpers.getLevelOrThrow().getRecipeManager().getAllRecipesFor(type);
+        return ClientHelpers.getLevelOrThrow().getRecipeManager()
+            .getAllRecipesFor(type.get())
+            .stream()
+            .map(RecipeHolder::value)
+            .filter(filter)
+            .toList();
     }
-
 }

@@ -8,12 +8,14 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraftforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 
 import net.dries007.tfc.client.RenderHelpers;
 import net.dries007.tfc.client.screen.BlockEntityScreen;
-import net.dries007.tfc.common.capabilities.Capabilities;
-import net.dries007.tfc.util.Tooltips;
+import net.dries007.tfc.common.capabilities.BlockCapabilities;
+import net.dries007.tfc.util.Helpers;
+import net.dries007.tfc.util.tooltip.Tooltips;
 
 
 public class BigBarrelScreen extends BlockEntityScreen<BigBarrelBlockEntity, BigBarrelContainer>
@@ -31,7 +33,8 @@ public class BigBarrelScreen extends BlockEntityScreen<BigBarrelBlockEntity, Big
     protected void renderBg(GuiGraphics graphics, float partialTicks, int mouseX, int mouseY)
     {
         super.renderBg(graphics, partialTicks, mouseX, mouseY);
-        blockEntity.getCapability(Capabilities.FLUID).ifPresent(fluidHandler -> {
+        IFluidHandler fluidHandler = Helpers.getCapability(BlockCapabilities.FLUID, blockEntity);
+        if (fluidHandler != null) {
             final FluidStack fluidStack = fluidHandler.getFluidInTank(0);
             if (!fluidStack.isEmpty())
             {
@@ -42,7 +45,7 @@ public class BigBarrelScreen extends BlockEntityScreen<BigBarrelBlockEntity, Big
 
                 resetToBackgroundSprite();
             }
-        });
+        }
 
         graphics.blit(texture, getGuiLeft() + 7, getGuiTop() + 17, 176, 0, 18, 107);
     }
@@ -56,13 +59,14 @@ public class BigBarrelScreen extends BlockEntityScreen<BigBarrelBlockEntity, Big
 
         if (relX >= 7 && relY >= 17 && relX < 7 + 18 && relY < 17 + 107)
         {
-            blockEntity.getCapability(Capabilities.FLUID).ifPresent(fluidHandler -> {
+            IFluidHandler fluidHandler = Helpers.getCapability(BlockCapabilities.FLUID, blockEntity);
+            if (fluidHandler != null) {
                 FluidStack fluid = fluidHandler.getFluidInTank(0);
                 if (!fluid.isEmpty())
                 {
                     graphics.renderTooltip(font, Tooltips.fluidUnitsOf(fluid), mouseX, mouseY);
                 }
-            });
+            }
         }
     }
 }

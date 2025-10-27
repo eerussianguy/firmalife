@@ -158,7 +158,7 @@ public class StompingBarrelBlockEntity extends InventoryBlockEntity<ItemStackHan
     public boolean isItemValid(int slot, ItemStack stack)
     {
         assert level != null;
-        return StompingRecipe.getRecipe(level, new ItemStackInventory(stack)) != null;
+        return StompingRecipe.getRecipe(stack) != null;
     }
 
     @Override

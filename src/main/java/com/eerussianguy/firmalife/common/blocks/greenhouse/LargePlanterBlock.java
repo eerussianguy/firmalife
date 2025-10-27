@@ -1,6 +1,5 @@
 package com.eerussianguy.firmalife.common.blocks.greenhouse;
 
-import java.util.List;
 import java.util.function.Consumer;
 import com.eerussianguy.firmalife.client.FLClientHelpers;
 import com.eerussianguy.firmalife.common.FLHelpers;
@@ -15,7 +14,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -29,7 +28,8 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.items.ItemHandlerHelper;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.ItemHandlerHelper;
 import org.jetbrains.annotations.Nullable;
 
 import net.dries007.tfc.common.blockentities.FarmlandBlockEntity;
@@ -37,7 +37,7 @@ import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.crop.CropHelpers;
 import net.dries007.tfc.common.blocks.devices.DeviceBlock;
 import net.dries007.tfc.common.blocks.soil.HoeOverlayBlock;
-import net.dries007.tfc.common.capabilities.Capabilities;
+import net.dries007.tfc.common.capabilities.BlockCapabilities;
 import net.dries007.tfc.util.Helpers;
 
 public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
@@ -65,32 +65,31 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit)
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit)
     {
-        final ItemStack held = player.getItemInHand(hand);
-        final Plantable plant = Plantable.get(held);
+        final Plantable plant = Plantable.get(stack);
         final int slot = getUseSlot(hit, pos);
         if (level.getBlockEntity(pos) instanceof LargePlanterBlockEntity planter)
         {
-            if (held.getItem() == Items.BEDROCK && player.isCreative())
+            if (stack.getItem() == Items.BEDROCK && player.isCreative())
             {
                 for (int i = 0; i < planter.slots(); i++)
                 {
                     planter.setGrowth(i, 1f);
                 }
                 planter.markForSync();
-                return InteractionResult.SUCCESS;
+                return ItemInteractionResult.SUCCESS;
             }
             if (CropHelpers.useFertilizer(level, player, hand, pos))
             {
-                return InteractionResult.sidedSuccess(level.isClientSide);
+                return ItemInteractionResult.sidedSuccess(level.isClientSide);
             }
             else if (plant != null)
             {
                 if (plant.planter() != getPlanterType())
                 {
                     player.displayClientMessage(Component.translatable("firmalife.greenhouse.wrong_type").append(FLHelpers.translateEnum(plant.planter())), true);
-                    return InteractionResult.sidedSuccess(level.isClientSide);
+                    return ItemInteractionResult.sidedSuccess(level.isClientSide);
                 }
                 if (planter.getTier() < plant.tier())
                 {
@@ -102,16 +101,16 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
                     {
                         player.displayClientMessage(Component.translatable("firmalife.greenhouse.wrong_tier"), true);
                     }
-                    return InteractionResult.sidedSuccess(level.isClientSide);
+                    return ItemInteractionResult.sidedSuccess(level.isClientSide);
                 }
-                return insertSlot(level, planter, held, player, slot);
+                return insertSlot(level, planter, stack, player, slot);
             }
-            else if (player.isShiftKeyDown() && held.isEmpty())
+            else if (player.isShiftKeyDown() && stack.isEmpty())
             {
                 return takeSlot(level, planter, slot, i -> ItemHandlerHelper.giveItemToPlayer(player, i));
             }
         }
-        return InteractionResult.PASS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     public PlanterType getPlanterType()
@@ -171,13 +170,14 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
         return 0;
     }
 
-    public InteractionResult insertSlot(Level level, LargePlanterBlockEntity planter, ItemStack held, Player player, int slot)
+    public ItemInteractionResult insertSlot(Level level, LargePlanterBlockEntity planter, ItemStack held, Player player, int slot)
     {
-        return planter.getCapability(Capabilities.ITEM).map(inv -> {
-            var res = InteractionResult.PASS;
-            if (inv.getStackInSlot(slot).isEmpty())
+        IItemHandler inventory = Helpers.getCapability(BlockCapabilities.ITEM, planter);
+        if (inventory != null) {
+            var res = ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+            if (inventory.getStackInSlot(slot).isEmpty())
             {
-                res = FLHelpers.insertOne(level, held, slot, inv, player);
+                res = FLHelpers.insertOne(level, held, slot, inventory, player);
                 if (res.consumesAction())
                 {
                     planter.setGrowth(slot, 0);
@@ -185,18 +185,20 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
                 }
             }
             return res;
-        }).orElse(InteractionResult.PASS);
+        }
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
-    public static InteractionResult takeSlot(Level level, LargePlanterBlockEntity planter, int slot, Consumer<ItemStack> onExtract)
+    public static ItemInteractionResult takeSlot(Level level, LargePlanterBlockEntity planter, int slot, Consumer<ItemStack> onExtract)
     {
-        return planter.getCapability(Capabilities.ITEM).map(inv -> {
+        IItemHandler inventory = Helpers.getCapability(BlockCapabilities.ITEM, planter);
+        if(inventory != null) {
             Plantable plant = planter.getPlantable(slot);
             if (plant != null && planter.getGrowth(slot) >= 1)
             {
                 if (planter.resetGrowthTo() == 0)
                 {
-                    inv.extractItem(slot, 1, false); // discard the internal ingredient
+                    inventory.extractItem(slot, 1, false); // discard the internal ingredient
                 }
                 final int seedAmount = level.random.nextFloat() < plant.extraSeedChance() ? 2 : 1;
                 ItemStack seed = plant.getSeed();
@@ -210,10 +212,10 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
                 FLHelpers.roundCreationDate(crop);
                 onExtract.accept(crop);
                 planter.setGrowth(slot, planter.resetGrowthTo());
-                return InteractionResult.sidedSuccess(level.isClientSide);
+                return ItemInteractionResult.sidedSuccess(level.isClientSide);
             }
-            return InteractionResult.PASS;
-        }).orElse(InteractionResult.PASS);
+        }
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     @Override

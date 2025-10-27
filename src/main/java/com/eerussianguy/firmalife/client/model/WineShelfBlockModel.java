@@ -16,10 +16,10 @@ import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraftforge.client.model.data.ModelData;
-import net.minecraftforge.items.IItemHandler;
+import net.neoforged.neoforge.client.model.data.ModelData;
+import net.neoforged.neoforge.items.IItemHandler;
 
-import net.dries007.tfc.common.capabilities.Capabilities;
+import net.dries007.tfc.common.capabilities.BlockCapabilities;
 import net.dries007.tfc.util.Helpers;
 
 public class WineShelfBlockModel extends SimpleDynamicBlockModel<WineShelfBlockEntity>
@@ -46,7 +46,7 @@ public class WineShelfBlockModel extends SimpleDynamicBlockModel<WineShelfBlockE
                 case NORTH -> 0;
             };
 
-        final IItemHandler inv = Helpers.getCapability(shelf, Capabilities.ITEM);
+        final IItemHandler inv = Helpers.getCapability(BlockCapabilities.ITEM, shelf);
         if (inv == null)
             return;
         for (int i = 0; i < 4; i++)

@@ -1,23 +1,23 @@
 package com.eerussianguy.firmalife.common.util;
 
 import java.util.Locale;
-import java.util.function.Supplier;
+import java.util.function.Function;
 
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.Tier;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.MapColor;
-import net.minecraftforge.common.util.NonNullFunction;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
-import net.dries007.tfc.common.TFCArmorMaterials;
+
+import net.dries007.tfc.common.LevelTier;
 import net.dries007.tfc.common.TFCTiers;
-import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.util.Metal;
 import net.dries007.tfc.util.registry.RegistryMetal;
 
@@ -55,27 +55,28 @@ public enum FLMetal implements RegistryMetal
         return color;
     }
 
-    public Rarity getRarity()
-    {
-        return Rarity.EPIC;
-    }
-
     @Override
-    public Tier toolTier()
+    public LevelTier toolTier()
     {
         return TFCTiers.STEEL;
     }
 
     @Override
-    public ArmorMaterial armorTier()
+    public Holder<ArmorMaterial> armorMaterial()
     {
-        return TFCArmorMaterials.RED_STEEL;
+        return Metal.RED_STEEL.armorMaterial();
     }
 
     @Override
-    public Metal.Tier metalTier()
+    public int armorDurability(ArmorItem.Type type)
     {
-        return Metal.Tier.TIER_VI;
+        return Metal.RED_STEEL.armorDurability(type);
+    }
+
+    @Override
+    public Block getBlock(Metal.BlockType blockType)
+    {
+        return FLBlocks.METALS.get(this).get(Metal.BlockType.BLOCK).get();
     }
 
     @Override
@@ -85,9 +86,15 @@ public enum FLMetal implements RegistryMetal
     }
 
     @Override
-    public Supplier<Block> getFullBlock()
+    public Rarity rarity()
     {
-        return FLBlocks.METALS.get(this).get(Metal.BlockType.BLOCK);
+        return Rarity.EPIC;
+    }
+
+    @Override
+    public float weatheringResistance()
+    {
+        return 0;
     }
 
     public enum ItemType
@@ -99,9 +106,9 @@ public enum FLMetal implements RegistryMetal
         DOUBLE_SHEET(metal -> new Item(new Item.Properties())),
         ROD(metal -> new Item(new Item.Properties()));
 
-        private final NonNullFunction<FLMetal, Item> itemFactory;
+        private final Function<FLMetal, Item> itemFactory;
 
-        ItemType(NonNullFunction<FLMetal, Item> itemFactory)
+        ItemType(Function<FLMetal, Item> itemFactory)
         {
             this.itemFactory = itemFactory;
         }

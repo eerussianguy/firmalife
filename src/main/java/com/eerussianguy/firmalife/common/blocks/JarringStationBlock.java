@@ -31,13 +31,13 @@ public class JarringStationBlock extends FourWayDeviceBlock
     @Override
     public ItemInteractionResult useItemOn(ItemStack held, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
     {
-        return FLHelpers.consumeInventory(level, pos, FLBlockEntities.JARRING_STATION, (type, inv) -> {
+        return FLHelpers.consumeItemInventory(level, pos, FLBlockEntities.JARRING_STATION, (type, inv) -> {
             final ItemStack item = player.getItemInHand(hand);
             if (item.isEmpty())
             {
                 return FLHelpers.takeOneAny(level, 0, JarringStationBlockEntity.SLOTS - 1, inv, player);
             }
-            else if (Helpers.isItem(item, TFCTags.Items.EMPTY_JAR_WITH_LID))
+            else if (Helpers.isItem(item, TFCTags.Items.EMPTY_JARS))
             {
                 return FLHelpers.insertOneAny(level, item, 0, JarringStationBlockEntity.SLOTS - 1, inv, player);
             }

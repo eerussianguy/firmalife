@@ -14,10 +14,9 @@ import snownee.jade.api.IWailaPlugin;
 import snownee.jade.api.WailaPlugin;
 import snownee.jade.api.config.IPluginConfig;
 
-import net.dries007.tfc.compat.jade.common.BlockEntityTooltip;
-import net.dries007.tfc.compat.jade.common.BlockEntityTooltips;
-import net.dries007.tfc.compat.jade.common.EntityTooltip;
-import net.dries007.tfc.compat.jade.common.EntityTooltips;
+import net.dries007.tfc.util.tooltip.BlockEntityTooltip;
+import net.dries007.tfc.util.tooltip.EntityTooltip;
+
 
 @WailaPlugin
 public class JadeIntegration implements IWailaPlugin
@@ -63,4 +62,3 @@ public class JadeIntegration implements IWailaPlugin
         }, entityClass);
     }
 }
-
