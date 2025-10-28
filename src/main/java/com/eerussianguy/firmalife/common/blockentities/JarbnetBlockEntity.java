@@ -1,5 +1,6 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
+import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blocks.JarbnetBlock;
 import net.minecraft.core.BlockPos;
@@ -25,7 +26,7 @@ public class JarbnetBlockEntity extends InventoryBlockEntity<ItemStackHandler>
 
     public JarbnetBlockEntity(BlockPos pos, BlockState state)
     {
-        super(FLBlockEntities.JARBNET.get(), pos, state, defaultInventory(SLOTS), FLHelpers.blockEntityName("jarbnet"));
+        super(FLBlockEntities.JARBNET.get(), pos, state, defaultInventory(SLOTS), FirmaLife.MOD_ID);
         sidedInventory
             .on(new PartialItemHandler(inventory).insert(0, 1, 2, 3, 4, 5), Direction.Plane.HORIZONTAL)
             .on(new PartialItemHandler(inventory).extract(0, 1, 2, 3, 4, 5), Direction.DOWN);

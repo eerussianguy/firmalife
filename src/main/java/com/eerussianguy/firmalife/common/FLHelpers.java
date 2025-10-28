@@ -14,6 +14,7 @@ import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.NonNullList;
 import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -38,7 +39,9 @@ import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.IItemHandlerModifiable;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
+import net.neoforged.neoforge.items.ItemStackHandler;
 
 import net.dries007.tfc.common.blockentities.TickCounterBlockEntity;
 import net.dries007.tfc.common.component.food.FoodCapability;
@@ -228,6 +231,38 @@ public class FLHelpers
         ItemStack merged = FoodCapability.mergeItemStacks(existing, remainder);
         remainder.grow(inventory.insertItem(slot, merged, false).getCount());
         return remainder;
+    }
+
+    /**
+     * Extracts all items of an {@code inventory}, and copies them into a list, indexed with the slots.
+     *
+     * @see #insertAllItems(IItemHandlerModifiable, NonNullList)
+     * @link <a href="https://github.com/TerraFirmaCraft/TerraFirmaCraft/blob/1.20.x/src/main/java/net/dries007/tfc/util/Helpers.java">Copied from TFC 1.20.x</a>
+     */
+    public static NonNullList<ItemStack> extractAllItems(IItemHandlerModifiable inventory)
+    {
+        NonNullList<ItemStack> saved = NonNullList.withSize(inventory.getSlots(), ItemStack.EMPTY);
+        for (int slot = 0; slot < inventory.getSlots(); slot++)
+        {
+            saved.set(slot, inventory.getStackInSlot(slot).copy());
+            inventory.setStackInSlot(slot, ItemStack.EMPTY);
+        }
+        return saved;
+    }
+
+    /**
+     * Given a saved copy of an inventory {@code from}, inserts each stack into the provided {@code inventory}, if possible.
+     *
+     * @see #extractAllItems(IItemHandlerModifiable)
+     * @link <a href="https://github.com/TerraFirmaCraft/TerraFirmaCraft/blob/1.20.x/src/main/java/net/dries007/tfc/util/Helpers.java">Copied from TFC 1.20.x</a>
+     */
+    public static void insertAllItems(IItemHandlerModifiable inventory, NonNullList<ItemStack> from)
+    {
+        // We allow the list to have a different size than the new inventory
+        for (int slot = 0; slot < Math.min(inventory.getSlots(), from.size()); slot++)
+        {
+            inventory.setStackInSlot(slot, from.get(slot));
+        }
     }
 
     private static ItemInteractionResult completeInsertion(Level level, ItemStack item, IItemHandler inv, Player player, int slot)

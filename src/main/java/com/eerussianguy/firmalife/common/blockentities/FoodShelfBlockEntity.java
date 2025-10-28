@@ -1,6 +1,7 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
 import java.util.Set;
+import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.config.FLConfig;
@@ -38,7 +39,7 @@ public class FoodShelfBlockEntity extends InventoryBlockEntity<ItemStackHandler>
 
     public FoodShelfBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state)
     {
-        super(type, pos, state, defaultInventory(1), FLHelpers.blockEntityName("food_shelf"));
+        super(type, pos, state, defaultInventory(1), FirmaLife.MOD_ID);
     }
 
     @Override

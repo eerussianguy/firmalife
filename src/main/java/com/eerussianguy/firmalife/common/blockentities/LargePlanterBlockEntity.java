@@ -141,6 +141,11 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
         updateCache();
     }
 
+    public float consumeNutrientAndResupplyOthers(FarmlandBlockEntity.NutrientType primaryNutrient, float v) {
+        //TODO
+        return 0;
+    }
+
     protected void loadUnique(CompoundTag nbt)
     {
         growth = nbt.getFloat("growth");

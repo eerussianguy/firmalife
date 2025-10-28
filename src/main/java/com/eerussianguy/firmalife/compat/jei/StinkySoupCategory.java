@@ -17,7 +17,7 @@ public class StinkySoupCategory extends PotRecipeCategory<PotRecipe>
 {
     public StinkySoupCategory(RecipeType<PotRecipe> type, IGuiHelper helper)
     {
-        super(type, helper, helper.createBlankDrawable(175, 50));
+        super(type, helper, 175, 50);
     }
 
     @Override

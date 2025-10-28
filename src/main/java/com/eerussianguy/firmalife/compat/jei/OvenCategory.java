@@ -27,7 +27,7 @@ public class OvenCategory extends BaseRecipeCategory<OvenRecipe>
 {
     public OvenCategory(RecipeType<OvenRecipe> type, IGuiHelper helper)
     {
-        super(type, helper, helper.createBlankDrawable(120, 38), new ItemStack(FLBlocks.CURED_OVEN_TOP.get(OvenType.BRICK).get()));
+        super(type, helper, 120, 38, new ItemStack(FLBlocks.CURED_OVEN_TOP.get(OvenType.BRICK).get()));
     }
 
     @Override

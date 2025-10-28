@@ -6,9 +6,9 @@ import java.util.function.Consumer;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.FLBeehiveBlockEntity;
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
+import com.eerussianguy.firmalife.common.capabilities.FLComponents;
 import com.eerussianguy.firmalife.common.capabilities.bee.BeeAbility;
-import com.eerussianguy.firmalife.common.capabilities.bee.BeeCapability;
-import com.eerussianguy.firmalife.common.capabilities.bee.IBee;
+import com.eerussianguy.firmalife.common.capabilities.bee.BeeComponent;
 import com.eerussianguy.firmalife.common.items.FLItems;
 import com.eerussianguy.firmalife.common.misc.FLEffects;
 import net.minecraft.ChatFormatting;
@@ -74,7 +74,7 @@ public class FLBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBloc
             float calmChance = 0;
             for (int i = 0; i < FLBeehiveBlockEntity.FRAME_SLOTS; i++)
             {
-                final IBee bee = inv.getStackInSlot(i).getCapability(BeeCapability.CAPABILITY).resolve().orElse(null);
+                final BeeComponent bee = inv.getStackInSlot(i).get(FLComponents.BEE);
                 if (bee != null && bee.hasQueen())
                 {
                     anyBees = true;
@@ -172,9 +172,9 @@ public class FLBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBloc
             }
             final float temp = Climate.getTemperature(level, pos);
             int ord = 0;
-            final List<IBee> bees = new ArrayList<>();
+            final List<BeeComponent> bees = new ArrayList<>();
             int noQueen = 0;
-            for (IBee bee : hive.getCachedBees())
+            for (BeeComponent bee : hive.getCachedBees())
             {
                 ord++;
                 MutableComponent beeText = Component.translatable("firmalife.beehive.bee", ord);

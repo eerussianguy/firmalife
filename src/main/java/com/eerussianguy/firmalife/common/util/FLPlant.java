@@ -13,6 +13,7 @@ import net.dries007.tfc.util.calendar.Month;
 import net.dries007.tfc.util.registry.RegistryPlant;
 import org.jetbrains.annotations.Nullable;
 
+//TODO this needs plant properties defined
 public enum FLPlant implements RegistryPlant
 {
     BUTTERFLY_GRASS(0.8F),
@@ -45,18 +46,10 @@ public enum FLPlant implements RegistryPlant
         return speedFactor;
     }
 
-    @Override
     public int stageFor(Month month)
     {
         assert stagesByMonth != null;
         return stagesByMonth.length < month.ordinal() ? 0 : stagesByMonth[month.ordinal()];
-    }
-
-    @Override
-    @Nullable
-    public IntegerProperty getStageProperty()
-    {
-        return property;
     }
 
     public BlockBehaviour.Properties solid()
@@ -72,6 +65,66 @@ public enum FLPlant implements RegistryPlant
     public ExtendedProperties nonSolidFire()
     {
         return fire(nonSolid());
+    }
+
+    @Override
+    public boolean isWetSeasonBlooming()
+    {
+        return false;
+    }
+
+    @Override
+    public int getStartTime()
+    {
+        return 0;
+    }
+
+    @Override
+    public int getEndTime()
+    {
+        return 0;
+    }
+
+    @Override
+    public float getBloomOffset()
+    {
+        return 0;
+    }
+
+    @Override
+    public float getBloomingEnd()
+    {
+        return 0;
+    }
+
+    @Override
+    public float getSeedingEnd()
+    {
+        return 0;
+    }
+
+    @Override
+    public float getDyingEnd()
+    {
+        return 0;
+    }
+
+    @Override
+    public float getDormantEnd()
+    {
+        return 0;
+    }
+
+    @Override
+    public float getSproutingEnd()
+    {
+        return 0;
+    }
+
+    @Override
+    public @Nullable IntegerProperty getAgeProperty()
+    {
+        return property;
     }
 
     private ExtendedProperties fire(BlockBehaviour.Properties properties)

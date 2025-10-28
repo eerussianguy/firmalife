@@ -18,23 +18,26 @@ import com.eerussianguy.firmalife.common.blockentities.*;
 import com.eerussianguy.firmalife.common.blocks.*;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.config.FLConfig;
+import net.neoforged.neoforge.items.IItemHandler;
 
 import net.dries007.tfc.common.blockentities.TickCounterBlockEntity;
 import net.dries007.tfc.common.blocks.plant.fruit.FruitTreeSaplingBlock;
-import net.dries007.tfc.common.capabilities.Capabilities;
-import net.dries007.tfc.common.capabilities.food.FoodCapability;
-import net.dries007.tfc.common.capabilities.food.FoodTrait;
-import net.dries007.tfc.common.capabilities.food.IFood;
-import net.dries007.tfc.common.capabilities.heat.HeatCapability;
-import net.dries007.tfc.compat.jade.common.BlockEntityTooltip;
-import net.dries007.tfc.compat.jade.common.BlockEntityTooltips;
-import net.dries007.tfc.compat.jade.common.EntityTooltip;
-import net.dries007.tfc.compat.jade.common.RegisterCallback;
+import net.dries007.tfc.common.capabilities.BlockCapabilities;
+import net.dries007.tfc.common.component.food.FoodCapability;
+import net.dries007.tfc.common.component.food.FoodTrait;
+import net.dries007.tfc.common.component.food.IFood;
+import net.dries007.tfc.common.component.heat.HeatCapability;
 import net.dries007.tfc.config.TFCConfig;
+import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.ICalendar;
+import net.dries007.tfc.util.tooltip.BlockEntityTooltip;
+import net.dries007.tfc.util.tooltip.BlockEntityTooltips;
+import net.dries007.tfc.util.tooltip.EntityTooltip;
+import net.dries007.tfc.util.tooltip.RegisterCallback;
 
-import static net.dries007.tfc.compat.jade.common.BlockEntityTooltips.*;
+import static net.dries007.tfc.util.tooltip.BlockEntityTooltips.*;
+
 
 public final class FLTooltips
 {
@@ -132,7 +135,7 @@ public final class FLTooltips
                 final ItemStack item = mat.viewStack();
                 if (!item.isEmpty())
                 {
-                    final IFood food = item.getCapability(FoodCapability.CAPABILITY).resolve().orElse(null);
+                    final IFood food = FoodCapability.get(item);
                     final List<FoodTrait> traits = food == null ? null : food.getTraits();
                     if (mat.getCachedRecipe() != null)
                     {
@@ -141,13 +144,13 @@ public final class FLTooltips
                     else if (traits != null)
                     {
                         final List<Component> text = new ArrayList<>();
-                        if (traits.contains(FLFoodTraits.SMOKED))
+                        if (traits.contains(FLFoodTraits.SMOKED.get()))
                         {
-                            FLFoodTraits.SMOKED.addTooltipInfo(item, text);
+                            FLFoodTraits.SMOKED.get().addTooltipInfo(text::add);
                         }
-                        if (traits.contains(FLFoodTraits.RANCID_SMOKED))
+                        if (traits.contains(FLFoodTraits.RANCID_SMOKED.get()))
                         {
-                            FLFoodTraits.RANCID_SMOKED.addTooltipInfo(item, text);
+                            FLFoodTraits.RANCID_SMOKED.get().addTooltipInfo(text::add);
                         }
                         if (!text.isEmpty())
                         {
@@ -186,21 +189,23 @@ public final class FLTooltips
                 {
                     tooltip.accept(Component.translatable("firmalife.cellar.invalid_block"));
                 }
-                shelf.getCapability(Capabilities.ITEM).ifPresent(inv -> {
-                    ItemStack stack = inv.getStackInSlot(0);
-                    stack.getCapability(FoodCapability.CAPABILITY).ifPresent(food -> {
+                IItemHandler inventory = Helpers.getCapability(BlockCapabilities.ITEM, shelf);
+                if(inventory != null) {
+                    ItemStack stack = inventory.getStackInSlot(0);
+                    IFood food = FoodCapability.get(stack);
+                    if (food != null) {
                         List<Component> foodTooltip = new ArrayList<>();
-                        food.addTooltipInfo(stack, foodTooltip);
+                        food.addTooltipInfo(stack, foodTooltip::add);
                         foodTooltip.forEach(tooltip);
-                    });
-                });
+                    }
+                }
             }
         };
 
         public static final BlockEntityTooltip OVEN = (level, state, pos, entity, tooltip) -> {
             if (entity instanceof OvenLike oven)
             {
-                BlockEntityTooltips.heat(tooltip, oven.getTemperature());
+                heat(tooltip, oven.getTemperature());
                 if (oven.getTemperature() > 100 && oven instanceof OvenTopBlockEntity)
                 {
                     tooltip.accept(Component.translatable("firmalife.jade.needs_peel"));
@@ -218,13 +223,14 @@ public final class FLTooltips
                 }
                 if (entity instanceof OvenTopBlockEntity top)
                 {
-                    entity.getCapability(Capabilities.ITEM).ifPresent(inv -> {
-                        for (int i = 0; i < inv.getSlots(); i++)
+                    IItemHandler inventory = Helpers.getCapability(BlockCapabilities.ITEM, top);
+                    if (inventory != null) {
+                        for (int i = 0; i < inventory.getSlots(); i++)
                         {
                             final int ticksLeft = top.getTicksLeft(i);
                             if (ticksLeft > 0)
                             {
-                                final ItemStack stack = inv.getStackInSlot(i);
+                                final ItemStack stack = inventory.getStackInSlot(i);
                                 if (!stack.isEmpty())
                                 {
                                     final float temp = HeatCapability.getTemperature(stack);
@@ -241,7 +247,7 @@ public final class FLTooltips
 
                             }
                         }
-                    });
+                    }
                 }
 
             }
@@ -258,7 +264,7 @@ public final class FLTooltips
         public static final BlockEntityTooltip FRUIT_TREE_SAPLING = (level, state, pos, entity, tooltip) -> {
             if (entity instanceof TickCounterBlockEntity counter && state.getBlock() instanceof FruitTreeSaplingBlock sapling)
             {
-                timeLeft(level, tooltip, (long) (sapling.getTreeGrowthDays() * ICalendar.TICKS_IN_DAY * TFCConfig.SERVER.globalFruitSaplingGrowthModifier.get()) - counter.getTicksSinceUpdate(), Component.translatable("tfc.jade.ready_to_grow"));
+                timeLeft(level, tooltip, sapling.getTicksToGrow() - counter.getTicksSinceUpdate(), Component.translatable("tfc.jade.ready_to_grow"));
             }
         };
 
@@ -274,7 +280,7 @@ public final class FLTooltips
             {
                 if (press.getOutput() != null)
                 {
-                    tooltip.accept(Component.translatable("firmalife.wine.has_output", press.getOutput().getServings(), FLHelpers.translateEnum(press.getOutput().getType())));
+                    tooltip.accept(Component.translatable("firmalife.wine.has_output", press.getOutput().servings(), FLHelpers.translateEnum(press.getOutput().wine())));
                 }
                 final WineType type = press.getWineType();
                 if (type != null)

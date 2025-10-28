@@ -5,10 +5,12 @@ import com.eerussianguy.firmalife.common.blockentities.BigBarrelBlockEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.neoforged.neoforge.items.IItemHandler;
 
-import net.dries007.tfc.common.capabilities.Capabilities;
+import net.dries007.tfc.common.capabilities.BlockCapabilities;
 import net.dries007.tfc.common.container.BlockEntityContainer;
-import net.dries007.tfc.common.container.CallbackSlot;
+import net.dries007.tfc.common.container.slot.CallbackSlot;
+import net.dries007.tfc.util.Helpers;
 
 public class BigBarrelContainer extends BlockEntityContainer<BigBarrelBlockEntity>
 {
@@ -25,7 +27,8 @@ public class BigBarrelContainer extends BlockEntityContainer<BigBarrelBlockEntit
     @Override
     protected void addContainerSlots()
     {
-        blockEntity.getCapability(Capabilities.ITEM).ifPresent(inventory -> {
+        IItemHandler inventory = Helpers.getCapability(BlockCapabilities.ITEM, blockEntity);
+        if (inventory != null) {
             int i = 0;
             for (int y = 0; y < 6; y++)
             {
@@ -37,7 +40,7 @@ public class BigBarrelContainer extends BlockEntityContainer<BigBarrelBlockEntit
             }
             addSlot(new CallbackSlot(blockEntity, inventory, BigBarrelBlockEntity.SLOT_FLUID_CONTAINER_IN, 35, 18));
             addSlot(new CallbackSlot(blockEntity, inventory, BigBarrelBlockEntity.SLOT_FLUID_CONTAINER_OUT, 35, 54));
-        });
+        }
     }
 
     @Override

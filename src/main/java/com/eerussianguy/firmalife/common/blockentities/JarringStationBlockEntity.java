@@ -30,7 +30,7 @@ public class JarringStationBlockEntity extends TickableInventoryBlockEntity<Item
                 final ItemStack jars = vat.getOutput();
                 for (int i = 0; i < SLOTS; i++)
                 {
-                    if (Helpers.isItem(station.inventory.getStackInSlot(i).getItem(), TFCTags.Items.EMPTY_JAR_WITH_LID))
+                    if (Helpers.isItem(station.inventory.getStackInSlot(i).getItem(), TFCTags.Items.EMPTY_JARS))
                     {
                         Helpers.playSound(level, pos, SoundEvents.BOTTLE_FILL);
                         station.inventory.setStackInSlot(i, jars.split(1));
@@ -70,7 +70,7 @@ public class JarringStationBlockEntity extends TickableInventoryBlockEntity<Item
     @Override
     public boolean isItemValid(int slot, ItemStack stack)
     {
-        return Helpers.isItem(stack, TFCTags.Items.EMPTY_JAR_WITH_LID);
+        return Helpers.isItem(stack, TFCTags.Items.EMPTY_JARS);
     }
 
     @Override

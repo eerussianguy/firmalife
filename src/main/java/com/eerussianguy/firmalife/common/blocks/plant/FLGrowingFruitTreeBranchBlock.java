@@ -27,7 +27,7 @@ public class FLGrowingFruitTreeBranchBlock extends GrowingFruitTreeBranchBlock
     @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand)
     {
-        int hydration = FruitTreeLeavesBlock.getHydration(level, pos);
+        int hydration = getFruitBranchHydration(level, pos);
         float temp = Climate.getTemperature(level, pos);
         if (!this.climateRange.get().checkBoth(hydration, temp, false) && !(Boolean)state.getValue(NATURAL))
         {

@@ -14,7 +14,7 @@ import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.FluidStack;
 import org.jetbrains.annotations.Nullable;
 
 import net.dries007.tfc.compat.jei.JEIIntegration;
@@ -29,7 +29,7 @@ public class VatCategory extends BaseRecipeCategory<VatRecipe>
 
     public VatCategory(RecipeType<VatRecipe> type, IGuiHelper helper)
     {
-        super(type, helper, helper.createBlankDrawable(118, 26), new ItemStack(FLBlocks.VAT.get()));
+        super(type, helper, 118, 26, new ItemStack(FLBlocks.VAT.get()));
     }
 
     @Override

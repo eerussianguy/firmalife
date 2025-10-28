@@ -6,11 +6,9 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 
-import net.minecraftforge.fluids.FluidStack;
 
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.recipes.MixingBowlRecipe;
-import com.mojang.blaze3d.vertex.PoseStack;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.builder.IRecipeSlotBuilder;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
@@ -18,6 +16,8 @@ import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
+import net.neoforged.neoforge.fluids.FluidStack;
+
 import net.dries007.tfc.compat.jei.JEIIntegration;
 import net.dries007.tfc.compat.jei.category.BaseRecipeCategory;
 
@@ -28,7 +28,7 @@ public class MixingCategory extends BaseRecipeCategory<MixingBowlRecipe>
 
     public MixingCategory(RecipeType<MixingBowlRecipe> type, IGuiHelper helper)
     {
-        super(type, helper, helper.createBlankDrawable(110, 100), new ItemStack(FLBlocks.MIXING_BOWL.get()));
+        super(type, helper, 110, 100, new ItemStack(FLBlocks.MIXING_BOWL.get()));
     }
 
     @Override

@@ -12,16 +12,15 @@ public enum FLFruit
     ;
 
     private final String name;
-    private final boolean meat, fast;
+    private final boolean fast;
 
     FLFruit()
     {
-        this(false, false);
+        this(false);
     }
 
-    FLFruit(boolean meat, boolean fast)
+    FLFruit(boolean fast)
     {
-        this.meat = meat;
         this.fast = fast;
         this.name = name().toLowerCase(Locale.ROOT);
     }
@@ -34,8 +33,7 @@ public enum FLFruit
     public FoodProperties getFoodProperties()
     {
         FoodProperties.Builder builder = new FoodProperties.Builder();
-        if (meat) builder.meat();
         if (fast) builder.fast();
-        return builder.nutrition(4).saturationMod(0.3f).build();
+        return builder.nutrition(4).saturationModifier(0.3f).build();
     }
 }

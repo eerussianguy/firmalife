@@ -6,6 +6,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -16,7 +17,10 @@ import net.neoforged.neoforge.items.ItemHandlerHelper;
 
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.devices.BottomSupportedDeviceBlock;
+import net.dries007.tfc.common.component.food.FoodCapability;
 import net.dries007.tfc.common.component.food.IFood;
+import net.dries007.tfc.common.player.IPlayerInfo;
+import net.dries007.tfc.common.player.PlayerInfo;
 import net.dries007.tfc.util.Helpers;
 
 public class ConsumingBlock extends BottomSupportedDeviceBlock
@@ -34,22 +38,21 @@ public class ConsumingBlock extends BottomSupportedDeviceBlock
     }
 
     @Override
-    @SuppressWarnings("deprecation")
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit)
     {
-        return FLHelpers.consumeInventory(level, pos, FLBlockEntities.PLATE, (plate, inv) -> {
+        return FLHelpers.consumeItemInventory(level, pos, FLBlockEntities.PLATE, (plate, inv) -> {
             final ItemStack held = player.getItemInHand(hand);
             if (held.isEmpty())
             {
-                final ItemStack stack = inv.getStackInSlot(0);
-                final IFood cap = Helpers.getCapability(stack, FoodCapability.CAPABILITY);
-                if (!stack.isEmpty() && cap != null && player.isShiftKeyDown() && player.getFoodData() instanceof TFCFoodData data && data.needsFood())
+                final ItemStack s1 = inv.getStackInSlot(0);
+                final IFood cap = FoodCapability.get(s1);
+                if (!s1.isEmpty() && cap != null && player.isShiftKeyDown() && player.getFoodData() instanceof PlayerInfo data && data.needsFood())
                 {
-                    final ItemStack newItem = stack.getItem().finishUsingItem(stack, level, player);
-                    stack.shrink(1);
+                    final ItemStack newItem = s1.getItem().finishUsingItem(s1, level, player);
+                    s1.shrink(1);
                     ItemHandlerHelper.giveItemToPlayer(player, newItem);
                     Helpers.playSound(level, pos, SoundEvents.GENERIC_EAT);
-                    return InteractionResult.sidedSuccess(level.isClientSide);
+                    return ItemInteractionResult.sidedSuccess(level.isClientSide);
                 }
                 return FLHelpers.takeOne(level, 0, inv, player);
             }

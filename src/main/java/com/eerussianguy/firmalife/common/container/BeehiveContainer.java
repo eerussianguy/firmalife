@@ -4,10 +4,12 @@ import net.minecraft.world.entity.player.Inventory;
 
 import com.eerussianguy.firmalife.common.blockentities.FLBeehiveBlockEntity;
 import net.minecraft.world.item.ItemStack;
+import net.neoforged.neoforge.items.IItemHandler;
 
-import net.dries007.tfc.common.capabilities.Capabilities;
+import net.dries007.tfc.common.capabilities.BlockCapabilities;
 import net.dries007.tfc.common.container.BlockEntityContainer;
-import net.dries007.tfc.common.container.CallbackSlot;
+import net.dries007.tfc.common.container.slot.CallbackSlot;
+import net.dries007.tfc.util.Helpers;
 
 public class BeehiveContainer extends BlockEntityContainer<FLBeehiveBlockEntity>
 {
@@ -24,14 +26,15 @@ public class BeehiveContainer extends BlockEntityContainer<FLBeehiveBlockEntity>
     @Override
     protected void addContainerSlots()
     {
-        blockEntity.getCapability(Capabilities.ITEM).ifPresent(inventory -> {
+        IItemHandler inventory = Helpers.getCapability(BlockCapabilities.ITEM, blockEntity);
+        if (inventory != null) {
             for (int i = 0; i < FLBeehiveBlockEntity.FRAME_SLOTS; i++)
             {
                 addSlot(new CallbackSlot(blockEntity, inventory, i, 44 + (i * 18), 19));
             }
             addSlot(new CallbackSlot(blockEntity, inventory, FLBeehiveBlockEntity.SLOT_JAR_IN, 134, 19));
             addSlot(new CallbackSlot(blockEntity, inventory, FLBeehiveBlockEntity.SLOT_JAR_OUT, 134, 55));
-        });
+        }
     }
 
     @Override

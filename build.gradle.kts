@@ -14,7 +14,7 @@ val parchmentMinecraftVersion: String = "1.21.1"
 
 // Dependency versions
 val emiVersion: String = "1.1.22+1.21.1"
-val jeiVersion: String = "19.22.1.316"
+val jeiVersion: String = "19.25.0.321"
 val patchouliVersion: String = "1.21.1-92-NEOFORGE"
 val tfcVersion: String = "4.0.7-beta"
 

@@ -242,15 +242,15 @@ public class FLBlocks
     );
 
     public static final Map<FLMetal, Id<LiquidBlock>> METAL_FLUIDS = Helpers.mapOf(FLMetal.class, metal ->
-        registerNoItem("fluid/metal/" + metal.name(), () -> new LiquidBlock(FLFluids.METALS.get(metal).source(), Properties.ofFullCopy(Blocks.LAVA).noLootTable()))
+        registerNoItem("fluid/metal/" + metal.name(), () -> new LiquidBlock(FLFluids.METALS.get(metal).source().get(), Properties.ofFullCopy(Blocks.LAVA).noLootTable()))
     );
 
     public static final Map<ExtraFluid, Id<LiquidBlock>> EXTRA_FLUIDS = Helpers.mapOf(ExtraFluid.class, fluid ->
-        registerNoItem("fluid/" + fluid.getSerializedName(), () -> new LiquidBlock(FLFluids.EXTRA_FLUIDS.get(fluid).source(), Properties.ofFullCopy(Blocks.WATER).noLootTable()))
+        registerNoItem("fluid/" + fluid.getSerializedName(), () -> new LiquidBlock(FLFluids.EXTRA_FLUIDS.get(fluid).source().get(), Properties.ofFullCopy(Blocks.WATER).noLootTable()))
     );
 
     public static final Map<WineType, Id<LiquidBlock>> WINE_FLUIDS = Helpers.mapOf(WineType.class, fluid ->
-        registerNoItem("fluid/" + fluid.getSerializedName(), () -> new LiquidBlock(FLFluids.WINE_FLUIDS.get(fluid).source(), Properties.ofFullCopy(Blocks.WATER).noLootTable()))
+        registerNoItem("fluid/" + fluid.getSerializedName(), () -> new LiquidBlock(FLFluids.WINE_FLUIDS.get(fluid).source().get(), Properties.ofFullCopy(Blocks.WATER).noLootTable()))
     );
 
 
@@ -334,7 +334,7 @@ public class FLBlocks
 
     private static <T extends Block> Id<T> register(String name, Supplier<T> blockSupplier, @Nullable Function<T, ? extends BlockItem> blockItemFactory)
     {
-        return RegistrationHelpers.registerBlock(BLOCK, FLItems.ITEM, name, blockSupplier, blockItemFactory);
+        return new Id<>(RegistrationHelpers.registerBlock(BLOCK, FLItems.ITEM, name, blockSupplier, blockItemFactory));
     }
 
 }

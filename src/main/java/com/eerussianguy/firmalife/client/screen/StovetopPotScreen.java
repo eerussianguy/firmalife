@@ -3,23 +3,22 @@ package com.eerussianguy.firmalife.client.screen;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.StovetopPotBlockEntity;
 import com.eerussianguy.firmalife.common.container.StovetopPotContainer;
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraftforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 
 import net.dries007.tfc.client.RenderHelpers;
 import net.dries007.tfc.client.screen.BlockEntityScreen;
-import net.dries007.tfc.client.screen.TFCContainerScreen;
-import net.dries007.tfc.common.blockentities.PotBlockEntity;
-import net.dries007.tfc.common.capabilities.Capabilities;
-import net.dries007.tfc.common.capabilities.heat.Heat;
+import net.dries007.tfc.common.capabilities.BlockCapabilities;
+import net.dries007.tfc.common.component.heat.Heat;
 import net.dries007.tfc.common.fluids.FluidHelpers;
 import net.dries007.tfc.config.TFCConfig;
-import net.dries007.tfc.util.Tooltips;
+import net.dries007.tfc.util.Helpers;
+import net.dries007.tfc.util.tooltip.Tooltips;
 
 public class StovetopPotScreen extends BlockEntityScreen<StovetopPotBlockEntity, StovetopPotContainer>
 {
@@ -67,9 +66,8 @@ public class StovetopPotScreen extends BlockEntityScreen<StovetopPotBlockEntity,
         final int left = getGuiLeft(), top = getGuiTop();
         if (mouseX >= left + 54 && mouseY >= top + 48 && mouseX < left + 86 && mouseY < top + 74)
         {
-            final FluidStack fluid = blockEntity.getCapability(Capabilities.FLUID)
-                .map(c -> c.getFluidInTank(0))
-                .orElse(FluidStack.EMPTY);
+            final IFluidHandler fluidHandler = Helpers.getCapability(BlockCapabilities.FLUID, blockEntity);
+            final FluidStack fluid = fluidHandler != null ? fluidHandler.getFluidInTank(0) : FluidStack.EMPTY;
             if (!fluid.isEmpty())
             {
                 graphics.renderTooltip(font, Tooltips.fluidUnitsAndCapacityOf(fluid, FluidHelpers.BUCKET_VOLUME), mouseX, mouseY);
