@@ -103,7 +103,7 @@ def generate(rm: ResourceManager):
                 casting_recipe(rm, '%s_%s' % (metal, item), item, metal, item_data.smelt_amount, 0.1 if item == 'ingot' else 1)
             if item == 'ingot':
                 casting_recipe(rm, '%s_%s_fire' % (metal, item), 'fire_ingot', metal, item_data.smelt_amount, 0.01, 'firmalife:metal/ingot/%s' % metal)
-        rm.blockstate(('fluid', 'metal', metal)).with_block_model({'particle': 'block/lava_still'}, parent=None).with_lang(lang('Molten %s', metal)).with_tag('minecraft:replaceable')
+        rm.blockstate(('fluid', 'metal', metal)).with_block_model({'particle': 'block/lava_still'}, parent=None).with_lang(lang('Molten %s', metal))
         rm.lang('fluid.firmalife.metal.%s' % metal, lang('Molten %s', metal))
         rm.fluid_tag(metal, 'firmalife:metal/%s' % metal, 'firmalife:metal/flowing_%s' % metal)
         rm.fluid_tag('tfc:molten_metals', *['firmalife:metal/%s' % metal])
@@ -124,10 +124,10 @@ def generate(rm: ResourceManager):
 
         for metal_block in METAL_BLOCKS:
             if metal_block == 'block' or metal_block == 'block_stairs' or metal_block == 'block_slab':
-                block = rm.blockstate(('metal', 'block', metal)).with_block_model().with_lang(lang('%s plated block', metal)).with_item_model().with_block_loot('firmalife:metal/block/%s' % metal).with_tag('minecraft:mineable/pickaxe')
+                block = rm.blockstate(('metal', 'block', metal)).with_block_model().with_lang(lang('%s plated block', metal)).with_item_model().with_block_loot('firmalife:metal/block/%s' % metal)
                 block.make_slab()
-                rm.block(('metal', 'block', '%s_slab' % metal)).with_lang(lang('%s plated slab', metal)).with_tag('minecraft:mineable/pickaxe')
-                rm.block(('metal', 'block', '%s_stairs' % metal)).with_lang(lang('%s plated stairs', metal)).with_block_loot('firmalife:metal/block/%s_stairs' % metal).with_tag('minecraft:mineable/pickaxe')
+                rm.block(('metal', 'block', '%s_slab' % metal)).with_lang(lang('%s plated slab', metal))
+                rm.block(('metal', 'block', '%s_stairs' % metal)).with_lang(lang('%s plated stairs', metal)).with_block_loot('firmalife:metal/block/%s_stairs' % metal)
                 block.make_stairs()
                 slab_loot(rm, 'firmalife:metal/block/%s_slab' % metal)
 

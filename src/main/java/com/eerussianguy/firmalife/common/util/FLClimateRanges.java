@@ -2,7 +2,6 @@ package com.eerussianguy.firmalife.common.util;
 
 import java.util.Locale;
 import java.util.Map;
-import java.util.function.Supplier;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blocks.plant.FLFruitBlocks;
@@ -13,9 +12,9 @@ import net.dries007.tfc.util.data.DataManager;
 
 public class FLClimateRanges
 {
-    public static final Map<FLFruitBlocks.Tree, Supplier<ClimateRange>> FRUIT_TREES = Helpers.mapOf(FLFruitBlocks.Tree.class, tree -> register("plant/" + tree.name() + "_tree"));
-    public static final Map<FLFruitBlocks.StationaryBush, Supplier<ClimateRange>> STATIONARY_BUSHES = Helpers.mapOf(FLFruitBlocks.StationaryBush.class, bush -> register("plant/" + bush.name() + "_bush"));
-    public static final Supplier<ClimateRange> GRAPES = register("plant/grapes");
+    public static final Map<FLFruitBlocks.Tree, DataManager.Reference<ClimateRange>> FRUIT_TREES = Helpers.mapOf(FLFruitBlocks.Tree.class, tree -> register("plant/" + tree.name() + "_tree"));
+    public static final Map<FLFruitBlocks.StationaryBush, DataManager.Reference<ClimateRange>> STATIONARY_BUSHES = Helpers.mapOf(FLFruitBlocks.StationaryBush.class, bush -> register("plant/" + bush.name() + "_bush"));
+    public static final DataManager.Reference<ClimateRange> GRAPES = register("plant/grapes");
 
     private static DataManager.Reference<ClimateRange> register(String name)
     {

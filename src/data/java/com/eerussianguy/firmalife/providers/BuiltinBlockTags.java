@@ -62,7 +62,8 @@ public class BuiltinBlockTags extends TagsProvider<Block> implements Accessors
             .addAll(FLBlocks.RUSTIC_BRICK_DECOR)
             .addAll(FLBlocks.TILE_DECOR)
             .add(FLBlocks.OVEN_COUNTERTOP)
-            .add(FLBlocks.ASHTRAY, FLBlocks.JARRING_STATION, FLBlocks.PICKER, FLBlocks.SWEEPER, FLBlocks.VAT, FLBlocks.STOVETOP_GRILL, FLBlocks.STOVETOP_POT);
+            .add(FLBlocks.ASHTRAY, FLBlocks.JARRING_STATION, FLBlocks.PICKER, FLBlocks.SWEEPER, FLBlocks.VAT, FLBlocks.STOVETOP_GRILL, FLBlocks.STOVETOP_POT)
+            .add2(FLBlocks.METALS);
         tag(BlockTags.MINEABLE_WITH_AXE)
             .add(FLBlocks.TREATED_WOOD, FLBlocks.PLATE, FLBlocks.SOLAR_DRIER, FLBlocks.MIXING_BOWL, FLBlocks.GRAPE_TRELLIS_POST, FLBlocks.GRAPE_TRELLIS_POST_RED, FLBlocks.GRAPE_TRELLIS_POST_WHITE, FLBlocks.CLIMATE_STATION, FLBlocks.BEEHIVE)
             .add(FLBlocks.FRUIT_TREE_BRANCHES)

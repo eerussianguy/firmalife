@@ -43,45 +43,6 @@ def generate(rm: ResourceManager):
     greenhouse(rm, 'iron', '#firmalife:all_iron_greenhouse', 15)  # allows fruit trees
     greenhouse(rm, 'stainless_steel', '#firmalife:stainless_steel_greenhouse', 20)
 
-    for grain in ('barley', 'oat', 'rye', 'wheat'):
-        simple_plantable(rm, grain, 'nitrogen' if grain == 'barley' else 'phosphorous', 7, planter='large', tier=10)
-    simple_plantable(rm, 'maize', 'nitrogen' if grain == 'barley' else 'phosphorous', 4, planter='large', tier=10, firmalife=True)
-
-    simple_plantable(rm, 'beet', 'potassium', 5)
-    simple_plantable(rm, 'cabbage', 'nitrogen', 5)
-    simple_plantable(rm, 'carrot', 'potassium', 4)
-    simple_plantable(rm, 'garlic', 'nitrogen', 4)
-    simple_plantable(rm, 'potato', 'potassium', 6)
-    simple_plantable(rm, 'onion', 'nitrogen', 6)
-    simple_plantable(rm, 'soybean', 'nitrogen', 6)
-
-    for herb in HERBS:
-        plantable(rm, herb, 'firmalife:plant/%s' % herb, 'firmalife:plant/%s' % herb, 'nitrogen', ['firmalife:block/plant/%s/%s' % (herb, i) for i in range(0, 2)], 1, seed_chance=0.8, )
-
-    plantable(rm, 'rice', 'tfc:seeds/rice', 'tfc:food/rice', 'phosphorous', ['tfc:block/crop/rice_%s' % i for i in range(0, 8)], 7, 'hydroponic', tier=10)
-    plantable(rm, 'cranberry', 'tfc:plant/cranberry_bush', 'tfc:food/cranberry', 'phosphorous', ['firmalife:block/crop/cranberry_%s' % i for i in range(0, 4)], 3, 'hydroponic', tier=10)
-
-    simple_plantable(rm, 'green_bean', 'nitrogen', 4, planter='large', firmalife=True)
-    simple_plantable(rm, 'tomato', 'potassium', 4, planter='large', firmalife=True)
-    simple_plantable(rm, 'sugarcane', 'potassium', 4, planter='large', firmalife=True)
-    simple_plantable(rm, 'red_bell_pepper', 'potassium', 6, planter='large')
-    simple_plantable(rm, 'yellow_bell_pepper', 'potassium', 6, planter='large')
-    plantable(rm, 'jute', 'tfc:seeds/jute', 'tfc:jute', 'potassium', ['firmalife:block/crop/jute_%s' % i for i in range(0, 5)], 4, 'large')
-    plantable(rm, 'papyrus', 'tfc:seeds/papyrus', 'tfc:papyrus', 'potassium', ['firmalife:block/crop/papyrus_%s' % i for i in range(0, 6)], 5, 'large')
-    plantable(rm, 'red_grapes', 'firmalife:seeds/red_grape', 'firmalife:food/red_grapes', 'nitrogen', ['firmalife:block/crop/%s' % c for c in ('grape_leaves', 'grape_leaves_dead', 'grape_leaves_flowering', 'grape_leaves_red')], 0, 'trellis', tier=15, seed_chance=0.1)
-    plantable(rm, 'white_grapes', 'firmalife:seeds/white_grape', 'firmalife:food/white_grapes', 'nitrogen', ['firmalife:block/crop/%s' % c for c in ('grape_leaves', 'grape_leaves_dead', 'grape_leaves_flowering', 'grape_leaves_white')], 0, 'trellis', tier=15, seed_chance=0.1)
-
-    bonsai_plantable(rm, 'cherry', 'nitrogen')
-    bonsai_plantable(rm, 'green_apple', 'nitrogen')
-    bonsai_plantable(rm, 'lemon', 'nitrogen')
-    bonsai_plantable(rm, 'olive', 'nitrogen')
-    bonsai_plantable(rm, 'orange', 'nitrogen')
-    bonsai_plantable(rm, 'peach', 'nitrogen')
-    bonsai_plantable(rm, 'plum', 'nitrogen')
-    bonsai_plantable(rm, 'red_apple', 'nitrogen')
-    bonsai_plantable(rm, 'cocoa', 'nitrogen', firmalife=True, food='firmalife:food/cocoa_beans')
-    bonsai_plantable(rm, 'fig', 'nitrogen', firmalife=True)
-
     hanging_plantable(rm, 'squash', 'tfc:seeds/squash', 'tfc:food/squash', 'potassium')
     hanging_plantable(rm, 'pumpkin', 'tfc:seeds/pumpkin', 'tfc:pumpkin', 'phosphorous', tier=15)
     hanging_plantable(rm, 'melon', 'tfc:seeds/melon', 'tfc:melon', 'phosphorous', tier=15)
@@ -197,31 +158,12 @@ def generate(rm: ResourceManager):
     item_heat(rm, 'oxidized_copper_pipe', 'firmalife:oxidized_copper_pipe', 0.171, melt_temperature=864)
     item_heat(rm, 'stainless_steel_jar_lid', 'firmalife:stainless_steel_jar_lid', 1.429, melt_temperature=1540)
 
-    lamp_fuel(rm, 'soybean_oil', 'firmalife:soybean_oil', 7000)
-
-    for fruit, data in FRUITS.items():
-        climate_range(rm, 'plant/%s_tree' % fruit, hydration=(hydration_from_rainfall(data.min_rain), 100, 0), temperature=(data.min_temp - 7, data.max_temp + 7, 0))
-    for berry, data in STILL_BUSHES.items():
-        climate_range(rm, 'plant/%s_bush' % berry, hydration=(hydration_from_rainfall(data[0]), 100, 0), temperature=(data[2], data[3], 0))
-    climate_range(rm, 'plant/grapes', hydration=(0, 100, 0), temperature=(0, 50, 0))
-
-    rm.tag('minecraft:bypasses_armor', 'damage_type', 'swarm', 'oven')
-    rm.tag('minecraft:bypasses_effects', 'damage_type', 'swarm')
-
     ### MISC DATA ###
     global_loot_modifiers(rm, 'firmalife:fruit_leaf', 'firmalife:rennet', 'firmalife:rennet_three', 'firmalife:ice_shavings')
     global_loot_modifier(rm, 'rennet', 'firmalife:add_item', {'item': item_stack_codec('4 firmalife:rennet')}, match_entity_tag('firmalife:drops_rennet'))
     global_loot_modifier(rm, 'rennet_three', 'firmalife:add_item', {'item': item_stack_codec('6 firmalife:rennet')}, match_entity_tag('firmalife:drops_three_rennet'))
     global_loot_modifier(rm, 'fruit_leaf', 'firmalife:add_item', {'item': item_stack_codec('firmalife:fruit_leaf'), 'chance': 0.5}, match_block_ingredient('firmalife:drops_fruit_leaf'))
     global_loot_modifier(rm, 'ice_shavings', 'firmalife:add_item', {'item': item_stack_codec('firmalife:ice_shavings')}, match_block_ingredient('firmalife:drops_ice_shavings'))
-
-def lamp_fuel(rm: ResourceManager, name: str, fluid: str, burn_rate: int, valid_lamps: str = '#tfc:lamps'):
-    rm.data(('tfc', 'lamp_fuels', name), {
-        'fluid': fluid,
-        'burn_rate': burn_rate,
-        # This is a block ingredient, not an ingredient
-        'valid_lamps': {'type': 'tfc:tag', 'tag': valid_lamps.replace('#', '')} if '#' in valid_lamps else valid_lamps
-    })
 
 def greenhouse(rm: ResourceManager, name: str, block_ingredient: str, tier: int):
     rm.data(('firmalife', 'greenhouse', name), {
