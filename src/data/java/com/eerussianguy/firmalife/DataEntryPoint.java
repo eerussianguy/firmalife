@@ -5,6 +5,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.function.BiConsumer;
 import com.eerussianguy.firmalife.providers.BuiltinBlockTags;
 import com.eerussianguy.firmalife.providers.BuiltinDamageTypes;
+import com.eerussianguy.firmalife.providers.BuiltinRecipes;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistrySetBuilder;
@@ -36,6 +37,8 @@ public class DataEntryPoint
                 .add(Registries.DAMAGE_TYPE, BuiltinDamageTypes::new)
             , Set.of(MOD_ID, TerraFirmaCraft.MOD_ID, "minecraft")
         )).getRegistryProvider();
+        
+        add(event, new BuiltinRecipes(output, lookup));
 
 
         final var blockTags = add(event, new BuiltinBlockTags(event, lookup)).contentsGetter();

@@ -8,8 +8,15 @@ package com.eerussianguy.firmalife;
 
 import java.util.Locale;
 import java.util.Map;
+import com.eerussianguy.firmalife.common.blocks.FLBlocks;
+import com.eerussianguy.firmalife.common.blocks.Herb;
+import com.eerussianguy.firmalife.common.items.FLFood;
+import com.eerussianguy.firmalife.common.items.FLItems;
+import com.eerussianguy.firmalife.common.items.Spice;
+import com.eerussianguy.firmalife.common.util.FLFruit;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -36,9 +43,15 @@ import org.jetbrains.annotations.Nullable;
 import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.blocks.rock.Ore;
 import net.dries007.tfc.common.blocks.wood.Wood;
+import net.dries007.tfc.common.component.food.FoodTrait;
 import net.dries007.tfc.common.fluids.SimpleFluid;
 import net.dries007.tfc.common.fluids.TFCFluids;
+import net.dries007.tfc.common.items.Food;
+import net.dries007.tfc.common.items.Powder;
 import net.dries007.tfc.common.items.TFCItems;
+import net.dries007.tfc.common.recipes.ingredients.AndIngredient;
+import net.dries007.tfc.common.recipes.ingredients.HasTraitIngredient;
+import net.dries007.tfc.common.recipes.ingredients.NotRottenIngredient;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.Metal;
 import net.dries007.tfc.util.calendar.ICalendar;
@@ -109,6 +122,28 @@ public interface Accessors
         return BuiltInRegistries.ITEM.get(name);
     }
 
+    default ItemLike itemOf(Herb herb) {
+        return FLBlocks.HERBS.get(herb);
+    }
+    default ItemLike itemOf(Powder powder) {
+        return TFCItems.POWDERS.get(powder);
+    }
+    default ItemLike itemOf(Food food) {
+        return TFCItems.FOOD.get(food);
+    }
+    default ItemLike itemOf(FLFood food) {
+        return FLItems.FOODS.get(food);
+    }
+    default ItemLike itemOf(Spice spice) {
+        return FLItems.SPICES.get(spice);
+    }
+    default ItemLike itemOf(FLFruit fruit) {
+        return FLItems.FRUITS.get(fruit);
+    }
+    default ItemLike itemOf(Wood wood, Wood.BlockType type) {
+        return TFCBlocks.WOODS.get(wood).get(type);
+    }
+
     default Fluid fluidOf(DyeColor color)
     {
         return TFCFluids.COLORED_FLUIDS.get(color).getSource();
@@ -144,6 +179,26 @@ public interface Accessors
         assert item.asItem() != Items.AIR : "Should never get name of Items.AIR";
         assert item.asItem() != Items.BARRIER : "Should never get name of Items.BARRIER";
         return BuiltInRegistries.ITEM.getKey(item.asItem()).getPath();
+    }
+
+    default Ingredient notRotten(Ingredient food)
+    {
+        return AndIngredient.of(food, NotRottenIngredient.INSTANCE);
+    }
+
+    default Ingredient notRotten(ItemLike food)
+    {
+        return AndIngredient.of(Ingredient.of(food), NotRottenIngredient.INSTANCE);
+    }
+
+    default Ingredient hasTrait(ItemLike food, Holder<FoodTrait> trait)
+    {
+        return hasTrait(Ingredient.of(food), trait);
+    }
+
+    default Ingredient hasTrait(Ingredient food, Holder<FoodTrait> trait)
+    {
+        return AndIngredient.of(food, HasTraitIngredient.of(trait));
     }
 
     default int units(Metal.ItemType type)

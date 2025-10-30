@@ -71,6 +71,8 @@ public class FLTags
         public static final TagKey<Item> SMASHED_GRAPES = create("foods/smashed_grapes");
         public static final TagKey<Item> CAN_BE_PRESSED_LIKE_GRAPES = create("can_be_pressed_like_grapes");
         public static final TagKey<Item> SWEETENER = TagKey.create(Registries.ITEM, Helpers.identifier("sweetener"));
+        public static final TagKey<Item> COOKED_MEATS_AND_SUBSTITUTES = create("foods/cooked_meats_and_substitutes");
+        public static final TagKey<Item> CHEESES = create("foods/cheeses");
 
         private static TagKey<Item> create(String id)
         {
