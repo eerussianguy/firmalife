@@ -122,25 +122,38 @@ public interface Accessors
         return BuiltInRegistries.ITEM.get(name);
     }
 
-    default ItemLike itemOf(Herb herb) {
+    default ItemLike itemOf(Herb herb)
+    {
         return FLBlocks.HERBS.get(herb);
     }
-    default ItemLike itemOf(Powder powder) {
+
+    default ItemLike itemOf(Powder powder)
+    {
         return TFCItems.POWDERS.get(powder);
     }
-    default ItemLike itemOf(Food food) {
+
+    default ItemLike itemOf(Food food)
+    {
         return TFCItems.FOOD.get(food);
     }
-    default ItemLike itemOf(FLFood food) {
+
+    default ItemLike itemOf(FLFood food)
+    {
         return FLItems.FOODS.get(food);
     }
-    default ItemLike itemOf(Spice spice) {
+
+    default ItemLike itemOf(Spice spice)
+    {
         return FLItems.SPICES.get(spice);
     }
-    default ItemLike itemOf(FLFruit fruit) {
+
+    default ItemLike itemOf(FLFruit fruit)
+    {
         return FLItems.FRUITS.get(fruit);
     }
-    default ItemLike itemOf(Wood wood, Wood.BlockType type) {
+
+    default ItemLike itemOf(Wood wood, Wood.BlockType type)
+    {
         return TFCBlocks.WOODS.get(wood).get(type);
     }
 
@@ -161,7 +174,7 @@ public interface Accessors
 
     default String nameOf(Ingredient ingredient)
     {
-        if (ingredient.getCustomIngredient() instanceof CompoundIngredient ing) return nameOf(ing.children().get(0));
+        if (ingredient.getCustomIngredient() instanceof CompoundIngredient(java.util.List<Ingredient> children)) return nameOf(children.get(0));
         final Ingredient.Value value = ingredient.getValues()[0];
         if (value instanceof Ingredient.TagValue(TagKey<Item> tag)) return tag.location().getPath();
         if (value instanceof Ingredient.ItemValue(ItemStack item)) return nameOf(item.getItem());
@@ -206,12 +219,12 @@ public interface Accessors
         return switch (type)
         {
             case ROD -> 50;
-            default -> 100;
             case DOUBLE_INGOT, SHEET, FISH_HOOK, FISHING_ROD, SWORD, SWORD_BLADE, MACE, MACE_HEAD, SHEARS, UNFINISHED_BOOTS -> 200;
             case DOUBLE_SHEET, TUYERE, UNFINISHED_HELMET, UNFINISHED_CHESTPLATE, UNFINISHED_GREAVES, SHIELD, BOOTS -> 400;
             case HELMET, GREAVES -> 600;
             case CHESTPLATE -> 800;
             case HORSE_ARMOR -> 1200;
+            default -> 100;
         };
     }
 
@@ -242,6 +255,7 @@ public interface Accessors
     /**
      * Given a {@code Map<T1, Map<T2, V1>>}, and a key {@code T2}, constructs a map of all the mappings of {@code T1} to maps which contain
      * an entry for the given key {@code T2}
+     *
      * @return An immutable map, with iteration order given by iteration order of the input map
      */
     default <T1, T2, V> Map<T1, V> pivot(Map<T1, Map<T2, V>> map, T2 key)
@@ -257,7 +271,8 @@ public interface Accessors
 
     default BlockGetter empty()
     {
-        return new BlockGetter() {
+        return new BlockGetter()
+        {
             @Nullable
             @Override
             public BlockEntity getBlockEntity(BlockPos pos)

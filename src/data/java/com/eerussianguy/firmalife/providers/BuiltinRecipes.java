@@ -67,7 +67,7 @@ public class BuiltinRecipes extends RecipeProvider implements Accessors
         recipe()
             .input('X', Items.BOWL)
             .input('Y', Tags.Items.RODS_WOODEN)
-            .pattern("X","Y")
+            .pattern("X", "Y")
             .shaped(FLItems.PEEL);
         recipe()
             .input('X', FLItems.TREATED_LUMBER)
@@ -444,7 +444,7 @@ public class BuiltinRecipes extends RecipeProvider implements Accessors
                 .input(FluidContentIngredient.of(Fluids.WATER, 100))
                 .input(notRotten(itemOf(FLFood.MASA_FLOUR)), i)
                 .copyOldestFood()
-                .shapeless(new ItemStack(itemOf(FLFood.MASA), i*2));
+                .shapeless(new ItemStack(itemOf(FLFood.MASA), i * 2));
         }
 
         recipe()
@@ -454,7 +454,8 @@ public class BuiltinRecipes extends RecipeProvider implements Accessors
             .extraProduct(itemOf(FLFood.COCOA_POWDER))
             .shapeless(itemOf(FLFood.COCOA_BUTTER));
 
-        for(Wood wood : Wood.values()) {
+        for (Wood wood : Wood.values())
+        {
             recipe()
                 .input('X', itemOf(wood, Wood.BlockType.PLANKS))
                 .input('Y', Tags.Items.STRINGS)
@@ -497,7 +498,8 @@ public class BuiltinRecipes extends RecipeProvider implements Accessors
 
     }
 
-    private void decorationRecipe(ItemLike input, DecorationBlockHolder deco) {
+    private void decorationRecipe(ItemLike input, DecorationBlockHolder deco)
+    {
         recipe()
             .input('X', input)
             .pattern("XXX")
@@ -517,7 +519,8 @@ public class BuiltinRecipes extends RecipeProvider implements Accessors
         add(Objects.requireNonNull(BuiltInRegistries.RECIPE_TYPE.getKey(recipe.getType()), "No recipe type").getPath(), name, recipe);
     }
 
-    private void add(Recipe<?> recipe) {
+    private void add(Recipe<?> recipe)
+    {
         //TODO
     }
 
@@ -529,10 +532,11 @@ public class BuiltinRecipes extends RecipeProvider implements Accessors
     private DataGenerationHelpers.Builder recipe(String suffix)
     {
         return new DataGenerationHelpers.Builder((name, r) -> {
-            if (name != null) add(name+"_"+suffix, r);
+            if (name != null) add(name + "_" + suffix, r);
             else add(r);
         });
     }
+
     private DataGenerationHelpers.Builder recipe()
     {
         return new DataGenerationHelpers.Builder((name, r) -> {

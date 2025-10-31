@@ -20,7 +20,6 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.block.Block;
 
 import net.dries007.tfc.TerraFirmaCraft;
 import net.dries007.tfc.common.blockentities.FarmlandBlockEntity;
@@ -69,20 +68,20 @@ public class BuiltinPlantables extends DataManagerProvider<Plantable>
 
         plantable("cranberry", TFCBlocks.CRANBERRY_BUSH.asItem(), HYDROPONIC, 10, 3, 0.5f, food(Food.CRANBERRY), PHOSPHOROUS, cropTextures(FirmaLife.MOD_ID, "cranberry", 4), List.of());
 
-        plantable("red_grapes", FLItems.RED_GRAPE_SEEDS, TRELLIS, 15, 0, 0.5f, food(FLFruit.RED_GRAPES), NITROGEN, forEach(FirmaLife.MOD_ID, "block/crop/grape_", new String[] {"leaves", "dead", "flowering", "red"}), List.of());
-        plantable("white_grapes", FLItems.WHITE_GRAPE_SEEDS, TRELLIS, 15, 0, 0.5f, food(FLFruit.WHITE_GRAPES), NITROGEN, forEach(FirmaLife.MOD_ID, "block/crop/grape_", new String[] {"leaves", "dead", "flowering", "red"}), List.of());
+        plantable("red_grapes", FLItems.RED_GRAPE_SEEDS, TRELLIS, 15, 0, 0.5f, food(FLFruit.RED_GRAPES), NITROGEN, forEach(FirmaLife.MOD_ID, "block/crop/grape_", "leaves", "dead", "flowering", "red"), List.of());
+        plantable("white_grapes", FLItems.WHITE_GRAPE_SEEDS, TRELLIS, 15, 0, 0.5f, food(FLFruit.WHITE_GRAPES), NITROGEN, forEach(FirmaLife.MOD_ID, "block/crop/grape_", "leaves", "dead", "flowering", "red"), List.of());
 
         for (FruitBlocks.Tree tree : FruitBlocks.Tree.values())
         {
             final SeasonalPlantBlock block = (SeasonalPlantBlock) TFCBlocks.FRUIT_TREE_LEAVES.get(tree).get();
             final ItemStack fruit = block.getProductItem(RandomSource.create());
-            plantable(tree.getSerializedName(), TFCBlocks.FRUIT_TREE_SAPLINGS.get(tree).asItem(), BONSAI, 15, 0, 0.08f, fruit.getItem(), NITROGEN, forEach(TerraFirmaCraft.MOD_ID, "block/fruit_tree/" + tree.getSerializedName(), new String[] {"_fruiting_leaves", "_dry_leaves", "_flowering_leaves", "_branch", "_leaves"}), List.of());
+            plantable(tree.getSerializedName(), TFCBlocks.FRUIT_TREE_SAPLINGS.get(tree).asItem(), BONSAI, 15, 0, 0.08f, fruit.getItem(), NITROGEN, forEach(TerraFirmaCraft.MOD_ID, "block/fruit_tree/" + tree.getSerializedName(), "_fruiting_leaves", "_dry_leaves", "_flowering_leaves", "_branch", "_leaves"), List.of());
         }
         for (FLFruitBlocks.Tree tree : FLFruitBlocks.Tree.values())
         {
             final SeasonalPlantBlock block = (SeasonalPlantBlock) FLBlocks.FRUIT_TREE_LEAVES.get(tree).get();
             final ItemStack fruit = block.getProductItem(RandomSource.create());
-            plantable(tree.name().toLowerCase(Locale.ROOT), FLBlocks.FRUIT_TREE_SAPLINGS.get(tree).asItem(), BONSAI, 15, 0, 0.08f, fruit.getItem(), NITROGEN, forEach(FirmaLife.MOD_ID, "block/fruit_tree/" + tree.name().toLowerCase(Locale.ROOT), new String[] {"_fruiting_leaves", "_dry_leaves", "_flowering_leaves", "_branch", "_leaves"}), List.of());
+            plantable(tree.name().toLowerCase(Locale.ROOT), FLBlocks.FRUIT_TREE_SAPLINGS.get(tree).asItem(), BONSAI, 15, 0, 0.08f, fruit.getItem(), NITROGEN, forEach(FirmaLife.MOD_ID, "block/fruit_tree/" + tree.name().toLowerCase(Locale.ROOT), "_fruiting_leaves", "_dry_leaves", "_flowering_leaves", "_branch", "_leaves"), List.of());
         }
         for (FruitBlocks.StationaryBush bush : FruitBlocks.StationaryBush.values())
         {
