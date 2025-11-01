@@ -47,7 +47,7 @@ public class MixingBowlRecipe implements ISimpleRecipe<MixingBowlBlockEntity.Mix
     private final ItemStack resultItem;
     private final FluidStack resultFluid;
 
-    protected MixingBowlRecipe(List<Ingredient> itemIngredients, SizedFluidIngredient fluidIngredient, ItemStack resultItem, FluidStack resultFluid)
+    public MixingBowlRecipe(List<Ingredient> itemIngredients, SizedFluidIngredient fluidIngredient, ItemStack resultItem, FluidStack resultFluid)
     {
         this.itemIngredients = itemIngredients;
         this.fluidIngredient = fluidIngredient;

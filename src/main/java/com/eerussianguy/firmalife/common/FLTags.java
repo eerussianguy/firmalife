@@ -3,6 +3,8 @@ package com.eerussianguy.firmalife.common;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
 
@@ -73,6 +75,12 @@ public class FLTags
         public static final TagKey<Item> SWEETENER = TagKey.create(Registries.ITEM, Helpers.identifier("sweetener"));
         public static final TagKey<Item> COOKED_MEATS_AND_SUBSTITUTES = create("foods/cooked_meats_and_substitutes");
         public static final TagKey<Item> CHEESES = create("foods/cheeses");
+        public static final TagKey<Item> RAW_EGGS = create("foods/raw_eggs");
+        public static final TagKey<Item> FEEDS_YEAST = create("feeds_yeast");
+        public static final TagKey<Item> WASHABLE_FOODS = create("foods/washable");
+        public static final TagKey<Item> CHOCOLATE = create("foods/chocolate");
+        public static final TagKey<Item> EGG_NOODLE_FLOUR = create("foods/egg_noodle_flour");
+        public static final TagKey<Item> BREAD_SLICES = create("foods/slices");
 
         private static TagKey<Item> create(String id)
         {
@@ -88,6 +96,8 @@ public class FLTags
         public static final TagKey<Fluid> USABLE_IN_WINE_GLASS = create("usable_in_wine_glass");
         public static final TagKey<Fluid> USABLE_IN_VAT = create("usable_in_vat");
         public static final TagKey<Fluid> WINE = create("wine");
+        public static final TagKey<Fluid> MILKS = create("milks");
+        public static final TagKey<Fluid> OILS = create("oils");
 
         private static TagKey<Fluid> create(String id)
         {

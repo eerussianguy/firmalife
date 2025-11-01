@@ -8,12 +8,16 @@ package com.eerussianguy.firmalife;
 
 import java.util.Locale;
 import java.util.Map;
+import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
+import com.eerussianguy.firmalife.common.blocks.FLFluids;
 import com.eerussianguy.firmalife.common.blocks.Herb;
 import com.eerussianguy.firmalife.common.items.FLFood;
 import com.eerussianguy.firmalife.common.items.FLItems;
 import com.eerussianguy.firmalife.common.items.Spice;
+import com.eerussianguy.firmalife.common.util.ExtraFluid;
 import com.eerussianguy.firmalife.common.util.FLFruit;
+import com.eerussianguy.firmalife.common.util.FLMetal;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
@@ -38,12 +42,16 @@ import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.common.crafting.CompoundIngredient;
+import net.neoforged.neoforge.common.crafting.SizedIngredient;
+import net.neoforged.neoforge.fluids.BaseFlowingFluid;
+import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 import org.jetbrains.annotations.Nullable;
 
 import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.blocks.rock.Ore;
 import net.dries007.tfc.common.blocks.wood.Wood;
 import net.dries007.tfc.common.component.food.FoodTrait;
+import net.dries007.tfc.common.fluids.FluidHolder;
 import net.dries007.tfc.common.fluids.SimpleFluid;
 import net.dries007.tfc.common.fluids.TFCFluids;
 import net.dries007.tfc.common.items.Food;
@@ -51,7 +59,10 @@ import net.dries007.tfc.common.items.Powder;
 import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.common.recipes.ingredients.AndIngredient;
 import net.dries007.tfc.common.recipes.ingredients.HasTraitIngredient;
+import net.dries007.tfc.common.recipes.ingredients.LacksTraitIngredient;
 import net.dries007.tfc.common.recipes.ingredients.NotRottenIngredient;
+import net.dries007.tfc.common.recipes.outputs.CopyFoodModifier;
+import net.dries007.tfc.common.recipes.outputs.ItemStackProvider;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.Metal;
 import net.dries007.tfc.util.calendar.ICalendar;
@@ -59,6 +70,16 @@ import net.dries007.tfc.util.data.FluidHeat;
 
 public interface Accessors
 {
+    default Ingredient ingredientOf(FLMetal metal, FLMetal.ItemType type)
+    {
+        return Ingredient.of(FLItems.METAL_ITEMS.get(metal).get(type));
+    }
+
+    default Ingredient ingredientOf(FLMetal metal, Metal.BlockType type)
+    {
+        return Ingredient.of(FLBlocks.METALS.get(metal).get(type));
+    }
+
     default Ingredient ingredientOf(Metal metal, Metal.ItemType type)
     {
         return type.isCommonTagPart()
@@ -71,6 +92,28 @@ public interface Accessors
         return type == Metal.BlockType.BLOCK
             ? Ingredient.of(storageBlockTagOf(Registries.ITEM, metal))
             : Ingredient.of(TFCBlocks.METALS.get(metal).get(type).get());
+    }
+
+    default SizedIngredient sized(TagKey<Item> item) {
+        return SizedIngredient.of(item, 1);
+    }
+    default SizedIngredient sized(ItemLike item) {
+        return SizedIngredient.of(item, 1);
+    }
+    default SizedIngredient sized(ItemLike item, int count) {
+        return SizedIngredient.of(item, count);
+    }
+    default SizedIngredient sized(Ingredient ingredient, int count) {
+        return new SizedIngredient(ingredient, count);
+    }
+    default SizedIngredient sized(Ingredient ingredient) {
+        return new SizedIngredient(ingredient, 1);
+    }
+    default SizedFluidIngredient sized(Fluid fluid) {
+        return SizedFluidIngredient.of(fluid, 1);
+    }
+    default SizedFluidIngredient sized(Fluid fluid, int amount) {
+        return SizedFluidIngredient.of(fluid, amount);
     }
 
     default Ingredient ingredientOf(Ingredient... values)
@@ -153,6 +196,18 @@ public interface Accessors
     {
         return TFCFluids.SIMPLE_FLUIDS.get(fluid).getSource();
     }
+    default Fluid fluidOf(ExtraFluid fluid)
+    {
+        return FLFluids.EXTRA_FLUIDS.get(fluid).getSource();
+    }
+    default Fluid fluidOf(FluidHolder<BaseFlowingFluid> fluid)
+    {
+        return fluid.getSource();
+    }
+    default Fluid fluidOf(FLMetal metal)
+    {
+        return FLFluids.METALS.get(metal).getSource();
+    }
 
     default Fluid fluidOf(Metal metal)
     {
@@ -181,6 +236,10 @@ public interface Accessors
         return BuiltInRegistries.ITEM.getKey(item.asItem()).getPath();
     }
 
+    default Ingredient notRotten(TagKey<Item> food)
+    {
+        return AndIngredient.of(Ingredient.of(food), NotRottenIngredient.INSTANCE);
+    }
     default Ingredient notRotten(Ingredient food)
     {
         return AndIngredient.of(food, NotRottenIngredient.INSTANCE);
@@ -199,6 +258,35 @@ public interface Accessors
     default Ingredient hasTrait(Ingredient food, Holder<FoodTrait> trait)
     {
         return AndIngredient.of(food, HasTraitIngredient.of(trait));
+    }
+
+    default Ingredient lacksTrait(ItemLike food, Holder<FoodTrait> trait)
+    {
+        return lacksTrait(Ingredient.of(food), trait);
+    }
+
+    default Ingredient lacksTrait(Ingredient food, Holder<FoodTrait> trait)
+    {
+        return AndIngredient.of(food, LacksTraitIngredient.of(trait));
+    }
+
+    default ItemStackProvider copyFood(ItemStack output){
+        return ItemStackProvider.of(output, CopyFoodModifier.INSTANCE);
+    }
+
+    default ItemStackProvider copyFood(ItemLike output){
+        return ItemStackProvider.of(new ItemStack(output), CopyFoodModifier.INSTANCE);
+    }
+
+    default int units(FLMetal.ItemType type)
+    {
+        return switch (type)
+        {
+            case ROD -> 50;
+            default -> 100;
+            case DOUBLE_INGOT, SHEET -> 200;
+            case DOUBLE_SHEET -> 400;
+        };
     }
 
     default int units(Metal.ItemType type)
@@ -232,6 +320,11 @@ public interface Accessors
     default float temperatureOf(Metal metal)
     {
         return FluidHeat.MANAGER.getOrThrow(Helpers.identifier(metal.getSerializedName())).meltTemperature();
+    }
+
+    default float temperatureOf(FLMetal metal)
+    {
+        return FluidHeat.MANAGER.getOrThrow(FLHelpers.identifier(metal.getSerializedName())).meltTemperature();
     }
 
     default int hours(int hours)

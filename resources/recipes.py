@@ -41,157 +41,17 @@ class Rules(Enum):
     shrink_third_last = 'shrink_third_last'
 
 def generate(rm: ResourceManager):
-    # Chisel
-    def chisel_stair_slab(name: str, ingredient: str):
-        chisel_recipe(rm, name + '_stairs', ingredient, ingredient + '_stairs', 'stair')
-        chisel_recipe(rm, name + '_slab', ingredient, ingredient + '_slab', 'slab')
-    chisel_stair_slab('tiles', 'firmalife:tiles')
-    chisel_stair_slab('rustic_bricks', 'firmalife:rustic_bricks')
 
-    # Vat
-
-    vat_recipe(rm, 'olive_oil_water', 'tfc:olive_paste', '200 minecraft:water', output_fluid='200 tfc:olive_oil_water')
-    vat_recipe(rm, 'tallow', 'tfc:blubber', '200 minecraft:water', output_fluid='200 tfc:tallow')
-    vat_recipe(rm, 'lye', 'tfc:powder/wood_ash', '200 minecraft:water', output_fluid='200 tfc:lye')
-    vat_recipe(rm, 'cooked_rice', {'ingredient': not_rotten('tfc:food/rice_grain')}, '200 minecraft:water', output_item='tfc:food/cooked_rice')
-    vat_recipe(rm, 'boiled_egg', {'ingredient': not_rotten('#firmalife:foods/raw_eggs')}, '200 minecraft:water', output_item='tfc:food/boiled_egg')
-    for color in COLORS:
-        vat_recipe(rm, '%s_dye' % color, 'minecraft:%s_dye' % color, '1000 minecraft:water', output_fluid='1000 tfc:%s_dye' % color)
-    vat_recipe(rm, 'beet_sugar', {'count': 5, 'ingredient': not_rotten('tfc:food/beet')}, '1000 tfc:salt_water', output_item='3 minecraft:sugar')
-    vat_recipe(rm, 'soy_mixture', {'ingredient': not_rotten('tfc:food/soybean')}, '1000 tfc:salt_water', output_item='firmalife:food/soy_mixture')
-    vat_recipe(rm, 'cured_maize', {'ingredient': not_rotten('tfc:food/maize_grain')}, '1000 tfc:limewater', output_item='firmalife:food/cured_maize')
-    vat_recipe(rm, 'tomato_sauce', {'ingredient': not_rotten('firmalife:food/tomato_sauce_mix')}, '200 minecraft:water', output_item='firmalife:food/tomato_sauce')
-    vat_recipe(rm, 'sugar_water', '#tfc:sweetener', '1000 minecraft:water', output_fluid='500 firmalife:sugar_water')
 
     for jar, remainder, ing in JARS:
         make_jar(rm, jar, remainder, ing)
     for fruit in FL_FRUITS:
-        ing = not_rotten(lacks_trait('firmalife:food/%s' % fruit, 'firmalife:dried'))
-        vat_recipe(rm, '%s_jar' % fruit, {'ingredient': ing}, '500 firmalife:sugar_water', jar='firmalife:jar/%s' % fruit, output_texture='firmalife:block/jar/%s' % fruit)
-        for count in (2, 3, 4):
-            rm.recipe(('pot', 'jam_%s_%s' % (fruit, count)), 'tfc:pot_jam', {
-                'ingredients': [ing] * count + [utils.ingredient('#tfc:sweetener')],
-                'fluid_ingredient': fluid_stack_ingredient('100 minecraft:water'),
-                'duration': 500,
-                'temperature': 300,
-                'result': utils.item_stack('%s firmalife:jar/%s' % (count, fruit)),
-                'texture': 'firmalife:block/jar/%s' % fruit
-            })
         rm.crafting_shapeless('crafting/unseal_%s_jar' % fruit, (not_rotten('firmalife:jar/%s' % fruit), ), 'firmalife:jar/%s_unsealed' % fruit).with_advancement('firmalife:jar/%s' % fruit)
-    for fruit in TFC_FRUITS:
-        ing = {'ingredient': not_rotten(lacks_trait('tfc:food/%s' % fruit, 'firmalife:dried'))}
-        vat_recipe(rm, '%s_jar' % fruit, ing, '500 firmalife:sugar_water', jar='tfc:jar/%s' % fruit, output_texture='tfc:block/jar/%s' % fruit)
-
-    beet = not_rotten('tfc:food/beet')
-    simple_pot_recipe(rm, 'beet_sugar', [beet, beet, beet, beet, beet], '100 tfc:salt_water', output_items=['minecraft:sugar', 'minecraft:sugar', 'minecraft:sugar'])
-    simple_pot_recipe(rm, 'beet_sugar_freshwater', [beet, beet, beet, beet, utils.ingredient('tfc:powder/salt')], '100 minecraft:water', output_items=['minecraft:sugar', 'minecraft:sugar'])
-    simple_pot_recipe(rm, 'soy_mixture', [not_rotten('tfc:food/soybean'), not_rotten('tfc:food/soybean'), utils.ingredient('tfc:powder/salt'), utils.ingredient('tfc:powder/salt')], '100 minecraft:water', output_items=['firmalife:food/soy_mixture', 'firmalife:food/soy_mixture'])
-    simple_pot_recipe_5(rm, 'cured_maize', not_rotten('tfc:food/maize_grain'), '100 tfc:limewater', output_items='firmalife:food/cured_maize', duration=3000)
-    simple_pot_recipe(rm, 'tomato_sauce', [not_rotten('tfc:food/tomato'), utils.ingredient('tfc:powder/salt'), not_rotten('tfc:food/garlic')], '100 minecraft:water', output_items=['firmalife:food/tomato_sauce', 'firmalife:food/tomato_sauce', 'firmalife:food/tomato_sauce', 'firmalife:food/tomato_sauce', 'firmalife:food/tomato_sauce'])
-    simple_pot_recipe(rm, 'chocolate', [utils.ingredient('#tfc:sweetener'), not_rotten('#firmalife:foods/chocolate')], '1000 #tfc:milks', output_fluid='1000 firmalife:chocolate')
-    bowl_recipe_5(rm, 'cooked_pasta', not_rotten('firmalife:food/raw_egg_noodles'), '100 minecraft:water', output_items='firmalife:food/cooked_pasta', duration=2000, data={'food': {'hunger': 4, 'saturation': 2, 'decay_modifier': 3, 'grain': 1.5}})
-    bowl_recipe_5(rm, 'cooked_rice_noodles', not_rotten('firmalife:food/raw_rice_noodles'), '100 minecraft:water', output_items='firmalife:food/cooked_rice_noodles', duration=2000, data={'food': {'hunger': 4, 'saturation': 2, 'decay_modifier': 3, 'grain': 1.5}})
-
-    soup_food = not_rotten(utils.ingredient('#tfc:foods/usable_in_soup'))
-    for duration, count in ((1000, 3), (1150, 4), (1300, 5)):
-        ingr = [soup_food] * count
-        ingr.append(not_rotten(utils.ingredient('firmalife:food/nightshade_berry')))
-        rm.recipe(('pot', 'stinky_soup_%s' % count), 'firmalife:stinky_soup', {
-            'ingredients': ingr,
-            'fluid_ingredient': fluid_stack_ingredient('100 minecraft:water'),
-            'duration': duration,
-            'temperature': 300
-        })
-
-    barrel_instant_recipe(rm, 'tirage', '#tfc:sweetener', '100 firmalife:yeast_starter', output_item='firmalife:tirage_mixture')
-    barrel_instant_recipe(rm, 'clean_any_bowl', '#firmalife:foods/washable', '100 minecraft:water', output_item=item_stack_provider(other_modifier='firmalife:empty_pan'))
-    for glass in ('olivine', 'volcanic', 'hematitic'):
-        barrel_instant_recipe(rm, 'clean_%s_wine_bottle' % glass, 'firmalife:%s_wine_bottle' % glass, '100 minecraft:water', output_item='firmalife:empty_%s_wine_bottle' % glass)
-
-    barrel_sealed_recipe(rm, 'yeast_starter', 'Yeast Starter', 24000 * 3, not_rotten(has_trait('#tfc:foods/fruits', 'firmalife:dried')), '100 minecraft:water', output_fluid='100 firmalife:yeast_starter')
-    barrel_sealed_recipe(rm, 'feed_yeast', 'Feeding Yeast', 12000, not_rotten('#firmalife:feeds_yeast'), '100 firmalife:yeast_starter', output_fluid='600 firmalife:yeast_starter')
-    barrel_sealed_recipe(rm, 'pina_colada', 'Pina Colada', 1000, not_rotten('firmalife:food/frothy_coconut'), '1000 tfc:rum', output_fluid='1000 firmalife:pina_colada')
-    barrel_sealed_recipe(rm, 'curdled_milk', 'Curdling Milk', 4000, 'firmalife:rennet', '2000 minecraft:milk', output_fluid='2000 tfc:curdled_milk')
-    barrel_sealed_recipe(rm, 'curdled_yak_milk', 'Curdling Yak Milk', 4000, 'firmalife:rennet', '2000 firmalife:yak_milk', output_fluid='2000 firmalife:curdled_yak_milk')
-    barrel_sealed_recipe(rm, 'curdled_goat_milk', 'Curdling Goat Milk', 4000, 'firmalife:rennet', '2000 firmalife:goat_milk', output_fluid='2000 firmalife:curdled_goat_milk')
-    barrel_sealed_recipe(rm, 'milk_curd', 'Milk Curd', 1000, 'firmalife:cheesecloth', '1000 tfc:curdled_milk', output_item='firmalife:food/milk_curd')
-    barrel_sealed_recipe(rm, 'goat_milk_curd', 'Goat Curd', 1000, 'firmalife:cheesecloth', '1000 firmalife:curdled_goat_milk', output_item='firmalife:food/goat_curd')
-    barrel_sealed_recipe(rm, 'yak_milk_curd', 'Yak Curd', 1000, 'firmalife:cheesecloth', '1000 firmalife:curdled_yak_milk', output_item='firmalife:food/yak_curd')
-    barrel_sealed_recipe(rm, 'cream', 'Cream', 1000, 'firmalife:cheesecloth', '1000 #tfc:milks', output_item='firmalife:cheesecloth', output_fluid='1000 firmalife:cream')
-    barrel_sealed_recipe(rm, 'nixtamal', 'Nixtamal', 1000, not_rotten('firmalife:food/cured_maize'), '100 minecraft:water', output_item='firmalife:food/nixtamal')
-    barrel_sealed_recipe(rm, 'mead', 'Mead', 72000, 'firmalife:raw_honey', '100 minecraft:water', output_fluid='100 firmalife:mead')
-    barrel_sealed_recipe(rm, 'fermented_red_grapes', 'Fermenting Red Grapes', 24000 * 5, not_rotten(lacks_trait('firmalife:food/smashed_red_grapes', 'firmalife:fermented')), output_item=item_stack_provider(copy_input=True, add_trait='firmalife:fermented'))
-    barrel_sealed_recipe(rm, 'fermented_white_grapes', 'Fermenting White Grapes', 24000 * 5, not_rotten(lacks_trait('firmalife:food/smashed_white_grapes', 'firmalife:fermented')), output_item=item_stack_provider(copy_input=True, add_trait='firmalife:fermented'))
-    barrel_sealed_recipe(rm, 'cork', 'Making Corks', 24000, 'firmalife:treated_lumber', '1000 tfc:limewater', output_item='8 firmalife:cork')
-    barrel_sealed_recipe(rm, 'soybean_oil', 'Soybean Oil', 24000, 'firmalife:food/soybean_paste', '100 minecraft:water', output_fluid='250 firmalife:soybean_oil')
-
-    barrel_sealed_recipe(rm, 'shosha', 'Shosha Wheel', 16000, '3 firmalife:food/yak_curd', '750 tfc:salt_water', output_item='firmalife:shosha_wheel')
-    barrel_sealed_recipe(rm, 'feta', 'Feta Wheel', 16000, '3 firmalife:food/goat_curd', '750 tfc:salt_water', output_item='firmalife:feta_wheel')
-    barrel_sealed_recipe(rm, 'gouda', 'Gouda Wheel', 16000, '3 firmalife:food/milk_curd', '750 tfc:salt_water', output_item='firmalife:gouda_wheel')
-
-    quern_recipe(rm, 'masa', not_rotten('firmalife:food/nixtamal'), 'firmalife:food/masa_flour', count=4)
-    quern_recipe(rm, 'crushed_red_grapes', not_rotten('firmalife:food/red_grapes'), item_stack_provider('firmalife:food/smashed_red_grapes', copy_food=True))
-    quern_recipe(rm, 'crushed_white_grapes', not_rotten('firmalife:food/white_grapes'), item_stack_provider('firmalife:food/smashed_white_grapes', copy_food=True))
-    quern_recipe(rm, 'soybean_paste', not_rotten('firmalife:food/dehydrated_soybeans'), item_stack_provider('firmalife:food/soybean_paste', copy_food=True))
-
-    loom_recipe(rm, 'pineapple_leather', '16 firmalife:pineapple_yarn', 'firmalife:pineapple_leather', 16, 'firmalife:block/pineapple')
-
-    clay_knapping(rm, 'oven_top', ['XXXXX', 'XX XX', 'X   X', 'X   X', 'XXXXX'], 'firmalife:oven_top')
-    clay_knapping(rm, 'oven_bottom', ['XX XX', 'X   X', 'X   X', 'XX XX', 'XXXXX'], 'firmalife:oven_bottom')
-    clay_knapping(rm, 'oven_chimney', ['XX XX', 'XX XX', 'XX XX'], 'firmalife:oven_chimney')
-
-    oven_recipe(rm, 'cooked_pie', not_rotten('firmalife:food/filled_pie'), 400, result_item=item_stack_provider('firmalife:food/cooked_pie', other_modifier='firmalife:copy_dynamic_food'))
-    oven_recipe(rm, 'cooked_pizza', not_rotten('firmalife:food/raw_pizza'), 400, result_item=item_stack_provider('firmalife:food/cooked_pizza', other_modifier='firmalife:copy_dynamic_food'))
-    oven_recipe(rm, 'pumpkin_pie', not_rotten('firmalife:food/raw_pumpkin_pie'), 400, result_item=item_stack_provider('minecraft:pumpkin_pie', other_modifier='firmalife:copy_dynamic_food'))
-    oven_recipe(rm, 'roasted_cocoa_beans', not_rotten('firmalife:food/cocoa_beans'), 400, result_item=item_stack_provider('firmalife:food/roasted_cocoa_beans'))
-    oven_recipe(rm, 'taco_shell', not_rotten('firmalife:food/corn_tortilla'), 400, result_item=item_stack_provider('firmalife:food/taco_shell'))
-    oven_recipe(rm, 'sugar_cookie', not_rotten('firmalife:food/cookie_dough'), 400, result_item=item_stack_provider('firmalife:food/sugar_cookie'))
-    oven_recipe(rm, 'chocolate_chip_cookie', not_rotten('firmalife:food/chocolate_chip_cookie_dough'), 400, result_item=item_stack_provider('firmalife:food/chocolate_chip_cookie'))
-    oven_recipe(rm, 'hardtack', not_rotten('firmalife:food/hardtack_dough'), 400, result_item=item_stack_provider('firmalife:food/hardtack'))
-    oven_recipe(rm, 'lasagna', not_rotten('firmalife:food/raw_lasagna'), 400, result_item=item_stack_provider('firmalife:food/cooked_lasagna'))
 
     # Firmalife Recipes
     knapping_type(rm, 'pumpkin', {'ingredient': not_rotten('#firmalife:pumpkin_knapping'), 'count': 1}, None, 'tfc:item.knapping.leather', False, False, False, 'tfc:pumpkin')
 
-    for carving, pattern in CARVINGS.items():
-        pumpkin_knapping(rm, carving, pattern, 'firmalife:carved_pumpkin/%s' % carving)
-    pumpkin_knapping(rm, 'face', ['XXXXX', 'X X X', 'XXXXX', 'X   X', 'XXXXX'], 'minecraft:carved_pumpkin')
-    pumpkin_knapping(rm, 'chunks', [' X X ', 'X X X', ' X X ', 'X X X', ' X X '], '4 tfc:food/pumpkin_chunks')
 
-    drying_recipe(rm, 'drying_fruit', not_rotten(lacks_trait('#tfc:foods/fruits', 'firmalife:dried')), item_stack_provider(copy_input=True, add_trait='firmalife:dried'))
-    drying_recipe(rm, 'cinnamon', 'firmalife:cinnamon_bark', item_stack_provider('firmalife:spice/cinnamon'))
-    drying_recipe(rm, 'dry_grass', 'tfc:thatch', item_stack_provider('tfc:groundcover/dead_grass'))
-    drying_recipe(rm, 'tofu', 'firmalife:food/soy_mixture', item_stack_provider('firmalife:food/tofu', copy_food=True))
-    drying_recipe(rm, 'vanilla', 'firmalife:plant/vanilla', item_stack_provider('firmalife:spice/vanilla'))
-    drying_recipe(rm, 'dehydrated_soybeans', not_rotten('tfc:food/soybean'), item_stack_provider('firmalife:food/dehydrated_soybeans', copy_food=True))
-    for choc in ('milk', 'white', 'dark'):
-        drying_recipe(rm, '%s_chocolate' % choc, 'firmalife:food/%s_chocolate_blend' % choc, item_stack_provider('firmalife:food/%s_chocolate' % choc))
-    for dirt in ('loam', 'sandy_loam', 'silty_loam', 'silt'):
-        drying_recipe(rm, '%s_dirt' % dirt, 'tfc:mud/%s' % dirt, item_stack_provider('tfc:dirt/%s' % dirt))
-
-    stomping_recipe(rm, 'red_grapes', not_rotten(lacks_trait('firmalife:food/red_grapes', 'firmalife:dried')), item_stack_provider('firmalife:food/smashed_red_grapes'), 'firmalife:block/red_unsmashed_grapes', 'firmalife:block/red_smashed_grapes')
-    stomping_recipe(rm, 'white_grapes', not_rotten(lacks_trait('firmalife:food/white_grapes', 'firmalife:dried')), item_stack_provider('firmalife:food/smashed_white_grapes'), 'firmalife:block/white_unsmashed_grapes', 'firmalife:block/white_smashed_grapes')
-    stomping_recipe(rm, 'charcoal', 'minecraft:charcoal', item_stack_provider('4 tfc:powder/charcoal'), 'tfc:block/charcoal_pile', 'tfc:block/powder/charcoal', 'tfc:block.charcoal.fall')
-    stomping_recipe(rm, 'soybean_paste', not_rotten('firmalife:food/dehydrated_soybeans'), item_stack_provider('firmalife:food/soybean_paste'), 'firmalife:block/dehydrated_soybeans', 'firmalife:block/soybean_paste')
-
-    smoking_recipe(rm, 'meat', not_rotten(has_trait(lacks_trait('#tfc:foods/raw_meats', 'firmalife:smoked'), 'tfc:brined')), item_stack_provider(copy_input=True, add_trait='firmalife:smoked'))
-    smoking_recipe(rm, 'cheese', not_rotten(lacks_trait('#firmalife:foods/cheeses', 'firmalife:smoked')), item_stack_provider(copy_input=True, add_trait='firmalife:smoked'))
-
-    mixing_recipe(rm, 'butter', ingredients=[utils.ingredient('tfc:powder/salt')], fluid='1000 firmalife:cream', output_item='firmalife:food/butter')
-    mixing_recipe(rm, 'pie_dough', ingredients=[not_rotten('firmalife:food/butter'), not_rotten('#tfc:foods/flour'), utils.ingredient('#tfc:sweetener')], fluid='1000 minecraft:water', output_item='firmalife:food/pie_dough')
-    mixing_recipe(rm, 'pumpkin_pie_dough', ingredients=[utils.ingredient('#firmalife:foods/raw_eggs'), not_rotten('tfc:food/pumpkin_chunks'), not_rotten('tfc:food/pumpkin_chunks'), not_rotten('#tfc:foods/flour'), utils.ingredient('#tfc:sweetener')], fluid='1000 minecraft:water', output_item='firmalife:food/pumpkin_pie_dough')
-    mixing_recipe(rm, 'pizza_dough', ingredients=[not_rotten('#tfc:foods/dough'), utils.ingredient('tfc:powder/salt'), utils.ingredient('firmalife:spice/basil_leaves')], fluid='100 #firmalife:oils', output_item='4 firmalife:food/pizza_dough')
-    mixing_recipe(rm, 'dark_chocolate_blend', ingredients=[utils.ingredient('#tfc:sweetener'), not_rotten('firmalife:food/cocoa_powder'), not_rotten('firmalife:food/cocoa_powder')], fluid='1000 #tfc:milks', output_item='2 firmalife:food/dark_chocolate_blend')
-    mixing_recipe(rm, 'white_chocolate_blend', ingredients=[utils.ingredient('#tfc:sweetener'), not_rotten('firmalife:food/cocoa_butter'), not_rotten('firmalife:food/cocoa_butter')], fluid='1000 #tfc:milks', output_item='2 firmalife:food/white_chocolate_blend')
-    mixing_recipe(rm, 'milk_chocolate_blend', ingredients=[utils.ingredient('#tfc:sweetener'), not_rotten('firmalife:food/cocoa_butter'), not_rotten('firmalife:food/cocoa_powder')], fluid='1000 #tfc:milks', output_item='2 firmalife:food/milk_chocolate_blend')
-    mixing_recipe(rm, 'vanilla_ice_cream', ingredients=[utils.ingredient('#tfc:sweetener'), utils.ingredient('firmalife:spice/vanilla'), utils.ingredient('firmalife:ice_shavings')], fluid='1000 firmalife:cream', output_item='2 firmalife:food/vanilla_ice_cream')
-    mixing_recipe(rm, 'chocolate_ice_cream', ingredients=[not_rotten('firmalife:food/vanilla_ice_cream')], fluid='1000 firmalife:chocolate', output_item='firmalife:food/chocolate_ice_cream')
-    mixing_recipe(rm, 'strawberry_ice_cream', ingredients=[not_rotten('firmalife:food/vanilla_ice_cream'), not_rotten('tfc:food/strawberry'), not_rotten('tfc:food/strawberry')], output_item='firmalife:food/strawberry_ice_cream')
-    mixing_recipe(rm, 'cookie_dough', ingredients=[not_rotten('#firmalife:foods/raw_eggs'), utils.ingredient('firmalife:spice/vanilla'), not_rotten('firmalife:food/butter'), utils.ingredient('#tfc:sweetener'), not_rotten('#tfc:foods/flour')], output_item='4 firmalife:food/cookie_dough')
-    mixing_recipe(rm, 'chocolate_chip_cookie_dough', ingredients=[not_rotten('#firmalife:foods/chocolate'), not_rotten('firmalife:food/cookie_dough'), not_rotten('firmalife:food/cookie_dough'), not_rotten('firmalife:food/cookie_dough'), not_rotten('firmalife:food/cookie_dough')], output_item='4 firmalife:food/chocolate_chip_cookie_dough')
-    mixing_recipe(rm, 'hardtack_dough', ingredients=[not_rotten('#tfc:foods/flour'), utils.ingredient('tfc:powder/salt')], fluid='1000 minecraft:water', output_item='4 firmalife:food/hardtack_dough')
-    mixing_recipe(rm, 'egg_noodles', ingredients=[not_rotten('#firmalife:foods/egg_noodle_flour'), utils.ingredient('tfc:powder/salt'), utils.ingredient('minecraft:egg')], fluid='1000 #tfc:milks', output_item='firmalife:food/raw_egg_noodles')
-    mixing_recipe(rm, 'rice_noodles', ingredients=[not_rotten('tfc:food/rice_flour'), not_rotten('tfc:food/maize_flour'), utils.ingredient('tfc:powder/salt')], fluid='1000 #tfc:milks', output_item='2 firmalife:food/raw_rice_noodles')
 
     pie_mod = {
         'food': {
@@ -259,10 +119,7 @@ def generate(rm: ResourceManager):
     # Greenhouse
     for block in GREENHOUSE_BLOCKS:
         for first, second in CLEANING_PAIRS.items():
-            if block != 'door':
-                chisel_recipe(rm, 'cleaning/%s_greenhouse_%s' % (first, block), 'firmalife:%s_greenhouse_%s' % (first, block), 'firmalife:%s_greenhouse_%s' % (second, block), 'smooth')
-            else:
-                damage_shapeless(rm, 'crafting/cleaning/%s_greenhouse_%s' % (first, block), ('#tfc:chisels', 'firmalife:%s_greenhouse_%s' % (first, block)), 'firmalife:%s_greenhouse_%s' % (second, block)).with_advancement('firmalife:%s_greenhouse_%s' % (first, block))
+            damage_shapeless(rm, 'crafting/cleaning/%s_greenhouse_%s' % (first, block), ('#tfc:chisels', 'firmalife:%s_greenhouse_%s' % (first, block)), 'firmalife:%s_greenhouse_%s' % (second, block)).with_advancement('firmalife:%s_greenhouse_%s' % (first, block))
     for greenhouse, metal, namespace in (('iron', 'wrought_iron', 'tfc'), ('copper', 'copper', 'tfc'), ('stainless_steel', 'stainless_steel', 'firmalife'), ('treated_wood', 'treated_lumber', 'firmalife')):
         rod = '%s:metal/rod/%s' % (namespace, metal) if greenhouse != 'treated_wood' else 'firmalife:treated_lumber'
         mapping = {'X': rod, 'Y': 'minecraft:glass'}
@@ -300,11 +157,6 @@ def generate(rm: ResourceManager):
 
         rm.crafting_shapeless('crafting/%s_dough' % grain, (not_rotten('tfc:food/%s_flour' % grain), fluid_item_ingredient('100 firmalife:yeast_starter'), '#tfc:sweetener'), (4, 'firmalife:food/%s_dough' % grain)).with_advancement('tfc:food/%s_grain' % grain)
 
-        oven_recipe(rm, grain + '_bread', not_rotten('firmalife:food/%s_dough' % grain), 200, result_item=item_stack_provider('tfc:food/%s_bread' % grain))
-        heat_recipe(rm, 'toast', not_rotten('#firmalife:foods/slices'), 200, result_item=item_stack_provider('firmalife:food/toast'))
-        rm.domain = 'tfc'  # DOMAIN CHANGE
-        heat_recipe(rm, grain + '_dough', not_rotten('tfc:food/%s_dough' % grain), 200, result_item=item_stack_provider('firmalife:food/%s_flatbread' % grain, copy_food=True))
-        rm.domain = 'firmalife'  # DOMAIN RESET
 
         for sandwich_bread in ('slice', 'flatbread'):
             f_item = 'firmalife:food/%s_%s' % (grain, sandwich_bread)
@@ -329,39 +181,13 @@ def generate(rm: ResourceManager):
                 'input_column': 0,
             }).with_advancement(f_item)
 
-    heat_recipe(rm, 'corn_tortilla', not_rotten('firmalife:food/masa'), 200, result_item=item_stack_provider('firmalife:food/corn_tortilla', copy_food=True))
-    heat_recipe(rm, 'bacon', not_rotten('firmalife:food/bacon'), 200, result_item=item_stack_provider('firmalife:food/cooked_bacon', copy_food=True))
-    heat_recipe(rm, 'copper_pipe', 'firmalife:copper_pipe', 1080, result_item=None, result_fluid='25 tfc:metal/copper')
-    heat_recipe(rm, 'oxidized_copper_pipe', 'firmalife:oxidized_copper_pipe', 1080, result_item=None, result_fluid='25 tfc:metal/copper')
-    heat_recipe(rm, 'stainless_steel_jar_lid', 'firmalife:stainless_steel_jar_lid', 1540, result_item=None, result_fluid='6 firmalife:metal/stainless_steel')
 
     ore = 'chromite'
     for rock, data in TFC_ROCKS.items():
-        cobble = 'tfc:rock/cobble/%s' % rock
-        collapse_recipe(rm, '%s_cobble' % rock, [
-            'firmalife:ore/poor_%s/%s' % (ore, rock),
-            'firmalife:ore/normal_%s/%s' % (ore, rock),
-            'firmalife:ore/rich_%s/%s' % (ore, rock)
-        ], cobble)
         for grade in ORE_GRADES.keys():
             rm.block_tag('tfc:can_start_collapse', 'firmalife:ore/%s_%s/%s' % (grade, ore, rock))
             rm.block_tag('tfc:can_collapse', 'firmalife:ore/%s_%s/%s' % (grade, ore, rock))
 
-    alloy_recipe(rm, 'stainless_steel', 'stainless_steel', ('firmalife:chromium', 0.2, 0.3), ('tfc:nickel', 0.1, 0.2), ('tfc:steel', 0.6, 0.8))
-    anvil_recipe(rm, 'pie_pan', '#forge:sheets/cast_iron', '4 firmalife:pie_pan', 1, Rules.hit_last, Rules.hit_second_last, Rules.draw_third_last)
-    anvil_recipe(rm, 'sprinkler', '#forge:sheets/copper', 'firmalife:sprinkler', 1, Rules.hit_last, Rules.hit_second_last, Rules.punch_third_last)
-    anvil_recipe(rm, 'copper_pipe', '#forge:sheets/copper', '8 firmalife:copper_pipe', 1, Rules.draw_last, Rules.bend_not_last)
-    anvil_recipe(rm, 'stainless_steel_jar_lid', '#forge:ingots/stainless_steel', '16 firmalife:stainless_steel_jar_lid',4, Rules.hit_last, Rules.hit_second_last, Rules.punch_third_last)
-
-    glass_recipe(rm, 'reinforced_glass_pane', ['flatten', 'soda_ash', 'table_pour'], 'tfc:silica_glass_batch', 'firmalife:reinforced_poured_glass')
-    for glass in ('olivine', 'hematitic', 'volcanic'):
-        glass_recipe(rm, '%s_wine_bottle' % glass, ['blow', 'blow', 'pinch', 'saw'], 'tfc:%s_glass_batch' % glass, 'firmalife:empty_%s_wine_bottle' % glass)
-    glass_recipe(rm, 'wine_glass', ['blow', 'blow', 'pinch', 'saw'], 'tfc:silica_glass_batch', '2 firmalife:wine_glass')
-
-    for recipe in DISABLED_TFC_RECIPES:
-        rm.domain = 'tfc' # DOMAIN CHANGE
-        disable_recipe(rm, recipe)
-        rm.domain = 'firmalife' # DOMAIN RESET
 
 def disable_recipe(rm: ResourceManager, name_parts: ResourceIdentifier):
     # noinspection PyTypeChecker
