@@ -149,7 +149,7 @@ public interface PotRecipes extends Recipes
         for (int i = 3; i < 5; i++)
         {
             var inputs = Helpers.immutableAdd(
-                Collections.nCopies(i, notRotten(Ingredient.of(TFCTags.Items.USABLE_IN_SOUP))),
+                Collections.nCopies(i, notRotten(TFCTags.Items.USABLE_IN_SOUP)),
                 Ingredient.of(FLItems.NIGHTSHADE_BERRY)
             );
             add("stinky_" + i,
@@ -214,7 +214,7 @@ public interface PotRecipes extends Recipes
         for (int i = 2; i < 4; i++)
         {
             var inputs = Helpers.immutableAdd(
-                Collections.nCopies(i, notRotten(lacksTrait(Ingredient.of(itemOf(fruit)), FLFoodTraits.DRIED))),
+                Collections.nCopies(i, notRottenWithoutTrait(Ingredient.of(itemOf(fruit)), FLFoodTraits.DRIED)),
                 Ingredient.of(FLTags.Items.SWEETENER)
             );
             add("jam_" + name + "_" + i,
@@ -234,7 +234,7 @@ public interface PotRecipes extends Recipes
         // Jam canning, copied from TFC and modified
         for (int n = 1; n <= 5; n++)
         {
-            final Ingredient ingredient = notRotten(lacksTrait(Ingredient.of(FLItems.FL_FRUIT_PRESERVES.get(fruit)), FoodTraits.CANNED));
+            final Ingredient ingredient = notRottenWithoutTrait(Ingredient.of(FLItems.FL_FRUIT_PRESERVES.get(fruit)), FoodTraits.CANNED);
             add("jam_" + name + "_canning_" + n, new SimplePotRecipe(new PotRecipe(
                 Collections.nCopies(n, ingredient),
                 SizedFluidIngredient.of(Fluids.WATER, 100 * n),

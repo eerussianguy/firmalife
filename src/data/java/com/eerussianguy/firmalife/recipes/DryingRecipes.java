@@ -21,7 +21,7 @@ public interface DryingRecipes extends Recipes
     default void dryingRecipes()
     {
         drying(
-            notRotten(lacksTrait(Ingredient.of(TFCTags.Items.FRUITS), FLFoodTraits.DRIED)),
+            notRottenWithoutTrait(TFCTags.Items.FRUITS, FLFoodTraits.DRIED),
             ItemStackProvider.of(CopyInputModifier.INSTANCE, AddTraitModifier.of(FLFoodTraits.DRIED))
         );
         drying(FLItems.CINNAMON_BARK, itemOf(Spice.CINNAMON));

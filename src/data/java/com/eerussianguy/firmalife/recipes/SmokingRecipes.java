@@ -16,11 +16,11 @@ public interface SmokingRecipes extends Recipes
     default void smokingRecipes()
     {
         smoke(
-            notRotten(hasTrait(lacksTrait(Ingredient.of(TFCTags.Items.RAW_MEATS), FLFoodTraits.SMOKED), FoodTraits.BRINED)),
+            notRottenWithTrait(lacksTrait(Ingredient.of(TFCTags.Items.RAW_MEATS), FLFoodTraits.SMOKED), FoodTraits.BRINED),
             ItemStackProvider.of(CopyInputModifier.INSTANCE, AddTraitModifier.of(FLFoodTraits.SMOKED))
         );
         smoke(
-            notRotten(lacksTrait(Ingredient.of(FLTags.Items.CHEESES), FLFoodTraits.SMOKED)),
+            notRottenWithTrait(Ingredient.of(FLTags.Items.CHEESES), FLFoodTraits.SMOKED),
             ItemStackProvider.of(CopyInputModifier.INSTANCE, AddTraitModifier.of(FLFoodTraits.SMOKED))
         );
     }

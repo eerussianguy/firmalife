@@ -7,7 +7,6 @@ import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.common.items.FLItems;
 import com.eerussianguy.firmalife.common.recipes.data.EmptyPanModifier;
 import com.eerussianguy.firmalife.common.util.ExtraFluid;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.common.NeoForgeMod;
 
@@ -25,7 +24,7 @@ public interface BarrelRecipes extends Recipes
     {
         remove("tfc:barrel/curdling", "tfc:barrel/cheese", "tfc:barrel/milk_vinegar");
         barrel()
-            .input(hasTrait(Ingredient.of(TFCTags.Items.FRUITS), FLFoodTraits.DRIED))
+            .input(hasTrait(TFCTags.Items.FRUITS, FLFoodTraits.DRIED))
             .input(Fluids.WATER, 100)
             .output(fluidOf(ExtraFluid.YEAST_STARTER), 100)
             .sealed(72000);

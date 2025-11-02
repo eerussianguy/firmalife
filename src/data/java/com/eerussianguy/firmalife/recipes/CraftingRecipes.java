@@ -335,7 +335,7 @@ public interface CraftingRecipes extends Recipes
         recipe().useTool(TFCTags.Items.TOOLS_KNIFE, itemOf(Herb.BASIL), itemOf(Spice.BASIL_LEAVES));
         recipe()
             .inputIsPrimary(TFCTags.Items.TOOLS_KNIFE)
-            .input(notRotten(Ingredient.of(FLTags.Items.CHEESES)))
+            .input(notRotten(FLTags.Items.CHEESES))
             .damageInputs()
             .shapeless(new ItemStack(itemOf(FLFood.SHREDDED_CHEESE), 4));
         recipe()
@@ -353,7 +353,7 @@ public interface CraftingRecipes extends Recipes
             .shapeless(itemOf(FLFood.TORTILLA_CHIPS));
         recipe()
             .inputIsPrimary(TFCTags.Items.TOOLS_KNIFE)
-            .input(notRotten(hasTrait(itemOf(FLFruit.PINEAPPLE), FLFoodTraits.DRIED)))
+            .input(notRottenWithTrait(itemOf(FLFruit.PINEAPPLE), FLFoodTraits.DRIED))
             .damageInputs()
             .shapeless(FLItems.PINEAPPLE_FIBER);
         recipe()
@@ -364,7 +364,7 @@ public interface CraftingRecipes extends Recipes
         recipe()
             .inputIsPrimary(TFCTags.Items.TOOLS_KNIFE)
             .input(itemOf(Powder.SALT))
-            .input(notRotten(hasTrait(itemOf(Food.PORK), FLFoodTraits.SMOKED)))
+            .input(notRottenWithTrait(itemOf(Food.PORK), FLFoodTraits.SMOKED))
             .damageInputs()
             .shapeless(new ItemStack(itemOf(FLFood.BACON), 4));
         recipe().useTool(TFCTags.Items.TOOLS_CHISEL, Blocks.BRICKS, FLBlocks.OVEN_COUNTERTOP.get(OvenType.BRICK));

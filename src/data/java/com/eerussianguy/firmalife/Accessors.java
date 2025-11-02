@@ -275,6 +275,36 @@ public interface Accessors
         return BuiltInRegistries.ITEM.getKey(item.asItem()).getPath();
     }
 
+    default Ingredient notRottenWithTrait(TagKey<Item> food, Holder<FoodTrait> trait)
+    {
+        return notRottenWithTrait(Ingredient.of(food), trait);
+    }
+
+    default Ingredient notRottenWithTrait(ItemLike food, Holder<FoodTrait> trait)
+    {
+        return notRottenWithTrait(Ingredient.of(food), trait);
+    }
+
+    default Ingredient notRottenWithTrait(Ingredient food, Holder<FoodTrait> trait)
+    {
+        return AndIngredient.of(food, NotRottenIngredient.INSTANCE, HasTraitIngredient.of(trait));
+    }
+
+    default Ingredient notRottenWithoutTrait(TagKey<Item> food, Holder<FoodTrait> trait)
+    {
+        return notRottenWithoutTrait(Ingredient.of(food), trait);
+    }
+
+    default Ingredient notRottenWithoutTrait(ItemLike food, Holder<FoodTrait> trait)
+    {
+        return notRottenWithoutTrait(Ingredient.of(food), trait);
+    }
+
+    default Ingredient notRottenWithoutTrait(Ingredient food, Holder<FoodTrait> trait)
+    {
+        return AndIngredient.of(food, NotRottenIngredient.INSTANCE, LacksTraitIngredient.of(trait));
+    }
+
     default Ingredient notRotten(TagKey<Item> food)
     {
         return AndIngredient.of(Ingredient.of(food), NotRottenIngredient.INSTANCE);
@@ -298,6 +328,11 @@ public interface Accessors
     default Ingredient hasTrait(Ingredient food, Holder<FoodTrait> trait)
     {
         return AndIngredient.of(food, HasTraitIngredient.of(trait));
+    }
+
+    default Ingredient hasTrait(TagKey<Item> food, Holder<FoodTrait> trait)
+    {
+        return AndIngredient.of(Ingredient.of(food), HasTraitIngredient.of(trait));
     }
 
     default Ingredient lacksTrait(ItemLike food, Holder<FoodTrait> trait)

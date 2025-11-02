@@ -22,14 +22,14 @@ public interface StompingRecipes extends Recipes
     default void stompingRecipes()
     {
         stomp(
-            notRotten(lacksTrait(itemOf(FLFruit.RED_GRAPES), FLFoodTraits.DRIED)),
+            notRottenWithoutTrait(itemOf(FLFruit.RED_GRAPES), FLFoodTraits.DRIED),
             ItemStackProvider.of(itemOf(FLFood.SMASHED_RED_GRAPES)),
             FLHelpers.identifier("block/red_unsmashed_grapes"),
             FLHelpers.identifier("block/red_smashed_grapes"),
             SoundEvents.SLIME_SQUISH
         );
         stomp(
-            notRotten(lacksTrait(itemOf(FLFruit.WHITE_GRAPES), FLFoodTraits.DRIED)),
+            notRottenWithoutTrait(itemOf(FLFruit.WHITE_GRAPES), FLFoodTraits.DRIED),
             ItemStackProvider.of(itemOf(FLFood.SMASHED_WHITE_GRAPES)),
             FLHelpers.identifier("block/white_unsmashed_grapes"),
             FLHelpers.identifier("block/white_smashed_grapes"),
