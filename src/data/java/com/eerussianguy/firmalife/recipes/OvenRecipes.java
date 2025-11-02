@@ -116,11 +116,14 @@ public interface OvenRecipes extends Recipes
             1000
         );
     }
-    private void cook(Ingredient input, ItemLike output, int temperature, int time) {
+
+    private void cook(Ingredient input, ItemLike output, int temperature, int time)
+    {
         cook(input, ItemStackProvider.of(output), temperature, time);
     }
 
-    private void cook(Ingredient input, ItemStackProvider output, int temperature, int time) {
+    private void cook(Ingredient input, ItemStackProvider output, int temperature, int time)
+    {
         add(new OvenRecipe(input, output, temperature, time));
     }
 

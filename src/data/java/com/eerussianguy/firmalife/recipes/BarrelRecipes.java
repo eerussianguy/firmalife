@@ -6,7 +6,6 @@ import com.eerussianguy.firmalife.common.items.FLFood;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.common.items.FLItems;
 import com.eerussianguy.firmalife.common.recipes.data.EmptyPanModifier;
-import com.eerussianguy.firmalife.common.recipes.data.FLItemStackModifiers;
 import com.eerussianguy.firmalife.common.util.ExtraFluid;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.material.Fluids;
@@ -150,7 +149,8 @@ public interface BarrelRecipes extends Recipes
             .instant();
     }
 
-    private BarrelRecipe.Builder barrel() {
+    private BarrelRecipe.Builder barrel()
+    {
         return new BarrelRecipe.Builder(this::add);
     }
 }

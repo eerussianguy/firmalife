@@ -18,7 +18,6 @@ import com.eerussianguy.firmalife.common.util.ExtraFluid;
 import com.eerussianguy.firmalife.common.util.FLFruit;
 import com.eerussianguy.firmalife.common.util.FLMetal;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -39,8 +38,6 @@ import net.dries007.tfc.common.items.Food;
 import net.dries007.tfc.common.items.Powder;
 import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.common.recipes.ingredients.FluidContentIngredient;
-import net.dries007.tfc.common.recipes.outputs.ItemStackModifiers;
-import net.dries007.tfc.common.recipes.outputs.ItemStackProvider;
 import net.dries007.tfc.common.recipes.outputs.MealModifier;
 import net.dries007.tfc.util.DataGenerationHelpers;
 import net.dries007.tfc.util.Metal;
@@ -62,7 +59,7 @@ public interface CraftingRecipes extends Recipes
         recipe()
             .input('X', Items.BOWL)
             .input('Y', Tags.Items.RODS_WOODEN)
-            .pattern("X","Y")
+            .pattern("X", "Y")
             .shaped(FLItems.PEEL);
         recipe()
             .input('X', FLItems.TREATED_LUMBER)
@@ -446,11 +443,12 @@ public interface CraftingRecipes extends Recipes
                 .input(FluidContentIngredient.of(Fluids.WATER, 100))
                 .input(notRotten(itemOf(FLFood.MASA_FLOUR)), i)
                 .copyOldestFood()
-                .shapeless(new ItemStack(itemOf(FLFood.MASA), i*2));
+                .shapeless(new ItemStack(itemOf(FLFood.MASA), i * 2));
         }
 
         // Devices for TFC woods
-        for(Wood wood : Wood.values()) {
+        for (Wood wood : Wood.values())
+        {
             recipe()
                 .input('X', itemOf(wood, Wood.BlockType.PLANKS))
                 .input('Y', Tags.Items.STRINGS)
@@ -497,8 +495,10 @@ public interface CraftingRecipes extends Recipes
         greenhouseCleaning.put(Greenhouse.OXIDIZED_COPPER, Greenhouse.COPPER);
         greenhouseCleaning.put(Greenhouse.WEATHERED_COPPER, Greenhouse.COPPER);
         greenhouseCleaning.put(Greenhouse.EXPOSED_COPPER, Greenhouse.COPPER);
-        for(var entry : greenhouseCleaning.entrySet()) {
-            for(var type : Greenhouse.BlockType.values()) {
+        for (var entry : greenhouseCleaning.entrySet())
+        {
+            for (var type : Greenhouse.BlockType.values())
+            {
                 var dirty = FLBlocks.GREENHOUSE_BLOCKS.get(entry.getKey()).get(type);
                 var clean = FLBlocks.GREENHOUSE_BLOCKS.get(entry.getValue()).get(type);
                 recipe("cleaning").useTool(TFCTags.Items.TOOLS_CHISEL, dirty, clean);
@@ -514,7 +514,7 @@ public interface CraftingRecipes extends Recipes
         jarring(TFCItems.ROTTEN_COMPOST, FLItems.ROTTEN_COMPOST_JAR, 8);
         jarring(TFCBlocks.GROUNDCOVER.get(GroundcoverBlockType.GUANO), FLItems.GUANO_JAR, 8);
         jarring(FLItems.RAW_HONEY, FLItems.HONEY_JAR, 1);
-        FLItems.FL_FRUIT_PRESERVES.forEach((fruit, item)-> unjarring(notRotten(item), FLItems.FL_UNSEALED_FRUIT_PRESERVES.get(fruit), 1));
+        FLItems.FL_FRUIT_PRESERVES.forEach((fruit, item) -> unjarring(notRotten(item), FLItems.FL_UNSEALED_FRUIT_PRESERVES.get(fruit), 1));
 
         makeDough(Food.WHEAT_FLOUR, FLFood.WHEAT_DOUGH);
         makeDough(Food.RYE_FLOUR, FLFood.RYE_DOUGH);
@@ -537,7 +537,8 @@ public interface CraftingRecipes extends Recipes
         sandwich(Food.MAIZE_BREAD, FLFood.MAIZE_FLATBREAD, Food.MAIZE_BREAD_SANDWICH, Food.MAIZE_BREAD_JAM_SANDWICH);
         sandwich(Food.OAT_BREAD, FLFood.OAT_FLATBREAD, Food.OAT_BREAD_SANDWICH, Food.OAT_BREAD_JAM_SANDWICH);
 
-        for (var metal : FLMetal.values()) {
+        for (var metal : FLMetal.values())
+        {
             recipe()
                 .input('S', FLItems.METAL_ITEMS.get(metal).get(FLMetal.ItemType.SHEET))
                 .input('W', ItemTags.PLANKS)
@@ -645,7 +646,8 @@ public interface CraftingRecipes extends Recipes
 
     }
 
-    private void sandwich(Food loaf, FLFood flatbread, Food sandwich, Food jamSandwich) {
+    private void sandwich(Food loaf, FLFood flatbread, Food sandwich, Food jamSandwich)
+    {
         var meal = new MealModifier(
             FoodData.ofFood(4, 1, 0.5f, 4.5f),
             List.of(
@@ -664,16 +666,19 @@ public interface CraftingRecipes extends Recipes
             )
         );
         Map<String, Ingredient> breadVariants = new HashMap<>();
-        breadVariants.put("bread",notRotten(itemOf(loaf)));
+        breadVariants.put("bread", notRotten(itemOf(loaf)));
         breadVariants.put("flatbread", notRotten(itemOf(flatbread)));
 
         Map<String, Ingredient> jamVariants = new HashMap<>();
-        jamVariants.put("jar",notRotten(TFCTags.Items.PRESERVES));
+        jamVariants.put("jar", notRotten(TFCTags.Items.PRESERVES));
         jamVariants.put("jam", notRotten(TFCTags.Items.JAM));
 
-        for(var bread: breadVariants.entrySet()) {
-            for(var pattern : List.of("JXX", "XJX", "XXJ")) {
-                for(var jam: jamVariants.entrySet()) {
+        for (var bread : breadVariants.entrySet())
+        {
+            for (var pattern : List.of("JXX", "XJX", "XXJ"))
+            {
+                for (var jam : jamVariants.entrySet())
+                {
                     recipe(bread.getKey() + "_" + jam.getKey() + "_" + pattern.indexOf('J'))
                         .input('K', TFCTags.Items.TOOLS_KNIFE)
                         .input('B', bread.getValue())
@@ -696,7 +701,8 @@ public interface CraftingRecipes extends Recipes
         }
     }
 
-    private void sliceBread(Food bread, FLFood slicedBread) {
+    private void sliceBread(Food bread, FLFood slicedBread)
+    {
         recipe()
             .inputIsPrimary(TFCTags.Items.TOOLS_KNIFE)
             .input(itemOf(bread))
@@ -713,8 +719,10 @@ public interface CraftingRecipes extends Recipes
             .shaped(new ItemStack(itemOf(dough), 4));
     }
 
-    private void jarring(ItemLike unsealed, ItemLike sealed, int amount) {
-        if(amount == 8) {
+    private void jarring(ItemLike unsealed, ItemLike sealed, int amount)
+    {
+        if (amount == 8)
+        {
             recipe("jarring")
                 .input('X', unsealed)
                 .input('Y', TFCItems.EMPTY_JAR)
@@ -735,6 +743,7 @@ public interface CraftingRecipes extends Recipes
     {
         unjarring(Ingredient.of(sealed), unsealed, amount);
     }
+
     private void unjarring(Ingredient sealed, ItemLike unsealed, int amount)
     {
         recipe("unjarring")
@@ -786,7 +795,8 @@ public interface CraftingRecipes extends Recipes
             .shaped(new ItemStack(FLBlocks.GREENHOUSE_BLOCKS.get(type).get(Greenhouse.BlockType.PORT), 8));
     }
 
-    private void decorationRecipe(ItemLike input, DecorationBlockHolder deco) {
+    private void decorationRecipe(ItemLike input, DecorationBlockHolder deco)
+    {
         recipe()
             .input('X', input)
             .pattern("XXX")
@@ -804,10 +814,11 @@ public interface CraftingRecipes extends Recipes
     private DataGenerationHelpers.Builder recipe(String suffix)
     {
         return new DataGenerationHelpers.Builder((name, r) -> {
-            if (name != null) add(name+"_"+suffix, r);
+            if (name != null) add(name + "_" + suffix, r);
             else add(r);
         });
     }
+
     private DataGenerationHelpers.Builder recipe()
     {
         return new DataGenerationHelpers.Builder((name, r) -> {
@@ -816,7 +827,8 @@ public interface CraftingRecipes extends Recipes
         });
     }
 
-    enum Grains {
+    enum Grains
+    {
         WHEAT(Food.WHEAT_GRAIN, Food.WHEAT_FLOUR, Food.WHEAT_DOUGH, Food.WHEAT_BREAD, FLFood.WHEAT_SLICE),
         RYE(Food.WHEAT_GRAIN, Food.WHEAT_FLOUR, Food.WHEAT_DOUGH, Food.WHEAT_BREAD, FLFood.WHEAT_SLICE),
         BARLEY(Food.WHEAT_GRAIN, Food.WHEAT_FLOUR, Food.WHEAT_DOUGH, Food.WHEAT_BREAD, FLFood.WHEAT_SLICE),
@@ -824,7 +836,8 @@ public interface CraftingRecipes extends Recipes
         MAIZE(Food.WHEAT_GRAIN, Food.WHEAT_FLOUR, Food.WHEAT_DOUGH, Food.WHEAT_BREAD, FLFood.WHEAT_SLICE),
         OAT(Food.WHEAT_GRAIN, Food.WHEAT_FLOUR, Food.WHEAT_DOUGH, Food.WHEAT_BREAD, FLFood.WHEAT_SLICE);
 
-        private Grains(Food grain, Food flour, Food dough, Food bread, FLFood breadSlice) {
+        private Grains(Food grain, Food flour, Food dough, Food bread, FLFood breadSlice)
+        {
 
         }
     }

@@ -154,23 +154,28 @@ public interface MixingBowlRecipes extends Recipes
         );
     }
 
-    private void mix(ItemLike input, SizedFluidIngredient inputFluid, ItemStack output) {
+    private void mix(ItemLike input, SizedFluidIngredient inputFluid, ItemStack output)
+    {
         mix(List.of(Ingredient.of(input)), inputFluid, output, FluidStack.EMPTY);
     }
 
-    private void mix(Ingredient input, SizedFluidIngredient inputFluid, ItemStack output) {
+    private void mix(Ingredient input, SizedFluidIngredient inputFluid, ItemStack output)
+    {
         mix(List.of(input), inputFluid, output, FluidStack.EMPTY);
     }
 
-    private void mix(List<Ingredient> inputs, ItemStack output) {
+    private void mix(List<Ingredient> inputs, ItemStack output)
+    {
         mix(inputs, SizedFluidIngredient.of(FluidStack.EMPTY), output, FluidStack.EMPTY);
     }
 
-    private void mix(List<Ingredient> inputs, SizedFluidIngredient inputFluid, ItemStack outputStack) {
+    private void mix(List<Ingredient> inputs, SizedFluidIngredient inputFluid, ItemStack outputStack)
+    {
         mix(inputs, inputFluid, outputStack, FluidStack.EMPTY);
     }
 
-    private void mix(List<Ingredient> inputs, SizedFluidIngredient inputFluid, ItemStack outputStack, FluidStack outputFluid) {
+    private void mix(List<Ingredient> inputs, SizedFluidIngredient inputFluid, ItemStack outputStack, FluidStack outputFluid)
+    {
         add(new MixingBowlRecipe(inputs, inputFluid, outputStack, outputFluid));
     }
 }

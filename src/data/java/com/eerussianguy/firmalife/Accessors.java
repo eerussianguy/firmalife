@@ -94,25 +94,38 @@ public interface Accessors
             : Ingredient.of(TFCBlocks.METALS.get(metal).get(type).get());
     }
 
-    default SizedIngredient sized(TagKey<Item> item) {
+    default SizedIngredient sized(TagKey<Item> item)
+    {
         return SizedIngredient.of(item, 1);
     }
-    default SizedIngredient sized(ItemLike item) {
+
+    default SizedIngredient sized(ItemLike item)
+    {
         return SizedIngredient.of(item, 1);
     }
-    default SizedIngredient sized(ItemLike item, int count) {
+
+    default SizedIngredient sized(ItemLike item, int count)
+    {
         return SizedIngredient.of(item, count);
     }
-    default SizedIngredient sized(Ingredient ingredient, int count) {
+
+    default SizedIngredient sized(Ingredient ingredient, int count)
+    {
         return new SizedIngredient(ingredient, count);
     }
-    default SizedIngredient sized(Ingredient ingredient) {
+
+    default SizedIngredient sized(Ingredient ingredient)
+    {
         return new SizedIngredient(ingredient, 1);
     }
-    default SizedFluidIngredient sized(Fluid fluid) {
+
+    default SizedFluidIngredient sized(Fluid fluid)
+    {
         return SizedFluidIngredient.of(fluid, 1);
     }
-    default SizedFluidIngredient sized(Fluid fluid, int amount) {
+
+    default SizedFluidIngredient sized(Fluid fluid, int amount)
+    {
         return SizedFluidIngredient.of(fluid, amount);
     }
 
@@ -165,31 +178,48 @@ public interface Accessors
         return BuiltInRegistries.ITEM.get(name);
     }
 
-    default ItemLike itemOf(Herb herb) {
+    default ItemLike itemOf(Herb herb)
+    {
         return FLBlocks.HERBS.get(herb);
     }
-    default ItemLike itemOf(Powder powder) {
+
+    default ItemLike itemOf(Powder powder)
+    {
         return TFCItems.POWDERS.get(powder);
     }
-    default ItemLike itemOf(Food food) {
+
+    default ItemLike itemOf(Food food)
+    {
         return TFCItems.FOOD.get(food);
     }
-    default ItemLike itemOf(FLFood food) {
+
+    default ItemLike itemOf(FLFood food)
+    {
         return FLItems.FOODS.get(food);
     }
-    default ItemLike itemOf(Spice spice) {
+
+    default ItemLike itemOf(Spice spice)
+    {
         return FLItems.SPICES.get(spice);
     }
-    default ItemLike itemOf(FLFruit fruit) {
+
+    default ItemLike itemOf(FLFruit fruit)
+    {
         return FLItems.FRUITS.get(fruit);
     }
-    default ItemLike itemOf(Wood wood, Wood.BlockType type) {
+
+    default ItemLike itemOf(Wood wood, Wood.BlockType type)
+    {
         return TFCBlocks.WOODS.get(wood).get(type);
     }
-    default ItemLike itemOf(Metal metal, Metal.ItemType type) {
+
+    default ItemLike itemOf(Metal metal, Metal.ItemType type)
+    {
         return TFCItems.METAL_ITEMS.get(metal).get(type);
     }
-    default ItemLike itemOf(FLMetal metal, FLMetal.ItemType type) {
+
+    default ItemLike itemOf(FLMetal metal, FLMetal.ItemType type)
+    {
         return FLItems.METAL_ITEMS.get(metal).get(type);
     }
 
@@ -202,14 +232,17 @@ public interface Accessors
     {
         return TFCFluids.SIMPLE_FLUIDS.get(fluid).getSource();
     }
+
     default Fluid fluidOf(ExtraFluid fluid)
     {
         return FLFluids.EXTRA_FLUIDS.get(fluid).getSource();
     }
+
     default Fluid fluidOf(FluidHolder<BaseFlowingFluid> fluid)
     {
         return fluid.getSource();
     }
+
     default Fluid fluidOf(FLMetal metal)
     {
         return FLFluids.METALS.get(metal).getSource();
@@ -246,6 +279,7 @@ public interface Accessors
     {
         return AndIngredient.of(Ingredient.of(food), NotRottenIngredient.INSTANCE);
     }
+
     default Ingredient notRotten(Ingredient food)
     {
         return AndIngredient.of(food, NotRottenIngredient.INSTANCE);
@@ -276,11 +310,13 @@ public interface Accessors
         return AndIngredient.of(food, LacksTraitIngredient.of(trait));
     }
 
-    default ItemStackProvider copyFood(ItemStack output){
+    default ItemStackProvider copyFood(ItemStack output)
+    {
         return ItemStackProvider.of(output, CopyFoodModifier.INSTANCE);
     }
 
-    default ItemStackProvider copyFood(ItemLike output){
+    default ItemStackProvider copyFood(ItemLike output)
+    {
         return ItemStackProvider.of(new ItemStack(output), CopyFoodModifier.INSTANCE);
     }
 
@@ -341,6 +377,7 @@ public interface Accessors
     /**
      * Given a {@code Map<T1, Map<T2, V1>>}, and a key {@code T2}, constructs a map of all the mappings of {@code T1} to maps which contain
      * an entry for the given key {@code T2}
+     *
      * @return An immutable map, with iteration order given by iteration order of the input map
      */
     default <T1, T2, V> Map<T1, V> pivot(Map<T1, Map<T2, V>> map, T2 key)
@@ -356,7 +393,8 @@ public interface Accessors
 
     default BlockGetter empty()
     {
-        return new BlockGetter() {
+        return new BlockGetter()
+        {
             @Nullable
             @Override
             public BlockEntity getBlockEntity(BlockPos pos)

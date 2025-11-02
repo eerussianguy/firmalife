@@ -1,15 +1,9 @@
 package com.eerussianguy.firmalife.recipes;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.stream.IntStream;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.FLTags;
-import com.eerussianguy.firmalife.common.blocks.FLBlocks;
-import com.eerussianguy.firmalife.common.blocks.FLFluids;
 import com.eerussianguy.firmalife.common.items.FLFood;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.common.items.FLItems;
@@ -17,35 +11,24 @@ import com.eerussianguy.firmalife.common.recipes.BowlPotRecipe;
 import com.eerussianguy.firmalife.common.recipes.StinkySoupRecipe;
 import com.eerussianguy.firmalife.common.util.ExtraFluid;
 import com.eerussianguy.firmalife.common.util.FLFruit;
-import com.eerussianguy.firmalife.common.util.FLMetal;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.fluids.FluidStack;
-import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
 import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.component.food.FoodData;
 import net.dries007.tfc.common.component.food.FoodTraits;
-import net.dries007.tfc.common.component.forge.ForgeRule;
 import net.dries007.tfc.common.fluids.SimpleFluid;
 import net.dries007.tfc.common.fluids.TFCFluids;
 import net.dries007.tfc.common.items.Food;
 import net.dries007.tfc.common.items.Powder;
-import net.dries007.tfc.common.items.TFCItems;
-import net.dries007.tfc.common.recipes.AnvilRecipe;
 import net.dries007.tfc.common.recipes.JamPotRecipe;
 import net.dries007.tfc.common.recipes.PotRecipe;
 import net.dries007.tfc.common.recipes.SimplePotRecipe;
-import net.dries007.tfc.common.recipes.ingredients.AndIngredient;
-import net.dries007.tfc.common.recipes.ingredients.LacksTraitIngredient;
-import net.dries007.tfc.common.recipes.ingredients.NotRottenIngredient;
 import net.dries007.tfc.common.recipes.outputs.AddTraitModifier;
 import net.dries007.tfc.common.recipes.outputs.CopyInputModifier;
 import net.dries007.tfc.common.recipes.outputs.ItemStackProvider;
@@ -53,7 +36,8 @@ import net.dries007.tfc.util.Helpers;
 
 public interface PotRecipes extends Recipes
 {
-    default void potRecipes() {
+    default void potRecipes()
+    {
         pot(
             List.of(
                 notRotten(itemOf(Food.BEET)),
@@ -137,7 +121,8 @@ public interface PotRecipes extends Recipes
             300
         );
 
-        for(var fruit : FLFruit.values()) {
+        for (var fruit : FLFruit.values())
+        {
             jam(fruit);
         }
 
@@ -145,7 +130,7 @@ public interface PotRecipes extends Recipes
             notRotten(itemOf(FLFood.RAW_EGG_NOODLES)),
             SizedFluidIngredient.of(Fluids.WATER, 100),
             itemOf(FLFood.COOKED_PASTA),
-            FoodData.ofFood(4, 2, 0 ,3).grain(1.5f),
+            FoodData.ofFood(4, 2, 0, 3).grain(1.5f),
             2000,
             300
         );
@@ -154,7 +139,7 @@ public interface PotRecipes extends Recipes
             notRotten(itemOf(FLFood.RAW_RICE_NOODLES)),
             SizedFluidIngredient.of(Fluids.WATER, 100),
             itemOf(FLFood.COOKED_RICE_NOODLES),
-            FoodData.ofFood(4, 2, 0 ,3).grain(1.5f),
+            FoodData.ofFood(4, 2, 0, 3).grain(1.5f),
             2000,
             300
         );
@@ -167,7 +152,7 @@ public interface PotRecipes extends Recipes
                 Collections.nCopies(i, notRotten(Ingredient.of(TFCTags.Items.USABLE_IN_SOUP))),
                 Ingredient.of(FLItems.NIGHTSHADE_BERRY)
             );
-            add("stinky_"+i,
+            add("stinky_" + i,
                 new StinkySoupRecipe(
                     new PotRecipe(
                         inputs,
@@ -181,10 +166,12 @@ public interface PotRecipes extends Recipes
         }
     }
 
-    private void bowlPot(Ingredient itemInput, SizedFluidIngredient fluidInput, ItemLike result, FoodData data, int duration, int temperature) {
-        for (int i = 0; i < 5; i++) {
+    private void bowlPot(Ingredient itemInput, SizedFluidIngredient fluidInput, ItemLike result, FoodData data, int duration, int temperature)
+    {
+        for (int i = 0; i < 5; i++)
+        {
             var inputs = Collections.nCopies(i, itemInput);
-            add(nameOf(result)+"_"+i,
+            add(nameOf(result) + "_" + i,
                 new BowlPotRecipe(
                     new PotRecipe(
                         inputs,
@@ -199,11 +186,12 @@ public interface PotRecipes extends Recipes
         }
     }
 
-    private void pot_5(Ingredient input, SizedFluidIngredient fluidInput, ItemLike output, int duration, int time) {
+    private void pot_5(Ingredient input, SizedFluidIngredient fluidInput, ItemLike output, int duration, int time)
+    {
         for (int i = 0; i < 5; i++)
         {
             var inputs = Collections.nCopies(i, input);
-            add(nameOf(output)+"_"+i,
+            add(nameOf(output) + "_" + i,
                 new SimplePotRecipe(
                     new PotRecipe(
                         inputs,
@@ -219,10 +207,12 @@ public interface PotRecipes extends Recipes
         }
     }
 
-    private void jam(FLFruit fruit) {
+    private void jam(FLFruit fruit)
+    {
         var name = fruit.getSerializedName();
         // Jam boiling
-        for (int i = 2; i < 4; i++) {
+        for (int i = 2; i < 4; i++)
+        {
             var inputs = Helpers.immutableAdd(
                 Collections.nCopies(i, notRotten(lacksTrait(Ingredient.of(itemOf(fruit)), FLFoodTraits.DRIED))),
                 Ingredient.of(FLTags.Items.SWEETENER)
@@ -256,14 +246,18 @@ public interface PotRecipes extends Recipes
         }
     }
 
-    private void pot(List<Ingredient> input, SizedFluidIngredient fluidInput, List<ItemLike> output, int duration, int time) {
+    private void pot(List<Ingredient> input, SizedFluidIngredient fluidInput, List<ItemLike> output, int duration, int time)
+    {
         pot(input, fluidInput, FluidStack.EMPTY, output.stream().map(ItemStackProvider::of).toList(), duration, time);
     }
-    private void pot(List<Ingredient> input, SizedFluidIngredient fluidInput, FluidStack output, int duration, int time) {
+
+    private void pot(List<Ingredient> input, SizedFluidIngredient fluidInput, FluidStack output, int duration, int time)
+    {
         pot(input, fluidInput, output, List.of(), duration, time);
     }
 
-    private void pot(List<Ingredient> input, SizedFluidIngredient fluidInput, FluidStack fluidOutput, List<ItemStackProvider> output, int duration, int time) {
+    private void pot(List<Ingredient> input, SizedFluidIngredient fluidInput, FluidStack fluidOutput, List<ItemStackProvider> output, int duration, int time)
+    {
         add(new SimplePotRecipe(
             new PotRecipe(
                 input,

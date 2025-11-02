@@ -51,11 +51,14 @@ public interface StompingRecipes extends Recipes
         );
 
     }
-    private void stomp(ItemLike input, ItemStackProvider output, ResourceLocation inTex, ResourceLocation outTex, SoundEvent sound) {
+
+    private void stomp(ItemLike input, ItemStackProvider output, ResourceLocation inTex, ResourceLocation outTex, SoundEvent sound)
+    {
         stomp(Ingredient.of(input), output, inTex, outTex, sound);
     }
 
-    private void stomp(Ingredient input, ItemStackProvider output, ResourceLocation inTex, ResourceLocation outTex, SoundEvent sound) {
+    private void stomp(Ingredient input, ItemStackProvider output, ResourceLocation inTex, ResourceLocation outTex, SoundEvent sound)
+    {
         add(new StompingRecipe(input, output, inTex, outTex, sound));
     }
 }

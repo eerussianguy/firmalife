@@ -6,16 +6,12 @@ import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.common.items.FLItems;
 import com.eerussianguy.firmalife.common.items.Spice;
 import com.eerussianguy.firmalife.common.recipes.DryingRecipe;
-import com.eerussianguy.firmalife.common.util.FLFruit;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 
 import net.dries007.tfc.common.TFCTags;
-import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.blocks.soil.SoilBlockType;
 import net.dries007.tfc.common.items.Food;
-import net.dries007.tfc.common.items.TFCItems;
-import net.dries007.tfc.common.recipes.QuernRecipe;
 import net.dries007.tfc.common.recipes.outputs.AddTraitModifier;
 import net.dries007.tfc.common.recipes.outputs.CopyInputModifier;
 import net.dries007.tfc.common.recipes.outputs.ItemStackProvider;
@@ -37,23 +33,29 @@ public interface DryingRecipes extends Recipes
         drying(itemOf(FLFood.MILK_CHOCOLATE_BLEND), ItemStackProvider.of(itemOf(FLFood.MILK_CHOCOLATE)));
         drying(itemOf(FLFood.WHITE_CHOCOLATE_BLEND), ItemStackProvider.of(itemOf(FLFood.WHITE_CHOCOLATE)));
         drying(itemOf(FLFood.DARK_CHOCOLATE_BLEND), ItemStackProvider.of(itemOf(FLFood.DARK_CHOCOLATE)));
-        for (var type : SoilBlockType.Variant.values()) {
+        for (var type : SoilBlockType.Variant.values())
+        {
             drying(Ingredient.of(type.getBlock(SoilBlockType.MUD).get()), ItemStackProvider.of(type.getBlock(SoilBlockType.DIRT).get()));
         }
     }
-    private void drying(ItemLike input, ItemStackProvider output) {
+
+    private void drying(ItemLike input, ItemStackProvider output)
+    {
         drying(Ingredient.of(input), output);
     }
 
-    private void drying(ItemLike input, ItemLike output) {
+    private void drying(ItemLike input, ItemLike output)
+    {
         drying(Ingredient.of(input), ItemStackProvider.of(output));
     }
 
-    private void drying(Ingredient input, ItemLike output) {
+    private void drying(Ingredient input, ItemLike output)
+    {
         drying(input, ItemStackProvider.of(output));
     }
 
-    private void drying(Ingredient input, ItemStackProvider output) {
+    private void drying(Ingredient input, ItemStackProvider output)
+    {
         add(new DryingRecipe(input, output));
     }
 }

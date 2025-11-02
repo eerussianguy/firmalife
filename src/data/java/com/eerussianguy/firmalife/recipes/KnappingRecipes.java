@@ -3,24 +3,17 @@ package com.eerussianguy.firmalife.recipes;
 import java.util.Optional;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
-import com.eerussianguy.firmalife.common.items.FLFood;
 import com.eerussianguy.firmalife.common.util.Carving;
-import com.eerussianguy.firmalife.common.util.FLFruit;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import org.jetbrains.annotations.Nullable;
 
 import net.dries007.tfc.common.items.Food;
-import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.common.recipes.KnappingRecipe;
-import net.dries007.tfc.common.recipes.QuernRecipe;
-import net.dries007.tfc.common.recipes.outputs.ItemStackProvider;
 import net.dries007.tfc.util.DataGenerationHelpers;
 import net.dries007.tfc.util.Helpers;
-import net.dries007.tfc.util.Metal;
 import net.dries007.tfc.util.data.KnappingPattern;
 import net.dries007.tfc.util.data.KnappingType;
 
@@ -48,11 +41,13 @@ public interface KnappingRecipes extends Recipes
     }
 
 
-    private void pumpkinKnapping(ItemLike output, String... pattern) {
+    private void pumpkinKnapping(ItemLike output, String... pattern)
+    {
         pumpkinKnapping(output, 1, pattern);
     }
 
-    private void pumpkinKnapping(ItemLike output, int count, String... pattern) {
+    private void pumpkinKnapping(ItemLike output, int count, String... pattern)
+    {
         knapping(PUMPKIN, pattern, output, count);
     }
 

@@ -1,10 +1,8 @@
 package com.eerussianguy.firmalife.recipes;
 
-import java.util.List;
 import java.util.Optional;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.FLTags;
-import com.eerussianguy.firmalife.common.blocks.FLFluids;
 import com.eerussianguy.firmalife.common.items.FLFood;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.common.items.FLItems;
@@ -21,7 +19,6 @@ import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 
-import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.fluids.SimpleFluid;
 import net.dries007.tfc.common.fluids.TFCFluids;
 import net.dries007.tfc.common.items.Food;
@@ -35,8 +32,9 @@ import net.dries007.tfc.util.Helpers;
 
 public interface VatRecipes extends Recipes
 {
-    default void vatRecipes(){
-        
+    default void vatRecipes()
+    {
+
         //TODO none of these recipes had length or temperature listed
         vat(
             sized(TFCItems.OLIVE_PASTE),
@@ -63,7 +61,8 @@ public interface VatRecipes extends Recipes
             sized(Fluids.WATER, 200),
             ItemStackProvider.of(itemOf(Food.BOILED_EGG))
         );
-        for (var color : DyeColor.values()) {
+        for (var color : DyeColor.values())
+        {
             vat(sized(color.getTag()), sized(Fluids.WATER, 1000), new FluidStack(fluidOf(color), 1000));
         }
         vat(
@@ -92,47 +91,54 @@ public interface VatRecipes extends Recipes
             new FluidStack(fluidOf(ExtraFluid.SUGAR_WATER), 500)
         );
 
-        for (var fruit : FLFruit.values()) {
+        for (var fruit : FLFruit.values())
+        {
             vat(
                 sized(AndIngredient.of(Ingredient.of(itemOf(fruit)), LacksTraitIngredient.of(FLFoodTraits.DRIED), NotRottenIngredient.INSTANCE)),
                 sized(fluidOf(ExtraFluid.SUGAR_WATER), 500),
                 new ItemStack(FLItems.FL_FRUIT_PRESERVES.get(fruit)),
-                Optional.of(FLHelpers.identifier("block/jar/"+ fruit.name().toLowerCase()))
+                Optional.of(FLHelpers.identifier("block/jar/" + fruit.name().toLowerCase()))
             );
         }
-        for (var fruit : FLItems.TFC_FRUITS) {
+        for (var fruit : FLItems.TFC_FRUITS)
+        {
             vat(
                 sized(AndIngredient.of(Ingredient.of(itemOf(fruit)), LacksTraitIngredient.of(FLFoodTraits.DRIED), NotRottenIngredient.INSTANCE)),
                 sized(fluidOf(ExtraFluid.SUGAR_WATER), 500),
                 new ItemStack(TFCItems.FRUIT_PRESERVES.get(fruit)),
-                Optional.of(Helpers.identifier("block/jar/"+ fruit.name().toLowerCase()))
+                Optional.of(Helpers.identifier("block/jar/" + fruit.name().toLowerCase()))
             );
         }
     }
 
 
-    private void vat(SizedIngredient ingredient, SizedFluidIngredient fluidInput, ItemStackProvider output, FluidStack outputFluid) {
+    private void vat(SizedIngredient ingredient, SizedFluidIngredient fluidInput, ItemStackProvider output, FluidStack outputFluid)
+    {
         //TODO this needs length and temperature
         vat(ingredient, fluidInput, output, outputFluid, 0, 0, ItemStack.EMPTY, Optional.empty());
     }
 
-    private void vat(SizedIngredient ingredient, SizedFluidIngredient fluidInput, ItemStack jarOutput, Optional<ResourceLocation> outputTexture) {
+    private void vat(SizedIngredient ingredient, SizedFluidIngredient fluidInput, ItemStack jarOutput, Optional<ResourceLocation> outputTexture)
+    {
         //TODO this needs length and temperature
         vat(ingredient, fluidInput, ItemStackProvider.empty(), FluidStack.EMPTY, 0, 0, ItemStack.EMPTY, Optional.empty());
     }
 
-    private void vat(SizedIngredient ingredient, SizedFluidIngredient fluidInput, ItemStackProvider output) {
+    private void vat(SizedIngredient ingredient, SizedFluidIngredient fluidInput, ItemStackProvider output)
+    {
         //TODO this needs length and temperature
         vat(ingredient, fluidInput, output, FluidStack.EMPTY, 0, 0, ItemStack.EMPTY, Optional.empty());
     }
 
-    private void vat(SizedIngredient ingredient, SizedFluidIngredient fluidInput, FluidStack outputFluid) {
+    private void vat(SizedIngredient ingredient, SizedFluidIngredient fluidInput, FluidStack outputFluid)
+    {
         //TODO this needs length and temperature
         vat(ingredient, fluidInput, ItemStackProvider.empty(), outputFluid, 0, 0, ItemStack.EMPTY, Optional.empty());
     }
 
 
-    private void vat(SizedIngredient ingredient, SizedFluidIngredient fluidInput, ItemStackProvider output, FluidStack outputFluid, int length, float temperature, ItemStack jarOutput, Optional<ResourceLocation> outputTexture) {
+    private void vat(SizedIngredient ingredient, SizedFluidIngredient fluidInput, ItemStackProvider output, FluidStack outputFluid, int length, float temperature, ItemStack jarOutput, Optional<ResourceLocation> outputTexture)
+    {
         add(new VatRecipe(ingredient, fluidInput, output, outputFluid, length, temperature, jarOutput, outputTexture));
     }
 }
