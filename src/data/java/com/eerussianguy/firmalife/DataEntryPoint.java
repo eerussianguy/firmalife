@@ -57,7 +57,8 @@ public class DataEntryPoint
         });
 
         add(event, new BuiltinClimateRanges(output, lookup));
-        add(event, new DataManagerProvider<LampFuel>(LampFuel.MANAGER, output, lookup) {
+        add(event, new DataManagerProvider<LampFuel>(LampFuel.MANAGER, output, lookup)
+        {
 
             @Override
             protected void addData(HolderLookup.Provider provider)
