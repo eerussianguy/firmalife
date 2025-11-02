@@ -5,7 +5,6 @@ from mcresources import ResourceManager, utils
 from constants import lang
 from data import item_heat
 from assets import slab_loot
-from recipes import anvil_recipe, Rules, welding_recipe, heat_recipe, casting_recipe, damage_shaped
 
 class Metal(NamedTuple):
     tier: int
@@ -48,11 +47,6 @@ METAL_BLOCKS: Dict[str, MetalItem] = {
 METAL_ITEMS_AND_BLOCKS = {**METAL_ITEMS, **METAL_BLOCKS}
 
 def generate(rm: ResourceManager):
-    def craft_decorations(recipe_name: str, base_block: str, has_wall: bool = True):
-        rm.crafting_shaped(recipe_name + '_slab', ['XXX'], base_block, (6, base_block + '_slab')).with_advancement(base_block)
-        rm.crafting_shaped(recipe_name + '_stairs', ['X  ', 'XX ', 'XXX'], base_block, (8, base_block + '_stairs')).with_advancement(base_block)
-        if has_wall:
-            rm.crafting_shaped(recipe_name + '_wall', ['XXX', 'XXX'], base_block, (6, base_block + '_wall')).with_advancement(base_block)
 
     chromium_ore_heats(rm)
     for metal, metal_data in FL_METALS.items():
@@ -75,13 +69,10 @@ def generate(rm: ResourceManager):
 
                 rm.item_tag('tfc:metal_item/%s' % metal, item_name)
                 item_heat(rm, ('metal', metal + '_' + item), item_name, metal_data.ingot_heat_capacity(), metal_data.melt_temperature, mb=item_data.smelt_amount)
-                heat_recipe(rm, ('metal', '%s_%s' % (metal, item)), item_name, metal_data.melt_temperature, None, '%d firmalife:metal/%s' % (item_data.smelt_amount, metal))
 
         if 'part' in metal_data.types:
             rm.block_tag('minecraft:stairs', 'firmalife:metal/block/%s_stairs' % metal)
             rm.block_tag('minecraft:slabs', 'firmalife:metal/block/%s_slab' % metal)
-            damage_shaped(rm, 'crafting/metal/block/%s' % metal, [' SH', 'SWS', ' S '], {'S': '#forge:sheets/%s' % metal, 'W': '#minecraft:planks', 'H': '#tfc:hammers'}, '8 firmalife:metal/block/%s' % metal)
-            craft_decorations('crafting/metal/block/%s' % metal, 'firmalife:metal/block/%s' % metal, has_wall=False)
 
         def item(_variant: str) -> str:
             return 'firmalife:metal/%s/%s' % (_variant, metal)
@@ -93,16 +84,6 @@ def generate(rm: ResourceManager):
                 the_item = rm.item_model(('metal', '%s' % metal_item, '%s' % metal), texture, parent=metal_item_data.parent_model)
                 the_item.with_lang(lang('%s %s', metal, metal_item))
 
-        anvil_recipe(rm, '%s_sheet' % metal, item('double_ingot'), item('sheet'), metal_data.tier, Rules.hit_last, Rules.hit_second_last, Rules.hit_third_last)
-        anvil_recipe(rm, '%s_rod' % metal, item('ingot'), '2 firmalife:metal/rod/%s' % metal, metal_data.tier, Rules.bend_last, Rules.draw_second_last, Rules.draw_third_last)
-        welding_recipe(rm, '%s_double_ingot' % metal, item('ingot'), item('ingot'), item('double_ingot'), metal_data.tier - 1)
-        welding_recipe(rm, '%s_double_sheet' % metal, item('sheet'), item('sheet'), item('double_sheet'), metal_data.tier - 1)
-
-        for item, item_data in METAL_ITEMS.items():
-            if item == 'ingot' or (item_data.mold and 'tool' in metal_data.types and metal_data.tier <= 2):
-                casting_recipe(rm, '%s_%s' % (metal, item), item, metal, item_data.smelt_amount, 0.1 if item == 'ingot' else 1)
-            if item == 'ingot':
-                casting_recipe(rm, '%s_%s_fire' % (metal, item), 'fire_ingot', metal, item_data.smelt_amount, 0.01, 'firmalife:metal/ingot/%s' % metal)
         rm.blockstate(('fluid', 'metal', metal)).with_block_model({'particle': 'block/lava_still'}, parent=None).with_lang(lang('Molten %s', metal))
         rm.lang('fluid.firmalife.metal.%s' % metal, lang('Molten %s', metal))
         rm.fluid_tag(metal, 'firmalife:metal/%s' % metal, 'firmalife:metal/flowing_%s' % metal)
@@ -135,8 +116,3 @@ def chromium_ore_heats(rm: ResourceManager):
     ore = 'chromite'
     metal_data = FL_METALS['chromium']
     item_heat(rm, ('ore', ore), ['firmalife:ore/small_%s' % ore, 'firmalife:ore/normal_%s' % ore, 'firmalife:ore/poor_%s' % ore, 'firmalife:ore/rich_%s' % ore], metal_data.ingot_heat_capacity(), int(metal_data.melt_temperature), mb=40)
-    temp = FL_METALS['chromium'].melt_temperature
-    heat_recipe(rm, ('ore', 'small_%s' % ore), 'firmalife:ore/small_%s' % ore, temp, None, '10 firmalife:metal/chromium')
-    heat_recipe(rm, ('ore', 'poor_%s' % ore), 'firmalife:ore/poor_%s' % ore, temp, None, '15 firmalife:metal/chromium')
-    heat_recipe(rm, ('ore', 'normal_%s' % ore), 'firmalife:ore/normal_%s' % ore, temp, None, '25 firmalife:metal/chromium')
-    heat_recipe(rm, ('ore', 'rich_%s' % ore), 'firmalife:ore/rich_%s' % ore, temp, None, '35 firmalife:metal/chromium')
