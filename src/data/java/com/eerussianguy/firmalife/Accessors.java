@@ -186,6 +186,12 @@ public interface Accessors
     default ItemLike itemOf(Wood wood, Wood.BlockType type) {
         return TFCBlocks.WOODS.get(wood).get(type);
     }
+    default ItemLike itemOf(Metal metal, Metal.ItemType type) {
+        return TFCItems.METAL_ITEMS.get(metal).get(type);
+    }
+    default ItemLike itemOf(FLMetal metal, FLMetal.ItemType type) {
+        return FLItems.METAL_ITEMS.get(metal).get(type);
+    }
 
     default Fluid fluidOf(DyeColor color)
     {

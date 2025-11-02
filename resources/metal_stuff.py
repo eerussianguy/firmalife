@@ -5,7 +5,6 @@ from mcresources import ResourceManager, utils
 from constants import lang
 from data import item_heat
 from assets import slab_loot
-from recipes import anvil_recipe, Rules, welding_recipe, heat_recipe, casting_recipe, damage_shaped
 
 class Metal(NamedTuple):
     tier: int
@@ -48,11 +47,6 @@ METAL_BLOCKS: Dict[str, MetalItem] = {
 METAL_ITEMS_AND_BLOCKS = {**METAL_ITEMS, **METAL_BLOCKS}
 
 def generate(rm: ResourceManager):
-    def craft_decorations(recipe_name: str, base_block: str, has_wall: bool = True):
-        rm.crafting_shaped(recipe_name + '_slab', ['XXX'], base_block, (6, base_block + '_slab')).with_advancement(base_block)
-        rm.crafting_shaped(recipe_name + '_stairs', ['X  ', 'XX ', 'XXX'], base_block, (8, base_block + '_stairs')).with_advancement(base_block)
-        if has_wall:
-            rm.crafting_shaped(recipe_name + '_wall', ['XXX', 'XXX'], base_block, (6, base_block + '_wall')).with_advancement(base_block)
 
     chromium_ore_heats(rm)
     for metal, metal_data in FL_METALS.items():
@@ -79,8 +73,6 @@ def generate(rm: ResourceManager):
         if 'part' in metal_data.types:
             rm.block_tag('minecraft:stairs', 'firmalife:metal/block/%s_stairs' % metal)
             rm.block_tag('minecraft:slabs', 'firmalife:metal/block/%s_slab' % metal)
-            damage_shaped(rm, 'crafting/metal/block/%s' % metal, [' SH', 'SWS', ' S '], {'S': '#forge:sheets/%s' % metal, 'W': '#minecraft:planks', 'H': '#tfc:hammers'}, '8 firmalife:metal/block/%s' % metal)
-            craft_decorations('crafting/metal/block/%s' % metal, 'firmalife:metal/block/%s' % metal, has_wall=False)
 
         def item(_variant: str) -> str:
             return 'firmalife:metal/%s/%s' % (_variant, metal)
