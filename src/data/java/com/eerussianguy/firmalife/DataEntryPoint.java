@@ -14,6 +14,7 @@ import com.eerussianguy.firmalife.providers.BuiltinClimateRanges;
 import com.eerussianguy.firmalife.providers.BuiltinDamageTypes;
 import com.eerussianguy.firmalife.providers.BuiltinFoods;
 import com.eerussianguy.firmalife.providers.BuiltinItemTags;
+import com.eerussianguy.firmalife.providers.BuiltinItemSizes;
 import com.eerussianguy.firmalife.providers.BuiltinPlantables;
 import com.eerussianguy.firmalife.providers.BuiltinRecipes;
 import com.eerussianguy.firmalife.providers.DataManagerProvider;
@@ -69,6 +70,7 @@ public class DataEntryPoint
         add(event, new BuiltinClimateRanges(output, lookup));
         add(event, new BuiltinPlantables(output, lookup));
         add(event, new BuiltinFoods(output, lookup));
+        add(event, new BuiltinItemSizes(output, lookup));
         add(event, new DataManagerProvider<LampFuel>(LampFuel.MANAGER, output, lookup)
         {
 

@@ -115,16 +115,7 @@ def generate(rm: ResourceManager):
 
     rm.domain = 'tfc' # DOMAIN SWITCH
     dynamic_food_item(rm, 'pumpkin_pie', 'minecraft:pumpkin_pie', 'dynamic_bowl')
-    rm.domain = 'firmalife'
-
-    item_size(rm, 'beehive_frame', 'firmalife:beehive_frame', Size.very_small, Weight.very_heavy)
-    item_size(rm, 'cheese_wheels', '#firmalife:cheese_wheels', Size.very_large, Weight.very_heavy)
-    item_size(rm, 'dynamic_foods', '#firmalife:foods/dynamic', Size.very_small, Weight.very_heavy)
-    item_size(rm, 'peel', 'firmalife:peel', Size.very_large, Weight.heavy)
-    item_size(rm, 'big_barrels', '#firmalife:big_barrels', Size.very_large, Weight.very_heavy)
-    item_size(rm, 'wine', '#firmalife:filled_wine_bottles', Size.very_large, Weight.very_heavy)
-    item_size(rm, 'empty_wine', '#firmalife:empty_wine_bottles', Size.normal, Weight.medium)
-    item_size(rm, 'empty_jar', 'firmalife:empty_jar_with_stainless_steel_lid', Size.tiny, Weight.medium)
+    rm.domain = 'firmalife' # todo how do we override tfc in datagen?
 
     item_heat(rm, 'heatable_foods', '#firmalife:foods/heatable', 1)
     item_heat(rm, 'copper_pipe', 'firmalife:copper_pipe', 0.171, melt_temperature=864)

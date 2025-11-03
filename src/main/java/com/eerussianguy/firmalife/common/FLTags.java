@@ -81,7 +81,6 @@ public class FLTags
         public static final TagKey<Item> BREAD_SLICES = create("foods/slices");
         public static final TagKey<Item> PIZZA_INGREDIENTS = create("foods/pizza_ingredients");
         public static final TagKey<Item> FLATBREADS = create("foods/flatbreads");
-        public static final TagKey<Item> FILLED_WINE_BOTTLES = create("filled_wine_bottles");
         public static final TagKey<Item> CHOCOLATE_BLENDS = create("foods/chocolate_blends");
         public static final TagKey<Item> SLICES = create("foods/bread_slices");
         public static final TagKey<Item> FOOD_SHELVES = create("shelves");
@@ -91,7 +90,9 @@ public class FLTags
         public static final TagKey<Item> STOMPING_BARRELS = create("stomping_barrels");
         public static final TagKey<Item> BARREL_PRESSES = create("barrel_presses");
         public static final TagKey<Item> WINE_SHELVES = create("wine_shelves");
-        public static final TagKey<Item> CHEESE_WHEELS = create("cheese_wheels");
+        public static final TagKey<Item> CHEESE_WHEELS = create("foods/cheese_wheels");
+        public static final TagKey<Item> DYNAMIC_FOODS = create("foods/dynamic_foods");
+        public static final TagKey<Item> FILLED_WINE_BOTTLES = create("foods/filled_wine_bottles");
 
         private static TagKey<Item> create(String id)
         {
