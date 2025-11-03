@@ -37,7 +37,7 @@ import static net.dries007.tfc.common.blockentities.FarmlandBlockEntity.Nutrient
 
 public class BuiltinPlantables extends DataManagerProvider<Plantable>
 {
-    protected BuiltinPlantables(PackOutput output, CompletableFuture<HolderLookup.Provider> lookup)
+    public BuiltinPlantables(PackOutput output, CompletableFuture<HolderLookup.Provider> lookup)
     {
         super(Plantable.MANAGER, output, lookup);
     }

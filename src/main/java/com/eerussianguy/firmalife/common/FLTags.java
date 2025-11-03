@@ -82,6 +82,7 @@ public class FLTags
         public static final TagKey<Item> EGG_NOODLE_FLOUR = create("foods/egg_noodle_flour");
         public static final TagKey<Item> BREAD_SLICES = create("foods/slices");
         public static final TagKey<Item> PIZZA_INGREDIENTS = create("foods/pizza_ingredients");
+        public static final TagKey<Item> FLATBREADS = create("foods/flatbreads");
 
         private static TagKey<Item> create(String id)
         {
