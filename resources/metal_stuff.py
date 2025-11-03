@@ -70,10 +70,6 @@ def generate(rm: ResourceManager):
                 rm.item_tag('tfc:metal_item/%s' % metal, item_name)
                 item_heat(rm, ('metal', metal + '_' + item), item_name, metal_data.ingot_heat_capacity(), metal_data.melt_temperature, mb=item_data.smelt_amount)
 
-        if 'part' in metal_data.types:
-            rm.block_tag('minecraft:stairs', 'firmalife:metal/block/%s_stairs' % metal)
-            rm.block_tag('minecraft:slabs', 'firmalife:metal/block/%s_slab' % metal)
-
         def item(_variant: str) -> str:
             return 'firmalife:metal/%s/%s' % (_variant, metal)
 

@@ -65,14 +65,8 @@ def generate(rm: ResourceManager):
 
     # Ore tags
     ore = 'chromite'
-    rm.block_tag('forge:ores', '#forge:ores/%s' % ore)
-    rm.block_tag('forge:ores/%s' % ore, '#firmalife:ores/%s/poor' % ore, '#firmalife:ores/%s/normal' % ore, '#firmalife:ores/%s/rich' % ore)
     rm.item_tag('tfc:ore_pieces', 'firmalife:ore/poor_%s' % ore, 'firmalife:ore/normal_%s' % ore, 'firmalife:ore/rich_%s' % ore)
     rm.item_tag('tfc:small_ore_pieces', 'firmalife:ore/small_%s' % ore)
-    for rock in TFC_ROCKS.keys():
-        rm.block_tag('ores/%s/poor' % ore, 'firmalife:ore/poor_%s/%s' % (ore, rock))
-        rm.block_tag('ores/%s/normal' % ore, 'firmalife:ore/normal_%s/%s' % (ore, rock))
-        rm.block_tag('ores/%s/rich' % ore, 'firmalife:ore/rich_%s/%s' % (ore, rock))
 
 
 def block_and_item_tag(rm: ResourceManager, name_parts: utils.ResourceIdentifier, *values: utils.ResourceIdentifier, replace: bool = False):
