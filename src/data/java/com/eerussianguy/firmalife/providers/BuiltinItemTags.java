@@ -54,6 +54,14 @@ public class BuiltinItemTags extends TagsProvider<Item> implements Accessors
     @Override
     protected void addTags(HolderLookup.Provider provider)
     {
+        tag(FLTags.Items.DYNAMIC_FOODS).add(
+            FLItems.RAW_PIZZA.get(),
+            FLItems.FILLED_PIE.get(),
+            itemOf(FLFood.COOKED_PIE).asItem(),
+            itemOf(FLFood.BURRITO).asItem(),
+            itemOf(FLFood.TACO).asItem(),
+            FLItems.STINKY_SOUP.get()
+        );
         tag(TFCTags.Items.FLUID_ITEM_INGREDIENT_EMPTY_CONTAINERS).add(
             FLItems.HOLLOW_SHELL.asItem(),
             FLItems.WINE_GLASS.asItem()
