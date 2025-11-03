@@ -162,6 +162,16 @@ public interface Accessors
         return TagKey.create(key, ResourceLocation.fromNamespaceAndPath("c", name.toLowerCase(Locale.ROOT)));
     }
 
+    default <T> TagKey<T> tagOf(ResourceKey<Registry<T>> key, String name)
+    {
+        return tagOf(key, ResourceLocation.parse(name.toLowerCase(Locale.ROOT)));
+    }
+
+    default <T> TagKey<T> tagOf(ResourceKey<Registry<T>> key, ResourceLocation name)
+    {
+        return TagKey.create(key, name);
+    }
+
     default Item dyeOf(DyeColor color)
     {
         return itemOf(ResourceLocation.withDefaultNamespace(color.getSerializedName() + "_dye"));

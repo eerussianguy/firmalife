@@ -182,12 +182,14 @@ def item_heat(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredi
         'welding_temperature': welding_temperature
     })
 
+
 def global_loot_modifier(rm: ResourceManager, name: str, mod_type: str, data_in: Json, *conditions: utils.Json):
     rm.write((*rm.resource_dir, 'data', rm.domain, 'loot_modifiers', name), {
         'type': mod_type,
         'conditions': [c for c in conditions],
         **data_in
     })
+
 
 def item_stack_codec(data_in: str):
     stack = utils.item_stack(data_in)
@@ -196,12 +198,14 @@ def item_stack_codec(data_in: str):
         'Count': stack['count'] if 'count' in stack else 1
     }
 
+
 # note for the mcresources dev: these work exactly the same as tags so if you implement this, do it like that
 def global_loot_modifiers(rm: ResourceManager, *modifiers: str):
     rm.write((*rm.resource_dir, 'data', 'forge', 'loot_modifiers', 'global_loot_modifiers'), {
         'replace': False,
         'entries': [m for m in modifiers]
     })
+
 
 def match_entity_tag(tag: str):
     return {
@@ -212,24 +216,26 @@ def match_entity_tag(tag: str):
         'entity': 'this'
     }
 
+
 def match_block_ingredient(tag: str):
     return {
         'condition': 'firmalife:block_ingredient',
         'ingredient': {'tag': tag}
     }
 
+
 def dynamic_food_item(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredient: utils.Json, handler_type: str):
-    rm.item_tag('tfc:foods', ingredient)
     rm.data(('tfc', 'food_items', name_parts), {
         'ingredient': utils.ingredient(ingredient),
         'type': handler_type
     })
 
+
 def decayable(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredient: utils.Json, category: Category, decay: float = 3):
     food_item(rm, name_parts, ingredient, category, 4, 0, 0, decay)
 
+
 def food_item(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredient: utils.Json, category: Category, hunger: int, saturation: float, water: int, decay: float, fruit: Optional[float] = None, veg: Optional[float] = None, protein: Optional[float] = None, grain: Optional[float] = None, dairy: Optional[float] = None):
-    rm.item_tag('tfc:foods', ingredient)
     rm.data(('tfc', 'food_items', name_parts), {
         'ingredient': utils.ingredient(ingredient),
         'category': category.name,

@@ -63,16 +63,7 @@ def generate(rm: ResourceManager):
         for item, item_data in METAL_ITEMS_AND_BLOCKS.items():
             if item_data.type in metal_data.types or item_data.type == 'all':
                 item_name = 'firmalife:metal/block/%s_%s' % (metal, item.replace('block_', '')) if 'block_' in item else 'firmalife:metal/%s/%s' % (item, metal)
-                if item_data.tag is not None:
-                    rm.item_tag(item_data.tag, '#%s/%s' % (item_data.tag, metal))
-                    rm.item_tag(item_data.tag + '/' + metal, item_name)
-
-                rm.item_tag('tfc:metal_item/%s' % metal, item_name)
                 item_heat(rm, ('metal', metal + '_' + item), item_name, metal_data.ingot_heat_capacity(), metal_data.melt_temperature, mb=item_data.smelt_amount)
-
-        if 'part' in metal_data.types:
-            rm.block_tag('minecraft:stairs', 'firmalife:metal/block/%s_stairs' % metal)
-            rm.block_tag('minecraft:slabs', 'firmalife:metal/block/%s_slab' % metal)
 
         def item(_variant: str) -> str:
             return 'firmalife:metal/%s/%s' % (_variant, metal)
@@ -95,13 +86,6 @@ def generate(rm: ResourceManager):
         })
         item.with_lang(lang('molten %s bucket', metal))
         rm.lang('metal.firmalife.%s' % metal, lang(metal))
-
-        rm.item_tag('forge:ingots/%s' % metal)
-        rm.item_tag('tfc:pileable_ingots', '#forge:ingots/%s' % metal)
-        if len(metal_data.types) > 0:
-            rm.item_tag('forge:sheets/%s' % metal)
-            rm.item_tag('tfc:pileable_double_ingots', '#forge:double_ingots/%s' % metal)
-            rm.item_tag('tfc:pileable_sheets', '#forge:sheets/%s' % metal)
 
         for metal_block in METAL_BLOCKS:
             if metal_block == 'block' or metal_block == 'block_stairs' or metal_block == 'block_slab':

@@ -9,6 +9,7 @@ import java.util.function.Supplier;
 import java.util.stream.Stream;
 import com.eerussianguy.firmalife.Accessors;
 import com.eerussianguy.firmalife.FirmaLife;
+import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.blocks.greenhouse.Greenhouse;
 import com.eerussianguy.firmalife.common.blocks.plant.FLFruitBlocks;
@@ -36,6 +37,8 @@ import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blocks.DecorationBlockHolder;
 import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.blocks.plant.Plant;
+import net.dries007.tfc.common.blocks.rock.Ore;
+import net.dries007.tfc.util.Metal;
 import net.dries007.tfc.util.registry.IdHolder;
 
 import static com.eerussianguy.firmalife.common.FLTags.Blocks.*;
@@ -220,6 +223,22 @@ public class BuiltinBlockTags extends TagsProvider<Block> implements Accessors
         tag(CHIMNEYS).add(FLBlocks.CURED_OVEN_CHIMNEY).add(FLBlocks.OVEN_CHIMNEY);
 
 
+        tag(TFCTags.Blocks.CAN_START_COLLAPSE).add2(FLBlocks.CHROMITE_ORES);
+        tag(TFCTags.Blocks.CAN_COLLAPSE).add2(FLBlocks.CHROMITE_ORES);
+
+        var chromiteOres = tagOf(Registries.BLOCK, "forge:ores/chromite");
+        // TODO put these in FLTags?
+        var poorChromite = tagOf(Registries.BLOCK, FLHelpers.identifier("ores/chromite/poor"));
+        var normalChromite = tagOf(Registries.BLOCK, FLHelpers.identifier("ores/chromite/normal"));
+        var richChromite = tagOf(Registries.BLOCK, FLHelpers.identifier("ores/chromite/rich"));
+
+        tag(Tags.Blocks.ORES).addTag(chromiteOres);
+        tag(chromiteOres).addTags(poorChromite, normalChromite, richChromite);
+        tag(poorChromite).add(FLBlocks.CHROMITE_ORES, Ore.Grade.POOR);
+        tag(normalChromite).add(FLBlocks.CHROMITE_ORES, Ore.Grade.NORMAL);
+        tag(richChromite).add(FLBlocks.CHROMITE_ORES, Ore.Grade.RICH);
+        tag(BlockTags.STAIRS).add(FLBlocks.METALS, Metal.BlockType.BLOCK_STAIRS);
+        tag(BlockTags.SLABS).add(FLBlocks.METALS, Metal.BlockType.BLOCK_SLAB);
     }
 
     @Override
