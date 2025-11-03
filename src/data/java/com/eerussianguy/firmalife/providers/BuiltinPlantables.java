@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.CompletableFuture;
 import com.eerussianguy.firmalife.FirmaLife;
+import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.blocks.Herb;
 import com.eerussianguy.firmalife.common.blocks.greenhouse.PlanterType;
@@ -17,6 +18,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
@@ -85,7 +87,19 @@ public class BuiltinPlantables extends DataManagerProvider<Plantable>
         }
         for (FruitBlocks.StationaryBush bush : FruitBlocks.StationaryBush.values())
         {
-
+            final SeasonalPlantBlock block = (SeasonalPlantBlock) TFCBlocks.STATIONARY_BUSHES.get(bush).get();
+            final ItemStack fruit = block.getProductItem(RandomSource.create());
+            final String name = bush.name().toLowerCase(Locale.ROOT);
+            final String p = "block/berry_bush/" + name;
+            plantable(name, TFCBlocks.STATIONARY_BUSHES.get(bush).asItem(), TRELLIS, 15, 0, 0.08f, fruit.getItem(), NITROGEN, forEachPrefix(TerraFirmaCraft.MOD_ID, "_bush", p + name, p + "dry_" + name, p + "flowering_" + name, p + "fruiting_" + name), List.of());
+        }
+        for (FLFruitBlocks.StationaryBush bush : FLFruitBlocks.StationaryBush.values())
+        {
+            final SeasonalPlantBlock block = (SeasonalPlantBlock) FLBlocks.STATIONARY_BUSHES.get(bush).get();
+            final ItemStack fruit = block.getProductItem(RandomSource.create());
+            final String name = bush.name().toLowerCase(Locale.ROOT);
+            final String p = "block/berry_bush/" + name;
+            plantable(name, FLBlocks.STATIONARY_BUSHES.get(bush).asItem(), TRELLIS, 15, 0, 0.08f, fruit.getItem(), NITROGEN, forEachPrefix(FirmaLife.MOD_ID, "_bush", p + name, p + "dry_" + name, p + "flowering_" + name, p + "fruiting_" + name), List.of());
         }
 
         for (Herb herb : Herb.values())
@@ -98,6 +112,11 @@ public class BuiltinPlantables extends DataManagerProvider<Plantable>
             }
             plantable(name, FLBlocks.HERBS.get(herb).asItem(), QUAD, 0, 1, 0.8f, FLBlocks.HERBS.get(herb).asItem(), NITROGEN, textures, List.of());
         }
+
+        hanging("squash", TFCItems.CROP_SEEDS.get(Crop.SQUASH), food(Food.SQUASH), 0, POTASSIUM, 0.5f);
+        hanging("pumpkin", TFCItems.CROP_SEEDS.get(Crop.PUMPKIN), TFCBlocks.PUMPKIN, 15, PHOSPHOROUS, 0.5f);
+        hanging("melon", TFCItems.CROP_SEEDS.get(Crop.MELON), TFCBlocks.MELON, 15, PHOSPHOROUS, 0.5f);
+        hanging("banana", TFCBlocks.BANANA_SAPLING, food(Food.BANANA), 15, NITROGEN, 0.08f);
     }
 
     private ItemLike food(Food food)
@@ -127,6 +146,11 @@ public class BuiltinPlantables extends DataManagerProvider<Plantable>
         add(name, new Plantable(Ingredient.of(TFCItems.CROP_SEEDS.get(crop)), planter, tier, stages, 0.5f, TFCItems.CROP_SEEDS.get(crop).get().getDefaultInstance(), output.asItem().getDefaultInstance(), type, textures, List.of()));
     }
 
+    private void hanging(String name, ItemLike seed, ItemLike crop, int tier, FarmlandBlockEntity.NutrientType nut, float seedChance)
+    {
+        plantable(name, seed, HANGING, tier, 4, seedChance, seed, nut, forEach(FirmaLife.MOD_ID, "block/crop/" + name, "0", "1", "2", "3", "4"), List.of(FLHelpers.identifier(name + "_fruit")));
+    }
+
     private void plantable(String name, ItemLike seed, PlanterType planter, int tier, int stages, float extraSeedChance, ItemLike output, FarmlandBlockEntity.NutrientType nut, List<ResourceLocation> textures, List<ResourceLocation> specials)
     {
         add(name, new Plantable(Ingredient.of(seed), planter, tier, stages, extraSeedChance, seed.asItem().getDefaultInstance(), output.asItem().getDefaultInstance(), nut, textures, specials));
@@ -151,6 +175,16 @@ public class BuiltinPlantables extends DataManagerProvider<Plantable>
     {
         final List<ResourceLocation> textures = new ArrayList<>();
         for (String suffix : suffixes)
+        {
+            textures.add(ResourceLocation.fromNamespaceAndPath(modId, prefix + suffix));
+        }
+        return textures;
+    }
+
+    private List<ResourceLocation> forEachPrefix(String modId, String suffix, String... prefixes)
+    {
+        final List<ResourceLocation> textures = new ArrayList<>();
+        for (String prefix : prefixes)
         {
             textures.add(ResourceLocation.fromNamespaceAndPath(modId, prefix + suffix));
         }

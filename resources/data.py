@@ -43,24 +43,6 @@ def generate(rm: ResourceManager):
     greenhouse(rm, 'iron', '#firmalife:all_iron_greenhouse', 15)  # allows fruit trees
     greenhouse(rm, 'stainless_steel', '#firmalife:stainless_steel_greenhouse', 20)
 
-    hanging_plantable(rm, 'squash', 'tfc:seeds/squash', 'tfc:food/squash', 'potassium')
-    hanging_plantable(rm, 'pumpkin', 'tfc:seeds/pumpkin', 'tfc:pumpkin', 'phosphorous', tier=15)
-    hanging_plantable(rm, 'melon', 'tfc:seeds/melon', 'tfc:melon', 'phosphorous', tier=15)
-    hanging_plantable(rm, 'banana', 'tfc:plant/banana_sapling', 'tfc:food/banana', 'nitrogen', tier=15, seed_chance=0.08)
-
-    trellis_plantable(rm, 'blackberry', 'tfc:plant/blackberry_bush', 'tfc:food/blackberry', 'nitrogen')
-    trellis_plantable(rm, 'blueberry', 'tfc:plant/blueberry_bush', 'tfc:food/blueberry', 'nitrogen')
-    trellis_plantable(rm, 'raspberry', 'tfc:plant/raspberry_bush', 'tfc:food/raspberry', 'nitrogen')
-    trellis_plantable(rm, 'elderberry', 'tfc:plant/elderberry_bush', 'tfc:food/elderberry', 'nitrogen')
-    trellis_plantable(rm, 'bunchberry', 'tfc:plant/bunchberry_bush', 'tfc:food/bunchberry', 'nitrogen')
-    trellis_plantable(rm, 'cloudberry', 'tfc:plant/cloudberry_bush', 'tfc:food/cloudberry', 'nitrogen')
-    trellis_plantable(rm, 'gooseberry', 'tfc:plant/gooseberry_bush', 'tfc:food/gooseberry', 'nitrogen')
-    trellis_plantable(rm, 'snowberry', 'tfc:plant/snowberry_bush', 'tfc:food/snowberry', 'nitrogen')
-    trellis_plantable(rm, 'strawberry', 'tfc:plant/strawberry_bush', 'tfc:food/strawberry', 'nitrogen')
-    trellis_plantable(rm, 'wintergreen_berry', 'tfc:plant/wintergreen_berry_bush', 'tfc:food/wintergreen_berry', 'nitrogen')
-    trellis_plantable(rm, 'nightshade', 'firmalife:plant/nightshade_bush', 'firmalife:food/nightshade_berry', 'nitrogen', firmalife=True)
-    trellis_plantable(rm, 'pineapple', 'firmalife:plant/pineapple_bush', 'firmalife:food/pineapple', 'nitrogen', firmalife=True)
-
     # Drinkable
     drinkable(rm, 'chocolate', 'firmalife:chocolate', thirst=10, food={'hunger': 0, 'saturation': 1.0, 'dairy': 1.0})
 
