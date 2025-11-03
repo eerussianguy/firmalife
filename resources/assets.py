@@ -240,7 +240,7 @@ def generate(rm: ResourceManager):
     ).with_lang(lang('white grape plant')).with_block_loot('firmalife:grape_trellis_post')
 
     for color in ('red', 'white'):
-        rm.item_model('seeds/%s_grape' % color, 'firmalife:item/seeds/%s_grape' % color).with_lang(lang('%s grape seeds', color)).with_tag('tfc:seeds')
+        rm.item_model('seeds/%s_grape' % color, 'firmalife:item/seeds/%s_grape' % color).with_lang(lang('%s grape seeds', color))
 
     rm.item_model('beehive_frame_no_queen', 'firmalife:item/beehive_frame')
     rm.item_model('beehive_frame_queen', 'firmalife:item/beehive_frame_queen')
@@ -326,7 +326,7 @@ def generate(rm: ResourceManager):
                 surf = 'firmalife:block/cheese/%s_wheel_surface_%s' % (cheese, age)
                 rm.block_model('cheese/%s_%s_%s' % (cheese, age, i), parent='firmalife:block/cheese_%s' % i, textures={'surface': surf, 'particle': surf, 'down': surf, 'inside': 'firmalife:block/cheese/%s_wheel_inner_%s' % (cheese, age)})
                 states.append(({'age': age, 'count': i}, {'model': 'firmalife:block/cheese/%s_%s_%s' % (cheese, age, i)}))
-        block = rm.blockstate_multipart('%s_wheel' % cheese, *states).with_lang(lang('%s cheese wheel', cheese)).with_item_tag('cheese_wheels')
+        block = rm.blockstate_multipart('%s_wheel' % cheese, *states).with_lang(lang('%s cheese wheel', cheese))
         block.with_block_loot([{
             'name': 'firmalife:food/%s' % cheese,
             'functions': [loot_tables.set_count(c)],
@@ -397,13 +397,13 @@ def generate(rm: ResourceManager):
         flower_pot_cross(rm, herb, 'firmalife:plant/potted/%s' % herb, 'plant/flowerpot/%s' % herb, 'firmalife:block/plant/%s/1' % herb, 'firmalife:plant/%s' % herb)
 
     for wood in TFC_WOODS.keys():
-        block = rm.blockstate('firmalife:wood/food_shelf/%s' % wood, variants=four_rotations('firmalife:block/wood/food_shelf/%s_dynamic' % wood, (270, 180, None, 90))).with_item_tag('food_shelves')
+        block = rm.blockstate('firmalife:wood/food_shelf/%s' % wood, variants=four_rotations('firmalife:block/wood/food_shelf/%s_dynamic' % wood, (270, 180, None, 90)))
         block.with_block_loot('firmalife:wood/food_shelf/%s' % wood).with_lang(lang('%s food shelf', wood))
         rm.item_model('firmalife:wood/food_shelf/%s' % wood, parent='firmalife:block/wood/food_shelf/%s' % wood, no_textures=True)
         rm.custom_block_model('firmalife:wood/food_shelf/%s_dynamic' % wood, 'firmalife:food_shelf', {'base': {'parent': 'firmalife:block/wood/food_shelf/%s' % wood}})
         rm.block_model('firmalife:wood/food_shelf/%s' % wood, parent='firmalife:block/food_shelf_base', textures={'wood': 'tfc:block/wood/planks/%s' % wood})
 
-        block = rm.blockstate('firmalife:wood/hanger/%s' % wood, model='firmalife:block/wood/hanger/%s_dynamic' % wood).with_item_tag('hangers')
+        block = rm.blockstate('firmalife:wood/hanger/%s' % wood, model='firmalife:block/wood/hanger/%s_dynamic' % wood)
         block.with_block_loot('firmalife:wood/hanger/%s' % wood).with_lang(lang('%s hanger' % wood))
         rm.custom_block_model('firmalife:wood/hanger/%s_dynamic' % wood, 'firmalife:hanger', {'base': {'parent': 'firmalife:block/wood/hanger/%s' % wood}})
         rm.item_model('firmalife:wood/hanger/%s' % wood, parent='firmalife:block/wood/hanger/%s' % wood, no_textures=True)
@@ -413,7 +413,7 @@ def generate(rm: ResourceManager):
             **four_rotations('firmalife:block/wood/jarbnet/%s_dynamic' % wood, (90, None, 180, 270), suffix=',open=true'),
             **four_rotations('firmalife:block/wood/jarbnet/%s_shut_dynamic' % wood, (90, None, 180, 270), suffix=',open=false'),
         })
-        block.with_block_loot('firmalife:wood/jarbnet/%s' % wood).with_lang(lang('%s jarbnet', wood)).with_item_tag('jarbnets')
+        block.with_block_loot('firmalife:wood/jarbnet/%s' % wood).with_lang(lang('%s jarbnet', wood))
         rm.item_model('firmalife:wood/jarbnet/%s' % wood, parent='firmalife:block/wood/jarbnet/%s' % wood, no_textures=True)
         textures = {'planks': 'tfc:block/wood/planks/%s' % wood, 'sheet': 'tfc:block/wood/sheet/%s' % wood, 'log': 'tfc:block/wood/log/%s' % wood}
         rm.block_model('firmalife:wood/jarbnet/%s' % wood, parent='firmalife:block/jarbnet', textures=textures)
@@ -444,17 +444,16 @@ def generate(rm: ResourceManager):
             ('barrel_part=%s,facing=%s' % (i, f), {'model': 'firmalife:block/wood/big_barrel/%s_%s' % (wood, i), 'y': y if y != 0 else None})
             for f, y in (('east', 90), ('north', 0), ('south', 180), ('west', 270)) for i in range(0, 8)
         )).with_lang(lang('%s keg' % wood)).with_block_loot({'name': 'firmalife:wood/big_barrel/%s' % wood, 'conditions': [loot_tables.block_state_property('firmalife:wood/big_barrel/%s[barrel_part=0]' % wood)]})
-        block.with_item_tag('firmalife:big_barrels')
 
-        rm.blockstate('wood/stomping_barrel/%s' % wood).with_block_model({'0': 'tfc:block/wood/sheet/%s' % wood}, 'firmalife:block/stomping_barrel').with_lang(lang('%s stomping barrel', wood)).with_block_loot('firmalife:wood/stomping_barrel/%s' % wood).with_item_tag('firmalife:stomping_barrels')
+        rm.blockstate('wood/stomping_barrel/%s' % wood).with_block_model({'0': 'tfc:block/wood/sheet/%s' % wood}, 'firmalife:block/stomping_barrel').with_lang(lang('%s stomping barrel', wood)).with_block_loot('firmalife:wood/stomping_barrel/%s' % wood)
         rm.item_model('wood/stomping_barrel/%s' % wood, parent='firmalife:block/wood/stomping_barrel/%s' % wood, no_textures=True)
 
-        rm.blockstate('wood/barrel_press/%s' % wood).with_block_model({'0': 'tfc:block/wood/sheet/%s' % wood}, 'firmalife:block/barrel_press').with_lang(lang('%s barrel press', wood)).with_block_loot('firmalife:wood/barrel_press/%s' % wood).with_item_tag('firmalife:barrel_presses')
+        rm.blockstate('wood/barrel_press/%s' % wood).with_block_model({'0': 'tfc:block/wood/sheet/%s' % wood}, 'firmalife:block/barrel_press').with_lang(lang('%s barrel press', wood)).with_block_loot('firmalife:wood/barrel_press/%s' % wood)
         rm.item_model('wood/barrel_press/%s' % wood, parent='firmalife:block/wood/barrel_press/%s' % wood, no_textures=True)
 
         block = rm.blockstate('wood/wine_shelf/%s' % wood, variants=four_rotations('firmalife:block/wood/wine_shelf/%s_dynamic' % wood, (90, None, 180, 270)))
         block.with_block_model({'0': 'tfc:block/wood/planks/%s' % wood, '2': 'tfc:block/wood/sheet/%s' % wood, '3': 'tfc:block/wood/stripped_log/%s' % wood}, 'firmalife:block/wine_shelf')
-        block.with_lang(lang('%s wine shelf', wood)).with_item_tag('firmalife:wine_shelves').with_block_loot('firmalife:wood/wine_shelf/%s' % wood)
+        block.with_lang(lang('%s wine shelf', wood)).with_block_loot('firmalife:wood/wine_shelf/%s' % wood)
         rm.item_model('wood/wine_shelf/%s' % wood, parent='firmalife:block/wood/wine_shelf/%s' % wood, no_textures=True)
         rm.custom_block_model('firmalife:wood/wine_shelf/%s_dynamic' % wood, 'firmalife:wine_shelf', {'base': {'parent': 'firmalife:block/wood/wine_shelf/%s' % wood}})
 
@@ -521,19 +520,19 @@ def generate(rm: ResourceManager):
             rm.item_model(('plant', '%s_sapling' % fruit), 'firmalife:block/fruit_tree/%s_sapling' % fruit)
             flower_pot_cross(rm, '%s sapling' % fruit, 'firmalife:plant/potted/%s_sapling' % fruit, 'plant/flowerpot/%s_sapling' % fruit, 'firmalife:block/fruit_tree/%s_sapling' % fruit, 'firmalife:plant/%s_sapling' % fruit)
 
-    contained_fluid(rm, 'hollow_shell', 'firmalife:item/hollow_shell', 'firmalife:item/hollow_shell_overlay').with_lang(lang('Hollow Shell')).with_tag('tfc:buckets')
-    contained_fluid(rm, 'wine_glass', 'firmalife:item/wine_glass', 'firmalife:item/wine_glass_overlay').with_lang(lang('wine glass')).with_tag('tfc:buckets')
+    contained_fluid(rm, 'hollow_shell', 'firmalife:item/hollow_shell', 'firmalife:item/hollow_shell_overlay').with_lang(lang('Hollow Shell'))
+    contained_fluid(rm, 'wine_glass', 'firmalife:item/wine_glass', 'firmalife:item/wine_glass_overlay').with_lang(lang('wine glass'))
 
     peel(rm, 'peel', 'firmalife:item/peel')
 
     for name, _, _ in JARS:
         rm.block_model('jar/%s' % name, textures={'1': 'firmalife:block/jar/%s' % name}, parent='tfc:block/jar')
-        rm.item_model('jar/%s' % name, 'firmalife:item/jar/%s' % name).with_lang(lang('jar of %s', name)).with_tag('tfc:jars').with_tag('tfc:unsealed_jars')
+        rm.item_model('jar/%s' % name, 'firmalife:item/jar/%s' % name).with_lang(lang('jar of %s', name))
     for fruit in FL_FRUITS:
         rm.block_model('jar/%s' % fruit, textures={'1': 'firmalife:block/jar/%s' % fruit}, parent='tfc:block/jar')
         rm.block_model('jar/%s_unsealed' % fruit, textures={'1': 'firmalife:block/jar/%s' % fruit, '2': 'tfc:block/jar_no_lid'}, parent='tfc:block/jar')
-        rm.item_model('jar/%s' % fruit, 'firmalife:item/jar/%s' % fruit).with_lang(lang('%s jam', fruit)).with_tag('tfc:jars').with_tag('tfc:foods/sealed_preserves')
-        rm.item_model('jar/%s_unsealed' % fruit, 'firmalife:item/jar/%s_unsealed' % fruit).with_lang(lang('%s jam', fruit)).with_tag('tfc:jars').with_tag('tfc:foods/preserves')
+        rm.item_model('jar/%s' % fruit, 'firmalife:item/jar/%s' % fruit).with_lang(lang('%s jam', fruit))
+        rm.item_model('jar/%s_unsealed' % fruit, 'firmalife:item/jar/%s_unsealed' % fruit).with_lang(lang('%s jam', fruit))
 
     for block, tag in SIMPLE_BLOCKS.items():
         rm.blockstate(block).with_block_model().with_lang(lang(block)).with_item_model().with_block_loot('firmalife:%s' % block)
@@ -569,14 +568,16 @@ def contained_fluid(rm: ResourceManager, name_parts: utils.ResourceIdentifier, b
         }
     })
 
+
 def flower_pot_cross(rm: ResourceManager, simple_name: str, name: str, model: str, texture: str, loot: str, tinted: bool = False):
     rm.blockstate(name, model='firmalife:block/%s' % model).with_lang(lang('potted %s', simple_name)).with_block_loot(loot, 'minecraft:flower_pot')
     rm.block_model(model, parent='minecraft:block/tinted_flower_pot_cross' if tinted else 'minecraft:block/flower_pot_cross', textures={'plant': texture, 'dirt': 'tfc:block/dirt/loam'})
 
+
 def simple_plant_data(rm: ResourceManager, p: str, bees: bool = True, straw: bool = True):
-    rm.item_tag('tfc:plants', p)
     loot_alt = ({'name': p, 'conditions': [loot_tables.match_tag('tfc:knives')]}) if not straw else ({'name': p, 'conditions': [loot_tables.match_tag('forge:shears')]}, {'name': 'tfc:straw', 'conditions': [loot_tables.match_tag('tfc:sharp_tools')]})
     rm.block_loot(p, loot_alt)
+
 
 def item_model_property(rm: ResourceManager, name_parts: utils.ResourceIdentifier, overrides: utils.Json, data: Dict[str, Any]) -> ItemContext:
     res = utils.resource_location(rm.domain, name_parts)
@@ -641,7 +642,6 @@ def greenhouse_stairs(rm: ResourceManager, name: str, frame: str, glass: str) ->
     rm.block_model('greenhouse/%s_roof_outer' % name, textures=textures, parent='firmalife:block/greenhouse_roof_outer')
     rm.item_model(block_name, parent='firmalife:block/greenhouse/%s_roof' % name, no_textures=True)
     block.with_block_loot('firmalife:%s' % block_name).with_lang(lang('%s greenhouse roof', name))
-    greenhouse_tags(block, name)
     return block
 
 def greenhouse_slab(rm: ResourceManager, name: str, frame: str, glass: str) -> 'BlockContext':
@@ -656,8 +656,8 @@ def greenhouse_slab(rm: ResourceManager, name: str, frame: str, glass: str) -> '
     rm.block_model('greenhouse/%s_roof_top_upper' % name, textures, parent='firmalife:block/greenhouse_roof_top_upper')
     rm.item_model(block_name, parent='firmalife:block/greenhouse/%s_roof_top' % name, no_textures=True)
     slab_loot(rm, 'firmalife:%s' % block_name)
-    greenhouse_tags(block, name)
     return block
+
 
 def greenhouse_wall(rm: ResourceManager, name: str, frame: str, glass: str) -> 'BlockContext':
     rm.block_model('greenhouse/%s_wall' % name, {'glass': glass + '_both', 'steel': frame}, parent='firmalife:block/greenhouse_wall')
@@ -672,8 +672,8 @@ def greenhouse_wall(rm: ResourceManager, name: str, frame: str, glass: str) -> '
         'down=true,up=true': {'model': 'firmalife:block/greenhouse/%s_wall_both' % name}
     }).with_block_loot('firmalife:%s_greenhouse_wall' % name).with_lang(lang('%s greenhouse wall', name))
     rm.item_model('%s_greenhouse_wall' % name, parent='firmalife:block/greenhouse/%s_wall_both' % name, no_textures=True)
-    greenhouse_tags(block, name)
     return block
+
 
 def greenhouse_port(rm: ResourceManager, name: str, frame: str, glass: str) -> 'BlockContext':
     rm.block_model('greenhouse/%s_port_inv' % name, {'glass': glass + '_both', 'steel': frame}, parent='firmalife:block/greenhouse_port_inv')
@@ -686,7 +686,6 @@ def greenhouse_port(rm: ResourceManager, name: str, frame: str, glass: str) -> '
         ({'down': True, 'up': True}, {'model': 'firmalife:block/greenhouse/%s_wall_both' % name})
     ).with_block_loot('firmalife:%s_greenhouse_port' % name).with_lang(lang('%s greenhouse port', name))
     rm.item_model('%s_greenhouse_port' % name, parent='firmalife:block/greenhouse/%s_port_inv' % name, no_textures=True)
-    greenhouse_tags(block, name)
     return block
 
 def greenhouse_panel_wall(rm: ResourceManager, name: str, frame: str, glass: str) -> 'BlockContext':
@@ -702,8 +701,8 @@ def greenhouse_panel_wall(rm: ResourceManager, name: str, frame: str, glass: str
         **four_rotations('firmalife:block/greenhouse/%s_panel_wall_both' % name, (90, None, 180, 270), prefix='down=true,', suffix=',up=true'),
     }).with_block_loot('firmalife:%s_greenhouse_panel_wall' % name).with_lang(lang('%s greenhouse panel wall', name))
     rm.item_model('%s_greenhouse_panel_wall' % name, parent='firmalife:block/greenhouse/%s_panel_wall_both' % name, no_textures=True)
-    greenhouse_tags(block, name)
     return block
+
 
 def greenhouse_panel_roof(rm: ResourceManager, name: str, frame: str, glass: str) -> 'BlockContext':
     rm.block_model('greenhouse/%s_panel_roof' % name, {'glass': glass + '_both', 'steel': frame}, parent='firmalife:block/greenhouse_roof_panel')
@@ -718,15 +717,14 @@ def greenhouse_panel_roof(rm: ResourceManager, name: str, frame: str, glass: str
         **four_rotations('firmalife:block/greenhouse/%s_panel_roof_both' % name, (90, None, 180, 270), prefix='cw=true,ccw=true,')
     }).with_block_loot('firmalife:%s_greenhouse_panel_roof' % name).with_lang(lang('%s greenhouse panel roof', name))
     rm.item_model('%s_greenhouse_panel_roof' % name, parent='firmalife:block/greenhouse/%s_panel_roof' % name, no_textures=True)
-    greenhouse_tags(block, name)
     return block
 
 
 def greenhouse_trapdoor(rm: ResourceManager, name: str, glass: str) -> 'BlockContext':
     rm.block('%s_greenhouse' % name).make_trapdoor(texture=glass)
     block = rm.block('%s_greenhouse_trapdoor' % name).with_lang(lang('%s greenhouse trapdoor' % name)).with_block_loot('firmalife:%s_greenhouse_trapdoor' % name)
-    greenhouse_tags(block, name)
     return block
+
 
 def greenhouse_door(rm: ResourceManager, name: str, bot: str, upper: str) -> 'BlockContext':
     door = '%s_greenhouse_door' % name
@@ -734,12 +732,8 @@ def greenhouse_door(rm: ResourceManager, name: str, bot: str, upper: str) -> 'Bl
     make_door(rm.block('%s_greenhouse' % name), top_texture=upper, bottom_texture=bot)
     rm.item_model(door)
     door_loot(block, 'firmalife:%s' % door)
-    greenhouse_tags(block, name).with_item_tag('minecraft:doors')
     return block
 
-def greenhouse_tags(block: BlockContext, greenhouse_name: str) -> 'BlockContext':
-    block.with_item_tag('%s_greenhouse' % greenhouse_name)
-    return block
 
 def slab_loot(rm: ResourceManager, loot: str):
     return rm.block_loot(loot, {

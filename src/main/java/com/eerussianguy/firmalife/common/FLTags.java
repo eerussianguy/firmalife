@@ -3,8 +3,6 @@ package com.eerussianguy.firmalife.common;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
 
@@ -83,6 +81,17 @@ public class FLTags
         public static final TagKey<Item> BREAD_SLICES = create("foods/slices");
         public static final TagKey<Item> PIZZA_INGREDIENTS = create("foods/pizza_ingredients");
         public static final TagKey<Item> FLATBREADS = create("foods/flatbreads");
+        public static final TagKey<Item> FILLED_WINE_BOTTLES = create("filled_wine_bottles");
+        public static final TagKey<Item> CHOCOLATE_BLENDS = create("foods/chocolate_blends");
+        public static final TagKey<Item> SLICES = create("foods/bread_slices");
+        public static final TagKey<Item> FOOD_SHELVES = create("shelves");
+        public static final TagKey<Item> HANGERS = create("hangers");
+        public static final TagKey<Item> JARBNETS = create("jarbnets");
+        public static final TagKey<Item> BIG_BARRELS = create("big_barrels");
+        public static final TagKey<Item> STOMPING_BARRELS = create("stomping_barrels");
+        public static final TagKey<Item> BARREL_PRESSES = create("barrel_presses");
+        public static final TagKey<Item> WINE_SHELVES = create("wine_shelves");
+        public static final TagKey<Item> CHEESE_WHEELS = create("cheese_wheels");
 
         private static TagKey<Item> create(String id)
         {
@@ -114,7 +123,7 @@ public class FLTags
 
         private static TagKey<FoodTrait> create(String id)
         {
-        return TagKey.create(FoodTraits.KEY, FLHelpers.identifier(id));
+            return TagKey.create(FoodTraits.KEY, FLHelpers.identifier(id));
         }
     }
 }

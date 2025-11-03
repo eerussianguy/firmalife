@@ -1,51 +1,10 @@
 from mcresources import ResourceManager, utils
+
 from constants import *
+
 
 def generate(rm: ResourceManager):
     ### TAGS ###
-    rm.item_tag('usable_on_oven', 'firmalife:peel')
-    rm.item_tag('tfc:sweetener', 'firmalife:raw_honey')
-    rm.item_tag('tfc:foods/flour', *['tfc:food/%s_flour' % g for g in TFC_GRAINS])
-    rm.item_tag('tfc:foods/dough', *['firmalife:food/%s_dough' % g for g in TFC_GRAINS])
-    rm.item_tag('firmalife:foods/extra_dough', *['firmalife:food/%s_dough' % g for g in TFC_GRAINS])
-    rm.item_tag('feeds_yeast', '#tfc:foods/flour')
-    rm.item_tag('foods/slices', *['firmalife:food/%s_slice' % g for g in TFC_GRAINS])
-    rm.item_tag('foods/flatbreads', *['firmalife:food/%s_flatbread' % g for g in TFC_GRAINS])
-    rm.item_tag('foods/pizza_ingredients', '#tfc:foods/vegetables', '#tfc:foods/fruits', '#tfc:foods/cooked_meats')
-    rm.item_tag('tfc:sandwich_bread', '#firmalife:foods/slices', '#firmalife:foods/flatbreads')
-    rm.item_tag('foods/cheeses', 'firmalife:food/gouda', 'firmalife:food/chevre', 'firmalife:food/shosha', 'firmalife:food/feta', 'firmalife:food/rajya_metok', 'firmalife:food/cheddar')
-    rm.item_tag('smoking_fuel', '#minecraft:logs')
-    rm.item_tag('oven_fuel', '#minecraft:logs', 'tfc:stick_bundle')
-    rm.item_tag('chocolate_blends', 'firmalife:food/milk_chocolate_blend', 'firmalife:food/dark_chocolate_blend', 'firmalife:food/white_chocolate_blend')
-    rm.item_tag('foods/chocolate', 'firmalife:food/milk_chocolate', 'firmalife:food/dark_chocolate', 'firmalife:food/white_chocolate')
-    rm.item_tag('tfc:foods/can_be_salted', 'firmalife:food/butter')
-    rm.item_tag('tfc:usable_on_tool_rack', 'firmalife:spoon', 'firmalife:peel')
-    rm.item_tag('pumpkin_knapping', 'tfc:pumpkin')
-    rm.item_tag('tfc:any_knapping', '#firmalife:pumpkin_knapping')
-    rm.item_tag('foods/heatable', 'firmalife:food/raw_pizza', 'firmalife:food/filled_pie', 'firmalife:food/raw_pumpkin_pie', 'firmalife:food/corn_tortilla', 'firmalife:food/masa', '#firmalife:foods/slices', 'firmalife:food/cocoa_beans', 'firmalife:food/bacon', 'firmalife:food/cookie_dough', 'firmalife:food/chocolate_chip_cookie_dough', 'firmalife:food/hardtack_dough', 'firmalife:food/raw_lasagna')
-    rm.item_tag('foods/dynamic', 'firmalife:food/raw_pizza', 'firmalife:food/filled_pie', 'firmalife:food/cooked_pizza', 'firmalife:food/cooked_pie', 'firmalife:food/burrito', 'firmalife:food/taco', 'firmalife:food/stinky_soup')
-    rm.item_tag('foods/washable', 'firmalife:food/filled_pie', 'firmalife:food/cooked_pie', 'firmalife:food/raw_pumpkin_pie', 'minecraft:pumpkin_pie', 'firmalife:food/stinky_soup')
-    rm.item_tag('pie_pans', 'firmalife:pie_pan')
-    rm.item_tag('can_be_hung', '#tfc:foods/meats', 'tfc:food/garlic')
-    rm.item_tag('tfc:compost_greens_low', 'firmalife:fruit_leaf')
-    rm.item_tag('tfc:compost_greens', 'firmalife:food/nightshade_berry')
-    rm.item_tag('foods/cooked_meats_and_substitutes', '#tfc:foods/cooked_meats', 'firmalife:food/tofu')
-    rm.item_tag('forge:leather', 'firmalife:pineapple_leather')
-    rm.item_tag('forge:sheets/any_bronze', 'tfc:metal/sheet/bronze', 'tfc:metal/sheet/black_bronze', 'tfc:metal/sheet/bismuth_bronze')
-    rm.item_tag('usable_in_stovetop_soup', '#tfc:foods/usable_in_soup')
-    rm.item_tag('beekeeper_armor', *['firmalife:beekeeper_%s' % p for p in ARMOR_SECTIONS])
-    rm.item_tag('foods/raw_eggs', 'minecraft:egg')
-    rm.item_tag('foods/raw_fish', *['tfc:food/%s' % fish for fish in TFC_FISH_ITEMS])
-    rm.item_tag('foods/cooked_fish', *['tfc:food/cooked_%s' % fish for fish in TFC_FISH_ITEMS])
-    rm.item_tag('foods/egg_noodle_flour', *['tfc:food/%s_flour' % g for g in TFC_GRAINS])
-    rm.item_tag('foods/grapes', 'firmalife:food/red_grapes', 'firmalife:food/white_grapes')
-    rm.item_tag('foods/smashed_grapes', 'firmalife:food/smashed_red_grapes', 'firmalife:food/smashed_white_grapes')
-    rm.item_tag('empty_wine_bottles', 'empty_hematitic_wine_bottle', 'empty_olivine_wine_bottle', 'empty_volcanic_wine_bottle')
-    rm.item_tag('filled_wine_bottles', 'hematitic_wine_bottle', 'olivine_wine_bottle', 'volcanic_wine_bottle')
-    rm.item_tag('wine_bottles', '#firmalife:empty_wine_bottles', '#firmalife:filled_wine_bottles')
-    rm.item_tag('can_be_pressed_like_grapes', '#firmalife:foods/smashed_grapes')
-    rm.item_tag('tfc:unsealed_jars', 'firmalife:empty_jar_with_stainless_steel_lid')
-    rm.item_tag('tfc:empty_jar_with_lid', 'firmalife:empty_jar_with_stainless_steel_lid')
 
     # block_and_item_tag(rm, 'tfc:wild_fruits', 'firmalife:plant/pineapple_bush', 'firmalife:plant/nightshade_bush', 'firmalife:plant/fig_sapling', 'firmalife:plant/cocoa_sapling')
 
@@ -62,11 +21,6 @@ def generate(rm: ResourceManager):
     rm.fluid_tag('usable_in_wine_glass', '#tfc:drinkables')
     rm.fluid_tag('usable_in_vat', '#tfc:usable_in_pot', 'firmalife:fruity_fluid')
     rm.fluid_tag('oils', 'firmalife:soybean_oil', 'tfc:olive_oil')
-
-    # Ore tags
-    ore = 'chromite'
-    rm.item_tag('tfc:ore_pieces', 'firmalife:ore/poor_%s' % ore, 'firmalife:ore/normal_%s' % ore, 'firmalife:ore/rich_%s' % ore)
-    rm.item_tag('tfc:small_ore_pieces', 'firmalife:ore/small_%s' % ore)
 
 
 def block_and_item_tag(rm: ResourceManager, name_parts: utils.ResourceIdentifier, *values: utils.ResourceIdentifier, replace: bool = False):
