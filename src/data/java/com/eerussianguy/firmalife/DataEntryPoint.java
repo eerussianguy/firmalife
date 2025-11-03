@@ -6,7 +6,6 @@ import java.util.concurrent.CompletableFuture;
 import java.util.function.BiConsumer;
 import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blocks.FLFluids;
-import com.eerussianguy.firmalife.common.capabilities.FLComponents;
 import com.eerussianguy.firmalife.common.misc.FLDamageTypes;
 import com.eerussianguy.firmalife.common.util.ExtraFluid;
 import com.eerussianguy.firmalife.common.util.GreenhouseType;
@@ -14,6 +13,7 @@ import com.eerussianguy.firmalife.providers.BuiltinBlockTags;
 import com.eerussianguy.firmalife.providers.BuiltinClimateRanges;
 import com.eerussianguy.firmalife.providers.BuiltinDamageTypes;
 import com.eerussianguy.firmalife.providers.BuiltinFoods;
+import com.eerussianguy.firmalife.providers.BuiltinItemTags;
 import com.eerussianguy.firmalife.providers.BuiltinPlantables;
 import com.eerussianguy.firmalife.providers.BuiltinRecipes;
 import com.eerussianguy.firmalife.providers.DataManagerProvider;
@@ -59,6 +59,7 @@ public class DataEntryPoint
 
 
         final var blockTags = add(event, new BuiltinBlockTags(event, lookup)).contentsGetter();
+        final var itemTags = add(event, new BuiltinItemTags(event, lookup)).contentsGetter();
 
         tags(event, Registries.DAMAGE_TYPE, lookup, (provider, tags) -> {
             tags.tag(DamageTypeTags.BYPASSES_ARMOR).add(FLDamageTypes.OVEN, FLDamageTypes.SWARM);
