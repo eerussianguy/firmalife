@@ -1,5 +1,7 @@
 import argparse
+import pathlib
 import sys
+import os, glob
 import traceback
 from typing import Sequence
 
@@ -36,7 +38,7 @@ def main():
         # Stupid windows file locking errors.
         for tries in range(1, 1 + 3):
             try:
-                utils.clean_generated_resources(rm.resource_dir, exclude=[])
+                utils.clean_generated_resources(rm.resource_dir, exclude=glob.glob(rm.resource_dir + "/assets/tfc/patchouli_books/**/*", recursive=True))
                 print('Clean Success')
                 return
             except Exception as e:
