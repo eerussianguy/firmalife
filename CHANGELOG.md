@@ -1,5 +1,6 @@
 ### Changes
-- Nerfed crop affinity. It will affect a random selection of crop blocks at a time instead of all of them.
-- Fixed calmness being calculated incorrectly
-- Fix irrigation tank recipe
-- Changed some textures
+- Changed the recipe for cured maize in a vat
+- Prevent the breeding of bee entities
+- Fixed mixing bowl recipes in JEI
+- Added a Brazilian Portuguese translation of the book
+- Updated the Russian translation
