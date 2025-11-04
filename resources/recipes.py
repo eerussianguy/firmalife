@@ -43,12 +43,6 @@ class Rules(Enum):
 def generate(rm: ResourceManager):
     knapping_type(rm, 'pumpkin', {'ingredient': not_rotten('#firmalife:pumpkin_knapping'), 'count': 1}, None, 'tfc:item.knapping.leather', False, False, False, 'tfc:pumpkin')
 
-    ore = 'chromite'
-    for rock, data in TFC_ROCKS.items():
-        for grade in ORE_GRADES.keys():
-            rm.block_tag('tfc:can_start_collapse', 'firmalife:ore/%s_%s/%s' % (grade, ore, rock))
-            rm.block_tag('tfc:can_collapse', 'firmalife:ore/%s_%s/%s' % (grade, ore, rock))
-
 
 def not_rotten(ingredient: Json) -> Json:
     return {
