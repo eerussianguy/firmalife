@@ -7,8 +7,7 @@
       "min_temperature": 20,
       "max_temperature": 35,
       "min_rainfall": 220,
-      "max_rainfall": 400,
-      "max_forest": "normal"
+      "max_rainfall": 400
     },
     {
       "type": "minecraft:heightmap",
