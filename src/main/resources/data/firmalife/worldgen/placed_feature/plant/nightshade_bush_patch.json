@@ -7,8 +7,7 @@
       "min_temperature": 7,
       "max_temperature": 24,
       "min_rainfall": 200,
-      "max_rainfall": 400,
-      "min_forest": "sparse"
+      "max_rainfall": 400
     },
     {
       "type": "minecraft:in_square"

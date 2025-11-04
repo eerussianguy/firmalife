@@ -112,7 +112,8 @@ def generate(rm: ResourceManager):
             'max_temperature': info.max_temp,
             'min_rainfall': info.min_rain,
             'max_rainfall': info.max_rain,
-            'max_forest': 'normal'
+            #TODO temp remove, see other todo
+            #'max_forest': 'normal'
         }
         feature = 'firmalife:fruit_trees'
         state = 'firmalife:plant/%s_growing_branch' % fruit
@@ -153,8 +154,9 @@ def decorate_climate(min_temp: Optional[float] = None, max_temp: Optional[float]
         'max_temperature': max_temp,
         'min_rainfall': min_rain,
         'max_rainfall': max_rain,
-        'min_forest': 'normal' if needs_forest else min_forest,
-        'max_forest': max_forest,
+        #TODO temp remove this since these are ints now instead, how do they map to the old versions??
+        #'min_forest': 'normal' if needs_forest else min_forest,
+        #'max_forest': max_forest,
         'fuzzy': fuzzy
     }
 
@@ -293,4 +295,3 @@ def configured_placed_feature(rm: ResourceManager, name_parts: ResourceIdentifie
         feature = res
     rm.configured_feature(res, feature, config)
     rm.placed_feature(res, res, *placements)
-
