@@ -28,7 +28,7 @@ class ModificationLoggingResourceManager(ResourceManager):
 
 def main():
     parser = argparse.ArgumentParser(description='Generate resources for Firmalife')
-    rm = ResourceManager('firmalife', resource_dir='../src/main/resources')
+    rm = ResourceManager('firmalife', resource_dir='./src/main/resources')
     parser.add_argument('--clean', action='store_true', dest='clean', help='Clean all auto generated resources')
     args = parser.parse_args()
 
@@ -36,10 +36,10 @@ def main():
         # Stupid windows file locking errors.
         for tries in range(1, 1 + 3):
             try:
-                utils.clean_generated_resources('/'.join(rm.resource_dir))
+                utils.clean_generated_resources(rm.resource_dir, exclude=[])
                 print('Clean Success')
                 return
-            except:
+            except Exception as e:
                 print('Failed, retrying (%d / 3)' % tries)
         print('Clean Aborted')
         return

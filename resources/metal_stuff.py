@@ -80,8 +80,8 @@ def generate(rm: ResourceManager):
         rm.fluid_tag(metal, 'firmalife:metal/%s' % metal, 'firmalife:metal/flowing_%s' % metal)
         rm.fluid_tag('tfc:molten_metals', *['firmalife:metal/%s' % metal])
 
-        item = rm.custom_item_model(('bucket', 'metal', metal), 'forge:fluid_container', {
-            'parent': 'forge:item/bucket',
+        item = rm.custom_item_model(('bucket', 'metal', metal), 'neoforge:fluid_container', {
+            'parent': 'neoforge:item/bucket',
             'fluid': 'firmalife:metal/%s' % metal
         })
         item.with_lang(lang('molten %s bucket', metal))

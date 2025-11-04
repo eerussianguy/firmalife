@@ -561,7 +561,7 @@ def generate(rm: ResourceManager):
 
 def contained_fluid(rm: ResourceManager, name_parts: utils.ResourceIdentifier, base: str, overlay: str) -> 'ItemContext':
     return rm.custom_item_model(name_parts, 'tfc:contained_fluid', {
-        'parent': 'forge:item/default',
+        'parent': 'neoforge:item/default',
         'textures': {
             'base': base,
             'fluid': overlay
@@ -754,8 +754,8 @@ def water_based_fluid(rm: ResourceManager, name: str):
     rm.fluid_tag('minecraft:water', 'firmalife:%s' % name, 'firmalife:flowing_%s' % name)  # Need to use water fluid tag for behavior
     rm.fluid_tag('mixable', 'firmalife:%s' % name, 'firmalife:flowing_%s' % name)
 
-    item = rm.custom_item_model(('bucket', name), 'forge:fluid_container', {
-        'parent': 'forge:item/bucket',
+    item = rm.custom_item_model(('bucket', name), 'neoforge:fluid_container', {
+        'parent': 'neoforge:item/bucket',
         'fluid': 'firmalife:%s' % name
     })
     item.with_lang(lang('%s bucket', name))
