@@ -1,0 +1,138 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "Fornos",
+  "category": "tfc:firmalife",
+  "icon": "firmalife:cured_oven_top",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(thing)Fornos$() são uma ótima maneira de cozinhar uma grande quantidade de alimentos, aumentando sua vida útil. Alimentos assados em fornos se deterioram a uma taxa de 90% da de alimentos comuns. Os fornos são uma estrutura multibloco composta por um $(thing)Forno Inferior$(), um $(thing)Forno Superior$() e, opcionalmente, $(thing)Chaminés$(). Esses blocos começam como argila e devem ser $(thing)Curados$() elevando sua temperatura a um determinado valor por tempo suficiente. Os $(thing)Dispositivos de Forno$() estendem a funcionalidade do forno."
+    },
+    {
+      "type": "tfc:knapping_recipe",
+      "recipe": "firmalife:clay_knapping/oven_top",
+      "text": "A receita para o forno superior."
+    },
+    {
+      "type": "tfc:knapping_recipe",
+      "recipe": "firmalife:clay_knapping/oven_bottom",
+      "text": "A receita para o forno inferior."
+    },
+    {
+      "type": "tfc:knapping_recipe",
+      "recipe": "firmalife:clay_knapping/oven_chimney",
+      "text": "A receita para a chaminé de forno."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "tfc:crafting/bricks",
+      "text": "Os fornos são isolados com $(thing)Tijolos$(), outros blocos de forno ou qualquer coisa que possa isolar uma Forja. Isso significa que você pode usar blocos de pedra, se quiser!"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/peel",
+      "text": "A $(thing)Pá de Forno$() é a única maneira segura de remover itens quentes de um forno. Basta clicar $(item)$(k:key.use)$() sobre ele enquanto a segura para retirá-los. Caso contrário, você pode se queimar!"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "O Forno consiste inicialmente no Forno Superior, colocado sobre o Forno Inferior. Todas as laterais de cada parte do forno, exceto a parte frontal, devem ser cobertas com blocos de isolamento para forno, como abordado duas páginas atrás. Você pode optar por usar $(thing)Chaminés de Forno$() como isolamento. Colocar uma torre de chaminés diretamente atrás do forno faz com que a fumaça do forno suba e saia por ele. Se você não fizer isso, a fumaça rapidamente tomará conta da sua casa, o que é muito perturbador!"
+    },
+    {
+      "type": "tfc:multimultiblock",
+      "text": "Um exemplo de estrutura de forno, não curado e curado.",
+      "multiblocks": [
+        {
+          "pattern": [
+            [
+              "     ",
+              "  C  "
+            ],
+            [
+              "     ",
+              "  C  "
+            ],
+            [
+              "WT0TW",
+              "WWCWW"
+            ],
+            [
+              "WBBBW",
+              "WWCWW"
+            ]
+          ],
+          "mapping": {
+            "0": "firmalife:cured_oven_top[facing=north]",
+            "T": "firmalife:cured_oven_top[facing=north]",
+            "B": "firmalife:cured_oven_bottom[facing=north]",
+            "W": "minecraft:bricks",
+            "C": "firmalife:cured_oven_chimney"
+          }
+        },
+        {
+          "pattern": [
+            [
+              "     ",
+              "  C  "
+            ],
+            [
+              "     ",
+              "  C  "
+            ],
+            [
+              "WT0TW",
+              "WWCWW"
+            ],
+            [
+              "WBBBW",
+              "WWCWW"
+            ]
+          ],
+          "mapping": {
+            "0": "firmalife:oven_top[facing=north]",
+            "T": "firmalife:oven_top[facing=north]",
+            "B": "firmalife:oven_bottom[facing=north]",
+            "W": "minecraft:bricks",
+            "C": "firmalife:oven_chimney"
+          }
+        }
+      ]
+    },
+    {
+      "type": "patchouli:text",
+      "text": "O Forno Inferior é usado para armazenar combustível, que pode ser apenas lenha. Pressione $(item)$(k:key.use)$() para adicionar ou remover elas. O forno inferior também é a parte do forno que pode ser acesa com um $(thing)Acendedor$() ou outra ferramenta. Ele transfere o calor contido nele para o forno superior."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "O Forno Superior contém os itens que estão sendo preparados. Ele extrai calor do Forno Inferior e o libera lentamente ao longo do tempo. Isso significa que, mesmo que o combustível acabe, o Forno Superior pode continuar funcionando por um tempo. Adicionar itens a ele é tão simples quanto pressionar $(item)$(k:key.use)$(). Lembre-se de usar $(thing)Pá de Forno$() para remover os itens depois."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "A cura dos Blocos de Forno é fácil, mas requer paciência. Basta ligar o Forno Inferior normalmente e aguardar. Se um bloco de forno estiver acima de 600 graus por cerca de 80 segundos, ele se curará sozinho e quaisquer blocos de forno ao redor. O efeito da cura se espalhará pelas chaminés próximas."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/oven_insulation",
+      "text": "Criar um isolamento térmico para o seu Forno Inferior elimina a necessidade de isolá-lo nas laterais e na parte traseira. Isso não elimina a necessidade da chaminé. Clique $(item)$(k:key.use)$() para aplicá-lo."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/brick_countertop",
+      "text": "Bancadas são blocos estéticos que funcionam como isolantes térmicos para fornos e têm uma aparência que combina com a dos blocos de forno. São uma ótima opção estética para sua cozinha."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Os fornos também possuem $(thing)Acabamentos$() que podem ser usados para alterar sua aparência. Esses acabamentos são aplicados ao estágio básico de tijolo do forno (ou aos próprios blocos de tijolo) e são cosméticos. Os acabamentos podem ser misturados e combinados. Eles são aplicados com $(item)$(k:key.use)$()."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/rustic_finish",
+      "recipe2": "firmalife:crafting/stone_finish"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/tile_finish"
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 14
+}

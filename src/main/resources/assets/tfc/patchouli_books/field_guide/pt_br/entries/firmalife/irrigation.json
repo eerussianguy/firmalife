@@ -1,0 +1,70 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "Irrigação",
+  "category": "tfc:firmalife",
+  "icon": "firmalife:sprinkler",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "O $(thing)Aspersor$() é um dispositivo que borrifa água em uma área de 5x6x5 centralizada no bloco abaixo dele. Você sabe que está funcionando quando ele goteja partículas de água. Os aspersores colocados voltados para cima irrigam a mesma área de 5x6x5 acima."
+    },
+    {
+      "type": "tfc:anvil_recipe",
+      "recipe": "firmalife:anvil/sprinkler",
+      "text": "O aspersor é feito com uma $(thing)Chapa de Cobre$()."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Para funcionar, os aspersores precisam ser conectados a um sistema de tubulações que os alimenta com água. Isso é feito conectando-se uma série de $(thing)Tubos de Cobre$() a eles. Os Tubos de Cobre transportam água até 32 blocos para um aspersor. Eles são conectados a $(thing)Tanques de Irrigação$() ou $(thing)Estações de Bombeamento$()."
+    },
+    {
+      "type": "tfc:anvil_recipe",
+      "recipe": "firmalife:anvil/copper_pipe",
+      "text": "O tubo de cobre é feito com uma chapa."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "multiblock": {
+        "pattern": [
+          [
+            "X"
+          ],
+          [
+            "Y"
+          ],
+          [
+            "0"
+          ]
+        ],
+        "mapping": {
+          "X": "firmalife:irrigation_tank",
+          "Y": "firmalife:pumping_station"
+        }
+      },
+      "name": "",
+      "text": "",
+      "enable_visualize": false
+    },
+    {
+      "type": "patchouli:text",
+      "text": "As estações de bombeamento devem estar acima de um bloco de fonte de água para funcionar e estar conectadas à energia mecânica. Os tanques de irrigação também podem fornecer água através de seus dutos laterais, desde que sejam empilhados no máximo 3 blocos acima de uma estação de bombeamento sobre outros tanques."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/pumping_station",
+      "recipe2": "firmalife:crafting/irrigation_tank"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/oxidized_copper_pipe",
+      "text": "Tubos oxidados são iguais aos tubos de cobre comuns, exceto que eles não se conectam a outro tipo de tubo."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/greenhouse/iron_greenhouse_port",
+      "text": "As portas de estufa possuem um único tubo interno. Elas podem ser usadas para passar água através das paredes das estufas!"
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 8
+}

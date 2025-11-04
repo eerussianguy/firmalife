@@ -1,0 +1,88 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "Queijo",
+  "category": "tfc:firmalife",
+  "icon": "firmalife:textures/item/food/gouda.png",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Fazer $(thing)queijo$() no Firmalife é um pouco mais complexo que no TFC vanilla. Há dois novos tipos de leite: $(thing)Leite de Iaque$() e $(thing)Leite de Cabra$(). Estes são obtidos da ordenha da $(l:mechanics/animal_husbandry#yak)Iaque$() e da $(l:mechanics/animal_husbandry#goat)Cabra$(), respectivamente. A ordenha da $(l:mechanics/animal_husbandry#cow)Vaca$() ainda produz o antigo tipo de leite."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Como de costume, o leite deve ser $(thing)coalhado$() primeiro. Para coalhar leite, você precisa de $(thing)Coalho$(). Coalho vem do estômago de animais $(thing)Ruminantes$(). Esse grupo inclui $(l:mechanics/animal_husbandry#yak)Iaques$(), $(l:mechanics/animal_husbandry#cow)Vacas$(), $(l:mechanics/animal_husbandry#sheep)Ovelhas$(), $(l:mechanics/animal_husbandry#goat)Cabras$(), e $(l:mechanics/animal_husbandry#musk_ox)Bois-Almiscarados$(). Para coalhar o leite, sele-o em um $(l:mechanics/barrels)Barril$() com Coalho por 4 horas."
+    },
+    {
+      "type": "patchouli:crafting",
+      "anchor": "cheesecloth",
+      "recipe": "firmalife:crafting/cheesecloth",
+      "text": "O leite coalhado deve ser convertido em $(thing)Coalhada$() selando-o em um barril com $(thing)Pano de Queijo$(). O pano de queijo não é reutilizável."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/cheddar_wheel",
+      "text": "Você está pronto para fazer $(thing)Queijo Seco$() se você quiser. Você pode fazer $(thing)Rajya Metok$() com $(thing)Coalhada de Iaque$(), $(thing)Chevre$() com $(thing)Coalhada de Cabra$() e $(thing)Cheddar$() com $(thing)Coalhada de Leite$()."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/chevre_wheel",
+      "recipe2": "firmalife:crafting/rajya_metok_wheel"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Sua outra opção é fazer $(thing)Queijos Frescos$(). Estes são feitos selando a coalhada em um barril de $(thing)Água Salgada$(). Você pode fazer $(thing)Shosha$() com $(thing)Coalhada de Iaque$(), $(thing)Feta$() com $(thing)Coalhada de Cabra$() e $(thing)Gouda$() com $(thing)Coalhada de Leite$()."
+    },
+    {
+      "type": "patchouli:text",
+      "anchor": "aging",
+      "text": "Rodas de Queijo são blocos que devem ser colocados para que durem mais. Para aumentar sua qualidade e vida útil, as rodas de queijo devem ser $(thing)Maturadas$() em uma $(l:firmalife/cellar)Adega$(). Para obter queijo comestível de uma roda de queijo, corte-a da roda clicando $(item)$(k:key.use)$() com uma $(thing)Faca$(). Se o bloco for simplesmente quebrado, a maturação é perdida!"
+    },
+    {
+      "type": "tfc:multimultiblock",
+      "text": "Os estágios de maturação de uma roda de Gouda: $(thing)Fresco$(), $(thing)Maturado$() e $(thing)Vintage$()",
+      "multiblocks": [
+        {
+          "pattern": [
+            [
+              "X"
+            ],
+            [
+              "0"
+            ]
+          ],
+          "mapping": {
+            "X": "firmalife:gouda_wheel[age=fresh]"
+          }
+        },
+        {
+          "pattern": [
+            [
+              "X"
+            ],
+            [
+              "0"
+            ]
+          ],
+          "mapping": {
+            "X": "firmalife:gouda_wheel[age=aged]"
+          }
+        },
+        {
+          "pattern": [
+            [
+              "X"
+            ],
+            [
+              "0"
+            ]
+          ],
+          "mapping": {
+            "X": "firmalife:gouda_wheel[age=vintage]"
+          }
+        }
+      ]
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 1
+}

@@ -1,0 +1,38 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "Burritos e Tacos",
+  "category": "tfc:firmalife",
+  "icon": "firmalife:textures/item/food/burrito.png",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "A jornada para fazer uma $(thing)Tortilha$() é um processo longo, mas gratificante. Comece com $(thing)Grãos de Milho$(). Ferva-os em uma panela com $(thing)Água de Cal$() e sele-o em um barril de água para fazer $(thing)Nixtamal$(). Em seguida, triture-o em uma $(thing)Moenda$() para fazer $(thing)Farinha de Masa$()."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Preparar a Farinha de Masa com um balde de água resulta em $(thing)Masa$(), a massa de uma tortilha. Ela pode ser aquecida para fazer uma $(thing)Tortilha de Milho$(). Assar uma tortilha no forno resulta em uma $(thing)Casca de Taco$()."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/tortilla_chips",
+      "recipe2": "firmalife:crafting/nachos"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/salsa",
+      "text": "Um tomate, coentro, sal e uma faca renderão $(thing)Salsa$()."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/burrito",
+      "text": "O $(thing)Burrito$() é feito de carne cozida, $(l:firmalife/pizza#shredded_cheese)Queijo Ralado$(), $(l:firmalife/pizza#tomato_sauce)Molho de Tomate$(), um vegetal e Salsa."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/taco",
+      "text": "O $(thing)Taco$() é feito com os mesmos ingredientes, exceto com uma $(thing)Casca de Taco$()."
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 28
+}
