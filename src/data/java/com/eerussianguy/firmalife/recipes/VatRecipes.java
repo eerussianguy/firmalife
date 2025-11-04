@@ -77,7 +77,7 @@ public interface VatRecipes extends Recipes
         );
         vat(
             sized(notRotten(itemOf(Food.MAIZE_GRAIN))),
-            sized(fluidOf(SimpleFluid.LIMEWATER), 1000),
+            sized(fluidOf(SimpleFluid.LIMEWATER), 100),
             ItemStackProvider.of(itemOf(FLFood.CURED_MAIZE))
         );
         vat(

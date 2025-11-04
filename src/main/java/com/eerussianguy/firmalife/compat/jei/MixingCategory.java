@@ -65,7 +65,7 @@ public class MixingCategory extends BaseRecipeCategory<MixingBowlRecipe>
         final FluidStack outputFluid = recipe.getDisplayFluid();
         if (!outputFluid.isEmpty())
         {
-            IRecipeSlotBuilder fluidOutput = builder.addSlot(RecipeIngredientRole.OUTPUT, 16, 66);
+            IRecipeSlotBuilder fluidOutput = builder.addSlot(RecipeIngredientRole.OUTPUT, 86, 66);
             fluidOutput.setBackground(slot, -1, -1);
             fluidOutput.addIngredient(JEIIntegration.FLUID_STACK, outputFluid);
             fluidOutput.setFluidRenderer(1, false, 16, 16);
