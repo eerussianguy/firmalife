@@ -1,7 +1,7 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "loader": "tfc:contained_fluid",
-  "parent": "forge:item/default",
+  "parent": "neoforge:item/default",
   "textures": {
     "base": "firmalife:item/wine_glass",
     "fluid": "firmalife:item/wine_glass_overlay"
