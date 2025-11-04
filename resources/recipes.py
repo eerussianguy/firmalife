@@ -169,7 +169,7 @@ def generate(rm: ResourceManager):
         vat_recipe(rm, '%s_dye' % color, 'minecraft:%s_dye' % color, '1000 minecraft:water', output_fluid='1000 tfc:%s_dye' % color)
     vat_recipe(rm, 'beet_sugar', {'count': 5, 'ingredient': not_rotten('tfc:food/beet')}, '1000 tfc:salt_water', output_item='3 minecraft:sugar')
     vat_recipe(rm, 'soy_mixture', {'ingredient': not_rotten('tfc:food/soybean')}, '1000 tfc:salt_water', output_item='firmalife:food/soy_mixture')
-    vat_recipe(rm, 'cured_maize', {'ingredient': not_rotten('tfc:food/maize_grain')}, '1000 tfc:limewater', output_item='firmalife:food/cured_maize')
+    vat_recipe(rm, 'cured_maize', {'ingredient': not_rotten('tfc:food/maize_grain')}, '100 tfc:limewater', output_item='firmalife:food/cured_maize')
     vat_recipe(rm, 'tomato_sauce', {'ingredient': not_rotten('firmalife:food/tomato_sauce_mix')}, '200 minecraft:water', output_item='firmalife:food/tomato_sauce')
     vat_recipe(rm, 'sugar_water', '#tfc:sweetener', '1000 minecraft:water', output_fluid='500 firmalife:sugar_water')
 
