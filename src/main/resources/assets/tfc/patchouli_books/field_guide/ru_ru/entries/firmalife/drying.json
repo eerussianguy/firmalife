@@ -24,7 +24,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Drying mats can be automated. Pushing a piston head against a drying mat will pop the item off. Dropping an item onto a drying mat will place it on the mat."
+      "text": "Настил для сушки может быть автоматизирован. Прикосновение поршневой головки к настилу для сушки приведет к выпадению предмета. Если настила для сушки уже касается поршневая головка, то это приведет к размещению предмета на нём."
     },
     {
       "type": "tfc:drying_recipe",
