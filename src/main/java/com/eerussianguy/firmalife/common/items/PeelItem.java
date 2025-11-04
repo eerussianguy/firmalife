@@ -1,13 +1,13 @@
 package com.eerussianguy.firmalife.common.items;
 
 import com.eerussianguy.firmalife.client.render.PeelRenderer;
-import cpw.mods.util.Lazy;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
+import net.neoforged.neoforge.common.util.Lazy;
 
 public class PeelItem extends Item
 {
