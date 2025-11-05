@@ -560,7 +560,7 @@ def generate(rm: ResourceManager):
 
 
 def contained_fluid(rm: ResourceManager, name_parts: utils.ResourceIdentifier, base: str, overlay: str) -> 'ItemContext':
-    return rm.custom_item_model(name_parts, 'tfc:contained_fluid', {
+    return rm.custom_item_model(name_parts, 'tfc:fluid_container', {
         'parent': 'neoforge:item/default',
         'textures': {
             'base': base,
@@ -617,7 +617,7 @@ def peel(rm: ResourceManager, name_parts: str, texture: str) -> 'ItemContext':
     rm.item_model(name_parts + '_in_hand', {'particle': texture}, parent='minecraft:item/trident_in_hand')
     rm.item_model(name_parts + '_gui', texture)
     model = rm.domain + ':item/' + name_parts
-    return rm.custom_item_model(name_parts, 'forge:separate_transforms', {
+    return rm.custom_item_model(name_parts, 'neoforge:separate_transforms', {
         'gui_light': 'front',
         'base': {'parent': model + '_in_hand'},
         'perspectives': {
