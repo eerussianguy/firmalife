@@ -65,6 +65,11 @@ public interface KnappingRecipes extends Recipes
 
     private void clayKnapping(String suffix, ItemLike output, int count, boolean defaultOn, String... pattern)
     {
+        //TODO temp, DataManagers are empty when datagen is run?
+        if (true)
+        {
+            return;
+        }
         add(nameOf(output) + (suffix.isEmpty() ? "" : "_" + suffix), new KnappingRecipe(
             KnappingType.MANAGER.getCheckedReference(CLAY),
             KnappingPattern.from(defaultOn, pattern),
@@ -84,6 +89,11 @@ public interface KnappingRecipes extends Recipes
 
     private void knapping(ResourceLocation knappingType, String[] pattern, ItemStack output, @Nullable String name)
     {
+        //TODO temp, DataManagers are empty when datagen is run?
+        if (true)
+        {
+            return;
+        }
         final KnappingRecipe recipe = new KnappingRecipe(KnappingType.MANAGER.getCheckedReference(knappingType), KnappingPattern.from(true, pattern), Optional.empty(), output);
         if (name == null)
         {
