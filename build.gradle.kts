@@ -116,7 +116,7 @@ neoForge {
         register("data") {
             data()
             sourceSet = sourceSets["data"]
-            programArguments.addAll("--all", "--mod", modId, "--output", file(modDataOutput).absolutePath, "--existing",  file("src/main/resources").absolutePath)
+            programArguments.addAll("--all", "--mod", modId, "--output", file(modDataOutput).absolutePath, "--existing",  file("src/main/resources").absolutePath, "--existing-mod", "tfc")
         }
     }
 
@@ -226,4 +226,3 @@ tasks {
         dependsOn(generateModMetadata)
     }
 }
-
