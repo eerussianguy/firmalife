@@ -21,20 +21,12 @@ import net.dries007.tfc.util.data.FluidHeat;
 public class BuiltinItemHeats extends DataManagerProvider<HeatDefinition> implements Accessors
 {
     public static final float FLUID_HEAT_CAPACITY = 0.003f;
-    
-    public final List<MeltingRecipe> meltingRecipes = new ArrayList<>();
-    private final CompletableFuture<?> before;
 
-    public BuiltinItemHeats(PackOutput output, CompletableFuture<HolderLookup.Provider> lookup, CompletableFuture<?> before)
+    public final List<MeltingRecipe> meltingRecipes = new ArrayList<>();
+
+    public BuiltinItemHeats(PackOutput output, CompletableFuture<HolderLookup.Provider> lookup)
     {
         super(HeatCapability.MANAGER, output, lookup);
-        this.before = before;
-    }
-
-    @Override
-    protected CompletableFuture<HolderLookup.Provider> beforeRun()
-    {
-        return before.thenCompose(v -> super.beforeRun());
     }
 
 
