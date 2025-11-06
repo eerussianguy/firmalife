@@ -88,8 +88,10 @@ public interface HeatingRecipes extends Recipes
     private void cookFood(Ingredient input, FLFood output)
     {
         heat(
+            nameOf(input),
             notRotten(input),
             copyFood(itemOf(output)),
+            FluidStack.EMPTY,
             200
         );
     }
@@ -97,34 +99,36 @@ public interface HeatingRecipes extends Recipes
     private void cookFood(FLFood input, FLFood output)
     {
         heat(
+            nameOf(itemOf(input)),
             notRotten(itemOf(input)),
             copyFood(itemOf(output)),
+            FluidStack.EMPTY,
             200
         );
     }
 
     private void heat(ItemLike input, FluidStack output, float temperature)
     {
-        heat(Ingredient.of(input), ItemStackProvider.empty(), output, temperature);
+        heat(nameOf(input), Ingredient.of(input), ItemStackProvider.empty(), output, temperature);
     }
 
     private void heat(Ingredient input, FluidStack output, float temperature)
     {
-        heat(input, ItemStackProvider.empty(), output, temperature);
+        heat(nameOf(input), input, ItemStackProvider.empty(), output, temperature);
     }
 
     private void heat(ItemLike input, ItemStackProvider output, float temperature)
     {
-        heat(Ingredient.of(input), output, FluidStack.EMPTY, temperature);
+        heat(nameOf(input), Ingredient.of(input), output, FluidStack.EMPTY, temperature);
     }
 
     private void heat(Ingredient input, ItemStackProvider output, float temperature)
     {
-        heat(input, output, FluidStack.EMPTY, temperature);
+        heat(nameOf(input), input, output, FluidStack.EMPTY, temperature);
     }
 
-    private void heat(Ingredient input, ItemStackProvider outputItem, FluidStack outputFluid, float temperature)
+    private void heat(String name, Ingredient input, ItemStackProvider outputItem, FluidStack outputFluid, float temperature)
     {
-        add(new HeatingRecipe(input, outputItem, outputFluid, temperature, false));
+        add(name, new HeatingRecipe(input, outputItem, outputFluid, temperature, false));
     }
 }

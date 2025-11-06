@@ -21,41 +21,54 @@ public interface DryingRecipes extends Recipes
     default void dryingRecipes()
     {
         drying(
+            "dry_fruits",
             notRottenWithoutTrait(TFCTags.Items.FRUITS, FLFoodTraits.DRIED),
             ItemStackProvider.of(CopyInputModifier.INSTANCE, AddTraitModifier.of(FLFoodTraits.DRIED))
         );
         drying(FLItems.CINNAMON_BARK, itemOf(Spice.CINNAMON));
         //TODO no dead grass groundcover? whats a good replacement?
         //drying(TFCBlocks.THATCH, ItemStackProvider.of(GROUNDCOVER/DEAD_GRASS));
-        drying(itemOf(FLFood.SOY_MIXTURE), copyFood(itemOf(FLFood.TOFU)));
-        drying(itemOf(Herb.VANILLA), ItemStackProvider.of(itemOf(Spice.VANILLA)));
-        drying(notRotten(itemOf(Food.SOYBEAN)), copyFood(itemOf(FLFood.DEHYDRATED_SOYBEANS)));
-        drying(itemOf(FLFood.MILK_CHOCOLATE_BLEND), ItemStackProvider.of(itemOf(FLFood.MILK_CHOCOLATE)));
-        drying(itemOf(FLFood.WHITE_CHOCOLATE_BLEND), ItemStackProvider.of(itemOf(FLFood.WHITE_CHOCOLATE)));
-        drying(itemOf(FLFood.DARK_CHOCOLATE_BLEND), ItemStackProvider.of(itemOf(FLFood.DARK_CHOCOLATE)));
+        dryingCopyFood(itemOf(FLFood.SOY_MIXTURE), itemOf(FLFood.TOFU));
+        drying(itemOf(Herb.VANILLA), itemOf(Spice.VANILLA));
+        dryingCopyFood(notRotten(itemOf(Food.SOYBEAN)), itemOf(FLFood.DEHYDRATED_SOYBEANS));
+        drying(itemOf(FLFood.MILK_CHOCOLATE_BLEND), itemOf(FLFood.MILK_CHOCOLATE));
+        drying(itemOf(FLFood.WHITE_CHOCOLATE_BLEND), itemOf(FLFood.WHITE_CHOCOLATE));
+        drying(itemOf(FLFood.DARK_CHOCOLATE_BLEND), itemOf(FLFood.DARK_CHOCOLATE));
         for (var type : SoilBlockType.Variant.values())
         {
-            drying(Ingredient.of(type.getBlock(SoilBlockType.MUD).get()), ItemStackProvider.of(type.getBlock(SoilBlockType.DIRT).get()));
+            drying(Ingredient.of(type.getBlock(SoilBlockType.MUD).get()), type.getBlock(SoilBlockType.DIRT).get());
         }
     }
 
-    private void drying(ItemLike input, ItemStackProvider output)
+    private void dryingCopyFood(ItemLike input, ItemLike output)
     {
-        drying(Ingredient.of(input), output);
+        drying(nameOf(output), Ingredient.of(input), copyFood(output));
+    }
+
+    private void dryingCopyFood(Ingredient input, ItemLike output)
+    {
+        drying(nameOf(output), input, copyFood(output));
     }
 
     private void drying(ItemLike input, ItemLike output)
     {
-        drying(Ingredient.of(input), ItemStackProvider.of(output));
+        drying(nameOf(output), Ingredient.of(input), ItemStackProvider.of(output));
     }
 
     private void drying(Ingredient input, ItemLike output)
     {
-        drying(input, ItemStackProvider.of(output));
+        drying(null, input, ItemStackProvider.of(output));
     }
 
-    private void drying(Ingredient input, ItemStackProvider output)
+    private void drying(String name, Ingredient input, ItemStackProvider output)
     {
-        add(new DryingRecipe(input, output));
+        if (name != null)
+        {
+            add(name, new DryingRecipe(input, output));
+        }
+        else
+        {
+            add(new DryingRecipe(input, output));
+        }
     }
 }

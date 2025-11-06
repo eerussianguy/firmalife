@@ -28,7 +28,7 @@ public interface BarrelRecipes extends Recipes
             .input(Fluids.WATER, 100)
             .output(fluidOf(ExtraFluid.YEAST_STARTER), 100)
             .sealed(72000);
-        barrel()
+        barrel("feed_yeast")
             .input(FLTags.Items.FEEDS_YEAST)
             .input(fluidOf(ExtraFluid.YEAST_STARTER), 100)
             .output(fluidOf(ExtraFluid.YEAST_STARTER), 600)
@@ -84,12 +84,14 @@ public interface BarrelRecipes extends Recipes
             .input(Fluids.WATER, 100)
             .output(fluidOf(ExtraFluid.MEAD), 100)
             .sealed(72000);
-        barrel()
+        barrel("ferment_red_grapes")
             .input(hasTrait(itemOf(FLFood.SMASHED_RED_GRAPES), FLFoodTraits.FERMENTED))
+            .input(Fluids.WATER, 100)
             .output(ItemStackProvider.of(CopyInputModifier.INSTANCE, AddTraitModifier.of(FLFoodTraits.FERMENTED)))
             .sealed(120000);
-        barrel()
+        barrel("ferment_white_grapes")
             .input(hasTrait(itemOf(FLFood.SMASHED_WHITE_GRAPES), FLFoodTraits.FERMENTED))
+            .input(Fluids.WATER, 100)
             .output(ItemStackProvider.of(CopyInputModifier.INSTANCE, AddTraitModifier.of(FLFoodTraits.FERMENTED)))
             .sealed(120000);
         barrel()
@@ -126,7 +128,7 @@ public interface BarrelRecipes extends Recipes
             .output(FLItems.TIRAGE_MIXTURE)
             .instant();
 
-        barrel()
+        barrel("wash_foods")
             .input(FLTags.Items.WASHABLE_FOODS)
             .input(Fluids.WATER, 100)
             .output(ItemStackProvider.of(EmptyPanModifier.INSTANCE))
@@ -150,6 +152,24 @@ public interface BarrelRecipes extends Recipes
 
     private BarrelRecipe.Builder barrel()
     {
-        return new BarrelRecipe.Builder(this::add);
+        return new BarrelRecipe.Builder(this::addBarrelRecipe);
+    }
+
+    private BarrelRecipe.Builder barrel(String prefix)
+    {
+        return new BarrelRecipe.Builder(r -> addBarrelRecipe(r, prefix));
+    }
+
+    private void addBarrelRecipe(BarrelRecipe r)
+    {
+        var resultItem = r.getResultItem();
+        var resultFluid = r.getOutputFluid();
+        var name = resultItem.isEmpty() ? nameOf(resultFluid.getFluid()) : nameOf(resultItem.getItem());
+        addBarrelRecipe(r, name);
+    }
+
+    private void addBarrelRecipe(BarrelRecipe r, String name)
+    {
+        add(name, r);
     }
 }
