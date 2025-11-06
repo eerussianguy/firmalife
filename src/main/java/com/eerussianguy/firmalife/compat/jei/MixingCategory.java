@@ -1,12 +1,6 @@
 package com.eerussianguy.firmalife.compat.jei;
 
 import java.util.List;
-
-import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
-
-
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.recipes.MixingBowlRecipe;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -16,6 +10,9 @@ import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.neoforge.fluids.FluidStack;
 
 import net.dries007.tfc.compat.jei.JEIIntegration;
@@ -46,7 +43,7 @@ public class MixingCategory extends BaseRecipeCategory<MixingBowlRecipe>
             }
         }
 
-        final List<FluidStack> inputFluids = collapse(recipe.getFluidIngredient());
+        final List<FluidStack> inputFluids = recipe.getFluidIngredient().map(BaseRecipeCategory::collapse).orElse(List.of());
         if (!inputFluids.isEmpty())
         {
             IRecipeSlotBuilder fluidOutput = builder.addSlot(RecipeIngredientRole.INPUT, 16, 66);
