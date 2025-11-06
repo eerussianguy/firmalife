@@ -77,7 +77,8 @@ TFC_ROCKS: Dict[str, Rock] = {
     'phyllite': Rock('metamorphic', 'brown'),
     'schist': Rock('metamorphic', 'green'),
     'gneiss': Rock('metamorphic', 'green'),
-    'marble': Rock('metamorphic', 'yellow')
+    'marble': Rock('metamorphic', 'yellow'),
+    'tuff': Rock('sedimentary', 'black')
 }
 TFC_WOODS: Dict[str, Wood] = {
     'acacia': Wood(650, 1000),
@@ -122,7 +123,8 @@ ROCKS: Dict[str, Rock] = {
     'phyllite': Rock('metamorphic', 'brown'),
     'schist': Rock('metamorphic', 'green'),
     'gneiss': Rock('metamorphic', 'green'),
-    'marble': Rock('metamorphic', 'yellow')
+    'marble': Rock('metamorphic', 'yellow'),
+    'tuff': Rock('sedimentary', 'black')
 }
 
 ROCK_CATEGORIES: List[str] = ['sedimentary', 'metamorphic', 'igneous_extrusive', 'igneous_intrusive']
