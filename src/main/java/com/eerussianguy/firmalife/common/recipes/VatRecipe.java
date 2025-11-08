@@ -6,7 +6,6 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
@@ -31,36 +30,37 @@ public class VatRecipe implements ISimpleRecipe<VatBlockEntity.VatInventory>
     public static final MapCodec<VatRecipe> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
         SizedIngredient.FLAT_CODEC.fieldOf("input_item").forGetter(c -> c.inputItem),
         SizedFluidIngredient.FLAT_CODEC.fieldOf("input_fluid").forGetter(c -> c.inputFluid),
-        ItemStackProvider.CODEC.fieldOf("output_item").forGetter(c -> c.outputItem),
-        FluidStack.CODEC.fieldOf("output_fluid").forGetter(c -> c.outputFluid),
+        //TODO codec does not currently support ItemStackProvider.empty(), if that changes this does not need to be optional
+        ItemStackProvider.CODEC.optionalFieldOf("output_item").forGetter(c -> c.outputItem),
+        FluidStack.OPTIONAL_CODEC.fieldOf("output_fluid").forGetter(c -> c.outputFluid),
         Codecs.POSITIVE_INT.fieldOf("length").forGetter(c -> c.length),
         Codec.FLOAT.fieldOf("temperature").forGetter(c -> c.temperature),
-        ItemStack.CODEC.fieldOf("jar_output").forGetter(c -> c.jarOutput),
+        ItemStack.OPTIONAL_CODEC.optionalFieldOf("jar_output").forGetter(c -> c.jarOutput),
         ResourceLocation.CODEC.optionalFieldOf("output_texture").forGetter(c -> c.outputTexture)
     ).apply(i, VatRecipe::new));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, VatRecipe> STREAM_CODEC = StreamCodecs.composite(
         SizedIngredient.STREAM_CODEC, c -> c.inputItem,
         SizedFluidIngredient.STREAM_CODEC, c -> c.inputFluid,
-        ItemStackProvider.STREAM_CODEC, c -> c.outputItem,
+        ByteBufCodecs.optional(ItemStackProvider.STREAM_CODEC), c -> c.outputItem,
         FluidStack.STREAM_CODEC, c -> c.outputFluid,
         ByteBufCodecs.INT, c -> c.length,
         ByteBufCodecs.FLOAT, c -> c.temperature,
-        ItemStack.STREAM_CODEC, c -> c.jarOutput,
+        ByteBufCodecs.optional(ItemStack.OPTIONAL_STREAM_CODEC), c -> c.jarOutput,
         ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), c -> c.outputTexture,
         VatRecipe::new
     );
 
     private final SizedIngredient inputItem;
     private final SizedFluidIngredient inputFluid;
-    private final ItemStackProvider outputItem;
+    private final Optional<ItemStackProvider> outputItem;
     private final FluidStack outputFluid;
     private final int length;
     private final float temperature;
-    private final ItemStack jarOutput;
+    private final Optional<ItemStack> jarOutput;
     private final Optional<ResourceLocation> outputTexture;
 
-    public VatRecipe(SizedIngredient ingredient, SizedFluidIngredient fluidInput, ItemStackProvider output, FluidStack outputFluid, int length, float temperature, ItemStack jarOutput, Optional<ResourceLocation> outputTexture)
+    public VatRecipe(SizedIngredient ingredient, SizedFluidIngredient fluidInput, Optional<ItemStackProvider> output, FluidStack outputFluid, int length, float temperature, Optional<ItemStack> jarOutput, Optional<ResourceLocation> outputTexture)
     {
         this.inputItem = ingredient;
         this.inputFluid = fluidInput;
@@ -106,7 +106,7 @@ public class VatRecipe implements ISimpleRecipe<VatBlockEntity.VatInventory>
 
         // Output items
         // All output items, and then remaining input items, get inserted into the output overflow
-        final ItemStack outputItem = this.outputItem.getSingleStack(stack);
+        final ItemStack outputItem = this.outputItem.map(provider -> provider.getSingleStack(stack)).orElse(ItemStack.EMPTY);
         if (!outputItem.isEmpty())
         {
             Helpers.consumeInStackSizeIncrements(outputItem, multiplier * outputItem.getCount(), inventory::insertItemWithOverflow);
@@ -144,7 +144,7 @@ public class VatRecipe implements ISimpleRecipe<VatBlockEntity.VatInventory>
             outputFluid.setAmount(Math.min(VatBlockEntity.CAPACITY, amount));
             inventory.fill(outputFluid, IFluidHandler.FluidAction.EXECUTE);
         }
-        final ItemStack jar = this.jarOutput.copy();
+        final ItemStack jar = this.jarOutput.get().copy();
         if (!jar.isEmpty())
         {
             jar.setCount(jar.getCount() * multiplier);
@@ -160,7 +160,7 @@ public class VatRecipe implements ISimpleRecipe<VatBlockEntity.VatInventory>
             && (inputFluid.amount() == 0
             || inputItem.count() == 0
             || (inputItem.count() > 0 && inputFluid.amount() > 0 && container.getFluidInTank(0).getAmount() / this.inputFluid.amount() <= container.getStackInSlot(0).getCount() / this.inputItem.count())
-            );
+        );
     }
 
     @Override
@@ -196,7 +196,7 @@ public class VatRecipe implements ISimpleRecipe<VatBlockEntity.VatInventory>
         return outputFluid;
     }
 
-    public ItemStackProvider getOutputItem()
+    public Optional<ItemStackProvider> getOutputItem()
     {
         return outputItem;
     }
@@ -211,7 +211,7 @@ public class VatRecipe implements ISimpleRecipe<VatBlockEntity.VatInventory>
         return temperature;
     }
 
-    public ItemStack getJarOutput()
+    public Optional<ItemStack> getJarOutput()
     {
         return jarOutput;
     }

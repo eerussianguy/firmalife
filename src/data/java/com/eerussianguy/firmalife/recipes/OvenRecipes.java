@@ -17,6 +17,7 @@ public interface OvenRecipes extends Recipes
     default void ovenRecipes()
     {
         cook(
+            "cook_pie",
             notRotten(FLItems.FILLED_PIE),
             ItemStackProvider.of(
                 new ItemStack(itemOf(FLFood.COOKED_PIE)),
@@ -26,6 +27,7 @@ public interface OvenRecipes extends Recipes
             1000
         );
         cook(
+            "cook_pizza",
             notRotten(FLItems.RAW_PIZZA),
             ItemStackProvider.of(
                 new ItemStack(itemOf(FLFood.COOKED_PIZZA)),
@@ -35,6 +37,7 @@ public interface OvenRecipes extends Recipes
             1000
         );
         cook(
+            "cook_pumpkin_pie",
             notRotten(FLItems.RAW_PUMPKIN_PIE),
             ItemStackProvider.of(
                 new ItemStack(Items.PUMPKIN_PIE),
@@ -119,12 +122,12 @@ public interface OvenRecipes extends Recipes
 
     private void cook(Ingredient input, ItemLike output, int temperature, int time)
     {
-        cook(input, ItemStackProvider.of(output), temperature, time);
+        add(nameOf(output), new OvenRecipe(input, ItemStackProvider.of(output), temperature, time));
     }
 
-    private void cook(Ingredient input, ItemStackProvider output, int temperature, int time)
+    private void cook(String name, Ingredient input, ItemStackProvider output, int temperature, int time)
     {
-        add(new OvenRecipe(input, output, temperature, time));
+        add(name, new OvenRecipe(input, output, temperature, time));
     }
 
 }

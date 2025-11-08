@@ -25,7 +25,6 @@ import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.registry.RegistrationHelpers;
 
 import static com.eerussianguy.firmalife.FirmaLife.*;
-import static net.dries007.tfc.common.fluids.TFCFluids.*;
 
 public class FLFluids
 {
@@ -105,7 +104,7 @@ public class FLFluids
         final int index = name.lastIndexOf('/');
         final String flowingName = index == -1 ? "flowing_" + name : name.substring(0, index) + "/flowing_" + name.substring(index + 1);
 
-        return RegistrationHelpers.registerFluid(FLUID_TYPES, FLUIDS, name, name, flowingName, builder, () -> new FluidType(typeProperties), sourceFactory, flowingFactory);
+        return RegistrationHelpers.registerFluid(FLUID_TYPES, FLUID, name, name, flowingName, builder, () -> new FluidType(typeProperties), sourceFactory, flowingFactory);
     }
 
 }

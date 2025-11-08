@@ -2,6 +2,7 @@ package com.eerussianguy.firmalife.recipes;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.function.Supplier;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
@@ -36,6 +37,7 @@ public interface ChiselRecipes extends Recipes
             for (Greenhouse.BlockType type : Greenhouse.BlockType.values())
             {
                 chisel(
+                    dirty.name().toLowerCase(Locale.ROOT) + "_" + type.name().toLowerCase(Locale.ROOT) + "_cleaning",
                     List.of(FLBlocks.GREENHOUSE_BLOCKS.get(dirty).get(type)),
                     FLBlocks.GREENHOUSE_BLOCKS.get(clean).get(type),
                     ChiselMode.SMOOTH,
@@ -47,8 +49,8 @@ public interface ChiselRecipes extends Recipes
 
     private void chiselSlabStairs(Supplier<? extends Block> input, DecorationBlockHolder deco)
     {
-        chisel(List.of(input), deco.stair(), ChiselMode.STAIR, ItemStackProvider.empty());
-        chisel(List.of(input), deco.slab(), ChiselMode.SLAB, ItemStackProvider.of(deco.slab()));
+        chisel(null, List.of(input), deco.stair(), ChiselMode.STAIR, ItemStackProvider.empty());
+        chisel(null, List.of(input), deco.slab(), ChiselMode.SLAB, ItemStackProvider.of(deco.slab()));
     }
 
     private void chisel(Supplier<? extends Block> input, Supplier<? extends Block> output)
@@ -58,16 +60,19 @@ public interface ChiselRecipes extends Recipes
 
     private void chisel(List<? extends Supplier<? extends Block>> input, Supplier<? extends Block> output)
     {
-        chisel(input, output, ChiselMode.SMOOTH, ItemStackProvider.empty());
+        chisel(null, input, output, ChiselMode.SMOOTH, ItemStackProvider.empty());
     }
 
-    private void chisel(List<? extends Supplier<? extends Block>> input, Supplier<? extends Block> output, Holder<ChiselMode> mode, ItemStackProvider outputItem)
+    private void chisel(String name, List<? extends Supplier<? extends Block>> input, Supplier<? extends Block> output, Holder<ChiselMode> mode, ItemStackProvider outputItem)
     {
-        add(new ChiselRecipe(
-            BlockIngredient.of(input.stream().map(Supplier::get)),
-            output.get().defaultBlockState(),
-            mode.value(),
-            outputItem
-        ));
+        add(
+            name != null ? name : nameOf(output.get()),
+            new ChiselRecipe(
+                BlockIngredient.of(input.stream().map(Supplier::get)),
+                output.get().defaultBlockState(),
+                mode.value(),
+                outputItem
+            )
+        );
     }
 }

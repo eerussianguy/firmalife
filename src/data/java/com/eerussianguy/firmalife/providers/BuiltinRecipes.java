@@ -2,6 +2,7 @@ package com.eerussianguy.firmalife.providers;
 
 import java.util.Locale;
 import java.util.concurrent.CompletableFuture;
+import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.recipes.AnvilRecipes;
 import com.eerussianguy.firmalife.recipes.BarrelRecipes;
 import com.eerussianguy.firmalife.recipes.CastingRecipes;
@@ -28,8 +29,6 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.world.item.crafting.Recipe;
-
-import net.dries007.tfc.util.Helpers;
 
 public class BuiltinRecipes extends RecipeProvider implements Recipes,
     AnvilRecipes,
@@ -101,7 +100,7 @@ public class BuiltinRecipes extends RecipeProvider implements Recipes,
     @Override
     public void add(String prefix, String name, Recipe<?> recipe)
     {
-        output.accept(Helpers.identifier((prefix + "/" + name).toLowerCase(Locale.ROOT)), recipe, null);
+        output.accept(FLHelpers.identifier((prefix + "/" + name).toLowerCase(Locale.ROOT)), recipe, null);
     }
 
     @Override

@@ -462,7 +462,7 @@ public interface CraftingRecipes extends Recipes
             recipe()
                 .input('X', itemOf(wood, Wood.BlockType.LOG))
                 .input('Y', TFCItems.LUMBER.get(wood))
-                .input(brassRods)
+                .input('Z', brassRods)
                 .pattern("X  ", "ZYY", "X  ")
                 .shaped(new ItemStack(FLBlocks.JARBNETS.get(wood), 2));
             recipe()
@@ -480,7 +480,7 @@ public interface CraftingRecipes extends Recipes
                 .input(wroughtRods)
                 .input(wroughtSheets)
                 .input(TFCItems.BRASS_MECHANISMS)
-                .shapeless(FLBlocks.STOMPING_BARRELS.get(wood));
+                .shapeless(FLBlocks.BARREL_PRESSES.get(wood));
             recipe()
                 .input('X', itemOf(wood, Wood.BlockType.LOG))
                 .input('Y', FLItems.BARREL_STAVE)
@@ -501,7 +501,7 @@ public interface CraftingRecipes extends Recipes
             {
                 var dirty = FLBlocks.GREENHOUSE_BLOCKS.get(entry.getKey()).get(type);
                 var clean = FLBlocks.GREENHOUSE_BLOCKS.get(entry.getValue()).get(type);
-                recipe("cleaning").useTool(TFCTags.Items.TOOLS_CHISEL, dirty, clean);
+                recipe(nameOf(dirty) + "_cleaning").useTool(TFCTags.Items.TOOLS_CHISEL, dirty, clean);
             }
         }
 
@@ -589,7 +589,7 @@ public interface CraftingRecipes extends Recipes
             .addOutputModifier(pumpkinMod)
             .addOutputModifier(AddPiePanModifier.INSTANCE)
             .shapeless(FLItems.RAW_PUMPKIN_PIE);
-        recipe()
+        recipe("pizza_with_ingredients_2")
             .inputIsPrimary(notRotten(itemOf(FLFood.PIZZA_DOUGH)))
             .input(notRotten(FLTags.Items.PIZZA_INGREDIENTS))
             .input(notRotten(FLTags.Items.PIZZA_INGREDIENTS))
@@ -597,7 +597,7 @@ public interface CraftingRecipes extends Recipes
             .input(notRotten(itemOf(FLFood.TOMATO_SAUCE)))
             .addOutputModifier(pizzaMod)
             .shapeless(FLItems.RAW_PIZZA);
-        recipe()
+        recipe("pizza_with_ingredients_1")
             .inputIsPrimary(notRotten(itemOf(FLFood.PIZZA_DOUGH)))
             .input(notRotten(FLTags.Items.PIZZA_INGREDIENTS))
             .input(notRotten(itemOf(FLFood.SHREDDED_CHEESE)))
@@ -665,9 +665,9 @@ public interface CraftingRecipes extends Recipes
                 )
             )
         );
-        Map<String, Ingredient> breadVariants = new HashMap<>();
-        breadVariants.put("bread", notRotten(itemOf(loaf)));
-        breadVariants.put("flatbread", notRotten(itemOf(flatbread)));
+        Map<String, ItemLike> breadVariants = new HashMap<>();
+        breadVariants.put("bread", itemOf(loaf));
+        breadVariants.put("flatbread", itemOf(flatbread));
 
         Map<String, Ingredient> jamVariants = new HashMap<>();
         jamVariants.put("jar", notRotten(TFCTags.Items.PRESERVES));
@@ -679,9 +679,9 @@ public interface CraftingRecipes extends Recipes
             {
                 for (var jam : jamVariants.entrySet())
                 {
-                    recipe(bread.getKey() + "_" + jam.getKey() + "_" + pattern.indexOf('J'))
+                    recipe(nameOf(itemOf(jamSandwich)) + "_" + nameOf(bread.getValue()) + "_" + jam.getKey() + "_" + pattern.indexOf('J'))
                         .input('K', TFCTags.Items.TOOLS_KNIFE)
-                        .input('B', bread.getValue())
+                        .input('B', notRotten(bread.getValue()))
                         .input('J', jam.getValue())
                         .input('X', TFCTags.Items.USABLE_IN_JAM_SANDWICH)
                         .pattern("KB ", pattern, " B ")
@@ -690,7 +690,7 @@ public interface CraftingRecipes extends Recipes
                         .shaped(itemOf(jamSandwich), 2);
                 }
             }
-            recipe(bread.getKey())
+            recipe(nameOf(itemOf(sandwich)) + "_" + nameOf(bread.getValue()))
                 .input('K', TFCTags.Items.TOOLS_KNIFE)
                 .input('B', bread.getValue())
                 .input('X', TFCTags.Items.USABLE_IN_JAM_SANDWICH)
@@ -716,14 +716,14 @@ public interface CraftingRecipes extends Recipes
             .input(notRotten(itemOf(flour)))
             .input(FluidContentIngredient.of(fluidOf(ExtraFluid.YEAST_STARTER), 100))
             .input(TFCTags.Items.SWEETENERS)
-            .shaped(new ItemStack(itemOf(dough), 4));
+            .shapeless(new ItemStack(itemOf(dough), 4));
     }
 
     private void jarring(ItemLike unsealed, ItemLike sealed, int amount)
     {
         if (amount == 8)
         {
-            recipe("jarring")
+            recipe("jarring_" + nameOf(unsealed))
                 .input('X', unsealed)
                 .input('Y', TFCItems.EMPTY_JAR)
                 .pattern("XXX", "XYX", "XXX")
@@ -731,7 +731,7 @@ public interface CraftingRecipes extends Recipes
         }
         else if (amount == 1)
         {
-            recipe("jarring")
+            recipe("jarring" + nameOf(unsealed))
                 .input(TFCItems.EMPTY_JAR)
                 .input(unsealed)
                 .shapeless(sealed);
@@ -746,9 +746,9 @@ public interface CraftingRecipes extends Recipes
 
     private void unjarring(Ingredient sealed, ItemLike unsealed, int amount)
     {
-        recipe("unjarring")
+        recipe("unjarring_" + nameOf(unsealed))
             .input(sealed)
-            .shaped(new ItemStack(unsealed, amount));
+            .shapeless(new ItemStack(unsealed, amount));
     }
 
     private void greenhouseRecipes(Greenhouse type, ItemLike material)
@@ -811,10 +811,11 @@ public interface CraftingRecipes extends Recipes
             .shaped(deco.wall(), 6);
     }
 
-    private DataGenerationHelpers.Builder recipe(String suffix)
+    private DataGenerationHelpers.Builder recipe(String recipeName)
     {
         return new DataGenerationHelpers.Builder((name, r) -> {
-            if (name != null) add(name + "_" + suffix, r);
+            if (name != null) add(name + "_" + recipeName, r);
+            else if (recipeName != null) add(recipeName, r);
             else add(r);
         });
     }

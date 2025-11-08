@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.recipes.VatRecipe;
-import com.mojang.blaze3d.vertex.PoseStack;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.builder.IRecipeSlotBuilder;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
@@ -44,12 +43,9 @@ public class VatCategory extends BaseRecipeCategory<VatRecipe>
         final List<FluidStack> inputFluid = collapse(recipe.getInputFluid());
         final List<ItemStack> inputItem = collapse(recipe.getInputItem());
         final FluidStack outputFluid = recipe.getOutputFluid();
-        final List<ItemStack> outputItem = new ArrayList<>(collapse(inputItem, recipe.getOutputItem()));
+        final List<ItemStack> outputItem = new ArrayList<>(recipe.getOutputItem().map(out -> collapse(inputItem, out)).orElse(List.of()));
 
-        if (!recipe.getJarOutput().isEmpty())
-        {
-            outputItem.add(recipe.getJarOutput());
-        }
+        recipe.getJarOutput().filter(stack -> !stack.isEmpty()).ifPresent(outputItem::add);
 
         if (!inputFluid.isEmpty())
         {
@@ -83,10 +79,12 @@ public class VatCategory extends BaseRecipeCategory<VatRecipe>
 
         // Link inputs and outputs when focused
         // Only dependent if the item stack provider output internally depends on the input
-        if (recipe.getOutputItem().dependsOnInput() && inputItemSlot != null && outputItemSlot != null)
-        {
-            builder.createFocusLink(inputItemSlot, outputItemSlot);
-        }
+        recipe.getOutputItem().ifPresent(provider -> {
+            if (provider.dependsOnInput() && inputItemSlot != null && outputItemSlot != null)
+            {
+                builder.createFocusLink(inputItemSlot, outputItemSlot);
+            }
+        });
     }
 
     @Override

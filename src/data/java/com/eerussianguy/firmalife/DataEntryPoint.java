@@ -12,9 +12,11 @@ import com.eerussianguy.firmalife.common.util.GreenhouseType;
 import com.eerussianguy.firmalife.providers.BuiltinBlockTags;
 import com.eerussianguy.firmalife.providers.BuiltinClimateRanges;
 import com.eerussianguy.firmalife.providers.BuiltinDamageTypes;
+import com.eerussianguy.firmalife.providers.BuiltinFluidHeats;
 import com.eerussianguy.firmalife.providers.BuiltinFoods;
-import com.eerussianguy.firmalife.providers.BuiltinItemTags;
+import com.eerussianguy.firmalife.providers.BuiltinItemHeats;
 import com.eerussianguy.firmalife.providers.BuiltinItemSizes;
+import com.eerussianguy.firmalife.providers.BuiltinItemTags;
 import com.eerussianguy.firmalife.providers.BuiltinPlantables;
 import com.eerussianguy.firmalife.providers.BuiltinRecipes;
 import com.eerussianguy.firmalife.providers.DataManagerProvider;
@@ -99,6 +101,9 @@ public class DataEntryPoint
                 add("stainless_steel", new GreenhouseType(BlockIngredient.of(FLTags.Blocks.STAINLESS_STEEL_GREENHOUSE), 20, Component.translatable("greenhouse.firmalife.stainless_steel")));
             }
         });
+
+        add(event, new BuiltinItemHeats(output, lookup));
+        add(event, new BuiltinFluidHeats(output, lookup));
 
         add(event, new BuiltinRecipes(output, lookup));
     }

@@ -1,6 +1,7 @@
 package com.eerussianguy.firmalife.recipes;
 
 import java.util.Optional;
+import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.util.Carving;
@@ -65,6 +66,12 @@ public interface KnappingRecipes extends Recipes
 
     private void clayKnapping(String suffix, ItemLike output, int count, boolean defaultOn, String... pattern)
     {
+        //TODO temp, DataManagers are empty when datagen is run?
+        if (KnappingType.MANAGER.getValues().isEmpty())
+        {
+            FirmaLife.LOGGER.error("KnappingType manager has not been loaded.");
+            return;
+        }
         add(nameOf(output) + (suffix.isEmpty() ? "" : "_" + suffix), new KnappingRecipe(
             KnappingType.MANAGER.getCheckedReference(CLAY),
             KnappingPattern.from(defaultOn, pattern),
@@ -84,6 +91,12 @@ public interface KnappingRecipes extends Recipes
 
     private void knapping(ResourceLocation knappingType, String[] pattern, ItemStack output, @Nullable String name)
     {
+        //TODO temp, DataManagers are empty when datagen is run?
+        if (KnappingType.MANAGER.getValues().isEmpty())
+        {
+            FirmaLife.LOGGER.error("KnappingType manager has not been loaded.");
+            return;
+        }
         final KnappingRecipe recipe = new KnappingRecipe(KnappingType.MANAGER.getCheckedReference(knappingType), KnappingPattern.from(true, pattern), Optional.empty(), output);
         if (name == null)
         {

@@ -16,17 +16,19 @@ public interface SmokingRecipes extends Recipes
     default void smokingRecipes()
     {
         smoke(
+            "smoke_meats",
             notRottenWithTrait(lacksTrait(Ingredient.of(TFCTags.Items.RAW_MEATS), FLFoodTraits.SMOKED), FoodTraits.BRINED),
             ItemStackProvider.of(CopyInputModifier.INSTANCE, AddTraitModifier.of(FLFoodTraits.SMOKED))
         );
         smoke(
+            "smoke_cheeses",
             notRottenWithTrait(Ingredient.of(FLTags.Items.CHEESES), FLFoodTraits.SMOKED),
             ItemStackProvider.of(CopyInputModifier.INSTANCE, AddTraitModifier.of(FLFoodTraits.SMOKED))
         );
     }
 
-    private void smoke(Ingredient input, ItemStackProvider output)
+    private void smoke(String name, Ingredient input, ItemStackProvider output)
     {
-        add(new SmokingRecipe(input, output));
+        add(name, new SmokingRecipe(input, output));
     }
 }

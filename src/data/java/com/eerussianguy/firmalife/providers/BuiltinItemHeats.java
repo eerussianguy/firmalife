@@ -5,12 +5,16 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.CompletableFuture;
 import com.eerussianguy.firmalife.Accessors;
+import com.eerussianguy.firmalife.FirmaLife;
+import com.eerussianguy.firmalife.common.blocks.FLBlocks;
+import com.eerussianguy.firmalife.common.items.FLFood;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Blocks;
 
 import net.dries007.tfc.common.component.heat.HeatCapability;
 import net.dries007.tfc.common.component.heat.HeatDefinition;
@@ -21,27 +25,28 @@ import net.dries007.tfc.util.data.FluidHeat;
 public class BuiltinItemHeats extends DataManagerProvider<HeatDefinition> implements Accessors
 {
     public static final float FLUID_HEAT_CAPACITY = 0.003f;
-    
-    public final List<MeltingRecipe> meltingRecipes = new ArrayList<>();
-    private final CompletableFuture<?> before;
 
-    public BuiltinItemHeats(PackOutput output, CompletableFuture<HolderLookup.Provider> lookup, CompletableFuture<?> before)
+    public final List<MeltingRecipe> meltingRecipes = new ArrayList<>();
+
+    public BuiltinItemHeats(PackOutput output, CompletableFuture<HolderLookup.Provider> lookup)
     {
         super(HeatCapability.MANAGER, output, lookup);
-        this.before = before;
-    }
-
-    @Override
-    protected CompletableFuture<HolderLookup.Provider> beforeRun()
-    {
-        return before.thenCompose(v -> super.beforeRun());
     }
 
 
     @Override
     protected void addData(HolderLookup.Provider provider)
     {
+        addAndMelt(FLBlocks.COPPER_PIPE, Metal.COPPER, 12);
+        addAndMelt(FLBlocks.OXIDIZED_COPPER_PIPE, Metal.COPPER, 12);
 
+        for (var food : List.of(FLFood.WHEAT_DOUGH, FLFood.MAIZE_DOUGH, FLFood.BARLEY_DOUGH, FLFood.OAT_DOUGH, FLFood.RICE_DOUGH, FLFood.RYE_DOUGH, FLFood.BACON, FLFood.MASA))
+        {
+            add(itemOf(food), 200);
+        }
+
+        //TODO temp, while tags still are failing
+        add("barrier", new HeatDefinition(Ingredient.of(Blocks.BARRIER.asItem()), 999, 0, 0));
     }
 
     private void addAndMeltIron(ItemLike item, int units)
@@ -88,6 +93,11 @@ public class BuiltinItemHeats extends DataManagerProvider<HeatDefinition> implem
 
     private void add(String name, Ingredient ingredient, Metal metal, int units)
     {
+        if (FluidHeat.MANAGER.getValues().isEmpty())
+        {
+            FirmaLife.LOGGER.error("FluidHeat manager has not been loaded.");
+            return;
+        }
         final FluidHeat fluidHeat = FluidHeat.MANAGER.getOrThrow(Helpers.identifier(metal.getSerializedName()));
         add(name, new HeatDefinition(
             ingredient,

@@ -97,7 +97,8 @@ public class MixingBowlBlockEntity extends TickableInventoryBlockEntity<MixingBo
 
         sidedFluidInventory = new SidedHandler<IFluidHandler>(inventory)
             .on(PartialFluidHandler::extractOnly, Direction.Plane.HORIZONTAL)
-            .on(PartialFluidHandler::insertOnly, Direction.UP);;
+            .on(PartialFluidHandler::insertOnly, Direction.UP);
+        ;
     }
 
     @Nullable
@@ -199,12 +200,14 @@ public class MixingBowlBlockEntity extends TickableInventoryBlockEntity<MixingBo
                     break;
                 }
             }
-            inventory.drain(recipe.getFluidIngredient().amount(), IFluidHandler.FluidAction.EXECUTE);
-            if (!recipe.getResultFluid().isEmpty())
-            {
-                inventory.drain(FluidHelpers.BUCKET_VOLUME, IFluidHandler.FluidAction.EXECUTE);
-                inventory.fill(recipe.getResultFluid(), IFluidHandler.FluidAction.EXECUTE);
-            }
+            recipe.getFluidIngredient().ifPresent(fluid -> {
+                inventory.drain(fluid.amount(), IFluidHandler.FluidAction.EXECUTE);
+                if (!recipe.getResultFluid().isEmpty())
+                {
+                    inventory.drain(FluidHelpers.BUCKET_VOLUME, IFluidHandler.FluidAction.EXECUTE);
+                    inventory.fill(recipe.getResultFluid(), IFluidHandler.FluidAction.EXECUTE);
+                }
+            });
         }
         markForSync();
     }

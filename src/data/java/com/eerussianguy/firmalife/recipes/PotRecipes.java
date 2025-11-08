@@ -168,7 +168,7 @@ public interface PotRecipes extends Recipes
 
     private void bowlPot(Ingredient itemInput, SizedFluidIngredient fluidInput, ItemLike result, FoodData data, int duration, int temperature)
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 1; i < 5; i++)
         {
             var inputs = Collections.nCopies(i, itemInput);
             add(nameOf(result) + "_" + i,
@@ -188,7 +188,7 @@ public interface PotRecipes extends Recipes
 
     private void pot_5(Ingredient input, SizedFluidIngredient fluidInput, ItemLike output, int duration, int time)
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 1; i < 5; i++)
         {
             var inputs = Collections.nCopies(i, input);
             add(nameOf(output) + "_" + i,
@@ -258,7 +258,17 @@ public interface PotRecipes extends Recipes
 
     private void pot(List<Ingredient> input, SizedFluidIngredient fluidInput, FluidStack fluidOutput, List<ItemStackProvider> output, int duration, int time)
     {
-        add(new SimplePotRecipe(
+        //TODO improve this name?
+        String name;
+        if (output.isEmpty())
+        {
+            name = nameOf(fluidOutput.getFluid());
+        }
+        else
+        {
+            name = nameOf(output.getFirst().getEmptyStack().getItem()) + "_" + output.size();
+        }
+        add(name, new SimplePotRecipe(
             new PotRecipe(
                 input,
                 fluidInput,

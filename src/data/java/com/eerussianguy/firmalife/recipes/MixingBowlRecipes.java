@@ -1,6 +1,7 @@
 package com.eerussianguy.firmalife.recipes;
 
 import java.util.List;
+import java.util.Optional;
 import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.items.FLFood;
 import com.eerussianguy.firmalife.common.items.FLItems;
@@ -14,6 +15,7 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
+import org.jetbrains.annotations.Nullable;
 
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.items.Food;
@@ -166,7 +168,8 @@ public interface MixingBowlRecipes extends Recipes
 
     private void mix(List<Ingredient> inputs, ItemStack output)
     {
-        mix(inputs, SizedFluidIngredient.of(FluidStack.EMPTY), output, FluidStack.EMPTY);
+        // TODO cant serialize SizedFluidIngredients that are empty, see comment on the codec for MixingBowlRecipe
+        mix(inputs, null, output, FluidStack.EMPTY);
     }
 
     private void mix(List<Ingredient> inputs, SizedFluidIngredient inputFluid, ItemStack outputStack)
@@ -174,8 +177,8 @@ public interface MixingBowlRecipes extends Recipes
         mix(inputs, inputFluid, outputStack, FluidStack.EMPTY);
     }
 
-    private void mix(List<Ingredient> inputs, SizedFluidIngredient inputFluid, ItemStack outputStack, FluidStack outputFluid)
+    private void mix(List<Ingredient> inputs, @Nullable SizedFluidIngredient inputFluid, ItemStack outputStack, FluidStack outputFluid)
     {
-        add(new MixingBowlRecipe(inputs, inputFluid, outputStack, outputFluid));
+        add(new MixingBowlRecipe(inputs, Optional.ofNullable(inputFluid), outputStack, outputFluid));
     }
 }
