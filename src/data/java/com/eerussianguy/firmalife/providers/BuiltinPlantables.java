@@ -18,7 +18,6 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
@@ -39,7 +38,7 @@ public class BuiltinPlantables extends DataManagerProvider<Plantable>
 {
     public BuiltinPlantables(PackOutput output, CompletableFuture<HolderLookup.Provider> lookup)
     {
-        super(Plantable.MANAGER, output, lookup);
+        super(Plantable.MANAGER, output, lookup, FirmaLife.MOD_ID);
     }
 
     @Override

@@ -9,7 +9,6 @@ package com.eerussianguy.firmalife.providers;
 import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
-import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.HolderLookup;
@@ -28,12 +27,14 @@ public abstract class DataManagerProvider<T> implements DataProvider
     private final PackOutput.PathProvider path;
     protected final CompletableFuture<?> contentDone;
 
-    protected DataManagerProvider(DataManager<T> manager, PackOutput output, CompletableFuture<HolderLookup.Provider> lookup)
+    protected DataManagerProvider(DataManager<T> manager, PackOutput output, CompletableFuture<HolderLookup.Provider> lookup, String domain)
     {
         this.manager = manager;
         this.lookup = lookup;
         this.elements = ImmutableMap.builder();
-        this.path = output.createPathProvider(PackOutput.Target.DATA_PACK, FirmaLife.MOD_ID + "/" + manager.getName());
+        //TODO it would be nice to use have access to the whole ResourceLocation that is used to determine SimpleJsonResourceReloadListener#directory
+        // but DataManager does not let you access the "domain". Using the correct domain required for TFC related data
+        this.path = output.createPathProvider(PackOutput.Target.DATA_PACK, domain + "/" + manager.getName());
         this.contentDone = new CompletableFuture<>();
     }
 

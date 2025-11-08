@@ -73,7 +73,7 @@ public class DataEntryPoint
         add(event, new BuiltinPlantables(output, lookup));
         add(event, new BuiltinFoods(output, lookup));
         add(event, new BuiltinItemSizes(output, lookup));
-        add(event, new DataManagerProvider<LampFuel>(LampFuel.MANAGER, output, lookup)
+        add(event, new DataManagerProvider<LampFuel>(LampFuel.MANAGER, output, lookup, TerraFirmaCraft.MOD_ID)
         {
 
             @Override
@@ -82,7 +82,7 @@ public class DataEntryPoint
                 add("soybean_oil", new LampFuel(FluidIngredient.of(FLFluids.EXTRA_FLUIDS.get(ExtraFluid.SOYBEAN_OIL).getSource()), BlockIngredient.of(TFCTags.Blocks.LAMPS), 7000));
             }
         });
-        add(event, new DataManagerProvider<Drinkable>(Drinkable.MANAGER, output, lookup)
+        add(event, new DataManagerProvider<Drinkable>(Drinkable.MANAGER, output, lookup, TerraFirmaCraft.MOD_ID)
         {
             @Override
             protected void addData(HolderLookup.Provider provider)
@@ -90,7 +90,7 @@ public class DataEntryPoint
                 add("chocolate", new Drinkable(FluidIngredient.of(FLFluids.EXTRA_FLUIDS.get(ExtraFluid.CHOCOLATE).getSource()), 0, false, FoodData.ofDrink(10, 0), List.of()));
             }
         });
-        add(event, new DataManagerProvider<GreenhouseType>(GreenhouseType.MANAGER, output, lookup)
+        add(event, new DataManagerProvider<GreenhouseType>(GreenhouseType.MANAGER, output, lookup, MOD_ID)
         {
             @Override
             protected void addData(HolderLookup.Provider provider)

@@ -13,6 +13,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 
+import net.dries007.tfc.TerraFirmaCraft;
 import net.dries007.tfc.common.component.food.FoodCapability;
 import net.dries007.tfc.common.component.food.FoodData;
 import net.dries007.tfc.common.component.food.FoodDefinition;
@@ -21,7 +22,7 @@ public class BuiltinFoods extends DataManagerProvider<FoodDefinition> implements
 {
     public BuiltinFoods(PackOutput output, CompletableFuture<HolderLookup.Provider> lookup)
     {
-        super(FoodCapability.MANAGER, output, lookup);
+        super(FoodCapability.MANAGER, output, lookup, TerraFirmaCraft.MOD_ID);
     }
 
     @Override
@@ -63,38 +64,38 @@ public class BuiltinFoods extends DataManagerProvider<FoodDefinition> implements
         add(FLFood.MASA, FoodData.of(2.0f));
         add(FLFood.DEHYDRATED_SOYBEANS, FoodData.of(0.5f));
         add(FLFood.SOYBEAN_PASTE, FoodData.of(0.6f));
-        add(FLFood.TOFU, new FoodData(4, 2f, 0.75f, 0, new float[]{0f, 0f, 1.5f, 0f, 0f}, 2f));
-        add(FLTags.Items.BREAD_SLICES, new FoodData(4, 0f, 1.5f, 0, new float[]{1f, 0f, 0f, 0f, 0f}, 0.75f), true);
-        add(FLFood.TOAST, new FoodData(4, 0f, 1f, 0, new float[]{1f, 0f, 0f, 0f, 0f}, 1.5f));
-        add(FLFood.TOAST_WITH_JAM, new FoodData(4, 1f, 2f, 0, new float[]{1f, 0f, 0f, 0f, 0.75f}, 2f));
-        add(FLFood.TOAST_WITH_BUTTER, new FoodData(4, 1f, 2f, 0, new float[]{1f, 0f, 0f, 0.25f, 0f}, 2f));
-        add(FLFood.BACON, new FoodData(4, 0f, 2f, 0, new float[]{0f, 0f, 0.5f, 0f, 0f}, 0f));
-        add(FLFood.COOKED_BACON, new FoodData(4, 0f, 2f, 0, new float[]{0f, 0f, 0.75f, 0f, 0f}, 2f));
-        add(FLFood.GARLIC_BREAD, new FoodData(4, 0f, 2f, 0, new float[]{1f, 1f, 0f, 0.1f, 0f}, 2f));
-        add(FLFood.COOKED_LASAGNA, new FoodData(4, 1f, 2f, 0, new float[]{1f, 1f, 1f, 0f, 0f}, 3f));
-        add(FLTags.Items.FLATBREADS, new FoodData(4, 0f, 1f, 0, new float[]{0.5f, 0f, 0f, 0f, 0f}, 0.75f), true);
-        add(FLTags.Items.CHEESES, new FoodData(4, 0f, 0.3f, 0, new float[]{0f, 0f, 0f, 3f, 0f}, 2f), true);
-        add(FLFood.SHREDDED_CHEESE, new FoodData(4, 0f, 0.3f, 0, new float[]{0f, 0f, 0f, 0.75f, 0f}, 2f));
-        add(FLFood.PICKLED_EGG, new FoodData(4, 10f, 0.3f, 0, new float[]{0f, 0f, 1.5f, 0.25f, 0f}, 2f));
-        add(FLTags.Items.CHOCOLATE, new FoodData(4, 0f, 0.3f, 0, new float[]{0.5f, 0f, 0f, 0.5f, 0f}, 1f), true);
-        add(FLFood.CHOCOLATE_CHIP_COOKIE, new FoodData(4, 0f, 4.5f, 0, new float[]{1.0f, 0f, 0f, 0.2f, 0f}, 0.5f));
-        add(FLFood.SUGAR_COOKIE, new FoodData(4, 0f, 4.5f, 0, new float[]{0.8f, 0f, 0f, 0.1f, 0f}, 0.5f));
-        add(FLFood.HARDTACK, new FoodData(4, 0f, 0.02f, 0, new float[]{0.2f, 0f, 0f, 0f, 0f}, 0.1f));
-        add(FLTags.Items.GRAPES, new FoodData(4, 2f, 2.5f, 0, new float[]{0f, 0f, 0f, 0f, 0.5f}, 0.5f), true);
-        add(FLFood.CORN_TORTILLA, new FoodData(4, 0f, 0.8f, 0, new float[]{0.6f, 0f, 0f, 0f, 0f}, 1f));
-        add(FLFood.TACO_SHELL, new FoodData(4, 0f, 0.8f, 0, new float[]{0.6f, 0f, 0f, 0f, 0f}, 1f));
-        add(FLFood.TORTILLA_CHIPS, new FoodData(4, 0f, 0.8f, 0, new float[]{0.7f, 0f, 0f, 0f, 0f}, 1.2f));
-        add(FLFood.NACHOS, new FoodData(4, 0f, 0.8f, 0, new float[]{0.7f, 0.7f, 0.75f, 0.5f, 0f}, 1.2f));
-        add(FLFood.TOMATO_SAUCE, new FoodData(1, 1f, 1f, 0, new float[]{0f, 0.75f, 0f, 0f, 0f}, 1f));
-        add(FLFood.SALSA, new FoodData(1, 0.8f, 1f, 0, new float[]{0f, 0.5f, 0f, 0f, 0f}, 1f));
-        add(FLFruit.PINEAPPLE, new FoodData(4, 1f, 0.85f, 0, new float[]{0f, 0f, 0f, 0f, 0.75f}, 1f));
-        add(FLItems.NIGHTSHADE_BERRY, new FoodData(4, 1f, 0.85f, 0, new float[]{0f, 0f, 0f, 0f, 3.0f}, 1f));
-        add(FLFood.VANILLA_ICE_CREAM, new FoodData(4, 1f, 5f, 0, new float[]{0f, 0f, 0f, 0.75f, 0f}, 1f));
-        add(FLFood.COOKIE_DOUGH_ICE_CREAM, new FoodData(4, 1f, 5f, 0, new float[]{0.5f, 0f, 0f, 1.0f, 0f}, 1f));
-        add(FLFood.CHOCOLATE_ICE_CREAM, new FoodData(4, 1f, 5f, 0, new float[]{0.25f, 0f, 0f, 0.5f, 0f}, 1.5f));
-        add(FLFood.STRAWBERRY_ICE_CREAM, new FoodData(4, 1f, 5f, 0, new float[]{0f, 0f, 0f, 0.5f, 0.5f}, 1.5f));
-        add(FLFood.BANANA_SPLIT, new FoodData(4, 1f, 5f, 0, new float[]{0.25f, 0f, 0f, 1.75f, 3.5f}, 2f));
-        add(FLFruit.FIG, new FoodData(4, 5f, 0.8f, 0, new float[]{0f, 0f, 0f, 0f, 0.9f}, 1f));
+        add(FLFood.TOFU, new FoodData(4, 2f, 0.75f, 0, new float[] {0f, 0f, 1.5f, 0f, 0f}, 2f));
+        add(FLTags.Items.BREAD_SLICES, new FoodData(4, 0f, 1.5f, 0, new float[] {1f, 0f, 0f, 0f, 0f}, 0.75f), true);
+        add(FLFood.TOAST, new FoodData(4, 0f, 1f, 0, new float[] {1f, 0f, 0f, 0f, 0f}, 1.5f));
+        add(FLFood.TOAST_WITH_JAM, new FoodData(4, 1f, 2f, 0, new float[] {1f, 0f, 0f, 0f, 0.75f}, 2f));
+        add(FLFood.TOAST_WITH_BUTTER, new FoodData(4, 1f, 2f, 0, new float[] {1f, 0f, 0f, 0.25f, 0f}, 2f));
+        add(FLFood.BACON, new FoodData(4, 0f, 2f, 0, new float[] {0f, 0f, 0.5f, 0f, 0f}, 0f));
+        add(FLFood.COOKED_BACON, new FoodData(4, 0f, 2f, 0, new float[] {0f, 0f, 0.75f, 0f, 0f}, 2f));
+        add(FLFood.GARLIC_BREAD, new FoodData(4, 0f, 2f, 0, new float[] {1f, 1f, 0f, 0.1f, 0f}, 2f));
+        add(FLFood.COOKED_LASAGNA, new FoodData(4, 1f, 2f, 0, new float[] {1f, 1f, 1f, 0f, 0f}, 3f));
+        add(FLTags.Items.FLATBREADS, new FoodData(4, 0f, 1f, 0, new float[] {0.5f, 0f, 0f, 0f, 0f}, 0.75f), true);
+        add(FLTags.Items.CHEESES, new FoodData(4, 0f, 0.3f, 0, new float[] {0f, 0f, 0f, 3f, 0f}, 2f), true);
+        add(FLFood.SHREDDED_CHEESE, new FoodData(4, 0f, 0.3f, 0, new float[] {0f, 0f, 0f, 0.75f, 0f}, 2f));
+        add(FLFood.PICKLED_EGG, new FoodData(4, 10f, 0.3f, 0, new float[] {0f, 0f, 1.5f, 0.25f, 0f}, 2f));
+        add(FLTags.Items.CHOCOLATE, new FoodData(4, 0f, 0.3f, 0, new float[] {0.5f, 0f, 0f, 0.5f, 0f}, 1f), true);
+        add(FLFood.CHOCOLATE_CHIP_COOKIE, new FoodData(4, 0f, 4.5f, 0, new float[] {1.0f, 0f, 0f, 0.2f, 0f}, 0.5f));
+        add(FLFood.SUGAR_COOKIE, new FoodData(4, 0f, 4.5f, 0, new float[] {0.8f, 0f, 0f, 0.1f, 0f}, 0.5f));
+        add(FLFood.HARDTACK, new FoodData(4, 0f, 0.02f, 0, new float[] {0.2f, 0f, 0f, 0f, 0f}, 0.1f));
+        add(FLTags.Items.GRAPES, new FoodData(4, 2f, 2.5f, 0, new float[] {0f, 0f, 0f, 0f, 0.5f}, 0.5f), true);
+        add(FLFood.CORN_TORTILLA, new FoodData(4, 0f, 0.8f, 0, new float[] {0.6f, 0f, 0f, 0f, 0f}, 1f));
+        add(FLFood.TACO_SHELL, new FoodData(4, 0f, 0.8f, 0, new float[] {0.6f, 0f, 0f, 0f, 0f}, 1f));
+        add(FLFood.TORTILLA_CHIPS, new FoodData(4, 0f, 0.8f, 0, new float[] {0.7f, 0f, 0f, 0f, 0f}, 1.2f));
+        add(FLFood.NACHOS, new FoodData(4, 0f, 0.8f, 0, new float[] {0.7f, 0.7f, 0.75f, 0.5f, 0f}, 1.2f));
+        add(FLFood.TOMATO_SAUCE, new FoodData(1, 1f, 1f, 0, new float[] {0f, 0.75f, 0f, 0f, 0f}, 1f));
+        add(FLFood.SALSA, new FoodData(1, 0.8f, 1f, 0, new float[] {0f, 0.5f, 0f, 0f, 0f}, 1f));
+        add(FLFruit.PINEAPPLE, new FoodData(4, 1f, 0.85f, 0, new float[] {0f, 0f, 0f, 0f, 0.75f}, 1f));
+        add(FLItems.NIGHTSHADE_BERRY, new FoodData(4, 1f, 0.85f, 0, new float[] {0f, 0f, 0f, 0f, 3.0f}, 1f));
+        add(FLFood.VANILLA_ICE_CREAM, new FoodData(4, 1f, 5f, 0, new float[] {0f, 0f, 0f, 0.75f, 0f}, 1f));
+        add(FLFood.COOKIE_DOUGH_ICE_CREAM, new FoodData(4, 1f, 5f, 0, new float[] {0.5f, 0f, 0f, 1.0f, 0f}, 1f));
+        add(FLFood.CHOCOLATE_ICE_CREAM, new FoodData(4, 1f, 5f, 0, new float[] {0.25f, 0f, 0f, 0.5f, 0f}, 1.5f));
+        add(FLFood.STRAWBERRY_ICE_CREAM, new FoodData(4, 1f, 5f, 0, new float[] {0f, 0f, 0f, 0.5f, 0.5f}, 1.5f));
+        add(FLFood.BANANA_SPLIT, new FoodData(4, 1f, 5f, 0, new float[] {0.25f, 0f, 0f, 1.75f, 3.5f}, 2f));
+        add(FLFruit.FIG, new FoodData(4, 5f, 0.8f, 0, new float[] {0f, 0f, 0f, 0f, 0.9f}, 1f));
         add(FLItems.FILLED_PIE, FoodData.of(4.5f));
         add(FLItems.RAW_PUMPKIN_PIE, FoodData.of(4.5f));
         add(FLFood.COOKED_PIE, FoodData.of(4.5f));

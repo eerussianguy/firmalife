@@ -7,6 +7,7 @@ import com.eerussianguy.firmalife.common.util.FLMetal;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 
+import net.dries007.tfc.TerraFirmaCraft;
 import net.dries007.tfc.util.data.FluidHeat;
 
 public class BuiltinFluidHeats extends DataManagerProvider<FluidHeat> implements Accessors
@@ -15,7 +16,7 @@ public class BuiltinFluidHeats extends DataManagerProvider<FluidHeat> implements
 
     public BuiltinFluidHeats(PackOutput output, CompletableFuture<HolderLookup.Provider> lookup)
     {
-        super(FluidHeat.MANAGER, output, lookup);
+        super(FluidHeat.MANAGER, output, lookup, TerraFirmaCraft.MOD_ID);
     }
 
     @Override

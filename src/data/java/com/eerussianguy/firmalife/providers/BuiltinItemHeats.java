@@ -16,6 +16,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 
+import net.dries007.tfc.TerraFirmaCraft;
 import net.dries007.tfc.common.component.heat.HeatCapability;
 import net.dries007.tfc.common.component.heat.HeatDefinition;
 import net.dries007.tfc.util.Helpers;
@@ -30,7 +31,7 @@ public class BuiltinItemHeats extends DataManagerProvider<HeatDefinition> implem
 
     public BuiltinItemHeats(PackOutput output, CompletableFuture<HolderLookup.Provider> lookup)
     {
-        super(HeatCapability.MANAGER, output, lookup);
+        super(HeatCapability.MANAGER, output, lookup, TerraFirmaCraft.MOD_ID);
     }
 
 

@@ -10,6 +10,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 
+import net.dries007.tfc.TerraFirmaCraft;
 import net.dries007.tfc.common.component.size.ItemSizeDefinition;
 import net.dries007.tfc.common.component.size.ItemSizeManager;
 import net.dries007.tfc.common.component.size.Size;
@@ -19,7 +20,7 @@ public class BuiltinItemSizes extends DataManagerProvider<ItemSizeDefinition>
 {
     public BuiltinItemSizes(PackOutput output, CompletableFuture<HolderLookup.Provider> lookup)
     {
-        super(ItemSizeManager.MANAGER, output, lookup);
+        super(ItemSizeManager.MANAGER, output, lookup, TerraFirmaCraft.MOD_ID);
     }
 
     @Override
