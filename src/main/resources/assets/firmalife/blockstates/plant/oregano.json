@@ -1,10 +1,10 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "variants": {
-    "stage=0": {
+    "age=0": {
       "model": "firmalife:block/plant/oregano_0"
     },
-    "stage=1": {
+    "age=1": {
       "model": "firmalife:block/plant/oregano_1"
     }
   }
