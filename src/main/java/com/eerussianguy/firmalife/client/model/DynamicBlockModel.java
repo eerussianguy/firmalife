@@ -31,8 +31,6 @@ import net.neoforged.neoforge.client.model.geometry.IUnbakedGeometry;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import net.dries007.tfc.client.RenderHelpers;
-
 public class DynamicBlockModel implements IUnbakedGeometry<DynamicBlockModel>
 {
     private final BlockModel baseModel;
@@ -65,7 +63,9 @@ public class DynamicBlockModel implements IUnbakedGeometry<DynamicBlockModel>
 
         public Baked(boolean isAmbientOcclusion, boolean isGui3d, boolean isSideLit, ItemOverrides overrides, BakedModel baseModel)
         {
-            super(isAmbientOcclusion, isGui3d, isSideLit, RenderHelpers.missingTexture(), overrides, baseModel, ImmutableMap.of());
+            //TODO using RenderHelpers#missingTexture() here tries to access the texture atlas before it is loaded, preventing the model from loading
+            // is there a better fix than just passing null?
+            super(isAmbientOcclusion, isGui3d, isSideLit, null, overrides, baseModel, ImmutableMap.of());
             this.baseModel = baseModel;
         }
 
