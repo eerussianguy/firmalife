@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "firmalife:oxidized_copper_greenhouse_panel_roof"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "firmalife:blocks/oxidized_copper_greenhouse_panel_roof"
+}

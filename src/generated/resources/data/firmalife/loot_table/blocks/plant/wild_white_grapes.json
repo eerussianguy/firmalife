@@ -1,0 +1,56 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 3.0,
+                "min": 1.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "firmalife:seeds/white_grape"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "firmalife:plant/wild_white_grapes",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "mature": "true"
+              }
+            }
+          ],
+          "name": "firmalife:food/white_grapes"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "firmalife:blocks/plant/wild_white_grapes"
+}
