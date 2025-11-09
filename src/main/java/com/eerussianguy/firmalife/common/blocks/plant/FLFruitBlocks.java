@@ -16,7 +16,6 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 
-import net.dries007.tfc.common.blockentities.BerryBushBlockEntity;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.plant.fruit.FruitTreeBranchBlock;
 import net.dries007.tfc.common.blocks.plant.fruit.FruitTreeLeavesBlock;
@@ -56,7 +55,7 @@ public final class FLFruitBlocks
 
         public Block createLeaves()
         {
-            return new FLFruitTreeLeavesBlock(ExtendedProperties.of().mapColor(FruitTreeLeavesBlock::getMapColor).strength(0.5F).sound(SoundType.GRASS).randomTicks().noOcclusion().blockEntity(FLBlockEntities.BERRY_BUSH).serverTicks(BerryBushBlockEntity::serverTick).flammableLikeLeaves(), product, stages, FLClimateRanges.FRUIT_TREES.get(this), color);
+            return new FLFruitTreeLeavesBlock(ExtendedProperties.of().mapColor(FruitTreeLeavesBlock::getMapColor).strength(0.5F).sound(SoundType.GRASS).randomTicks().noOcclusion().blockEntity(FLBlockEntities.BERRY_BUSH).flammableLikeLeaves(), product, stages, FLClimateRanges.FRUIT_TREES.get(this), color);
         }
 
         public Block createBranch()
@@ -86,7 +85,7 @@ public final class FLFruitBlocks
 
         public Block create()
         {
-            return new StationaryBerryBushBlock(ExtendedProperties.of().strength(0.6f).noOcclusion().randomTicks().sound(SoundType.SWEET_BERRY_BUSH).blockEntity(FLBlockEntities.BERRY_BUSH).serverTicks(BerryBushBlockEntity::serverTick).flammableLikeLeaves(), product, stages, FLClimateRanges.STATIONARY_BUSHES.get(this));
+            return new StationaryBerryBushBlock(ExtendedProperties.of().strength(0.6f).noOcclusion().randomTicks().sound(SoundType.SWEET_BERRY_BUSH).blockEntity(FLBlockEntities.BERRY_BUSH).flammableLikeLeaves(), product, stages, FLClimateRanges.STATIONARY_BUSHES.get(this));
         }
     }
 }
