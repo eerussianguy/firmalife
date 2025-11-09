@@ -1,0 +1,11 @@
+{
+  "type": "tfc:heating",
+  "ingredient": {
+    "item": "firmalife:ore/rich_chromite"
+  },
+  "result_fluid": {
+    "amount": 35,
+    "id": "firmalife:metal/chromium"
+  },
+  "temperature": 1250.0
+}

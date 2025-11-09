@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": {
+      "item": "firmalife:treated_lumber"
+    },
+    "Y": {
+      "item": "tfc:compost"
+    },
+    "Z": {
+      "tag": "c:sheets/wrought_iron"
+    }
+  },
+  "pattern": [
+    "YY",
+    "XX",
+    "Z "
+  ],
+  "result": {
+    "count": 2,
+    "id": "firmalife:hydroponic_planter"
+  }
+}

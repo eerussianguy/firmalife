@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "R": {
+      "tag": "c:rods/stainless_steel"
+    },
+    "S": {
+      "item": "tfc:metal/saw_blade/steel"
+    }
+  },
+  "pattern": [
+    "SR",
+    " R"
+  ],
+  "result": {
+    "count": 1,
+    "id": "firmalife:sweeper"
+  }
+}

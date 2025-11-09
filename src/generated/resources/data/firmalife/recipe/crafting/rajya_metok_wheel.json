@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": {
+      "item": "tfc:powder/salt"
+    },
+    "Y": {
+      "item": "firmalife:food/yak_curd"
+    }
+  },
+  "pattern": [
+    "XXX",
+    "YYY",
+    "XXX"
+  ],
+  "result": {
+    "count": 1,
+    "id": "firmalife:rajya_metok_wheel"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "crop": {
+    "count": 1,
+    "id": "tfc:food/potato"
+  },
+  "ingredient": {
+    "item": "tfc:seeds/potato"
+  },
+  "nutrient": "potassium",
+  "planter": "quad",
+  "seed": {
+    "count": 1,
+    "id": "tfc:seeds/potato"
+  },
+  "specials": [],
+  "stages": 6,
+  "textures": [
+    "tfc:block/crop/potato_0",
+    "tfc:block/crop/potato_1",
+    "tfc:block/crop/potato_2",
+    "tfc:block/crop/potato_3",
+    "tfc:block/crop/potato_4",
+    "tfc:block/crop/potato_5",
+    "tfc:block/crop/potato_6"
+  ]
+}

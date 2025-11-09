@@ -1,0 +1,26 @@
+{
+  "type": "firmalife:vat",
+  "input_fluid": {
+    "amount": 1000,
+    "fluid": "tfc:salt_water"
+  },
+  "input_item": {
+    "type": "tfc:and",
+    "children": [
+      {
+        "item": "tfc:food/soybean"
+      },
+      {
+        "type": "tfc:not_rotten"
+      }
+    ],
+    "count": 1
+  },
+  "length": 1,
+  "output_fluid": {},
+  "output_item": {
+    "count": 1,
+    "id": "firmalife:food/soy_mixture"
+  },
+  "temperature": 1.0
+}

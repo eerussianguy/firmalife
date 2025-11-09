@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "firmalife:food/toast"
+    },
+    {
+      "item": "firmalife:food/butter"
+    },
+    {
+      "item": "tfc:food/garlic"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "firmalife:food/garlic_bread"
+  }
+}

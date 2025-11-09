@@ -1,0 +1,10 @@
+{
+  "dairy": 0.5,
+  "decay_modifier": 0.5,
+  "hunger": 4,
+  "ingredient": {
+    "tag": "firmalife:foods/grapes"
+  },
+  "saturation": 2.5,
+  "water": 2.0
+}

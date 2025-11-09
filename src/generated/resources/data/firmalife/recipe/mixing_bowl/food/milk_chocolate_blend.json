@@ -1,0 +1,38 @@
+{
+  "type": "firmalife:mixing_bowl",
+  "fluid_ingredients": {
+    "amount": 1000,
+    "tag": "firmalife:milks"
+  },
+  "item_ingredients": [
+    {
+      "tag": "tfc:sweetener"
+    },
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "firmalife:food/cocoa_butter"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    },
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "firmalife:food/cocoa_powder"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    }
+  ],
+  "result_item": {
+    "count": 2,
+    "id": "firmalife:food/milk_chocolate_blend"
+  }
+}

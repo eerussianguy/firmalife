@@ -1,0 +1,12 @@
+{
+  "decay_modifier": 3.0,
+  "fruit": 1.0,
+  "grain": 1.0,
+  "hunger": 4,
+  "ingredient": {
+    "item": "firmalife:food/cooked_lasagna"
+  },
+  "saturation": 2.0,
+  "vegetables": 1.0,
+  "water": 1.0
+}

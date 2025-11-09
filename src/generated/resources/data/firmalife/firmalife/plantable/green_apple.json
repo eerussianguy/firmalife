@@ -1,0 +1,25 @@
+{
+  "crop": {
+    "count": 1,
+    "id": "tfc:food/green_apple"
+  },
+  "extra_seed_chance": 0.08,
+  "ingredient": {
+    "item": "tfc:plant/green_apple_sapling"
+  },
+  "nutrient": "nitrogen",
+  "planter": "bonsai",
+  "seed": {
+    "count": 1,
+    "id": "tfc:plant/green_apple_sapling"
+  },
+  "specials": [],
+  "textures": [
+    "tfc:block/fruit_tree/green_apple_fruiting_leaves",
+    "tfc:block/fruit_tree/green_apple_dry_leaves",
+    "tfc:block/fruit_tree/green_apple_flowering_leaves",
+    "tfc:block/fruit_tree/green_apple_branch",
+    "tfc:block/fruit_tree/green_apple_leaves"
+  ],
+  "tier": 15
+}

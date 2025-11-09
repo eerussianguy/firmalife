@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": {
+      "tag": "tfc:high_quality_cloth"
+    }
+  },
+  "pattern": [
+    "XX"
+  ],
+  "result": {
+    "count": 8,
+    "id": "firmalife:cheesecloth"
+  }
+}

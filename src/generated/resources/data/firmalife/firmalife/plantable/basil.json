@@ -1,0 +1,22 @@
+{
+  "crop": {
+    "count": 1,
+    "id": "firmalife:plant/basil"
+  },
+  "extra_seed_chance": 0.8,
+  "ingredient": {
+    "item": "firmalife:plant/basil"
+  },
+  "nutrient": "nitrogen",
+  "planter": "quad",
+  "seed": {
+    "count": 1,
+    "id": "firmalife:plant/basil"
+  },
+  "specials": [],
+  "stages": 1,
+  "textures": [
+    "firmalife:block/plant/basil/0",
+    "firmalife:block/plant/basil/1"
+  ]
+}

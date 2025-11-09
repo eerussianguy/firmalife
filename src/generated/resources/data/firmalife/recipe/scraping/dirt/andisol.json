@@ -1,0 +1,10 @@
+{
+  "type": "firmalife:drying",
+  "ingredient": {
+    "item": "tfc:mud/andisol"
+  },
+  "result": {
+    "count": 1,
+    "id": "tfc:dirt/andisol"
+  }
+}

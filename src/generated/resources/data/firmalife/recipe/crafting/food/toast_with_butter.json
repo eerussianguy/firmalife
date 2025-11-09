@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "firmalife:food/toast"
+    },
+    {
+      "item": "firmalife:food/butter"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "firmalife:food/toast_with_butter"
+  }
+}

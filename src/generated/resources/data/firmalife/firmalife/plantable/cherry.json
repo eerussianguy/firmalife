@@ -1,0 +1,25 @@
+{
+  "crop": {
+    "count": 1,
+    "id": "tfc:food/cherry"
+  },
+  "extra_seed_chance": 0.08,
+  "ingredient": {
+    "item": "tfc:plant/cherry_sapling"
+  },
+  "nutrient": "nitrogen",
+  "planter": "bonsai",
+  "seed": {
+    "count": 1,
+    "id": "tfc:plant/cherry_sapling"
+  },
+  "specials": [],
+  "textures": [
+    "tfc:block/fruit_tree/cherry_fruiting_leaves",
+    "tfc:block/fruit_tree/cherry_dry_leaves",
+    "tfc:block/fruit_tree/cherry_flowering_leaves",
+    "tfc:block/fruit_tree/cherry_branch",
+    "tfc:block/fruit_tree/cherry_leaves"
+  ],
+  "tier": 15
+}

@@ -1,0 +1,24 @@
+{
+  "type": "firmalife:mixing_bowl",
+  "fluid_ingredients": {
+    "amount": 1000,
+    "fluid": "firmalife:chocolate"
+  },
+  "item_ingredients": [
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "firmalife:food/vanilla_ice_cream"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    }
+  ],
+  "result_item": {
+    "count": 1,
+    "id": "firmalife:food/chocolate_ice_cream"
+  }
+}

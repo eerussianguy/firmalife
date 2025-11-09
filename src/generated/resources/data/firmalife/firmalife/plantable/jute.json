@@ -1,0 +1,25 @@
+{
+  "crop": {
+    "count": 1,
+    "id": "tfc:jute"
+  },
+  "ingredient": {
+    "item": "tfc:seeds/jute"
+  },
+  "nutrient": "potassium",
+  "planter": "large",
+  "seed": {
+    "count": 1,
+    "id": "tfc:seeds/jute"
+  },
+  "specials": [],
+  "stages": 4,
+  "textures": [
+    "firmalife:block/crop/jute_0",
+    "firmalife:block/crop/jute_1",
+    "firmalife:block/crop/jute_2",
+    "firmalife:block/crop/jute_3",
+    "firmalife:block/crop/jute_4"
+  ],
+  "tier": 10
+}

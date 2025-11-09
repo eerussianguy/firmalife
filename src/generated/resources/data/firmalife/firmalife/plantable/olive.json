@@ -1,0 +1,25 @@
+{
+  "crop": {
+    "count": 1,
+    "id": "tfc:food/olive"
+  },
+  "extra_seed_chance": 0.08,
+  "ingredient": {
+    "item": "tfc:plant/olive_sapling"
+  },
+  "nutrient": "nitrogen",
+  "planter": "bonsai",
+  "seed": {
+    "count": 1,
+    "id": "tfc:plant/olive_sapling"
+  },
+  "specials": [],
+  "textures": [
+    "tfc:block/fruit_tree/olive_fruiting_leaves",
+    "tfc:block/fruit_tree/olive_dry_leaves",
+    "tfc:block/fruit_tree/olive_flowering_leaves",
+    "tfc:block/fruit_tree/olive_branch",
+    "tfc:block/fruit_tree/olive_leaves"
+  ],
+  "tier": 15
+}

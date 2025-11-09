@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "tfc:brass_mechanisms"
+    },
+    "R": {
+      "tag": "c:dusts/redstone"
+    },
+    "S": {
+      "tag": "c:sheets/any_bronze"
+    },
+    "Z": {
+      "tag": "tfc:axles"
+    }
+  },
+  "pattern": [
+    "SRS",
+    "BBB",
+    "ZZZ"
+  ],
+  "result": {
+    "count": 1,
+    "id": "firmalife:pumping_station"
+  }
+}

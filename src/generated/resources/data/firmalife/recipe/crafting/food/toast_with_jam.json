@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "firmalife:food/toast"
+    },
+    {
+      "tag": "tfc:foods/preserves"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "firmalife:food/toast_with_jam"
+  }
+}

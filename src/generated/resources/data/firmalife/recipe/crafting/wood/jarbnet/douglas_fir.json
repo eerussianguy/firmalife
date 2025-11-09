@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": {
+      "item": "tfc:wood/log/douglas_fir"
+    },
+    "Y": {
+      "item": "tfc:wood/lumber/douglas_fir"
+    },
+    "Z": {
+      "tag": "c:rods/brass"
+    }
+  },
+  "pattern": [
+    "X  ",
+    "ZYY",
+    "X  "
+  ],
+  "result": {
+    "count": 2,
+    "id": "firmalife:wood/jarbnet/douglas_fir"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "decay_modifier": 1.2,
+  "grain": 0.7,
+  "hunger": 4,
+  "ingredient": {
+    "item": "firmalife:food/tortilla_chips"
+  },
+  "saturation": 0.8
+}

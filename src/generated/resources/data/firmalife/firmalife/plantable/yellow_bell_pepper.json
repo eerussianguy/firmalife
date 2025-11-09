@@ -1,0 +1,27 @@
+{
+  "crop": {
+    "count": 1,
+    "id": "tfc:food/yellow_bell_pepper"
+  },
+  "ingredient": {
+    "item": "tfc:seeds/yellow_bell_pepper"
+  },
+  "nutrient": "potassium",
+  "planter": "large",
+  "seed": {
+    "count": 1,
+    "id": "tfc:seeds/yellow_bell_pepper"
+  },
+  "specials": [],
+  "stages": 6,
+  "textures": [
+    "tfc:block/crop/yellow_bell_pepper_0",
+    "tfc:block/crop/yellow_bell_pepper_1",
+    "tfc:block/crop/yellow_bell_pepper_2",
+    "tfc:block/crop/yellow_bell_pepper_3",
+    "tfc:block/crop/yellow_bell_pepper_4",
+    "tfc:block/crop/yellow_bell_pepper_5",
+    "tfc:block/crop/yellow_bell_pepper_6"
+  ],
+  "tier": 10
+}

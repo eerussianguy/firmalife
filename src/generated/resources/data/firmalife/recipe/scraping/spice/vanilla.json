@@ -1,0 +1,10 @@
+{
+  "type": "firmalife:drying",
+  "ingredient": {
+    "item": "firmalife:plant/vanilla"
+  },
+  "result": {
+    "count": 1,
+    "id": "firmalife:spice/vanilla"
+  }
+}

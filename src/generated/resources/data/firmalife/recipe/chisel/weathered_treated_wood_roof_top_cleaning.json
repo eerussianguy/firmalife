@@ -1,0 +1,8 @@
+{
+  "type": "tfc:chisel",
+  "ingredient": [
+    "firmalife:weathered_treated_wood_greenhouse_roof_top"
+  ],
+  "mode": "tfc:smooth",
+  "result": "firmalife:treated_wood_greenhouse_roof_top"
+}

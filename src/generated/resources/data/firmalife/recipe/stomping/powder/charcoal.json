@@ -1,0 +1,13 @@
+{
+  "type": "firmalife:stomping",
+  "ingredient": {
+    "item": "minecraft:charcoal"
+  },
+  "input_texture": "tfc:block/charcoal_pile",
+  "output_texture": "tfc:block/powder/charcoal",
+  "result": {
+    "count": 4,
+    "id": "tfc:powder/charcoal"
+  },
+  "sound": "tfc:block.charcoal.fall"
+}

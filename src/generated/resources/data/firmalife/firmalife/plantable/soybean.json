@@ -1,0 +1,26 @@
+{
+  "crop": {
+    "count": 1,
+    "id": "tfc:food/soybean"
+  },
+  "ingredient": {
+    "item": "tfc:seeds/soybean"
+  },
+  "nutrient": "nitrogen",
+  "planter": "quad",
+  "seed": {
+    "count": 1,
+    "id": "tfc:seeds/soybean"
+  },
+  "specials": [],
+  "stages": 6,
+  "textures": [
+    "tfc:block/crop/soybean_0",
+    "tfc:block/crop/soybean_1",
+    "tfc:block/crop/soybean_2",
+    "tfc:block/crop/soybean_3",
+    "tfc:block/crop/soybean_4",
+    "tfc:block/crop/soybean_5",
+    "tfc:block/crop/soybean_6"
+  ]
+}

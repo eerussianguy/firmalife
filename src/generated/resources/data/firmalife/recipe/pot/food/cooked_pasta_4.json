@@ -1,0 +1,65 @@
+{
+  "type": "firmalife:bowl_pot",
+  "duration": 2000,
+  "fluid_ingredient": {
+    "amount": 100,
+    "fluid": "minecraft:water"
+  },
+  "food": {
+    "decay_modifier": 3.0,
+    "grain": 1.5,
+    "hunger": 4,
+    "saturation": 2.0
+  },
+  "ingredients": [
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "firmalife:food/raw_egg_noodles"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    },
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "firmalife:food/raw_egg_noodles"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    },
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "firmalife:food/raw_egg_noodles"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    },
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "firmalife:food/raw_egg_noodles"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    }
+  ],
+  "item_output": {
+    "count": 4,
+    "id": "firmalife:food/cooked_pasta"
+  },
+  "temperature": 300.0
+}

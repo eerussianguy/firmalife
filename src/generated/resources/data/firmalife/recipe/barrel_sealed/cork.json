@@ -1,0 +1,16 @@
+{
+  "type": "tfc:barrel_sealed",
+  "duration": 24000,
+  "input_fluid": {
+    "amount": 1000,
+    "fluid": "tfc:limewater"
+  },
+  "input_item": {
+    "count": 1,
+    "item": "firmalife:treated_lumber"
+  },
+  "output_item": {
+    "count": 8,
+    "id": "firmalife:cork"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "type": "firmalife:vat",
+  "input_fluid": {
+    "amount": 500,
+    "fluid": "firmalife:sugar_water"
+  },
+  "input_item": {
+    "type": "tfc:and",
+    "children": [
+      {
+        "item": "tfc:food/plum"
+      },
+      {
+        "type": "tfc:lacks_trait",
+        "trait": "firmalife:dried"
+      },
+      {
+        "type": "tfc:not_rotten"
+      }
+    ],
+    "count": 1
+  },
+  "length": 1,
+  "output_fluid": {},
+  "output_texture": "tfc:block/jar/plum",
+  "temperature": 1.0
+}

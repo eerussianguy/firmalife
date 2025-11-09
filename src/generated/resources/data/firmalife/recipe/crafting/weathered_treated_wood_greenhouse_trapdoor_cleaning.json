@@ -1,0 +1,25 @@
+{
+  "type": "tfc:advanced_shapeless_crafting",
+  "ingredients": [
+    {
+      "item": "firmalife:weathered_treated_wood_greenhouse_trapdoor"
+    },
+    {
+      "tag": "c:tools/chisel"
+    }
+  ],
+  "primary_ingredient": {
+    "tag": "c:tools/chisel"
+  },
+  "remainder": {
+    "modifiers": [
+      {
+        "type": "tfc:damage_crafting_remainder"
+      }
+    ]
+  },
+  "result": {
+    "count": 1,
+    "id": "firmalife:treated_wood_greenhouse_trapdoor"
+  }
+}

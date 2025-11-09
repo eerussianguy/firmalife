@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "firmalife:wood/stomping_barrel/douglas_fir"
+    },
+    {
+      "tag": "c:rods/wrought_iron"
+    },
+    {
+      "tag": "c:sheets/wrought_iron"
+    },
+    {
+      "item": "tfc:brass_mechanisms"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "firmalife:wood/barrel_press/douglas_fir"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "type": "tfc:chisel",
+  "ingredient": [
+    "firmalife:tiles"
+  ],
+  "mode": "tfc:stair",
+  "result": "firmalife:tiles_stairs"
+}

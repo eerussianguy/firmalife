@@ -1,0 +1,9 @@
+{
+  "decay_modifier": 0.75,
+  "grain": 0.5,
+  "hunger": 4,
+  "ingredient": {
+    "tag": "firmalife:foods/flatbreads"
+  },
+  "saturation": 1.0
+}

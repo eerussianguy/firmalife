@@ -1,0 +1,32 @@
+{
+  "type": "tfc:barrel_sealed",
+  "duration": 120000,
+  "input_fluid": {
+    "amount": 100,
+    "fluid": "minecraft:water"
+  },
+  "input_item": {
+    "type": "tfc:and",
+    "children": [
+      {
+        "item": "firmalife:food/smashed_red_grapes"
+      },
+      {
+        "type": "tfc:has_trait",
+        "trait": "firmalife:fermented"
+      }
+    ],
+    "count": 1
+  },
+  "output_item": {
+    "modifiers": [
+      {
+        "type": "tfc:copy_input"
+      },
+      {
+        "type": "tfc:add_trait",
+        "trait": "firmalife:fermented"
+      }
+    ]
+  }
+}

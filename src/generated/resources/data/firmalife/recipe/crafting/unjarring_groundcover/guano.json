@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "firmalife:jar/guano"
+    }
+  ],
+  "result": {
+    "count": 8,
+    "id": "tfc:groundcover/guano"
+  }
+}

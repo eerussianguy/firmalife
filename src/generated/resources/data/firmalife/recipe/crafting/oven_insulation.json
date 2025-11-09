@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:sheets/wrought_iron"
+    },
+    {
+      "item": "firmalife:beeswax"
+    },
+    {
+      "tag": "tfc:welding_flux"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "firmalife:oven_insulation"
+  }
+}

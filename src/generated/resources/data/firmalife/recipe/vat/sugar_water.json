@@ -1,0 +1,17 @@
+{
+  "type": "firmalife:vat",
+  "input_fluid": {
+    "amount": 1000,
+    "fluid": "minecraft:water"
+  },
+  "input_item": {
+    "count": 1,
+    "tag": "tfc:sweetener"
+  },
+  "length": 1,
+  "output_fluid": {
+    "amount": 500,
+    "id": "firmalife:sugar_water"
+  },
+  "temperature": 1.0
+}

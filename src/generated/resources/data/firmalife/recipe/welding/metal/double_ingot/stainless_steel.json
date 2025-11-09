@@ -1,0 +1,14 @@
+{
+  "type": "tfc:welding",
+  "first_input": {
+    "item": "firmalife:metal/ingot/stainless_steel"
+  },
+  "result": {
+    "count": 1,
+    "id": "firmalife:metal/double_ingot/stainless_steel"
+  },
+  "second_input": {
+    "item": "firmalife:metal/ingot/stainless_steel"
+  },
+  "tier": 3
+}

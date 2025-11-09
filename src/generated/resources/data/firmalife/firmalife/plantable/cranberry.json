@@ -1,0 +1,25 @@
+{
+  "crop": {
+    "count": 1,
+    "id": "tfc:food/cranberry"
+  },
+  "ingredient": {
+    "item": "tfc:plant/cranberry_bush"
+  },
+  "nutrient": "phosphorous",
+  "planter": "hydroponic",
+  "seed": {
+    "count": 1,
+    "id": "tfc:plant/cranberry_bush"
+  },
+  "specials": [],
+  "stages": 3,
+  "textures": [
+    "firmalife:block/crop/cranberry_0",
+    "firmalife:block/crop/cranberry_1",
+    "firmalife:block/crop/cranberry_2",
+    "firmalife:block/crop/cranberry_3",
+    "firmalife:block/crop/cranberry_4"
+  ],
+  "tier": 10
+}

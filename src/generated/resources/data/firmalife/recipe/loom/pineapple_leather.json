@@ -1,0 +1,13 @@
+{
+  "type": "tfc:loom",
+  "ingredient": {
+    "count": 16,
+    "item": "firmalife:pineapple_fiber"
+  },
+  "result": {
+    "count": 1,
+    "id": "firmalife:pineapple_leather"
+  },
+  "steps": 16,
+  "texture": "firmalife:block/pineapple"
+}

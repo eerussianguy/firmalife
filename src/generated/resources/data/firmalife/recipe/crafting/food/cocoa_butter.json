@@ -1,0 +1,40 @@
+{
+  "type": "tfc:advanced_shapeless_crafting",
+  "ingredients": [
+    {
+      "tag": "c:tools/knife"
+    },
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "firmalife:food/roasted_cocoa_beans"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    }
+  ],
+  "primary_ingredient": {
+    "tag": "c:tools/knife"
+  },
+  "remainder": {
+    "modifiers": [
+      {
+        "type": "tfc:damage_crafting_remainder"
+      },
+      {
+        "type": "tfc:extra_products",
+        "stack": {
+          "count": 1,
+          "id": "firmalife:food/cocoa_powder"
+        }
+      }
+    ]
+  },
+  "result": {
+    "count": 1,
+    "id": "firmalife:food/cocoa_butter"
+  }
+}

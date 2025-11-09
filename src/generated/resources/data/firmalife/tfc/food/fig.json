@@ -1,0 +1,10 @@
+{
+  "dairy": 0.9,
+  "decay_modifier": 1.0,
+  "hunger": 4,
+  "ingredient": {
+    "item": "firmalife:food/fig"
+  },
+  "saturation": 0.8,
+  "water": 5.0
+}

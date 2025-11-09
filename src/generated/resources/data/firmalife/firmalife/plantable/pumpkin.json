@@ -1,0 +1,27 @@
+{
+  "crop": {
+    "count": 1,
+    "id": "tfc:seeds/pumpkin"
+  },
+  "ingredient": {
+    "item": "tfc:seeds/pumpkin"
+  },
+  "nutrient": "phosphorous",
+  "planter": "hanging",
+  "seed": {
+    "count": 1,
+    "id": "tfc:seeds/pumpkin"
+  },
+  "specials": [
+    "firmalife:pumpkin_fruit"
+  ],
+  "stages": 4,
+  "textures": [
+    "firmalife:block/crop/pumpkin0",
+    "firmalife:block/crop/pumpkin1",
+    "firmalife:block/crop/pumpkin2",
+    "firmalife:block/crop/pumpkin3",
+    "firmalife:block/crop/pumpkin4"
+  ],
+  "tier": 15
+}

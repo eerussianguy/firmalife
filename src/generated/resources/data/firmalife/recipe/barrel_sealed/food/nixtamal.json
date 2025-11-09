@@ -1,0 +1,16 @@
+{
+  "type": "tfc:barrel_sealed",
+  "duration": 1000,
+  "input_fluid": {
+    "amount": 100,
+    "fluid": "minecraft:water"
+  },
+  "input_item": {
+    "count": 1,
+    "item": "firmalife:food/cured_maize"
+  },
+  "output_item": {
+    "count": 1,
+    "id": "firmalife:food/nixtamal"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "type": "firmalife:oven",
+  "duration": 1000,
+  "ingredient": {
+    "type": "tfc:and",
+    "children": [
+      {
+        "item": "firmalife:food/filled_pie"
+      },
+      {
+        "type": "tfc:not_rotten"
+      }
+    ]
+  },
+  "result": {
+    "modifiers": [
+      {
+        "type": "firmalife:copy_dynamic_food"
+      }
+    ],
+    "stack": {
+      "count": 1,
+      "id": "firmalife:food/cooked_pie"
+    }
+  },
+  "temperature": 400.0
+}

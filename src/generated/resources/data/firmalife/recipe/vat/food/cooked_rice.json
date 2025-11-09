@@ -1,0 +1,26 @@
+{
+  "type": "firmalife:vat",
+  "input_fluid": {
+    "amount": 200,
+    "fluid": "minecraft:water"
+  },
+  "input_item": {
+    "type": "tfc:and",
+    "children": [
+      {
+        "item": "tfc:food/rice_grain"
+      },
+      {
+        "type": "tfc:not_rotten"
+      }
+    ],
+    "count": 1
+  },
+  "length": 1,
+  "output_fluid": {},
+  "output_item": {
+    "count": 1,
+    "id": "tfc:food/cooked_rice"
+  },
+  "temperature": 1.0
+}

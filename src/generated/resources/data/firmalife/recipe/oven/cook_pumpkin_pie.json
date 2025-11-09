@@ -1,0 +1,27 @@
+{
+  "type": "firmalife:oven",
+  "duration": 1000,
+  "ingredient": {
+    "type": "tfc:and",
+    "children": [
+      {
+        "item": "firmalife:food/raw_pumpkin_pie"
+      },
+      {
+        "type": "tfc:not_rotten"
+      }
+    ]
+  },
+  "result": {
+    "modifiers": [
+      {
+        "type": "firmalife:copy_dynamic_food"
+      }
+    ],
+    "stack": {
+      "count": 1,
+      "id": "minecraft:pumpkin_pie"
+    }
+  },
+  "temperature": 400.0
+}

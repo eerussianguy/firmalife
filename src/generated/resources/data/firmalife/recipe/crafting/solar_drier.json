@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "tag": "c:glass_blocks"
+    },
+    "M": {
+      "item": "firmalife:drying_mat"
+    },
+    "S": {
+      "tag": "c:rods/stainless_steel"
+    },
+    "W": {
+      "item": "firmalife:treated_lumber"
+    }
+  },
+  "pattern": [
+    "SGS",
+    " M ",
+    "WWW"
+  ],
+  "result": {
+    "count": 1,
+    "id": "firmalife:solar_drier"
+  }
+}

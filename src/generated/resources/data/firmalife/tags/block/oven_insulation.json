@@ -1,0 +1,12 @@
+{
+  "values": [
+    "minecraft:bricks",
+    "minecraft:brick_stairs",
+    "minecraft:brick_slab",
+    "firmalife:sealed_bricks",
+    "firmalife:chiseled_sealed_bricks",
+    "firmalife:polished_sealed_bricks",
+    "#tfc:charcoal_forge_insulation",
+    "#firmalife:oven_blocks"
+  ]
+}

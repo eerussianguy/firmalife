@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "tag": "tfc:axles"
+    },
+    "G": {
+      "item": "tfc:glue"
+    },
+    "X": {
+      "tag": "c:sheets/wrought_iron"
+    },
+    "Y": {
+      "item": "tfc:composter"
+    }
+  },
+  "pattern": [
+    "XYX",
+    "AGA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "firmalife:compost_tumbler"
+  }
+}

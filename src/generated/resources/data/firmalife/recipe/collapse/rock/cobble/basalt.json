@@ -1,0 +1,9 @@
+{
+  "type": "tfc:collapse",
+  "ingredient": [
+    "firmalife:ore/poor_chromite/basalt",
+    "firmalife:ore/normal_chromite/basalt",
+    "firmalife:ore/rich_chromite/basalt"
+  ],
+  "result": "tfc:rock/cobble/basalt"
+}

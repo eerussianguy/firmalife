@@ -1,9 +1,0 @@
-{
-  "__comment__": "This file was automatically created by mcresources",
-  "fluid": "firmalife:soybean_oil",
-  "burn_rate": 7000,
-  "valid_lamps": {
-    "type": "tfc:tag",
-    "tag": "tfc:lamps"
-  }
-}

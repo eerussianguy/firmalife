@@ -1,0 +1,20 @@
+{
+  "type": "tfc:barrel_sealed",
+  "duration": 1000,
+  "input_fluid": {
+    "amount": 1000,
+    "tag": "firmalife:milks"
+  },
+  "input_item": {
+    "count": 1,
+    "item": "firmalife:cheesecloth"
+  },
+  "output_fluid": {
+    "amount": 1000,
+    "id": "firmalife:cream"
+  },
+  "output_item": {
+    "count": 1,
+    "id": "firmalife:cheesecloth"
+  }
+}

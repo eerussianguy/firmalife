@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:rods/wooden"
+    },
+    {
+      "tag": "tfc:lumber"
+    },
+    {
+      "tag": "c:tools/knife"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "firmalife:spoon"
+  }
+}

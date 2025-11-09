@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": {
+      "item": "tfc:wood/planks/douglas_fir"
+    },
+    "Y": {
+      "item": "tfc:wood/lumber/douglas_fir"
+    }
+  },
+  "pattern": [
+    "XXX",
+    "YYY",
+    "XXX"
+  ],
+  "result": {
+    "count": 1,
+    "id": "firmalife:wood/food_shelf/douglas_fir"
+  }
+}

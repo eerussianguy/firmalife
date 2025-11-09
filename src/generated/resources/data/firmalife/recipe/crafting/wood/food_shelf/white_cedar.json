@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": {
+      "item": "tfc:wood/planks/white_cedar"
+    },
+    "Y": {
+      "item": "tfc:wood/lumber/white_cedar"
+    }
+  },
+  "pattern": [
+    "XXX",
+    "YYY",
+    "XXX"
+  ],
+  "result": {
+    "count": 1,
+    "id": "firmalife:wood/food_shelf/white_cedar"
+  }
+}

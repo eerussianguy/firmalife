@@ -1,0 +1,28 @@
+{
+  "crop": {
+    "count": 1,
+    "id": "tfc:food/rice"
+  },
+  "ingredient": {
+    "item": "tfc:seeds/rice"
+  },
+  "nutrient": "phosphorous",
+  "planter": "hydroponic",
+  "seed": {
+    "count": 1,
+    "id": "tfc:seeds/rice"
+  },
+  "specials": [],
+  "stages": 7,
+  "textures": [
+    "tfc:block/crop/rice_0",
+    "tfc:block/crop/rice_1",
+    "tfc:block/crop/rice_2",
+    "tfc:block/crop/rice_3",
+    "tfc:block/crop/rice_4",
+    "tfc:block/crop/rice_5",
+    "tfc:block/crop/rice_6",
+    "tfc:block/crop/rice_7"
+  ],
+  "tier": 10
+}

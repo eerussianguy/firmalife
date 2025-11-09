@@ -1,0 +1,25 @@
+{
+  "crop": {
+    "count": 1,
+    "id": "tfc:food/sugarcane"
+  },
+  "ingredient": {
+    "item": "tfc:seeds/sugarcane"
+  },
+  "nutrient": "potassium",
+  "planter": "large",
+  "seed": {
+    "count": 1,
+    "id": "tfc:seeds/sugarcane"
+  },
+  "specials": [],
+  "stages": 4,
+  "textures": [
+    "firmalife:block/crop/sugarcane_0",
+    "firmalife:block/crop/sugarcane_1",
+    "firmalife:block/crop/sugarcane_2",
+    "firmalife:block/crop/sugarcane_3",
+    "firmalife:block/crop/sugarcane_4"
+  ],
+  "tier": 10
+}

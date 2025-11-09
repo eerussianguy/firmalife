@@ -1,0 +1,23 @@
+{
+  "crop": {
+    "count": 1,
+    "id": "firmalife:food/white_grapes"
+  },
+  "ingredient": {
+    "item": "firmalife:seeds/white_grape"
+  },
+  "nutrient": "nitrogen",
+  "planter": "trellis",
+  "seed": {
+    "count": 1,
+    "id": "firmalife:seeds/white_grape"
+  },
+  "specials": [],
+  "textures": [
+    "firmalife:block/crop/grape_leaves",
+    "firmalife:block/crop/grape_dead",
+    "firmalife:block/crop/grape_flowering",
+    "firmalife:block/crop/grape_red"
+  ],
+  "tier": 15
+}

@@ -1,0 +1,8 @@
+{
+  "type": "tfc:chisel",
+  "ingredient": [
+    "firmalife:oxidized_copper_greenhouse_panel_roof"
+  ],
+  "mode": "tfc:smooth",
+  "result": "firmalife:copper_greenhouse_panel_roof"
+}

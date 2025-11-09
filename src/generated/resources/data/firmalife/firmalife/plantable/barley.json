@@ -1,0 +1,28 @@
+{
+  "crop": {
+    "count": 1,
+    "id": "tfc:food/barley"
+  },
+  "ingredient": {
+    "item": "tfc:seeds/barley"
+  },
+  "nutrient": "nitrogen",
+  "planter": "large",
+  "seed": {
+    "count": 1,
+    "id": "tfc:seeds/barley"
+  },
+  "specials": [],
+  "stages": 7,
+  "textures": [
+    "tfc:block/crop/barley_0",
+    "tfc:block/crop/barley_1",
+    "tfc:block/crop/barley_2",
+    "tfc:block/crop/barley_3",
+    "tfc:block/crop/barley_4",
+    "tfc:block/crop/barley_5",
+    "tfc:block/crop/barley_6",
+    "tfc:block/crop/barley_7"
+  ],
+  "tier": 10
+}

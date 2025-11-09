@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "firmalife:jar/rotten_compost"
+    }
+  ],
+  "result": {
+    "count": 8,
+    "id": "tfc:rotten_compost"
+  }
+}

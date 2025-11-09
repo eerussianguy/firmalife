@@ -1,0 +1,27 @@
+{
+  "type": "firmalife:mixing_bowl",
+  "fluid_ingredients": {
+    "amount": 1000,
+    "fluid": "minecraft:water"
+  },
+  "item_ingredients": [
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "tag": "c:foods/flour"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    },
+    {
+      "item": "tfc:powder/salt"
+    }
+  ],
+  "result_item": {
+    "count": 4,
+    "id": "firmalife:food/hardtack_dough"
+  }
+}

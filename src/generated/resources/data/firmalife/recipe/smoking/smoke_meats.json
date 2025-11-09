@@ -1,0 +1,38 @@
+{
+  "type": "firmalife:smoking",
+  "ingredient": {
+    "type": "tfc:and",
+    "children": [
+      {
+        "type": "tfc:and",
+        "children": [
+          {
+            "tag": "c:foods/raw_meat"
+          },
+          {
+            "type": "tfc:lacks_trait",
+            "trait": "firmalife:smoked"
+          }
+        ]
+      },
+      {
+        "type": "tfc:not_rotten"
+      },
+      {
+        "type": "tfc:has_trait",
+        "trait": "tfc:brined"
+      }
+    ]
+  },
+  "result": {
+    "modifiers": [
+      {
+        "type": "tfc:copy_input"
+      },
+      {
+        "type": "tfc:add_trait",
+        "trait": "firmalife:smoked"
+      }
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "crop": {
+    "count": 1,
+    "id": "tfc:seeds/melon"
+  },
+  "ingredient": {
+    "item": "tfc:seeds/melon"
+  },
+  "nutrient": "phosphorous",
+  "planter": "hanging",
+  "seed": {
+    "count": 1,
+    "id": "tfc:seeds/melon"
+  },
+  "specials": [
+    "firmalife:melon_fruit"
+  ],
+  "stages": 4,
+  "textures": [
+    "firmalife:block/crop/melon0",
+    "firmalife:block/crop/melon1",
+    "firmalife:block/crop/melon2",
+    "firmalife:block/crop/melon3",
+    "firmalife:block/crop/melon4"
+  ],
+  "tier": 15
+}

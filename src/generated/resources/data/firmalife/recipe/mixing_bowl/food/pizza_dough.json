@@ -1,0 +1,30 @@
+{
+  "type": "firmalife:mixing_bowl",
+  "fluid_ingredients": {
+    "amount": 100,
+    "tag": "firmalife:oils"
+  },
+  "item_ingredients": [
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "tag": "c:foods/dough"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    },
+    {
+      "item": "tfc:powder/salt"
+    },
+    {
+      "item": "firmalife:spice/basil_leaves"
+    }
+  ],
+  "result_item": {
+    "count": 4,
+    "id": "firmalife:food/pizza_dough"
+  }
+}

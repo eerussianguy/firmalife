@@ -1,0 +1,14 @@
+{
+  "type": "tfc:welding",
+  "first_input": {
+    "item": "firmalife:metal/sheet/chromium"
+  },
+  "result": {
+    "count": 1,
+    "id": "firmalife:metal/double_sheet/chromium"
+  },
+  "second_input": {
+    "item": "firmalife:metal/sheet/chromium"
+  },
+  "tier": 3
+}

@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "tag": "minecraft:planks"
+    },
+    "O": {
+      "tag": "c:dusts/redstone"
+    },
+    "X": {
+      "item": "tfc:brass_mechanisms"
+    },
+    "Y": {
+      "item": "minecraft:blue_stained_glass"
+    }
+  },
+  "pattern": [
+    "BXB",
+    "OYO",
+    "BXB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "firmalife:climate_station"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "tfc:barrel_sealed",
+  "duration": 12000,
+  "input_fluid": {
+    "amount": 100,
+    "fluid": "firmalife:yeast_starter"
+  },
+  "input_item": {
+    "count": 1,
+    "tag": "firmalife:feeds_yeast"
+  },
+  "output_fluid": {
+    "amount": 600,
+    "id": "firmalife:yeast_starter"
+  }
+}

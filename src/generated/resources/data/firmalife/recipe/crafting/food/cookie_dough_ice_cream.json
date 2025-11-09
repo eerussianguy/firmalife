@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "firmalife:food/vanilla_ice_cream"
+    },
+    {
+      "item": "firmalife:food/chocolate_chip_cookie_dough"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "firmalife:food/cookie_dough_ice_cream"
+  }
+}

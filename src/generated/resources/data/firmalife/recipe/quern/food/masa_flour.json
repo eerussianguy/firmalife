@@ -1,0 +1,18 @@
+{
+  "type": "tfc:quern",
+  "ingredient": {
+    "type": "tfc:and",
+    "children": [
+      {
+        "item": "firmalife:food/nixtamal"
+      },
+      {
+        "type": "tfc:not_rotten"
+      }
+    ]
+  },
+  "result": {
+    "count": 4,
+    "id": "firmalife:food/masa_flour"
+  }
+}

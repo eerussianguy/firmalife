@@ -1,0 +1,16 @@
+{
+  "type": "tfc:barrel_sealed",
+  "duration": 24000,
+  "input_fluid": {
+    "amount": 100,
+    "fluid": "minecraft:water"
+  },
+  "input_item": {
+    "count": 1,
+    "item": "firmalife:food/soybean_paste"
+  },
+  "output_fluid": {
+    "amount": 250,
+    "id": "firmalife:soybean_oil"
+  }
+}

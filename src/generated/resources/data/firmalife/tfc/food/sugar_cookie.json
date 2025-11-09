@@ -1,0 +1,10 @@
+{
+  "decay_modifier": 0.5,
+  "grain": 0.8,
+  "hunger": 4,
+  "ingredient": {
+    "item": "firmalife:food/sugar_cookie"
+  },
+  "protein": 0.1,
+  "saturation": 4.5
+}

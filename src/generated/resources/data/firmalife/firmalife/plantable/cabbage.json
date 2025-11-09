@@ -1,0 +1,25 @@
+{
+  "crop": {
+    "count": 1,
+    "id": "tfc:food/cabbage"
+  },
+  "ingredient": {
+    "item": "tfc:seeds/cabbage"
+  },
+  "nutrient": "nitrogen",
+  "planter": "quad",
+  "seed": {
+    "count": 1,
+    "id": "tfc:seeds/cabbage"
+  },
+  "specials": [],
+  "stages": 5,
+  "textures": [
+    "tfc:block/crop/cabbage_0",
+    "tfc:block/crop/cabbage_1",
+    "tfc:block/crop/cabbage_2",
+    "tfc:block/crop/cabbage_3",
+    "tfc:block/crop/cabbage_4",
+    "tfc:block/crop/cabbage_5"
+  ]
+}

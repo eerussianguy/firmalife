@@ -1,0 +1,25 @@
+{
+  "crop": {
+    "count": 1,
+    "id": "tfc:food/orange"
+  },
+  "extra_seed_chance": 0.08,
+  "ingredient": {
+    "item": "tfc:plant/orange_sapling"
+  },
+  "nutrient": "nitrogen",
+  "planter": "bonsai",
+  "seed": {
+    "count": 1,
+    "id": "tfc:plant/orange_sapling"
+  },
+  "specials": [],
+  "textures": [
+    "tfc:block/fruit_tree/orange_fruiting_leaves",
+    "tfc:block/fruit_tree/orange_dry_leaves",
+    "tfc:block/fruit_tree/orange_flowering_leaves",
+    "tfc:block/fruit_tree/orange_branch",
+    "tfc:block/fruit_tree/orange_leaves"
+  ],
+  "tier": 15
+}

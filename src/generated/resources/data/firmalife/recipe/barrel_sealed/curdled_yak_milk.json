@@ -1,0 +1,16 @@
+{
+  "type": "tfc:barrel_sealed",
+  "duration": 4000,
+  "input_fluid": {
+    "amount": 2000,
+    "fluid": "firmalife:yak_milk"
+  },
+  "input_item": {
+    "count": 1,
+    "item": "firmalife:rennet"
+  },
+  "output_fluid": {
+    "amount": 2000,
+    "id": "firmalife:curdled_yak_milk"
+  }
+}

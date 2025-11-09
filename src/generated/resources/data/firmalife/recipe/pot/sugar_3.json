@@ -1,0 +1,81 @@
+{
+  "type": "tfc:pot",
+  "duration": 2000,
+  "fluid_ingredient": {
+    "amount": 100,
+    "fluid": "tfc:salt_water"
+  },
+  "ingredients": [
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "tfc:food/beet"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    },
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "tfc:food/beet"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    },
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "tfc:food/beet"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    },
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "tfc:food/beet"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    },
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "tfc:food/beet"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    }
+  ],
+  "item_output": [
+    {
+      "count": 1,
+      "id": "minecraft:sugar"
+    },
+    {
+      "count": 1,
+      "id": "minecraft:sugar"
+    },
+    {
+      "count": 1,
+      "id": "minecraft:sugar"
+    }
+  ],
+  "temperature": 300.0,
+  "uses_all_fluid": false
+}

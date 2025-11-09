@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": {
+      "item": "firmalife:metal/rod/stainless_steel"
+    },
+    "Y": {
+      "item": "minecraft:glass"
+    }
+  },
+  "pattern": [
+    "XYX",
+    "YXY"
+  ],
+  "result": {
+    "count": 8,
+    "id": "firmalife:stainless_steel_greenhouse_roof_top"
+  }
+}

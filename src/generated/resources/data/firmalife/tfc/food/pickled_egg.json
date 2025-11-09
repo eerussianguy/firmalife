@@ -1,0 +1,11 @@
+{
+  "decay_modifier": 2.0,
+  "hunger": 4,
+  "ingredient": {
+    "item": "firmalife:food/pickled_egg"
+  },
+  "protein": 0.25,
+  "saturation": 0.3,
+  "vegetables": 1.5,
+  "water": 10.0
+}

@@ -1,0 +1,31 @@
+{
+  "type": "tfc:advanced_shapeless_crafting",
+  "ingredients": [
+    {
+      "tag": "c:tools/hammer"
+    },
+    {
+      "item": "firmalife:treated_lumber"
+    },
+    {
+      "item": "firmalife:treated_lumber"
+    },
+    {
+      "tag": "c:sheets/wrought_iron"
+    }
+  ],
+  "primary_ingredient": {
+    "tag": "c:tools/hammer"
+  },
+  "remainder": {
+    "modifiers": [
+      {
+        "type": "tfc:damage_crafting_remainder"
+      }
+    ]
+  },
+  "result": {
+    "count": 1,
+    "id": "firmalife:barrel_stave"
+  }
+}

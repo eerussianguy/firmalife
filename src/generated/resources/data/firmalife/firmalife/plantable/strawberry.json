@@ -1,0 +1,24 @@
+{
+  "crop": {
+    "count": 1,
+    "id": "tfc:food/strawberry"
+  },
+  "extra_seed_chance": 0.08,
+  "ingredient": {
+    "item": "tfc:plant/strawberry_bush"
+  },
+  "nutrient": "nitrogen",
+  "planter": "trellis",
+  "seed": {
+    "count": 1,
+    "id": "tfc:plant/strawberry_bush"
+  },
+  "specials": [],
+  "textures": [
+    "tfc:block/berry_bush/strawberrystrawberry_bush",
+    "tfc:block/berry_bush/strawberrydry_strawberry_bush",
+    "tfc:block/berry_bush/strawberryflowering_strawberry_bush",
+    "tfc:block/berry_bush/strawberryfruiting_strawberry_bush"
+  ],
+  "tier": 15
+}

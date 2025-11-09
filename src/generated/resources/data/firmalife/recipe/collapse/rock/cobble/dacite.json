@@ -1,0 +1,9 @@
+{
+  "type": "tfc:collapse",
+  "ingredient": [
+    "firmalife:ore/poor_chromite/dacite",
+    "firmalife:ore/normal_chromite/dacite",
+    "firmalife:ore/rich_chromite/dacite"
+  ],
+  "result": "tfc:rock/cobble/dacite"
+}

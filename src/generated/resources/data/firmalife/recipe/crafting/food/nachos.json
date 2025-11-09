@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "firmalife:food/tortilla_chips"
+    },
+    {
+      "item": "firmalife:food/salsa"
+    },
+    {
+      "item": "firmalife:food/shredded_cheese"
+    },
+    {
+      "tag": "firmalife:foods/cooked_meats_and_substitutes"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "firmalife:food/nachos"
+  }
+}

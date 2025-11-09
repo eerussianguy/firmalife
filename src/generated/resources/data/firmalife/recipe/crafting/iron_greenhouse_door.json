@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": {
+      "item": "tfc:metal/rod/wrought_iron"
+    },
+    "Y": {
+      "item": "minecraft:glass"
+    }
+  },
+  "pattern": [
+    "XY",
+    "XY",
+    "XY"
+  ],
+  "result": {
+    "count": 2,
+    "id": "firmalife:iron_greenhouse_door"
+  }
+}

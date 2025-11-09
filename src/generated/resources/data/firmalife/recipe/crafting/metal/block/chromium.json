@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "H": {
+      "tag": "c:tools/hammer"
+    },
+    "S": {
+      "item": "firmalife:metal/sheet/chromium"
+    },
+    "W": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "pattern": [
+    " SH",
+    "SWS",
+    " S "
+  ],
+  "result": {
+    "count": 1,
+    "id": "firmalife:metal/block/chromium"
+  }
+}

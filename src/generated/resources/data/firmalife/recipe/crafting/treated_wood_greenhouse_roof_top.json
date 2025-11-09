@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": {
+      "item": "firmalife:treated_lumber"
+    },
+    "Y": {
+      "item": "minecraft:glass"
+    }
+  },
+  "pattern": [
+    "XYX",
+    "YXY"
+  ],
+  "result": {
+    "count": 8,
+    "id": "firmalife:treated_wood_greenhouse_roof_top"
+  }
+}

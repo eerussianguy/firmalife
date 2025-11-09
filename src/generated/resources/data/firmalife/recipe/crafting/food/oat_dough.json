@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "tfc:food/oat_flour"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    },
+    {
+      "type": "tfc:fluid_content",
+      "fluid": {
+        "amount": 100,
+        "fluid": "firmalife:yeast_starter"
+      }
+    },
+    {
+      "tag": "tfc:foods/sweeteners"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "firmalife:food/oat_dough"
+  }
+}

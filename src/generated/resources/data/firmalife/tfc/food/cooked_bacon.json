@@ -1,0 +1,9 @@
+{
+  "decay_modifier": 2.0,
+  "hunger": 4,
+  "ingredient": {
+    "item": "firmalife:food/cooked_bacon"
+  },
+  "saturation": 2.0,
+  "vegetables": 0.75
+}

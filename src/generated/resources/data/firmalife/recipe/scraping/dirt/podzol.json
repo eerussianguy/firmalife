@@ -1,0 +1,10 @@
+{
+  "type": "firmalife:drying",
+  "ingredient": {
+    "item": "tfc:mud/podzol"
+  },
+  "result": {
+    "count": 1,
+    "id": "tfc:dirt/podzol"
+  }
+}

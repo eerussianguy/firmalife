@@ -1,0 +1,10 @@
+{
+  "type": "firmalife:drying",
+  "ingredient": {
+    "item": "firmalife:cinnamon_bark"
+  },
+  "result": {
+    "count": 1,
+    "id": "firmalife:spice/cinnamon"
+  }
+}

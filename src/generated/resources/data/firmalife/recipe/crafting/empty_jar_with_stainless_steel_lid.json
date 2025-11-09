@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "firmalife:stainless_steel_jar_lid"
+    },
+    {
+      "item": "tfc:empty_jar"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "firmalife:empty_jar_with_stainless_steel_lid"
+  }
+}

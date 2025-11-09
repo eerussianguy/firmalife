@@ -1,0 +1,16 @@
+{
+  "type": "tfc:anvil",
+  "ingredient": {
+    "tag": "c:ingots/stainless_steel"
+  },
+  "result": {
+    "count": 16,
+    "id": "firmalife:stainless_steel_jar_lid"
+  },
+  "rules": [
+    "hit_last",
+    "hit_second_last",
+    "punch_third_last"
+  ],
+  "tier": 4
+}
