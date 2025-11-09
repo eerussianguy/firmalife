@@ -11,6 +11,7 @@ import com.eerussianguy.firmalife.common.blocks.FLFluids;
 import com.eerussianguy.firmalife.common.capabilities.FLComponents;
 import com.eerussianguy.firmalife.common.container.FLMenuTypes;
 import com.eerussianguy.firmalife.common.entities.FLEntities;
+import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.common.items.FLItems;
 import com.eerussianguy.firmalife.common.misc.FLEffects;
 import com.eerussianguy.firmalife.common.misc.FLInteractionManager;
@@ -33,6 +34,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
 import org.slf4j.Logger;
@@ -71,6 +73,9 @@ public class FirmaLife
         FLComponents.COMPONENT.register(bus);
         FLLoot.registerAll(bus);
 
+        mod.registerConfig(ModConfig.Type.SERVER, FLConfig.SERVER.spec());
+
+        FLFoodTraits.TRAITS.register(bus);
         FLDataManagers.init();
 
         bus.addListener(this::setup);

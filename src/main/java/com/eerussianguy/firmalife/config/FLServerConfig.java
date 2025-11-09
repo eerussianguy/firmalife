@@ -4,13 +4,17 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
-
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
-import net.neoforged.neoforge.common.ModConfigSpec.*;
+import net.neoforged.neoforge.common.ModConfigSpec.BooleanValue;
+import net.neoforged.neoforge.common.ModConfigSpec.Builder;
+import net.neoforged.neoforge.common.ModConfigSpec.DoubleValue;
+import net.neoforged.neoforge.common.ModConfigSpec.IntValue;
 
-import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
+import net.dries007.tfc.config.BaseConfig;
 
-public class FLServerConfig
+import static com.eerussianguy.firmalife.FirmaLife.*;
+
+public class FLServerConfig extends BaseConfig
 {
     public final IntValue cheeseAgedDays;
     public final IntValue cheeseVintageDays;

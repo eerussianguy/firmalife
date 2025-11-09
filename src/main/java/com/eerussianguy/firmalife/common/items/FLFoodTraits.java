@@ -2,9 +2,11 @@ package com.eerussianguy.firmalife.common.items;
 
 import java.util.Locale;
 import java.util.Set;
+import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.config.FLConfig;
 import com.google.common.collect.ImmutableSet;
 import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 import net.dries007.tfc.common.component.food.FoodTrait;
 import net.dries007.tfc.common.component.food.FoodTraits;
@@ -58,6 +60,7 @@ public class FLFoodTraits
         }
     }
 
+    public static final DeferredRegister<FoodTrait> TRAITS = DeferredRegister.create(FoodTraits.KEY, FirmaLife.MOD_ID);
 
     public static final DeferredHolder<FoodTrait, FoodTrait> DRIED = register(Default.DRIED);
     public static final DeferredHolder<FoodTrait, FoodTrait> FRESH = register(Default.FRESH);
@@ -82,7 +85,8 @@ public class FLFoodTraits
 
     private static DeferredHolder<FoodTrait, FoodTrait> register(FLFoodTraits.Default trait)
     {
-        return FoodTraits.TRAITS.register(trait.name.toLowerCase(Locale.ROOT), () -> new FoodTrait(FLConfig.SERVER.foodTraits.get(trait), "tfc.tooltip.food_trait." + trait.name.toLowerCase(Locale.ROOT)));
+        //Using TFCs DR means FLs config is accessed before it is loaded
+        return TRAITS.register(trait.name.toLowerCase(Locale.ROOT), () -> new FoodTrait(FLConfig.SERVER.foodTraits.get(trait), "tfc.tooltip.food_trait." + trait.name.toLowerCase(Locale.ROOT)));
     }
 
 }
