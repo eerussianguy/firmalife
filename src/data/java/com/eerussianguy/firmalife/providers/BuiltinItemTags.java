@@ -105,7 +105,7 @@ public class BuiltinItemTags extends TagsProvider<Item> implements Accessors
         tag(FLTags.Items.USABLE_ON_OVEN).add(FLItems.PEEL);
         tag(TFCTags.Items.SWEETENERS).add(FLItems.RAW_HONEY);
         tag(FLTags.Items.FEEDS_YEAST).addTag(TFCTags.Items.FLOUR);
-        tag(FLTags.Items.SLICES).add(
+        tag(FLTags.Items.BREAD_SLICES).add(
             itemOf(FLFood.WHEAT_SLICE).asItem(),
             itemOf(FLFood.RYE_SLICE).asItem(),
             itemOf(FLFood.BARLEY_SLICE).asItem(),

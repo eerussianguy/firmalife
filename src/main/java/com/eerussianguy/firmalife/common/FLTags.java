@@ -78,11 +78,10 @@ public class FLTags
         public static final TagKey<Item> WASHABLE_FOODS = create("foods/washable");
         public static final TagKey<Item> CHOCOLATE = create("foods/chocolate");
         public static final TagKey<Item> EGG_NOODLE_FLOUR = create("foods/egg_noodle_flour");
-        public static final TagKey<Item> BREAD_SLICES = create("foods/slices");
+        public static final TagKey<Item> BREAD_SLICES = create("foods/bread_slices");
         public static final TagKey<Item> PIZZA_INGREDIENTS = create("foods/pizza_ingredients");
         public static final TagKey<Item> FLATBREADS = create("foods/flatbreads");
         public static final TagKey<Item> CHOCOLATE_BLENDS = create("foods/chocolate_blends");
-        public static final TagKey<Item> SLICES = create("foods/bread_slices");
         public static final TagKey<Item> FOOD_SHELVES = create("shelves");
         public static final TagKey<Item> HANGERS = create("hangers");
         public static final TagKey<Item> JARBNETS = create("jarbnets");
