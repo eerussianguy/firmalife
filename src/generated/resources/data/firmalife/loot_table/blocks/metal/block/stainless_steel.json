@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "firmalife:metal/block/stainless_steel"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "firmalife:blocks/metal/block/stainless_steel"
+}

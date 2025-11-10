@@ -1,0 +1,9 @@
+{
+  "type": "tfc:collapse",
+  "ingredient": [
+    "firmalife:ore/poor_chromite/diorite",
+    "firmalife:ore/normal_chromite/diorite",
+    "firmalife:ore/rich_chromite/diorite"
+  ],
+  "result": "tfc:rock/cobble/diorite"
+}

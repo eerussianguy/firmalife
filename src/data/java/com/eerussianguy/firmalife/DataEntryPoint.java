@@ -1,5 +1,6 @@
 package com.eerussianguy.firmalife;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
@@ -9,6 +10,7 @@ import com.eerussianguy.firmalife.common.blocks.FLFluids;
 import com.eerussianguy.firmalife.common.misc.FLDamageTypes;
 import com.eerussianguy.firmalife.common.util.ExtraFluid;
 import com.eerussianguy.firmalife.common.util.GreenhouseType;
+import com.eerussianguy.firmalife.providers.BuiltinBlockLootTables;
 import com.eerussianguy.firmalife.providers.BuiltinBlockTags;
 import com.eerussianguy.firmalife.providers.BuiltinClimateRanges;
 import com.eerussianguy.firmalife.providers.BuiltinDamageTypes;
@@ -26,11 +28,13 @@ import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
@@ -73,7 +77,7 @@ public class DataEntryPoint
         add(event, new BuiltinPlantables(output, lookup));
         add(event, new BuiltinFoods(output, lookup));
         add(event, new BuiltinItemSizes(output, lookup));
-        add(event, new DataManagerProvider<LampFuel>(LampFuel.MANAGER, output, lookup)
+        add(event, new DataManagerProvider<LampFuel>(LampFuel.MANAGER, output, lookup, TerraFirmaCraft.MOD_ID)
         {
 
             @Override
@@ -82,7 +86,7 @@ public class DataEntryPoint
                 add("soybean_oil", new LampFuel(FluidIngredient.of(FLFluids.EXTRA_FLUIDS.get(ExtraFluid.SOYBEAN_OIL).getSource()), BlockIngredient.of(TFCTags.Blocks.LAMPS), 7000));
             }
         });
-        add(event, new DataManagerProvider<Drinkable>(Drinkable.MANAGER, output, lookup)
+        add(event, new DataManagerProvider<Drinkable>(Drinkable.MANAGER, output, lookup, TerraFirmaCraft.MOD_ID)
         {
             @Override
             protected void addData(HolderLookup.Provider provider)
@@ -90,7 +94,7 @@ public class DataEntryPoint
                 add("chocolate", new Drinkable(FluidIngredient.of(FLFluids.EXTRA_FLUIDS.get(ExtraFluid.CHOCOLATE).getSource()), 0, false, FoodData.ofDrink(10, 0), List.of()));
             }
         });
-        add(event, new DataManagerProvider<GreenhouseType>(GreenhouseType.MANAGER, output, lookup)
+        add(event, new DataManagerProvider<GreenhouseType>(GreenhouseType.MANAGER, output, lookup, MOD_ID)
         {
             @Override
             protected void addData(HolderLookup.Provider provider)
@@ -106,6 +110,15 @@ public class DataEntryPoint
         add(event, new BuiltinFluidHeats(output, lookup));
 
         add(event, new BuiltinRecipes(output, lookup));
+
+        add(event,
+            new LootTableProvider(
+                output,
+                Collections.emptySet(),
+                List.of(new LootTableProvider.SubProviderEntry(BuiltinBlockLootTables::new, LootContextParamSets.BLOCK)),
+                lookup
+            )
+        );
     }
 
     private static <T extends DataProvider> T add(GatherDataEvent event, T provider)

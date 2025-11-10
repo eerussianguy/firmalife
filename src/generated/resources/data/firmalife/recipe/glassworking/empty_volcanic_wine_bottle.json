@@ -1,0 +1,16 @@
+{
+  "type": "tfc:glassworking",
+  "batch": {
+    "item": "tfc:volcanic_glass_batch"
+  },
+  "operations": [
+    "tfc:blow",
+    "tfc:blow",
+    "tfc:pinch",
+    "tfc:saw"
+  ],
+  "result": {
+    "count": 1,
+    "id": "firmalife:empty_volcanic_wine_bottle"
+  }
+}

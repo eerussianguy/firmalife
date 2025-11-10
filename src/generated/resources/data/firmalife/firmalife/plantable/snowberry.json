@@ -1,0 +1,24 @@
+{
+  "crop": {
+    "count": 1,
+    "id": "tfc:food/snowberry"
+  },
+  "extra_seed_chance": 0.08,
+  "ingredient": {
+    "item": "tfc:plant/snowberry_bush"
+  },
+  "nutrient": "nitrogen",
+  "planter": "trellis",
+  "seed": {
+    "count": 1,
+    "id": "tfc:plant/snowberry_bush"
+  },
+  "specials": [],
+  "textures": [
+    "tfc:block/berry_bush/snowberrysnowberry_bush",
+    "tfc:block/berry_bush/snowberrydry_snowberry_bush",
+    "tfc:block/berry_bush/snowberryflowering_snowberry_bush",
+    "tfc:block/berry_bush/snowberryfruiting_snowberry_bush"
+  ],
+  "tier": 15
+}

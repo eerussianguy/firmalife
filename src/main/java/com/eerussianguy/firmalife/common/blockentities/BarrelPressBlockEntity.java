@@ -176,6 +176,7 @@ public class BarrelPressBlockEntity extends TickableInventoryBlockEntity<ItemSta
             {
                 return WineType.ROSE;
             }
+            //TODO should this use TFCTags.Items.SWEETENERS instead? or should recipes use FLTags.Items.SWEETENER and it copies TFCs tag?
             if (hasAtLeastThisMuchOfThisInOtherSlots(s -> Helpers.isItem(s, FLTags.Items.SWEETENER), 2))
             {
                 return WineType.DESSERT;

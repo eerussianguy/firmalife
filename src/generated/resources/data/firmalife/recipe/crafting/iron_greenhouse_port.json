@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": {
+      "item": "firmalife:iron_greenhouse_wall"
+    },
+    "Y": {
+      "item": "firmalife:copper_pipe"
+    }
+  },
+  "pattern": [
+    "XY"
+  ],
+  "result": {
+    "count": 8,
+    "id": "firmalife:iron_greenhouse_port"
+  }
+}

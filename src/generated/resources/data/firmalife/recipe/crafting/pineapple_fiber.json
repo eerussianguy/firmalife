@@ -1,0 +1,37 @@
+{
+  "type": "tfc:advanced_shapeless_crafting",
+  "ingredients": [
+    {
+      "tag": "c:tools/knife"
+    },
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "firmalife:food/pineapple"
+        },
+        {
+          "type": "tfc:not_rotten"
+        },
+        {
+          "type": "tfc:has_trait",
+          "trait": "firmalife:dried"
+        }
+      ]
+    }
+  ],
+  "primary_ingredient": {
+    "tag": "c:tools/knife"
+  },
+  "remainder": {
+    "modifiers": [
+      {
+        "type": "tfc:damage_crafting_remainder"
+      }
+    ]
+  },
+  "result": {
+    "count": 1,
+    "id": "firmalife:pineapple_fiber"
+  }
+}

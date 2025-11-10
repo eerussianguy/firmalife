@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "firmalife:copper_pipe"
+    },
+    {
+      "item": "firmalife:copper_pipe"
+    },
+    {
+      "item": "firmalife:copper_pipe"
+    },
+    {
+      "item": "firmalife:copper_pipe"
+    },
+    {
+      "item": "tfc:powder/wood_ash"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "firmalife:oxidized_copper_pipe"
+  }
+}

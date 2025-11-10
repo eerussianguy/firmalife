@@ -3,9 +3,9 @@ package com.eerussianguy.firmalife.client;
 import java.util.Objects;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
-
 import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.client.model.BonsaiPlanterBlockModel;
+import com.eerussianguy.firmalife.client.model.DynamicBlockModel;
 import com.eerussianguy.firmalife.client.model.FoodShelfBlockModel;
 import com.eerussianguy.firmalife.client.model.HangerBlockModel;
 import com.eerussianguy.firmalife.client.model.HangingPlanterBlockModel;
@@ -14,18 +14,44 @@ import com.eerussianguy.firmalife.client.model.JarbnetBlockModel;
 import com.eerussianguy.firmalife.client.model.JarringStationBlockModel;
 import com.eerussianguy.firmalife.client.model.LargePlanterBakedModel;
 import com.eerussianguy.firmalife.client.model.PeelModel;
-import com.eerussianguy.firmalife.client.model.DynamicBlockModel;
 import com.eerussianguy.firmalife.client.model.QuadPlanterBlockModel;
 import com.eerussianguy.firmalife.client.model.TrellisPlanterBlockModel;
 import com.eerussianguy.firmalife.client.model.WineShelfBlockModel;
+import com.eerussianguy.firmalife.client.render.BarrelPressBlockEntityRenderer;
+import com.eerussianguy.firmalife.client.render.CompostTumblerBlockEntityRenderer;
+import com.eerussianguy.firmalife.client.render.DryingMatBlockEntityRenderer;
+import com.eerussianguy.firmalife.client.render.FLBeeRenderer;
+import com.eerussianguy.firmalife.client.render.HydroponicPlanterBlockEntityRenderer;
+import com.eerussianguy.firmalife.client.render.MixingBowlBlockEntityRenderer;
+import com.eerussianguy.firmalife.client.render.OvenBlockEntityRenderer;
+import com.eerussianguy.firmalife.client.render.PickerBlockEntityRenderer;
+import com.eerussianguy.firmalife.client.render.PlateBlockEntityRenderer;
+import com.eerussianguy.firmalife.client.render.PumpingStationBlockEntityRenderer;
+import com.eerussianguy.firmalife.client.render.StompingBarrelBlockEntityRenderer;
+import com.eerussianguy.firmalife.client.render.StovetopGrillBlockEntityRenderer;
+import com.eerussianguy.firmalife.client.render.StovetopPotBlockEntityRenderer;
+import com.eerussianguy.firmalife.client.render.StringBlockEntityRenderer;
+import com.eerussianguy.firmalife.client.render.SweeperBlockEntityRenderer;
+import com.eerussianguy.firmalife.client.render.VatBlockEntityRenderer;
+import com.eerussianguy.firmalife.client.screen.BarrelPressScreen;
+import com.eerussianguy.firmalife.client.screen.BeehiveScreen;
 import com.eerussianguy.firmalife.client.screen.BigBarrelScreen;
 import com.eerussianguy.firmalife.client.screen.StovetopGrillScreen;
 import com.eerussianguy.firmalife.client.screen.StovetopPotScreen;
 import com.eerussianguy.firmalife.common.FLCreativeTabs;
+import com.eerussianguy.firmalife.common.FLHelpers;
+import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
+import com.eerussianguy.firmalife.common.blocks.FLBlocks;
+import com.eerussianguy.firmalife.common.blocks.FLFluids;
 import com.eerussianguy.firmalife.common.capabilities.FLComponents;
 import com.eerussianguy.firmalife.common.capabilities.bee.BeeComponent;
+import com.eerussianguy.firmalife.common.container.FLMenuTypes;
+import com.eerussianguy.firmalife.common.entities.FLEntities;
+import com.eerussianguy.firmalife.common.items.FLFoodTraits;
+import com.eerussianguy.firmalife.common.items.FLItems;
 import com.eerussianguy.firmalife.common.items.PeelItem;
 import com.eerussianguy.firmalife.common.items.WineBottleItem;
+import com.eerussianguy.firmalife.common.misc.FLParticles;
 import com.eerussianguy.firmalife.common.misc.SprinklerParticle;
 import com.eerussianguy.firmalife.common.util.FLFruit;
 import net.minecraft.ChatFormatting;
@@ -40,18 +66,6 @@ import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-
-import com.eerussianguy.firmalife.client.render.*;
-import com.eerussianguy.firmalife.client.screen.BeehiveScreen;
-import com.eerussianguy.firmalife.client.screen.BarrelPressScreen;
-import com.eerussianguy.firmalife.common.FLHelpers;
-import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
-import com.eerussianguy.firmalife.common.blocks.FLBlocks;
-import com.eerussianguy.firmalife.common.container.FLMenuTypes;
-import com.eerussianguy.firmalife.common.entities.FLEntities;
-import com.eerussianguy.firmalife.common.misc.FLParticles;
-import com.eerussianguy.firmalife.common.items.FLFoodTraits;
-import com.eerussianguy.firmalife.common.items.FLItems;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
@@ -63,10 +77,13 @@ import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsE
 import net.neoforged.neoforge.client.model.DynamicFluidContainerModel;
 import net.neoforged.neoforge.client.model.geometry.IGeometryLoader;
 
+import net.dries007.tfc.client.ClientEventHandler;
 import net.dries007.tfc.client.TFCColors;
+import net.dries007.tfc.client.extensions.FluidRendererExtension;
 import net.dries007.tfc.client.particle.GlintParticleProvider;
 import net.dries007.tfc.common.component.food.FoodCapability;
 import net.dries007.tfc.common.component.food.IFood;
+import net.dries007.tfc.common.fluids.TFCFluids;
 import net.dries007.tfc.common.items.TFCItems;
 
 public class FLClientEvents
@@ -280,6 +297,19 @@ public class FLClientEvents
     public static void registerExtensions(RegisterClientExtensionsEvent event)
     {
         event.registerItem(PeelItem.Extension.INSTANCE, FLItems.PEEL.get());
+        //TODO check these for correctness, they might need tweaking. Also change from using TFC textures here?
+        FLFluids.METALS.forEach((metal, holder) -> event.registerFluidType(
+            new FluidRendererExtension(TFCFluids.ALPHA_MASK | metal.getColor(), ClientEventHandler.MOLTEN_STILL, ClientEventHandler.MOLTEN_FLOW, null, null),
+            holder.getType()
+        ));
+        FLFluids.EXTRA_FLUIDS.forEach((fluid, holder) -> event.registerFluidType(
+            new FluidRendererExtension(fluid.getColor(), ClientEventHandler.WATER_STILL, ClientEventHandler.WATER_FLOW, ClientEventHandler.WATER_OVERLAY, ClientEventHandler.UNDERWATER_LOCATION),
+            holder.getType()
+        ));
+        FLFluids.WINE_FLUIDS.forEach((fluid, holder) -> event.registerFluidType(
+            new FluidRendererExtension(fluid.getColor(), ClientEventHandler.WATER_STILL, ClientEventHandler.WATER_FLOW, ClientEventHandler.WATER_OVERLAY, ClientEventHandler.UNDERWATER_LOCATION),
+            holder.getType()
+        ));
     }
 
 }

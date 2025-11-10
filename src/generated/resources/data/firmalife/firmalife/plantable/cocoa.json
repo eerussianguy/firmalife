@@ -1,0 +1,25 @@
+{
+  "crop": {
+    "count": 1,
+    "id": "firmalife:food/cocoa_beans"
+  },
+  "extra_seed_chance": 0.08,
+  "ingredient": {
+    "item": "firmalife:plant/cocoa_sapling"
+  },
+  "nutrient": "nitrogen",
+  "planter": "bonsai",
+  "seed": {
+    "count": 1,
+    "id": "firmalife:plant/cocoa_sapling"
+  },
+  "specials": [],
+  "textures": [
+    "firmalife:block/fruit_tree/cocoa_fruiting_leaves",
+    "firmalife:block/fruit_tree/cocoa_dry_leaves",
+    "firmalife:block/fruit_tree/cocoa_flowering_leaves",
+    "firmalife:block/fruit_tree/cocoa_branch",
+    "firmalife:block/fruit_tree/cocoa_leaves"
+  ],
+  "tier": 15
+}

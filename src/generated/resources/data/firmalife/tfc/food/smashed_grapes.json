@@ -1,0 +1,7 @@
+{
+  "decay_modifier": 2.5,
+  "hunger": 4,
+  "ingredient": {
+    "tag": "firmalife:foods/smashed_grapes"
+  }
+}

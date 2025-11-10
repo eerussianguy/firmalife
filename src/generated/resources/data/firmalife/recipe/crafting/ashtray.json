@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": {
+      "item": "firmalife:sealed_bricks"
+    },
+    "Y": {
+      "tag": "c:sheets/wrought_iron"
+    },
+    "Z": {
+      "item": "tfc:powder/salt"
+    }
+  },
+  "pattern": [
+    "ZZZ",
+    "XYX"
+  ],
+  "result": {
+    "count": 1,
+    "id": "firmalife:ashtray"
+  }
+}

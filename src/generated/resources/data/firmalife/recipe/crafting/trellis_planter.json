@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": {
+      "item": "minecraft:brick"
+    },
+    "Y": {
+      "item": "tfc:compost"
+    }
+  },
+  "pattern": [
+    "X X",
+    "X X",
+    "XYX"
+  ],
+  "result": {
+    "count": 1,
+    "id": "firmalife:trellis_planter"
+  }
+}

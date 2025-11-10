@@ -1,0 +1,42 @@
+{
+  "type": "firmalife:mixing_bowl",
+  "item_ingredients": [
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "firmalife:food/vanilla_ice_cream"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    },
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "tfc:food/strawberry"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    },
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "tfc:food/strawberry"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    }
+  ],
+  "result_item": {
+    "count": 1,
+    "id": "firmalife:food/strawberry_ice_cream"
+  }
+}

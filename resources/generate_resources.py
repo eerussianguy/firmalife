@@ -38,7 +38,8 @@ def main():
         # Stupid windows file locking errors.
         for tries in range(1, 1 + 3):
             try:
-                utils.clean_generated_resources(rm.resource_dir, exclude=glob.glob(rm.resource_dir + "/assets/tfc/patchouli_books/**/*", recursive=True))
+                patchouli_paths = set(glob.glob(os.path.join(rm.resource_dir, "assets", "tfc", "patchouli_books", "**", "*"), recursive=True))
+                utils.clean_generated_resources(rm.resource_dir, exclude=patchouli_paths)
                 print('Clean Success')
                 return
             except Exception as e:

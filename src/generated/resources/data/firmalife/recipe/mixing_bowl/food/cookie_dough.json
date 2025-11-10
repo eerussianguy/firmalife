@@ -1,0 +1,48 @@
+{
+  "type": "firmalife:mixing_bowl",
+  "item_ingredients": [
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "tag": "firmalife:foods/raw_eggs"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    },
+    {
+      "item": "firmalife:spice/vanilla"
+    },
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "firmalife:food/butter"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    },
+    {
+      "tag": "tfc:foods/sweeteners"
+    },
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "tag": "c:foods/flour"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    }
+  ],
+  "result_item": {
+    "count": 4,
+    "id": "firmalife:food/cookie_dough"
+  }
+}

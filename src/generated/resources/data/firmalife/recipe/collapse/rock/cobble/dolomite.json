@@ -1,0 +1,9 @@
+{
+  "type": "tfc:collapse",
+  "ingredient": [
+    "firmalife:ore/poor_chromite/dolomite",
+    "firmalife:ore/normal_chromite/dolomite",
+    "firmalife:ore/rich_chromite/dolomite"
+  ],
+  "result": "tfc:rock/cobble/dolomite"
+}

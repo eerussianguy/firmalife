@@ -1,0 +1,16 @@
+{
+  "type": "tfc:anvil",
+  "ingredient": {
+    "item": "firmalife:metal/ingot/chromium"
+  },
+  "result": {
+    "count": 2,
+    "id": "firmalife:metal/rod/chromium"
+  },
+  "rules": [
+    "bend_last",
+    "draw_second_last",
+    "draw_third_last"
+  ],
+  "tier": 4
+}

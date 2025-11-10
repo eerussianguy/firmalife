@@ -1,0 +1,20 @@
+{
+  "type": "firmalife:oven",
+  "duration": 1000,
+  "ingredient": {
+    "type": "tfc:and",
+    "children": [
+      {
+        "item": "firmalife:food/corn_tortilla"
+      },
+      {
+        "type": "tfc:not_rotten"
+      }
+    ]
+  },
+  "result": {
+    "count": 1,
+    "id": "firmalife:food/taco_shell"
+  },
+  "temperature": 400.0
+}

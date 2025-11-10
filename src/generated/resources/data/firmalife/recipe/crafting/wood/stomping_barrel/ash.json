@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "item": "tfc:glue"
+    },
+    "X": {
+      "item": "tfc:wood/lumber/ash"
+    }
+  },
+  "pattern": [
+    "XGX",
+    "XXX",
+    "GGG"
+  ],
+  "result": {
+    "count": 1,
+    "id": "firmalife:wood/stomping_barrel/ash"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "firmalife:treated_lumber"
+    },
+    {
+      "item": "firmalife:treated_lumber"
+    },
+    {
+      "item": "minecraft:white_dye"
+    },
+    {
+      "item": "tfc:glue"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "firmalife:plate"
+  }
+}

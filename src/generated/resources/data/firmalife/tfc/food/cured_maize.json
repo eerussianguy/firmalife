@@ -1,0 +1,7 @@
+{
+  "decay_modifier": 1.0,
+  "hunger": 4,
+  "ingredient": {
+    "item": "firmalife:food/cured_maize"
+  }
+}

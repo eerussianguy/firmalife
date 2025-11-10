@@ -1,0 +1,15 @@
+{
+  "type": "tfc:barrel_instant",
+  "input_fluid": {
+    "amount": 100,
+    "fluid": "minecraft:water"
+  },
+  "input_item": {
+    "count": 1,
+    "item": "firmalife:volcanic_wine_bottle"
+  },
+  "output_item": {
+    "count": 1,
+    "id": "firmalife:empty_volcanic_wine_bottle"
+  }
+}

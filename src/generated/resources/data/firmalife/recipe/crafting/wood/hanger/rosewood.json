@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": {
+      "item": "tfc:wood/planks/rosewood"
+    },
+    "Y": {
+      "tag": "c:strings"
+    }
+  },
+  "pattern": [
+    "XXX",
+    " Y ",
+    " Y "
+  ],
+  "result": {
+    "count": 1,
+    "id": "firmalife:wood/hanger/rosewood"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "decay_modifier": 1.0,
+  "fruit": 0.5,
+  "hunger": 1,
+  "ingredient": {
+    "item": "firmalife:food/salsa"
+  },
+  "saturation": 1.0,
+  "water": 0.8
+}

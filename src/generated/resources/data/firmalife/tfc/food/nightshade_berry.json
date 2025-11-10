@@ -1,0 +1,10 @@
+{
+  "dairy": 3.0,
+  "decay_modifier": 1.0,
+  "hunger": 4,
+  "ingredient": {
+    "item": "firmalife:food/nightshade_berry"
+  },
+  "saturation": 0.85,
+  "water": 1.0
+}

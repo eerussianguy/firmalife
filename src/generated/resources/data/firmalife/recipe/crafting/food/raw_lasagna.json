@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "Q": {
+      "item": "firmalife:plant/oregano"
+    },
+    "X": {
+      "item": "firmalife:food/raw_egg_noodles"
+    },
+    "Y": {
+      "item": "firmalife:food/tomato_sauce"
+    },
+    "Z": {
+      "tag": "firmalife:foods/cooked_meats_and_substitutes"
+    }
+  },
+  "pattern": [
+    "XQ",
+    "YZ",
+    "XQ"
+  ],
+  "result": {
+    "count": 1,
+    "id": "firmalife:food/raw_lasagna"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": {
+      "tag": "c:rods/stainless_steel"
+    },
+    "Z": {
+      "item": "firmalife:treated_lumber"
+    }
+  },
+  "pattern": [
+    "X X",
+    "ZZZ"
+  ],
+  "result": {
+    "count": 1,
+    "id": "firmalife:jarring_station"
+  }
+}

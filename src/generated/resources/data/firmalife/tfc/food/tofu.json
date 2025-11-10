@@ -1,0 +1,10 @@
+{
+  "decay_modifier": 2.0,
+  "hunger": 4,
+  "ingredient": {
+    "item": "firmalife:food/tofu"
+  },
+  "saturation": 0.75,
+  "vegetables": 1.5,
+  "water": 2.0
+}

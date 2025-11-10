@@ -1,0 +1,25 @@
+{
+  "type": "firmalife:vat",
+  "input_fluid": {
+    "amount": 1000,
+    "fluid": "tfc:salt_water"
+  },
+  "input_item": {
+    "type": "tfc:and",
+    "children": [
+      {
+        "item": "tfc:food/beet"
+      },
+      {
+        "type": "tfc:not_rotten"
+      }
+    ],
+    "count": 5
+  },
+  "length": 1,
+  "output_item": {
+    "count": 3,
+    "id": "minecraft:sugar"
+  },
+  "temperature": 1.0
+}

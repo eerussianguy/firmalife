@@ -1,0 +1,22 @@
+{
+  "type": "firmalife:mixing_bowl",
+  "fluid_ingredients": {
+    "amount": 1000,
+    "fluid": "firmalife:cream"
+  },
+  "item_ingredients": [
+    {
+      "tag": "tfc:foods/sweeteners"
+    },
+    {
+      "item": "firmalife:spice/vanilla"
+    },
+    {
+      "item": "firmalife:ice_shavings"
+    }
+  ],
+  "result_item": {
+    "count": 2,
+    "id": "firmalife:food/vanilla_ice_cream"
+  }
+}

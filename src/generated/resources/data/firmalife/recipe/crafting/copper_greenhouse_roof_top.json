@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": {
+      "item": "tfc:metal/rod/copper"
+    },
+    "Y": {
+      "item": "minecraft:glass"
+    }
+  },
+  "pattern": [
+    "XYX",
+    "YXY"
+  ],
+  "result": {
+    "count": 8,
+    "id": "firmalife:copper_greenhouse_roof_top"
+  }
+}

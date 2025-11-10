@@ -1,0 +1,21 @@
+{
+  "type": "firmalife:stomping",
+  "ingredient": {
+    "type": "tfc:and",
+    "children": [
+      {
+        "item": "firmalife:food/dehydrated_soybeans"
+      },
+      {
+        "type": "tfc:not_rotten"
+      }
+    ]
+  },
+  "input_texture": "firmalife:block/dehydrated_soybeans",
+  "output_texture": "firmalife:block/soybean_paste",
+  "result": {
+    "count": 1,
+    "id": "firmalife:food/soybean_paste"
+  },
+  "sound": "minecraft:entity.slime.squish"
+}

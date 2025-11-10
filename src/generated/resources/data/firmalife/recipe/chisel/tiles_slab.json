@@ -1,0 +1,12 @@
+{
+  "type": "tfc:chisel",
+  "ingredient": [
+    "firmalife:tiles"
+  ],
+  "item_output": {
+    "count": 1,
+    "id": "firmalife:tiles_slab"
+  },
+  "mode": "tfc:slab",
+  "result": "firmalife:tiles_slab"
+}

@@ -1,0 +1,30 @@
+{
+  "type": "tfc:pot",
+  "duration": 2000,
+  "fluid_ingredient": {
+    "amount": 1000,
+    "tag": "firmalife:milks"
+  },
+  "fluid_output": {
+    "amount": 1000,
+    "id": "firmalife:chocolate"
+  },
+  "ingredients": [
+    {
+      "tag": "tfc:foods/sweeteners"
+    },
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "tag": "firmalife:foods/chocolate"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    }
+  ],
+  "temperature": 300.0,
+  "uses_all_fluid": false
+}

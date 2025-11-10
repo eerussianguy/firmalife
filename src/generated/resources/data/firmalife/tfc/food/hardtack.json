@@ -1,0 +1,9 @@
+{
+  "decay_modifier": 0.1,
+  "grain": 0.2,
+  "hunger": 4,
+  "ingredient": {
+    "item": "firmalife:food/hardtack"
+  },
+  "saturation": 0.02
+}

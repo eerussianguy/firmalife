@@ -1,0 +1,10 @@
+{
+  "type": "firmalife:drying",
+  "ingredient": {
+    "item": "firmalife:food/white_chocolate_blend"
+  },
+  "result": {
+    "count": 1,
+    "id": "firmalife:food/white_chocolate"
+  }
+}

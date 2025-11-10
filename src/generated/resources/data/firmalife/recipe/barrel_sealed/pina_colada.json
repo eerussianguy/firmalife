@@ -1,0 +1,16 @@
+{
+  "type": "tfc:barrel_sealed",
+  "duration": 1000,
+  "input_fluid": {
+    "amount": 1000,
+    "fluid": "tfc:rum"
+  },
+  "input_item": {
+    "count": 1,
+    "item": "firmalife:food/frothy_coconut"
+  },
+  "output_fluid": {
+    "amount": 1000,
+    "id": "firmalife:pina_colada"
+  }
+}

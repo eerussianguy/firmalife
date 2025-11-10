@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": {
+      "item": "tfc:wood/planks/rosewood"
+    },
+    "Y": {
+      "item": "tfc:wood/lumber/rosewood"
+    }
+  },
+  "pattern": [
+    "XXX",
+    "YYY",
+    "XXX"
+  ],
+  "result": {
+    "count": 1,
+    "id": "firmalife:wood/food_shelf/rosewood"
+  }
+}

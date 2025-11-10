@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "type": "tfc:fluid_content",
+      "fluid": {
+        "amount": 100,
+        "fluid": "tfc:tannin"
+      }
+    },
+    {
+      "item": "minecraft:brick"
+    }
+  ],
+  "result": {
+    "count": 16,
+    "id": "firmalife:rustic_bricks"
+  }
+}

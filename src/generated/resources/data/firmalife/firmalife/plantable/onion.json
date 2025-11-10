@@ -1,0 +1,26 @@
+{
+  "crop": {
+    "count": 1,
+    "id": "tfc:food/onion"
+  },
+  "ingredient": {
+    "item": "tfc:seeds/onion"
+  },
+  "nutrient": "nitrogen",
+  "planter": "quad",
+  "seed": {
+    "count": 1,
+    "id": "tfc:seeds/onion"
+  },
+  "specials": [],
+  "stages": 6,
+  "textures": [
+    "tfc:block/crop/onion_0",
+    "tfc:block/crop/onion_1",
+    "tfc:block/crop/onion_2",
+    "tfc:block/crop/onion_3",
+    "tfc:block/crop/onion_4",
+    "tfc:block/crop/onion_5",
+    "tfc:block/crop/onion_6"
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "type": "tfc:advanced_shapeless_crafting",
+  "ingredients": [
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "firmalife:food/pie_dough"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    },
+    {
+      "tag": "tfc:foods/preserves"
+    },
+    {
+      "tag": "firmalife:pie_pans"
+    }
+  ],
+  "primary_ingredient": {
+    "type": "tfc:and",
+    "children": [
+      {
+        "item": "firmalife:food/pie_dough"
+      },
+      {
+        "type": "tfc:not_rotten"
+      }
+    ]
+  },
+  "result": {
+    "modifiers": [
+      {
+        "type": "tfc:meal",
+        "food": {
+          "dairy": 0.5,
+          "decay_modifier": 4.5,
+          "fruit": 1.5,
+          "grain": 1.0,
+          "hunger": 4,
+          "saturation": 1.0,
+          "water": 0.5
+        },
+        "portions": [
+          {
+            "nutrient_modifier": 0.8,
+            "saturation_modifier": 0.8,
+            "water_modifier": 0.8
+          }
+        ]
+      },
+      {
+        "type": "firmalife:add_pie_pan"
+      }
+    ],
+    "stack": {
+      "count": 1,
+      "id": "firmalife:food/filled_pie"
+    }
+  }
+}

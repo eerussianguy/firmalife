@@ -1,0 +1,25 @@
+{
+  "crop": {
+    "count": 1,
+    "id": "tfc:food/tomato"
+  },
+  "ingredient": {
+    "item": "tfc:seeds/tomato"
+  },
+  "nutrient": "potassium",
+  "planter": "large",
+  "seed": {
+    "count": 1,
+    "id": "tfc:seeds/tomato"
+  },
+  "specials": [],
+  "stages": 4,
+  "textures": [
+    "firmalife:block/crop/tomato_0",
+    "firmalife:block/crop/tomato_1",
+    "firmalife:block/crop/tomato_2",
+    "firmalife:block/crop/tomato_3",
+    "firmalife:block/crop/tomato_4"
+  ],
+  "tier": 10
+}

@@ -1,0 +1,7 @@
+{
+  "ingredient": "#firmalife:all_treated_wood_greenhouse",
+  "tier": 5,
+  "translation_key": {
+    "translate": "greenhouse.firmalife.treated_wood"
+  }
+}

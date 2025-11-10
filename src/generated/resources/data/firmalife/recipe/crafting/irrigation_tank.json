@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "tfc:barrels"
+    },
+    {
+      "tag": "c:sheets/any_bronze"
+    },
+    {
+      "item": "firmalife:copper_pipe"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "firmalife:irrigation_tank"
+  }
+}

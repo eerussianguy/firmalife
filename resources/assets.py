@@ -47,41 +47,40 @@ def generate(rm: ResourceManager):
                 last_bot_variants = bot_variants.copy()
                 last_bot_variants += four_rotations_mp_free('firmalife:block/%s_oven_bottom%s' % (var, '_insulated' if bottom_type == 'insulated_' else ''), (90, None, 180, 270))
                 last_bot_variants += [{'model': 'firmalife:block/%s_oven_particle' % var}]
-                rm.blockstate_multipart('%soven_bottom' % fixed_pref, *last_bot_variants).with_lang(lang('%sbottom oven', fixed_pref)).with_block_loot('firmalife:%soven_bottom' % fixed_pref)
+                rm.blockstate_multipart('%soven_bottom' % fixed_pref, *last_bot_variants).with_lang(lang('%sbottom oven', fixed_pref))
                 rm.item_model('%soven_bottom' % fixed_pref, parent='firmalife:block/%s_oven_bottom' % var, no_textures=True)
 
-        rm.blockstate('%soven_top' % pref, variants={**four_rotations('firmalife:block/%s_oven_top' % var, (90, None, 180, 270))}).with_lang(lang('%stop oven', pref)).with_block_loot('firmalife:%soven_top' % pref)
+        rm.blockstate('%soven_top' % pref, variants={**four_rotations('firmalife:block/%s_oven_top' % var, (90, None, 180, 270))}).with_lang(lang('%stop oven', pref))
         rm.item_model('%soven_top' % pref, parent='firmalife:block/%s_oven_top' % var, no_textures=True)
-        rm.blockstate('%soven_chimney' % pref, variants={'alt=true': {'model': 'firmalife:block/%s_oven_chimney_alt' % var}, 'alt=false': {'model': 'firmalife:block/%s_oven_chimney' % var}}).with_lang(lang('%soven chimney', pref)).with_block_loot('firmalife:%soven_chimney' % pref)
+        rm.blockstate('%soven_chimney' % pref, variants={'alt=true': {'model': 'firmalife:block/%s_oven_chimney_alt' % var}, 'alt=false': {'model': 'firmalife:block/%s_oven_chimney' % var}}).with_lang(lang('%soven chimney', pref))
         rm.item_model('%soven_chimney' % pref, parent='firmalife:block/%s_oven_chimney' % var, no_textures=True)
-        rm.blockstate('%soven_hopper' % pref, variants={**four_rotations('firmalife:block/%s_oven_hopper' % var, (90, None, 180, 270))}).with_lang(lang('%soven hopper', pref)).with_block_loot('firmalife:%soven_hopper' % pref)
+        rm.blockstate('%soven_hopper' % pref, variants={**four_rotations('firmalife:block/%s_oven_hopper' % var, (90, None, 180, 270))}).with_lang(lang('%soven hopper', pref))
         rm.item_model('%soven_hopper' % pref, parent='firmalife:block/%s_oven_hopper' % var, no_textures=True)
 
         if var != 'clay':
-            block = rm.blockstate('%s_countertop' % var).with_item_model().with_block_loot('firmalife:%s_countertop' % var).with_lang(lang('%s countertop', var))
+            block = rm.blockstate('%s_countertop' % var).with_item_model().with_lang(lang('%s countertop', var))
             block.with_block_model(parent='minecraft:block/cube_column', textures={'end': 'firmalife:block/%s_countertop' % var, 'side': side})
 
     block = rm.blockstate('ashtray', variants=dict(('stage=%s' % i, {'model': 'firmalife:block/ashtray_%s' % i}) for i in range(0, 11)))
-    block.with_lang(lang('ashtray')).with_block_loot('firmalife:ashtray')
+    block.with_lang(lang('ashtray'))
     for i in range(0, 11):
         rm.block_model('ashtray_%s' % i, parent='minecraft:block/cube_column', textures={'side': 'firmalife:block/ashtray_side_%s' % i, 'end': 'firmalife:block/ashtray_top'})
     rm.item_model('ashtray', parent='firmalife:block/ashtray_0', no_textures=True)
 
-    block = rm.blockstate('plate').with_item_model().with_lang(lang('plate')).with_block_loot('firmalife:plate')
+    block = rm.blockstate('plate').with_item_model().with_lang(lang('plate'))
 
     block = rm.blockstate('jarring_station', variants={**four_rotations('firmalife:block/jarring_station_dynamic', (90, None, 180, 270))})
     rm.custom_block_model('jarring_station_dynamic', 'firmalife:jarring_station', {'base': {'parent': 'firmalife:block/jarring_station'}})
-    block.with_block_loot('firmalife:jarring_station').with_item_model().with_lang(lang('jarring station'))
+    block.with_item_model().with_lang(lang('jarring station'))
 
-    rm.blockstate('drying_mat', model='firmalife:block/drying_mat').with_item_model().with_lang(lang('drying mat')).with_block_loot('firmalife:drying_mat')
-    rm.blockstate('solar_drier', model='firmalife:block/solar_drier').with_item_model().with_lang(lang('solar drier')).with_block_loot('firmalife:solar_drier')
-    rm.blockstate('hollow_shell', model='firmalife:block/hollow_shell').with_lang(lang('hollow shell')).with_block_loot('firmalife:hollow_shell')
+    rm.blockstate('drying_mat', model='firmalife:block/drying_mat').with_item_model().with_lang(lang('drying mat'))
+    rm.blockstate('solar_drier', model='firmalife:block/solar_drier').with_item_model().with_lang(lang('solar drier'))
+    rm.blockstate('hollow_shell', model='firmalife:block/hollow_shell').with_lang(lang('hollow shell'))
     block = rm.blockstate('mixing_bowl', model='firmalife:block/mixing_bowl').with_item_model().with_lang(lang('mixing bowl'))
-    block.with_block_loot({'name': 'firmalife:mixing_bowl'}, {'name': 'firmalife:spoon', 'conditions': [loot_tables.block_state_property('firmalife:mixing_bowl[spoon=true]')]})
 
-    rm.blockstate('picker', model='firmalife:block/picker_base').with_lang(lang('picker')).with_block_loot('firmalife:picker')
+    rm.blockstate('picker', model='firmalife:block/picker_base').with_lang(lang('picker'))
     rm.item_model('picker', parent='firmalife:block/picker', no_textures=True)
-    rm.blockstate('sweeper', model='tfc:block/empty').with_lang(lang('sweeper')).with_block_loot('firmalife:sweeper')
+    rm.blockstate('sweeper', model='tfc:block/empty').with_lang(lang('sweeper'))
     rm.item_model('sweeper', parent='firmalife:block/sweeper_item', no_textures=True)
 
     for fruit in TFC_FRUITS:
@@ -112,38 +111,38 @@ def generate(rm: ResourceManager):
         rm.blockstate(planter, variants={
             'watered=true': {'model': 'firmalife:block/%s_wet_dynamic' % planter},
             'watered=false': {'model': 'firmalife:block/%s_dry_dynamic' % planter}
-        }).with_lang(lang(planter)).with_block_loot('firmalife:%s' % planter)
+        }).with_lang(lang(planter))
         rm.item_model(planter, parent='firmalife:block/%s_dry' % planter, no_textures=True)
 
     for planter in ('trellis_planter', 'hydroponic_planter'):
         rm.custom_block_model('%s_dynamic' % planter, 'firmalife:%s' % planter, {'base': {'parent': 'firmalife:block/%s' % planter}})
-    rm.blockstate('trellis_planter', model='firmalife:block/trellis_planter_dynamic').with_lang(lang('trellis planter')).with_block_loot('firmalife:trellis_planter').with_item_model()
-    rm.blockstate('hydroponic_planter', model='firmalife:block/hydroponic_planter_dynamic').with_lang(lang('hydroponic planter')).with_block_loot('firmalife:hydroponic_planter').with_item_model()
+    rm.blockstate('trellis_planter', model='firmalife:block/trellis_planter_dynamic').with_lang(lang('trellis planter')).with_item_model()
+    rm.blockstate('hydroponic_planter', model='firmalife:block/hydroponic_planter_dynamic').with_lang(lang('hydroponic planter')).with_item_model()
 
     rm.blockstate('vat', variants={
         'sealed=false': {'model': 'firmalife:block/vat'},
         'sealed=true': {'model': 'firmalife:block/vat_sealed'},
-    }).with_lang(lang('vat')).with_block_loot('firmalife:vat').with_item_model()
+    }).with_lang(lang('vat')).with_item_model()
 
     rm.blockstate('wool_string', variants={
         'axis=x': {'model': 'firmalife:block/wool_string'},
         'axis=z': {'model': 'firmalife:block/wool_string', 'y': 90}
-    }).with_block_model(parent='firmalife:block/string', textures={'string': 'minecraft:block/white_wool'}).with_lang(lang('wool string')).with_item_model().with_block_loot('tfc:wool_yarn')
+    }).with_block_model(parent='firmalife:block/string', textures={'string': 'minecraft:block/white_wool'}).with_lang(lang('wool string')).with_item_model()
 
     rm.blockstate('grape_string', variants={
         'axis=x': {'model': 'firmalife:block/grape_trellis_string_center', 'y': 90},
         'axis=z': {'model': 'firmalife:block/grape_trellis_string_center'}
-    }).with_lang(lang('grape string')).with_block_loot('tfc:jute_fiber')
+    }).with_lang(lang('grape string'))
 
     rm.blockstate('grape_string_plant_red', variants=dict(
        ('axis=%s,lifecycle=%s,stage=%s' % (a, l, s), {'model': 'firmalife:block/%s_%s' % (m, s), 'y': y if y != 0 else None})
         for a, y in (('x', 90), ('z', 0)) for s in range(0, 3) for l, m in (('dormant', 'grape_dead'), ('healthy', 'grape'), ('fruiting', 'grape'), ('flowering', 'grape'))
-    )).with_lang(lang('red grape plant')).with_block_loot('tfc:jute_fiber', 'firmalife:seeds/red_grape')
+    )).with_lang(lang('red grape plant'))
 
     rm.blockstate('grape_string_plant_white', variants=dict(
         ('axis=%s,lifecycle=%s,stage=%s' % (a, l, s), {'model': 'firmalife:block/%s_%s' % (m, s), 'y': y if y != 0 else None})
         for a, y in (('x', 90), ('z', 0)) for s in range(0, 3) for l, m in (('dormant', 'grape_dead'), ('healthy', 'grape'), ('fruiting', 'grape'), ('flowering', 'grape'))
-    )).with_lang(lang('white grape plant')).with_block_loot('tfc:jute_fiber', 'firmalife:seeds/white_grape')
+    )).with_lang(lang('white grape plant'))
 
     rm.blockstate('grape_string_red', variants={
         'axis=x,lifecycle=dormant': {'model': 'firmalife:block/grape_top_dead', 'y': 90},
@@ -154,7 +153,7 @@ def generate(rm: ResourceManager):
         'axis=z,lifecycle=flowering': {'model': 'firmalife:block/grape_top_1'},
         'axis=x,lifecycle=fruiting': {'model': 'firmalife:block/grape_top_red', 'y': 90},
         'axis=z,lifecycle=fruiting': {'model': 'firmalife:block/grape_top_red'},
-    }).with_lang(lang('red grape plant')).with_block_loot('tfc:jute_fiber')
+    }).with_lang(lang('red grape plant'))
 
     rm.blockstate('grape_string_white', variants={
         'axis=x,lifecycle=dormant': {'model': 'firmalife:block/grape_top_dead', 'y': 90},
@@ -165,7 +164,7 @@ def generate(rm: ResourceManager):
         'axis=z,lifecycle=flowering': {'model': 'firmalife:block/grape_top_1'},
         'axis=x,lifecycle=fruiting': {'model': 'firmalife:block/grape_top_white', 'y': 90},
         'axis=z,lifecycle=fruiting': {'model': 'firmalife:block/grape_top_white'},
-    }).with_lang(lang('white grape plant')).with_block_loot('tfc:jute_fiber')
+    }).with_lang(lang('white grape plant'))
 
     rm.blockstate('grape_fluff_red', variants={
         'lifecycle=dormant': [{'model': 'firmalife:block/grape_fluff_dormant_%s' % i} for i in range(1, 4)],
@@ -192,7 +191,7 @@ def generate(rm: ResourceManager):
         rm.blockstate('plant/wild_%s_grapes' % color, variants={
             'mature=false': {'model': 'firmalife:block/plant/wild_grapes_dead'},
             'mature=true': {'model': 'firmalife:block/plant/wild_%s_grapes' % color},
-        }).with_lang(lang('wild %s grapes', color)).with_block_loot('1-3 firmalife:seeds/%s_grape' % color, {'name': 'firmalife:food/%s_grapes' % color, 'conditions': loot_tables.block_state_property('firmalife:plant/wild_%s_grapes[mature=true]' % color)})
+        }).with_lang(lang('wild %s grapes', color))
         rm.item_model('plant/wild_%s_grapes' % color, parent='firmalife:block/plant/wild_%s_grapes' % color, no_textures=True)
         rm.block_model('plant/wild_%s_grapes' % color, parent='tfc:block/plant/stationary_bush_2', textures={'bush': 'firmalife:block/crop/grape_leaves_%s' % color})
 
@@ -203,7 +202,7 @@ def generate(rm: ResourceManager):
         ({'axis': 'z', 'string_plus': True}, {'model': 'firmalife:block/grape_trellis_string', 'y': 90}),
         ({'axis': 'x', 'string_minus': True}, {'model': 'firmalife:block/grape_trellis_string'}),
         ({'axis': 'z', 'string_minus': True}, {'model': 'firmalife:block/grape_trellis_string', 'y': 270}),
-    ).with_lang(lang('grape_trellis_post')).with_block_loot('firmalife:grape_trellis_post')
+    ).with_lang(lang('grape_trellis_post'))
     rm.item_model('grape_trellis_post', parent='firmalife:block/grape_trellis', no_textures=True)
 
     rm.blockstate_multipart('grape_trellis_post_red',
@@ -221,7 +220,7 @@ def generate(rm: ResourceManager):
         ({'axis': 'z', 'string_plus': True}, {'model': 'firmalife:block/grape_trellis_string', 'y': 90}),
         ({'axis': 'x', 'string_minus': True}, {'model': 'firmalife:block/grape_trellis_string'}),
         ({'axis': 'z', 'string_minus': True}, {'model': 'firmalife:block/grape_trellis_string', 'y': 270}),
-    ).with_lang(lang('red grape plant')).with_block_loot('firmalife:grape_trellis_post')
+    ).with_lang(lang('red grape plant'))
     rm.blockstate_multipart('grape_trellis_post_white',
         ({'axis': 'x'}, {'model': 'firmalife:block/grape_trellis'}),
         ({'axis': 'z'}, {'model': 'firmalife:block/grape_trellis', 'y': 90}),
@@ -237,7 +236,7 @@ def generate(rm: ResourceManager):
         ({'axis': 'z', 'string_plus': True}, {'model': 'firmalife:block/grape_trellis_string', 'y': 90}),
         ({'axis': 'x', 'string_minus': True}, {'model': 'firmalife:block/grape_trellis_string'}),
         ({'axis': 'z', 'string_minus': True}, {'model': 'firmalife:block/grape_trellis_string', 'y': 270}),
-    ).with_lang(lang('white grape plant')).with_block_loot('firmalife:grape_trellis_post')
+    ).with_lang(lang('white grape plant'))
 
     for color in ('red', 'white'):
         rm.item_model('seeds/%s_grape' % color, 'firmalife:item/seeds/%s_grape' % color).with_lang(lang('%s grape seeds', color))
@@ -253,44 +252,44 @@ def generate(rm: ResourceManager):
     rm.blockstate('climate_station', variants={
         'stasis=true': {'model': 'firmalife:block/climate_station_valid'},
         'stasis=false': {'model': 'firmalife:block/climate_station_invalid'}
-    }).with_lang(lang('climate station')).with_block_loot('firmalife:climate_station')
+    }).with_lang(lang('climate station'))
     rm.item_model('climate_station', parent='firmalife:block/climate_station_invalid', no_textures=True)
     for variant in ('valid', 'invalid'):
         tex = 'firmalife:block/greenhouse/climate_station/%s' % variant
         rm.block_model('firmalife:climate_station_%s' % variant, {'west': tex, 'east': tex, 'north': tex, 'south': tex, 'particle': tex, 'up': 'firmalife:block/greenhouse/climate_station/top', 'down': 'firmalife:block/greenhouse/climate_station/end'}, 'block/cube')
 
-    rm.blockstate('stovetop_grill').with_lang(lang('stovetop grill')).with_block_loot('tfc:wrought_iron_grill')
-    rm.blockstate('stovetop_pot').with_lang(lang('stovetop pot')).with_block_loot('tfc:ceramic/pot')
+    rm.blockstate('stovetop_grill').with_lang(lang('stovetop grill'))
+    rm.blockstate('stovetop_pot').with_lang(lang('stovetop pot'))
 
     rm.blockstate('beehive', variants={
         **four_rotations('minecraft:block/beehive_honey', (90, None, 180, 270), ',honey=true'),
         **four_rotations('minecraft:block/beehive', (90, None, 180, 270), ',honey=false')
-    }).with_lang(lang('wooden beehive')).with_block_loot('firmalife:beehive')
+    }).with_lang(lang('wooden beehive'))
     rm.item_model('beehive', parent='minecraft:block/beehive', no_textures=True)
 
-    rm.blockstate('compost_tumbler', variants=four_rotations('firmalife:block/compost_tumbler', (90, None, 180, 270))).with_lang(lang('compost tumbler')).with_block_loot('firmalife:compost_tumbler')
+    rm.blockstate('compost_tumbler', variants=four_rotations('firmalife:block/compost_tumbler', (90, None, 180, 270))).with_lang(lang('compost tumbler'))
     rm.item_model('compost_tumbler', parent='firmalife:block/compost_tumbler_inventory', no_textures=True)
 
     block = rm.block('sealed').make_trapdoor().make_wall(texture='firmalife:block/sealed_bricks')
     make_door(block)
-    rm.block('sealed_trapdoor').with_lang(lang('sealed trapdoor')).with_block_loot('firmalife:sealed_trapdoor')
-    rm.block('sealed_wall').with_lang(lang('sealed wall')).with_block_loot('firmalife:sealed_wall')
+    rm.block('sealed_trapdoor').with_lang(lang('sealed trapdoor'))
+    rm.block('sealed_wall').with_lang(lang('sealed wall'))
     block = rm.block('firmalife:sealed_door').with_lang(lang('sealed door'))
     door_loot(block, 'firmalife:sealed_door')
 
-    rm.blockstate('dark_ladder', variants=four_rotations('firmalife:block/dark_ladder', (90, None, 180, 270))).with_block_model(textures={'texture': 'firmalife:block/dark_ladder', 'particle': 'firmalife:block/dark_ladder'}, parent='minecraft:block/ladder').with_lang(lang('dark ladder')).with_block_loot('firmalife:dark_ladder')
+    rm.blockstate('dark_ladder', variants=four_rotations('firmalife:block/dark_ladder', (90, None, 180, 270))).with_block_model(textures={'texture': 'firmalife:block/dark_ladder', 'particle': 'firmalife:block/dark_ladder'}, parent='minecraft:block/ladder').with_lang(lang('dark ladder'))
     rm.item_model('dark_ladder', 'firmalife:block/dark_ladder')
 
-    rm.blockstate('reinforced_poured_glass').with_block_model({'all': 'firmalife:block/reinforced_glass'}, parent='tfc:block/template_poured_glass').with_lang(lang('reinforced poured glass')).with_block_loot('firmalife:reinforced_glass')
+    rm.blockstate('reinforced_poured_glass').with_block_model({'all': 'firmalife:block/reinforced_glass'}, parent='tfc:block/template_poured_glass').with_lang(lang('reinforced poured glass'))
     rm.item_model('reinforced_poured_glass', 'firmalife:item/reinforced_glass')
 
     block = rm.blockstate('pumping_station', variants=four_rotations('firmalife:block/pumping_station', (90, None, 180, 270)))
-    block.with_lang(lang('pumping station')).with_block_loot('firmalife:pumping_station').with_item_model()
+    block.with_lang(lang('pumping station')).with_item_model()
 
-    rm.blockstate('irrigation_tank').with_lang(lang('irrigation tank')).with_block_loot('firmalife:irrigation_tank').with_item_model()
+    rm.blockstate('irrigation_tank').with_lang(lang('irrigation tank')).with_item_model()
 
-    rm.blockstate('sprinkler', variants={'axis=x': {'model': 'firmalife:block/sprinkler'}, 'axis=z': {'model': 'firmalife:block/sprinkler', 'y': 90}}).with_block_loot('firmalife:sprinkler').with_lang(lang('sprinkler')).with_item_model()
-    rm.blockstate('floor_sprinkler').with_block_loot('firmalife:sprinkler').with_lang(lang('floor sprinkler'))
+    rm.blockstate('sprinkler', variants={'axis=x': {'model': 'firmalife:block/sprinkler'}, 'axis=z': {'model': 'firmalife:block/sprinkler', 'y': 90}}).with_lang(lang('sprinkler')).with_item_model()
+    rm.blockstate('floor_sprinkler').with_lang(lang('floor sprinkler'))
 
     for pref in ('center', 'inventory', 'on', 'off'):
         rm.block_model('oxidized_pipe_%s' % pref, {'0': 'firmalife:block/greenhouse/oxidized_copper'}, parent='firmalife:block/pipe_%s' % pref)
@@ -315,7 +314,6 @@ def generate(rm: ResourceManager):
             ({'up': True}, {'model': pipe_on, 'x': 180}),
             ({'up': False}, {'model': pipe_off, 'x': 180}),
         )
-        block.with_block_loot('firmalife:%scopper_pipe' % pref)
         block.with_lang(lang('%scopper_pipe', pref))
         rm.item_model('%scopper_pipe' % pref, parent='firmalife:block/%spipe_inventory' % pref, no_textures=True)
 
@@ -327,18 +325,13 @@ def generate(rm: ResourceManager):
                 rm.block_model('cheese/%s_%s_%s' % (cheese, age, i), parent='firmalife:block/cheese_%s' % i, textures={'surface': surf, 'particle': surf, 'down': surf, 'inside': 'firmalife:block/cheese/%s_wheel_inner_%s' % (cheese, age)})
                 states.append(({'age': age, 'count': i}, {'model': 'firmalife:block/cheese/%s_%s_%s' % (cheese, age, i)}))
         block = rm.blockstate_multipart('%s_wheel' % cheese, *states).with_lang(lang('%s cheese wheel', cheese))
-        block.with_block_loot([{
-            'name': 'firmalife:food/%s' % cheese,
-            'functions': [loot_tables.set_count(c)],
-            'conditions': [loot_tables.block_state_property('firmalife:%s_wheel[count=%s]' % (cheese, c))]
-        } for c in range(1, 5)])
         rm.item_model('firmalife:%s_wheel' % cheese, parent='firmalife:block/cheese/%s_fresh_4' % cheese, no_textures=True)
 
     ore = 'chromite'
     for grade in ORE_GRADES.keys():
         rm.item_model('firmalife:ore/%s_%s' % (grade, ore)).with_lang(lang('%s %s', grade, ore))
     block = rm.blockstate('ore/small_%s' % ore, variants={"": four_ways('firmalife:block/small_%s' % ore)}, use_default_model=False)
-    block.with_lang(lang('small %s', ore)).with_block_loot('firmalife:ore/small_%s' % ore)
+    block.with_lang(lang('small %s', ore))
     rm.item_model('ore/small_%s' % ore).with_lang(lang('small %s', ore))
     for rock, data in TFC_ROCKS.items():
         for grade in ORE_GRADES.keys():
@@ -348,21 +341,19 @@ def generate(rm: ResourceManager):
                 'particle': 'tfc:block/rock/raw/%s' % rock,
                 'overlay': 'firmalife:block/ore/%s_%s' % (grade, ore)
             }, parent='tfc:block/ore')
-            block.with_item_model().with_lang(lang('%s %s %s', grade, rock, ore)).with_block_loot('firmalife:ore/%s_%s' % (grade, ore))
+            block.with_item_model().with_lang(lang('%s %s %s', grade, rock, ore))
             rm.block('firmalife:ore/%s_%s/%s/prospected' % (grade, ore, rock)).with_lang(lang(ore))
 
     for carving in CARVINGS.keys():
         for variant, lang_part in (('lit_pumpkin', 'Jack o\'Lantern'), ('carved_pumpkin', 'Carved Pumpkin')):
             name = '%s/%s' % (variant, carving)
             rm.block_model(name, parent='minecraft:block/carved_pumpkin', textures={'front': 'firmalife:block/%s/%s' % (variant, carving)})
-            rm.blockstate(name, variants=four_rotations('firmalife:block/%s' % name, (90, 0, 180, 270))).with_block_loot('firmalife:carved_pumpkin/%s' % carving).with_lang(lang('%s %s', carving, lang_part))
+            rm.blockstate(name, variants=four_rotations('firmalife:block/%s' % name, (90, 0, 180, 270))).with_lang(lang('%s %s', carving, lang_part))
             rm.item_model('firmalife:%s' % name, parent='firmalife:block/%s' % name, no_textures=True)
 
     for var in ('rustic_bricks', 'tiles'):
         block = rm.block(var).make_slab().make_stairs().make_wall()
         slab_loot(rm, 'firmalife:%s_slab' % var)
-        rm.block_loot('firmalife:%s_stairs' % var, 'firmalife:%s_stairs' % var)
-        rm.block_loot('firmalife:%s_wall' % var, 'firmalife:%s_wall' % var)
         for extra in ('_slab', '_stairs', '_wall'):
             rm.block('firmalife:%s%s' % (var, extra)).with_lang(lang('%s%s', var.replace('bricks', 'brick').replace('tiles', 'tile'), extra))
 
@@ -384,27 +375,26 @@ def generate(rm: ResourceManager):
         )).with_lang(lang('%s Bush', berry))
 
         rm.item_model('plant/%s_bush' % berry, parent='firmalife:block/plant/%s_bush_2' % berry, no_textures=True)
-        rm.block_loot('plant/%s_bush' % berry, {'name': 'firmalife:plant/%s_bush' % berry, 'conditions': [loot_tables.match_tag('tfc:sharp_tools')]})
         for lifecycle, stage in itertools.product(lifecycle_to_model.values(), range(0, 3)):
             rm.block_model('plant/%s%s_bush_%d' % (lifecycle, berry, stage), parent='tfc:block/plant/stationary_bush_%d' % stage, textures={'bush': 'firmalife:block/berry_bush/' + lifecycle + '%s_bush' % berry})
 
     for herb in HERBS:
         for stage in ('0', '1'):
             rm.block_model('plant/%s_%s' % (herb, stage), parent='minecraft:block/cross', textures={'cross': 'firmalife:block/plant/%s/%s' % (herb, stage)})
-        rm.blockstate('plant/%s' % herb, variants={'stage=0': {'model': 'firmalife:block/plant/%s_0' % herb}, 'stage=1': {'model': 'firmalife:block/plant/%s_1' % herb}}).with_lang(lang(herb))
+        rm.blockstate('plant/%s' % herb, variants={'age=0': {'model': 'firmalife:block/plant/%s_0' % herb}, 'age=1': {'model': 'firmalife:block/plant/%s_1' % herb}}).with_lang(lang(herb))
         simple_plant_data(rm, 'firmalife:plant/%s' % herb, straw=False)
         rm.item_model('plant/%s' % herb, 'firmalife:block/plant/%s/1' % herb)
         flower_pot_cross(rm, herb, 'firmalife:plant/potted/%s' % herb, 'plant/flowerpot/%s' % herb, 'firmalife:block/plant/%s/1' % herb, 'firmalife:plant/%s' % herb)
 
     for wood in TFC_WOODS.keys():
         block = rm.blockstate('firmalife:wood/food_shelf/%s' % wood, variants=four_rotations('firmalife:block/wood/food_shelf/%s_dynamic' % wood, (270, 180, None, 90)))
-        block.with_block_loot('firmalife:wood/food_shelf/%s' % wood).with_lang(lang('%s food shelf', wood))
+        block.with_lang(lang('%s food shelf', wood))
         rm.item_model('firmalife:wood/food_shelf/%s' % wood, parent='firmalife:block/wood/food_shelf/%s' % wood, no_textures=True)
         rm.custom_block_model('firmalife:wood/food_shelf/%s_dynamic' % wood, 'firmalife:food_shelf', {'base': {'parent': 'firmalife:block/wood/food_shelf/%s' % wood}})
         rm.block_model('firmalife:wood/food_shelf/%s' % wood, parent='firmalife:block/food_shelf_base', textures={'wood': 'tfc:block/wood/planks/%s' % wood})
 
         block = rm.blockstate('firmalife:wood/hanger/%s' % wood, model='firmalife:block/wood/hanger/%s_dynamic' % wood)
-        block.with_block_loot('firmalife:wood/hanger/%s' % wood).with_lang(lang('%s hanger' % wood))
+        block.with_lang(lang('%s hanger' % wood))
         rm.custom_block_model('firmalife:wood/hanger/%s_dynamic' % wood, 'firmalife:hanger', {'base': {'parent': 'firmalife:block/wood/hanger/%s' % wood}})
         rm.item_model('firmalife:wood/hanger/%s' % wood, parent='firmalife:block/wood/hanger/%s' % wood, no_textures=True)
         rm.block_model('firmalife:wood/hanger/%s' % wood, parent='firmalife:block/hanger_base', textures={'wood': 'tfc:block/wood/planks/%s' % wood, 'string': 'minecraft:block/white_wool'})
@@ -413,7 +403,7 @@ def generate(rm: ResourceManager):
             **four_rotations('firmalife:block/wood/jarbnet/%s_dynamic' % wood, (90, None, 180, 270), suffix=',open=true'),
             **four_rotations('firmalife:block/wood/jarbnet/%s_shut_dynamic' % wood, (90, None, 180, 270), suffix=',open=false'),
         })
-        block.with_block_loot('firmalife:wood/jarbnet/%s' % wood).with_lang(lang('%s jarbnet', wood))
+        block.with_lang(lang('%s jarbnet', wood))
         rm.item_model('firmalife:wood/jarbnet/%s' % wood, parent='firmalife:block/wood/jarbnet/%s' % wood, no_textures=True)
         textures = {'planks': 'tfc:block/wood/planks/%s' % wood, 'sheet': 'tfc:block/wood/sheet/%s' % wood, 'log': 'tfc:block/wood/log/%s' % wood}
         rm.block_model('firmalife:wood/jarbnet/%s' % wood, parent='firmalife:block/jarbnet', textures=textures)
@@ -443,17 +433,17 @@ def generate(rm: ResourceManager):
         block = rm.blockstate('wood/big_barrel/%s' % wood, variants=dict(
             ('barrel_part=%s,facing=%s' % (i, f), {'model': 'firmalife:block/wood/big_barrel/%s_%s' % (wood, i), 'y': y if y != 0 else None})
             for f, y in (('east', 90), ('north', 0), ('south', 180), ('west', 270)) for i in range(0, 8)
-        )).with_lang(lang('%s keg' % wood)).with_block_loot({'name': 'firmalife:wood/big_barrel/%s' % wood, 'conditions': [loot_tables.block_state_property('firmalife:wood/big_barrel/%s[barrel_part=0]' % wood)]})
+        )).with_lang(lang('%s keg' % wood))
 
-        rm.blockstate('wood/stomping_barrel/%s' % wood).with_block_model({'0': 'tfc:block/wood/sheet/%s' % wood}, 'firmalife:block/stomping_barrel').with_lang(lang('%s stomping barrel', wood)).with_block_loot('firmalife:wood/stomping_barrel/%s' % wood)
+        rm.blockstate('wood/stomping_barrel/%s' % wood).with_block_model({'0': 'tfc:block/wood/sheet/%s' % wood}, 'firmalife:block/stomping_barrel').with_lang(lang('%s stomping barrel', wood))
         rm.item_model('wood/stomping_barrel/%s' % wood, parent='firmalife:block/wood/stomping_barrel/%s' % wood, no_textures=True)
 
-        rm.blockstate('wood/barrel_press/%s' % wood).with_block_model({'0': 'tfc:block/wood/sheet/%s' % wood}, 'firmalife:block/barrel_press').with_lang(lang('%s barrel press', wood)).with_block_loot('firmalife:wood/barrel_press/%s' % wood)
+        rm.blockstate('wood/barrel_press/%s' % wood).with_block_model({'0': 'tfc:block/wood/sheet/%s' % wood}, 'firmalife:block/barrel_press').with_lang(lang('%s barrel press', wood))
         rm.item_model('wood/barrel_press/%s' % wood, parent='firmalife:block/wood/barrel_press/%s' % wood, no_textures=True)
 
         block = rm.blockstate('wood/wine_shelf/%s' % wood, variants=four_rotations('firmalife:block/wood/wine_shelf/%s_dynamic' % wood, (90, None, 180, 270)))
         block.with_block_model({'0': 'tfc:block/wood/planks/%s' % wood, '2': 'tfc:block/wood/sheet/%s' % wood, '3': 'tfc:block/wood/stripped_log/%s' % wood}, 'firmalife:block/wine_shelf')
-        block.with_lang(lang('%s wine shelf', wood)).with_block_loot('firmalife:wood/wine_shelf/%s' % wood)
+        block.with_lang(lang('%s wine shelf', wood))
         rm.item_model('wood/wine_shelf/%s' % wood, parent='firmalife:block/wood/wine_shelf/%s' % wood, no_textures=True)
         rm.custom_block_model('firmalife:wood/wine_shelf/%s_dynamic' % wood, 'firmalife:wine_shelf', {'base': {'parent': 'firmalife:block/wood/wine_shelf/%s' % wood}})
 
@@ -468,22 +458,6 @@ def generate(rm: ResourceManager):
                 ({'west': True}, {'model': 'firmalife:block/plant/%s_branch_side' % fruit}),
                 ({'east': True}, {'model': 'firmalife:block/plant/%s_branch_side' % fruit, 'y': 180})
                 ).with_lang(lang('%s Branch', fruit))
-            if prefix == '':
-                block.with_block_loot({
-                    'name': 'firmalife:plant/%s_sapling' % fruit,
-                    'conditions': loot_tables.all_of(
-                        loot_tables.any_of(*[
-                            loot_tables.block_state_property('firmalife:plant/%s_branch[up=true,%s=true]' % (fruit, direction))
-                            for direction in ('west', 'east', 'north', 'south')
-                        ]),
-                        loot_tables.match_tag('tfc:axes')
-                    )
-                }, {
-                    'name': 'minecraft:stick',
-                    'functions': [loot_tables.set_count(1, 4)]
-                })
-            else:
-                block.with_block_loot({'name': 'minecraft:stick', 'functions': [loot_tables.set_count(1, 4)]})
             for part in ('down', 'side', 'up', 'core'):
                 rm.block_model('firmalife:plant/%s_branch_%s' % (fruit, part), parent='tfc:block/plant/branch_%s' % part, textures={'bark': 'firmalife:block/fruit_tree/%s_branch' % fruit})
             rm.blockstate('plant/%s_leaves' % fruit, variants={
@@ -491,29 +465,11 @@ def generate(rm: ResourceManager):
                 'lifecycle=fruiting': {'model': 'firmalife:block/plant/%s_fruiting_leaves' % fruit},
                 'lifecycle=dormant': {'model': 'firmalife:block/plant/%s_dry_leaves' % fruit},
                 'lifecycle=healthy': {'model': 'firmalife:block/plant/%s_leaves' % fruit}
-            }).with_item_model().with_lang(lang('%s Leaves', fruit)).with_block_loot({
-                'name': 'firmalife:food/%s' % fruit if fruit != 'cocoa' else 'firmalife:food/cocoa_beans',
-                'conditions': [loot_tables.block_state_property('firmalife:plant/%s_leaves[lifecycle=fruiting]' % fruit)]
-            }, {
-                'name': 'firmalife:plant/%s_leaves' % fruit,
-                'conditions': [loot_tables.any_of(loot_tables.match_tag('forge:shears'), loot_tables.silk_touch())]
-            }, {
-                'name': 'minecraft:stick',
-                'conditions': [loot_tables.match_tag('tfc:sharp_tools'), loot_tables.random_chance(0.2)],
-                'functions': [loot_tables.set_count(1, 2)]
-            }, {
-                'name': 'minecraft:stick',
-                'conditions': [loot_tables.random_chance(0.05)],
-                'functions': [loot_tables.set_count(1, 2)]
-            })
+            }).with_item_model().with_lang(lang('%s Leaves', fruit))
             for life in ('', '_fruiting', '_flowering', '_dry'):
                 rm.block_model('firmalife:plant/%s%s_leaves' % (fruit, life), parent='block/leaves', textures={'all': 'firmalife:block/fruit_tree/%s%s_leaves' % (fruit, life)})
 
             rm.blockstate(('plant', '%s_sapling' % fruit), variants={'saplings=%d' % i: {'model': 'firmalife:block/plant/%s_sapling_%d' % (fruit, i)} for i in range(1, 4 + 1)}).with_lang(lang('%s Sapling', fruit))
-            rm.block_loot(('plant', '%s_sapling' % fruit), {
-                'name': 'firmalife:plant/%s_sapling' % fruit,
-                'functions': [list({**loot_tables.set_count(i), 'conditions': [loot_tables.block_state_property('firmalife:plant/%s_sapling[saplings=%s]' % (fruit, i))]} for i in range(1, 5)), loot_tables.explosion_decay()]
-            })
             for stage in range(2, 4 + 1):
                 rm.block_model(('plant', '%s_sapling_%d' % (fruit, stage)), parent='tfc:block/plant/cross_%s' % stage, textures={'cross': 'firmalife:block/fruit_tree/%s_sapling' % fruit})
             rm.block_model(('plant', '%s_sapling_1' % fruit), {'cross': 'firmalife:block/fruit_tree/%s_sapling' % fruit}, 'block/cross')
@@ -535,7 +491,7 @@ def generate(rm: ResourceManager):
         rm.item_model('jar/%s_unsealed' % fruit, 'firmalife:item/jar/%s_unsealed' % fruit).with_lang(lang('%s jam', fruit))
 
     for block, tag in SIMPLE_BLOCKS.items():
-        rm.blockstate(block).with_block_model().with_lang(lang(block)).with_item_model().with_block_loot('firmalife:%s' % block)
+        rm.blockstate(block).with_block_model().with_lang(lang(block)).with_item_model()
     for item in SIMPLE_ITEMS:
         rm.item_model(item).with_lang(lang(item))
     for item in SIMPLE_FOODS:
@@ -570,13 +526,12 @@ def contained_fluid(rm: ResourceManager, name_parts: utils.ResourceIdentifier, b
 
 
 def flower_pot_cross(rm: ResourceManager, simple_name: str, name: str, model: str, texture: str, loot: str, tinted: bool = False):
-    rm.blockstate(name, model='firmalife:block/%s' % model).with_lang(lang('potted %s', simple_name)).with_block_loot(loot, 'minecraft:flower_pot')
+    rm.blockstate(name, model='firmalife:block/%s' % model).with_lang(lang('potted %s', simple_name))
     rm.block_model(model, parent='minecraft:block/tinted_flower_pot_cross' if tinted else 'minecraft:block/flower_pot_cross', textures={'plant': texture, 'dirt': 'tfc:block/dirt/loam'})
 
 
 def simple_plant_data(rm: ResourceManager, p: str, bees: bool = True, straw: bool = True):
-    loot_alt = ({'name': p, 'conditions': [loot_tables.match_tag('tfc:knives')]}) if not straw else ({'name': p, 'conditions': [loot_tables.match_tag('forge:shears')]}, {'name': 'tfc:straw', 'conditions': [loot_tables.match_tag('tfc:sharp_tools')]})
-    rm.block_loot(p, loot_alt)
+    ...
 
 
 def item_model_property(rm: ResourceManager, name_parts: utils.ResourceIdentifier, overrides: utils.Json, data: Dict[str, Any]) -> ItemContext:
@@ -641,7 +596,7 @@ def greenhouse_stairs(rm: ResourceManager, name: str, frame: str, glass: str) ->
     rm.block_model('greenhouse/%s_roof_inner' % name, textures=textures, parent='firmalife:block/greenhouse_roof_inner')
     rm.block_model('greenhouse/%s_roof_outer' % name, textures=textures, parent='firmalife:block/greenhouse_roof_outer')
     rm.item_model(block_name, parent='firmalife:block/greenhouse/%s_roof' % name, no_textures=True)
-    block.with_block_loot('firmalife:%s' % block_name).with_lang(lang('%s greenhouse roof', name))
+    block.with_lang(lang('%s greenhouse roof', name))
     return block
 
 def greenhouse_slab(rm: ResourceManager, name: str, frame: str, glass: str) -> 'BlockContext':
@@ -670,7 +625,7 @@ def greenhouse_wall(rm: ResourceManager, name: str, frame: str, glass: str) -> '
         'down=true,up=false': {'model': 'firmalife:block/greenhouse/%s_wall_down' % name},
         'down=false,up=true': {'model': 'firmalife:block/greenhouse/%s_wall_up' % name},
         'down=true,up=true': {'model': 'firmalife:block/greenhouse/%s_wall_both' % name}
-    }).with_block_loot('firmalife:%s_greenhouse_wall' % name).with_lang(lang('%s greenhouse wall', name))
+    }).with_lang(lang('%s greenhouse wall', name))
     rm.item_model('%s_greenhouse_wall' % name, parent='firmalife:block/greenhouse/%s_wall_both' % name, no_textures=True)
     return block
 
@@ -684,7 +639,7 @@ def greenhouse_port(rm: ResourceManager, name: str, frame: str, glass: str) -> '
         ({'down': True, 'up': False}, {'model': 'firmalife:block/greenhouse/%s_wall_down' % name}),
         ({'down': False, 'up': True}, {'model': 'firmalife:block/greenhouse/%s_wall_up' % name}),
         ({'down': True, 'up': True}, {'model': 'firmalife:block/greenhouse/%s_wall_both' % name})
-    ).with_block_loot('firmalife:%s_greenhouse_port' % name).with_lang(lang('%s greenhouse port', name))
+    ).with_lang(lang('%s greenhouse port', name))
     rm.item_model('%s_greenhouse_port' % name, parent='firmalife:block/greenhouse/%s_port_inv' % name, no_textures=True)
     return block
 
@@ -699,7 +654,7 @@ def greenhouse_panel_wall(rm: ResourceManager, name: str, frame: str, glass: str
         **four_rotations('firmalife:block/greenhouse/%s_panel_wall_down' % name, (90, None, 180, 270), prefix='down=true,', suffix=',up=false'),
         **four_rotations('firmalife:block/greenhouse/%s_panel_wall_up' % name, (90, None, 180, 270), prefix='down=false,', suffix=',up=true'),
         **four_rotations('firmalife:block/greenhouse/%s_panel_wall_both' % name, (90, None, 180, 270), prefix='down=true,', suffix=',up=true'),
-    }).with_block_loot('firmalife:%s_greenhouse_panel_wall' % name).with_lang(lang('%s greenhouse panel wall', name))
+    }).with_lang(lang('%s greenhouse panel wall', name))
     rm.item_model('%s_greenhouse_panel_wall' % name, parent='firmalife:block/greenhouse/%s_panel_wall_both' % name, no_textures=True)
     return block
 
@@ -715,14 +670,14 @@ def greenhouse_panel_roof(rm: ResourceManager, name: str, frame: str, glass: str
         **four_rotations('firmalife:block/greenhouse/%s_panel_roof_cw' % name, (90, None, 180, 270), prefix='cw=true,ccw=false,'),
         **four_rotations('firmalife:block/greenhouse/%s_panel_roof_ccw' % name, (90, None, 180, 270), prefix='cw=false,ccw=true,'),
         **four_rotations('firmalife:block/greenhouse/%s_panel_roof_both' % name, (90, None, 180, 270), prefix='cw=true,ccw=true,')
-    }).with_block_loot('firmalife:%s_greenhouse_panel_roof' % name).with_lang(lang('%s greenhouse panel roof', name))
+    }).with_lang(lang('%s greenhouse panel roof', name))
     rm.item_model('%s_greenhouse_panel_roof' % name, parent='firmalife:block/greenhouse/%s_panel_roof' % name, no_textures=True)
     return block
 
 
 def greenhouse_trapdoor(rm: ResourceManager, name: str, glass: str) -> 'BlockContext':
     rm.block('%s_greenhouse' % name).make_trapdoor(texture=glass)
-    block = rm.block('%s_greenhouse_trapdoor' % name).with_lang(lang('%s greenhouse trapdoor' % name)).with_block_loot('firmalife:%s_greenhouse_trapdoor' % name)
+    block = rm.block('%s_greenhouse_trapdoor' % name).with_lang(lang('%s greenhouse trapdoor' % name))
     return block
 
 
@@ -736,17 +691,10 @@ def greenhouse_door(rm: ResourceManager, name: str, bot: str, upper: str) -> 'Bl
 
 
 def slab_loot(rm: ResourceManager, loot: str):
-    return rm.block_loot(loot, {
-        'name': loot,
-        'functions': [{
-            'function': 'minecraft:set_count',
-            'conditions': [loot_tables.block_state_property(loot + '[type=double]')],
-            'count': 2,
-            'add': False
-        }]
-    })
+    ...
+
 def door_loot(block: BlockContext, loot: str) -> 'BlockContext':
-    return block.with_block_loot({'name': loot, 'conditions': [loot_tables.block_state_property(loot + '[half=lower]')]})
+    ...
 
 def water_based_fluid(rm: ResourceManager, name: str):
     rm.blockstate(('fluid', name)).with_block_model({'particle': 'minecraft:block/water_still'}, parent=None).with_lang(lang(name))

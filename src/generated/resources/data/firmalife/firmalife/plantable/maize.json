@@ -1,0 +1,25 @@
+{
+  "crop": {
+    "count": 1,
+    "id": "tfc:food/maize"
+  },
+  "ingredient": {
+    "item": "tfc:seeds/maize"
+  },
+  "nutrient": "phosphorous",
+  "planter": "large",
+  "seed": {
+    "count": 1,
+    "id": "tfc:seeds/maize"
+  },
+  "specials": [],
+  "stages": 4,
+  "textures": [
+    "firmalife:block/crop/maize_0",
+    "firmalife:block/crop/maize_1",
+    "firmalife:block/crop/maize_2",
+    "firmalife:block/crop/maize_3",
+    "firmalife:block/crop/maize_4"
+  ],
+  "tier": 10
+}

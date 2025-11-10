@@ -1,0 +1,28 @@
+{
+  "crop": {
+    "count": 1,
+    "id": "tfc:plant/banana_sapling"
+  },
+  "extra_seed_chance": 0.08,
+  "ingredient": {
+    "item": "tfc:plant/banana_sapling"
+  },
+  "nutrient": "nitrogen",
+  "planter": "hanging",
+  "seed": {
+    "count": 1,
+    "id": "tfc:plant/banana_sapling"
+  },
+  "specials": [
+    "firmalife:banana_fruit"
+  ],
+  "stages": 4,
+  "textures": [
+    "firmalife:block/crop/banana0",
+    "firmalife:block/crop/banana1",
+    "firmalife:block/crop/banana2",
+    "firmalife:block/crop/banana3",
+    "firmalife:block/crop/banana4"
+  ],
+  "tier": 15
+}

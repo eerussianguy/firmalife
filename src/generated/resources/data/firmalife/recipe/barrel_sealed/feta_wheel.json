@@ -1,0 +1,16 @@
+{
+  "type": "tfc:barrel_sealed",
+  "duration": 16000,
+  "input_fluid": {
+    "amount": 750,
+    "fluid": "tfc:salt_water"
+  },
+  "input_item": {
+    "count": 3,
+    "item": "firmalife:food/goat_curd"
+  },
+  "output_item": {
+    "count": 1,
+    "id": "firmalife:feta_wheel"
+  }
+}

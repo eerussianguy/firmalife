@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "type": "tfc:fluid_content",
+      "fluid": {
+        "amount": 1000,
+        "fluid": "minecraft:water"
+      }
+    },
+    {
+      "item": "tfc:wooden_bucket"
+    },
+    {
+      "tag": "tfc:lumber"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "firmalife:watering_can"
+  }
+}

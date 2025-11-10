@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": {
+      "tag": "tfc:lumber"
+    }
+  },
+  "pattern": [
+    "X X",
+    " X ",
+    "X X"
+  ],
+  "result": {
+    "count": 1,
+    "id": "firmalife:beehive_frame"
+  }
+}

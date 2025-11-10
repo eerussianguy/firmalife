@@ -1,0 +1,53 @@
+{
+  "type": "tfc:advanced_shapeless_crafting",
+  "ingredients": [
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "firmalife:food/pumpkin_pie_dough"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    },
+    {
+      "tag": "firmalife:pie_pans"
+    }
+  ],
+  "primary_ingredient": {
+    "type": "tfc:and",
+    "children": [
+      {
+        "item": "firmalife:food/pumpkin_pie_dough"
+      },
+      {
+        "type": "tfc:not_rotten"
+      }
+    ]
+  },
+  "result": {
+    "modifiers": [
+      {
+        "type": "tfc:meal",
+        "food": {
+          "decay_modifier": 4.0,
+          "fruit": 1.5,
+          "grain": 1.0,
+          "hunger": 4,
+          "saturation": 4.0,
+          "water": 4.0
+        },
+        "portions": []
+      },
+      {
+        "type": "firmalife:add_pie_pan"
+      }
+    ],
+    "stack": {
+      "count": 1,
+      "id": "firmalife:food/raw_pumpkin_pie"
+    }
+  }
+}

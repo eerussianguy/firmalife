@@ -1,0 +1,28 @@
+{
+  "crop": {
+    "count": 1,
+    "id": "tfc:food/wheat"
+  },
+  "ingredient": {
+    "item": "tfc:seeds/wheat"
+  },
+  "nutrient": "phosphorous",
+  "planter": "large",
+  "seed": {
+    "count": 1,
+    "id": "tfc:seeds/wheat"
+  },
+  "specials": [],
+  "stages": 7,
+  "textures": [
+    "tfc:block/crop/wheat_0",
+    "tfc:block/crop/wheat_1",
+    "tfc:block/crop/wheat_2",
+    "tfc:block/crop/wheat_3",
+    "tfc:block/crop/wheat_4",
+    "tfc:block/crop/wheat_5",
+    "tfc:block/crop/wheat_6",
+    "tfc:block/crop/wheat_7"
+  ],
+  "tier": 10
+}

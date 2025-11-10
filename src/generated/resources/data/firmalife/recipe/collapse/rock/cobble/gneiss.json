@@ -1,0 +1,9 @@
+{
+  "type": "tfc:collapse",
+  "ingredient": [
+    "firmalife:ore/poor_chromite/gneiss",
+    "firmalife:ore/normal_chromite/gneiss",
+    "firmalife:ore/rich_chromite/gneiss"
+  ],
+  "result": "tfc:rock/cobble/gneiss"
+}

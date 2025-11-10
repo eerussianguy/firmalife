@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": {
+      "item": "firmalife:treated_lumber"
+    },
+    "Y": {
+      "item": "tfc:glue"
+    }
+  },
+  "pattern": [
+    "XYX",
+    "YXY"
+  ],
+  "result": {
+    "count": 1,
+    "id": "firmalife:mixing_bowl"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "firmalife:vat",
+  "input_fluid": {
+    "amount": 1000,
+    "fluid": "minecraft:water"
+  },
+  "input_item": {
+    "count": 1,
+    "tag": "c:dyes/cyan"
+  },
+  "length": 1,
+  "output_fluid": {
+    "amount": 1000,
+    "id": "tfc:cyan_dye"
+  },
+  "temperature": 1.0
+}

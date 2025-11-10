@@ -1,0 +1,28 @@
+{
+  "crop": {
+    "count": 1,
+    "id": "tfc:food/oat"
+  },
+  "ingredient": {
+    "item": "tfc:seeds/oat"
+  },
+  "nutrient": "phosphorous",
+  "planter": "large",
+  "seed": {
+    "count": 1,
+    "id": "tfc:seeds/oat"
+  },
+  "specials": [],
+  "stages": 7,
+  "textures": [
+    "tfc:block/crop/oat_0",
+    "tfc:block/crop/oat_1",
+    "tfc:block/crop/oat_2",
+    "tfc:block/crop/oat_3",
+    "tfc:block/crop/oat_4",
+    "tfc:block/crop/oat_5",
+    "tfc:block/crop/oat_6",
+    "tfc:block/crop/oat_7"
+  ],
+  "tier": 10
+}

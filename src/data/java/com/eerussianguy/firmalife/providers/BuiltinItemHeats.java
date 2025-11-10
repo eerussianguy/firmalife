@@ -8,6 +8,7 @@ import com.eerussianguy.firmalife.Accessors;
 import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.items.FLFood;
+import com.eerussianguy.firmalife.common.items.FLItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.TagKey;
@@ -16,6 +17,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 
+import net.dries007.tfc.TerraFirmaCraft;
 import net.dries007.tfc.common.component.heat.HeatCapability;
 import net.dries007.tfc.common.component.heat.HeatDefinition;
 import net.dries007.tfc.util.Helpers;
@@ -30,7 +32,7 @@ public class BuiltinItemHeats extends DataManagerProvider<HeatDefinition> implem
 
     public BuiltinItemHeats(PackOutput output, CompletableFuture<HolderLookup.Provider> lookup)
     {
-        super(HeatCapability.MANAGER, output, lookup);
+        super(HeatCapability.MANAGER, output, lookup, TerraFirmaCraft.MOD_ID);
     }
 
 
@@ -44,6 +46,15 @@ public class BuiltinItemHeats extends DataManagerProvider<HeatDefinition> implem
         {
             add(itemOf(food), 200);
         }
+
+        FLItems.METAL_ITEMS.forEach((metal, entry) -> entry.forEach((type, item) -> {
+            //TODO temp
+            add(metal.getSerializedName() + "_" + type.name().toLowerCase(Locale.ROOT), new HeatDefinition(Ingredient.of(item), 10, 0, 0));
+        }));
+        FLBlocks.METALS.forEach((metal, entry) -> entry.forEach((type, block) -> {
+            //TODO temp
+            add(metal.getSerializedName() + "_" + type.name().toLowerCase(Locale.ROOT), new HeatDefinition(Ingredient.of(block.asItem()), 10, 0, 0));
+        }));
 
         //TODO temp, while tags still are failing
         add("barrier", new HeatDefinition(Ingredient.of(Blocks.BARRIER.asItem()), 999, 0, 0));

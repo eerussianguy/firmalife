@@ -1,0 +1,17 @@
+{
+  "type": "firmalife:vat",
+  "input_fluid": {
+    "amount": 1000,
+    "fluid": "minecraft:water"
+  },
+  "input_item": {
+    "count": 1,
+    "tag": "c:dyes/light_gray"
+  },
+  "length": 1,
+  "output_fluid": {
+    "amount": 1000,
+    "id": "tfc:light_gray_dye"
+  },
+  "temperature": 1.0
+}

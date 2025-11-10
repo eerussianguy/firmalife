@@ -5,9 +5,12 @@ import java.util.Set;
 import com.eerussianguy.firmalife.config.FLConfig;
 import com.google.common.collect.ImmutableSet;
 import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 import net.dries007.tfc.common.component.food.FoodTrait;
 import net.dries007.tfc.common.component.food.FoodTraits;
+
+import static com.eerussianguy.firmalife.FirmaLife.*;
 
 public class FLFoodTraits
 {
@@ -58,6 +61,8 @@ public class FLFoodTraits
         }
     }
 
+    // Need to use our own DR to have the correct namespace on traits
+    public static final DeferredRegister<FoodTrait> TRAITS = DeferredRegister.create(FoodTraits.KEY, MOD_ID);
 
     public static final DeferredHolder<FoodTrait, FoodTrait> DRIED = register(Default.DRIED);
     public static final DeferredHolder<FoodTrait, FoodTrait> FRESH = register(Default.FRESH);
@@ -82,7 +87,7 @@ public class FLFoodTraits
 
     private static DeferredHolder<FoodTrait, FoodTrait> register(FLFoodTraits.Default trait)
     {
-        return FoodTraits.TRAITS.register(trait.name.toLowerCase(Locale.ROOT), () -> new FoodTrait(FLConfig.SERVER.foodTraits.get(trait), "tfc.tooltip.food_trait." + trait.name.toLowerCase(Locale.ROOT)));
+        return TRAITS.register(trait.name.toLowerCase(Locale.ROOT), () -> new FoodTrait(FLConfig.SERVER.foodTraits.get(trait), MOD_ID + ".tooltip.food_trait." + trait.name.toLowerCase(Locale.ROOT)));
     }
 
 }

@@ -1,0 +1,74 @@
+{
+  "type": "tfc:advanced_shapeless_crafting",
+  "ingredients": [
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "firmalife:food/pizza_dough"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    },
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "firmalife:food/shredded_cheese"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    },
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "firmalife:food/tomato_sauce"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    }
+  ],
+  "primary_ingredient": {
+    "type": "tfc:and",
+    "children": [
+      {
+        "item": "firmalife:food/pizza_dough"
+      },
+      {
+        "type": "tfc:not_rotten"
+      }
+    ]
+  },
+  "result": {
+    "modifiers": [
+      {
+        "type": "tfc:meal",
+        "food": {
+          "dairy": 0.25,
+          "decay_modifier": 4.5,
+          "grain": 1.0,
+          "hunger": 4,
+          "saturation": 1.0
+        },
+        "portions": [
+          {
+            "nutrient_modifier": 0.8,
+            "saturation_modifier": 0.8,
+            "water_modifier": 0.8
+          }
+        ]
+      }
+    ],
+    "stack": {
+      "count": 1,
+      "id": "firmalife:food/raw_pizza"
+    }
+  }
+}

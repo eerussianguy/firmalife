@@ -1,0 +1,11 @@
+{
+  "type": "tfc:heating",
+  "ingredient": {
+    "item": "firmalife:stainless_steel_jar_lid"
+  },
+  "result_fluid": {
+    "amount": 6,
+    "id": "firmalife:metal/stainless_steel"
+  },
+  "temperature": 1540.0
+}

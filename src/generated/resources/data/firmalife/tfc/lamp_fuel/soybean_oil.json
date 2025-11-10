@@ -1,0 +1,7 @@
+{
+  "burn_rate": 7000,
+  "fluid": {
+    "fluid": "firmalife:soybean_oil"
+  },
+  "lamps": "#tfc:lamps"
+}

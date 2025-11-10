@@ -1,0 +1,25 @@
+{
+  "crop": {
+    "count": 1,
+    "id": "tfc:food/beet"
+  },
+  "ingredient": {
+    "item": "tfc:seeds/beet"
+  },
+  "nutrient": "potassium",
+  "planter": "quad",
+  "seed": {
+    "count": 1,
+    "id": "tfc:seeds/beet"
+  },
+  "specials": [],
+  "stages": 5,
+  "textures": [
+    "tfc:block/crop/beet_0",
+    "tfc:block/crop/beet_1",
+    "tfc:block/crop/beet_2",
+    "tfc:block/crop/beet_3",
+    "tfc:block/crop/beet_4",
+    "tfc:block/crop/beet_5"
+  ]
+}

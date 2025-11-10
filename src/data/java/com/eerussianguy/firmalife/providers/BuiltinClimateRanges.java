@@ -8,6 +8,7 @@ import com.eerussianguy.firmalife.common.util.FLClimateRanges;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 
+import net.dries007.tfc.TerraFirmaCraft;
 import net.dries007.tfc.util.climate.ClimateRange;
 import net.dries007.tfc.util.data.DataManager;
 
@@ -15,7 +16,7 @@ public class BuiltinClimateRanges extends DataManagerProvider<ClimateRange>
 {
     public BuiltinClimateRanges(PackOutput output, CompletableFuture<HolderLookup.Provider> lookup)
     {
-        super(ClimateRange.MANAGER, output, lookup);
+        super(ClimateRange.MANAGER, output, lookup, TerraFirmaCraft.MOD_ID);
     }
 
     @Override

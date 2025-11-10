@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": {
+      "item": "tfc:wood/log/douglas_fir"
+    },
+    "Y": {
+      "item": "firmalife:treated_lumber"
+    }
+  },
+  "pattern": [
+    "XYX",
+    "XYX",
+    "XYX"
+  ],
+  "result": {
+    "count": 4,
+    "id": "firmalife:wood/wine_shelf/douglas_fir"
+  }
+}

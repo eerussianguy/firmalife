@@ -1,0 +1,20 @@
+{
+  "type": "firmalife:oven",
+  "duration": 1000,
+  "ingredient": {
+    "type": "tfc:and",
+    "children": [
+      {
+        "item": "firmalife:food/cocoa_beans"
+      },
+      {
+        "type": "tfc:not_rotten"
+      }
+    ]
+  },
+  "result": {
+    "count": 1,
+    "id": "firmalife:food/roasted_cocoa_beans"
+  },
+  "temperature": 400.0
+}

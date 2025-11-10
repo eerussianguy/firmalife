@@ -1,0 +1,29 @@
+{
+  "type": "firmalife:drying",
+  "ingredient": {
+    "type": "tfc:and",
+    "children": [
+      {
+        "tag": "c:foods/fruit"
+      },
+      {
+        "type": "tfc:not_rotten"
+      },
+      {
+        "type": "tfc:lacks_trait",
+        "trait": "firmalife:dried"
+      }
+    ]
+  },
+  "result": {
+    "modifiers": [
+      {
+        "type": "tfc:copy_input"
+      },
+      {
+        "type": "tfc:add_trait",
+        "trait": "firmalife:dried"
+      }
+    ]
+  }
+}

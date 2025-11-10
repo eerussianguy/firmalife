@@ -1,7 +1,6 @@
 package com.eerussianguy.firmalife.common.util;
 
 import java.util.Locale;
-
 import net.minecraft.util.StringRepresentable;
 
 public enum ExtraFluid implements StringRepresentable

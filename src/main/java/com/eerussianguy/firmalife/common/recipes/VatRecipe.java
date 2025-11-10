@@ -32,7 +32,7 @@ public class VatRecipe implements ISimpleRecipe<VatBlockEntity.VatInventory>
         SizedFluidIngredient.FLAT_CODEC.fieldOf("input_fluid").forGetter(c -> c.inputFluid),
         //TODO codec does not currently support ItemStackProvider.empty(), if that changes this does not need to be optional
         ItemStackProvider.CODEC.optionalFieldOf("output_item").forGetter(c -> c.outputItem),
-        FluidStack.OPTIONAL_CODEC.fieldOf("output_fluid").forGetter(c -> c.outputFluid),
+        FluidStack.OPTIONAL_CODEC.optionalFieldOf("output_fluid").forGetter(c -> c.outputFluid),
         Codecs.POSITIVE_INT.fieldOf("length").forGetter(c -> c.length),
         Codec.FLOAT.fieldOf("temperature").forGetter(c -> c.temperature),
         ItemStack.OPTIONAL_CODEC.optionalFieldOf("jar_output").forGetter(c -> c.jarOutput),
@@ -43,7 +43,7 @@ public class VatRecipe implements ISimpleRecipe<VatBlockEntity.VatInventory>
         SizedIngredient.STREAM_CODEC, c -> c.inputItem,
         SizedFluidIngredient.STREAM_CODEC, c -> c.inputFluid,
         ByteBufCodecs.optional(ItemStackProvider.STREAM_CODEC), c -> c.outputItem,
-        FluidStack.STREAM_CODEC, c -> c.outputFluid,
+        ByteBufCodecs.optional(FluidStack.OPTIONAL_STREAM_CODEC), c -> c.outputFluid,
         ByteBufCodecs.INT, c -> c.length,
         ByteBufCodecs.FLOAT, c -> c.temperature,
         ByteBufCodecs.optional(ItemStack.OPTIONAL_STREAM_CODEC), c -> c.jarOutput,
@@ -54,13 +54,13 @@ public class VatRecipe implements ISimpleRecipe<VatBlockEntity.VatInventory>
     private final SizedIngredient inputItem;
     private final SizedFluidIngredient inputFluid;
     private final Optional<ItemStackProvider> outputItem;
-    private final FluidStack outputFluid;
+    private final Optional<FluidStack> outputFluid;
     private final int length;
     private final float temperature;
     private final Optional<ItemStack> jarOutput;
     private final Optional<ResourceLocation> outputTexture;
 
-    public VatRecipe(SizedIngredient ingredient, SizedFluidIngredient fluidInput, Optional<ItemStackProvider> output, FluidStack outputFluid, int length, float temperature, Optional<ItemStack> jarOutput, Optional<ResourceLocation> outputTexture)
+    public VatRecipe(SizedIngredient ingredient, SizedFluidIngredient fluidInput, Optional<ItemStackProvider> output, Optional<FluidStack> outputFluid, int length, float temperature, Optional<ItemStack> jarOutput, Optional<ResourceLocation> outputTexture)
     {
         this.inputItem = ingredient;
         this.inputFluid = fluidInput;
@@ -93,14 +93,14 @@ public class VatRecipe implements ISimpleRecipe<VatBlockEntity.VatInventory>
         }
 
         // Trim multiplier to a maximum fluid capacity of output
-        if (!outputFluid.isEmpty())
+        if (!outputFluid.get().isEmpty())
         {
             int capacity = VatBlockEntity.CAPACITY;
-            if (FluidStack.isSameFluidSameComponents(outputFluid, fluid))
+            if (FluidStack.isSameFluidSameComponents(outputFluid.get(), fluid))
             {
                 capacity -= fluid.getAmount();
             }
-            int maxMultiplier = capacity / outputFluid.getAmount();
+            int maxMultiplier = capacity / outputFluid.get().getAmount();
             multiplier = Math.min(multiplier, maxMultiplier);
         }
 
@@ -122,7 +122,7 @@ public class VatRecipe implements ISimpleRecipe<VatBlockEntity.VatInventory>
         // Output fluid
         // If there's no output fluid, keep as much of the input as possible
         // If there is an output fluid, excess input is voided
-        final FluidStack outputFluid = this.outputFluid.copy();
+        final FluidStack outputFluid = this.outputFluid.get().copy();
         if (outputFluid.isEmpty())
         {
             // Try and keep as much of the original input as possible
@@ -193,7 +193,7 @@ public class VatRecipe implements ISimpleRecipe<VatBlockEntity.VatInventory>
 
     public FluidStack getOutputFluid()
     {
-        return outputFluid;
+        return outputFluid.get();
     }
 
     public Optional<ItemStackProvider> getOutputItem()

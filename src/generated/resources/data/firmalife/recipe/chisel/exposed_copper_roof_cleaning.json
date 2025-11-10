@@ -1,0 +1,8 @@
+{
+  "type": "tfc:chisel",
+  "ingredient": [
+    "firmalife:exposed_copper_greenhouse_roof"
+  ],
+  "mode": "tfc:smooth",
+  "result": "firmalife:copper_greenhouse_roof"
+}

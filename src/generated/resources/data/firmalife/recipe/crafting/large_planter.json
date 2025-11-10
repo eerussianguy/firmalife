@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": {
+      "item": "minecraft:brick"
+    },
+    "Y": {
+      "item": "tfc:compost"
+    }
+  },
+  "pattern": [
+    "XYX",
+    "XXX"
+  ],
+  "result": {
+    "count": 1,
+    "id": "firmalife:large_planter"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "crop": {
+    "count": 1,
+    "id": "tfc:food/carrot"
+  },
+  "ingredient": {
+    "item": "tfc:seeds/carrot"
+  },
+  "nutrient": "potassium",
+  "planter": "quad",
+  "seed": {
+    "count": 1,
+    "id": "tfc:seeds/carrot"
+  },
+  "specials": [],
+  "stages": 4,
+  "textures": [
+    "tfc:block/crop/carrot_0",
+    "tfc:block/crop/carrot_1",
+    "tfc:block/crop/carrot_2",
+    "tfc:block/crop/carrot_3",
+    "tfc:block/crop/carrot_4"
+  ]
+}

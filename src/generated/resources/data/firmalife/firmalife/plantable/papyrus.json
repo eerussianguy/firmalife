@@ -1,0 +1,26 @@
+{
+  "crop": {
+    "count": 1,
+    "id": "tfc:papyrus"
+  },
+  "ingredient": {
+    "item": "tfc:seeds/papyrus"
+  },
+  "nutrient": "potassium",
+  "planter": "large",
+  "seed": {
+    "count": 1,
+    "id": "tfc:seeds/papyrus"
+  },
+  "specials": [],
+  "stages": 5,
+  "textures": [
+    "firmalife:block/crop/papyrus_0",
+    "firmalife:block/crop/papyrus_1",
+    "firmalife:block/crop/papyrus_2",
+    "firmalife:block/crop/papyrus_3",
+    "firmalife:block/crop/papyrus_4",
+    "firmalife:block/crop/papyrus_5"
+  ],
+  "tier": 10
+}

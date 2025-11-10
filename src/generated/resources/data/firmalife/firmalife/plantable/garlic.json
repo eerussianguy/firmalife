@@ -1,0 +1,24 @@
+{
+  "crop": {
+    "count": 1,
+    "id": "tfc:food/garlic"
+  },
+  "ingredient": {
+    "item": "tfc:seeds/garlic"
+  },
+  "nutrient": "nitrogen",
+  "planter": "quad",
+  "seed": {
+    "count": 1,
+    "id": "tfc:seeds/garlic"
+  },
+  "specials": [],
+  "stages": 4,
+  "textures": [
+    "tfc:block/crop/garlic_0",
+    "tfc:block/crop/garlic_1",
+    "tfc:block/crop/garlic_2",
+    "tfc:block/crop/garlic_3",
+    "tfc:block/crop/garlic_4"
+  ]
+}

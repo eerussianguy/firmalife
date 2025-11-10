@@ -1,0 +1,9 @@
+{
+  "type": "tfc:collapse",
+  "ingredient": [
+    "firmalife:ore/poor_chromite/rhyolite",
+    "firmalife:ore/normal_chromite/rhyolite",
+    "firmalife:ore/rich_chromite/rhyolite"
+  ],
+  "result": "tfc:rock/cobble/rhyolite"
+}

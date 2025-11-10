@@ -1,0 +1,30 @@
+{
+  "type": "firmalife:mixing_bowl",
+  "fluid_ingredients": {
+    "amount": 1000,
+    "tag": "firmalife:milks"
+  },
+  "item_ingredients": [
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "tag": "firmalife:foods/egg_noodle_flour"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    },
+    {
+      "item": "tfc:powder/salt"
+    },
+    {
+      "item": "minecraft:egg"
+    }
+  ],
+  "result_item": {
+    "count": 1,
+    "id": "firmalife:food/raw_egg_noodles"
+  }
+}

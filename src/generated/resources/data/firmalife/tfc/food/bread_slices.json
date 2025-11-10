@@ -1,0 +1,9 @@
+{
+  "decay_modifier": 0.75,
+  "grain": 1.0,
+  "hunger": 4,
+  "ingredient": {
+    "tag": "firmalife:foods/bread_slices"
+  },
+  "saturation": 1.5
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": {
+      "item": "firmalife:treated_lumber"
+    },
+    "Y": {
+      "item": "firmalife:reinforced_glass"
+    }
+  },
+  "pattern": [
+    "XYX",
+    "XYX",
+    "XYX"
+  ],
+  "result": {
+    "count": 8,
+    "id": "firmalife:treated_wood_greenhouse_panel_wall"
+  }
+}

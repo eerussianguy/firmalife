@@ -34,7 +34,7 @@ public interface MixingBowlRecipes extends Recipes
             List.of(
                 notRotten(itemOf(FLFood.BUTTER)),
                 notRotten(TFCTags.Items.FLOUR),
-                Ingredient.of(FLTags.Items.SWEETENER)
+                Ingredient.of(TFCTags.Items.SWEETENERS)
             ),
             SizedFluidIngredient.of(Fluids.WATER, 1000),
             new ItemStack(itemOf(FLFood.PIE_DOUGH), 1)
@@ -45,7 +45,7 @@ public interface MixingBowlRecipes extends Recipes
                 notRotten(itemOf(Food.PUMPKIN_CHUNKS)),
                 notRotten(itemOf(Food.PUMPKIN_CHUNKS)),
                 notRotten(TFCTags.Items.FLOUR),
-                Ingredient.of(FLTags.Items.SWEETENER)
+                Ingredient.of(TFCTags.Items.SWEETENERS)
             ),
             SizedFluidIngredient.of(Fluids.WATER, 1000),
             new ItemStack(itemOf(FLFood.PUMPKIN_PIE_DOUGH), 1)
@@ -61,7 +61,7 @@ public interface MixingBowlRecipes extends Recipes
         );
         mix(
             List.of(
-                Ingredient.of(FLTags.Items.SWEETENER),
+                Ingredient.of(TFCTags.Items.SWEETENERS),
                 notRotten(itemOf(FLFood.COCOA_POWDER)),
                 notRotten(itemOf(FLFood.COCOA_POWDER))
             ),
@@ -70,7 +70,7 @@ public interface MixingBowlRecipes extends Recipes
         );
         mix(
             List.of(
-                Ingredient.of(FLTags.Items.SWEETENER),
+                Ingredient.of(TFCTags.Items.SWEETENERS),
                 notRotten(itemOf(FLFood.COCOA_BUTTER)),
                 notRotten(itemOf(FLFood.COCOA_BUTTER))
             ),
@@ -79,7 +79,7 @@ public interface MixingBowlRecipes extends Recipes
         );
         mix(
             List.of(
-                Ingredient.of(FLTags.Items.SWEETENER),
+                Ingredient.of(TFCTags.Items.SWEETENERS),
                 notRotten(itemOf(FLFood.COCOA_BUTTER)),
                 notRotten(itemOf(FLFood.COCOA_POWDER))
             ),
@@ -88,7 +88,7 @@ public interface MixingBowlRecipes extends Recipes
         );
         mix(
             List.of(
-                Ingredient.of(FLTags.Items.SWEETENER),
+                Ingredient.of(TFCTags.Items.SWEETENERS),
                 Ingredient.of(itemOf(Spice.VANILLA)),
                 Ingredient.of(FLItems.ICE_SHAVINGS)
             ),
@@ -113,7 +113,7 @@ public interface MixingBowlRecipes extends Recipes
                 notRotten(FLTags.Items.RAW_EGGS),
                 Ingredient.of(itemOf(Spice.VANILLA)),
                 notRotten(itemOf(FLFood.BUTTER)),
-                Ingredient.of(FLTags.Items.SWEETENER),
+                Ingredient.of(TFCTags.Items.SWEETENERS),
                 notRotten(TFCTags.Items.FLOUR)
             ),
             new ItemStack(itemOf(FLFood.COOKIE_DOUGH), 4)

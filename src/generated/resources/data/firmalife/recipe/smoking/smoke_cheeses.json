@@ -1,0 +1,29 @@
+{
+  "type": "firmalife:smoking",
+  "ingredient": {
+    "type": "tfc:and",
+    "children": [
+      {
+        "tag": "firmalife:foods/cheeses"
+      },
+      {
+        "type": "tfc:not_rotten"
+      },
+      {
+        "type": "tfc:has_trait",
+        "trait": "firmalife:smoked"
+      }
+    ]
+  },
+  "result": {
+    "modifiers": [
+      {
+        "type": "tfc:copy_input"
+      },
+      {
+        "type": "tfc:add_trait",
+        "trait": "firmalife:smoked"
+      }
+    ]
+  }
+}

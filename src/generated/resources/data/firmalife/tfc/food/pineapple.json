@@ -1,0 +1,10 @@
+{
+  "dairy": 0.75,
+  "decay_modifier": 1.0,
+  "hunger": 4,
+  "ingredient": {
+    "item": "firmalife:food/pineapple"
+  },
+  "saturation": 0.85,
+  "water": 1.0
+}

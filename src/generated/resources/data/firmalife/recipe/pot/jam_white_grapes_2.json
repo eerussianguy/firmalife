@@ -1,0 +1,53 @@
+{
+  "type": "tfc:pot_jam",
+  "duration": 500,
+  "fluid_ingredient": {
+    "amount": 100,
+    "fluid": "minecraft:water"
+  },
+  "ingredients": [
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "firmalife:food/white_grapes"
+        },
+        {
+          "type": "tfc:not_rotten"
+        },
+        {
+          "type": "tfc:lacks_trait",
+          "trait": "firmalife:dried"
+        }
+      ]
+    },
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "firmalife:food/white_grapes"
+        },
+        {
+          "type": "tfc:not_rotten"
+        },
+        {
+          "type": "tfc:lacks_trait",
+          "trait": "firmalife:dried"
+        }
+      ]
+    },
+    {
+      "tag": "tfc:foods/sweeteners"
+    }
+  ],
+  "sealed_result": {
+    "count": 2,
+    "id": "firmalife:jar/white_grapes"
+  },
+  "temperature": 300.0,
+  "texture": "firmalife:block/jar/white_grapes",
+  "unsealed_result": {
+    "count": 2,
+    "id": "firmalife:jar/white_grapes_unsealed"
+  }
+}

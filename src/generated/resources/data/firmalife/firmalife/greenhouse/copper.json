@@ -1,0 +1,7 @@
+{
+  "ingredient": "#firmalife:all_copper_greenhouse",
+  "tier": 10,
+  "translation_key": {
+    "translate": "greenhouse.firmalife.copper"
+  }
+}

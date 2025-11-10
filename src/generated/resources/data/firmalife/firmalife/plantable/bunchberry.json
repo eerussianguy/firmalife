@@ -1,0 +1,24 @@
+{
+  "crop": {
+    "count": 1,
+    "id": "tfc:food/bunchberry"
+  },
+  "extra_seed_chance": 0.08,
+  "ingredient": {
+    "item": "tfc:plant/bunchberry_bush"
+  },
+  "nutrient": "nitrogen",
+  "planter": "trellis",
+  "seed": {
+    "count": 1,
+    "id": "tfc:plant/bunchberry_bush"
+  },
+  "specials": [],
+  "textures": [
+    "tfc:block/berry_bush/bunchberrybunchberry_bush",
+    "tfc:block/berry_bush/bunchberrydry_bunchberry_bush",
+    "tfc:block/berry_bush/bunchberryflowering_bunchberry_bush",
+    "tfc:block/berry_bush/bunchberryfruiting_bunchberry_bush"
+  ],
+  "tier": 15
+}

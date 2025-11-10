@@ -1,0 +1,15 @@
+{
+  "type": "tfc:barrel_instant",
+  "input_fluid": {
+    "amount": 100,
+    "fluid": "firmalife:yeast_starter"
+  },
+  "input_item": {
+    "count": 1,
+    "tag": "tfc:foods/sweeteners"
+  },
+  "output_item": {
+    "count": 1,
+    "id": "firmalife:tirage_mixture"
+  }
+}

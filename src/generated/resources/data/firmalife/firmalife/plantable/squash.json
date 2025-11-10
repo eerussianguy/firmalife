@@ -1,0 +1,26 @@
+{
+  "crop": {
+    "count": 1,
+    "id": "tfc:seeds/squash"
+  },
+  "ingredient": {
+    "item": "tfc:seeds/squash"
+  },
+  "nutrient": "potassium",
+  "planter": "hanging",
+  "seed": {
+    "count": 1,
+    "id": "tfc:seeds/squash"
+  },
+  "specials": [
+    "firmalife:squash_fruit"
+  ],
+  "stages": 4,
+  "textures": [
+    "firmalife:block/crop/squash0",
+    "firmalife:block/crop/squash1",
+    "firmalife:block/crop/squash2",
+    "firmalife:block/crop/squash3",
+    "firmalife:block/crop/squash4"
+  ]
+}

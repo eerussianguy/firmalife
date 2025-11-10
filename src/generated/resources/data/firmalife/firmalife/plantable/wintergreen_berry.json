@@ -1,0 +1,24 @@
+{
+  "crop": {
+    "count": 1,
+    "id": "tfc:food/wintergreen_berry"
+  },
+  "extra_seed_chance": 0.08,
+  "ingredient": {
+    "item": "tfc:plant/wintergreen_berry_bush"
+  },
+  "nutrient": "nitrogen",
+  "planter": "trellis",
+  "seed": {
+    "count": 1,
+    "id": "tfc:plant/wintergreen_berry_bush"
+  },
+  "specials": [],
+  "textures": [
+    "tfc:block/berry_bush/wintergreen_berrywintergreen_berry_bush",
+    "tfc:block/berry_bush/wintergreen_berrydry_wintergreen_berry_bush",
+    "tfc:block/berry_bush/wintergreen_berryflowering_wintergreen_berry_bush",
+    "tfc:block/berry_bush/wintergreen_berryfruiting_wintergreen_berry_bush"
+  ],
+  "tier": 15
+}

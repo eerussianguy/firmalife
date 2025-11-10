@@ -1,0 +1,9 @@
+{
+  "type": "tfc:collapse",
+  "ingredient": [
+    "firmalife:ore/poor_chromite/chalk",
+    "firmalife:ore/normal_chromite/chalk",
+    "firmalife:ore/rich_chromite/chalk"
+  ],
+  "result": "tfc:rock/cobble/chalk"
+}

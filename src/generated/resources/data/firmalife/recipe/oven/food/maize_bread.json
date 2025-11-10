@@ -1,0 +1,20 @@
+{
+  "type": "firmalife:oven",
+  "duration": 1000,
+  "ingredient": {
+    "type": "tfc:and",
+    "children": [
+      {
+        "item": "firmalife:food/maize_dough"
+      },
+      {
+        "type": "tfc:not_rotten"
+      }
+    ]
+  },
+  "result": {
+    "count": 1,
+    "id": "tfc:food/maize_bread"
+  },
+  "temperature": 200.0
+}

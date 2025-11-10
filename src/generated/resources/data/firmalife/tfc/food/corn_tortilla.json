@@ -1,0 +1,9 @@
+{
+  "decay_modifier": 1.0,
+  "grain": 0.6,
+  "hunger": 4,
+  "ingredient": {
+    "item": "firmalife:food/corn_tortilla"
+  },
+  "saturation": 0.8
+}

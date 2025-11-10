@@ -1,0 +1,17 @@
+{
+  "type": "firmalife:vat",
+  "input_fluid": {
+    "amount": 200,
+    "fluid": "minecraft:water"
+  },
+  "input_item": {
+    "count": 1,
+    "item": "tfc:powder/wood_ash"
+  },
+  "length": 1,
+  "output_fluid": {
+    "amount": 200,
+    "id": "tfc:lye"
+  },
+  "temperature": 1.0
+}

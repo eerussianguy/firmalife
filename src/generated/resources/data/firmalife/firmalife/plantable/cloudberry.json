@@ -1,0 +1,24 @@
+{
+  "crop": {
+    "count": 1,
+    "id": "tfc:food/cloudberry"
+  },
+  "extra_seed_chance": 0.08,
+  "ingredient": {
+    "item": "tfc:plant/cloudberry_bush"
+  },
+  "nutrient": "nitrogen",
+  "planter": "trellis",
+  "seed": {
+    "count": 1,
+    "id": "tfc:plant/cloudberry_bush"
+  },
+  "specials": [],
+  "textures": [
+    "tfc:block/berry_bush/cloudberrycloudberry_bush",
+    "tfc:block/berry_bush/cloudberrydry_cloudberry_bush",
+    "tfc:block/berry_bush/cloudberryflowering_cloudberry_bush",
+    "tfc:block/berry_bush/cloudberryfruiting_cloudberry_bush"
+  ],
+  "tier": 15
+}

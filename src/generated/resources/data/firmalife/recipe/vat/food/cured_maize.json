@@ -1,0 +1,25 @@
+{
+  "type": "firmalife:vat",
+  "input_fluid": {
+    "amount": 100,
+    "fluid": "tfc:limewater"
+  },
+  "input_item": {
+    "type": "tfc:and",
+    "children": [
+      {
+        "item": "tfc:food/maize_grain"
+      },
+      {
+        "type": "tfc:not_rotten"
+      }
+    ],
+    "count": 1
+  },
+  "length": 1,
+  "output_item": {
+    "count": 1,
+    "id": "firmalife:food/cured_maize"
+  },
+  "temperature": 1.0
+}

@@ -1,0 +1,11 @@
+{
+  "dairy": 0.75,
+  "decay_modifier": 2.0,
+  "grain": 1.0,
+  "hunger": 4,
+  "ingredient": {
+    "item": "firmalife:food/toast_with_jam"
+  },
+  "saturation": 2.0,
+  "water": 1.0
+}

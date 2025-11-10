@@ -1,0 +1,18 @@
+{
+  "type": "tfc:barrel_instant",
+  "input_fluid": {
+    "amount": 100,
+    "fluid": "minecraft:water"
+  },
+  "input_item": {
+    "count": 1,
+    "tag": "firmalife:foods/washable"
+  },
+  "output_item": {
+    "modifiers": [
+      {
+        "type": "firmalife:empty_pan"
+      }
+    ]
+  }
+}

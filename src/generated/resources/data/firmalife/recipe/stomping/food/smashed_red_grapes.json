@@ -1,0 +1,25 @@
+{
+  "type": "firmalife:stomping",
+  "ingredient": {
+    "type": "tfc:and",
+    "children": [
+      {
+        "item": "firmalife:food/red_grapes"
+      },
+      {
+        "type": "tfc:not_rotten"
+      },
+      {
+        "type": "tfc:lacks_trait",
+        "trait": "firmalife:dried"
+      }
+    ]
+  },
+  "input_texture": "firmalife:block/red_unsmashed_grapes",
+  "output_texture": "firmalife:block/red_smashed_grapes",
+  "result": {
+    "count": 1,
+    "id": "firmalife:food/smashed_red_grapes"
+  },
+  "sound": "minecraft:entity.slime.squish"
+}

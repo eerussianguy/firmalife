@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "firmalife:food/vanilla_ice_cream"
+    },
+    {
+      "item": "firmalife:food/strawberry_ice_cream"
+    },
+    {
+      "item": "firmalife:food/chocolate_ice_cream"
+    },
+    {
+      "item": "firmalife:food/pineapple"
+    },
+    {
+      "item": "tfc:food/cherry"
+    },
+    {
+      "item": "tfc:food/banana"
+    },
+    {
+      "item": "tfc:food/banana"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "firmalife:food/banana_split"
+  }
+}

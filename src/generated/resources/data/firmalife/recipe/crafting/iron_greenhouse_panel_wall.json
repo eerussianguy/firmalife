@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": {
+      "item": "tfc:metal/rod/wrought_iron"
+    },
+    "Y": {
+      "item": "firmalife:reinforced_glass"
+    }
+  },
+  "pattern": [
+    "XYX",
+    "XYX",
+    "XYX"
+  ],
+  "result": {
+    "count": 8,
+    "id": "firmalife:iron_greenhouse_panel_wall"
+  }
+}

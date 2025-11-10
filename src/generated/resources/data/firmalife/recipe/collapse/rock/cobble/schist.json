@@ -1,0 +1,9 @@
+{
+  "type": "tfc:collapse",
+  "ingredient": [
+    "firmalife:ore/poor_chromite/schist",
+    "firmalife:ore/normal_chromite/schist",
+    "firmalife:ore/rich_chromite/schist"
+  ],
+  "result": "tfc:rock/cobble/schist"
+}

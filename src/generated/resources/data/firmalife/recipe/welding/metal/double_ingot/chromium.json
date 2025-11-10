@@ -1,0 +1,14 @@
+{
+  "type": "tfc:welding",
+  "first_input": {
+    "item": "firmalife:metal/ingot/chromium"
+  },
+  "result": {
+    "count": 1,
+    "id": "firmalife:metal/double_ingot/chromium"
+  },
+  "second_input": {
+    "item": "firmalife:metal/ingot/chromium"
+  },
+  "tier": 3
+}

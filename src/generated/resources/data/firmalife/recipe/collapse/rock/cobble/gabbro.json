@@ -1,0 +1,9 @@
+{
+  "type": "tfc:collapse",
+  "ingredient": [
+    "firmalife:ore/poor_chromite/gabbro",
+    "firmalife:ore/normal_chromite/gabbro",
+    "firmalife:ore/rich_chromite/gabbro"
+  ],
+  "result": "tfc:rock/cobble/gabbro"
+}

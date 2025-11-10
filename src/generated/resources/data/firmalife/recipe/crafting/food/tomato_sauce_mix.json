@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "tfc:food/tomato"
+    },
+    {
+      "item": "tfc:powder/salt"
+    },
+    {
+      "item": "tfc:food/garlic"
+    }
+  ],
+  "result": {
+    "count": 5,
+    "id": "firmalife:food/tomato_sauce_mix"
+  }
+}
