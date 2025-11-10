@@ -38,7 +38,6 @@ import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.items.Food;
 import net.dries007.tfc.common.items.TFCItems;
-import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.registry.IdHolder;
 
 public class BuiltinItemTags extends TagsProvider<Item> implements Accessors
@@ -205,17 +204,18 @@ public class BuiltinItemTags extends TagsProvider<Item> implements Accessors
 
         for (FLMetal metal : FLMetal.values())
         {
-            tag(tagOf(Registries.ITEM, Helpers.identifier("metal_item/" + metal.getSerializedName())))
+            tag(tagOf(Registries.ITEM, FLHelpers.identifier("metal_item/" + metal.getSerializedName())))
                 .add(FLItems.METAL_ITEMS.get(metal))
                 .add(FLBlocks.METALS.get(metal).values().stream().map(block -> block::asItem));
 
             FLItems.METAL_ITEMS.get(metal).forEach((type, item) -> {
-                // Specific tag e.g. forge:ingot/stainless_steel
-                tag(tagOf(Registries.ITEM, "forge:" + type.name().toLowerCase(Locale.ROOT) + "/" + metal.getSerializedName())).add(
+                // Specific tag e.g. c:ingot/stainless_steel
+
+                tag(commonTagOf(Registries.ITEM, type.name().toLowerCase(Locale.ROOT) + "s/" + metal.getSerializedName())).add(
                     FLItems.METAL_ITEMS.get(metal).get(type)
                 );
-                // Generic tag e.g. forge:ingot
-                tag(tagOf(Registries.ITEM, "forge:" + type.name().toLowerCase(Locale.ROOT))).add(
+                // Generic tag e.g. c:ingot
+                tag(commonTagOf(Registries.ITEM, type.name().toLowerCase(Locale.ROOT) + "s")).add(
                     FLItems.METAL_ITEMS.get(metal).get(type)
                 );
             });
