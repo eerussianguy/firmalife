@@ -60,6 +60,7 @@ public class FLFoodTraits
         }
     }
 
+    // Need to use our own DR to have the correct namespace on traits
     public static final DeferredRegister<FoodTrait> TRAITS = DeferredRegister.create(FoodTraits.KEY, FirmaLife.MOD_ID);
 
     public static final DeferredHolder<FoodTrait, FoodTrait> DRIED = register(Default.DRIED);
@@ -85,7 +86,6 @@ public class FLFoodTraits
 
     private static DeferredHolder<FoodTrait, FoodTrait> register(FLFoodTraits.Default trait)
     {
-        //Using TFCs DR means FLs config is accessed before it is loaded
         return TRAITS.register(trait.name.toLowerCase(Locale.ROOT), () -> new FoodTrait(FLConfig.SERVER.foodTraits.get(trait), "tfc.tooltip.food_trait." + trait.name.toLowerCase(Locale.ROOT)));
     }
 
