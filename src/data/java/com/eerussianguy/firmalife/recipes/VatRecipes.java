@@ -19,6 +19,7 @@ import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 
+import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.fluids.SimpleFluid;
 import net.dries007.tfc.common.fluids.TFCFluids;
 import net.dries007.tfc.common.items.Food;
@@ -86,7 +87,7 @@ public interface VatRecipes extends Recipes
             ItemStackProvider.of(itemOf(FLFood.TOMATO_SAUCE))
         );
         vat(
-            sized(FLTags.Items.SWEETENER),
+            sized(TFCTags.Items.SWEETENERS),
             sized(Fluids.WATER, 1000),
             new FluidStack(fluidOf(ExtraFluid.SUGAR_WATER), 500)
         );

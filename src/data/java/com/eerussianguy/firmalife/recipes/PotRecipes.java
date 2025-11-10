@@ -112,7 +112,7 @@ public interface PotRecipes extends Recipes
         );
         pot(
             List.of(
-                Ingredient.of(FLTags.Items.SWEETENER),
+                Ingredient.of(TFCTags.Items.SWEETENERS),
                 notRotten(FLTags.Items.CHOCOLATE)
             ),
             SizedFluidIngredient.of(FLTags.Fluids.MILKS, 1000),
@@ -215,7 +215,7 @@ public interface PotRecipes extends Recipes
         {
             var inputs = Helpers.immutableAdd(
                 Collections.nCopies(i, notRottenWithoutTrait(Ingredient.of(itemOf(fruit)), FLFoodTraits.DRIED)),
-                Ingredient.of(FLTags.Items.SWEETENER)
+                Ingredient.of(TFCTags.Items.SWEETENERS)
             );
             add("jam_" + name + "_" + i,
                 new JamPotRecipe(

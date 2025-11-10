@@ -6,7 +6,7 @@
   },
   "item_ingredients": [
     {
-      "tag": "tfc:sweetener"
+      "tag": "tfc:foods/sweeteners"
     },
     {
       "item": "firmalife:spice/vanilla"

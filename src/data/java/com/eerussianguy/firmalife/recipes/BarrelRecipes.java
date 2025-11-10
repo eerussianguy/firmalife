@@ -123,7 +123,7 @@ public interface BarrelRecipes extends Recipes
         // Instant
 
         barrel()
-            .input(FLTags.Items.SWEETENER)
+            .input(TFCTags.Items.SWEETENERS)
             .input(fluidOf(ExtraFluid.YEAST_STARTER), 100)
             .output(FLItems.TIRAGE_MIXTURE)
             .instant();
