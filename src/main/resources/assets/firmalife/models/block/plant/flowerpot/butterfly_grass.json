@@ -3,6 +3,6 @@
   "parent": "minecraft:block/tinted_flower_pot_cross",
   "textures": {
     "plant": "firmalife:block/plant/butterfly_grass/base",
-    "dirt": "tfc:block/dirt/loam"
+    "dirt": "tfc:block/dirt/entisol"
   }
 }
