@@ -47,7 +47,24 @@ public abstract class SimpleDynamicBlockModel<T extends BlockEntity> extends Dyn
         final int packedLight = LightTexture.pack(level.getBrightness(LightLayer.BLOCK, pos), level.getBrightness(LightLayer.SKY, pos));
         final int packedOverlay = OverlayTexture.NO_OVERLAY;
         final List<BakedQuad> quads = new ArrayList<>(24);
-        final VertexConsumer buffer = new QuadBakingVertexConsumer();
+        final VertexConsumer buffer = new QuadBakingVertexConsumer()
+        {
+            // Copied from TFC, needs to bake every quad manually or rendering will break.
+            // See TFC's SimpleStaticBlockEntityModel#render for a better explanation
+            int count = 0;
+
+            @Override
+            public VertexConsumer addVertex(float x, float y, float z)
+            {
+                if (count == 4)
+                {
+                    count = 0;
+                    quads.add(bakeQuad());
+                }
+                count++;
+                return super.addVertex(x, y, z);
+            }
+        };
         final PoseStack poseStack = new PoseStack();
 
         render(blockEntity, poseStack, buffer, packedLight, packedOverlay);
