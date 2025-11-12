@@ -184,7 +184,7 @@ def item_heat(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredi
 
 
 def global_loot_modifier(rm: ResourceManager, name: str, mod_type: str, data_in: Json, *conditions: utils.Json):
-    rm.write((*rm.resource_dir, 'data', rm.domain, 'loot_modifiers', name), {
+    rm.write(('data', rm.domain, 'loot_modifiers', name), {
         'type': mod_type,
         'conditions': [c for c in conditions],
         **data_in
@@ -201,7 +201,7 @@ def item_stack_codec(data_in: str):
 
 # note for the mcresources dev: these work exactly the same as tags so if you implement this, do it like that
 def global_loot_modifiers(rm: ResourceManager, *modifiers: str):
-    rm.write((*rm.resource_dir, 'data', 'forge', 'loot_modifiers', 'global_loot_modifiers'), {
+    rm.write(('data', 'forge', 'loot_modifiers', 'global_loot_modifiers'), {
         'replace': False,
         'entries': [m for m in modifiers]
     })
@@ -287,5 +287,3 @@ def climate_range(rm: ResourceManager, name_parts: utils.ResourceIdentifier, hyd
 
 def hydration_from_rainfall(rainfall: int) -> int:
     return rainfall * 60 // 500
-
-

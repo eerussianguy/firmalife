@@ -270,7 +270,7 @@ class Book:
 
     def load_data(self, name_parts: ResourceIdentifier) -> JsonObject:
         res = utils.resource_location(self.rm.domain, name_parts)
-        path = os.path.join(*self.rm.resource_dir, 'assets', res.domain, res.path) + '.json'
+        path = os.path.join(self.rm.resource_dir, 'assets', res.domain, res.path) + '.json'
         if os.path.isfile(path):
             # if 'ja_jp' in path:
             #     js = None

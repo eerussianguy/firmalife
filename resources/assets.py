@@ -536,7 +536,7 @@ def simple_plant_data(rm: ResourceManager, p: str, bees: bool = True, straw: boo
 
 def item_model_property(rm: ResourceManager, name_parts: utils.ResourceIdentifier, overrides: utils.Json, data: Dict[str, Any]) -> ItemContext:
     res = utils.resource_location(rm.domain, name_parts)
-    rm.write((*rm.resource_dir, 'assets', res.domain, 'models', 'item', res.path), {
+    rm.write(('assets', res.domain, 'models', 'item', res.path), {
         **data,
         'overrides': overrides
     })
