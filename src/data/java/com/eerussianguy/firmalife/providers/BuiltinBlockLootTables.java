@@ -8,6 +8,7 @@ import java.util.function.BiConsumer;
 import java.util.function.Supplier;
 import com.eerussianguy.firmalife.Accessors;
 import com.eerussianguy.firmalife.FirmaLife;
+import com.eerussianguy.firmalife.common.blocks.BigBarrelBlock;
 import com.eerussianguy.firmalife.common.blocks.CheeseWheelBlock;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.blocks.MixingBowlBlock;
@@ -108,7 +109,6 @@ public class BuiltinBlockLootTables extends BlockLootSubProvider implements Acce
         dropSelf(FLBlocks.BARREL_PRESSES);
         dropSelf(FLBlocks.WINE_SHELVES);
         dropSelf(FLBlocks.STOMPING_BARRELS);
-        dropSelf(FLBlocks.BIG_BARRELS);
         dropSelf(FLBlocks.CARVED_PUMPKINS);
         dropSelf(FLBlocks.FOOD_SHELVES);
         dropSelf(FLBlocks.INSULATED_OVEN_BOTTOM);
@@ -252,6 +252,20 @@ public class BuiltinBlockLootTables extends BlockLootSubProvider implements Acce
             .add(FLBlocks.MIXING_BOWL)
             .add(FLItems.SPOON, MixingBowlBlock.SPOON, true)
             .create();
+
+        FLBlocks.BIG_BARRELS.forEach((wood, keg) -> {
+            add(
+                keg.get(),
+                LootTable.lootTable()
+                    .withPool(
+                        lootPool()
+                            .add(
+                                lootTableItem(keg)
+                                    .when(hasProperty(keg.get(), BigBarrelBlock.BARREL_PART, 0))
+                            ).when(survivesExplosion())
+                    )
+            );
+        });
 
         // -----------------------
 
