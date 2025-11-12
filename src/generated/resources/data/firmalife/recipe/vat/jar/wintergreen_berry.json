@@ -20,6 +20,10 @@
     ],
     "count": 1
   },
+  "jar_output": {
+    "count": 1,
+    "id": "tfc:jar/wintergreen_berry"
+  },
   "length": 1,
   "output_texture": "tfc:block/jar/wintergreen_berry",
   "temperature": 1.0

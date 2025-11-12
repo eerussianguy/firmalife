@@ -20,6 +20,10 @@
     ],
     "count": 1
   },
+  "jar_output": {
+    "count": 1,
+    "id": "firmalife:jar/fig"
+  },
   "length": 1,
   "output_texture": "firmalife:block/jar/fig",
   "temperature": 1.0

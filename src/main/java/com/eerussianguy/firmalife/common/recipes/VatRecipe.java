@@ -93,7 +93,7 @@ public class VatRecipe implements ISimpleRecipe<VatBlockEntity.VatInventory>
         }
 
         // Trim multiplier to a maximum fluid capacity of output
-        if (!outputFluid.get().isEmpty())
+        if (outputFluid.isPresent() && !outputFluid.get().isEmpty())
         {
             int capacity = VatBlockEntity.CAPACITY;
             if (FluidStack.isSameFluidSameComponents(outputFluid.get(), fluid))
@@ -191,9 +191,9 @@ public class VatRecipe implements ISimpleRecipe<VatBlockEntity.VatInventory>
         return inputFluid;
     }
 
-    public FluidStack getOutputFluid()
+    public Optional<FluidStack> getOutputFluid()
     {
-        return outputFluid.get();
+        return outputFluid;
     }
 
     public Optional<ItemStackProvider> getOutputItem()
