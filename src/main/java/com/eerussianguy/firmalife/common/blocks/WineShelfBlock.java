@@ -33,7 +33,7 @@ public class WineShelfBlock extends FourWayDeviceBlock
         // Middle shelf
         box(0, 7, 0, 16, 9, 16),
         // Vertical seperator
-        box(7, 0, 1, 9, 16, 16)
+        Helpers.rotateShape(dir, 7, 0, 1, 9, 16, 16)
     ));
 
     public WineShelfBlock(ExtendedProperties properties)
