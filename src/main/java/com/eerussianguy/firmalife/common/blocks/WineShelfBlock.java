@@ -1,6 +1,5 @@
 package com.eerussianguy.firmalife.common.blocks;
 
-import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
@@ -103,7 +102,6 @@ public class WineShelfBlock extends FourWayDeviceBlock
         {
             slot += 1;
         }
-        FirmaLife.LOGGER.info("point {} slot {}", pos, slot);
         return slot;
     }
 }
