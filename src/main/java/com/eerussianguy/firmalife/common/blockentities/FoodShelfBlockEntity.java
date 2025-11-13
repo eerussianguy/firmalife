@@ -2,7 +2,6 @@ package com.eerussianguy.firmalife.common.blockentities;
 
 import java.util.Set;
 import com.eerussianguy.firmalife.FirmaLife;
-import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.config.FLConfig;
 import net.minecraft.core.BlockPos;
@@ -134,7 +133,10 @@ public class FoodShelfBlockEntity extends InventoryBlockEntity<ItemStackHandler>
             {
                 FoodCapability.applyTrait(held, getFoodTrait());
             }
-            ItemHandlerHelper.giveItemToPlayer(player, FoodCapability.removeTrait(Helpers.mergeInsertStack(inventory, 0, held), getFoodTrait()));
+
+            // TODO this could use a sound for placing food on shelves
+            ItemStack remainder = Helpers.mergeInsertStack(inventory, 0, held);
+            held.setCount(remainder.getCount());
 
             res = ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
