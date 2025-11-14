@@ -15,10 +15,10 @@
   },
   "specials": [],
   "textures": [
-    "tfc:block/berry_bush/cloudberrycloudberry_bush",
-    "tfc:block/berry_bush/cloudberrydry_cloudberry_bush",
-    "tfc:block/berry_bush/cloudberryflowering_cloudberry_bush",
-    "tfc:block/berry_bush/cloudberryfruiting_cloudberry_bush"
+    "tfc:block/berry_bush/cloudberry_bush",
+    "tfc:block/berry_bush/dry_cloudberry_bush",
+    "tfc:block/berry_bush/flowering_cloudberry_bush",
+    "tfc:block/berry_bush/fruiting_cloudberry_bush"
   ],
   "tier": 15
 }

@@ -15,10 +15,10 @@
   },
   "specials": [],
   "textures": [
-    "firmalife:block/berry_bush/pineapplepineapple_bush",
-    "firmalife:block/berry_bush/pineappledry_pineapple_bush",
-    "firmalife:block/berry_bush/pineappleflowering_pineapple_bush",
-    "firmalife:block/berry_bush/pineapplefruiting_pineapple_bush"
+    "firmalife:block/berry_bush/pineapple_bush",
+    "firmalife:block/berry_bush/dry_pineapple_bush",
+    "firmalife:block/berry_bush/flowering_pineapple_bush",
+    "firmalife:block/berry_bush/fruiting_pineapple_bush"
   ],
   "tier": 15
 }

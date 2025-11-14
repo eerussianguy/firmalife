@@ -15,10 +15,10 @@
   },
   "specials": [],
   "textures": [
-    "tfc:block/berry_bush/wintergreen_berrywintergreen_berry_bush",
-    "tfc:block/berry_bush/wintergreen_berrydry_wintergreen_berry_bush",
-    "tfc:block/berry_bush/wintergreen_berryflowering_wintergreen_berry_bush",
-    "tfc:block/berry_bush/wintergreen_berryfruiting_wintergreen_berry_bush"
+    "tfc:block/berry_bush/wintergreen_berry_bush",
+    "tfc:block/berry_bush/dry_wintergreen_berry_bush",
+    "tfc:block/berry_bush/flowering_wintergreen_berry_bush",
+    "tfc:block/berry_bush/fruiting_wintergreen_berry_bush"
   ],
   "tier": 15
 }

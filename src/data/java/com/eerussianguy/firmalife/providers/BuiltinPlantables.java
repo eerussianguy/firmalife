@@ -89,7 +89,7 @@ public class BuiltinPlantables extends DataManagerProvider<Plantable>
             final SeasonalPlantBlock block = (SeasonalPlantBlock) TFCBlocks.STATIONARY_BUSHES.get(bush).get();
             final ItemStack fruit = block.getProductItem(RandomSource.create());
             final String name = bush.name().toLowerCase(Locale.ROOT);
-            final String p = "block/berry_bush/" + name;
+            final String p = "block/berry_bush/";
             plantable(name, TFCBlocks.STATIONARY_BUSHES.get(bush).asItem(), TRELLIS, 15, 0, 0.08f, fruit.getItem(), NITROGEN, forEachPrefix(TerraFirmaCraft.MOD_ID, "_bush", p + name, p + "dry_" + name, p + "flowering_" + name, p + "fruiting_" + name), List.of());
         }
         for (FLFruitBlocks.StationaryBush bush : FLFruitBlocks.StationaryBush.values())
@@ -97,7 +97,7 @@ public class BuiltinPlantables extends DataManagerProvider<Plantable>
             final SeasonalPlantBlock block = (SeasonalPlantBlock) FLBlocks.STATIONARY_BUSHES.get(bush).get();
             final ItemStack fruit = block.getProductItem(RandomSource.create());
             final String name = bush.name().toLowerCase(Locale.ROOT);
-            final String p = "block/berry_bush/" + name;
+            final String p = "block/berry_bush/";
             plantable(name, FLBlocks.STATIONARY_BUSHES.get(bush).asItem(), TRELLIS, 15, 0, 0.08f, fruit.getItem(), NITROGEN, forEachPrefix(FirmaLife.MOD_ID, "_bush", p + name, p + "dry_" + name, p + "flowering_" + name, p + "fruiting_" + name), List.of());
         }
 

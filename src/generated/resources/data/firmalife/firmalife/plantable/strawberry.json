@@ -15,10 +15,10 @@
   },
   "specials": [],
   "textures": [
-    "tfc:block/berry_bush/strawberrystrawberry_bush",
-    "tfc:block/berry_bush/strawberrydry_strawberry_bush",
-    "tfc:block/berry_bush/strawberryflowering_strawberry_bush",
-    "tfc:block/berry_bush/strawberryfruiting_strawberry_bush"
+    "tfc:block/berry_bush/strawberry_bush",
+    "tfc:block/berry_bush/dry_strawberry_bush",
+    "tfc:block/berry_bush/flowering_strawberry_bush",
+    "tfc:block/berry_bush/fruiting_strawberry_bush"
   ],
   "tier": 15
 }

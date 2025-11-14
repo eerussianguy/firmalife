@@ -15,10 +15,10 @@
   },
   "specials": [],
   "textures": [
-    "tfc:block/berry_bush/bunchberrybunchberry_bush",
-    "tfc:block/berry_bush/bunchberrydry_bunchberry_bush",
-    "tfc:block/berry_bush/bunchberryflowering_bunchberry_bush",
-    "tfc:block/berry_bush/bunchberryfruiting_bunchberry_bush"
+    "tfc:block/berry_bush/bunchberry_bush",
+    "tfc:block/berry_bush/dry_bunchberry_bush",
+    "tfc:block/berry_bush/flowering_bunchberry_bush",
+    "tfc:block/berry_bush/fruiting_bunchberry_bush"
   ],
   "tier": 15
 }

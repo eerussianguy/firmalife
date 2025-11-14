@@ -15,10 +15,10 @@
   },
   "specials": [],
   "textures": [
-    "firmalife:block/berry_bush/nightshadenightshade_bush",
-    "firmalife:block/berry_bush/nightshadedry_nightshade_bush",
-    "firmalife:block/berry_bush/nightshadeflowering_nightshade_bush",
-    "firmalife:block/berry_bush/nightshadefruiting_nightshade_bush"
+    "firmalife:block/berry_bush/nightshade_bush",
+    "firmalife:block/berry_bush/dry_nightshade_bush",
+    "firmalife:block/berry_bush/flowering_nightshade_bush",
+    "firmalife:block/berry_bush/fruiting_nightshade_bush"
   ],
   "tier": 15
 }
