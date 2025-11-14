@@ -69,8 +69,8 @@ public class BuiltinPlantables extends DataManagerProvider<Plantable>
 
         plantable("cranberry", TFCBlocks.CRANBERRY_BUSH.asItem(), HYDROPONIC, 10, 3, 0.5f, food(Food.CRANBERRY), PHOSPHOROUS, cropTextures(FirmaLife.MOD_ID, "cranberry", 4), List.of());
 
-        plantable("red_grapes", FLItems.RED_GRAPE_SEEDS, TRELLIS, 15, 0, 0.5f, food(FLFruit.RED_GRAPES), NITROGEN, forEach(FirmaLife.MOD_ID, "block/crop/grape", "_leaves", "_dead", "_flowering", "_red"), List.of());
-        plantable("white_grapes", FLItems.WHITE_GRAPE_SEEDS, TRELLIS, 15, 0, 0.5f, food(FLFruit.WHITE_GRAPES), NITROGEN, forEach(FirmaLife.MOD_ID, "block/crop/grape", "_leaves", "_dead", "_flowering", "_red"), List.of());
+        plantable("red_grapes", FLItems.RED_GRAPE_SEEDS, TRELLIS, 15, 0, 0.5f, food(FLFruit.RED_GRAPES), NITROGEN, forEach(FirmaLife.MOD_ID, "block/crop/grape", "_leaves", "_leaves_dead", "_leaves_flowering", "_leaves_red"), List.of());
+        plantable("white_grapes", FLItems.WHITE_GRAPE_SEEDS, TRELLIS, 15, 0, 0.5f, food(FLFruit.WHITE_GRAPES), NITROGEN, forEach(FirmaLife.MOD_ID, "block/crop/grape", "_leaves", "_leaves_dead", "_leaves_flowering", "_leaves_white"), List.of());
 
         for (FruitBlocks.Tree tree : FruitBlocks.Tree.values())
         {
