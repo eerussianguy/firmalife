@@ -13,6 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.BooleanOp;
@@ -31,10 +32,17 @@ public class WineShelfBlock extends FourWayDeviceBlock
             Helpers.rotateShape(dir, 1, 1, 0, 15, 15, 15), BooleanOp.ONLY_FIRST
         ),
         // Middle shelf
-        box(0, 7, 0, 16, 9, 16),
+        Helpers.rotateShape(dir, 0, 7, 0, 16, 9, 16),
         // Vertical seperator
         Helpers.rotateShape(dir, 7, 0, 1, 9, 16, 16)
     ));
+    //TODO create a helper method for this?
+    public static final VoxelShape[][] INVENTORY_SLOT_SHAPES = new VoxelShape[][] {
+        Helpers.computeHorizontalShapes(dir -> Helpers.rotateShape(dir, 9, 9, 0, 15, 15, 15)),
+        Helpers.computeHorizontalShapes(dir -> Helpers.rotateShape(dir, 9, 1, 0, 15, 7, 15)),
+        Helpers.computeHorizontalShapes(dir -> Helpers.rotateShape(dir, 1, 9, 0, 7, 15, 15)),
+        Helpers.computeHorizontalShapes(dir -> Helpers.rotateShape(dir, 1, 1, 0, 7, 7, 15)),
+    };
 
     public WineShelfBlock(ExtendedProperties properties)
     {
@@ -45,29 +53,32 @@ public class WineShelfBlock extends FourWayDeviceBlock
     public ItemInteractionResult useItemOn(ItemStack held, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
     {
         return FLHelpers.consumeItemInventory(level, pos, FLBlockEntities.WINE_SHELF, (shelf, inv) -> {
-            int slot = getSlotFromPos(state, result.getLocation().subtract(pos.getX(), pos.getY(), pos.getZ()));
-            ItemStack slotItem = inv.getStackInSlot(slot);
-            if (Helpers.isItem(held, FLTags.Items.WINE_BOTTLES))
+            int slot = getSlotFromPos(state.getValue(FACING), result.getLocation().subtract(pos.getX(), pos.getY(), pos.getZ()));
+            if (slot >= 0)
             {
-                Helpers.playSound(level, pos, SoundEvents.GLASS_PLACE);
-                if (slotItem.isEmpty())
+                ItemStack slotItem = inv.getStackInSlot(slot);
+                if (Helpers.isItem(held, FLTags.Items.WINE_BOTTLES))
                 {
-                    //Insert
-                    return FLHelpers.insertOne(level, held, slot, inv, player);
+                    Helpers.playSound(level, pos, SoundEvents.GLASS_PLACE);
+                    if (slotItem.isEmpty())
+                    {
+                        //Insert
+                        return FLHelpers.insertOne(level, held, slot, inv, player);
+                    }
+                    else
+                    {
+                        //Swap with hand
+                        //TODO this could be optimized
+                        FLHelpers.takeOne(level, slot, inv, player);
+                        return FLHelpers.insertOne(level, held, slot, inv, player);
+                    }
                 }
-                else
+                else if (held.isEmpty() && !slotItem.isEmpty())
                 {
-                    //Swap with hand
-                    //TODO this could be optimized
-                    FLHelpers.takeOne(level, slot, inv, player);
-                    return FLHelpers.insertOne(level, held, slot, inv, player);
+                    //Extract
+                    Helpers.playSound(level, pos, SoundEvents.GLASS_PLACE);
+                    return FLHelpers.takeOne(level, slot, inv, player);
                 }
-            }
-            else if (held.isEmpty() && !slotItem.isEmpty())
-            {
-                //Extract
-                Helpers.playSound(level, pos, SoundEvents.GLASS_PLACE);
-                return FLHelpers.takeOne(level, slot, inv, player);
             }
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         });
@@ -91,17 +102,20 @@ public class WineShelfBlock extends FourWayDeviceBlock
         return 1f;
     }
 
-    private int getSlotFromPos(BlockState state, Vec3 pos)
+    private int getSlotFromPos(Direction facing, Vec3 pos)
     {
-        int slot = 0;
-        if ((state.getValue(FACING).getAxis().equals(Direction.Axis.Z) ? pos.x : pos.z) < .5f)
+        int index = 0;
+        for (VoxelShape[] directionalSlotShape : INVENTORY_SLOT_SHAPES)
         {
-            slot += 2;
+            //AABB#contains creates inconsistent behavior i.r.t. clicking on the inner left of the shelf vs the inner right of the shelf
+            //TODO create a helper method for this?
+            AABB shape = directionalSlotShape[facing.get2DDataValue()].bounds();
+            if (pos.x >= shape.minX && pos.x <= shape.maxX && pos.y >= shape.minY && pos.y <= shape.maxY && pos.z >= shape.minZ && pos.z <= shape.maxZ)
+            {
+                return index;
+            }
+            index++;
         }
-        if (pos.y < 0.5f)
-        {
-            slot += 1;
-        }
-        return slot;
+        return -1;
     }
 }
