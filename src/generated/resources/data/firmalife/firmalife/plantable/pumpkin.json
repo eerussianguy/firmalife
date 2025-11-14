@@ -13,15 +13,15 @@
     "id": "tfc:seeds/pumpkin"
   },
   "specials": [
-    "firmalife:pumpkin_fruit"
+    "firmalife:block/crop/pumpkin_fruit"
   ],
   "stages": 4,
   "textures": [
-    "firmalife:block/crop/pumpkin0",
-    "firmalife:block/crop/pumpkin1",
-    "firmalife:block/crop/pumpkin2",
-    "firmalife:block/crop/pumpkin3",
-    "firmalife:block/crop/pumpkin4"
+    "firmalife:block/crop/pumpkin_0",
+    "firmalife:block/crop/pumpkin_1",
+    "firmalife:block/crop/pumpkin_2",
+    "firmalife:block/crop/pumpkin_3",
+    "firmalife:block/crop/pumpkin_4"
   ],
   "tier": 15
 }

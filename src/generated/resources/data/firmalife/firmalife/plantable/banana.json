@@ -14,15 +14,15 @@
     "id": "tfc:plant/banana_sapling"
   },
   "specials": [
-    "firmalife:banana_fruit"
+    "firmalife:block/crop/banana_fruit"
   ],
   "stages": 4,
   "textures": [
-    "firmalife:block/crop/banana0",
-    "firmalife:block/crop/banana1",
-    "firmalife:block/crop/banana2",
-    "firmalife:block/crop/banana3",
-    "firmalife:block/crop/banana4"
+    "firmalife:block/crop/banana_0",
+    "firmalife:block/crop/banana_1",
+    "firmalife:block/crop/banana_2",
+    "firmalife:block/crop/banana_3",
+    "firmalife:block/crop/banana_4"
   ],
   "tier": 15
 }

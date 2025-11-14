@@ -13,14 +13,14 @@
     "id": "tfc:seeds/squash"
   },
   "specials": [
-    "firmalife:squash_fruit"
+    "firmalife:block/crop/squash_fruit"
   ],
   "stages": 4,
   "textures": [
-    "firmalife:block/crop/squash0",
-    "firmalife:block/crop/squash1",
-    "firmalife:block/crop/squash2",
-    "firmalife:block/crop/squash3",
-    "firmalife:block/crop/squash4"
+    "firmalife:block/crop/squash_0",
+    "firmalife:block/crop/squash_1",
+    "firmalife:block/crop/squash_2",
+    "firmalife:block/crop/squash_3",
+    "firmalife:block/crop/squash_4"
   ]
 }

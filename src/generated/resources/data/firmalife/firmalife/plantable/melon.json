@@ -13,15 +13,15 @@
     "id": "tfc:seeds/melon"
   },
   "specials": [
-    "firmalife:melon_fruit"
+    "firmalife:block/crop/melon_fruit"
   ],
   "stages": 4,
   "textures": [
-    "firmalife:block/crop/melon0",
-    "firmalife:block/crop/melon1",
-    "firmalife:block/crop/melon2",
-    "firmalife:block/crop/melon3",
-    "firmalife:block/crop/melon4"
+    "firmalife:block/crop/melon_0",
+    "firmalife:block/crop/melon_1",
+    "firmalife:block/crop/melon_2",
+    "firmalife:block/crop/melon_3",
+    "firmalife:block/crop/melon_4"
   ],
   "tier": 15
 }
