@@ -8,7 +8,6 @@ import com.eerussianguy.firmalife.common.util.Plantable;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.model.ItemOverrides;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.BakedModel;
@@ -38,14 +37,14 @@ public class HangingPlanterBlockModel extends SimpleDynamicBlockModel<HangingPla
         final TextureAtlasSprite growth = atlas.apply(plant.getTexture(planter.getGrowth(0)));
 
         // foliage
-        RenderUtils.renderCross(1 / 16f, 15 / 16f, 0 / 16f, 13 / 16f, poseStack, buffer, packedLight, packedOverlay, growth, 1f / 16f, 0f, 15f / 16f, 13f / 16f);
+        RenderUtils.renderCross(1 / 16f, 15 / 16f, 0 / 16f, 13 / 16f, poseStack, buffer, packedLight, packedOverlay, growth, 0, 0, 1, 1);
 
         // fruits
         if (planter.getGrowth(0) >= 1f)
         {
             TextureAtlasSprite fruit = atlas.apply(plant.getSpecialTexture(FRUIT_ID));
             RenderHelpers.renderTexturedCuboid(poseStack, buffer, fruit, packedLight, packedOverlay, 4 / 16f, 3 / 16f, 4 / 16f, 7 / 16f, 6 / 16f, 7 / 16f);
-            RenderHelpers.renderTexturedCuboid(poseStack, buffer, fruit, packedLight, packedOverlay, 4 / 16f, (float) 0, 10 / 16f, 7 / 16f, 3 / 16f, 13 / 16f);
+            RenderHelpers.renderTexturedCuboid(poseStack, buffer, fruit, packedLight, packedOverlay, 4 / 16f, 0f, 10 / 16f, 7 / 16f, 3 / 16f, 13 / 16f);
             RenderHelpers.renderTexturedCuboid(poseStack, buffer, fruit, packedLight, packedOverlay, 9 / 16f, 7 / 16f, 5 / 16f, 12 / 16f, 10 / 16f, 8 / 16f);
         }
 
