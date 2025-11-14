@@ -24,6 +24,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.BooleanOp;
@@ -72,6 +73,7 @@ public class JarbnetBlock extends FourWayDeviceBlock
 
     private static void addParticlesAndSound(Level level, double x, double y, double z, RandomSource rand)
     {
+        //TODO these particles are not positioned correctly
         final float value = rand.nextFloat();
         if (value < 0.3F)
         {
@@ -192,8 +194,9 @@ public class JarbnetBlock extends FourWayDeviceBlock
         int index = 0;
         for (VoxelShape[] directionalSlotShape : INVENTORY_SLOT_SHAPES)
         {
-            //TODO AABB#contains creates inconsistent behavior i.r.t. clicking on the inner left of the shelf vs the inner right of the shelf
-            if (directionalSlotShape[facing.get2DDataValue()].bounds().contains(pos))
+            //AABB#contains creates inconsistent behavior i.r.t. clicking on the inner left of the shelf vs the inner right of the shelf
+            AABB shape = directionalSlotShape[facing.get2DDataValue()].bounds();
+            if (pos.x >= shape.minX && pos.x <= shape.maxX && pos.y >= shape.minY && pos.y <= shape.maxY && pos.z >= shape.minZ && pos.z <= shape.maxZ)
             {
                 return index;
             }
