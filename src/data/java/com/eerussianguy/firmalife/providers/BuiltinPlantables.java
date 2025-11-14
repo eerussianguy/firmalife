@@ -69,20 +69,20 @@ public class BuiltinPlantables extends DataManagerProvider<Plantable>
 
         plantable("cranberry", TFCBlocks.CRANBERRY_BUSH.asItem(), HYDROPONIC, 10, 3, 0.5f, food(Food.CRANBERRY), PHOSPHOROUS, cropTextures(FirmaLife.MOD_ID, "cranberry", 4), List.of());
 
-        plantable("red_grapes", FLItems.RED_GRAPE_SEEDS, TRELLIS, 15, 0, 0.5f, food(FLFruit.RED_GRAPES), NITROGEN, forEach(FirmaLife.MOD_ID, "block/crop/grape", "leaves", "dead", "flowering", "red"), List.of());
-        plantable("white_grapes", FLItems.WHITE_GRAPE_SEEDS, TRELLIS, 15, 0, 0.5f, food(FLFruit.WHITE_GRAPES), NITROGEN, forEach(FirmaLife.MOD_ID, "block/crop/grape", "leaves", "dead", "flowering", "red"), List.of());
+        plantable("red_grapes", FLItems.RED_GRAPE_SEEDS, TRELLIS, 15, 0, 0.5f, food(FLFruit.RED_GRAPES), NITROGEN, forEach(FirmaLife.MOD_ID, "block/crop/grape", "_leaves", "_dead", "_flowering", "_red"), List.of());
+        plantable("white_grapes", FLItems.WHITE_GRAPE_SEEDS, TRELLIS, 15, 0, 0.5f, food(FLFruit.WHITE_GRAPES), NITROGEN, forEach(FirmaLife.MOD_ID, "block/crop/grape", "_leaves", "_dead", "_flowering", "_red"), List.of());
 
         for (FruitBlocks.Tree tree : FruitBlocks.Tree.values())
         {
             final SeasonalPlantBlock block = (SeasonalPlantBlock) TFCBlocks.FRUIT_TREE_LEAVES.get(tree).get();
             final ItemStack fruit = block.getProductItem(RandomSource.create());
-            plantable(tree.getSerializedName(), TFCBlocks.FRUIT_TREE_SAPLINGS.get(tree).asItem(), BONSAI, 15, 0, 0.08f, fruit.getItem(), NITROGEN, forEach(TerraFirmaCraft.MOD_ID, "block/fruit_tree/" + tree.getSerializedName(), "fruiting_leaves", "dry_leaves", "flowering_leaves", "branch", "leaves"), List.of());
+            plantable(tree.getSerializedName(), TFCBlocks.FRUIT_TREE_SAPLINGS.get(tree).asItem(), BONSAI, 15, 0, 0.08f, fruit.getItem(), NITROGEN, forEach(TerraFirmaCraft.MOD_ID, "block/fruit_tree/" + tree.getSerializedName(), "_fruiting_leaves", "_dry_leaves", "_flowering_leaves", "_branch", "_leaves"), List.of());
         }
         for (FLFruitBlocks.Tree tree : FLFruitBlocks.Tree.values())
         {
             final SeasonalPlantBlock block = (SeasonalPlantBlock) FLBlocks.FRUIT_TREE_LEAVES.get(tree).get();
             final ItemStack fruit = block.getProductItem(RandomSource.create());
-            plantable(tree.name().toLowerCase(Locale.ROOT), FLBlocks.FRUIT_TREE_SAPLINGS.get(tree).asItem(), BONSAI, 15, 0, 0.08f, fruit.getItem(), NITROGEN, forEach(FirmaLife.MOD_ID, "block/fruit_tree/" + tree.name().toLowerCase(Locale.ROOT), "fruiting_leaves", "dry_leaves", "flowering_leaves", "branch", "leaves"), List.of());
+            plantable(tree.name().toLowerCase(Locale.ROOT), FLBlocks.FRUIT_TREE_SAPLINGS.get(tree).asItem(), BONSAI, 15, 0, 0.08f, fruit.getItem(), NITROGEN, forEach(FirmaLife.MOD_ID, "block/fruit_tree/" + tree.name().toLowerCase(Locale.ROOT), "_fruiting_leaves", "_dry_leaves", "_flowering_leaves", "_branch", "_leaves"), List.of());
         }
         for (FruitBlocks.StationaryBush bush : FruitBlocks.StationaryBush.values())
         {
@@ -147,7 +147,7 @@ public class BuiltinPlantables extends DataManagerProvider<Plantable>
 
     private void hanging(String name, ItemLike seed, ItemLike crop, int tier, FarmlandBlockEntity.NutrientType nut, float seedChance)
     {
-        plantable(name, seed, HANGING, tier, 4, seedChance, seed, nut, forEach(FirmaLife.MOD_ID, "block/crop/" + name, "0", "1", "2", "3", "4"), List.of(FLHelpers.identifier("block/crop/" + name + "_fruit")));
+        plantable(name, seed, HANGING, tier, 4, seedChance, seed, nut, forEach(FirmaLife.MOD_ID, "block/crop/" + name, "_0", "_1", "_2", "_3", "_4"), List.of(FLHelpers.identifier("block/crop/" + name + "_fruit")));
     }
 
     private void plantable(String name, ItemLike seed, PlanterType planter, int tier, int stages, float extraSeedChance, ItemLike output, FarmlandBlockEntity.NutrientType nut, List<ResourceLocation> textures, List<ResourceLocation> specials)
@@ -175,7 +175,7 @@ public class BuiltinPlantables extends DataManagerProvider<Plantable>
         final List<ResourceLocation> textures = new ArrayList<>();
         for (String suffix : suffixes)
         {
-            textures.add(ResourceLocation.fromNamespaceAndPath(modId, prefix + "_" + suffix));
+            textures.add(ResourceLocation.fromNamespaceAndPath(modId, prefix + suffix));
         }
         return textures;
     }
