@@ -116,29 +116,29 @@ public interface VatRecipes extends Recipes
     private void vat(SizedIngredient ingredient, SizedFluidIngredient fluidInput, ItemStackProvider output, FluidStack outputFluid)
     {
         //TODO this needs length and temperature
-        vat(ingredient, fluidInput, Optional.of(output), Optional.of(outputFluid), 1, 1, ItemStack.EMPTY, Optional.empty());
+        vat(ingredient, fluidInput, Optional.of(output), Optional.of(outputFluid), 1, 1, Optional.empty(), Optional.empty());
     }
 
     private void vat(SizedIngredient ingredient, SizedFluidIngredient fluidInput, ItemStack jarOutput, Optional<ResourceLocation> outputTexture)
     {
         //TODO this needs length and temperature
-        vat(ingredient, fluidInput, Optional.empty(), Optional.empty(), 1, 1, jarOutput, outputTexture);
+        vat(ingredient, fluidInput, Optional.empty(), Optional.empty(), 1, 1, Optional.of(jarOutput), outputTexture);
     }
 
     private void vat(SizedIngredient ingredient, SizedFluidIngredient fluidInput, ItemStackProvider output)
     {
         //TODO this needs length and temperature
-        vat(ingredient, fluidInput, Optional.of(output), Optional.empty(), 1, 1, ItemStack.EMPTY, Optional.empty());
+        vat(ingredient, fluidInput, Optional.of(output), Optional.empty(), 1, 1, Optional.empty(), Optional.empty());
     }
 
     private void vat(SizedIngredient ingredient, SizedFluidIngredient fluidInput, FluidStack outputFluid)
     {
         //TODO this needs length and temperature
-        vat(ingredient, fluidInput, Optional.empty(), Optional.of(outputFluid), 1, 1, ItemStack.EMPTY, Optional.empty());
+        vat(ingredient, fluidInput, Optional.empty(), Optional.of(outputFluid), 1, 1, Optional.empty(), Optional.empty());
     }
 
 
-    private void vat(SizedIngredient ingredient, SizedFluidIngredient fluidInput, Optional<ItemStackProvider> output, Optional<FluidStack> outputFluid, int length, float temperature, ItemStack jarOutput, Optional<ResourceLocation> outputTexture)
+    private void vat(SizedIngredient ingredient, SizedFluidIngredient fluidInput, Optional<ItemStackProvider> output, Optional<FluidStack> outputFluid, int length, float temperature, Optional<ItemStack> jarOutput, Optional<ResourceLocation> outputTexture)
     {
         String name;
         if (output.isPresent())
@@ -149,14 +149,14 @@ public interface VatRecipes extends Recipes
         {
             name = nameOf(outputFluid.get().getFluid());
         }
-        else if (!jarOutput.isEmpty())
+        else if (jarOutput.isPresent() && !jarOutput.get().isEmpty())
         {
-            name = nameOf(jarOutput.getItem());
+            name = nameOf(jarOutput.get().getItem());
         }
         else
         {
             name = nameOf(ingredient.ingredient());
         }
-        add(name, new VatRecipe(ingredient, fluidInput, output, outputFluid, length, temperature, Optional.empty(), outputTexture));
+        add(name, new VatRecipe(ingredient, fluidInput, output, outputFluid, length, temperature, jarOutput, outputTexture));
     }
 }

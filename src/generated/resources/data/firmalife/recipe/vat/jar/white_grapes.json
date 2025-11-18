@@ -20,6 +20,10 @@
     ],
     "count": 1
   },
+  "jar_output": {
+    "count": 1,
+    "id": "firmalife:jar/white_grapes"
+  },
   "length": 1,
   "output_texture": "firmalife:block/jar/white_grapes",
   "temperature": 1.0

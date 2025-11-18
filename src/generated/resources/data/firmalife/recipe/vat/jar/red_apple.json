@@ -20,6 +20,10 @@
     ],
     "count": 1
   },
+  "jar_output": {
+    "count": 1,
+    "id": "tfc:jar/red_apple"
+  },
   "length": 1,
   "output_texture": "tfc:block/jar/red_apple",
   "temperature": 1.0

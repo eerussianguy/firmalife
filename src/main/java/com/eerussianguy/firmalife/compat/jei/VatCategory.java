@@ -2,6 +2,7 @@ package com.eerussianguy.firmalife.compat.jei;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.recipes.VatRecipe;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -42,7 +43,7 @@ public class VatCategory extends BaseRecipeCategory<VatRecipe>
         final int[] positions = slotPositions(recipe);
         final List<FluidStack> inputFluid = collapse(recipe.getInputFluid());
         final List<ItemStack> inputItem = collapse(recipe.getInputItem());
-        final FluidStack outputFluid = recipe.getOutputFluid();
+        final Optional<FluidStack> outputFluid = recipe.getOutputFluid();
         final List<ItemStack> outputItem = new ArrayList<>(recipe.getOutputItem().map(out -> collapse(inputItem, out)).orElse(List.of()));
 
         recipe.getJarOutput().filter(stack -> !stack.isEmpty()).ifPresent(outputItem::add);
@@ -62,10 +63,10 @@ public class VatCategory extends BaseRecipeCategory<VatRecipe>
             inputItemSlot.setBackground(slot, -1, -1);
         }
 
-        if (!outputFluid.isEmpty())
+        if (outputFluid.isPresent() && !outputFluid.get().isEmpty())
         {
             outputFluidSlot = builder.addSlot(RecipeIngredientRole.OUTPUT, positions[2], 5);
-            outputFluidSlot.addIngredient(JEIIntegration.FLUID_STACK, outputFluid);
+            outputFluidSlot.addIngredient(JEIIntegration.FLUID_STACK, outputFluid.get());
             outputFluidSlot.setFluidRenderer(1, false, 16, 16);
             outputFluidSlot.setBackground(slot, -1, -1);
         }

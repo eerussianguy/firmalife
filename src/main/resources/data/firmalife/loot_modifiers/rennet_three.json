@@ -1,0 +1,17 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "firmalife:add_item",
+  "conditions": [
+    {
+      "condition": "minecraft:entity_properties",
+      "predicate": {
+        "type": "#firmalife:drops_three_rennet"
+      },
+      "entity": "this"
+    }
+  ],
+  "item": {
+    "id": "firmalife:rennet",
+    "Count": 6
+  }
+}

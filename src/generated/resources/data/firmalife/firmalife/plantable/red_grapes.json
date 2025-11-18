@@ -15,9 +15,9 @@
   "specials": [],
   "textures": [
     "firmalife:block/crop/grape_leaves",
-    "firmalife:block/crop/grape_dead",
-    "firmalife:block/crop/grape_flowering",
-    "firmalife:block/crop/grape_red"
+    "firmalife:block/crop/grape_leaves_dead",
+    "firmalife:block/crop/grape_leaves_flowering",
+    "firmalife:block/crop/grape_leaves_red"
   ],
   "tier": 15
 }

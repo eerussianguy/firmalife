@@ -10,14 +10,12 @@ public class FLBerryBushBlockEntity extends BerryBushBlockEntity
 {
     public FLBerryBushBlockEntity(BlockPos pos, BlockState state)
     {
-        super(pos, state);
+        super(FLBlockEntities.BERRY_BUSH.get(), pos, state);
     }
 
     protected FLBerryBushBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state)
     {
-        super(pos, state);
-        //TODO this ctor is not visible
-        //super(type, pos, state);
+        super(type, pos, state);
     }
 
     @Override

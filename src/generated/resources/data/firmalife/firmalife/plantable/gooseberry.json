@@ -15,10 +15,10 @@
   },
   "specials": [],
   "textures": [
-    "tfc:block/berry_bush/gooseberrygooseberry_bush",
-    "tfc:block/berry_bush/gooseberrydry_gooseberry_bush",
-    "tfc:block/berry_bush/gooseberryflowering_gooseberry_bush",
-    "tfc:block/berry_bush/gooseberryfruiting_gooseberry_bush"
+    "tfc:block/berry_bush/gooseberry_bush",
+    "tfc:block/berry_bush/dry_gooseberry_bush",
+    "tfc:block/berry_bush/flowering_gooseberry_bush",
+    "tfc:block/berry_bush/fruiting_gooseberry_bush"
   ],
   "tier": 15
 }

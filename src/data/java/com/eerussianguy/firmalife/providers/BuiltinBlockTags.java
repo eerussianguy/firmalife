@@ -228,7 +228,7 @@ public class BuiltinBlockTags extends TagsProvider<Block> implements Accessors
         tag(TFCTags.Blocks.CAN_START_COLLAPSE).add2(FLBlocks.CHROMITE_ORES);
         tag(TFCTags.Blocks.CAN_COLLAPSE).add2(FLBlocks.CHROMITE_ORES);
 
-        var chromiteOres = tagOf(Registries.BLOCK, "forge:ores/chromite");
+        var chromiteOres = commonTagOf(Registries.BLOCK, "ores/chromite");
         // TODO put these in FLTags?
         var poorChromite = tagOf(Registries.BLOCK, FLHelpers.identifier("ores/chromite/poor"));
         var normalChromite = tagOf(Registries.BLOCK, FLHelpers.identifier("ores/chromite/normal"));

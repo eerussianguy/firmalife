@@ -20,6 +20,10 @@
     ],
     "count": 1
   },
+  "jar_output": {
+    "count": 1,
+    "id": "tfc:jar/peach"
+  },
   "length": 1,
   "output_texture": "tfc:block/jar/peach",
   "temperature": 1.0

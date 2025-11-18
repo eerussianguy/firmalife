@@ -40,12 +40,12 @@ public class JarbnetBlockModel extends SimpleDynamicBlockModel<JarbnetBlockEntit
             final Minecraft mc = Minecraft.getInstance();
             final Direction facing = jarbnet.getBlockState().getValue(JarbnetBlock.FACING);
             final int angle = switch (facing)
-                {
-                    case SOUTH -> 0;
-                    case EAST -> 90;
-                    case WEST, DOWN, UP -> 270;
-                    case NORTH -> 180;
-                };
+            {
+                case SOUTH -> 0;
+                case EAST -> 90;
+                case WEST, DOWN, UP -> 270;
+                case NORTH -> 180;
+            };
 
             if (jarbnet.getBlockState().getValue(JarbnetBlock.OPEN))
             {
@@ -63,10 +63,10 @@ public class JarbnetBlockModel extends SimpleDynamicBlockModel<JarbnetBlockEntit
                     final boolean isCandle = item instanceof CandleBlockItem;
                     poseStack.pushPose();
                     final int dx = i > 2 ? i - 3 : i;
-                    poseStack.translate(dx * -0.35f - 0.4f, i > 2 ? -0.53f : 0.02f, -0.65f);
+                    poseStack.translate(dx * -0.35f + 0.135f, i > 2 ? -0.53f : 0.02f, -0.5);
                     if (isCandle)
                     {
-                        poseStack.translate(0.3f, 0f, 0f);
+                        poseStack.translate(-0.3f, 0f, 0.05f);
                     }
                     if (PlacedItemBlockEntityRenderer.MODELS.containsKey(item))
                     {

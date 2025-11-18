@@ -69,8 +69,8 @@ public class BuiltinPlantables extends DataManagerProvider<Plantable>
 
         plantable("cranberry", TFCBlocks.CRANBERRY_BUSH.asItem(), HYDROPONIC, 10, 3, 0.5f, food(Food.CRANBERRY), PHOSPHOROUS, cropTextures(FirmaLife.MOD_ID, "cranberry", 4), List.of());
 
-        plantable("red_grapes", FLItems.RED_GRAPE_SEEDS, TRELLIS, 15, 0, 0.5f, food(FLFruit.RED_GRAPES), NITROGEN, forEach(FirmaLife.MOD_ID, "block/crop/grape_", "leaves", "dead", "flowering", "red"), List.of());
-        plantable("white_grapes", FLItems.WHITE_GRAPE_SEEDS, TRELLIS, 15, 0, 0.5f, food(FLFruit.WHITE_GRAPES), NITROGEN, forEach(FirmaLife.MOD_ID, "block/crop/grape_", "leaves", "dead", "flowering", "red"), List.of());
+        plantable("red_grapes", FLItems.RED_GRAPE_SEEDS, TRELLIS, 15, 0, 0.5f, food(FLFruit.RED_GRAPES), NITROGEN, forEach(FirmaLife.MOD_ID, "block/crop/grape", "_leaves", "_leaves_dead", "_leaves_flowering", "_leaves_red"), List.of());
+        plantable("white_grapes", FLItems.WHITE_GRAPE_SEEDS, TRELLIS, 15, 0, 0.5f, food(FLFruit.WHITE_GRAPES), NITROGEN, forEach(FirmaLife.MOD_ID, "block/crop/grape", "_leaves", "_leaves_dead", "_leaves_flowering", "_leaves_white"), List.of());
 
         for (FruitBlocks.Tree tree : FruitBlocks.Tree.values())
         {
@@ -89,7 +89,7 @@ public class BuiltinPlantables extends DataManagerProvider<Plantable>
             final SeasonalPlantBlock block = (SeasonalPlantBlock) TFCBlocks.STATIONARY_BUSHES.get(bush).get();
             final ItemStack fruit = block.getProductItem(RandomSource.create());
             final String name = bush.name().toLowerCase(Locale.ROOT);
-            final String p = "block/berry_bush/" + name;
+            final String p = "block/berry_bush/";
             plantable(name, TFCBlocks.STATIONARY_BUSHES.get(bush).asItem(), TRELLIS, 15, 0, 0.08f, fruit.getItem(), NITROGEN, forEachPrefix(TerraFirmaCraft.MOD_ID, "_bush", p + name, p + "dry_" + name, p + "flowering_" + name, p + "fruiting_" + name), List.of());
         }
         for (FLFruitBlocks.StationaryBush bush : FLFruitBlocks.StationaryBush.values())
@@ -97,7 +97,7 @@ public class BuiltinPlantables extends DataManagerProvider<Plantable>
             final SeasonalPlantBlock block = (SeasonalPlantBlock) FLBlocks.STATIONARY_BUSHES.get(bush).get();
             final ItemStack fruit = block.getProductItem(RandomSource.create());
             final String name = bush.name().toLowerCase(Locale.ROOT);
-            final String p = "block/berry_bush/" + name;
+            final String p = "block/berry_bush/";
             plantable(name, FLBlocks.STATIONARY_BUSHES.get(bush).asItem(), TRELLIS, 15, 0, 0.08f, fruit.getItem(), NITROGEN, forEachPrefix(FirmaLife.MOD_ID, "_bush", p + name, p + "dry_" + name, p + "flowering_" + name, p + "fruiting_" + name), List.of());
         }
 
@@ -147,7 +147,7 @@ public class BuiltinPlantables extends DataManagerProvider<Plantable>
 
     private void hanging(String name, ItemLike seed, ItemLike crop, int tier, FarmlandBlockEntity.NutrientType nut, float seedChance)
     {
-        plantable(name, seed, HANGING, tier, 4, seedChance, seed, nut, forEach(FirmaLife.MOD_ID, "block/crop/" + name, "0", "1", "2", "3", "4"), List.of(FLHelpers.identifier(name + "_fruit")));
+        plantable(name, seed, HANGING, tier, 4, seedChance, seed, nut, forEach(FirmaLife.MOD_ID, "block/crop/" + name, "_0", "_1", "_2", "_3", "_4"), List.of(FLHelpers.identifier("block/crop/" + name + "_fruit")));
     }
 
     private void plantable(String name, ItemLike seed, PlanterType planter, int tier, int stages, float extraSeedChance, ItemLike output, FarmlandBlockEntity.NutrientType nut, List<ResourceLocation> textures, List<ResourceLocation> specials)

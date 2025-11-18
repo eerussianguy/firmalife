@@ -24,8 +24,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import net.dries007.tfc.common.TFCTags;
@@ -46,13 +50,30 @@ public class JarbnetBlock extends FourWayDeviceBlock
     public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
 
-    public static final VoxelShape NORTH_SHAPE = box(0, 0, 4, 16, 16, 16);
-    public static final VoxelShape WEST_SHAPE = Helpers.rotateShape(Direction.WEST, 0, 0, 4, 16, 16, 16);
-    public static final VoxelShape EAST_SHAPE = Helpers.rotateShape(Direction.EAST, 0, 0, 4, 16, 16, 16);
-    public static final VoxelShape SOUTH_SHAPE = Helpers.rotateShape(Direction.SOUTH, 0, 0, 4, 16, 16, 16);
+    public static final VoxelShape[] CLOSED_SHAPES = Helpers.computeHorizontalShapes(dir -> Helpers.rotateShape(dir, 0, 0, 4, 16, 16, 16));
+    public static final VoxelShape[] OPEN_SHAPES = Helpers.computeHorizontalShapes(dir -> Shapes.or(
+        Shapes.join(
+            CLOSED_SHAPES[dir.get2DDataValue()],
+            Helpers.rotateShape(dir, 1, 1, 4, 15, 15, 15),
+            BooleanOp.ONLY_FIRST
+        ),
+        // Shelf
+        Helpers.rotateShape(dir, 1, 7, 5, 15, 8, 15)
+    ));
+    // Only used to detect when a slot on the shelf is clicked
+    // Helpful for preventing taking items out of the back/sides of the block
+    public static final VoxelShape[][] INVENTORY_SLOT_SHAPES = new VoxelShape[][] {
+        Helpers.computeHorizontalShapes(dir -> Helpers.rotateShape(dir, 1, 8, 5, 6, 15, 15)),
+        Helpers.computeHorizontalShapes(dir -> Helpers.rotateShape(dir, 6, 8, 5, 10, 15, 15)),
+        Helpers.computeHorizontalShapes(dir -> Helpers.rotateShape(dir, 10, 8, 5, 15, 15, 15)),
+        Helpers.computeHorizontalShapes(dir -> Helpers.rotateShape(dir, 1, 1, 5, 6, 7, 15)),
+        Helpers.computeHorizontalShapes(dir -> Helpers.rotateShape(dir, 6, 1, 5, 10, 7, 15)),
+        Helpers.computeHorizontalShapes(dir -> Helpers.rotateShape(dir, 10, 1, 5, 15, 7, 15)),
+    };
 
     private static void addParticlesAndSound(Level level, double x, double y, double z, RandomSource rand)
     {
+        //TODO these particles are not positioned correctly
         final float value = rand.nextFloat();
         if (value < 0.3F)
         {
@@ -114,11 +135,14 @@ public class JarbnetBlock extends FourWayDeviceBlock
     @Override
     public ItemInteractionResult useItemOn(ItemStack held, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
     {
+        //TODO allow swapping item in inventory with item in hand
+        final Direction facing = state.getValue(FACING);
+        final boolean open = state.getValue(OPEN);
+        int slot = getSlotFromPos(facing, result.getLocation().subtract(pos.getX(), pos.getY(), pos.getZ()));
         if (held.isEmpty())
         {
             if (player.isShiftKeyDown())
             {
-                final boolean open = state.getValue(OPEN);
                 BlockState newState = state.setValue(OPEN, !open);
                 if (open)
                 {
@@ -136,14 +160,14 @@ public class JarbnetBlock extends FourWayDeviceBlock
                 level.setBlockAndUpdate(pos, newState);
                 return ItemInteractionResult.sidedSuccess(level.isClientSide);
             }
-            else
+            else if (slot >= 0 && open)
             {
-                return FLHelpers.consumeItemInventory(level, pos, FLBlockEntities.JARBNET, (jar, inv) -> FLHelpers.takeOneAny(level, 0, JarbnetBlockEntity.SLOTS - 1, inv, player));
+                return FLHelpers.consumeItemInventory(level, pos, FLBlockEntities.JARBNET, (jar, inv) -> FLHelpers.takeOne(level, slot, inv, player));
             }
         }
-        else if (isItemAllowed(held))
+        else if (isItemAllowed(held) && slot >= 0 && open)
         {
-            return FLHelpers.consumeItemInventory(level, pos, FLBlockEntities.JARBNET, (jar, inv) -> FLHelpers.insertOneAny(level, held, 0, JarbnetBlockEntity.SLOTS - 1, inv, player));
+            return FLHelpers.consumeItemInventory(level, pos, FLBlockEntities.JARBNET, (jar, inv) -> FLHelpers.insertOne(level, held, slot, inv, player));
         }
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
@@ -157,12 +181,27 @@ public class JarbnetBlock extends FourWayDeviceBlock
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext pContext)
     {
-        return switch (state.getValue(FACING))
+        int facing = state.getValue(FACING).get2DDataValue();
+        if (state.getValue(OPEN))
+        {
+            return OPEN_SHAPES[facing];
+        }
+        return CLOSED_SHAPES[facing];
+    }
+
+    private int getSlotFromPos(Direction facing, Vec3 pos)
+    {
+        int index = 0;
+        for (VoxelShape[] directionalSlotShape : INVENTORY_SLOT_SHAPES)
+        {
+            //AABB#contains creates inconsistent behavior i.r.t. clicking on the inner left of the shelf vs the inner right of the shelf
+            AABB shape = directionalSlotShape[facing.get2DDataValue()].bounds();
+            if (pos.x >= shape.minX && pos.x <= shape.maxX && pos.y >= shape.minY && pos.y <= shape.maxY && pos.z >= shape.minZ && pos.z <= shape.maxZ)
             {
-                case NORTH -> NORTH_SHAPE;
-                case SOUTH -> SOUTH_SHAPE;
-                case WEST -> WEST_SHAPE;
-                default -> EAST_SHAPE;
-            };
+                return index;
+            }
+            index++;
+        }
+        return -1;
     }
 }

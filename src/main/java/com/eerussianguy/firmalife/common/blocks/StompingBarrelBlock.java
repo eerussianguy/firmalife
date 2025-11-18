@@ -25,7 +25,7 @@ import net.dries007.tfc.util.Helpers;
 
 public class StompingBarrelBlock extends DeviceBlock
 {
-    public static final VoxelShape SHAPE = box(1, 0, 1, 14, 8, 14);
+    public static final VoxelShape SHAPE = box(1, 0, 1, 15, 8, 15);
 
     public StompingBarrelBlock(ExtendedProperties properties)
     {

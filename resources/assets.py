@@ -527,7 +527,7 @@ def contained_fluid(rm: ResourceManager, name_parts: utils.ResourceIdentifier, b
 
 def flower_pot_cross(rm: ResourceManager, simple_name: str, name: str, model: str, texture: str, loot: str, tinted: bool = False):
     rm.blockstate(name, model='firmalife:block/%s' % model).with_lang(lang('potted %s', simple_name))
-    rm.block_model(model, parent='minecraft:block/tinted_flower_pot_cross' if tinted else 'minecraft:block/flower_pot_cross', textures={'plant': texture, 'dirt': 'tfc:block/dirt/loam'})
+    rm.block_model(model, parent='minecraft:block/tinted_flower_pot_cross' if tinted else 'minecraft:block/flower_pot_cross', textures={'plant': texture, 'dirt': 'tfc:block/dirt/entisol'})
 
 
 def simple_plant_data(rm: ResourceManager, p: str, bees: bool = True, straw: bool = True):
@@ -536,7 +536,7 @@ def simple_plant_data(rm: ResourceManager, p: str, bees: bool = True, straw: boo
 
 def item_model_property(rm: ResourceManager, name_parts: utils.ResourceIdentifier, overrides: utils.Json, data: Dict[str, Any]) -> ItemContext:
     res = utils.resource_location(rm.domain, name_parts)
-    rm.write((*rm.resource_dir, 'assets', res.domain, 'models', 'item', res.path), {
+    rm.write(('assets', res.domain, 'models', 'item', res.path), {
         **data,
         'overrides': overrides
     })

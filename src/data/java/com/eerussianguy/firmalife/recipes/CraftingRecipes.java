@@ -237,6 +237,11 @@ public interface CraftingRecipes extends Recipes
             .input('X', FLItems.TREATED_LUMBER)
             .pattern("X", "X", "X")
             .shaped(FLBlocks.GRAPE_TRELLIS_POST);
+        recipe()
+            .input('B', Blocks.BRICKS)
+            .input('L', FluidContentIngredient.of(fluidOf(SimpleFluid.TANNIN), 1000))
+            .pattern("BBB", "BLB", "BBB")
+            .shaped(new ItemStack(FLBlocks.RUSTIC_BRICKS, 8));
 
         //Shapeless
         recipe()
@@ -284,14 +289,17 @@ public interface CraftingRecipes extends Recipes
             .input(itemOf(Food.GARLIC))
             .shapeless(new ItemStack(itemOf(FLFood.TOMATO_SAUCE_MIX), 5));
         recipe()
-            .input(FluidContentIngredient.of(fluidOf(SimpleFluid.TANNIN), 100))
+            .input(FLBlocks.TILES)
             .input(Items.BRICK)
-            .shapeless(new ItemStack(FLBlocks.RUSTIC_BRICKS, 16));
-        //TODO these dont exist?
-        //recipe()
-        //    .input(FLBlocks.SEALED_BRICKS)
-        //    .input(Items.BRICK)
-        //    .shapeless(new ItemStack(FLBlocks.STONE_FINISH, 16));
+            .shapeless(new ItemStack(FLItems.FINISHES.get(OvenType.TILE), 16));
+        recipe()
+            .input(FLBlocks.SEALED_BRICKS)
+            .input(Items.BRICK)
+            .shapeless(new ItemStack(FLItems.FINISHES.get(OvenType.STONE), 16));
+        recipe()
+            .input(FLBlocks.RUSTIC_BRICKS)
+            .input(Items.BRICK)
+            .shapeless(new ItemStack(FLItems.FINISHES.get(OvenType.RUSTIC), 16));
         recipe()
             .input(Items.CLAY_BALL)
             .input(Tags.Items.COBBLESTONES)

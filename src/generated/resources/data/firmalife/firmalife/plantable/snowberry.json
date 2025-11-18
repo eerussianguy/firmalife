@@ -15,10 +15,10 @@
   },
   "specials": [],
   "textures": [
-    "tfc:block/berry_bush/snowberrysnowberry_bush",
-    "tfc:block/berry_bush/snowberrydry_snowberry_bush",
-    "tfc:block/berry_bush/snowberryflowering_snowberry_bush",
-    "tfc:block/berry_bush/snowberryfruiting_snowberry_bush"
+    "tfc:block/berry_bush/snowberry_bush",
+    "tfc:block/berry_bush/dry_snowberry_bush",
+    "tfc:block/berry_bush/flowering_snowberry_bush",
+    "tfc:block/berry_bush/fruiting_snowberry_bush"
   ],
   "tier": 15
 }
