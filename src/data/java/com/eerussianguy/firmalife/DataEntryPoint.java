@@ -15,6 +15,7 @@ import com.eerussianguy.firmalife.providers.BuiltinBlockTags;
 import com.eerussianguy.firmalife.providers.BuiltinClimateRanges;
 import com.eerussianguy.firmalife.providers.BuiltinDamageTypes;
 import com.eerussianguy.firmalife.providers.BuiltinFluidHeats;
+import com.eerussianguy.firmalife.providers.BuiltinFluidTags;
 import com.eerussianguy.firmalife.providers.BuiltinFoods;
 import com.eerussianguy.firmalife.providers.BuiltinItemHeats;
 import com.eerussianguy.firmalife.providers.BuiltinItemSizes;
@@ -67,6 +68,7 @@ public class DataEntryPoint
 
         final var blockTags = add(event, new BuiltinBlockTags(event, lookup)).contentsGetter();
         final var itemTags = add(event, new BuiltinItemTags(event, lookup)).contentsGetter();
+        add(event, new BuiltinFluidTags(event, lookup));
 
         tags(event, Registries.DAMAGE_TYPE, lookup, (provider, tags) -> {
             tags.tag(DamageTypeTags.BYPASSES_ARMOR).add(FLDamageTypes.OVEN, FLDamageTypes.SWARM);

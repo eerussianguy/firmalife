@@ -1,6 +1,4 @@
 {
-  "__comment__": "This file was automatically created by mcresources",
-  "replace": false,
   "values": [
     "firmalife:yeast_starter",
     "firmalife:coconut_milk",
@@ -8,8 +6,8 @@
     "firmalife:goat_milk",
     "firmalife:curdled_yak_milk",
     "firmalife:curdled_goat_milk",
-    "firmalife:pina_colada",
     "firmalife:cream",
+    "firmalife:pina_colada",
     "firmalife:chocolate",
     "firmalife:sugar_water",
     "firmalife:mead",
