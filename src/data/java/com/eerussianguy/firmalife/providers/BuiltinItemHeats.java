@@ -3,9 +3,11 @@ package com.eerussianguy.firmalife.providers;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import com.eerussianguy.firmalife.Accessors;
 import com.eerussianguy.firmalife.FirmaLife;
+import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.items.FLFood;
 import com.eerussianguy.firmalife.common.items.FLItems;
@@ -20,6 +22,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.dries007.tfc.TerraFirmaCraft;
 import net.dries007.tfc.common.component.heat.HeatCapability;
 import net.dries007.tfc.common.component.heat.HeatDefinition;
+import net.dries007.tfc.common.fluids.TFCFluids;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.Metal;
 import net.dries007.tfc.util.data.FluidHeat;
@@ -35,10 +38,13 @@ public class BuiltinItemHeats extends DataManagerProvider<HeatDefinition> implem
         super(HeatCapability.MANAGER, output, lookup, TerraFirmaCraft.MOD_ID);
     }
 
-
     @Override
     protected void addData(HolderLookup.Provider provider)
     {
+        FLHelpers.fakeDataManager(FluidHeat.MANAGER, Map.of(
+            Metal.COPPER.getSerializedName(), new FluidHeat(TFCFluids.METALS.get(Metal.COPPER).getSource(), 0.35f, 1080)
+        ));
+        
         addAndMelt(FLBlocks.COPPER_PIPE, Metal.COPPER, 12);
         addAndMelt(FLBlocks.OXIDIZED_COPPER_PIPE, Metal.COPPER, 12);
 

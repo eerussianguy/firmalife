@@ -1,7 +1,9 @@
 package com.eerussianguy.firmalife.common;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Optional;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
@@ -34,14 +36,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.IItemHandlerModifiable;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
-import net.neoforged.neoforge.items.ItemStackHandler;
 
 import net.dries007.tfc.common.blockentities.TickCounterBlockEntity;
 import net.dries007.tfc.common.component.food.FoodCapability;
@@ -51,6 +51,7 @@ import net.dries007.tfc.common.component.food.IFood;
 import net.dries007.tfc.network.StreamCodecs;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.climate.KoppenClimateClassification;
+import net.dries007.tfc.util.data.DataManager;
 
 import static com.eerussianguy.firmalife.FirmaLife.*;
 
@@ -333,6 +334,20 @@ public class FLHelpers
         {
             FoodCapability.setCreationDate(stack, FoodCapability.getRoundedCreationDate(cap.getCreationDate()));
         }
+    }
+
+    public static <T> void fakeDataManager(DataManager<T> manager, Map<String, T> values)
+    {
+        final Map<ResourceLocation, T> map = new HashMap<>();
+        for (T value : manager.getValues())
+        {
+            map.put(manager.getId(value), value);
+        }
+        for (Map.Entry<String, T> entry : values.entrySet())
+        {
+            map.put(Helpers.identifier(entry.getKey()), entry.getValue());
+        }
+        manager.bindValues(map);
     }
 
     public static <B, C, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10> StreamCodec<B, C> composite(

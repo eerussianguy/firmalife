@@ -1,0 +1,8 @@
+{
+  "forging_temperature": 0.21000001,
+  "heat_capacity": 43200.0,
+  "ingredient": {
+    "item": "firmalife:copper_pipe"
+  },
+  "welding_temperature": 0.28
+}
