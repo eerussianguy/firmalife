@@ -40,33 +40,6 @@ public interface HeatingRecipes extends Recipes
             new FluidStack(fluidOf(Metal.COPPER), 25),
             1080
         );
-        heat(
-            FLItems.STAINLESS_STEEL_JAR_LID,
-            new FluidStack(fluidOf(FLMetal.STAINLESS_STEEL), 6),
-            1540
-        );
-
-        // Ores
-        heat(
-            FLBlocks.SMALL_CHROMITE,
-            new FluidStack(fluidOf(FLMetal.CHROMIUM), 10),
-            1250
-        );
-        heat(
-            FLItems.CHROMIUM_ORES.get(Ore.Grade.POOR),
-            new FluidStack(fluidOf(FLMetal.CHROMIUM), 15),
-            1250
-        );
-        heat(
-            FLItems.CHROMIUM_ORES.get(Ore.Grade.NORMAL),
-            new FluidStack(fluidOf(FLMetal.CHROMIUM), 25),
-            1250
-        );
-        heat(
-            FLItems.CHROMIUM_ORES.get(Ore.Grade.RICH),
-            new FluidStack(fluidOf(FLMetal.CHROMIUM), 35),
-            1250
-        );
 
         // Metal blocks & items
         FLItems.METAL_ITEMS.forEach((metal, items) -> items.forEach((type, item) ->

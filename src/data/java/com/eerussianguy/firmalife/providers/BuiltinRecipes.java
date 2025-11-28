@@ -1,5 +1,6 @@
 package com.eerussianguy.firmalife.providers;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.CompletableFuture;
 import com.eerussianguy.firmalife.common.FLHelpers;
@@ -28,7 +29,12 @@ import net.minecraft.data.CachedOutput;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
+import net.neoforged.neoforge.fluids.FluidStack;
+
+import net.dries007.tfc.common.recipes.HeatingRecipe;
+import net.dries007.tfc.common.recipes.outputs.ItemStackProvider;
 
 public class BuiltinRecipes extends RecipeProvider implements Recipes,
     AnvilRecipes,
@@ -53,17 +59,21 @@ public class BuiltinRecipes extends RecipeProvider implements Recipes,
 {
     private RecipeOutput output;
     private HolderLookup.Provider lookup;
+    private final List<BuiltinItemHeat.MeltingRecipe> meltingRecipes;
+    final CompletableFuture<?> before;
 
-    public BuiltinRecipes(PackOutput output, CompletableFuture<HolderLookup.Provider> registries)
+    public BuiltinRecipes(PackOutput output, CompletableFuture<HolderLookup.Provider> registries, CompletableFuture<?> before, BuiltinItemHeat itemHeat)
     {
         super(output, registries);
+        this.before = CompletableFuture.allOf(before, itemHeat.output());
+        this.meltingRecipes = itemHeat.meltingRecipes;
     }
 
     @Override
     protected CompletableFuture<?> run(CachedOutput output, HolderLookup.Provider lookup)
     {
         this.lookup = lookup;
-        return super.run(output, lookup);
+        return before.thenCompose(v -> super.run(output, lookup));
     }
 
     @Override
@@ -89,6 +99,18 @@ public class BuiltinRecipes extends RecipeProvider implements Recipes,
         stompingRecipes();
         vatRecipes();
         weldingRecipes();
+
+        // Heat Recipes from Melting
+        for (BuiltinItemHeat.MeltingRecipe melt : meltingRecipes)
+        {
+            add(nameOf(melt.item()), new HeatingRecipe(
+                Ingredient.of(melt.item()),
+                ItemStackProvider.empty(),
+                new FluidStack(fluidOf(melt.metal()), melt.units()),
+                temperatureOf(melt.metal()),
+                false
+            ));
+        }
     }
 
     @Override

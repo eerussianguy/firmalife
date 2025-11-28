@@ -50,24 +50,6 @@ def generate(rm: ResourceManager):
 
     chromium_ore_heats(rm)
     for metal, metal_data in FL_METALS.items():
-        rm.data(('tfc', 'metals', metal), {
-            'tier': metal_data.tier,
-            'fluid': 'firmalife:metal/%s' % metal,
-            'melt_temperature': metal_data.melt_temperature,
-            'specific_heat_capacity': metal_data.specific_heat_capacity(),
-            'ingots': utils.ingredient('#forge:ingots/%s' % metal),
-            'double_ingots': utils.ingredient('#forge:double_ingots/%s' % metal),
-            'sheets': utils.ingredient('#forge:sheets/%s' % metal)
-        })
-
-        for item, item_data in METAL_ITEMS_AND_BLOCKS.items():
-            if item_data.type in metal_data.types or item_data.type == 'all':
-                item_name = 'firmalife:metal/block/%s_%s' % (metal, item.replace('block_', '')) if 'block_' in item else 'firmalife:metal/%s/%s' % (item, metal)
-                item_heat(rm, ('metal', metal + '_' + item), item_name, metal_data.ingot_heat_capacity(), metal_data.melt_temperature, mb=item_data.smelt_amount)
-
-        def item(_variant: str) -> str:
-            return 'firmalife:metal/%s/%s' % (_variant, metal)
-
         # Metal Items
         for metal_item, metal_item_data in METAL_ITEMS.items():
             if metal_item_data.type in metal_data.types or metal_item_data.type == 'all':

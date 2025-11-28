@@ -1,0 +1,8 @@
+{
+  "forging_temperature": 750.0,
+  "heat_capacity": 1.0,
+  "ingredient": {
+    "item": "firmalife:ore/rich_chromite"
+  },
+  "welding_temperature": 1000.0
+}

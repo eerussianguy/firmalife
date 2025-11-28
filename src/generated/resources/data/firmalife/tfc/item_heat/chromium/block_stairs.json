@@ -1,0 +1,8 @@
+{
+  "forging_temperature": 750.0,
+  "heat_capacity": 2.142857,
+  "ingredient": {
+    "item": "firmalife:metal/block/chromium_stairs"
+  },
+  "welding_temperature": 1000.0
+}

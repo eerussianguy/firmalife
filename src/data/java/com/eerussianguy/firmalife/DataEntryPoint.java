@@ -17,7 +17,7 @@ import com.eerussianguy.firmalife.providers.BuiltinDamageTypes;
 import com.eerussianguy.firmalife.providers.BuiltinFluidHeats;
 import com.eerussianguy.firmalife.providers.BuiltinFluidTags;
 import com.eerussianguy.firmalife.providers.BuiltinFoods;
-import com.eerussianguy.firmalife.providers.BuiltinItemHeats;
+import com.eerussianguy.firmalife.providers.BuiltinItemHeat;
 import com.eerussianguy.firmalife.providers.BuiltinItemSizes;
 import com.eerussianguy.firmalife.providers.BuiltinItemTags;
 import com.eerussianguy.firmalife.providers.BuiltinPlantables;
@@ -108,10 +108,10 @@ public class DataEntryPoint
             }
         });
 
-        add(event, new BuiltinItemHeats(output, lookup));
-        add(event, new BuiltinFluidHeats(output, lookup));
+        var fluidHeat = add(event, new BuiltinFluidHeats(output, lookup)).output();
+        var itemHeat = add(event, new BuiltinItemHeat(output, lookup, fluidHeat));
 
-        add(event, new BuiltinRecipes(output, lookup));
+        add(event, new BuiltinRecipes(output, lookup, CompletableFuture.allOf(fluidHeat), itemHeat));
 
         add(event,
             new LootTableProvider(

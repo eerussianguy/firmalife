@@ -1,0 +1,8 @@
+{
+  "forging_temperature": 750.0,
+  "heat_capacity": 11.428572,
+  "ingredient": {
+    "item": "firmalife:metal/double_sheet/chromium"
+  },
+  "welding_temperature": 1000.0
+}

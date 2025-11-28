@@ -1,0 +1,8 @@
+{
+  "forging_temperature": 750.0,
+  "heat_capacity": 0.42857146,
+  "ingredient": {
+    "item": "firmalife:ore/poor_chromite"
+  },
+  "welding_temperature": 1000.0
+}

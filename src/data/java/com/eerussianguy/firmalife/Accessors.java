@@ -80,20 +80,6 @@ public interface Accessors
         return Ingredient.of(FLBlocks.METALS.get(metal).get(type));
     }
 
-    default Ingredient ingredientOf(Metal metal, Metal.ItemType type)
-    {
-        return type.isCommonTagPart()
-            ? Ingredient.of(commonTagOf(metal, type))
-            : Ingredient.of(TFCItems.METAL_ITEMS.get(metal).get(type).get());
-    }
-
-    default Ingredient ingredientOf(Metal metal, Metal.BlockType type)
-    {
-        return type == Metal.BlockType.BLOCK
-            ? Ingredient.of(storageBlockTagOf(Registries.ITEM, metal))
-            : Ingredient.of(TFCBlocks.METALS.get(metal).get(type).get());
-    }
-
     default SizedIngredient sized(TagKey<Item> item)
     {
         return SizedIngredient.of(item, 1);
@@ -139,16 +125,16 @@ public interface Accessors
         return TagKey.create(registry, Helpers.identifier(wood.getSerializedName() + "_logs"));
     }
 
-    default TagKey<Item> commonTagOf(Metal metal, Metal.ItemType type)
+    default TagKey<Item> commonTagOf(FLMetal metal, Metal.ItemType type)
     {
         assert type.isCommonTagPart() : "Non-typical use of tag for " + metal.getSerializedName() + " / " + type.name();
-        assert type.has(metal) : "Non-typical use of " + metal.getSerializedName() + " / " + type.name();
+//        assert type.has(metal) : "Non-typical use of " + metal.getSerializedName() + " / " + type.name();
         return commonTagOf(Registries.ITEM, type.name() + "s/" + metal.name());
     }
 
-    default <T> TagKey<T> storageBlockTagOf(ResourceKey<Registry<T>> key, Metal metal)
+    default <T> TagKey<T> storageBlockTagOf(ResourceKey<Registry<T>> key, FLMetal metal)
     {
-        assert metal.defaultParts() : "Non-typical use of a non-default metal " + metal.getSerializedName();
+//        assert metal.defaultParts() : "Non-typical use of a non-default metal " + metal.getSerializedName();
         return commonTagOf(key, "storage_blocks/" + metal.getSerializedName());
     }
 

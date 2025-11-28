@@ -1,9 +1,0 @@
-{
-  "__comment__": "This file was automatically created by mcresources",
-  "ingredient": {
-    "item": "firmalife:metal/ingot/chromium"
-  },
-  "heat_capacity": 2.857,
-  "forging_temperature": 750,
-  "welding_temperature": 1000
-}
