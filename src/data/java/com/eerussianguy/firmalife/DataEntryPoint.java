@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.BiConsumer;
+import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blocks.FLFluids;
 import com.eerussianguy.firmalife.common.misc.FLDamageTypes;
@@ -33,20 +34,28 @@ import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
 
 import net.dries007.tfc.TerraFirmaCraft;
+import net.dries007.tfc.client.TFCSounds;
 import net.dries007.tfc.common.TFCTags;
+import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.component.food.FoodData;
+import net.dries007.tfc.common.recipes.ingredients.AndIngredient;
 import net.dries007.tfc.common.recipes.ingredients.BlockIngredient;
+import net.dries007.tfc.common.recipes.ingredients.NotRottenIngredient;
 import net.dries007.tfc.util.data.Drinkable;
+import net.dries007.tfc.util.data.KnappingType;
 import net.dries007.tfc.util.data.LampFuel;
 
 import static com.eerussianguy.firmalife.FirmaLife.*;
@@ -54,6 +63,8 @@ import static com.eerussianguy.firmalife.FirmaLife.*;
 @EventBusSubscriber(modid = MOD_ID)
 public class DataEntryPoint
 {
+    public static final ResourceLocation PUMPKIN = FLHelpers.identifier("pumpkin");
+
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event)
     {
@@ -105,6 +116,17 @@ public class DataEntryPoint
                 add("copper", new GreenhouseType(BlockIngredient.of(FLTags.Blocks.ALL_COPPER_GREENHOUSE), 10, Component.translatable("greenhouse.firmalife.copper")));
                 add("iron", new GreenhouseType(BlockIngredient.of(FLTags.Blocks.ALL_IRON_GREENHOUSE), 15, Component.translatable("greenhouse.firmalife.iron")));
                 add("stainless_steel", new GreenhouseType(BlockIngredient.of(FLTags.Blocks.STAINLESS_STEEL_GREENHOUSE), 20, Component.translatable("greenhouse.firmalife.stainless_steel")));
+            }
+        });
+        add(event, new DataManagerProvider<KnappingType>(KnappingType.MANAGER, output, lookup, MOD_ID)
+        {
+            @Override
+            protected void addData(HolderLookup.Provider provider)
+            {
+                add(PUMPKIN, new KnappingType(
+                    new SizedIngredient(AndIngredient.of(Ingredient.of(FLTags.Items.PUMPKIN_KNAPPING), NotRottenIngredient.INSTANCE), 1),
+                    1, TFCSounds.KNAP_LEATHER.holder(), false, false, false, TFCBlocks.PUMPKIN.asItem().getDefaultInstance()
+                ));
             }
         });
 

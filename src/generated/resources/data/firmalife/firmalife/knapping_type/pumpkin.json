@@ -1,0 +1,22 @@
+{
+  "click_sound": "tfc:item.knapping.leather",
+  "consume_after_complete": false,
+  "has_off_texture": false,
+  "icon": {
+    "count": 1,
+    "id": "tfc:pumpkin"
+  },
+  "input": {
+    "type": "tfc:and",
+    "children": [
+      {
+        "tag": "firmalife:pumpkin_knapping"
+      },
+      {
+        "type": "tfc:not_rotten"
+      }
+    ],
+    "count": 1
+  },
+  "spawns_particles": false
+}

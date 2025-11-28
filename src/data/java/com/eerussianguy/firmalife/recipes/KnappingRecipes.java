@@ -1,31 +1,46 @@
 package com.eerussianguy.firmalife.recipes;
 
+import java.util.Map;
 import java.util.Optional;
+import com.eerussianguy.firmalife.DataEntryPoint;
 import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.util.Carving;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import org.jetbrains.annotations.Nullable;
 
+import net.dries007.tfc.client.TFCSounds;
+import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.items.Food;
 import net.dries007.tfc.common.recipes.KnappingRecipe;
 import net.dries007.tfc.util.DataGenerationHelpers;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.data.KnappingPattern;
 import net.dries007.tfc.util.data.KnappingType;
+import net.dries007.tfc.util.registry.HolderHolder;
 
 public interface KnappingRecipes extends Recipes
 {
-    //TODO move these
     ResourceLocation CLAY = Helpers.identifier("clay");
-    ResourceLocation PUMPKIN = FLHelpers.identifier("pumpkin");
 
     default void knappingRecipes()
     {
+        FLHelpers.fakeDataManager(KnappingType.MANAGER, Map.of(
+            "clay", fake(TFCTags.Items.CLAY_KNAPPING, 5, 5,
+                TFCSounds.KNAP_CLAY,
+                true, true, false,
+                Items.CLAY_BALL))
+        );
+
         clayKnapping(FLBlocks.OVEN_TOP, "XXXXX", "XX XX", "X   X", "X   X", "XXXXX");
         clayKnapping(FLBlocks.OVEN_BOTTOM, "XX XX", "X   X", "X   X", "XX XX", "XXXXX");
         clayKnapping(FLBlocks.OVEN_CHIMNEY, "XX XX", "XX XX", "XX XX");
@@ -49,7 +64,7 @@ public interface KnappingRecipes extends Recipes
 
     private void pumpkinKnapping(ItemLike output, int count, String... pattern)
     {
-        knapping(PUMPKIN, pattern, output, count);
+        knapping(DataEntryPoint.PUMPKIN, pattern, output, count);
     }
 
 
@@ -91,12 +106,6 @@ public interface KnappingRecipes extends Recipes
 
     private void knapping(ResourceLocation knappingType, String[] pattern, ItemStack output, @Nullable String name)
     {
-        //TODO temp, DataManagers are empty when datagen is run?
-        if (KnappingType.MANAGER.getValues().isEmpty())
-        {
-            FirmaLife.LOGGER.error("KnappingType manager has not been loaded.");
-            return;
-        }
         final KnappingRecipe recipe = new KnappingRecipe(KnappingType.MANAGER.getCheckedReference(knappingType), KnappingPattern.from(true, pattern), Optional.empty(), output);
         if (name == null)
         {
@@ -106,5 +115,10 @@ public interface KnappingRecipes extends Recipes
         {
             add(name, recipe);
         }
+    }
+
+    private KnappingType fake(TagKey<Item> item, int amount, int consumeAmount, HolderHolder<SoundEvent> sound, boolean consumeAfterComplete, boolean useDisabledTexture, boolean spawnsParticles, ItemLike jeiIcon)
+    {
+        return new KnappingType(new SizedIngredient(Ingredient.of(item), amount), amount == consumeAmount ? Optional.empty() : Optional.of(consumeAmount), sound.holder(), consumeAfterComplete, useDisabledTexture, spawnsParticles, new ItemStack(jeiIcon));
     }
 }

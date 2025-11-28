@@ -1,0 +1,15 @@
+{
+  "type": "tfc:knapping",
+  "knapping_type": "firmalife:pumpkin",
+  "pattern": [
+    " # # ",
+    "# # #",
+    " # # ",
+    "# # #",
+    " # # "
+  ],
+  "result": {
+    "count": 4,
+    "id": "tfc:food/pumpkin_chunks"
+  }
+}
