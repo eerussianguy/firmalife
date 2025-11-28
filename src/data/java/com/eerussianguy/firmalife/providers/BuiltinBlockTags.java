@@ -258,7 +258,7 @@ public class BuiltinBlockTags extends TagsProvider<Block> implements Accessors
             @Override
             public TagBuilder add(TagEntry entry)
             {
-                Preconditions.checkArgument(!entry.getId().equals(BuiltInRegistries.ITEM.getDefaultKey()), "Adding air to block tag");
+                Preconditions.checkArgument(!entry.getId().equals(BuiltInRegistries.BLOCK.getDefaultKey()), "Adding air to block tag");
                 return super.add(entry);
             }
         });

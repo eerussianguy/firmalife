@@ -1,8 +1,8 @@
 import itertools
 
 from mcresources import ResourceManager, ItemContext, BlockContext, block_states
-from mcresources import utils, loot_tables
-from mcresources.type_definitions import JsonObject, Json
+from mcresources import utils
+from mcresources.type_definitions import JsonObject
 
 from constants import *
 
@@ -275,7 +275,6 @@ def generate(rm: ResourceManager):
     rm.block('sealed_trapdoor').with_lang(lang('sealed trapdoor'))
     rm.block('sealed_wall').with_lang(lang('sealed wall'))
     block = rm.block('firmalife:sealed_door').with_lang(lang('sealed door'))
-    door_loot(block, 'firmalife:sealed_door')
 
     rm.blockstate('dark_ladder', variants=four_rotations('firmalife:block/dark_ladder', (90, None, 180, 270))).with_block_model(textures={'texture': 'firmalife:block/dark_ladder', 'particle': 'firmalife:block/dark_ladder'}, parent='minecraft:block/ladder').with_lang(lang('dark ladder'))
     rm.item_model('dark_ladder', 'firmalife:block/dark_ladder')
@@ -353,7 +352,6 @@ def generate(rm: ResourceManager):
 
     for var in ('rustic_bricks', 'tiles'):
         block = rm.block(var).make_slab().make_stairs().make_wall()
-        slab_loot(rm, 'firmalife:%s_slab' % var)
         for extra in ('_slab', '_stairs', '_wall'):
             rm.block('firmalife:%s%s' % (var, extra)).with_lang(lang('%s%s', var.replace('bricks', 'brick').replace('tiles', 'tile'), extra))
 
@@ -361,7 +359,7 @@ def generate(rm: ResourceManager):
         rm.block_model('plant/butterfly_grass_%s' % variant, parent='firmalife:block/tinted_cross_overlay', textures={'cross': 'firmalife:block/plant/butterfly_grass/base', 'overlay': 'firmalife:block/plant/butterfly_grass/%s' % variant})
     rm.blockstate('plant/butterfly_grass', variants={'': [{'model': 'firmalife:block/plant/butterfly_grass_%s' % variant, 'y': rot} for variant in ('gold', 'red', 'purple') for rot in (None, 90)]}, use_default_model=False).with_lang(lang('butterfly grass'))
     simple_plant_data(rm, 'firmalife:plant/butterfly_grass')
-    flower_pot_cross(rm, 'butterfly grass', 'firmalife:plant/potted/butterfly_grass', 'plant/flowerpot/butterfly_grass', 'firmalife:block/plant/butterfly_grass/base', 'firmalife:plant/butterfly_grass', tinted=True)
+    flower_pot_cross(rm, 'butterfly grass', 'firmalife:plant/potted/butterfly_grass', 'plant/flowerpot/butterfly_grass', 'firmalife:block/plant/butterfly_grass/base', tinted=True)
     rm.item_model('plant/butterfly_grass', 'firmalife:block/plant/butterfly_grass/base')
 
     lifecycle_to_model = {'healthy': '', 'dormant': 'dry_', 'fruiting': 'fruiting_', 'flowering': 'flowering_'}
@@ -384,7 +382,7 @@ def generate(rm: ResourceManager):
         rm.blockstate('plant/%s' % herb, variants={'age=0': {'model': 'firmalife:block/plant/%s_0' % herb}, 'age=1': {'model': 'firmalife:block/plant/%s_1' % herb}}).with_lang(lang(herb))
         simple_plant_data(rm, 'firmalife:plant/%s' % herb, straw=False)
         rm.item_model('plant/%s' % herb, 'firmalife:block/plant/%s/1' % herb)
-        flower_pot_cross(rm, herb, 'firmalife:plant/potted/%s' % herb, 'plant/flowerpot/%s' % herb, 'firmalife:block/plant/%s/1' % herb, 'firmalife:plant/%s' % herb)
+        flower_pot_cross(rm, herb, 'firmalife:plant/potted/%s' % herb, 'plant/flowerpot/%s' % herb, 'firmalife:block/plant/%s/1' % herb)
 
     for wood in TFC_WOODS.keys():
         block = rm.blockstate('firmalife:wood/food_shelf/%s' % wood, variants=four_rotations('firmalife:block/wood/food_shelf/%s_dynamic' % wood, (270, 180, None, 90)))
@@ -474,7 +472,7 @@ def generate(rm: ResourceManager):
                 rm.block_model(('plant', '%s_sapling_%d' % (fruit, stage)), parent='tfc:block/plant/cross_%s' % stage, textures={'cross': 'firmalife:block/fruit_tree/%s_sapling' % fruit})
             rm.block_model(('plant', '%s_sapling_1' % fruit), {'cross': 'firmalife:block/fruit_tree/%s_sapling' % fruit}, 'block/cross')
             rm.item_model(('plant', '%s_sapling' % fruit), 'firmalife:block/fruit_tree/%s_sapling' % fruit)
-            flower_pot_cross(rm, '%s sapling' % fruit, 'firmalife:plant/potted/%s_sapling' % fruit, 'plant/flowerpot/%s_sapling' % fruit, 'firmalife:block/fruit_tree/%s_sapling' % fruit, 'firmalife:plant/%s_sapling' % fruit)
+            flower_pot_cross(rm, '%s sapling' % fruit, 'firmalife:plant/potted/%s_sapling' % fruit, 'plant/flowerpot/%s_sapling' % fruit, 'firmalife:block/fruit_tree/%s_sapling' % fruit)
 
     contained_fluid(rm, 'hollow_shell', 'firmalife:item/hollow_shell', 'firmalife:item/hollow_shell_overlay').with_lang(lang('Hollow Shell'))
     contained_fluid(rm, 'wine_glass', 'firmalife:item/wine_glass', 'firmalife:item/wine_glass_overlay').with_lang(lang('wine glass'))
@@ -525,7 +523,7 @@ def contained_fluid(rm: ResourceManager, name_parts: utils.ResourceIdentifier, b
     })
 
 
-def flower_pot_cross(rm: ResourceManager, simple_name: str, name: str, model: str, texture: str, loot: str, tinted: bool = False):
+def flower_pot_cross(rm: ResourceManager, simple_name: str, name: str, model: str, texture: str, tinted: bool = False):
     rm.blockstate(name, model='firmalife:block/%s' % model).with_lang(lang('potted %s', simple_name))
     rm.block_model(model, parent='minecraft:block/tinted_flower_pot_cross' if tinted else 'minecraft:block/flower_pot_cross', textures={'plant': texture, 'dirt': 'tfc:block/dirt/entisol'})
 
@@ -610,7 +608,6 @@ def greenhouse_slab(rm: ResourceManager, name: str, frame: str, glass: str) -> '
     rm.block_model('greenhouse/%s_roof_top' % name, textures, parent='firmalife:block/greenhouse_roof_top')
     rm.block_model('greenhouse/%s_roof_top_upper' % name, textures, parent='firmalife:block/greenhouse_roof_top_upper')
     rm.item_model(block_name, parent='firmalife:block/greenhouse/%s_roof_top' % name, no_textures=True)
-    slab_loot(rm, 'firmalife:%s' % block_name)
     return block
 
 
@@ -686,15 +683,8 @@ def greenhouse_door(rm: ResourceManager, name: str, bot: str, upper: str) -> 'Bl
     block = rm.block(door).with_lang(lang(door))
     make_door(rm.block('%s_greenhouse' % name), top_texture=upper, bottom_texture=bot)
     rm.item_model(door)
-    door_loot(block, 'firmalife:%s' % door)
     return block
 
-
-def slab_loot(rm: ResourceManager, loot: str):
-    ...
-
-def door_loot(block: BlockContext, loot: str) -> 'BlockContext':
-    ...
 
 def water_based_fluid(rm: ResourceManager, name: str):
     rm.blockstate(('fluid', name)).with_block_model({'particle': 'minecraft:block/water_still'}, parent=None).with_lang(lang(name))

@@ -83,8 +83,6 @@ public class FLFoodTraits
     public static final DeferredHolder<FoodTrait, FoodTrait> GRAVEL_GROWN = register(Default.GRAVEL_GROWN);
     public static final DeferredHolder<FoodTrait, FoodTrait> SLOPE_GROWN = register(Default.SLOPE_GROWN);
 
-    public static final Set<DeferredHolder<FoodTrait, FoodTrait>> WINE_TRAITS = ImmutableSet.of(BEE_POLLINATED, DIRT_GROWN, GRAVEL_GROWN, SLOPE_GROWN);
-
     private static DeferredHolder<FoodTrait, FoodTrait> register(FLFoodTraits.Default trait)
     {
         return TRAITS.register(trait.name.toLowerCase(Locale.ROOT), () -> new FoodTrait(FLConfig.SERVER.foodTraits.get(trait), MOD_ID + ".tooltip.food_trait." + trait.name.toLowerCase(Locale.ROOT)));

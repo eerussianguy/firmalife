@@ -1,0 +1,16 @@
+{
+  "type": "firmalife:add_item",
+  "conditions": [
+    {
+      "condition": "minecraft:entity_properties",
+      "entity": "this",
+      "predicate": {
+        "type": "#firmalife:drops_more_rennet"
+      }
+    }
+  ],
+  "item": {
+    "count": 6,
+    "id": "firmalife:rennet"
+  }
+}

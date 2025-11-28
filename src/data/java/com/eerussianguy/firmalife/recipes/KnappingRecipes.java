@@ -81,12 +81,6 @@ public interface KnappingRecipes extends Recipes
 
     private void clayKnapping(String suffix, ItemLike output, int count, boolean defaultOn, String... pattern)
     {
-        //TODO temp, DataManagers are empty when datagen is run?
-        if (KnappingType.MANAGER.getValues().isEmpty())
-        {
-            FirmaLife.LOGGER.error("KnappingType manager has not been loaded.");
-            return;
-        }
         add(nameOf(output) + (suffix.isEmpty() ? "" : "_" + suffix), new KnappingRecipe(
             KnappingType.MANAGER.getCheckedReference(CLAY),
             KnappingPattern.from(defaultOn, pattern),

@@ -1,0 +1,13 @@
+{
+  "type": "firmalife:add_item",
+  "conditions": [
+    {
+      "condition": "firmalife:block_ingredient",
+      "ingredient": "#firmalife:drops_ice_shavings"
+    }
+  ],
+  "item": {
+    "count": 1,
+    "id": "firmalife:ice_shavings"
+  }
+}

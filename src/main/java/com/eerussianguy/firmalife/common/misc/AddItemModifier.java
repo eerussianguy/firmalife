@@ -16,7 +16,6 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 
 import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 import net.neoforged.neoforge.common.loot.LootModifier;
-import org.jetbrains.annotations.NotNull;
 
 import net.dries007.tfc.common.component.food.FoodCapability;
 
@@ -30,7 +29,7 @@ public class AddItemModifier extends LootModifier
     private final ItemStack item;
     private final float chance;
 
-    protected AddItemModifier(LootItemCondition[] conditions, ItemStack item, float chance)
+    public AddItemModifier(LootItemCondition[] conditions, ItemStack item, float chance)
     {
         super(conditions);
         this.item = FoodCapability.setTransientNonDecaying(item);
@@ -43,7 +42,6 @@ public class AddItemModifier extends LootModifier
         return CODEC;
     }
 
-    @NotNull
     @Override
     protected ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> loot, LootContext context)
     {

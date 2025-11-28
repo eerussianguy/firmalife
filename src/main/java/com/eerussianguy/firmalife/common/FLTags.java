@@ -2,6 +2,7 @@ package com.eerussianguy.firmalife.common;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
@@ -119,11 +120,22 @@ public class FLTags
 
     public static class Traits
     {
-        public static final TagKey<FoodTrait> WINE = create("wine"); // todo fill
+        public static final TagKey<FoodTrait> WINE = create("wine");
 
         private static TagKey<FoodTrait> create(String id)
         {
             return TagKey.create(FoodTraits.KEY, FLHelpers.identifier(id));
+        }
+    }
+
+    public static class Entities
+    {
+        public static final TagKey<EntityType<?>> DROPS_RENNET = create("drops_rennet");
+        public static final TagKey<EntityType<?>> DROPS_MORE_RENNET = create("drops_more_rennet");
+
+        private static TagKey<EntityType<?>> create(String id)
+        {
+            return TagKey.create(Registries.ENTITY_TYPE, FLHelpers.identifier(id));
         }
     }
 }

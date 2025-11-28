@@ -1,10 +1,8 @@
 from typing import NamedTuple, Dict, Optional, Set
 
-from mcresources import ResourceManager, utils
+from mcresources import ResourceManager
 
 from constants import lang
-from data import item_heat
-from assets import slab_loot
 
 class Metal(NamedTuple):
     tier: int
@@ -48,7 +46,6 @@ METAL_ITEMS_AND_BLOCKS = {**METAL_ITEMS, **METAL_BLOCKS}
 
 def generate(rm: ResourceManager):
 
-    chromium_ore_heats(rm)
     for metal, metal_data in FL_METALS.items():
         # Metal Items
         for metal_item, metal_item_data in METAL_ITEMS.items():
@@ -76,9 +73,4 @@ def generate(rm: ResourceManager):
                 rm.block(('metal', 'block', '%s_slab' % metal)).with_lang(lang('%s plated slab', metal))
                 rm.block(('metal', 'block', '%s_stairs' % metal)).with_lang(lang('%s plated stairs', metal))
                 block.make_stairs()
-                slab_loot(rm, 'firmalife:metal/block/%s_slab' % metal)
 
-def chromium_ore_heats(rm: ResourceManager):
-    ore = 'chromite'
-    metal_data = FL_METALS['chromium']
-    item_heat(rm, ('ore', ore), ['firmalife:ore/small_%s' % ore, 'firmalife:ore/normal_%s' % ore, 'firmalife:ore/poor_%s' % ore, 'firmalife:ore/rich_%s' % ore], metal_data.ingot_heat_capacity(), int(metal_data.melt_temperature), mb=40)

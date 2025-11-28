@@ -10,6 +10,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 
@@ -109,6 +110,7 @@ public class BuiltinFoods extends DataManagerProvider<FoodDefinition> implements
         add(FLFood.TACO, FoodData.of(4.5f));
         add(FLFood.MAKI_ROLL, FoodData.of(4.5f));
         add(FLFood.FUTO_MAKI_ROLL, FoodData.of(4.5f));
+        add(Items.PUMPKIN_PIE, FoodData.of(4.5f));
     }
 
     private void add(FLFood item, FoodData food)

@@ -8,6 +8,7 @@ import java.util.function.BiConsumer;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blocks.FLFluids;
+import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.common.misc.FLDamageTypes;
 import com.eerussianguy.firmalife.common.util.ExtraFluid;
 import com.eerussianguy.firmalife.common.util.GreenhouseType;
@@ -15,12 +16,14 @@ import com.eerussianguy.firmalife.providers.BuiltinBlockLootTables;
 import com.eerussianguy.firmalife.providers.BuiltinBlockTags;
 import com.eerussianguy.firmalife.providers.BuiltinClimateRanges;
 import com.eerussianguy.firmalife.providers.BuiltinDamageTypes;
+import com.eerussianguy.firmalife.providers.BuiltinEntityTypeTags;
 import com.eerussianguy.firmalife.providers.BuiltinFluidHeats;
 import com.eerussianguy.firmalife.providers.BuiltinFluidTags;
 import com.eerussianguy.firmalife.providers.BuiltinFoods;
 import com.eerussianguy.firmalife.providers.BuiltinItemHeat;
 import com.eerussianguy.firmalife.providers.BuiltinItemSizes;
 import com.eerussianguy.firmalife.providers.BuiltinItemTags;
+import com.eerussianguy.firmalife.providers.BuiltinLootModifiers;
 import com.eerussianguy.firmalife.providers.BuiltinPlantables;
 import com.eerussianguy.firmalife.providers.BuiltinRecipes;
 import com.eerussianguy.firmalife.providers.DataManagerProvider;
@@ -51,6 +54,7 @@ import net.dries007.tfc.client.TFCSounds;
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.component.food.FoodData;
+import net.dries007.tfc.common.component.food.FoodTraits;
 import net.dries007.tfc.common.recipes.ingredients.AndIngredient;
 import net.dries007.tfc.common.recipes.ingredients.BlockIngredient;
 import net.dries007.tfc.common.recipes.ingredients.NotRottenIngredient;
@@ -76,16 +80,20 @@ public class DataEntryPoint
             , Set.of(MOD_ID, TerraFirmaCraft.MOD_ID, "minecraft")
         )).getRegistryProvider();
 
-
         final var blockTags = add(event, new BuiltinBlockTags(event, lookup)).contentsGetter();
         final var itemTags = add(event, new BuiltinItemTags(event, lookup)).contentsGetter();
+        add(event, new BuiltinEntityTypeTags(event, lookup));
         add(event, new BuiltinFluidTags(event, lookup));
 
         tags(event, Registries.DAMAGE_TYPE, lookup, (provider, tags) -> {
             tags.tag(DamageTypeTags.BYPASSES_ARMOR).add(FLDamageTypes.OVEN, FLDamageTypes.SWARM);
             tags.tag(DamageTypeTags.BYPASSES_EFFECTS).add(FLDamageTypes.SWARM);
         });
+        tags(event, FoodTraits.KEY, lookup, (provider, tags) -> {
+            tags.tag(FLTags.Traits.WINE).add(FLFoodTraits.BEE_POLLINATED.getKey(), FLFoodTraits.GRAVEL_GROWN.getKey(), FLFoodTraits.DIRT_GROWN.getKey(), FLFoodTraits.SLOPE_GROWN.getKey());
+        });
 
+        add(event, new BuiltinLootModifiers(output, lookup));
         add(event, new BuiltinClimateRanges(output, lookup));
         add(event, new BuiltinPlantables(output, lookup));
         add(event, new BuiltinFoods(output, lookup));
