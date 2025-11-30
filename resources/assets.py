@@ -379,7 +379,8 @@ def generate(rm: ResourceManager):
     for herb in HERBS:
         for stage in ('0', '1'):
             rm.block_model('plant/%s_%s' % (herb, stage), parent='minecraft:block/cross', textures={'cross': 'firmalife:block/plant/%s/%s' % (herb, stage)})
-        rm.blockstate('plant/%s' % herb, variants={'age=0': {'model': 'firmalife:block/plant/%s_0' % herb}, 'age=1': {'model': 'firmalife:block/plant/%s_1' % herb}}).with_lang(lang(herb))
+        # rm.blockstate('plant/%s' % herb, variants={'age=0': {'model': 'firmalife:block/plant/%s_0' % herb}, 'age=1': {'model': 'firmalife:block/plant/%s_1' % herb}}).with_lang(lang(herb))
+        rm.blockstate('plant/%s' % herb, variants=dict((f'age={i}', {'model': f'firmalife:block/plant/{herb}_{j}'}) for (i, j) in ((0, 0), (1, 1), (2, 1), (3, 1)))).with_lang(lang(herb))
         simple_plant_data(rm, 'firmalife:plant/%s' % herb, straw=False)
         rm.item_model('plant/%s' % herb, 'firmalife:block/plant/%s/1' % herb)
         flower_pot_cross(rm, herb, 'firmalife:plant/potted/%s' % herb, 'plant/flowerpot/%s' % herb, 'firmalife:block/plant/%s/1' % herb)
@@ -688,9 +689,6 @@ def greenhouse_door(rm: ResourceManager, name: str, bot: str, upper: str) -> 'Bl
 
 def water_based_fluid(rm: ResourceManager, name: str):
     rm.blockstate(('fluid', name)).with_block_model({'particle': 'minecraft:block/water_still'}, parent=None).with_lang(lang(name))
-    rm.fluid_tag(name, 'firmalife:%s' % name, 'firmalife:flowing_%s' % name)
-    rm.fluid_tag('minecraft:water', 'firmalife:%s' % name, 'firmalife:flowing_%s' % name)  # Need to use water fluid tag for behavior
-    rm.fluid_tag('mixable', 'firmalife:%s' % name, 'firmalife:flowing_%s' % name)
 
     item = rm.custom_item_model(('bucket', name), 'neoforge:fluid_container', {
         'parent': 'neoforge:item/bucket',

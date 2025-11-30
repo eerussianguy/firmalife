@@ -16,10 +16,10 @@
     ],
     "count": 5
   },
-  "length": 1,
+  "length": 600,
   "output_item": {
     "count": 3,
     "id": "minecraft:sugar"
   },
-  "temperature": 1.0
+  "temperature": 300.0
 }

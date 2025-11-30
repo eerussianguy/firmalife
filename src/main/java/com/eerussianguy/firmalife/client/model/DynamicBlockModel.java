@@ -70,13 +70,13 @@ public class DynamicBlockModel implements IUnbakedGeometry<DynamicBlockModel>
         }
 
         @Override
-        public TextureAtlasSprite getParticleIcon(@NotNull ModelData data)
+        public TextureAtlasSprite getParticleIcon(ModelData data)
         {
             return baseModel.getParticleIcon(data);
         }
 
         @Override
-        public @NotNull List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable Direction side, @NotNull RandomSource rand, @NotNull ModelData data, @Nullable RenderType renderType)
+        public List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable Direction side, RandomSource rand, ModelData data, @Nullable RenderType renderType)
         {
             final List<BakedQuad> quads = new ArrayList<>(super.getQuads(state, side, rand, data, renderType));
             final StaticModelData extraQuads = data.get(StaticModelData.PROPERTY);

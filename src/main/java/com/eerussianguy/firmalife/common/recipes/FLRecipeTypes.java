@@ -17,7 +17,7 @@ public class FLRecipeTypes
     public static final DeferredRegister<RecipeType<?>> RECIPE_TYPE = DeferredRegister.create(Registries.RECIPE_TYPE, MOD_ID);
     public static final DeferredRegister<PotOutput.OutputType> POT_OUTPUT_TYPE = DeferredRegister.create(PotOutput.KEY, MOD_ID);
 
-    public static final Id<DryingRecipe> DRYING = register("scraping");
+    public static final Id<DryingRecipe> DRYING = register("drying");
     public static final Id<SmokingRecipe> SMOKING = register("smoking");
     public static final Id<MixingBowlRecipe> MIXING_BOWL = register("mixing_bowl");
     public static final Id<OvenRecipe> OVEN = register("oven");

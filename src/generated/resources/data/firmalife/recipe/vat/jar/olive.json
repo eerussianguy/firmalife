@@ -24,7 +24,7 @@
     "count": 1,
     "id": "tfc:jar/olive"
   },
-  "length": 1,
+  "length": 600,
   "output_texture": "tfc:block/jar/olive",
-  "temperature": 1.0
+  "temperature": 300.0
 }

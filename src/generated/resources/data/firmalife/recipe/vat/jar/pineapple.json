@@ -24,7 +24,7 @@
     "count": 1,
     "id": "firmalife:jar/pineapple"
   },
-  "length": 1,
+  "length": 600,
   "output_texture": "firmalife:block/jar/pineapple",
-  "temperature": 1.0
+  "temperature": 300.0
 }

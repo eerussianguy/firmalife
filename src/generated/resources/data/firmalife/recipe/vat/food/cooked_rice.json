@@ -16,10 +16,10 @@
     ],
     "count": 1
   },
-  "length": 1,
+  "length": 600,
   "output_item": {
     "count": 1,
     "id": "tfc:food/cooked_rice"
   },
-  "temperature": 1.0
+  "temperature": 300.0
 }

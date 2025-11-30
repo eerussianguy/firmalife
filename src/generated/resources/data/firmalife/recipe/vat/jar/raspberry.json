@@ -24,7 +24,7 @@
     "count": 1,
     "id": "tfc:jar/raspberry"
   },
-  "length": 1,
+  "length": 600,
   "output_texture": "tfc:block/jar/raspberry",
-  "temperature": 1.0
+  "temperature": 300.0
 }

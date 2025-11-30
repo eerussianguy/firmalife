@@ -38,6 +38,7 @@ import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.Nullable;
 
 import net.dries007.tfc.client.overworld.SolarCalculator;
+import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
 import net.dries007.tfc.common.capabilities.ItemCapabilities;
 import net.dries007.tfc.common.component.food.FoodCapability;
@@ -176,8 +177,7 @@ public class BarrelPressBlockEntity extends TickableInventoryBlockEntity<ItemSta
             {
                 return WineType.ROSE;
             }
-            //TODO should this use TFCTags.Items.SWEETENERS instead? or should recipes use FLTags.Items.SWEETENER and it copies TFCs tag?
-            if (hasAtLeastThisMuchOfThisInOtherSlots(s -> Helpers.isItem(s, FLTags.Items.SWEETENER), 2))
+            if (hasAtLeastThisMuchOfThisInOtherSlots(s -> Helpers.isItem(s, TFCTags.Items.SWEETENERS), 2))
             {
                 return WineType.DESSERT;
             }

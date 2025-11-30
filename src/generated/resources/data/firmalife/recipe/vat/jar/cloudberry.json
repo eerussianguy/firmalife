@@ -24,7 +24,7 @@
     "count": 1,
     "id": "tfc:jar/cloudberry"
   },
-  "length": 1,
+  "length": 600,
   "output_texture": "tfc:block/jar/cloudberry",
-  "temperature": 1.0
+  "temperature": 300.0
 }

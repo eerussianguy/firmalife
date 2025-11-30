@@ -69,6 +69,9 @@ public class BuiltinFluidTags extends TagsProvider<Fluid> implements Accessors
         );
         tag(TFCTags.Fluids.INGREDIENTS).add(FLFluids.EXTRA_FLUIDS);
         tag(TFCTags.Fluids.MOLTEN_METALS).add(FLFluids.METALS);
+        FLFluids.METALS.forEach((metal, fluid) -> {
+            tag(commonTagOf(Registries.FLUID, "molten_" + metal.getSerializedName())).add(fluid.getSource());
+        });
     }
 
     @Override

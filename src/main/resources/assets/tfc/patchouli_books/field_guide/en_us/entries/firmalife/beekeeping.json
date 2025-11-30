@@ -23,7 +23,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/honey_jar_open",
+      "recipe": "firmalife:crafting/unjarring_raw_honey",
       "text": "Bees also produce $(thing)Honey$(). Using $(item)$(k:key.use)$() with an Empty Jar on a hive that visibly has honey gives you a $(thing)Honey Jar$(). Opening a Honey Jar gives you $(thing)Raw Honey$(), a $(thing)Sugar$() substitute."
     },
     {

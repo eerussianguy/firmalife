@@ -1,5 +1,6 @@
 package com.eerussianguy.firmalife.common.misc;
 
+import com.eerussianguy.firmalife.common.FLHelpers;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.sounds.SoundEvent;
 
@@ -17,6 +18,6 @@ public class FLSounds
 
     private static Id register(String name)
     {
-        return new Id(SOUND.register(name, () -> SoundEvent.createVariableRangeEvent(Helpers.identifier(name))));
+        return new Id(SOUND.register(name, () -> SoundEvent.createVariableRangeEvent(FLHelpers.identifier(name))));
     }
 }

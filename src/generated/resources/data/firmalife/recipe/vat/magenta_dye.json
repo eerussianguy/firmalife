@@ -8,10 +8,10 @@
     "count": 1,
     "tag": "c:dyes/magenta"
   },
-  "length": 1,
+  "length": 600,
   "output_fluid": {
     "amount": 1000,
     "id": "tfc:magenta_dye"
   },
-  "temperature": 1.0
+  "temperature": 300.0
 }

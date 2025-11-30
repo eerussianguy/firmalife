@@ -36,7 +36,6 @@ public interface VatRecipes extends Recipes
     default void vatRecipes()
     {
 
-        //TODO none of these recipes had length or temperature listed
         vat(
             sized(TFCItems.OLIVE_PASTE),
             sized(Fluids.WATER, 200),
@@ -115,26 +114,22 @@ public interface VatRecipes extends Recipes
 
     private void vat(SizedIngredient ingredient, SizedFluidIngredient fluidInput, ItemStackProvider output, FluidStack outputFluid)
     {
-        //TODO this needs length and temperature
-        vat(ingredient, fluidInput, Optional.of(output), Optional.of(outputFluid), 1, 1, Optional.empty(), Optional.empty());
+        vat(ingredient, fluidInput, Optional.of(output), Optional.of(outputFluid), 600, 300, Optional.empty(), Optional.empty());
     }
 
     private void vat(SizedIngredient ingredient, SizedFluidIngredient fluidInput, ItemStack jarOutput, Optional<ResourceLocation> outputTexture)
     {
-        //TODO this needs length and temperature
-        vat(ingredient, fluidInput, Optional.empty(), Optional.empty(), 1, 1, Optional.of(jarOutput), outputTexture);
+        vat(ingredient, fluidInput, Optional.empty(), Optional.empty(), 600, 300, Optional.of(jarOutput), outputTexture);
     }
 
     private void vat(SizedIngredient ingredient, SizedFluidIngredient fluidInput, ItemStackProvider output)
     {
-        //TODO this needs length and temperature
-        vat(ingredient, fluidInput, Optional.of(output), Optional.empty(), 1, 1, Optional.empty(), Optional.empty());
+        vat(ingredient, fluidInput, Optional.of(output), Optional.empty(), 600, 300, Optional.empty(), Optional.empty());
     }
 
     private void vat(SizedIngredient ingredient, SizedFluidIngredient fluidInput, FluidStack outputFluid)
     {
-        //TODO this needs length and temperature
-        vat(ingredient, fluidInput, Optional.empty(), Optional.of(outputFluid), 1, 1, Optional.empty(), Optional.empty());
+        vat(ingredient, fluidInput, Optional.empty(), Optional.of(outputFluid), 600, 300, Optional.empty(), Optional.empty());
     }
 
 

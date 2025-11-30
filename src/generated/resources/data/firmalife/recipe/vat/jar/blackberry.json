@@ -24,7 +24,7 @@
     "count": 1,
     "id": "tfc:jar/blackberry"
   },
-  "length": 1,
+  "length": 600,
   "output_texture": "tfc:block/jar/blackberry",
-  "temperature": 1.0
+  "temperature": 300.0
 }

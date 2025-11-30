@@ -72,7 +72,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/wood/acacia_stomping_barrel",
+      "recipe": "firmalife:crafting/wood/stomping_barrel/acacia",
       "text": "The stomping barrel is used to smash grapes. A quern may also be used."
     },
     {
@@ -81,7 +81,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/wood/acacia_barrel_press",
+      "recipe": "firmalife:crafting/wood/barrel_press/acacia",
       "text": "The barrel press is the last step in grape processing."
     },
     {
@@ -90,7 +90,7 @@
     },
     {
       "type": "tfc:glassworking_recipe",
-      "recipe": "firmalife:glassworking/olivine_wine_bottle",
+      "recipe": "firmalife:glassworking/empty_olivine_wine_bottle",
       "text": "Wine must be bottled in a proper wine bottle, made of non-silica glass."
     },
     {

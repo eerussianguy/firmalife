@@ -126,7 +126,7 @@ public class DataEntryPoint
                 add("stainless_steel", new GreenhouseType(BlockIngredient.of(FLTags.Blocks.STAINLESS_STEEL_GREENHOUSE), 20, Component.translatable("greenhouse.firmalife.stainless_steel")));
             }
         });
-        add(event, new DataManagerProvider<KnappingType>(KnappingType.MANAGER, output, lookup, MOD_ID)
+        add(event, new DataManagerProvider<KnappingType>(KnappingType.MANAGER, output, lookup, TerraFirmaCraft.MOD_ID)
         {
             @Override
             protected void addData(HolderLookup.Provider provider)

@@ -247,7 +247,8 @@ public interface CraftingRecipes extends Recipes
         recipe()
             .input(Tags.Items.RODS_WOODEN)
             .input(TFCTags.Items.LUMBER)
-            .input(TFCTags.Items.TOOLS_KNIFE)
+            .inputIsPrimary(TFCTags.Items.TOOLS_KNIFE)
+            .damageInputs()
             .shapeless(FLItems.SPOON);
         recipe()
             .input(FLItems.BEESWAX)
@@ -444,7 +445,7 @@ public interface CraftingRecipes extends Recipes
         // Masa
         for (int i = 1; i < 9; i++)
         {
-            recipe(String.valueOf(i))
+            recipe("masa_" + i)
                 .input(FluidContentIngredient.of(Fluids.WATER, 100))
                 .input(notRotten(itemOf(FLFood.MASA_FLOUR)), i)
                 .copyOldestFood()
@@ -736,7 +737,7 @@ public interface CraftingRecipes extends Recipes
         }
         else if (amount == 1)
         {
-            recipe("jarring" + nameOf(unsealed))
+            recipe("jarring_" + nameOf(unsealed))
                 .input(TFCItems.EMPTY_JAR)
                 .input(unsealed)
                 .shapeless(sealed);

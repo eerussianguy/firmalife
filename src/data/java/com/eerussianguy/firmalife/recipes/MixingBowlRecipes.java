@@ -168,7 +168,6 @@ public interface MixingBowlRecipes extends Recipes
 
     private void mix(List<Ingredient> inputs, ItemStack output)
     {
-        // TODO cant serialize SizedFluidIngredients that are empty, see comment on the codec for MixingBowlRecipe
         mix(inputs, null, output, FluidStack.EMPTY);
     }
 

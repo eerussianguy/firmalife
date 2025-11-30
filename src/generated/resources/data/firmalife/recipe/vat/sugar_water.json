@@ -8,10 +8,10 @@
     "count": 1,
     "tag": "tfc:foods/sweeteners"
   },
-  "length": 1,
+  "length": 600,
   "output_fluid": {
     "amount": 500,
     "id": "firmalife:sugar_water"
   },
-  "temperature": 1.0
+  "temperature": 300.0
 }

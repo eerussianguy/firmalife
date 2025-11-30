@@ -45,23 +45,23 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/greenhouse/iron_greenhouse_wall",
-      "recipe2": "firmalife:crafting/greenhouse/iron_greenhouse_roof"
+      "recipe": "firmalife:crafting/iron_greenhouse_wall",
+      "recipe2": "firmalife:crafting/iron_greenhouse_roof"
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/greenhouse/iron_greenhouse_door",
-      "recipe2": "firmalife:crafting/greenhouse/iron_greenhouse_roof_top"
+      "recipe": "firmalife:crafting/iron_greenhouse_door",
+      "recipe2": "firmalife:crafting/iron_greenhouse_roof_top"
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/greenhouse/iron_greenhouse_trapdoor",
-      "recipe2": "firmalife:crafting/greenhouse/iron_greenhouse_panel_roof"
+      "recipe": "firmalife:crafting/iron_greenhouse_trapdoor",
+      "recipe2": "firmalife:crafting/iron_greenhouse_panel_roof"
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/greenhouse/iron_greenhouse_panel_wall",
-      "recipe2": "firmalife:crafting/greenhouse/iron_greenhouse_port"
+      "recipe": "firmalife:crafting/iron_greenhouse_panel_wall",
+      "recipe2": "firmalife:crafting/iron_greenhouse_port"
     }
   ],
   "read_by_default": true,

@@ -8,10 +8,10 @@
     "count": 1,
     "item": "tfc:powder/wood_ash"
   },
-  "length": 1,
+  "length": 600,
   "output_fluid": {
     "amount": 200,
     "id": "tfc:lye"
   },
-  "temperature": 1.0
+  "temperature": 300.0
 }

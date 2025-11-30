@@ -9,7 +9,6 @@ import net.minecraft.world.level.material.Fluid;
 
 import net.dries007.tfc.common.component.food.FoodTrait;
 import net.dries007.tfc.common.component.food.FoodTraits;
-import net.dries007.tfc.util.Helpers;
 
 @SuppressWarnings("unused")
 public class FLTags
@@ -71,7 +70,6 @@ public class FLTags
         public static final TagKey<Item> GRAPES = create("foods/grapes");
         public static final TagKey<Item> SMASHED_GRAPES = create("foods/smashed_grapes");
         public static final TagKey<Item> CAN_BE_PRESSED_LIKE_GRAPES = create("can_be_pressed_like_grapes");
-        public static final TagKey<Item> SWEETENER = TagKey.create(Registries.ITEM, Helpers.identifier("sweetener"));
         public static final TagKey<Item> COOKED_MEATS_AND_SUBSTITUTES = create("foods/cooked_meats_and_substitutes");
         public static final TagKey<Item> CHEESES = create("foods/cheeses");
         public static final TagKey<Item> RAW_EGGS = create("foods/raw_eggs");
