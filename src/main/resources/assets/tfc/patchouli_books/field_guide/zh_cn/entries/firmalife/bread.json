@@ -22,7 +22,7 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/food/toast_with_butter",
-      "recipe2": "firmalife:crafting/toast_with_jam",
+      "recipe2": "firmalife:crafting/food/toast_with_jam",
       "title": "吐司"
     }
   ],

@@ -10,7 +10,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/wood/shelf/acacia",
+      "recipe": "firmalife:crafting/wood/food_shelf/acacia",
       "text": "The food shelf is made from planks and lumber."
     }
   ],

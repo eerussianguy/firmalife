@@ -10,7 +10,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/wood/shelf/acacia",
+      "recipe": "firmalife:crafting/wood/food_shelf/acacia",
       "text": "食品棚は板と板材で作成できます。"
     }
   ],

@@ -15,7 +15,7 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/food/tortilla_chips",
-      "recipe2": "firmalife:crafting/nachos"
+      "recipe2": "firmalife:crafting/food/nachos"
     },
     {
       "type": "patchouli:crafting",

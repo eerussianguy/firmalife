@@ -10,7 +10,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/food/lasagna",
+      "recipe": "firmalife:crafting/food/raw_lasagna",
       "text": "$(thing)Лазанью$() можно приготовить непосредственно из яичной лапши с $(l:firmalife/pizza#tomato_sauce)Томатным соусом$(), приготовленным мясом и орегано, которую затем можно запечь в $(l:firmalife/ovens)Печи$()."
     },
     {

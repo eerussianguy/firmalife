@@ -119,7 +119,7 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False, rev
         )),
         entry('food_shelves', 'Food Shelves', 'firmalife:wood/food_shelf/pine', pages=(
             text('The $(thing)Food Shelf$() is a device for storing food. It can only be used in a valid $(l:firmalife/cellar)Cellar$(). Food shelves can contain a full stack of one food item. Adding and removing the item can be done with $(item)$(k:key.use)$(). Items in valid food shelves receive a decay modifier that is better than vessels.'),
-            crafting('firmalife:crafting/wood/shelf/acacia', text_contents='The food shelf is made from planks and lumber.'),
+            crafting('firmalife:crafting/wood/food_shelf/acacia', text_contents='The food shelf is made from planks and lumber.'),
         )),
         entry('hangers', 'Hangers', 'firmalife:wood/hanger/pine', pages=(
             text('The $(thing)Hanger$() is a device for storing meat or garlic. It can only be used in a valid $(l:firmalife/cellar)Cellar$(). Food shelves can contain a full stack of one item. Adding and removing the item can be done with $(item)$(k:key.use)$(). Items in valid food shelves receive a decay modifier that is better than shelves or vessels.'),
@@ -259,7 +259,7 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False, rev
             text('To make $(thing)Bread$(), one first must get $(thing)Yeast$(). To get your first yeast, seal $(l:firmalife/drying)Dried Fruit$() in a Barrel of $(thing)Water$(). After three days, $(thing)Yeast Starter$() will form.$(br)From now on, your yeast can be fed by sealing Yeast Starter in a Barrel with $(thing)Flour$(). This causes it to multiply. 1 flour per 100mB of Yeast produces 600mB of Yeast. That\'s a good deal!'),
             crafting('firmalife:crafting/food/barley_dough', text_contents='Yeast Starter, Sweetener, and Flour can be combined to make $(thing)Dough$(). Dough can be cooked like normal to produce $(thing)Bread!$().'),
             crafting('firmalife:crafting/food/barley_slice', text_contents='Once baked, you can use a $(thing)knife$() to cut bread into $(thing)slices$(). These can then either be used for $(l:tfc:mechanics/sandwiches)sandwich making$(), or cooked into $(thing)toast$() which can be spread with $(thing)butter$() or preserves.', title='Sliced Bread'),
-            crafting('firmalife:crafting/food/toast_with_butter', 'firmalife:crafting/toast_with_jam', title='Toast')
+            crafting('firmalife:crafting/food/toast_with_butter', 'firmalife:crafting/food/toast_with_jam', title='Toast')
         )),
         entry('more_fertilizer', 'More Fertilizer Options', 'firmalife:compost_tumbler', pages=(
             text('Given a greater need for fertilization in Firmalife, there are more options for getting $(l:mechanics/fertilizers)fertilizers$().'),
@@ -346,14 +346,14 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False, rev
         )),
         entry('pasta', 'Pasta', 'firmalife:textures/item/food/cooked_pasta.png', pages=(
             text('There are two types of $(thing)Noodles$(): Egg and Rice. Rice flour, maize flour, salt, and 1000 mB of milk together in a $(l:firmalife/mixing_bowl)Mixing Bowl$() makes $(thing)Rice Noodles$(). Flour, an egg, salt, and 1000 mB of milk makes $(thing)Egg Noodles$().'),
-            crafting('firmalife:crafting/food/lasagna', text_contents='$(thing)Lasagna$() can be made directly from egg noodles with $(l:firmalife/pizza#tomato_sauce)Tomato Sauce$(), cooked meat, and oregano, which can then be baked in an $(l:firmalife/ovens)Oven$().'),
+            crafting('firmalife:crafting/food/raw_lasagna', text_contents='$(thing)Lasagna$() can be made directly from egg noodles with $(l:firmalife/pizza#tomato_sauce)Tomato Sauce$(), cooked meat, and oregano, which can then be baked in an $(l:firmalife/ovens)Oven$().'),
             text('Pasta is then completed by boiling it in water. For either kind of noodles, it must be retrieved from the pot by clicking with a $(thing)Bowl$().'),
             crafting('firmalife:crafting/food/pasta_with_tomato_sauce', text_contents='Crafting cooked egg noodles (pasta) with tomato sauce makes delicious pasta with tomato sauce!'),
         )),
         entry('burritos_and_tacos', 'Burritos and Tacos', 'firmalife:textures/item/food/burrito.png', pages=(
             text('The journey of making a $(thing)Tortilla$() is a long process, but rewarding. Start with $(thing)Maize Grain$(). Boil it in a pot of $(thing)Limewater$(), and seal it in a barrel of water to make $(thing)Nixtamal$(). Then crush it in a $(thing)Quern$() to make $(thing)Masa Flour$().'),
             text('Crafting the Masa Flour with a bucket of water makes $(thing)Masa$(), the dough of a tortilla. This can be heated to make a $(thing)Corn Tortilla$(). Baking a Tortilla in an oven makes a $(thing)Taco Shell$().'),
-            crafting('firmalife:crafting/food/tortilla_chips', 'firmalife:crafting/nachos'),
+            crafting('firmalife:crafting/food/tortilla_chips', 'firmalife:crafting/food/nachos'),
             crafting('firmalife:crafting/food/salsa', text_contents='A tomato, cilantro, salt, and a knife will yield you $(thing)Salsa$().'),
             crafting('firmalife:crafting/food/burrito', text_contents='The $(thing)Burrito$() is made from cooked meat, $(l:firmalife/pizza#shredded_cheese)Shredded Cheese$(), $(l:firmalife/pizza#tomato_sauce)Tomato Sauce$(), a vegetable, and Salsa.'),
             crafting('firmalife:crafting/food/taco', text_contents='The $(thing)Taco$() is made from the same ingredients, except with a $(thing)Taco Shell$().'),
