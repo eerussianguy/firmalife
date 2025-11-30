@@ -20,7 +20,6 @@ public interface AnvilRecipes extends Recipes
 {
     default void anvilRecipes()
     {
-        // TODO move this? make somewhere that has metal tiers and use that?
         Map<FLMetal, Integer> metalTiers = new HashMap<>();
         metalTiers.put(FLMetal.STAINLESS_STEEL, 4);
         metalTiers.put(FLMetal.CHROMIUM, 4);

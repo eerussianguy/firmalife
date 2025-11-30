@@ -45,6 +45,9 @@ public interface ChiselRecipes extends Recipes
                 );
             }
         }
+
+        chisel(FLBlocks.SEALED_BRICKS, FLBlocks.POLISHED_SEALED_BRICKS);
+        chisel(FLBlocks.POLISHED_SEALED_BRICKS, FLBlocks.CHISELED_SEALED_BRICKS);
     }
 
     private void chiselSlabStairs(Supplier<? extends Block> input, DecorationBlockHolder deco)

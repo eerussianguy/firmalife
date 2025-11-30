@@ -1,16 +1,21 @@
 {
-  "type": "minecraft:crafting_shapeless",
+  "type": "minecraft:crafting_shaped",
   "category": "misc",
-  "ingredients": [
-    {
-      "tag": "tfc:barrels"
+  "key": {
+    "L": {
+      "tag": "tfc:lumber"
     },
-    {
-      "tag": "c:sheets/any_bronze"
-    },
-    {
+    "P": {
       "item": "firmalife:copper_pipe"
+    },
+    "S": {
+      "tag": "c:sheets/any_bronze"
     }
+  },
+  "pattern": [
+    "LSL",
+    "LPL",
+    "LLL"
   ],
   "result": {
     "count": 1,

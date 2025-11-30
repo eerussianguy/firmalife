@@ -144,8 +144,6 @@ public interface PotRecipes extends Recipes
             300
         );
 
-        //TODO is this even correct? thought 5 items was the max?
-        // This is how it was in python though
         for (int i = 3; i < 5; i++)
         {
             var inputs = Helpers.immutableAdd(
@@ -258,7 +256,6 @@ public interface PotRecipes extends Recipes
 
     private void pot(List<Ingredient> input, SizedFluidIngredient fluidInput, FluidStack fluidOutput, List<ItemStackProvider> output, int duration, int time)
     {
-        //TODO improve this name?
         String name;
         if (output.isEmpty())
         {

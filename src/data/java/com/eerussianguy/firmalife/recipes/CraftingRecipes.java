@@ -387,18 +387,15 @@ public interface CraftingRecipes extends Recipes
         decorationRecipe(FLBlocks.RUSTIC_BRICKS, FLBlocks.RUSTIC_BRICK_DECOR);
         decorationRecipe(FLBlocks.TILES, FLBlocks.TILE_DECOR);
 
-        //TODO this was a no remainder shapeless recipe, is that still important?
-        // See: https://github.com/TerraFirmaCraft/TerraFirmaCraft/blob/1.20.x/src/main/java/net/dries007/tfc/common/recipes/NoRemainderCraftingRecipe.java
         recipe()
-            .input(TFCTags.Items.BARRELS)
-            .input(anyBronzeSheets)
-            .input(FLBlocks.COPPER_PIPE)
-            .shapeless(FLBlocks.IRRIGATION_TANK);
+            .input('L', TFCTags.Items.LUMBER)
+            .input('S', anyBronzeSheets)
+            .input('P', FLBlocks.COPPER_PIPE)
+            .pattern("LSL", "LPL", "LLL")
+            .shaped(FLBlocks.IRRIGATION_TANK);
 
-        //TODO make these chiseling recipes?
         recipe().useTool(TFCTags.Items.TOOLS_CHISEL, FLBlocks.POLISHED_SEALED_BRICKS, FLBlocks.CHISELED_SEALED_BRICKS);
         recipe().useTool(TFCTags.Items.TOOLS_CHISEL, FLBlocks.SEALED_BRICKS, FLBlocks.POLISHED_SEALED_BRICKS);
-
 
         recipe()
             .inputIsPrimary(TFCTags.Items.TOOLS_HAMMER)

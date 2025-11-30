@@ -26,8 +26,6 @@ public interface DryingRecipes extends Recipes
             ItemStackProvider.of(CopyInputModifier.INSTANCE, AddTraitModifier.of(FLFoodTraits.DRIED))
         );
         drying(FLItems.CINNAMON_BARK, itemOf(Spice.CINNAMON));
-        //TODO no dead grass groundcover? whats a good replacement?
-        //drying(TFCBlocks.THATCH, ItemStackProvider.of(GROUNDCOVER/DEAD_GRASS));
         dryingCopyFood(itemOf(FLFood.SOY_MIXTURE), itemOf(FLFood.TOFU));
         drying(itemOf(Herb.VANILLA), itemOf(Spice.VANILLA));
         dryingCopyFood(notRotten(itemOf(Food.SOYBEAN)), itemOf(FLFood.DEHYDRATED_SOYBEANS));
