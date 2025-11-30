@@ -18,7 +18,7 @@
     },
     {
       "type": "tfc:drying_recipe",
-      "recipe": "firmalife:drying/dark_chocolate",
+      "recipe": "firmalife:drying/food/dark_chocolate",
       "text": "Finally, chocolate is dried on a $(l:tfc:firmalife/drying)Drying Mat$() to make $(thing)Chocolate$()."
     }
   ],

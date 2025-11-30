@@ -14,22 +14,22 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/tortilla_chips",
+      "recipe": "firmalife:crafting/food/tortilla_chips",
       "recipe2": "firmalife:crafting/nachos"
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/salsa",
+      "recipe": "firmalife:crafting/food/salsa",
       "text": "Помидор, кинза, соль и нож позволят вам получить $(thing)Сальсу$()."
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/burrito",
+      "recipe": "firmalife:crafting/food/burrito",
       "text": "$(thing)Буррито$() состоит из приготовленного мяса, $(l:firmalife/pizza#shredded_cheese)Тертого сыра$(), $(l:firmalife/pizza#tomato_sauce)Томатного соуса$(), овощей и сальсы."
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/taco",
+      "recipe": "firmalife:crafting/food/taco",
       "text": "$(thing)Тако$() готовится из тех же ингредиентов, за исключением $(thing)Оболочки тако$()."
     }
   ],

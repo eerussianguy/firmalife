@@ -61,7 +61,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/greenhouse/iron_greenhouse_port",
+      "recipe": "firmalife:crafting/iron_greenhouse_port",
       "text": "Порты теплицы имеют внутри одну трубу. Их можно использовать для прохождения воды через стены теплиц!"
     }
   ],

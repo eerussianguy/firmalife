@@ -23,7 +23,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/honey_jar_open",
+      "recipe": "firmalife:crafting/unjarring_raw_honey",
       "text": "ミツバチは$(thing)ハチミツ$()も生産します。$(br)ハチミツが溜まっているように見える巣に$(l:tfc:firmalife/jar)空のビン$()を$(item)$(k:key.use)$()でを使用すると、$(thing)蜂蜜瓶$()が得られます。$(br)蜂蜜瓶を開けると、$(thing)砂糖$()の代用品である$(thing)生の蜂蜜$()が手に入ります。"
     },
     {

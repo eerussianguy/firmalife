@@ -61,7 +61,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/greenhouse/iron_greenhouse_port",
+      "recipe": "firmalife:crafting/iron_greenhouse_port",
       "text": "$(br)温室ポートには、中に1本のパイプが入っています。温室の壁に水を通すために使用されます！"
     }
   ],

@@ -23,7 +23,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/honey_jar_open",
+      "recipe": "firmalife:crafting/unjarring_raw_honey",
       "text": "蜜蜂还会生产 $(thing)蜂蜜$(). 使用 $(item)$(k:key.use)$() 带有 $(l:tfc:firmalife/jar)Empty Jar$() 在看上去有蜂蜜的蜂箱上将会给你一个 $(thing)蜂蜜罐$(). 打开蜂蜜罐后，你将得到 $(thing)生蜂蜜$(), 一个 $(thing)代糖$() 品."
     },
     {

@@ -72,8 +72,8 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/wood/acacia_stomping_barrel",
-      "text": "Бочка для топки используется для раздавливания винограда. Также можно использовать жернов."
+      "recipe": "firmalife:crafting/wood/stomping_barrel/acacia",
+      "text": "Топчальная бочка используется для раздавливания винограда. Можно также использовать жернова."
     },
     {
       "type": "patchouli:text",
@@ -81,30 +81,26 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/wood/acacia_barrel_press",
+      "recipe": "firmalife:crafting/wood/barrel_press/acacia",
       "text": "Пресс для бочек — это последний этап обработки винограда."
     },
     {
       "type": "patchouli:text",
-      "text": "В крайнем левом слоте может поместиться до 16 винограда. Для одной бутылки вина требуется четыре винограда. Четыре центральных слота предназначены для смешивания винограда с другими ингредиентами, но это не обязательно. Использование только красного или белого винограда дает красное или белое вино. Добавление хотя бы одной красной винограда к белому дает розовое вино. Добавление сахара к белому винограду дает десертное вино."
-    },
-    {
-      "type": "patchouli:text",
-      "text": "Добавление тиражной смеси (дрожжи и подсластитель в бочке) дает игристое вино."
+      "text": "The leftmost slot can contain up to 16 grapes. Four grape items are needed for a bottle of wine. The four central slots are for mixing the grapes with other ingredients, but this is optional. Using only red or white grapes yields red or white wine. Adding at least one red grape to white wine makes Rose. Adding sugar to white wine makes dessert wine. Adding tirage mixture (yeast and sweetener in a barrel) makes sparkling wine."
     },
     {
       "type": "tfc:glassworking_recipe",
-      "recipe": "firmalife:glassworking/olivine_wine_bottle",
-      "text": "Вино должно быть разлито в подходящую винную бутылку, изготовленную из стекла, кроме силикатного."
+      "recipe": "firmalife:glassworking/empty_olivine_wine_bottle",
+      "text": "Wine must be bottled in a proper wine bottle, made of non-silica glass."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/bottle_label",
-      "text": "$(thing)Этикетки для бутылки$() можно переименовать в столе писаря, и их название будет добавлено в всплывающую подсказку о вине."
+      "text": "$(thing)Bottle labels$() can be renamed in a scribing station, and will add their name to the wine's tooltip."
     },
     {
       "type": "patchouli:text",
-      "text": "Вино необходимо запечатать $(thing)пробкой$(), изготовленной путем замачивания $(thing)обработанной доски$() в $(thing)известковой воде$() в течение суток. Когда все будет готово, используйте слот для бутылки, чтобы перелить вино, или нажмите $(item)$(k:key.use)$() по прессу держа  бутылку в руке."
+      "text": "Wine must be provided with a $(thing)Cork$(), made by soaking $(thing)Treated Lumber$() in $(thing)Limewater$() for a day. When all is complete, use the bottle slot to fill the wine, or by pressing $(item)$(k:key.use)$() with a bottle in hand."
     }
   ],
   "read_by_default": true,

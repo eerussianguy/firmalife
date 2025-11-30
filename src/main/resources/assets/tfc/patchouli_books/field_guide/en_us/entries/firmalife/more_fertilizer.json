@@ -9,11 +9,6 @@
       "text": "Given a greater need for fertilization in Firmalife, there are more options for getting $(l:mechanics/fertilizers)fertilizers$()."
     },
     {
-      "type": "tfc:drying_recipe",
-      "recipe": "firmalife:drying/dry_grass",
-      "text": "Thatch can be $(l:firmalife/drying)Dried$() into $(thing)Dry Grass$(), which can be used in a Composter as a brown item."
-    },
-    {
       "type": "patchouli:text",
       "text": "$(thing)Compost Tumblers$() are a great way to produce more fertilizer. They must be connected to mechanical power in order to work. It can only be interacted with when not powered, so consider connecting it to a clutch!"
     },

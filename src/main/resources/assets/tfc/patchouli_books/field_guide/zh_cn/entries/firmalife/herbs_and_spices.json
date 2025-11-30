@@ -57,7 +57,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/basil_leaves",
+      "recipe": "firmalife:crafting/spice/basil_leaves",
       "text": "Basil香草的叶子可以用来制作披萨."
     }
   ],

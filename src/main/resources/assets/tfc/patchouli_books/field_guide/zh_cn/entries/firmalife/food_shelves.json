@@ -10,7 +10,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/wood/acacia_shelf",
+      "recipe": "firmalife:crafting/wood/shelf/acacia",
       "text": "食物橱架是通过木板与木材合成的。"
     }
   ],

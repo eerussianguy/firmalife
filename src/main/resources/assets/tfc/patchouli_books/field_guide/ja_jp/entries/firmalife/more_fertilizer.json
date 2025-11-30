@@ -9,11 +9,6 @@
       "text": "Firmalifeでは$(l:mechanics/fertilizers)肥料$()を必要とすることが多いため、入手するための選択肢が増えました。"
     },
     {
-      "type": "tfc:drying_recipe",
-      "recipe": "firmalife:drying/dry_grass",
-      "text": "藁ブロックは$(l:tfc:firmalife/drying)乾燥$()させて$(thing)枯草$()にすることができ、コンポスターで茶のアイテムとして使用できます。"
-    },
-    {
       "type": "patchouli:text",
       "text": "$(thing)鉄のコンポスター$()は、肥料をより多く生産するための素晴らしい装置です。$(br2)作動させるには、機械的動力に接続する必要があります。$(br)動力がないときにしか操作ができないので、クラッチを接続することを検討してください！"
     },

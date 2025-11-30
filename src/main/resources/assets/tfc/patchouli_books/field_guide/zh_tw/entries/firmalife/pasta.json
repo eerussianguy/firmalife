@@ -10,7 +10,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/lasagna",
+      "recipe": "firmalife:crafting/food/lasagna",
       "text": "$(thing)Lasagna$() can be made directly from egg noodles with $(l:firmalife/pizza#tomato_sauce)Tomato Sauce$(), cooked meat, and oregano, which can then be baked in an $(l:firmalife/ovens)Oven$()."
     },
     {
@@ -19,7 +19,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/tomato_pasta",
+      "recipe": "firmalife:crafting/food/pasta_with_tomato_sauce",
       "text": "Crafting cooked egg noodles (pasta) with tomato sauce makes delicious pasta with tomato sauce!"
     }
   ],

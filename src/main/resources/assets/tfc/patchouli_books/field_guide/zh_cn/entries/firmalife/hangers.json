@@ -10,7 +10,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/wood/acacia_hanger",
+      "recipe": "firmalife:crafting/wood/hanger/acacia",
       "text": "吊架是通过木板和线合成的。"
     }
   ],

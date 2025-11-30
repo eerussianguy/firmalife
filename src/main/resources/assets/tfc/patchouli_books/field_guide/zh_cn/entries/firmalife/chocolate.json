@@ -18,7 +18,7 @@
     },
     {
       "type": "tfc:drying_recipe",
-      "recipe": "firmalife:drying/dark_chocolate",
+      "recipe": "firmalife:drying/food/dark_chocolate",
       "text": "最后，巧克力能在一个 $(l:tfc:firmalife/drying)干燥垫$() 上被晒干以最后制成 $(thing)巧克力$()."
     }
   ],

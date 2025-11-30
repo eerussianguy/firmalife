@@ -14,22 +14,22 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/tortilla_chips",
+      "recipe": "firmalife:crafting/food/tortilla_chips",
       "recipe2": "firmalife:crafting/nachos"
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/salsa",
+      "recipe": "firmalife:crafting/food/salsa",
       "text": "A tomato, cilantro, salt, and a knife will yield you $(thing)Salsa$()."
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/burrito",
+      "recipe": "firmalife:crafting/food/burrito",
       "text": "The $(thing)Burrito$() is made from cooked meat, $(l:firmalife/pizza#shredded_cheese)Shredded Cheese$(), $(l:firmalife/pizza#tomato_sauce)Tomato Sauce$(), a vegetable, and Salsa."
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/taco",
+      "recipe": "firmalife:crafting/food/taco",
       "text": "The $(thing)Taco$() is made from the same ingredients, except with a $(thing)Taco Shell$()."
     }
   ],

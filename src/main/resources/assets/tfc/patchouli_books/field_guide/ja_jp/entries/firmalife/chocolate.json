@@ -18,7 +18,7 @@
     },
     {
       "type": "tfc:drying_recipe",
-      "recipe": "firmalife:drying/dark_chocolate",
+      "recipe": "firmalife:drying/food/dark_chocolate",
       "text": "最後にチョコレートを$(l:tfc:firmalife/drying)乾燥マット$()の上で乾燥させ、$(thing)チョコレート$()が完成します。"
     }
   ],

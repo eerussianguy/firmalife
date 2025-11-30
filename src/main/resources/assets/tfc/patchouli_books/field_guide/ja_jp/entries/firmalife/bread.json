@@ -10,18 +10,18 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/barley_dough",
+      "recipe": "firmalife:crafting/food/barley_dough",
       "text": "イーストスターター、甘味料、小麦粉を合わせて$(thing)生地$()を作ることができます。$(br2)生地は通常通り調理して$(thing)パン$()を作ることができます。"
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/barley_slice",
+      "recipe": "firmalife:crafting/food/barley_slice",
       "title": "スライスしたパン",
       "text": "パンが焼き上がったら$(thing)ナイフ$()で切り分けられます。$(br2)$(l:tfc:mechanics/sandwiches)サンドイッチ$()にしたり、$(thing)バター$()やジャムを塗った$(thing)トースト$()にしたりできます。"
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/toast_with_butter",
+      "recipe": "firmalife:crafting/food/toast_with_butter",
       "recipe2": "firmalife:crafting/toast_with_jam",
       "title": "トースト"
     }

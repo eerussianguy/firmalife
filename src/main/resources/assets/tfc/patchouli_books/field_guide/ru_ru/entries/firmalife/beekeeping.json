@@ -23,7 +23,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/honey_jar_open",
+      "recipe": "firmalife:crafting/unjarring_raw_honey",
       "text": "Пчелы также производят $(thing)Мёд$(). Использование $(item)$(k:key.use)$() с пустой банкой на улье, в котором визуально есть мёд, даёт вам $(thing)Банку мёда$(). Открытие банки мёда даёт вам $(thing)Сырой мёд$(), заменитель $(thing)Сахара$()."
     },
     {

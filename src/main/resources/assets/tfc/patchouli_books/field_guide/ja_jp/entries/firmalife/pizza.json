@@ -11,7 +11,7 @@
     {
       "type": "patchouli:crafting",
       "anchor": "shredded_cheese",
-      "recipe": "firmalife:crafting/shredded_cheese",
+      "recipe": "firmalife:crafting/food/shredded_cheese",
       "text": "You'll need some shredded cheese to start with."
     },
     {
@@ -21,7 +21,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/raw_pizza3",
+      "recipe": "firmalife:crafting/pizza_with_ingredients_2",
       "text": "Pizza is made from 1-3 of vegetables, cooked meats, or fruits, one shredded cheese, and one tomato sauce."
     }
   ],

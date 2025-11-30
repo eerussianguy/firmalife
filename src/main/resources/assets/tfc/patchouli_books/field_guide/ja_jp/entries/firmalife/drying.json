@@ -28,17 +28,17 @@
     },
     {
       "type": "tfc:drying_recipe",
-      "recipe": "firmalife:drying/drying_fruit",
+      "recipe": "firmalife:drying/dry_fruits",
       "text": "果物を乾燥させるのは、乾燥マットの一般的な使い方です。$(br2)乾燥させた果物は鮮度が長持ちし、さまざまなレシピに使用されます。"
     },
     {
       "type": "tfc:drying_recipe",
-      "recipe": "firmalife:drying/tofu",
+      "recipe": "firmalife:drying/food/tofu",
       "text": "豆腐は乾燥マットを使って作られます。"
     },
     {
       "type": "tfc:drying_recipe",
-      "recipe": "firmalife:drying/cinnamon",
+      "recipe": "firmalife:drying/spice/cinnamon",
       "text": "シナモンは乾燥マットを使って作られます。"
     }
   ],

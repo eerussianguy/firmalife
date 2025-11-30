@@ -10,7 +10,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/wood/acacia_hanger",
+      "recipe": "firmalife:crafting/wood/hanger/acacia",
       "text": "The hanger is made from planks and string."
     }
   ],

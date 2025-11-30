@@ -10,17 +10,17 @@
     },
     {
       "type": "tfc:knapping_recipe",
-      "recipe": "firmalife:clay_knapping/oven_top",
+      "recipe": "firmalife:knapping/oven_top",
       "text": "オーブンのレシピ"
     },
     {
       "type": "tfc:knapping_recipe",
-      "recipe": "firmalife:clay_knapping/oven_bottom",
+      "recipe": "firmalife:knapping/oven_bottom",
       "text": "オーブンかまどのレシピ"
     },
     {
       "type": "tfc:knapping_recipe",
-      "recipe": "firmalife:clay_knapping/oven_chimney",
+      "recipe": "firmalife:knapping/oven_chimney",
       "text": "オーブンの煙突のレシピ"
     },
     {

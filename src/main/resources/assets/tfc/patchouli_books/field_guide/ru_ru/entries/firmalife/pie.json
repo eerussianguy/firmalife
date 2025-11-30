@@ -18,12 +18,12 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/raw_pumpkin_pie",
+      "recipe": "firmalife:crafting/food/raw_pumpkin_pie",
       "text": "$(thing)Формы для пирога$() можно выковать на Наковальне из $(thing)Чугуна$()."
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/filled_pie",
+      "recipe": "firmalife:crafting/food/filled_pie",
       "text": "Тесто для пирога, Варенье и Форма для пирога позволят вам получить $(thing)Пирог с начинкой$(), который затем можно довести до готовности в духовке для получения вкусного пирога."
     }
   ],

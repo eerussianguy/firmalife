@@ -119,15 +119,15 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False, rev
         )),
         entry('food_shelves', 'Food Shelves', 'firmalife:wood/food_shelf/pine', pages=(
             text('The $(thing)Food Shelf$() is a device for storing food. It can only be used in a valid $(l:firmalife/cellar)Cellar$(). Food shelves can contain a full stack of one food item. Adding and removing the item can be done with $(item)$(k:key.use)$(). Items in valid food shelves receive a decay modifier that is better than vessels.'),
-            crafting('firmalife:crafting/wood/acacia_shelf', text_contents='The food shelf is made from planks and lumber.'),
+            crafting('firmalife:crafting/wood/shelf/acacia', text_contents='The food shelf is made from planks and lumber.'),
         )),
         entry('hangers', 'Hangers', 'firmalife:wood/hanger/pine', pages=(
             text('The $(thing)Hanger$() is a device for storing meat or garlic. It can only be used in a valid $(l:firmalife/cellar)Cellar$(). Food shelves can contain a full stack of one item. Adding and removing the item can be done with $(item)$(k:key.use)$(). Items in valid food shelves receive a decay modifier that is better than shelves or vessels.'),
-            crafting('firmalife:crafting/wood/acacia_hanger', text_contents='The hanger is made from planks and string.'),
+            crafting('firmalife:crafting/wood/hanger/acacia', text_contents='The hanger is made from planks and string.'),
         )),
         entry('jarbnet', 'Jarbnets', 'firmalife:wood/jarbnet/pine', pages=(
             text('The jarbnet is a cosmetic storage block for $(l:tfc:mechanics/jarring)Jars$(), Candles, and Jugs. It can be opened and closed by clicking with an empty hand and $(item)$(k:key.sneak)$() pressed. If candles are inside, it can be lit to produce a small amount of light.'),
-            crafting('firmalife:crafting/wood/acacia_jarbnet'),
+            crafting('firmalife:crafting/wood/jarbnet/acacia'),
         )),
         entry('greenhouse', 'Greenhouse', 'firmalife:sealed_bricks', pages=(
             text('The $(thing)Greenhouse$() is a multiblock device controlled by a $(l:firmalife/climate_station)Climate Station$(). It allows growing crops year round. The Greenhouse has an array of types and blocks to choose from. However, building a greenhouse is quite simple. Like the $(l:firmalife/cellar)Cellar$(), it should be an enclosed area of blocks belonging to the same $(thing)Greenhouse Type$(). The floor of the greenhouse may be non-air block.'),
@@ -152,7 +152,7 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False, rev
             text('Pumping stations must be above a source block of water in order to work, and be connected to mechanical power. Irrigation tanks can also serve water through their ports on the sides, provided that they are stacked at most 3 blocks high above a pumping station on other tanks.'),
             crafting('firmalife:crafting/pumping_station', 'firmalife:crafting/irrigation_tank'),
             crafting('firmalife:crafting/oxidized_copper_pipe', text_contents='Oxidized pipes are the same as regular copper pipes, except they do not connect to the other kind of pipe.'),
-            crafting('firmalife:crafting/greenhouse/iron_greenhouse_port', text_contents='Greenhouse ports have a single pipe inside of them. They can be used to pass water through the walls of greenhouses!'),
+            crafting('firmalife:crafting/iron_greenhouse_port', text_contents='Greenhouse ports have a single pipe inside of them. They can be used to pass water through the walls of greenhouses!'),
             empty_last_page(),
         )),
         entry('planters', 'Planters', 'firmalife:large_planter', pages=(
@@ -199,9 +199,9 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False, rev
             text('To use the drying mat, place it out on the sun and add an item to it with $(item)$(k:key.use)$(). After a half day, it will be dried. If it rains, the drying process must start over.'),
             crafting('firmalife:crafting/solar_drier', text_contents='The solar drier functions the same as the drying mat, but 12x as fast.'),
             text('Drying mats can be automated. Pushing a piston head against a drying mat will pop the item off. Dropping an item onto a drying mat will place it on the mat.'),
-            drying_recipe('firmalife:drying/drying_fruit', 'Drying fruit is a common use of the drying mat. Dried fruit is used in some recipes, and lasts longer.'),
-            drying_recipe('firmalife:drying/tofu', 'Tofu is made using a drying mat.'),
-            drying_recipe('firmalife:drying/cinnamon', 'Cinnamon is made using a drying mat.'),
+            drying_recipe('firmalife:drying/dry_fruits', 'Drying fruit is a common use of the drying mat. Dried fruit is used in some recipes, and lasts longer.'),
+            drying_recipe('firmalife:drying/food/tofu', 'Tofu is made using a drying mat.'),
+            drying_recipe('firmalife:drying/spice/cinnamon', 'Cinnamon is made using a drying mat.'),
             empty_last_page()
         )),
         entry('smoking', 'Smoking', 'tfc:textures/item/food/venison.png', pages=(
@@ -214,9 +214,9 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False, rev
         )),
         entry('ovens', 'Ovens', 'firmalife:cured_oven_top', pages=(
             text('$(thing)Ovens$() are a great way of cooking lots of food in a way that improves their shelf life. Oven-baked food decays at 90% of the rate of regular food. Ovens are a multiblock structure consisting of a $(thing)Bottom Oven$(), $(thing)Top Oven$(), and optionally $(thing)Chimneys$(). These blocks start off as clay, and must be $(thing)Cured$() by raising their temperature to a certain amount for long enough.$(br)$(l:firmalife/oven_appliances)Oven Appliances$() extend oven functionality.'),
-            knapping('firmalife:clay_knapping/oven_top', 'The recipe for the top oven.'),
-            knapping('firmalife:clay_knapping/oven_bottom', 'The recipe for the bottom oven.'),
-            knapping('firmalife:clay_knapping/oven_chimney', 'The recipe for the oven chimney    .'),
+            knapping('firmalife:knapping/oven_top', 'The recipe for the top oven.'),
+            knapping('firmalife:knapping/oven_bottom', 'The recipe for the bottom oven.'),
+            knapping('firmalife:knapping/oven_chimney', 'The recipe for the oven chimney    .'),
             crafting('tfc:crafting/bricks', text_contents='Ovens are insulated with $(thing)Bricks$(), other oven blocks, or anything that can insulate a Forge. This means you can use stone blocks, if you want!'),
             crafting('firmalife:crafting/peel', text_contents='The $(thing)Peel$() is the only safe way to remove hot items from an Oven. Just $(item)$(k:key.use)$() on it while holding it to retrieve items. Otherwise, you may get burned!'),
             text('The Oven first consists of the Top Oven placed on top of the Bottom Oven. All sides of each oven part, besides the front face, should then be covered with Oven Insulation blocks, as covered two pages ago. You may choose to use $(thing)Oven Chimneys$() as insulation. Placing a stack of chimneys directly behind the oven causes the smoke from the oven to travel up and out of it. If you don\'t do this, smoke will quickly fill up your house, which is very distracting!'),
@@ -257,19 +257,19 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False, rev
         )),
         entry('bread', 'Bread', 'tfc:textures/item/food/barley_bread.png', pages=(
             text('To make $(thing)Bread$(), one first must get $(thing)Yeast$(). To get your first yeast, seal $(l:firmalife/drying)Dried Fruit$() in a Barrel of $(thing)Water$(). After three days, $(thing)Yeast Starter$() will form.$(br)From now on, your yeast can be fed by sealing Yeast Starter in a Barrel with $(thing)Flour$(). This causes it to multiply. 1 flour per 100mB of Yeast produces 600mB of Yeast. That\'s a good deal!'),
-            crafting('firmalife:crafting/barley_dough', text_contents='Yeast Starter, Sweetener, and Flour can be combined to make $(thing)Dough$(). Dough can be cooked like normal to produce $(thing)Bread!$().'),
-            crafting('firmalife:crafting/barley_slice', text_contents='Once baked, you can use a $(thing)knife$() to cut bread into $(thing)slices$(). These can then either be used for $(l:tfc:mechanics/sandwiches)sandwich making$(), or cooked into $(thing)toast$() which can be spread with $(thing)butter$() or preserves.', title='Sliced Bread'),
-            crafting('firmalife:crafting/toast_with_butter', 'firmalife:crafting/toast_with_jam', title='Toast')
+            crafting('firmalife:crafting/food/barley_dough', text_contents='Yeast Starter, Sweetener, and Flour can be combined to make $(thing)Dough$(). Dough can be cooked like normal to produce $(thing)Bread!$().'),
+            crafting('firmalife:crafting/food/barley_slice', text_contents='Once baked, you can use a $(thing)knife$() to cut bread into $(thing)slices$(). These can then either be used for $(l:tfc:mechanics/sandwiches)sandwich making$(), or cooked into $(thing)toast$() which can be spread with $(thing)butter$() or preserves.', title='Sliced Bread'),
+            crafting('firmalife:crafting/food/toast_with_butter', 'firmalife:crafting/toast_with_jam', title='Toast')
         )),
         entry('more_fertilizer', 'More Fertilizer Options', 'firmalife:compost_tumbler', pages=(
             text('Given a greater need for fertilization in Firmalife, there are more options for getting $(l:mechanics/fertilizers)fertilizers$().'),
-            drying_recipe('firmalife:drying/dry_grass', 'Thatch can be $(l:firmalife/drying)Dried$() into $(thing)Dry Grass$(), which can be used in a Composter as a brown item.'),
             text('$(thing)Compost Tumblers$() are a great way to produce more fertilizer. They must be connected to mechanical power in order to work. It can only be interacted with when not powered, so consider connecting it to a clutch!'),
             crafting('firmalife:crafting/compost_tumbler', text_contents='The compost tumbler is unique in that it takes more types of compost, and does not require precise ratios in order to work.'),
             text('The tumbler can take green and brown items like a regular composter. It can also take pottery sherds, charcoal, fish, and bones in small amounts.'),
             crafting('firmalife:crafting/pottery_sherd', text_contents='Smashing pottery with a hammer yields sherds.'),
             text('Green and brown items count the same, being on the range 1-4, but the new additions like fish always count for 1. Adding too much weird stuff to the composter causes it to produce rotten compost. Further, you will not know it is rotten until the very end! If the compost is more than fifteen percent bones, fish, or pottery, or more than twenty percent charcoal. it will rot. Or, if there are 10 or more green units than brown units, it will rot.'),
             text('Favorable amounts of certain additions can extend or shorten the length of time it takes for the compost to complete. Play around with it and see what happens.$(br)If 32 units are in the composter, 3 compost will be produced. If at least 24, 2 compost will be made. If 16 or more, 1 will be made. Below that, and there will be no compost.'),
+            empty_last_page(),
         )),
         entry('mixing_bowl', 'Mixing Bowl', 'firmalife:mixing_bowl', pages=(
             text('The mixing bowl is a way of mixing items and fluids together in a friendly way. $(item)$(k:key.use)$() on it with a $(thing)Spoon$() to add it to the bowl, which allows it to operate.'),
@@ -281,7 +281,7 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False, rev
             block_spotlight('', 'A butterfly grass plant.', 'firmalife:plant/butterfly_grass'),
             text('Butterfly grass will mature over time. When one reaches maturity, it has a chance to spread to surrounding blocks, or turn into something new. Butterfly grass blocks that have been spread by another grass block do not spread anymore.'),
             block_spotlight('', 'Basil is one of the plants that can be spawned by butterfly grass.', 'firmalife:plant/basil'),
-            crafting('firmalife:crafting/basil_leaves', text_contents='Basil leaves are used in pizza.'),
+            crafting('firmalife:crafting/spice/basil_leaves', text_contents='Basil leaves are used in pizza.'),
         )),
         entry('fruit_trees', 'Firmalife Fruits', 'firmalife:plant/fig_sapling', pages=(
             text('Firmalife adds some fruiting plants on top of those added by TFC.'),
@@ -301,7 +301,7 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False, rev
             text('$(thing)Chocolate-making$() takes a few processing steps, for not much of a reward. It\'s important to remember, when playing Firmalife, that being a chocolatier is for your personal enjoyment and pleasure, rather than for trying to extract maximum value from any given input.'),
             text('To start chocolate processing, cocoa beans must first be $(thing)roasted$() in an $(l:firmalife/ovens)Oven$() to make $(thing)Roasted Cocoa Beans$(). Then, craft the roasted beans with a $(thing)Knife$() to split the beans into $(thing)Cocoa Powder$() and $(thing)Cocoa Powder$().'),
             text('The $(l:firmalife/mixing_bowl)Mixing Bowl$() is used to mix cocoa powder, butter, and sweetener (sugar or honey) to make $(thing)Chocolate Blends$(). The ratio of cocoa butter to powder determines what comes out:$(br)$(li)1 Powder, 1 Butter, 1 Sweetener: Milk Chocolate$()$(li)2 Powder, 1 Sweetener: Dark Chocolate$()$(li)2 Butter, 1 Sweetener: White Chocolate$()'),
-            drying_recipe('firmalife:drying/dark_chocolate', 'Finally, chocolate is dried on a $(l:firmalife/drying)Drying Mat$() to make $(thing)Chocolate$().')
+            drying_recipe('firmalife:drying/food/dark_chocolate', 'Finally, chocolate is dried on a $(l:firmalife/drying)Drying Mat$() to make $(thing)Chocolate$().')
         )),
         entry('wine', 'Winemaking', 'firmalife:textures/item/food/white_grapes.png', pages=(
             text('$(thing)Winemaking$() is the science of turning grapes into alcohol. There is time spent gathering resources, and spending time crafting those resources together, as well as time spent $(thing)enjoying$() the product. Please note that wine in Firmalife (on its own) has no special use beyond regular TFC alcohol. You should make it only if you want to have $(thing)fun$().'),
@@ -326,37 +326,37 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False, rev
             text('The discerning sommelier will be able to detect subtleties in the wine that is produced under different conditions. Indeed, this is possible in the world of Firmalife as well. It starts in the fields in which those grapes were grown -- a row of grapes is deeply affected by the ambient environment and soil.'),
             text('Grapes can have three terrain related traits -- \'Gravel Grown\', \'Slope Grown\', and \'Dirt Grown\', based on the environment nearby. Wine also records the Koppen Climate Classification of the area in which it is bottled. Grapes grown near bees have the \'Bee Pollinated\' trait.'),
             text('Wine begins aging as soon as it is bottled, and stops aging when the cork is removed. The cork can be removed by $(item)$(k:key.use)$() on the bottle item with a knife item. Otherwise, wine bottles work a little like buckets, and can be emptied into barrels or other devices.'),
-            crafting('firmalife:crafting/wood/pine_keg', text_contents='The $(thing)Keg$() is a 2x2x2 barrel block that can contain loads of items or fluids. Perfect for your vinery!'),
-            crafting('firmalife:crafting/wood/hickory_wine_shelf', text_contents='The $(thing)Wine Shelf$() is the perfect accessory for your vinery, allowing you to display and store your wine bottles in style.'),
+            crafting('firmalife:crafting/wood/big_barrel/pine', text_contents='The $(thing)Keg$() is a 2x2x2 barrel block that can contain loads of items or fluids. Perfect for your vinery!'),
+            crafting('firmalife:crafting/wood/wine_shelf/hickory', text_contents='The $(thing)Wine Shelf$() is the perfect accessory for your vinery, allowing you to display and store your wine bottles in style.'),
             empty_last_page(),
         )),
         entry('pie', 'Pie', 'firmalife:textures/item/food/cooked_pie.png', pages=(
             text('Firmalife allows the creation of a variety of delectable baked goods. This chapter will give you all you need to start eating delicious and creative meals for breakfast, lunch, and dinner.'),
             text('$(thing)Butter is the base of many such foods. Using a $(l:firmalife/mixing_bowl)Mixing Bowl$(), combine 1000 mB of $(thing)Cream$() with one item of $(thing)Salt$(). Cream is made by sealing 1000 mB of milk in a barrel with a $(l:mechanics/firmalife#cheesecloth)Cheesecloth$().'),
             text('One useful meal is the $(thing)Pie$(). In your mixing bowl, combine butter, flower, and a sweetener (sugar, honey) to make $(thing)Pie Dough$(). To directly make $(thing)Pumpkin Pie$(), mix in an egg, two pumpkin chunks, flour, and sweetener. Craft it with a $(thing)Pie Pan$() and bake it in an $(l:firmalife/ovens)Oven$() to complete the recipe.'),
-            crafting('firmalife:crafting/raw_pumpkin_pie', text_contents='$(thing)Pie Pans$() can be smithed in an Anvil from $(thing)Cast Iron$().'),
-            crafting('firmalife:crafting/filled_pie', text_contents='Pie Dough, Preserves, and a Pie Pan will net you a $(thing)Filled Pie$(), which can then be finished in the oven for a delicious pie.'),
+            crafting('firmalife:crafting/food/raw_pumpkin_pie', text_contents='$(thing)Pie Pans$() can be smithed in an Anvil from $(thing)Cast Iron$().'),
+            crafting('firmalife:crafting/food/filled_pie', text_contents='Pie Dough, Preserves, and a Pie Pan will net you a $(thing)Filled Pie$(), which can then be finished in the oven for a delicious pie.'),
             empty_last_page(),
         )),
         entry('pizza', 'Pizza', 'firmalife:textures/item/food/cooked_pizza.png', pages=(
             text('To make $(thing)Pizza$(), mix Dough, Salt, Basil Leaves, and 100 mB of oil in a $(l:firmalife/mixing_bowl)Mixing Bowl$(). Oil can be olive oil, or soybean oil (the product of soybean paste sealed in a barrel of water).'),
-            crafting('firmalife:crafting/shredded_cheese', text_contents='You\'ll need some shredded cheese to start with.').anchor('shredded_cheese'),
+            crafting('firmalife:crafting/food/shredded_cheese', text_contents='You\'ll need some shredded cheese to start with.').anchor('shredded_cheese'),
             text('To make $(thing)Tomato Sauce$(), boil a tomato, salt, garlic, and water all together in a pot. Alternatively, using a $(l:firmalife/oven_appliances#vat)Vat$(), boil the crafted version of those ingredients, also known as $(thing)Tomato Sauce Mix$().').anchor('tomato_sauce'),
-            crafting('firmalife:crafting/raw_pizza3', text_contents='Pizza is made from 1-3 of vegetables, cooked meats, or fruits, one shredded cheese, and one tomato sauce.'),
+            crafting('firmalife:crafting/pizza_with_ingredients_2', text_contents='Pizza is made from 1-3 of vegetables, cooked meats, or fruits, one shredded cheese, and one tomato sauce.'),
         )),
         entry('pasta', 'Pasta', 'firmalife:textures/item/food/cooked_pasta.png', pages=(
             text('There are two types of $(thing)Noodles$(): Egg and Rice. Rice flour, maize flour, salt, and 1000 mB of milk together in a $(l:firmalife/mixing_bowl)Mixing Bowl$() makes $(thing)Rice Noodles$(). Flour, an egg, salt, and 1000 mB of milk makes $(thing)Egg Noodles$().'),
-            crafting('firmalife:crafting/lasagna', text_contents='$(thing)Lasagna$() can be made directly from egg noodles with $(l:firmalife/pizza#tomato_sauce)Tomato Sauce$(), cooked meat, and oregano, which can then be baked in an $(l:firmalife/ovens)Oven$().'),
+            crafting('firmalife:crafting/food/lasagna', text_contents='$(thing)Lasagna$() can be made directly from egg noodles with $(l:firmalife/pizza#tomato_sauce)Tomato Sauce$(), cooked meat, and oregano, which can then be baked in an $(l:firmalife/ovens)Oven$().'),
             text('Pasta is then completed by boiling it in water. For either kind of noodles, it must be retrieved from the pot by clicking with a $(thing)Bowl$().'),
-            crafting('firmalife:crafting/tomato_pasta', text_contents='Crafting cooked egg noodles (pasta) with tomato sauce makes delicious pasta with tomato sauce!'),
+            crafting('firmalife:crafting/food/pasta_with_tomato_sauce', text_contents='Crafting cooked egg noodles (pasta) with tomato sauce makes delicious pasta with tomato sauce!'),
         )),
         entry('burritos_and_tacos', 'Burritos and Tacos', 'firmalife:textures/item/food/burrito.png', pages=(
             text('The journey of making a $(thing)Tortilla$() is a long process, but rewarding. Start with $(thing)Maize Grain$(). Boil it in a pot of $(thing)Limewater$(), and seal it in a barrel of water to make $(thing)Nixtamal$(). Then crush it in a $(thing)Quern$() to make $(thing)Masa Flour$().'),
             text('Crafting the Masa Flour with a bucket of water makes $(thing)Masa$(), the dough of a tortilla. This can be heated to make a $(thing)Corn Tortilla$(). Baking a Tortilla in an oven makes a $(thing)Taco Shell$().'),
-            crafting('firmalife:crafting/tortilla_chips', 'firmalife:crafting/nachos'),
-            crafting('firmalife:crafting/salsa', text_contents='A tomato, cilantro, salt, and a knife will yield you $(thing)Salsa$().'),
-            crafting('firmalife:crafting/burrito', text_contents='The $(thing)Burrito$() is made from cooked meat, $(l:firmalife/pizza#shredded_cheese)Shredded Cheese$(), $(l:firmalife/pizza#tomato_sauce)Tomato Sauce$(), a vegetable, and Salsa.'),
-            crafting('firmalife:crafting/taco', text_contents='The $(thing)Taco$() is made from the same ingredients, except with a $(thing)Taco Shell$().'),
+            crafting('firmalife:crafting/food/tortilla_chips', 'firmalife:crafting/nachos'),
+            crafting('firmalife:crafting/food/salsa', text_contents='A tomato, cilantro, salt, and a knife will yield you $(thing)Salsa$().'),
+            crafting('firmalife:crafting/food/burrito', text_contents='The $(thing)Burrito$() is made from cooked meat, $(l:firmalife/pizza#shredded_cheese)Shredded Cheese$(), $(l:firmalife/pizza#tomato_sauce)Tomato Sauce$(), a vegetable, and Salsa.'),
+            crafting('firmalife:crafting/food/taco', text_contents='The $(thing)Taco$() is made from the same ingredients, except with a $(thing)Taco Shell$().'),
         ))
     ))
 

@@ -110,6 +110,7 @@ public class BuiltinFoods extends DataManagerProvider<FoodDefinition> implements
         add(FLFood.TACO, FoodData.of(4.5f));
         add(FLFood.MAKI_ROLL, FoodData.of(4.5f));
         add(FLFood.FUTO_MAKI_ROLL, FoodData.of(4.5f));
+        // todo this has to override tfc
         add(Items.PUMPKIN_PIE, FoodData.of(4.5f));
     }
 

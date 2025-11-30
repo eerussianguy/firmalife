@@ -142,7 +142,6 @@
   "Toast": "吐司",
   "More Fertilizer Options": "更多的肥料获取途径",
   "Given a greater need for fertilization in Firmalife, there are more options for getting $(l:mechanics/fertilizers)fertilizers$().": "Firmalife中对肥料的需求更大, 因此有更多的获取$(l:mechanics/fertilizers)肥料$()的途径.",
-  "Thatch can be $(l:firmalife/drying)Dried$() into $(thing)Dry Grass$(), which can be used in a Composter as a brown item.": "茅草可以被 $(l:tfc:firmalife/drying)晾干$() 成 $(thing)干草$(), 可以作为棕色物品在堆肥中使用.",
   "$(thing)Compost Tumblers$() are a great way to produce more fertilizer. They must be connected to mechanical power in order to work. It can only be interacted with when not powered, so consider connecting it to a clutch!": "$(thing)堆肥滚筒$() 是一种很好的产出更多肥料的方式. 他们必须被接入动力以能够运作. 它只有在没接入动力的情况下才能被玩家交互，所以可以考虑将其连接到离合器上!",
   "The compost tumbler is unique in that it takes more types of compost, and does not require precise ratios in order to work.": "堆肥滚筒的独特之处在于，它可以容纳更多类型的堆肥，而且不需要精确的比例即可工作。",
   "The tumbler can take green and brown items like a regular composter. It can also take pottery sherds, charcoal, fish, and bones in small amounts.": "滚筒可以像普通的堆肥机一样容纳绿色和棕色的物品。它也可以带走少量的陶片、木炭、鱼和骨头。",

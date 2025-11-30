@@ -10,7 +10,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/wood/acacia_jarbnet"
+      "recipe": "firmalife:crafting/wood/jarbnet/acacia"
     }
   ],
   "read_by_default": true,

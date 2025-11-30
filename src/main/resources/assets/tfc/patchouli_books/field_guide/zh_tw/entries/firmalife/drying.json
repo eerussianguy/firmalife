@@ -28,17 +28,17 @@
     },
     {
       "type": "tfc:drying_recipe",
-      "recipe": "firmalife:drying/drying_fruit",
+      "recipe": "firmalife:drying/dry_fruits",
       "text": "乾燥墊一般用來烘乾水果. 烘乾的水果有更長的保質期, 並且在某些配方中會用到."
     },
     {
       "type": "tfc:drying_recipe",
-      "recipe": "firmalife:drying/tofu",
+      "recipe": "firmalife:drying/food/tofu",
       "text": "豆腐需要用乾燥墊製作."
     },
     {
       "type": "tfc:drying_recipe",
-      "recipe": "firmalife:drying/cinnamon",
+      "recipe": "firmalife:drying/spice/cinnamon",
       "text": "肉桂需要用乾燥墊製作."
     }
   ],

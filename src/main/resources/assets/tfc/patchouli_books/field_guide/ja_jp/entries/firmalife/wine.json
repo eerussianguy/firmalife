@@ -72,7 +72,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/wood/acacia_stomping_barrel",
+      "recipe": "firmalife:crafting/wood/stomping_barrel/acacia",
       "text": "踏み桶はブドウを潰すために使用されます。石臼を使用することもできます。"
     },
     {
@@ -81,7 +81,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/wood/acacia_barrel_press",
+      "recipe": "firmalife:crafting/wood/barrel_press/acacia",
       "text": "圧搾機はブドウ加工の最終段階です。"
     },
     {
@@ -90,7 +90,7 @@
     },
     {
       "type": "tfc:glassworking_recipe",
-      "recipe": "firmalife:glassworking/olivine_wine_bottle",
+      "recipe": "firmalife:glassworking/empty_olivine_wine_bottle",
       "text": "ワインは非シリカガラス製の適切なワインボトルに詰める必要があります。"
     },
     {

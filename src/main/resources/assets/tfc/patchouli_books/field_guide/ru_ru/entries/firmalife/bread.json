@@ -10,18 +10,18 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/barley_dough",
+      "recipe": "firmalife:crafting/food/barley_dough",
       "text": "Дрожжи, подсластитель и мука могут быть объединены для создания $(thing)Теста$(). Тесто можно готовить как обычно, чтобы получить $(thing)Хлеб!$()."
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/barley_slice",
+      "recipe": "firmalife:crafting/food/barley_slice",
       "title": "Нарезанный хлеб",
       "text": "После выпечки вы можете использовать $(thing)нож$(), чтобы разрезать хлеб на $(thing)ломтики$(). Затем их можно использовать либо для $(l:tfc:mechanics/sandwiches)приготовления бутербродов$(), либо запечь в $(thing)тосты$(), которые можно намазать $(thing)маслом$() или вареньем."
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/toast_with_butter",
+      "recipe": "firmalife:crafting/food/toast_with_butter",
       "recipe2": "firmalife:crafting/toast_with_jam",
       "title": "Тосты"
     }

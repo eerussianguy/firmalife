@@ -61,7 +61,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/greenhouse/iron_greenhouse_port",
+      "recipe": "firmalife:crafting/iron_greenhouse_port",
       "text": "Greenhouse ports have a single pipe inside of them. They can be used to pass water through the walls of greenhouses!"
     }
   ],

@@ -7,11 +7,7 @@
     {
       "type": "patchouli:text",
       "anchor": "planters",
-      "text": "$(thing)Лотки для рассады$() используются для выращивания культур внутри $(l:firmalife/greenhouse)теплицы$(). Чтобы увидеть состояние лотка, вы можете посмотреть на него, держа в руках $(thing)мотыгу$(). Культуры в лотках потребляют $(l:mechanics/fertilizers)питательные вещества$() аналогично $(l:mechanics/crops)культурам$(). Лотки должны быть размещены внутри действующей теплицы и активированы с помощью $(l:firmalife/climate_station)климатической станции$()."
-    },
-    {
-      "type": "patchouli:text",
-      "text": "Лоткам необходимо хотя бы некоторое количество естественного солнечного света для работы."
+      "text": "$(thing)Лотки для рассады$() используются для выращивания культур внутри $(l:firmalife/greenhouse)теплицы$(). Чтобы увидеть состояние лотка, вы можете посмотреть на него, держа в руках $(thing)мотыгу$(). Культуры в лотках потребляют $(l:mechanics/fertilizers)питательные вещества$() аналогично $(l:mechanics/crops)культурам$(). Лотки должны быть размещены внутри действующей теплицы и активированы с помощью $(l:firmalife/climate_station)климатической станции$(). Лоткам необходимо хотя бы некоторое количество естественного солнечного света для работы."
     },
     {
       "type": "patchouli:crafting",
@@ -66,21 +62,21 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/hydroponic_planter",
-      "text": "$(thing)Гидропонные лотки$() используются для выращивания риса и клюквы. Они работают так же, как лотки для небольших растений, за исключением того, что их не нужно поливать."
+      "text": "$(thing)Hydroponic Planters$() grow rice and cranberry bushes. They work the same as a quad planter, except that they do not need to be watered."
     },
     {
       "type": "patchouli:text",
-      "text": "Гидропонные лотки должны иметь под собой $(l:firmalife/irrigation)ороситель$(), по которому подается вода. Без орошения растения не будут расти. Нет жестких ограничений на количество гидропонных лотков, которые могут питаться от одной оросителя."
+      "text": "Hydroponic Planters must instead, have a $(li)$(l:firmalife/irrigation)Sprinkler Pipe$() below them that is supplying water. Without the pipe they will not grow. There is no hard limit to how many hydroponic planters may be fed by one station."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/sweeper",
-      "text": "$(thing)Уборщик$() используются для сборки урожая из лотков, кроме растений, выращенных в небольших и гидропонных лотках. Работает от вращающейся $(thing)оси$(), подключённой с нижней стороны."
+      "text": "$(thing)Sweepers$() are used to harvest planters other than Quad and Hydroponic planters. They must be connected to a rotating $(thing)Axle$() on their bottom face."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/picker",
-      "text": "$(thing)Сборщик$() может работать от сигнала редстоуна. Он опускается вниз, чтобы собрать урожай с небольших и гидропонных лотков."
+      "text": "$(thing)Pickers$() can be powered via redstone signal from above. They extend down to pick the crops from Quad and Hydroponic planters."
     }
   ],
   "read_by_default": true,

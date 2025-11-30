@@ -10,7 +10,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/lasagna",
+      "recipe": "firmalife:crafting/food/lasagna",
       "text": "$(thing)Лазанью$() можно приготовить непосредственно из яичной лапши с $(l:firmalife/pizza#tomato_sauce)Томатным соусом$(), приготовленным мясом и орегано, которую затем можно запечь в $(l:firmalife/ovens)Печи$()."
     },
     {
@@ -19,7 +19,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/tomato_pasta",
+      "recipe": "firmalife:crafting/food/pasta_with_tomato_sauce",
       "text": "Скрафтинг приготовленной яичной лапши (пасты) с томатным соусом дает вкусную пасту с томатным соусом!"
     }
   ],

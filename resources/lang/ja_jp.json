@@ -142,7 +142,6 @@
   "Toast": "トースト",
   "More Fertilizer Options": "肥料オプション",
   "Given a greater need for fertilization in Firmalife, there are more options for getting $(l:mechanics/fertilizers)fertilizers$().": "Firmalifeでは$(l:mechanics/fertilizers)肥料$()を必要とすることが多いため、入手するための選択肢が増えました。",
-  "Thatch can be $(l:firmalife/drying)Dried$() into $(thing)Dry Grass$(), which can be used in a Composter as a brown item.": "藁ブロックは$(l:tfc:firmalife/drying)乾燥$()させて$(thing)枯草$()にすることができ、コンポスターで茶のアイテムとして使用できます。",
   "$(thing)Compost Tumblers$() are a great way to produce more fertilizer. They must be connected to mechanical power in order to work. It can only be interacted with when not powered, so consider connecting it to a clutch!": "$(thing)鉄のコンポスター$()は、肥料をより多く生産するための素晴らしい装置です。$(br2)作動させるには、機械的動力に接続する必要があります。$(br)動力がないときにしか操作ができないので、クラッチを接続することを検討してください！",
   "The compost tumbler is unique in that it takes more types of compost, and does not require precise ratios in order to work.": "鉄のコンポストは、より多くの種類の堆肥を使用でき、正確な比率を必要としないという点で新しい装置です。",
   "The tumbler can take green and brown items like a regular composter. It can also take pottery sherds, charcoal, fish, and bones in small amounts.": "鉄のコンポストは、通常のコンポスターのように緑や茶のアイテムを入れることができます。$(br2)また、陶器の破片、炭、魚、骨なども少量なら入れることが可能です。",

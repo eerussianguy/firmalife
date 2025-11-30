@@ -18,12 +18,12 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/wood/pine_keg",
+      "recipe": "firmalife:crafting/wood/big_barrel/pine",
       "text": "The $(thing)Keg$() is a 2x2x2 barrel block that can contain loads of items or fluids. Perfect for your vinery!"
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/wood/hickory_wine_shelf",
+      "recipe": "firmalife:crafting/wood/wine_shelf/hickory",
       "text": "The $(thing)Wine Shelf$() is the perfect accessory for your vinery, allowing you to display and store your wine bottles in style."
     }
   ],

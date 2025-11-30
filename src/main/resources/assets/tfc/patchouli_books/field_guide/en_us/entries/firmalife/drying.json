@@ -28,17 +28,17 @@
     },
     {
       "type": "tfc:drying_recipe",
-      "recipe": "firmalife:drying/drying_fruit",
+      "recipe": "firmalife:drying/dry_fruits",
       "text": "Drying fruit is a common use of the drying mat. Dried fruit is used in some recipes, and lasts longer."
     },
     {
       "type": "tfc:drying_recipe",
-      "recipe": "firmalife:drying/tofu",
+      "recipe": "firmalife:drying/food/tofu",
       "text": "Tofu is made using a drying mat."
     },
     {
       "type": "tfc:drying_recipe",
-      "recipe": "firmalife:drying/cinnamon",
+      "recipe": "firmalife:drying/spice/cinnamon",
       "text": "Cinnamon is made using a drying mat."
     }
   ],

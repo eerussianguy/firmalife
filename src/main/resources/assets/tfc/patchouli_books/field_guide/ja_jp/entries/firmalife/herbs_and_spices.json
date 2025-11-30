@@ -57,7 +57,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/basil_leaves",
+      "recipe": "firmalife:crafting/spice/basil_leaves",
       "text": "バジルの葉はピザに使います。"
     }
   ],

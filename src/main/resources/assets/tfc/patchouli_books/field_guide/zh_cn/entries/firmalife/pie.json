@@ -18,12 +18,12 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/raw_pumpkin_pie",
+      "recipe": "firmalife:crafting/food/raw_pumpkin_pie",
       "text": "$(thing)Pie Pans$() can be smithed in an Anvil from $(thing)Cast Iron$()."
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/filled_pie",
+      "recipe": "firmalife:crafting/food/filled_pie",
       "text": "Pie Dough, Preserves, and a Pie Pan will net you a $(thing)Filled Pie$(), which can then be finished in the oven for a delicious pie."
     }
   ],

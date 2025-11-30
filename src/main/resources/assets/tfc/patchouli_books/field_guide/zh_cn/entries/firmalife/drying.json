@@ -28,17 +28,17 @@
     },
     {
       "type": "tfc:drying_recipe",
-      "recipe": "firmalife:drying/drying_fruit",
+      "recipe": "firmalife:drying/dry_fruits",
       "text": "干燥垫一般用来烘干水果. 烘干的水果有更长的保质期, 并且在某些配方中会用到."
     },
     {
       "type": "tfc:drying_recipe",
-      "recipe": "firmalife:drying/tofu",
+      "recipe": "firmalife:drying/food/tofu",
       "text": "豆腐需要用干燥垫制作."
     },
     {
       "type": "tfc:drying_recipe",
-      "recipe": "firmalife:drying/cinnamon",
+      "recipe": "firmalife:drying/spice/cinnamon",
       "text": "肉桂需要用干燥垫制作."
     }
   ],
