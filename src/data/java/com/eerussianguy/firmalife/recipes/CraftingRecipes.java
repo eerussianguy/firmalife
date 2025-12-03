@@ -46,7 +46,7 @@ public interface CraftingRecipes extends Recipes
 {
     default void craftingRecipes()
     {
-        remove("tfc:crafting/pumpkin_pie");
+        remove("crafting/pumpkin_pie");
 
         var brassRods = commonTagOf(Registries.ITEM, "rods/brass");
         var stainlessRods = commonTagOf(Registries.ITEM, "rods/stainless_steel");

@@ -11,6 +11,7 @@ import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.fluids.FluidStack;
 
 import net.dries007.tfc.common.blocks.rock.Ore;
+import net.dries007.tfc.common.items.Food;
 import net.dries007.tfc.common.recipes.HeatingRecipe;
 import net.dries007.tfc.common.recipes.outputs.ItemStackProvider;
 import net.dries007.tfc.util.Metal;
@@ -19,12 +20,27 @@ public interface HeatingRecipes extends Recipes
 {
     default void heatingRecipes()
     {
-        cookFood(FLFood.WHEAT_DOUGH, FLFood.WHEAT_FLATBREAD);
-        cookFood(FLFood.RYE_DOUGH, FLFood.RYE_FLATBREAD);
-        cookFood(FLFood.BARLEY_DOUGH, FLFood.BARLEY_FLATBREAD);
-        cookFood(FLFood.RICE_DOUGH, FLFood.RICE_FLATBREAD);
-        cookFood(FLFood.MAIZE_DOUGH, FLFood.MAIZE_FLATBREAD);
-        cookFood(FLFood.OAT_DOUGH, FLFood.OAT_FLATBREAD);
+        cookFood(FLFood.WHEAT_DOUGH, Food.WHEAT_BREAD);
+        cookFood(FLFood.RYE_DOUGH, Food.RYE_BREAD);
+        cookFood(FLFood.BARLEY_DOUGH, Food.BARLEY_BREAD);
+        cookFood(FLFood.RICE_DOUGH, Food.RICE_BREAD);
+        cookFood(FLFood.MAIZE_DOUGH, Food.MAIZE_BREAD);
+        cookFood(FLFood.OAT_DOUGH, Food.OAT_BREAD);
+
+        cookFood(Food.WHEAT_DOUGH, FLFood.WHEAT_FLATBREAD);
+        cookFood(Food.RYE_DOUGH, FLFood.RYE_FLATBREAD);
+        cookFood(Food.BARLEY_DOUGH, FLFood.BARLEY_FLATBREAD);
+        cookFood(Food.RICE_DOUGH, FLFood.RICE_FLATBREAD);
+        cookFood(Food.MAIZE_DOUGH, FLFood.MAIZE_FLATBREAD);
+        cookFood(Food.OAT_DOUGH, FLFood.OAT_FLATBREAD);
+
+        remove("heating/food/wheat_bread");
+        remove("heating/food/rye_bread");
+        remove("heating/food/barley_bread");
+        remove("heating/food/rice_bread");
+        remove("heating/food/maize_bread");
+        remove("heating/food/oat_bread");
+
         cookFood(FLFood.MASA, FLFood.CORN_TORTILLA);
         cookFood(FLFood.BACON, FLFood.COOKED_BACON);
         cookFood(Ingredient.of(FLTags.Items.BREAD_SLICES), FLFood.TOAST);
@@ -70,6 +86,29 @@ public interface HeatingRecipes extends Recipes
     }
 
     private void cookFood(FLFood input, FLFood output)
+    {
+        heat(
+            nameOf(itemOf(input)),
+            notRotten(itemOf(input)),
+            copyFood(itemOf(output)),
+            FluidStack.EMPTY,
+            200
+        );
+    }
+
+    private void cookFood(Food input, FLFood output)
+    {
+        heat(
+            nameOf(itemOf(input)) + "_tfc",
+            notRotten(itemOf(input)),
+            copyFood(itemOf(output)),
+            FluidStack.EMPTY,
+            200
+        );
+    }
+
+
+    private void cookFood(FLFood input, Food output)
     {
         heat(
             nameOf(itemOf(input)),

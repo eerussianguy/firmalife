@@ -31,6 +31,7 @@ import net.minecraft.tags.TagEntry;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
@@ -158,8 +159,7 @@ public class BuiltinItemTags extends TagsProvider<Item> implements Accessors
         tag(TFCTags.Items.COMPOST_GREENS_LOW).add(FLItems.FRUIT_LEAF);
         tag(TFCTags.Items.COMPOST_GREENS).add(FLItems.NIGHTSHADE_BERRY);
         tag(FLTags.Items.COOKED_MEATS_AND_SUBSTITUTES).addTag(TFCTags.Items.COOKED_MEATS).add(itemOf(FLFood.TOFU).asItem());
-        //TODO what is the correct leather tag?
-        //tag(Tags.Items.LEATHER).add(FLItems.PINEAPPLE_LEATHER);
+        tag(Tags.Items.LEATHERS).add(FLItems.PINEAPPLE_LEATHER);
         tag(FLTags.Items.USABLE_IN_STOVETOP_SOUP).addTag(TFCTags.Items.USABLE_IN_SOUP);
         tag(FLTags.Items.BEEKEEPER_ARMOR).add(
             FLItems.BEEKEEPER_HELMET,

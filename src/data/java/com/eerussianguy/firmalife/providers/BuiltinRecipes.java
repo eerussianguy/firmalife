@@ -1,7 +1,9 @@
 package com.eerussianguy.firmalife.providers;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.recipes.AnvilRecipes;
@@ -24,17 +26,22 @@ import com.eerussianguy.firmalife.recipes.SmokingRecipes;
 import com.eerussianguy.firmalife.recipes.StompingRecipes;
 import com.eerussianguy.firmalife.recipes.VatRecipes;
 import com.eerussianguy.firmalife.recipes.WeldingRecipes;
+import com.mojang.serialization.Codec;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.CachedOutput;
+import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Unit;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.neoforged.neoforge.fluids.FluidStack;
 
 import net.dries007.tfc.common.recipes.HeatingRecipe;
 import net.dries007.tfc.common.recipes.outputs.ItemStackProvider;
+import net.dries007.tfc.util.Helpers;
 
 public class BuiltinRecipes extends RecipeProvider implements Recipes,
     AnvilRecipes,
@@ -57,6 +64,15 @@ public class BuiltinRecipes extends RecipeProvider implements Recipes,
     VatRecipes,
     WeldingRecipes
 {
+    final Set<ResourceLocation> removedRecipes = new HashSet<>();
+
+    final Codec<Unit> emptyRecipeCodec = Codec.STRING.fieldOf("type")
+        .codec()
+        .listOf()
+        .fieldOf("neoforge:conditions")
+        .xmap(l -> Unit.INSTANCE, r -> List.of("neoforge:false"))
+        .codec();
+
     private RecipeOutput output;
     private HolderLookup.Provider lookup;
     private final List<BuiltinItemHeat.MeltingRecipe> meltingRecipes;
@@ -70,10 +86,16 @@ public class BuiltinRecipes extends RecipeProvider implements Recipes,
     }
 
     @Override
-    protected CompletableFuture<?> run(CachedOutput output, HolderLookup.Provider lookup)
+    public CompletableFuture<?> run(CachedOutput output, HolderLookup.Provider lookup)
     {
         this.lookup = lookup;
-        return before.thenCompose(v -> super.run(output, lookup));
+        return before.thenCompose(v -> CompletableFuture.allOf(
+            super.run(output, lookup),
+            CompletableFuture.allOf(removedRecipes
+                .stream()
+                .map(id -> DataProvider.saveStable(output, lookup, emptyRecipeCodec, Unit.INSTANCE, recipePathProvider.json(id)))
+                .toArray(CompletableFuture[]::new))
+        ));
     }
 
     @Override
@@ -128,12 +150,11 @@ public class BuiltinRecipes extends RecipeProvider implements Recipes,
     @Override
     public void remove(String... names)
     {
-        //TODO
+        for (String name : names)
+        {
+            final ResourceLocation id = Helpers.identifier(name);
+            removedRecipes.add(id);
+        }
     }
 
-    @Override
-    public void replace(String name, Recipe<?> recipe)
-    {
-        //TODO
-    }
 }

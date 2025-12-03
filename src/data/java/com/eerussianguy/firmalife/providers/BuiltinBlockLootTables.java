@@ -32,6 +32,7 @@ import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.data.loot.LootTableSubProvider;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.flag.FeatureFlags;
@@ -42,6 +43,7 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.LiquidBlock;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootPool;
@@ -64,6 +66,7 @@ import org.jetbrains.annotations.NotNull;
 
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blocks.DecorationBlockHolder;
+import net.dries007.tfc.common.blocks.TFCBlockStateProperties;
 import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.blocks.crop.WildCropBlock;
 import net.dries007.tfc.common.blocks.plant.fruit.FruitTreeLeavesBlock;
@@ -255,10 +258,49 @@ public class BuiltinBlockLootTables extends BlockLootSubProvider implements Acce
                             ).when(survivesExplosion())
                     )
             );
-            //TODO temp
-            dropSelf(branch);
-            dropSelf(growingBranch);
-            dropSelf(sapling);
+            add(branch.get(),
+                LootTable.lootTable().withPool(
+                    lootPool()
+                        .add(
+                            lootTableItem(sapling)
+                                .when(AnyOfCondition.anyOf(
+                                    hasProperty(branch.get(), BlockStateProperties.UP, true, BlockStateProperties.WEST, true),
+                                    hasProperty(branch.get(), BlockStateProperties.UP, true, BlockStateProperties.EAST, true),
+                                    hasProperty(branch.get(), BlockStateProperties.UP, true, BlockStateProperties.NORTH, true),
+                                    hasProperty(branch.get(), BlockStateProperties.UP, true, BlockStateProperties.SOUTH, true)
+                                ))
+                                .when(matchesTool(ItemTags.AXES))
+                                .when(survivesExplosion())
+                        )
+                ).withPool(
+                    lootPool()
+                        .add(
+                            lootTableItem(Items.STICK)
+                                .when(survivesExplosion())
+                                .apply(setCount(1, 4))
+                        )
+                )
+            );
+            add(growingBranch.get(),
+                LootTable.lootTable().withPool(
+                    lootPool()
+                        .add(
+                            lootTableItem(Items.STICK)
+                                .when(survivesExplosion())
+                                .apply(setCount(1, 4))
+                        )
+            ));
+            add(sapling.get(),
+                LootTable.lootTable().withPool(
+                    lootPool()
+                        .add(
+                            lootTableItem(sapling)
+                                .apply(setCount(1).when(hasProperty(sapling.get(), TFCBlockStateProperties.SAPLINGS, 1)))
+                                .apply(setCount(2).when(hasProperty(sapling.get(), TFCBlockStateProperties.SAPLINGS, 2)))
+                                .apply(setCount(3).when(hasProperty(sapling.get(), TFCBlockStateProperties.SAPLINGS, 3)))
+                                .apply(setCount(4).when(hasProperty(sapling.get(), TFCBlockStateProperties.SAPLINGS, 4)))
+                        )
+            ));
         });
 
         //TODO replace this last one?
@@ -430,6 +472,13 @@ public class BuiltinBlockLootTables extends BlockLootSubProvider implements Acce
     }
 
     private static <T extends Comparable<T> & StringRepresentable> LootItemBlockStatePropertyCondition.Builder hasProperty(Block block, Property<T> property, T value)
+    {
+        return hasBlockStateProperties(block).setProperties(
+            StatePropertiesPredicate.Builder.properties().hasProperty(property, value)
+        );
+    }
+
+    private static LootItemBlockStatePropertyCondition.Builder hasProperty(Block block, Property<Boolean> property, boolean value, Property<Boolean> property2, boolean value2)
     {
         return hasBlockStateProperties(block).setProperties(
             StatePropertiesPredicate.Builder.properties().hasProperty(property, value)

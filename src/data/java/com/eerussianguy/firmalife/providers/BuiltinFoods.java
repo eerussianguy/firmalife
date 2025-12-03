@@ -18,6 +18,7 @@ import net.dries007.tfc.TerraFirmaCraft;
 import net.dries007.tfc.common.component.food.FoodCapability;
 import net.dries007.tfc.common.component.food.FoodData;
 import net.dries007.tfc.common.component.food.FoodDefinition;
+import net.dries007.tfc.util.Helpers;
 
 public class BuiltinFoods extends DataManagerProvider<FoodDefinition> implements Accessors
 {
@@ -110,8 +111,8 @@ public class BuiltinFoods extends DataManagerProvider<FoodDefinition> implements
         add(FLFood.TACO, FoodData.of(4.5f));
         add(FLFood.MAKI_ROLL, FoodData.of(4.5f));
         add(FLFood.FUTO_MAKI_ROLL, FoodData.of(4.5f));
-        // todo this has to override tfc
-        add(Items.PUMPKIN_PIE, FoodData.of(4.5f));
+        //i dont think i needed this?
+//        add(Helpers.identifier("pumpkin_pie"), new FoodDefinition(Ingredient.of(Items.PUMPKIN_PIE), FoodData.of(4.5f), true));
     }
 
     private void add(FLFood item, FoodData food)

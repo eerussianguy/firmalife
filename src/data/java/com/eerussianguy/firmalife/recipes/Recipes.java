@@ -28,6 +28,4 @@ public interface Recipes extends Accessors
     void add(String prefix, String name, Recipe<?> recipe);
 
     void remove(String... names);
-
-    void replace(String name, Recipe<?> recipe);
 }
