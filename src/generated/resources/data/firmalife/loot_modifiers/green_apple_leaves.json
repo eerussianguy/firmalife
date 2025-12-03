@@ -3,8 +3,8 @@
   "conditions": [
     {
       "condition": "neoforge:loot_table_id",
-      "loot_table_id": "minecraft:blocks/ice"
+      "loot_table_id": "tfc:blocks/plant/green_apple_leaves"
     }
   ],
-  "table": "firmalife:blocks/ice_shavings"
+  "table": "firmalife:blocks/fruit_leaves"
 }

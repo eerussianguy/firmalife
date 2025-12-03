@@ -38,8 +38,6 @@ public class FLTags
         public static final TagKey<Block> PIPE_REPLACEABLE = create("pipe_replaceable");
         public static final TagKey<Block> GRAPE_STRINGS = create("grape_strings");
         public static final TagKey<Block> GRAPE_TRELLIS_POSTS_PLANT = create("grape_trellis_posts_plant");
-        public static final TagKey<Block> DROPS_FRUIT_LEAF = create("drops_fruit_leaf");
-        public static final TagKey<Block> DROPS_ICE_SHAVINGS = create("drops_ice_shavings");
         public static final TagKey<Block> FOOD_SHELVES = create("food_shelves");
         public static final TagKey<Block> HANGERS = create("hangers");
         public static final TagKey<Block> CHEESE_WHEELS = create("cheese_wheel");

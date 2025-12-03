@@ -1,6 +1,7 @@
 package com.eerussianguy.firmalife.providers;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -8,6 +9,7 @@ import java.util.function.BiConsumer;
 import java.util.function.Supplier;
 import com.eerussianguy.firmalife.Accessors;
 import com.eerussianguy.firmalife.FirmaLife;
+import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blocks.BigBarrelBlock;
 import com.eerussianguy.firmalife.common.blocks.CheeseWheelBlock;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
@@ -18,16 +20,25 @@ import com.eerussianguy.firmalife.common.items.FLFood;
 import com.eerussianguy.firmalife.common.items.FLItems;
 import com.eerussianguy.firmalife.common.util.FLFruit;
 import com.google.common.collect.Streams;
+import net.minecraft.advancements.critereon.EnchantmentPredicate;
+import net.minecraft.advancements.critereon.ItemEnchantmentsPredicate;
 import net.minecraft.advancements.critereon.ItemPredicate;
+import net.minecraft.advancements.critereon.ItemSubPredicates;
+import net.minecraft.advancements.critereon.MinMaxBounds;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.BlockLootSubProvider;
+import net.minecraft.data.loot.LootTableSubProvider;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.LiquidBlock;
@@ -36,15 +47,18 @@ import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.AlternativesEntry;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.LootItemConditionalFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.AnyOfCondition;
+import net.minecraft.world.level.storage.loot.predicates.InvertedLootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.minecraft.world.level.storage.loot.predicates.MatchTool;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import org.jetbrains.annotations.NotNull;
 
@@ -499,6 +513,54 @@ public class BuiltinBlockLootTables extends BlockLootSubProvider implements Acce
         public void create()
         {
             register.accept(block, table);
+        }
+    }
+
+    public static class PartialProvider implements LootTableSubProvider
+    {
+        private final HolderLookup.Provider myRegistries;
+
+        public PartialProvider(HolderLookup.Provider myRegistries)
+        {
+            this.myRegistries = myRegistries;
+        }
+
+        @Override
+        public void generate(BiConsumer<ResourceKey<LootTable>, LootTable.Builder> output)
+        {
+            output.accept(key("blocks/fruit_leaves"), LootTable.lootTable().withPool(
+                LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                    .add(LootItem.lootTableItem(FLItems.FRUIT_LEAF))
+                    .when(InvertedLootItemCondition.invert(AnyOfCondition.anyOf(
+                            MatchTool.toolMatches(ItemPredicate.Builder.item().of(Tags.Items.TOOLS_SHEAR)),
+                            hasSilkTouch()
+                        )
+                    ))
+                    .when(survivesExplosion())
+                    .when(LootItemRandomChanceCondition.randomChance(0.5f))
+            ));
+            output.accept(key("blocks/ice_shavings"), LootTable.lootTable().withPool(
+                LootPool.lootPool().setRolls(ConstantValue.exactly(1f))
+                    .add(LootItem.lootTableItem(FLItems.ICE_SHAVINGS))
+                    .when(survivesExplosion())
+                    .when(doesNotHaveSilkTouch())
+            ));
+        }
+
+        private LootItemCondition.Builder hasSilkTouch()
+        {
+            HolderLookup.RegistryLookup<Enchantment> registrylookup = myRegistries.lookupOrThrow(Registries.ENCHANTMENT);
+            return MatchTool.toolMatches(ItemPredicate.Builder.item().withSubPredicate(ItemSubPredicates.ENCHANTMENTS, ItemEnchantmentsPredicate.enchantments(List.of(new EnchantmentPredicate(registrylookup.getOrThrow(Enchantments.SILK_TOUCH), MinMaxBounds.Ints.atLeast(1))))));
+        }
+
+        private LootItemCondition.Builder doesNotHaveSilkTouch()
+        {
+            return this.hasSilkTouch().invert();
+        }
+
+        private ResourceKey<LootTable> key(String name)
+        {
+            return ResourceKey.create(Registries.LOOT_TABLE, FLHelpers.identifier(name));
         }
     }
 }

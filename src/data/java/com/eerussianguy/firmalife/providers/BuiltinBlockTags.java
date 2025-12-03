@@ -186,12 +186,8 @@ public class BuiltinBlockTags extends TagsProvider<Block> implements Accessors
             .addTags(BlockTags.DOORS, BlockTags.TRAPDOORS);
         tag(GRAPE_STRINGS).add(FLBlocks.GRAPE_STRING_RED, FLBlocks.GRAPE_STRING_WHITE);
         tag(GRAPE_TRELLIS_POSTS_PLANT).add(FLBlocks.GRAPE_TRELLIS_POST_RED, FLBlocks.GRAPE_TRELLIS_POST_WHITE);
-        tag(DROPS_FRUIT_LEAF)
-            .add(TFCBlocks.FRUIT_TREE_LEAVES)
-            .addTags(GRAPE_STRINGS, GRAPE_TRELLIS_POSTS_PLANT);
         tag(BUZZING_LEAVES).add(FLBlocks.FRUIT_TREE_LEAVES.get(FLFruitBlocks.Tree.FIG));
         tag(PIPE_REPLACEABLE).addTags(BlockTags.DIRT, TFCTags.Blocks.GRASS, BlockTags.BASE_STONE_OVERWORLD, Tags.Blocks.GRAVELS, BlockTags.SAND);
-        tag(DROPS_ICE_SHAVINGS).add(Blocks.ICE);
         tag(GREENHOUSE_FULL_WALLS)
             .add(FLBlocks.GREENHOUSE_BLOCKS, Greenhouse.BlockType.WALL)
             .add(FLBlocks.GREENHOUSE_BLOCKS, Greenhouse.BlockType.PORT);

@@ -3,22 +3,29 @@ package com.eerussianguy.firmalife.providers;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import com.eerussianguy.firmalife.FirmaLife;
+import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.items.FLItems;
 import com.eerussianguy.firmalife.common.misc.AddItemModifier;
 import com.eerussianguy.firmalife.common.misc.BlockIngredientLootCondition;
 import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
 import net.neoforged.neoforge.common.data.GlobalLootModifierProvider;
+import net.neoforged.neoforge.common.loot.AddTableLootModifier;
+import net.neoforged.neoforge.common.loot.LootTableIdCondition;
 
+import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.recipes.ingredients.BlockIngredient;
 
 public class BuiltinLootModifiers extends GlobalLootModifierProvider
@@ -31,13 +38,27 @@ public class BuiltinLootModifiers extends GlobalLootModifierProvider
     @Override
     protected void start()
     {
-        dropTagged("fruit_leaf", FLTags.Blocks.DROPS_FRUIT_LEAF, FLItems.FRUIT_LEAF.get().getDefaultInstance(), 0.5f);
-        dropTagged("ice_shavings", FLTags.Blocks.DROPS_ICE_SHAVINGS, FLItems.ICE_SHAVINGS.get().getDefaultInstance(), 1f);
+        TFCBlocks.FRUIT_TREE_LEAVES.forEach((tree, block) -> dropNewTable(tree.getSerializedName() + "_leaves", block.get(), "blocks/fruit_leaves"));
+        dropNewTable("ice_shavings", Blocks.ICE, "blocks/ice_shavings");
+//        dropTagged("fruit_leaf", FLTags.Blocks.DROPS_FRUIT_LEAF, FLItems.FRUIT_LEAF.get().getDefaultInstance(), 0.5f);
+//        dropTagged("ice_shavings", FLTags.Blocks.DROPS_ICE_SHAVINGS, FLItems.ICE_SHAVINGS.get().getDefaultInstance(), 1f);
         dropEntity("rennet", FLTags.Entities.DROPS_RENNET, new ItemStack(FLItems.RENNET, 4), 1f);
         dropEntity("more_rennet", FLTags.Entities.DROPS_MORE_RENNET, new ItemStack(FLItems.RENNET, 6), 1f);
     }
 
-    private void dropTagged(String name, TagKey<Block> tag, ItemStack drop, float chance)
+    private void dropNewTable(String name, Block lootTableTarget, String tableName)
+    {
+        add(
+            name,
+            new AddTableLootModifier(new LootItemCondition[]{
+                new LootTableIdCondition.Builder(lootTableTarget.getLootTable().location()).build()
+            },
+                ResourceKey.create(Registries.LOOT_TABLE, FLHelpers.identifier(tableName))
+            )
+        );
+    }
+
+    private void dropTagged2(String name, TagKey<Block> tag, ItemStack drop, float chance)
     {
         add(
             name,

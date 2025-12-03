@@ -147,7 +147,10 @@ public class DataEntryPoint
             new LootTableProvider(
                 output,
                 Collections.emptySet(),
-                List.of(new LootTableProvider.SubProviderEntry(BuiltinBlockLootTables::new, LootContextParamSets.BLOCK)),
+                List.of(
+                    new LootTableProvider.SubProviderEntry(BuiltinBlockLootTables::new, LootContextParamSets.BLOCK),
+                    new LootTableProvider.SubProviderEntry(BuiltinBlockLootTables.PartialProvider::new, LootContextParamSets.BLOCK)
+                ),
                 lookup
             )
         );
