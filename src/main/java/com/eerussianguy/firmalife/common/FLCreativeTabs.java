@@ -143,7 +143,7 @@ public final class FLCreativeTabs
             accept(out, FLBlocks.FOOD_SHELVES, wood);
             accept(out, FLBlocks.HANGERS, wood);
             accept(out, FLBlocks.JARBNETS, wood);
-            accept(out, FLBlocks.BIG_BARRELS, wood);
+            accept(out, FLBlocks.KEGS, wood);
             accept(out, FLBlocks.STOMPING_BARRELS, wood);
             accept(out, FLBlocks.BARREL_PRESSES, wood);
             accept(out, FLBlocks.WINE_SHELVES, wood);

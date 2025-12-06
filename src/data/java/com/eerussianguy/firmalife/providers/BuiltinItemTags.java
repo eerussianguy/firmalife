@@ -89,7 +89,7 @@ public class BuiltinItemTags extends TagsProvider<Item> implements Accessors
         tag(FLTags.Items.FOOD_SHELVES).add(FLBlocks.FOOD_SHELVES.values().stream().map(block -> block::asItem));
         tag(FLTags.Items.HANGERS).add(FLBlocks.HANGERS.values().stream().map(block -> block::asItem));
         tag(FLTags.Items.JARBNETS).add(FLBlocks.JARBNETS.values().stream().map(block -> block::asItem));
-        tag(FLTags.Items.BIG_BARRELS).add(FLBlocks.BIG_BARRELS.values().stream().map(block -> block::asItem));
+        tag(FLTags.Items.KEGS).add(FLBlocks.KEGS.values().stream().map(block -> block::asItem));
         tag(FLTags.Items.STOMPING_BARRELS).add(FLBlocks.STOMPING_BARRELS.values().stream().map(block -> block::asItem));
         tag(FLTags.Items.BARREL_PRESSES).add(FLBlocks.BARREL_PRESSES.values().stream().map(block -> block::asItem));
         tag(FLTags.Items.WINE_SHELVES).add(FLBlocks.WINE_SHELVES.values().stream().map(block -> block::asItem));

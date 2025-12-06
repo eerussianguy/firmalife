@@ -169,7 +169,7 @@ public class FLClientEvents
         event.register(FLMenuTypes.BARREL_PRESS.get(), BarrelPressScreen::new);
         event.register(FLMenuTypes.STOVETOP_GRILL.get(), StovetopGrillScreen::new);
         event.register(FLMenuTypes.STOVETOP_POT.get(), StovetopPotScreen::new);
-        event.register(FLMenuTypes.BIG_BARREL.get(), BigBarrelScreen::new);
+        event.register(FLMenuTypes.KEG.get(), BigBarrelScreen::new);
     }
 
     public static void onBlockColors(RegisterColorHandlersEvent.Block event)

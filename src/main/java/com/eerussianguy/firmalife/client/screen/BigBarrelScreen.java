@@ -1,8 +1,8 @@
 package com.eerussianguy.firmalife.client.screen;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
-import com.eerussianguy.firmalife.common.blockentities.BigBarrelBlockEntity;
-import com.eerussianguy.firmalife.common.container.BigBarrelContainer;
+import com.eerussianguy.firmalife.common.blockentities.KegBlockEntity;
+import com.eerussianguy.firmalife.common.container.KegContainer;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.network.chat.Component;
@@ -18,11 +18,11 @@ import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.tooltip.Tooltips;
 
 
-public class BigBarrelScreen extends BlockEntityScreen<BigBarrelBlockEntity, BigBarrelContainer>
+public class BigBarrelScreen extends BlockEntityScreen<KegBlockEntity, KegContainer>
 {
     private static final ResourceLocation BACKGROUND = FLHelpers.identifier("textures/gui/big_barrel.png");
 
-    public BigBarrelScreen(BigBarrelContainer container, Inventory playerInventory, Component name)
+    public BigBarrelScreen(KegContainer container, Inventory playerInventory, Component name)
     {
         super(container, playerInventory, name, BACKGROUND);
         imageHeight += 3 * 18;
@@ -39,7 +39,7 @@ public class BigBarrelScreen extends BlockEntityScreen<BigBarrelBlockEntity, Big
             if (!fluidStack.isEmpty())
             {
                 final TextureAtlasSprite sprite = RenderHelpers.getAndBindFluidSprite(fluidStack);
-                final int fillHeight = (int) Math.ceil((float) 106 * fluidStack.getAmount() / (float) BigBarrelBlockEntity.CAPACITY);
+                final int fillHeight = (int) Math.ceil((float) 106 * fluidStack.getAmount() / (float) KegBlockEntity.CAPACITY);
 
                 RenderHelpers.fillAreaWithSprite(graphics, sprite, leftPos + 8, topPos + 124 - fillHeight, 16, fillHeight, 16, 16);
 

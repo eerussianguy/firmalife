@@ -3,7 +3,7 @@ package com.eerussianguy.firmalife.common.container;
 import java.util.function.Supplier;
 
 import com.eerussianguy.firmalife.common.blockentities.BarrelPressBlockEntity;
-import com.eerussianguy.firmalife.common.blockentities.BigBarrelBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.KegBlockEntity;
 import com.eerussianguy.firmalife.common.blockentities.StovetopGrillBlockEntity;
 import com.eerussianguy.firmalife.common.blockentities.StovetopPotBlockEntity;
 import net.minecraft.core.registries.Registries;
@@ -31,7 +31,7 @@ public class FLMenuTypes
     public static final Id<BeehiveContainer> BEEHIVE = FLMenuTypes.<FLBeehiveBlockEntity, BeehiveContainer>registerBlock("beehive", FLBlockEntities.BEEHIVE, BeehiveContainer::create);
     public static final Id<StovetopGrillContainer> STOVETOP_GRILL = FLMenuTypes.<StovetopGrillBlockEntity, StovetopGrillContainer>registerBlock("stovetop_grill", FLBlockEntities.STOVETOP_GRILL, StovetopGrillContainer::create);
     public static final Id<StovetopPotContainer> STOVETOP_POT = FLMenuTypes.<StovetopPotBlockEntity, StovetopPotContainer>registerBlock("stovetop_pot", FLBlockEntities.STOVETOP_POT, StovetopPotContainer::create);
-    public static final Id<BigBarrelContainer> BIG_BARREL = FLMenuTypes.<BigBarrelBlockEntity, BigBarrelContainer>registerBlock("big_barrel", FLBlockEntities.BIG_BARREL, BigBarrelContainer::create);
+    public static final Id<KegContainer> KEG = FLMenuTypes.<KegBlockEntity, KegContainer>registerBlock("keg", FLBlockEntities.KEG, KegContainer::create);
     public static final Id<BarrelPressContainer> BARREL_PRESS = FLMenuTypes.<BarrelPressBlockEntity, BarrelPressContainer>registerBlock("barrel_press", FLBlockEntities.BARREL_PRESS, BarrelPressContainer::create);
 
     private static <T extends InventoryBlockEntity<?>, C extends BlockEntityContainer<T>> Id<C> registerBlock(String name, Supplier<BlockEntityType<T>> type, BlockEntityContainer.Factory<T, C> factory)

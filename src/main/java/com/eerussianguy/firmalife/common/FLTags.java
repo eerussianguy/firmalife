@@ -42,7 +42,7 @@ public class FLTags
         public static final TagKey<Block> HANGERS = create("hangers");
         public static final TagKey<Block> CHEESE_WHEELS = create("cheese_wheel");
         public static final TagKey<Block> JARBNETS = create("jarbnets");
-        public static final TagKey<Block> BIG_BARRELS = create("big_barrels");
+        public static final TagKey<Block> KEGS = create("kegs");
         public static final TagKey<Block> STOMPING_BARRELS = create("stomping_barrels");
         public static final TagKey<Block> BARREL_PRESSES = create("barrel_presses");
         public static final TagKey<Block> WINE_SHELVES = create("wine_shelves");
@@ -82,7 +82,7 @@ public class FLTags
         public static final TagKey<Item> FOOD_SHELVES = create("shelves");
         public static final TagKey<Item> HANGERS = create("hangers");
         public static final TagKey<Item> JARBNETS = create("jarbnets");
-        public static final TagKey<Item> BIG_BARRELS = create("big_barrels");
+        public static final TagKey<Item> KEGS = create("kegs");
         public static final TagKey<Item> STOMPING_BARRELS = create("stomping_barrels");
         public static final TagKey<Item> BARREL_PRESSES = create("barrel_presses");
         public static final TagKey<Item> WINE_SHELVES = create("wine_shelves");

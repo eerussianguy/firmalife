@@ -492,7 +492,7 @@ public interface CraftingRecipes extends Recipes
                 .input('Y', FLItems.BARREL_STAVE)
                 .input('Z', TFCItems.GLUE)
                 .pattern("XYX", "YZY", "XYX")
-                .shaped(FLBlocks.BIG_BARRELS.get(wood));
+                .shaped(FLBlocks.KEGS.get(wood));
         }
 
         Map<Greenhouse, Greenhouse> greenhouseCleaning = new HashMap<>();

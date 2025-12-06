@@ -10,7 +10,7 @@ import java.util.function.Supplier;
 import com.eerussianguy.firmalife.Accessors;
 import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.common.FLHelpers;
-import com.eerussianguy.firmalife.common.blocks.BigBarrelBlock;
+import com.eerussianguy.firmalife.common.blocks.KegBlock;
 import com.eerussianguy.firmalife.common.blocks.CheeseWheelBlock;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.blocks.MixingBowlBlock;
@@ -31,7 +31,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.data.loot.LootTableSubProvider;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.StringRepresentable;
@@ -309,7 +308,7 @@ public class BuiltinBlockLootTables extends BlockLootSubProvider implements Acce
             .add(FLItems.SPOON, MixingBowlBlock.SPOON, true)
             .create();
 
-        FLBlocks.BIG_BARRELS.forEach((wood, keg) -> {
+        FLBlocks.KEGS.forEach((wood, keg) -> {
             add(
                 keg.get(),
                 LootTable.lootTable()
@@ -317,7 +316,7 @@ public class BuiltinBlockLootTables extends BlockLootSubProvider implements Acce
                         lootPool()
                             .add(
                                 lootTableItem(keg)
-                                    .when(hasProperty(keg.get(), BigBarrelBlock.BARREL_PART, 0))
+                                    .when(hasProperty(keg.get(), KegBlock.BARREL_PART, 0))
                             ).when(survivesExplosion())
                     )
             );

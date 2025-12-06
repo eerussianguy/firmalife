@@ -2,7 +2,7 @@ package com.eerussianguy.firmalife.common.capabilities;
 
 import java.util.function.Supplier;
 import com.eerussianguy.firmalife.FirmaLife;
-import com.eerussianguy.firmalife.common.blockentities.BigBarrelBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.KegBlockEntity;
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.blockentities.MixingBowlBlockEntity;
 import com.eerussianguy.firmalife.common.blockentities.StovetopPotBlockEntity;
@@ -48,8 +48,8 @@ public final class FLComponents
         registerInventory(event, FLBlockEntities.ASHTRAY);
         registerInventory(event, FLBlockEntities.BARREL_PRESS);
         registerInventory(event, FLBlockEntities.BEEHIVE);
-        registerInventory(event, FLBlockEntities.BIG_BARREL);
-        event.registerBlockEntity(BlockCapabilities.FLUID, FLBlockEntities.BIG_BARREL.get(), BigBarrelBlockEntity::getSidedFluidInventory);
+        registerInventory(event, FLBlockEntities.KEG);
+        event.registerBlockEntity(BlockCapabilities.FLUID, FLBlockEntities.KEG.get(), KegBlockEntity::getSidedFluidInventory);
         registerInventory(event, FLBlockEntities.BONSAI_PLANTER);
         registerInventory(event, FLBlockEntities.COMPOST_TUMBLER);
         registerInventory(event, FLBlockEntities.DRYING_MAT);

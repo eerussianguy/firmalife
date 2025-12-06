@@ -74,7 +74,7 @@ public class BuiltinBlockTags extends TagsProvider<Block> implements Accessors
             .add(FLBlocks.FRUIT_TREE_GROWING_BRANCHES)
             .add(FLBlocks.GREENHOUSE_BLOCKS.get(Greenhouse.TREATED_WOOD))
             .add(FLBlocks.GREENHOUSE_BLOCKS.get(Greenhouse.WEATHERED_TREATED_WOOD))
-            .addTags(FOOD_SHELVES, HANGERS, JARBNETS, BIG_BARRELS, STOMPING_BARRELS, BARREL_PRESSES, WINE_SHELVES, PLANTERS);
+            .addTags(FOOD_SHELVES, HANGERS, JARBNETS, KEGS, STOMPING_BARRELS, BARREL_PRESSES, WINE_SHELVES, PLANTERS);
         tag(BlockTags.MINEABLE_WITH_HOE)
             .add(FLBlocks.FRUIT_TREE_LEAVES)
             .add(FLBlocks.FRUIT_TREE_SAPLINGS)
@@ -214,7 +214,7 @@ public class BuiltinBlockTags extends TagsProvider<Block> implements Accessors
         tag(FOOD_SHELVES).add(FLBlocks.FOOD_SHELVES);
         tag(HANGERS).add(FLBlocks.HANGERS);
         tag(JARBNETS).add(FLBlocks.JARBNETS);
-        tag(BIG_BARRELS).add(FLBlocks.BIG_BARRELS);
+        tag(KEGS).add(FLBlocks.KEGS);
         tag(STOMPING_BARRELS).add(FLBlocks.STOMPING_BARRELS);
         tag(BARREL_PRESSES).add(FLBlocks.BARREL_PRESSES);
         tag(WINE_SHELVES).add(FLBlocks.WINE_SHELVES);

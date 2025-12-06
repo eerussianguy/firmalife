@@ -18,7 +18,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/wood/big_barrel/pine",
+      "recipe": "firmalife:crafting/wood/keg/pine",
       "text": "$(thing)大樽$()は、2x2x2サイズの樽ブロックで、多くのアイテムや液体を収納できます。ワイナリーに最適です！"
     },
     {

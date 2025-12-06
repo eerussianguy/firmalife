@@ -30,7 +30,7 @@ public class BuiltinItemSizes extends DataManagerProvider<ItemSizeDefinition>
         add("cheese_wheels", FLTags.Items.CHEESE_WHEELS, Size.VERY_LARGE, Weight.VERY_HEAVY);
         add("dynamic_foods", FLTags.Items.DYNAMIC_FOODS, Size.VERY_SMALL, Weight.VERY_HEAVY);
         add("peel", FLItems.PEEL, Size.VERY_LARGE, Weight.HEAVY);
-        add("big_barrels", FLTags.Items.BIG_BARRELS, Size.VERY_LARGE, Weight.VERY_HEAVY);
+        add("kegs", FLTags.Items.KEGS, Size.VERY_LARGE, Weight.VERY_HEAVY);
         add("wine", FLTags.Items.FILLED_WINE_BOTTLES, Size.VERY_LARGE, Weight.VERY_HEAVY);
         add("empty_wine", FLTags.Items.EMPTY_WINE_BOTTLES, Size.NORMAL, Weight.MEDIUM);
         add("empty_jar", FLItems.EMPTY_JAR_WITH_STAINLESS_STEEL_LID, Size.TINY, Weight.MEDIUM);

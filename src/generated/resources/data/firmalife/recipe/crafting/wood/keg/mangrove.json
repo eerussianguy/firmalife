@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": {
+      "item": "tfc:wood/log/mangrove"
+    },
+    "Y": {
+      "item": "firmalife:barrel_stave"
+    },
+    "Z": {
+      "item": "tfc:glue"
+    }
+  },
+  "pattern": [
+    "XYX",
+    "YZY",
+    "XYX"
+  ],
+  "result": {
+    "count": 1,
+    "id": "firmalife:wood/keg/mangrove"
+  }
+}

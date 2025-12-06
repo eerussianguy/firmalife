@@ -73,7 +73,6 @@ public class JarbnetBlock extends FourWayDeviceBlock
 
     private static void addParticlesAndSound(Level level, double x, double y, double z, RandomSource rand)
     {
-        //TODO these particles are not positioned correctly
         final float value = rand.nextFloat();
         if (value < 0.3F)
         {
@@ -97,18 +96,15 @@ public class JarbnetBlock extends FourWayDeviceBlock
     {
         if (state.getValue(LIT))
         {
-            final Direction dir = state.getValue(FACING);
-            final int dx = Mth.abs(dir.getStepX());
-            final int dz = Mth.abs(dir.getStepZ());
-            final double x = pos.getX() + (0.5 * random.nextFloat()) + (0.5 * dx);
+            final Vec3 center = getShape(state, level, pos, CollisionContext.empty()).bounds().getCenter();
+            final double x = pos.getX() + (0.5 * random.nextFloat()) + (0.5 * center.x);
             final double y = pos.getY() + (random.nextFloat() * 0.15f + (random.nextBoolean() ? 0.33f : 0.66f));
-            final double z = pos.getZ() + (0.5 * random.nextFloat()) + (0.5 * dz);
+            final double z = pos.getZ() + (0.5 * random.nextFloat()) + (0.5 * center.z);
             addParticlesAndSound(level, x, y, z, random);
         }
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos pos, BlockPos facingPos)
     {
         if (state.getValue(LIT) && !state.getValue(OPEN))
@@ -119,7 +115,6 @@ public class JarbnetBlock extends FourWayDeviceBlock
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand)
     {
         if (level.getBlockEntity(pos) instanceof JarbnetBlockEntity jarbnet && state.getValue(LIT))
