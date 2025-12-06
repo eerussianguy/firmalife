@@ -84,6 +84,8 @@ public class BuiltinItemTags extends TagsProvider<Item> implements Accessors
         tag(TFCTags.Items.PLANTS)
             .add(FLBlocks.HERBS.values().stream().map(block -> block::asItem))
             .add(FLBlocks.BUTTERFLY_GRASS.asItem());
+        tag(TFCTags.Items.JAM)
+            .add(FLItems.JAM);
         tag(FLTags.Items.FOOD_SHELVES).add(FLBlocks.FOOD_SHELVES.values().stream().map(block -> block::asItem));
         tag(FLTags.Items.HANGERS).add(FLBlocks.HANGERS.values().stream().map(block -> block::asItem));
         tag(FLTags.Items.JARBNETS).add(FLBlocks.JARBNETS.values().stream().map(block -> block::asItem));

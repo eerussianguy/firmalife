@@ -97,7 +97,7 @@ public class FLItems
     public static final ItemId GUANO_JAR = register("jar/guano", () -> new Item(new Item.Properties().component(Lore.TYPE, Lore.UNSEALED).craftRemainder(TFCItems.EMPTY_JAR.asItem())));
     public static final Map<FLFruit, ItemId> FL_FRUIT_PRESERVES = Helpers.mapOf(FLFruit.class, food -> register("jar/" + food.getSerializedName() , () -> new Item(new Item.Properties().component(Lore.TYPE, Lore.UNSEALED).craftRemainder(TFCItems.EMPTY_JAR.asItem()))));
     public static final Map<FLFruit, ItemId> FL_UNSEALED_FRUIT_PRESERVES = Helpers.mapOf(FLFruit.class, food -> register("jar/" + food.getSerializedName() + "_unsealed" , () -> new Item(new Item.Properties().component(Lore.TYPE, Lore.UNSEALED).craftRemainder(TFCItems.EMPTY_JAR.asItem()))));
-
+    public static final Map<FLFruit, ItemId> JAM = Helpers.mapOf(FLFruit.class, food -> register("food/" + food.getSerializedName() + "_jam", () -> new Item(new Item.Properties())));
 
     public static final ItemId FILLED_PIE = register("food/filled_pie"); // inedible
     public static final ItemId RAW_PUMPKIN_PIE = register("food/raw_pumpkin_pie"); // inedible

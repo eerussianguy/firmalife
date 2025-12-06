@@ -9,7 +9,7 @@ path = '../src/main/resources/assets/firmalife/textures/'
 templates_path = 'texture_templates/'
 
 def get_jar_color(name: str):
-    img = Image.open(path + 'item/jar/' + name + '.png')
+    img = Image.open(path + 'item/jar/' + name + '.png').convert('RGBA')
     return img.getpixel((7, 7))
 
 def easy_colorize(color, from_path, to_path, saturation: float = 1):
@@ -81,12 +81,10 @@ def fill_image(tile_instance, width: int, height: int, tile_width: int, tile_hei
 def main():
     for wood in TFC_WOODS.keys():
         big_barrel(wood)
-    # for fruit in TFC_FRUITS:
-    #     jar_color = get_jar_color(fruit)
-    #     easy_colorize(jar_color, 'texture_templates/jar_content', path + 'block/jar/%s' % fruit, 2)
-    # for fruit in FL_FRUITS:
-    #     jar_color = get_jar_color(fruit)
-    #     easy_colorize(jar_color, 'texture_templates/jar_content', path + 'block/jar/%s' % fruit, 2)
+    for fruit in FL_FRUITS:
+        jar_color = get_jar_color(fruit)
+        # easy_colorize(jar_color, 'texture_templates/jar_content', path + 'block/jar/%s' % fruit, 2)
+        easy_colorize(jar_color, 'texture_templates/jam', path + 'item/food/%s_jam' % fruit, 2)
 
 
 if __name__ == '__main__':

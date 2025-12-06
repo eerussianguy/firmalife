@@ -11,6 +11,7 @@ import com.eerussianguy.firmalife.common.blocks.greenhouse.Greenhouse;
 import com.eerussianguy.firmalife.common.blocks.plant.FLFruitBlocks;
 import com.eerussianguy.firmalife.common.items.FLItems;
 import com.eerussianguy.firmalife.common.util.Carving;
+import com.eerussianguy.firmalife.common.util.FLFruit;
 import com.eerussianguy.firmalife.common.util.FLMetal;
 import com.eerussianguy.firmalife.common.util.FLSelfTests;
 import net.minecraft.core.Registry;
@@ -180,11 +181,16 @@ public final class FLCreativeTabs
         {
             FLItems.FOODS.values().forEach(reg -> accept(out, reg));
             FLItems.FRUITS.values().forEach(reg -> accept(out, reg));
+            for (FLFruit fruit : FLFruit.values())
+            {
+                accept(out, FLItems.FL_FRUIT_PRESERVES.get(fruit));
+                accept(out, FLItems.FL_UNSEALED_FRUIT_PRESERVES.get(fruit));
+                accept(out, FLItems.JAM.get(fruit));
+            }
             accept(out, FLItems.FILLED_PIE);
             accept(out, FLItems.RAW_PIZZA);
             accept(out, FLItems.STINKY_SOUP);
             accept(out, FLItems.NIGHTSHADE_BERRY);
-            FLItems.FL_FRUIT_PRESERVES.values().forEach(reg -> accept(out, reg));
             accept(out, FLBlocks.CHEDDAR_WHEEL);
             accept(out, FLBlocks.CHEVRE_WHEEL);
             accept(out, FLBlocks.RAJYA_METOK_WHEEL);

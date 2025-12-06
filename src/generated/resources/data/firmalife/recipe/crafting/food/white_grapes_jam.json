@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "firmalife:jar/white_grapes_unsealed"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "firmalife:food/white_grapes_jam"
+  }
+}

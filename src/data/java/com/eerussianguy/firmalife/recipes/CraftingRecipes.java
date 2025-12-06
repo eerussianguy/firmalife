@@ -520,7 +520,15 @@ public interface CraftingRecipes extends Recipes
         jarring(TFCItems.ROTTEN_COMPOST, FLItems.ROTTEN_COMPOST_JAR, 8);
         jarring(TFCBlocks.GROUNDCOVER.get(GroundcoverBlockType.GUANO), FLItems.GUANO_JAR, 8);
         jarring(FLItems.RAW_HONEY, FLItems.HONEY_JAR, 1);
-        FLItems.FL_FRUIT_PRESERVES.forEach((fruit, item) -> unjarring(notRotten(item), FLItems.FL_UNSEALED_FRUIT_PRESERVES.get(fruit), 1));
+
+        FLItems.FL_FRUIT_PRESERVES.forEach((food, item) ->
+            recipe()
+                .input(notRotten(Ingredient.of(item)))
+                .shapeless(FLItems.FL_UNSEALED_FRUIT_PRESERVES.get(food)));
+        FLItems.JAM.forEach((food, item) ->
+            recipe()
+                .input(FLItems.FL_UNSEALED_FRUIT_PRESERVES.get(food))
+                .shapeless(item));
 
         makeDough(Food.WHEAT_FLOUR, FLFood.WHEAT_DOUGH);
         makeDough(Food.RYE_FLOUR, FLFood.RYE_DOUGH);
@@ -672,7 +680,7 @@ public interface CraftingRecipes extends Recipes
             )
         );
         Map<String, ItemLike> breadVariants = new HashMap<>();
-        breadVariants.put("bread", itemOf(loaf));
+//        breadVariants.put("bread", itemOf(loaf));
         breadVariants.put("flatbread", itemOf(flatbread));
 
         Map<String, Ingredient> jamVariants = new HashMap<>();
