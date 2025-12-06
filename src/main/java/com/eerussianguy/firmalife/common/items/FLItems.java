@@ -90,7 +90,6 @@ public class FLItems
     public static final Map<FLFruit, ItemId> FRUITS = Helpers.mapOf(FLFruit.class, food -> register("food/" + food.name(), () -> new Item(new Item.Properties().food(food.getFoodProperties()))));
     public static final Map<OvenType, ItemId> FINISHES = Helpers.mapOf(OvenType.class, type -> type != OvenType.BRICK, type -> register(type.getTrueName() + "_finish", () -> new FinishItem(prop(), type)));
 
-    // todo: make jars work (porting)
     public static final ItemId HONEY_JAR = register("jar/honey", () -> new Item(new Item.Properties().component(Lore.TYPE, Lore.UNSEALED).craftRemainder(TFCItems.EMPTY_JAR.asItem())));
     public static final ItemId COMPOST_JAR = register("jar/compost", () -> new Item(new Item.Properties().component(Lore.TYPE, Lore.UNSEALED).craftRemainder(TFCItems.EMPTY_JAR.asItem())));
     public static final ItemId ROTTEN_COMPOST_JAR = register("jar/rotten_compost", () -> new Item(new Item.Properties().component(Lore.TYPE, Lore.UNSEALED).craftRemainder(TFCItems.EMPTY_JAR.asItem())));

@@ -11,6 +11,7 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.TransparentBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -72,7 +73,6 @@ public class GreenhouseWallBlock extends TransparentBlock implements IWeatherabl
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos)
     {
         if (facing == Direction.UP)
@@ -102,6 +102,6 @@ public class GreenhouseWallBlock extends TransparentBlock implements IWeatherabl
 
     public boolean connects(BlockState adjacent)
     {
-        return Helpers.isBlock(adjacent, FLTags.Blocks.GREENHOUSE_FULL_WALLS);
+        return Helpers.isBlock(adjacent, FLTags.Blocks.GREENHOUSE_FULL_WALLS) || adjacent.getBlock() instanceof StairBlock;
     }
 }

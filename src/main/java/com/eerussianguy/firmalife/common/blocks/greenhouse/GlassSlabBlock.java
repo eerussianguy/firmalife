@@ -23,14 +23,12 @@ public class GlassSlabBlock extends SlabBlock implements IForgeBlockExtension
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public VoxelShape getVisualShape(BlockState pState, BlockGetter pReader, BlockPos pPos, CollisionContext pContext)
     {
         return Shapes.empty();
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public float getShadeBrightness(BlockState pState, BlockGetter pLevel, BlockPos pPos)
     {
         return 1.0F;
@@ -43,7 +41,6 @@ public class GlassSlabBlock extends SlabBlock implements IForgeBlockExtension
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public boolean skipRendering(BlockState state, BlockState adjacent, Direction side)
     {
         return adjacent.getBlock() instanceof GlassSlabBlock && state.getValue(TYPE) == adjacent.getValue(TYPE);

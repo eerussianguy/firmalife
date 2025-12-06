@@ -168,6 +168,7 @@ public class BuiltinBlockTags extends TagsProvider<Block> implements Accessors
             TFCBlocks.PLANTS.get(Plant.LOTUS),
             TFCBlocks.PLANTS.get(Plant.PISTIA)
         );
+        tag(GREENHOUSE).add2(FLBlocks.GREENHOUSE_BLOCKS);
         tag(ALL_IRON_GREENHOUSE).addTags(IRON_GREENHOUSE, RUSTED_IRON_GREENHOUSE);
         tag(IRON_GREENHOUSE).add(FLBlocks.GREENHOUSE_BLOCKS.get(Greenhouse.IRON));
         tag(RUSTED_IRON_GREENHOUSE).add(FLBlocks.GREENHOUSE_BLOCKS.get(Greenhouse.RUSTED_IRON));
