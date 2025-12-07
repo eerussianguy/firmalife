@@ -25,7 +25,7 @@ public abstract class BeeMixin extends Animal implements NeutralMob, FlyingAnima
     @Shadow
     abstract void setHasNectar(boolean pHasNectar);
 
-    @Inject(method = "tick", at = @At("TAIL"), cancellable = true)
+    @Inject(method = "tick", at = @At("TAIL"))
     private void injectLosePollenSometimes(CallbackInfo ci)
     {
         if (((Bee) (Object) this) instanceof FLBee)

@@ -218,18 +218,6 @@ public class MixingBowlBlockEntity extends TickableInventoryBlockEntity<MixingBo
         assert level != null;
         return level.getRecipeManager().getRecipeFor(FLRecipeTypes.MIXING_BOWL.get(), inventory, level).map(RecipeHolder::value).orElse(null);
     }
-    // todo: water cap
-//
-//    @NotNull
-//    @Override
-//    public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side)
-//    {
-//        if (cap == Capabilities.FLUID)
-//        {
-//            return sidedFluidInventory.getSidedHandler(side).cast();
-//        }
-//        return super.getCapability(cap, side);
-//    }
 
     public static class MixingBowlInventory implements NonEmptyInput, DelegateItemHandler, DelegateFluidHandler, INBTSerializable<CompoundTag>
     {

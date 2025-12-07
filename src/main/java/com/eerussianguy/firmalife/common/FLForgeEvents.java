@@ -23,7 +23,6 @@ import com.eerussianguy.firmalife.common.blocks.FLFluids;
 import com.eerussianguy.firmalife.common.util.ExtraFluid;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
 import net.neoforged.neoforge.fluids.FluidStack;
 
@@ -43,9 +42,7 @@ public class FLForgeEvents
         bus.addListener(FLForgeEvents::onFireStart);
         bus.addListener(FLForgeEvents::onFireStop);
         bus.addListener(FLForgeEvents::onAnimalProduce);
-        bus.addListener(FLForgeEvents::onLogin);
         bus.addListener(FLForgeEvents::onLevelLoad);
-        //bus.addListener(FLForgeEvents::onEntityCaps); use generic listener
     }
 
     public static void onLevelLoad(LevelEvent.Load event)
@@ -54,12 +51,6 @@ public class FLForgeEvents
         {
             FLSelfTests.runServerSelfTests(level.getServer());
         }
-    }
-
-    public static void onLogin(PlayerEvent.PlayerLoggedInEvent event)
-    {
-        //TODO: Not possible anymore, requires mixin?
-        //TFCConfig.SERVER.enablePumpkinCarving.set(false);
     }
 
     public static void onFireStart(StartFireEvent event)

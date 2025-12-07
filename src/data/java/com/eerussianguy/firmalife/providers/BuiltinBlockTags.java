@@ -225,17 +225,11 @@ public class BuiltinBlockTags extends TagsProvider<Block> implements Accessors
         tag(TFCTags.Blocks.CAN_START_COLLAPSE).add2(FLBlocks.CHROMITE_ORES);
         tag(TFCTags.Blocks.CAN_COLLAPSE).add2(FLBlocks.CHROMITE_ORES);
 
-        var chromiteOres = commonTagOf(Registries.BLOCK, "ores/chromite");
-        // TODO put these in FLTags?
-        var poorChromite = tagOf(Registries.BLOCK, FLHelpers.identifier("ores/chromite/poor"));
-        var normalChromite = tagOf(Registries.BLOCK, FLHelpers.identifier("ores/chromite/normal"));
-        var richChromite = tagOf(Registries.BLOCK, FLHelpers.identifier("ores/chromite/rich"));
-
-        tag(Tags.Blocks.ORES).addTag(chromiteOres);
-        tag(chromiteOres).addTags(poorChromite, normalChromite, richChromite);
-        tag(poorChromite).add(FLBlocks.CHROMITE_ORES, Ore.Grade.POOR);
-        tag(normalChromite).add(FLBlocks.CHROMITE_ORES, Ore.Grade.NORMAL);
-        tag(richChromite).add(FLBlocks.CHROMITE_ORES, Ore.Grade.RICH);
+        tag(Tags.Blocks.ORES).addTag(CHROMITE);
+        tag(CHROMITE).addTags(POOR_CHROMITE, NORMAL_CHROMITE, RICH_CHROMITE);
+        tag(POOR_CHROMITE).add(FLBlocks.CHROMITE_ORES, Ore.Grade.POOR);
+        tag(NORMAL_CHROMITE).add(FLBlocks.CHROMITE_ORES, Ore.Grade.NORMAL);
+        tag(RICH_CHROMITE).add(FLBlocks.CHROMITE_ORES, Ore.Grade.RICH);
         tag(BlockTags.STAIRS).add(FLBlocks.METALS, Metal.BlockType.BLOCK_STAIRS);
         tag(BlockTags.SLABS).add(FLBlocks.METALS, Metal.BlockType.BLOCK_SLAB);
     }

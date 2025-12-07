@@ -1,6 +1,7 @@
 package com.eerussianguy.firmalife.common;
 
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
@@ -46,10 +47,19 @@ public class FLTags
         public static final TagKey<Block> STOMPING_BARRELS = create("stomping_barrels");
         public static final TagKey<Block> BARREL_PRESSES = create("barrel_presses");
         public static final TagKey<Block> WINE_SHELVES = create("wine_shelves");
+        public static final TagKey<Block> CHROMITE = common("ores/chromite");
+        public static final TagKey<Block> POOR_CHROMITE = create("ores/chromite/poor");
+        public static final TagKey<Block> NORMAL_CHROMITE = create("ores/chromite/normal");
+        public static final TagKey<Block> RICH_CHROMITE = create("ores/chromite/rich");
 
         private static TagKey<Block> create(String id)
         {
             return TagKey.create(Registries.BLOCK, FLHelpers.identifier(id));
+        }
+
+        private static TagKey<Block> common(String id)
+        {
+            return TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", id));
         }
     }
 

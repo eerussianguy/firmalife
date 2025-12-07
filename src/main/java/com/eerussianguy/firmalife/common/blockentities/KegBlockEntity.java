@@ -117,18 +117,6 @@ public class KegBlockEntity extends InventoryBlockEntity<KegBlockEntity.BigBarre
         }
     }
 
-    // todo fix
-//    @NotNull
-//    @Override
-//    public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side)
-//    {
-//        if (cap == Capabilities.FLUID)
-//        {
-//            return sidedFluidInventory.getSidedHandler(side).cast();
-//        }
-//        return super.getCapability(cap, side);
-//    }
-
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int containerId, Inventory inventory, Player player)

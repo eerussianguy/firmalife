@@ -108,8 +108,7 @@ public class OvenBottomBlockEntity extends TickableInventoryBlockEntity<ItemStac
             final BlockEntity above = level.getBlockEntity(pos.above());
             if (above != null)
             {
-                //TODO
-                //above.getCapability(HeatCapability.BLOCK_CAPABILITY).ifPresent(cap -> cap.setTemperatureIfWarmer(oven.temperature));
+                HeatCapability.provideHeatTo(level, pos.above(), Direction.DOWN, oven.temperature);
             }
             oven.markForSync();
         }
