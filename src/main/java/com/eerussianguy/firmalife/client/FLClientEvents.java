@@ -87,6 +87,7 @@ import net.dries007.tfc.common.component.food.FoodCapability;
 import net.dries007.tfc.common.component.food.IFood;
 import net.dries007.tfc.common.fluids.TFCFluids;
 import net.dries007.tfc.common.items.TFCItems;
+import net.dries007.tfc.util.Helpers;
 
 public class FLClientEvents
 {
@@ -167,7 +168,7 @@ public class FLClientEvents
                 FLItems.COMPOST_JAR.get(), translucent("block/jar/compost"),
                 FLItems.GUANO_JAR.get(), translucent("block/jar/guano"),
                 FLItems.ROTTEN_COMPOST_JAR.get(), translucent("block/jar/rotten_compost"),
-                FLItems.EMPTY_JAR_WITH_STAINLESS_STEEL_LID.get(), translucent("block/jar")
+                FLItems.EMPTY_JAR_WITH_STAINLESS_STEEL_LID.get(), translucentTFC("block/jar")
             ));
             FLItems.FRUIT_PRESERVES.forEach((fruit, item) -> PlacedItemBlockEntityRenderer.MODELS.put(item.get(), translucent("block/jar/" + fruit.getSerializedName())));
             FLItems.UNSEALED_FRUIT_PRESERVES.forEach((fruit, item) -> PlacedItemBlockEntityRenderer.MODELS.put(item.get(), translucent("block/jar/" + fruit.getSerializedName() + "_unsealed")));
@@ -177,6 +178,11 @@ public class FLClientEvents
     private static PlacedItemBlockEntityRenderer.Provider translucent(String model)
     {
         return new PlacedItemBlockEntityRenderer.Provider(ModelResourceLocation.standalone(FLHelpers.identifier(model)), RenderType.translucent());
+    }
+
+    private static PlacedItemBlockEntityRenderer.Provider translucentTFC(String model)
+    {
+        return new PlacedItemBlockEntityRenderer.Provider(ModelResourceLocation.standalone(Helpers.identifier(model)), RenderType.translucent());
     }
 
     public static void onMenuRegister(RegisterMenuScreensEvent event)
