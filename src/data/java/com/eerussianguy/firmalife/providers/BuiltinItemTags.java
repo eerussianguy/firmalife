@@ -93,17 +93,19 @@ public class BuiltinItemTags extends TagsProvider<Item> implements Accessors
         tag(FLTags.Items.STOMPING_BARRELS).add(FLBlocks.STOMPING_BARRELS.values().stream().map(block -> block::asItem));
         tag(FLTags.Items.BARREL_PRESSES).add(FLBlocks.BARREL_PRESSES.values().stream().map(block -> block::asItem));
         tag(FLTags.Items.WINE_SHELVES).add(FLBlocks.WINE_SHELVES.values().stream().map(block -> block::asItem));
-        tag(TFCTags.Items.JARS)
-            .add(FLItems.FL_FRUIT_PRESERVES)
-            .add(FLItems.FL_UNSEALED_FRUIT_PRESERVES)
+        tag(TFCTags.Items.FILLED_JARS)
+            .add(FLItems.FRUIT_PRESERVES)
+            .add(FLItems.UNSEALED_FRUIT_PRESERVES)
             .add(
                 FLItems.HONEY_JAR,
                 FLItems.COMPOST_JAR,
                 FLItems.ROTTEN_COMPOST_JAR,
                 FLItems.GUANO_JAR
             );
-        tag(TFCTags.Items.SEALED_PRESERVES).add(FLItems.FL_FRUIT_PRESERVES);
-        tag(TFCTags.Items.PRESERVES).add(FLItems.FL_UNSEALED_FRUIT_PRESERVES);
+        tag(TFCTags.Items.EMPTY_JARS)
+            .add(FLItems.EMPTY_JAR_WITH_STAINLESS_STEEL_LID);
+        tag(TFCTags.Items.SEALED_PRESERVES).add(FLItems.FRUIT_PRESERVES);
+        tag(TFCTags.Items.PRESERVES).add(FLItems.UNSEALED_FRUIT_PRESERVES);
         tag(TFCTags.Items.FOODS).add(Items.PUMPKIN_PIE).add(FLItems.FOODS);
         tag(FLTags.Items.USABLE_ON_OVEN).add(FLItems.PEEL);
         tag(TFCTags.Items.SWEETENERS).add(FLItems.RAW_HONEY);

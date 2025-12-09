@@ -29,7 +29,6 @@ public class BarrelPressBlock extends DeviceBlock
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public ItemInteractionResult useItemOn(ItemStack held, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
     {
         return FLHelpers.consumeItemInventory(level, pos, FLBlockEntities.BARREL_PRESS, (press, inv) -> {
@@ -48,14 +47,13 @@ public class BarrelPressBlock extends DeviceBlock
             }
             else if (player instanceof ServerPlayer server)
             {
-                server.openMenu(state.getMenuProvider(level, pos));
+                server.openMenu(press, pos);
             }
             return ItemInteractionResult.SUCCESS;
         });
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context)
     {
         return StompingBarrelBlock.SHAPE;

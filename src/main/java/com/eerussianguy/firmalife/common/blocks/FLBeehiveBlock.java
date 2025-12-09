@@ -19,6 +19,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
@@ -138,7 +139,7 @@ public class FLBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBloc
         {
             if (player instanceof ServerPlayer serverPlayer)
             {
-                level.getBlockEntity(pos, FLBlockEntities.BEEHIVE.get()).ifPresent(nest -> serverPlayer.openMenu(state.getMenuProvider(level, pos)));
+                level.getBlockEntity(pos, FLBlockEntities.BEEHIVE.get()).ifPresent(nest -> serverPlayer.openMenu(nest, pos));
             }
             return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
@@ -146,7 +147,6 @@ public class FLBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBloc
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand)
     {
         level.getBlockEntity(pos, FLBlockEntities.BEEHIVE.get()).ifPresent(FLBeehiveBlockEntity::tryPeriodicUpdate);

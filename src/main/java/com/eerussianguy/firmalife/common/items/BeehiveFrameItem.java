@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.eerussianguy.firmalife.common.capabilities.FLComponents;
 import com.eerussianguy.firmalife.common.capabilities.bee.BeeComponent;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.SlotAccess;
@@ -51,7 +52,7 @@ public class BeehiveFrameItem extends Item
         final BeeComponent bee = stack.get(FLComponents.BEE.get());
         if (bee != null && bee.hasQueen())
         {
-            tooltip.add(Component.translatable("firmalife.bee.may_scrape"));
+            tooltip.add(Component.translatable("firmalife.bee.may_scrape").withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
         }
     }
 

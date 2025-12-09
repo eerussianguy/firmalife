@@ -43,6 +43,7 @@ import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.IItemHandlerModifiable;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
 
+import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
 import net.dries007.tfc.common.blockentities.TickCounterBlockEntity;
 import net.dries007.tfc.common.component.food.FoodCapability;
 import net.dries007.tfc.common.component.food.FoodTrait;
@@ -180,19 +181,10 @@ public class FLHelpers
         ).orElse(InteractionResult.PASS);
     }
 
-    public static <T extends BlockEntity> ItemInteractionResult consumeItemInventory(Level level, BlockPos pos, Supplier<BlockEntityType<T>> type, BiFunction<T, IItemHandler, ItemInteractionResult> consumer)
+    public static <T extends InventoryBlockEntity<?>> ItemInteractionResult consumeItemInventory(Level level, BlockPos pos, Supplier<BlockEntityType<T>> type, BiFunction<T, IItemHandler, ItemInteractionResult> consumer)
     {
-        return level.getBlockEntity(pos, type.get()).map(be -> {
-                final IItemHandler inv = Helpers.getCapability(Capabilities.ItemHandler.BLOCK, be);
-                if (inv != null)
-                {
-                    return consumer.apply(be, inv);
-                }
-                return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-            }
-        ).orElse(ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION);
+        return level.getBlockEntity(pos, type.get()).map(be -> consumer.apply(be, be.getInventory())).orElse(ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION);
     }
-
 
     public static ItemInteractionResult insertOne(Level level, ItemStack item, int slot, IItemHandler inv, Player player)
     {

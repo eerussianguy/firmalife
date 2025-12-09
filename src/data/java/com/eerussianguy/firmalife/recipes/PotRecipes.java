@@ -223,8 +223,8 @@ public interface PotRecipes extends Recipes
                         500,
                         300
                     ),
-                    new ItemStack(FLItems.FL_UNSEALED_FRUIT_PRESERVES.get(fruit), i),
-                    new ItemStack(FLItems.FL_FRUIT_PRESERVES.get(fruit), i),
+                    new ItemStack(FLItems.UNSEALED_FRUIT_PRESERVES.get(fruit), i),
+                    new ItemStack(FLItems.FRUIT_PRESERVES.get(fruit), i),
                     FLHelpers.identifier("block/jar/" + name)
                 )
             );
@@ -232,7 +232,7 @@ public interface PotRecipes extends Recipes
         // Jam canning, copied from TFC and modified
         for (int n = 1; n <= 5; n++)
         {
-            final Ingredient ingredient = notRottenWithoutTrait(Ingredient.of(FLItems.FL_FRUIT_PRESERVES.get(fruit)), FoodTraits.CANNED);
+            final Ingredient ingredient = notRottenWithoutTrait(Ingredient.of(FLItems.FRUIT_PRESERVES.get(fruit)), FoodTraits.CANNED);
             add("jam_" + name + "_canning_" + n, new SimplePotRecipe(new PotRecipe(
                 Collections.nCopies(n, ingredient),
                 SizedFluidIngredient.of(Fluids.WATER, 100 * n),

@@ -183,8 +183,8 @@ public final class FLCreativeTabs
             FLItems.FRUITS.values().forEach(reg -> accept(out, reg));
             for (FLFruit fruit : FLFruit.values())
             {
-                accept(out, FLItems.FL_FRUIT_PRESERVES.get(fruit));
-                accept(out, FLItems.FL_UNSEALED_FRUIT_PRESERVES.get(fruit));
+                accept(out, FLItems.FRUIT_PRESERVES.get(fruit));
+                accept(out, FLItems.UNSEALED_FRUIT_PRESERVES.get(fruit));
                 accept(out, FLItems.JAM.get(fruit));
             }
             accept(out, FLItems.FILLED_PIE);

@@ -1,5 +1,6 @@
 package com.eerussianguy.firmalife.client;
 
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
@@ -81,6 +82,7 @@ import net.dries007.tfc.client.ClientEventHandler;
 import net.dries007.tfc.client.TFCColors;
 import net.dries007.tfc.client.extensions.FluidRendererExtension;
 import net.dries007.tfc.client.particle.GlintParticleProvider;
+import net.dries007.tfc.client.render.blockentity.PlacedItemBlockEntityRenderer;
 import net.dries007.tfc.common.component.food.FoodCapability;
 import net.dries007.tfc.common.component.food.IFood;
 import net.dries007.tfc.common.fluids.TFCFluids;
@@ -160,7 +162,21 @@ public class FLClientEvents
                 return bee != null && bee.hasQueen() ? 1f : 0f;
             });
 
+            PlacedItemBlockEntityRenderer.MODELS.putAll(Map.of(
+                FLItems.HONEY_JAR.get(), translucent("block/jar/honey"),
+                FLItems.COMPOST_JAR.get(), translucent("block/jar/compost"),
+                FLItems.GUANO_JAR.get(), translucent("block/jar/guano"),
+                FLItems.ROTTEN_COMPOST_JAR.get(), translucent("block/jar/rotten_compost"),
+                FLItems.EMPTY_JAR_WITH_STAINLESS_STEEL_LID.get(), translucent("block/jar")
+            ));
+            FLItems.FRUIT_PRESERVES.forEach((fruit, item) -> PlacedItemBlockEntityRenderer.MODELS.put(item.get(), translucent("block/jar/" + fruit.getSerializedName())));
+            FLItems.UNSEALED_FRUIT_PRESERVES.forEach((fruit, item) -> PlacedItemBlockEntityRenderer.MODELS.put(item.get(), translucent("block/jar/" + fruit.getSerializedName() + "_unsealed")));
         });
+    }
+
+    private static PlacedItemBlockEntityRenderer.Provider translucent(String model)
+    {
+        return new PlacedItemBlockEntityRenderer.Provider(ModelResourceLocation.standalone(FLHelpers.identifier(model)), RenderType.translucent());
     }
 
     public static void onMenuRegister(RegisterMenuScreensEvent event)

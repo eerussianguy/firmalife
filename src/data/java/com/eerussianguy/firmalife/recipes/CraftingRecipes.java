@@ -521,13 +521,13 @@ public interface CraftingRecipes extends Recipes
         jarring(TFCBlocks.GROUNDCOVER.get(GroundcoverBlockType.GUANO), FLItems.GUANO_JAR, 8);
         jarring(FLItems.RAW_HONEY, FLItems.HONEY_JAR, 1);
 
-        FLItems.FL_FRUIT_PRESERVES.forEach((food, item) ->
+        FLItems.FRUIT_PRESERVES.forEach((food, item) ->
             recipe()
                 .input(notRotten(Ingredient.of(item)))
-                .shapeless(FLItems.FL_UNSEALED_FRUIT_PRESERVES.get(food)));
+                .shapeless(FLItems.UNSEALED_FRUIT_PRESERVES.get(food)));
         FLItems.JAM.forEach((food, item) ->
             recipe()
-                .input(FLItems.FL_UNSEALED_FRUIT_PRESERVES.get(food))
+                .input(FLItems.UNSEALED_FRUIT_PRESERVES.get(food))
                 .shapeless(item));
 
         makeDough(Food.WHEAT_FLOUR, FLFood.WHEAT_DOUGH);

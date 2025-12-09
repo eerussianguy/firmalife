@@ -71,7 +71,7 @@ public class StovetopPotBlock extends BottomSupportedDeviceBlock
                 }
                 if (player instanceof ServerPlayer serverPlayer)
                 {
-                    serverPlayer.openMenu(state.getMenuProvider(level, pos));
+                    serverPlayer.openMenu(pot, pos);
                 }
             }
             return ItemInteractionResult.sidedSuccess(level.isClientSide);

@@ -96,7 +96,7 @@ public interface VatRecipes extends Recipes
             vat(
                 sized(AndIngredient.of(Ingredient.of(itemOf(fruit)), LacksTraitIngredient.of(FLFoodTraits.DRIED), NotRottenIngredient.INSTANCE)),
                 sized(fluidOf(ExtraFluid.SUGAR_WATER), 500),
-                new ItemStack(FLItems.FL_FRUIT_PRESERVES.get(fruit)),
+                new ItemStack(FLItems.FRUIT_PRESERVES.get(fruit)),
                 Optional.of(FLHelpers.identifier("block/jar/" + fruit.name().toLowerCase()))
             );
         }

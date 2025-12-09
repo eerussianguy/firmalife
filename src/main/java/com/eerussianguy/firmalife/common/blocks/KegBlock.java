@@ -33,7 +33,7 @@ public class KegBlock extends TwoByTwoBlock
             }
             else if (!level.isClientSide() && player instanceof ServerPlayer serverPlayer)
             {
-                serverPlayer.openMenu(state.getMenuProvider(level, pos));
+                serverPlayer.openMenu(barrel, pos);
             }
             return ItemInteractionResult.SUCCESS;
         }

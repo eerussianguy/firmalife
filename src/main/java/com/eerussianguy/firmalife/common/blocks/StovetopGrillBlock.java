@@ -93,14 +93,14 @@ public class StovetopGrillBlock extends BottomSupportedDeviceBlock implements IH
         {
             final var inv = grill.getInventory();
             final int slot = getSlotForSelection(result);
-            final ItemStack current = slot == -1 || inv == null ? ItemStack.EMPTY : inv.getStackInSlot(slot);
-            if (!stack.isEmpty() && inv != null && slot != -1 && current.isEmpty() && inv.isItemValid(slot, stack))
+            final ItemStack current = slot == -1 ? ItemStack.EMPTY : inv.getStackInSlot(slot);
+            if (!stack.isEmpty() && slot != -1 && current.isEmpty() && inv.isItemValid(slot, stack))
             {
                 ItemHandlerHelper.giveItemToPlayer(player, inv.insertItem(slot, stack.split(1), false));
                 grill.markForSync();
                 return ItemInteractionResult.sidedSuccess(level.isClientSide);
             }
-            if (stack.isEmpty() && slot != -1 && inv != null && !current.isEmpty())
+            if (stack.isEmpty() && slot != -1 && !current.isEmpty())
             {
                 // if we are shifting or if there's no possible recipe (eg, this heating has already been completed)
                 if (!inv.isItemValid(slot, current) || player.isShiftKeyDown())
@@ -113,7 +113,7 @@ public class StovetopGrillBlock extends BottomSupportedDeviceBlock implements IH
             {
                 if (player instanceof ServerPlayer serverPlayer)
                 {
-                    serverPlayer.openMenu(state.getMenuProvider(level, pos));
+                    serverPlayer.openMenu(grill, pos);
                 }
                 return ItemInteractionResult.SUCCESS;
             }
@@ -122,7 +122,6 @@ public class StovetopGrillBlock extends BottomSupportedDeviceBlock implements IH
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity)
     {
         if (!entity.fireImmune() && entity instanceof LivingEntity && level.getBlockEntity(pos) instanceof StovetopGrillBlockEntity grill && grill.getTemperature() > 0)
