@@ -1,7 +1,6 @@
 package com.eerussianguy.firmalife.client.model;
 
-import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
-import com.eerussianguy.firmalife.common.blockentities.JarbnetBlockEntity;
+import java.util.List;
 import com.eerussianguy.firmalife.common.blocks.JarbnetBlock;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -11,19 +10,21 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.ModelBlockRenderer;
 import net.minecraft.client.renderer.block.model.ItemOverrides;
 import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.CandleBlock;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.client.model.data.ModelData;
 
 import net.dries007.tfc.client.render.blockentity.PlacedItemBlockEntityRenderer;
 import net.dries007.tfc.common.items.CandleBlockItem;
 
-public class JarbnetBlockModel extends SimpleDynamicBlockModel<JarbnetBlockEntity>
+public class JarbnetBlockModel extends InventoryBlockModel.Baked
 {
     private static final int[] CANDLE_AMOUNTS = {3, 1, 2, 2, 3, 1};
 
@@ -33,12 +34,13 @@ public class JarbnetBlockModel extends SimpleDynamicBlockModel<JarbnetBlockEntit
     }
 
     @Override
-    public void render(JarbnetBlockEntity jarbnet, PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay)
+    public void render(List<ItemStack> inventory, BlockState state, BlockPos pos, PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay)
     {
-        if (jarbnet.getBlockState().getBlock() instanceof JarbnetBlock && jarbnet.getLevel() != null)
+        final Level level = Minecraft.getInstance().level;
+        if (state.getBlock() instanceof JarbnetBlock && level != null)
         {
             final Minecraft mc = Minecraft.getInstance();
-            final Direction facing = jarbnet.getBlockState().getValue(JarbnetBlock.FACING);
+            final Direction facing = state.getValue(JarbnetBlock.FACING);
             final int angle = switch (facing)
             {
                 case SOUTH -> 0;
@@ -47,9 +49,8 @@ public class JarbnetBlockModel extends SimpleDynamicBlockModel<JarbnetBlockEntit
                 case NORTH -> 180;
             };
 
-            if (jarbnet.getBlockState().getValue(JarbnetBlock.OPEN))
+            if (state.getValue(JarbnetBlock.OPEN))
             {
-                final var inv = jarbnet.getInventory();
                 poseStack.pushPose();
                 poseStack.translate(0.5, 0.5, 0.5);
                 poseStack.scale(0.8f, 0.8f, 0.8f);
@@ -57,9 +58,9 @@ public class JarbnetBlockModel extends SimpleDynamicBlockModel<JarbnetBlockEntit
 
                 final ModelBlockRenderer modelRenderer = mc.getBlockRenderer().getModelRenderer();
 
-                for (int i = 0; i < JarbnetBlockEntity.SLOTS; i++)
+                for (int i = 0; i < inventory.size(); i++)
                 {
-                    final Item item = inv.getStackInSlot(i).getItem();
+                    final Item item = inventory.get(i).getItem();
                     final boolean isCandle = item instanceof CandleBlockItem;
                     poseStack.pushPose();
                     final int dx = i > 2 ? i - 3 : i;
@@ -72,20 +73,20 @@ public class JarbnetBlockModel extends SimpleDynamicBlockModel<JarbnetBlockEntit
                     {
                         final var provider = PlacedItemBlockEntityRenderer.MODELS.get(item);
                         final BakedModel model = mc.getModelManager().getModel(provider.model());
-                        modelRenderer.tesselateWithAO(jarbnet.getLevel(), model, jarbnet.getBlockState(), jarbnet.getBlockPos(), poseStack, buffer, false, RandomSource.create(), 4L, packedOverlay, ModelData.EMPTY, provider.renderType());
+                        modelRenderer.tesselateWithAO(level, model, state, pos, poseStack, buffer, false, RandomSource.create(), 4L, packedOverlay, ModelData.EMPTY, provider.renderType());
                     }
                     if (item instanceof BlockItem bi)
                     {
-                        BlockState state = bi.getBlock().defaultBlockState();
+                        BlockState candleState = bi.getBlock().defaultBlockState();
                         if (isCandle)
                         {
-                            state = state.setValue(CandleBlock.CANDLES, CANDLE_AMOUNTS[i]);
-                            if (jarbnet.getBlockState().getValue(JarbnetBlock.LIT))
+                            candleState = candleState.setValue(CandleBlock.CANDLES, CANDLE_AMOUNTS[i]);
+                            if (state.getValue(JarbnetBlock.LIT))
                             {
-                                state = state.setValue(CandleBlock.LIT, true);
+                                candleState = candleState.setValue(CandleBlock.LIT, true);
                             }
                         }
-                        modelRenderer.tesselateWithAO(jarbnet.getLevel(), mc.getBlockRenderer().getBlockModel(state), state, jarbnet.getBlockPos(), poseStack, buffer, false, RandomSource.create(), 4L, packedOverlay, ModelData.EMPTY, RenderType.cutout());
+                        modelRenderer.tesselateWithAO(level, mc.getBlockRenderer().getBlockModel(candleState), state, pos, poseStack, buffer, false, RandomSource.create(), 4L, packedOverlay, ModelData.EMPTY, RenderType.cutout());
                     }
                     poseStack.popPose();
                 }
@@ -95,9 +96,4 @@ public class JarbnetBlockModel extends SimpleDynamicBlockModel<JarbnetBlockEntit
         }
     }
 
-    @Override
-    public BlockEntityType<JarbnetBlockEntity> type()
-    {
-        return FLBlockEntities.JARBNET.get();
-    }
 }

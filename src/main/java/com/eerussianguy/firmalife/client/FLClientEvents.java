@@ -11,6 +11,7 @@ import com.eerussianguy.firmalife.client.model.FoodShelfBlockModel;
 import com.eerussianguy.firmalife.client.model.HangerBlockModel;
 import com.eerussianguy.firmalife.client.model.HangingPlanterBlockModel;
 import com.eerussianguy.firmalife.client.model.HydroponicPlanterBlockModel;
+import com.eerussianguy.firmalife.client.model.InventoryBlockModel;
 import com.eerussianguy.firmalife.client.model.JarbnetBlockModel;
 import com.eerussianguy.firmalife.client.model.JarringStationBlockModel;
 import com.eerussianguy.firmalife.client.model.LargePlanterBakedModel;
@@ -267,7 +268,7 @@ public class FLClientEvents
         register(event, "quad_planter", new DynamicBlockModel.Loader(QuadPlanterBlockModel::new));
         register(event, "hydroponic_planter", new DynamicBlockModel.Loader(HydroponicPlanterBlockModel::new));
         register(event, "trellis_planter", new DynamicBlockModel.Loader(TrellisPlanterBlockModel::new));
-        register(event, "jarbnet", new DynamicBlockModel.Loader(JarbnetBlockModel::new));
+        register(event, "jarbnet", new InventoryBlockModel.Loader(JarbnetBlockModel::new));
         register(event, "jarring_station", new DynamicBlockModel.Loader(JarringStationBlockModel::new));
         register(event, "food_shelf", new DynamicBlockModel.Loader(FoodShelfBlockModel::new));
         register(event, "hanger", new DynamicBlockModel.Loader(HangerBlockModel::new));
