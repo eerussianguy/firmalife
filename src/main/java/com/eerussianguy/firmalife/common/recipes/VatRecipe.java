@@ -122,7 +122,7 @@ public class VatRecipe implements ISimpleRecipe<VatBlockEntity.VatInventory>
         // Output fluid
         // If there's no output fluid, keep as much of the input as possible
         // If there is an output fluid, excess input is voided
-        final FluidStack outputFluid = this.outputFluid.get().copy();
+        final FluidStack outputFluid = this.outputFluid.orElse(FluidStack.EMPTY);
         if (outputFluid.isEmpty())
         {
             // Try and keep as much of the original input as possible
@@ -144,7 +144,7 @@ public class VatRecipe implements ISimpleRecipe<VatBlockEntity.VatInventory>
             outputFluid.setAmount(Math.min(VatBlockEntity.CAPACITY, amount));
             inventory.fill(outputFluid, IFluidHandler.FluidAction.EXECUTE);
         }
-        final ItemStack jar = this.jarOutput.get().copy();
+        final ItemStack jar = jarOutput.orElse(ItemStack.EMPTY);
         if (!jar.isEmpty())
         {
             jar.setCount(jar.getCount() * multiplier);

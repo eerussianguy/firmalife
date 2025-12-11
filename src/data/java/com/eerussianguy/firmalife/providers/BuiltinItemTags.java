@@ -126,6 +126,14 @@ public class BuiltinItemTags extends TagsProvider<Item> implements Accessors
             itemOf(FLFood.MAIZE_FLATBREAD).asItem(),
             itemOf(FLFood.OAT_FLATBREAD).asItem()
         );
+        tag(commonTagOf(Registries.ITEM, "foods/dough")).add(
+            itemOf(FLFood.WHEAT_DOUGH).asItem(),
+            itemOf(FLFood.RYE_DOUGH).asItem(),
+            itemOf(FLFood.BARLEY_DOUGH).asItem(),
+            itemOf(FLFood.RICE_DOUGH).asItem(),
+            itemOf(FLFood.MAIZE_DOUGH).asItem(),
+            itemOf(FLFood.OAT_DOUGH).asItem()
+        );
         tag(FLTags.Items.PIZZA_INGREDIENTS).addTags(
             TFCTags.Items.VEGETABLES,
             TFCTags.Items.FRUITS,

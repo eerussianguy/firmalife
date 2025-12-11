@@ -100,6 +100,7 @@ public class StovetopGrillBlockEntity extends ApplianceBlockEntity<StovetopGrill
                 {
                     ItemStack output = recipe.assembleItem(inputStack);
                     FoodCapability.applyTrait(output, FoodTraits.WOOD_GRILLED);
+                    FLHelpers.roundCreationDate(output);
                     inventory.setStackInSlot(slot, output);
                     markForSync();
                 }

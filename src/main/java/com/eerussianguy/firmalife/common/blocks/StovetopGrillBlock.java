@@ -102,12 +102,8 @@ public class StovetopGrillBlock extends BottomSupportedDeviceBlock implements IH
             }
             if (stack.isEmpty() && slot != -1 && !current.isEmpty())
             {
-                // if we are shifting or if there's no possible recipe (eg, this heating has already been completed)
-                if (!inv.isItemValid(slot, current) || player.isShiftKeyDown())
-                {
-                    ItemHandlerHelper.giveItemToPlayer(player, inv.extractItem(slot, 64, false));
-                    return ItemInteractionResult.sidedSuccess(level.isClientSide);
-                }
+                ItemHandlerHelper.giveItemToPlayer(player, inv.extractItem(slot, 64, false));
+                return ItemInteractionResult.sidedSuccess(level.isClientSide);
             }
             else
             {

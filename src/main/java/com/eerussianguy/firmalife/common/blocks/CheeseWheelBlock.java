@@ -74,7 +74,6 @@ public class CheeseWheelBlock extends BottomSupportedDeviceBlock implements Clim
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public ItemInteractionResult useItemOn(ItemStack held, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit)
     {
         if (held.isEmpty() && player.isShiftKeyDown())
@@ -105,7 +104,15 @@ public class CheeseWheelBlock extends BottomSupportedDeviceBlock implements Clim
             FLHelpers.resetCounter(level, pos);
             if (count - 1 == 0)
             {
-                level.destroyBlock(pos, false);
+                if (!state.getValue(RACK))
+                {
+                    level.destroyBlock(pos, false);
+                }
+                else
+                {
+                    level.setBlockAndUpdate(pos, TFCBlocks.BARREL_RACK.get().defaultBlockState());
+                    Helpers.playPlaceSound(player, level, pos, TFCBlocks.BARREL_RACK.get().defaultBlockState());
+                }
             }
             else
             {
@@ -118,6 +125,7 @@ public class CheeseWheelBlock extends BottomSupportedDeviceBlock implements Clim
     }
 
     @Override
+    @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext context)
     {
         final Level level = context.getLevel();

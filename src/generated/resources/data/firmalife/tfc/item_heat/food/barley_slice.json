@@ -1,5 +1,5 @@
 {
-  "heat_capacity": 200.0,
+  "heat_capacity": 1.0,
   "ingredient": {
     "item": "firmalife:food/barley_slice"
   }

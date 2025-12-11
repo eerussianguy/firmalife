@@ -43,9 +43,9 @@ public class HangingPlanterBlockModel extends SimpleDynamicBlockModel<HangingPla
         if (planter.getGrowth(0) >= 1f)
         {
             TextureAtlasSprite fruit = atlas.apply(plant.getSpecialTexture(FRUIT_ID));
-            RenderHelpers.renderTexturedCuboid(poseStack, buffer, fruit, packedLight, packedOverlay, 4 / 16f, 3 / 16f, 4 / 16f, 7 / 16f, 6 / 16f, 7 / 16f, 16, 16, 16, true);
-            RenderHelpers.renderTexturedCuboid(poseStack, buffer, fruit, packedLight, packedOverlay, 4 / 16f, 0f, 10 / 16f, 7 / 16f, 3 / 16f, 13 / 16f, 16, 16, 16, true);
-            RenderHelpers.renderTexturedCuboid(poseStack, buffer, fruit, packedLight, packedOverlay, 9 / 16f, 7 / 16f, 5 / 16f, 12 / 16f, 10 / 16f, 8 / 16f, 16, 16, 16, true);
+            RenderHelpers.renderTexturedCuboid(poseStack, buffer, fruit, packedLight, packedOverlay, 4 / 16f, 3 / 16f, 4 / 16f, 7 / 16f, 6 / 16f, 7 / 16f, 3, 3, 3, true);
+            RenderHelpers.renderTexturedCuboid(poseStack, buffer, fruit, packedLight, packedOverlay, 4 / 16f, 0f, 10 / 16f, 7 / 16f, 3 / 16f, 13 / 16f, 3, 3, 3, true);
+            RenderHelpers.renderTexturedCuboid(poseStack, buffer, fruit, packedLight, packedOverlay, 9 / 16f, 7 / 16f, 5 / 16f, 12 / 16f, 10 / 16f, 8 / 16f, 3, 3, 3, true);
         }
 
         poseStack.popPose();

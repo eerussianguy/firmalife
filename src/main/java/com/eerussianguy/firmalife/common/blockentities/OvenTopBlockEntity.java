@@ -77,10 +77,9 @@ public class OvenTopBlockEntity extends ApplianceBlockEntity<ApplianceBlockEntit
         }
 
         if (!cured) return;
-        for (int i = SLOT_INPUT_START; i <= SLOT_INPUT_END; i++)
+        for (int slot = SLOT_INPUT_START; slot <= SLOT_INPUT_END; slot++)
         {
-            final int slot = i;
-            final ItemStack inputStack = oven.inventory.getStackInSlot(i);
+            final ItemStack inputStack = oven.inventory.getStackInSlot(slot);
             if (!inputStack.isEmpty())
             {
                 final IHeat cap = HeatCapability.get(inputStack);
@@ -217,7 +216,7 @@ public class OvenTopBlockEntity extends ApplianceBlockEntity<ApplianceBlockEntit
     @Override
     public boolean isItemValid(int slot, ItemStack stack)
     {
-        return Helpers.mightHaveCapability(stack, ItemCapabilities.HEAT);
+        return WrappedHeatingRecipe.getRecipe(stack) != null;
     }
 
     @Override
