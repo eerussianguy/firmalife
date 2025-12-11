@@ -242,7 +242,7 @@ public class FLClientEvents
         BuiltInRegistries.ITEM.forEach(item -> {
             if (item instanceof WineBottleItem wine)
             {
-                event.register(wine.getModelLocation());
+                event.register(ModelResourceLocation.standalone(wine.getModelLocation()));
             }
         });
 

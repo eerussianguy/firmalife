@@ -1,5 +1,6 @@
 package com.eerussianguy.firmalife.client.render;
 
+import com.eerussianguy.firmalife.client.FLClientHelpers;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.SweeperBlockEntity;
 import com.eerussianguy.firmalife.config.FLConfig;
@@ -24,7 +25,7 @@ import net.dries007.tfc.client.render.blockentity.AxleBlockEntityRenderer;
 
 public class SweeperBlockEntityRenderer implements BlockEntityRenderer<SweeperBlockEntity>
 {
-    public static final ModelResourceLocation ARM = FLHelpers.mrl("block/sweeper_arm");
+    public static final ModelResourceLocation ARM = FLClientHelpers.mrl("block/sweeper_arm");
     public static final ResourceLocation STEEL = FLHelpers.identifier("block/metal/smooth/stainless_steel");
 
     @Override

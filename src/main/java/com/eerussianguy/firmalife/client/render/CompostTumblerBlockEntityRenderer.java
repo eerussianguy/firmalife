@@ -1,6 +1,6 @@
 package com.eerussianguy.firmalife.client.render;
 
-import com.eerussianguy.firmalife.common.FLHelpers;
+import com.eerussianguy.firmalife.client.FLClientHelpers;
 import com.eerussianguy.firmalife.common.blockentities.CompostTumblerBlockEntity;
 import com.eerussianguy.firmalife.common.blocks.CompostTumblerBlock;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -30,8 +30,8 @@ import net.dries007.tfc.util.rotation.Rotation;
 
 public class CompostTumblerBlockEntityRenderer implements BlockEntityRenderer<CompostTumblerBlockEntity>
 {
-    public static final ModelResourceLocation CLOSED_MODEL = FLHelpers.mrl("block/compost_tumbler_closed");
-    public static final ModelResourceLocation OPEN_MODEL = FLHelpers.mrl("block/compost_tumbler_open");
+    public static final ModelResourceLocation CLOSED_MODEL = FLClientHelpers.mrl("block/compost_tumbler_closed");
+    public static final ModelResourceLocation OPEN_MODEL = FLClientHelpers.mrl("block/compost_tumbler_open");
 
     private static final ResourceLocation NORMAL_TEXTURE = Helpers.identifier("block/devices/composter/normal");
     private static final ResourceLocation READY_TEXTURE = Helpers.identifier("block/devices/composter/ready");
@@ -104,7 +104,7 @@ public class CompostTumblerBlockEntityRenderer implements BlockEntityRenderer<Co
             }
             if (height > 0f)
             {
-                RenderHelpers.renderTexturedCuboid(poseStack, buffer, sprite, combinedLight, combinedOverlay, 4 / 16f, 3 / 16f, 4 / 16f, 12 / 16f, (height + 3)  / 16f, 15 / 16f);
+                RenderHelpers.renderTexturedCuboid(poseStack, buffer, sprite, combinedLight, combinedOverlay, 4 / 16f, 3 / 16f, 4 / 16f, 12 / 16f, (height + 3) / 16f, 15 / 16f);
             }
 
         }

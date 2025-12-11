@@ -12,7 +12,6 @@ import java.util.function.Supplier;
 import com.mojang.datafixers.util.Function10;
 import com.mojang.serialization.Codec;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
@@ -66,11 +65,6 @@ public class FLHelpers
     public static ResourceLocation identifier(String id)
     {
         return FLHelpers.res(MOD_ID, id);
-    }
-
-    public static ModelResourceLocation mrl(String id)
-    {
-        return ModelResourceLocation.standalone(identifier(id));
     }
 
     public static FluidStack getFluidInTank(BlockEntity blockEntity)
@@ -229,8 +223,8 @@ public class FLHelpers
     /**
      * Extracts all items of an {@code inventory}, and copies them into a list, indexed with the slots.
      *
-     * @see #insertAllItems(IItemHandlerModifiable, NonNullList)
      * @link <a href="https://github.com/TerraFirmaCraft/TerraFirmaCraft/blob/1.20.x/src/main/java/net/dries007/tfc/util/Helpers.java">Copied from TFC 1.20.x</a>
+     * @see #insertAllItems(IItemHandlerModifiable, NonNullList)
      */
     public static NonNullList<ItemStack> extractAllItems(IItemHandlerModifiable inventory)
     {
@@ -246,8 +240,8 @@ public class FLHelpers
     /**
      * Given a saved copy of an inventory {@code from}, inserts each stack into the provided {@code inventory}, if possible.
      *
-     * @see #extractAllItems(IItemHandlerModifiable)
      * @link <a href="https://github.com/TerraFirmaCraft/TerraFirmaCraft/blob/1.20.x/src/main/java/net/dries007/tfc/util/Helpers.java">Copied from TFC 1.20.x</a>
+     * @see #extractAllItems(IItemHandlerModifiable)
      */
     public static void insertAllItems(IItemHandlerModifiable inventory, NonNullList<ItemStack> from)
     {

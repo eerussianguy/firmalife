@@ -11,6 +11,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.ModelBlockRenderer;
 import net.minecraft.client.renderer.block.model.ItemOverrides;
 import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
@@ -57,7 +58,7 @@ public class WineShelfBlockModel extends InventoryBlockModel.Baked
 
                 poseStack.translate(i < 2 ? 0.25f : -0.25f, 1f / 16f, i % 2 == 0 ? 0.25f : -0.25f);
 
-                final BakedModel baked = mc.getModelManager().getModel(wine.getModelLocation());
+                final BakedModel baked = mc.getModelManager().getModel(ModelResourceLocation.standalone(wine.getModelLocation()));
                 renderer.tesselateWithAO(level, baked, state, pos, poseStack, buffer, false, RandomSource.create(), 4L, packedOverlay, ModelData.EMPTY, RenderType.cutout());
 
                 poseStack.popPose();
