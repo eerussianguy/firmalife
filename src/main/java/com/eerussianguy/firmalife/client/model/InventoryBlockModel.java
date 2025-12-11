@@ -30,7 +30,6 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.LightLayer;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.client.model.SeparateTransformsModel;
 import net.neoforged.neoforge.client.model.data.ModelData;
@@ -39,7 +38,6 @@ import net.neoforged.neoforge.client.model.geometry.IGeometryBakingContext;
 import net.neoforged.neoforge.client.model.geometry.IGeometryLoader;
 import net.neoforged.neoforge.client.model.geometry.IUnbakedGeometry;
 import net.neoforged.neoforge.client.model.pipeline.QuadBakingVertexConsumer;
-import net.neoforged.neoforge.items.IItemHandlerModifiable;
 import org.jetbrains.annotations.Nullable;
 
 import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
@@ -90,26 +88,6 @@ public class InventoryBlockModel implements IUnbakedGeometry<InventoryBlockModel
         }
 
         @Override
-        public ModelData getModelData(BlockAndTintGetter level, BlockPos pos, BlockState state, ModelData modelData)
-        {
-            final BlockEntity blockEntity = level.getBlockEntity(pos);
-            if (blockEntity instanceof InventoryBlockEntity<? extends IItemHandlerModifiable> inv && inv.getInventory() instanceof IItemHandlerModifiable modifiable)
-            {
-                final ImmutableList.Builder<ItemStack> builder = new ImmutableList.Builder<>();
-                Helpers.copyTo(builder, modifiable);
-                return modelData.derive()
-                    .with(InventoryModelData.PROPERTY, new InventoryModelData(
-                        builder.build(),
-                        LightTexture.pack(level.getBrightness(LightLayer.BLOCK, pos), level.getBrightness(LightLayer.SKY, pos)),
-                        state,
-                        pos
-                    ))
-                    .build();
-            }
-            return modelData;
-        }
-
-        @Override
         public List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable Direction side, RandomSource rand, ModelData data, @Nullable RenderType renderType)
         {
             final List<BakedQuad> quads = new ArrayList<>(super.getQuads(state, side, rand, data, renderType));
@@ -157,9 +135,26 @@ public class InventoryBlockModel implements IUnbakedGeometry<InventoryBlockModel
         protected abstract void render(List<ItemStack> inventory, BlockState state, BlockPos pos, PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay);
     }
 
-    record InventoryModelData(List<ItemStack> inventory, int light, BlockState state, BlockPos pos)
+    public record InventoryModelData(List<ItemStack> inventory, int light, BlockState state, BlockPos pos)
     {
         public static final ModelProperty<InventoryBlockModel.InventoryModelData> PROPERTY = new ModelProperty<>();
+
+        public static ModelData of(BlockAndTintGetter level, InventoryBlockEntity<?> blockEntity)
+        {
+            final ImmutableList.Builder<ItemStack> builder = new ImmutableList.Builder<>();
+            Helpers.copyTo(builder, blockEntity.getInventory());
+            BlockPos pos = blockEntity.getBlockPos();
+
+            return ModelData.of(
+                PROPERTY,
+                new InventoryModelData(
+                    builder.build(),
+                    LightTexture.pack(level.getBrightness(LightLayer.BLOCK, pos), level.getBrightness(LightLayer.SKY, pos)),
+                    blockEntity.getBlockState(),
+                    pos
+                )
+            );
+        }
     }
 
     public interface BakedModelFactory

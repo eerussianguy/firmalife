@@ -270,9 +270,9 @@ public class FLClientEvents
         register(event, "trellis_planter", new DynamicBlockModel.Loader(TrellisPlanterBlockModel::new));
         register(event, "jarbnet", new InventoryBlockModel.Loader(JarbnetBlockModel::new));
         register(event, "jarring_station", new DynamicBlockModel.Loader(JarringStationBlockModel::new));
-        register(event, "food_shelf", new DynamicBlockModel.Loader(FoodShelfBlockModel::new));
+        register(event, "food_shelf", new InventoryBlockModel.Loader(FoodShelfBlockModel::new));
         register(event, "hanger", new DynamicBlockModel.Loader(HangerBlockModel::new));
-        register(event, "wine_shelf", new DynamicBlockModel.Loader(WineShelfBlockModel::new));
+        register(event, "wine_shelf", new InventoryBlockModel.Loader(WineShelfBlockModel::new));
     }
 
     private static void register(ModelEvent.RegisterGeometryLoaders event, String id, IGeometryLoader<?> loader)

@@ -2,6 +2,7 @@ package com.eerussianguy.firmalife.common.blockentities;
 
 import java.util.Set;
 import com.eerussianguy.firmalife.FirmaLife;
+import com.eerussianguy.firmalife.client.model.InventoryBlockModel;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.config.FLConfig;
 import net.minecraft.core.BlockPos;
@@ -16,6 +17,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.client.model.data.ModelData;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -46,6 +48,7 @@ public class FoodShelfBlockEntity extends InventoryBlockEntity<ItemStackHandler>
     public void setAndUpdateSlots(int slot)
     {
         super.setAndUpdateSlots(slot);
+        requestModelDataUpdate();
         markForSync();
     }
 
@@ -181,4 +184,10 @@ public class FoodShelfBlockEntity extends InventoryBlockEntity<ItemStackHandler>
         markForSync();
     }
 
+    @Override
+    public ModelData getModelData()
+    {
+        assert level != null;
+        return InventoryBlockModel.InventoryModelData.of(level, this);
+    }
 }
