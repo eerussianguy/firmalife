@@ -19,8 +19,6 @@ import com.eerussianguy.firmalife.common.blockentities.LargePlanterBlockEntity;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 
 import net.dries007.tfc.common.blockentities.FarmlandBlockEntity;
-import net.dries007.tfc.common.blocks.crop.CropHelpers;
-import net.dries007.tfc.config.TFCConfig;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.ICalendar;
@@ -180,8 +178,6 @@ public final class Mechanics
     public static final float NUTRIENT_GROWTH_FACTOR = 0.5f;
     public static final float YIELD_MIN = 0.2f;
     public static final float YIELD_LIMIT = 1f;
-    public static final float GROWTH_LIMIT = 1f;
-    public static final float EXPIRY_LIMIT = 2f;
 
     public static boolean growthTick(Level level, BlockPos pos, BlockState state, LargePlanterBlockEntity planter)
     {
