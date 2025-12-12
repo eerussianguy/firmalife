@@ -1,5 +1,6 @@
 package com.eerussianguy.firmalife.client.render;
 
+import com.eerussianguy.firmalife.client.FLClientHelpers;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.PickerBlockEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -20,7 +21,7 @@ import net.dries007.tfc.client.RenderHelpers;
 
 public class PickerBlockEntityRenderer implements BlockEntityRenderer<PickerBlockEntity>
 {
-    public static final ModelResourceLocation ARMS = FLHelpers.mrl("block/picker_arms");
+    public static final ModelResourceLocation ARMS = FLClientHelpers.mrl("block/picker_arms");
     public static final ResourceLocation STEEL = FLHelpers.identifier("block/vat");
 
     @Override
@@ -49,7 +50,7 @@ public class PickerBlockEntityRenderer implements BlockEntityRenderer<PickerBloc
                 {
                     poseStack.pushPose();
                     poseStack.translate(0f, 0.99f - ext, 0f);
-                    RenderHelpers.renderTexturedCuboid(poseStack, buffer, sprite, combinedLight, combinedOverlay, (2.5f + x * 9) / 16f, 0f, (2.5f + z * 9) / 16f, (4.5f + x * 9)  / 16f, ext, (4.5f + z * 9)  / 16f);
+                    RenderHelpers.renderTexturedCuboid(poseStack, buffer, sprite, combinedLight, combinedOverlay, (2.5f + x * 9) / 16f, 0f, (2.5f + z * 9) / 16f, (4.5f + x * 9) / 16f, ext, (4.5f + z * 9) / 16f);
                     poseStack.popPose();
                 }
             }

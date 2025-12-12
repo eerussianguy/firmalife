@@ -3,13 +3,13 @@ package com.eerussianguy.firmalife.client;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
-
 import org.jetbrains.annotations.Nullable;
 
 public final class FLClientHelpers
@@ -41,5 +41,10 @@ public final class FLClientHelpers
             return hit;
         }
         return null;
+    }
+
+    public static ModelResourceLocation mrl(String id)
+    {
+        return ModelResourceLocation.standalone(FLHelpers.identifier(id));
     }
 }
