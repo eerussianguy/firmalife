@@ -1,0 +1,29 @@
+{
+  "crop": {
+    "count": 1,
+    "id": "tfc:alfalfa"
+  },
+  "ingredient": {
+    "item": "tfc:seeds/alfalfa"
+  },
+  "nutrient": {
+    "nitrogen": -0.8,
+    "phosphorous": -0.5,
+    "potassium": -0.6
+  },
+  "planter": "quad",
+  "seed": {
+    "count": 1,
+    "id": "tfc:seeds/alfalfa"
+  },
+  "specials": [],
+  "stages": 5,
+  "textures": [
+    "tfc:block/crop/alfalfa_0",
+    "tfc:block/crop/alfalfa_1",
+    "tfc:block/crop/alfalfa_2",
+    "tfc:block/crop/alfalfa_3",
+    "tfc:block/crop/alfalfa_4",
+    "tfc:block/crop/alfalfa_5"
+  ]
+}

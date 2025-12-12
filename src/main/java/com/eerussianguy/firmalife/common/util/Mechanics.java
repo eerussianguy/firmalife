@@ -8,7 +8,6 @@ import com.eerussianguy.firmalife.common.blockentities.ClimateStationBlockEntity
 import com.eerussianguy.firmalife.config.FLConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.SlabBlock;
@@ -18,6 +17,10 @@ import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blockentities.LargePlanterBlockEntity;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
+
+import net.dries007.tfc.common.blockentities.FarmlandBlockEntity;
+import net.dries007.tfc.common.blocks.crop.CropHelpers;
+import net.dries007.tfc.config.TFCConfig;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.ICalendar;
@@ -171,12 +174,15 @@ public final class Mechanics
     public static final Predicate<BlockState> CELLAR = state -> Helpers.isBlock(state, FLTags.Blocks.CELLAR_INSULATION);
     private static final int UPDATE_INTERVAL = ICalendar.CALENDAR_TICKS_IN_DAY;
 
-    public static final Supplier<Float> GROWTH_FACTOR = () -> 1f / (FLConfig.SERVER.greenhouseGrowthDays.get().floatValue() * ICalendar.TICKS_IN_DAY); // same as tfc
-    public static final Supplier<Float> NUTRIENT_CONSUMPTION = () -> 1f / (FLConfig.SERVER.greenhouseNutrientDays.get().floatValue() * ICalendar.TICKS_IN_DAY); //  12 -> 8 days
-    public static final Supplier<Float> WATER_CONSUMPTION = () -> 1f / (FLConfig.SERVER.greenhouseWaterDays.get().floatValue() * ICalendar.TICKS_IN_DAY); // 12 days
+    public static final Supplier<Float> NUTRIENT_CONSUMPTION = () -> 1f / (FLConfig.SERVER.greenhouseNutrientDays.get().floatValue() * ICalendar.CALENDAR_TICKS_IN_DAY); //  12 -> 8 days
+    public static final Supplier<Float> WATER_CONSUMPTION = () -> 1f / (FLConfig.SERVER.greenhouseWaterDays.get().floatValue() * ICalendar.CALENDAR_TICKS_IN_DAY); // 14 days
+    public static final float GROWTH_FACTOR = 1f / (16 * ICalendar.CALENDAR_TICKS_IN_DAY);
     public static final float NUTRIENT_GROWTH_FACTOR = 0.5f;
+    public static final float YIELD_MIN = 0.2f;
+    public static final float YIELD_LIMIT = 1f;
+    public static final float GROWTH_LIMIT = 1f;
+    public static final float EXPIRY_LIMIT = 2f;
 
-    // todo: update to new tfc plant growth model?
     public static boolean growthTick(Level level, BlockPos pos, BlockState state, LargePlanterBlockEntity planter)
     {
         final long firstTick = planter.getLastGrowthTick(), thisTick = Calendars.SERVER.getTicks();
@@ -206,26 +212,114 @@ public final class Mechanics
             {
                 // Nutrients are consumed first, since they are independent of growth or health.
                 // As long as the crop exists it consumes nutrients.
-                float nutrientsConsumed = planter.consumeNutrientAndResupplyOthers(plant.getPrimaryNutrient(), NUTRIENT_CONSUMPTION.get() * tickDelta);
+                // Nutrients are consumed first, since they are independent of growth or health.
+                // As long as the crop exists it consumes nutrients.
 
-                // Total growth is based on the ticks and the nutrients consumed. It is then allocated to actual growth.
-                float totalGrowthDelta = Helpers.uniform(random, 0.9f, 1.1f) * tickDelta * GROWTH_FACTOR.get() + nutrientsConsumed * NUTRIENT_GROWTH_FACTOR;
-                float growth = planter.getGrowth(slot);
+                // Nutrients required for 100% yield multiplier
+                // Negative values are nutrients restored to soil
+                final float nForGrowth = plant.nutrient().nitrogen();
+                final float pForGrowth = plant.nutrient().phosphorous();
+                final float kForGrowth = plant.nutrient().potassium();
 
-                if (totalGrowthDelta > 0 && growing)
+                final float posNForGrowth = Math.max(0, nForGrowth);
+                final float posPForGrowth = Math.max(0, pForGrowth);
+                final float posKForGrowth = Math.max(0, kForGrowth);
+
+                float nutrientsForGrowth = posNForGrowth + posPForGrowth + posKForGrowth;
+
+                // Required nutrients for this growth tick
+                final float nRequired = NUTRIENT_CONSUMPTION.get() * tickDelta * nForGrowth;
+                final float pRequired = NUTRIENT_CONSUMPTION.get() * tickDelta * pForGrowth;
+                final float kRequired = NUTRIENT_CONSUMPTION.get() * tickDelta * kForGrowth;
+
+                final float nutrientsRequired = Math.max(0, nRequired) + Math.max(0, pRequired) + Math.max(0, kRequired);
+
+                // Consumed nutrients for this growth tick
+                float nutrientsConsumed = 0;
+                float nutrientsAvailable = 0;
+
+                // How many nutrients were absorbed relative to the crop's capacity
+                if (nutrientsForGrowth > 0)
                 {
-                    // Allocate to growth
-                    final float delta = Mth.clamp(totalGrowthDelta, 0, 1);
-                    growth += delta;
+                    // Sum of all nutrients available for growth
+                    nutrientsAvailable = (
+                        Math.min(posNForGrowth, planter.getNutrient(FarmlandBlockEntity.NutrientType.NITROGEN))
+                            + Math.min(posPForGrowth, planter.getNutrient(FarmlandBlockEntity.NutrientType.PHOSPHOROUS))
+                            + Math.min(posKForGrowth, planter.getNutrient(FarmlandBlockEntity.NutrientType.POTASSIUM))
+                    );
 
-                    planter.drainWater(tickDelta * WATER_CONSUMPTION.get());
+                    // Won't consume a nutrient beyond the amount required by the crop
+                    final float maxNToConsume = nForGrowth - planter.getNAbsorbed();
+                    final float maxPToConsume = pForGrowth - planter.getPAbsorbed();
+                    final float maxKToConsume = kForGrowth - planter.getKAbsorbed();
+
+                    final float nConsumed = planter.consumeNutrients(Math.min(nRequired, maxNToConsume), FarmlandBlockEntity.NutrientType.NITROGEN);
+                    final float pConsumed = planter.consumeNutrients(Math.min(pRequired, maxPToConsume), FarmlandBlockEntity.NutrientType.PHOSPHOROUS);
+                    final float kConsumed = planter.consumeNutrients(Math.min(kRequired, maxKToConsume), FarmlandBlockEntity.NutrientType.POTASSIUM);
+
+                    // Adds new nutrients back to the crop
+                    planter.addNutrients(nConsumed, pConsumed, kConsumed);
+
+                    nutrientsConsumed += nConsumed + pConsumed + kConsumed;
+                }
+                else
+                {
+                    // Avoids division by zero
+                    nutrientsForGrowth = 1f;
                 }
 
-                planter.setGrowth(slot, Mth.clamp(growth, 0f, 1f));
+                final float growthModifier = FLConfig.SERVER.greenhouseGrowthModifier.get().floatValue(); // Higher = Slower growth
+
+                // Total growth is based on the ticks and the nutrients consumed. It is then allocated to actual growth or expiry based on other factors.
+                final float totalGrowthDelta = (1f / growthModifier) * Helpers.uniform(random, 0.9f, 1.1f) * tickDelta * GROWTH_FACTOR + nutrientsConsumed / nutrientsForGrowth * NUTRIENT_GROWTH_FACTOR;
+                final float initialGrowth = planter.getGrowth(slot);
+                float growth = initialGrowth, actualYield = planter.getYield(slot);
+
+                final float growthLimit = 1f;
+                if (totalGrowthDelta > 0 && growing && growth < growthLimit)
+                {
+                    // Allocate to growth
+                    final float delta = Math.min(totalGrowthDelta, growthLimit - growth);
+                    planter.drainWater(Helpers.uniform(random, 0.9f, 1.1f) * tickDelta * WATER_CONSUMPTION.get());
+
+                    growth += delta;
+                }
+
+                // Add nutrients back to soil. Must happen after we determine the growth delta to prevent extra nutrients being added
+                final float growthDelta = growth - initialGrowth;
+                final float percentOfNutrientsSatisfied = nutrientsRequired > 0 ? nutrientsConsumed / nutrientsRequired : 0f;
+                final float bonus = 1f; // soil contribution
+
+                planter.produceNutrients(nForGrowth * bonus, FarmlandBlockEntity.NutrientType.NITROGEN, percentOfNutrientsSatisfied, growthDelta);
+                planter.produceNutrients(pForGrowth * bonus, FarmlandBlockEntity.NutrientType.PHOSPHOROUS, percentOfNutrientsSatisfied, growthDelta);
+                planter.produceNutrients(kForGrowth * bonus, FarmlandBlockEntity.NutrientType.POTASSIUM, percentOfNutrientsSatisfied, growthDelta);
+                // Calculate yield, which depends on the nutrient satisfaction, which is a measure of nutrient consumption over the growth time.
+                final float nutrientSatisfaction;
+
+                if (growthDelta <= 0)
+                {
+                    nutrientSatisfaction = 1; // Either condition causes the below formula to result in NaN
+                }
+                else if (nutrientsRequired <= 0)
+                {
+                    nutrientSatisfaction = 0; // No yield bonuses for plants that don't absorb nutrients
+                }
+                else
+                {
+                    nutrientSatisfaction = Math.min(1, (totalGrowthDelta / growthDelta) * (nutrientsAvailable / nutrientsRequired));
+                }
+
+                actualYield += growthDelta * Helpers.lerp(nutrientSatisfaction, YIELD_MIN, YIELD_LIMIT);
+
+                planter.setGrowth(slot, growth);
+                planter.setYield(slot, actualYield);
             }
             else
             {
                 planter.setGrowth(slot, 0);
+                planter.setYield(slot, 0);
+                planter.setLastGrowthTick(calendar.getTicks());
+                return false;
             }
         }
         planter.setLastGrowthTick(calendar.getTicks());

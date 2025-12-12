@@ -6,7 +6,11 @@
   "ingredient": {
     "item": "tfc:seeds/soybean"
   },
-  "nutrient": "nitrogen",
+  "nutrient": {
+    "nitrogen": -0.8,
+    "phosphorous": 0.6,
+    "potassium": 0.3
+  },
   "planter": "quad",
   "seed": {
     "count": 1,

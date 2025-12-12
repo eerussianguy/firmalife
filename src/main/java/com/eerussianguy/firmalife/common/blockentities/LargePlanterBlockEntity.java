@@ -38,9 +38,9 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
 
     @Nullable
     private Plantable cachedPlant;
-    private float growth;
+    private float growth, yield;
 
-    private float nitrogen, phosphorous, potassium, water;
+    private float nAbsorbed, pAbsorbed, kAbsorbed, water;
     private long lastUpdateTick;
     private long lastGrowthTick;
     protected boolean climateValid;
@@ -57,9 +57,10 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
         cachedPlant = null;
         climateValid = false;
         growth = 0;
+        yield = 0;
         water = 0;
         tier = 0;
-        nitrogen = phosphorous = potassium = 0;
+        nAbsorbed = pAbsorbed = kAbsorbed = 0;
         lastUpdateTick = Integer.MIN_VALUE;
         lastGrowthTick = Calendars.SERVER.getTicks();
     }
@@ -131,20 +132,12 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
         lastUpdateTick = nbt.getLong("lastUpdateTick");
         lastGrowthTick = nbt.getLong("lastGrowthTick");
         climateValid = nbt.getBoolean("climateValid");
-        nitrogen = nbt.getFloat("n");
-        phosphorous = nbt.getFloat("p");
-        potassium = nbt.getFloat("k");
+        loadNutrientsWithoutSync(nbt);
         water = nbt.getFloat("water");
         tier = nbt.getInt("tier");
 
         loadUnique(nbt);
         updateCache();
-    }
-
-    public float consumeNutrientAndResupplyOthers(FarmlandBlockEntity.NutrientType primaryNutrient, float v)
-    {
-        //TODO
-        return 0;
     }
 
     protected void loadUnique(CompoundTag nbt)
@@ -159,9 +152,7 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
         nbt.putLong("lastUpdateTick", lastUpdateTick);
         nbt.putLong("lastGrowthTick", lastGrowthTick);
         nbt.putBoolean("climateValid", climateValid);
-        nbt.putFloat("n", nitrogen);
-        nbt.putFloat("p", phosphorous);
-        nbt.putFloat("k", potassium);
+        saveNutrients(nbt);
         nbt.putFloat("water", water);
         nbt.putInt("tier", tier);
 
@@ -250,6 +241,16 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
         return growth;
     }
 
+    public float getYield(int slot)
+    {
+        return yield;
+    }
+
+    public void setYield(int slot, float yield)
+    {
+        this.yield = yield;
+    }
+
     public void setGrowth(int slot, float growth)
     {
         if (growth > 0.99f) growth = 1f;
@@ -268,9 +269,9 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     {
         return switch (type)
         {
-            case NITROGEN -> nitrogen;
-            case PHOSPHOROUS -> phosphorous;
-            case POTASSIUM -> potassium;
+            case NITROGEN -> nAbsorbed;
+            case PHOSPHOROUS -> pAbsorbed;
+            case POTASSIUM -> kAbsorbed;
         };
     }
 
@@ -280,17 +281,46 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
         amount = Mth.clamp(amount, 0f, 1f);
         switch (type)
         {
-            case NITROGEN -> nitrogen = amount;
-            case POTASSIUM -> potassium = amount;
-            case PHOSPHOROUS -> phosphorous = amount;
+            case NITROGEN -> nAbsorbed = amount;
+            case POTASSIUM -> kAbsorbed = amount;
+            case PHOSPHOROUS -> pAbsorbed = amount;
         }
         markForSync();
     }
 
     @Override
-    public void setNutrientWithoutSync(FarmlandBlockEntity.NutrientType nutrientType, float v)
+    public void setNutrientWithoutSync(FarmlandBlockEntity.NutrientType type, float amount)
     {
+        amount = Mth.clamp(amount, 0f, 1f);
+        switch (type)
+        {
+            case NITROGEN -> nAbsorbed = amount;
+            case POTASSIUM -> kAbsorbed = amount;
+            case PHOSPHOROUS -> pAbsorbed = amount;
+        }
+    }
 
+    public float getNAbsorbed()
+    {
+        return nAbsorbed;
+    }
+
+    public float getPAbsorbed()
+    {
+        return pAbsorbed;
+    }
+
+    public float getKAbsorbed()
+    {
+        return kAbsorbed;
+    }
+
+    public void addNutrients(float n, float p, float k)
+    {
+        this.nAbsorbed += n;
+        this.pAbsorbed += p;
+        this.kAbsorbed += k;
+        markForSync();
     }
 
     @Override
@@ -300,22 +330,13 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     }
 
     @Override
-    public void waterTick()
-    {
-
-    }
+    public void waterTick() { }
 
     @Override
-    public void setAdditionalWater(float amount)
-    {
-
-    }
+    public void setAdditionalWater(float amount) { }
 
     @Override
-    public void setAdditionalWaterWithoutSync(float amount)
-    {
-
-    }
+    public void setAdditionalWaterWithoutSync(float amount) { }
 
     @Override
     public long getLastWaterTick()
@@ -324,10 +345,7 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     }
 
     @Override
-    public void setLastWaterTick(long l)
-    {
-
-    }
+    public void setLastWaterTick(long l) { }
 
     @Override
     public void setAndUpdateSlots(int slot)

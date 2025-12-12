@@ -142,7 +142,11 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
             if (target == null) return;
 
             final int slot = getUseSlot(target, pos);
-            text.accept(Component.translatable("firmalife.planter.growth_water", String.format("%.2f", planter.getGrowth(slot)), String.format("%.2f", planter.getWater())));
+            text.accept(
+                Component.translatable("firmalife.planter.growth_water", String.format("%.2f", planter.getGrowth(slot)), String.format("%.2f", planter.getWater()))
+                    .append(" ")
+                    .append(Component.translatable("firmalife.planter.yield", String.format("%.2f", planter.getYield(slot))))
+            );
             if (planter.getGrowth(slot) >= 1)
             {
                 text.accept(Component.translatable("tfc.tooltip.farmland.mature"));
@@ -172,48 +176,56 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
 
     public ItemInteractionResult insertSlot(Level level, LargePlanterBlockEntity planter, ItemStack held, Player player, int slot)
     {
-        IItemHandler inventory = Helpers.getCapability(BlockCapabilities.ITEM, planter);
-        if (inventory != null) {
-            var res = ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-            if (inventory.getStackInSlot(slot).isEmpty())
+        final IItemHandler inventory = planter.getInventory();
+        var res = ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        if (inventory.getStackInSlot(slot).isEmpty())
+        {
+            res = FLHelpers.insertOne(level, held, slot, inventory, player);
+            if (res.consumesAction())
             {
-                res = FLHelpers.insertOne(level, held, slot, inventory, player);
-                if (res.consumesAction())
-                {
-                    planter.setGrowth(slot, 0);
-                    planter.updateCache();
-                }
+                planter.setGrowth(slot, 0);
+                planter.setYield(slot, 0);
+                planter.updateCache();
             }
-            return res;
         }
-        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        return res;
     }
 
     public static ItemInteractionResult takeSlot(Level level, LargePlanterBlockEntity planter, int slot, Consumer<ItemStack> onExtract)
     {
-        IItemHandler inventory = Helpers.getCapability(BlockCapabilities.ITEM, planter);
-        if(inventory != null) {
-            Plantable plant = planter.getPlantable(slot);
-            if (plant != null && planter.getGrowth(slot) >= 1)
+        final IItemHandler inventory = planter.getInventory();
+        final Plantable plant = planter.getPlantable(slot);
+        if (plant != null && planter.getGrowth(slot) >= 1)
+        {
+            if (planter.resetGrowthTo() == 0)
             {
-                if (planter.resetGrowthTo() == 0)
-                {
-                    inventory.extractItem(slot, 1, false); // discard the internal ingredient
-                }
-                final int seedAmount = level.random.nextFloat() < plant.extraSeedChance() ? 2 : 1;
-                ItemStack seed = plant.getSeed();
-                if (!seed.isEmpty())
-                {
-                    seed.setCount(seedAmount);
-                    FLHelpers.roundCreationDate(seed);
-                    onExtract.accept(seed);
-                }
-                ItemStack crop = plant.getCrop();
-                FLHelpers.roundCreationDate(crop);
-                onExtract.accept(crop);
-                planter.setGrowth(slot, planter.resetGrowthTo());
-                return ItemInteractionResult.sidedSuccess(level.isClientSide);
+                inventory.extractItem(slot, 1, false); // discard the internal ingredient
             }
+            final int seedAmount = level.random.nextFloat() < plant.extraSeedChance() ? 2 : 1;
+            ItemStack seed = plant.getSeed();
+            if (!seed.isEmpty())
+            {
+                seed.setCount(seedAmount);
+                FLHelpers.roundCreationDate(seed);
+                onExtract.accept(seed);
+            }
+
+            ItemStack crop = plant.getCrop();
+            FLHelpers.roundCreationDate(crop);
+
+            final float yield = planter.getYield(slot) * Helpers.uniform(level.getRandom(), 0.9f, 1.1f);
+            if (yield > 0.2f && level.getRandom().nextFloat() < 0.1f)
+                crop.setCount(crop.getCount() + 1);
+            if (yield > 0.5f)
+                crop.setCount(crop.getCount() + 1);
+            if (yield > 0.9f)
+                crop.setCount(crop.getCount() + 1);
+
+            onExtract.accept(crop);
+
+            planter.setGrowth(slot, planter.resetGrowthTo());
+            planter.setYield(slot, 0);
+            return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }

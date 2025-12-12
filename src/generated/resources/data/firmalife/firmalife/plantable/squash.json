@@ -6,7 +6,11 @@
   "ingredient": {
     "item": "tfc:seeds/squash"
   },
-  "nutrient": "potassium",
+  "nutrient": {
+    "nitrogen": 0.25,
+    "phosphorous": 0.45,
+    "potassium": 0.5
+  },
   "planter": "hanging",
   "seed": {
     "count": 1,

@@ -6,7 +6,11 @@
   "ingredient": {
     "item": "tfc:seeds/wheat"
   },
-  "nutrient": "phosphorous",
+  "nutrient": {
+    "nitrogen": 1.0,
+    "phosphorous": -0.3,
+    "potassium": -0.3
+  },
   "planter": "large",
   "seed": {
     "count": 1,

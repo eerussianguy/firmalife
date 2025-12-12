@@ -6,7 +6,11 @@
   "ingredient": {
     "item": "tfc:seeds/rye"
   },
-  "nutrient": "phosphorous",
+  "nutrient": {
+    "nitrogen": 1.0,
+    "phosphorous": -0.35,
+    "potassium": -0.25
+  },
   "planter": "large",
   "seed": {
     "count": 1,

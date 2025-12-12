@@ -6,7 +6,11 @@
   "ingredient": {
     "item": "tfc:seeds/papyrus"
   },
-  "nutrient": "potassium",
+  "nutrient": {
+    "nitrogen": 0.5,
+    "phosphorous": 0.5,
+    "potassium": 0.5
+  },
   "planter": "large",
   "seed": {
     "count": 1,

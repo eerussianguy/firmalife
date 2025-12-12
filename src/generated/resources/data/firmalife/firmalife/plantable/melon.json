@@ -6,7 +6,11 @@
   "ingredient": {
     "item": "tfc:seeds/melon"
   },
-  "nutrient": "phosphorous",
+  "nutrient": {
+    "nitrogen": 0.3,
+    "phosphorous": 0.4,
+    "potassium": 0.65
+  },
   "planter": "hanging",
   "seed": {
     "count": 1,

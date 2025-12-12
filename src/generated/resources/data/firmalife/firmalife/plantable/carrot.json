@@ -6,7 +6,11 @@
   "ingredient": {
     "item": "tfc:seeds/carrot"
   },
-  "nutrient": "potassium",
+  "nutrient": {
+    "nitrogen": 0.5,
+    "phosphorous": 0.3,
+    "potassium": 0.4
+  },
   "planter": "quad",
   "seed": {
     "count": 1,

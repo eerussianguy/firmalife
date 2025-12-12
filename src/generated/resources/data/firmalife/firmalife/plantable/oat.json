@@ -6,7 +6,11 @@
   "ingredient": {
     "item": "tfc:seeds/oat"
   },
-  "nutrient": "phosphorous",
+  "nutrient": {
+    "nitrogen": 1.0,
+    "phosphorous": -0.25,
+    "potassium": -0.35
+  },
   "planter": "large",
   "seed": {
     "count": 1,

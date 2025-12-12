@@ -6,7 +6,11 @@
   "ingredient": {
     "item": "tfc:seeds/rice"
   },
-  "nutrient": "phosphorous",
+  "nutrient": {
+    "nitrogen": 0.4,
+    "phosphorous": 0.3,
+    "potassium": 0.3
+  },
   "planter": "hydroponic",
   "seed": {
     "count": 1,

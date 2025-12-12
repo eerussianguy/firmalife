@@ -6,7 +6,11 @@
   "ingredient": {
     "item": "firmalife:seeds/red_grape"
   },
-  "nutrient": "nitrogen",
+  "nutrient": {
+    "nitrogen": 0.2,
+    "phosphorous": 0.2,
+    "potassium": 0.2
+  },
   "planter": "trellis",
   "seed": {
     "count": 1,

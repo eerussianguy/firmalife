@@ -216,6 +216,7 @@ DEFAULT_LANG = {
     'firmalife.greenhouse.expects': 'Expects %s greenhouse',
     'firmalife.cellar.expects': 'Expects cellar',
     'firmalife.planter.growth_water': 'Growth: %s, Water: %s',
+    'firmalife.planter.yield': 'Yield: %s',
     'firmalife.tumbler.almost_ready': 'Compost almost ready!',
     'firmalife.tumbler.rotten': 'Rotten!',
     'firmalife.tumbler.ready': 'Ready',

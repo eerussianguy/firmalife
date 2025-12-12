@@ -1,0 +1,29 @@
+{
+  "crop": {
+    "count": 1,
+    "id": "tfc:food/cassava"
+  },
+  "ingredient": {
+    "item": "tfc:seeds/cassava"
+  },
+  "nutrient": {
+    "nitrogen": -0.5,
+    "phosphorous": 0.4,
+    "potassium": 0.2
+  },
+  "planter": "quad",
+  "seed": {
+    "count": 1,
+    "id": "tfc:seeds/cassava"
+  },
+  "specials": [],
+  "stages": 5,
+  "textures": [
+    "tfc:block/crop/cassava_0",
+    "tfc:block/crop/cassava_1",
+    "tfc:block/crop/cassava_2",
+    "tfc:block/crop/cassava_3",
+    "tfc:block/crop/cassava_4",
+    "tfc:block/crop/cassava_5"
+  ]
+}

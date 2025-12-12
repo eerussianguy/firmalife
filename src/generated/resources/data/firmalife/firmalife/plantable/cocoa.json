@@ -7,7 +7,11 @@
   "ingredient": {
     "item": "firmalife:plant/cocoa_sapling"
   },
-  "nutrient": "nitrogen",
+  "nutrient": {
+    "nitrogen": 0.2,
+    "phosphorous": 0.2,
+    "potassium": 0.2
+  },
   "planter": "bonsai",
   "seed": {
     "count": 1,

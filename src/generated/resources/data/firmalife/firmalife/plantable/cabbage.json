@@ -6,7 +6,11 @@
   "ingredient": {
     "item": "tfc:seeds/cabbage"
   },
-  "nutrient": "nitrogen",
+  "nutrient": {
+    "nitrogen": 0.5,
+    "phosphorous": 0.2,
+    "potassium": 0.4
+  },
   "planter": "quad",
   "seed": {
     "count": 1,

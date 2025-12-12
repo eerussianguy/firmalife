@@ -28,7 +28,7 @@ public class FLServerConfig extends BaseConfig
     public final Supplier<Integer> wineGlassCapacity;
     public final Supplier<Double> cellarLevel2Temperature;
     public final Supplier<Double> cellarLevel3Temperature;
-    public final Supplier<Double> greenhouseGrowthDays;
+    public final Supplier<Double> greenhouseGrowthModifier;
     public final Supplier<Double> greenhouseWaterDays;
     public final Supplier<Double> greenhouseNutrientDays;
     public final Map<FLFoodTraits.Default, Supplier<Double>> foodTraits;
@@ -60,8 +60,8 @@ public class FLServerConfig extends BaseConfig
         wineGlassCapacity = builder.comment("The capacity in mB of the wine glass. Default 250").define("hollowShellCapacity", 250, 1, Integer.MAX_VALUE);
         cellarLevel2Temperature = builder.comment("The average temperature below which stronger decay modifiers apply to cellar blocks.").define("cellarLevel2Temperature", 0d, -Double.MAX_VALUE, Double.MAX_VALUE);
         cellarLevel3Temperature = builder.comment("The average temperature below which even stronger decay modifiers apply to cellar blocks.").define("cellarLevel3Temperature", -12d, -Double.MAX_VALUE, Double.MAX_VALUE);
-        greenhouseGrowthDays = builder.comment("The average amount of days for a crop in a greenhouse to grow. For normal crops, this is 24 days.").define("greenhouseGrowthDays", 20d, Double.MIN_VALUE, Double.MAX_VALUE);
-        greenhouseWaterDays = builder.comment("The average amount of days for a crop in a greenhouse to consume all its water.").define("greenhouseWaterDays", 12d, 0, Double.MAX_VALUE);
+        greenhouseGrowthModifier = builder.comment("Modifier applied to the growth time of every crop in a greenhouse. The modifier multiplies the ticks it takes to grow, so larger values cause longer growth times. For example, a value of 2 doubles the growth time.").define("greenhouseGrowthModifier", 1, 0.001, 1000);
+        greenhouseWaterDays = builder.comment("The average amount of days for a crop in a greenhouse to consume all its water.").define("greenhouseWaterDays", 14d, 0, Double.MAX_VALUE);
         greenhouseNutrientDays = builder.comment("The average amount of days for a crop to consume all of a nutrient. You should probably not configure this value unless you know what it does in the code. For regular crops this value is 12.").define("greenhouseNutrientDays", 8d, 0, Double.MAX_VALUE);
         greenhouseRadius = builder.comment("The max bounded distance from the climate station a greenhouse wall can be. Higher numbers = more lag.").define("greenhouseRadius", 15, 1, 128);
         cellarRadius = builder.comment("The max bounded distance from the climate station a cellar wall can be. Higher numbers = more lag.").define("cellarRadius", 15, 1, 128);

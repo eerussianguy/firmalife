@@ -6,7 +6,11 @@
   "ingredient": {
     "item": "tfc:plant/cranberry_bush"
   },
-  "nutrient": "phosphorous",
+  "nutrient": {
+    "nitrogen": 0.2,
+    "phosphorous": 0.2,
+    "potassium": 0.2
+  },
   "planter": "hydroponic",
   "seed": {
     "count": 1,

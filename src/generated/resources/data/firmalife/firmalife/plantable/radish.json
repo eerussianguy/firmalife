@@ -1,0 +1,29 @@
+{
+  "crop": {
+    "count": 1,
+    "id": "tfc:food/radish"
+  },
+  "ingredient": {
+    "item": "tfc:seeds/radish"
+  },
+  "nutrient": {
+    "nitrogen": -0.5,
+    "phosphorous": -1.0,
+    "potassium": -0.6
+  },
+  "planter": "quad",
+  "seed": {
+    "count": 1,
+    "id": "tfc:seeds/radish"
+  },
+  "specials": [],
+  "stages": 5,
+  "textures": [
+    "tfc:block/crop/radish_0",
+    "tfc:block/crop/radish_1",
+    "tfc:block/crop/radish_2",
+    "tfc:block/crop/radish_3",
+    "tfc:block/crop/radish_4",
+    "tfc:block/crop/radish_5"
+  ]
+}

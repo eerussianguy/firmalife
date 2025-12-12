@@ -6,7 +6,11 @@
   "ingredient": {
     "item": "tfc:seeds/garlic"
   },
-  "nutrient": "nitrogen",
+  "nutrient": {
+    "nitrogen": 0.4,
+    "phosphorous": 0.2,
+    "potassium": 0.5
+  },
   "planter": "quad",
   "seed": {
     "count": 1,

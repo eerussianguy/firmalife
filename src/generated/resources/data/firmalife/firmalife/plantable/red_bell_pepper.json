@@ -6,7 +6,11 @@
   "ingredient": {
     "item": "tfc:seeds/red_bell_pepper"
   },
-  "nutrient": "potassium",
+  "nutrient": {
+    "nitrogen": 0.3,
+    "phosphorous": 0.4,
+    "potassium": 0.5
+  },
   "planter": "large",
   "seed": {
     "count": 1,

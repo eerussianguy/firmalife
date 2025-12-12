@@ -41,6 +41,7 @@ public class TrellisPlanterBlockEntity extends LargePlanterBlockEntity
                         if (!leftover.isEmpty())
                         {
                             planter.setGrowth(0, 0);
+                            planter.setYield(0, 0);
                             planter.updateCache();
                         }
                     }

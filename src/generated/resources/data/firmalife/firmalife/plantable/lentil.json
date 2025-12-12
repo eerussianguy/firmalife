@@ -1,0 +1,29 @@
+{
+  "crop": {
+    "count": 1,
+    "id": "tfc:food/lentil"
+  },
+  "ingredient": {
+    "item": "tfc:seeds/lentil"
+  },
+  "nutrient": {
+    "nitrogen": -0.8,
+    "phosphorous": 0.2,
+    "potassium": 0.2
+  },
+  "planter": "quad",
+  "seed": {
+    "count": 1,
+    "id": "tfc:seeds/lentil"
+  },
+  "specials": [],
+  "stages": 5,
+  "textures": [
+    "tfc:block/crop/lentil_0",
+    "tfc:block/crop/lentil_1",
+    "tfc:block/crop/lentil_2",
+    "tfc:block/crop/lentil_3",
+    "tfc:block/crop/lentil_4",
+    "tfc:block/crop/lentil_5"
+  ]
+}

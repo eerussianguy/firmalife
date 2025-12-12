@@ -17,6 +17,7 @@ public class QuadPlanterBlockEntity extends LargePlanterBlockEntity
 
     private final Plantable[] cachedPlants;
     private float[] growth;
+    private float[] yield;
 
     public QuadPlanterBlockEntity(BlockPos pos, BlockState state)
     {
@@ -28,12 +29,14 @@ public class QuadPlanterBlockEntity extends LargePlanterBlockEntity
         super(type, pos, state, defaultInventory(NUM_SLOTS), modId);
         cachedPlants = new Plantable[] {null, null, null, null};
         growth = new float[] {0, 0, 0, 0};
+        yield = new float[] {0, 0, 0, 0};
     }
 
     @Override
     protected void loadUnique(CompoundTag nbt)
     {
         growth = new float[] {nbt.getFloat("grow0"), nbt.getFloat("grow1"), nbt.getFloat("grow2"), nbt.getFloat("grow3")};
+        yield = new float[] {nbt.getFloat("yield0"), nbt.getFloat("yield1"), nbt.getFloat("yield2"), nbt.getFloat("yield3")};
     }
 
     @Override
@@ -42,6 +45,7 @@ public class QuadPlanterBlockEntity extends LargePlanterBlockEntity
         for (int i = 0; i < 4; i++)
         {
             nbt.putFloat("grow" + i, growth[i]);
+            nbt.putFloat("yield" + i, yield[i]);
         }
     }
 
@@ -73,6 +77,19 @@ public class QuadPlanterBlockEntity extends LargePlanterBlockEntity
     public void setGrowth(int slot, float growth)
     {
         this.growth[slot] = growth;
+        markForSync();
+    }
+
+    @Override
+    public float getYield(int slot)
+    {
+        return yield[slot];
+    }
+
+    @Override
+    public void setYield(int slot, float yield)
+    {
+        this.yield[slot] = yield;
         markForSync();
     }
 

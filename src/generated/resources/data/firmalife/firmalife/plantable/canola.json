@@ -1,0 +1,29 @@
+{
+  "crop": {
+    "count": 1,
+    "id": "tfc:canola"
+  },
+  "ingredient": {
+    "item": "tfc:seeds/canola"
+  },
+  "nutrient": {
+    "nitrogen": -0.3,
+    "phosphorous": -0.6,
+    "potassium": -1.0
+  },
+  "planter": "quad",
+  "seed": {
+    "count": 1,
+    "id": "tfc:seeds/canola"
+  },
+  "specials": [],
+  "stages": 5,
+  "textures": [
+    "tfc:block/crop/canola_0",
+    "tfc:block/crop/canola_1",
+    "tfc:block/crop/canola_2",
+    "tfc:block/crop/canola_3",
+    "tfc:block/crop/canola_4",
+    "tfc:block/crop/canola_5"
+  ]
+}

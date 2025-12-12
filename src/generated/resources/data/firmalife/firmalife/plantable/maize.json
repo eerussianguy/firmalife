@@ -6,7 +6,11 @@
   "ingredient": {
     "item": "tfc:seeds/maize"
   },
-  "nutrient": "phosphorous",
+  "nutrient": {
+    "nitrogen": 0.9,
+    "phosphorous": -0.25,
+    "potassium": -0.25
+  },
   "planter": "large",
   "seed": {
     "count": 1,
