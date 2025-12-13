@@ -47,7 +47,6 @@ public abstract class SimpleDynamicBlockModel<T extends BlockEntity> extends Dyn
         final int packedLight = LightTexture.pack(level.getBrightness(LightLayer.BLOCK, pos), level.getBrightness(LightLayer.SKY, pos));
         final int packedOverlay = OverlayTexture.NO_OVERLAY;
         final List<BakedQuad> quads = new ArrayList<>(24);
-        //TODO sometimes no quads get pushed either? (nothing extra gets rendered?)
 
         // Copied from TFC, needs to bake every quad manually or rendering will break.
         // See TFC's SimpleStaticBlockEntityModel#render for a better explanation

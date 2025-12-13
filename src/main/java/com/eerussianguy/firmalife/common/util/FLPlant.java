@@ -9,7 +9,6 @@ import org.jetbrains.annotations.Nullable;
 
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.TFCBlockStateProperties;
-import net.dries007.tfc.common.blocks.plant.PlantBlock;
 import net.dries007.tfc.util.calendar.Month;
 import net.dries007.tfc.util.registry.RegistryPlant;
 
@@ -37,7 +36,7 @@ public enum FLPlant implements RegistryPlant
         {
             maxStage = Arrays.stream(stagesByMonth).max().orElse(0);
         }
-        this.property = maxStage > 0 ? TFCBlockStateProperties.getStageProperty(maxStage) : null;
+        this.property = maxStage > 0 ? TFCBlockStateProperties.getAgeProperty(maxStage) : null;
     }
 
     public float getSpeedFactor()
@@ -123,8 +122,7 @@ public enum FLPlant implements RegistryPlant
     @Override
     public @Nullable IntegerProperty getAgeProperty()
     {
-        //TODO issue with TFC that makes it so any other age property than this hardcoded one fails to be added
-        return PlantBlock.AGE;
+        return property;
     }
 
     private ExtendedProperties fire(BlockBehaviour.Properties properties)

@@ -11,7 +11,6 @@ public final class RenderUtils
 
     public static void renderCross(float x, float z, float y1, float y2, PoseStack poseStack, VertexConsumer buffer, int combinedLight, int combinedOverlay, TextureAtlasSprite sprite, float u1, float v1, float u2, float v2)
     {
-        // TODO this is only viewable from some angles, probably because of SimpleDynamicBlockModel#render issue
         for (float[] ver : getCrossHalfVertices(x, y1, x, z, y2, z, u1, v1, u2, v2))
         {
             RenderHelpers.renderTexturedVertex(poseStack, buffer, combinedLight, combinedOverlay, ver[0], ver[1], ver[2], sprite.getU(ver[3]), sprite.getV(ver[4]), -1.414f, 0f, -1.414f);
