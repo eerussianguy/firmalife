@@ -15,7 +15,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.registries.DeferredHolder;
-import org.jetbrains.annotations.NotNull;
 
 import net.dries007.tfc.client.overworld.SolarCalculator;
 import net.dries007.tfc.common.TFCTags;
@@ -38,13 +37,12 @@ public class GrapePlantBlockEntity extends TickableBlockEntity implements ICalen
         plant.checkForLastTickSync();
     }
 
-    public static final int UPDATE_INTERVAL = ICalendar.TICKS_IN_DAY;
+    public static final int UPDATE_INTERVAL = ICalendar.CALENDAR_TICKS_IN_DAY;
 
     private long lastUpdateTick; // The last tick this crop was ticked via the block entity's tick() method. A delta of > 1 is used to detect time skips
     private long lastGrowthTick; // The last tick the crop block was ticked via ICropBlock#growthTick()
     private float growth = 0f;
     private int[] soilData = new int[] {0, 0, 0, 0, 0}; // grass, gravel, dirt, 0, -1
-    private int dirt, grass, gravel, minus, zero = 0;
 
     private boolean hasBees = false;
 
@@ -144,7 +142,6 @@ public class GrapePlantBlockEntity extends TickableBlockEntity implements ICalen
         return cursor.immutable();
     }
 
-    @NotNull
     private static Direction getStringDirection(BlockState state)
     {
         return state.getValue(GrapeGroundPlantOnStringBlock.AXIS) == Direction.Axis.X ? Direction.EAST : Direction.SOUTH;
@@ -206,8 +203,8 @@ public class GrapePlantBlockEntity extends TickableBlockEntity implements ICalen
         }
         // a little bit about the math
         // each level has 49 blocks
-        // we can say there's probably a slope if theres a bit less blocks than 49 at the level below the plant
-        // and if theres at least some blocks that *are* at the level of the plant
+        // we can say there's probably a slope if there's a bit less blocks than 49 at the level below the plant
+        // and if there's at least some blocks that *are* at the level of the plant
         if (countAtMinus1 < 33 && countAtZero > 20)
         {
             traits.add(FLFoodTraits.SLOPE_GROWN);

@@ -48,7 +48,7 @@ public class HollowShellItem extends FluidContainerItem
                     state = FluidHelpers.fillWithFluid(state, fluid);
                     if (state != null)
                     {
-                        Helpers.playSound(level, pos, state.getSoundType().getPlaceSound());
+                        Helpers.playPlaceSound(player, level, pos, state);
                         level.setBlockAndUpdate(pos, state);
                         stack.shrink(1);
                         return InteractionResultHolder.consume(stack);

@@ -58,6 +58,7 @@ public class SprinklerItem extends BlockItem
     }
 
     @Override
+    @SuppressWarnings("removal") // todo: REMOVE in 1.22? LOL
     public void removeFromBlockToItemMap(Map<Block, Item> map, Item item)
     {
         super.removeFromBlockToItemMap(map, item);
