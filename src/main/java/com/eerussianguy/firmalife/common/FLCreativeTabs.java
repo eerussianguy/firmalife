@@ -111,6 +111,7 @@ public final class FLCreativeTabs
         accept(out, FLBlocks.DRYING_MAT);
         accept(out, FLBlocks.SOLAR_DRIER);
         accept(out, FLBlocks.BEEHIVE);
+        accept(out, FLBlocks.WILD_BEEHIVE);
         accept(out, FLBlocks.COMPOST_TUMBLER);
         accept(out, FLBlocks.MIXING_BOWL);
         accept(out, FLItems.SPOON);

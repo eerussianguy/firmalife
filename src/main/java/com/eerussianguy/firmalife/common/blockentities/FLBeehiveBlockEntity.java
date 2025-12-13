@@ -251,7 +251,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
             }
             else
             {
-                newBee = BeeComponent.initFreshAbilities(level.random);
+                newBee = BeeComponent.setAbilitiesFromParents(parent1, parent2, level.random);
             }
             if (freeSlot != -1)
             {

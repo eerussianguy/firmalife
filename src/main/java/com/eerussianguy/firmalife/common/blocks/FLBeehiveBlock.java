@@ -19,7 +19,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
@@ -50,25 +49,7 @@ public class FLBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBloc
         {
             return false;
         }
-        BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
-        mutable.set(pos);
-        for (int i = 0; i < 5; i++)
-        {
-            mutable.move(0, -1, 0);
-            BlockState state = level.getBlockState(mutable);
-            if (!state.isAir())
-            {
-                if (state.getBlock() instanceof FirepitBlock)
-                {
-                    if (state.getValue(FirepitBlock.LIT))
-                    {
-                        return false;
-                    }
-                }
-                break; // we hit a solid block
-            }
-
-        }
+        if (hasFirepit(level, pos)) return false;
         return level.getBlockEntity(pos, FLBlockEntities.BEEHIVE.get()).map(hive -> {
             final ItemStackHandler inv = hive.getInventory();
             boolean anyBees = false;
@@ -85,6 +66,26 @@ public class FLBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBloc
             calmChance /= 40f;
             return anyBees && level.random.nextFloat() > calmChance;
         }).orElse(false);
+    }
+
+    public static boolean hasFirepit(Level level, BlockPos pos)
+    {
+        final BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
+        mutable.set(pos);
+        for (int i = 0; i < 5; i++)
+        {
+            mutable.move(0, -1, 0);
+            BlockState state = level.getBlockState(mutable);
+            if (!state.canBeReplaced())
+            {
+                if (state.getBlock() instanceof FirepitBlock)
+                {
+                    return state.getValue(FirepitBlock.LIT);
+                }
+                return false; // we hit a solid block
+            }
+        }
+        return false;
     }
 
     public static void attack(Player player)
@@ -144,6 +145,18 @@ public class FLBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBloc
             return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+    }
+
+    @Override
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random)
+    {
+        if (state.getValue(HONEY))
+        {
+            for(int i = 0; i < random.nextInt(1) + 1; ++i)
+            {
+                WildBeehiveBlock.honeyDripParticle(level, pos, state);
+            }
+        }
     }
 
     @Override

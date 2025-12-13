@@ -69,7 +69,7 @@ public class BuiltinBlockTags extends TagsProvider<Block> implements Accessors
             .add2(FLBlocks.METALS)
             .add(FLBlocks.INSULATED_OVEN_BOTTOM);
         tag(BlockTags.MINEABLE_WITH_AXE)
-            .add(FLBlocks.TREATED_WOOD, FLBlocks.PLATE, FLBlocks.SOLAR_DRIER, FLBlocks.MIXING_BOWL, FLBlocks.GRAPE_TRELLIS_POST, FLBlocks.GRAPE_TRELLIS_POST_RED, FLBlocks.GRAPE_TRELLIS_POST_WHITE, FLBlocks.CLIMATE_STATION, FLBlocks.BEEHIVE)
+            .add(FLBlocks.TREATED_WOOD, FLBlocks.PLATE, FLBlocks.SOLAR_DRIER, FLBlocks.MIXING_BOWL, FLBlocks.GRAPE_TRELLIS_POST, FLBlocks.GRAPE_TRELLIS_POST_RED, FLBlocks.GRAPE_TRELLIS_POST_WHITE, FLBlocks.CLIMATE_STATION, FLBlocks.BEEHIVE, FLBlocks.WILD_BEEHIVE)
             .add(FLBlocks.FRUIT_TREE_BRANCHES)
             .add(FLBlocks.FRUIT_TREE_GROWING_BRANCHES)
             .add(FLBlocks.GREENHOUSE_BLOCKS.get(Greenhouse.TREATED_WOOD))
@@ -82,7 +82,7 @@ public class BuiltinBlockTags extends TagsProvider<Block> implements Accessors
             .addTag(CHEESE_WHEELS)
             .add(FLBlocks.CARVED_PUMPKINS)
             .add(FLBlocks.DRYING_MAT)
-            .add(FLBlocks.WOOL_STRING, FLBlocks.GRAPE_STRING, FLBlocks.GRAPE_STRING_PLANT_RED, FLBlocks.GRAPE_STRING_PLANT_WHITE, FLBlocks.GRAPE_STRING_RED, FLBlocks.GRAPE_STRING_WHITE, FLBlocks.GRAPE_FLUFF_RED, FLBlocks.GRAPE_FLUFF_WHITE)
+            .add(FLBlocks.WOOL_STRING, FLBlocks.GRAPE_STRING, FLBlocks.GRAPE_STRING_PLANT_RED, FLBlocks.GRAPE_STRING_PLANT_WHITE, FLBlocks.GRAPE_STRING_RED, FLBlocks.GRAPE_STRING_WHITE, FLBlocks.GRAPE_FLUFF_RED, FLBlocks.GRAPE_FLUFF_WHITE, FLBlocks.WILD_BEEHIVE)
             .add(FLBlocks.WILD_RED_GRAPES, FLBlocks.WILD_WHITE_GRAPES)
             .add(FLBlocks.JACK_O_LANTERNS);
         tag(BlockTags.STAIRS).addEveryFL(b -> b instanceof StairBlock);

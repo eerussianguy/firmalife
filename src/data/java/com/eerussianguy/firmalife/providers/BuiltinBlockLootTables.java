@@ -147,6 +147,7 @@ public class BuiltinBlockLootTables extends BlockLootSubProvider implements Acce
         dropSelf(FLBlocks.DRYING_MAT);
         dropSelf(FLBlocks.SOLAR_DRIER);
         dropSelf(FLBlocks.BEEHIVE);
+        dropSelf(FLBlocks.WILD_BEEHIVE); // todo
         dropSelf(FLBlocks.COMPOST_TUMBLER);
         dropSelf(FLBlocks.CLIMATE_STATION);
         dropOther(FLBlocks.WOOL_STRING, TFCItems.WOOL_YARN);

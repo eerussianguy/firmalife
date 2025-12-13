@@ -8,6 +8,7 @@ import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfigur
 
 import com.eerussianguy.firmalife.FirmaLife;
 import com.mojang.serialization.Codec;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import net.dries007.tfc.world.Codecs;
@@ -18,6 +19,7 @@ public class FLFeatures
     public static final DeferredRegister<Feature<?>> FEATURE = DeferredRegister.create(Registries.FEATURE, FirmaLife.MOD_ID);
 
     public static final Id<FLFruitTreeFeature> FRUIT_TREE = register("fruit_trees", FLFruitTreeFeature::new, Codecs.BLOCK_STATE_CONFIG);
+    public static final Id<BeehiveFeature> BEEHIVE = register("beehive", BeehiveFeature::new, NoneFeatureConfiguration.CODEC);
 
     private static <C extends FeatureConfiguration, F extends Feature<C>> Id<F> register(String name, Function<Codec<C>, F> factory, Codec<C> codec)
     {
