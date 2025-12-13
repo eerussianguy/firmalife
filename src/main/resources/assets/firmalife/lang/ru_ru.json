@@ -774,6 +774,7 @@
   "firmalife.greenhouse.expects": "Ожидает теплицу: %s",
   "firmalife.cellar.expects": "Ожидает подвал",
   "firmalife.planter.growth_water": "Рост: %s, Вода: %s",
+  "firmalife.planter.yield": "Yield: %s",
   "firmalife.tumbler.almost_ready": "Компост почти готов!",
   "firmalife.tumbler.rotten": "Гнилой!",
   "firmalife.tumbler.ready": "Готов",

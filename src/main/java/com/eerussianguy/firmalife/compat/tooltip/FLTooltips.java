@@ -20,13 +20,17 @@ import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.config.FLConfig;
 import net.neoforged.neoforge.items.IItemHandler;
 
+import net.dries007.tfc.common.blockentities.PotBlockEntity;
 import net.dries007.tfc.common.blockentities.TickCounterBlockEntity;
+import net.dries007.tfc.common.blocks.devices.FirepitBlock;
 import net.dries007.tfc.common.blocks.plant.fruit.FruitTreeSaplingBlock;
 import net.dries007.tfc.common.capabilities.BlockCapabilities;
 import net.dries007.tfc.common.component.food.FoodCapability;
 import net.dries007.tfc.common.component.food.FoodTrait;
 import net.dries007.tfc.common.component.food.IFood;
 import net.dries007.tfc.common.component.heat.HeatCapability;
+import net.dries007.tfc.common.items.Powder;
+import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.config.TFCConfig;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.calendar.Calendars;
@@ -59,12 +63,35 @@ public final class FLTooltips
             register(r, "jarbnet", JARBNET, JarbnetBlock.class);
             register(r, "barrel_press", BARREL_PRESS, JarbnetBlock.class);
             register(r, "pumping_station", BlockEntityTooltips.ROTATING, PumpingStationBlock.class);
+            register(r, "pot", POT, StovetopPotBlock.class);
         }
 
         private static void register(RegisterCallback<BlockEntityTooltip, Block> r, String name, BlockEntityTooltip tooltip, Class<? extends Block> aClass)
         {
             r.register(FLHelpers.identifier(name), tooltip, aClass);
         }
+
+        public static final BlockEntityTooltip POT = (level, state, pos, entity, tooltip) -> {
+            if (entity instanceof StovetopPotBlockEntity pot)
+            {
+                heat(tooltip, pot.getTemperature());
+
+                if (pot.shouldRenderAsBoiling())
+                {
+                    tooltip.accept(Component.translatable("tfc.tooltip.pot_boiling"));
+                }
+                else if (pot.getOutput() != null && !pot.getOutput().isEmpty())
+                {
+                    tooltip.accept(Component.translatable("tfc.tooltip.pot_finished"));
+
+                    final BlockEntityTooltip tt = pot.getOutput().getTooltip();
+                    if (tt != null)
+                    {
+                        tt.display(level, state, pos, entity, tooltip);
+                    }
+                }
+            }
+        };
 
         public static final BlockEntityTooltip VAT = (level, state, pos, entity, tooltip) -> {
             if (entity instanceof VatBlockEntity vat)

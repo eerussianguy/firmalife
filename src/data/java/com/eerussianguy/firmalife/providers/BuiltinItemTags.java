@@ -104,6 +104,8 @@ public class BuiltinItemTags extends TagsProvider<Item> implements Accessors
             );
         tag(TFCTags.Items.EMPTY_JARS)
             .add(FLItems.EMPTY_JAR_WITH_STAINLESS_STEEL_LID);
+        tag(TFCTags.Items.EMPTY_JARS_WITH_LID)
+            .add(FLItems.EMPTY_JAR_WITH_STAINLESS_STEEL_LID);
         tag(TFCTags.Items.SEALED_PRESERVES).add(FLItems.FRUIT_PRESERVES);
         tag(TFCTags.Items.PRESERVES).add(FLItems.UNSEALED_FRUIT_PRESERVES);
         tag(TFCTags.Items.FOODS).add(Items.PUMPKIN_PIE).add(FLItems.FOODS);

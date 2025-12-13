@@ -1,6 +1,5 @@
 package com.eerussianguy.firmalife.client.render;
 
-import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.StovetopPotBlockEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
@@ -13,7 +12,8 @@ import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.fluids.FluidStack;
 
 import net.dries007.tfc.client.RenderHelpers;
-import net.dries007.tfc.common.fluids.TFCFluids;
+import net.dries007.tfc.common.fluids.FluidHelpers;
+import net.dries007.tfc.common.recipes.outputs.PotOutput;
 
 public class StovetopPotBlockEntityRenderer implements BlockEntityRenderer<StovetopPotBlockEntity>
 {
@@ -22,15 +22,25 @@ public class StovetopPotBlockEntityRenderer implements BlockEntityRenderer<Stove
     {
         if (pot.getLevel() == null) return;
 
-        FluidStack fluidStack = FLHelpers.getFluidInTank(pot);
-        if (pot.hasOutput())
+        final float fOffset = 5f / 16;
+        final PotOutput output = pot.getOutput();
+        if (output != null && output.getRenderTexture() != null)
         {
-            fluidStack = new FluidStack(Fluids.WATER, 1000);
+            RenderHelpers.renderTexturedFace(poseStack, buffer, 0xFFFFFF, 0.3125F, 0.3125F, 0.6875F, 0.6875F, output.getFluidYLevel() - fOffset, combinedOverlay, combinedLight, output.getRenderTexture());
         }
-        if (!fluidStack.isEmpty())
+        else
         {
-            final int color = pot.hasOutput() ? (TFCFluids.ALPHA_MASK | 0xA64214) : RenderHelpers.getFluidColor(fluidStack);
-            RenderHelpers.renderFluidFace(poseStack, fluidStack, buffer, color, 0.3125F, 0.3125F, 0.6875F, 0.6875F, 5f / 16, combinedOverlay, combinedLight);
+            final boolean useDefaultFluid = output != null && output.getFluidColor() != -1;
+            FluidStack fluidStack = pot.getInventory().getFluidInTank(0);
+            if (fluidStack.isEmpty() && useDefaultFluid)
+            {
+                fluidStack = new FluidStack(Fluids.WATER, FluidHelpers.BUCKET_VOLUME);
+            }
+            if (!fluidStack.isEmpty())
+            {
+                final int color = useDefaultFluid ? output.getFluidColor() : RenderHelpers.getFluidColor(fluidStack);
+                RenderHelpers.renderFluidFace(poseStack, fluidStack, buffer, color, 0.3125F, 0.3125F, 0.6875F, 0.6875F, output == null ? 0.625F - fOffset : output.getFluidYLevel() - fOffset, combinedOverlay, combinedLight);
+            }
         }
 
         final var cap = pot.getInventory();

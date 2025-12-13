@@ -250,9 +250,9 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False, rev
             text('Vats should be placed on the block above a $(thing)Bottom Oven$(). If the vat would overflow on completion of the recipe, it will not boil, so be sure not to overfill it -- especially with recipes that produce more fluid than they consume! Vats can be opened and closed with $(thing)Redstone$().'),
             two_tall_block_spotlight('', '', 'firmalife:cured_oven_bottom', 'firmalife:vat'),
             crafting('firmalife:crafting/jarring_station', text_contents='The $(thing)Jarring Station$() is used to fill jars from the vat. The jarring station has a spout on one side that should point to the station.'),
-            text('Using the Vat, Sugar Water can be made by adding sweetener to water. Then, adding fruit causes $(thing)Fruity Fluid$() to be made. Clicking it with an $(thing)Empty Jar With Lid$() will fill it. Be careful: trying to pipe or transport fruity fluid through too many transfers could ruin it!'),
-            text('With $(item)$(k:key.use)$(), add empty jars with lids to the jarring station. When it detects fruity fluid, it will automatically fill the jars with $(thing)Jam$() and seal them, requiring 500 mB of fruity fluid per jar.'),
-            text('Pots and Grills from TFC can be placed on top of a $(thing)Bottom Oven$(). These devices will get heat automatically from the bottom oven. The pot is only able to be used for making soup. It cannot execute regular pot recipes.'),
+            text('Using the Vat, Sugar Water can be made by adding sweetener to water. When the vat finishes, the fluid will change color. Clicking it with an $(thing)Empty Jar With Lid$() will fill it.'),
+            text('With $(item)$(k:key.use)$(), add empty jars with lids to the jarring station. When it detects jam, it will automatically fill the jars with $(thing)Jam$() and seal them, requiring 500 mB of input fluid per jar.'),
+            text('Pots and Grills from TFC can be placed on top of a $(thing)Bottom Oven$(). These devices will get heat automatically from the bottom oven. These will work exactly like the regular pot and grill, except for how they receive heat from below.'),
             empty_last_page()
         )),
         entry('bread', 'Bread', 'tfc:textures/item/food/barley_bread.png', pages=(

@@ -7,9 +7,9 @@
     "item": "tfc:seeds/sugarcane"
   },
   "nutrient": {
-    "nitrogen": 0.6,
-    "phosphorous": -0.4,
-    "potassium": 0.4
+    "nitrogen": 0.5,
+    "phosphorous": 0.5,
+    "potassium": 0.5
   },
   "planter": "large",
   "seed": {

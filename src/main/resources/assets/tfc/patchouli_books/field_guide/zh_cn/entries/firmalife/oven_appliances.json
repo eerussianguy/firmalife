@@ -62,15 +62,15 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Using the Vat, Sugar Water can be made by adding sweetener to water. Then, adding fruit causes $(thing)Fruity Fluid$() to be made. Clicking it with an $(thing)Empty Jar With Lid$() will fill it. Be careful: trying to pipe or transport fruity fluid through too many transfers could ruin it!"
+      "text": "Using the Vat, Sugar Water can be made by adding sweetener to water. When the vat finishes, the fluid will change color. Clicking it with an $(thing)Empty Jar With Lid$() will fill it."
     },
     {
       "type": "patchouli:text",
-      "text": "With $(item)$(k:key.use)$(), add empty jars with lids to the jarring station. When it detects fruity fluid, it will automatically fill the jars with $(thing)Jam$() and seal them, requiring 500 mB of fruity fluid per jar."
+      "text": "With $(item)$(k:key.use)$(), add empty jars with lids to the jarring station. When it detects jam, it will automatically fill the jars with $(thing)Jam$() and seal them, requiring 500 mB of input fluid per jar."
     },
     {
       "type": "patchouli:text",
-      "text": "Pots and Grills from TFC can be placed on top of a $(thing)Bottom Oven$(). These devices will get heat automatically from the bottom oven. The pot is only able to be used for making soup. It cannot execute regular pot recipes."
+      "text": "Pots and Grills from TFC can be placed on top of a $(thing)Bottom Oven$(). These devices will get heat automatically from the bottom oven. These will work exactly like the regular pot and grill, except for how they receive heat from below."
     }
   ],
   "read_by_default": true,

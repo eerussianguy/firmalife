@@ -781,6 +781,7 @@
   "firmalife.greenhouse.expects": "需要处于 %s 温室",
   "firmalife.cellar.expects": "需要处于地窖",
   "firmalife.planter.growth_water": "成长: %s, 水分: %s",
+  "firmalife.planter.yield": "Yield: %s",
   "firmalife.tumbler.almost_ready": "就要好了！",
   "firmalife.tumbler.rotten": "腐烂了！",
   "firmalife.tumbler.ready": "好了！",

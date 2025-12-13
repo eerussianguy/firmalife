@@ -292,7 +292,7 @@ DEFAULT_LANG = {
     'firmalife.enum.foodage.aged': 'Aged',
     'firmalife.enum.foodage.vintage': 'Vintage',
 
-    'firmalife.jade.food_age': 'Age: %s',
+    'firmalife.jadejade.food_age': 'Age: %s',
     'firmalife.jade.aging': 'Currently Aging',
     'firmalife.jade.not_aging': 'Not Aging',
     'firmalife.jade.slices': 'Slices: %s',
@@ -322,6 +322,7 @@ DEFAULT_LANG = {
     'config.jade.plugin_firmalife.jarbnet': 'Jarbnet',
     'config.jade.plugin_firmalife.pumping_station': 'Pumping Station',
     'config.jade.plugin_firmalife.barrel_press': 'Barrel Press',
+    'config.jade.plugin_firmalife.pot': 'Stovetop Pot',
 
     'death.attack.firmalife.oven': '%1$s died by sticking their hand in a hot oven.',
     'death.attack.firmalife.oven.player': '%1$s climbed into an oven to escape %2$s.',

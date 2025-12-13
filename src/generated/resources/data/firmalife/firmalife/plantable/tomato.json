@@ -7,9 +7,9 @@
     "item": "tfc:seeds/tomato"
   },
   "nutrient": {
-    "nitrogen": 0.3,
-    "phosphorous": 0.4,
-    "potassium": 0.5
+    "nitrogen": 0.4,
+    "phosphorous": 0.5,
+    "potassium": 0.6
   },
   "planter": "large",
   "seed": {

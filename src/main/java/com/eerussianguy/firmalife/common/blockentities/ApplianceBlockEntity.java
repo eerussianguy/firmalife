@@ -28,7 +28,7 @@ public abstract class ApplianceBlockEntity<C extends IItemHandlerModifiable & IN
     protected float temperature = 0;
     protected float targetTemperature = 0;
     protected int targetTemperatureStabilityTicks = 0;
-    protected final ContainerData syncableData;
+    protected final SyncableContainerData syncableData;
 
     public ApplianceBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state, InventoryFactory<C> inventoryFactory, Component name)
     {
@@ -74,12 +74,21 @@ public abstract class ApplianceBlockEntity<C extends IItemHandlerModifiable & IN
         final boolean wasHot = temperature > 0;
         targetTemperature = HeatCapability.adjustTempTowards(targetTemperature, 0, ticks);
         temperature = HeatCapability.adjustTempTowards(temperature, targetTemperature, ticks);
+        // this check is imperfect compared to TFC's but should handle most cases happily
+        // this is basically because appliances don't consume fuel so we don't have an actual read on
+        // when exactly fuel ran out. so we just make a safe assumption.
         if (wasHot && temperature == 0)
         {
             ranOutDueToCalendar();
             markForSync();
         }
+        else if (wasHot)
+        {
+            advanceForCalendar(ticks);
+        }
     }
+
+    public void advanceForCalendar(long ticks) { }
 
     public void ranOutDueToCalendar() {}
 

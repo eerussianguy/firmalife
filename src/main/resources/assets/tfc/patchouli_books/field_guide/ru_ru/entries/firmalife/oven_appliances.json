@@ -62,7 +62,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "С помощью чана можно приготовить сахаристую воду, добавив подсластитель в воду. Затем, добавление фруктов приводит к приготовлению $(thing)фруктовой жидкости$(). Щелчок по ней с помощью $(thing)пустой банки с крышкой$() заполнит её. Будьте осторожны: попытка перекачать или транспортировать фруктовую жидкость через слишком много перекачек может испортить её!"
+      "text": "Using the Vat, Sugar Water can be made by adding sweetener to water. When the vat finishes, the fluid will change color. Clicking it with an $(thing)Empty Jar With Lid$() will fill it."
     },
     {
       "type": "patchouli:text",
@@ -70,7 +70,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Горшки и грили из TFC можно размещать сверху $(thing)нижней печи$(). Эти устройства будут автоматически получать тепло от нижней печи. Горшок можно использовать только для приготовления супа. Он не может выполнять обычные рецепты для горшка."
+      "text": "Pots and Grills from TFC can be placed on top of a $(thing)Bottom Oven$(). These devices will get heat automatically from the bottom oven. These will work exactly like the regular pot and grill, except for how they receive heat from below."
     }
   ],
   "read_by_default": true,

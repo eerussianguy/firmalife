@@ -27,6 +27,7 @@ public abstract class BoilingBlockEntity<C extends IItemHandlerModifiable & INBT
     public BoilingBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state, InventoryFactory<C> inventoryFactory, Component name)
     {
         super(type, pos, state, inventoryFactory, name);
+        syncableData.add(() -> boilingTicks, value -> boilingTicks = value);
     }
 
     @Override

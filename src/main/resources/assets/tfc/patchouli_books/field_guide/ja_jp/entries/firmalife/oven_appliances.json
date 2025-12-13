@@ -62,7 +62,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "釜を使用して、水に甘味料を加えることで砂糖水を作ることができます。その後、果物を加えると$(thing)ジャム$()が生成されます。$(thing)蓋付きの空き瓶$()でクリックすると、それを満たすことができます。ただし、ジャムをパイプで移動させたり、あまりにも多くの移送を試みると、台無しになる可能性があるので注意してください！"
+      "text": "Using the Vat, Sugar Water can be made by adding sweetener to water. When the vat finishes, the fluid will change color. Clicking it with an $(thing)Empty Jar With Lid$() will fill it."
     },
     {
       "type": "patchouli:text",
@@ -70,7 +70,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "TFCの鍋やグリルは$(thing)オーブンかまど$()の上に置くことができます。これらの器具はオーブンかまどから自動的に熱を得ます。ただし、鍋はスープを作るためにのみ使用でき、通常の鍋レシピを実行することはできません。"
+      "text": "Pots and Grills from TFC can be placed on top of a $(thing)Bottom Oven$(). These devices will get heat automatically from the bottom oven. These will work exactly like the regular pot and grill, except for how they receive heat from below."
     }
   ],
   "read_by_default": true,

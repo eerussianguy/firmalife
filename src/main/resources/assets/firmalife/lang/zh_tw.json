@@ -776,6 +776,7 @@
   "firmalife.greenhouse.expects": "Expects %s greenhouse",
   "firmalife.cellar.expects": "Expects cellar",
   "firmalife.planter.growth_water": "成長: %s, 水分: %s",
+  "firmalife.planter.yield": "Yield: %s",
   "firmalife.tumbler.almost_ready": "Compost almost ready!",
   "firmalife.tumbler.rotten": "Rotten!",
   "firmalife.tumbler.ready": "Ready",

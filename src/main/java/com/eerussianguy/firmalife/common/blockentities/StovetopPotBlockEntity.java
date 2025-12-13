@@ -1,7 +1,6 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
-import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.container.StovetopPotContainer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -12,27 +11,26 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Fluids;
+import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
-import net.neoforged.neoforge.items.ItemHandlerHelper;
 import org.jetbrains.annotations.Nullable;
 
 import net.dries007.tfc.common.TFCTags;
+import net.dries007.tfc.common.blockentities.IPotInventory;
 import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
+import net.dries007.tfc.common.blockentities.PotBlockEntity;
 import net.dries007.tfc.common.capabilities.InventoryFluidTank;
 import net.dries007.tfc.common.capabilities.PartialFluidHandler;
 import net.dries007.tfc.common.capabilities.PartialItemHandler;
 import net.dries007.tfc.common.capabilities.SidedHandler;
-import net.dries007.tfc.common.component.TFCComponents;
-import net.dries007.tfc.common.component.food.FoodCapability;
-import net.dries007.tfc.common.component.food.FoodData;
-import net.dries007.tfc.common.component.food.IFood;
-import net.dries007.tfc.common.component.food.Nutrient;
-import net.dries007.tfc.common.component.item.ItemComponent;
-import net.dries007.tfc.common.items.TFCItems;
-import net.dries007.tfc.common.recipes.SoupPotRecipe;
+import net.dries007.tfc.common.fluids.FluidHelpers;
+import net.dries007.tfc.common.recipes.PotRecipe;
+import net.dries007.tfc.common.recipes.RecipeHelpers;
+import net.dries007.tfc.common.recipes.TFCRecipeTypes;
+import net.dries007.tfc.common.recipes.outputs.PotOutput;
 import net.dries007.tfc.util.Helpers;
 
 public class StovetopPotBlockEntity extends BoilingBlockEntity<StovetopPotBlockEntity.StovetopPotInventory>
@@ -53,10 +51,10 @@ public class StovetopPotBlockEntity extends BoilingBlockEntity<StovetopPotBlockE
 
     public static final int SLOTS = 5;
     private static final int DURATION = 1000;
-    private static final float MIN_TEMP = 500f;
 
-    private boolean hasRecipe = false;
-    private ItemStack soupStack = ItemStack.EMPTY;
+    @Nullable private PotOutput output = null;
+    @Nullable private PotRecipe cachedRecipe = null;
+    private int preBoilingTicks = 0;
     private final SidedHandler<IFluidHandler> sidedFluidInventory;
 
     public StovetopPotBlockEntity(BlockPos pos, BlockState state)
@@ -80,30 +78,74 @@ public class StovetopPotBlockEntity extends BoilingBlockEntity<StovetopPotBlockE
         return StovetopPotContainer.create(this, inventory, containerId);
     }
 
-    public boolean hasOutput()
-    {
-        return !soupStack.isEmpty();
-    }
-
     public void updateCachedRecipe()
     {
-        if (inventory.getFluidInTank(0).getAmount() >= 100 && temperature > MIN_TEMP)
+        assert level != null;
+        cachedRecipe = level.getRecipeManager()
+            .getRecipeFor(TFCRecipeTypes.POT.get(), inventory, level)
+            .map(RecipeHolder::value)
+            .orElse(null);
+    }
+
+    @Override
+    public void advanceForCalendar(long ticks)
+    {
+        if (isBoiling())
         {
-            int found = 0;
-            for (ItemStack stack : Helpers.iterate(inventory))
+            assert cachedRecipe != null;
+            if (ticks > cachedRecipe.getDuration() - boilingTicks)
             {
-                if (!stack.isEmpty())
-                {
-                    found++;
-                }
+                boilingTicks = cachedRecipe.getDuration();
+                handleCooking();
             }
-            if (found >= 3)
+            else
             {
-                hasRecipe = true;
-                return;
+                boilingTicks += (int) ticks;
             }
         }
-        hasRecipe = false;
+    }
+
+    @Override
+    public boolean isBoiling()
+    {
+        // if we have a recipe, there is no output, and we're hot enough, we boil
+        return cachedRecipe != null && output == null && cachedRecipe.isHotEnough(temperature);
+    }
+
+    public boolean hasRecipeStarted()
+    {
+        return isBoiling() && preBoilingTicks >= PotBlockEntity.PRE_BOIL_TIME;
+    }
+
+    public boolean shouldRenderAsBoiling()
+    {
+        return boilingTicks > 0;
+    }
+
+    public int getBoilingTicks()
+    {
+        return boilingTicks;
+    }
+
+    public ItemInteractionResult interactWithOutput(Player player, ItemStack stack)
+    {
+        if (output != null)
+        {
+            final ItemInteractionResult result = output.onInteract(getInventory(), player, stack);
+            if (output.isEmpty())
+            {
+                output = null;
+            }
+            markForSync();
+            return result;
+        }
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+    }
+
+    @Nullable
+    public PotOutput getOutput()
+    {
+        return output;
     }
 
     @Override
@@ -112,150 +154,136 @@ public class StovetopPotBlockEntity extends BoilingBlockEntity<StovetopPotBlockE
         return 1;
     }
 
-    @Override
-    public boolean isItemValid(int slot, ItemStack stack)
-    {
-        return Helpers.isItem(stack, FLTags.Items.USABLE_IN_STOVETOP_SOUP);
-    }
-
     public void handleCooking()
     {
-        assert level != null;
         if (isBoiling())
         {
-            if (boilingTicks < DURATION)
+            if (preBoilingTicks < PotBlockEntity.PRE_BOIL_TIME)
+            {
+                preBoilingTicks++;
+                return;
+            }
+            assert cachedRecipe != null;
+            if (boilingTicks < cachedRecipe.getDuration())
             {
                 boilingTicks++;
-                if (boilingTicks == 1) markForSync();
+                if (boilingTicks == 1)
+                {
+                    updateCachedRecipe();
+                    markForSync();
+                }
             }
             else
             {
-                assembleSoup();
-                boilingTicks = 0;
-                updateCachedRecipe();
-                for (int i = 0; i < SLOTS; i++)
+                // Create output
+                // Set the crafting input, so providers can access all pot recipe inputs
+                RecipeHelpers.setCraftingInput(inventory, inventory.inputStart(), inventory.inputEnd() + 1);
+
+                // Save the recipe here, as setting inventory will call setAndUpdateSlots, which will clear the cached recipe before output is created
+                final PotRecipe recipe = cachedRecipe;
+                final PotOutput output = recipe.getOutput(inventory);
+
+                RecipeHelpers.clearCraftingInput();
+
+                // Clear inputs
+                for (int slot = inventory.inputStart(); slot <= inventory.inputEnd(); slot++)
                 {
-                    inventory.setStackInSlot(i, ItemStack.EMPTY);
-                    inventory.getFluidHandler().drain(Integer.MAX_VALUE, IFluidHandler.FluidAction.EXECUTE);
+                    // Consume items, but set container items if they exist
+                    inventory.setStackInSlot(slot, inventory.getStackInSlot(slot).getCraftingRemainingItem());
                 }
+
+                output.onFinish(inventory); // Let the output handle filling into the empty pot
+                if (!output.isEmpty()) // Then, if we still have contents, save the output
+                {
+                    this.output = output;
+                }
+
+                // Reset recipe progress
+                cachedRecipe = null;
+                boilingTicks = 0;
+                preBoilingTicks = 0;
+                updateCachedRecipe();
                 markForSync();
             }
         }
-        else if (boilingTicks > 0)
+        else if (boilingTicks > 0) // catch accidentally not syncing when it dips below temperature
         {
             boilingTicks = 0;
+            preBoilingTicks = 0;
             markForSync();
         }
     }
 
-    public void assembleSoup()
+    @Override
+    public void loadAdditional(CompoundTag nbt, HolderLookup.Provider provider)
     {
-        int ingredientCount = 0;
-        float water = 20, saturation = 2;
-        float[] nutrition = new float[Nutrient.TOTAL];
-        ItemStack soupStack = ItemStack.EMPTY;
-        for (int i = 0; i < SLOTS; i++)
+        if (nbt.contains("output"))
         {
-            ItemStack stack = inventory.getStackInSlot(i);
-            IFood food = FoodCapability.get(stack);
-            if (food != null)
-            {
-                if (food.isRotten()) // this should mostly not happen since the ingredients are not rotten to start, but worth checking
-                {
-                    ingredientCount = 0;
-                    break;
-                }
-                final FoodData data = food.getData();
-                water += data.water();
-                saturation += data.saturation();
-                for (Nutrient nutrient : Nutrient.VALUES)
-                {
-                    nutrition[nutrient.ordinal()] += data.nutrient(nutrient);
-                }
-                ingredientCount++;
-            }
+            output = PotOutput.read(provider, nbt.getCompound("output"));
         }
-        if (ingredientCount > 0)
-        {
-            float multiplier = 1 - (0.05f * ingredientCount); // per-serving multiplier of nutrition
-            water *= multiplier; saturation *= multiplier;
-            Nutrient maxNutrient = Nutrient.GRAIN; // determines what item you get. this is a default
-            float maxNutrientValue = 0;
-            for (Nutrient nutrient : Nutrient.VALUES)
-            {
-                final int idx = nutrient.ordinal();
-                nutrition[idx] *= multiplier;
-                if (nutrition[idx] > maxNutrientValue)
-                {
-                    maxNutrientValue = nutrition[idx];
-                    maxNutrient = nutrient;
-                }
-            }
-            FoodData data = new FoodData(SoupPotRecipe.SOUP_HUNGER_VALUE, water, saturation, 0, nutrition, SoupPotRecipe.SOUP_DECAY_MODIFIER);
-            int servings = (int) (ingredientCount / 2f) + 1;
-
-            soupStack = new ItemStack(TFCItems.SOUPS.get(maxNutrient).get(), servings);
-            FoodCapability.setFoodForDynamicItemOnCreate(soupStack, data);
-        }
-
-        if (!soupStack.isEmpty())
-        {
-            this.soupStack = soupStack;
-        }
-    }
-
-    public ItemInteractionResult interactWithOutput(Player player, ItemStack clickedWith)
-    {
-        if (Helpers.isItem(clickedWith.getItem(), TFCTags.Items.SOUP_BOWLS) && !soupStack.isEmpty())
-        {
-            // set the internal bowl to the one we clicked with
-            soupStack.set(TFCComponents.BOWL, new ItemComponent(clickedWith.copyWithCount(1)));
-
-            // take the player's bowl, give a soup
-            clickedWith.shrink(1);
-            ItemHandlerHelper.giveItemToPlayer(player, soupStack.split(1));
-            markForSync();
-            return ItemInteractionResult.SUCCESS;
-        }
-        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        boilingTicks = nbt.getInt("boilingTicks");
+        preBoilingTicks = nbt.getInt("preBoilingTicks");
+        super.loadAdditional(nbt, provider);
     }
 
     @Override
-    public void loadAdditional(CompoundTag nbt, HolderLookup.Provider access)
+    public void saveAdditional(CompoundTag nbt, HolderLookup.Provider provider)
     {
-        super.loadAdditional(nbt, access);
-        if (nbt.contains("soup"))
+        if (output != null)
         {
-            soupStack = ItemStack.parseOptional(access, nbt.getCompound("soup"));
+            nbt.put("output", PotOutput.write(provider, output));
         }
+        nbt.putInt("boilingTicks", boilingTicks);
+        nbt.putInt("preBoilingTicks", preBoilingTicks);
+        super.saveAdditional(nbt, provider);
     }
 
     @Override
-    public void saveAdditional(CompoundTag nbt, HolderLookup.Provider access)
+    public void ranOutDueToCalendar()
     {
-        super.saveAdditional(nbt, access);
-        if (!soupStack.isEmpty())
-        {
-            nbt.put("soup", soupStack.save(access, new CompoundTag()));
-        }
+        coolInstantly();
     }
 
-    @Override
-    public boolean isBoiling()
+    public void coolInstantly()
     {
-        assert level != null;
-        if (level.isClientSide)
-        {
-            return boilingTicks > 0;
-        }
-        return hasRecipe && temperature > MIN_TEMP;
+        boilingTicks = 0;
+        preBoilingTicks = 0;
+        markForSync();
     }
 
-    public static class StovetopPotInventory extends BoilingInventory
+    public static class StovetopPotInventory extends BoilingInventory implements IPotInventory
     {
-        public StovetopPotInventory(InventoryBlockEntity<?> entity)
+        private final StovetopPotBlockEntity pot;
+
+        public StovetopPotInventory(InventoryBlockEntity<?> pot)
         {
-            super(entity, SLOTS, new InventoryFluidTank(1000, fluid -> fluid.getFluid().isSame(Fluids.WATER), (StovetopPotBlockEntity) entity));
+            super(pot, SLOTS, new InventoryFluidTank(FluidHelpers.BUCKET_VOLUME, f -> ((StovetopPotBlockEntity) pot).output == null && Helpers.isFluid(f.getFluid(), TFCTags.Fluids.USABLE_IN_POT), (StovetopPotBlockEntity) pot));
+            this.pot = (StovetopPotBlockEntity) pot;
         }
+
+        @Override
+        public ItemStack extractItem(int slot, int amount, boolean simulate)
+        {
+            return pot.hasRecipeStarted() && slot >= inputStart() ? ItemStack.EMPTY : inventory.extractItem(slot, amount, simulate);
+        }
+
+        @Override
+        public void clearFluid()
+        {
+            tank.setFluid(FluidStack.EMPTY);
+        }
+
+        @Override
+        public int inputStart()
+        {
+            return 0;
+        }
+
+        @Override
+        public int inputEnd()
+        {
+            return 4;
+        }
+
     }
 }

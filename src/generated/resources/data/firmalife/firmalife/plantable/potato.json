@@ -7,8 +7,8 @@
     "item": "tfc:seeds/potato"
   },
   "nutrient": {
-    "nitrogen": 0.3,
-    "phosphorous": 0.4,
+    "nitrogen": 0.4,
+    "phosphorous": 0.2,
     "potassium": 0.6
   },
   "planter": "quad",

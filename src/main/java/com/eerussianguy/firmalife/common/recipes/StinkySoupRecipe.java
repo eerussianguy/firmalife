@@ -14,6 +14,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
 
 import net.dries007.tfc.common.TFCTags;
+import net.dries007.tfc.common.blockentities.IPotInventory;
 import net.dries007.tfc.common.blockentities.PotBlockEntity;
 import net.dries007.tfc.common.component.TFCComponents;
 import net.dries007.tfc.common.component.food.FoodCapability;
@@ -60,7 +61,7 @@ public class StinkySoupRecipe extends PotRecipe
         }
 
         @Override
-        public ItemInteractionResult onInteract(PotBlockEntity entity, Player player, ItemStack clickedWith)
+        public ItemInteractionResult onInteract(IPotInventory entity, Player player, ItemStack clickedWith)
         {
             if (Helpers.isItem(clickedWith.getItem(), TFCTags.Items.SOUP_BOWLS) && !stack.isEmpty())
             {
@@ -97,13 +98,13 @@ public class StinkySoupRecipe extends PotRecipe
     }
 
     @Override
-    public PotOutput getOutput(PotBlockEntity.PotInventory inventory)
+    public PotOutput getOutput(IPotInventory inventory)
     {
         int ingredientCount = 0;
         float water = 20, saturation = 2;
         float[] nutrition = new float[Nutrient.TOTAL];
         ItemStack soupStack = ItemStack.EMPTY;
-        for (int i = PotBlockEntity.SLOT_EXTRA_INPUT_START; i <= PotBlockEntity.SLOT_EXTRA_INPUT_END; i++)
+        for (int i = inventory.inputStart(); i <= inventory.inputEnd(); i++)
         {
             ItemStack stack = inventory.getStackInSlot(i);
             IFood food = FoodCapability.get(stack);

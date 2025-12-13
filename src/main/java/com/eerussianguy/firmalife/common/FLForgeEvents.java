@@ -2,9 +2,11 @@ package com.eerussianguy.firmalife.common;
 
 import com.eerussianguy.firmalife.common.blockentities.OvenBottomBlockEntity;
 import com.eerussianguy.firmalife.common.blockentities.OvenTopBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.StovetopPotBlockEntity;
 import com.eerussianguy.firmalife.common.blocks.JarbnetBlock;
 import com.eerussianguy.firmalife.common.blocks.OvenBottomBlock;
 import com.eerussianguy.firmalife.common.blocks.OvenTopBlock;
+import com.eerussianguy.firmalife.common.blocks.StovetopPotBlock;
 import com.eerussianguy.firmalife.common.util.FLSelfTests;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -108,6 +110,12 @@ public class FLForgeEvents
         else if (state.getBlock() instanceof OvenTopBlock && level.getBlockEntity(pos) instanceof OvenTopBlockEntity top)
         {
             top.extinguish();
+            Helpers.playSound(level, pos, SoundEvents.FIRE_EXTINGUISH);
+            event.setCanceled(true);
+        }
+        else if (state.getBlock() instanceof StovetopPotBlock && level.getBlockEntity(pos) instanceof StovetopPotBlockEntity pot)
+        {
+            pot.coolInstantly();
             Helpers.playSound(level, pos, SoundEvents.FIRE_EXTINGUISH);
             event.setCanceled(true);
         }

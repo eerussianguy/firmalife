@@ -107,6 +107,20 @@ public class VatBlockEntity extends BoilingBlockEntity<VatBlockEntity.VatInvento
         }
     }
 
+    @Override
+    public void advanceForCalendar(long ticks)
+    {
+        if (isBoiling())
+        {
+            assert cachedRecipe != null;
+            if (ticks > cachedRecipe.getDuration() - boilingTicks)
+            {
+                boilingTicks = cachedRecipe.getDuration();
+                handleCooking();
+            }
+        }
+    }
+
     public boolean hasOutput()
     {
         return !jarOutput.isEmpty();

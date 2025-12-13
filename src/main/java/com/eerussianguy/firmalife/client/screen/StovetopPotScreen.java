@@ -1,23 +1,33 @@
 package com.eerussianguy.firmalife.client.screen;
 
+import java.util.ArrayList;
+import java.util.List;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.StovetopPotBlockEntity;
 import com.eerussianguy.firmalife.common.container.StovetopPotContainer;
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.inventory.InventoryMenu;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 
+import net.dries007.tfc.TerraFirmaCraft;
 import net.dries007.tfc.client.RenderHelpers;
 import net.dries007.tfc.client.screen.BlockEntityScreen;
 import net.dries007.tfc.common.capabilities.BlockCapabilities;
 import net.dries007.tfc.common.component.heat.Heat;
 import net.dries007.tfc.common.fluids.FluidHelpers;
+import net.dries007.tfc.common.recipes.outputs.PotOutput;
 import net.dries007.tfc.config.TFCConfig;
 import net.dries007.tfc.util.Helpers;
+import net.dries007.tfc.util.tooltip.BlockEntityTooltip;
 import net.dries007.tfc.util.tooltip.Tooltips;
 
 public class StovetopPotScreen extends BlockEntityScreen<StovetopPotBlockEntity, StovetopPotContainer>
@@ -35,27 +45,36 @@ public class StovetopPotScreen extends BlockEntityScreen<StovetopPotBlockEntity,
     protected void renderLabels(GuiGraphics graphics, int mouseX, int mouseY)
     {
         super.renderLabels(graphics, mouseX, mouseY);
-        if (blockEntity.isBoiling())
+        if (blockEntity.shouldRenderAsBoiling())
         {
-            drawDisabled(graphics, 0, StovetopPotBlockEntity.SLOTS - 1);
+            drawDisabled(graphics, blockEntity.getInventory().inputStart(), blockEntity.getInventory().inputEnd());
         }
 
-        final String text;
-        if (blockEntity.isBoiling())
+        final MutableComponent text = Component.empty();
+        if (blockEntity.shouldRenderAsBoiling())
         {
-            text = I18n.get("tfc.tooltip.pot_boiling");
+            text.append(Component.translatable("tfc.tooltip.pot_boiling"));
         }
-//        else if (blockEntity.getOutput() != null && !blockEntity.getOutput().isEmpty())
-//        {
-//            text = I18n.get("tfc.tooltip.pot_finished");
-//        }
         else
         {
-            text = I18n.get("tfc.tooltip.pot_ready");
+            if (blockEntity.getOutput() != null && !blockEntity.getOutput().isEmpty())
+            {
+                final BlockEntityTooltip tooltip = blockEntity.getOutput().getTooltip();
+                if (tooltip != null && blockEntity.getLevel() != null)
+                {
+                    final List<Component> fakeTooltip = new ArrayList<>();
+                    tooltip.display(blockEntity.getLevel(), blockEntity.getBlockState(), blockEntity.getBlockPos(), blockEntity, fakeTooltip::add);
+                    text.append(fakeTooltip.get(0));
+                }
+                else
+                {
+                    text.append(Component.translatable("tfc.tooltip.pot_finished"));
+                }
+            }
         }
 
         final int x = 118 - font.width(text) / 2;
-        graphics.drawString(font, text, x, 56, 0x404040, false);
+        graphics.drawString(font, text, x, 80, 0x404040, false);
     }
 
     @Override
@@ -88,10 +107,59 @@ public class StovetopPotScreen extends BlockEntityScreen<StovetopPotBlockEntity,
     protected void renderBg(GuiGraphics graphics, float partialTicks, int mouseX, int mouseY)
     {
         super.renderBg(graphics, partialTicks, mouseX, mouseY);
-        int temp = (int) (51 * blockEntity.getTemperature() / Heat.maxVisibleTemperature());
+        if (TerraFirmaCraft.JEI)
+        {
+            graphics.blit(texture, getGuiLeft() + 77, getGuiTop() + 6, 247, 0, 9, 14);
+        }
+
+        int temp = Heat.scaleTemperatureForGui(blockEntity.getTemperature());
         if (temp > 0)
         {
             graphics.blit(texture, leftPos + 30, topPos + 76 - Math.min(51, temp), 176, 0, 15, 5);
+        }
+
+        if (blockEntity.getTemperature() > 0)
+        {
+            graphics.blit(BACKGROUND, leftPos + 121, topPos + 58, 192, 0, 13, 13);
+            graphics.blit(BACKGROUND, leftPos + 136, topPos + 58, 192, 0, 13, 13);
+            graphics.blit(BACKGROUND, leftPos + 151, topPos + 58, 192, 0, 13, 13);
+        }
+
+        if (blockEntity.shouldRenderAsBoiling())
+        {
+            final int ticks = blockEntity.getBoilingTicks() % 35;
+            final int vHeight = Mth.ceil(ticks / 35f * 20f);
+            graphics.blit(BACKGROUND, leftPos + 131, topPos + 10 + 20 - vHeight, 193, 16 + 21 - vHeight, 11, vHeight);
+            graphics.blit(BACKGROUND, leftPos + 144, topPos + 10 + 20 - vHeight, 193, 16 + 21 - vHeight, 11, vHeight);
+        }
+        int fluidColor = -1;
+        final PotOutput output = blockEntity.getOutput();
+        if (output != null && !output.isEmpty())
+        {
+            if (output.getRenderTexture() != null)
+            {
+                final TextureAtlasSprite sprite = RenderHelpers.blockTexture(output.getRenderTexture());
+                RenderSystem.setShaderTexture(0, InventoryMenu.BLOCK_ATLAS);
+                RenderHelpers.fillAreaWithSprite(graphics, sprite, leftPos + 133, topPos + 33, 20, 6, 16, 16);
+                RenderHelpers.fillAreaWithSprite(graphics, sprite, leftPos + 131, topPos + 35, 2, 2, 16, 16);
+                RenderHelpers.fillAreaWithSprite(graphics, sprite, leftPos + 153, topPos + 35, 2, 2, 16, 16);
+                return;
+            }
+            fluidColor = output.getFluidColor();
+        }
+        if (fluidColor == -1)
+        {
+            final FluidStack fluid = blockEntity.getInventory().getFluidInTank(0);
+            if (!fluid.isEmpty())
+            {
+                fluidColor = RenderHelpers.getFluidColor(fluid);
+            }
+        }
+        if (fluidColor != -1)
+        {
+            RenderHelpers.setShaderColor(graphics, fluidColor);
+            graphics.blit(BACKGROUND, leftPos + 131, topPos + 33, 208, 0, 24, 6);
+            resetToBackgroundSprite();
         }
     }
 }

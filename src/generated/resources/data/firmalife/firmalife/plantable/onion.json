@@ -8,8 +8,8 @@
   },
   "nutrient": {
     "nitrogen": 0.4,
-    "phosphorous": 0.2,
-    "potassium": 0.6
+    "phosphorous": 0.4,
+    "potassium": 0.4
   },
   "planter": "quad",
   "seed": {

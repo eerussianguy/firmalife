@@ -774,6 +774,7 @@
   "firmalife.greenhouse.expects": "%sの温室を認識中",
   "firmalife.cellar.expects": "貯蔵庫を認識中",
   "firmalife.planter.growth_water": "成長レベル：%s",
+  "firmalife.planter.yield": "Yield: %s",
   "firmalife.tumbler.almost_ready": "堆肥はほぼ完成！",
   "firmalife.tumbler.rotten": "腐った！",
   "firmalife.tumbler.ready": "準備完了",

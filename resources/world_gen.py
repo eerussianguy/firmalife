@@ -112,8 +112,7 @@ def generate(rm: ResourceManager):
             'max_temperature': info.max_temp,
             'min_rainfall': info.min_rain,
             'max_rainfall': info.max_rain,
-            #TODO temp remove, see other todo
-            #'max_forest': 'normal'
+            'max_forest': 3
         }
         feature = 'firmalife:fruit_trees'
         state = 'firmalife:plant/%s_growing_branch' % fruit
@@ -130,7 +129,7 @@ def generate(rm: ResourceManager):
 
     for berry, data in STILL_BUSHES.items():
         bush_block = 'firmalife:plant/%s_bush[lifecycle=healthy,stage=0]' % berry
-        configured_patch_feature(rm, ('plant', berry + '_bush'), patch_config(bush_block, 1, 4, 4, False), decorate_climate(data[2], data[3], data[0], data[1], min_forest='sparse'), decorate_square(), decorate_chance(30), biome_check=False)
+        configured_patch_feature(rm, ('plant', berry + '_bush'), patch_config(bush_block, 1, 4, 4, False), decorate_climate(data[2], data[3], data[0], data[1], min_forest=1), decorate_square(), decorate_chance(30), biome_check=False)
         placed_feature_tag(rm, 'tfc:feature/berry_bushes', 'firmalife:plant/%s_bush_patch' % berry)
 
 
@@ -147,16 +146,15 @@ class PatchConfig(NamedTuple):
     custom_config: Json
 
 
-def decorate_climate(min_temp: Optional[float] = None, max_temp: Optional[float] = None, min_rain: Optional[float] = None, max_rain: Optional[float] = None, needs_forest: Optional[bool] = False, fuzzy: Optional[bool] = None, min_forest: Optional[str] = None, max_forest: Optional[str] = None) -> Json:
+def decorate_climate(min_temp: Optional[float] = None, max_temp: Optional[float] = None, min_rain: Optional[float] = None, max_rain: Optional[float] = None, needs_forest: Optional[bool] = False, fuzzy: Optional[bool] = None, min_forest: Optional[int] = None, max_forest: Optional[int] = None) -> Json:
     return {
         'type': 'tfc:climate',
         'min_temperature': min_temp,
         'max_temperature': max_temp,
         'min_rainfall': min_rain,
         'max_rainfall': max_rain,
-        #TODO temp remove this since these are ints now instead, how do they map to the old versions??
-        #'min_forest': 'normal' if needs_forest else min_forest,
-        #'max_forest': max_forest,
+        'min_forest': 3 if needs_forest else min_forest,
+        'max_forest': max_forest,
         'fuzzy': fuzzy
     }
 
