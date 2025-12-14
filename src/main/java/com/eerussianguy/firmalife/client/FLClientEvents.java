@@ -5,6 +5,7 @@ import java.util.Objects;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 import com.eerussianguy.firmalife.FirmaLife;
+import com.eerussianguy.firmalife.client.model.BeehiveBlockModel;
 import com.eerussianguy.firmalife.client.model.BonsaiPlanterBlockModel;
 import com.eerussianguy.firmalife.client.model.DynamicBlockModel;
 import com.eerussianguy.firmalife.client.model.FoodShelfBlockModel;
@@ -169,11 +170,17 @@ public class FLClientEvents
                 FLItems.COMPOST_JAR.get(), translucent("block/jar/compost"),
                 FLItems.GUANO_JAR.get(), translucent("block/jar/guano"),
                 FLItems.ROTTEN_COMPOST_JAR.get(), translucent("block/jar/rotten_compost"),
-                FLItems.EMPTY_JAR_WITH_STAINLESS_STEEL_LID.get(), translucentTFC("block/jar")
+                FLItems.EMPTY_JAR_WITH_STAINLESS_STEEL_LID.get(), translucentTFC("block/jar"),
+                FLItems.BEEHIVE_FRAME.get(), solid("block/beehive_frame")
             ));
             FLItems.FRUIT_PRESERVES.forEach((fruit, item) -> PlacedItemBlockEntityRenderer.MODELS.put(item.get(), translucent("block/jar/" + fruit.getSerializedName())));
             FLItems.UNSEALED_FRUIT_PRESERVES.forEach((fruit, item) -> PlacedItemBlockEntityRenderer.MODELS.put(item.get(), translucent("block/jar/" + fruit.getSerializedName() + "_unsealed")));
         });
+    }
+
+    private static PlacedItemBlockEntityRenderer.Provider solid(String model)
+    {
+        return new PlacedItemBlockEntityRenderer.Provider(ModelResourceLocation.standalone(FLHelpers.identifier(model)), RenderType.solid());
     }
 
     private static PlacedItemBlockEntityRenderer.Provider translucent(String model)
@@ -238,6 +245,7 @@ public class FLClientEvents
         register(event, FLHelpers.identifier("block/jar/rotten_compost"));
         register(event, FLHelpers.identifier("block/jar/guano"));
         register(event, FLHelpers.identifier("block/jar/honey"));
+        register(event, FLHelpers.identifier("block/beehive_frame"));
 
         BuiltInRegistries.ITEM.forEach(item -> {
             if (item instanceof WineBottleItem wine)
@@ -273,6 +281,7 @@ public class FLClientEvents
         register(event, "food_shelf", new InventoryBlockModel.Loader(FoodShelfBlockModel::new));
         register(event, "hanger", new InventoryBlockModel.Loader(HangerBlockModel::new));
         register(event, "wine_shelf", new InventoryBlockModel.Loader(WineShelfBlockModel::new));
+        register(event, "beehive", new InventoryBlockModel.Loader(BeehiveBlockModel::new));
     }
 
     private static void register(ModelEvent.RegisterGeometryLoaders event, String id, IGeometryLoader<?> loader)

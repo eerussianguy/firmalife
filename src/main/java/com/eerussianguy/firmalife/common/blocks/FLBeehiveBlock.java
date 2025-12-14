@@ -19,7 +19,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
@@ -29,6 +28,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
@@ -94,16 +94,22 @@ public class FLBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBloc
 
     public static final BooleanProperty HONEY = FLStateProperties.HONEY;
     public static final BooleanProperty BEES = FLStateProperties.BEES;
+    public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
 
     public FLBeehiveBlock(ExtendedProperties properties)
     {
         super(properties, InventoryRemoveBehavior.DROP);
-        registerDefaultState(getStateDefinition().any().setValue(HONEY, false).setValue(BEES, false));
+        registerDefaultState(getStateDefinition().any().setValue(HONEY, false).setValue(BEES, false).setValue(OPEN, false));
     }
 
     @Override
     public ItemInteractionResult useItemOn(ItemStack held, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
     {
+        if (player.isShiftKeyDown())
+        {
+            level.setBlock(pos, state.setValue(OPEN, !state.getValue(OPEN)), 0);
+            return ItemInteractionResult.SUCCESS;
+        }
         if (Helpers.isItem(held, TFCItems.EMPTY_JAR.get()) && !player.isShiftKeyDown())
         {
             level.getBlockEntity(pos, FLBlockEntities.BEEHIVE.get()).ifPresent(hive -> {
@@ -227,7 +233,7 @@ public class FLBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBloc
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
     {
-        super.createBlockStateDefinition(builder.add(HONEY, BEES));
+        super.createBlockStateDefinition(builder.add(HONEY, BEES, OPEN));
     }
 
 }
