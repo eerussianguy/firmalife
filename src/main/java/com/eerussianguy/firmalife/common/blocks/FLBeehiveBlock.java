@@ -31,6 +31,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.neoforged.neoforge.common.extensions.IBlockEntityExtension;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.Nullable;
@@ -107,9 +108,10 @@ public class FLBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBloc
     @Override
     public ItemInteractionResult useItemOn(ItemStack held, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
     {
-        if (player.isShiftKeyDown())
+        if (player.isShiftKeyDown() && held.isEmpty())
         {
-            level.setBlock(pos, state.setValue(OPEN, !state.getValue(OPEN)), 0);
+            level.setBlock(pos, state.setValue(OPEN, !state.getValue(OPEN)), 3);
+            level.getBlockEntity(pos, FLBlockEntities.BEEHIVE.get()).ifPresent(IBlockEntityExtension::requestModelDataUpdate);
             return ItemInteractionResult.SUCCESS;
         }
         if (Helpers.isItem(held, TFCItems.EMPTY_JAR.get()) && !player.isShiftKeyDown())
