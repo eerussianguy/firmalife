@@ -1,15 +1,19 @@
 package com.eerussianguy.firmalife.common.blocks;
 
+import com.eerussianguy.firmalife.common.capabilities.bee.BeeAbility;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
@@ -21,12 +25,15 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.IForgeBlockExtension;
 import net.dries007.tfc.util.Helpers;
+import net.dries007.tfc.util.climate.Climate;
 
 public class WildBeehiveBlock extends HorizontalDirectionalBlock implements IForgeBlockExtension
 {
@@ -35,13 +42,12 @@ public class WildBeehiveBlock extends HorizontalDirectionalBlock implements IFor
         if (state.getFluidState().isEmpty() && !(level.random.nextFloat() < 0.3F))
         {
             final VoxelShape shape = state.getCollisionShape(level, pos);
-            final double y = shape.max(Direction.Axis.Y);
-            if (y >= 1.0F && !Helpers.isBlock(state, BlockTags.IMPERMEABLE))
+            if (!Helpers.isBlock(state, BlockTags.IMPERMEABLE))
             {
-                double d1 = shape.min(Direction.Axis.Y);
-                if (d1 >0.0F)
+                double minY = shape.min(Direction.Axis.Y);
+                if (minY > 0.0F)
                 {
-                    double y1 = pos.getY() + d1 - 0.05;
+                    double y1 = pos.getY() + minY - 0.05;
                     spawnFluidParticle(level, pos.getX() + shape.min(Direction.Axis.X), pos.getX() + shape.max(Direction.Axis.X), pos.getZ() + shape.min(Direction.Axis.Z), pos.getZ() + shape.max(Direction.Axis.Z), y1);
                 }
                 else
@@ -52,8 +58,7 @@ public class WildBeehiveBlock extends HorizontalDirectionalBlock implements IFor
                     final double belowMaxY = belowShape.max(Direction.Axis.Y);
                     if ((belowMaxY < 1.0F || !belowState.isCollisionShapeFullBlock(level, below)) && belowState.getFluidState().isEmpty())
                     {
-                        double y1 = pos.getY() - 0.05;
-                        spawnFluidParticle(level, pos.getX() + shape.min(Direction.Axis.X), pos.getX() + shape.max(Direction.Axis.X), pos.getZ() + shape.min(Direction.Axis.Z), pos.getZ() + shape.max(Direction.Axis.Z), y1);
+                        spawnFluidParticle(level, pos.getX() + shape.min(Direction.Axis.X), pos.getX() + shape.max(Direction.Axis.X), pos.getZ() + shape.min(Direction.Axis.Z), pos.getZ() + shape.max(Direction.Axis.Z), pos.getY() - 0.05);
                     }
                 }
             }
@@ -71,6 +76,16 @@ public class WildBeehiveBlock extends HorizontalDirectionalBlock implements IFor
         return Helpers.isBlock(state, BlockTags.LEAVES) || Helpers.isBlock(state, BlockTags.LOGS);
     }
 
+    public static boolean isWarmEnough(Level level, BlockPos pos)
+    {
+        return Climate.getTemperature(level, pos) > BeeAbility.getMinTemperature(0);
+    }
+
+    public static final VoxelShape SHAPE = Shapes.or(
+        box(0, 0, 0, 16, 11, 16),
+        box(3, 12, 3, 13, 15, 13)
+    );
+
     public static final BooleanProperty HONEY = FLStateProperties.HONEY;
 
     private static final TargetingConditions TARGETING = TargetingConditions.forNonCombat().range(15f).ignoreLineOfSight();
@@ -85,6 +100,23 @@ public class WildBeehiveBlock extends HorizontalDirectionalBlock implements IFor
     }
 
     @Override
+    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context)
+    {
+        return SHAPE;
+    }
+
+    @Override
+    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random)
+    {
+        final boolean honeyed = state.getValue(HONEY);
+        final boolean warm = isWarmEnough(level, pos);
+        if (warm != honeyed)
+        {
+            level.setBlockAndUpdate(pos, state.setValue(HONEY, warm));
+        }
+    }
+
+    @Override
     protected BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos)
     {
         if (direction == Direction.UP && !canHangOn(neighborState))
@@ -93,6 +125,12 @@ public class WildBeehiveBlock extends HorizontalDirectionalBlock implements IFor
             return Blocks.AIR.defaultBlockState();
         }
         return state;
+    }
+
+    @Override
+    public @Nullable BlockState getStateForPlacement(BlockPlaceContext context)
+    {
+        return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
     @Override
