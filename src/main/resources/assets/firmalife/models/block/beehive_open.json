@@ -1,0 +1,12 @@
+{
+	"loader": "firmalife:beehive",
+	"base": {
+		"parent": "firmalife:block/beehive_open_base",
+		"textures": {
+			"front": "block/beehive_front",
+			"particle": "block/beehive_side",
+			"side": "block/beehive_side",
+			"top": "block/beehive_end"
+		}
+	}
+}

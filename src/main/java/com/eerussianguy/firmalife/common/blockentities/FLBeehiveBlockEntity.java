@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import com.eerussianguy.firmalife.FirmaLife;
+import com.eerussianguy.firmalife.client.model.InventoryBlockModel;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blocks.FLBeehiveBlock;
@@ -33,6 +34,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.neoforged.neoforge.client.model.data.ModelData;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.Nullable;
 
@@ -136,6 +138,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
         honey = Math.min(nbt.getInt("honey"), getMaxHoney());
         beesInWorld = nbt.getInt("beesInWorld");
         needsSlotUpdate = true;
+        requestModelDataUpdate();
     }
 
     @Override
@@ -178,7 +181,10 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
     {
         super.setAndUpdateSlots(slot);
         updateCache();
+        requestModelDataUpdate();
         needsSlotUpdate = true;
+        if (level != null)
+            level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
     }
 
     private void updateCache()
@@ -463,9 +469,12 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
 
     private void receiveNutrients(IFarmland farmland, float cap, float nitrogen, float phosphorous, float potassium)
     {
-        float n = farmland.getNutrient(N); if (n < cap) farmland.setNutrient(N, Math.min(n + nitrogen, cap));
-        float p = farmland.getNutrient(P); if (p < cap) farmland.setNutrient(P, Math.min(p + phosphorous, cap));
-        float k = farmland.getNutrient(K); if (k < cap) farmland.setNutrient(K, Math.min(k + potassium, cap));
+        float n = farmland.getNutrient(N);
+        if (n < cap) farmland.setNutrient(N, Math.min(n + nitrogen, cap));
+        float p = farmland.getNutrient(P);
+        if (p < cap) farmland.setNutrient(P, Math.min(p + phosphorous, cap));
+        float k = farmland.getNutrient(K);
+        if (k < cap) farmland.setNutrient(K, Math.min(k + potassium, cap));
     }
 
     public void updateState()
@@ -540,4 +549,10 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
         lastPlayerTick = tick;
     }
 
+    @Override
+    public ModelData getModelData()
+    {
+        assert level != null;
+        return InventoryBlockModel.InventoryModelData.of(level, this);
+    }
 }
