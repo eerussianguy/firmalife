@@ -1,0 +1,9 @@
+{
+	"loader": "firmalife:beehive",
+	"base": {
+		"parent": "firmalife:block/beehive_open",
+		"textures": {
+			"front": "block/beehive_front_honey"
+		}
+	}
+}
