@@ -68,9 +68,7 @@ public class WineShelfBlock extends FourWayDeviceBlock
                     else
                     {
                         //Swap with hand
-                        //TODO this could be optimized
-                        FLHelpers.takeOne(level, slot, inv, player);
-                        return FLHelpers.insertOne(level, held, slot, inv, player);
+                        return FLHelpers.swapOne(level, held, slot, inv, player);
                     }
                 }
                 else if (held.isEmpty() && !slotItem.isEmpty())
@@ -107,10 +105,8 @@ public class WineShelfBlock extends FourWayDeviceBlock
         int index = 0;
         for (VoxelShape[] directionalSlotShape : INVENTORY_SLOT_SHAPES)
         {
-            //AABB#contains creates inconsistent behavior i.r.t. clicking on the inner left of the shelf vs the inner right of the shelf
-            //TODO create a helper method for this?
             AABB shape = directionalSlotShape[facing.get2DDataValue()].bounds();
-            if (pos.x >= shape.minX && pos.x <= shape.maxX && pos.y >= shape.minY && pos.y <= shape.maxY && pos.z >= shape.minZ && pos.z <= shape.maxZ)
+            if (FLHelpers.aabbContainsPoint(shape, pos))
             {
                 return index;
             }

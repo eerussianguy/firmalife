@@ -129,41 +129,54 @@ public class JarbnetBlock extends FourWayDeviceBlock
     @Override
     public ItemInteractionResult useItemOn(ItemStack held, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
     {
-        //TODO allow swapping item in inventory with item in hand
         final Direction facing = state.getValue(FACING);
         final boolean open = state.getValue(OPEN);
-        int slot = getSlotFromPos(facing, result.getLocation().subtract(pos.getX(), pos.getY(), pos.getZ()));
-        if (held.isEmpty())
+        boolean heldEmpty = held.isEmpty();
+        if (heldEmpty && player.isShiftKeyDown())
         {
-            if (player.isShiftKeyDown())
+            BlockState newState = state.setValue(OPEN, !open);
+            if (open)
             {
-                BlockState newState = state.setValue(OPEN, !open);
-                if (open)
+                if (state.getValue(LIT))
                 {
-                    if (state.getValue(LIT))
-                    {
-                        Helpers.playSound(level, pos, SoundEvents.FIRE_EXTINGUISH);
-                        newState = newState.setValue(LIT, false);
-                    }
-                    Helpers.playSound(level, pos, SoundEvents.WOODEN_TRAPDOOR_CLOSE);
+                    Helpers.playSound(level, pos, SoundEvents.FIRE_EXTINGUISH);
+                    newState = newState.setValue(LIT, false);
+                }
+                Helpers.playSound(level, pos, SoundEvents.WOODEN_TRAPDOOR_CLOSE);
+            }
+            else
+            {
+                Helpers.playSound(level, pos, SoundEvents.WOODEN_TRAPDOOR_OPEN);
+            }
+            level.setBlockAndUpdate(pos, newState);
+            return ItemInteractionResult.sidedSuccess(level.isClientSide);
+        }
+        int slot = getSlotFromPos(facing, result.getLocation().subtract(pos.getX(), pos.getY(), pos.getZ()));
+        if (slot < 0 || !open) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        return FLHelpers.consumeItemInventory(level, pos, FLBlockEntities.JARBNET, (jar, inv) -> {
+            boolean slotFull = !inv.getStackInSlot(slot).isEmpty();
+            if (heldEmpty)
+            {
+                if (slotFull)
+                {
+                    Helpers.playSound(level, pos, SoundEvents.WOOD_PLACE);
+                    return FLHelpers.takeOne(level, slot, inv, player);
+                }
+            }
+            else if (isItemAllowed(held))
+            {
+                Helpers.playSound(level, pos, SoundEvents.WOOD_PLACE);
+                if (slotFull)
+                {
+                    return FLHelpers.swapOne(level, held, slot, inv, player);
                 }
                 else
                 {
-                    Helpers.playSound(level, pos, SoundEvents.WOODEN_TRAPDOOR_OPEN);
+                    return FLHelpers.insertOne(level, held, slot, inv, player);
                 }
-                level.setBlockAndUpdate(pos, newState);
-                return ItemInteractionResult.sidedSuccess(level.isClientSide);
             }
-            else if (slot >= 0 && open)
-            {
-                return FLHelpers.consumeItemInventory(level, pos, FLBlockEntities.JARBNET, (jar, inv) -> FLHelpers.takeOne(level, slot, inv, player));
-            }
-        }
-        else if (isItemAllowed(held) && slot >= 0 && open)
-        {
-            return FLHelpers.consumeItemInventory(level, pos, FLBlockEntities.JARBNET, (jar, inv) -> FLHelpers.insertOne(level, held, slot, inv, player));
-        }
-        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        });
     }
 
     @Override
@@ -188,9 +201,8 @@ public class JarbnetBlock extends FourWayDeviceBlock
         int index = 0;
         for (VoxelShape[] directionalSlotShape : INVENTORY_SLOT_SHAPES)
         {
-            //AABB#contains creates inconsistent behavior i.r.t. clicking on the inner left of the shelf vs the inner right of the shelf
             AABB shape = directionalSlotShape[facing.get2DDataValue()].bounds();
-            if (pos.x >= shape.minX && pos.x <= shape.maxX && pos.y >= shape.minY && pos.y <= shape.maxY && pos.z >= shape.minZ && pos.z <= shape.maxZ)
+            if (FLHelpers.aabbContainsPoint(shape, pos))
             {
                 return index;
             }

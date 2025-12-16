@@ -35,6 +35,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
@@ -178,6 +180,22 @@ public class FLHelpers
     public static <T extends InventoryBlockEntity<?>> ItemInteractionResult consumeItemInventory(Level level, BlockPos pos, Supplier<BlockEntityType<T>> type, BiFunction<T, IItemHandler, ItemInteractionResult> consumer)
     {
         return level.getBlockEntity(pos, type.get()).map(be -> consumer.apply(be, be.getInventory())).orElse(ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION);
+    }
+
+    public static ItemInteractionResult swapOne(Level level, ItemStack item, int slot, IItemHandler inv, Player player)
+    {
+        if (inv.isItemValid(slot, item))
+        {
+            ItemStack extracted = inv.extractItem(slot, 1, false);
+            ItemStack remainder = inv.insertItem(slot, item.split(1), false);
+            if (extracted.isEmpty() && !remainder.isEmpty()) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+            // Giving the player an item before splitting the stack will change the current item stack
+            // possibly leading to duplicating items if both items are the same
+            ItemHandlerHelper.giveItemToPlayer(player, extracted);
+            ItemHandlerHelper.giveItemToPlayer(player, remainder);
+            return ItemInteractionResult.sidedSuccess(level.isClientSide);
+        }
+        return takeOne(level, slot, inv, player);
     }
 
     public static ItemInteractionResult insertOne(Level level, ItemStack item, int slot, IItemHandler inv, Player player)
@@ -334,6 +352,14 @@ public class FLHelpers
             map.put(Helpers.identifier(entry.getKey()), entry.getValue());
         }
         manager.bindValues(map);
+    }
+
+    /**
+     * {@link AABB#contains(Vec3)} does not include the upper edge within the bounds, this does.
+     */
+    public static boolean aabbContainsPoint(AABB shape, Vec3 pos)
+    {
+        return pos.x >= shape.minX && pos.x <= shape.maxX && pos.y >= shape.minY && pos.y <= shape.maxY && pos.z >= shape.minZ && pos.z <= shape.maxZ;
     }
 
     public static <B, C, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10> StreamCodec<B, C> composite(
