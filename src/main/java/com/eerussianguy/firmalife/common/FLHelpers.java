@@ -13,6 +13,7 @@ import com.mojang.datafixers.util.Function10;
 import com.mojang.serialization.Codec;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
@@ -37,6 +38,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
@@ -360,6 +362,11 @@ public class FLHelpers
     public static boolean aabbContainsPoint(AABB shape, Vec3 pos)
     {
         return pos.x >= shape.minX && pos.x <= shape.maxX && pos.y >= shape.minY && pos.y <= shape.maxY && pos.z >= shape.minZ && pos.z <= shape.maxZ;
+    }
+
+    public static VoxelShape[][] computeHorizontalShapeGroup(List<Function<Direction, VoxelShape>> shapes)
+    {
+        return shapes.stream().map(Helpers::computeHorizontalShapes).toArray(VoxelShape[][]::new);
     }
 
     public static <B, C, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10> StreamCodec<B, C> composite(

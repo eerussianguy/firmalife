@@ -1,5 +1,6 @@
 package com.eerussianguy.firmalife.common.blocks;
 
+import java.util.List;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
@@ -36,13 +37,14 @@ public class WineShelfBlock extends FourWayDeviceBlock
         // Vertical seperator
         Helpers.rotateShape(dir, 7, 0, 1, 9, 16, 16)
     ));
-    //TODO create a helper method for this?
-    public static final VoxelShape[][] INVENTORY_SLOT_SHAPES = new VoxelShape[][] {
-        Helpers.computeHorizontalShapes(dir -> Helpers.rotateShape(dir, 9, 9, 0, 15, 15, 15)),
-        Helpers.computeHorizontalShapes(dir -> Helpers.rotateShape(dir, 9, 1, 0, 15, 7, 15)),
-        Helpers.computeHorizontalShapes(dir -> Helpers.rotateShape(dir, 1, 9, 0, 7, 15, 15)),
-        Helpers.computeHorizontalShapes(dir -> Helpers.rotateShape(dir, 1, 1, 0, 7, 7, 15)),
-    };
+    public static final VoxelShape[][] INVENTORY_SLOT_SHAPES = FLHelpers.computeHorizontalShapeGroup(
+        List.of(
+            dir -> Helpers.rotateShape(dir, 9, 9, 0, 15, 15, 15),
+            dir -> Helpers.rotateShape(dir, 9, 1, 0, 15, 7, 15),
+            dir -> Helpers.rotateShape(dir, 1, 9, 0, 7, 15, 15),
+            dir -> Helpers.rotateShape(dir, 1, 1, 0, 7, 7, 15)
+        )
+    );
 
     public WineShelfBlock(ExtendedProperties properties)
     {

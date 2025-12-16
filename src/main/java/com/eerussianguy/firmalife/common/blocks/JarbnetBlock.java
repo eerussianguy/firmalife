@@ -1,5 +1,6 @@
 package com.eerussianguy.firmalife.common.blocks;
 
+import java.util.List;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.blockentities.JarbnetBlockEntity;
@@ -61,14 +62,16 @@ public class JarbnetBlock extends FourWayDeviceBlock
     ));
     // Only used to detect when a slot on the shelf is clicked
     // Helpful for preventing taking items out of the back/sides of the block
-    public static final VoxelShape[][] INVENTORY_SLOT_SHAPES = new VoxelShape[][] {
-        Helpers.computeHorizontalShapes(dir -> Helpers.rotateShape(dir, 1, 8, 5, 6, 15, 15)),
-        Helpers.computeHorizontalShapes(dir -> Helpers.rotateShape(dir, 6, 8, 5, 10, 15, 15)),
-        Helpers.computeHorizontalShapes(dir -> Helpers.rotateShape(dir, 10, 8, 5, 15, 15, 15)),
-        Helpers.computeHorizontalShapes(dir -> Helpers.rotateShape(dir, 1, 1, 5, 6, 7, 15)),
-        Helpers.computeHorizontalShapes(dir -> Helpers.rotateShape(dir, 6, 1, 5, 10, 7, 15)),
-        Helpers.computeHorizontalShapes(dir -> Helpers.rotateShape(dir, 10, 1, 5, 15, 7, 15)),
-    };
+    public static final VoxelShape[][] INVENTORY_SLOT_SHAPES = FLHelpers.computeHorizontalShapeGroup(
+        List.of(
+            dir -> Helpers.rotateShape(dir, 1, 8, 5, 6, 15, 15),
+            dir -> Helpers.rotateShape(dir, 6, 8, 5, 10, 15, 15),
+            dir -> Helpers.rotateShape(dir, 10, 8, 5, 15, 15, 15),
+            dir -> Helpers.rotateShape(dir, 1, 1, 5, 6, 7, 15),
+            dir -> Helpers.rotateShape(dir, 6, 1, 5, 10, 7, 15),
+            dir -> Helpers.rotateShape(dir, 10, 1, 5, 15, 7, 15)
+        )
+    );
 
     private static void addParticlesAndSound(Level level, double x, double y, double z, RandomSource rand)
     {
