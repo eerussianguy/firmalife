@@ -1,64 +1,34 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "variants": {
-    "open=false,facing=east,honey=true": {
+    "facing=east,honey=true": {
       "model": "minecraft:block/beehive_honey",
       "y": 90
     },
-    "open=false,facing=north,honey=true": {
+    "facing=north,honey=true": {
       "model": "minecraft:block/beehive_honey"
     },
-    "open=false,facing=south,honey=true": {
+    "facing=south,honey=true": {
       "model": "minecraft:block/beehive_honey",
       "y": 180
     },
-    "open=false,facing=west,honey=true": {
+    "facing=west,honey=true": {
       "model": "minecraft:block/beehive_honey",
       "y": 270
     },
-    "open=false,facing=east,honey=false": {
+    "facing=east,honey=false": {
       "model": "minecraft:block/beehive",
       "y": 90
     },
-    "open=false,facing=north,honey=false": {
+    "facing=north,honey=false": {
       "model": "minecraft:block/beehive"
     },
-    "open=false,facing=south,honey=false": {
+    "facing=south,honey=false": {
       "model": "minecraft:block/beehive",
       "y": 180
     },
-    "open=false,facing=west,honey=false": {
+    "facing=west,honey=false": {
       "model": "minecraft:block/beehive",
-      "y": 270
-    },
-    "open=true,facing=east,honey=true": {
-      "model": "firmalife:block/beehive_open_honey",
-      "y": 90
-    },
-    "open=true,facing=north,honey=true": {
-      "model": "firmalife:block/beehive_open_honey"
-    },
-    "open=true,facing=south,honey=true": {
-      "model": "firmalife:block/beehive_open_honey",
-      "y": 180
-    },
-    "open=true,facing=west,honey=true": {
-      "model": "firmalife:block/beehive_open_honey",
-      "y": 270
-    },
-    "open=true,facing=east,honey=false": {
-      "model": "firmalife:block/beehive_open",
-      "y": 90
-    },
-    "open=true,facing=north,honey=false": {
-      "model": "firmalife:block/beehive_open"
-    },
-    "open=true,facing=south,honey=false": {
-      "model": "firmalife:block/beehive_open",
-      "y": 180
-    },
-    "open=true,facing=west,honey=false": {
-      "model": "firmalife:block/beehive_open",
       "y": 270
     }
   }

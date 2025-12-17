@@ -2,7 +2,7 @@ package com.eerussianguy.firmalife.client.model;
 
 import java.util.List;
 import com.eerussianguy.firmalife.common.blockentities.FLBeehiveBlockEntity;
-import com.eerussianguy.firmalife.common.blocks.FLBeehiveBlock;
+import com.eerussianguy.firmalife.common.blocks.WoodenBeehiveBlock;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
@@ -39,10 +39,10 @@ public class BeehiveBlockModel extends InventoryBlockModel.Baked
     public void render(List<ItemStack> inventory, BlockState state, BlockPos pos, PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay)
     {
         final Level level = Minecraft.getInstance().level;
-        if (state.getBlock() instanceof FLBeehiveBlock && level != null)
+        if (state.getBlock() instanceof WoodenBeehiveBlock && level != null)
         {
             final Minecraft mc = Minecraft.getInstance();
-            final Direction facing = state.getValue(FLBeehiveBlock.FACING);
+            final Direction facing = state.getValue(WoodenBeehiveBlock.FACING);
             final int angle = switch (facing)
             {
                 case SOUTH -> 270;
@@ -51,7 +51,7 @@ public class BeehiveBlockModel extends InventoryBlockModel.Baked
                 case NORTH -> 90;
             };
 
-            if (state.getValue(FLBeehiveBlock.OPEN))
+            if (state.getValue(WoodenBeehiveBlock.OPEN))
             {
                 poseStack.pushPose();
                 poseStack.translate(0.5, 0, 0.5);

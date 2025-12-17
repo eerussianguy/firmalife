@@ -1,6 +1,8 @@
 package com.eerussianguy.firmalife.common.blocks;
 
+import com.eerussianguy.firmalife.common.blockentities.FLBeehiveBlockEntity;
 import com.eerussianguy.firmalife.common.capabilities.bee.BeeAbility;
+import com.eerussianguy.firmalife.common.misc.FLPOIs;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -10,6 +12,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
+import net.minecraft.world.entity.ai.village.poi.PoiManager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -87,6 +90,7 @@ public class WildBeehiveBlock extends HorizontalDirectionalBlock implements IFor
     );
 
     public static final BooleanProperty HONEY = FLStateProperties.HONEY;
+    public static final BooleanProperty BEES = FLStateProperties.BEES;
 
     private static final TargetingConditions TARGETING = TargetingConditions.forNonCombat().range(15f).ignoreLineOfSight();
 
@@ -95,7 +99,7 @@ public class WildBeehiveBlock extends HorizontalDirectionalBlock implements IFor
     public WildBeehiveBlock(ExtendedProperties properties)
     {
         super(properties.properties());
-        registerDefaultState(getStateDefinition().any().setValue(HONEY, false));
+        registerDefaultState(getStateDefinition().any().setValue(HONEY, false).setValue(BEES, true));
         this.properties = properties;
     }
 
@@ -108,12 +112,24 @@ public class WildBeehiveBlock extends HorizontalDirectionalBlock implements IFor
     @Override
     protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random)
     {
-        final boolean honeyed = state.getValue(HONEY);
-        final boolean warm = isWarmEnough(level, pos);
-        if (warm != honeyed)
+        if (state.getValue(BEES))
         {
-            level.setBlockAndUpdate(pos, state.setValue(HONEY, warm));
+            final boolean honeyed = state.getValue(HONEY);
+            final boolean warm = isWarmEnough(level, pos);
+            if (warm != honeyed)
+            {
+                level.setBlockAndUpdate(pos, state.setValue(HONEY, warm));
+            }
+            if (!warm)
+                return;
+            final BlockPos hivePos = level.getPoiManager().findClosest(holder -> holder.value().equals(FLPOIs.BEEHIVES.get()), pos, 15, PoiManager.Occupancy.ANY).orElse(null);
+            if (hivePos != null && level.getBlockEntity(hivePos) instanceof FLBeehiveBlockEntity hive)
+            {
+
+                hive.linkSwarm(pos);
+            }
         }
+
     }
 
     @Override
@@ -121,7 +137,8 @@ public class WildBeehiveBlock extends HorizontalDirectionalBlock implements IFor
     {
         if (direction == Direction.UP && !canHangOn(neighborState))
         {
-            level.getNearbyPlayers(TARGETING, null, new AABB(pos).inflate(15f)).forEach(FLBeehiveBlock::attack);
+            if (state.getValue(BEES))
+                level.getNearbyPlayers(TARGETING, null, new AABB(pos).inflate(15f)).forEach(BaseBeehiveBlock::attack);
             return Blocks.AIR.defaultBlockState();
         }
         return state;
@@ -142,9 +159,9 @@ public class WildBeehiveBlock extends HorizontalDirectionalBlock implements IFor
     @Override
     public void playerDestroy(Level level, Player player, BlockPos pos, BlockState state, @Nullable BlockEntity entity, ItemStack tool)
     {
-        if (!FLBeehiveBlock.hasFirepit(level, pos))
+        if (state.getValue(BEES) && !BaseBeehiveBlock.hasFirepit(level, pos))
         {
-            FLBeehiveBlock.attack(player);
+            BaseBeehiveBlock.attack(player);
         }
         super.playerDestroy(level, player, pos, state, entity, tool);
     }
@@ -164,7 +181,7 @@ public class WildBeehiveBlock extends HorizontalDirectionalBlock implements IFor
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
     {
-        super.createBlockStateDefinition(builder.add(FACING, HONEY));
+        super.createBlockStateDefinition(builder.add(FACING, HONEY, BEES));
     }
 
     @Override

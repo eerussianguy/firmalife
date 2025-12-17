@@ -16,6 +16,7 @@ import com.eerussianguy.firmalife.common.items.FLItems;
 import com.eerussianguy.firmalife.common.misc.FLEffects;
 import com.eerussianguy.firmalife.common.misc.FLInteractionManager;
 import com.eerussianguy.firmalife.common.misc.FLLoot;
+import com.eerussianguy.firmalife.common.misc.FLPOIs;
 import com.eerussianguy.firmalife.common.misc.FLParticles;
 import com.eerussianguy.firmalife.common.misc.FLSounds;
 import com.eerussianguy.firmalife.common.recipes.FLRecipeSerializers;
@@ -71,6 +72,7 @@ public class FirmaLife
         FLAdvancements.TRIGGER_TYPE.register(bus);
         FLArmorMaterials.ARMOR_MATERIAL.register(bus);
         FLComponents.COMPONENT.register(bus);
+        FLPOIs.TYPES.register(bus);
         FLLoot.registerAll(bus);
 
         mod.registerConfig(ModConfig.Type.SERVER, FLConfig.SERVER.spec());

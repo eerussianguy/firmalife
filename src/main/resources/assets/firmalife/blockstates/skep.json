@@ -1,0 +1,35 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "variants": {
+    "facing=east,honey=false": {
+      "model": "firmalife:block/skep",
+      "y": 90
+    },
+    "facing=north,honey=false": {
+      "model": "firmalife:block/skep"
+    },
+    "facing=south,honey=false": {
+      "model": "firmalife:block/skep",
+      "y": 180
+    },
+    "facing=west,honey=false": {
+      "model": "firmalife:block/skep",
+      "y": 270
+    },
+    "facing=east,honey=true": {
+      "model": "firmalife:block/skep_honey",
+      "y": 90
+    },
+    "facing=north,honey=true": {
+      "model": "firmalife:block/skep_honey"
+    },
+    "facing=south,honey=true": {
+      "model": "firmalife:block/skep_honey",
+      "y": 180
+    },
+    "facing=west,honey=true": {
+      "model": "firmalife:block/skep_honey",
+      "y": 270
+    }
+  }
+}

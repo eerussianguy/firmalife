@@ -69,7 +69,7 @@ public class BuiltinBlockTags extends TagsProvider<Block> implements Accessors
             .add2(FLBlocks.METALS)
             .add(FLBlocks.INSULATED_OVEN_BOTTOM);
         tag(BlockTags.MINEABLE_WITH_AXE)
-            .add(FLBlocks.TREATED_WOOD, FLBlocks.PLATE, FLBlocks.SOLAR_DRIER, FLBlocks.MIXING_BOWL, FLBlocks.GRAPE_TRELLIS_POST, FLBlocks.GRAPE_TRELLIS_POST_RED, FLBlocks.GRAPE_TRELLIS_POST_WHITE, FLBlocks.CLIMATE_STATION, FLBlocks.BEEHIVE, FLBlocks.WILD_BEEHIVE)
+            .add(FLBlocks.TREATED_WOOD, FLBlocks.PLATE, FLBlocks.SOLAR_DRIER, FLBlocks.MIXING_BOWL, FLBlocks.GRAPE_TRELLIS_POST, FLBlocks.GRAPE_TRELLIS_POST_RED, FLBlocks.GRAPE_TRELLIS_POST_WHITE, FLBlocks.CLIMATE_STATION, FLBlocks.BEEHIVE, FLBlocks.WILD_BEEHIVE, FLBlocks.SKEP)
             .add(FLBlocks.FRUIT_TREE_BRANCHES)
             .add(FLBlocks.FRUIT_TREE_GROWING_BRANCHES)
             .add(FLBlocks.GREENHOUSE_BLOCKS.get(Greenhouse.TREATED_WOOD))
