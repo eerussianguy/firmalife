@@ -329,7 +329,6 @@ public class FLClientEvents
     public static void registerExtensions(RegisterClientExtensionsEvent event)
     {
         event.registerItem(PeelItem.Extension.INSTANCE, FLItems.PEEL.get());
-        //TODO check these for correctness, they might need tweaking. Also change from using TFC textures here?
         FLFluids.METALS.forEach((metal, holder) -> event.registerFluidType(
             new FluidRendererExtension(TFCFluids.ALPHA_MASK | metal.getColor(), ClientEventHandler.MOLTEN_STILL, ClientEventHandler.MOLTEN_FLOW, null, null),
             holder.getType()
