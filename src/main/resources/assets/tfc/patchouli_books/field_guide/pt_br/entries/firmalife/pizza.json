@@ -1,0 +1,30 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "Pizza",
+  "category": "tfc:firmalife",
+  "icon": "firmalife:textures/item/food/cooked_pizza.png",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Para fazer $(thing)Pizza$(), misture a Massa, o Sal, as Folhas de Manjericão e 100 ml de óleo em uma $(l:firmalife/mixing_bowl)Tigela de Mistura$(). O óleo pode ser azeite de oliva ou óleo de soja (o produto da pasta de soja selada em um barril de água)."
+    },
+    {
+      "type": "patchouli:crafting",
+      "anchor": "shredded_cheese",
+      "recipe": "firmalife:crafting/shredded_cheese",
+      "text": "Você precisará de um pouco de queijo ralado para começar."
+    },
+    {
+      "type": "patchouli:text",
+      "anchor": "tomato_sauce",
+      "text": "Para fazer $(thing)Molho de Tomate$(), ferva um tomate, sal, alho e água em uma panela. Como alternativa, usando uma $(l:firmalife/oven_appliances#vat)Cuba$(), ferva a versão craftada desses ingredientes, também conhecida como $(thing)Mistura para Molho de Tomate$()."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/raw_pizza3",
+      "text": "A pizza é feita com 1 a 3 porções de vegetais, carnes cozidas ou frutas, um pedaço de queijo ralado e um pedaço de molho de tomate."
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 26
+}

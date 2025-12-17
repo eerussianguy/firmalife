@@ -1,0 +1,66 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "Ervas e Especiarias",
+  "category": "tfc:firmalife",
+  "icon": "firmalife:spice/basil_leaves",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Em Firmalife, há uma série de pequenas plantas que você pode coletar e cultivar por conta própria, com propriedades culinárias. A maneira mais fácil de obtê-las é com uma $(thing)Bola de Sementes$(). Para usar uma $(thing)Bola de Sementes$(), basta clicar $(item)$(k:key.use)$() para arremessá-la, como uma bola de neve. Isso gerará $(thing)Grama-Borboleta$() na área."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/seed_ball",
+      "text": "A receita para a bola de sementes requer $(l:firmalife/more_fertilizer)Composto$() e 4 $(thing)Sementes$()."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "multiblock": {
+        "pattern": [
+          [
+            "X"
+          ],
+          [
+            "0"
+          ]
+        ],
+        "mapping": {
+          "X": "firmalife:plant/butterfly_grass"
+        }
+      },
+      "name": "",
+      "text": "Uma planta de grama-borboleta.",
+      "enable_visualize": false
+    },
+    {
+      "type": "patchouli:text",
+      "text": "A grama-borboleta amadurece com o tempo. Quando atinge a maturidade, tem a chance de se espalhar para os blocos vizinhos ou se transformar em algo novo. Blocos de grama-borboleta que foram espalhados por outro bloco de grama não se espalham mais."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "multiblock": {
+        "pattern": [
+          [
+            "X"
+          ],
+          [
+            "0"
+          ]
+        ],
+        "mapping": {
+          "X": "firmalife:plant/basil"
+        }
+      },
+      "name": "",
+      "text": "O manjericão é uma das plantas que podem ser geradas pela grama-borboleta.",
+      "enable_visualize": false
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/basil_leaves",
+      "text": "Folhas de manjericão são usadas na pizza."
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 19
+}

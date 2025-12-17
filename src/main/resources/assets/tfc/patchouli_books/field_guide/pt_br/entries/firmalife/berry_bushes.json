@@ -1,0 +1,41 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "Arbustos de Berries",
+  "category": "tfc:firmalife",
+  "icon": "firmalife:plant/pineapple_bush",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "O Firmalife adiciona alguns arbustos de uvas silvestres. Para informações sobre arbustos de uvas silvestres, consulte $(l:firmalife/wine)Vinificação$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "firmalife:food/nightshade_berry",
+      "link_recipes": false,
+      "text": "A primeira é a beladona. A beladona é uma fruta venenosa. Quando adicionada à sopa, produz uma sopa venenosa chamada $(thing)Sopa Fedorenta$(). Ela é encontrada entre 200-400 mm de chuva e temperaturas de 7-24 °C nas florestas."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "firmalife:food/pineapple",
+      "link_recipes": false,
+      "text": "Os arbustos de abacaxi são encontrados em florestas com 250 a 500 mm de chuva e temperaturas entre 20 e 32 °C. Abacaxis são como qualquer outra fruta, exceto pelo fato de poderem ser transformados em $(thing)Couro de Abacaxi$()."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/pineapple_fiber",
+      "text": "Abacaxis que foram $(l:firmalife/drying)Desidratados$() podem ser transformados em fibra de abacaxi."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/pineapple_yarn",
+      "text": "O fio de abacaxi é feito craftando um $(thing)Fuso$() com a fibra."
+    },
+    {
+      "type": "tfc:loom_recipe",
+      "recipe": "firmalife:loom/pineapple_leather",
+      "text": "Por fim, o couro de abacaxi pode ser tecido em um $(l:tfc:mechanics/weaving)Tear$(). É um substituto vegetal para o couro comum que pode ser usado para lascamento, artesanato e outros usos!"
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 21
+}

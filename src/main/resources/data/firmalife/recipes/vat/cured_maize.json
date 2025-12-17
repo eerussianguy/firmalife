@@ -11,7 +11,7 @@
   },
   "input_fluid": {
     "ingredient": "tfc:limewater",
-    "amount": 1000
+    "amount": 100
   },
   "output_item": {
     "item": "firmalife:food/cured_maize"

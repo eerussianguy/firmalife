@@ -1,0 +1,47 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "Desidratação",
+  "category": "tfc:firmalife",
+  "icon": "firmalife:drying_mat",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "O $(thing)Tapete de Secagem$() é usado para desidratar itens. Ele é feito com $(thing)Folhas de Fruta$(), obtidas ao quebrar as folhas de $(thing)Árvores Frutíferas$()."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/drying_mat",
+      "text": "A receita para o tapete de secagem."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Para usar o tapete de secagem, coloque-o ao sol e adicione um item com $(item)$(k:key.use)$(). Após meio dia, o item estará desidratado. Se chover, o processo de secagem deve começar novamente."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/solar_drier",
+      "text": "O secador solar funciona da mesma forma que o tapete de secagem, mas 12 vezes mais rápido."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Os tapetes de secagem podem ser automatizados. Empurrar um pistão contra um tapete de secagem fará o item saltar. Jogar um item sobre um tapete de secagem irá colocá-lo nele."
+    },
+    {
+      "type": "tfc:drying_recipe",
+      "recipe": "firmalife:drying/drying_fruit",
+      "text": "Desidratar frutas é um uso comum do tapete de secagem. Frutas desidratadas são usadas em algumas receitas e duram mais."
+    },
+    {
+      "type": "tfc:drying_recipe",
+      "recipe": "firmalife:drying/tofu",
+      "text": "O tofu é feito usando um tapete de secagem."
+    },
+    {
+      "type": "tfc:drying_recipe",
+      "recipe": "firmalife:drying/cinnamon",
+      "text": "A canela é feita usando um tapete de secagem."
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 12
+}
