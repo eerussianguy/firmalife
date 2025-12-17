@@ -263,8 +263,10 @@ def generate(rm: ResourceManager):
     rm.blockstate('stovetop_pot').with_lang(lang('stovetop pot'))
 
     rm.blockstate('beehive', variants={
-        **four_rotations('minecraft:block/beehive_honey', (90, None, 180, 270), ',honey=true'),
-        **four_rotations('minecraft:block/beehive', (90, None, 180, 270), ',honey=false')
+        **four_rotations('minecraft:block/beehive_honey', (90, None, 180, 270), ',honey=true,open=false'),
+        **four_rotations('minecraft:block/beehive', (90, None, 180, 270), ',honey=false,open=false'),
+        **four_rotations('firmalife:block/beehive_open_honey', (90, None, 180, 270), ',honey=true,open=true'),
+        **four_rotations('firmalife:block/beehive_open', (90, None, 180, 270), ',honey=false,open=true')
     }).with_lang(lang('wooden beehive'))
     rm.item_model('beehive', parent='minecraft:block/beehive', no_textures=True)
 
