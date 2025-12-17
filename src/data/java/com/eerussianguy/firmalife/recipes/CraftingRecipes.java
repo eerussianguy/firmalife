@@ -31,6 +31,7 @@ import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blocks.DecorationBlockHolder;
 import net.dries007.tfc.common.blocks.GroundcoverBlockType;
 import net.dries007.tfc.common.blocks.TFCBlocks;
+import net.dries007.tfc.common.blocks.plant.Plant;
 import net.dries007.tfc.common.blocks.wood.Wood;
 import net.dries007.tfc.common.component.food.FoodData;
 import net.dries007.tfc.common.fluids.SimpleFluid;
@@ -158,6 +159,12 @@ public interface CraftingRecipes extends Recipes
             .input('Z', TFCBlocks.THATCH)
             .pattern("XYX", "XZX", "XYX")
             .shaped(FLBlocks.BEEHIVE);
+        recipe()
+            .input('X', TFCItems.STRAW)
+            .input('Y', TFCBlocks.PLANTS.get(Plant.CATTAIL))
+            .input('Z', Tags.Items.RODS_WOODEN)
+            .pattern("XYX", "XZX", "XYX")
+            .shaped(FLBlocks.SKEP);
         recipe()
             .input('X', wroughtSheets)
             .input('Y', TFCBlocks.COMPOSTER)

@@ -7,7 +7,9 @@ import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.client.model.InventoryBlockModel;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.FLTags;
-import com.eerussianguy.firmalife.common.blocks.FLBeehiveBlock;
+import com.eerussianguy.firmalife.common.blocks.BaseBeehiveBlock;
+import com.eerussianguy.firmalife.common.blocks.WildBeehiveBlock;
+import com.eerussianguy.firmalife.common.blocks.WoodenBeehiveBlock;
 import com.eerussianguy.firmalife.common.blocks.greenhouse.LargePlanterBlock;
 import com.eerussianguy.firmalife.common.capabilities.FLComponents;
 import com.eerussianguy.firmalife.common.capabilities.bee.BeeAbility;
@@ -85,7 +87,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
     }
 
     public static final int MIN_FLOWERS = 10;
-    public static final int UPDATE_INTERVAL = ICalendar.TICKS_IN_DAY;
+    public static final int UPDATE_INTERVAL = ICalendar.CALENDAR_TICKS_IN_DAY;
     public static final int ENTITY_HANDLING_INTERVAL = 1000;
     public static final int FRAME_SLOTS = 4;
     public static final int TOTAL_SLOTS = 6;
@@ -102,6 +104,8 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
     private long lastPlayerTick, lastAreaTick;
     private int honey;
     private boolean needsSlotUpdate = false;
+    @Nullable private BlockPos linkedHive = null;
+    private long linkedHiveTick = 0L;
 
     public FLBeehiveBlockEntity(BlockPos pos, BlockState state)
     {
@@ -117,6 +121,20 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
             .on(new PartialItemHandler(inventory).extract(5), Direction.DOWN);
     }
 
+    public @Nullable BlockPos getLinkedHive()
+    {
+        return linkedHive;
+    }
+
+    public void linkSwarm(BlockPos origin)
+    {
+        if (linkedHive != null)
+            return;
+        linkedHive = origin;
+        linkedHiveTick = Calendars.SERVER.getTicks();
+        markForSync();
+    }
+
     @Override
     public void saveAdditional(CompoundTag nbt, HolderLookup.Provider access)
     {
@@ -125,7 +143,9 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
         nbt.putLong("lastAreaTick", lastAreaTick);
         nbt.putInt("honey", honey);
         nbt.putInt("beesInWorld", beesInWorld);
-        nbt.putBoolean("updatedSize", true);
+        nbt.putLong("linkedHiveTick", linkedHiveTick);
+        if (linkedHive != null)
+            nbt.putLong("linkedHive", linkedHive.asLong());
     }
 
     @Override
@@ -137,6 +157,9 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
         lastAreaTick = nbt.getLong("lastAreaTick");
         honey = Math.min(nbt.getInt("honey"), getMaxHoney());
         beesInWorld = nbt.getInt("beesInWorld");
+        linkedHiveTick = nbt.getLong("linkedHiveTick");
+        linkedHive = nbt.contains("linkedHive", CompoundTag.TAG_LONG) ? BlockPos.of(nbt.getLong("linkedHive")) : null;
+
         needsSlotUpdate = true;
         requestModelDataUpdate();
     }
@@ -482,16 +505,36 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
         assert level != null;
         final boolean bees = hasBees();
         final BlockState state = level.getBlockState(worldPosition);
-        if (bees != state.getValue(FLBeehiveBlock.BEES))
+        if (bees != state.getValue(WoodenBeehiveBlock.BEES))
         {
-            level.setBlockAndUpdate(worldPosition, state.setValue(FLBeehiveBlock.BEES, bees));
+            level.setBlockAndUpdate(worldPosition, state.setValue(WoodenBeehiveBlock.BEES, bees));
             markForSync();
         }
         boolean hasHoney = honey > 0;
-        if (hasHoney != state.getValue(FLBeehiveBlock.HONEY))
+        if (hasHoney != state.getValue(WoodenBeehiveBlock.HONEY))
         {
-            level.setBlockAndUpdate(worldPosition, state.setValue(FLBeehiveBlock.HONEY, hasHoney));
+            level.setBlockAndUpdate(worldPosition, state.setValue(WoodenBeehiveBlock.HONEY, hasHoney));
             markForSync();
+        }
+        if (linkedHive != null)
+        {
+            final BlockState linkState = level.getBlockState(linkedHive);
+            final boolean isHive = linkState.getBlock() instanceof BaseBeehiveBlock;
+            final boolean isWild = linkState.getBlock() instanceof WildBeehiveBlock;
+            if (!isWild && !isHive)
+            {
+                linkedHive = null;
+                linkedHiveTick = 0L;
+                markForSync();
+            }
+            else if (isWild)
+            {
+                if (Calendars.SERVER.getTicks() - linkedHiveTick > ICalendar.CALENDAR_TICKS_IN_DAY)
+                {
+                    level.setBlockAndUpdate(linkedHive, linkState.setValue(WildBeehiveBlock.BEES, false));
+
+                }
+            }
         }
     }
 
@@ -531,9 +574,9 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
     public void onSlotTake(Player player, int slot, ItemStack stack)
     {
         assert level != null;
-        if (FLBeehiveBlock.shouldAnger(level, worldPosition))
+        if (BaseBeehiveBlock.shouldAnger(level, worldPosition))
         {
-            FLBeehiveBlock.attack(player);
+            BaseBeehiveBlock.attack(player);
         }
     }
 

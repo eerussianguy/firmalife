@@ -274,6 +274,12 @@ def generate(rm: ResourceManager):
     }).with_lang(lang('wild beehive'))
     rm.item_model('wild_beehive', parent='firmalife:block/bee_nest_hanging', no_textures=True)
 
+    rm.blockstate('skep', variants={
+        **four_rotations('firmalife:block/skep', (90, None, 180, 270), ',honey=false'),
+        **four_rotations('firmalife:block/skep_honey', (90, None, 180, 270), ',honey=true'),
+    }).with_lang(lang('skep'))
+    rm.item_model('skep', parent='firmalife:block/skep', no_textures=True)
+
     rm.blockstate('compost_tumbler', variants=four_rotations('firmalife:block/compost_tumbler', (90, None, 180, 270))).with_lang(lang('compost tumbler'))
     rm.item_model('compost_tumbler', parent='firmalife:block/compost_tumbler_inventory', no_textures=True)
 
