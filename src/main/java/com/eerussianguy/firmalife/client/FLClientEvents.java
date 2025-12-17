@@ -37,7 +37,6 @@ import com.eerussianguy.firmalife.client.render.StringBlockEntityRenderer;
 import com.eerussianguy.firmalife.client.render.SweeperBlockEntityRenderer;
 import com.eerussianguy.firmalife.client.render.VatBlockEntityRenderer;
 import com.eerussianguy.firmalife.client.screen.BarrelPressScreen;
-import com.eerussianguy.firmalife.client.screen.BeehiveScreen;
 import com.eerussianguy.firmalife.client.screen.BigBarrelScreen;
 import com.eerussianguy.firmalife.client.screen.StovetopGrillScreen;
 import com.eerussianguy.firmalife.client.screen.StovetopPotScreen;
@@ -46,8 +45,6 @@ import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.blocks.FLFluids;
-import com.eerussianguy.firmalife.common.capabilities.FLComponents;
-import com.eerussianguy.firmalife.common.capabilities.bee.BeeComponent;
 import com.eerussianguy.firmalife.common.container.FLMenuTypes;
 import com.eerussianguy.firmalife.common.entities.FLEntities;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
@@ -160,11 +157,6 @@ public class FLClientEvents
             });
             FLItems.FRUITS.forEach((food, item) -> registerDryProperty(item));
 
-            ItemProperties.register(FLItems.BEEHIVE_FRAME.get(), FLHelpers.identifier("queen"), (stack, a, b, c) -> {
-                final BeeComponent bee = stack.get(FLComponents.BEE.get());
-                return bee != null && bee.hasQueen() ? 1f : 0f;
-            });
-
             PlacedItemBlockEntityRenderer.MODELS.putAll(Map.of(
                 FLItems.HONEY_JAR.get(), translucent("block/jar/honey"),
                 FLItems.COMPOST_JAR.get(), translucent("block/jar/compost"),
@@ -195,7 +187,6 @@ public class FLClientEvents
 
     public static void onMenuRegister(RegisterMenuScreensEvent event)
     {
-        event.register(FLMenuTypes.BEEHIVE.get(), BeehiveScreen::new);
         event.register(FLMenuTypes.BARREL_PRESS.get(), BarrelPressScreen::new);
         event.register(FLMenuTypes.STOVETOP_GRILL.get(), StovetopGrillScreen::new);
         event.register(FLMenuTypes.STOVETOP_POT.get(), StovetopPotScreen::new);

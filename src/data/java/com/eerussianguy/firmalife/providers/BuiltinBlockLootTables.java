@@ -10,6 +10,7 @@ import java.util.function.Supplier;
 import com.eerussianguy.firmalife.Accessors;
 import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.common.FLHelpers;
+import com.eerussianguy.firmalife.common.blocks.FLStateProperties;
 import com.eerussianguy.firmalife.common.blocks.KegBlock;
 import com.eerussianguy.firmalife.common.blocks.CheeseWheelBlock;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
@@ -148,7 +149,18 @@ public class BuiltinBlockLootTables extends BlockLootSubProvider implements Acce
         dropSelf(FLBlocks.SOLAR_DRIER);
         dropSelf(FLBlocks.BEEHIVE);
         dropSelf(FLBlocks.SKEP);
-        dropSelf(FLBlocks.WILD_BEEHIVE); // todo
+        add(FLBlocks.WILD_BEEHIVE.get(),
+            LootTable.lootTable()
+                .withPool(lootPool()
+                    .add(lootTableItem(FLItems.RAW_HONEY))
+                    .when(hasProperty(FLBlocks.WILD_BEEHIVE.get(), FLStateProperties.HONEY, true))
+                    .apply(setCount(1, 6))
+                )
+                .withPool(lootPool()
+                    .add(lootTableItem(FLItems.BEESWAX))
+                    .apply(setCount(1, 3))
+                )
+        );
         dropSelf(FLBlocks.COMPOST_TUMBLER);
         dropSelf(FLBlocks.CLIMATE_STATION);
         dropOther(FLBlocks.WOOL_STRING, TFCItems.WOOL_YARN);

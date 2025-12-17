@@ -22,6 +22,11 @@ public enum ParasiticInfection implements StringRepresentable
     public static final StreamCodec<ByteBuf, ParasiticInfection> STREAM_CODEC = StreamCodecs.forEnum(ParasiticInfection::values);
     public static final ParasiticInfection[] VALUES = values();
 
+    public static ParasiticInfection valueOf(int i)
+    {
+        return i >= VALUES.length || i < 0 ? NONE : VALUES[i];
+    }
+
     private final String name;
 
     ParasiticInfection()

@@ -242,10 +242,6 @@ def generate(rm: ResourceManager):
     for color in ('red', 'white'):
         rm.item_model('seeds/%s_grape' % color, 'firmalife:item/seeds/%s_grape' % color).with_lang(lang('%s grape seeds', color))
 
-    rm.item_model('beehive_frame_no_queen', 'firmalife:item/beehive_frame')
-    rm.item_model('beehive_frame_queen', 'firmalife:item/beehive_frame_queen')
-    item_model_property(rm, 'beehive_frame', [{'predicate': {'firmalife:queen': 1}, 'model': 'firmalife:item/beehive_frame_queen'}], {'parent': 'firmalife:item/beehive_frame_no_queen'}).with_lang(lang('beehive frame'))
-
     for color in ('hematitic', 'olivine', 'volcanic'):
         rm.block_model(f'{color}_wine_bottle', {'bottle_cork': 'firmalife:block/wine/bottle_cork', 'bottle': f'firmalife:block/wine/{color}_bottle', 'bottle_neck': f'firmalife:block/wine/{color}_bottle_neck'}, 'firmalife:block/wine_bottle')
         rm.block_model(f'empty_{color}_wine_bottle', {'bottle_cork': 'tfc:block/empty'}, f'firmalife:block/{color}_wine_bottle')
@@ -263,8 +259,10 @@ def generate(rm: ResourceManager):
     rm.blockstate('stovetop_pot').with_lang(lang('stovetop pot'))
 
     rm.blockstate('beehive', variants={
-        **four_rotations('minecraft:block/beehive_honey', (90, None, 180, 270), ',honey=true'),
-        **four_rotations('minecraft:block/beehive', (90, None, 180, 270), ',honey=false')
+        **four_rotations('firmalife:block/beehive_open_honey', (90, None, 180, 270), ',honey=true,open=true'),
+        **four_rotations('minecraft:block/beehive_honey', (90, None, 180, 270), ',honey=true,open=false'),
+        **four_rotations('firmalife:block/beehive_open', (90, None, 180, 270), ',honey=false,open=true'),
+        **four_rotations('minecraft:block/beehive', (90, None, 180, 270), ',honey=false,open=false')
     }).with_lang(lang('wooden beehive'))
     rm.item_model('beehive', parent='minecraft:block/beehive', no_textures=True)
 

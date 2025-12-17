@@ -41,7 +41,9 @@ public class FLItems
 
     public static final EnumSet<Food> TFC_FRUITS = EnumSet.of(Food.BANANA, Food.BLACKBERRY, Food.BLUEBERRY, Food.BUNCHBERRY, Food.CHERRY, Food.CLOUDBERRY, Food.CRANBERRY, Food.ELDERBERRY, Food.GOOSEBERRY, Food.GREEN_APPLE, Food.LEMON, Food.OLIVE, Food.ORANGE, Food.PEACH, Food.PLUM, Food.RASPBERRY, Food.RED_APPLE, Food.SNOWBERRY, Food.STRAWBERRY, Food.WINTERGREEN_BERRY);
 
-    public static final ItemId BEEHIVE_FRAME = register("beehive_frame", () -> new BeehiveFrameItem(prop().component(FLComponents.BEE.get(), BeeComponent.DEFAULT)));
+    public static final ItemId BEEHIVE_FRAME = register("beehive_frame");
+    public static final ItemId FILLED_BEEHIVE_FRAME = register("filled_beehive_frame", () -> new BeehiveFrameItem(prop()));
+    public static final ItemId QUEEN_BEE = register("queen_bee", () -> new Item(prop().component(FLComponents.BEE.get(), BeeComponent.DEFAULT_QUEEN)));
     public static final ItemId BEESWAX = register("beeswax", () -> new HoneycombItem(prop()));
     public static final ItemId CINNAMON_BARK = register("cinnamon_bark");
     public static final ItemId CHEESECLOTH = register("cheesecloth");

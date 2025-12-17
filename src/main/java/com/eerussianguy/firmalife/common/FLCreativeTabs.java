@@ -45,7 +45,6 @@ public final class FLCreativeTabs
         accept(out, FLItems.COMPOST_JAR);
         accept(out, FLItems.ROTTEN_COMPOST_JAR);
         accept(out, FLItems.GUANO_JAR);
-        accept(out, FLItems.BEEHIVE_FRAME);
         accept(out, FLItems.CHEESECLOTH);
         accept(out, FLItems.FRUIT_LEAF);
         accept(out, FLItems.ICE_SHAVINGS);
@@ -56,10 +55,13 @@ public final class FLCreativeTabs
         accept(out, FLItems.PINEAPPLE_LEATHER);
         accept(out, FLItems.PINEAPPLE_FIBER);
         accept(out, FLItems.POTTERY_SHERD);
+        accept(out, FLItems.BEEHIVE_FRAME);
+        accept(out, FLItems.FILLED_BEEHIVE_FRAME);
+        accept(out, FLItems.QUEEN_BEE);
+        accept(out, FLItems.RAW_HONEY);
         accept(out, FLItems.BEESWAX);
         accept(out, FLItems.STAINLESS_STEEL_JAR_LID);
         accept(out, FLItems.EMPTY_JAR_WITH_STAINLESS_STEEL_LID);
-        accept(out, FLItems.RAW_HONEY);
         accept(out, FLItems.RENNET);
         accept(out, FLItems.SEED_BALL);
         accept(out, FLItems.WATERING_CAN);

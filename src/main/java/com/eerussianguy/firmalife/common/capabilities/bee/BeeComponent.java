@@ -1,20 +1,17 @@
 package com.eerussianguy.firmalife.common.capabilities.bee;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import javax.annotation.Nullable;
 import net.minecraft.ChatFormatting;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 
 import net.dries007.tfc.world.Codecs;
@@ -42,11 +39,10 @@ public record BeeComponent(
     );
 
     public static final BeeComponent DEFAULT = new BeeComponent(Map.of(), false, GeneticDisease.NONE, ParasiticInfection.NONE);
+    public static final BeeComponent DEFAULT_QUEEN = new BeeComponent(Map.of(), true, GeneticDisease.NONE, ParasiticInfection.NONE);
 
     public static BeeComponent initFreshAbilities(RandomSource random)
     {
-        final int[] values = BeeAbility.fresh();
-
         final Map<BeeAbility, Integer> map = new HashMap<>();
         map.put(BeeAbility.random(random), random.nextInt(3) + 1);
         map.put(BeeAbility.random(random), random.nextInt(3) + 1);
@@ -62,53 +58,6 @@ public record BeeComponent(
     public static BeeComponent withDiseases(BeeComponent component, @Nullable GeneticDisease disease, @Nullable ParasiticInfection infection)
     {
         return new BeeComponent(Map.copyOf(component.abilities), component.hasQueen, disease != null ? disease : component.geneticDisease, infection != null ? infection : component.parasiticInfection);
-    }
-
-    public static BeeComponent setAbilitiesFromParents(BeeComponent parent1, BeeComponent parent2, RandomSource random)
-    {
-        final Map<BeeAbility, Integer> babyMap = new HashMap<>();
-        int mutation = (parent1.getAbility(BeeAbility.MUTANT) + parent2.getAbility(BeeAbility.MUTANT)) / 2;
-        mutation = Mth.clamp(mutation, 1, 5);
-
-        int abilitiesSet = 0;
-        List<BeeAbility> abilities = Arrays.asList(BeeAbility.VALUES);
-        Collections.shuffle(abilities);
-        for (BeeAbility ability : abilities)
-        {
-            int average = (parent1.getAbility(ability) + parent2.getAbility(ability)) / 2;
-            if (average >= 1 && abilitiesSet < 4)
-            {
-                abilitiesSet++;
-                final int newValue = Mth.clamp(Mth.nextInt(random, average - mutation, average + mutation), 0, 10);
-                if (newValue > 0)
-                {
-                    babyMap.put(ability, newValue);
-                }
-            }
-        }
-        GeneticDisease disease;
-        ParasiticInfection infection;
-        if (parent1.geneticDisease != GeneticDisease.NONE)
-        {
-            disease = parent1.geneticDisease;
-        }
-        else
-        {
-            disease = parent2.geneticDisease;
-        }
-        if (parent1.parasiticInfection != ParasiticInfection.NONE)
-        {
-            infection = parent1.parasiticInfection;
-        }
-        else
-        {
-            infection = parent2.parasiticInfection;
-        }
-        if (mutation >= 4 && random.nextInt(5) == 0)
-        {
-            disease = GeneticDisease.VALUES[Mth.nextInt(random, 0, GeneticDisease.VALUES.length)];
-        }
-        return new BeeComponent(babyMap, true, disease, infection);
     }
 
     public int getAbility(BeeAbility ability)
@@ -130,7 +79,6 @@ public record BeeComponent(
     {
         if (hasQueen())
         {
-            tooltip.accept(Component.translatable("firmalife.bee.queen").withStyle(ChatFormatting.GOLD));
             if (hasGeneticDisease())
             {
                 tooltip.accept(Component.translatable("firmalife.bee.genetic_disease", Component.translatable("firmalife.bee.disease" + geneticDisease)).withStyle(ChatFormatting.RED));
@@ -151,7 +99,7 @@ public record BeeComponent(
         }
         else
         {
-            tooltip.accept(Component.translatable("firmalife.bee.no_queen").withStyle(ChatFormatting.RED));
+            tooltip.accept(Component.translatable("firmalife.bee.dead").withStyle(ChatFormatting.RED));
         }
     }
 }

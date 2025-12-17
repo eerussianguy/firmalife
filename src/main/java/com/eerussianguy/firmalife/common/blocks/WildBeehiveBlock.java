@@ -125,7 +125,6 @@ public class WildBeehiveBlock extends HorizontalDirectionalBlock implements IFor
             final BlockPos hivePos = level.getPoiManager().findClosest(holder -> holder.value().equals(FLPOIs.BEEHIVES.get()), pos, 15, PoiManager.Occupancy.ANY).orElse(null);
             if (hivePos != null && level.getBlockEntity(hivePos) instanceof FLBeehiveBlockEntity hive)
             {
-
                 hive.linkSwarm(pos);
             }
         }
