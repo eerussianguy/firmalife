@@ -31,6 +31,7 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.neoforged.neoforge.common.extensions.IBlockEntityExtension;
 
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
@@ -151,6 +152,7 @@ public class JarbnetBlock extends FourWayDeviceBlock
             {
                 Helpers.playSound(level, pos, SoundEvents.WOODEN_TRAPDOOR_OPEN);
             }
+            level.getBlockEntity(pos, FLBlockEntities.JARBNET.get()).ifPresent(IBlockEntityExtension::requestModelDataUpdate);
             level.setBlockAndUpdate(pos, newState);
             return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
