@@ -1,12 +1,12 @@
 {
     "__comment__": "This file was automatically created by mcresources",
-    "name": "浆果灌木",
+    "name": "浆果丛",
     "category": "tfc:firmalife",
     "icon": "firmalife:plant/pineapple_bush",
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "Firmalife 模组新增了一些浆果灌木。关于野生葡萄藤的信息，请参阅$(l:firmalife/wine)酿酒$()指南。"
+            "text": "Firmalife 模组新增了一些浆果丛。关于野生葡萄藤的信息，请参阅$(l:firmalife/wine)酿酒$()指南。"
         },
         {
             "type": "patchouli:spotlight",
