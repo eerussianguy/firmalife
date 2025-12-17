@@ -150,7 +150,7 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False, rev
             anvil_recipe('firmalife:anvil/copper_pipe', 'The copper pipe is made with a sheet.'),
             two_tall_block_spotlight('', '', 'firmalife:pumping_station', 'firmalife:irrigation_tank'),
             text('Pumping stations must be above a source block of water in order to work, and be connected to mechanical power. Irrigation tanks can also serve water through their ports on the sides, provided that they are stacked at most 3 blocks high above a pumping station on other tanks.'),
-            crafting('firmalife:crafting/pumping_station', 'firmalife:crafting/irrigation_tank'),
+            crafting('firmalife:crafting/pumping_station', 'firmalife:crafting/crafting/irrigation_tank'),
             crafting('firmalife:crafting/oxidized_copper_pipe', text_contents='Oxidized pipes are the same as regular copper pipes, except they do not connect to the other kind of pipe.'),
             crafting('firmalife:crafting/greenhouse/iron_greenhouse_port', text_contents='Greenhouse ports have a single pipe inside of them. They can be used to pass water through the walls of greenhouses!'),
             empty_last_page(),

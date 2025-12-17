@@ -1,78 +1,78 @@
 {
-  "__comment__": "This file was automatically created by mcresources",
-  "name": "烤箱用具",
-  "category": "tfc:firmalife",
-  "icon": "firmalife:vat",
-  "pages": [
-    {
-      "type": "patchouli:text",
-      "text": "$(l:tfc:firmalife/ovens)烤箱$() 有许多可以进行交互的设备, 这扩展了他们的功能. 这是因为烤箱在现实中本就是模块化的."
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/oven_hopper",
-      "text": "$(thing)烘箱料斗$() 可以将原木输入其所面对的任何底部烤炉。它能持有16个原木 (4组，每组4个),它的物品栏是通过在顶部向下丢物品来提供的. 它也能通过其他MOD实现自动化输入."
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/ashtray",
-      "text": "$(thing)烟缸$() 收集 $(thing)木头灰烬$() 当它被放置在 $(thing)底部烤箱方块$()以下的区域时. 当每个燃料被消耗时，它有0.5的机会获得灰烬。 灰烬可以通过按 $(item)$(k:key.use)$()来提取，也能通过左键来增添灰烬。"
-    },
-    {
-      "type": "patchouli:crafting",
-      "anchor": "vat",
-      "recipe": "firmalife:crafting/vat",
-      "text": "$(thing)蒸馏罐$() 能够批量生产被选择的的蒸馏配方. 它有一个物品插槽, 与10,000mB的流体存储空间, 与一个木桶类似."
-    },
-    {
-      "type": "patchouli:text",
-      "text": "举个例子，蒸馏罐能用来制作 $(thing)橄榄油/水$() ，使用一个橄榄酱与200mB水的比例。要使用一个蒸馏罐，手里拿着流体与物品朝着他按 $(item)$(k:key.use)$() 以把他们放入其中. 按住 $(item)$(k:key.sneak)$() 并空手, 可以点击以封存或启封蒸馏罐. 蒸馏罐若未被密封，将不会沸腾。"
-    },
-    {
-      "type": "patchouli:text",
-      "text": "Vats should be placed on the block above a $(thing)Bottom Oven$(). If the vat would overflow on completion of the recipe, it will not boil, so be sure not to overfill it -- especially with recipes that produce more fluid than they consume! Vats can be opened and closed with $(thing)Redstone$()."
-    },
-    {
-      "type": "patchouli:multiblock",
-      "multiblock": {
-        "pattern": [
-          [
-            "X"
-          ],
-          [
-            "Y"
-          ],
-          [
-            "0"
-          ]
-        ],
-        "mapping": {
-          "X": "firmalife:vat",
-          "Y": "firmalife:cured_oven_bottom"
+    "__comment__": "This file was automatically created by mcresources",
+    "name": "烤炉配件",
+    "category": "tfc:firmalife",
+    "icon": "firmalife:vat",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "$(l:tfc:firmalife/ovens)烤炉$()有许多可以进行交互的设备，这扩展了它们的功能。这是因为烤炉在现实中本就是模块化的。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "firmalife:crafting/oven_hopper",
+            "text": "$(thing)烘箱料斗$() 可以将原木输入其所面对的任何底部烤炉。它能持有16个原木 (4组，每组4个),它的物品栏是通过在顶部向下丢物品来提供的. 它也能通过其他MOD实现自动化输入."
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "firmalife:crafting/ashtray",
+            "text": "$(thing)烟缸$() 收集 $(thing)木头灰烬$() 当它被放置在 $(thing)烤炉底方块$()以下的区域时. 当每个燃料被消耗时，它有0.5的机会获得灰烬。 灰烬可以通过按 $(item)$(k:key.use)$()来提取，也能通过左键来增添灰烬。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "anchor": "vat",
+            "recipe": "firmalife:crafting/vat",
+            "text": "$(thing)蒸馏罐$() 能够批量生产被选择的的蒸馏配方. 它有一个物品插槽, 与10,000mB的流体存储空间, 与一个木桶类似."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "举个例子，蒸馏罐能用来制作 $(thing)橄榄油/水$() ，使用一个橄榄酱与200mB水的比例。要使用一个蒸馏罐，手里拿着流体与物品朝着他按 $(item)$(k:key.use)$() 以把他们放入其中. 按住 $(item)$(k:key.sneak)$() 并空手, 可以点击以封存或启封蒸馏罐. 蒸馏罐若未被密封，将不会沸腾。"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "不锈钢锅应放置在$(thing)烤炉底$()上方的方块上。若配方完成时锅内流体会溢出，则会停止沸腾，因此请避免过量填充——尤其在使用产出流体多于消耗的配方时！不锈钢锅可通过$(thing)红石信号$()控制开启与关闭。"
+        },
+        {
+            "type": "patchouli:multiblock",
+            "multiblock": {
+                "pattern": [
+                    [
+                        "X"
+                    ],
+                    [
+                        "Y"
+                    ],
+                    [
+                        "0"
+                    ]
+                ],
+                "mapping": {
+                    "X": "firmalife:vat",
+                    "Y": "firmalife:cured_oven_bottom"
+                }
+            },
+            "name": "",
+            "text": "",
+            "enable_visualize": false
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "firmalife:crafting/jarring_station",
+            "text": "$(thing)装罐台$()用于将不锈钢锅中的流体装入罐子中。装罐台侧面的注嘴必须对准工作站方向放置。"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "使用不锈钢锅时，将甜味剂加入水中可制成糖水。随后加入水果便能生产$(thing)果酱$()。用$(thing)带盖空罐$()点击即可完成装罐。注意：若通过管道进行多次转移，可能导致果酱变质！"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "使用$(item)$(k:key.use)$()将带盖的空罐添加到装罐站。当检测到果酱时，它会自动将空罐填充为$(thing)果酱$()并密封，每罐需要消耗500mB果酱。"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "群峦传说模组的陶锅与烤架可放置于$(thing)烤炉底$()上方，它们会自动从烤炉底获取热量。不过，放置在此的陶锅仅能用于制作汤，无法执行常规的陶锅配方。"
         }
-      },
-      "name": "",
-      "text": "",
-      "enable_visualize": false
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/jarring_station",
-      "text": "The $(thing)Jarring Station$() is used to fill jars from the vat. The jarring station has a spout on one side that should point to the station."
-    },
-    {
-      "type": "patchouli:text",
-      "text": "Using the Vat, Sugar Water can be made by adding sweetener to water. Then, adding fruit causes $(thing)Fruity Fluid$() to be made. Clicking it with an $(thing)Empty Jar With Lid$() will fill it. Be careful: trying to pipe or transport fruity fluid through too many transfers could ruin it!"
-    },
-    {
-      "type": "patchouli:text",
-      "text": "With $(item)$(k:key.use)$(), add empty jars with lids to the jarring station. When it detects fruity fluid, it will automatically fill the jars with $(thing)Jam$() and seal them, requiring 500 mB of fruity fluid per jar."
-    },
-    {
-      "type": "patchouli:text",
-      "text": "Pots and Grills from TFC can be placed on top of a $(thing)Bottom Oven$(). These devices will get heat automatically from the bottom oven. The pot is only able to be used for making soup. It cannot execute regular pot recipes."
-    }
-  ],
-  "read_by_default": true,
-  "sortnum": 15
+    ],
+    "read_by_default": true,
+    "sortnum": 15
 }

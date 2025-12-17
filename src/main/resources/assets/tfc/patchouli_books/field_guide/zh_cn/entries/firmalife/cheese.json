@@ -1,88 +1,88 @@
 {
-  "__comment__": "This file was automatically created by mcresources",
-  "name": "奶酪",
-  "category": "tfc:firmalife",
-  "icon": "firmalife:textures/item/food/gouda.png",
-  "pages": [
-    {
-      "type": "patchouli:text",
-      "text": "在Firmalife中制造$(thing)奶酪$()要稍微复杂一点. 一共有两种奶: $(thing)牦牛奶$()和$(thing)山羊奶$(). 给$(l:mechanics/animal_husbandry#yak)牦牛$()和$(l:mechanics/animal_husbandry#goat)山羊$()挤奶可以得到它们. 当然, 给$(l:mechanics/animal_husbandry#cow)奶牛$()挤奶仍然可以获得传统的牛奶."
-    },
-    {
-      "type": "patchouli:text",
-      "text": "牛奶首先要用$(thing)凝乳酶$()制成$(thing)凝固的牛奶$(). 凝乳酶可以从$(thing)反刍$()动物的胃获得. 这些动物包括$(l:mechanics/animal_husbandry#yak)牦牛$(), $(l:mechanics/animal_husbandry#cow)奶牛$(), $(l:mechanics/animal_husbandry#sheep)绵羊$(), $(l:mechanics/animal_husbandry#goat)山羊$(), 和$(l:mechanics/animal_husbandry#musk_ox)麝牛$(). 把牛奶和凝乳酶一起密封在$(l:mechanics/barrels)大桶$()4小时就可以凝固."
-    },
-    {
-      "type": "patchouli:crafting",
-      "anchor": "cheesecloth",
-      "recipe": "firmalife:crafting/cheesecloth",
-      "text": "凝固的牛奶和$(thing)奶酪布$()一起密封在大桶中就可以制成$(thing)凝乳$()。奶酪布是不能重复使用的."
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/cheddar_wheel",
-      "text": "现在你可以制造$(thing)干奶酪$()了。你可以用$(thing)牦牛奶凝乳$()制作$(thing)西藏干酪$()，可以用$(thing)山羊奶凝乳$()制作$(thing)法式干酪$()，以及用$(thing)牛奶凝乳$()制造$(thing)英格兰切达干酪$()。"
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/chevre_wheel",
-      "recipe2": "firmalife:crafting/rajya_metok_wheel"
-    },
-    {
-      "type": "patchouli:text",
-      "text": "你也可以选择制作$(thing)湿奶酪$(). 把凝乳密封在装有$(thing)咸水$()的大桶中即可. 你可以用$(thing)牦牛奶凝乳$()制作$(thing)喜马拉雅奶酪$(), 可以用$(thing)山羊奶凝乳$()制作$(thing)希腊菲达奶酪$(), 以及用$(thing)牛奶凝乳$()制造$(thing)荷兰高德奶酪$()."
-    },
-    {
-      "type": "patchouli:text",
-      "anchor": "aging",
-      "text": "奶酪轮是应该被放置的方块，以帮助它们能持续更长时间。为了提高其质量和保质期，奶酪轮应该在一个 $(l:tfc:firmalife/cellar)地窖$()中$(thing)熟成$(). 为了从奶酪轮中获得可食用的奶酪, 应该通过点击 $(item)$(k:key.use)$()用一把 $(thing)刀$()从奶酪轮中切块. 如果奶酪块破损了，熟成就消失了!"
-    },
-    {
-      "type": "tfc:multimultiblock",
-      "text": "荷兰高德奶酪的熟成顺序: $(thing)新鲜$(), $(thing)陈化$(), 以及$(thing)窖藏$().",
-      "multiblocks": [
+    "__comment__": "This file was automatically created by mcresources",
+    "name": "奶酪",
+    "category": "tfc:firmalife",
+    "icon": "firmalife:textures/item/food/gouda.png",
+    "pages": [
         {
-          "pattern": [
-            [
-              "X"
-            ],
-            [
-              "0"
-            ]
-          ],
-          "mapping": {
-            "X": "firmalife:gouda_wheel[age=fresh]"
-          }
+            "type": "patchouli:text",
+            "text": "在Firmalife中制造$(thing)奶酪$()要稍微复杂一点. 一共有两种奶: $(thing)牦牛奶$()和$(thing)山羊奶$(). 给$(l:mechanics/animal_husbandry#yak)牦牛$()和$(l:mechanics/animal_husbandry#goat)山羊$()挤奶可以得到它们. 当然, 给$(l:mechanics/animal_husbandry#cow)奶牛$()挤奶仍然可以获得传统的牛奶."
         },
         {
-          "pattern": [
-            [
-              "X"
-            ],
-            [
-              "0"
-            ]
-          ],
-          "mapping": {
-            "X": "firmalife:gouda_wheel[age=aged]"
-          }
+            "type": "patchouli:text",
+            "text": "牛奶首先要用$(thing)凝乳酶$()制成$(thing)凝固的牛奶$(). 凝乳酶可以从$(thing)反刍$()动物的胃获得. 这些动物包括$(l:mechanics/animal_husbandry#yak)牦牛$(), $(l:mechanics/animal_husbandry#cow)奶牛$(), $(l:mechanics/animal_husbandry#sheep)绵羊$(), $(l:mechanics/animal_husbandry#goat)山羊$(), 和$(l:mechanics/animal_husbandry#musk_ox)麝牛$(). 把牛奶和凝乳酶一起密封在$(l:mechanics/barrels)大桶$()4小时就可以凝固."
         },
         {
-          "pattern": [
-            [
-              "X"
-            ],
-            [
-              "0"
+            "type": "patchouli:crafting",
+            "anchor": "cheesecloth",
+            "recipe": "firmalife:crafting/cheesecloth",
+            "text": "凝固的牛奶和$(thing)奶酪布$()一起密封在大桶中就可以制成$(thing)凝乳$()。奶酪布是不能重复使用的."
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "firmalife:crafting/cheddar_wheel",
+            "text": "现在你可以制造$(thing)干奶酪$()了。你可以用$(thing)牦牛奶凝乳$()制作$(thing)西藏干酪$()，可以用$(thing)山羊奶凝乳$()制作$(thing)法式干酪$()，以及用$(thing)牛奶凝乳$()制造$(thing)英格兰切达干酪$()。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "firmalife:crafting/chevre_wheel",
+            "recipe2": "firmalife:crafting/rajya_metok_wheel"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "你也可以选择制作$(thing)湿奶酪$(). 把凝乳密封在装有$(thing)咸水$()的大桶中即可. 你可以用$(thing)牦牛奶凝乳$()制作$(thing)喜马拉雅奶酪$(), 可以用$(thing)山羊奶凝乳$()制作$(thing)希腊菲达奶酪$(), 以及用$(thing)牛奶凝乳$()制造$(thing)荷兰高德奶酪$()."
+        },
+        {
+            "type": "patchouli:text",
+            "anchor": "aging",
+            "text": "奶酪轮是应该被放置的方块，以帮助它们能持续更长时间。为了提高其质量和保质期，奶酪轮应该在一个 $(l:tfc:firmalife/cellar)地窖$()中$(thing)熟成$(). 为了从奶酪轮中获得可食用的奶酪, 应该通过点击 $(item)$(k:key.use)$()用一把 $(thing)刀$()从奶酪轮中切块. 如果奶酪块破损了，熟成就消失了!"
+        },
+        {
+            "type": "tfc:multimultiblock",
+            "text": "荷兰高德奶酪的熟成顺序: $(thing)新鲜$(), $(thing)陈化$(), 以及$(thing)窖藏$().",
+            "multiblocks": [
+                {
+                    "pattern": [
+                        [
+                            "X"
+                        ],
+                        [
+                            "0"
+                        ]
+                    ],
+                    "mapping": {
+                        "X": "firmalife:gouda_wheel[age=fresh]"
+                    }
+                },
+                {
+                    "pattern": [
+                        [
+                            "X"
+                        ],
+                        [
+                            "0"
+                        ]
+                    ],
+                    "mapping": {
+                        "X": "firmalife:gouda_wheel[age=aged]"
+                    }
+                },
+                {
+                    "pattern": [
+                        [
+                            "X"
+                        ],
+                        [
+                            "0"
+                        ]
+                    ],
+                    "mapping": {
+                        "X": "firmalife:gouda_wheel[age=vintage]"
+                    }
+                }
             ]
-          ],
-          "mapping": {
-            "X": "firmalife:gouda_wheel[age=vintage]"
-          }
         }
-      ]
-    }
-  ],
-  "read_by_default": true,
-  "sortnum": 1
+    ],
+    "read_by_default": true,
+    "sortnum": 1
 }

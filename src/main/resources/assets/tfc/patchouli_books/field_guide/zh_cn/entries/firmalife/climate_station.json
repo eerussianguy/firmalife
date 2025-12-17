@@ -1,60 +1,60 @@
 {
-  "__comment__": "This file was automatically created by mcresources",
-  "name": "气象站",
-  "category": "tfc:firmalife",
-  "icon": "firmalife:climate_station",
-  "pages": [
-    {
-      "type": "patchouli:text",
-      "text": "$(thing)气象站$()是用于管理$(l:firmalife/greenhouse)温室$()与$(l:firmalife/cellar)地窖$()的方块。当其对应的多方块结构正确搭建时，方块侧面将显示水流纹理；若结构无效，则将显示冰霜纹理。气象站必须放置于多方块结构的最底层，并紧贴墙面。如果未与墙面接触，您可以手持构成目标多方块结构的方块对其$(item)$(k:key.use)$()，以指定其应识别的结构类型。"
-    },
-    {
-      "type": "tfc:multimultiblock",
-      "text": "处于有效和无效状态的气象站.",
-      "multiblocks": [
+    "__comment__": "This file was automatically created by mcresources",
+    "name": "气象站",
+    "category": "tfc:firmalife",
+    "icon": "firmalife:climate_station",
+    "pages": [
         {
-          "pattern": [
-            [
-              "X"
-            ],
-            [
-              "0"
-            ]
-          ],
-          "mapping": {
-            "X": "firmalife:climate_station[stasis=true]"
-          }
+            "type": "patchouli:text",
+            "text": "$(thing)气象站$()是用于管理$(l:firmalife/greenhouse)温室$()与$(l:firmalife/cellar)地窖$()的方块。当其对应的多方块结构正确搭建时，方块侧面将显示水流纹理；若结构无效，则将显示冰霜纹理。气象站必须放置于多方块结构的最底层，并紧贴墙面。如果未与墙面接触，您可以手持构成目标多方块结构的方块对其$(item)$(k:key.use)$()，以指定其应识别的结构类型。"
         },
         {
-          "pattern": [
-            [
-              "X"
-            ],
-            [
-              "0"
+            "type": "tfc:multimultiblock",
+            "text": "处于有效和无效状态的气象站.",
+            "multiblocks": [
+                {
+                    "pattern": [
+                        [
+                            "X"
+                        ],
+                        [
+                            "0"
+                        ]
+                    ],
+                    "mapping": {
+                        "X": "firmalife:climate_station[stasis=true]"
+                    }
+                },
+                {
+                    "pattern": [
+                        [
+                            "X"
+                        ],
+                        [
+                            "0"
+                        ]
+                    ],
+                    "mapping": {
+                        "X": "firmalife:climate_station[stasis=false]"
+                    }
+                }
             ]
-          ],
-          "mapping": {
-            "X": "firmalife:climate_station[stasis=false]"
-          }
+        },
+        {
+            "type": "patchouli:text",
+            "text": "$(li)它会自行定期更新状态，放置或破坏该方块时也会更新状态。$()$(li)当气象站的状态更新时，它会使多方块结构内的所有方块开始正常的进行各种进程。举个例子，它能让$(l:tfc:firmalife/cheese)奶酪$()开始陈化。$()$(li)使用$(item)$(k:key.use)$()点击它以强制使其更新整个多方块结构内所有方块的状态。",
+            "title": "气象站提示"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "firmalife:crafting/climate_station",
+            "text": "气象站的合成方法。"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "关于温室建造的说明：最大温室尺寸为31x31x31，以气象站为中心，即向各个方向延伸15格。将气象站放置在温室中心，即可充分利用此最大范围。您还可以通过在内部使用墙壁和多个气象站进行分区，以建造规模更大的温室。"
         }
-      ]
-    },
-    {
-      "type": "patchouli:text",
-      "text": "$(li)它会自行定期更新状态，放置或破坏该方块时也会更新状态。$()$(li)当气象站的状态更新时，它会使多方块结构内的所有方块开始正常的进行各种进程。举个例子，它能让$(l:tfc:firmalife/cheese)奶酪$()开始老化。$()$(li)使用$(item)$(k:key.use)$()点击它以强制使其更新整个多方块结构内所有方块的状态。",
-      "title": "气象站提示"
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/climate_station",
-      "text": "气象站的合成方法。"
-    },
-    {
-      "type": "patchouli:text",
-      "text": "关于温室建造的说明：最大温室尺寸为31x31x31，以气象站为中心，即向各个方向延伸15格。将气象站放置在温室中心，即可充分利用此最大范围。您还可以通过在内部使用墙壁和多个气象站进行分区，以建造规模更大的温室。"
-    }
-  ],
-  "read_by_default": true,
-  "sortnum": 2
+    ],
+    "read_by_default": true,
+    "sortnum": 2
 }

@@ -1,45 +1,45 @@
 {
-  "__comment__": "This file was automatically created by mcresources",
-  "name": "更多的肥料获取途径",
-  "category": "tfc:firmalife",
-  "icon": "firmalife:compost_tumbler",
-  "pages": [
-    {
-      "type": "patchouli:text",
-      "text": "Firmalife中对肥料的需求更大, 因此有更多的获取$(l:mechanics/fertilizers)肥料$()的途径."
-    },
-    {
-      "type": "tfc:drying_recipe",
-      "recipe": "firmalife:drying/dry_grass",
-      "text": "茅草可以被 $(l:tfc:firmalife/drying)晾干$() 成 $(thing)干草$(), 可以作为棕色物品在堆肥中使用."
-    },
-    {
-      "type": "patchouli:text",
-      "text": "$(thing)堆肥滚筒$() 是一种很好的产出更多肥料的方式. 他们必须被接入动力以能够运作. 它只有在没接入动力的情况下才能被玩家交互，所以可以考虑将其连接到离合器上!"
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/compost_tumbler",
-      "text": "堆肥滚筒的独特之处在于，它可以容纳更多类型的堆肥，而且不需要精确的比例即可工作。"
-    },
-    {
-      "type": "patchouli:text",
-      "text": "滚筒可以像普通的堆肥机一样容纳绿色和棕色的物品。它也可以带走少量的陶片、木炭、鱼和骨头。"
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/pottery_sherd",
-      "text": "用锤子砸碎陶器会产生碎片。"
-    },
-    {
-      "type": "patchouli:text",
-      "text": "Green and brown items count the same, being on the range 1-4, but the new additions like fish always count for 1. Adding too much weird stuff to the composter causes it to produce rotten compost. Further, you will not know it is rotten until the very end! If the compost is more than fifteen percent bones, fish, or pottery, or more than twenty percent charcoal. it will rot. Or, if there are 10 or more green units than brown units, it will rot."
-    },
-    {
-      "type": "patchouli:text",
-      "text": "适量的加某些添加剂可以延长或缩短堆肥完成所需的时间。 多在这上面做做试验，看看怎么做才是对的。$(br)如果堆肥机中有32个单位，它将会转换为3个堆肥。如果至少有24，那就将转化为2个堆肥。如果是16个或以上，则将生成1个。再比16更少，就转化不成堆肥了。"
-    }
-  ],
-  "read_by_default": true,
-  "sortnum": 17
+    "__comment__": "This file was automatically created by mcresources",
+    "name": "更多的肥料获取途径",
+    "category": "tfc:firmalife",
+    "icon": "firmalife:compost_tumbler",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "Firmalife中对肥料的需求更大, 因此有更多的获取$(l:mechanics/fertilizers)肥料$()的途径."
+        },
+        {
+            "type": "tfc:drying_recipe",
+            "recipe": "firmalife:drying/dry_grass",
+            "text": "茅草可以被 $(l:tfc:firmalife/drying)晾干$() 成 $(thing)干草$(), 可以作为棕色物品在堆肥中使用."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "$(thing)堆肥滚筒$() 是一种很好的产出更多肥料的方式. 他们必须被接入动力以能够运作. 它只有在没接入动力的情况下才能被玩家交互，所以可以考虑将其连接到离合器上!"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "firmalife:crafting/compost_tumbler",
+            "text": "堆肥滚筒的独特之处在于，它可以容纳更多类型的堆肥，而且不需要精确的比例即可工作。"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "滚筒可以像普通的堆肥机一样容纳绿色和棕色的物品。它也可以带走少量的陶片、木炭、鱼和骨头。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "firmalife:crafting/pottery_sherd",
+            "text": "用锤子砸碎陶器会产生碎片。"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "绿色与棕色材料的计算方式相同，单位值为1至4点，但新增材料（如鱼类）固定计为1点。向堆肥桶添加过多异常材料将导致产出腐烂堆肥，且该结果直至完成时才会显现！若堆肥中骨骼/鱼类/碎陶片占比超过15%，或木炭占比超过20%，就会发生腐坏。此外，若绿色单位数比棕色单位数多出10个或以上，同样会导致腐烂。"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "适量的加某些添加剂可以延长或缩短堆肥完成所需的时间。 多在这上面做做试验，看看怎么做才是对的。$(br)如果堆肥机中有32个单位，它将会转换为3个堆肥。如果至少有24，那就将转化为2个堆肥。如果是16个或以上，则将生成1个。再比16更少，就转化不成堆肥了。"
+        }
+    ],
+    "read_by_default": true,
+    "sortnum": 17
 }
