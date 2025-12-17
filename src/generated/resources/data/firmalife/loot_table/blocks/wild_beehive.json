@@ -5,13 +5,49 @@
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "condition": "minecraft:survives_explosion"
+          "block": "firmalife:wild_beehive",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "honey": "true"
+          }
         }
       ],
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "firmalife:wild_beehive"
+          "name": "firmalife:raw_honey"
+        }
+      ],
+      "functions": [
+        {
+          "add": false,
+          "count": {
+            "type": "minecraft:uniform",
+            "max": 6.0,
+            "min": 1.0
+          },
+          "function": "minecraft:set_count"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "firmalife:beeswax"
+        }
+      ],
+      "functions": [
+        {
+          "add": false,
+          "count": {
+            "type": "minecraft:uniform",
+            "max": 3.0,
+            "min": 1.0
+          },
+          "function": "minecraft:set_count"
         }
       ],
       "rolls": 1.0

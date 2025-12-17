@@ -255,7 +255,7 @@ public class GrapePlantBlockEntity extends TickableBlockEntity implements ICalen
                         {
                             gravelCount += 1;
                         }
-                        else if (!bees && level.getBlockEntity(cursor) instanceof FLBeehiveBlockEntity hive && !hive.getUsableBees(temp).isEmpty())
+                        else if (!bees && level.getBlockEntity(cursor) instanceof FLBeehiveBlockEntity hive && hive.getBee().hasQueen())
                         {
                             bees = true;
                         }

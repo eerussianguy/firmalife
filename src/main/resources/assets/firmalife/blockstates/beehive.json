@@ -1,36 +1,6 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "variants": {
-    "facing=east,honey=true,open=false": {
-      "model": "minecraft:block/beehive_honey",
-      "y": 90
-    },
-    "facing=north,honey=true,open=false": {
-      "model": "minecraft:block/beehive_honey"
-    },
-    "facing=south,honey=true,open=false": {
-      "model": "minecraft:block/beehive_honey",
-      "y": 180
-    },
-    "facing=west,honey=true,open=false": {
-      "model": "minecraft:block/beehive_honey",
-      "y": 270
-    },
-    "facing=east,honey=false,open=false": {
-      "model": "minecraft:block/beehive",
-      "y": 90
-    },
-    "facing=north,honey=false,open=false": {
-      "model": "minecraft:block/beehive"
-    },
-    "facing=south,honey=false,open=false": {
-      "model": "minecraft:block/beehive",
-      "y": 180
-    },
-    "facing=west,honey=false,open=false": {
-      "model": "minecraft:block/beehive",
-      "y": 270
-    },
     "facing=east,honey=true,open=true": {
       "model": "firmalife:block/beehive_open_honey",
       "y": 90
@@ -46,6 +16,21 @@
       "model": "firmalife:block/beehive_open_honey",
       "y": 270
     },
+    "facing=east,honey=true,open=false": {
+      "model": "minecraft:block/beehive_honey",
+      "y": 90
+    },
+    "facing=north,honey=true,open=false": {
+      "model": "minecraft:block/beehive_honey"
+    },
+    "facing=south,honey=true,open=false": {
+      "model": "minecraft:block/beehive_honey",
+      "y": 180
+    },
+    "facing=west,honey=true,open=false": {
+      "model": "minecraft:block/beehive_honey",
+      "y": 270
+    },
     "facing=east,honey=false,open=true": {
       "model": "firmalife:block/beehive_open",
       "y": 90
@@ -59,6 +44,21 @@
     },
     "facing=west,honey=false,open=true": {
       "model": "firmalife:block/beehive_open",
+      "y": 270
+    },
+    "facing=east,honey=false,open=false": {
+      "model": "minecraft:block/beehive",
+      "y": 90
+    },
+    "facing=north,honey=false,open=false": {
+      "model": "minecraft:block/beehive"
+    },
+    "facing=south,honey=false,open=false": {
+      "model": "minecraft:block/beehive",
+      "y": 180
+    },
+    "facing=west,honey=false,open=false": {
+      "model": "minecraft:block/beehive",
       "y": 270
     }
   }

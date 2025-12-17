@@ -22,6 +22,11 @@ public enum GeneticDisease implements StringRepresentable
     public static final StreamCodec<ByteBuf, GeneticDisease> STREAM_CODEC = StreamCodecs.forEnum(GeneticDisease::values);
     public static final GeneticDisease[] VALUES = values();
 
+    public static GeneticDisease valueOf(int i)
+    {
+        return i >= VALUES.length || i < 0 ? NONE : VALUES[i];
+    }
+
     private final String name;
 
     GeneticDisease()

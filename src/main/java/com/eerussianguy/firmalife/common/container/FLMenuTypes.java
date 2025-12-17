@@ -25,7 +25,6 @@ public class FLMenuTypes
 {
     public static final DeferredRegister<MenuType<?>> MENU = DeferredRegister.create(Registries.MENU, MOD_ID);
 
-    public static final Id<BeehiveContainer> BEEHIVE = FLMenuTypes.<FLBeehiveBlockEntity, BeehiveContainer>registerBlock("beehive", FLBlockEntities.BEEHIVE, BeehiveContainer::create);
     public static final Id<StovetopGrillContainer> STOVETOP_GRILL = FLMenuTypes.<StovetopGrillBlockEntity, StovetopGrillContainer>registerBlock("stovetop_grill", FLBlockEntities.STOVETOP_GRILL, StovetopGrillContainer::create);
     public static final Id<StovetopPotContainer> STOVETOP_POT = FLMenuTypes.<StovetopPotBlockEntity, StovetopPotContainer>registerBlock("stovetop_pot", FLBlockEntities.STOVETOP_POT, StovetopPotContainer::create);
     public static final Id<KegContainer> KEG = FLMenuTypes.<KegBlockEntity, KegContainer>registerBlock("keg", FLBlockEntities.KEG, KegContainer::create);

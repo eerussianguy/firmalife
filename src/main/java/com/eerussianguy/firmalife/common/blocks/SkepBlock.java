@@ -20,7 +20,7 @@ public class SkepBlock extends BaseBeehiveBlock
 
     public SkepBlock(ExtendedProperties properties)
     {
-        super(properties, 1);
+        super(properties);
     }
 
     @Override

@@ -2,8 +2,6 @@ package com.eerussianguy.firmalife.common.items;
 
 import java.util.List;
 
-import com.eerussianguy.firmalife.common.capabilities.FLComponents;
-import com.eerussianguy.firmalife.common.capabilities.bee.BeeComponent;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -31,16 +29,11 @@ public class BeehiveFrameItem extends Item
     {
         if (action == ClickAction.SECONDARY && Helpers.isItem(other, TFCTags.Items.TOOLS_KNIFE))
         {
-            final BeeComponent bee = stack.get(FLComponents.BEE.get());
-            if (bee != null && bee.hasQueen())
-            {
-                slot.set(new ItemStack(this));
-                ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(FLItems.BEESWAX.get()));
-                if (player.level() instanceof ServerLevel server)
-                    other.hurtAndBreak(1, server, null, i -> {});
-                return true;
-            }
-            return false;
+            slot.set(new ItemStack(FLItems.BEEHIVE_FRAME));
+            ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(FLItems.BEESWAX.get()));
+            if (player.level() instanceof ServerLevel server)
+                other.hurtAndBreak(1, server, null, i -> {});
+            return true;
         }
         return false;
     }
@@ -49,11 +42,7 @@ public class BeehiveFrameItem extends Item
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag advanced)
     {
-        final BeeComponent bee = stack.get(FLComponents.BEE.get());
-        if (bee != null && bee.hasQueen())
-        {
-            tooltip.add(Component.translatable("firmalife.bee.may_scrape").withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
-        }
+        tooltip.add(Component.translatable("firmalife.bee.may_scrape").withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
     }
 
 }

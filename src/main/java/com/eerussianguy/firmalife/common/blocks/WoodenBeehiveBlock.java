@@ -23,7 +23,7 @@ public class WoodenBeehiveBlock extends BaseBeehiveBlock
 
     public WoodenBeehiveBlock(ExtendedProperties properties)
     {
-        super(properties, 4);
+        super(properties);
         registerDefaultState(getStateDefinition().any().setValue(HONEY, false).setValue(BEES, false).setValue(OPEN, false));
     }
 
