@@ -22,11 +22,11 @@
         },
         {
             "type": "patchouli:text",
-            "text": "$(thing)蜂蜡$()可以通过$(l:firmalife/beekeeping)养蜂$()获得。$(br)地窖可用于$(l:firmalife/cheese#aging)奶酪熟成$()。"
+            "text": "$(thing)蜂蜡$()可以通过$(l:firmalife/beekeeping)养蜂$()获得。$(br)地窖可用于$(l:firmalife/cheese#aging)奶酪熟化$()。"
         },
         {
             "type": "patchouli:text",
-            "text": "地窖可用于保存食物，例如配合$(l:firmalife/food_shelves)食物架$()和$(l:firmalife/hangers)悬挂架$()使用。在平均温度较低的环境中，地窖的食物保存效果更好。在0度以下，腐败减缓效果稍佳；在-12度以下，效果则显著提升。"
+            "text": "地窖可用于保存食物，例如配合$(l:firmalife/food_shelves)食物架$()和$(l:firmalife/hangers)悬挂架$()使用。在平均温度较低的环境中，地窖的食物保存效果更好。在0度以下，防腐效果稍佳；在-12度以下，效果则显著提升。"
         }
     ],
     "read_by_default": true,

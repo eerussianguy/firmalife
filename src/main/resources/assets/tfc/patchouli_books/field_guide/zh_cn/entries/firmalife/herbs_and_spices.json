@@ -6,12 +6,12 @@
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "在Firmalife中, 有很多可以收集和种植的具有烹饪效果的小植物. 获得这些植物的最简单的办法就是用$(thing)种子球$(). 按$(item)$(k:key.use)$()就可以把$(thing)种子球$()扔出去, 就像雪球一样. 这会在目标区域生成一些$(thing)蝴蝶草$()."
+            "text": "在 Firmalife 中，有多种具有烹饪效果的小型植物可供你采集和种植。获取这些植物最简单的方法是使用$(thing)种子球$()。使用$(thing)种子球$()时，只需像投掷雪球一样按下$(item)$(k:key.use)$()将其扔出。这将在区域内生成$(thing)蝴蝶草$()。"
         },
         {
             "type": "patchouli:crafting",
             "recipe": "firmalife:crafting/seed_ball",
-            "text": "种子球的配方需要$(l:tfc:firmalife/more_fertilizer)堆肥$()与四个$(thing)种子$()。"
+            "text": "种子球的合成配方需要$(l:firmalife/more_fertilizer)堆肥$()和4个$(thing)种子$()。"
         },
         {
             "type": "patchouli:multiblock",
@@ -29,12 +29,12 @@
                 }
             },
             "name": "",
-            "text": "一种蝴蝶草.",
+            "text": "一株蝴蝶草。",
             "enable_visualize": false
         },
         {
             "type": "patchouli:text",
-            "text": "蝴蝶草会随着时间的推移而成熟。它成熟时可能会传播到周围的方块，或者变成新的东西。已被一株蝴蝶草传播过的方块不会被另一株再次传播."
+            "text": "蝴蝶草会随着时间的推移而成熟。当其成熟后，会有几率传播到周围的方块，或转变为新的植物。由其他草方块扩散而来的蝴蝶草方块则不会再传播。"
         },
         {
             "type": "patchouli:multiblock",
@@ -52,13 +52,13 @@
                 }
             },
             "name": "",
-            "text": "罗勒是一种可能由蝴蝶草扩散产生的植物.",
+            "text": "罗勒是蝴蝶草可能生成的植物之一。",
             "enable_visualize": false
         },
         {
             "type": "patchouli:crafting",
             "recipe": "firmalife:crafting/basil_leaves",
-            "text": "罗勒叶可以用来制作披萨."
+            "text": "罗勒叶可以用来制作披萨。"
         }
     ],
     "read_by_default": true,
