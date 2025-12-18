@@ -1,7 +1,12 @@
 {
-  "ingredient": {
-    "item": "firmalife:beehive_frame"
-  },
+  "ingredient": [
+    {
+      "item": "firmalife:beehive_frame"
+    },
+    {
+      "item": "firmalife:filled_beehive_frame"
+    }
+  ],
   "size": "very_small",
   "weight": "very_heavy"
 }

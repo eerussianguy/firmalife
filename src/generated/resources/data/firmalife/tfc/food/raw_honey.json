@@ -1,0 +1,7 @@
+{
+  "decay_modifier": 0.6,
+  "hunger": 4,
+  "ingredient": {
+    "item": "firmalife:food/raw_honey"
+  }
+}

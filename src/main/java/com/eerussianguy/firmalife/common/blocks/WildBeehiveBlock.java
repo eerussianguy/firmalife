@@ -1,5 +1,6 @@
 package com.eerussianguy.firmalife.common.blocks;
 
+import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.FLBeehiveBlockEntity;
 import com.eerussianguy.firmalife.common.capabilities.bee.BeeAbility;
 import com.eerussianguy.firmalife.common.misc.FLPOIs;
@@ -122,10 +123,10 @@ public class WildBeehiveBlock extends HorizontalDirectionalBlock implements IFor
             }
             if (!warm)
                 return;
-            final BlockPos hivePos = level.getPoiManager().findClosest(holder -> holder.value().equals(FLPOIs.BEEHIVES.get()), pos, 15, PoiManager.Occupancy.ANY).orElse(null);
+            final BlockPos hivePos = FLHelpers.getPoint(level, pos, 15, FLPOIs.BEEHIVES);
             if (hivePos != null && level.getBlockEntity(hivePos) instanceof FLBeehiveBlockEntity hive)
             {
-                hive.linkSwarm(pos);
+                hive.linkSwarmFrom(pos);
             }
         }
 

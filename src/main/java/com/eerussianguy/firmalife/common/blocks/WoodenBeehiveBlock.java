@@ -30,13 +30,17 @@ public class WoodenBeehiveBlock extends BaseBeehiveBlock
     @Override
     public ItemInteractionResult useItemOn(ItemStack held, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
     {
-        if (player.isShiftKeyDown() && held.isEmpty())
+        if (!state.getValue(OPEN) || (player.isShiftKeyDown() && held.isEmpty()))
         {
             level.setBlock(pos, state.setValue(OPEN, !state.getValue(OPEN)), 3);
             level.getBlockEntity(pos, FLBlockEntities.BEEHIVE.get()).ifPresent(IBlockEntityExtension::requestModelDataUpdate);
             return ItemInteractionResult.SUCCESS;
         }
-        return super.useItemOn(held, state, level, pos, player, hand, result);
+        if (state.getValue(OPEN))
+        {
+            return super.useItemOn(held, state, level, pos, player, hand, result);
+        }
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     @Override

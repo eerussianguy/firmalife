@@ -491,7 +491,7 @@ def generate(rm: ResourceManager):
 
     peel(rm, 'peel', 'firmalife:item/peel')
 
-    for name, _, _ in JARS:
+    for name in JARS:
         rm.block_model('jar/%s' % name, textures={'1': 'firmalife:block/jar/%s' % name}, parent='tfc:block/jar')
         rm.item_model('jar/%s' % name, 'firmalife:item/jar/%s' % name).with_lang(lang('jar of %s', name))
     for fruit in FL_FRUITS:

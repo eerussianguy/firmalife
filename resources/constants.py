@@ -9,7 +9,7 @@ class Wood(NamedTuple):
     temp: float
     duration: int
 
-SIMPLE_ITEMS = ('fruit_leaf', 'cinnamon_bark', 'beeswax', 'pineapple_fiber', 'pineapple_leather', 'pineapple_yarn', 'raw_honey', 'rennet', 'watering_can', 'treated_lumber', 'cheesecloth', 'spoon',
+SIMPLE_ITEMS = ('fruit_leaf', 'cinnamon_bark', 'beeswax', 'pineapple_fiber', 'pineapple_leather', 'pineapple_yarn', 'rennet', 'watering_can', 'treated_lumber', 'cheesecloth', 'spoon',
                 'pie_pan', 'seed_ball', 'rustic_finish', 'stone_finish', 'tile_finish', 'oven_insulation', 'ice_shavings', 'beekeeper_helmet', 'beekeeper_chestplate', 'beekeeper_leggings', 'beekeeper_boots', 'reinforced_glass', 'pottery_sherd',
                 'hematitic_wine_bottle', 'olivine_wine_bottle', 'volcanic_wine_bottle', 'empty_hematitic_wine_bottle', 'empty_olivine_wine_bottle', 'empty_volcanic_wine_bottle', 'cork', 'bottle_label', 'barrel_stave', 'stainless_steel_jar_lid',
                 'empty_jar_with_stainless_steel_lid', 'tirage_mixture', 'queen_bee', 'filled_beehive_frame', 'beehive_frame')
@@ -18,7 +18,7 @@ SIMPLE_FOODS = ('frothy_coconut', 'white_chocolate_blend', 'dark_chocolate_blend
                 'cocoa_butter', 'cocoa_powder', 'toast', 'dark_chocolate', 'milk_chocolate', 'white_chocolate', 'garlic_bread', 'cured_maize', 'nixtamal', 'masa', 'masa_flour', 'corn_tortilla', 'taco_shell', 'burrito', 'taco', 'salsa',
                 'tomato_sauce', 'nightshade_berry', 'stinky_soup', 'toast_with_jam', 'toast_with_butter', 'bacon', 'cooked_bacon', 'tomato_sauce_mix', 'vanilla_ice_cream', 'strawberry_ice_cream', 'chocolate_ice_cream', 'banana_split',
                 'cookie_dough', 'sugar_cookie', 'chocolate_chip_cookie_dough', 'chocolate_chip_cookie', 'cookie_dough_ice_cream', 'maki_roll', 'futo_maki_roll', 'hardtack', 'hardtack_dough', 'cooked_lasagna', 'cooked_pasta',
-                'cooked_rice_noodles', 'nachos', 'pasta_with_tomato_sauce', 'raw_egg_noodles', 'raw_lasagna', 'raw_rice_noodles', 'tortilla_chips', 'smashed_red_grapes', 'smashed_white_grapes', 'dehydrated_soybeans', 'soybean_paste')
+                'cooked_rice_noodles', 'nachos', 'pasta_with_tomato_sauce', 'raw_egg_noodles', 'raw_lasagna', 'raw_rice_noodles', 'tortilla_chips', 'smashed_red_grapes', 'smashed_white_grapes', 'dehydrated_soybeans', 'soybean_paste', 'raw_honey')
 SIMPLE_SPICES = ('ground_cinnamon', 'cinnamon', 'basil_leaves', 'vanilla')
 SIMPLE_BLOCKS: Dict[str, str] = {
     'sealed_bricks': 'minecraft:mineable/pickaxe',
@@ -29,15 +29,10 @@ SIMPLE_BLOCKS: Dict[str, str] = {
     'rustic_bricks': 'minecraft:mineable/pickaxe',
 }
 COLORS = ('white', 'orange', 'magenta', 'light_blue', 'yellow', 'lime', 'pink', 'gray', 'light_gray', 'cyan', 'purple', 'blue', 'brown', 'green', 'red', 'black')
-BLOCK_ENTITIES = ('oven_bottom', 'oven_top', 'drying_mat', 'beehive', 'solar_drier', 'mixing_bowl', 'string', 'berry_bush', 'large_planter', 'bonsai_planter', 'trellis_planter', 'hanging_planter', 'quad_planter', 'climate_station', 'hydroponic_planter', 'vat', 'oven_hopper', 'ashtray', 'stovetop_grill', 'stovetop_pot', 'jarbnet', 'plate', 'big_barrel', 'jarring_station', 'barrel_press', 'stomping_barrel')
+BLOCK_ENTITIES = ('oven_bottom', 'oven_top', 'drying_mat', 'beehive', 'solar_drier', 'mixing_bowl', 'string', 'berry_bush', 'large_planter', 'bonsai_planter', 'trellis_planter', 'hanging_planter', 'quad_planter', 'climate_station', 'hydroponic_planter', 'vat', 'oven_hopper', 'ashtray', 'stovetop_grill', 'stovetop_pot', 'jarbnet', 'plate', 'big_barrel', 'jarring_station', 'barrel_press', 'stomping_barrel', 'skep')
 EXTRA_FLUIDS = ('yeast_starter', 'coconut_milk', 'yak_milk', 'goat_milk', 'curdled_yak_milk', 'curdled_goat_milk', 'pina_colada', 'cream', 'chocolate', 'sugar_water', 'mead', 'soybean_oil')
 WINES = ('red', 'white', 'rose', 'sparkling', 'dessert')
-JARS: Sequence[Tuple[str, int, str]] = (
-    ('honey', 1, 'firmalife:raw_honey'),
-    ('compost', 8, 'tfc:compost'),
-    ('rotten_compost', 8, 'tfc:rotten_compost'),
-    ('guano', 8, 'tfc:groundcover/guano'),
-)
+JARS = ('honey', 'compost', 'rotten_compost', 'guano')
 CHEESE_WHEELS = ('rajya_metok', 'cheddar', 'gouda', 'feta', 'chevre', 'shosha')
 FL_FRUITS = ('fig', 'pineapple', 'red_grapes', 'white_grapes')
 DEFAULT_FORGE_ORE_TAGS: Tuple[str, ...] = ('coal', 'diamond', 'emerald', 'gold', 'iron', 'lapis', 'netherite_scrap', 'quartz', 'redstone')
@@ -247,20 +242,20 @@ DEFAULT_LANG = {
     'firmalife.bee.ability.crop_affinity': 'Crop Affinity %s',
     'firmalife.bee.ability.nature_restoration': 'Nature Restoration %s',
     'firmalife.bee.ability.calmness': 'Calmness %s',
+    'firmalife.bee.ability.disease_resistance': 'Disease Resistance %s',
     'firmalife.bee.genetic_disease': 'Genetic Disease: %s',
     'firmalife.bee.parasitic_infection': 'Parasitic Infection: %s',
     **{'firmalife.bee.disease%s' % i: d for i, d in enumerate(GENETIC_DISEASES)},
     **{'firmalife.bee.infection%s' % i: d for i, d in enumerate(PARASITIC_INFECTIONS)},
-    'firmalife.beehive.honey': 'Honey: %s / 12',
+    'firmalife.beehive.honey': 'Honey: %s / 4',
     'firmalife.beehive.bee_cold': 'Too cold! %s C < %s C',
     'firmalife.beehive.has_queen': 'Has Queen. ',
     'firmalife.beehive.no_queen': 'Empty',
     'firmalife.beehive.flowers': 'Flowers: %s',
     'firmalife.beehive.min_flowers': 'Not enough flowers!',
-    'firmalife.beehive.breed_chance': 'Daily New Bee Chance: 1 / %s',
-    'firmalife.beehive.breed_chance_100': 'Daily New Bee Chance: Guaranteed',
     'firmalife.beehive.honey_chance': 'Daily Honey Chance: 1 / %s',
     'firmalife.beehive.honey_chance_100': 'Daily Honey Chance: Guaranteed',
+    'firmalife.beehive.swarm': 'Target of Swarm',
     'firmalife.wine.age_time': 'Aging for: %s',
     'firmalife.wine.age_time_opened': 'Aged for: %s',
     'firmalife.wine.sealed': '%s Wine Bottle',

@@ -7,7 +7,7 @@
   },
   "input_item": {
     "count": 1,
-    "item": "firmalife:raw_honey"
+    "item": "firmalife:food/raw_honey"
   },
   "output_fluid": {
     "amount": 100,

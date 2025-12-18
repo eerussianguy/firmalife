@@ -21,7 +21,9 @@ public enum BeeAbility implements StringRepresentable
     FERTILITY, // increases probability of breeding
     CROP_AFFINITY, // increases fertilization of crops
     NATURE_RESTORATION, // rejuvenates the world around the hive
-    CALMNESS; // willingness of bees to not attack the keeper
+    CALMNESS, // willingness of bees to not attack the keeper
+    DISEASE_RESISTANCE, // ability of bees to resist disease
+    ;
 
     public static final Codec<BeeAbility> CODEC = StringRepresentable.fromEnum(BeeAbility::values);
     public static final StreamCodec<ByteBuf, BeeAbility> STREAM_CODEC = StreamCodecs.forEnum(BeeAbility::values);

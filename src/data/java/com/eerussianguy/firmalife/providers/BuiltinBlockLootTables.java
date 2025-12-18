@@ -17,6 +17,7 @@ import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.blocks.MixingBowlBlock;
 import com.eerussianguy.firmalife.common.blocks.greenhouse.Greenhouse;
 import com.eerussianguy.firmalife.common.blocks.plant.FLFruitBlocks;
+import com.eerussianguy.firmalife.common.capabilities.FLComponents;
 import com.eerussianguy.firmalife.common.items.FLFood;
 import com.eerussianguy.firmalife.common.items.FLItems;
 import com.eerussianguy.firmalife.common.util.FLFruit;
@@ -50,6 +51,7 @@ import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.AlternativesEntry;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction;
 import net.minecraft.world.level.storage.loot.functions.LootItemConditionalFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.AnyOfCondition;
@@ -148,11 +150,19 @@ public class BuiltinBlockLootTables extends BlockLootSubProvider implements Acce
         dropSelf(FLBlocks.DRYING_MAT);
         dropSelf(FLBlocks.SOLAR_DRIER);
         dropSelf(FLBlocks.BEEHIVE);
-        dropSelf(FLBlocks.SKEP);
+        add(FLBlocks.SKEP.get(),
+            LootTable.lootTable().withPool(lootPool()
+                .add(
+                    lootTableItem(FLBlocks.SKEP).apply(
+                        CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY).include(FLComponents.BEE.get())
+                    )
+                )
+            )
+        );
         add(FLBlocks.WILD_BEEHIVE.get(),
             LootTable.lootTable()
                 .withPool(lootPool()
-                    .add(lootTableItem(FLItems.RAW_HONEY))
+                    .add(lootTableItem(FLItems.FOODS.get(FLFood.RAW_HONEY)))
                     .when(hasProperty(FLBlocks.WILD_BEEHIVE.get(), FLStateProperties.HONEY, true))
                     .apply(setCount(1, 6))
                 )

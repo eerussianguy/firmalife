@@ -526,7 +526,7 @@ public interface CraftingRecipes extends Recipes
         jarring(TFCItems.COMPOST, FLItems.COMPOST_JAR, 8);
         jarring(TFCItems.ROTTEN_COMPOST, FLItems.ROTTEN_COMPOST_JAR, 8);
         jarring(TFCBlocks.GROUNDCOVER.get(GroundcoverBlockType.GUANO), FLItems.GUANO_JAR, 8);
-        jarring(FLItems.RAW_HONEY, FLItems.HONEY_JAR, 1);
+        jarring(FLItems.FOODS.get(FLFood.RAW_HONEY), FLItems.HONEY_JAR, 1);
 
         FLItems.FRUIT_PRESERVES.forEach((food, item) ->
             recipe()

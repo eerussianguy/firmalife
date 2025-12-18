@@ -58,7 +58,6 @@ public final class FLCreativeTabs
         accept(out, FLItems.BEEHIVE_FRAME);
         accept(out, FLItems.FILLED_BEEHIVE_FRAME);
         accept(out, FLItems.QUEEN_BEE);
-        accept(out, FLItems.RAW_HONEY);
         accept(out, FLItems.BEESWAX);
         accept(out, FLItems.STAINLESS_STEEL_JAR_LID);
         accept(out, FLItems.EMPTY_JAR_WITH_STAINLESS_STEEL_LID);

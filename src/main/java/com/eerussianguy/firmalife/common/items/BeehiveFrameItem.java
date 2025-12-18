@@ -31,6 +31,7 @@ public class BeehiveFrameItem extends Item
         {
             slot.set(new ItemStack(FLItems.BEEHIVE_FRAME));
             ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(FLItems.BEESWAX.get()));
+            ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(FLItems.FOODS.get(FLFood.RAW_HONEY).get(), Helpers.uniform(player.getRandom(), 2, 4)));
             if (player.level() instanceof ServerLevel server)
                 other.hurtAndBreak(1, server, null, i -> {});
             return true;

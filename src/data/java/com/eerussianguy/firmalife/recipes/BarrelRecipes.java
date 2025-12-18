@@ -82,7 +82,7 @@ public interface BarrelRecipes extends Recipes
             .output(itemOf(FLFood.NIXTAMAL))
             .sealed(1000);
         barrel()
-            .input(FLItems.RAW_HONEY)
+            .input(FLItems.FOODS.get(FLFood.RAW_HONEY))
             .input(Fluids.WATER, 100)
             .output(fluidOf(ExtraFluid.MEAD), 100)
             .sealed(72000);

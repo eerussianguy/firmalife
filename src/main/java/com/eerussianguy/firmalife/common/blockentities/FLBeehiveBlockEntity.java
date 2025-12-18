@@ -28,6 +28,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.neoforge.client.model.data.ModelData;
@@ -77,18 +78,21 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
 
     private int beesInWorld;
     private long lastPlayerTick, lastAreaTick;
-    private int honey;
-    @Nullable private BlockPos linkedHive = null;
-    private long linkedHiveTick = 0L;
+    @Nullable protected BlockPos linkedHive = null;
+    protected long linkedHiveTick = 0L;
 
-    private BeeComponent beeData = BeeComponent.DEFAULT;
+    protected BeeComponent beeData = BeeComponent.DEFAULT;
 
     public FLBeehiveBlockEntity(BlockPos pos, BlockState state)
     {
-        super(FLBlockEntities.BEEHIVE.get(), pos, state, defaultInventory(FRAME_SLOTS), FirmaLife.MOD_ID);
+        this(pos, state, FLBlockEntities.BEEHIVE.get());
+    }
+
+    public FLBeehiveBlockEntity(BlockPos pos, BlockState state, BlockEntityType<?> type)
+    {
+        super(type, pos, state, defaultInventory(FRAME_SLOTS), FirmaLife.MOD_ID);
         lastPlayerTick = Integer.MIN_VALUE;
         lastAreaTick = Calendars.SERVER.getTicks();
-        honey = 0;
         beesInWorld = 0;
 
         sidedInventory
@@ -101,9 +105,11 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
         return linkedHive;
     }
 
-    public void linkSwarm(BlockPos origin)
+    public void linkSwarmFrom(BlockPos origin)
     {
         if (linkedHive != null)
+            return;
+        if (origin == worldPosition)
             return;
         linkedHive = origin;
         linkedHiveTick = Calendars.SERVER.getTicks();
@@ -116,7 +122,6 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
         super.saveAdditional(nbt, access);
         nbt.putLong("lastTick", lastPlayerTick);
         nbt.putLong("lastAreaTick", lastAreaTick);
-        nbt.putInt("honey", honey);
         nbt.putInt("beesInWorld", beesInWorld);
         nbt.putLong("linkedHiveTick", linkedHiveTick);
         if (linkedHive != null)
@@ -131,7 +136,6 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
         super.loadAdditional(nbt, access);
         lastPlayerTick = nbt.getLong("lastTick");
         lastAreaTick = nbt.getLong("lastAreaTick");
-        honey = Math.min(nbt.getInt("honey"), getMaxHoney());
         beesInWorld = nbt.getInt("beesInWorld");
         linkedHiveTick = nbt.getLong("linkedHiveTick");
         linkedHive = nbt.contains("linkedHive", CompoundTag.TAG_LONG) ? BlockPos.of(nbt.getLong("linkedHive")) : null;
@@ -199,17 +203,26 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
 
         // perform area of effect actions
         final int flowers = getFlowers(beeData, true);
-        final int breedTickChanceInverted = getBreedTickChanceInverted(beeData, flowers);
-        if (flowers > MIN_FLOWERS && (breedTickChanceInverted == 0 || level.random.nextInt(breedTickChanceInverted) == 0))
+        if (beeData.hasQueen())
         {
-            // todo
+            final int honeyChanceInverted = getHoneyTickChanceInverted(beeData, flowers);
+            if (flowers > MIN_FLOWERS && (honeyChanceInverted == 0 || level.random.nextInt(honeyChanceInverted) == 0))
+            {
+                addHoney(1);
+            }
         }
-        final int honeyChanceInverted = getHoneyTickChanceInverted(beeData, flowers);
-        if (flowers > MIN_FLOWERS && (honeyChanceInverted == 0 || level.random.nextInt(honeyChanceInverted) == 0))
-        {
-            addHoney(1);
-        }
+    }
 
+    public void addHoney(int honey)
+    {
+        for (int i = 0; i < FRAME_SLOTS; i++)
+        {
+            if (honey > 0 && inventory.getStackInSlot(i).getItem() == FLItems.BEEHIVE_FRAME.get())
+            {
+                inventory.setStackInSlot(i, FLItems.FILLED_BEEHIVE_FRAME.get().getDefaultInstance());
+                honey--;
+            }
+        }
     }
 
     private void controlEntitiesTick()
@@ -278,56 +291,18 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
 
     public int getHoneyTickChanceInverted(BeeComponent bee, int flowers)
     {
-        int chance = 30;
-        if (bee.hasQueen())
-        {
-            chance += 10 - bee.getAbility(BeeAbility.PRODUCTION);
-        }
-        else
-        {
-            return 0;
-        }
+        final int chance = 10 - bee.getAbility(BeeAbility.PRODUCTION);
         return Math.max(0, chance - Mth.ceil((0.2 * Math.min(flowers, 60))));
-    }
-
-    public int getBreedTickChanceInverted(BeeComponent bee, int flowers)
-    {
-        int chance = 0;
-        if (bee.hasQueen())
-        {
-            chance += 10 - bee.getAbility(BeeAbility.FERTILITY);
-        }
-        else
-        {
-            // no bees, have to give some chance
-            chance = 80;
-        }
-        // flowers increase probability
-        return Math.max(0, chance - Math.min(flowers, 60));
-    }
-
-    public void addHoney(int amount)
-    {
-        honey = Math.min(getMaxHoney(), amount + honey);
-        markForSync();
-    }
-
-    public int takeHoney(int amount)
-    {
-        final int take = Math.min(amount, honey);
-        honey -= take;
-        updateState();
-        markForSync();
-        return take;
-    }
-
-    public int getMaxHoney()
-    {
-        return 12;
     }
 
     public int getHoney()
     {
+        int honey = 0;
+        for (ItemStack stack : Helpers.iterate(inventory))
+        {
+            if (stack.getItem() == FLItems.FILLED_BEEHIVE_FRAME.get())
+                honey += 1;
+        }
         return honey;
     }
 
@@ -396,7 +371,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
             level.setBlockAndUpdate(worldPosition, state.setValue(WoodenBeehiveBlock.BEES, bees));
             markForSync();
         }
-        boolean hasHoney = honey > 0;
+        final boolean hasHoney = getHoney() > 0;
         if (hasHoney != state.getValue(WoodenBeehiveBlock.HONEY))
         {
             level.setBlockAndUpdate(worldPosition, state.setValue(WoodenBeehiveBlock.HONEY, hasHoney));
@@ -407,13 +382,14 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
             final BlockState linkState = level.getBlockState(linkedHive);
             final boolean isHive = linkState.getBlock() instanceof BaseBeehiveBlock;
             final boolean isWild = linkState.getBlock() instanceof WildBeehiveBlock && linkState.getValue(WildBeehiveBlock.BEES);
+            // the linked hive is neither wild or a beehive block (eg. it is probably air/destroyed)
             if (!isWild && !isHive)
             {
                 linkedHive = null;
                 linkedHiveTick = 0L;
                 markForSync();
             }
-            else if (isWild)
+            else if (isWild) // if it is a wild beehive, create a new bee here
             {
                 if (linkedHiveTick > 0 && Calendars.SERVER.getTicks() - linkedHiveTick > ICalendar.CALENDAR_TICKS_IN_DAY)
                 {
@@ -421,11 +397,43 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
                     linkedHive = null;
                     linkedHiveTick = 0L;
 
+                    Helpers.playSound(level, worldPosition, SoundEvents.BEEHIVE_EXIT);
                     beeData = BeeComponent.initFreshAbilities(level.random);
                     markForSync();
                 }
             }
+            else // if it is a man-made hive, transfer a bee over.
+            {
+                if (linkedHiveTick > 0 && Calendars.SERVER.getTicks() - linkedHiveTick > ICalendar.CALENDAR_TICKS_IN_DAY)
+                {
+                    if (!beeData.hasQueen() && level.getBlockEntity(linkedHive) instanceof FLBeehiveBlockEntity hive)
+                    {
+                        Helpers.playSound(level, worldPosition, SoundEvents.BEEHIVE_EXIT);
+                        if (isSplitting())
+                        {
+                            beeData = hive.isSkep() ? hive.beeData : hive.beeData.mutate(level.random);
+                        }
+                        else // if we are not splitting, wipe the bee data.
+                        {
+                            beeData = BeeComponent.DEFAULT;
+                        }
+                    }
+                    linkedHive = null;
+                    linkedHiveTick = 0L;
+                    markForSync();
+                }
+            }
         }
+    }
+
+    public boolean isSplitting()
+    {
+        return true;
+    }
+
+    public boolean isSkep()
+    {
+        return false;
     }
 
     private boolean hasBees()
@@ -436,7 +444,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
     @Override
     public boolean isItemValid(int slot, ItemStack stack)
     {
-        return stack.getItem() == FLItems.BEEHIVE_FRAME.get();
+        return stack.getItem() == FLItems.BEEHIVE_FRAME.get() || stack.getItem() == FLItems.FILLED_BEEHIVE_FRAME.get();
     }
 
     @Override

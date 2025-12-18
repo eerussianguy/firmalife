@@ -96,6 +96,7 @@ public enum FLFood
     SMASHED_WHITE_GRAPES,
     SOYBEAN_PASTE,
     DEHYDRATED_SOYBEANS,
+    RAW_HONEY
     ;
 
     private final boolean fast;

@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
+import java.util.function.BiPredicate;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import com.mojang.datafixers.util.Function10;
@@ -25,12 +26,15 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.ai.village.poi.PoiManager;
+import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -45,6 +49,7 @@ import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.IItemHandlerModifiable;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
+import org.jetbrains.annotations.Nullable;
 
 import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
 import net.dries007.tfc.common.blockentities.TickCounterBlockEntity;
@@ -198,6 +203,22 @@ public class FLHelpers
             return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
         return takeOne(level, slot, inv, player);
+    }
+
+    @Nullable
+    public static BlockPos getPoint(Level level, BlockPos origin, int radius, Holder<PoiType> type)
+    {
+        return getPoint(level, origin, radius, type, (l, p) -> true);
+    }
+
+    @Nullable
+    public static BlockPos getPoint(Level level, BlockPos origin, int radius, Holder<PoiType> type, BiPredicate<Level, BlockPos> predicate)
+    {
+        if (level instanceof ServerLevel server)
+        {
+            return server.getPoiManager().find(holder -> holder.value().equals(type.value()), p -> !p.equals(origin) && predicate.test(level, p), origin, radius, PoiManager.Occupancy.ANY).orElse(null);
+        }
+        return null;
     }
 
     public static ItemInteractionResult insertOne(Level level, ItemStack item, int slot, IItemHandler inv, Player player)

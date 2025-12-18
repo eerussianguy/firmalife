@@ -110,7 +110,7 @@ public class BuiltinItemTags extends TagsProvider<Item> implements Accessors
         tag(TFCTags.Items.PRESERVES).add(FLItems.UNSEALED_FRUIT_PRESERVES);
         tag(TFCTags.Items.FOODS).add(Items.PUMPKIN_PIE).add(FLItems.FOODS);
         tag(FLTags.Items.USABLE_ON_OVEN).add(FLItems.PEEL);
-        tag(TFCTags.Items.SWEETENERS).add(FLItems.RAW_HONEY);
+        tag(TFCTags.Items.SWEETENERS).add(FLItems.FOODS.get(FLFood.RAW_HONEY));
         tag(FLTags.Items.FEEDS_YEAST).addTag(TFCTags.Items.FLOUR);
         tag(FLTags.Items.BREAD_SLICES).add(
             itemOf(FLFood.WHEAT_SLICE).asItem(),

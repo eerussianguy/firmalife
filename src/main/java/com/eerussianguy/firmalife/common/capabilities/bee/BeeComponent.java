@@ -7,13 +7,14 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import javax.annotation.Nullable;
 import net.minecraft.ChatFormatting;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 
+import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.world.Codecs;
 
 public record BeeComponent(
@@ -58,6 +59,24 @@ public record BeeComponent(
     public static BeeComponent withDiseases(BeeComponent component, @Nullable GeneticDisease disease, @Nullable ParasiticInfection infection)
     {
         return new BeeComponent(Map.copyOf(component.abilities), component.hasQueen, disease != null ? disease : component.geneticDisease, infection != null ? infection : component.parasiticInfection);
+    }
+
+    public BeeComponent mutate(RandomSource random)
+    {
+        if (!hasQueen)
+            return BeeComponent.DEFAULT;
+        final Map<BeeAbility, Integer> map = new HashMap<>();
+        final int mutant = getAbility(BeeAbility.MUTANT);
+        abilities.forEach((ability, strength) -> {
+            final int value = strength + Mth.ceil(Helpers.uniform(random, -mutant / 2f, mutant / 2f));
+            map.put(ability, value);
+        });
+        GeneticDisease disease = GeneticDisease.NONE;
+        if (mutant > 5 && random.nextFloat() < mutant / 10f - 0.2f)
+        {
+            disease = GeneticDisease.VALUES[random.nextInt(GeneticDisease.VALUES.length)];
+        }
+        return new BeeComponent(map, true, disease, ParasiticInfection.NONE);
     }
 
     public int getAbility(BeeAbility ability)

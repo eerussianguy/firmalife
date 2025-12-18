@@ -58,7 +58,6 @@ public class FLItems
     public static final ItemId PINEAPPLE_LEATHER = register("pineapple_leather");
     public static final ItemId PINEAPPLE_YARN = register("pineapple_yarn");
     public static final ItemId POTTERY_SHERD = register("pottery_sherd");
-    public static final ItemId RAW_HONEY = register("raw_honey");
     public static final ItemId REINFORCED_GLASS = register("reinforced_glass");
     public static final ItemId RENNET = register("rennet");
     public static final ItemId SEED_BALL = register("seed_ball", () -> new SeedBallItem(prop()));

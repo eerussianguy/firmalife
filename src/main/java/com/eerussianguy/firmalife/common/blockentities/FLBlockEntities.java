@@ -30,7 +30,8 @@ public class FLBlockEntities
     public static final Id<OvenHopperBlockEntity> OVEN_HOPPER = register("oven_hopper", OvenHopperBlockEntity::new, Stream.concat(Stream.of(FLBlocks.OVEN_HOPPER), FLBlocks.CURED_OVEN_HOPPER.values().stream()));
     public static final Id<DryingMatBlockEntity> DRYING_MAT = register("drying_mat", DryingMatBlockEntity::dryingMat, FLBlocks.DRYING_MAT);
     public static final Id<DryingMatBlockEntity> SOLAR_DRIER = register("solar_drier", DryingMatBlockEntity::solarDrier, FLBlocks.SOLAR_DRIER);
-    public static final Id<FLBeehiveBlockEntity> BEEHIVE = register("beehive", FLBeehiveBlockEntity::new, Stream.of(FLBlocks.BEEHIVE, FLBlocks.SKEP));
+    public static final Id<FLBeehiveBlockEntity> BEEHIVE = register("beehive", FLBeehiveBlockEntity::new, FLBlocks.BEEHIVE);
+    public static final Id<SkepBlockEntity> SKEP = register("skep", SkepBlockEntity::new, FLBlocks.SKEP);
     public static final Id<CompostTumblerBlockEntity> COMPOST_TUMBLER = register("compost_tumbler", CompostTumblerBlockEntity::new, FLBlocks.COMPOST_TUMBLER);
     public static final Id<StringBlockEntity> STRING = register("string", StringBlockEntity::new, FLBlocks.WOOL_STRING);
     public static final Id<MixingBowlBlockEntity> MIXING_BOWL = register("mixing_bowl", MixingBowlBlockEntity::new, FLBlocks.MIXING_BOWL);

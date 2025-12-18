@@ -12,7 +12,6 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
@@ -93,7 +92,7 @@ public class BaseBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBl
             if (res.consumesAction())
                 return res;
         }
-        else if (held.isEmpty() && player.isShiftKeyDown())
+        else if (held.isEmpty())
         {
             final var res = FLHelpers.consumeItemInventory(level, pos, FLBlockEntities.BEEHIVE, (hive, inv) ->
                 FLHelpers.takeOneAny(level, 0, FLBeehiveBlockEntity.FRAME_SLOTS - 1, inv, player)
@@ -109,7 +108,7 @@ public class BaseBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBl
     }
 
     @Override
-    protected void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random)
+    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random)
     {
         if (level.getBlockEntity(pos) instanceof FLBeehiveBlockEntity hive)
         {
@@ -166,6 +165,10 @@ public class BaseBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBl
     {
         if (level.getBlockEntity(pos) instanceof FLBeehiveBlockEntity hive)
         {
+            if (hive.getLinkedHive() != null)
+            {
+                tooltip.accept(Component.translatable("firmalife.beehive.swarm"));
+            }
             if (hive.getHoney() > 0)
             {
                 tooltip.accept(Component.translatable("firmalife.beehive.honey", String.valueOf(hive.getHoney())).withStyle(ChatFormatting.GOLD));
@@ -190,18 +193,9 @@ public class BaseBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBl
             }
             else
             {
-                if (!bee.hasQueen())
-                {
-                    int breed = hive.getBreedTickChanceInverted(bee, flowers);
-                    if (breed == 0) tooltip.accept(Component.translatable("firmalife.beehive.breed_chance_100"));
-                    else tooltip.accept(Component.translatable("firmalife.beehive.breed_chance", breed));
-                }
-                else
-                {
-                    int honey = hive.getHoneyTickChanceInverted(bee, flowers);
-                    if (honey == 0) tooltip.accept(Component.translatable("firmalife.beehive.honey_chance_100"));
-                    else tooltip.accept(Component.translatable("firmalife.beehive.honey_chance", honey));
-                }
+                int honey = hive.getHoneyTickChanceInverted(bee, flowers);
+                if (honey == 0) tooltip.accept(Component.translatable("firmalife.beehive.honey_chance_100"));
+                else tooltip.accept(Component.translatable("firmalife.beehive.honey_chance", honey));
             }
         }
 

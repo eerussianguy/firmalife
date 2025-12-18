@@ -15,7 +15,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "firmalife:raw_honey"
+          "name": "firmalife:food/raw_honey"
         }
       ],
       "functions": [
