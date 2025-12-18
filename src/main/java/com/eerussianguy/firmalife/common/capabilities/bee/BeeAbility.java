@@ -17,8 +17,8 @@ public enum BeeAbility implements StringRepresentable
 {
     HARDINESS, // bees can produce in lower temperatures
     PRODUCTION, // honey production ability
-    MUTANT, // traits have higher variability during breeding
-    FERTILITY, // increases probability of breeding
+    MUTANT, // traits have higher variability during swarming
+    FERTILITY, // increases probability of swarming
     CROP_AFFINITY, // increases fertilization of crops
     NATURE_RESTORATION, // rejuvenates the world around the hive
     CALMNESS, // willingness of bees to not attack the keeper
@@ -30,7 +30,7 @@ public enum BeeAbility implements StringRepresentable
 
     public static float getMinTemperature(int hardiness)
     {
-        return -2 * hardiness + 4;
+        return -2 * hardiness + 15;
     }
 
     public static int[] fresh()

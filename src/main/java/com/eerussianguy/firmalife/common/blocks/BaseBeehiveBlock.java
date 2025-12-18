@@ -13,6 +13,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
@@ -20,6 +21,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -38,7 +40,7 @@ public class BaseBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBl
 {
     public static boolean shouldAnger(Level level, BlockPos pos)
     {
-        if (level.getGameTime() % 24000 > 12000)
+        if (level.getBrightness(LightLayer.SKY, pos) < 2)
         {
             return false;
         }
@@ -79,6 +81,7 @@ public class BaseBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBl
     public BaseBeehiveBlock(ExtendedProperties properties)
     {
         super(properties, InventoryRemoveBehavior.DROP);
+        registerDefaultState(getStateDefinition().any().setValue(BEES, false).setValue(HONEY, false));
     }
 
     @Override
@@ -90,7 +93,10 @@ public class BaseBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBl
                 FLHelpers.insertOneAny(level, held, 0, FLBeehiveBlockEntity.FRAME_SLOTS - 1, inv, player)
             );
             if (res.consumesAction())
+            {
+                Helpers.playSound(level, pos, SoundEvents.BAMBOO_WOOD_PLACE);
                 return res;
+            }
         }
         else if (held.isEmpty())
         {
@@ -99,8 +105,9 @@ public class BaseBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBl
             );
             if (res.consumesAction())
             {
-                if (BaseBeehiveBlock.shouldAnger(level, pos))
+                if (BaseBeehiveBlock.shouldAnger(level, pos) && !player.isCreative())
                     attack(player);
+                Helpers.playSound(level, pos, SoundEvents.BAMBOO_WOOD_BREAK);
                 return res;
             }
         }
@@ -169,9 +176,10 @@ public class BaseBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBl
             {
                 tooltip.accept(Component.translatable("firmalife.beehive.swarm"));
             }
-            if (hive.getHoney() > 0)
+            final int honey = hive.getHoney();
+            if (honey > 0)
             {
-                tooltip.accept(Component.translatable("firmalife.beehive.honey", String.valueOf(hive.getHoney())).withStyle(ChatFormatting.GOLD));
+                tooltip.accept(Component.translatable("firmalife.beehive.honey" + (honey == 1 ? "_1" : ""), String.valueOf(honey)).withStyle(ChatFormatting.GOLD));
             }
             final float temp = Climate.getTemperature(level, pos);
             final BeeComponent bee = hive.getBee();
@@ -183,6 +191,10 @@ public class BaseBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBl
                 if (temp <= minTemp)
                 {
                     tooltip.accept(Component.translatable("firmalife.beehive.bee_cold", minTemp, String.format("%.2f", temp)).withStyle(ChatFormatting.AQUA));
+                    if (honey == 0)
+                    {
+                        tooltip.accept(Component.translatable("firmalife.beehive.starving"));
+                    }
                 }
             }
             final int flowers = hive.getFlowers(bee, false);
@@ -191,11 +203,12 @@ public class BaseBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBl
             {
                 tooltip.accept(Component.translatable("firmalife.beehive.min_flowers"));
             }
-            else
+            else if (bee.hasQueen())
             {
-                int honey = hive.getHoneyTickChanceInverted(bee, flowers);
-                if (honey == 0) tooltip.accept(Component.translatable("firmalife.beehive.honey_chance_100"));
-                else tooltip.accept(Component.translatable("firmalife.beehive.honey_chance", honey));
+                int chance = hive.getHoneyTickChanceInverted(bee, flowers);
+                if (chance == 0) tooltip.accept(Component.translatable("firmalife.beehive.honey_chance_100"));
+                if (chance == Integer.MAX_VALUE) tooltip.accept(Component.translatable("firmalife.beehive.honey_chance_0"));
+                else tooltip.accept(Component.translatable("firmalife.beehive.honey_chance", chance));
             }
         }
 

@@ -75,6 +75,7 @@ import net.dries007.tfc.common.blocks.plant.fruit.FruitTreeLeavesBlock;
 import net.dries007.tfc.common.blocks.plant.fruit.Lifecycle;
 import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.util.Metal;
+import net.dries007.tfc.util.loot.ApplyStackSizeFunction;
 
 import static net.minecraft.world.level.storage.loot.LootPool.*;
 import static net.minecraft.world.level.storage.loot.entries.LootItem.*;
@@ -155,6 +156,8 @@ public class BuiltinBlockLootTables extends BlockLootSubProvider implements Acce
                 .add(
                     lootTableItem(FLBlocks.SKEP).apply(
                         CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY).include(FLComponents.BEE.get())
+                    ).apply(
+                        LootItemConditionalFunction.simpleBuilder(ApplyStackSizeFunction::new)
                     )
                 )
             )

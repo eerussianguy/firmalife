@@ -13,6 +13,9 @@
                 "firmalife:bee"
               ],
               "source": "block_entity"
+            },
+            {
+              "function": "tfc:apply_stack_size"
             }
           ],
           "name": "firmalife:skep"

@@ -11,12 +11,12 @@ import net.dries007.tfc.network.StreamCodecs;
 public enum ParasiticInfection implements StringRepresentable
 {
     NONE,
-    CHALKBROOD,
-    STONEBROOD,
+    CHALKBROOD,//
+    STONEBROOD,//
     FOULBROOD,
-    WAX_MOTHS,
-    HIVE_BEETLES,
-    MITES;
+    WAX_MOTHS,//
+    HIVE_BEETLES,//
+    VARROA;
 
     public static final Codec<ParasiticInfection> CODEC = StringRepresentable.fromEnum(ParasiticInfection::values);
     public static final StreamCodec<ByteBuf, ParasiticInfection> STREAM_CODEC = StreamCodecs.forEnum(ParasiticInfection::values);

@@ -21,14 +21,16 @@ public record BeeComponent(
     Map<BeeAbility, Integer> abilities,
     boolean hasQueen,
     GeneticDisease geneticDisease,
-    ParasiticInfection parasiticInfection
+    ParasiticInfection parasiticInfection,
+    int age
 )
 {
     public static final Codec<BeeComponent> CODEC = RecordCodecBuilder.create(i -> i.group(
         Codecs.mapListCodec(Codecs.recordPairCodec(BeeAbility.CODEC, "ability", Codec.INT, "value")).fieldOf("abilities").forGetter(c -> c.abilities),
         Codec.BOOL.fieldOf("has_queen").forGetter(c -> c.hasQueen),
         GeneticDisease.CODEC.fieldOf("genetic_disease").forGetter(c -> c.geneticDisease),
-        ParasiticInfection.CODEC.fieldOf("parasitic_infection").forGetter(c -> c.parasiticInfection)
+        ParasiticInfection.CODEC.fieldOf("parasitic_infection").forGetter(c -> c.parasiticInfection),
+        Codec.INT.fieldOf("age").forGetter(c -> c.age)
     ).apply(i, BeeComponent::new));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, BeeComponent> STREAM_CODEC = StreamCodec.composite(
@@ -36,11 +38,12 @@ public record BeeComponent(
         ByteBufCodecs.BOOL, c -> c.hasQueen,
         GeneticDisease.STREAM_CODEC, c -> c.geneticDisease,
         ParasiticInfection.STREAM_CODEC, c -> c.parasiticInfection,
+        ByteBufCodecs.INT, c -> c.age,
         BeeComponent::new
     );
 
-    public static final BeeComponent DEFAULT = new BeeComponent(Map.of(), false, GeneticDisease.NONE, ParasiticInfection.NONE);
-    public static final BeeComponent DEFAULT_QUEEN = new BeeComponent(Map.of(), true, GeneticDisease.NONE, ParasiticInfection.NONE);
+    public static final BeeComponent DEFAULT = new BeeComponent(Map.of(), false, GeneticDisease.NONE, ParasiticInfection.NONE, 0);
+    public static final BeeComponent DEFAULT_QUEEN = new BeeComponent(Map.of(), true, GeneticDisease.NONE, ParasiticInfection.NONE, 0);
 
     public static BeeComponent initFreshAbilities(RandomSource random)
     {
@@ -53,12 +56,17 @@ public record BeeComponent(
             map.put(BeeAbility.random(random), random.nextInt(3) + 1);
         }
 
-        return new BeeComponent(map, true, GeneticDisease.NONE, ParasiticInfection.NONE);
+        return new BeeComponent(map, true, GeneticDisease.NONE, ParasiticInfection.NONE, 0);
     }
 
     public static BeeComponent withDiseases(BeeComponent component, @Nullable GeneticDisease disease, @Nullable ParasiticInfection infection)
     {
-        return new BeeComponent(Map.copyOf(component.abilities), component.hasQueen, disease != null ? disease : component.geneticDisease, infection != null ? infection : component.parasiticInfection);
+        return new BeeComponent(Map.copyOf(component.abilities), component.hasQueen, disease != null ? disease : component.geneticDisease, infection != null ? infection : component.parasiticInfection, component.age);
+    }
+
+    public BeeComponent getOlder()
+    {
+        return new BeeComponent(Map.copyOf(abilities), hasQueen, geneticDisease, parasiticInfection, age + 1);
     }
 
     public BeeComponent mutate(RandomSource random)
@@ -71,12 +79,12 @@ public record BeeComponent(
             final int value = strength + Mth.ceil(Helpers.uniform(random, -mutant / 2f, mutant / 2f));
             map.put(ability, value);
         });
-        GeneticDisease disease = GeneticDisease.NONE;
-        if (mutant > 5 && random.nextFloat() < mutant / 10f - 0.2f)
+        GeneticDisease disease = geneticDisease;
+        if (disease == GeneticDisease.NONE && mutant > 5 && random.nextFloat() < mutant / 10f - 0.2f)
         {
             disease = GeneticDisease.VALUES[random.nextInt(GeneticDisease.VALUES.length)];
         }
-        return new BeeComponent(map, true, disease, ParasiticInfection.NONE);
+        return new BeeComponent(map, true, disease, random.nextFloat() < 0.1f ? ParasiticInfection.NONE : parasiticInfection, 0);
     }
 
     public int getAbility(BeeAbility ability)
@@ -115,6 +123,7 @@ public record BeeComponent(
                     tooltip.accept(Component.translatable("firmalife.bee.ability." + ability.getSerializedName(), String.valueOf(amount)).withStyle(ChatFormatting.GRAY));
                 }
             }
+            tooltip.accept(Component.translatable("firmalife.bee.age", Mth.floor(age / 8f)));
         }
         else
         {

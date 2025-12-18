@@ -161,7 +161,7 @@ FRUITS: Dict[str, Fruit] = {
 DISABLED_TFC_RECIPES = ('barrel/curdling', 'barrel/cheese', 'barrel/milk_vinegar', 'crafting/pumpkin_pie')
 
 GENETIC_DISEASES = ['None', 'Malformed Rectum', 'Malphigian Tubule Iridescence', 'Rectal Stones', 'Poor Osmoregulation', 'Nosemosis', 'Broken Wings']
-PARASITIC_INFECTIONS = ['None', 'Chalkbrood', 'Stonebrood', 'Foulbrood', 'Wax Moths', 'Hive Beetles', 'Mites']
+PARASITIC_INFECTIONS = ['None', 'Chalkbrood', 'Stonebrood', 'Foulbrood', 'Wax Moths', 'Hive Beetles', 'Varroa']
 
 DEFAULT_LANG = {
     'firmalife.creative_tab.firmalife': 'Firmalife Items',
@@ -235,6 +235,7 @@ DEFAULT_LANG = {
     'firmalife.bee.dead': 'Dead',
     'firmalife.bee.may_scrape': 'Right click with a knife to scrape',
     'firmalife.bee.abilities': 'Abilities:',
+    'firmalife.bee.age': 'Age: %s',
     'firmalife.bee.ability.hardiness': 'Hardiness %s',
     'firmalife.bee.ability.production': 'Production %s',
     'firmalife.bee.ability.mutant': 'Mutant %s',
@@ -247,12 +248,15 @@ DEFAULT_LANG = {
     'firmalife.bee.parasitic_infection': 'Parasitic Infection: %s',
     **{'firmalife.bee.disease%s' % i: d for i, d in enumerate(GENETIC_DISEASES)},
     **{'firmalife.bee.infection%s' % i: d for i, d in enumerate(PARASITIC_INFECTIONS)},
-    'firmalife.beehive.honey': 'Honey: %s / 4',
-    'firmalife.beehive.bee_cold': 'Too cold! %s C < %s C',
-    'firmalife.beehive.has_queen': 'Has Queen. ',
+    'firmalife.beehive.honey': 'Honey: %s Frames',
+    'firmalife.beehive.honey_1': 'Honey: %s Frame',
+    'firmalife.beehive.bee_cold': 'Hibernating due to temperature. %s C < %s C',
+    'firmalife.beehive.starving': 'The colony is starving! It will die if not provided honey to survive.',
+    'firmalife.beehive.has_queen': 'Has Queen.',
     'firmalife.beehive.no_queen': 'Empty',
     'firmalife.beehive.flowers': 'Flowers: %s',
     'firmalife.beehive.min_flowers': 'Not enough flowers!',
+    'firmalife.beehive.honey_chance_0': 'Daily Honey Chance: 0',
     'firmalife.beehive.honey_chance': 'Daily Honey Chance: 1 / %s',
     'firmalife.beehive.honey_chance_100': 'Daily Honey Chance: Guaranteed',
     'firmalife.beehive.swarm': 'Target of Swarm',
