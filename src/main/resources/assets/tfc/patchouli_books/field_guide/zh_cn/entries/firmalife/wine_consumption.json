@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "品味卓越的侍酒师能够洞察不同条件下所产葡萄酒的微妙差异。在Firmalife的世界中，这同样可以实现——奥秘始于葡萄生长的田野，成排的葡萄藤深受周边环境与土壤的浸润。"
+      "text": "品味卓越的品酒师能够洞察不同条件下所产葡萄酒的微妙差异。在Firmalife的世界中，这同样可以实现——奥秘始于葡萄生长的田野，成排的葡萄藤深受周边环境与土壤的浸润。"
     },
     {
       "type": "patchouli:text",
@@ -14,7 +14,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "葡萄酒自装瓶起便开始陈化，开启瓶塞后陈化过程即中止。手持小刀对酒瓶使用$(item)$(k:key.use)$()即可开启瓶塞。酒瓶的运作方式类似木桶，可将其内容物倾入酿造桶或其他装置中。"
+      "text": "葡萄酒自装瓶起便开始陈酿，开启瓶塞后陈酿过程即中止。手持小刀对酒瓶使用$(item)$(k:key.use)$()即可开启瓶塞。酒瓶的运作方式类似木桶，可将其内容物倾入酿造桶或其他装置中。"
     },
     {
       "type": "patchouli:crafting",
@@ -24,7 +24,7 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/wood/hickory_wine_shelf",
-      "text": "$(thing)酒架$()是酒窖的理想配套装饰，让您能以典雅方式陈列与储存珍酿。"
+      "text": "$(thing)酒架$()是酒窖的理想配套装饰，让你能以典雅方式陈列与储存珍酿。"
     }
   ],
   "read_by_default": true,

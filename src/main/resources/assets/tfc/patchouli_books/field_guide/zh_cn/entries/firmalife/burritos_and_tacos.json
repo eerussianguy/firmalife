@@ -20,7 +20,7 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/salsa",
-      "text": "将番茄、香菜、盐与刀具组合即可制成$(thing)莎莎酱$()。"
+      "text": "将番茄、香菜、盐与刀组合即可制成$(thing)莎莎酱$()。"
     },
     {
       "type": "patchouli:crafting",

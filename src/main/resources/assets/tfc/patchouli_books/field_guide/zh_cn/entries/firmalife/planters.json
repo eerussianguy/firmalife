@@ -21,7 +21,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "大型种植盆可以种植$(thing)绿豆$()、$(thing)西红柿$()、$(thing)甘蔗$()、$(thing)黄麻$()和$(thing)谷物$()。但如果要种植谷物，你需要一个$(thing)铜$()或更高等级的温室."
+      "text": "大型种植盆可以种植$(thing)绿豆$()、$(thing)西红柿$()、$(thing)甘蔗$()、$(thing)黄麻$()和$(thing)谷物$()。但如果要种植谷物，你需要一个$(thing)铜$()或更高等级的温室。"
     },
     {
       "type": "patchouli:crafting",

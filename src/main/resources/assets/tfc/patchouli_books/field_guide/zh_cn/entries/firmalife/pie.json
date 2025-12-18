@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "本模组允许制作各式各样的美味烘焙食品。本章将为你提供所需的一切知识，让你开始为早餐、午餐和晚餐享用美味而富有创意的餐点。"
+      "text": "Firmalife 允许制作各式各样的美味烘焙食品。本章将为你提供所需的一切知识，让你开始为早餐、午餐和晚餐享用美味而富有创意的餐点。"
     },
     {
       "type": "patchouli:text",
@@ -24,7 +24,7 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/filled_pie",
-      "text": "面团、果酱和一个馅饼烤盘可以让你获得一个$(thing)已填充的馅饼$()，随后放入烤箱完成制作，即可得到一个美味的馅饼。"
+      "text": "面团、果酱和一个馅饼烤盘可以让你获得一个$(thing)已填充的馅饼$()，随后放入烤炉完成制作，即可得到一个美味的馅饼。"
     }
   ],
   "read_by_default": true,
