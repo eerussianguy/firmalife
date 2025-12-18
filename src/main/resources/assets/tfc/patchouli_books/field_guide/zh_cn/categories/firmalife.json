@@ -1,7 +1,7 @@
 {
-    "__comment__": "This file was automatically created by mcresources",
-    "name": "Firmalife扩展模组",
-    "description": "关于Firmalife扩展模组的一切",
-    "icon": "firmalife:cured_oven_top",
-    "sortnum": 10
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "Firmalife扩展模组",
+  "description": "关于Firmalife扩展模组的一切",
+  "icon": "firmalife:cured_oven_top",
+  "sortnum": 10
 }

@@ -1,66 +1,66 @@
 {
-    "__comment__": "This file was automatically created by mcresources",
-    "name": "草药和香料",
-    "category": "tfc:firmalife",
-    "icon": "firmalife:spice/basil_leaves",
-    "pages": [
-        {
-            "type": "patchouli:text",
-            "text": "在 Firmalife 中，有多种具有烹饪效果的小型植物可供你采集和种植。获取这些植物最简单的方法是使用$(thing)种子球$()。使用$(thing)种子球$()时，只需像投掷雪球一样按下$(item)$(k:key.use)$()将其扔出。这将在区域内生成$(thing)蝴蝶草$()。"
-        },
-        {
-            "type": "patchouli:crafting",
-            "recipe": "firmalife:crafting/seed_ball",
-            "text": "种子球的合成配方需要$(l:firmalife/more_fertilizer)堆肥$()和4个$(thing)种子$()。"
-        },
-        {
-            "type": "patchouli:multiblock",
-            "multiblock": {
-                "pattern": [
-                    [
-                        "X"
-                    ],
-                    [
-                        "0"
-                    ]
-                ],
-                "mapping": {
-                    "X": "firmalife:plant/butterfly_grass"
-                }
-            },
-            "name": "",
-            "text": "一株蝴蝶草。",
-            "enable_visualize": false
-        },
-        {
-            "type": "patchouli:text",
-            "text": "蝴蝶草会随着时间的推移而成熟。当其成熟后，会有几率传播到周围的方块，或转变为新的植物。由其他草方块扩散而来的蝴蝶草方块则不会再传播。"
-        },
-        {
-            "type": "patchouli:multiblock",
-            "multiblock": {
-                "pattern": [
-                    [
-                        "X"
-                    ],
-                    [
-                        "0"
-                    ]
-                ],
-                "mapping": {
-                    "X": "firmalife:plant/basil"
-                }
-            },
-            "name": "",
-            "text": "罗勒是蝴蝶草可能生成的植物之一。",
-            "enable_visualize": false
-        },
-        {
-            "type": "patchouli:crafting",
-            "recipe": "firmalife:crafting/basil_leaves",
-            "text": "罗勒叶可以用来制作披萨。"
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "草药和香料",
+  "category": "tfc:firmalife",
+  "icon": "firmalife:spice/basil_leaves",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "在 Firmalife 中，有多种具有烹饪效果的小型植物可供你采集和种植。获取这些植物最简单的方法是使用$(thing)种子球$()。使用$(thing)种子球$()时，只需像投掷雪球一样按下$(item)$(k:key.use)$()将其扔出。这将在区域内生成$(thing)蝴蝶草$()。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/seed_ball",
+      "text": "种子球的合成配方需要$(l:firmalife/more_fertilizer)堆肥$()和4个$(thing)种子$()。"
+    },
+    {
+      "type": "patchouli:multiblock",
+      "multiblock": {
+        "pattern": [
+          [
+            "X"
+          ],
+          [
+            "0"
+          ]
+        ],
+        "mapping": {
+          "X": "firmalife:plant/butterfly_grass"
         }
-    ],
-    "read_by_default": true,
-    "sortnum": 19
+      },
+      "name": "",
+      "text": "一株蝴蝶草。",
+      "enable_visualize": false
+    },
+    {
+      "type": "patchouli:text",
+      "text": "蝴蝶草会随着时间的推移而成熟。当其成熟后，会有几率传播到周围的方块，或转变为新的植物。由其他草方块扩散而来的蝴蝶草方块则不会再传播。"
+    },
+    {
+      "type": "patchouli:multiblock",
+      "multiblock": {
+        "pattern": [
+          [
+            "X"
+          ],
+          [
+            "0"
+          ]
+        ],
+        "mapping": {
+          "X": "firmalife:plant/basil"
+        }
+      },
+      "name": "",
+      "text": "罗勒是蝴蝶草可能生成的植物之一。",
+      "enable_visualize": false
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/basil_leaves",
+      "text": "罗勒叶可以用来制作披萨。"
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 19
 }
