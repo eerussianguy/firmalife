@@ -1,16 +1,16 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "name": "Burritos and Tacos",
+  "name": "墨西哥捲餅與墨西哥煎餅",
   "category": "tfc:firmalife",
   "icon": "firmalife:textures/item/food/burrito.png",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The journey of making a $(thing)Tortilla$() is a long process, but rewarding. Start with $(thing)Maize Grain$(). Boil it in a pot of $(thing)Limewater$(), and seal it in a barrel of water to make $(thing)Nixtamal$(). Then crush it in a $(thing)Quern$() to make $(thing)Masa Flour$()."
+      "text": "製作$(thing)玉米薄餅$()的過程雖漫長，但回報豐厚。首先從$(thing)玉米粒$()開始：將其放入$(thing)石灰水$()中煮沸，再密封於水桶中浸泡，即可製成$(thing)鹼水玉米$()。隨後用$(thing)手推磨$()研磨成$(thing)溼玉米粉$()。"
     },
     {
       "type": "patchouli:text",
-      "text": "Crafting the Masa Flour with a bucket of water makes $(thing)Masa$(), the dough of a tortilla. This can be heated to make a $(thing)Corn Tortilla$(). Baking a Tortilla in an oven makes a $(thing)Taco Shell$()."
+      "text": "將馬薩玉米麵粉與一桶水合成即可得到製作薄餅的麵糰——$(thing)馬薩玉米麵團$()。加熱該面團可製成$(thing)墨西哥薄餅$()，而將薄餅放入烤爐烘烤則會變成$(thing)墨西哥煎餅殼$()。"
     },
     {
       "type": "patchouli:crafting",
@@ -20,17 +20,17 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/salsa",
-      "text": "A tomato, cilantro, salt, and a knife will yield you $(thing)Salsa$()."
+      "text": "將番茄、香菜、鹽與刀組合即可製成$(thing)莎莎醬$()。"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/burrito",
-      "text": "The $(thing)Burrito$() is made from cooked meat, $(l:firmalife/pizza#shredded_cheese)Shredded Cheese$(), $(l:firmalife/pizza#tomato_sauce)Tomato Sauce$(), a vegetable, and Salsa."
+      "text": "$(thing)墨西哥捲餅$()需用熟肉、$(l:firmalife/pizza#shredded_cheese)奶酪絲$()、$(l:firmalife/pizza#tomato_sauce)番茄醬$()、蔬菜與莎莎醬共同製作。"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/taco",
-      "text": "The $(thing)Taco$() is made from the same ingredients, except with a $(thing)Taco Shell$()."
+      "text": "$(thing)墨西哥煎餅$()原料與之相同，但需使用$(thing)墨西哥煎餅殼$()作為基底。"
     }
   ],
   "read_by_default": true,

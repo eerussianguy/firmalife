@@ -1,45 +1,45 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "name": "烘乾",
+  "name": "乾燥",
   "category": "tfc:firmalife",
   "icon": "firmalife:drying_mat",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(thing)乾燥墊$()是用來烘乾物品的. 它使用$(thing)果樹葉子$()製成. 果樹葉子可以打碎$(thing)果樹$()的葉子得到."
+      "text": "$(thing)乾燥墊$()是用來乾燥物品的。它使用$(thing)果樹葉子$()製成，果樹葉子可以打碎$(thing)果樹$()的葉子得到。"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/drying_mat",
-      "text": "乾燥墊的合成配方."
+      "text": "乾燥墊的合成配方。"
     },
     {
       "type": "patchouli:text",
-      "text": "要使用乾燥墊, 把它放置在陽光下, 然後按$(item)$(k:key.use)$()來放置一個物品. 在半天之後, 物品就會被烘乾. 如果下雨了, 這個烘乾過程就需要重新開始."
+      "text": "乾燥墊需要放置在陽光下，手持物品對其按下$(item)$(k:key.use)$()即可將物品放上去。經過半天時間，物品即可被曬乾。如果中途下雨，乾燥過程就必須重新開始。"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/solar_drier",
-      "text": "The solar drier functions the same as the drying mat, but 12x as fast."
+      "text": "太陽能幹燥器的功能與乾燥墊相同，但速度是乾燥墊的12倍。"
     },
     {
       "type": "patchouli:text",
-      "text": "Drying mats can be automated. Pushing a piston head against a drying mat will pop the item off. Dropping an item onto a drying mat will place it on the mat."
+      "text": "乾燥墊能夠實現自動化。使用活塞頭推撞乾燥墊會彈出物品，將物品丟在乾燥墊上則會將其放置。"
     },
     {
       "type": "tfc:drying_recipe",
       "recipe": "firmalife:drying/drying_fruit",
-      "text": "乾燥墊一般用來烘乾水果. 烘乾的水果有更長的保質期, 並且在某些配方中會用到."
+      "text": "乾燥墊一般用來晾乾水果。乾燥的水果有更長的保質期，並且在某些配方中會用到。"
     },
     {
       "type": "tfc:drying_recipe",
       "recipe": "firmalife:drying/tofu",
-      "text": "豆腐需要用乾燥墊製作."
+      "text": "豆腐需要用乾燥墊製作。"
     },
     {
       "type": "tfc:drying_recipe",
       "recipe": "firmalife:drying/cinnamon",
-      "text": "肉桂需要用乾燥墊製作."
+      "text": "肉桂需要用乾燥墊製作。"
     }
   ],
   "read_by_default": true,

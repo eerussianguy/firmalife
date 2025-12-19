@@ -1,0 +1,13 @@
+{
+  "name": "麵包",
+  "category": "tfc:mechanics",
+  "icon": "tfc:textures/item/food/wheat_bread.png",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l:firmalife/bread)請查閱Firmalife模組條目以獲取正確信息。$()",
+      "title": "麵包"
+    }
+  ],
+  "read_by_default": true
+}
