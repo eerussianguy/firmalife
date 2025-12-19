@@ -82,7 +82,7 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/wood/acacia_barrel_press",
-      "text": "压榨桶是葡萄加工的最后一步。"
+      "text": "压榨是葡萄加工的最后一步。"
     },
     {
       "type": "patchouli:text",
