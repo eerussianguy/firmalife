@@ -52,7 +52,7 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/pumping_station",
-      "recipe2": "firmalife:crafting/crafting/irrigation_tank"
+      "recipe2": "firmalife:crafting/irrigation_tank"
     },
     {
       "type": "patchouli:crafting",

@@ -6,18 +6,18 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "想要制作$(thing)面包$()，第一要务就是获取$(thing)酵母$()。要获取初始酵母，可将$(l:firmalife/drying)晒干的水果$()密封在一个装满$(thing)水$()的木桶中。三天后，便会形成$(thing)酵种$()。$(br)从现在起，你可以通过将酵种与$(thing)面粉$()一起密封在桶中来喂养酵母，使其增殖。每100mB酵母加入1份面粉，可以产出600mB酵母。这很划算！"
+      "text": "想要制作 $(thing)面包$(), 第一要务就是获取 $(thing)酵母$(). 要获取你的第一个酵母,封存 $(l:tfc:firmalife/drying)干枯的植物$() 在一个装满 $(thing)水$()的木桶中. 许多天后, $(thing)酵母发酵剂$() 将会形成.$(br)从现在起，你的酵母可以通过用 $(thing)面粉$()将酵母发酵剂密封在桶里来喂养。 这导致它成倍增加。每100毫升酵母1个面粉产生600毫升酵母。这可是个好生意！"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/barley_dough",
-      "text": "将酵种、甜味剂和面粉混合，可以制成$(thing)面团$()。像平常一样把面团烤熟，就能做出$(thing)面包$()了！"
+      "text": "酵种, 甜味剂, 加上面粉, 就可以合成$(thing)面团$(). 把面团烤熟就可以得到$(thing)面包$()了!"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/barley_slice",
-      "title": "面包片",
-      "text": "面包烤好后，可以用$(thing)刀$()将其切成$(thing)面包片$()。这些面包片可用于$(l:tfc:mechanics/sandwiches)制作三明治$()，或者烤成$(thing)吐司$()，然后涂抹上$(thing)黄油$()或果酱。"
+      "title": "切片面包",
+      "text": "烘烤后, 你就可以用一把 $(thing)刀$() 以将面包切成 $(thing)切片$(). 这些随后也可以用在 $(l:tfc:mechanics/sandwiches)三明治制作$()中, 或被烹饪成 $(thing)吐司$() ，它可以涂上 $(thing)黄油$()直接吃或者保存起来。"
     },
     {
       "type": "patchouli:crafting",

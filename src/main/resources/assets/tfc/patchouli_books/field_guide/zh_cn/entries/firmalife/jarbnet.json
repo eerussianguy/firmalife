@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "罐头柜是一种用于存储$(l:tfc:firmalife/jars)罐子$()、蜡烛和水壶的装饰性存储方块。空手并按住$(item)$(k:key.sneak)$()点击可将其打开或关闭。若内部放有蜡烛，可将其点燃以产生微弱的亮光。"
+      "text": "罐头柜是一个存储方块，能存储$(l:tfc:firmalife/jars)坛子$(), 蜡烛和罐子。它可以通过按住 $(item)$(k:key.sneak)$()时空手点击来打开和关闭。如果里面有蜡烛的话，蜡烛就能够被点亮，并发出一些微弱的光。"
     },
     {
       "type": "patchouli:crafting",

@@ -6,22 +6,22 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "在 Firmalife 中制作$(thing)奶酪$()比在原版群峦中稍复杂一些。新增了两种奶：$(thing)牦牛奶$()和$(thing)山羊奶$()。它们分别通过挤取$(l:mechanics/animal_husbandry#yak)牦牛$()和$(l:mechanics/animal_husbandry#goat)山羊$()获得。挤取$(l:mechanics/animal_husbandry#cow)奶牛$()获得的仍是原来的奶。"
+      "text": "在Firmalife中制造$(thing)奶酪$()要稍微复杂一点. 一共有两种奶: $(thing)牦牛奶$()和$(thing)山羊奶$(). 给$(l:mechanics/animal_husbandry#yak)牦牛$()和$(l:mechanics/animal_husbandry#goat)山羊$()挤奶可以得到它们. 当然, 给$(l:mechanics/animal_husbandry#cow)奶牛$()挤奶仍然可以获得传统的牛奶."
     },
     {
       "type": "patchouli:text",
-      "text": "和通常一样，奶首先要$(thing)凝固$()。要使奶凝固，你需要$(thing)凝乳酶$()。凝乳酶来自$(thing)反刍$()动物的胃。这包括$(l:mechanics/animal_husbandry#yak)牦牛$()、$(l:mechanics/animal_husbandry#cow)奶牛$()、$(l:mechanics/animal_husbandry#sheep)绵羊$()、$(l:mechanics/animal_husbandry#goat)山羊$()和$(l:mechanics/animal_husbandry#musk_ox)麝牛$()。要使奶凝固，需将其与凝乳酶一起在$(l:mechanics/barrels)桶$()中密封4小时。"
+      "text": "牛奶首先要用$(thing)凝乳酶$()制成$(thing)凝固的牛奶$(). 凝乳酶可以从$(thing)反刍$()动物的胃获得. 这些动物包括$(l:mechanics/animal_husbandry#yak)牦牛$(), $(l:mechanics/animal_husbandry#cow)奶牛$(), $(l:mechanics/animal_husbandry#sheep)绵羊$(), $(l:mechanics/animal_husbandry#goat)山羊$(), 和$(l:mechanics/animal_husbandry#musk_ox)麝牛$(). 把牛奶和凝乳酶一起密封在$(l:mechanics/barrels)大桶$()4小时就可以凝固."
     },
     {
       "type": "patchouli:crafting",
       "anchor": "cheesecloth",
       "recipe": "firmalife:crafting/cheesecloth",
-      "text": "凝固后的奶和$(thing)奶酪布$()一起密封在大桶中就可以制成$(thing)凝乳$()。奶酪布是不能重复使用的。"
+      "text": "凝固的牛奶和$(thing)奶酪布$()一起密封在大桶中就可以制成$(thing)凝乳$()。奶酪布是不能重复使用的."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/cheddar_wheel",
-      "text": "现在你可以制造$(thing)干酪$()了。你可以用$(thing)牦牛奶凝乳$()制作$(thing)西藏干酪$()，用$(thing)山羊奶凝乳$()制作$(thing)法式干酪$()，以及用$(thing)牛奶凝乳$()制作$(thing)英格兰切达干酪$()。"
+      "text": "现在你可以制造$(thing)干奶酪$()了。你可以用$(thing)牦牛奶凝乳$()制作$(thing)Rajya Metok奶酪$()，可以用$(thing)山羊奶凝乳$()制作$(thing)Chevre奶酪$()，以及用$(thing)牛奶凝乳$()制造$(thing)Cheddar奶酪$()。"
     },
     {
       "type": "patchouli:crafting",
@@ -30,16 +30,16 @@
     },
     {
       "type": "patchouli:text",
-      "text": "你的另一个选择是制作$(thing)鲜奶酪$()。这些是通过将凝乳密封在一桶$(thing)盐水$()中制成的。你可以用$(thing)牦牛奶凝乳$()制作$(thing)喜马拉雅奶酪$()，用$(thing)山羊奶凝乳$()制作$(thing)希腊菲达奶酪$()，以及用$(thing)牛奶凝乳$()制作$(thing)荷兰高达奶酪$()。"
+      "text": "你也可以选择制作$(thing)湿奶酪$(). 把凝乳密封在装有$(thing)咸水$()的大桶中即可. 你可以用$(thing)牦牛奶凝乳$()制作$(thing)Shosha奶酪$(), 可以用$(thing)山羊奶凝乳$()制作$(thing)Feta奶酪$(), 以及用$(thing)牛奶凝乳$()制造$(thing)Gouda奶酪$()."
     },
     {
       "type": "patchouli:text",
       "anchor": "aging",
-      "text": "奶酪轮是方块，应放置起来以利于保存。为了提高其品质和保质期，奶酪轮应在$(l:firmalife/cellar)地窖$()中进行$(thing)熟化$()。为了从奶酪轮上获得可食用的奶酪，应手持$(thing)刀$()点击$(item)$(k:key.use)$()将其切片。如果直接破坏奶酪块，将丢失熟成效果！"
+      "text": "奶酪轮是应该被放置的方块，以帮助它们能持续更长时间。为了提高其质量和保质期，奶酪轮应该 $(thing)老化$() 在一个 $(l:tfc:firmalife/cellar)地窖$()中. 为了从奶酪轮中获得可食用的奶酪, 应该通过点击 $(item)$(k:key.use)$()用一把 $(thing)刀$()从奶酪轮中切块. 如果奶酪块破损了，老化就消失了!"
     },
     {
       "type": "tfc:multimultiblock",
-      "text": "一块荷兰高达干酪轮的熟化阶段：$(thing)新鲜$()、$(thing)熟成$()和$(thing)陈年$()。",
+      "text": "Gouda奶酪轮的老化顺序: $(thing)新鲜$(), $(thing)老化$(), 以及$(thing)Vintage$().",
       "multiblocks": [
         {
           "pattern": [
