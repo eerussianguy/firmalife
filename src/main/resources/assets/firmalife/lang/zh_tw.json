@@ -1,5 +1,7 @@
 {
   "__comment__": "firmalife simplified chinese translation, by Recolic K <root@recolic.net>, and modified by theLittleStone(https://github.com/theLittleStone) ",
+  "__comment2__": "firmalife auto-generated traditional chinese translation, converted by OpenCC, added by Recolic K <root@recolic.net> & theLittleStone",
+  "__comment3__": "Conversion command: opencc -i zh_cn.json -o zh_tw.json -c s2twp.json",
   "block.firmalife.insulated_oven_bottom": "被包裹的烤爐底",
   "block.firmalife.cured_oven_bottom": "硬化的烤爐底",
   "block.firmalife.cured_oven_top": "硬化的烤爐頂",

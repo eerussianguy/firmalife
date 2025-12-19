@@ -1,5 +1,12 @@
 {
   "__comment__": "firmalife simplified chinese translation, by Recolic K <root@recolic.net>, and modified by theLittleStone(https://github.com/theLittleStone) ",
+  "__comment2__": "firmalife auto-generated traditional chinese translation, converted by OpenCC, added by Recolic K <root@recolic.net> & theLittleStone",
+  "__comment3__": "Conversion command: opencc -i zh_cn.json -o zh_tw.json -c s2twp.json",
+  "__comment4__": "This file was originally created by Recolic K <root@recolic.net>, and modified by theLittleStone(https://github.com/theLittleStone), then updated to 1.20.1 by GranniXie(grannixie@qq.com)",
+  "__comment5__": "Simplified Chinese translation for version 1.20.1 Firmalife",
+  "__comment6__": "1.20.1汉化由Minecraft高校联盟的高校MC组织成员浙江水利水电学院Minecraft社制作",
+  "__comment7__": "以下是1.20.1参与翻译的名单",
+  "__comment8__": "初稿：浙江水利水电学院GranniXie",
   "block.firmalife.insulated_oven_bottom": "被包裹的烤炉底",
   "block.firmalife.cured_oven_bottom": "硬化的烤炉底",
   "block.firmalife.cured_oven_top": "硬化的烤炉顶",
