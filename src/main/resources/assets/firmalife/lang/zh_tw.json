@@ -790,7 +790,7 @@
   "firmalife.bee.queen": "有蜂王",
   "firmalife.bee.no_queen": "無蜂王",
   "firmalife.bee.may_scrape": "提起小刀使用右鍵來刮",
-  "firmalife.bee.abilities": "性狀；",
+  "firmalife.bee.abilities": "性狀：",
   "firmalife.bee.ability.hardiness": "耐寒性 %s",
   "firmalife.bee.ability.production": "生產力 %s",
   "firmalife.bee.ability.mutant": "突變性 %s",
