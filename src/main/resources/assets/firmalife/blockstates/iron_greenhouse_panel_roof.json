@@ -1,65 +1,757 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "variants": {
-    "cw=false,ccw=false,facing=east": {
-      "model": "firmalife:block/greenhouse/iron_panel_roof",
-      "y": 90
+  "multipart": [
+    {
+      "when": {
+        "facing": "east",
+        "up": true,
+        "down": false,
+        "left": false
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/up_thick_left",
+        "y": 90
+      }
     },
-    "cw=false,ccw=false,facing=north": {
-      "model": "firmalife:block/greenhouse/iron_panel_roof"
+    {
+      "when": {
+        "facing": "north",
+        "up": true,
+        "down": false,
+        "left": false
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/up_thick_left"
+      }
     },
-    "cw=false,ccw=false,facing=south": {
-      "model": "firmalife:block/greenhouse/iron_panel_roof",
-      "y": 180
+    {
+      "when": {
+        "facing": "south",
+        "up": true,
+        "down": false,
+        "left": false
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/up_thick_left",
+        "y": 180
+      }
     },
-    "cw=false,ccw=false,facing=west": {
-      "model": "firmalife:block/greenhouse/iron_panel_roof",
-      "y": 270
+    {
+      "when": {
+        "facing": "west",
+        "up": true,
+        "down": false,
+        "left": false
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/up_thick_left",
+        "y": 270
+      }
     },
-    "cw=true,ccw=false,facing=east": {
-      "model": "firmalife:block/greenhouse/iron_panel_roof_cw",
-      "y": 90
+    {
+      "when": {
+        "facing": "east",
+        "up": true,
+        "down": false,
+        "left": true
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/up_thin_left",
+        "y": 90
+      }
     },
-    "cw=true,ccw=false,facing=north": {
-      "model": "firmalife:block/greenhouse/iron_panel_roof_cw"
+    {
+      "when": {
+        "facing": "north",
+        "up": true,
+        "down": false,
+        "left": true
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/up_thin_left"
+      }
     },
-    "cw=true,ccw=false,facing=south": {
-      "model": "firmalife:block/greenhouse/iron_panel_roof_cw",
-      "y": 180
+    {
+      "when": {
+        "facing": "south",
+        "up": true,
+        "down": false,
+        "left": true
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/up_thin_left",
+        "y": 180
+      }
     },
-    "cw=true,ccw=false,facing=west": {
-      "model": "firmalife:block/greenhouse/iron_panel_roof_cw",
-      "y": 270
+    {
+      "when": {
+        "facing": "west",
+        "up": true,
+        "down": false,
+        "left": true
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/up_thin_left",
+        "y": 270
+      }
     },
-    "cw=false,ccw=true,facing=east": {
-      "model": "firmalife:block/greenhouse/iron_panel_roof_ccw",
-      "y": 90
+    {
+      "when": {
+        "facing": "east",
+        "up": true,
+        "down": false,
+        "right": false
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/up_thick_right",
+        "y": 90
+      }
     },
-    "cw=false,ccw=true,facing=north": {
-      "model": "firmalife:block/greenhouse/iron_panel_roof_ccw"
+    {
+      "when": {
+        "facing": "north",
+        "up": true,
+        "down": false,
+        "right": false
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/up_thick_right"
+      }
     },
-    "cw=false,ccw=true,facing=south": {
-      "model": "firmalife:block/greenhouse/iron_panel_roof_ccw",
-      "y": 180
+    {
+      "when": {
+        "facing": "south",
+        "up": true,
+        "down": false,
+        "right": false
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/up_thick_right",
+        "y": 180
+      }
     },
-    "cw=false,ccw=true,facing=west": {
-      "model": "firmalife:block/greenhouse/iron_panel_roof_ccw",
-      "y": 270
+    {
+      "when": {
+        "facing": "west",
+        "up": true,
+        "down": false,
+        "right": false
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/up_thick_right",
+        "y": 270
+      }
     },
-    "cw=true,ccw=true,facing=east": {
-      "model": "firmalife:block/greenhouse/iron_panel_roof_both",
-      "y": 90
+    {
+      "when": {
+        "facing": "east",
+        "up": true,
+        "down": false,
+        "right": true
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/up_thin_right",
+        "y": 90
+      }
     },
-    "cw=true,ccw=true,facing=north": {
-      "model": "firmalife:block/greenhouse/iron_panel_roof_both"
+    {
+      "when": {
+        "facing": "north",
+        "up": true,
+        "down": false,
+        "right": true
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/up_thin_right"
+      }
     },
-    "cw=true,ccw=true,facing=south": {
-      "model": "firmalife:block/greenhouse/iron_panel_roof_both",
-      "y": 180
+    {
+      "when": {
+        "facing": "south",
+        "up": true,
+        "down": false,
+        "right": true
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/up_thin_right",
+        "y": 180
+      }
     },
-    "cw=true,ccw=true,facing=west": {
-      "model": "firmalife:block/greenhouse/iron_panel_roof_both",
-      "y": 270
+    {
+      "when": {
+        "facing": "west",
+        "up": true,
+        "down": false,
+        "right": true
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/up_thin_right",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": false,
+        "down": true,
+        "left": false
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/down_thick_left",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": false,
+        "down": true,
+        "left": false
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/down_thick_left"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": false,
+        "down": true,
+        "left": false
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/down_thick_left",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": false,
+        "down": true,
+        "left": false
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/down_thick_left",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": false,
+        "down": true,
+        "left": true
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/down_thin_left",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": false,
+        "down": true,
+        "left": true
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/down_thin_left"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": false,
+        "down": true,
+        "left": true
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/down_thin_left",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": false,
+        "down": true,
+        "left": true
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/down_thin_left",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": false,
+        "down": true,
+        "right": false
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/down_thick_right",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": false,
+        "down": true,
+        "right": false
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/down_thick_right"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": false,
+        "down": true,
+        "right": false
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/down_thick_right",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": false,
+        "down": true,
+        "right": false
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/down_thick_right",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": false,
+        "down": true,
+        "right": true
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/down_thin_right",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": false,
+        "down": true,
+        "right": true
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/down_thin_right"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": false,
+        "down": true,
+        "right": true
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/down_thin_right",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": false,
+        "down": true,
+        "right": true
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/down_thin_right",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": false,
+        "down": false,
+        "left": false
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/both_thick_left",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": false,
+        "down": false,
+        "left": false
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/both_thick_left"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": false,
+        "down": false,
+        "left": false
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/both_thick_left",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": false,
+        "down": false,
+        "left": false
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/both_thick_left",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": false,
+        "down": false,
+        "left": true
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/both_thin_left",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": false,
+        "down": false,
+        "left": true
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/both_thin_left"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": false,
+        "down": false,
+        "left": true
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/both_thin_left",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": false,
+        "down": false,
+        "left": true
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/both_thin_left",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": false,
+        "down": false,
+        "right": false
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/both_thick_right",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": false,
+        "down": false,
+        "right": false
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/both_thick_right"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": false,
+        "down": false,
+        "right": false
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/both_thick_right",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": false,
+        "down": false,
+        "right": false
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/both_thick_right",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": false,
+        "down": false,
+        "right": true
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/both_thin_right",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": false,
+        "down": false,
+        "right": true
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/both_thin_right"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": false,
+        "down": false,
+        "right": true
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/both_thin_right",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": false,
+        "down": false,
+        "right": true
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/both_thin_right",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": true,
+        "down": true,
+        "left": false
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/thick_left",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": true,
+        "down": true,
+        "left": false
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/thick_left"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": true,
+        "down": true,
+        "left": false
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/thick_left",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": true,
+        "down": true,
+        "left": false
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/thick_left",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": true,
+        "down": true,
+        "left": true
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/thin_left",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": true,
+        "down": true,
+        "left": true
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/thin_left"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": true,
+        "down": true,
+        "left": true
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/thin_left",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": true,
+        "down": true,
+        "left": true
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/thin_left",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": true,
+        "down": true,
+        "right": false
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/thick_right",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": true,
+        "down": true,
+        "right": false
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/thick_right"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": true,
+        "down": true,
+        "right": false
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/thick_right",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": true,
+        "down": true,
+        "right": false
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/thick_right",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": true,
+        "down": true,
+        "right": true
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/thin_right",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": true,
+        "down": true,
+        "right": true
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/thin_right"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": true,
+        "down": true,
+        "right": true
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/thin_right",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": true,
+        "down": true,
+        "right": true
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/iron/panel_roof/thin_right",
+        "y": 270
+      }
     }
-  }
+  ]
 }

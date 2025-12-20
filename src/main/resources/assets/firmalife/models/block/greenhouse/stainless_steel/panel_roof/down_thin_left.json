@@ -1,0 +1,8 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "firmalife:block/greenhouse/base/multipart/panel_roof/panel_roof_down_thin_left",
+  "textures": {
+    "glass": "firmalife:block/greenhouse/glass_thin_down",
+    "material": "firmalife:block/greenhouse/stainless_steel"
+  }
+}

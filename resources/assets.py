@@ -679,7 +679,7 @@ def greenhouse_panel_roof(rm: ResourceManager, name: str, frame: str, glass: str
                 rm.block_model(
                     model_name,
                     {'glass': f'firmalife:block/greenhouse/glass_{to_name(size, kind)}', 'material': frame},
-                    parent=f'firmalife:block/greenhouse/base/multipart/panel_roof_{to_name(kind, size, direction)}'
+                    parent=f'firmalife:block/greenhouse/base/multipart/panel_roof/panel_roof_{to_name(kind, size, direction)}'
                 )
     #rm.block_model('greenhouse/%s_panel_roof' % name, {'glass': glass + '_both', 'steel': frame}, parent='firmalife:block/greenhouse_roof_panel')
     #rm.block_model('greenhouse/%s_panel_roof_cw' % name, {'glass': glass + '_both', 'steel': frame}, parent='firmalife:block/greenhouse_roof_panel_cw')
