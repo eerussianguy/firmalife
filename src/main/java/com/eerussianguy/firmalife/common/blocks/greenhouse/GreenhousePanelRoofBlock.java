@@ -38,6 +38,10 @@ public class GreenhousePanelRoofBlock extends TransparentBlock implements IWeath
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty CW = FLStateProperties.CW;
     public static final BooleanProperty CCW = FLStateProperties.CCW;
+    public static final BooleanProperty UP = BlockStateProperties.UP;
+    public static final BooleanProperty DOWN = BlockStateProperties.DOWN;
+    public static final BooleanProperty LEFT = FLStateProperties.LEFT;
+    public static final BooleanProperty RIGHT = FLStateProperties.RIGHT;
 
     private final ExtendedProperties properties;
     @Nullable private final Supplier<? extends Block> next;
@@ -47,7 +51,17 @@ public class GreenhousePanelRoofBlock extends TransparentBlock implements IWeath
         super(properties.properties());
         this.properties = properties;
         this.next = next;
-        registerDefaultState(getStateDefinition().any().setValue(FACING, Direction.NORTH).setValue(CW, false).setValue(CCW, false));
+        registerDefaultState(
+            getStateDefinition()
+                .any()
+                .setValue(FACING, Direction.NORTH)
+                .setValue(CW, false)
+                .setValue(CCW, false)
+                .setValue(DOWN, true)
+                .setValue(UP, true)
+                .setValue(LEFT, false)
+                .setValue(RIGHT, false)
+        );
     }
 
     @Override
@@ -91,7 +105,7 @@ public class GreenhousePanelRoofBlock extends TransparentBlock implements IWeath
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
     {
-        super.createBlockStateDefinition(builder.add(FACING, CCW, CW));
+        super.createBlockStateDefinition(builder.add(FACING, CCW, CW, UP, DOWN, LEFT, RIGHT));
     }
 
     @Override
@@ -108,12 +122,37 @@ public class GreenhousePanelRoofBlock extends TransparentBlock implements IWeath
 
     private BlockState update(LevelAccessor level, BlockPos pos, BlockState state)
     {
-        final Direction face = state.getValue(FACING).getOpposite();
-        final BlockState cws = level.getBlockState(pos.below().relative(face.getClockWise()));
-        final boolean cw = cws.getBlock() instanceof GreenhousePanelWallBlock && cws.getValue(GreenhousePanelWallBlock.FACING) == face.getCounterClockWise() && level.getBlockState(pos.relative(face.getClockWise())).isAir();
-        final BlockState ccws = level.getBlockState(pos.below().relative(face.getCounterClockWise()));
-        final boolean ccw = ccws.getBlock() instanceof GreenhousePanelWallBlock && ccws.getValue(GreenhousePanelWallBlock.FACING) == face.getClockWise() && level.getBlockState(pos.relative(face.getCounterClockWise())).isAir();
+        final Direction facing = state.getValue(FACING);
+        final Direction oppositeFacing = facing.getOpposite();
+        final BlockPos upPos = pos.relative(oppositeFacing, 1).above();
+        final BlockPos downPos = pos.relative(facing, 1).below();
 
-        return state.setValue(CW, cw).setValue(CCW, ccw);
+        final BlockState cws = level.getBlockState(pos.below().relative(oppositeFacing.getClockWise()));
+        final BlockState ccws = level.getBlockState(pos.below().relative(oppositeFacing.getCounterClockWise()));
+        final BlockState downState = level.getBlockState(downPos);
+        final BlockState upState = level.getBlockState(upPos);
+
+        final boolean cw = cws.getBlock() instanceof GreenhousePanelWallBlock && cws.getValue(GreenhousePanelWallBlock.FACING) == oppositeFacing.getCounterClockWise() && level.getBlockState(pos.relative(oppositeFacing.getClockWise())).isAir();
+        final boolean ccw = ccws.getBlock() instanceof GreenhousePanelWallBlock && ccws.getValue(GreenhousePanelWallBlock.FACING) == oppositeFacing.getClockWise() && level.getBlockState(pos.relative(oppositeFacing.getCounterClockWise())).isAir();
+        final boolean up = isValidPanel(upState, facing);
+        final boolean down = isValidPanel(downState, facing);
+        final boolean left = !isValidPanel(level.getBlockState(pos.relative(facing.getClockWise())), facing);
+        final boolean right = !isValidPanel(level.getBlockState(pos.relative(facing.getCounterClockWise())), facing);
+
+        if (!up)
+        {
+            level.scheduleTick(upPos, upState.getBlock(), 1);
+        }
+        if (!down)
+        {
+            level.scheduleTick(downPos, downState.getBlock(), 1);
+        }
+
+        return state.setValue(CW, cw).setValue(CCW, ccw).setValue(UP, up).setValue(DOWN, down).setValue(LEFT, left).setValue(RIGHT, right);
+    }
+
+    private boolean isValidPanel(BlockState state, Direction facing)
+    {
+        return !(state.getBlock() instanceof GreenhousePanelRoofBlock) || state.getValue(FACING) != facing;
     }
 }

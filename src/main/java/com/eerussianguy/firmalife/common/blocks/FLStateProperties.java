@@ -22,4 +22,6 @@ public class FLStateProperties
     public static final BooleanProperty STRING_PLUS = BooleanProperty.create("string_plus");
     public static final BooleanProperty STRING_MINUS = BooleanProperty.create("string_minus");
     public static final EnumProperty<FoodAge> AGE = EnumProperty.create("age", FoodAge.class);
+    public static final BooleanProperty LEFT = BooleanProperty.create("left");
+    public static final BooleanProperty RIGHT = BooleanProperty.create("right");
 }

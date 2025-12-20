@@ -8,9 +8,9 @@ from constants import *
 
 
 def generate(rm: ResourceManager):
-    bot_variants = four_rotations_mp('firmalife:block/oven_fire', (90, None, 180, 270), 'lit', True)
+    bot_variants = four_rotations_mp('firmalife:block/oven_fire', (90, None, 180, 270), lit=True)
     for i in range(1, 5):
-        bot_variants += four_rotations_mp('firmalife:block/oven_logs_%s' % i, (90, None, 180, 270), 'logs', i)
+        bot_variants += four_rotations_mp('firmalife:block/oven_logs_%s' % i, (90, None, 180, 270), logs=i)
     variants = {
         'brick': 'minecraft:block/bricks',
         'rustic': 'firmalife:block/rustic_bricks',
@@ -565,12 +565,12 @@ def four_rotations_mp_free(model: str, rots: Tuple[Any, Any, Any, Any]) -> List:
         [{'facing': 'west'}, {'model': model, 'y': rots[3]}]
     ]
 
-def four_rotations_mp(model: str, rots: Tuple[Any, Any, Any, Any], condition_name: str, condition_value: Any) -> List:
+def four_rotations_mp(model: str, rots: Tuple[Any, Any, Any, Any], **conditions: dict[str, Any]) -> List:
     return [
-        [{'facing': 'east', condition_name: condition_value}, {'model': model, 'y': rots[0]}],
-        [{'facing': 'north', condition_name: condition_value}, {'model': model, 'y': rots[1]}],
-        [{'facing': 'south', condition_name: condition_value}, {'model': model, 'y': rots[2]}],
-        [{'facing': 'west', condition_name: condition_value}, {'model': model, 'y': rots[3]}]
+        [{'facing': 'east', **conditions}, {'model': model, 'y': rots[0]}],
+        [{'facing': 'north', **conditions}, {'model': model, 'y': rots[1]}],
+        [{'facing': 'south', **conditions}, {'model': model, 'y': rots[2]}],
+        [{'facing': 'west', **conditions}, {'model': model, 'y': rots[3]}]
     ]
 
 def peel(rm: ResourceManager, name_parts: str, texture: str) -> 'ItemContext':
@@ -665,17 +665,31 @@ def greenhouse_panel_wall(rm: ResourceManager, name: str, frame: str, glass: str
 
 
 def greenhouse_panel_roof(rm: ResourceManager, name: str, frame: str, glass: str) -> 'BlockContext':
-    rm.block_model('greenhouse/%s_panel_roof' % name, {'glass': glass + '_both', 'steel': frame}, parent='firmalife:block/greenhouse_roof_panel')
-    rm.block_model('greenhouse/%s_panel_roof_cw' % name, {'glass': glass + '_both', 'steel': frame}, parent='firmalife:block/greenhouse_roof_panel_cw')
-    rm.block_model('greenhouse/%s_panel_roof_ccw' % name, {'glass': glass + '_both', 'steel': frame}, parent='firmalife:block/greenhouse_roof_panel_ccw')
-    rm.block_model('greenhouse/%s_panel_roof_both' % name, {'glass': glass + '_both', 'steel': frame}, parent='firmalife:block/greenhouse_roof_panel_both')
+    def to_name(*p: str):
+        return '_'.join(filter(bool, p))
 
-    block = rm.blockstate('%s_greenhouse_panel_roof' % name, variants={
-        **four_rotations('firmalife:block/greenhouse/%s_panel_roof' % name, (90, None, 180, 270), prefix='cw=false,ccw=false,'),
-        **four_rotations('firmalife:block/greenhouse/%s_panel_roof_cw' % name, (90, None, 180, 270), prefix='cw=true,ccw=false,'),
-        **four_rotations('firmalife:block/greenhouse/%s_panel_roof_ccw' % name, (90, None, 180, 270), prefix='cw=false,ccw=true,'),
-        **four_rotations('firmalife:block/greenhouse/%s_panel_roof_both' % name, (90, None, 180, 270), prefix='cw=true,ccw=true,')
-    }).with_lang(lang('%s greenhouse panel roof', name))
+    mp = []
+    for kind, kind_properties in {'up': {'up':True, 'down':False}, 'down': {'up':False, 'down':True}, 'both':{'up':False, 'down':False}, '':{'up':True, 'down':True}}.items():
+        for direction, direction_properties in {'left':{}, 'right':{}}.items():
+            for size, size_properties in {'thick':{direction:False}, 'thin':{direction:True}}.items():
+                model_name = f'greenhouse/{name}/panel_roof/{to_name(kind, size, direction)}'
+                for p in four_rotations_mp('firmalife:block/%s' % model_name, (90, None, 180, 270), **kind_properties, **size_properties, **direction_properties):
+                    mp.append(p)
+
+                rm.block_model(
+                    model_name,
+                    {'glass': f'firmalife:block/greenhouse/glass_{to_name(size, kind)}', 'material': frame},
+                    parent=f'firmalife:block/greenhouse/base/multipart/panel_roof_{to_name(kind, size, direction)}'
+                )
+    #rm.block_model('greenhouse/%s_panel_roof' % name, {'glass': glass + '_both', 'steel': frame}, parent='firmalife:block/greenhouse_roof_panel')
+    #rm.block_model('greenhouse/%s_panel_roof_cw' % name, {'glass': glass + '_both', 'steel': frame}, parent='firmalife:block/greenhouse_roof_panel_cw')
+    #rm.block_model('greenhouse/%s_panel_roof_ccw' % name, {'glass': glass + '_both', 'steel': frame}, parent='firmalife:block/greenhouse_roof_panel_ccw')
+    #rm.block_model('greenhouse/%s_panel_roof_both' % name, {'glass': glass + '_both', 'steel': frame}, parent='firmalife:block/greenhouse_roof_panel_both')
+
+    block = rm.blockstate_multipart(
+        '%s_greenhouse_panel_roof' % name,
+        *mp
+    ).with_lang(lang('%s greenhouse panel roof', name))
     rm.item_model('%s_greenhouse_panel_roof' % name, parent='firmalife:block/greenhouse/%s_panel_roof' % name, no_textures=True)
     return block
 
