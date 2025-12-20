@@ -238,7 +238,7 @@ public class FLClientEvents
         register(event, FLHelpers.identifier("block/jar/guano"));
         register(event, FLHelpers.identifier("block/jar/honey"));
         register(event, FLHelpers.identifier("block/beehive_frame"));
-        register(event, FLHelpers.identifier("block/filled_+beehive_frame"));
+        register(event, FLHelpers.identifier("block/filled_beehive_frame"));
 
         BuiltInRegistries.ITEM.forEach(item -> {
             if (item instanceof WineBottleItem wine)

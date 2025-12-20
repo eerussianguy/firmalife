@@ -216,12 +216,13 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
         final int flowers = getFlowers(beeData, true);
         if (beeData.hasQueen())
         {
+            final boolean warmNow = isWarmEnough();
             final int honeyChanceInverted = getHoneyTickChanceInverted(beeData, flowers);
-            if (honeyChanceInverted == 0 || level.random.nextInt(honeyChanceInverted) == 0)
+            if (warmNow && (honeyChanceInverted == 0 || level.random.nextInt(honeyChanceInverted) == 0))
             {
                 addHoney(1);
             }
-            if (isWarmEnough() || lastWarmEnough == 0)
+            if (warmNow || lastWarmEnough == 0)
             {
                 lastWarmEnough = beeData.age(); // if too cold or not initialized
             }
@@ -230,7 +231,8 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
                 final int honey = getHoney();
                 if (honey == 0)
                 {
-                    beeData = BeeComponent.DEFAULT; // rip
+                    if (level.random.nextInt(10) == 0)
+                        beeData = BeeComponent.DEFAULT; // rip
                 }
                 else
                 {
@@ -257,7 +259,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
         assert level != null;
         final RandomSource random = level.random;
 
-        final int resistance = beeData.getAbility(BeeAbility.DISEASE_RESISTANCE);
+        final int resistance = beeData.getAbility(BeeAbility.INFECTION_RESISTANCE);
         if (random.nextFloat() * 10f < resistance)
             return;
         final float rain = Climate.get(level).getRainfall(level, worldPosition);
@@ -286,6 +288,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
                 honey--;
             }
         }
+        requestModelDataUpdate();
     }
 
     public void addHoney(int honey)
@@ -298,6 +301,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
                 honey--;
             }
         }
+        requestModelDataUpdate();
     }
 
     private void controlEntitiesTick()
@@ -493,13 +497,14 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
                     if (!beeData.hasQueen() && level.getBlockEntity(linkedHive) instanceof FLBeehiveBlockEntity hive)
                     {
                         Helpers.playSound(level, worldPosition, SoundEvents.BEEHIVE_EXIT);
-                        if (isSplitting())
+                        if (hive.isSplitting())
                         {
                             beeData = hive.isSkep() ? hive.beeData : hive.beeData.mutate(level.random);
                         }
                         else // if we are not splitting, wipe the bee data.
                         {
-                            beeData = BeeComponent.DEFAULT;
+                            beeData = hive.beeData;
+                            hive.beeData = BeeComponent.DEFAULT;
                         }
                     }
                     linkedHive = null;

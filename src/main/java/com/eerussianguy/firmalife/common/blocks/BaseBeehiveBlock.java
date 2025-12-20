@@ -87,7 +87,7 @@ public class BaseBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBl
     @Override
     public ItemInteractionResult useItemOn(ItemStack held, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
     {
-        if (Helpers.isItem(held, FLItems.BEEHIVE_FRAME.get()))
+        if (Helpers.isItem(held, FLItems.BEEHIVE_FRAME.get()) || Helpers.isItem(held, FLItems.FILLED_BEEHIVE_FRAME.get()))
         {
             final var res = FLHelpers.consumeItemInventory(level, pos, FLBlockEntities.BEEHIVE, (hive, inv) ->
                 FLHelpers.insertOneAny(level, held, 0, FLBeehiveBlockEntity.FRAME_SLOTS - 1, inv, player)

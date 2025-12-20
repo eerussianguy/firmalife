@@ -5,9 +5,7 @@ import java.util.Locale;
 
 import com.mojang.serialization.Codec;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.util.ExtraCodecs;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
 
@@ -22,7 +20,7 @@ public enum BeeAbility implements StringRepresentable
     CROP_AFFINITY, // increases fertilization of crops
     NATURE_RESTORATION, // rejuvenates the world around the hive
     CALMNESS, // willingness of bees to not attack the keeper
-    DISEASE_RESISTANCE, // ability of bees to resist disease
+    INFECTION_RESISTANCE, // ability of bees to resist infection
     ;
 
     public static final Codec<BeeAbility> CODEC = StringRepresentable.fromEnum(BeeAbility::values);

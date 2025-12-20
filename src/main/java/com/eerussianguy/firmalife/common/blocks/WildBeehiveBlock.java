@@ -1,5 +1,6 @@
 package com.eerussianguy.firmalife.common.blocks;
 
+import java.util.function.Consumer;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.FLBeehiveBlockEntity;
 import com.eerussianguy.firmalife.common.capabilities.bee.BeeAbility;
@@ -8,6 +9,7 @@ import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
@@ -35,10 +37,11 @@ import org.jetbrains.annotations.Nullable;
 
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.IForgeBlockExtension;
+import net.dries007.tfc.common.blocks.soil.HoeOverlayBlock;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.climate.Climate;
 
-public class WildBeehiveBlock extends HorizontalDirectionalBlock implements IForgeBlockExtension
+public class WildBeehiveBlock extends HorizontalDirectionalBlock implements IForgeBlockExtension, HoeOverlayBlock
 {
     public static void honeyDripParticle(Level level, BlockPos pos, BlockState state)
     {
@@ -101,6 +104,12 @@ public class WildBeehiveBlock extends HorizontalDirectionalBlock implements IFor
         super(properties.properties());
         registerDefaultState(getStateDefinition().any().setValue(HONEY, false).setValue(BEES, true));
         this.properties = properties;
+    }
+
+    @Override
+    public void addHoeOverlayInfo(Level level, BlockPos blockPos, BlockState blockState, Consumer<Component> tooltip, boolean b)
+    {
+        tooltip.accept(Component.translatable("firmalife.beehive." + (blockState.getValue(BEES) ? "has_queen": "no_queen")));
     }
 
     @Override

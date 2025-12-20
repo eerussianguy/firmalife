@@ -243,7 +243,7 @@ DEFAULT_LANG = {
     'firmalife.bee.ability.crop_affinity': 'Crop Affinity %s',
     'firmalife.bee.ability.nature_restoration': 'Nature Restoration %s',
     'firmalife.bee.ability.calmness': 'Calmness %s',
-    'firmalife.bee.ability.disease_resistance': 'Disease Resistance %s',
+    'firmalife.bee.ability.infection_resistance': 'Infection Resistance %s',
     'firmalife.bee.genetic_disease': 'Genetic Disease: %s',
     'firmalife.bee.parasitic_infection': 'Parasitic Infection: %s',
     **{'firmalife.bee.disease%s' % i: d for i, d in enumerate(GENETIC_DISEASES)},
