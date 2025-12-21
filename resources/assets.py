@@ -649,24 +649,45 @@ def greenhouse_port(rm: ResourceManager, name: str, frame: str, glass: str) -> '
     return block
 
 def greenhouse_panel_wall(rm: ResourceManager, name: str, frame: str, glass: str) -> 'BlockContext':
-    rm.block_model('greenhouse/%s_panel_wall' % name, {'glass': glass + '_both', 'steel': frame}, parent='firmalife:block/greenhouse_wall_panel')
-    rm.block_model('greenhouse/%s_panel_wall_down' % name, {'glass': glass + '_down', 'steel': frame}, parent='firmalife:block/greenhouse_wall_panel')
-    rm.block_model('greenhouse/%s_panel_wall_up' % name, {'glass': glass + '_up', 'steel': frame}, parent='firmalife:block/greenhouse_wall_panel')
-    rm.block_model('greenhouse/%s_panel_wall_both' % name, {'glass': glass, 'steel': frame}, parent='firmalife:block/greenhouse_wall_panel')
+    def to_name(*x: str):
+        return '_'.join(filter(bool, x))
 
-    block = rm.blockstate('%s_greenhouse_panel_wall' % name, variants={
-        **four_rotations('firmalife:block/greenhouse/%s_panel_wall' % name, (90, None, 180, 270), prefix='down=false,', suffix=',up=false'),
-        **four_rotations('firmalife:block/greenhouse/%s_panel_wall_down' % name, (90, None, 180, 270), prefix='down=true,', suffix=',up=false'),
-        **four_rotations('firmalife:block/greenhouse/%s_panel_wall_up' % name, (90, None, 180, 270), prefix='down=false,', suffix=',up=true'),
-        **four_rotations('firmalife:block/greenhouse/%s_panel_wall_both' % name, (90, None, 180, 270), prefix='down=true,', suffix=',up=true'),
-    }).with_lang(lang('%s greenhouse panel wall', name))
+    mp = []
+    for kind, kind_properties in {'up': {'up':False, 'down':True}, 'down': {'up':True, 'down':False}, 'both':{'up':True, 'down':True}, '':{'up':False, 'down':False}}.items():
+        for direction, direction_properties in {'left':{'extra':'right|none'}, 'right':{'extra':'left|none'}}.items():
+            corner_model_name = f'greenhouse/{name}/panel_wall/corner_{to_name(kind, direction)}'
+            rm.block_model(
+                corner_model_name,
+                {'glass': f'firmalife:block/greenhouse/glass_{to_name("thick", kind)}', 'material': frame},
+                parent=f'firmalife:block/greenhouse/base/multipart/panel_wall/panel_wall_corner_{to_name(kind, direction)}'
+            )
+            for p in four_rotations_mp('firmalife:block/%s' % corner_model_name, (90, None, 180, 270), **kind_properties, extra=direction):
+                mp.append(p)
+
+            for size, size_properties in {'thick':{direction:False}, 'thin':{direction:True}}.items():
+                model_name = f'greenhouse/{name}/panel_wall/{to_name(kind, size, direction)}'
+                for p in four_rotations_mp('firmalife:block/%s' % model_name, (90, None, 180, 270), **kind_properties, **size_properties, **direction_properties):
+                    mp.append(p)
+                for p in four_rotations_mp('firmalife:block/%s' % model_name, (180, 90, 270, None) if direction == 'left' else (None, 270, 90, 180), **kind_properties, **size_properties, extra=direction):
+                    mp.append(p)
+
+                rm.block_model(
+                    model_name,
+                    {'glass': f'firmalife:block/greenhouse/glass_{to_name(size, kind)}', 'material': frame},
+                    parent=f'firmalife:block/greenhouse/base/multipart/panel_wall/panel_wall_{to_name(kind, size, direction)}'
+                )
+
+    block = rm.blockstate_multipart(
+        '%s_greenhouse_panel_wall' % name,
+        *mp
+    ).with_lang(lang('%s greenhouse panel wall', name))
     rm.item_model('%s_greenhouse_panel_wall' % name, parent='firmalife:block/greenhouse/%s_panel_wall_both' % name, no_textures=True)
     return block
 
 
 def greenhouse_panel_roof(rm: ResourceManager, name: str, frame: str, glass: str) -> 'BlockContext':
-    def to_name(*p: str):
-        return '_'.join(filter(bool, p))
+    def to_name(*x: str):
+        return '_'.join(filter(bool, x))
 
     mp = []
     for kind, kind_properties in {'up': {'up':True, 'down':False}, 'down': {'up':False, 'down':True}, 'both':{'up':False, 'down':False}, '':{'up':True, 'down':True}}.items():
@@ -681,10 +702,6 @@ def greenhouse_panel_roof(rm: ResourceManager, name: str, frame: str, glass: str
                     {'glass': f'firmalife:block/greenhouse/glass_{to_name(size, kind)}', 'material': frame},
                     parent=f'firmalife:block/greenhouse/base/multipart/panel_roof/panel_roof_{to_name(kind, size, direction)}'
                 )
-    #rm.block_model('greenhouse/%s_panel_roof' % name, {'glass': glass + '_both', 'steel': frame}, parent='firmalife:block/greenhouse_roof_panel')
-    #rm.block_model('greenhouse/%s_panel_roof_cw' % name, {'glass': glass + '_both', 'steel': frame}, parent='firmalife:block/greenhouse_roof_panel_cw')
-    #rm.block_model('greenhouse/%s_panel_roof_ccw' % name, {'glass': glass + '_both', 'steel': frame}, parent='firmalife:block/greenhouse_roof_panel_ccw')
-    #rm.block_model('greenhouse/%s_panel_roof_both' % name, {'glass': glass + '_both', 'steel': frame}, parent='firmalife:block/greenhouse_roof_panel_both')
 
     block = rm.blockstate_multipart(
         '%s_greenhouse_panel_roof' % name,

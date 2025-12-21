@@ -1,10 +1,13 @@
 package com.eerussianguy.firmalife.common.blocks.greenhouse;
 
+import java.util.List;
 import java.util.function.Supplier;
 import com.eerussianguy.firmalife.common.blocks.IWeatherable;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -16,7 +19,7 @@ import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.IForgeBlockExtension;
 import net.dries007.tfc.util.Helpers;
 
-public class GreenhouseDoorBlock extends DoorBlock implements IWeatherable, IForgeBlockExtension
+public class GreenhouseDoorBlock extends DoorBlock implements IWeatherable, IForgeBlockExtension, GreenhouseConnectable
 {
     @Nullable
     private final Supplier<? extends Block> next;
@@ -67,4 +70,16 @@ public class GreenhouseDoorBlock extends DoorBlock implements IWeatherable, IFor
     }
 
 
+    @Override
+    public BlockState withConnection(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos)
+    {
+        return state;
+    }
+
+    @Override
+    public List<Direction> getConnectionFaces(BlockState state, BlockPos pos, LevelAccessor level)
+    {
+        Direction facing = state.getValue(FACING);
+        return List.of(facing.getClockWise(), facing.getCounterClockWise());
+    }
 }
