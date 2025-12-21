@@ -1,0 +1,8 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "firmalife:block/greenhouse/base/multipart/panel_wall/panel_wall_both_thin_right",
+  "textures": {
+    "glass": "firmalife:block/greenhouse/glass_thin_both",
+    "material": "firmalife:block/greenhouse/weathered_treated_wood"
+  }
+}

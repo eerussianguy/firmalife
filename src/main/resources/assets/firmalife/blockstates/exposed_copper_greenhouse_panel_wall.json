@@ -1,65 +1,2013 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "variants": {
-    "down=false,facing=east,up=false": {
-      "model": "firmalife:block/greenhouse/exposed_copper_panel_wall",
-      "y": 90
+  "multipart": [
+    {
+      "when": {
+        "facing": "east",
+        "up": false,
+        "down": true,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/corner_up_left",
+        "y": 90
+      }
     },
-    "down=false,facing=north,up=false": {
-      "model": "firmalife:block/greenhouse/exposed_copper_panel_wall"
+    {
+      "when": {
+        "facing": "north",
+        "up": false,
+        "down": true,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/corner_up_left"
+      }
     },
-    "down=false,facing=south,up=false": {
-      "model": "firmalife:block/greenhouse/exposed_copper_panel_wall",
-      "y": 180
+    {
+      "when": {
+        "facing": "south",
+        "up": false,
+        "down": true,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/corner_up_left",
+        "y": 180
+      }
     },
-    "down=false,facing=west,up=false": {
-      "model": "firmalife:block/greenhouse/exposed_copper_panel_wall",
-      "y": 270
+    {
+      "when": {
+        "facing": "west",
+        "up": false,
+        "down": true,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/corner_up_left",
+        "y": 270
+      }
     },
-    "down=true,facing=east,up=false": {
-      "model": "firmalife:block/greenhouse/exposed_copper_panel_wall_down",
-      "y": 90
+    {
+      "when": {
+        "facing": "east",
+        "up": false,
+        "down": true,
+        "left": false,
+        "extra": "right|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/up_thick_left",
+        "y": 90
+      }
     },
-    "down=true,facing=north,up=false": {
-      "model": "firmalife:block/greenhouse/exposed_copper_panel_wall_down"
+    {
+      "when": {
+        "facing": "north",
+        "up": false,
+        "down": true,
+        "left": false,
+        "extra": "right|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/up_thick_left"
+      }
     },
-    "down=true,facing=south,up=false": {
-      "model": "firmalife:block/greenhouse/exposed_copper_panel_wall_down",
-      "y": 180
+    {
+      "when": {
+        "facing": "south",
+        "up": false,
+        "down": true,
+        "left": false,
+        "extra": "right|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/up_thick_left",
+        "y": 180
+      }
     },
-    "down=true,facing=west,up=false": {
-      "model": "firmalife:block/greenhouse/exposed_copper_panel_wall_down",
-      "y": 270
+    {
+      "when": {
+        "facing": "west",
+        "up": false,
+        "down": true,
+        "left": false,
+        "extra": "right|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/up_thick_left",
+        "y": 270
+      }
     },
-    "down=false,facing=east,up=true": {
-      "model": "firmalife:block/greenhouse/exposed_copper_panel_wall_up",
-      "y": 90
+    {
+      "when": {
+        "facing": "east",
+        "up": false,
+        "down": true,
+        "left": false,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/up_thick_left",
+        "y": 180
+      }
     },
-    "down=false,facing=north,up=true": {
-      "model": "firmalife:block/greenhouse/exposed_copper_panel_wall_up"
+    {
+      "when": {
+        "facing": "north",
+        "up": false,
+        "down": true,
+        "left": false,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/up_thick_left",
+        "y": 90
+      }
     },
-    "down=false,facing=south,up=true": {
-      "model": "firmalife:block/greenhouse/exposed_copper_panel_wall_up",
-      "y": 180
+    {
+      "when": {
+        "facing": "south",
+        "up": false,
+        "down": true,
+        "left": false,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/up_thick_left",
+        "y": 270
+      }
     },
-    "down=false,facing=west,up=true": {
-      "model": "firmalife:block/greenhouse/exposed_copper_panel_wall_up",
-      "y": 270
+    {
+      "when": {
+        "facing": "west",
+        "up": false,
+        "down": true,
+        "left": false,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/up_thick_left"
+      }
     },
-    "down=true,facing=east,up=true": {
-      "model": "firmalife:block/greenhouse/exposed_copper_panel_wall_both",
-      "y": 90
+    {
+      "when": {
+        "facing": "east",
+        "up": false,
+        "down": true,
+        "left": true,
+        "extra": "right|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/up_thin_left",
+        "y": 90
+      }
     },
-    "down=true,facing=north,up=true": {
-      "model": "firmalife:block/greenhouse/exposed_copper_panel_wall_both"
+    {
+      "when": {
+        "facing": "north",
+        "up": false,
+        "down": true,
+        "left": true,
+        "extra": "right|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/up_thin_left"
+      }
     },
-    "down=true,facing=south,up=true": {
-      "model": "firmalife:block/greenhouse/exposed_copper_panel_wall_both",
-      "y": 180
+    {
+      "when": {
+        "facing": "south",
+        "up": false,
+        "down": true,
+        "left": true,
+        "extra": "right|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/up_thin_left",
+        "y": 180
+      }
     },
-    "down=true,facing=west,up=true": {
-      "model": "firmalife:block/greenhouse/exposed_copper_panel_wall_both",
-      "y": 270
+    {
+      "when": {
+        "facing": "west",
+        "up": false,
+        "down": true,
+        "left": true,
+        "extra": "right|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/up_thin_left",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": false,
+        "down": true,
+        "left": true,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/up_thin_left",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": false,
+        "down": true,
+        "left": true,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/up_thin_left",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": false,
+        "down": true,
+        "left": true,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/up_thin_left",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": false,
+        "down": true,
+        "left": true,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/up_thin_left"
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": false,
+        "down": true,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/corner_up_right",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": false,
+        "down": true,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/corner_up_right"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": false,
+        "down": true,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/corner_up_right",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": false,
+        "down": true,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/corner_up_right",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": false,
+        "down": true,
+        "right": false,
+        "extra": "left|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/up_thick_right",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": false,
+        "down": true,
+        "right": false,
+        "extra": "left|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/up_thick_right"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": false,
+        "down": true,
+        "right": false,
+        "extra": "left|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/up_thick_right",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": false,
+        "down": true,
+        "right": false,
+        "extra": "left|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/up_thick_right",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": false,
+        "down": true,
+        "right": false,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/up_thick_right"
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": false,
+        "down": true,
+        "right": false,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/up_thick_right",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": false,
+        "down": true,
+        "right": false,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/up_thick_right",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": false,
+        "down": true,
+        "right": false,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/up_thick_right",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": false,
+        "down": true,
+        "right": true,
+        "extra": "left|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/up_thin_right",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": false,
+        "down": true,
+        "right": true,
+        "extra": "left|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/up_thin_right"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": false,
+        "down": true,
+        "right": true,
+        "extra": "left|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/up_thin_right",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": false,
+        "down": true,
+        "right": true,
+        "extra": "left|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/up_thin_right",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": false,
+        "down": true,
+        "right": true,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/up_thin_right"
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": false,
+        "down": true,
+        "right": true,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/up_thin_right",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": false,
+        "down": true,
+        "right": true,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/up_thin_right",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": false,
+        "down": true,
+        "right": true,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/up_thin_right",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": true,
+        "down": false,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/corner_down_left",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": true,
+        "down": false,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/corner_down_left"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": true,
+        "down": false,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/corner_down_left",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": true,
+        "down": false,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/corner_down_left",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": true,
+        "down": false,
+        "left": false,
+        "extra": "right|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/down_thick_left",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": true,
+        "down": false,
+        "left": false,
+        "extra": "right|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/down_thick_left"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": true,
+        "down": false,
+        "left": false,
+        "extra": "right|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/down_thick_left",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": true,
+        "down": false,
+        "left": false,
+        "extra": "right|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/down_thick_left",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": true,
+        "down": false,
+        "left": false,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/down_thick_left",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": true,
+        "down": false,
+        "left": false,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/down_thick_left",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": true,
+        "down": false,
+        "left": false,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/down_thick_left",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": true,
+        "down": false,
+        "left": false,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/down_thick_left"
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": true,
+        "down": false,
+        "left": true,
+        "extra": "right|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/down_thin_left",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": true,
+        "down": false,
+        "left": true,
+        "extra": "right|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/down_thin_left"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": true,
+        "down": false,
+        "left": true,
+        "extra": "right|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/down_thin_left",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": true,
+        "down": false,
+        "left": true,
+        "extra": "right|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/down_thin_left",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": true,
+        "down": false,
+        "left": true,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/down_thin_left",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": true,
+        "down": false,
+        "left": true,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/down_thin_left",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": true,
+        "down": false,
+        "left": true,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/down_thin_left",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": true,
+        "down": false,
+        "left": true,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/down_thin_left"
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": true,
+        "down": false,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/corner_down_right",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": true,
+        "down": false,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/corner_down_right"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": true,
+        "down": false,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/corner_down_right",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": true,
+        "down": false,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/corner_down_right",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": true,
+        "down": false,
+        "right": false,
+        "extra": "left|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/down_thick_right",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": true,
+        "down": false,
+        "right": false,
+        "extra": "left|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/down_thick_right"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": true,
+        "down": false,
+        "right": false,
+        "extra": "left|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/down_thick_right",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": true,
+        "down": false,
+        "right": false,
+        "extra": "left|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/down_thick_right",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": true,
+        "down": false,
+        "right": false,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/down_thick_right"
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": true,
+        "down": false,
+        "right": false,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/down_thick_right",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": true,
+        "down": false,
+        "right": false,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/down_thick_right",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": true,
+        "down": false,
+        "right": false,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/down_thick_right",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": true,
+        "down": false,
+        "right": true,
+        "extra": "left|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/down_thin_right",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": true,
+        "down": false,
+        "right": true,
+        "extra": "left|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/down_thin_right"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": true,
+        "down": false,
+        "right": true,
+        "extra": "left|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/down_thin_right",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": true,
+        "down": false,
+        "right": true,
+        "extra": "left|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/down_thin_right",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": true,
+        "down": false,
+        "right": true,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/down_thin_right"
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": true,
+        "down": false,
+        "right": true,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/down_thin_right",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": true,
+        "down": false,
+        "right": true,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/down_thin_right",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": true,
+        "down": false,
+        "right": true,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/down_thin_right",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": true,
+        "down": true,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/corner_both_left",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": true,
+        "down": true,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/corner_both_left"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": true,
+        "down": true,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/corner_both_left",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": true,
+        "down": true,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/corner_both_left",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": true,
+        "down": true,
+        "left": false,
+        "extra": "right|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/both_thick_left",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": true,
+        "down": true,
+        "left": false,
+        "extra": "right|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/both_thick_left"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": true,
+        "down": true,
+        "left": false,
+        "extra": "right|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/both_thick_left",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": true,
+        "down": true,
+        "left": false,
+        "extra": "right|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/both_thick_left",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": true,
+        "down": true,
+        "left": false,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/both_thick_left",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": true,
+        "down": true,
+        "left": false,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/both_thick_left",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": true,
+        "down": true,
+        "left": false,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/both_thick_left",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": true,
+        "down": true,
+        "left": false,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/both_thick_left"
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": true,
+        "down": true,
+        "left": true,
+        "extra": "right|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/both_thin_left",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": true,
+        "down": true,
+        "left": true,
+        "extra": "right|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/both_thin_left"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": true,
+        "down": true,
+        "left": true,
+        "extra": "right|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/both_thin_left",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": true,
+        "down": true,
+        "left": true,
+        "extra": "right|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/both_thin_left",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": true,
+        "down": true,
+        "left": true,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/both_thin_left",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": true,
+        "down": true,
+        "left": true,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/both_thin_left",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": true,
+        "down": true,
+        "left": true,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/both_thin_left",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": true,
+        "down": true,
+        "left": true,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/both_thin_left"
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": true,
+        "down": true,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/corner_both_right",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": true,
+        "down": true,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/corner_both_right"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": true,
+        "down": true,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/corner_both_right",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": true,
+        "down": true,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/corner_both_right",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": true,
+        "down": true,
+        "right": false,
+        "extra": "left|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/both_thick_right",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": true,
+        "down": true,
+        "right": false,
+        "extra": "left|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/both_thick_right"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": true,
+        "down": true,
+        "right": false,
+        "extra": "left|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/both_thick_right",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": true,
+        "down": true,
+        "right": false,
+        "extra": "left|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/both_thick_right",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": true,
+        "down": true,
+        "right": false,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/both_thick_right"
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": true,
+        "down": true,
+        "right": false,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/both_thick_right",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": true,
+        "down": true,
+        "right": false,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/both_thick_right",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": true,
+        "down": true,
+        "right": false,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/both_thick_right",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": true,
+        "down": true,
+        "right": true,
+        "extra": "left|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/both_thin_right",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": true,
+        "down": true,
+        "right": true,
+        "extra": "left|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/both_thin_right"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": true,
+        "down": true,
+        "right": true,
+        "extra": "left|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/both_thin_right",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": true,
+        "down": true,
+        "right": true,
+        "extra": "left|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/both_thin_right",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": true,
+        "down": true,
+        "right": true,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/both_thin_right"
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": true,
+        "down": true,
+        "right": true,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/both_thin_right",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": true,
+        "down": true,
+        "right": true,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/both_thin_right",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": true,
+        "down": true,
+        "right": true,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/both_thin_right",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": false,
+        "down": false,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/corner_left",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": false,
+        "down": false,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/corner_left"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": false,
+        "down": false,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/corner_left",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": false,
+        "down": false,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/corner_left",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": false,
+        "down": false,
+        "left": false,
+        "extra": "right|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/thick_left",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": false,
+        "down": false,
+        "left": false,
+        "extra": "right|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/thick_left"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": false,
+        "down": false,
+        "left": false,
+        "extra": "right|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/thick_left",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": false,
+        "down": false,
+        "left": false,
+        "extra": "right|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/thick_left",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": false,
+        "down": false,
+        "left": false,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/thick_left",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": false,
+        "down": false,
+        "left": false,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/thick_left",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": false,
+        "down": false,
+        "left": false,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/thick_left",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": false,
+        "down": false,
+        "left": false,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/thick_left"
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": false,
+        "down": false,
+        "left": true,
+        "extra": "right|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/thin_left",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": false,
+        "down": false,
+        "left": true,
+        "extra": "right|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/thin_left"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": false,
+        "down": false,
+        "left": true,
+        "extra": "right|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/thin_left",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": false,
+        "down": false,
+        "left": true,
+        "extra": "right|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/thin_left",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": false,
+        "down": false,
+        "left": true,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/thin_left",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": false,
+        "down": false,
+        "left": true,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/thin_left",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": false,
+        "down": false,
+        "left": true,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/thin_left",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": false,
+        "down": false,
+        "left": true,
+        "extra": "left"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/thin_left"
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": false,
+        "down": false,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/corner_right",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": false,
+        "down": false,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/corner_right"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": false,
+        "down": false,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/corner_right",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": false,
+        "down": false,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/corner_right",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": false,
+        "down": false,
+        "right": false,
+        "extra": "left|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/thick_right",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": false,
+        "down": false,
+        "right": false,
+        "extra": "left|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/thick_right"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": false,
+        "down": false,
+        "right": false,
+        "extra": "left|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/thick_right",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": false,
+        "down": false,
+        "right": false,
+        "extra": "left|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/thick_right",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": false,
+        "down": false,
+        "right": false,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/thick_right"
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": false,
+        "down": false,
+        "right": false,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/thick_right",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": false,
+        "down": false,
+        "right": false,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/thick_right",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": false,
+        "down": false,
+        "right": false,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/thick_right",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": false,
+        "down": false,
+        "right": true,
+        "extra": "left|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/thin_right",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": false,
+        "down": false,
+        "right": true,
+        "extra": "left|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/thin_right"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": false,
+        "down": false,
+        "right": true,
+        "extra": "left|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/thin_right",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": false,
+        "down": false,
+        "right": true,
+        "extra": "left|none"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/thin_right",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "up": false,
+        "down": false,
+        "right": true,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/thin_right"
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "up": false,
+        "down": false,
+        "right": true,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/thin_right",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "up": false,
+        "down": false,
+        "right": true,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/thin_right",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "up": false,
+        "down": false,
+        "right": true,
+        "extra": "right"
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_wall/thin_right",
+        "y": 180
+      }
     }
-  }
+  ]
 }
