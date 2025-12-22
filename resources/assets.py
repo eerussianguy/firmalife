@@ -703,8 +703,21 @@ def greenhouse_panel_roof(rm: ResourceManager, name: str, frame: str, glass: str
                     parent=f'firmalife:block/greenhouse/base/multipart/panel_roof/panel_roof_{to_name(kind, size, direction)}'
                 )
 
+    rm.block_model(
+        f'greenhouse/{name}/panel_roof/side_left',
+        {'glass': f'firmalife:block/greenhouse/glass_thin_up', 'material': frame},
+        parent=f'firmalife:block/greenhouse/base/multipart/panel_roof/panel_roof_side_left'
+    )
+    rm.block_model(
+        f'greenhouse/{name}/panel_roof/side_right',
+        {'glass': f'firmalife:block/greenhouse/glass_thin_up', 'material': frame},
+        parent=f'firmalife:block/greenhouse/base/multipart/panel_roof/panel_roof_side_right'
+    )
+
     block = rm.blockstate_multipart(
         '%s_greenhouse_panel_roof' % name,
+        *four_rotations_mp(f'firmalife:block/greenhouse/{name}/panel_roof/side_left', (90, None, 180, 270), cw=True),
+        *four_rotations_mp(f'firmalife:block/greenhouse/{name}/panel_roof/side_right', (90, None, 180, 270), ccw=True),
         *mp
     ).with_lang(lang('%s greenhouse panel roof', name))
     rm.item_model('%s_greenhouse_panel_roof' % name, parent='firmalife:block/greenhouse/%s_panel_roof' % name, no_textures=True)

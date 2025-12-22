@@ -4,6 +4,84 @@
     {
       "when": {
         "facing": "east",
+        "cw": true
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_roof/side_left",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "cw": true
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_roof/side_left"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "cw": true
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_roof/side_left",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "cw": true
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_roof/side_left",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "ccw": true
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_roof/side_right",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "ccw": true
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_roof/side_right"
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "ccw": true
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_roof/side_right",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "ccw": true
+      },
+      "apply": {
+        "model": "firmalife:block/greenhouse/exposed_copper/panel_roof/side_right",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
         "up": true,
         "down": false,
         "left": false

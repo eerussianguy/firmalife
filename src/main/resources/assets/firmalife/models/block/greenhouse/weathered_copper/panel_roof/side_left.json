@@ -1,0 +1,8 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "firmalife:block/greenhouse/base/multipart/panel_roof/panel_roof_side_left",
+  "textures": {
+    "glass": "firmalife:block/greenhouse/glass_thin_up",
+    "material": "firmalife:block/greenhouse/weathered_copper"
+  }
+}

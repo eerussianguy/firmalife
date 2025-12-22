@@ -1,5 +1,6 @@
 package com.eerussianguy.firmalife.common.blocks.greenhouse;
 
+import java.util.List;
 import java.util.function.Supplier;
 import com.eerussianguy.firmalife.common.blocks.FLStateProperties;
 import com.eerussianguy.firmalife.common.blocks.IWeatherable;
@@ -28,7 +29,7 @@ import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.IForgeBlockExtension;
 import net.dries007.tfc.util.Helpers;
 
-public class GreenhousePanelRoofBlock extends TransparentBlock implements IWeatherable, IForgeBlockExtension
+public class GreenhousePanelRoofBlock extends TransparentBlock implements IWeatherable, IForgeBlockExtension, GreenhouseConnectable
 {
     public static final VoxelShape[] SHAPES = Helpers.computeHorizontalShapes(dir -> Shapes.or(
         Helpers.rotateShape(dir, 0, 0, 0, 16, 8, 16),
@@ -127,13 +128,15 @@ public class GreenhousePanelRoofBlock extends TransparentBlock implements IWeath
         final BlockPos upPos = pos.relative(oppositeFacing, 1).above();
         final BlockPos downPos = pos.relative(facing, 1).below();
 
+        final BlockState below = level.getBlockState(pos.below());
         final BlockState cws = level.getBlockState(pos.below().relative(oppositeFacing.getClockWise()));
         final BlockState ccws = level.getBlockState(pos.below().relative(oppositeFacing.getCounterClockWise()));
         final BlockState downState = level.getBlockState(downPos);
         final BlockState upState = level.getBlockState(upPos);
 
-        final boolean cw = cws.getBlock() instanceof GreenhousePanelWallBlock && cws.getValue(GreenhousePanelWallBlock.FACING) == oppositeFacing.getCounterClockWise() && level.getBlockState(pos.relative(oppositeFacing.getClockWise())).isAir();
-        final boolean ccw = ccws.getBlock() instanceof GreenhousePanelWallBlock && ccws.getValue(GreenhousePanelWallBlock.FACING) == oppositeFacing.getClockWise() && level.getBlockState(pos.relative(oppositeFacing.getCounterClockWise())).isAir();
+        //below.getValue(GreenhousePanelWallBlock.FACING) == facing.getClockWise()
+        final boolean cw = below.getBlock() instanceof GreenhousePanelWallBlock wall && wall.getWallStates(below).contains(facing.getClockWise());
+        final boolean ccw = below.getBlock() instanceof GreenhousePanelWallBlock wall && wall.getWallStates(below).contains(facing.getCounterClockWise());
         final boolean up = isValidPanel(upState, facing);
         final boolean down = isValidPanel(downState, facing);
         final boolean left = !isValidPanel(level.getBlockState(pos.relative(facing.getClockWise())), facing);
@@ -154,5 +157,18 @@ public class GreenhousePanelRoofBlock extends TransparentBlock implements IWeath
     private boolean isValidPanel(BlockState state, Direction facing)
     {
         return !(state.getBlock() instanceof GreenhousePanelRoofBlock) || state.getValue(FACING) != facing;
+    }
+
+    @Override
+    public BlockState withConnection(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos)
+    {
+        return null;
+    }
+
+    @Override
+    public List<Direction> getConnectionFaces(BlockState state, BlockPos pos, LevelAccessor level)
+    {
+        Direction facing = state.getValue(FACING);
+        return List.of(facing.getOpposite(), Direction.DOWN, facing.getClockWise(), facing.getCounterClockWise());
     }
 }

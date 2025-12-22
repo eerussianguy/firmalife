@@ -49,6 +49,16 @@ public interface GreenhouseConnectable
         {
             return name().toLowerCase(Locale.ROOT);
         }
+
+        public Direction getDirection(Direction direction)
+        {
+            return switch (this)
+            {
+                case LEFT -> direction.getClockWise();
+                case RIGHT -> direction.getCounterClockWise();
+                case NONE -> direction;
+            };
+        }
     }
 
     default boolean canConnectTo(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos)
