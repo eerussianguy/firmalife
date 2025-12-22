@@ -20,7 +20,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -79,20 +78,18 @@ public class GreenhousePanelWallBlock extends GreenhouseWallBlock implements Gre
         if (currentState.is(this) && currentState.getValue(EXTRA_WALL) == SideType.NONE)
         {
             Direction facing = currentState.getValue(FACING);
-            Vec3 clickPos = context.getClickLocation();
-            // To determine which side to place the wall, we need to determine where on the perpendicular axis they clicked
-            Direction perpendicularFacing = facing.getClockWise();
-            Direction.Axis perpendicularAxis = perpendicularFacing.getAxis();
-            double horizontal = Math.abs(perpendicularAxis.choose(clickPos.x, clickPos.y, clickPos.z) % 1);
-            // Negative axes flip the direction
-            if (facing.getAxisDirection() == Direction.AxisDirection.NEGATIVE)
+            Direction playerFacing = context.getHorizontalDirection();
+            if (facing.getClockWise() == playerFacing)
             {
-                horizontal = 1 - horizontal;
+                return currentState.setValue(EXTRA_WALL, SideType.RIGHT);
             }
-
-            return currentState.setValue(EXTRA_WALL, horizontal <= 0.5d ? SideType.RIGHT : SideType.LEFT);
+            if (facing.getCounterClockWise() == playerFacing)
+            {
+                return currentState.setValue(EXTRA_WALL, SideType.LEFT);
+            }
+            return null;
         }
-        final BlockState state = defaultBlockState();
+        final BlockState state = defaultBlockState(); //TODO super
         if (state != null)
         {
             final Level level = context.getLevel();
@@ -116,20 +113,7 @@ public class GreenhousePanelWallBlock extends GreenhouseWallBlock implements Gre
     @Override
     public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos)
     {
-        Direction currentFacing = state.getValue(FACING);
         fixPanelRoofs(level, currentPos);
-
-        if (false)
-        {
-            if (currentFacing.getClockWise() == facing)
-            {
-                state = state.setValue(LEFT, isValid(facingState, currentFacing));
-            }
-            if (currentFacing.getCounterClockWise() == facing)
-            {
-                state = state.setValue(RIGHT, isValid(facingState, currentFacing));
-            }
-        }
         return withConnection(state, facing, facingState, level, currentPos, facingPos);
     }
 
@@ -205,11 +189,6 @@ public class GreenhousePanelWallBlock extends GreenhouseWallBlock implements Gre
         return Helpers.isBlock(adjacent, FLTags.Blocks.GREENHOUSE_PANEL_WALLS);
     }
 
-    private boolean isValid(BlockState state, Direction facing)
-    {
-        return state.getBlock() instanceof GreenhousePanelWallBlock && state.getValue(FACING) == facing;
-    }
-
     @Override
     public BlockState withConnection(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos)
     {
@@ -237,11 +216,11 @@ public class GreenhousePanelWallBlock extends GreenhouseWallBlock implements Gre
 
         if (facing == left)
         {
-            return state.setValue(LEFT, GreenhouseConnectable.hasConnectionAt(facingState, facingPos, level, left.getOpposite()));
+            return state.setValue(LEFT, canConnectTo(state, facing, facingState, level, currentPos, facingPos));
         }
         if (facing == right)
         {
-            return state.setValue(RIGHT, GreenhouseConnectable.hasConnectionAt(facingState, facingPos, level, right.getOpposite()));
+            return state.setValue(RIGHT, canConnectTo(state, facing, facingState, level, currentPos, facingPos));
         }
 
         return state;
@@ -270,5 +249,25 @@ public class GreenhousePanelWallBlock extends GreenhouseWallBlock implements Gre
             return List.of(facing.getClockWise(), facing.getCounterClockWise().getCounterClockWise());
         }
         return List.of();
+    }
+
+    @Override
+    public boolean canConnectTo(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos)
+    {
+        Direction currentFacing = state.getValue(FACING);
+        if (facing == Direction.UP)
+        {
+            if (facingState.getBlock() instanceof GreenhousePanelRoofBlock)
+            {
+                Direction roofFacing = facingState.getValue(FACING);
+                return roofFacing == currentFacing.getClockWise() || roofFacing == currentFacing.getCounterClockWise();
+            }
+            return isSameFacingWall(facingState, currentFacing);
+        }
+        if (facing == Direction.DOWN)
+        {
+            return isSameFacingWall(facingState, currentFacing);
+        }
+        return GreenhouseConnectable.hasConnectionAt(facingState, facingPos, level, facing.getOpposite());
     }
 }

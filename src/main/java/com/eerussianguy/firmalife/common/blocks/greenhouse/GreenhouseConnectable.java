@@ -51,6 +51,11 @@ public interface GreenhouseConnectable
         }
     }
 
+    default boolean canConnectTo(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos)
+    {
+        return false;
+    }
+
     BlockState withConnection(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos);
 
     List<Direction> getConnectionFaces(BlockState state, BlockPos pos, LevelAccessor level);
