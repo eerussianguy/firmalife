@@ -12,7 +12,7 @@ class Wood(NamedTuple):
 SIMPLE_ITEMS = ('fruit_leaf', 'cinnamon_bark', 'beeswax', 'pineapple_fiber', 'pineapple_leather', 'pineapple_yarn', 'rennet', 'watering_can', 'treated_lumber', 'cheesecloth', 'spoon',
                 'pie_pan', 'seed_ball', 'rustic_finish', 'stone_finish', 'tile_finish', 'oven_insulation', 'ice_shavings', 'beekeeper_helmet', 'beekeeper_chestplate', 'beekeeper_leggings', 'beekeeper_boots', 'reinforced_glass', 'pottery_sherd',
                 'hematitic_wine_bottle', 'olivine_wine_bottle', 'volcanic_wine_bottle', 'empty_hematitic_wine_bottle', 'empty_olivine_wine_bottle', 'empty_volcanic_wine_bottle', 'cork', 'bottle_label', 'barrel_stave', 'stainless_steel_jar_lid',
-                'empty_jar_with_stainless_steel_lid', 'tirage_mixture', 'queen_bee', 'filled_beehive_frame', 'beehive_frame')
+                'empty_jar_with_stainless_steel_lid', 'tirage_mixture', 'queen_bee', 'filled_beehive_frame', 'beehive_frame', 'sugared_beehive_frame')
 SIMPLE_FOODS = ('frothy_coconut', 'white_chocolate_blend', 'dark_chocolate_blend', 'milk_chocolate_blend', 'tofu', 'soy_mixture', 'yak_curd', 'goat_curd', 'milk_curd', 'cheddar', 'chevre', 'rajya_metok', 'gouda', 'feta', 'shosha', 'butter',
                 'pie_dough', 'filled_pie', 'cooked_pie', 'pizza_dough', 'raw_pizza', 'cooked_pizza', 'shredded_cheese', 'pickled_egg', 'pumpkin_pie_dough', 'raw_pumpkin_pie', 'cooked_pumpkin_pie', 'cocoa_beans', 'roasted_cocoa_beans',
                 'cocoa_butter', 'cocoa_powder', 'toast', 'dark_chocolate', 'milk_chocolate', 'white_chocolate', 'garlic_bread', 'cured_maize', 'nixtamal', 'masa', 'masa_flour', 'corn_tortilla', 'taco_shell', 'burrito', 'taco', 'salsa',
@@ -260,6 +260,7 @@ DEFAULT_LANG = {
     'firmalife.beehive.honey_chance': 'Daily Honey Chance: 1 / %s',
     'firmalife.beehive.honey_chance_100': 'Daily Honey Chance: Guaranteed',
     'firmalife.beehive.swarm': 'Target of Swarm',
+    'firmalife.beehive.occluded': 'Beehive blocked!',
     'firmalife.wine.age_time': 'Aging for: %s',
     'firmalife.wine.age_time_opened': 'Aged for: %s',
     'firmalife.wine.sealed': '%s Wine Bottle',

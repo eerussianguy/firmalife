@@ -2,6 +2,7 @@ package com.eerussianguy.firmalife.common.blocks;
 
 import java.util.function.Consumer;
 import com.eerussianguy.firmalife.common.FLHelpers;
+import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blockentities.FLBeehiveBlockEntity;
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.capabilities.bee.BeeAbility;
@@ -87,7 +88,7 @@ public class BaseBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBl
     @Override
     public ItemInteractionResult useItemOn(ItemStack held, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
     {
-        if (Helpers.isItem(held, FLItems.BEEHIVE_FRAME.get()) || Helpers.isItem(held, FLItems.FILLED_BEEHIVE_FRAME.get()))
+        if (Helpers.isItem(held, FLItems.BEEHIVE_FRAME.get()) || Helpers.isItem(held, FLTags.Items.FILLED_FRAMES))
         {
             final var res = FLHelpers.consumeItemInventory(level, pos, FLBlockEntities.BEEHIVE, (hive, inv) ->
                 FLHelpers.insertOneAny(level, held, 0, FLBeehiveBlockEntity.FRAME_SLOTS - 1, inv, player)
@@ -197,11 +198,15 @@ public class BaseBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBl
                     }
                 }
             }
-            final int flowers = hive.getFlowers(bee, false);
+            final int flowers = hive.countFlowers().size();
             tooltip.accept(Component.translatable("firmalife.beehive.flowers", flowers));
             if (flowers < FLBeehiveBlockEntity.MIN_FLOWERS)
             {
                 tooltip.accept(Component.translatable("firmalife.beehive.min_flowers"));
+            }
+            else if (hive.isOccluded())
+            {
+                tooltip.accept(Component.translatable("firmalife.beehive.occluded"));
             }
             else if (bee.hasQueen())
             {

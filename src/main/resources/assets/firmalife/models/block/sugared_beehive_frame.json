@@ -2,8 +2,8 @@
 	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "firmalife:block/bee_frame_honey",
-		"particle": "firmalife:block/bee_frame_honey"
+		"0": "firmalife:block/bee_frame_sugar",
+		"particle": "firmalife:block/bee_frame_sugar"
 	},
 	"elements": [
 		{

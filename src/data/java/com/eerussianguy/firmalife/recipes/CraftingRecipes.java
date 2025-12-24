@@ -158,6 +158,10 @@ public interface CraftingRecipes extends Recipes
             .input(FLItems.FOODS.get(FLFood.RAW_HONEY))
             .shapeless(FLItems.FILLED_BEEHIVE_FRAME);
         recipe()
+            .input(FLItems.BEEHIVE_FRAME)
+            .input(Items.SUGAR)
+            .shapeless(FLItems.SUGARED_BEEHIVE_FRAME);
+        recipe()
             .input('X', TFCTags.Items.LUMBER)
             .input('Y', FLItems.BEEHIVE_FRAME)
             .input('Z', TFCBlocks.THATCH)

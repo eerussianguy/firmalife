@@ -41,8 +41,12 @@ public class FLItems
 
     public static final EnumSet<Food> TFC_FRUITS = EnumSet.of(Food.BANANA, Food.BLACKBERRY, Food.BLUEBERRY, Food.BUNCHBERRY, Food.CHERRY, Food.CLOUDBERRY, Food.CRANBERRY, Food.ELDERBERRY, Food.GOOSEBERRY, Food.GREEN_APPLE, Food.LEMON, Food.OLIVE, Food.ORANGE, Food.PEACH, Food.PLUM, Food.RASPBERRY, Food.RED_APPLE, Food.SNOWBERRY, Food.STRAWBERRY, Food.WINTERGREEN_BERRY);
 
+    public static final Map<FLFood, ItemId> FOODS = Helpers.mapOf(FLFood.class, food -> register("food/" + food.name(), () -> new Item(new Item.Properties().food(food.getFoodProperties()))));
+    public static final Map<FLFruit, ItemId> FRUITS = Helpers.mapOf(FLFruit.class, food -> register("food/" + food.name(), () -> new Item(new Item.Properties().food(food.getFoodProperties()))));
+
     public static final ItemId BEEHIVE_FRAME = register("beehive_frame");
-    public static final ItemId FILLED_BEEHIVE_FRAME = register("filled_beehive_frame", () -> new BeehiveFrameItem(prop()));
+    public static final ItemId FILLED_BEEHIVE_FRAME = register("filled_beehive_frame", () -> new BeehiveFrameItem(prop(), FOODS.get(FLFood.RAW_HONEY), true));
+    public static final ItemId SUGARED_BEEHIVE_FRAME = register("sugared_beehive_frame", () -> new BeehiveFrameItem(prop(), () -> Items.SUGAR, false));
     public static final ItemId QUEEN_BEE = register("queen_bee", () -> new Item(prop().component(FLComponents.BEE.get(), BeeComponent.DEFAULT_QUEEN)));
     public static final ItemId BEESWAX = register("beeswax", () -> new HoneycombItem(prop()));
     public static final ItemId CINNAMON_BARK = register("cinnamon_bark");
@@ -86,8 +90,6 @@ public class FLItems
     public static final ItemId BEEKEEPER_BOOTS = register("beekeeper_boots", () -> new ArmorItem(FLArmorMaterials.BEEKEEPER.holder(), ArmorItem.Type.BOOTS, new Item.Properties()));
 
     public static final Map<Spice, ItemId> SPICES = Helpers.mapOf(Spice.class, spice -> register("spice/" + spice.name()));
-    public static final Map<FLFood, ItemId> FOODS = Helpers.mapOf(FLFood.class, food -> register("food/" + food.name(), () -> new Item(new Item.Properties().food(food.getFoodProperties()))));
-    public static final Map<FLFruit, ItemId> FRUITS = Helpers.mapOf(FLFruit.class, food -> register("food/" + food.name(), () -> new Item(new Item.Properties().food(food.getFoodProperties()))));
     public static final Map<OvenType, ItemId> FINISHES = Helpers.mapOf(OvenType.class, type -> type != OvenType.BRICK, type -> register(type.getTrueName() + "_finish", () -> new FinishItem(prop(), type)));
 
     public static final ItemId HONEY_JAR = register("jar/honey", () -> new Item(new Item.Properties().component(Lore.TYPE, Lore.UNSEALED).craftRemainder(TFCItems.EMPTY_JAR.asItem())));

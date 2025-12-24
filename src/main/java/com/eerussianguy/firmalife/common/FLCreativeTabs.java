@@ -57,6 +57,7 @@ public final class FLCreativeTabs
         accept(out, FLItems.POTTERY_SHERD);
         accept(out, FLItems.BEEHIVE_FRAME);
         accept(out, FLItems.FILLED_BEEHIVE_FRAME);
+        accept(out, FLItems.SUGARED_BEEHIVE_FRAME);
         accept(out, FLItems.QUEEN_BEE);
         accept(out, FLItems.BEESWAX);
         accept(out, FLItems.STAINLESS_STEEL_JAR_LID);

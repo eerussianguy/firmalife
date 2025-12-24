@@ -161,6 +161,7 @@ public class BuiltinItemTags extends TagsProvider<Item> implements Accessors
             itemOf(FLFood.DARK_CHOCOLATE).asItem(),
             itemOf(FLFood.WHITE_CHOCOLATE).asItem()
         );
+        tag(FLTags.Items.FILLED_FRAMES).add(FLItems.FILLED_BEEHIVE_FRAME, FLItems.SUGARED_BEEHIVE_FRAME);
         tag(TFCTags.Items.CAN_BE_SALTED).add(itemOf(FLFood.BUTTER).asItem());
         tag(TFCTags.Items.TOOL_RACK_TOOLS).add(FLItems.SPOON, FLItems.PEEL);
         tag(FLTags.Items.PUMPKIN_KNAPPING).add(TFCBlocks.PUMPKIN.asItem());

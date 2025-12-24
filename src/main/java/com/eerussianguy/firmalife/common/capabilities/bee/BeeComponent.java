@@ -108,11 +108,11 @@ public record BeeComponent(
         {
             if (hasGeneticDisease())
             {
-                tooltip.accept(Component.translatable("firmalife.bee.genetic_disease", Component.translatable("firmalife.bee.disease" + geneticDisease)).withStyle(ChatFormatting.RED));
+                tooltip.accept(Component.translatable("firmalife.bee.genetic_disease", Component.translatable("firmalife.bee.disease" + geneticDisease.ordinal())).withStyle(ChatFormatting.RED));
             }
             if (hasParasiticInfection())
             {
-                tooltip.accept(Component.translatable("firmalife.bee.parasitic_infection", Component.translatable("firmalife.bee.infection" + geneticDisease)).withStyle(ChatFormatting.RED));
+                tooltip.accept(Component.translatable("firmalife.bee.parasitic_infection", Component.translatable("firmalife.bee.infection" + parasiticInfection.ordinal())).withStyle(ChatFormatting.RED));
             }
             tooltip.accept(Component.translatable("firmalife.bee.abilities").withStyle(ChatFormatting.WHITE));
             for (BeeAbility ability : BeeAbility.VALUES)

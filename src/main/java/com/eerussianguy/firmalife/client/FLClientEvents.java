@@ -164,7 +164,8 @@ public class FLClientEvents
                 FLItems.ROTTEN_COMPOST_JAR.get(), translucent("block/jar/rotten_compost"),
                 FLItems.EMPTY_JAR_WITH_STAINLESS_STEEL_LID.get(), translucentTFC("block/jar"),
                 FLItems.BEEHIVE_FRAME.get(), solid("block/beehive_frame"),
-                FLItems.FILLED_BEEHIVE_FRAME.get(), solid("block/filled_beehive_frame")
+                FLItems.FILLED_BEEHIVE_FRAME.get(), solid("block/filled_beehive_frame"),
+                FLItems.SUGARED_BEEHIVE_FRAME.get(), solid("block/sugared_beehive_frame")
             ));
             FLItems.FRUIT_PRESERVES.forEach((fruit, item) -> PlacedItemBlockEntityRenderer.MODELS.put(item.get(), translucent("block/jar/" + fruit.getSerializedName())));
             FLItems.UNSEALED_FRUIT_PRESERVES.forEach((fruit, item) -> PlacedItemBlockEntityRenderer.MODELS.put(item.get(), translucent("block/jar/" + fruit.getSerializedName() + "_unsealed")));

@@ -1,6 +1,7 @@
 package com.eerussianguy.firmalife.common.items;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -19,9 +20,14 @@ import net.dries007.tfc.util.Helpers;
 
 public class BeehiveFrameItem extends Item
 {
-    public BeehiveFrameItem(Properties properties)
+    private final Supplier<? extends Item> honey;
+    private final boolean wax;
+
+    public BeehiveFrameItem(Properties properties, Supplier<? extends Item> honey, boolean wax)
     {
         super(properties);
+        this.honey = honey;
+        this.wax = wax;
     }
 
     @Override
@@ -30,8 +36,9 @@ public class BeehiveFrameItem extends Item
         if (action == ClickAction.SECONDARY && Helpers.isItem(other, TFCTags.Items.TOOLS_KNIFE))
         {
             slot.set(new ItemStack(FLItems.BEEHIVE_FRAME));
-            ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(FLItems.BEESWAX.get()));
-            ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(FLItems.FOODS.get(FLFood.RAW_HONEY).get(), Helpers.uniform(player.getRandom(), 2, 4)));
+            if (wax)
+                ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(FLItems.BEESWAX.get()));
+            ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(honey.get(), Helpers.uniform(player.getRandom(), 2, 4)));
             if (player.level() instanceof ServerLevel server)
                 other.hurtAndBreak(1, server, null, i -> {});
             return true;
