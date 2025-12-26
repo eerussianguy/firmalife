@@ -1,0 +1,10 @@
+{
+  "type": "firmalife:centrifuge",
+  "ingredient": {
+    "item": "firmalife:scraped_beehive_frame"
+  },
+  "result": {
+    "count": 1,
+    "id": "firmalife:food/raw_honey"
+  }
+}

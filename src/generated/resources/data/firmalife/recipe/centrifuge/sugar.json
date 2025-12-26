@@ -1,0 +1,10 @@
+{
+  "type": "firmalife:centrifuge",
+  "ingredient": {
+    "item": "firmalife:sugared_beehive_frame"
+  },
+  "result": {
+    "count": 1,
+    "id": "minecraft:sugar"
+  }
+}
