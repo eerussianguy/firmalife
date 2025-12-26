@@ -123,7 +123,7 @@ def generate(rm: ResourceManager):
     configured_patch_feature(rm, 'hollow_shell', patch_config('firmalife:hollow_shell[fluid=empty]', 1, 15, 5, 'salt'), decorate_chance(20), decorate_square(), decorate_climate(-30, 20, 150, 500))
     placed_feature_tag(rm, 'tfc:feature/shore_decorations', 'firmalife:hollow_shell')
 
-    configured_placed_feature(rm, 'beehive', 'firmalife:beehive', {}, decorate_heightmap('world_surface_wg'), decorate_square(), decorate_climate(-15, 30, 150, 500, min_forest=2), decorate_chance(5))
+    configured_placed_feature(rm, 'beehive', 'firmalife:beehive', {}, decorate_heightmap('world_surface_wg'), decorate_square(), decorate_climate(5, 30, 150, 450, min_forest=2), decorate_chance(5))
     placed_feature_tag(rm, 'tfc:feature/land_plants', 'firmalife:beehive')
 
     configured_patch_feature(rm, 'wild_red_grapes', patch_config('firmalife:plant/wild_red_grapes', 1, 15, 5), decorate_chance(100), decorate_square(), decorate_climate(0, 30, 125, 500))

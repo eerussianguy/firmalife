@@ -197,6 +197,10 @@ public class BaseBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBl
                         tooltip.accept(Component.translatable("firmalife.beehive.starving"));
                     }
                 }
+                else
+                {
+                    tooltip.accept(Component.translatable("firmalife.beehive.bee_warm", String.format("%.2f", temp), minTemp).withStyle(ChatFormatting.DARK_GREEN));
+                }
             }
             final int flowers = hive.countFlowers().size();
             tooltip.accept(Component.translatable("firmalife.beehive.flowers", flowers));

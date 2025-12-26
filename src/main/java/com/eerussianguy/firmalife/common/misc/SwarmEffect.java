@@ -46,7 +46,7 @@ public class SwarmEffect extends MobEffect
     @Override
     public boolean applyEffectTick(LivingEntity entity, int amplifier)
     {
-        if (!entity.isInWaterOrRain() && FLConfig.SERVER.enableBeeSwarm.get() && !hasBeeArmor(entity))
+        if (!entity.isInWaterOrRain() && FLConfig.SERVER.enableBeeAttack.get() && !hasBeeArmor(entity))
         {
             FLDamageTypes.swarm(entity, 0.5f);
         }

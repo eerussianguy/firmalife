@@ -164,6 +164,7 @@ public class FLClientEvents
                 FLItems.ROTTEN_COMPOST_JAR.get(), translucent("block/jar/rotten_compost"),
                 FLItems.EMPTY_JAR_WITH_STAINLESS_STEEL_LID.get(), translucentTFC("block/jar"),
                 FLItems.BEEHIVE_FRAME.get(), solid("block/beehive_frame"),
+                FLItems.SCRAPED_BEEHIVE_FRAME.get(), solid("block/scraped_beehive_frame"),
                 FLItems.FILLED_BEEHIVE_FRAME.get(), solid("block/filled_beehive_frame"),
                 FLItems.SUGARED_BEEHIVE_FRAME.get(), solid("block/sugared_beehive_frame")
             ));

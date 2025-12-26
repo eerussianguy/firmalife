@@ -46,10 +46,10 @@ public class SkepBlockEntity extends FLBeehiveBlockEntity
     }
 
     @Override
-    public void trySwarm()
+    public void trySwarm(boolean occluded)
     {
         assert level != null;
-        if (canSwarm() && !level.isClientSide)
+        if (canSwarm(occluded) && !level.isClientSide)
         {
             final BlockPos hivePos = FLHelpers.getPoint(level, worldPosition, 5, FLPOIs.BEEHIVES, (level, pos) -> {
                 return level.getBlockEntity(pos) instanceof FLBeehiveBlockEntity hive && !hive.getBee().hasQueen() && !hive.isSkep();
@@ -62,7 +62,7 @@ public class SkepBlockEntity extends FLBeehiveBlockEntity
     }
 
     @Override
-    public boolean canSwarm()
+    public boolean canSwarm(boolean occluded)
     {
         return linkedHive == null && beeData.hasQueen() && isWarmEnough() && getHoney() == 1 && !getBee().hasGeneticDisease();
     }

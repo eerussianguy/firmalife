@@ -23,7 +23,8 @@ public class FLServerConfig extends BaseConfig
     public final Supplier<Double> ovenAshChance;
     public final Supplier<Boolean> ovenRequirePeel;
     public final Supplier<Boolean> enableSeedBalls;
-    public final Supplier<Boolean> enableBeeSwarm;
+    public final Supplier<Boolean> enableBeeAttack;
+    public final Supplier<Integer> beeUseHoneyDays;
     public final Supplier<Integer> hollowShellCapacity;
     public final Supplier<Integer> wineGlassCapacity;
     public final Supplier<Double> cellarLevel2Temperature;
@@ -55,7 +56,8 @@ public class FLServerConfig extends BaseConfig
         ovenRequirePeel = builder.comment("If true, ovens will hurt the player if they touch it without a peel in hand.").define("ovenRequirePeel", true);
         ovenAshChance = builder.comment("The chance for fuel burning in an oven to drop an ash block into an ashtray.").define("ovenAshChance", 0.5, 0, 1);
         enableSeedBalls = builder.comment("If true, players can throw seed balls.").define("enableSeedBalls", true);
-        enableBeeSwarm = builder.comment("If true, bees can swarm and hurt the player if provoked.").define("enableBeeSwarm", true);
+        enableBeeAttack = builder.comment("If true, bees can swarm and hurt the player if provoked.").define("enableBeeAttack", true);
+        beeUseHoneyDays = builder.comment("The amount of 24000 tick periods it takes for bees that cannot produce honey to use up 1 item of available honey.").define("beeUseHoneyDays", 12);
         hollowShellCapacity = builder.comment("The capacity in mB of the hollow shell. Default 100").define("hollowShellCapacity", 100, 1, Integer.MAX_VALUE);
         wineGlassCapacity = builder.comment("The capacity in mB of the wine glass. Default 250").define("hollowShellCapacity", 250, 1, Integer.MAX_VALUE);
         cellarLevel2Temperature = builder.comment("The average temperature below which stronger decay modifiers apply to cellar blocks.").define("cellarLevel2Temperature", 0d, -Double.MAX_VALUE, Double.MAX_VALUE);

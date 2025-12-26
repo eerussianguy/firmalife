@@ -1,0 +1,32 @@
+{
+  "type": "tfc:advanced_shapeless_crafting",
+  "ingredients": [
+    {
+      "tag": "c:tools/knife"
+    },
+    {
+      "item": "firmalife:filled_beehive_frame"
+    }
+  ],
+  "primary_ingredient": {
+    "tag": "c:tools/knife"
+  },
+  "remainder": {
+    "modifiers": [
+      {
+        "type": "tfc:damage_crafting_remainder"
+      },
+      {
+        "type": "tfc:extra_products",
+        "stack": {
+          "count": 1,
+          "id": "firmalife:beehive_frame"
+        }
+      }
+    ]
+  },
+  "result": {
+    "count": 1,
+    "id": "firmalife:food/raw_honey"
+  }
+}

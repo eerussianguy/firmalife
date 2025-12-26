@@ -20,14 +20,14 @@ import net.dries007.tfc.util.Helpers;
 
 public class BeehiveFrameItem extends Item
 {
-    private final Supplier<? extends Item> honey;
-    private final boolean wax;
+    private final Supplier<? extends Item> frame;
+    private final Supplier<? extends Item> drop;
 
-    public BeehiveFrameItem(Properties properties, Supplier<? extends Item> honey, boolean wax)
+    public BeehiveFrameItem(Properties properties, Supplier<? extends Item> frame, Supplier<? extends Item> drop)
     {
         super(properties);
-        this.honey = honey;
-        this.wax = wax;
+        this.frame = frame;
+        this.drop = drop;
     }
 
     @Override
@@ -35,10 +35,8 @@ public class BeehiveFrameItem extends Item
     {
         if (action == ClickAction.SECONDARY && Helpers.isItem(other, TFCTags.Items.TOOLS_KNIFE))
         {
-            slot.set(new ItemStack(FLItems.BEEHIVE_FRAME));
-            if (wax)
-                ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(FLItems.BEESWAX.get()));
-            ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(honey.get(), Helpers.uniform(player.getRandom(), 2, 4)));
+            slot.set(new ItemStack(frame.get()));
+            ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(drop.get()));
             if (player.level() instanceof ServerLevel server)
                 other.hurtAndBreak(1, server, null, i -> {});
             return true;

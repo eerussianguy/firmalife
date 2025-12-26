@@ -162,6 +162,18 @@ public interface CraftingRecipes extends Recipes
             .input(Items.SUGAR)
             .shapeless(FLItems.SUGARED_BEEHIVE_FRAME);
         recipe()
+            .inputIsPrimary(TFCTags.Items.TOOLS_KNIFE)
+            .input(FLItems.FILLED_BEEHIVE_FRAME)
+            .damageInputs()
+            .extraProduct(FLItems.BEEHIVE_FRAME)
+            .shapeless(FLItems.FOODS.get(FLFood.RAW_HONEY));
+        recipe()
+            .inputIsPrimary(TFCTags.Items.TOOLS_KNIFE)
+            .input(FLItems.SUGARED_BEEHIVE_FRAME)
+            .damageInputs()
+            .extraProduct(FLItems.BEEHIVE_FRAME)
+            .shapeless(Items.SUGAR);
+        recipe()
             .input('X', TFCTags.Items.LUMBER)
             .input('Y', FLItems.BEEHIVE_FRAME)
             .input('Z', TFCBlocks.THATCH)
