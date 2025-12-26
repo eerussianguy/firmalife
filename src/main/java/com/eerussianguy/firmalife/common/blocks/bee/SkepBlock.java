@@ -1,4 +1,4 @@
-package com.eerussianguy.firmalife.common.blocks;
+package com.eerussianguy.firmalife.common.blocks.bee;
 
 import com.eerussianguy.firmalife.common.blockentities.SkepBlockEntity;
 import com.eerussianguy.firmalife.common.capabilities.FLComponents;

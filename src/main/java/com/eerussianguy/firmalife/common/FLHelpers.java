@@ -235,11 +235,6 @@ public class FLHelpers
         return ItemInteractionResult.sidedSuccess(level.isClientSide);
     }
 
-    public static ItemInteractionResult insertOneAny(Level level, ItemStack item, int start, int end, BlockEntity provider, Player player)
-    {
-        return Optional.ofNullable(Helpers.getCapability(Capabilities.ItemHandler.BLOCK, provider)).map(inv -> insertOneAny(level, item, start, end, inv, player)).orElse(ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION);
-    }
-
     public static ItemInteractionResult insertOneAny(Level level, ItemStack item, int start, int end, IItemHandler inv, Player player)
     {
         for (int i = start; i <= end; i++)
@@ -299,11 +294,6 @@ public class FLHelpers
         if (stack.isEmpty()) return ItemInteractionResult.sidedSuccess(level.isClientSide);
         ItemHandlerHelper.giveItemToPlayer(player, stack);
         return ItemInteractionResult.sidedSuccess(level.isClientSide);
-    }
-
-    public static ItemInteractionResult takeOneAny(Level level, int start, int end, BlockEntity provider, Player player)
-    {
-        return Optional.ofNullable(Helpers.getCapability(Capabilities.ItemHandler.BLOCK, provider)).map(inv -> takeOneAny(level, start, end, inv, player)).orElse(ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION);
     }
 
     public static ItemInteractionResult takeOneAny(Level level, int start, int end, IItemHandler inv, Player player)

@@ -58,6 +58,7 @@ public final class FLCreativeTabs
         accept(out, FLItems.BEEHIVE_FRAME);
         accept(out, FLItems.FILLED_BEEHIVE_FRAME);
         accept(out, FLItems.SUGARED_BEEHIVE_FRAME);
+        accept(out, FLItems.SCRAPED_BEEHIVE_FRAME);
         accept(out, FLItems.QUEEN_BEE);
         accept(out, FLItems.BEESWAX);
         accept(out, FLItems.STAINLESS_STEEL_JAR_LID);
@@ -115,6 +116,7 @@ public final class FLCreativeTabs
         accept(out, FLBlocks.BEEHIVE);
         accept(out, FLBlocks.SKEP);
         accept(out, FLBlocks.WILD_BEEHIVE);
+        accept(out, FLBlocks.CENTRIFUGE);
         accept(out, FLBlocks.COMPOST_TUMBLER);
         accept(out, FLBlocks.MIXING_BOWL);
         accept(out, FLItems.SPOON);

@@ -151,6 +151,7 @@ public class BuiltinBlockLootTables extends BlockLootSubProvider implements Acce
         dropSelf(FLBlocks.DRYING_MAT);
         dropSelf(FLBlocks.SOLAR_DRIER);
         dropSelf(FLBlocks.BEEHIVE);
+        dropSelf(FLBlocks.CENTRIFUGE);
         add(FLBlocks.SKEP.get(),
             LootTable.lootTable().withPool(lootPool()
                 .add(

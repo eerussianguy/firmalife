@@ -1,7 +1,7 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
 import com.eerussianguy.firmalife.FirmaLife;
-import com.eerussianguy.firmalife.common.blocks.PickerBlock;
+import com.eerussianguy.firmalife.common.blocks.greenhouse.PickerBlock;
 import com.eerussianguy.firmalife.common.blocks.greenhouse.LargePlanterBlock;
 import com.eerussianguy.firmalife.common.util.Mechanics;
 import com.eerussianguy.firmalife.common.util.Plantable;

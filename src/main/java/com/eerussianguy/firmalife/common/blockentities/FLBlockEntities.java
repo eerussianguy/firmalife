@@ -31,6 +31,7 @@ public class FLBlockEntities
     public static final Id<DryingMatBlockEntity> DRYING_MAT = register("drying_mat", DryingMatBlockEntity::dryingMat, FLBlocks.DRYING_MAT);
     public static final Id<DryingMatBlockEntity> SOLAR_DRIER = register("solar_drier", DryingMatBlockEntity::solarDrier, FLBlocks.SOLAR_DRIER);
     public static final Id<FLBeehiveBlockEntity> BEEHIVE = register("beehive", FLBeehiveBlockEntity::new, FLBlocks.BEEHIVE);
+    public static final Id<CentrifugeBlockEntity> CENTRIFUGE = register("centrifuge", CentrifugeBlockEntity::new, FLBlocks.CENTRIFUGE);
     public static final Id<SkepBlockEntity> SKEP = register("skep", SkepBlockEntity::new, FLBlocks.SKEP);
     public static final Id<CompostTumblerBlockEntity> COMPOST_TUMBLER = register("compost_tumbler", CompostTumblerBlockEntity::new, FLBlocks.COMPOST_TUMBLER);
     public static final Id<StringBlockEntity> STRING = register("string", StringBlockEntity::new, FLBlocks.WOOL_STRING);

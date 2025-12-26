@@ -46,9 +46,9 @@ public class FLItems
 
     public static final ItemId BEESWAX = register("beeswax", () -> new HoneycombItem(prop()));
     public static final ItemId BEEHIVE_FRAME = register("beehive_frame");
-    public static final ItemId SCRAPED_BEEHIVE_FRAME = register("scraped_beehive_frame");
-    public static final ItemId FILLED_BEEHIVE_FRAME = register("filled_beehive_frame", () -> new BeehiveFrameItem(prop(), SCRAPED_BEEHIVE_FRAME, BEESWAX));
-    public static final ItemId SUGARED_BEEHIVE_FRAME = register("sugared_beehive_frame", () -> new BeehiveFrameItem(prop(), BEEHIVE_FRAME, () -> Items.SUGAR));
+    public static final ItemId SCRAPED_BEEHIVE_FRAME = register("scraped_beehive_frame", () -> new Item(prop().craftRemainder(BEEHIVE_FRAME.get())));
+    public static final ItemId FILLED_BEEHIVE_FRAME = register("filled_beehive_frame", () -> new BeehiveFrameItem(prop().craftRemainder(SCRAPED_BEEHIVE_FRAME.get()), BEESWAX));
+    public static final ItemId SUGARED_BEEHIVE_FRAME = register("sugared_beehive_frame", () -> new BeehiveFrameItem(prop().craftRemainder(BEEHIVE_FRAME.get()), () -> Items.SUGAR));
     public static final ItemId QUEEN_BEE = register("queen_bee", () -> new Item(prop().component(FLComponents.BEE.get(), BeeComponent.DEFAULT_QUEEN)));
     public static final ItemId CINNAMON_BARK = register("cinnamon_bark");
     public static final ItemId CHEESECLOTH = register("cheesecloth");

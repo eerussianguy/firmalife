@@ -1,7 +1,7 @@
 package com.eerussianguy.firmalife.common.worldgen;
 
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
-import com.eerussianguy.firmalife.common.blocks.WildBeehiveBlock;
+import com.eerussianguy.firmalife.common.blocks.bee.WildBeehiveBlock;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

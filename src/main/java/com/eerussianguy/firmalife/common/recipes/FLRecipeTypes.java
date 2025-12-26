@@ -24,6 +24,7 @@ public class FLRecipeTypes
     public static final Id<VatRecipe> VAT = register("vat");
     public static final Id<StompingRecipe> STOMPING = register("stomping");
     public static final Id<PressRecipe> PRESS = register("press");
+    public static final Id<CentrifugeRecipe> CENTRIFUGE = register("centrifuge");
 
     public static final DeferredHolder<PotOutput.OutputType, PotOutput.OutputType> STINKY_SOUP = POT_OUTPUT_TYPE.register("stinky_soup", () -> StinkySoupRecipe.OUTPUT_TYPE);
     public static final DeferredHolder<PotOutput.OutputType, PotOutput.OutputType> BOWL = POT_OUTPUT_TYPE.register("bowl", () -> BowlPotRecipe.OUTPUT_TYPE);

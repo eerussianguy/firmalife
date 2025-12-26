@@ -20,13 +20,11 @@ import net.dries007.tfc.util.Helpers;
 
 public class BeehiveFrameItem extends Item
 {
-    private final Supplier<? extends Item> frame;
     private final Supplier<? extends Item> drop;
 
-    public BeehiveFrameItem(Properties properties, Supplier<? extends Item> frame, Supplier<? extends Item> drop)
+    public BeehiveFrameItem(Properties properties, Supplier<? extends Item> drop)
     {
         super(properties);
-        this.frame = frame;
         this.drop = drop;
     }
 
@@ -35,7 +33,7 @@ public class BeehiveFrameItem extends Item
     {
         if (action == ClickAction.SECONDARY && Helpers.isItem(other, TFCTags.Items.TOOLS_KNIFE))
         {
-            slot.set(new ItemStack(frame.get()));
+            slot.set(stack.getCraftingRemainingItem().copy());
             ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(drop.get()));
             if (player.level() instanceof ServerLevel server)
                 other.hurtAndBreak(1, server, null, i -> {});

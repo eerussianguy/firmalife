@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": {
+      "tag": "tfc:lumber"
+    },
+    "Y": {
+      "item": "tfc:brass_mechanisms"
+    },
+    "Z": {
+      "item": "tfc:thatch"
+    }
+  },
+  "pattern": [
+    "XYX",
+    "XZX",
+    "XYX"
+  ],
+  "result": {
+    "count": 1,
+    "id": "firmalife:centrifuge"
+  }
+}

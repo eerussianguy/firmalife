@@ -18,6 +18,7 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.devices.BottomSupportedDeviceBlock;
 import net.dries007.tfc.common.fluids.FluidHelpers;
@@ -47,7 +48,7 @@ public class MixingBowlBlock extends BottomSupportedDeviceBlock
                 }
                 else if (held.isEmpty() && player.isShiftKeyDown())
                 {
-                    return FLHelpers.takeOneAny(level, 0, MixingBowlBlockEntity.SLOTS - 1, bowl, player);
+                    return FLHelpers.takeOneAny(level, 0, MixingBowlBlockEntity.SLOTS - 1, bowl.getInventory(), player);
                 }
                 else if (Helpers.isItem(held, FLItems.SPOON.get()))
                 {
@@ -57,7 +58,7 @@ public class MixingBowlBlock extends BottomSupportedDeviceBlock
                 }
                 else if (!player.isShiftKeyDown() && !held.isEmpty())
                 {
-                    return FLHelpers.insertOneAny(level, held, 0, MixingBowlBlockEntity.SLOTS - 1, bowl, player);
+                    return FLHelpers.insertOneAny(level, held, 0, MixingBowlBlockEntity.SLOTS - 1, bowl.getInventory(), player);
                 }
                 else if (bowl.startMixing(player))
                 {

@@ -9,6 +9,7 @@ import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.recipes.AnvilRecipes;
 import com.eerussianguy.firmalife.recipes.BarrelRecipes;
 import com.eerussianguy.firmalife.recipes.CastingRecipes;
+import com.eerussianguy.firmalife.recipes.CentrifugeRecipes;
 import com.eerussianguy.firmalife.recipes.ChiselRecipes;
 import com.eerussianguy.firmalife.recipes.CollapseRecipes;
 import com.eerussianguy.firmalife.recipes.CraftingRecipes;
@@ -47,6 +48,7 @@ public class BuiltinRecipes extends RecipeProvider implements Recipes,
     AnvilRecipes,
     BarrelRecipes,
     CastingRecipes,
+    CentrifugeRecipes,
     ChiselRecipes,
     CollapseRecipes,
     CraftingRecipes,
@@ -121,6 +123,7 @@ public class BuiltinRecipes extends RecipeProvider implements Recipes,
         stompingRecipes();
         vatRecipes();
         weldingRecipes();
+        centrifugeRecipes();
 
         // Heat Recipes from Melting
         for (BuiltinItemHeat.MeltingRecipe melt : meltingRecipes)

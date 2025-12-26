@@ -1,7 +1,7 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
-import com.eerussianguy.firmalife.common.blocks.SkepBlock;
+import com.eerussianguy.firmalife.common.blocks.bee.SkepBlock;
 import com.eerussianguy.firmalife.common.capabilities.FLComponents;
 import com.eerussianguy.firmalife.common.capabilities.bee.BeeComponent;
 import com.eerussianguy.firmalife.common.misc.FLPOIs;

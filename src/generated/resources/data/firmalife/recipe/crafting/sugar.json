@@ -15,13 +15,6 @@
     "modifiers": [
       {
         "type": "tfc:damage_crafting_remainder"
-      },
-      {
-        "type": "tfc:extra_products",
-        "stack": {
-          "count": 1,
-          "id": "firmalife:beehive_frame"
-        }
       }
     ]
   },

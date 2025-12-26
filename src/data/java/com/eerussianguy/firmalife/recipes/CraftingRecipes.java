@@ -165,13 +165,11 @@ public interface CraftingRecipes extends Recipes
             .inputIsPrimary(TFCTags.Items.TOOLS_KNIFE)
             .input(FLItems.FILLED_BEEHIVE_FRAME)
             .damageInputs()
-            .extraProduct(FLItems.BEEHIVE_FRAME)
-            .shapeless(FLItems.FOODS.get(FLFood.RAW_HONEY));
+            .shapeless(FLItems.BEESWAX);
         recipe()
             .inputIsPrimary(TFCTags.Items.TOOLS_KNIFE)
             .input(FLItems.SUGARED_BEEHIVE_FRAME)
             .damageInputs()
-            .extraProduct(FLItems.BEEHIVE_FRAME)
             .shapeless(Items.SUGAR);
         recipe()
             .input('X', TFCTags.Items.LUMBER)
@@ -179,6 +177,12 @@ public interface CraftingRecipes extends Recipes
             .input('Z', TFCBlocks.THATCH)
             .pattern("XYX", "XZX", "XYX")
             .shaped(FLBlocks.BEEHIVE);
+        recipe()
+            .input('X', TFCTags.Items.LUMBER)
+            .input('Y', TFCItems.BRASS_MECHANISMS)
+            .input('Z', TFCBlocks.THATCH)
+            .pattern("XYX", "XZX", "XYX")
+            .shaped(FLBlocks.CENTRIFUGE);
         recipe()
             .input('X', TFCItems.STRAW)
             .input('Y', TFCBlocks.PLANTS.get(Plant.CATTAIL))

@@ -26,6 +26,7 @@ public class FLRecipeSerializers
     public static final Id<BowlPotRecipe> BOWL_POT = register("bowl_pot", BowlPotRecipe.CODEC, BowlPotRecipe.STREAM_CODEC);
     public static final Id<VatRecipe> VAT = register("vat", VatRecipe.CODEC, VatRecipe.STREAM_CODEC);
     public static final Id<PressRecipe> PRESS = register("press", PressRecipe.P_CODEC, PressRecipe.P_STREAM_CODEC);
+    public static final Id<CentrifugeRecipe> CENTRIFUGE = register("centrifuge", CentrifugeRecipe.CODEC, CentrifugeRecipe.STREAM_CODEC);
 
     private static <R extends Recipe<?>> Id<R> register(String name, MapCodec<R> codec, StreamCodec<RegistryFriendlyByteBuf, R> stream)
     {

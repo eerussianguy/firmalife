@@ -21,6 +21,7 @@ import com.eerussianguy.firmalife.client.model.QuadPlanterBlockModel;
 import com.eerussianguy.firmalife.client.model.TrellisPlanterBlockModel;
 import com.eerussianguy.firmalife.client.model.WineShelfBlockModel;
 import com.eerussianguy.firmalife.client.render.BarrelPressBlockEntityRenderer;
+import com.eerussianguy.firmalife.client.render.CentrifugeBlockEntityRenderer;
 import com.eerussianguy.firmalife.client.render.CompostTumblerBlockEntityRenderer;
 import com.eerussianguy.firmalife.client.render.DryingMatBlockEntityRenderer;
 import com.eerussianguy.firmalife.client.render.FLBeeRenderer;
@@ -251,6 +252,7 @@ public class FLClientEvents
 
 
         event.register(MixingBowlBlockEntityRenderer.SPOON_LOCATION);
+        event.register(CentrifugeBlockEntityRenderer.BASE_LOCATION);
         event.register(CompostTumblerBlockEntityRenderer.OPEN_MODEL);
         event.register(CompostTumblerBlockEntityRenderer.CLOSED_MODEL);
         event.register(BarrelPressBlockEntityRenderer.PRESS);
@@ -311,6 +313,7 @@ public class FLClientEvents
         event.registerBlockEntityRenderer(FLBlockEntities.PUMPING_STATION.get(), ctx -> new PumpingStationBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.PICKER.get(), ctx -> new PickerBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.SWEEPER.get(), ctx -> new SweeperBlockEntityRenderer());
+        event.registerBlockEntityRenderer(FLBlockEntities.CENTRIFUGE.get(), ctx -> new CentrifugeBlockEntityRenderer());
 
         event.registerEntityRenderer(FLEntities.SEED_BALL.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(FLEntities.FLBEE.get(), FLBeeRenderer::new);

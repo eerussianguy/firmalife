@@ -272,6 +272,9 @@ def generate(rm: ResourceManager):
     }).with_lang(lang('wild beehive'))
     rm.item_model('wild_beehive', parent='firmalife:block/bee_nest_hanging', no_textures=True)
 
+    rm.blockstate('centrifuge', 'tfc:block/empty',).with_lang(lang('centrifuge'))
+    rm.item_model('centrifuge', parent='firmalife:block/centrifuge', no_textures=True)
+
     rm.blockstate('skep', variants={
         **four_rotations('firmalife:block/skep', (90, None, 180, 270), ',honey=false'),
         **four_rotations('firmalife:block/skep_honey', (90, None, 180, 270), ',honey=true'),

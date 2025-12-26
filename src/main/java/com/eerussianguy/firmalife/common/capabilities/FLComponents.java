@@ -48,6 +48,7 @@ public final class FLComponents
         registerInventory(event, FLBlockEntities.ASHTRAY);
         registerInventory(event, FLBlockEntities.BARREL_PRESS);
         registerInventory(event, FLBlockEntities.BEEHIVE);
+        registerInventory(event, FLBlockEntities.CENTRIFUGE);
         registerInventory(event, FLBlockEntities.KEG);
         event.registerBlockEntity(BlockCapabilities.FLUID, FLBlockEntities.KEG.get(), KegBlockEntity::getSidedFluidInventory);
         registerInventory(event, FLBlockEntities.BONSAI_PLANTER);

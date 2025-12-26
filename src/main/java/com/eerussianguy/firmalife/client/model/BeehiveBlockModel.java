@@ -2,7 +2,7 @@ package com.eerussianguy.firmalife.client.model;
 
 import java.util.List;
 import com.eerussianguy.firmalife.common.blockentities.FLBeehiveBlockEntity;
-import com.eerussianguy.firmalife.common.blocks.WoodenBeehiveBlock;
+import com.eerussianguy.firmalife.common.blocks.bee.WoodenBeehiveBlock;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;

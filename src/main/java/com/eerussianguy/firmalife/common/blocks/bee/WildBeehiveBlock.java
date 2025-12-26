@@ -1,8 +1,9 @@
-package com.eerussianguy.firmalife.common.blocks;
+package com.eerussianguy.firmalife.common.blocks.bee;
 
 import java.util.function.Consumer;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.FLBeehiveBlockEntity;
+import com.eerussianguy.firmalife.common.blocks.FLStateProperties;
 import com.eerussianguy.firmalife.common.capabilities.bee.BeeAbility;
 import com.eerussianguy.firmalife.common.misc.FLPOIs;
 import com.mojang.serialization.MapCodec;

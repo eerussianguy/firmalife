@@ -47,6 +47,7 @@ public class FLJEIPlugin implements IModPlugin
     public static final RecipeType<SmokingRecipe> SMOKING = type("smoking", SmokingRecipe.class);
     public static final RecipeType<StompingRecipe> STOMPING = type("stomping", StompingRecipe.class);
     public static final RecipeType<PressRecipe> PRESS = type("press", PressRecipe.class);
+    public static final RecipeType<CentrifugeRecipe> CENTRIFUGE = type("centrifuge", CentrifugeRecipe.class);
     public static final RecipeType<MixingBowlRecipe> MIXING_BOWL = type("mixing_bowl", MixingBowlRecipe.class);
     public static final RecipeType<KnappingRecipe> PUMPKIN_KNAPPING = type("pumpkin_knapping", KnappingRecipe.class);
     public static final RecipeType<OvenRecipe> OVEN = type("oven", OvenRecipe.class);
@@ -68,6 +69,7 @@ public class FLJEIPlugin implements IModPlugin
         r.addRecipeCategories(new SmokingCategory(SMOKING, gui));
         r.addRecipeCategories(new StompingCategory(STOMPING, gui));
         r.addRecipeCategories(new PressCategory(PRESS, gui));
+        r.addRecipeCategories(new CentrifugeCategory(CENTRIFUGE, gui));
         r.addRecipeCategories(new MixingCategory(MIXING_BOWL, gui));
         r.addRecipeCategories(new OvenCategory(OVEN, gui));
         r.addRecipeCategories(new VatCategory(VAT, gui));
@@ -82,6 +84,7 @@ public class FLJEIPlugin implements IModPlugin
         r.addRecipes(SMOKING, recipes(FLRecipeTypes.SMOKING));
         r.addRecipes(STOMPING, recipes(FLRecipeTypes.STOMPING));
         r.addRecipes(PRESS, recipes(FLRecipeTypes.PRESS));
+        r.addRecipes(CENTRIFUGE, recipes(FLRecipeTypes.CENTRIFUGE));
         r.addRecipes(MIXING_BOWL, recipes(FLRecipeTypes.MIXING_BOWL));
         r.addRecipes(OVEN, recipes(FLRecipeTypes.OVEN));
         r.addRecipes(VAT, recipes(FLRecipeTypes.VAT));
@@ -99,6 +102,7 @@ public class FLJEIPlugin implements IModPlugin
         cat(r, TFCBlocks.PUMPKIN, PUMPKIN_KNAPPING);
         FLBlocks.CURED_OVEN_TOP.values().forEach(oven -> cat(r, oven, OVEN));
         cat(r, FLBlocks.VAT, VAT);
+        cat(r, FLBlocks.CENTRIFUGE, CENTRIFUGE);
         cat(r, TFCItems.POT.get(), BOWL_POT);
         cat(r, TFCItems.POT.get(), STINKY_SOUP);
         FLBlocks.STOMPING_BARRELS.values().forEach(barrel -> cat(r, barrel, STOMPING));
