@@ -25,13 +25,8 @@ import net.dries007.tfc.client.render.blockentity.PlacedItemBlockEntityRenderer;
 public class CentrifugeBlockEntityRenderer implements BlockEntityRenderer<CentrifugeBlockEntity>
 {
     public static final ModelResourceLocation BASE_LOCATION = ModelResourceLocation.standalone(FLHelpers.identifier("block/centrifuge"));
-
-    private final float[] FRAME_POINTS = new float[] {
-        1.6f / 16f,
-        5.2f / 16f,
-        8.8f / 16f,
-        12.4f / 16f
-    };
+    public static final ModelResourceLocation PARTS_LOCATION = ModelResourceLocation.standalone(FLHelpers.identifier("block/centrifuge_parts"));
+    public static final ModelResourceLocation PARTS_CONNECTED_LOCATION = ModelResourceLocation.standalone(FLHelpers.identifier("block/centrifuge_parts_connected"));
 
     @Override
     public void render(CentrifugeBlockEntity cent, float partialTick, PoseStack poseStack, MultiBufferSource buffers, int combinedLight, int combinedOverlay)
@@ -58,19 +53,24 @@ public class CentrifugeBlockEntityRenderer implements BlockEntityRenderer<Centri
             };
 
             poseStack.pushPose();
+
             poseStack.translate(0.5f, 0, 0.5f);
-            poseStack.mulPose(Axis.YP.rotationDegrees(angle));
             poseStack.mulPose(Axis.YP.rotation(-rotationAngle));
             poseStack.translate(-0.5f, 0f, -0.5f);
 
-            final BakedModel base = mc.getModelManager().getModel(BASE_LOCATION);
-            modelRenderer.tesselateWithAO(cent.getLevel(), base, state, cent.getBlockPos(), poseStack, buffer, false, RandomSource.create(), 4L, combinedOverlay, ModelData.EMPTY, RenderType.cutout());
+            final BakedModel parts = mc.getModelManager().getModel(cent.isConnectedToNetwork() ? PARTS_CONNECTED_LOCATION : PARTS_LOCATION);
+            modelRenderer.tesselateWithAO(cent.getLevel(), parts, state, cent.getBlockPos(), poseStack, buffer, false, RandomSource.create(), 4L, combinedOverlay, ModelData.EMPTY, RenderType.cutout());
 
             for (int i = 0; i < CentrifugeBlockEntity.SLOTS; i++)
             {
                 final Item item = cent.getInventory().getStackInSlot(i).getItem();
                 poseStack.pushPose();
-                poseStack.translate(1 / 16f, 0.0625, FRAME_POINTS[i]);
+
+                poseStack.mulPose(Axis.ZP.rotationDegrees(90f));
+                if (i % 2 == 1)
+                    poseStack.mulPose(Axis.XP.rotationDegrees(90f));
+
+                poseStack.translate(0.001f * i,  i % 2 == 0 ? -0.8f : 0.2f, i > 1 ? 0.75f : 0.125f);
                 if (PlacedItemBlockEntityRenderer.MODELS.containsKey(item))
                 {
                     final var provider = PlacedItemBlockEntityRenderer.MODELS.get(item);

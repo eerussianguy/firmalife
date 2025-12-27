@@ -1,6 +1,8 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
+import java.util.Set;
 import com.eerussianguy.firmalife.common.FLHelpers;
+import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blocks.bee.SkepBlock;
 import com.eerussianguy.firmalife.common.capabilities.FLComponents;
 import com.eerussianguy.firmalife.common.capabilities.bee.BeeComponent;
@@ -10,16 +12,13 @@ import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 
-/**
- * This thing is kind of a hack, it basically ignores the inventory
- * But it's also kind of smart because we're using inheritance to our advantage here to change functionality
- * Any way, if you're working on this class, be smart!
- */
+import net.dries007.tfc.util.Helpers;
+
 public class SkepBlockEntity extends FLBeehiveBlockEntity
 {
     public SkepBlockEntity(BlockPos pos, BlockState state)
     {
-        super(pos, state, FLBlockEntities.SKEP.get());
+        super(pos, state, FLBlockEntities.SKEP.get(), 1);
     }
 
     @Override
@@ -58,6 +57,18 @@ public class SkepBlockEntity extends FLBeehiveBlockEntity
             {
                 hive.linkSwarmFrom(worldPosition);
             }
+        }
+    }
+
+    @Override
+    public void updateTick(float temperature, boolean occluded, Set<Flower> flowers)
+    {
+        super.updateTick(temperature, occluded, flowers);
+        assert level != null;
+        if (hasBait(flowers.size()) && level.random.nextInt(8) == 0)
+        {
+            beeData = BeeComponent.getWildBee(level, worldPosition);
+            inventory.setStackInSlot(0, ItemStack.EMPTY);
         }
     }
 
@@ -106,6 +117,11 @@ public class SkepBlockEntity extends FLBeehiveBlockEntity
     @Override
     public boolean isItemValid(int slot, ItemStack stack)
     {
-        return false;
+        return slot == 0 && !beeData.hasQueen() && Helpers.isItem(stack, FLTags.Items.BEE_BAIT);
+    }
+
+    public boolean hasBait(int flowers)
+    {
+        return Helpers.isItem(inventory.getStackInSlot(0), FLTags.Items.BEE_BAIT) && isWarmEnough() && !beeData.hasQueen() && flowers > 30;
     }
 }

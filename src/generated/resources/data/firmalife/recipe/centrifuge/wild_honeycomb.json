@@ -1,0 +1,10 @@
+{
+  "type": "firmalife:centrifuge",
+  "ingredient": {
+    "item": "firmalife:wild_honeycomb"
+  },
+  "result": {
+    "count": 1,
+    "id": "firmalife:food/raw_honey"
+  }
+}

@@ -1,10 +1,14 @@
 package com.eerussianguy.firmalife.common.blocks.bee;
 
+import java.util.function.Consumer;
+import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.SkepBlockEntity;
 import com.eerussianguy.firmalife.common.capabilities.FLComponents;
 import com.eerussianguy.firmalife.common.items.FLFood;
 import com.eerussianguy.firmalife.common.items.FLItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
@@ -12,7 +16,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SupportType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
@@ -64,7 +71,27 @@ public class SkepBlock extends BaseBeehiveBlock implements IItemSize
             Helpers.playSound(level, pos, SoundEvents.HONEY_BLOCK_PLACE);
             level.setBlockAndUpdate(pos, state.cycle(HONEY));
         }
+        else if (level.getBlockEntity(pos) instanceof SkepBlockEntity skep && skep.isItemValid(0, held))
+        {
+            return FLHelpers.insertOne(level, held, 0, skep.getInventory(), player);
+        }
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+    }
+
+    @Override
+    protected BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos)
+    {
+        if (direction == Direction.DOWN && !neighborState.isFaceSturdy(level, neighborPos, Direction.UP, SupportType.CENTER))
+        {
+            return Blocks.AIR.defaultBlockState();
+        }
+        return state;
+    }
+
+    @Override
+    protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos)
+    {
+        return level.getBlockState(pos.below()).isFaceSturdy(level, pos, Direction.UP, SupportType.CENTER);
     }
 
     @Override
@@ -101,5 +128,15 @@ public class SkepBlock extends BaseBeehiveBlock implements IItemSize
     protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context)
     {
         return SHAPE;
+    }
+
+    @Override
+    public void addHoeOverlayInfo(Level level, BlockPos pos, BlockState blockState, Consumer<Component> tooltip, boolean debug)
+    {
+        super.addHoeOverlayInfo(level, pos, blockState, tooltip, debug);
+        if (level.getBlockEntity(pos) instanceof SkepBlockEntity skep && skep.hasBait(skep.countFlowers().size()) && skep.isWarmEnough())
+        {
+            tooltip.accept(Component.translatable("firmalife.beehive.attracting_bees"));
+        }
     }
 }

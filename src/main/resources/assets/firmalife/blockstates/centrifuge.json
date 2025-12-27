@@ -1,8 +1,20 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "variants": {
-    "": {
-      "model": "tfc:block/empty"
+    "facing=east": {
+      "model": "firmalife:block/centrifuge",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "firmalife:block/centrifuge"
+    },
+    "facing=south": {
+      "model": "firmalife:block/centrifuge",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "firmalife:block/centrifuge",
+      "y": 270
     }
   }
 }

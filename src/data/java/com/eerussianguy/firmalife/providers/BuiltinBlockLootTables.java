@@ -172,7 +172,10 @@ public class BuiltinBlockLootTables extends BlockLootSubProvider implements Acce
                 )
                 .withPool(lootPool()
                     .add(lootTableItem(FLItems.BEESWAX))
-                    .apply(setCount(1, 3))
+                    .apply(setCount(1, 2))
+                )
+                .withPool(lootPool()
+                    .add(lootTableItem(FLItems.WILD_HONEYCOMB))
                 )
         );
         dropSelf(FLBlocks.COMPOST_TUMBLER);

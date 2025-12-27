@@ -26,7 +26,7 @@ public class BuiltinItemSizes extends DataManagerProvider<ItemSizeDefinition>
     @Override
     protected void addData(HolderLookup.Provider provider)
     {
-        add("beehive_frame", Ingredient.of(FLItems.BEEHIVE_FRAME, FLItems.FILLED_BEEHIVE_FRAME, FLItems.SUGARED_BEEHIVE_FRAME, FLItems.SCRAPED_BEEHIVE_FRAME), Size.VERY_SMALL, Weight.VERY_HEAVY);
+        add("beehive_frame", Ingredient.of(FLTags.Items.BEEHIVE_FRAMES), Size.VERY_SMALL, Weight.VERY_HEAVY);
         add("cheese_wheels", FLTags.Items.CHEESE_WHEELS, Size.VERY_LARGE, Weight.VERY_HEAVY);
         add("dynamic_foods", FLTags.Items.DYNAMIC_FOODS, Size.VERY_SMALL, Weight.VERY_HEAVY);
         add("peel", FLItems.PEEL, Size.VERY_LARGE, Weight.HEAVY);

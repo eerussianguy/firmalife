@@ -17,6 +17,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
@@ -90,10 +91,10 @@ public class BaseBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBl
     @Override
     public ItemInteractionResult useItemOn(ItemStack held, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
     {
-        if (Helpers.isItem(held, FLItems.BEEHIVE_FRAME.get()) || Helpers.isItem(held, FLTags.Items.FILLED_FRAMES))
+        if (Helpers.isItem(held, FLTags.Items.BEEHIVE_FRAMES))
         {
             final var res = FLHelpers.consumeItemInventory(level, pos, FLBlockEntities.BEEHIVE, (hive, inv) ->
-                FLHelpers.insertOneAny(level, held, 0, FLBeehiveBlockEntity.FRAME_SLOTS - 1, inv, player)
+                FLHelpers.insertOneAny(level, held, 0, inv.getSlots() - 1, inv, player)
             );
             if (res.consumesAction())
             {
@@ -104,7 +105,7 @@ public class BaseBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBl
         else if (held.isEmpty())
         {
             final var res = FLHelpers.consumeItemInventory(level, pos, FLBlockEntities.BEEHIVE, (hive, inv) ->
-                FLHelpers.takeOneAny(level, 0, FLBeehiveBlockEntity.FRAME_SLOTS - 1, inv, player)
+                FLHelpers.takeOneAny(level, 0, inv.getSlots() - 1, inv, player)
             );
             if (res.consumesAction())
             {
@@ -190,8 +191,8 @@ public class BaseBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBl
             {
                 tooltip.accept(Component.translatable("firmalife.beehive.has_queen"));
                 bee.addTooltipInfo(tooltip);
-                final float minTemp = BeeAbility.getMinTemperature(bee.getAbility(BeeAbility.HARDINESS));
-                if (temp <= minTemp)
+                final float minTemp = hive.getMinTemperature();
+                if (temp <= minTemp || hive.getAvailableFrames() == 0)
                 {
                     tooltip.accept(Component.translatable("firmalife.beehive.bee_cold", minTemp, String.format("%.2f", temp)).withStyle(ChatFormatting.AQUA));
                     if (honey == 0)
@@ -223,5 +224,17 @@ public class BaseBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBl
             }
         }
 
+    }
+
+    @Override
+    protected boolean hasAnalogOutputSignal(BlockState state)
+    {
+        return true;
+    }
+
+    @Override
+    protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos)
+    {
+        return level.getBlockEntity(pos) instanceof FLBeehiveBlockEntity hive ? Mth.lerpDiscrete((float) hive.getHoney() / hive.getInventory().getSlots(), 0, 15) : 0;
     }
 }

@@ -81,7 +81,7 @@ public class DataEntryPoint
         )).getRegistryProvider();
 
         final var blockTags = add(event, new BuiltinBlockTags(event, lookup)).contentsGetter();
-        final var itemTags = add(event, new BuiltinItemTags(event, lookup)).contentsGetter();
+        final var itemTags = add(event, new BuiltinItemTags(event, lookup, blockTags)).contentsGetter();
         add(event, new BuiltinEntityTypeTags(event, lookup));
         add(event, new BuiltinFluidTags(event, lookup));
 

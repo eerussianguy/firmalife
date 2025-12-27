@@ -75,9 +75,21 @@ public class DryingMatBlock extends BottomSupportedDeviceBlock
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public ItemInteractionResult useItemOn(ItemStack held, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
     {
         return DryingMatBlock.use(level, pos, player, held);
     }
+
+    @Override
+    protected boolean hasAnalogOutputSignal(BlockState state)
+    {
+        return true;
+    }
+
+    @Override
+    protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos)
+    {
+        return FLHelpers.getRedstoneSignalFromContainer(level, pos);
+    }
+
 }

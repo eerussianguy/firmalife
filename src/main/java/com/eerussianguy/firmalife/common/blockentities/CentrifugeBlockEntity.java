@@ -84,7 +84,7 @@ public class CentrifugeBlockEntity extends TickableInventoryBlockEntity<ItemStac
         level.sendParticles(new ItemParticleOption(ParticleTypes.ITEM, item), pos.getX() + 0.5D, pos.getY() + 1.1D, pos.getZ() + 0.5D, count, Helpers.triangle(level.random) / 2.0D, level.random.nextDouble() / 4.0D, Helpers.triangle(level.random) / 2.0D, 0.15f);
     }
 
-    public static final int MANUAL_TICKS = 90;
+    public static final int MANUAL_TICKS = 180;
     public static final float MANUAL_SPEED = Mth.TWO_PI / MANUAL_TICKS; // In radians / tick
 
     private static final float MANUAL_RECIPE_PER_TICK = 1f; // Exactly 90 ticks at 1/tick
@@ -101,7 +101,7 @@ public class CentrifugeBlockEntity extends TickableInventoryBlockEntity<ItemStac
     {
         super(FLBlockEntities.CENTRIFUGE.get(), pos, state, defaultInventory(SLOTS));
 
-        this.node = new SinkNode(pos, Direction.DOWN)
+        this.node = new SinkNode(pos, Direction.UP)
         {
             @Override
             public String toString()
@@ -111,8 +111,8 @@ public class CentrifugeBlockEntity extends TickableInventoryBlockEntity<ItemStac
         };
 
         sidedInventory
-            .on(new PartialItemHandler(inventory).extract(0, 1, 2, 3), d -> d != Direction.UP)
-            .on(new PartialItemHandler(inventory).insert(0, 1, 2, 3), d -> d == Direction.UP);
+            .on(new PartialItemHandler(inventory).extract(0, 1, 2, 3), d -> d == Direction.DOWN)
+            .on(new PartialItemHandler(inventory).insert(0, 1, 2, 3), d -> d != Direction.DOWN);
     }
 
     @Override

@@ -128,14 +128,12 @@ public class OvenBottomBlock extends AbstractOvenBlock implements IBellowsConsum
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos)
     {
         return state.getValue(LIT) && !isInsulated(level, currentPos, state) ? state.setValue(LIT, false) : state;
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand)
     {
         if (state.getValue(LIT) && !isInsulated(level, pos, state))
@@ -154,5 +152,17 @@ public class OvenBottomBlock extends AbstractOvenBlock implements IBellowsConsum
     public void intakeAir(Level level, BlockPos blockPos, BlockState state, int amount)
     {
         level.getBlockEntity(blockPos, FLBlockEntities.OVEN_BOTTOM.get()).ifPresent(oven -> oven.onAirIntake(amount));
+    }
+
+    @Override
+    protected boolean hasAnalogOutputSignal(BlockState state)
+    {
+        return true;
+    }
+
+    @Override
+    protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos)
+    {
+        return FLHelpers.getRedstoneSignalFromContainer(level, pos);
     }
 }

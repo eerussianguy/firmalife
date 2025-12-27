@@ -75,4 +75,16 @@ public class MixingBowlBlock extends BottomSupportedDeviceBlock
     {
         builder.add(SPOON);
     }
+
+    @Override
+    protected boolean hasAnalogOutputSignal(BlockState state)
+    {
+        return true;
+    }
+
+    @Override
+    protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos)
+    {
+        return FLHelpers.getRedstoneSignalFromContainer(level, pos);
+    }
 }

@@ -29,8 +29,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.TagKey;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
+import net.minecraft.world.Container;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.ai.village.poi.PoiManager;
@@ -254,6 +256,28 @@ public class FLHelpers
         ItemStack merged = FoodCapability.mergeItemStacks(existing, remainder);
         remainder.grow(inventory.insertItem(slot, merged, false).getCount());
         return remainder;
+    }
+
+    public static int getRedstoneSignalFromContainer(Level level, BlockPos pos)
+    {
+        return level.getBlockEntity(pos) instanceof InventoryBlockEntity<?> inv ? getRedstoneSignalFromContainer(inv.getInventory()) : 0;
+    }
+
+    public static int getRedstoneSignalFromContainer(IItemHandler inv)
+    {
+        float load = 0.0F;
+
+        for (int i = 0; i < inv.getSlots(); ++i)
+        {
+            final ItemStack itemstack = inv.getStackInSlot(i);
+            if (!itemstack.isEmpty())
+            {
+                load += (float) itemstack.getCount() / (float) inv.getSlotLimit(i);
+            }
+        }
+
+        load /= (float) inv.getSlots();
+        return Mth.lerpDiscrete(load, 0, 15);
     }
 
     /**

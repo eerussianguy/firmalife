@@ -23,8 +23,8 @@ import net.dries007.tfc.util.Helpers;
 public class CentrifugeBlock extends FourWayDeviceBlock
 {
     public static final VoxelShape SHAPE = Shapes.or(
-        box(5, 0, 5, 11, 1, 11),
-        box(0, 1, 0, 16, 16, 16)
+        box(0, 0, 0, 16, 15, 16),
+        box(5, 15, 5, 11, 16, 11)
     );
 
     public CentrifugeBlock(ExtendedProperties properties)
@@ -59,5 +59,17 @@ public class CentrifugeBlock extends FourWayDeviceBlock
     protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context)
     {
         return SHAPE;
+    }
+
+    @Override
+    protected boolean hasAnalogOutputSignal(BlockState state)
+    {
+        return true;
+    }
+
+    @Override
+    protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos)
+    {
+        return FLHelpers.getRedstoneSignalFromContainer(level, pos);
     }
 }

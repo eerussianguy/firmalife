@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "H": {
+      "tag": "firmalife:herbs"
+    },
+    "S": {
+      "item": "minecraft:sugar"
+    },
+    "Y": {
+      "item": "minecraft:yellow_dye"
+    }
+  },
+  "pattern": [
+    "SSS",
+    "YYY",
+    "HHH"
+  ],
+  "result": {
+    "count": 1,
+    "id": "firmalife:aromatic_honeycomb"
+  }
+}

@@ -1,13 +1,6 @@
 {
   "values": [
-    "firmalife:plant/basil",
-    "firmalife:plant/bay_laurel",
-    "firmalife:plant/cardamom",
-    "firmalife:plant/cilantro",
-    "firmalife:plant/cumin",
-    "firmalife:plant/oregano",
-    "firmalife:plant/pimento",
-    "firmalife:plant/vanilla",
+    "#firmalife:herbs",
     "firmalife:plant/butterfly_grass",
     "tfc:plant/goldenrod",
     "tfc:plant/rose",

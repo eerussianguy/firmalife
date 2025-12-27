@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 import com.eerussianguy.firmalife.Accessors;
 import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.common.FLHelpers;
+import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.blocks.greenhouse.Greenhouse;
 import com.eerussianguy.firmalife.common.blocks.plant.FLFruitBlocks;
@@ -101,7 +102,7 @@ public class BuiltinBlockTags extends TagsProvider<Block> implements Accessors
 
         tag(TFCTags.Blocks.THORNY_BUSHES).add(FLBlocks.STATIONARY_BUSHES.get(FLFruitBlocks.StationaryBush.PINEAPPLE));
         tag(TFCTags.Blocks.SINGLE_BLOCK_REPLACEABLE)
-            .add(FLBlocks.HERBS)
+            .addTag(HERBS)
             .add(FLBlocks.BUTTERFLY_GRASS);
         tag(TFCTags.Blocks.MINEABLE_WITH_GLASS_SAW)
             .add(FLBlocks.REINFORCED_POURED_GLASS);
@@ -120,7 +121,7 @@ public class BuiltinBlockTags extends TagsProvider<Block> implements Accessors
         tag(PLANTERS)
             .add(FLBlocks.LARGE_PLANTER, FLBlocks.QUAD_PLANTER, FLBlocks.BONSAI_PLANTER, FLBlocks.TRELLIS_PLANTER, FLBlocks.HANGING_PLANTER, FLBlocks.HYDROPONIC_PLANTER);
         tag(BEE_RESTORATION_PLANTS)
-            .add(FLBlocks.HERBS)
+            .addTag(HERBS)
             .add(
                 FLBlocks.BUTTERFLY_GRASS,
                 TFCBlocks.PLANTS.get(Plant.GOLDENROD),
@@ -210,7 +211,7 @@ public class BuiltinBlockTags extends TagsProvider<Block> implements Accessors
             .add(FLBlocks.RUSTIC_BRICK_DECOR.slab())
             .add(FLBlocks.RUSTIC_BRICK_DECOR.stair())
             .add(FLBlocks.RUSTIC_BRICK_DECOR.wall());
-        tag(BUTTERFLY_GRASS_MUTANTS).add(FLBlocks.HERBS);
+        tag(BUTTERFLY_GRASS_MUTANTS).addTag(HERBS);
         tag(FOOD_SHELVES).add(FLBlocks.FOOD_SHELVES);
         tag(HANGERS).add(FLBlocks.HANGERS);
         tag(JARBNETS).add(FLBlocks.JARBNETS);
@@ -220,6 +221,7 @@ public class BuiltinBlockTags extends TagsProvider<Block> implements Accessors
         tag(WINE_SHELVES).add(FLBlocks.WINE_SHELVES);
         tag(CHEESE_WHEELS).add(FLBlocks.CHEDDAR_WHEEL, FLBlocks.CHEVRE_WHEEL, FLBlocks.FETA_WHEEL, FLBlocks.GOUDA_WHEEL, FLBlocks.RAJYA_METOK_WHEEL, FLBlocks.SHOSHA_WHEEL);
         tag(CHIMNEYS).add(FLBlocks.CURED_OVEN_CHIMNEY).add(FLBlocks.OVEN_CHIMNEY);
+        tag(HERBS).add(FLBlocks.HERBS);
 
 
         tag(TFCTags.Blocks.CAN_START_COLLAPSE).add2(FLBlocks.CHROMITE_ORES);

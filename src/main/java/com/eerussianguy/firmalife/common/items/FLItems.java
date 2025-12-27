@@ -45,7 +45,10 @@ public class FLItems
     public static final Map<FLFruit, ItemId> FRUITS = Helpers.mapOf(FLFruit.class, food -> register("food/" + food.name(), () -> new Item(new Item.Properties().food(food.getFoodProperties()))));
 
     public static final ItemId BEESWAX = register("beeswax", () -> new HoneycombItem(prop()));
+    public static final ItemId WILD_HONEYCOMB = register("wild_honeycomb", () -> new HoneycombItem(prop()));
+    public static final ItemId AROMATIC_HONEYCOMB = register("aromatic_honeycomb", () -> new HoneycombItem(prop()));
     public static final ItemId BEEHIVE_FRAME = register("beehive_frame");
+    public static final ItemId INSULATING_BEEHIVE_FRAME = register("insulating_beehive_frame", () -> new BeehiveFrameItem(prop().craftRemainder(BEEHIVE_FRAME.get()), TFCItems.WOOL));
     public static final ItemId SCRAPED_BEEHIVE_FRAME = register("scraped_beehive_frame", () -> new Item(prop().craftRemainder(BEEHIVE_FRAME.get())));
     public static final ItemId FILLED_BEEHIVE_FRAME = register("filled_beehive_frame", () -> new BeehiveFrameItem(prop().craftRemainder(SCRAPED_BEEHIVE_FRAME.get()), BEESWAX));
     public static final ItemId SUGARED_BEEHIVE_FRAME = register("sugared_beehive_frame", () -> new BeehiveFrameItem(prop().craftRemainder(BEEHIVE_FRAME.get()), () -> Items.SUGAR));

@@ -1,6 +1,7 @@
 package com.eerussianguy.firmalife.providers;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
@@ -31,6 +32,7 @@ import net.minecraft.tags.TagEntry;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
@@ -44,10 +46,13 @@ import net.dries007.tfc.util.registry.IdHolder;
 public class BuiltinItemTags extends TagsProvider<Item> implements Accessors
 {
     private final ExistingFileHelper.IResourceType resourceType;
+    private final CompletableFuture<TagsProvider.TagLookup<Block>> blockTags;
+    private final Map<TagKey<Block>, TagKey<Item>> tagsToCopy = new HashMap<>();
 
-    public BuiltinItemTags(GatherDataEvent event, CompletableFuture<HolderLookup.Provider> lookup)
+    public BuiltinItemTags(GatherDataEvent event, CompletableFuture<HolderLookup.Provider> lookup, CompletableFuture<TagLookup<Block>> blockTags)
     {
         super(event.getGenerator().getPackOutput(), Registries.ITEM, lookup, FirmaLife.MOD_ID, event.getExistingFileHelper());
+        this.blockTags = blockTags;
         this.resourceType = new ExistingFileHelper.ResourceType(PackType.SERVER_DATA, ".json", Registries.tagsDirPath(registryKey));
     }
 
@@ -161,7 +166,9 @@ public class BuiltinItemTags extends TagsProvider<Item> implements Accessors
             itemOf(FLFood.DARK_CHOCOLATE).asItem(),
             itemOf(FLFood.WHITE_CHOCOLATE).asItem()
         );
-        tag(FLTags.Items.FILLED_FRAMES).add(FLItems.FILLED_BEEHIVE_FRAME, FLItems.SUGARED_BEEHIVE_FRAME);
+        tag(FLTags.Items.FILLED_BEEHIVE_FRAMES).add(FLItems.FILLED_BEEHIVE_FRAME, FLItems.SUGARED_BEEHIVE_FRAME);
+        tag(FLTags.Items.BEEHIVE_FRAMES).addTag(FLTags.Items.FILLED_BEEHIVE_FRAMES).add(FLItems.SCRAPED_BEEHIVE_FRAME, FLItems.INSULATING_BEEHIVE_FRAME, FLItems.BEEHIVE_FRAME);
+        tag(FLTags.Items.BEE_BAIT).add(FLItems.WILD_HONEYCOMB, FLItems.AROMATIC_HONEYCOMB);
         tag(TFCTags.Items.CAN_BE_SALTED).add(itemOf(FLFood.BUTTER).asItem());
         tag(TFCTags.Items.TOOL_RACK_TOOLS).add(FLItems.SPOON, FLItems.PEEL);
         tag(FLTags.Items.PUMPKIN_KNAPPING).add(TFCBlocks.PUMPKIN.asItem());
@@ -235,6 +242,30 @@ public class BuiltinItemTags extends TagsProvider<Item> implements Accessors
                 );
             });
         }
+
+        copy(FLTags.Blocks.HERBS, FLTags.Items.HERBS);
+    }
+
+    @Override
+    protected CompletableFuture<HolderLookup.Provider> createContentsProvider()
+    {
+        return super.createContentsProvider().thenCombine(blockTags, (lookup, tagLookup) -> {
+            tagsToCopy.forEach((blockTag, itemTag) -> {
+                tagLookup.apply(blockTag)
+                    .map(TagBuilder::build)
+                    .filter(e -> !e.isEmpty())
+                    .ifPresentOrElse(content -> {
+                        // N.B. Only copy the tag if the original is non-empty. We do this since we copy all vanilla tags by default,
+                        // and we only really want to include the ones that we are adding to
+                        final TagBuilder builder = getOrCreateRawBuilder(itemTag);
+                        content.forEach(builder::add);
+                    }, () -> {
+                        // Throw an error if we try and copy a TFC tag that didn't exist
+                        if (blockTag.location().getNamespace().equals("tfc")) throw new IllegalArgumentException("Copying empty or missing tag " + blockTag.location());
+                    });
+            });
+            return lookup;
+        });
     }
 
     @Override
@@ -256,6 +287,11 @@ public class BuiltinItemTags extends TagsProvider<Item> implements Accessors
                 return super.add(entry);
             }
         });
+    }
+
+    private void copy(TagKey<Block> blockTag, TagKey<Item> itemTag)
+    {
+        this.tagsToCopy.put(blockTag, itemTag);
     }
 
     static class ItemTagAppender extends TagAppender<Item> implements Accessors

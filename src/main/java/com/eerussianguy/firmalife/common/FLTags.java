@@ -51,6 +51,7 @@ public class FLTags
         public static final TagKey<Block> POOR_CHROMITE = create("ores/chromite/poor");
         public static final TagKey<Block> NORMAL_CHROMITE = create("ores/chromite/normal");
         public static final TagKey<Block> RICH_CHROMITE = create("ores/chromite/rich");
+        public static final TagKey<Block> HERBS = create("herbs");
 
         private static TagKey<Block> create(String id)
         {
@@ -73,7 +74,9 @@ public class FLTags
         public static final TagKey<Item> CAN_BE_HUNG = create("can_be_hung");
         public static final TagKey<Item> USABLE_IN_STOVETOP_SOUP = create("usable_in_stovetop_soup");
         public static final TagKey<Item> BEEKEEPER_ARMOR = create("beekeeper_armor");
-        public static final TagKey<Item> FILLED_FRAMES = create("filled_frames");
+        public static final TagKey<Item> BEEHIVE_FRAMES = create("beehive_frames");
+        public static final TagKey<Item> BEE_BAIT = create("bee_bait");
+        public static final TagKey<Item> FILLED_BEEHIVE_FRAMES = create("filled_beehive_frames");
         public static final TagKey<Item> EMPTY_WINE_BOTTLES = create("empty_wine_bottles");
         public static final TagKey<Item> WINE_BOTTLES = create("wine_bottles");
         public static final TagKey<Item> GRAPES = create("foods/grapes");
@@ -100,6 +103,7 @@ public class FLTags
         public static final TagKey<Item> CHEESE_WHEELS = create("foods/cheese_wheels");
         public static final TagKey<Item> DYNAMIC_FOODS = create("foods/dynamic_foods");
         public static final TagKey<Item> FILLED_WINE_BOTTLES = create("foods/filled_wine_bottles");
+        public static final TagKey<Item> HERBS = create("herbs");
 
         private static TagKey<Item> create(String id)
         {

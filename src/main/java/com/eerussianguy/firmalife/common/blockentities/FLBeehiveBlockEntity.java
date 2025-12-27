@@ -48,7 +48,6 @@ import net.dries007.tfc.common.blocks.TFCBlockStateProperties;
 import net.dries007.tfc.common.blocks.plant.ITallPlant;
 import net.dries007.tfc.common.blocks.soil.ConnectedGrassBlock;
 import net.dries007.tfc.common.blocks.soil.DirtBlock;
-import net.dries007.tfc.common.capabilities.PartialItemHandler;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.ICalendar;
@@ -90,21 +89,12 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
 
     protected BeeComponent beeData = BeeComponent.DEFAULT;
 
-    public FLBeehiveBlockEntity(BlockPos pos, BlockState state)
+    public FLBeehiveBlockEntity(BlockPos pos, BlockState state, BlockEntityType<?> type, int slots)
     {
-        this(pos, state, FLBlockEntities.BEEHIVE.get());
-    }
-
-    public FLBeehiveBlockEntity(BlockPos pos, BlockState state, BlockEntityType<?> type)
-    {
-        super(type, pos, state, defaultInventory(FRAME_SLOTS), FirmaLife.MOD_ID);
+        super(type, pos, state, defaultInventory(slots), FirmaLife.MOD_ID);
         lastPlayerTick = Integer.MIN_VALUE;
         lastAreaTick = Calendars.SERVER.getTicks();
         beesInWorld = 0;
-
-        sidedInventory
-            .on(new PartialItemHandler(inventory).insert(0, 1, 2, 3), Direction.Plane.HORIZONTAL)
-            .on(new PartialItemHandler(inventory).extract(0, 1, 2, 3), Direction.DOWN);
     }
 
     public @Nullable BlockPos getLinkedHive()
@@ -184,7 +174,6 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
             trySwarm(occluded); // happens at the end of an update, only once.
             markForSync();
         }
-
     }
 
     @Override
@@ -217,7 +206,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
         if (beeData.hasQueen())
         {
             flowers.forEach(f -> tickPosition(f.pos, f.state));
-            final boolean warmNow = isWarmEnough(temperature);
+            final boolean warmNow = isWarmEnough(temperature) && getAvailableFrames() > 0;
             final int honeyChanceInverted = getHoneyTickChanceInverted(beeData, flowers.size());
             if (!occluded && warmNow && (honeyChanceInverted == 0 || level.random.nextInt(honeyChanceInverted) == 0))
             {
@@ -338,9 +327,9 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
 
     public void takeHoney(int honey)
     {
-        for (int i = 0; i < FRAME_SLOTS; i++)
+        for (int i = 0; i < inventory.getSlots(); i++)
         {
-            if (honey > 0 && Helpers.isItem(inventory.getStackInSlot(i).getItem(), FLTags.Items.FILLED_FRAMES))
+            if (honey > 0 && Helpers.isItem(inventory.getStackInSlot(i).getItem(), FLTags.Items.FILLED_BEEHIVE_FRAMES))
             {
                 inventory.setStackInSlot(i, FLItems.BEEHIVE_FRAME.get().getDefaultInstance());
                 honey--;
@@ -351,7 +340,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
 
     public void addHoney(int honey)
     {
-        for (int i = 0; i < FRAME_SLOTS; i++)
+        for (int i = 0; i < inventory.getSlots(); i++)
         {
             if (inventory.getStackInSlot(i).getItem() == FLItems.BEEHIVE_FRAME.get())
             {
@@ -403,7 +392,21 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
     public boolean isWarmEnough(float temperature)
     {
         assert level != null;
-        return temperature > BeeAbility.getMinTemperature(beeData.getAbility(BeeAbility.HARDINESS));
+        return temperature > getMinTemperature();
+    }
+
+    public float getMinTemperature()
+    {
+        boolean insulation = false;
+        for (int i = 0; i < inventory.getSlots(); i++)
+        {
+            if (inventory.getStackInSlot(i).getItem() == FLItems.INSULATING_BEEHIVE_FRAME.get())
+            {
+                insulation = true;
+                break;
+            }
+        }
+        return BeeAbility.getMinTemperature(beeData.getAbility(BeeAbility.HARDINESS)) - (insulation ? 2 : 0);
     }
 
     public record Flower(BlockPos pos, BlockState state) {}
@@ -455,10 +458,22 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
         int honey = 0;
         for (ItemStack stack : Helpers.iterate(inventory))
         {
-            if (Helpers.isItem(stack, FLTags.Items.FILLED_FRAMES))
+            if (Helpers.isItem(stack, FLTags.Items.FILLED_BEEHIVE_FRAMES))
                 honey += 1;
         }
         return honey;
+    }
+
+    public int getAvailableFrames()
+    {
+        int frames = 0;
+        for (ItemStack stack : Helpers.iterate(inventory))
+        {
+            // this is subtly a different check than just the 'frames' tag.
+            if (Helpers.isItem(stack, FLTags.Items.FILLED_BEEHIVE_FRAMES) || stack.getItem() == FLItems.BEEHIVE_FRAME.get())
+                frames += 1;
+        }
+        return frames;
     }
 
     private void tickPosition(BlockPos pos, BlockState state)
@@ -607,7 +622,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
     @Override
     public boolean isItemValid(int slot, ItemStack stack)
     {
-        return stack.getItem() == FLItems.BEEHIVE_FRAME.get() || Helpers.isItem(stack.getItem(), FLTags.Items.FILLED_FRAMES);
+        return Helpers.isItem(stack, FLTags.Items.BEEHIVE_FRAMES);
     }
 
     @Override

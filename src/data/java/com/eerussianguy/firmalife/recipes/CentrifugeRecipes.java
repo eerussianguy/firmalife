@@ -14,5 +14,6 @@ public interface CentrifugeRecipes extends Recipes
     {
         add(new CentrifugeRecipe(Ingredient.of(FLItems.SCRAPED_BEEHIVE_FRAME), ItemStackProvider.of(FLItems.FOODS.get(FLFood.RAW_HONEY))));
         add(new CentrifugeRecipe(Ingredient.of(FLItems.SUGARED_BEEHIVE_FRAME), ItemStackProvider.of(Items.SUGAR)));
+        add("wild_honeycomb", new CentrifugeRecipe(Ingredient.of(FLItems.WILD_HONEYCOMB), ItemStackProvider.of(FLItems.FOODS.get(FLFood.RAW_HONEY))));
     }
 }

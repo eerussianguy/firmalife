@@ -155,6 +155,10 @@ public interface CraftingRecipes extends Recipes
             .shaped(FLItems.BEEHIVE_FRAME);
         recipe()
             .input(FLItems.BEEHIVE_FRAME)
+            .input(TFCItems.WOOL)
+            .shapeless(FLItems.INSULATING_BEEHIVE_FRAME);
+        recipe()
+            .input(FLItems.BEEHIVE_FRAME)
             .input(FLItems.FOODS.get(FLFood.RAW_HONEY))
             .shapeless(FLItems.FILLED_BEEHIVE_FRAME);
         recipe()
@@ -171,6 +175,17 @@ public interface CraftingRecipes extends Recipes
             .input(FLItems.SUGARED_BEEHIVE_FRAME)
             .damageInputs()
             .shapeless(Items.SUGAR);
+        recipe()
+            .inputIsPrimary(TFCTags.Items.TOOLS_KNIFE)
+            .input(FLItems.INSULATING_BEEHIVE_FRAME)
+            .damageInputs()
+            .shapeless(TFCItems.WOOL);
+        recipe()
+            .input('S', Items.SUGAR)
+            .input('Y', Items.YELLOW_DYE)
+            .input('H', FLTags.Items.HERBS)
+            .pattern("SSS", "YYY", "HHH")
+        .shaped(FLItems.AROMATIC_HONEYCOMB);
         recipe()
             .input('X', TFCTags.Items.LUMBER)
             .input('Y', FLItems.BEEHIVE_FRAME)

@@ -1,18 +1,7 @@
 {
-  "ingredient": [
-    {
-      "item": "firmalife:beehive_frame"
-    },
-    {
-      "item": "firmalife:filled_beehive_frame"
-    },
-    {
-      "item": "firmalife:sugared_beehive_frame"
-    },
-    {
-      "item": "firmalife:scraped_beehive_frame"
-    }
-  ],
+  "ingredient": {
+    "tag": "firmalife:beehive_frames"
+  },
   "size": "very_small",
   "weight": "very_heavy"
 }

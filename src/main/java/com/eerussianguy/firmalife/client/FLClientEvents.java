@@ -166,6 +166,7 @@ public class FLClientEvents
                 FLItems.EMPTY_JAR_WITH_STAINLESS_STEEL_LID.get(), translucentTFC("block/jar"),
                 FLItems.BEEHIVE_FRAME.get(), solid("block/beehive_frame"),
                 FLItems.SCRAPED_BEEHIVE_FRAME.get(), solid("block/scraped_beehive_frame"),
+                FLItems.INSULATING_BEEHIVE_FRAME.get(), solid("block/insulating_beehive_frame"),
                 FLItems.FILLED_BEEHIVE_FRAME.get(), solid("block/filled_beehive_frame"),
                 FLItems.SUGARED_BEEHIVE_FRAME.get(), solid("block/sugared_beehive_frame")
             ));
@@ -253,6 +254,8 @@ public class FLClientEvents
 
         event.register(MixingBowlBlockEntityRenderer.SPOON_LOCATION);
         event.register(CentrifugeBlockEntityRenderer.BASE_LOCATION);
+        event.register(CentrifugeBlockEntityRenderer.PARTS_LOCATION);
+        event.register(CentrifugeBlockEntityRenderer.PARTS_CONNECTED_LOCATION);
         event.register(CompostTumblerBlockEntityRenderer.OPEN_MODEL);
         event.register(CompostTumblerBlockEntityRenderer.CLOSED_MODEL);
         event.register(BarrelPressBlockEntityRenderer.PRESS);
