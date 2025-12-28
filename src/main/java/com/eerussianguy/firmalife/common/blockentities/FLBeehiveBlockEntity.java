@@ -252,10 +252,6 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
             {
                 return true;
             }
-            if (d == Direction.UP && !level.canSeeSky(cursor.setWithOffset(worldPosition, 0, 1, 0)))
-            {
-                return true;
-            }
         }
         return false;
     }
