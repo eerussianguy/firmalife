@@ -32,7 +32,6 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
-import net.minecraft.world.Container;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.ai.village.poi.PoiManager;
@@ -59,8 +58,10 @@ import net.dries007.tfc.common.component.food.FoodCapability;
 import net.dries007.tfc.common.component.food.FoodTrait;
 import net.dries007.tfc.common.component.food.FoodTraits;
 import net.dries007.tfc.common.component.food.IFood;
+import net.dries007.tfc.common.component.heat.HeatCapability;
 import net.dries007.tfc.network.StreamCodecs;
 import net.dries007.tfc.util.Helpers;
+import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.climate.KoppenClimateClassification;
 import net.dries007.tfc.util.data.DataManager;
 
@@ -278,6 +279,21 @@ public class FLHelpers
 
         load /= (float) inv.getSlots();
         return Mth.lerpDiscrete(load, 0, 15);
+    }
+
+    public static boolean stackableExceptHeatAndFood(ItemStack stack1, ItemStack stack2)
+    {
+        // This is a nice way of checking if two stacks are stackable, ignoring the creation date: copy both stacks, give them the same creation date, then check compatibility
+        // This will also not stack items which have different traits, which is intended
+        final ItemStack stack1Copy = stack1.copy(), stack2Copy = stack2.copy();
+        final long date = Calendars.get().getTicks();
+
+        FoodCapability.setCreationDate(stack1Copy, date);
+        FoodCapability.setCreationDate(stack2Copy, date);
+        HeatCapability.setTemperature(stack1Copy, 0);
+        HeatCapability.setTemperature(stack2Copy, 0);
+
+        return ItemStack.isSameItemSameComponents(stack1Copy, stack2Copy) && stack1Copy.getMaxStackSize() >= stack2Copy.getCount() + stack1Copy.getCount();
     }
 
     /**

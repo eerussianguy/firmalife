@@ -60,7 +60,6 @@ public final class FLCreativeTabs
         accept(out, FLItems.SUGARED_BEEHIVE_FRAME);
         accept(out, FLItems.SCRAPED_BEEHIVE_FRAME);
         accept(out, FLItems.INSULATING_BEEHIVE_FRAME);
-        accept(out, FLItems.QUEEN_BEE);
         accept(out, FLItems.BEESWAX);
         accept(out, FLItems.WILD_HONEYCOMB);
         accept(out, FLItems.AROMATIC_HONEYCOMB);

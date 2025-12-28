@@ -16,7 +16,6 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
 import net.dries007.tfc.common.capabilities.BlockCapabilities;
-import net.dries007.tfc.common.capabilities.ItemCapabilities;
 import net.dries007.tfc.common.capabilities.PartialItemHandler;
 import net.dries007.tfc.common.component.food.FoodCapability;
 import net.dries007.tfc.common.component.heat.HeatCapability;
@@ -138,6 +137,32 @@ public class OvenTopBlockEntity extends ApplianceBlockEntity<ApplianceBlockEntit
         sidedInventory
             .on(new PartialItemHandler(inventory).insert(0, 1, 2, 3), Direction.UP)
             .on(new PartialItemHandler(inventory).extract(0, 1, 2, 3), d -> d != Direction.UP);
+    }
+
+    @Override
+    public void advanceForCalendar(long ticks)
+    {
+        for (int i = 0; i < SLOTS; i++)
+        {
+            final ItemStack inputStack = inventory.getStackInSlot(i);
+            final IHeat cap = HeatCapability.get(inputStack);
+            if (cap != null)
+            {
+                final WrappedHeatingRecipe recipe = cachedRecipes[i];
+                if (recipe != null && cookTicks[i] > 0)
+                {
+                    if (ticks > recipe.duration() - cookTicks[i])
+                    {
+                        cookTicks[i] = recipe.duration() + 1;
+                    }
+                    else
+                    {
+                        cookTicks[i] += (int) ticks;
+                    }
+                }
+            }
+
+        }
     }
 
     @Override
