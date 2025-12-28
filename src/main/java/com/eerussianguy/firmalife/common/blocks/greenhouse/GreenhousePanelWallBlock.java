@@ -85,18 +85,20 @@ public class GreenhousePanelWallBlock extends BaseGreenhouseBlock implements IWe
     @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext context)
     {
-        BlockState currentState = context.getLevel().getBlockState(context.getClickedPos());
+        final BlockPos pos = context.getClickedPos();
+        final Level level = context.getLevel();
+        BlockState currentState = level.getBlockState(pos);
         if (currentState.is(this) && currentState.getValue(EXTRA_WALL) == SideType.NONE)
         {
             Direction facing = currentState.getValue(FACING);
             Direction playerFacing = context.getHorizontalDirection();
             if (facing.getClockWise() == playerFacing)
             {
-                return currentState.setValue(EXTRA_WALL, SideType.RIGHT);
+                return updateConnections(currentState.setValue(EXTRA_WALL, SideType.RIGHT), pos, level, Direction.UP);
             }
             if (facing.getCounterClockWise() == playerFacing)
             {
-                return currentState.setValue(EXTRA_WALL, SideType.LEFT);
+                return updateConnections(currentState.setValue(EXTRA_WALL, SideType.LEFT), pos, level, Direction.UP);
             }
             return null;
         }
@@ -104,9 +106,8 @@ public class GreenhousePanelWallBlock extends BaseGreenhouseBlock implements IWe
         if (state != null)
         {
             final Direction facing = context.getHorizontalDirection().getOpposite();
-            final Level level = context.getLevel();
-            state = updateConnections(state.setValue(FACING, facing), context.getClickedPos(), level, facing.getClockWise(), facing.getCounterClockWise(), Direction.DOWN, Direction.UP);
-            final BlockState below = level.getBlockState(context.getClickedPos().below());
+            state = updateConnections(state.setValue(FACING, facing), pos, level, facing.getClockWise(), facing.getCounterClockWise(), Direction.DOWN, Direction.UP);
+            final BlockState below = level.getBlockState(pos.below());
             if (below.getBlock() instanceof GreenhousePanelWallBlock)
             {
                 state = FLHelpers.copyProperties(state, below, LEFT, RIGHT);

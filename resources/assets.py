@@ -573,6 +573,9 @@ def four_rotations_mp(model: str, rots: Tuple[Any, Any, Any, Any], **conditions:
         [{'facing': 'west', **conditions}, {'model': model, 'y': rots[3]}]
     ]
 
+def rotate(rots: tuple[int, int, int, int], amount:int)->list[int]:
+    return [r if r > 0 else None for r in map(lambda x: ((x or 0) + amount) % 360, rots)]
+
 def peel(rm: ResourceManager, name_parts: str, texture: str) -> 'ItemContext':
     rm.item(name_parts).with_lang(lang(name_parts))
     rm.item_model(name_parts + '_in_hand', {'particle': texture}, parent='minecraft:item/trident_in_hand')
@@ -651,6 +654,7 @@ def greenhouse_port(rm: ResourceManager, name: str, frame: str, glass: str) -> '
 def greenhouse_panel_wall(rm: ResourceManager, name: str, frame: str, glass: str) -> 'BlockContext':
     def to_name(*x: str):
         return '_'.join(filter(bool, x))
+    wall_rotations = (90, None, 180, 270)
 
     parts = []
     for kind, kind_properties in {'up': {'up':'both', 'down':True}, 'down': {'up':'none', 'down':False}, 'both':{'up':'none', 'down':True}, '':{'up':'both', 'down':False}}.items():
@@ -661,14 +665,14 @@ def greenhouse_panel_wall(rm: ResourceManager, name: str, frame: str, glass: str
                 {'glass': f'firmalife:block/greenhouse/glass_{to_name("thick", kind)}', 'material': frame},
                 parent=f'firmalife:block/greenhouse/base/multipart/panel_wall/panel_wall_corner_{to_name(kind, direction)}'
             )
-            parts.extend(four_rotations_mp('firmalife:block/%s' % corner_model_name, (90, None, 180, 270), **kind_properties, extra=direction))
+            parts.extend(four_rotations_mp('firmalife:block/%s' % corner_model_name, wall_rotations, **kind_properties, extra=direction))
 
             for size, size_properties in {'thick':{direction:False}, 'thin':{direction:True}}.items():
                 model_name = f'greenhouse/{name}/panel_wall/{to_name(kind, size, direction)}'
                 # Wall halves for non-corner states
-                parts.extend(four_rotations_mp('firmalife:block/%s' % model_name, (90, None, 180, 270), **kind_properties, **size_properties, **direction_properties))
+                parts.extend(four_rotations_mp('firmalife:block/%s' % model_name, wall_rotations, **kind_properties, **size_properties, **direction_properties))
                 # Wall halves for corner states
-                parts.extend(four_rotations_mp('firmalife:block/%s' % model_name, (180, 90, 270, None) if direction == 'left' else (None, 270, 90, 180), **kind_properties, **size_properties, extra=direction))
+                parts.extend(four_rotations_mp('firmalife:block/%s' % model_name, rotate(wall_rotations, 90 if direction=='left' else -90), **kind_properties, **size_properties, extra=direction))
 
                 rm.block_model(
                     model_name,
