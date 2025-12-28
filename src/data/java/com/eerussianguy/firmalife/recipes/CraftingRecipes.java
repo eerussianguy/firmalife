@@ -146,9 +146,9 @@ public interface CraftingRecipes extends Recipes
             .pattern("X X", "ZZZ")
             .shaped(FLBlocks.JARRING_STATION);
         recipe()
-            .input(FLBlocks.OVEN_BOTTOM)
+            .input(FLBlocks.CLAY_OVEN_BOTTOM)
             .input(Items.HOPPER)
-            .shapeless(FLBlocks.OVEN_HOPPER);
+            .shapeless(FLBlocks.CLAY_OVEN_HOPPER);
         recipe()
             .input('X', TFCTags.Items.LUMBER)
             .pattern("X X", " X ", "X X")

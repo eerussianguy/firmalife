@@ -5,11 +5,13 @@ import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.blockentities.OvenTopBlockEntity;
+import com.eerussianguy.firmalife.common.items.FLItems;
 import com.eerussianguy.firmalife.common.items.FinishItem;
 import com.eerussianguy.firmalife.common.misc.FLDamageTypes;
 import com.eerussianguy.firmalife.config.FLConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
@@ -37,9 +39,12 @@ public class OvenTopBlock extends AbstractOvenBlock
         BooleanOp.ONLY_FIRST
     ));
 
-    public OvenTopBlock(ExtendedProperties properties, @Nullable Supplier<? extends Block> curedBlock)
+    @Nullable private final Supplier<? extends Block> insulated;
+
+    public OvenTopBlock(ExtendedProperties properties, @Nullable Supplier<? extends Block> curedBlock, @Nullable Supplier<? extends Block> insulated)
     {
         super(properties, curedBlock);
+        this.insulated = insulated;
         registerDefaultState(getStateDefinition().any().setValue(FACING, Direction.NORTH).setValue(HAS_CHIMNEY, false));
     }
 
@@ -63,6 +68,13 @@ public class OvenTopBlock extends AbstractOvenBlock
                     FLDamageTypes.oven(player, 0.5f);
                 }
                 return FLHelpers.takeOneAny(level, OvenTopBlockEntity.SLOT_INPUT_START, OvenTopBlockEntity.SLOT_INPUT_END, inv, player);
+            }
+            else if (Helpers.isItem(item, FLItems.OVEN_INSULATION.get()) && insulated != null)
+            {
+                item.shrink(1);
+                level.setBlockAndUpdate(pos, Helpers.copyProperties(insulated.get().defaultBlockState(), state));
+                Helpers.playSound(level, pos, SoundEvents.METAL_PLACE);
+                return ItemInteractionResult.sidedSuccess(level.isClientSide);
             }
             else if (!item.isEmpty())
             {

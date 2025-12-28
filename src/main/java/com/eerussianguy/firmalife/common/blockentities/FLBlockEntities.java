@@ -25,9 +25,9 @@ public class FLBlockEntities
         FLBlocks.FRUIT_TREE_GROWING_BRANCHES.values().stream()
     ).flatMap(e -> e));
 
-    public static final Id<OvenBottomBlockEntity> OVEN_BOTTOM = register("oven_bottom", OvenBottomBlockEntity::new, Stream.concat(Stream.concat(Stream.of(FLBlocks.OVEN_BOTTOM), FLBlocks.CURED_OVEN_BOTTOM.values().stream()), FLBlocks.INSULATED_OVEN_BOTTOM.values().stream()));
-    public static final Id<OvenTopBlockEntity> OVEN_TOP = register("oven_top", OvenTopBlockEntity::new, Stream.concat(Stream.of(FLBlocks.OVEN_TOP), FLBlocks.CURED_OVEN_TOP.values().stream()));
-    public static final Id<OvenHopperBlockEntity> OVEN_HOPPER = register("oven_hopper", OvenHopperBlockEntity::new, Stream.concat(Stream.of(FLBlocks.OVEN_HOPPER), FLBlocks.CURED_OVEN_HOPPER.values().stream()));
+    public static final Id<OvenBottomBlockEntity> OVEN_BOTTOM = register("oven_bottom", OvenBottomBlockEntity::new, Stream.concat(Stream.concat(Stream.of(FLBlocks.CLAY_OVEN_BOTTOM), FLBlocks.CURED_OVEN_BOTTOM.values().stream()), FLBlocks.INSULATED_OVEN_BOTTOM.values().stream()));
+    public static final Id<OvenTopBlockEntity> OVEN_TOP = register("oven_top", OvenTopBlockEntity::new, Stream.concat(Stream.of(FLBlocks.CLAY_OVEN_TOP), Stream.concat(FLBlocks.INSULATED_OVEN_TOP.values().stream(), FLBlocks.CURED_OVEN_TOP.values().stream())));
+    public static final Id<OvenHopperBlockEntity> OVEN_HOPPER = register("oven_hopper", OvenHopperBlockEntity::new, Stream.concat(Stream.of(FLBlocks.CLAY_OVEN_HOPPER), FLBlocks.CURED_OVEN_HOPPER.values().stream()));
     public static final Id<DryingMatBlockEntity> DRYING_MAT = register("drying_mat", DryingMatBlockEntity::dryingMat, FLBlocks.DRYING_MAT);
     public static final Id<DryingMatBlockEntity> SOLAR_DRIER = register("solar_drier", DryingMatBlockEntity::solarDrier, FLBlocks.SOLAR_DRIER);
     public static final Id<WoodenBeehiveBlockEntity> BEEHIVE = register("beehive", WoodenBeehiveBlockEntity::new, FLBlocks.BEEHIVE);

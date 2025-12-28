@@ -94,7 +94,7 @@ public class FLItems
     public static final ItemId BEEKEEPER_BOOTS = register("beekeeper_boots", () -> new ArmorItem(FLArmorMaterials.BEEKEEPER.holder(), ArmorItem.Type.BOOTS, new Item.Properties()));
 
     public static final Map<Spice, ItemId> SPICES = Helpers.mapOf(Spice.class, spice -> register("spice/" + spice.name()));
-    public static final Map<OvenType, ItemId> FINISHES = Helpers.mapOf(OvenType.class, type -> type != OvenType.BRICK, type -> register(type.getTrueName() + "_finish", () -> new FinishItem(prop(), type)));
+    public static final Map<OvenType, ItemId> FINISHES = Helpers.mapOf(OvenType.class, type -> type != OvenType.BRICK, type -> register(type.getSerializedName() + "_finish", () -> new FinishItem(prop(), type)));
 
     public static final ItemId HONEY_JAR = register("jar/honey", () -> new Item(new Item.Properties().component(Lore.TYPE, Lore.UNSEALED).craftRemainder(TFCItems.EMPTY_JAR.asItem())));
     public static final ItemId COMPOST_JAR = register("jar/compost", () -> new Item(new Item.Properties().component(Lore.TYPE, Lore.UNSEALED).craftRemainder(TFCItems.EMPTY_JAR.asItem())));

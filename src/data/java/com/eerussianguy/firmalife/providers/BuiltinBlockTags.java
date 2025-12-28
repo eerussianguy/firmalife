@@ -9,8 +9,6 @@ import java.util.function.Supplier;
 import java.util.stream.Stream;
 import com.eerussianguy.firmalife.Accessors;
 import com.eerussianguy.firmalife.FirmaLife;
-import com.eerussianguy.firmalife.common.FLHelpers;
-import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.blocks.greenhouse.Greenhouse;
 import com.eerussianguy.firmalife.common.blocks.plant.FLFruitBlocks;
@@ -68,7 +66,8 @@ public class BuiltinBlockTags extends TagsProvider<Block> implements Accessors
             .add(FLBlocks.OVEN_COUNTERTOP)
             .add(FLBlocks.ASHTRAY, FLBlocks.JARRING_STATION, FLBlocks.PICKER, FLBlocks.SWEEPER, FLBlocks.VAT, FLBlocks.STOVETOP_GRILL, FLBlocks.STOVETOP_POT)
             .add2(FLBlocks.METALS)
-            .add(FLBlocks.INSULATED_OVEN_BOTTOM);
+            .add(FLBlocks.INSULATED_OVEN_BOTTOM)
+            .add(FLBlocks.INSULATED_OVEN_TOP);
         tag(BlockTags.MINEABLE_WITH_AXE)
             .add(FLBlocks.TREATED_WOOD, FLBlocks.PLATE, FLBlocks.SOLAR_DRIER, FLBlocks.MIXING_BOWL, FLBlocks.GRAPE_TRELLIS_POST, FLBlocks.GRAPE_TRELLIS_POST_RED, FLBlocks.GRAPE_TRELLIS_POST_WHITE, FLBlocks.CLIMATE_STATION, FLBlocks.BEEHIVE, FLBlocks.WILD_BEEHIVE, FLBlocks.SKEP, FLBlocks.CENTRIFUGE)
             .add(FLBlocks.FRUIT_TREE_BRANCHES)
@@ -197,7 +196,7 @@ public class BuiltinBlockTags extends TagsProvider<Block> implements Accessors
         tag(GREENHOUSE_PANEL_ROOFS).add(FLBlocks.GREENHOUSE_BLOCKS, Greenhouse.BlockType.PANEL_ROOF);
 
         tag(OVEN_BLOCKS)
-            .add(FLBlocks.OVEN_BOTTOM, FLBlocks.OVEN_CHIMNEY, FLBlocks.OVEN_HOPPER, FLBlocks.OVEN_TOP)
+            .add(FLBlocks.CLAY_OVEN_BOTTOM, FLBlocks.CLAY_OVEN_CHIMNEY, FLBlocks.CLAY_OVEN_HOPPER, FLBlocks.CLAY_OVEN_TOP)
             .add(FLBlocks.CURED_OVEN_BOTTOM)
             .add(FLBlocks.CURED_OVEN_HOPPER)
             .add(FLBlocks.CURED_OVEN_TOP)
@@ -220,7 +219,7 @@ public class BuiltinBlockTags extends TagsProvider<Block> implements Accessors
         tag(BARREL_PRESSES).add(FLBlocks.BARREL_PRESSES);
         tag(WINE_SHELVES).add(FLBlocks.WINE_SHELVES);
         tag(CHEESE_WHEELS).add(FLBlocks.CHEDDAR_WHEEL, FLBlocks.CHEVRE_WHEEL, FLBlocks.FETA_WHEEL, FLBlocks.GOUDA_WHEEL, FLBlocks.RAJYA_METOK_WHEEL, FLBlocks.SHOSHA_WHEEL);
-        tag(CHIMNEYS).add(FLBlocks.CURED_OVEN_CHIMNEY).add(FLBlocks.OVEN_CHIMNEY);
+        tag(CHIMNEYS).add(FLBlocks.CURED_OVEN_CHIMNEY).add(FLBlocks.CLAY_OVEN_CHIMNEY);
         tag(HERBS).add(FLBlocks.HERBS);
 
 

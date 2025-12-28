@@ -34,24 +34,23 @@ def generate(rm: ResourceManager):
         rm.block_model('%s_oven_hopper' % var, parent='minecraft:block/orientable', textures={'top': hop_top, 'side': side, 'front': hop_front})
         if var != 'clay':
             rm.block_model('%s_oven_bottom_insulated' % var, parent='firmalife:block/oven_bottom', textures={'main': base_tex, 'side': 'firmalife:block/oven_insulation', 'front': bot_front + '_insulated', 'top': surface})
+            rm.block_model('%s_oven_top_insulated' % var, parent='firmalife:block/oven_top', textures={'main': base_tex, 'side': 'firmalife:block/oven_insulation', 'front': top_front + '_insulated', 'top': base_tex})
 
-        pref = 'cured_%s_' % var
-        if var == 'brick':
-            pref = 'cured_'
-        elif var == 'clay':
-            pref = ''
-
-        for bottom_type in ('insulated_', 'cured_'):
-            if not (var == 'clay' and bottom_type == 'insulated_'):
-                fixed_pref = pref.replace('cured_', bottom_type)
+        for ins_state in ('insulated', ''):
+            pref = var + '_'
+            if not (var == 'clay' and ins_state == 'insulated'):
+                if ins_state == 'insulated':
+                    pref = 'insulated_' + pref
                 last_bot_variants = bot_variants.copy()
-                last_bot_variants += four_rotations_mp_free('firmalife:block/%s_oven_bottom%s' % (var, '_insulated' if bottom_type == 'insulated_' else ''), (90, None, 180, 270))
+                last_bot_variants += four_rotations_mp_free('firmalife:block/%s_oven_bottom%s' % (var, '_' + ins_state if ins_state != '' else ''), (90, None, 180, 270))
                 last_bot_variants += [{'model': 'firmalife:block/%s_oven_particle' % var}]
-                rm.blockstate_multipart('%soven_bottom' % fixed_pref, *last_bot_variants).with_lang(lang('%sbottom oven', fixed_pref))
-                rm.item_model('%soven_bottom' % fixed_pref, parent='firmalife:block/%s_oven_bottom' % var, no_textures=True)
+                rm.blockstate_multipart('%soven_bottom' % pref, *last_bot_variants).with_lang(lang('%sbottom oven', pref))
+                rm.item_model('%soven_bottom' % pref, parent='firmalife:block/%s_oven_bottom' % var, no_textures=True)
 
-        rm.blockstate('%soven_top' % pref, variants={**four_rotations('firmalife:block/%s_oven_top' % var, (90, None, 180, 270))}).with_lang(lang('%stop oven', pref))
-        rm.item_model('%soven_top' % pref, parent='firmalife:block/%s_oven_top' % var, no_textures=True)
+                rm.blockstate('%soven_top' % pref, variants={**four_rotations('firmalife:block/%s_oven_top%s' % (var, '_' + ins_state if ins_state != '' else ''), (90, None, 180, 270))}).with_lang(lang('%stop oven', pref))
+                rm.item_model('%soven_top' % pref, parent='firmalife:block/%s_oven_top' % var, no_textures=True)
+
+        pref = var + '_'
         rm.blockstate('%soven_chimney' % pref, variants={'alt=true': {'model': 'firmalife:block/%s_oven_chimney_alt' % var}, 'alt=false': {'model': 'firmalife:block/%s_oven_chimney' % var}}).with_lang(lang('%soven chimney', pref))
         rm.item_model('%soven_chimney' % pref, parent='firmalife:block/%s_oven_chimney' % var, no_textures=True)
         rm.blockstate('%soven_hopper' % pref, variants={**four_rotations('firmalife:block/%s_oven_hopper' % var, (90, None, 180, 270))}).with_lang(lang('%soven hopper', pref))

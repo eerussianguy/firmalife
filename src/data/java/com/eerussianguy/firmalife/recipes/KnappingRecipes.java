@@ -3,7 +3,6 @@ package com.eerussianguy.firmalife.recipes;
 import java.util.Map;
 import java.util.Optional;
 import com.eerussianguy.firmalife.DataEntryPoint;
-import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.util.Carving;
@@ -41,9 +40,9 @@ public interface KnappingRecipes extends Recipes
                 Items.CLAY_BALL))
         );
 
-        clayKnapping(FLBlocks.OVEN_TOP, "XXXXX", "XX XX", "X   X", "X   X", "XXXXX");
-        clayKnapping(FLBlocks.OVEN_BOTTOM, "XX XX", "X   X", "X   X", "XX XX", "XXXXX");
-        clayKnapping(FLBlocks.OVEN_CHIMNEY, "XX XX", "XX XX", "XX XX");
+        clayKnapping(FLBlocks.CLAY_OVEN_TOP, "XXXXX", "XX XX", "X   X", "X   X", "XXXXX");
+        clayKnapping(FLBlocks.CLAY_OVEN_BOTTOM, "XX XX", "X   X", "X   X", "XX XX", "XXXXX");
+        clayKnapping(FLBlocks.CLAY_OVEN_CHIMNEY, "XX XX", "XX XX", "XX XX");
         pumpkinKnapping(FLBlocks.CARVED_PUMPKINS.get(Carving.NONE), "XXXXX", "XXXXX", "XXXXX", "X   X", "XXXXX");
         pumpkinKnapping(FLBlocks.CARVED_PUMPKINS.get(Carving.CIRCLE), "XXXXX", "X   X", "X   X", "X   X", "XXXXX");
         pumpkinKnapping(FLBlocks.CARVED_PUMPKINS.get(Carving.CREEPER), "XXXXX", "X X X", "XX XX", "X X X", "X X X");

@@ -212,11 +212,11 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False, rev
             text('The smoking process takes 8 in-game hours. Happy smoking!'),
             empty_last_page()
         )),
-        entry('ovens', 'Ovens', 'firmalife:cured_oven_top', pages=(
+        entry('ovens', 'Ovens', 'firmalife:brick_oven_top', pages=(
             text('$(thing)Ovens$() are a great way of cooking lots of food in a way that improves their shelf life. Oven-baked food decays at 90% of the rate of regular food. Ovens are a multiblock structure consisting of a $(thing)Bottom Oven$(), $(thing)Top Oven$(), and optionally $(thing)Chimneys$(). These blocks start off as clay, and must be $(thing)Cured$() by raising their temperature to a certain amount for long enough.$(br)$(l:firmalife/oven_appliances)Oven Appliances$() extend oven functionality.'),
-            knapping('firmalife:knapping/oven_top', 'The recipe for the top oven.'),
-            knapping('firmalife:knapping/oven_bottom', 'The recipe for the bottom oven.'),
-            knapping('firmalife:knapping/oven_chimney', 'The recipe for the oven chimney    .'),
+            knapping('firmalife:knapping/clay_oven_top', 'The recipe for the top oven.'),
+            knapping('firmalife:knapping/clay_oven_bottom', 'The recipe for the bottom oven.'),
+            knapping('firmalife:knapping/clay_oven_chimney', 'The recipe for the oven chimney    .'),
             crafting('tfc:crafting/bricks', text_contents='Ovens are insulated with $(thing)Bricks$(), other oven blocks, or anything that can insulate a Forge. This means you can use stone blocks, if you want!'),
             crafting('firmalife:crafting/peel', text_contents='The $(thing)Peel$() is the only safe way to remove hot items from an Oven. Just $(item)$(k:key.use)$() on it while holding it to retrieve items. Otherwise, you may get burned!'),
             text('The Oven first consists of the Top Oven placed on top of the Bottom Oven. All sides of each oven part, besides the front face, should then be covered with Oven Insulation blocks, as covered two pages ago. You may choose to use $(thing)Oven Chimneys$() as insulation. Placing a stack of chimneys directly behind the oven causes the smoke from the oven to travel up and out of it. If you don\'t do this, smoke will quickly fill up your house, which is very distracting!'),
@@ -231,7 +231,7 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False, rev
                 'B': 'firmalife:%soven_bottom[facing=north]' % pref,
                 'W': 'minecraft:bricks',
                 'C': 'firmalife:%soven_chimney' % pref,
-            }) for pref in ('cured_', '')]),
+            }) for pref in ('brick_', 'clay_')]),
             text('The Bottom Oven is used to hold fuel, which may only be logs. Press $(item)$(k:key.use)$() to add or remove them. The bottom oven is also the part of the oven which may be lit with a $(thing)Firestarter$() or other tool. It transfers heat contained in it to the top oven.'),
             text('The Top Oven contains the items that are being cooked. It will draw heat from the Bottom Oven and slowly release it over time. This means that even if your fuel runs out, your Top Oven can continue to work for a little while. Adding items to it is as simple as pressing $(item)$(k:key.use)$(). Remember to use a $(thing)Peel$() to remove the items after.'),
             text('Curing Oven blocks is easy, but requires patience. Simply start running your Bottom Oven as you would normally, and then wait. If an oven block is above 600 degrees for about 80 seconds, it will cure itself and any oven blocks around it. The curing effect will pass all the way up chimneys nearby.'),
@@ -248,7 +248,7 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False, rev
             crafting('firmalife:crafting/vat', text_contents='The $(thing)Vat$() produces some select boiling recipes in bulk. It has one slot for items, and 10,000mB of fluid space, similar to a barrel.').anchor('vat'),
             text('For example, the vat can be used to make $(thing)Olive Oil Water$() using a ratio of 1 Olive Paste to 200 mB Water. To use a vat, $(item)$(k:key.use)$() it with fluids and items to add them to the inventory. With an empty hand and $(item)$(k:key.sneak)$() held, click to seal and unseal the vat. A vat will not boil until it is sealed.'),
             text('Vats should be placed on the block above a $(thing)Bottom Oven$(). If the vat would overflow on completion of the recipe, it will not boil, so be sure not to overfill it -- especially with recipes that produce more fluid than they consume! Vats can be opened and closed with $(thing)Redstone$().'),
-            two_tall_block_spotlight('', '', 'firmalife:cured_oven_bottom', 'firmalife:vat'),
+            two_tall_block_spotlight('', '', 'firmalife:brick_oven_bottom', 'firmalife:vat'),
             crafting('firmalife:crafting/jarring_station', text_contents='The $(thing)Jarring Station$() is used to fill jars from the vat. The jarring station has a spout on one side that should point to the station.'),
             text('Using the Vat, Sugar Water can be made by adding sweetener to water. When the vat finishes, the fluid will change color. Clicking it with an $(thing)Empty Jar With Lid$() will fill it.'),
             text('With $(item)$(k:key.use)$(), add empty jars with lids to the jarring station. When it detects jam, it will automatically fill the jars with $(thing)Jam$() and seal them, requiring 500 mB of input fluid per jar.'),

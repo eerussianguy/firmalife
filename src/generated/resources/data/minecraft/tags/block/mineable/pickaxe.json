@@ -107,9 +107,13 @@
     "firmalife:metal/block/stainless_steel",
     "firmalife:metal/block/stainless_steel_slab",
     "firmalife:metal/block/stainless_steel_stairs",
-    "firmalife:insulated_oven_bottom",
+    "firmalife:insulated_brick_oven_bottom",
     "firmalife:insulated_rustic_oven_bottom",
     "firmalife:insulated_tile_oven_bottom",
-    "firmalife:insulated_stone_oven_bottom"
+    "firmalife:insulated_stone_oven_bottom",
+    "firmalife:insulated_brick_oven_top",
+    "firmalife:insulated_rustic_oven_top",
+    "firmalife:insulated_tile_oven_top",
+    "firmalife:insulated_stone_oven_top"
   ]
 }

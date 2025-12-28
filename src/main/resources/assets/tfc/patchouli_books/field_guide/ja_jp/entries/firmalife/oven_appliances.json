@@ -48,7 +48,7 @@
         ],
         "mapping": {
           "X": "firmalife:vat",
-          "Y": "firmalife:cured_oven_bottom"
+          "Y": "firmalife:brick_oven_bottom"
         }
       },
       "name": "",

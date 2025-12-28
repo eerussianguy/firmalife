@@ -94,6 +94,7 @@ public final class FLCreativeTabs
             accept(out, FLBlocks.CURED_OVEN_BOTTOM, type);
             accept(out, FLBlocks.INSULATED_OVEN_BOTTOM, type);
             accept(out, FLBlocks.CURED_OVEN_TOP, type);
+            accept(out, FLBlocks.INSULATED_OVEN_TOP, type);
             accept(out, FLBlocks.CURED_OVEN_CHIMNEY, type);
             accept(out, FLBlocks.CURED_OVEN_HOPPER, type);
             accept(out, FLBlocks.OVEN_COUNTERTOP, type);
@@ -109,10 +110,10 @@ public final class FLCreativeTabs
                 accept(out, FLBlocks.TILE_DECOR);
             }
         }
-        accept(out, FLBlocks.OVEN_BOTTOM);
-        accept(out, FLBlocks.OVEN_TOP);
-        accept(out, FLBlocks.OVEN_CHIMNEY);
-        accept(out, FLBlocks.OVEN_HOPPER);
+        accept(out, FLBlocks.CLAY_OVEN_BOTTOM);
+        accept(out, FLBlocks.CLAY_OVEN_TOP);
+        accept(out, FLBlocks.CLAY_OVEN_CHIMNEY);
+        accept(out, FLBlocks.CLAY_OVEN_HOPPER);
         accept(out, FLBlocks.ASHTRAY);
         accept(out, FLBlocks.DRYING_MAT);
         accept(out, FLBlocks.SOLAR_DRIER);

@@ -116,14 +116,15 @@ public class FLClientEvents
         final RenderType cutoutMipped = RenderType.cutoutMipped();
         final RenderType translucent = RenderType.translucent();
 
-        Stream.of(FLBlocks.OVEN_BOTTOM, FLBlocks.OVEN_TOP, FLBlocks.OVEN_CHIMNEY, FLBlocks.OVEN_HOPPER,
+        Stream.of(FLBlocks.CLAY_OVEN_BOTTOM, FLBlocks.CLAY_OVEN_TOP, FLBlocks.CLAY_OVEN_CHIMNEY, FLBlocks.CLAY_OVEN_HOPPER,
             FLBlocks.QUAD_PLANTER, FLBlocks.LARGE_PLANTER, FLBlocks.HANGING_PLANTER, FLBlocks.BONSAI_PLANTER, FLBlocks.TRELLIS_PLANTER,
             FLBlocks.COMPOST_TUMBLER, FLBlocks.CHEDDAR_WHEEL,
             FLBlocks.RAJYA_METOK_WHEEL, FLBlocks.CHEVRE_WHEEL, FLBlocks.SHOSHA_WHEEL, FLBlocks.FETA_WHEEL, FLBlocks.GOUDA_WHEEL, FLBlocks.SMALL_CHROMITE,
             FLBlocks.MIXING_BOWL, FLBlocks.BUTTERFLY_GRASS, FLBlocks.VAT, FLBlocks.HYDROPONIC_PLANTER, FLBlocks.STOVETOP_GRILL, FLBlocks.STOVETOP_POT,
             FLBlocks.DARK_LADDER, FLBlocks.JARRING_STATION, FLBlocks.GRAPE_TRELLIS_POST_RED, FLBlocks.GRAPE_TRELLIS_POST_WHITE, FLBlocks.GRAPE_TRELLIS_POST,
             FLBlocks.GRAPE_STRING, FLBlocks.GRAPE_STRING_RED, FLBlocks.GRAPE_STRING_WHITE, FLBlocks.GRAPE_STRING_PLANT_RED, FLBlocks.GRAPE_STRING_PLANT_WHITE,
-            FLBlocks.GRAPE_FLUFF_RED, FLBlocks.GRAPE_FLUFF_WHITE, FLBlocks.WILD_WHITE_GRAPES, FLBlocks.WILD_RED_GRAPES, FLBlocks.PUMPING_STATION, FLBlocks.IRRIGATION_TANK
+            FLBlocks.GRAPE_FLUFF_RED, FLBlocks.GRAPE_FLUFF_WHITE, FLBlocks.WILD_WHITE_GRAPES, FLBlocks.WILD_RED_GRAPES, FLBlocks.PUMPING_STATION, FLBlocks.IRRIGATION_TANK,
+            FLBlocks.CENTRIFUGE, FLBlocks.SKEP
         ).forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
 
         ItemBlockRenderTypes.setRenderLayer(FLBlocks.SOLAR_DRIER.get(), translucent);
@@ -144,6 +145,7 @@ public class FLClientEvents
         FLBlocks.WINE_SHELVES.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
         FLBlocks.CURED_OVEN_BOTTOM.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
         FLBlocks.CURED_OVEN_TOP.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
+        FLBlocks.INSULATED_OVEN_TOP.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
         FLBlocks.CURED_OVEN_HOPPER.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
         FLBlocks.CURED_OVEN_CHIMNEY.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
         FLBlocks.INSULATED_OVEN_BOTTOM.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));

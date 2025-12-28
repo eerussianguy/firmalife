@@ -59,6 +59,10 @@ public class FinishItem extends Item
             {
                 level.setBlockAndUpdate(pos, copy(FLBlocks.INSULATED_OVEN_BOTTOM.get(type), state));
             }
+            else if (Helpers.isBlock(state, grab(FLBlocks.INSULATED_OVEN_TOP)))
+            {
+                level.setBlockAndUpdate(pos, copy(FLBlocks.INSULATED_OVEN_TOP.get(type), state));
+            }
             else if (Helpers.isBlock(state, grab(FLBlocks.OVEN_COUNTERTOP)))
             {
                 level.setBlockAndUpdate(pos, copy(FLBlocks.OVEN_COUNTERTOP.get(type), state));

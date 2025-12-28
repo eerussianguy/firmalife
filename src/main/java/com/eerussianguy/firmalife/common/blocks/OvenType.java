@@ -10,22 +10,15 @@ public enum OvenType
     STONE
     ;
 
-    private final String trueName;
     private final String serializedName;
 
     OvenType()
     {
-        serializedName = name().toLowerCase(Locale.ROOT) + "_";
-        trueName = name().toLowerCase(Locale.ROOT);
+        serializedName = name().toLowerCase(Locale.ROOT);
     }
 
-    public String getName()
+    public String getSerializedName()
     {
-        return this == BRICK ? "" : serializedName;
-    }
-
-    public String getTrueName()
-    {
-        return trueName;
+        return serializedName;
     }
 }

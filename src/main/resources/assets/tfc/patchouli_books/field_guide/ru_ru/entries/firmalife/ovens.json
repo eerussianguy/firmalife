@@ -2,7 +2,7 @@
   "__comment__": "This file was automatically created by mcresources",
   "name": "Печи",
   "category": "tfc:firmalife",
-  "icon": "firmalife:cured_oven_top",
+  "icon": "firmalife:brick_oven_top",
   "pages": [
     {
       "type": "patchouli:text",
@@ -10,17 +10,17 @@
     },
     {
       "type": "tfc:knapping_recipe",
-      "recipe": "firmalife:knapping/oven_top",
+      "recipe": "firmalife:knapping/clay_oven_top",
       "text": "Рецепт для верхней части печи."
     },
     {
       "type": "tfc:knapping_recipe",
-      "recipe": "firmalife:knapping/oven_bottom",
+      "recipe": "firmalife:knapping/clay_oven_bottom",
       "text": "Рецепт для нижней части печи."
     },
     {
       "type": "tfc:knapping_recipe",
-      "recipe": "firmalife:knapping/oven_chimney",
+      "recipe": "firmalife:knapping/clay_oven_chimney",
       "text": "Рецепт для дымохода печи."
     },
     {
@@ -61,11 +61,11 @@
             ]
           ],
           "mapping": {
-            "0": "firmalife:cured_oven_top[facing=north]",
-            "T": "firmalife:cured_oven_top[facing=north]",
-            "B": "firmalife:cured_oven_bottom[facing=north]",
+            "0": "firmalife:brick_oven_top[facing=north]",
+            "T": "firmalife:brick_oven_top[facing=north]",
+            "B": "firmalife:brick_oven_bottom[facing=north]",
             "W": "minecraft:bricks",
-            "C": "firmalife:cured_oven_chimney"
+            "C": "firmalife:brick_oven_chimney"
           }
         },
         {
@@ -88,11 +88,11 @@
             ]
           ],
           "mapping": {
-            "0": "firmalife:oven_top[facing=north]",
-            "T": "firmalife:oven_top[facing=north]",
-            "B": "firmalife:oven_bottom[facing=north]",
+            "0": "firmalife:clay_oven_top[facing=north]",
+            "T": "firmalife:clay_oven_top[facing=north]",
+            "B": "firmalife:clay_oven_bottom[facing=north]",
             "W": "minecraft:bricks",
-            "C": "firmalife:oven_chimney"
+            "C": "firmalife:clay_oven_chimney"
           }
         }
       ]

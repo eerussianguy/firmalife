@@ -56,6 +56,18 @@ public class CentrifugeBlock extends FourWayDeviceBlock
     }
 
     @Override
+    public int getLightBlock(BlockState state, BlockGetter level, BlockPos pos)
+    {
+        return 0;
+    }
+
+    @Override
+    public float getShadeBrightness(BlockState state, BlockGetter level, BlockPos pos)
+    {
+        return 1f;
+    }
+
+    @Override
     protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context)
     {
         return SHAPE;

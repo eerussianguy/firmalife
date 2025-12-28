@@ -1,9 +1,9 @@
 {
   "values": [
-    "firmalife:cured_oven_chimney",
-    "firmalife:cured_rustic_oven_chimney",
-    "firmalife:cured_tile_oven_chimney",
-    "firmalife:cured_stone_oven_chimney",
-    "firmalife:oven_chimney"
+    "firmalife:brick_oven_chimney",
+    "firmalife:rustic_oven_chimney",
+    "firmalife:tile_oven_chimney",
+    "firmalife:stone_oven_chimney",
+    "firmalife:clay_oven_chimney"
   ]
 }
