@@ -112,7 +112,7 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/oven_insulation",
-      "text": "为您的底部烤炉制作烤炉隔热材料，使您无需在侧面和背面进行隔热。但是这并不能消除对烟囱的需求。 按 $(item)$(k:key.use)$() 以应用."
+      "text": "Crafting oven insulation for your Top or Bottom Oven allows you to remove the need for insulating it with blocks. It does not remove the need for the chimney. Use $(item)$(k:key.use)$() to apply it."
     },
     {
       "type": "patchouli:crafting",
