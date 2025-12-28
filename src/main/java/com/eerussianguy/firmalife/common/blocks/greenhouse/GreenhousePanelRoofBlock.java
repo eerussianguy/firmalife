@@ -1,6 +1,6 @@
 package com.eerussianguy.firmalife.common.blocks.greenhouse;
 
-import java.util.List;
+import java.util.Set;
 import java.util.function.Supplier;
 import com.eerussianguy.firmalife.common.blocks.FLStateProperties;
 import com.eerussianguy.firmalife.common.blocks.IWeatherable;
@@ -166,9 +166,9 @@ public class GreenhousePanelRoofBlock extends TransparentBlock implements IWeath
     }
 
     @Override
-    public List<Direction> getConnectionFaces(BlockState state, BlockPos pos, LevelAccessor level)
+    public Set<Direction> getConnectionFaces(BlockState state, BlockPos pos, LevelAccessor level)
     {
         Direction facing = state.getValue(FACING);
-        return List.of(facing.getOpposite(), Direction.DOWN, facing.getClockWise(), facing.getCounterClockWise());
+        return Set.of(facing.getOpposite(), Direction.DOWN, facing.getClockWise(), facing.getCounterClockWise());
     }
 }

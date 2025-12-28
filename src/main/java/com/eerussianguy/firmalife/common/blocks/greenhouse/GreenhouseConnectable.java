@@ -1,7 +1,7 @@
 package com.eerussianguy.firmalife.common.blocks.greenhouse;
 
-import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.StringRepresentable;
@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.state.properties.Property;
 
 public interface GreenhouseConnectable
 {
+    //TODO rename to DualPlaneType?
     enum PostType implements StringRepresentable
     {
         NONE,
@@ -22,6 +23,34 @@ public interface GreenhouseConnectable
         public String getSerializedName()
         {
             return name().toLowerCase(Locale.ROOT);
+        }
+
+        public PostType combine(PostType other)
+        {
+            if (this == NONE)
+            {
+                return other;
+            }
+            if (other == NONE)
+            {
+                return this;
+            }
+            if (this == other)
+            {
+                return this;
+            }
+            return BOTH;
+        }
+
+        public PostType opposite()
+        {
+            return switch (this)
+            {
+                case NONE -> BOTH;
+                case LEFT -> RIGHT;
+                case RIGHT -> LEFT;
+                case BOTH -> NONE;
+            };
         }
     }
 
@@ -38,6 +67,8 @@ public interface GreenhouseConnectable
         }
     }
 
+    //TODO migrate to PostType and rename it?
+    @Deprecated
     enum SideType implements StringRepresentable
     {
         LEFT,
@@ -59,6 +90,26 @@ public interface GreenhouseConnectable
                 case NONE -> direction;
             };
         }
+
+        public SideType opposite()
+        {
+            return switch (this)
+            {
+                case LEFT -> RIGHT;
+                case RIGHT -> LEFT;
+                case NONE -> NONE;
+            };
+        }
+
+        public PostType toPost()
+        {
+            return switch (this)
+            {
+                case LEFT -> PostType.LEFT;
+                case RIGHT -> PostType.RIGHT;
+                case NONE -> PostType.NONE;
+            };
+        }
     }
 
     default boolean canConnectTo(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos)
@@ -68,7 +119,17 @@ public interface GreenhouseConnectable
 
     BlockState withConnection(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos);
 
-    List<Direction> getConnectionFaces(BlockState state, BlockPos pos, LevelAccessor level);
+    Set<Direction> getConnectionFaces(BlockState state, BlockPos pos, LevelAccessor level);
+
+    default BlockState updateConnections(BlockState state, BlockPos pos, LevelAccessor level, Direction... directions)
+    {
+        for (Direction direction : directions)
+        {
+            BlockPos targetPos = pos.relative(direction);
+            state = withConnection(state, direction, level.getBlockState(targetPos), level, pos, targetPos);
+        }
+        return state;
+    }
 
     static boolean isFacingSameDirection(Property<Direction> property, BlockState state, Direction facing)
     {
@@ -79,13 +140,13 @@ public interface GreenhouseConnectable
         return false;
     }
 
-    static List<Direction> getConnections(BlockState state, BlockPos pos, LevelAccessor level)
+    static Set<Direction> getConnections(BlockState state, BlockPos pos, LevelAccessor level)
     {
         if (state.getBlock() instanceof GreenhouseConnectable connectable)
         {
             return connectable.getConnectionFaces(state, pos, level);
         }
-        return List.of();
+        return Set.of();
     }
 
     static boolean hasConnectionAt(BlockState state, BlockPos pos, LevelAccessor level, Direction direction)

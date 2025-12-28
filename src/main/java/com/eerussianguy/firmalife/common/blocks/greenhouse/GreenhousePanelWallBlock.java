@@ -1,10 +1,11 @@
 package com.eerussianguy.firmalife.common.blocks.greenhouse;
 
-import java.util.List;
 import java.util.Set;
 import java.util.function.Supplier;
+import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blocks.FLStateProperties;
+import com.eerussianguy.firmalife.common.blocks.IWeatherable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.BlockItem;
@@ -28,14 +29,17 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 import net.dries007.tfc.common.blocks.ExtendedProperties;
+import net.dries007.tfc.common.blocks.IForgeBlockExtension;
 import net.dries007.tfc.util.Helpers;
 
-public class GreenhousePanelWallBlock extends GreenhouseWallBlock implements GreenhouseConnectable
+public class GreenhousePanelWallBlock extends BaseGreenhouseBlock implements IWeatherable, IForgeBlockExtension, GreenhouseConnectable
 {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty LEFT = FLStateProperties.LEFT;
     public static final BooleanProperty RIGHT = FLStateProperties.RIGHT;
-    public static final EnumProperty<SideType> EXTRA_WALL = EnumProperty.create("extra", GreenhouseConnectable.SideType.class);
+    public static final BooleanProperty DOWN = BlockStateProperties.DOWN;
+    public static final EnumProperty<PostType> UP = EnumProperty.create("up", PostType.class);
+    public static final EnumProperty<SideType> EXTRA_WALL = EnumProperty.create("extra", SideType.class);
 
     public static final VoxelShape[] SHAPES = Helpers.computeHorizontalShapes(d -> Helpers.rotateShape(d, 0, 0, 0, 16, 16, 2));
     public static final VoxelShape[] LEFT_SHAPES = Helpers.computeHorizontalShapes(dir ->
@@ -56,7 +60,13 @@ public class GreenhousePanelWallBlock extends GreenhouseWallBlock implements Gre
     public GreenhousePanelWallBlock(ExtendedProperties properties, @Nullable Supplier<? extends Block> next)
     {
         super(properties, next);
-        registerDefaultState(getStateDefinition().any().setValue(UP, false).setValue(DOWN, false).setValue(LEFT, false).setValue(RIGHT, false).setValue(EXTRA_WALL, SideType.NONE));
+        registerDefaultState(getStateDefinition().any().setValue(UP, PostType.BOTH).setValue(DOWN, false).setValue(LEFT, false).setValue(RIGHT, false).setValue(EXTRA_WALL, SideType.NONE));
+    }
+
+    @Override
+    public boolean skipRendering(BlockState state, BlockState adjacent, Direction side)
+    {
+        return connects(adjacent) && Helpers.isBlock(adjacent, FLTags.Blocks.GREENHOUSE);
     }
 
     @Override
@@ -90,16 +100,18 @@ public class GreenhousePanelWallBlock extends GreenhouseWallBlock implements Gre
             }
             return null;
         }
-        final BlockState state = defaultBlockState(); //TODO super
+        BlockState state = super.getStateForPlacement(context);
         if (state != null)
         {
+            final Direction facing = context.getHorizontalDirection().getOpposite();
             final Level level = context.getLevel();
+            state = updateConnections(state.setValue(FACING, facing), context.getClickedPos(), level, facing.getClockWise(), facing.getCounterClockWise(), Direction.DOWN, Direction.UP);
             final BlockState below = level.getBlockState(context.getClickedPos().below());
             if (below.getBlock() instanceof GreenhousePanelWallBlock)
             {
-                return Helpers.copyProperties(state, below);
+                state = FLHelpers.copyProperties(state, below, LEFT, RIGHT);
             }
-            return state.setValue(FACING, context.getHorizontalDirection().getOpposite());
+            return state;
         }
         return null;
     }
@@ -134,18 +146,20 @@ public class GreenhousePanelWallBlock extends GreenhouseWallBlock implements Gre
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
     {
-        super.createBlockStateDefinition(builder.add(FACING, LEFT, RIGHT, EXTRA_WALL));
+        super.createBlockStateDefinition(builder.add(FACING, LEFT, RIGHT, EXTRA_WALL, UP, DOWN));
     }
 
     @Override
     public BlockState rotate(BlockState state, Rotation rot)
     {
+        // TODO include extra wall?
         return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
     }
 
     @Override
     public BlockState mirror(BlockState state, Mirror mirror)
     {
+        //TODO include extra wall?
         return state.rotate(mirror.getRotation(state.getValue(FACING)));
     }
 
@@ -191,7 +205,17 @@ public class GreenhousePanelWallBlock extends GreenhouseWallBlock implements Gre
         return extra != SideType.NONE ? Set.of(facing, extra.getDirection(facing)) : Set.of(facing);
     }
 
-    @Override
+    public Set<Direction> getWallStates2(BlockState state)
+    {
+        if (state.getBlock() instanceof GreenhousePanelWallBlock wall)
+        {
+            Direction facing = state.getValue(FACING);
+            SideType extra = state.getValue(EXTRA_WALL);
+            return extra != SideType.NONE ? Set.of(facing, extra.getDirection(facing)) : Set.of(facing);
+        }
+        return Set.of();
+    }
+
     public boolean connects(BlockState adjacent)
     {
         return Helpers.isBlock(adjacent, FLTags.Blocks.GREENHOUSE_PANEL_WALLS);
@@ -201,37 +225,68 @@ public class GreenhousePanelWallBlock extends GreenhouseWallBlock implements Gre
     public BlockState withConnection(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos)
     {
         final Direction currentFacing = state.getValue(FACING);
-        final SideType extraWall = state.getValue(EXTRA_WALL);
-        if (facing == Direction.UP)
-        {
-            return state.setValue(UP, canConnectTo(state, facing, facingState, level, currentPos, facingPos));
-        }
+        final SideType side = state.getValue(EXTRA_WALL);
         if (facing == Direction.DOWN)
         {
-            return state.setValue(DOWN, canConnectTo(state, facing, facingState, level, currentPos, facingPos));
+            if (facingState.getBlock() instanceof GreenhousePanelWallBlock)
+            {
+                Set<Direction> facingWallStates = getWallStates2(facingState);
+                if (side == SideType.NONE)
+                {
+                    return state.setValue(DOWN, facingWallStates.contains(currentFacing));
+                }
+                else
+                {
+                    return state.setValue(DOWN, facingWallStates.containsAll(getWallStates2(state)));
+                }
+            }
+            return state.setValue(DOWN, false);
         }
-        Direction left = SideType.LEFT.getDirection(currentFacing);
-        Direction right = SideType.RIGHT.getDirection(currentFacing);
-
-        if (extraWall == SideType.LEFT)
+        if (facing == Direction.UP)
         {
-            left = SideType.LEFT.getDirection(left);
+            return state.setValue(UP, getTopConnection(state, facingState));
         }
-        else if (extraWall == SideType.RIGHT)
-        {
-            right = SideType.RIGHT.getDirection(right);
-        }
-
-        if (facing == left)
+        Direction right = getRightDirection(currentFacing, side);
+        Direction left = getLeftDirection(currentFacing, side);
+        if (facing == left.getClockWise())
         {
             return state.setValue(LEFT, canConnectTo(state, facing, facingState, level, currentPos, facingPos));
         }
-        if (facing == right)
+        if (facing == right.getCounterClockWise())
         {
             return state.setValue(RIGHT, canConnectTo(state, facing, facingState, level, currentPos, facingPos));
         }
-
         return state;
+    }
+
+    private Direction getLeftDirection(Direction direction, SideType side)
+    {
+        return side == SideType.LEFT ? direction.getClockWise() : direction;
+    }
+
+    private Direction getRightDirection(Direction direction, SideType side)
+    {
+        return side == SideType.RIGHT ? direction.getCounterClockWise() : direction;
+    }
+
+    private PostType getTopConnection(BlockState state, BlockState facingState)
+    {
+        Direction currentFacing = state.getValue(FACING);
+        SideType side = state.getValue(EXTRA_WALL);
+
+        if (facingState.getBlock() instanceof GreenhousePanelRoofBlock)
+        {
+            Direction roofFacing = facingState.getValue(FACING);
+            if (side == SideType.NONE)
+            {
+                return currentFacing == roofFacing ? PostType.BOTH : PostType.NONE;
+            }
+
+            PostType wallPostType = (currentFacing == roofFacing ? side.opposite() : SideType.NONE).toPost();
+            PostType extraPostType = (side.getDirection(currentFacing) == roofFacing ? side : SideType.NONE).toPost();
+            return wallPostType.combine(extraPostType);
+        }
+        return isSameFacingWall(state, facingState) ? PostType.NONE : PostType.BOTH;
     }
 
     private boolean isSameFacingWall(BlockState state, BlockState facingState)
@@ -240,42 +295,21 @@ public class GreenhousePanelWallBlock extends GreenhouseWallBlock implements Gre
     }
 
     @Override
-    public List<Direction> getConnectionFaces(BlockState state, BlockPos pos, LevelAccessor level)
+    public Set<Direction> getConnectionFaces(BlockState state, BlockPos pos, LevelAccessor level)
     {
         Direction facing = state.getValue(FACING);
         SideType extra = state.getValue(EXTRA_WALL);
-        if (extra == SideType.NONE)
+        return switch (extra)
         {
-            return List.of(facing.getClockWise(), facing.getCounterClockWise());
-        }
-        if (extra == SideType.LEFT)
-        {
-            return List.of(facing.getClockWise().getClockWise(), facing.getCounterClockWise());
-        }
-        if (extra == SideType.RIGHT)
-        {
-            return List.of(facing.getClockWise(), facing.getCounterClockWise().getCounterClockWise());
-        }
-        return List.of();
+            case LEFT -> Set.of(facing.getClockWise().getClockWise(), facing.getCounterClockWise());
+            case RIGHT -> Set.of(facing.getClockWise(), facing.getCounterClockWise().getCounterClockWise());
+            case NONE -> Set.of(facing.getClockWise(), facing.getCounterClockWise());
+        };
     }
 
     @Override
     public boolean canConnectTo(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos)
     {
-        Direction currentFacing = state.getValue(FACING);
-        if (facing == Direction.UP)
-        {
-            if (facingState.getBlock() instanceof GreenhousePanelRoofBlock)
-            {
-                Direction roofFacing = facingState.getValue(FACING);
-                return roofFacing == currentFacing || roofFacing == currentFacing.getClockWise() || roofFacing == currentFacing.getCounterClockWise();
-            }
-            return isSameFacingWall(state, facingState);
-        }
-        if (facing == Direction.DOWN)
-        {
-            return isSameFacingWall(state, facingState);
-        }
         return GreenhouseConnectable.hasConnectionAt(facingState, facingPos, level, facing.getOpposite());
     }
 }

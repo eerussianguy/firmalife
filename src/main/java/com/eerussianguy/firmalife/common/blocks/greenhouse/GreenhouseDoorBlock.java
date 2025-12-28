@@ -1,6 +1,6 @@
 package com.eerussianguy.firmalife.common.blocks.greenhouse;
 
-import java.util.List;
+import java.util.Set;
 import java.util.function.Supplier;
 import com.eerussianguy.firmalife.common.blocks.IWeatherable;
 import net.minecraft.core.BlockPos;
@@ -77,9 +77,9 @@ public class GreenhouseDoorBlock extends DoorBlock implements IWeatherable, IFor
     }
 
     @Override
-    public List<Direction> getConnectionFaces(BlockState state, BlockPos pos, LevelAccessor level)
+    public Set<Direction> getConnectionFaces(BlockState state, BlockPos pos, LevelAccessor level)
     {
         Direction facing = state.getValue(FACING);
-        return List.of(facing.getClockWise(), facing.getCounterClockWise());
+        return Set.of(facing.getClockWise(), facing.getCounterClockWise());
     }
 }

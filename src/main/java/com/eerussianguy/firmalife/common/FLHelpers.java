@@ -95,6 +95,18 @@ public class FLHelpers
         }
     }
 
+    public static BlockState copyProperties(BlockState copyTo, BlockState copyFrom, Property<?>... properties)
+    {
+        for (Property<?> property : properties)
+        {
+            if (copyFrom.hasProperty(property))
+            {
+                copyTo = Helpers.copyProperty(copyTo, copyFrom, property);
+            }
+        }
+        return copyTo;
+    }
+
     public static <T> Optional<T> getRandomElement(Registry<T> registry, TagKey<T> tag, RandomSource random)
     {
         return registry.getTag(tag).flatMap((set) -> set.getRandomElement(random)).map(Holder::value);
