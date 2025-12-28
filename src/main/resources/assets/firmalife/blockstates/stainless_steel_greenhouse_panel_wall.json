@@ -4,7 +4,7 @@
     {
       "when": {
         "facing": "east",
-        "up": false,
+        "up": "both",
         "down": true,
         "extra": "left"
       },
@@ -16,7 +16,7 @@
     {
       "when": {
         "facing": "north",
-        "up": false,
+        "up": "both",
         "down": true,
         "extra": "left"
       },
@@ -27,7 +27,7 @@
     {
       "when": {
         "facing": "south",
-        "up": false,
+        "up": "both",
         "down": true,
         "extra": "left"
       },
@@ -39,7 +39,7 @@
     {
       "when": {
         "facing": "west",
-        "up": false,
+        "up": "both",
         "down": true,
         "extra": "left"
       },
@@ -51,7 +51,7 @@
     {
       "when": {
         "facing": "east",
-        "up": false,
+        "up": "both",
         "down": true,
         "left": false,
         "extra": "right|none"
@@ -64,7 +64,7 @@
     {
       "when": {
         "facing": "north",
-        "up": false,
+        "up": "both",
         "down": true,
         "left": false,
         "extra": "right|none"
@@ -76,7 +76,7 @@
     {
       "when": {
         "facing": "south",
-        "up": false,
+        "up": "both",
         "down": true,
         "left": false,
         "extra": "right|none"
@@ -89,7 +89,7 @@
     {
       "when": {
         "facing": "west",
-        "up": false,
+        "up": "both",
         "down": true,
         "left": false,
         "extra": "right|none"
@@ -102,7 +102,7 @@
     {
       "when": {
         "facing": "east",
-        "up": false,
+        "up": "both",
         "down": true,
         "left": false,
         "extra": "left"
@@ -115,7 +115,7 @@
     {
       "when": {
         "facing": "north",
-        "up": false,
+        "up": "both",
         "down": true,
         "left": false,
         "extra": "left"
@@ -128,7 +128,7 @@
     {
       "when": {
         "facing": "south",
-        "up": false,
+        "up": "both",
         "down": true,
         "left": false,
         "extra": "left"
@@ -141,7 +141,7 @@
     {
       "when": {
         "facing": "west",
-        "up": false,
+        "up": "both",
         "down": true,
         "left": false,
         "extra": "left"
@@ -153,7 +153,7 @@
     {
       "when": {
         "facing": "east",
-        "up": false,
+        "up": "both",
         "down": true,
         "left": true,
         "extra": "right|none"
@@ -166,7 +166,7 @@
     {
       "when": {
         "facing": "north",
-        "up": false,
+        "up": "both",
         "down": true,
         "left": true,
         "extra": "right|none"
@@ -178,7 +178,7 @@
     {
       "when": {
         "facing": "south",
-        "up": false,
+        "up": "both",
         "down": true,
         "left": true,
         "extra": "right|none"
@@ -191,7 +191,7 @@
     {
       "when": {
         "facing": "west",
-        "up": false,
+        "up": "both",
         "down": true,
         "left": true,
         "extra": "right|none"
@@ -204,7 +204,7 @@
     {
       "when": {
         "facing": "east",
-        "up": false,
+        "up": "both",
         "down": true,
         "left": true,
         "extra": "left"
@@ -217,7 +217,7 @@
     {
       "when": {
         "facing": "north",
-        "up": false,
+        "up": "both",
         "down": true,
         "left": true,
         "extra": "left"
@@ -230,7 +230,7 @@
     {
       "when": {
         "facing": "south",
-        "up": false,
+        "up": "both",
         "down": true,
         "left": true,
         "extra": "left"
@@ -243,7 +243,7 @@
     {
       "when": {
         "facing": "west",
-        "up": false,
+        "up": "both",
         "down": true,
         "left": true,
         "extra": "left"
@@ -255,7 +255,7 @@
     {
       "when": {
         "facing": "east",
-        "up": false,
+        "up": "both",
         "down": true,
         "extra": "right"
       },
@@ -267,7 +267,7 @@
     {
       "when": {
         "facing": "north",
-        "up": false,
+        "up": "both",
         "down": true,
         "extra": "right"
       },
@@ -278,7 +278,7 @@
     {
       "when": {
         "facing": "south",
-        "up": false,
+        "up": "both",
         "down": true,
         "extra": "right"
       },
@@ -290,7 +290,7 @@
     {
       "when": {
         "facing": "west",
-        "up": false,
+        "up": "both",
         "down": true,
         "extra": "right"
       },
@@ -302,7 +302,7 @@
     {
       "when": {
         "facing": "east",
-        "up": false,
+        "up": "both",
         "down": true,
         "right": false,
         "extra": "left|none"
@@ -315,7 +315,7 @@
     {
       "when": {
         "facing": "north",
-        "up": false,
+        "up": "both",
         "down": true,
         "right": false,
         "extra": "left|none"
@@ -327,7 +327,7 @@
     {
       "when": {
         "facing": "south",
-        "up": false,
+        "up": "both",
         "down": true,
         "right": false,
         "extra": "left|none"
@@ -340,7 +340,7 @@
     {
       "when": {
         "facing": "west",
-        "up": false,
+        "up": "both",
         "down": true,
         "right": false,
         "extra": "left|none"
@@ -353,7 +353,7 @@
     {
       "when": {
         "facing": "east",
-        "up": false,
+        "up": "both",
         "down": true,
         "right": false,
         "extra": "right"
@@ -365,7 +365,7 @@
     {
       "when": {
         "facing": "north",
-        "up": false,
+        "up": "both",
         "down": true,
         "right": false,
         "extra": "right"
@@ -378,7 +378,7 @@
     {
       "when": {
         "facing": "south",
-        "up": false,
+        "up": "both",
         "down": true,
         "right": false,
         "extra": "right"
@@ -391,7 +391,7 @@
     {
       "when": {
         "facing": "west",
-        "up": false,
+        "up": "both",
         "down": true,
         "right": false,
         "extra": "right"
@@ -404,7 +404,7 @@
     {
       "when": {
         "facing": "east",
-        "up": false,
+        "up": "both",
         "down": true,
         "right": true,
         "extra": "left|none"
@@ -417,7 +417,7 @@
     {
       "when": {
         "facing": "north",
-        "up": false,
+        "up": "both",
         "down": true,
         "right": true,
         "extra": "left|none"
@@ -429,7 +429,7 @@
     {
       "when": {
         "facing": "south",
-        "up": false,
+        "up": "both",
         "down": true,
         "right": true,
         "extra": "left|none"
@@ -442,7 +442,7 @@
     {
       "when": {
         "facing": "west",
-        "up": false,
+        "up": "both",
         "down": true,
         "right": true,
         "extra": "left|none"
@@ -455,7 +455,7 @@
     {
       "when": {
         "facing": "east",
-        "up": false,
+        "up": "both",
         "down": true,
         "right": true,
         "extra": "right"
@@ -467,7 +467,7 @@
     {
       "when": {
         "facing": "north",
-        "up": false,
+        "up": "both",
         "down": true,
         "right": true,
         "extra": "right"
@@ -480,7 +480,7 @@
     {
       "when": {
         "facing": "south",
-        "up": false,
+        "up": "both",
         "down": true,
         "right": true,
         "extra": "right"
@@ -493,7 +493,7 @@
     {
       "when": {
         "facing": "west",
-        "up": false,
+        "up": "both",
         "down": true,
         "right": true,
         "extra": "right"
@@ -506,7 +506,7 @@
     {
       "when": {
         "facing": "east",
-        "up": true,
+        "up": "none",
         "down": false,
         "extra": "left"
       },
@@ -518,7 +518,7 @@
     {
       "when": {
         "facing": "north",
-        "up": true,
+        "up": "none",
         "down": false,
         "extra": "left"
       },
@@ -529,7 +529,7 @@
     {
       "when": {
         "facing": "south",
-        "up": true,
+        "up": "none",
         "down": false,
         "extra": "left"
       },
@@ -541,7 +541,7 @@
     {
       "when": {
         "facing": "west",
-        "up": true,
+        "up": "none",
         "down": false,
         "extra": "left"
       },
@@ -553,7 +553,7 @@
     {
       "when": {
         "facing": "east",
-        "up": true,
+        "up": "none",
         "down": false,
         "left": false,
         "extra": "right|none"
@@ -566,7 +566,7 @@
     {
       "when": {
         "facing": "north",
-        "up": true,
+        "up": "none",
         "down": false,
         "left": false,
         "extra": "right|none"
@@ -578,7 +578,7 @@
     {
       "when": {
         "facing": "south",
-        "up": true,
+        "up": "none",
         "down": false,
         "left": false,
         "extra": "right|none"
@@ -591,7 +591,7 @@
     {
       "when": {
         "facing": "west",
-        "up": true,
+        "up": "none",
         "down": false,
         "left": false,
         "extra": "right|none"
@@ -604,7 +604,7 @@
     {
       "when": {
         "facing": "east",
-        "up": true,
+        "up": "none",
         "down": false,
         "left": false,
         "extra": "left"
@@ -617,7 +617,7 @@
     {
       "when": {
         "facing": "north",
-        "up": true,
+        "up": "none",
         "down": false,
         "left": false,
         "extra": "left"
@@ -630,7 +630,7 @@
     {
       "when": {
         "facing": "south",
-        "up": true,
+        "up": "none",
         "down": false,
         "left": false,
         "extra": "left"
@@ -643,7 +643,7 @@
     {
       "when": {
         "facing": "west",
-        "up": true,
+        "up": "none",
         "down": false,
         "left": false,
         "extra": "left"
@@ -655,7 +655,7 @@
     {
       "when": {
         "facing": "east",
-        "up": true,
+        "up": "none",
         "down": false,
         "left": true,
         "extra": "right|none"
@@ -668,7 +668,7 @@
     {
       "when": {
         "facing": "north",
-        "up": true,
+        "up": "none",
         "down": false,
         "left": true,
         "extra": "right|none"
@@ -680,7 +680,7 @@
     {
       "when": {
         "facing": "south",
-        "up": true,
+        "up": "none",
         "down": false,
         "left": true,
         "extra": "right|none"
@@ -693,7 +693,7 @@
     {
       "when": {
         "facing": "west",
-        "up": true,
+        "up": "none",
         "down": false,
         "left": true,
         "extra": "right|none"
@@ -706,7 +706,7 @@
     {
       "when": {
         "facing": "east",
-        "up": true,
+        "up": "none",
         "down": false,
         "left": true,
         "extra": "left"
@@ -719,7 +719,7 @@
     {
       "when": {
         "facing": "north",
-        "up": true,
+        "up": "none",
         "down": false,
         "left": true,
         "extra": "left"
@@ -732,7 +732,7 @@
     {
       "when": {
         "facing": "south",
-        "up": true,
+        "up": "none",
         "down": false,
         "left": true,
         "extra": "left"
@@ -745,7 +745,7 @@
     {
       "when": {
         "facing": "west",
-        "up": true,
+        "up": "none",
         "down": false,
         "left": true,
         "extra": "left"
@@ -757,7 +757,7 @@
     {
       "when": {
         "facing": "east",
-        "up": true,
+        "up": "none",
         "down": false,
         "extra": "right"
       },
@@ -769,7 +769,7 @@
     {
       "when": {
         "facing": "north",
-        "up": true,
+        "up": "none",
         "down": false,
         "extra": "right"
       },
@@ -780,7 +780,7 @@
     {
       "when": {
         "facing": "south",
-        "up": true,
+        "up": "none",
         "down": false,
         "extra": "right"
       },
@@ -792,7 +792,7 @@
     {
       "when": {
         "facing": "west",
-        "up": true,
+        "up": "none",
         "down": false,
         "extra": "right"
       },
@@ -804,7 +804,7 @@
     {
       "when": {
         "facing": "east",
-        "up": true,
+        "up": "none",
         "down": false,
         "right": false,
         "extra": "left|none"
@@ -817,7 +817,7 @@
     {
       "when": {
         "facing": "north",
-        "up": true,
+        "up": "none",
         "down": false,
         "right": false,
         "extra": "left|none"
@@ -829,7 +829,7 @@
     {
       "when": {
         "facing": "south",
-        "up": true,
+        "up": "none",
         "down": false,
         "right": false,
         "extra": "left|none"
@@ -842,7 +842,7 @@
     {
       "when": {
         "facing": "west",
-        "up": true,
+        "up": "none",
         "down": false,
         "right": false,
         "extra": "left|none"
@@ -855,7 +855,7 @@
     {
       "when": {
         "facing": "east",
-        "up": true,
+        "up": "none",
         "down": false,
         "right": false,
         "extra": "right"
@@ -867,7 +867,7 @@
     {
       "when": {
         "facing": "north",
-        "up": true,
+        "up": "none",
         "down": false,
         "right": false,
         "extra": "right"
@@ -880,7 +880,7 @@
     {
       "when": {
         "facing": "south",
-        "up": true,
+        "up": "none",
         "down": false,
         "right": false,
         "extra": "right"
@@ -893,7 +893,7 @@
     {
       "when": {
         "facing": "west",
-        "up": true,
+        "up": "none",
         "down": false,
         "right": false,
         "extra": "right"
@@ -906,7 +906,7 @@
     {
       "when": {
         "facing": "east",
-        "up": true,
+        "up": "none",
         "down": false,
         "right": true,
         "extra": "left|none"
@@ -919,7 +919,7 @@
     {
       "when": {
         "facing": "north",
-        "up": true,
+        "up": "none",
         "down": false,
         "right": true,
         "extra": "left|none"
@@ -931,7 +931,7 @@
     {
       "when": {
         "facing": "south",
-        "up": true,
+        "up": "none",
         "down": false,
         "right": true,
         "extra": "left|none"
@@ -944,7 +944,7 @@
     {
       "when": {
         "facing": "west",
-        "up": true,
+        "up": "none",
         "down": false,
         "right": true,
         "extra": "left|none"
@@ -957,7 +957,7 @@
     {
       "when": {
         "facing": "east",
-        "up": true,
+        "up": "none",
         "down": false,
         "right": true,
         "extra": "right"
@@ -969,7 +969,7 @@
     {
       "when": {
         "facing": "north",
-        "up": true,
+        "up": "none",
         "down": false,
         "right": true,
         "extra": "right"
@@ -982,7 +982,7 @@
     {
       "when": {
         "facing": "south",
-        "up": true,
+        "up": "none",
         "down": false,
         "right": true,
         "extra": "right"
@@ -995,7 +995,7 @@
     {
       "when": {
         "facing": "west",
-        "up": true,
+        "up": "none",
         "down": false,
         "right": true,
         "extra": "right"
@@ -1008,7 +1008,7 @@
     {
       "when": {
         "facing": "east",
-        "up": true,
+        "up": "none",
         "down": true,
         "extra": "left"
       },
@@ -1020,7 +1020,7 @@
     {
       "when": {
         "facing": "north",
-        "up": true,
+        "up": "none",
         "down": true,
         "extra": "left"
       },
@@ -1031,7 +1031,7 @@
     {
       "when": {
         "facing": "south",
-        "up": true,
+        "up": "none",
         "down": true,
         "extra": "left"
       },
@@ -1043,7 +1043,7 @@
     {
       "when": {
         "facing": "west",
-        "up": true,
+        "up": "none",
         "down": true,
         "extra": "left"
       },
@@ -1055,7 +1055,7 @@
     {
       "when": {
         "facing": "east",
-        "up": true,
+        "up": "none",
         "down": true,
         "left": false,
         "extra": "right|none"
@@ -1068,7 +1068,7 @@
     {
       "when": {
         "facing": "north",
-        "up": true,
+        "up": "none",
         "down": true,
         "left": false,
         "extra": "right|none"
@@ -1080,7 +1080,7 @@
     {
       "when": {
         "facing": "south",
-        "up": true,
+        "up": "none",
         "down": true,
         "left": false,
         "extra": "right|none"
@@ -1093,7 +1093,7 @@
     {
       "when": {
         "facing": "west",
-        "up": true,
+        "up": "none",
         "down": true,
         "left": false,
         "extra": "right|none"
@@ -1106,7 +1106,7 @@
     {
       "when": {
         "facing": "east",
-        "up": true,
+        "up": "none",
         "down": true,
         "left": false,
         "extra": "left"
@@ -1119,7 +1119,7 @@
     {
       "when": {
         "facing": "north",
-        "up": true,
+        "up": "none",
         "down": true,
         "left": false,
         "extra": "left"
@@ -1132,7 +1132,7 @@
     {
       "when": {
         "facing": "south",
-        "up": true,
+        "up": "none",
         "down": true,
         "left": false,
         "extra": "left"
@@ -1145,7 +1145,7 @@
     {
       "when": {
         "facing": "west",
-        "up": true,
+        "up": "none",
         "down": true,
         "left": false,
         "extra": "left"
@@ -1157,7 +1157,7 @@
     {
       "when": {
         "facing": "east",
-        "up": true,
+        "up": "none",
         "down": true,
         "left": true,
         "extra": "right|none"
@@ -1170,7 +1170,7 @@
     {
       "when": {
         "facing": "north",
-        "up": true,
+        "up": "none",
         "down": true,
         "left": true,
         "extra": "right|none"
@@ -1182,7 +1182,7 @@
     {
       "when": {
         "facing": "south",
-        "up": true,
+        "up": "none",
         "down": true,
         "left": true,
         "extra": "right|none"
@@ -1195,7 +1195,7 @@
     {
       "when": {
         "facing": "west",
-        "up": true,
+        "up": "none",
         "down": true,
         "left": true,
         "extra": "right|none"
@@ -1208,7 +1208,7 @@
     {
       "when": {
         "facing": "east",
-        "up": true,
+        "up": "none",
         "down": true,
         "left": true,
         "extra": "left"
@@ -1221,7 +1221,7 @@
     {
       "when": {
         "facing": "north",
-        "up": true,
+        "up": "none",
         "down": true,
         "left": true,
         "extra": "left"
@@ -1234,7 +1234,7 @@
     {
       "when": {
         "facing": "south",
-        "up": true,
+        "up": "none",
         "down": true,
         "left": true,
         "extra": "left"
@@ -1247,7 +1247,7 @@
     {
       "when": {
         "facing": "west",
-        "up": true,
+        "up": "none",
         "down": true,
         "left": true,
         "extra": "left"
@@ -1259,7 +1259,7 @@
     {
       "when": {
         "facing": "east",
-        "up": true,
+        "up": "none",
         "down": true,
         "extra": "right"
       },
@@ -1271,7 +1271,7 @@
     {
       "when": {
         "facing": "north",
-        "up": true,
+        "up": "none",
         "down": true,
         "extra": "right"
       },
@@ -1282,7 +1282,7 @@
     {
       "when": {
         "facing": "south",
-        "up": true,
+        "up": "none",
         "down": true,
         "extra": "right"
       },
@@ -1294,7 +1294,7 @@
     {
       "when": {
         "facing": "west",
-        "up": true,
+        "up": "none",
         "down": true,
         "extra": "right"
       },
@@ -1306,7 +1306,7 @@
     {
       "when": {
         "facing": "east",
-        "up": true,
+        "up": "none",
         "down": true,
         "right": false,
         "extra": "left|none"
@@ -1319,7 +1319,7 @@
     {
       "when": {
         "facing": "north",
-        "up": true,
+        "up": "none",
         "down": true,
         "right": false,
         "extra": "left|none"
@@ -1331,7 +1331,7 @@
     {
       "when": {
         "facing": "south",
-        "up": true,
+        "up": "none",
         "down": true,
         "right": false,
         "extra": "left|none"
@@ -1344,7 +1344,7 @@
     {
       "when": {
         "facing": "west",
-        "up": true,
+        "up": "none",
         "down": true,
         "right": false,
         "extra": "left|none"
@@ -1357,7 +1357,7 @@
     {
       "when": {
         "facing": "east",
-        "up": true,
+        "up": "none",
         "down": true,
         "right": false,
         "extra": "right"
@@ -1369,7 +1369,7 @@
     {
       "when": {
         "facing": "north",
-        "up": true,
+        "up": "none",
         "down": true,
         "right": false,
         "extra": "right"
@@ -1382,7 +1382,7 @@
     {
       "when": {
         "facing": "south",
-        "up": true,
+        "up": "none",
         "down": true,
         "right": false,
         "extra": "right"
@@ -1395,7 +1395,7 @@
     {
       "when": {
         "facing": "west",
-        "up": true,
+        "up": "none",
         "down": true,
         "right": false,
         "extra": "right"
@@ -1408,7 +1408,7 @@
     {
       "when": {
         "facing": "east",
-        "up": true,
+        "up": "none",
         "down": true,
         "right": true,
         "extra": "left|none"
@@ -1421,7 +1421,7 @@
     {
       "when": {
         "facing": "north",
-        "up": true,
+        "up": "none",
         "down": true,
         "right": true,
         "extra": "left|none"
@@ -1433,7 +1433,7 @@
     {
       "when": {
         "facing": "south",
-        "up": true,
+        "up": "none",
         "down": true,
         "right": true,
         "extra": "left|none"
@@ -1446,7 +1446,7 @@
     {
       "when": {
         "facing": "west",
-        "up": true,
+        "up": "none",
         "down": true,
         "right": true,
         "extra": "left|none"
@@ -1459,7 +1459,7 @@
     {
       "when": {
         "facing": "east",
-        "up": true,
+        "up": "none",
         "down": true,
         "right": true,
         "extra": "right"
@@ -1471,7 +1471,7 @@
     {
       "when": {
         "facing": "north",
-        "up": true,
+        "up": "none",
         "down": true,
         "right": true,
         "extra": "right"
@@ -1484,7 +1484,7 @@
     {
       "when": {
         "facing": "south",
-        "up": true,
+        "up": "none",
         "down": true,
         "right": true,
         "extra": "right"
@@ -1497,7 +1497,7 @@
     {
       "when": {
         "facing": "west",
-        "up": true,
+        "up": "none",
         "down": true,
         "right": true,
         "extra": "right"
@@ -1510,7 +1510,7 @@
     {
       "when": {
         "facing": "east",
-        "up": false,
+        "up": "both",
         "down": false,
         "extra": "left"
       },
@@ -1522,7 +1522,7 @@
     {
       "when": {
         "facing": "north",
-        "up": false,
+        "up": "both",
         "down": false,
         "extra": "left"
       },
@@ -1533,7 +1533,7 @@
     {
       "when": {
         "facing": "south",
-        "up": false,
+        "up": "both",
         "down": false,
         "extra": "left"
       },
@@ -1545,7 +1545,7 @@
     {
       "when": {
         "facing": "west",
-        "up": false,
+        "up": "both",
         "down": false,
         "extra": "left"
       },
@@ -1557,7 +1557,7 @@
     {
       "when": {
         "facing": "east",
-        "up": false,
+        "up": "both",
         "down": false,
         "left": false,
         "extra": "right|none"
@@ -1570,7 +1570,7 @@
     {
       "when": {
         "facing": "north",
-        "up": false,
+        "up": "both",
         "down": false,
         "left": false,
         "extra": "right|none"
@@ -1582,7 +1582,7 @@
     {
       "when": {
         "facing": "south",
-        "up": false,
+        "up": "both",
         "down": false,
         "left": false,
         "extra": "right|none"
@@ -1595,7 +1595,7 @@
     {
       "when": {
         "facing": "west",
-        "up": false,
+        "up": "both",
         "down": false,
         "left": false,
         "extra": "right|none"
@@ -1608,7 +1608,7 @@
     {
       "when": {
         "facing": "east",
-        "up": false,
+        "up": "both",
         "down": false,
         "left": false,
         "extra": "left"
@@ -1621,7 +1621,7 @@
     {
       "when": {
         "facing": "north",
-        "up": false,
+        "up": "both",
         "down": false,
         "left": false,
         "extra": "left"
@@ -1634,7 +1634,7 @@
     {
       "when": {
         "facing": "south",
-        "up": false,
+        "up": "both",
         "down": false,
         "left": false,
         "extra": "left"
@@ -1647,7 +1647,7 @@
     {
       "when": {
         "facing": "west",
-        "up": false,
+        "up": "both",
         "down": false,
         "left": false,
         "extra": "left"
@@ -1659,7 +1659,7 @@
     {
       "when": {
         "facing": "east",
-        "up": false,
+        "up": "both",
         "down": false,
         "left": true,
         "extra": "right|none"
@@ -1672,7 +1672,7 @@
     {
       "when": {
         "facing": "north",
-        "up": false,
+        "up": "both",
         "down": false,
         "left": true,
         "extra": "right|none"
@@ -1684,7 +1684,7 @@
     {
       "when": {
         "facing": "south",
-        "up": false,
+        "up": "both",
         "down": false,
         "left": true,
         "extra": "right|none"
@@ -1697,7 +1697,7 @@
     {
       "when": {
         "facing": "west",
-        "up": false,
+        "up": "both",
         "down": false,
         "left": true,
         "extra": "right|none"
@@ -1710,7 +1710,7 @@
     {
       "when": {
         "facing": "east",
-        "up": false,
+        "up": "both",
         "down": false,
         "left": true,
         "extra": "left"
@@ -1723,7 +1723,7 @@
     {
       "when": {
         "facing": "north",
-        "up": false,
+        "up": "both",
         "down": false,
         "left": true,
         "extra": "left"
@@ -1736,7 +1736,7 @@
     {
       "when": {
         "facing": "south",
-        "up": false,
+        "up": "both",
         "down": false,
         "left": true,
         "extra": "left"
@@ -1749,7 +1749,7 @@
     {
       "when": {
         "facing": "west",
-        "up": false,
+        "up": "both",
         "down": false,
         "left": true,
         "extra": "left"
@@ -1761,7 +1761,7 @@
     {
       "when": {
         "facing": "east",
-        "up": false,
+        "up": "both",
         "down": false,
         "extra": "right"
       },
@@ -1773,7 +1773,7 @@
     {
       "when": {
         "facing": "north",
-        "up": false,
+        "up": "both",
         "down": false,
         "extra": "right"
       },
@@ -1784,7 +1784,7 @@
     {
       "when": {
         "facing": "south",
-        "up": false,
+        "up": "both",
         "down": false,
         "extra": "right"
       },
@@ -1796,7 +1796,7 @@
     {
       "when": {
         "facing": "west",
-        "up": false,
+        "up": "both",
         "down": false,
         "extra": "right"
       },
@@ -1808,7 +1808,7 @@
     {
       "when": {
         "facing": "east",
-        "up": false,
+        "up": "both",
         "down": false,
         "right": false,
         "extra": "left|none"
@@ -1821,7 +1821,7 @@
     {
       "when": {
         "facing": "north",
-        "up": false,
+        "up": "both",
         "down": false,
         "right": false,
         "extra": "left|none"
@@ -1833,7 +1833,7 @@
     {
       "when": {
         "facing": "south",
-        "up": false,
+        "up": "both",
         "down": false,
         "right": false,
         "extra": "left|none"
@@ -1846,7 +1846,7 @@
     {
       "when": {
         "facing": "west",
-        "up": false,
+        "up": "both",
         "down": false,
         "right": false,
         "extra": "left|none"
@@ -1859,7 +1859,7 @@
     {
       "when": {
         "facing": "east",
-        "up": false,
+        "up": "both",
         "down": false,
         "right": false,
         "extra": "right"
@@ -1871,7 +1871,7 @@
     {
       "when": {
         "facing": "north",
-        "up": false,
+        "up": "both",
         "down": false,
         "right": false,
         "extra": "right"
@@ -1884,7 +1884,7 @@
     {
       "when": {
         "facing": "south",
-        "up": false,
+        "up": "both",
         "down": false,
         "right": false,
         "extra": "right"
@@ -1897,7 +1897,7 @@
     {
       "when": {
         "facing": "west",
-        "up": false,
+        "up": "both",
         "down": false,
         "right": false,
         "extra": "right"
@@ -1910,7 +1910,7 @@
     {
       "when": {
         "facing": "east",
-        "up": false,
+        "up": "both",
         "down": false,
         "right": true,
         "extra": "left|none"
@@ -1923,7 +1923,7 @@
     {
       "when": {
         "facing": "north",
-        "up": false,
+        "up": "both",
         "down": false,
         "right": true,
         "extra": "left|none"
@@ -1935,7 +1935,7 @@
     {
       "when": {
         "facing": "south",
-        "up": false,
+        "up": "both",
         "down": false,
         "right": true,
         "extra": "left|none"
@@ -1948,7 +1948,7 @@
     {
       "when": {
         "facing": "west",
-        "up": false,
+        "up": "both",
         "down": false,
         "right": true,
         "extra": "left|none"
@@ -1961,7 +1961,7 @@
     {
       "when": {
         "facing": "east",
-        "up": false,
+        "up": "both",
         "down": false,
         "right": true,
         "extra": "right"
@@ -1973,7 +1973,7 @@
     {
       "when": {
         "facing": "north",
-        "up": false,
+        "up": "both",
         "down": false,
         "right": true,
         "extra": "right"
@@ -1986,7 +1986,7 @@
     {
       "when": {
         "facing": "south",
-        "up": false,
+        "up": "both",
         "down": false,
         "right": true,
         "extra": "right"
@@ -1999,7 +1999,7 @@
     {
       "when": {
         "facing": "west",
-        "up": false,
+        "up": "both",
         "down": false,
         "right": true,
         "extra": "right"

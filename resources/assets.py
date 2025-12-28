@@ -653,7 +653,7 @@ def greenhouse_panel_wall(rm: ResourceManager, name: str, frame: str, glass: str
         return '_'.join(filter(bool, x))
 
     parts = []
-    for kind, kind_properties in {'up': {'up':False, 'down':True}, 'down': {'up':True, 'down':False}, 'both':{'up':True, 'down':True}, '':{'up':False, 'down':False}}.items():
+    for kind, kind_properties in {'up': {'up':'both', 'down':True}, 'down': {'up':'none', 'down':False}, 'both':{'up':'none', 'down':True}, '':{'up':'both', 'down':False}}.items():
         for direction, direction_properties in {'left':{'extra':'right|none'}, 'right':{'extra':'left|none'}}.items():
             corner_model_name = f'greenhouse/{name}/panel_wall/corner_{to_name(kind, direction)}'
             rm.block_model(
