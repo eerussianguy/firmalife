@@ -150,7 +150,7 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False, rev
             anvil_recipe('firmalife:anvil/copper_pipe', 'The copper pipe is made with a sheet.'),
             two_tall_block_spotlight('', '', 'firmalife:pumping_station', 'firmalife:irrigation_tank'),
             text('Pumping stations must be above a source block of water in order to work, and be connected to mechanical power. Irrigation tanks can also serve water through their ports on the sides, provided that they are stacked at most 3 blocks high above a pumping station on other tanks.'),
-            crafting('firmalife:crafting/pumping_station', 'firmalife:crafting/irrigation_tank'),
+            crafting('firmalife:crafting/pumping_station', 'firmalife:crafting/crafting/irrigation_tank'),
             crafting('firmalife:crafting/oxidized_copper_pipe', text_contents='Oxidized pipes are the same as regular copper pipes, except they do not connect to the other kind of pipe.'),
             crafting('firmalife:crafting/greenhouse/iron_greenhouse_port', text_contents='Greenhouse ports have a single pipe inside of them. They can be used to pass water through the walls of greenhouses!'),
             empty_last_page(),
@@ -299,7 +299,7 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False, rev
         )),
         entry('chocolate', 'Chocolate', 'firmalife:textures/item/food/dark_chocolate.png', pages=(
             text('$(thing)Chocolate-making$() takes a few processing steps, for not much of a reward. It\'s important to remember, when playing Firmalife, that being a chocolatier is for your personal enjoyment and pleasure, rather than for trying to extract maximum value from any given input.'),
-            text('To start chocolate processing, cocoa beans must first be $(thing)roasted$() in an $(l:firmalife/ovens)Oven$() to make $(thing)Roasted Cocoa Beans$(). Then, craft the roasted beans with a $(thing)Knife$() to split the beans into $(thing)Cocoa Powder$() and $(thing)Cocoa Powder$().'),
+            text('To start chocolate processing, cocoa beans must first be $(thing)roasted$() in an $(l:firmalife/ovens)Oven$() to make $(thing)Roasted Cocoa Beans$(). Then, craft the roasted beans with a $(thing)Knife$() to split the beans into $(thing)Cocoa Powder$() and $(thing)Cocoa Butter$().'),
             text('The $(l:firmalife/mixing_bowl)Mixing Bowl$() is used to mix cocoa powder, butter, and sweetener (sugar or honey) to make $(thing)Chocolate Blends$(). The ratio of cocoa butter to powder determines what comes out:$(br)$(li)1 Powder, 1 Butter, 1 Sweetener: Milk Chocolate$()$(li)2 Powder, 1 Sweetener: Dark Chocolate$()$(li)2 Butter, 1 Sweetener: White Chocolate$()'),
             drying_recipe('firmalife:drying/dark_chocolate', 'Finally, chocolate is dried on a $(l:firmalife/drying)Drying Mat$() to make $(thing)Chocolate$().')
         )),
