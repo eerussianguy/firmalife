@@ -41,6 +41,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -83,18 +85,6 @@ public class FLHelpers
     {
         final IFluidHandler cap = Helpers.getCapability(Capabilities.FluidHandler.BLOCK, blockEntity);
         return cap == null ? FluidStack.EMPTY : cap.getFluidInTank(0);
-    }
-
-    public static void returnItem(Player player, ItemStack stack)
-    {
-        if (player.isAlive() && player instanceof ServerPlayer serverPlayer && !serverPlayer.hasDisconnected())
-        {
-            player.getInventory().placeItemBackInInventory(stack);
-        }
-        else
-        {
-            player.drop(stack, false);
-        }
     }
 
     public static void resetCounter(Level level, BlockPos pos)
@@ -294,6 +284,11 @@ public class FLHelpers
         HeatCapability.setTemperature(stack2Copy, 0);
 
         return ItemStack.isSameItemSameComponents(stack1Copy, stack2Copy) && stack1Copy.getMaxStackSize() >= stack2Copy.getCount() + stack1Copy.getCount();
+    }
+
+    public static <T extends Comparable<T>> boolean hasPropertyAndValue(BlockState state, Property<T> property, T value)
+    {
+        return state.hasProperty(property) && state.getValue(property).equals(value);
     }
 
     /**

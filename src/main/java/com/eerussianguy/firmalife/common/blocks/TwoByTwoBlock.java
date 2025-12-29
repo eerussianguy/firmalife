@@ -93,7 +93,7 @@ public class TwoByTwoBlock extends FourWayDeviceBlock
         return state.getBlock() instanceof TwoByTwoBlock && state.getValue(BARREL_PART) == stageWanted;
     }
 
-    public static final VoxelShape[] SHAPE_0 = Helpers.computeHorizontalShapes(dir -> Helpers.rotateShape(dir, 0, 2, 0, 16, 16, 14));
+    public static final VoxelShape[] SHAPE_0 = Helpers.computeHorizontalShapes(dir -> Helpers.rotateShape(dir, 0, 2, 0, 14, 16, 14));
     public static final VoxelShape[] SHAPE_1 = Helpers.computeHorizontalShapes(dir -> Helpers.rotateShape(dir, 2, 2, 0, 16, 16, 16));
     public static final VoxelShape[] SHAPE_2 = Helpers.computeHorizontalShapes(dir -> Helpers.rotateShape(dir, 0, 2, 0, 14, 16, 14));
     public static final VoxelShape[] SHAPE_3 = Helpers.computeHorizontalShapes(dir -> Helpers.rotateShape(dir, 0, 2, 0, 14, 16, 16));
@@ -103,7 +103,7 @@ public class TwoByTwoBlock extends FourWayDeviceBlock
     public static final VoxelShape[] SHAPE_7 = Helpers.computeHorizontalShapes(dir -> Helpers.rotateShape(dir, 0, 0, 0, 14, 14, 16));
     public static final VoxelShape[][] SHAPES = {SHAPE_0, SHAPE_1, SHAPE_2, SHAPE_3, SHAPE_4, SHAPE_5, SHAPE_6, SHAPE_7};
 
-    public static BlockPos findZeroPos(Level level, BlockPos pos, BlockState state)
+    public static BlockPos findZeroPos(BlockPos pos, BlockState state)
     {
         final Direction facing = state.getValue(FACING);
         int part = state.getValue(BARREL_PART);
@@ -130,7 +130,7 @@ public class TwoByTwoBlock extends FourWayDeviceBlock
     @Override
     public ItemInteractionResult useItemOn(ItemStack held, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit)
     {
-        final BlockPos zero = findZeroPos(level, pos, state);
+        final BlockPos zero = findZeroPos(pos, state);
         return useCoreBlock(held, level.getBlockState(zero), level, zero, player, hand, hit.withPosition(zero));
     }
 
@@ -146,21 +146,18 @@ public class TwoByTwoBlock extends FourWayDeviceBlock
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context)
     {
         return SHAPES[state.getValue(BARREL_PART)][state.getValue(FACING).get2DDataValue()];
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos)
     {
         return state.getValue(BARREL_PART) == 0 || canPartSurvive(level, pos, state);
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos pos, BlockPos facingPos)
     {
         return canPartSurvive(level, pos, state) ? state : Blocks.AIR.defaultBlockState();
@@ -173,7 +170,6 @@ public class TwoByTwoBlock extends FourWayDeviceBlock
     }
 
     @Override
-    @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext ctx)
     {
         return canPlaceBigBarrel(ctx.getLevel(), ctx.getClickedPos(), defaultBlockState(), ctx.getHorizontalDirection()) ? defaultBlockState().setValue(FACING, ctx.getHorizontalDirection()) : null;

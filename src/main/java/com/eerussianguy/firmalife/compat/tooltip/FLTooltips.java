@@ -20,8 +20,10 @@ import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.config.FLConfig;
 import net.neoforged.neoforge.items.IItemHandler;
 
+import net.dries007.tfc.common.blockentities.BarrelBlockEntity;
 import net.dries007.tfc.common.blockentities.PotBlockEntity;
 import net.dries007.tfc.common.blockentities.TickCounterBlockEntity;
+import net.dries007.tfc.common.blocks.devices.BarrelBlock;
 import net.dries007.tfc.common.blocks.devices.FirepitBlock;
 import net.dries007.tfc.common.blocks.plant.fruit.FruitTreeSaplingBlock;
 import net.dries007.tfc.common.capabilities.BlockCapabilities;
@@ -64,12 +66,36 @@ public final class FLTooltips
             register(r, "barrel_press", BARREL_PRESS, JarbnetBlock.class);
             register(r, "pumping_station", BlockEntityTooltips.ROTATING, PumpingStationBlock.class);
             register(r, "pot", POT, StovetopPotBlock.class);
+            register(r, "keg", KEG, KegBlock.class);
         }
 
         private static void register(RegisterCallback<BlockEntityTooltip, Block> r, String name, BlockEntityTooltip tooltip, Class<? extends Block> aClass)
         {
             r.register(FLHelpers.identifier(name), tooltip, aClass);
         }
+
+        public static final BlockEntityTooltip KEG = (level, state, pos, entity, tooltip) -> {
+            pos = KegBlock.findZeroPos(pos, state);
+            state = level.getBlockState(pos);
+            entity = level.getBlockEntity(pos);
+            if (state.getBlock() instanceof KegBlock && entity instanceof KegBlockEntity barrel)
+            {
+                if (state.getValue(KegBlock.SEALED))
+                {
+                    final long tickLeft = barrel.getRemainingTicks();
+                    if (tickLeft > 0)
+                    {
+                        final Component recipe = barrel.getRecipeTooltip();
+                        if (recipe != null)
+                        {
+                            tooltip.accept(recipe);
+                            tooltip.accept(Component.translatable("tfc.jade.sealed_date", Calendars.get(level).getExactTimeAndDate(barrel.getSealedTick())));
+                            timeLeft(level, tooltip, tickLeft);
+                        }
+                    }
+                }
+            }
+        };
 
         public static final BlockEntityTooltip POT = (level, state, pos, entity, tooltip) -> {
             if (entity instanceof StovetopPotBlockEntity pot)

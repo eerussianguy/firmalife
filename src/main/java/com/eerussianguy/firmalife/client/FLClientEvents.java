@@ -38,7 +38,7 @@ import com.eerussianguy.firmalife.client.render.StringBlockEntityRenderer;
 import com.eerussianguy.firmalife.client.render.SweeperBlockEntityRenderer;
 import com.eerussianguy.firmalife.client.render.VatBlockEntityRenderer;
 import com.eerussianguy.firmalife.client.screen.BarrelPressScreen;
-import com.eerussianguy.firmalife.client.screen.BigBarrelScreen;
+import com.eerussianguy.firmalife.client.screen.KegScreen;
 import com.eerussianguy.firmalife.client.screen.StovetopGrillScreen;
 import com.eerussianguy.firmalife.client.screen.StovetopPotScreen;
 import com.eerussianguy.firmalife.common.FLCreativeTabs;
@@ -197,7 +197,7 @@ public class FLClientEvents
         event.register(FLMenuTypes.BARREL_PRESS.get(), BarrelPressScreen::new);
         event.register(FLMenuTypes.STOVETOP_GRILL.get(), StovetopGrillScreen::new);
         event.register(FLMenuTypes.STOVETOP_POT.get(), StovetopPotScreen::new);
-        event.register(FLMenuTypes.KEG.get(), BigBarrelScreen::new);
+        event.register(FLMenuTypes.KEG.get(), KegScreen::new);
     }
 
     public static void onBlockColors(RegisterColorHandlersEvent.Block event)
