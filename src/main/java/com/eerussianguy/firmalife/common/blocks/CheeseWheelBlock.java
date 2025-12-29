@@ -110,7 +110,15 @@ public class CheeseWheelBlock extends BottomSupportedDeviceBlock implements Clim
             FLHelpers.resetCounter(level, pos);
             if (count - 1 == 0)
             {
-                level.destroyBlock(pos, false);
+                if (!state.getValue(RACK))
+                {
+                    level.destroyBlock(pos, false);
+                }
+                else
+                {
+                    level.setBlockAndUpdate(pos, TFCBlocks.BARREL_RACK.get().defaultBlockState());
+                    Helpers.playPlaceSound(level, pos, TFCBlocks.BARREL_RACK.get().defaultBlockState());
+                }
             }
             else
             {

@@ -1,26 +1,26 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "name": "Firmalife Fruits",
+  "name": "Firmalife中的水果",
   "category": "tfc:firmalife",
   "icon": "firmalife:plant/fig_sapling",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Firmalife adds some fruiting plants on top of those added by TFC."
+      "text": "Firmalife在群巒傳說原有的基礎上新增了一些結果植物。"
     },
     {
       "type": "patchouli:text",
-      "text": "To improve readability, entries start on the next page."
+      "text": "為了提高可讀性，正文將從下一頁開始。"
     },
     {
       "type": "patchouli:text",
       "anchor": "cocoa",
-      "text": "$(bold)$(l:the_world/climate#temperature)Temperature$(): 20 - 35 °C$(br)$(bold)$(l:mechanics/hydration)Rainfall$(): 220 - 400mm$(br2)Cocoa trees are used to make $(l:tfc:firmalife/chocolate)Chocolate$().",
-      "title": "Cocoa Tree"
+      "text": "$(bold)$(l:the_world/climate#temperature)溫度$(): 20 - 35 °C$(br)$(bold)$(l:mechanics/hydration)降雨量$(): 220 - 400mm$(br2)可可樹用於製作$(l:firmalife/chocolate)巧克力$()。",
+      "title": "可可樹"
     },
     {
       "type": "tfc:multimultiblock",
-      "text": "The monthly stages of a Cocoa tree",
+      "text": "可可樹的月度生長階段",
       "multiblocks": [
         {
           "pattern": [
@@ -95,12 +95,12 @@
     {
       "type": "patchouli:text",
       "anchor": "fig",
-      "text": "$(bold)$(l:the_world/climate#temperature)Temperature$(): 20 - 35 °C$(br)$(bold)$(l:mechanics/hydration)Rainfall$(): 125 - 215mm$(br2)",
-      "title": "Fig Tree"
+      "text": "$(bold)$(l:the_world/climate#temperature)溫度$(): 20 - 35 °C$(br)$(bold)$(l:mechanics/hydration)降雨量$(): 125 - 215mm$(br2)",
+      "title": "無花果樹"
     },
     {
       "type": "tfc:multimultiblock",
-      "text": "The monthly stages of a Fig tree",
+      "text": "無花果樹的月度生長階段",
       "multiblocks": [
         {
           "pattern": [

@@ -304,7 +304,10 @@ DEFAULT_LANG = {
     'firmalife.jade.needs_peel': 'Needs peel item to safely remove goods',
     'firmalife.jade.has_firepit': 'Has an eligible firepit',
     'firmalife.jade.no_firepit': 'No eligible firepit detected',
+    'firmalife.jade.stovetop_pot': 'Only performs soup-making recipes, not crafting.',
+    'firmalife.jade.stovetop_pot_output': 'Has soup.',
 
+    'config.jade.plugin_firmalife.stovetop_pot': 'Stovetop Pot',
     'config.jade.plugin_firmalife.fruit_tree_sapling': 'Fruit Tree Sapling',
     'config.jade.plugin_firmalife.drying_mat': 'Drying Mat',
     'config.jade.plugin_firmalife.solar_drier': 'Solar Drier',

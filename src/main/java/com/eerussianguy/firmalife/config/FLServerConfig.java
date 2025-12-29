@@ -25,6 +25,7 @@ public class FLServerConfig
     public final BooleanValue ovenRequirePeel;
     public final BooleanValue enableSeedBalls;
     public final BooleanValue enableBeeSwarm;
+    public final IntValue cropAffinityChance;
     public final IntValue hollowShellCapacity;
     public final IntValue wineGlassCapacity;
     public final DoubleValue cellarLevel2Temperature;
@@ -58,6 +59,7 @@ public class FLServerConfig
         ovenAshChance = builder.apply("ovenAshChance").comment("The chance for fuel burning in an oven to drop an ash block into an ashtray.").defineInRange("ovenAshChance", 0.5, 0, 1);
         enableSeedBalls = builder.apply("enableSeedBalls").comment("If true, players can throw seed balls.").define("enableSeedBalls", true);
         enableBeeSwarm = builder.apply("enableBeeSwarm").comment("If true, bees can swarm and hurt the player if provoked.").define("enableBeeSwarm", true);
+        cropAffinityChance = builder.apply("cropAffinityChance").comment("Chance (1 / N) for a block during a crop affinity sweep to be affected by a bee.").defineInRange("cropAffinityChance", 40,1, Integer.MAX_VALUE);
         hollowShellCapacity = builder.apply("hollowShellCapacity").comment("The capacity in mB of the hollow shell. Default 100").defineInRange("hollowShellCapacity", 100, 1, Integer.MAX_VALUE);
         wineGlassCapacity = builder.apply("wineGlassCapacity").comment("The capacity in mB of the wine glass. Default 250").defineInRange("hollowShellCapacity", 250, 1, Integer.MAX_VALUE);
         cellarLevel2Temperature = builder.apply("cellarLevel2Temperature").comment("The average temperature below which stronger decay modifiers apply to cellar blocks.").defineInRange("cellarLevel2Temperature", 0d, -Double.MAX_VALUE, Double.MAX_VALUE);

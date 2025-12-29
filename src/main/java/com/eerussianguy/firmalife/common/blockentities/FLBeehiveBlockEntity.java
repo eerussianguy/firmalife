@@ -8,6 +8,7 @@ import com.eerussianguy.firmalife.common.blocks.greenhouse.LargePlanterBlock;
 import com.eerussianguy.firmalife.common.entities.FLBee;
 import com.eerussianguy.firmalife.common.entities.FLEntities;
 import com.eerussianguy.firmalife.common.items.FLItems;
+import com.eerussianguy.firmalife.config.FLConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -419,7 +420,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
             if (level.getBlockEntity(pos) instanceof IFarmland farmland)
             {
                 final float cropAffinity = (float) bee.getAbility(BeeAbility.CROP_AFFINITY); // 0 -> 10 scale
-                if (cropAffinity >= 1 && level.random.nextInt(50) == 0)
+                if (cropAffinity >= 1 && level.random.nextInt(FLConfig.SERVER.cropAffinityChance.get()) == 0)
                 {
                     final int which = level.random.nextInt(3); // 0, 1, 2
                     final float nut = level.random.nextFloat() * cropAffinity * 0.01f;

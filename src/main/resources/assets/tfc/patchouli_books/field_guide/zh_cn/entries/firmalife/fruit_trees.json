@@ -6,21 +6,21 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Firmalife在群峦传说的基础上增加了一些结果植物."
+      "text": "Firmalife在群峦传说原有的基础上新增了一些结果植物。"
     },
     {
       "type": "patchouli:text",
-      "text": "为了提高可读性，条目将从下一页开始."
+      "text": "为了提高可读性，正文将从下一页开始。"
     },
     {
       "type": "patchouli:text",
       "anchor": "cocoa",
-      "text": "$(bold)$(l:the_world/climate#temperature)温度$(): 20 - 35 °C$(br)$(bold)$(l:mechanics/hydration)降雨量$(): 220 - 400mm$(br2)可可树是用来制作 $(l:tfc:firmalife/chocolate)巧克力$()的.",
+      "text": "$(bold)$(l:the_world/climate#temperature)温度$(): 20 - 35 °C$(br)$(bold)$(l:mechanics/hydration)降雨量$(): 220 - 400mm$(br2)可可树用于制作$(l:firmalife/chocolate)巧克力$()。",
       "title": "可可树"
     },
     {
       "type": "tfc:multimultiblock",
-      "text": "可可树的月度阶段",
+      "text": "可可树的月度生长阶段",
       "multiblocks": [
         {
           "pattern": [
@@ -100,7 +100,7 @@
     },
     {
       "type": "tfc:multimultiblock",
-      "text": "无花果树的每月阶段",
+      "text": "无花果树的月度生长阶段",
       "multiblocks": [
         {
           "pattern": [

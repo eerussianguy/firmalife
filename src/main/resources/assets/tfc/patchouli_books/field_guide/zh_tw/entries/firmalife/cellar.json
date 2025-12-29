@@ -6,12 +6,12 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The $(thing)Cellar$() is a multiblock device controlled by a $(l:tfc:firmalife/climate_station)Climate Station$(). The Cellar multiblock's only requirement is that it be in an enclosed area surrounded by $(thing)Sealed Bricks$() or $(thing)Sealed Brick Doors$() on all sides. The Climate Station must be placed on the first level of the cellar, touching a wall."
+      "text": "$(thing)地窖$()是一個由$(l:firmalife/climate_station)氣象站$()控制的多方塊結構。地窖多方塊結構唯一的要求是，它必須是一個由$(thing)密封磚$()或$(thing)密封門$()在所有側面完全封閉的空間。氣象站必須放置在地窖的第一層，並緊貼牆面。"
     },
     {
       "type": "patchouli:multiblock",
       "multiblock_id": "firmalife:cellar",
-      "name": "地窖的一個範例",
+      "name": "地窖的一個示例",
       "text": "這只是你可以建造的無數種地窖的一個例子!",
       "enable_visualize": true
     },
@@ -22,11 +22,11 @@
     },
     {
       "type": "patchouli:text",
-      "text": "$(thing)Beeswax$() is obtained from $(l:tfc:firmalife/beekeeping)Beekeeping$().$(br)Cellars are used for $(l:tfc:firmalife/cheese#aging)Aging Cheese$()."
+      "text": "$(thing)蜂蠟$()可以通過$(l:firmalife/beekeeping)養蜂$()獲得。$(br)地窖可用於$(l:firmalife/cheese#aging)奶酪熟化$()。"
     },
     {
       "type": "patchouli:text",
-      "text": "The cellar is used for food preservation, for example by using $(l:tfc:firmalife/food_shelves)Food Shelves$() and $(l:tfc:firmalife/hangers)Hangers$(). The cellar performs better in environments with cooler average temperatures for food preservation. Below 0 degrees, decay modifiers work slightly better. Below -12 degrees, they perform much better."
+      "text": "地窖可用於保存食物，例如配合$(l:firmalife/food_shelves)食物架$()和$(l:firmalife/hangers)懸掛架$()使用。在平均溫度較低的環境中，地窖的食物保存效果更好。在0度以下，防腐效果稍佳；在-12度以下，效果則顯著提升。"
     }
   ],
   "read_by_default": true,

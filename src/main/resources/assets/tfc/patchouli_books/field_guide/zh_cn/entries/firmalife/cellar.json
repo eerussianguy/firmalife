@@ -6,12 +6,12 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": " $(thing)地窖$() 是一个多方块结构，受 $(l:tfc:firmalife/climate_station)气象基地$()控制.地窖多方块结构的唯一需求是是在一个四周都是 $(thing)密封砖$() 或 $(thing)密封砖门$() 的封闭区域内. 气象基地必须放置在地窖的第一层，并与墙壁接触。"
+      "text": "$(thing)地窖$()是一个由$(l:firmalife/climate_station)气象站$()控制的多方块结构。地窖多方块结构唯一的要求是，它必须是一个由$(thing)密封砖$()或$(thing)密封门$()在所有侧面完全封闭的空间。气象站必须放置在地窖的第一层，并紧贴墙面。"
     },
     {
       "type": "patchouli:multiblock",
       "multiblock_id": "firmalife:cellar",
-      "name": "地窖的一个范例",
+      "name": "地窖的一个示例",
       "text": "这只是你可以建造的无数种地窖的一个例子!",
       "enable_visualize": true
     },
@@ -22,11 +22,11 @@
     },
     {
       "type": "patchouli:text",
-      "text": "$(thing)蜂蜡$() 可以从 $(l:tfc:firmalife/beekeeping)养蜂$()这一行为中获取。$(br)地窖可以用来 $(l:tfc:firmalife/cheese#aging)老化奶酪$()."
+      "text": "$(thing)蜂蜡$()可以通过$(l:firmalife/beekeeping)养蜂$()获得。$(br)地窖可用于$(l:firmalife/cheese#aging)奶酪熟化$()。"
     },
     {
       "type": "patchouli:text",
-      "text": "地窖是用作食物保存的, 比如通过使用 $(l:tfc:firmalife/food_shelves)食物橱柜$() 与 $(l:tfc:firmalife/hangers)吊架$(). 地窖在平均温度较低的环境中保存食物的效果更好。在0度以下，衰败调节器的效果相比来说稍好。在零下12度以下，地窖的表现要好得多。"
+      "text": "地窖可用于保存食物，例如配合$(l:firmalife/food_shelves)食物架$()和$(l:firmalife/hangers)悬挂架$()使用。在平均温度较低的环境中，地窖的食物保存效果更好。在0度以下，防腐效果稍佳；在-12度以下，效果则显著提升。"
     }
   ],
   "read_by_default": true,

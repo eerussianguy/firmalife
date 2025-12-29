@@ -2,7 +2,9 @@ package com.eerussianguy.firmalife.common.blocks;
 
 import java.util.function.Supplier;
 
+import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.common.items.FinishItem;
+import com.eerussianguy.firmalife.common.recipes.WrappedHeatingRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
@@ -23,12 +25,15 @@ import com.eerussianguy.firmalife.common.blockentities.OvenTopBlockEntity;
 import com.eerussianguy.firmalife.common.misc.FLDamageSources;
 import com.eerussianguy.firmalife.config.FLConfig;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
+import net.dries007.tfc.common.capabilities.food.FoodCapability;
+import net.dries007.tfc.common.capabilities.food.IFood;
 import net.dries007.tfc.util.Helpers;
 
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.items.ItemHandlerHelper;
 import org.jetbrains.annotations.Nullable;
 
 public class OvenTopBlock extends AbstractOvenBlock
@@ -65,6 +70,38 @@ public class OvenTopBlock extends AbstractOvenBlock
                 if (!peel && oven.getTemperature() > 100f && FLConfig.SERVER.ovenRequirePeel.get() && !player.isCreative())
                 {
                     FLDamageSources.oven(player, 0.5f);
+                }
+                boolean any = false;
+                ItemStack current = ItemStack.EMPTY;
+                for (int i = 0; i < OvenTopBlockEntity.SLOTS; i++)
+                {
+                    final ItemStack stack = inv.getStackInSlot(i);
+                    final IFood food = FoodCapability.get(stack);
+                    if ((food != null && food.hasTrait(FLFoodTraits.OVEN_BAKED)) || WrappedHeatingRecipe.getRecipe(stack) == null)
+                    {
+                        final ItemStack extracted = inv.extractItem(i, 64, false);
+                        any = true;
+                        if (current.isEmpty())
+                        {
+                            current = extracted;
+                        }
+                        else if (FLHelpers.stackableExceptHeatAndFood(current, extracted))
+                        {
+                            current.grow(extracted.getCount());
+                        }
+                        else
+                        {
+                            ItemHandlerHelper.giveItemToPlayer(player, current.copy());
+                            ItemHandlerHelper.giveItemToPlayer(player, extracted);
+                            current = ItemStack.EMPTY;
+                        }
+                    }
+                }
+                if (any)
+                {
+                    if (!current.isEmpty())
+                        ItemHandlerHelper.giveItemToPlayer(player, current);
+                    return InteractionResult.sidedSuccess(level.isClientSide);
                 }
                 return FLHelpers.takeOneAny(level, OvenTopBlockEntity.SLOT_INPUT_START, OvenTopBlockEntity.SLOT_INPUT_END, inv, player);
             }

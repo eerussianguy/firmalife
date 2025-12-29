@@ -6,6 +6,7 @@ import java.util.List;
 import com.eerussianguy.firmalife.common.blocks.greenhouse.PumpingStationBlock;
 import com.eerussianguy.firmalife.common.blocks.plant.FLFruitTreeSaplingBlock;
 import com.eerussianguy.firmalife.common.capabilities.wine.WineType;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.Entity;
@@ -56,12 +57,24 @@ public final class FLTooltips
             register(r, "jarbnet", JARBNET, JarbnetBlock.class);
             register(r, "barrel_press", BARREL_PRESS, JarbnetBlock.class);
             register(r, "pumping_station", BlockEntityTooltips.ROTATING, PumpingStationBlock.class);
+            register(r, "stovetop_pot", STOVETOP_POT, StovetopPotBlock.class);
         }
 
         private static void register(RegisterCallback<BlockEntityTooltip, Block> r, String name, BlockEntityTooltip tooltip, Class<? extends Block> aClass)
         {
             r.register(FLHelpers.identifier(name), tooltip, aClass);
         }
+
+        public static final BlockEntityTooltip STOVETOP_POT = (level, state, pos, entity, tooltip) -> {
+            if (entity instanceof StovetopPotBlockEntity pot)
+            {
+                tooltip.accept(Component.translatable("firmalife.jade.stovetop_pot").withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.DARK_GRAY));
+                if (pot.isBoiling())
+                    tooltip.accept(Component.translatable("firmalife.jade.boiling"));
+                if (pot.hasOutput())
+                    tooltip.accept(Component.translatable("firmalife.jade.stovetop_pot_output").withStyle(ChatFormatting.DARK_GREEN));
+            }
+        };
 
         public static final BlockEntityTooltip VAT = (level, state, pos, entity, tooltip) -> {
             if (entity instanceof VatBlockEntity vat)

@@ -42,8 +42,10 @@ import net.dries007.tfc.common.blockentities.TickCounterBlockEntity;
 import net.dries007.tfc.common.capabilities.Capabilities;
 import net.dries007.tfc.common.capabilities.food.FoodCapability;
 import net.dries007.tfc.common.capabilities.food.FoodTrait;
+import net.dries007.tfc.common.capabilities.heat.HeatCapability;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.JsonHelpers;
+import net.dries007.tfc.util.calendar.Calendars;
 
 import static com.eerussianguy.firmalife.FirmaLife.MOD_ID;
 
@@ -73,6 +75,21 @@ public class FLHelpers
         {
             player.drop(stack, false);
         }
+    }
+
+    public static boolean stackableExceptHeatAndFood(ItemStack stack1, ItemStack stack2)
+    {
+        // This is a nice way of checking if two stacks are stackable, ignoring the creation date: copy both stacks, give them the same creation date, then check compatibility
+        // This will also not stack items which have different traits, which is intended
+        final ItemStack stack1Copy = stack1.copy(), stack2Copy = stack2.copy();
+        final long date = Calendars.get().getTicks();
+
+        FoodCapability.setCreationDate(stack1Copy, date);
+        FoodCapability.setCreationDate(stack2Copy, date);
+        HeatCapability.setTemperature(stack1Copy, 0);
+        HeatCapability.setTemperature(stack2Copy, 0);
+
+        return ItemStack.isSameItemSameTags(stack1Copy, stack2Copy) && stack1Copy.getMaxStackSize() >= stack2Copy.getCount() + stack1Copy.getCount();
     }
 
     public static void resetCounter(Level level, BlockPos pos)
