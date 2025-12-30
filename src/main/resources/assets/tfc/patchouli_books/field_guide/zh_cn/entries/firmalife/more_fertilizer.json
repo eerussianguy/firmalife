@@ -6,33 +6,33 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Firmalife中对肥料的需求更大, 因此有更多的获取$(l:mechanics/fertilizers)肥料$()的途径."
+      "text": "鉴于 Firmalife 对施肥有更高的需求，这里提供了更多获取$(l:mechanics/fertilizers)肥料$()的途径。"
     },
     {
       "type": "patchouli:text",
-      "text": "$(thing)堆肥滚筒$() 是一种很好的产出更多肥料的方式. 他们必须被接入动力以能够运作. 它只有在没接入动力的情况下才能被玩家交互，所以可以考虑将其连接到离合器上!"
+      "text": "$(thing)堆肥滚筒$()是生产更多肥料的绝佳方式。它必须连接上动力才能工作，且只能在未供能时才能被玩家操作，因此可以考虑为其连接一个离合器！"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/compost_tumbler",
-      "text": "堆肥滚筒的独特之处在于，它可以容纳更多类型的堆肥，而且不需要精确的比例即可工作。"
+      "text": "堆肥滚筒的独特之处在于它可以处理更多类型的堆肥原料，并且不需要精确的比例即可运作。"
     },
     {
       "type": "patchouli:text",
-      "text": "滚筒可以像普通的堆肥机一样容纳绿色和棕色的物品。它也可以带走少量的陶片、木炭、鱼和骨头。"
+      "text": "滚筒可以像普通的堆肥桶一样接收绿色和棕色的物品。它也可以少量接收陶片、木炭、鱼和骨头。"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/pottery_sherd",
-      "text": "用锤子砸碎陶器会产生碎片。"
+      "text": "用锤子砸碎陶器可获得碎片。"
     },
     {
       "type": "patchouli:text",
-      "text": "Green and brown items count the same, being on the range 1-4, but the new additions like fish always count for 1. Adding too much weird stuff to the composter causes it to produce rotten compost. Further, you will not know it is rotten until the very end! If the compost is more than fifteen percent bones, fish, or pottery, or more than twenty percent charcoal. it will rot. Or, if there are 10 or more green units than brown units, it will rot."
+      "text": "绿色和棕色材料的计算方式相同，每份计为1-4个单位，但新增的鱼等材料每份始终计为1个单位。向堆肥中添加过多古怪材料会导致其产生腐烂堆肥。更糟的是，该结果直至完成时才会显现！如果堆肥中骨头、鱼或陶片的比例超过15%，或者木炭的比例超过20%，它就会腐坏。或者，如果绿色单位比棕色单位数量多出10个或以上，它也会腐坏。"
     },
     {
       "type": "patchouli:text",
-      "text": "适量的加某些添加剂可以延长或缩短堆肥完成所需的时间。 多在这上面做做试验，看看怎么做才是对的。$(br)如果堆肥机中有32个单位，它将会转换为3个堆肥。如果至少有24，那就将转化为2个堆肥。如果是16个或以上，则将生成1个。再比16更少，就转化不成堆肥了。"
+      "text": "适当添加某些原料可以延长或缩短堆肥完成所需的时间。多加尝试，看看会发生什么。$(br)如果堆肥桶中有32个单位，将产出3份堆肥。如果至少有24个单位，将产出2份堆肥。如果有16个或更多单位，将产出1份堆肥。低于16则不会产生堆肥。"
     }
   ],
   "read_by_default": true,

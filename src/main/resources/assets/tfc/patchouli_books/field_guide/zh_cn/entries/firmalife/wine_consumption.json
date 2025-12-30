@@ -1,30 +1,30 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "name": "Wine Consumption",
+  "name": "葡萄酒品鉴",
   "category": "tfc:firmalife",
   "icon": "firmalife:textures/item/olivine_wine_bottle.png",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The discerning sommelier will be able to detect subtleties in the wine that is produced under different conditions. Indeed, this is possible in the world of Firmalife as well. It starts in the fields in which those grapes were grown -- a row of grapes is deeply affected by the ambient environment and soil."
+      "text": "品味卓越的品酒师能够洞察不同条件下所产葡萄酒的微妙差异。在Firmalife的世界中，这同样可以实现——奥秘始于葡萄生长的田野，成排的葡萄藤深受周边环境与土壤的浸润。"
     },
     {
       "type": "patchouli:text",
-      "text": "Grapes can have three terrain related traits -- 'Gravel Grown', 'Slope Grown', and 'Dirt Grown', based on the environment nearby. Wine also records the Koppen Climate Classification of the area in which it is bottled. Grapes grown near bees have the 'Bee Pollinated' trait."
+      "text": "葡萄会孕育出三种与地形相关的特质：根据周边环境不同，可能形成「砾石育成」、「坡地育成」或「泥土育成」。葡萄酒还会记录装瓶所在地的柯本气候分类。若葡萄在蜜蜂附近生长，则会获得「蜜蜂授粉」特质。"
     },
     {
       "type": "patchouli:text",
-      "text": "Wine begins aging as soon as it is bottled, and stops aging when the cork is removed. The cork can be removed by $(item)$(k:key.use)$() on the bottle item with a knife item. Otherwise, wine bottles work a little like buckets, and can be emptied into barrels or other devices."
+      "text": "葡萄酒自装瓶起便开始陈酿，开启瓶塞后陈酿过程即中止。手持小刀对酒瓶使用$(item)$(k:key.use)$()即可开启瓶塞。酒瓶的运作方式类似木桶，可将其内容物倾入酿造桶或其他装置中。"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/wood/keg/pine",
-      "text": "The $(thing)Keg$() is a 2x2x2 barrel block that can contain loads of items or fluids. Perfect for your vinery!"
+      "text": "$(thing)酿造桶$()是一种2x2x2规格的桶状方块，能够储存大量物品或流体，实乃酿酒工坊的完美配置。"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/wood/wine_shelf/hickory",
-      "text": "The $(thing)Wine Shelf$() is the perfect accessory for your vinery, allowing you to display and store your wine bottles in style."
+      "text": "$(thing)酒架$()是酒窖的理想配套装饰，让你能以典雅方式陈列与储存珍酿。"
     }
   ],
   "read_by_default": true,

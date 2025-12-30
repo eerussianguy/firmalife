@@ -1,26 +1,26 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "name": "Irrigation",
+  "name": "灌溉",
   "category": "tfc:firmalife",
   "icon": "firmalife:sprinkler",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The $(thing)Sprinkler$() is a device that sprinkles water in a 5x6x5 area centered on the block below the sprinkler block. You know it is working when it drips out water particles. Sprinklers placed facing up irrigate the same 5x6x5 area above."
+      "text": "$(thing)灑水器$()是一種以灑水器方塊正下方為中心，對5x6x5區域進行灌溉的裝置。當它周圍有水的粒子效果時，表明它正在工作。面朝上放置的灑水器會對上方相同的5x6x5區域進行灌溉。"
     },
     {
       "type": "tfc:anvil_recipe",
       "recipe": "firmalife:anvil/sprinkler",
-      "text": "The sprinkler is made with a $(thing)Copper Sheet$()."
+      "text": "灑水器由一塊$(thing)銅板$()鍛造而成。"
     },
     {
       "type": "patchouli:text",
-      "text": "Sprinklers must be connected to a system of pipes that feed it water in order to work. This is done by connecting a series of $(thing)Copper Pipes$() to them. Copper Pipes transport water up to 32 blocks to a sprinkler. They are connected to $(thing)Irrigation Tanks$() or $(thing)Pumping Stations$()."
+      "text": "灑水器必須連接一個供水管道系統才能工作。這需要通過連接一系列$(thing)銅製管道$()來實現。銅製管道最多能將水輸送到32格外的灑水器。它們被連接到$(thing)灌溉水箱$()或$(thing)水泵站$()上。"
     },
     {
       "type": "tfc:anvil_recipe",
       "recipe": "firmalife:anvil/copper_pipe",
-      "text": "The copper pipe is made with a sheet."
+      "text": "銅製管道是由銅板製成的。"
     },
     {
       "type": "patchouli:multiblock",
@@ -47,7 +47,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Pumping stations must be above a source block of water in order to work, and be connected to mechanical power. Irrigation tanks can also serve water through their ports on the sides, provided that they are stacked at most 3 blocks high above a pumping station on other tanks."
+      "text": "水泵站必須放置在水源方塊上方才能工作，並且需要連接上動力。灌溉水箱也可以通過其側面的端口供水，前提是它們只能比水泵站或其他水箱高出最多3個方塊的高度。"
     },
     {
       "type": "patchouli:crafting",
@@ -57,12 +57,12 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/oxidized_copper_pipe",
-      "text": "Oxidized pipes are the same as regular copper pipes, except they do not connect to the other kind of pipe."
+      "text": "氧化管道與普通銅製管道功能相同，只是不能與另一種類型的管道連接。"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/iron_greenhouse_port",
-      "text": "Greenhouse ports have a single pipe inside of them. They can be used to pass water through the walls of greenhouses!"
+      "text": "溫室端口內部設有一根管道，可用於使水流貫通溫室牆壁！"
     }
   ],
   "read_by_default": true,

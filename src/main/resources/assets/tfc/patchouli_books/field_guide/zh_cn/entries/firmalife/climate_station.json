@@ -6,11 +6,11 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The $(thing)Climate Station$() is a block that manages the $(l:firmalife/greenhouse)Greenhouse$() and the $(l:firmalife/cellar)Cellar$(). When its corresponding multiblock is built correctly, it will show water on its sides. When it is invalid, it will show ice. The Climate Station must be placed on the first level of the multiblock, touching a wall. If it is not touching a wall, you may $(item)$(k:key.use)$() it with a block that is part of the multiblock you are trying to make to tell it what to look for."
+      "text": "$(thing)气象站$()是用于管理$(l:firmalife/greenhouse)温室$()和$(l:firmalife/cellar)地窖$()的方块。当其对应的多方块结构正确建造时，其侧面会显示水流的纹理；当结构无效时，则会显示冰霜纹理。气象站必须放置在该多方块结构的最底层，并紧贴墙面。如果它没有贴墙，你可以手持目标多方块结构的组成部分对其$(item)$(k:key.use)$()，以告知它需要检测的结构类型。"
     },
     {
       "type": "tfc:multimultiblock",
-      "text": "处于有效和无效状态的气象站.",
+      "text": "处于有效和无效状态的气象站。",
       "multiblocks": [
         {
           "pattern": [
@@ -42,8 +42,8 @@
     },
     {
       "type": "patchouli:text",
-      "text": "$(li)它会自行定期更新状态，放置或破坏该方块时也会更新状态。$()$(li)当气象站的状态更新时，它会使多方块结构内的所有方块开始正常的进行各种进程。举个例子，它能让$(l:tfc:firmalife/cheese)奶酪$()开始老化。$()$(li)使用$(item)$(k:key.use)$()点击它以强制使其更新整个多方块结构内所有方块的状态。",
-      "title": "气象站提示"
+      "text": "$(li)它会定期自动更新，或在被放置/破坏时更新。$()$(li)当气象站更新时，它会告知多方块结构内的所有方块可以开始运作。例如，它让$(l:firmalife/cheese)奶酪$()开始熟成。$()$(li)按下$(item)$(k:key.use)$()可以强制更新气象站及整个多方块结构内所有方块的状态。",
+      "title": "气象站使用技巧"
     },
     {
       "type": "patchouli:crafting",
@@ -52,7 +52,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "A note about greenhouse construction: The largest greenhouse is 31x31x31, centered on the climate station, or 15 blocks in each direction. Centering the climate station in the greenhouse will allow you to take advantage of the full size range. You can also internally subdivide a greenhouse into multiple by using walls and multiple climate stations to make it larger."
+      "text": "关于温室建造的说明：温室的最大尺寸为以气象站为中心的31x31x31区域，即向每个方向延伸15格。将气象站置于温室中心，可以充分利用最大尺寸范围。你也可以通过在内部使用墙壁和多个气象站将温室细分为多个区域，从而建造更大的温室。"
     }
   ],
   "read_by_default": true,

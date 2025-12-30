@@ -11,7 +11,7 @@
     {
       "type": "patchouli:text",
       "text": "$(li)$(thing)Hardiness$(): Allows bees to produce honey at lower temperatures. Each hardiness grants an extra 2°C.$()$(li)$(thing)Production$(): Improves the speed of honey production.$()$(li)$(thing)Mutant$(): Increases variability in the traits passed during splitting swarms$().$(li)$(thing)Fertility$(): Increases likelihood of swarming.$()",
-      "title": "能力列表"
+      "title": "性状列表"
     },
     {
       "type": "patchouli:text",

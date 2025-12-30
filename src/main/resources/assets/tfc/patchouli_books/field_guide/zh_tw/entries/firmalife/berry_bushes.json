@@ -1,39 +1,39 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "name": "Berry Bushes",
+  "name": "漿果叢",
   "category": "tfc:firmalife",
   "icon": "firmalife:plant/pineapple_bush",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Firmalife adds some berry bushes. For information on wild grape bushes, see $(l:firmalife/wine)winemaking$()."
+      "text": "Firmalife 模組新增了一些漿果叢。關於野生葡萄藤的信息，請參閱$(l:firmalife/wine)釀酒$()指南。"
     },
     {
       "type": "patchouli:spotlight",
       "item": "firmalife:food/nightshade_berry",
       "link_recipes": false,
-      "text": "First is nightshade. Nightshade is a poisonous berry. When put into soup, it makes poisonous $(thing)Stinky Soup$(). It is found between 200-400mm of rain and 7-24 C temperature in forests."
+      "text": "首先是龍葵。龍葵是一種有毒漿果。放入湯中可製成帶毒性的$(thing)惡臭毒湯$()。它生成於年降雨量200-400毫米、氣溫7-24℃的森林地帶。"
     },
     {
       "type": "patchouli:spotlight",
       "item": "firmalife:food/pineapple",
       "link_recipes": false,
-      "text": "Pineapple bushes are found 250-500mm of rainfall and 20-32 C temperature in forests. Pineapples are like any other fruit, except that they can be made into $(thing)Pineapple Leather$()."
+      "text": "菠蘿灌木叢能在降雨量介於250-500mm之間與溫度介於20-32攝氏度區間內的森林中找到。菠蘿特性基本與其他水果一致，除了它們能被製作成 $(thing)菠蘿布$()。"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/pineapple_fiber",
-      "text": "Pineapples that have been $(l:tfc:firmalife/drying)Dried$() can be crafted into pineapple fiber."
+      "text": "$(l:tfc:firmalife/drying)曬乾$()的菠蘿能被製成菠蘿纖維。"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/pineapple_yarn",
-      "text": "Pineapple yarn is made by crafting a $(thing)Spindle$() with the fiber."
+      "text": "菠蘿線是通過使用$(thing)紡錘$()與菠蘿纖維合成得到的。"
     },
     {
       "type": "tfc:loom_recipe",
       "recipe": "firmalife:loom/pineapple_leather",
-      "text": "Finally, pineapple leather can be me woven in a $(l:tfc:mechanics/weaving)Loom$(). It is a plant substitute for regular leather than can be used for knapping, crafting, and other uses!"
+      "text": "最後，菠蘿布能在$(l:tfc:mechanics/weaving)織機$()中被加工。它是普通皮革的植物替代品，可用於裝飾、合成或其他用途！"
     }
   ],
   "read_by_default": true,
