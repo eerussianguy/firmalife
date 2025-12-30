@@ -129,20 +129,53 @@ public record Plantable(Ingredient ingredient, PlanterType planter, int tier, in
     {
         tooltip.add(Component.translatable("firmalife.tooltip.planter_usable", FLHelpers.translateEnum(planter)));
 
-        if (pi != null && pi.getNutrientsInfo() != null)
-            return;
         if (!ClientHelpers.hasShiftDown())
         {
             if (pi == null)
                 tooltip.add(Component.translatable("tfc.tooltip.plantable.hold_shift").withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
             return;
         }
-        final float n = getNutrients().nitrogen, p = getNutrients().phosphorous, k = getNutrients().potassium;
-        boolean consumesNutrients = n > 0 || p > 0 || k > 0;
-        tooltip.add(Component.translatable("firmalife.tooltip.planter.nutrients").withStyle(ChatFormatting.GRAY));
-        tooltip.add(indent(Component.translatable("tfc.tooltip.fertilizer.nitrogen", formatNutrientAmount(n, consumesNutrients)), 1));
-        tooltip.add(indent(Component.translatable("tfc.tooltip.fertilizer.phosphorus", formatNutrientAmount(p, consumesNutrients)), 1));
-        tooltip.add(indent(Component.translatable("tfc.tooltip.fertilizer.potassium", formatNutrientAmount(k, consumesNutrients)), 1));
+        final NutrientList fl = getNutrients();
+
+        float tfcN = 0, tfcP = 0, tfcK = 0;
+        boolean showN = true, showP = true, showK = true;
+        if (pi != null)
+        {
+            // If TFC has nutrients, and they're different from our nutrients (they shouldn't be), we need to show the player that somehow
+            // Note that Firmalife's nutrients always 'win' in the tooltip at the bottom
+            // We show all 3 by default, however if we detect that the tfc and firmalife are the same, we hide (cause TFC shows theirs anyway)
+            final PlantableInfo.PlantNutrients tfc = pi.getNutrientsInfo();
+            if (tfc != null)
+            {
+                tfcN = tfc.nitrogen();
+                tfcP = tfc.phosphorus();
+                tfcK = tfc.potassium();
+            }
+            showN = !equals(tfcN, fl.nitrogen);
+            showP = !equals(tfcP, fl.phosphorous);
+            showK = !equals(tfcK, fl.potassium);
+        }
+
+        final float n = fl.nitrogen;
+        final float p = fl.phosphorous;
+        final float k = fl.potassium;
+        if (showN || showP || showK)
+        {
+            final boolean consumesNutrients = n > 0 || p > 0 || k > 0;
+            tooltip.add(Component.translatable("firmalife.tooltip.planter.nutrients").withStyle(ChatFormatting.GRAY));
+            if (showN)
+                tooltip.add(indent(Component.translatable("tfc.tooltip.fertilizer.nitrogen", formatNutrientAmount(n, consumesNutrients)), 1));
+            if (showP)
+                tooltip.add(indent(Component.translatable("tfc.tooltip.fertilizer.phosphorus", formatNutrientAmount(p, consumesNutrients)), 1));
+            if (showK)
+                tooltip.add(indent(Component.translatable("tfc.tooltip.fertilizer.potassium", formatNutrientAmount(k, consumesNutrients)), 1));
+        }
+
+    }
+
+    private static boolean equals(float float1, float float2)
+    {
+        return Math.round(float1 * 100) == Math.round(float2 * 100);
     }
 
     private static Component indent(Component component, int amount)
