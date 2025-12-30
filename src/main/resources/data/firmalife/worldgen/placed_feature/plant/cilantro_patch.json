@@ -1,0 +1,23 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "feature": "firmalife:plant/cilantro_patch",
+  "placement": [
+    {
+      "type": "minecraft:rarity_filter",
+      "chance": 100
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "tfc:climate",
+      "min_temperature": 10,
+      "max_temperature": 24,
+      "min_groundwater": 90,
+      "max_groundwater": 300
+    },
+    {
+      "type": "tfc:biome"
+    }
+  ]
+}

@@ -52,7 +52,6 @@ public class FLItems
     public static final ItemId SCRAPED_BEEHIVE_FRAME = register("scraped_beehive_frame", () -> new Item(prop().craftRemainder(BEEHIVE_FRAME.get())));
     public static final ItemId FILLED_BEEHIVE_FRAME = register("filled_beehive_frame", () -> new BeehiveFrameItem(prop().craftRemainder(SCRAPED_BEEHIVE_FRAME.get()), BEESWAX));
     public static final ItemId SUGARED_BEEHIVE_FRAME = register("sugared_beehive_frame", () -> new BeehiveFrameItem(prop().craftRemainder(BEEHIVE_FRAME.get()), () -> Items.SUGAR));
-    public static final ItemId CINNAMON_BARK = register("cinnamon_bark");
     public static final ItemId CHEESECLOTH = register("cheesecloth");
     public static final ItemId FRUIT_LEAF = register("fruit_leaf");
     public static final ItemId HOLLOW_SHELL = register("hollow_shell",  () -> new HollowShellItem(prop(), FLConfig.SERVER.hollowShellCapacity, FLTags.Fluids.USABLE_IN_HOLLOW_SHELL, false, false));
@@ -67,7 +66,6 @@ public class FLItems
     public static final ItemId POTTERY_SHERD = register("pottery_sherd");
     public static final ItemId REINFORCED_GLASS = register("reinforced_glass");
     public static final ItemId RENNET = register("rennet");
-    public static final ItemId SEED_BALL = register("seed_ball", () -> new SeedBallItem(prop()));
     public static final ItemId SPOON = register("spoon");
     public static final ItemId SPRINKLER = register("sprinkler", () -> new SprinklerItem(FLBlocks.SPRINKLER.get(), FLBlocks.FLOOR_SPRINKLER.get(), prop()));
     public static final ItemId STAINLESS_STEEL_JAR_LID = register("stainless_steel_jar_lid");

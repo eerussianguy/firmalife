@@ -34,7 +34,7 @@
       "type": "tfc:and",
       "children": [
         {
-          "tag": "c:foods/flour"
+          "item": "firmalife:food/spiced_flour"
         },
         {
           "type": "tfc:not_rotten"

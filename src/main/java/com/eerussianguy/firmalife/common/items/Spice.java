@@ -3,8 +3,11 @@ package com.eerussianguy.firmalife.common.items;
 public enum Spice
 {
     BASIL_LEAVES,
-    CINNAMON,
-    GROUND_CINNAMON,
     VANILLA,
+    CHOPPED_CILANTRO,
+    ALLSPICE,
+    BAY_LEAVES,
+    GROUND_CARDAMOM,
+    GROUND_CUMIN,
     ;
 }

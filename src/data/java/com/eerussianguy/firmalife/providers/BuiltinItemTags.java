@@ -87,8 +87,7 @@ public class BuiltinItemTags extends TagsProvider<Item> implements Accessors
             FLBlocks.SHOSHA_WHEEL.asItem()
         );
         tag(TFCTags.Items.PLANTS)
-            .add(FLBlocks.HERBS.values().stream().map(block -> block::asItem))
-            .add(FLBlocks.BUTTERFLY_GRASS.asItem());
+            .add(FLBlocks.HERBS.values().stream().map(block -> block::asItem));
         tag(TFCTags.Items.JAM)
             .add(FLItems.JAM);
         tag(FLTags.Items.FOOD_SHELVES).add(FLBlocks.FOOD_SHELVES.values().stream().map(block -> block::asItem));
@@ -198,6 +197,16 @@ public class BuiltinItemTags extends TagsProvider<Item> implements Accessors
             itemOf(Food.MAIZE_FLOUR).asItem(),
             itemOf(Food.OAT_FLOUR).asItem()
         );
+        tag(FLTags.Items.COOKED_POULTRY)
+            .add(
+                itemOf(Food.COOKED_CHICKEN).asItem(),
+                itemOf(Food.COOKED_QUAIL).asItem(),
+                itemOf(Food.COOKED_TURKEY).asItem(),
+                itemOf(Food.COOKED_GROUSE).asItem(),
+                itemOf(Food.COOKED_DUCK).asItem(),
+                itemOf(Food.COOKED_PHEASANT).asItem(),
+                itemOf(Food.COOKED_PEAFOWL).asItem()
+            );
         tag(FLTags.Items.GRAPES).add(
             itemOf(FLFruit.RED_GRAPES).asItem(),
             itemOf(FLFruit.WHITE_GRAPES).asItem()

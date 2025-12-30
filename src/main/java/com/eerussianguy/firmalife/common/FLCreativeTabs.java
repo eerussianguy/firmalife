@@ -66,13 +66,11 @@ public final class FLCreativeTabs
         accept(out, FLItems.STAINLESS_STEEL_JAR_LID);
         accept(out, FLItems.EMPTY_JAR_WITH_STAINLESS_STEEL_LID);
         accept(out, FLItems.RENNET);
-        accept(out, FLItems.SEED_BALL);
         accept(out, FLItems.WATERING_CAN);
         accept(out, FLItems.BEEKEEPER_HELMET);
         accept(out, FLItems.BEEKEEPER_CHESTPLATE);
         accept(out, FLItems.BEEKEEPER_LEGGINGS);
         accept(out, FLItems.BEEKEEPER_BOOTS);
-        accept(out, FLItems.CINNAMON_BARK);
         accept(out, FLItems.OLIVINE_WINE_BOTTLE);
         accept(out, FLItems.HEMATITIC_WINE_BOTTLE);
         accept(out, FLItems.VOLCANIC_WINE_BOTTLE);
@@ -223,7 +221,6 @@ public final class FLCreativeTabs
         }
         else if (out.getTab() == TFCCreativeTabs.FLORA.tab().get())
         {
-            accept(out, FLBlocks.BUTTERFLY_GRASS);
             FLBlocks.HERBS.values().forEach(reg -> accept(out, reg));
             for (FLFruitBlocks.Tree tree : FLFruitBlocks.Tree.values())
             {

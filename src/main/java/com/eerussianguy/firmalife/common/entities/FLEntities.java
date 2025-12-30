@@ -12,13 +12,9 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 import net.dries007.tfc.common.entities.TFCEntities.Id;
 
-import static net.dries007.tfc.TerraFirmaCraft.*;
-
 public class FLEntities
 {
     public static final DeferredRegister<EntityType<?>> ENTITY = DeferredRegister.create(Registries.ENTITY_TYPE, FirmaLife.MOD_ID);
-
-    public static final Id<SeedBall> SEED_BALL = register("seed_ball", EntityType.Builder.<SeedBall>of(SeedBall::new, MobCategory.MISC).sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(10));
 
     public static final Id<FLBee> FLBEE = register("bee", EntityType.Builder.<FLBee>of(FLBee::new, MobCategory.CREATURE).sized(0.2F, 0.2F).clientTrackingRange(2));
 
@@ -32,7 +28,7 @@ public class FLEntities
         final String id = name.toLowerCase(Locale.ROOT);
         return new Id<>(ENTITY.register(id, () -> {
             if (!serialize) builder.noSave();
-            return builder.build(MOD_ID + ":" + id);
+            return builder.build(FirmaLife.MOD_ID + ":" + id);
         }));
     }
 }

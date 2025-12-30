@@ -15,7 +15,6 @@ import net.dries007.tfc.util.registry.RegistryPlant;
 //TODO this needs plant properties defined
 public enum FLPlant implements RegistryPlant
 {
-    BUTTERFLY_GRASS(0.8F),
     HERB(0.9F, new int[] {0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0});
 
     private final float speedFactor;

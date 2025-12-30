@@ -13,6 +13,7 @@ import mezz.jei.api.recipe.RecipeType;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.neoforged.neoforge.fluids.FluidStack;
 
 import net.dries007.tfc.compat.jei.JEIIntegration;
@@ -23,7 +24,7 @@ public class MixingCategory extends BaseRecipeCategory<MixingBowlRecipe>
     private static final int[] INPUT_X = {15, 5, 25, 5, 25};
     private static final int[] INPUT_Y = {5, 25, 25, 45, 45};
 
-    public MixingCategory(RecipeType<MixingBowlRecipe> type, IGuiHelper helper)
+    public MixingCategory(RecipeType<RecipeHolder<MixingBowlRecipe>> type, IGuiHelper helper)
     {
         super(type, helper, 110, 100, new ItemStack(FLBlocks.MIXING_BOWL.get()));
     }

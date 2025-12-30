@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:foods/flour"
+    },
+    {
+      "item": "firmalife:spice/allspice"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "firmalife:food/spiced_flour"
+  }
+}

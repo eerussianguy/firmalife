@@ -44,7 +44,7 @@ public interface MixingBowlRecipes extends Recipes
                 Ingredient.of(FLTags.Items.RAW_EGGS),
                 notRotten(itemOf(Food.PUMPKIN_CHUNKS)),
                 notRotten(itemOf(Food.PUMPKIN_CHUNKS)),
-                notRotten(TFCTags.Items.FLOUR),
+                notRotten(itemOf(FLFood.SPICED_FLOUR)),
                 Ingredient.of(TFCTags.Items.SWEETENERS)
             ),
             SizedFluidIngredient.of(Fluids.WATER, 1000),

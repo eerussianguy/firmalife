@@ -6,35 +6,11 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "在 Firmalife 中，有多種具有烹飪效果的小型植物可供你採集和種植。獲取這些植物最簡單的方法是使用$(thing)種子球$()。使用$(thing)種子球$()時，只需像投擲雪球一樣按下$(item)$(k:key.use)$()將其扔出。這將在區域內生成$(thing)蝴蝶草$()。"
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/seed_ball",
-      "text": "種子球的合成配方需要$(l:firmalife/more_fertilizer)堆肥$()和4個$(thing)種子$()。"
-    },
-    {
-      "type": "patchouli:multiblock",
-      "multiblock": {
-        "pattern": [
-          [
-            "X"
-          ],
-          [
-            "0"
-          ]
-        ],
-        "mapping": {
-          "X": "firmalife:plant/butterfly_grass"
-        }
-      },
-      "name": "",
-      "text": "一株蝴蝶草。",
-      "enable_visualize": false
+      "text": "In Firmalife, there are a number of small plants you can collect and grow on your own, some of which can be used for cooking. These are called herbs. These plants, once harvested, may be cultivated in a $(thing)Greenhouse$(), in which they consume 20 points of N, P, and K."
     },
     {
       "type": "patchouli:text",
-      "text": "蝴蝶草會隨著時間的推移而成熟。當其成熟後，會有幾率傳播到周圍的方塊，或轉變為新的植物。由其他草方塊擴散而來的蝴蝶草方塊則不會再傳播。"
+      "text": "Open to the next page to see information on all herb spawning locations and what they can be used for."
     },
     {
       "type": "patchouli:multiblock",
@@ -52,13 +28,181 @@
         }
       },
       "name": "",
-      "text": "羅勒是蝴蝶草可能生成的植物之一。",
+      "text": "Basil spawns between 0-32°C and 100-500mm of groundwater.",
       "enable_visualize": false
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/spice/basil_leaves",
-      "text": "羅勒葉可以用來製作披薩。"
+      "text": "Basil leaves, made from basil, are used in pizza."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "multiblock": {
+        "pattern": [
+          [
+            "X"
+          ],
+          [
+            "0"
+          ]
+        ],
+        "mapping": {
+          "X": "firmalife:plant/bay_laurel"
+        }
+      },
+      "name": "",
+      "text": "Bay Laurel spawns between 10-32°C and 100-300mm of groundwater.",
+      "enable_visualize": false
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/spice/bay_leaves",
+      "text": "Bay laurel is chopped into bay leaves and used with cilantro to make flavorful rice in a pot."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "multiblock": {
+        "pattern": [
+          [
+            "X"
+          ],
+          [
+            "0"
+          ]
+        ],
+        "mapping": {
+          "X": "firmalife:plant/cardamom"
+        }
+      },
+      "name": "",
+      "text": "Cardamom spawns between 17-24°C and 330-500mm of groundwater.",
+      "enable_visualize": false
+    },
+    {
+      "type": "tfc:quern_recipe",
+      "recipe": "firmalife:quern/spice/ground_cardamom",
+      "text": "Ground Cardamom is made from grinding the cardamom plant, which is used to make Rice Pilaf."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "multiblock": {
+        "pattern": [
+          [
+            "X"
+          ],
+          [
+            "0"
+          ]
+        ],
+        "mapping": {
+          "X": "firmalife:plant/cilantro"
+        }
+      },
+      "name": "",
+      "text": "Cilantro spawns between 10-24°C and 90-300mm of groundwater.",
+      "enable_visualize": false
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/spice/chopped_cilantro",
+      "text": "Cilantro can be chopped and used for salsa and used with bay leaves in a pot to make flavorful cooked rice."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "multiblock": {
+        "pattern": [
+          [
+            "X"
+          ],
+          [
+            "0"
+          ]
+        ],
+        "mapping": {
+          "X": "firmalife:plant/cumin"
+        }
+      },
+      "name": "",
+      "text": "Cumin spawns between 16-27°C and 100-300mm of groundwater.",
+      "enable_visualize": false
+    },
+    {
+      "type": "tfc:quern_recipe",
+      "recipe": "firmalife:quern/spice/ground_cumin",
+      "text": "Ground Cumin is made from grinding the cumin plant, which is used to make Carne Asada."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "multiblock": {
+        "pattern": [
+          [
+            "X"
+          ],
+          [
+            "0"
+          ]
+        ],
+        "mapping": {
+          "X": "firmalife:plant/oregano"
+        }
+      },
+      "name": "",
+      "text": "Oregano spawns between 20-27°C and 90-350mm of groundwater.",
+      "enable_visualize": false
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/food/raw_lasagna",
+      "text": "Oregano is used for lasagna."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "multiblock": {
+        "pattern": [
+          [
+            "X"
+          ],
+          [
+            "0"
+          ]
+        ],
+        "mapping": {
+          "X": "firmalife:plant/pimento"
+        }
+      },
+      "name": "",
+      "text": "Pimento spawns between 18-24°C and 200-400mm of groundwater.",
+      "enable_visualize": false
+    },
+    {
+      "type": "tfc:quern_recipe",
+      "recipe": "firmalife:quern/spice/allspice",
+      "text": "Allspice is made from grinding the pimento plant, which is used to make Spiced Flour for use in Pumpkin Pie."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "multiblock": {
+        "pattern": [
+          [
+            "X"
+          ],
+          [
+            "0"
+          ]
+        ],
+        "mapping": {
+          "X": "firmalife:plant/vanilla"
+        }
+      },
+      "name": "",
+      "text": "Vanilla spawns between 22-30°C and 350-500mm of groundwater.",
+      "enable_visualize": false
+    },
+    {
+      "type": "tfc:drying_recipe",
+      "recipe": "firmalife:drying/spice/vanilla",
+      "text": "Vanilla must be dried, and then can be made into ice cream."
     }
   ],
   "read_by_default": true,

@@ -53,7 +53,6 @@ import com.eerussianguy.firmalife.common.blocks.plant.GrapeStringBlock;
 import com.eerussianguy.firmalife.common.blocks.plant.GrapeStringWithPlantBlock;
 import com.eerussianguy.firmalife.common.blocks.plant.GrapeTrellisPostBlock;
 import com.eerussianguy.firmalife.common.blocks.plant.GrapeTrellisPostWithPlantBlock;
-import com.eerussianguy.firmalife.common.blocks.plant.MutatingPlantBlock;
 import com.eerussianguy.firmalife.common.capabilities.wine.WineType;
 import com.eerussianguy.firmalife.common.items.FLFood;
 import com.eerussianguy.firmalife.common.items.FLItems;
@@ -191,8 +190,6 @@ public class FLBlocks
     public static final Id<Block> SPRINKLER = registerNoItem("sprinkler", () -> new SprinklerBlock(ExtendedProperties.of().strength(2f).noOcclusion().sound(SoundType.METAL).blockEntity(FLBlockEntities.SPRINKLER).serverTicks(SprinklerBlockEntity::serverTick)));
     public static final Id<Block> FLOOR_SPRINKLER = registerNoItem("floor_sprinkler", () -> new FloorSprinklerBlock(ExtendedProperties.of().strength(2f).noOcclusion().sound(SoundType.METAL).blockEntity(FLBlockEntities.SPRINKLER).serverTicks(SprinklerBlockEntity::serverTick)));
 
-    public static final Id<Block> BUTTERFLY_GRASS = register("plant/butterfly_grass", () -> MutatingPlantBlock.create(FLPlant.BUTTERFLY_GRASS, FLPlant.BUTTERFLY_GRASS.nonSolidFire(), FLTags.Blocks.BUTTERFLY_GRASS_MUTANTS));
-    public static final Id<Block> POTTED_BUTTERFLY_GRASS = registerNoItem("plant/potted/butterfly_grass", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, BUTTERFLY_GRASS, Properties.of().instabreak().noOcclusion()));
     public static final Id<Block> WILD_WHITE_GRAPES = register("plant/wild_white_grapes", () -> new WildCropBlock(ExtendedProperties.of(MapColor.PLANT).noCollission().randomTicks().strength(0.4F).sound(SoundType.CROP).flammable(60, 30).randomTicks()));
     public static final Id<Block> WILD_RED_GRAPES = register("plant/wild_red_grapes", () -> new WildCropBlock(ExtendedProperties.of(MapColor.PLANT).noCollission().randomTicks().strength(0.4F).sound(SoundType.CROP).flammable(60, 30).randomTicks()));
 
@@ -271,7 +268,6 @@ public class FLBlocks
         FlowerPotBlock pot = (FlowerPotBlock) Blocks.FLOWER_POT;
         FRUIT_TREE_POTTED_SAPLINGS.forEach((plant, reg) -> pot.addPlant(FRUIT_TREE_SAPLINGS.get(plant).getId(), reg));
         POTTED_HERBS.forEach((herb, reg) -> pot.addPlant(HERBS.get(herb).getId(), reg));
-        pot.addPlant(BUTTERFLY_GRASS.getId(), POTTED_BUTTERFLY_GRASS);
     }
 
     public static Properties brickProperties()

@@ -61,7 +61,6 @@ import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -98,7 +97,6 @@ public class FLClientEvents
         bus.addListener(FLClientEvents::registerEntityRenderers);
         bus.addListener(FLClientEvents::onLayers);
         bus.addListener(FLClientEvents::onMenuRegister);
-        bus.addListener(FLClientEvents::onBlockColors);
         bus.addListener(FLClientEvents::onItemColors);
         bus.addListener(FLClientEvents::registerParticleFactories);
         bus.addListener(FLClientEvents::registerModels);
@@ -120,7 +118,7 @@ public class FLClientEvents
             FLBlocks.QUAD_PLANTER, FLBlocks.LARGE_PLANTER, FLBlocks.HANGING_PLANTER, FLBlocks.BONSAI_PLANTER, FLBlocks.TRELLIS_PLANTER,
             FLBlocks.COMPOST_TUMBLER, FLBlocks.CHEDDAR_WHEEL,
             FLBlocks.RAJYA_METOK_WHEEL, FLBlocks.CHEVRE_WHEEL, FLBlocks.SHOSHA_WHEEL, FLBlocks.FETA_WHEEL, FLBlocks.GOUDA_WHEEL, FLBlocks.SMALL_CHROMITE,
-            FLBlocks.MIXING_BOWL, FLBlocks.BUTTERFLY_GRASS, FLBlocks.VAT, FLBlocks.HYDROPONIC_PLANTER, FLBlocks.STOVETOP_GRILL, FLBlocks.STOVETOP_POT,
+            FLBlocks.MIXING_BOWL, FLBlocks.VAT, FLBlocks.HYDROPONIC_PLANTER, FLBlocks.STOVETOP_GRILL, FLBlocks.STOVETOP_POT,
             FLBlocks.DARK_LADDER, FLBlocks.JARRING_STATION, FLBlocks.GRAPE_TRELLIS_POST_RED, FLBlocks.GRAPE_TRELLIS_POST_WHITE, FLBlocks.GRAPE_TRELLIS_POST,
             FLBlocks.GRAPE_STRING, FLBlocks.GRAPE_STRING_RED, FLBlocks.GRAPE_STRING_WHITE, FLBlocks.GRAPE_STRING_PLANT_RED, FLBlocks.GRAPE_STRING_PLANT_WHITE,
             FLBlocks.GRAPE_FLUFF_RED, FLBlocks.GRAPE_FLUFF_WHITE, FLBlocks.WILD_WHITE_GRAPES, FLBlocks.WILD_RED_GRAPES, FLBlocks.PUMPING_STATION, FLBlocks.IRRIGATION_TANK,
@@ -200,20 +198,9 @@ public class FLClientEvents
         event.register(FLMenuTypes.KEG.get(), KegScreen::new);
     }
 
-    public static void onBlockColors(RegisterColorHandlersEvent.Block event)
-    {
-        final BlockColor tallGrassColor = (state, level, pos, tintIndex) -> TFCColors.getTallGrassColor(pos, tintIndex);
-
-        event.register(tallGrassColor, FLBlocks.BUTTERFLY_GRASS.get());
-        event.register(tallGrassColor, FLBlocks.POTTED_BUTTERFLY_GRASS.get());
-    }
-
     public static void onItemColors(RegisterColorHandlersEvent.Item event)
     {
         final ItemColor grassColor = (stack, tintIndex) -> TFCColors.getGrassColor(null, tintIndex);
-
-        Stream.of(FLBlocks.BUTTERFLY_GRASS).forEach(reg -> event.register(grassColor, reg.get()));
-
 
         BuiltInRegistries.FLUID.entrySet().forEach(entry -> {
             if (Objects.requireNonNull(entry.getKey().location().getNamespace()).equals(FirmaLife.MOD_ID))
@@ -320,7 +307,6 @@ public class FLClientEvents
         event.registerBlockEntityRenderer(FLBlockEntities.SWEEPER.get(), ctx -> new SweeperBlockEntityRenderer());
         event.registerBlockEntityRenderer(FLBlockEntities.CENTRIFUGE.get(), ctx -> new CentrifugeBlockEntityRenderer());
 
-        event.registerEntityRenderer(FLEntities.SEED_BALL.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(FLEntities.FLBEE.get(), FLBeeRenderer::new);
     }
 

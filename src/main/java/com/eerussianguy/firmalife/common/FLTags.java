@@ -34,7 +34,6 @@ public class FLTags
         public static final TagKey<Block> CELLAR_INSULATION = create("cellar_insulation");
         public static final TagKey<Block> BEE_RESTORATION_PLANTS = create("bee_restoration_plants");
         public static final TagKey<Block> BEE_RESTORATION_WATER_PLANTS = create("bee_restoration_water_plants");
-        public static final TagKey<Block> BUTTERFLY_GRASS_MUTANTS = create("butterfly_grass_mutants");
         public static final TagKey<Block> BUZZING_LEAVES = create("buzzing_leaves");
         public static final TagKey<Block> PIPE_REPLACEABLE = create("pipe_replaceable");
         public static final TagKey<Block> GRAPE_STRINGS = create("grape_strings");
@@ -104,6 +103,7 @@ public class FLTags
         public static final TagKey<Item> DYNAMIC_FOODS = create("foods/dynamic_foods");
         public static final TagKey<Item> FILLED_WINE_BOTTLES = create("foods/filled_wine_bottles");
         public static final TagKey<Item> HERBS = create("herbs");
+        public static final TagKey<Item> COOKED_POULTRY = create("foods/cooked_poultry");
 
         private static TagKey<Item> create(String id)
         {

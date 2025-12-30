@@ -6,35 +6,11 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "In Firmalife, there are a number of small plants you can collect and grow on your own, which have cooking properties. The easiest way to obtain these plants is with a $(thing)Seed Ball$(). To use a $(thing)Seed Ball$(), just $(item)$(k:key.use)$() to throw it, like a snowball. This will spawn $(thing)Butterfly Grass$() in the area."
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/seed_ball",
-      "text": "The recipe for the seed ball requires $(l:firmalife/more_fertilizer)Compost$() and 4 $(thing)Seeds$()."
-    },
-    {
-      "type": "patchouli:multiblock",
-      "multiblock": {
-        "pattern": [
-          [
-            "X"
-          ],
-          [
-            "0"
-          ]
-        ],
-        "mapping": {
-          "X": "firmalife:plant/butterfly_grass"
-        }
-      },
-      "name": "",
-      "text": "A butterfly grass plant.",
-      "enable_visualize": false
+      "text": "In Firmalife, there are a number of small plants you can collect and grow on your own, some of which can be used for cooking. These are called herbs. These plants, once harvested, may be cultivated in a $(thing)Greenhouse$(), in which they consume 20 points of N, P, and K."
     },
     {
       "type": "patchouli:text",
-      "text": "Butterfly grass will mature over time. When one reaches maturity, it has a chance to spread to surrounding blocks, or turn into something new. Butterfly grass blocks that have been spread by another grass block do not spread anymore."
+      "text": "Open to the next page to see information on all herb spawning locations and what they can be used for."
     },
     {
       "type": "patchouli:multiblock",
@@ -52,13 +28,181 @@
         }
       },
       "name": "",
-      "text": "Basil is one of the plants that can be spawned by butterfly grass.",
+      "text": "Basil spawns between 0-32°C and 100-500mm of groundwater.",
       "enable_visualize": false
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/spice/basil_leaves",
-      "text": "Basil leaves are used in pizza."
+      "text": "Basil leaves, made from basil, are used in pizza."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "multiblock": {
+        "pattern": [
+          [
+            "X"
+          ],
+          [
+            "0"
+          ]
+        ],
+        "mapping": {
+          "X": "firmalife:plant/bay_laurel"
+        }
+      },
+      "name": "",
+      "text": "Bay Laurel spawns between 10-32°C and 100-300mm of groundwater.",
+      "enable_visualize": false
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/spice/bay_leaves",
+      "text": "Bay laurel is chopped into bay leaves and used with cilantro to make flavorful rice in a pot."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "multiblock": {
+        "pattern": [
+          [
+            "X"
+          ],
+          [
+            "0"
+          ]
+        ],
+        "mapping": {
+          "X": "firmalife:plant/cardamom"
+        }
+      },
+      "name": "",
+      "text": "Cardamom spawns between 17-24°C and 330-500mm of groundwater.",
+      "enable_visualize": false
+    },
+    {
+      "type": "tfc:quern_recipe",
+      "recipe": "firmalife:quern/spice/ground_cardamom",
+      "text": "Ground Cardamom is made from grinding the cardamom plant, which is used to make Rice Pilaf."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "multiblock": {
+        "pattern": [
+          [
+            "X"
+          ],
+          [
+            "0"
+          ]
+        ],
+        "mapping": {
+          "X": "firmalife:plant/cilantro"
+        }
+      },
+      "name": "",
+      "text": "Cilantro spawns between 10-24°C and 90-300mm of groundwater.",
+      "enable_visualize": false
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/spice/chopped_cilantro",
+      "text": "Cilantro can be chopped and used for salsa and used with bay leaves in a pot to make flavorful cooked rice."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "multiblock": {
+        "pattern": [
+          [
+            "X"
+          ],
+          [
+            "0"
+          ]
+        ],
+        "mapping": {
+          "X": "firmalife:plant/cumin"
+        }
+      },
+      "name": "",
+      "text": "Cumin spawns between 16-27°C and 100-300mm of groundwater.",
+      "enable_visualize": false
+    },
+    {
+      "type": "tfc:quern_recipe",
+      "recipe": "firmalife:quern/spice/ground_cumin",
+      "text": "Ground Cumin is made from grinding the cumin plant, which is used to make Carne Asada."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "multiblock": {
+        "pattern": [
+          [
+            "X"
+          ],
+          [
+            "0"
+          ]
+        ],
+        "mapping": {
+          "X": "firmalife:plant/oregano"
+        }
+      },
+      "name": "",
+      "text": "Oregano spawns between 20-27°C and 90-350mm of groundwater.",
+      "enable_visualize": false
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/food/raw_lasagna",
+      "text": "Oregano is used for lasagna."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "multiblock": {
+        "pattern": [
+          [
+            "X"
+          ],
+          [
+            "0"
+          ]
+        ],
+        "mapping": {
+          "X": "firmalife:plant/pimento"
+        }
+      },
+      "name": "",
+      "text": "Pimento spawns between 18-24°C and 200-400mm of groundwater.",
+      "enable_visualize": false
+    },
+    {
+      "type": "tfc:quern_recipe",
+      "recipe": "firmalife:quern/spice/allspice",
+      "text": "Allspice is made from grinding the pimento plant, which is used to make Spiced Flour for use in Pumpkin Pie."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "multiblock": {
+        "pattern": [
+          [
+            "X"
+          ],
+          [
+            "0"
+          ]
+        ],
+        "mapping": {
+          "X": "firmalife:plant/vanilla"
+        }
+      },
+      "name": "",
+      "text": "Vanilla spawns between 22-30°C and 350-500mm of groundwater.",
+      "enable_visualize": false
+    },
+    {
+      "type": "tfc:drying_recipe",
+      "recipe": "firmalife:drying/spice/vanilla",
+      "text": "Vanilla must be dried, and then can be made into ice cream."
     }
   ],
   "read_by_default": true,

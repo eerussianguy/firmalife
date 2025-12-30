@@ -25,7 +25,6 @@ public interface DryingRecipes extends Recipes
             notRottenWithoutTrait(TFCTags.Items.FRUITS, FLFoodTraits.DRIED),
             ItemStackProvider.of(CopyInputModifier.INSTANCE, AddTraitModifier.of(FLFoodTraits.DRIED))
         );
-        drying(FLItems.CINNAMON_BARK, itemOf(Spice.CINNAMON));
         dryingCopyFood(itemOf(FLFood.SOY_MIXTURE), itemOf(FLFood.TOFU));
         drying(itemOf(Herb.VANILLA), itemOf(Spice.VANILLA));
         dryingCopyFood(notRotten(itemOf(Food.SOYBEAN)), itemOf(FLFood.DEHYDRATED_SOYBEANS));

@@ -1,0 +1,10 @@
+{
+  "type": "tfc:quern",
+  "ingredient": {
+    "item": "firmalife:plant/cumin"
+  },
+  "result": {
+    "count": 1,
+    "id": "firmalife:spice/ground_cumin"
+  }
+}

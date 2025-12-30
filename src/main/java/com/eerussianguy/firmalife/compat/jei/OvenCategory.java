@@ -19,13 +19,14 @@ import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.dries007.tfc.compat.jei.JEIIntegration;
 import net.dries007.tfc.compat.jei.category.BaseRecipeCategory;
 import net.dries007.tfc.config.TFCConfig;
 
 public class OvenCategory extends BaseRecipeCategory<OvenRecipe>
 {
-    public OvenCategory(RecipeType<OvenRecipe> type, IGuiHelper helper)
+    public OvenCategory(RecipeType<RecipeHolder<OvenRecipe>> type, IGuiHelper helper)
     {
         super(type, helper, 120, 38, new ItemStack(FLBlocks.CURED_OVEN_TOP.get(OvenType.BRICK).get()));
     }

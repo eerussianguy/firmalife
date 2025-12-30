@@ -159,7 +159,7 @@ public interface CraftingRecipes extends Recipes
             .shapeless(FLItems.INSULATING_BEEHIVE_FRAME);
         recipe()
             .input(FLItems.BEEHIVE_FRAME)
-            .input(FLItems.FOODS.get(FLFood.RAW_HONEY))
+            .input(itemOf(FLFood.RAW_HONEY))
             .shapeless(FLItems.FILLED_BEEHIVE_FRAME);
         recipe()
             .input(FLItems.BEEHIVE_FRAME)
@@ -237,11 +237,6 @@ public interface CraftingRecipes extends Recipes
             .input('B', ItemTags.PLANKS)
             .pattern("BXB", "OYO", "BXB")
             .shaped(FLBlocks.CLIMATE_STATION);
-        recipe()
-            .input('X', Tags.Items.SEEDS)
-            .input('Y', TFCItems.COMPOST)
-            .pattern(" X ", "XYX", " X ")
-            .shaped(FLItems.SEED_BALL);
         recipe()
             .input('X', FLItems.TREATED_LUMBER)
             .pattern("XX", "XX")
@@ -389,6 +384,9 @@ public interface CraftingRecipes extends Recipes
             .input(TFCItems.EMPTY_JAR)
             .shapeless(FLItems.EMPTY_JAR_WITH_STAINLESS_STEEL_LID);
         recipe().useTool(TFCTags.Items.TOOLS_KNIFE, itemOf(Herb.BASIL), itemOf(Spice.BASIL_LEAVES));
+        recipe().useTool(TFCTags.Items.TOOLS_KNIFE, itemOf(Herb.CILANTRO), itemOf(Spice.CHOPPED_CILANTRO));
+        recipe().useTool(TFCTags.Items.TOOLS_KNIFE, itemOf(Herb.PIMENTO), itemOf(Spice.ALLSPICE));
+        recipe().useTool(TFCTags.Items.TOOLS_KNIFE, itemOf(Herb.BAY_LAUREL), itemOf(Spice.BAY_LEAVES));
         recipe()
             .inputIsPrimary(TFCTags.Items.TOOLS_KNIFE)
             .input(notRotten(FLTags.Items.CHEESES))
@@ -566,7 +564,7 @@ public interface CraftingRecipes extends Recipes
         jarring(TFCItems.COMPOST, FLItems.COMPOST_JAR, 8);
         jarring(TFCItems.ROTTEN_COMPOST, FLItems.ROTTEN_COMPOST_JAR, 8);
         jarring(TFCBlocks.GROUNDCOVER.get(GroundcoverBlockType.GUANO), FLItems.GUANO_JAR, 8);
-        jarring(FLItems.FOODS.get(FLFood.RAW_HONEY), FLItems.HONEY_JAR, 1);
+        jarring(itemOf(FLFood.RAW_HONEY), FLItems.HONEY_JAR, 1);
 
         FLItems.FRUIT_PRESERVES.forEach((food, item) ->
             recipe()
@@ -637,6 +635,13 @@ public interface CraftingRecipes extends Recipes
                 new MealModifier.MealPortion(Optional.empty(), 0.8f, 0.8f, 0.8f)
             )
         );
+        var carneMod = new MealModifier(
+            FoodData.ofFood(4, 4.0f, 0f, 4.5f),
+            List.of(
+                new MealModifier.MealPortion(Optional.of(Ingredient.of(itemOf(Food.GARLIC))), 0.4f, 0.8f, 0.8f),
+                new MealModifier.MealPortion(Optional.empty(), 0.8f, 0.8f, 0.8f)
+            )
+        );
         recipe()
             .inputIsPrimary(notRotten(itemOf(FLFood.PIE_DOUGH)))
             .input(TFCTags.Items.PRESERVES)
@@ -644,6 +649,10 @@ public interface CraftingRecipes extends Recipes
             .addOutputModifier(pieMod)
             .addOutputModifier(AddPiePanModifier.INSTANCE)
             .shapeless(FLItems.FILLED_PIE);
+        recipe()
+            .input(TFCTags.Items.FLOUR)
+            .input(itemOf(Spice.ALLSPICE))
+            .shapeless(itemOf(FLFood.SPICED_FLOUR));
         recipe()
             .inputIsPrimary(notRotten(itemOf(FLFood.PUMPKIN_PIE_DOUGH)))
             .input(FLTags.Items.PIE_PANS)
@@ -671,6 +680,22 @@ public interface CraftingRecipes extends Recipes
             .input(notRotten(itemOf(FLFood.TOMATO_SAUCE)))
             .addOutputModifier(pizzaMod)
             .shapeless(FLItems.RAW_PIZZA);
+        recipe()
+            .inputIsPrimary(notRotten(FLTags.Items.COOKED_POULTRY))
+            .input(notRotten(Ingredient.of(itemOf(Food.COOKED_RICE), itemOf(FLFood.FLAVORFUL_COOKED_RICE))))
+            .input(notRotten(Ingredient.of(itemOf(Food.GARLIC))))
+            .input(notRotten(Ingredient.of(TFCTags.Items.VEGETABLES)))
+            .input(notRotten(Ingredient.of(itemOf(FLFood.BUTTER))))
+            .input(itemOf(Spice.GROUND_CARDAMOM))
+            .addOutputModifier(burritoMod)
+            .shapeless(itemOf(FLFood.RICE_PILAF));
+        recipe()
+            .inputIsPrimary(notRotten(itemOf(Food.COOKED_BEEF)))
+            .input(notRotten(itemOf(Food.GARLIC)))
+            .input(notRotten(itemOf(Spice.CHOPPED_CILANTRO)))
+            .input(notRotten(itemOf(Spice.GROUND_CUMIN)))
+            .addOutputModifier(carneMod)
+            .shapeless(itemOf(FLFood.CARNE_ASADA));
         recipe()
             .inputIsPrimary(notRotten(FLTags.Items.COOKED_MEATS_AND_SUBSTITUTES))
             .input(notRotten(itemOf(FLFood.SHREDDED_CHEESE)))

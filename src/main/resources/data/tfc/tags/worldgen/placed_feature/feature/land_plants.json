@@ -4,6 +4,14 @@
   "values": [
     "firmalife:beehive",
     "firmalife:wild_red_grapes_patch",
-    "firmalife:wild_white_grapes_patch"
+    "firmalife:wild_white_grapes_patch",
+    "firmalife:plant/basil_patch",
+    "firmalife:plant/bay_laurel_patch",
+    "firmalife:plant/cardamom_patch",
+    "firmalife:plant/cilantro_patch",
+    "firmalife:plant/cumin_patch",
+    "firmalife:plant/oregano_patch",
+    "firmalife:plant/pimento_patch",
+    "firmalife:plant/vanilla_patch"
   ]
 }

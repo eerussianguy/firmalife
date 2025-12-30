@@ -73,6 +73,8 @@ public enum FLFood
     COOKIE_DOUGH_ICE_CREAM,
     BURRITO,
     TACO,
+    RICE_PILAF,
+    CARNE_ASADA,
     COOKED_PIZZA,
     COOKED_PIE,
     COOKIE_DOUGH,
@@ -96,7 +98,9 @@ public enum FLFood
     SMASHED_WHITE_GRAPES,
     SOYBEAN_PASTE,
     DEHYDRATED_SOYBEANS,
-    RAW_HONEY
+    RAW_HONEY,
+    SPICED_FLOUR,
+    FLAVORFUL_COOKED_RICE,
     ;
 
     private final boolean fast;

@@ -4,13 +4,14 @@ OreGrade = NamedTuple('OreGrade', weight=int, grind_amount=int)
 RockCategory = Literal['sedimentary', 'metamorphic', 'igneous_extrusive', 'igneous_intrusive']
 Rock = NamedTuple('Rock', category=RockCategory, sand=str)
 Fruit = NamedTuple('Fruit', min_temp=float, max_temp=float, min_rain=float, max_rain=float)
+Herb = NamedTuple('Herb', min_temp=float, max_temp=float, min_rain=float, max_rain=float)
 
 class Wood(NamedTuple):
     temp: float
     duration: int
 
-SIMPLE_ITEMS = ('fruit_leaf', 'cinnamon_bark', 'beeswax', 'pineapple_fiber', 'pineapple_leather', 'pineapple_yarn', 'rennet', 'watering_can', 'treated_lumber', 'cheesecloth', 'spoon',
-                'pie_pan', 'seed_ball', 'rustic_finish', 'stone_finish', 'tile_finish', 'oven_insulation', 'ice_shavings', 'beekeeper_helmet', 'beekeeper_chestplate', 'beekeeper_leggings', 'beekeeper_boots', 'reinforced_glass', 'pottery_sherd',
+SIMPLE_ITEMS = ('fruit_leaf', 'beeswax', 'pineapple_fiber', 'pineapple_leather', 'pineapple_yarn', 'rennet', 'watering_can', 'treated_lumber', 'cheesecloth', 'spoon',
+                'pie_pan', 'rustic_finish', 'stone_finish', 'tile_finish', 'oven_insulation', 'ice_shavings', 'beekeeper_helmet', 'beekeeper_chestplate', 'beekeeper_leggings', 'beekeeper_boots', 'reinforced_glass', 'pottery_sherd',
                 'hematitic_wine_bottle', 'olivine_wine_bottle', 'volcanic_wine_bottle', 'empty_hematitic_wine_bottle', 'empty_olivine_wine_bottle', 'empty_volcanic_wine_bottle', 'cork', 'bottle_label', 'barrel_stave', 'stainless_steel_jar_lid',
                 'empty_jar_with_stainless_steel_lid', 'tirage_mixture', 'filled_beehive_frame', 'beehive_frame', 'sugared_beehive_frame', 'scraped_beehive_frame', 'insulating_beehive_frame', 'wild_honeycomb', 'aromatic_honeycomb')
 SIMPLE_FOODS = ('frothy_coconut', 'white_chocolate_blend', 'dark_chocolate_blend', 'milk_chocolate_blend', 'tofu', 'soy_mixture', 'yak_curd', 'goat_curd', 'milk_curd', 'cheddar', 'chevre', 'rajya_metok', 'gouda', 'feta', 'shosha', 'butter',
@@ -18,8 +19,9 @@ SIMPLE_FOODS = ('frothy_coconut', 'white_chocolate_blend', 'dark_chocolate_blend
                 'cocoa_butter', 'cocoa_powder', 'toast', 'dark_chocolate', 'milk_chocolate', 'white_chocolate', 'garlic_bread', 'cured_maize', 'nixtamal', 'masa', 'masa_flour', 'corn_tortilla', 'taco_shell', 'burrito', 'taco', 'salsa',
                 'tomato_sauce', 'nightshade_berry', 'stinky_soup', 'toast_with_jam', 'toast_with_butter', 'bacon', 'cooked_bacon', 'tomato_sauce_mix', 'vanilla_ice_cream', 'strawberry_ice_cream', 'chocolate_ice_cream', 'banana_split',
                 'cookie_dough', 'sugar_cookie', 'chocolate_chip_cookie_dough', 'chocolate_chip_cookie', 'cookie_dough_ice_cream', 'maki_roll', 'futo_maki_roll', 'hardtack', 'hardtack_dough', 'cooked_lasagna', 'cooked_pasta',
-                'cooked_rice_noodles', 'nachos', 'pasta_with_tomato_sauce', 'raw_egg_noodles', 'raw_lasagna', 'raw_rice_noodles', 'tortilla_chips', 'smashed_red_grapes', 'smashed_white_grapes', 'dehydrated_soybeans', 'soybean_paste', 'raw_honey')
-SIMPLE_SPICES = ('ground_cinnamon', 'cinnamon', 'basil_leaves', 'vanilla')
+                'cooked_rice_noodles', 'nachos', 'pasta_with_tomato_sauce', 'raw_egg_noodles', 'raw_lasagna', 'raw_rice_noodles', 'tortilla_chips', 'smashed_red_grapes', 'smashed_white_grapes', 'dehydrated_soybeans', 'soybean_paste', 'raw_honey',
+                'spiced_flour', 'flavorful_cooked_rice', 'rice_pilaf', 'carne_asada')
+SIMPLE_SPICES = ('basil_leaves', 'vanilla', 'chopped_cilantro', 'allspice', 'bay_leaves', 'ground_cardamom', 'ground_cumin')
 SIMPLE_BLOCKS: Dict[str, str] = {
     'sealed_bricks': 'minecraft:mineable/pickaxe',
     'chiseled_sealed_bricks': 'minecraft:mineable/pickaxe',
@@ -151,7 +153,16 @@ CARVINGS = {
     'right': ['XXXXX', 'X   X', 'XXX X', 'XXX X', 'XXXXX'],
 }
 
-HERBS = ('basil', 'bay_laurel', 'cardamom', 'cilantro', 'cumin', 'oregano', 'pimento', 'vanilla')
+HERBS: Dict[str, Herb] = {
+    'basil': Herb(0, 32, 100, 500),
+    'bay_laurel': Herb(10, 32, 100, 300),
+    'cardamom': Herb(17, 24, 330, 500),
+    'cilantro': Herb(10, 24, 90, 300),
+    'cumin': Herb(16, 27, 100, 300),
+    'oregano': Herb(20, 27, 90, 350),
+    'pimento': Herb(18, 24, 200, 400),
+    'vanilla': Herb(22, 30, 350, 500),
+}
 
 FRUITS: Dict[str, Fruit] = {
     'cocoa': Fruit(20, 35, 220, 400),
@@ -166,7 +177,6 @@ PARASITIC_INFECTIONS = ['None', 'Chalkbrood', 'Stonebrood', 'Foulbrood', 'Wax Mo
 DEFAULT_LANG = {
     'firmalife.creative_tab.firmalife': 'Firmalife Items',
     'effect.firmalife.swarm': 'Swarm',
-    'entity.firmalife.seed_ball': 'Seed Ball',
     'entity.firmalife.bee': 'Bee',
     'firmalife.tooltip.food_trait.dried': 'Dried',
     'firmalife.tooltip.food_trait.aged': 'Aged',
@@ -186,8 +196,6 @@ DEFAULT_LANG = {
     'firmalife.tooltip.food_trait.slope_grown': 'Slope Grown',
     'firmalife.tooltip.food_trait.dirt_grown': 'Dirt Grown',
     'firmalife.tooltip.food_trait.gravel_grown': 'Gravel Grown',
-    'firmalife.tooltip.seed_ball': 'Throw me!',
-    'firmalife.tooltip.seed_ball_disabled': 'This server has disabled seed balls!',
     'firmalife.tooltip.planter_usable': 'Plantable in a %s',
     'firmalife.tooltip.beekeeper_armor': 'Protects from bees if full suit is worn',
     'firmalife.tooltip.knapping.rotten': 'This item is rotten and cannot be knapped.',

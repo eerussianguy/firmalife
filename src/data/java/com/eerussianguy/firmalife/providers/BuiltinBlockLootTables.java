@@ -222,8 +222,6 @@ public class BuiltinBlockLootTables extends BlockLootSubProvider implements Acce
         dropSelf(FLBlocks.JARBNETS);
         dropSelf(FLBlocks.JACK_O_LANTERNS);
 
-        add(FLBlocks.BUTTERFLY_GRASS.get(), createTFCGrass(FLBlocks.BUTTERFLY_GRASS));
-        add(FLBlocks.POTTED_BUTTERFLY_GRASS.get(), createPotFlowerItemTable(FLBlocks.BUTTERFLY_GRASS.asItem()));
         add(FLBlocks.WILD_RED_GRAPES.get(), createTFCWildCrop(FLBlocks.WILD_RED_GRAPES, FLItems.RED_GRAPE_SEEDS, itemOf(FLFruit.RED_GRAPES)));
         add(FLBlocks.WILD_WHITE_GRAPES.get(), createTFCWildCrop(FLBlocks.WILD_WHITE_GRAPES, FLItems.WHITE_GRAPE_SEEDS, itemOf(FLFruit.WHITE_GRAPES)));
 

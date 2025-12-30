@@ -94,15 +94,13 @@ public class BuiltinBlockTags extends TagsProvider<Block> implements Accessors
         tag(BlockTags.LEAVES).add(FLBlocks.FRUIT_TREE_LEAVES);
         tag(BlockTags.FLOWER_POTS)
             .add(FLBlocks.POTTED_HERBS)
-            .add(FLBlocks.POTTED_BUTTERFLY_GRASS)
             .add(FLBlocks.FRUIT_TREE_POTTED_SAPLINGS);
 
         tag(BlockTags.CLIMBABLE).add(FLBlocks.DARK_LADDER);
 
         tag(TFCTags.Blocks.THORNY_BUSHES).add(FLBlocks.STATIONARY_BUSHES.get(FLFruitBlocks.StationaryBush.PINEAPPLE));
         tag(TFCTags.Blocks.SINGLE_BLOCK_REPLACEABLE)
-            .addTag(HERBS)
-            .add(FLBlocks.BUTTERFLY_GRASS);
+            .addTag(HERBS);
         tag(TFCTags.Blocks.MINEABLE_WITH_GLASS_SAW)
             .add(FLBlocks.REINFORCED_POURED_GLASS);
         tag(TFCTags.Blocks.FOX_RAIDABLE).add(FLBlocks.STATIONARY_BUSHES);
@@ -122,7 +120,6 @@ public class BuiltinBlockTags extends TagsProvider<Block> implements Accessors
         tag(BEE_RESTORATION_PLANTS)
             .addTag(HERBS)
             .add(
-                FLBlocks.BUTTERFLY_GRASS,
                 TFCBlocks.PLANTS.get(Plant.GOLDENROD),
                 TFCBlocks.PLANTS.get(Plant.ROSE),
                 TFCBlocks.PLANTS.get(Plant.ALLIUM),
@@ -210,7 +207,6 @@ public class BuiltinBlockTags extends TagsProvider<Block> implements Accessors
             .add(FLBlocks.RUSTIC_BRICK_DECOR.slab())
             .add(FLBlocks.RUSTIC_BRICK_DECOR.stair())
             .add(FLBlocks.RUSTIC_BRICK_DECOR.wall());
-        tag(BUTTERFLY_GRASS_MUTANTS).addTag(HERBS);
         tag(FOOD_SHELVES).add(FLBlocks.FOOD_SHELVES);
         tag(HANGERS).add(FLBlocks.HANGERS);
         tag(JARBNETS).add(FLBlocks.JARBNETS);

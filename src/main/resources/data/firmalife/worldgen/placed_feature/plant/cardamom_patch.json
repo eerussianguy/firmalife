@@ -1,0 +1,23 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "feature": "firmalife:plant/cardamom_patch",
+  "placement": [
+    {
+      "type": "minecraft:rarity_filter",
+      "chance": 100
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "tfc:climate",
+      "min_temperature": 17,
+      "max_temperature": 24,
+      "min_groundwater": 330,
+      "max_groundwater": 500
+    },
+    {
+      "type": "tfc:biome"
+    }
+  ]
+}

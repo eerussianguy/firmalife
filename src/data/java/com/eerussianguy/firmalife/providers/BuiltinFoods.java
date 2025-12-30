@@ -18,7 +18,10 @@ import net.dries007.tfc.TerraFirmaCraft;
 import net.dries007.tfc.common.component.food.FoodCapability;
 import net.dries007.tfc.common.component.food.FoodData;
 import net.dries007.tfc.common.component.food.FoodDefinition;
+import net.dries007.tfc.common.items.Food;
 import net.dries007.tfc.util.Helpers;
+
+import static net.dries007.tfc.common.component.food.FoodData.*;
 
 public class BuiltinFoods extends DataManagerProvider<FoodDefinition> implements Accessors
 {
@@ -63,10 +66,12 @@ public class BuiltinFoods extends DataManagerProvider<FoodDefinition> implements
         add(FLFood.TOMATO_SAUCE_MIX, FoodData.of(2.0f));
         add(FLFood.NIXTAMAL, FoodData.of(0.3f));
         add(FLFood.MASA_FLOUR, FoodData.of(0.8f));
+        add(FLFood.SPICED_FLOUR, FoodData.of(0.8f));
         add(FLFood.MASA, FoodData.of(2.0f));
         add(FLFood.DEHYDRATED_SOYBEANS, FoodData.of(0.5f));
         add(FLFood.SOYBEAN_PASTE, FoodData.of(0.6f));
         add(FLFood.RAW_HONEY, FoodData.of(0.6f));
+        add(FLFood.FLAVORFUL_COOKED_RICE, ofFood(2.5f, 5, 1).grain(1.7f));
         add(FLFood.TOFU, new FoodData(4, 2f, 0.75f, 0, new float[] {0f, 0f, 1.5f, 0f, 0f}, 2f));
         add(FLTags.Items.BREAD_SLICES, new FoodData(4, 0f, 1.5f, 0, new float[] {1f, 0f, 0f, 0f, 0f}, 0.75f), true);
         add(FLFood.TOAST, new FoodData(4, 0f, 1f, 0, new float[] {1f, 0f, 0f, 0f, 0f}, 1.5f));
@@ -109,6 +114,8 @@ public class BuiltinFoods extends DataManagerProvider<FoodDefinition> implements
         add(FLItems.RAW_PIZZA, FoodData.of(4.5f));
         add(FLFood.COOKED_PIZZA, FoodData.of(4.5f));
         add(FLFood.BURRITO, FoodData.of(4.5f));
+        add(FLFood.RICE_PILAF, FoodData.of(4.5f));
+        add(FLFood.CARNE_ASADA, FoodData.of(4.5f));
         add(FLFood.TACO, FoodData.of(4.5f));
         add(FLFood.MAKI_ROLL, FoodData.of(4.5f));
         add(FLFood.FUTO_MAKI_ROLL, FoodData.of(4.5f));

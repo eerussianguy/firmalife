@@ -110,8 +110,8 @@ def generate(rm: ResourceManager):
         config = {
             'min_temperature': info.min_temp,
             'max_temperature': info.max_temp,
-            'min_rainfall': info.min_rain,
-            'max_rainfall': info.max_rain,
+            'min_groundwater': info.min_rain,
+            'max_groundwater': info.max_rain,
             'max_forest': 3
         }
         feature = 'firmalife:fruit_trees'
@@ -120,15 +120,17 @@ def generate(rm: ResourceManager):
 
         placed_feature_tag(rm, 'tfc:feature/fruit_trees', 'firmalife:plant/%s' % fruit, 'firmalife:plant/%s' % fruit)
 
+    for herb, info in HERBS.items():
+        configured_patch_feature(rm, ('plant', herb), patch_config('firmalife:plant/%s' % herb, 1, 10, 8), decorate_chance(100), decorate_square(), decorate_climate(info.min_temp, info.max_temp, info.min_rain, info.max_rain))
+
     configured_patch_feature(rm, 'hollow_shell', patch_config('firmalife:hollow_shell[fluid=empty]', 1, 15, 5, 'salt'), decorate_chance(20), decorate_square(), decorate_climate(-30, 20, 150, 500))
     placed_feature_tag(rm, 'tfc:feature/shore_decorations', 'firmalife:hollow_shell')
 
     configured_placed_feature(rm, 'beehive', 'firmalife:beehive', {}, decorate_heightmap('world_surface_wg'), decorate_square(), decorate_climate(5, 30, 150, 450, min_forest=2), decorate_chance(5))
-    placed_feature_tag(rm, 'tfc:feature/land_plants', 'firmalife:beehive')
 
     configured_patch_feature(rm, 'wild_red_grapes', patch_config('firmalife:plant/wild_red_grapes', 1, 15, 5), decorate_chance(100), decorate_square(), decorate_climate(0, 30, 125, 500))
     configured_patch_feature(rm, 'wild_white_grapes', patch_config('firmalife:plant/wild_white_grapes', 1, 15, 5), decorate_chance(100), decorate_square(), decorate_climate(0, 30, 125, 500))
-    placed_feature_tag(rm, 'tfc:feature/land_plants', 'firmalife:wild_red_grapes_patch', 'firmalife:wild_white_grapes_patch')
+    placed_feature_tag(rm, 'tfc:feature/land_plants', 'firmalife:beehive', 'firmalife:wild_red_grapes_patch', 'firmalife:wild_white_grapes_patch', *['firmalife:plant/%s_patch' % herb for herb in HERBS.keys()])
 
     for berry, data in STILL_BUSHES.items():
         bush_block = 'firmalife:plant/%s_bush[lifecycle=healthy,stage=0]' % berry

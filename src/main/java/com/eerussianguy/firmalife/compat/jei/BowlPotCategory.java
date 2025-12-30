@@ -8,13 +8,14 @@ import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.world.item.crafting.RecipeHolder;
 
 import net.dries007.tfc.common.recipes.PotRecipe;
 import net.dries007.tfc.compat.jei.category.PotRecipeCategory;
 
 public class BowlPotCategory extends PotRecipeCategory<PotRecipe>
 {
-    public BowlPotCategory(RecipeType<PotRecipe> type, IGuiHelper helper)
+    public BowlPotCategory(RecipeType<RecipeHolder<PotRecipe>> type, IGuiHelper helper)
     {
         super(type, helper,175, 50);
     }

@@ -1,5 +1,6 @@
 package com.eerussianguy.firmalife.recipes;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import com.eerussianguy.firmalife.common.FLHelpers;
@@ -7,6 +8,7 @@ import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.items.FLFood;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.common.items.FLItems;
+import com.eerussianguy.firmalife.common.items.Spice;
 import com.eerussianguy.firmalife.common.recipes.BowlPotRecipe;
 import com.eerussianguy.firmalife.common.recipes.StinkySoupRecipe;
 import com.eerussianguy.firmalife.common.util.ExtraFluid;
@@ -143,6 +145,23 @@ public interface PotRecipes extends Recipes
             2000,
             300
         );
+
+        final ItemLike output = itemOf(FLFood.FLAVORFUL_COOKED_RICE);
+        for (int n = 1; n <= 3; n++)
+        {
+            final List<Ingredient> ingredients = new ArrayList<>(Collections.nCopies(n, Ingredient.of(itemOf(Food.RICE_GRAIN))));
+            ingredients.add(Ingredient.of(itemOf(Spice.BAY_LEAVES)));
+            ingredients.add(Ingredient.of(itemOf(Spice.CHOPPED_CILANTRO)));
+            add(nameOf(output) + "_" + n, new SimplePotRecipe(new PotRecipe(
+                ingredients,
+                SizedFluidIngredient.of(Fluids.WATER, 100),
+                hours(1), 300f),
+                FluidStack.EMPTY,
+                Collections.nCopies(n, ItemStackProvider.of(output)),
+                true
+            ));
+        }
+
 
         for (int i = 3; i < 5; i++)
         {

@@ -27,6 +27,7 @@ import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 
+import net.dries007.tfc.TerraFirmaCraft;
 import net.dries007.tfc.client.ClientHelpers;
 import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.items.TFCItems;
@@ -38,22 +39,22 @@ import net.dries007.tfc.common.recipes.TFCRecipeTypes;
 @JeiPlugin
 public class FLJEIPlugin implements IModPlugin
 {
-    private static <T> RecipeType<T> type(String name, Class<T> tClass)
+    private static <T extends Recipe<?>> RecipeType<RecipeHolder<T>> type(String name, Class<T> kind)
     {
-        return RecipeType.create(FirmaLife.MOD_ID, name, tClass);
+        return RecipeType.createRecipeHolderType(ResourceLocation.fromNamespaceAndPath(FirmaLife.MOD_ID, name));
     }
 
-    public static final RecipeType<DryingRecipe> DRYING = type("drying", DryingRecipe.class);
-    public static final RecipeType<SmokingRecipe> SMOKING = type("smoking", SmokingRecipe.class);
-    public static final RecipeType<StompingRecipe> STOMPING = type("stomping", StompingRecipe.class);
-    public static final RecipeType<PressRecipe> PRESS = type("press", PressRecipe.class);
-    public static final RecipeType<CentrifugeRecipe> CENTRIFUGE = type("centrifuge", CentrifugeRecipe.class);
-    public static final RecipeType<MixingBowlRecipe> MIXING_BOWL = type("mixing_bowl", MixingBowlRecipe.class);
-    public static final RecipeType<KnappingRecipe> PUMPKIN_KNAPPING = type("pumpkin_knapping", KnappingRecipe.class);
-    public static final RecipeType<OvenRecipe> OVEN = type("oven", OvenRecipe.class);
-    public static final RecipeType<VatRecipe> VAT = type("vat", VatRecipe.class);
-    public static final RecipeType<PotRecipe> BOWL_POT = type("bowl_pot", PotRecipe.class);
-    public static final RecipeType<PotRecipe> STINKY_SOUP = type("stinky_soup", PotRecipe.class);
+    public static final RecipeType<RecipeHolder<DryingRecipe>> DRYING = type("drying", DryingRecipe.class);
+    public static final RecipeType<RecipeHolder<SmokingRecipe>> SMOKING = type("smoking", SmokingRecipe.class);
+    public static final RecipeType<RecipeHolder<StompingRecipe>> STOMPING = type("stomping", StompingRecipe.class);
+    public static final RecipeType<RecipeHolder<PressRecipe>> PRESS = type("press", PressRecipe.class);
+    public static final RecipeType<RecipeHolder<CentrifugeRecipe>> CENTRIFUGE = type("centrifuge", CentrifugeRecipe.class);
+    public static final RecipeType<RecipeHolder<MixingBowlRecipe>> MIXING_BOWL = type("mixing_bowl", MixingBowlRecipe.class);
+    public static final RecipeType<RecipeHolder<KnappingRecipe>> PUMPKIN_KNAPPING = type("pumpkin_knapping", KnappingRecipe.class);
+    public static final RecipeType<RecipeHolder<OvenRecipe>> OVEN = type("oven", OvenRecipe.class);
+    public static final RecipeType<RecipeHolder<VatRecipe>> VAT = type("vat", VatRecipe.class);
+    public static final RecipeType<RecipeHolder<PotRecipe>> BOWL_POT = type("bowl_pot", PotRecipe.class);
+    public static final RecipeType<RecipeHolder<PotRecipe>> STINKY_SOUP = type("stinky_soup", PotRecipe.class);
 
     @Override
     public ResourceLocation getPluginUid()
@@ -120,18 +121,17 @@ public class FLJEIPlugin implements IModPlugin
     }
 
     // Copied from TFC
-    private static <C extends RecipeInput, T extends Recipe<C>> List<T> recipes(Supplier<net.minecraft.world.item.crafting.RecipeType<T>> type)
+    private static <C extends RecipeInput, T extends Recipe<C>> List<RecipeHolder<T>> recipes(Supplier<net.minecraft.world.item.crafting.RecipeType<T>> type)
     {
         return recipes(type, e -> true);
     }
 
-    private static <C extends RecipeInput, T extends Recipe<C>> List<T> recipes(Supplier<net.minecraft.world.item.crafting.RecipeType<T>> type, Predicate<T> filter)
+    private static <C extends RecipeInput, T extends Recipe<C>> List<RecipeHolder<T>> recipes(Supplier<net.minecraft.world.item.crafting.RecipeType<T>> type, Predicate<T> filter)
     {
         return ClientHelpers.getLevelOrThrow().getRecipeManager()
             .getAllRecipesFor(type.get())
             .stream()
-            .map(RecipeHolder::value)
-            .filter(filter)
+            .filter(holder -> filter.test(holder.value()))
             .toList();
     }
 }

@@ -18,6 +18,11 @@
     },
     {
       "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/spice/allspice",
+      "text": "Spiced flour is used in the creation of pumpkin pie. $(l:firmalife/herbs_and_spices)Pimento$() is an herb found in warm, moderately wet climates."
+    },
+    {
+      "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/food/raw_pumpkin_pie",
       "text": "$(thing)餡餅烤盤$()可以在砧上用$(thing)鑄鐵$()鍛造而成。"
     },

@@ -368,12 +368,6 @@ def generate(rm: ResourceManager):
         for extra in ('_slab', '_stairs', '_wall'):
             rm.block('firmalife:%s%s' % (var, extra)).with_lang(lang('%s%s', var.replace('bricks', 'brick').replace('tiles', 'tile'), extra))
 
-    for variant in ('gold', 'red', 'purple'):
-        rm.block_model('plant/butterfly_grass_%s' % variant, parent='firmalife:block/tinted_cross_overlay', textures={'cross': 'firmalife:block/plant/butterfly_grass/base', 'overlay': 'firmalife:block/plant/butterfly_grass/%s' % variant})
-    rm.blockstate('plant/butterfly_grass', variants={'': [{'model': 'firmalife:block/plant/butterfly_grass_%s' % variant, 'y': rot} for variant in ('gold', 'red', 'purple') for rot in (None, 90)]}, use_default_model=False).with_lang(lang('butterfly grass'))
-    flower_pot_cross(rm, 'butterfly grass', 'firmalife:plant/potted/butterfly_grass', 'plant/flowerpot/butterfly_grass', 'firmalife:block/plant/butterfly_grass/base', tinted=True)
-    rm.item_model('plant/butterfly_grass', 'firmalife:block/plant/butterfly_grass/base')
-
     lifecycle_to_model = {'healthy': '', 'dormant': 'dry_', 'fruiting': 'fruiting_', 'flowering': 'flowering_'}
     lifecycles = ('healthy', 'dormant', 'fruiting', 'flowering')
     for berry in STILL_BUSHES.keys():
@@ -388,7 +382,7 @@ def generate(rm: ResourceManager):
         for lifecycle, stage in itertools.product(lifecycle_to_model.values(), range(0, 3)):
             rm.block_model('plant/%s%s_bush_%d' % (lifecycle, berry, stage), parent='tfc:block/plant/stationary_bush_%d' % stage, textures={'bush': 'firmalife:block/berry_bush/' + lifecycle + '%s_bush' % berry})
 
-    for herb in HERBS:
+    for herb in HERBS.keys():
         for stage in ('0', '1'):
             rm.block_model('plant/%s_%s' % (herb, stage), parent='minecraft:block/cross', textures={'cross': 'firmalife:block/plant/%s/%s' % (herb, stage)})
         rm.blockstate('plant/%s' % herb, variants={'age=0': {'model': 'firmalife:block/plant/%s_0' % herb}, 'age=1': {'model': 'firmalife:block/plant/%s_1' % herb}}).with_lang(lang(herb))

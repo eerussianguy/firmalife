@@ -69,6 +69,8 @@
     "firmalife:food/cookie_dough_ice_cream",
     "firmalife:food/burrito",
     "firmalife:food/taco",
+    "firmalife:food/rice_pilaf",
+    "firmalife:food/carne_asada",
     "firmalife:food/cooked_pizza",
     "firmalife:food/cooked_pie",
     "firmalife:food/cookie_dough",
@@ -92,6 +94,8 @@
     "firmalife:food/smashed_white_grapes",
     "firmalife:food/soybean_paste",
     "firmalife:food/dehydrated_soybeans",
-    "firmalife:food/raw_honey"
+    "firmalife:food/raw_honey",
+    "firmalife:food/spiced_flour",
+    "firmalife:food/flavorful_cooked_rice"
   ]
 }

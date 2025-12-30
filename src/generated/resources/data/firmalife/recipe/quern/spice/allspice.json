@@ -1,0 +1,10 @@
+{
+  "type": "tfc:quern",
+  "ingredient": {
+    "item": "firmalife:plant/pimento"
+  },
+  "result": {
+    "count": 1,
+    "id": "firmalife:spice/allspice"
+  }
+}

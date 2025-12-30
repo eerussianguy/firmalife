@@ -14,6 +14,7 @@ import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.neoforged.neoforge.fluids.FluidStack;
 import org.jetbrains.annotations.Nullable;
 
@@ -27,7 +28,7 @@ public class VatCategory extends BaseRecipeCategory<VatRecipe>
     protected @Nullable IRecipeSlotBuilder outputFluidSlot;
     protected @Nullable IRecipeSlotBuilder outputItemSlot;
 
-    public VatCategory(RecipeType<VatRecipe> type, IGuiHelper helper)
+    public VatCategory(RecipeType<RecipeHolder<VatRecipe>> type, IGuiHelper helper)
     {
         super(type, helper, 118, 26, new ItemStack(FLBlocks.VAT.get()));
     }

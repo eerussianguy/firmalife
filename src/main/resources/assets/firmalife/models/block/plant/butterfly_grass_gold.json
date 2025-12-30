@@ -1,8 +1,0 @@
-{
-  "__comment__": "This file was automatically created by mcresources",
-  "parent": "firmalife:block/tinted_cross_overlay",
-  "textures": {
-    "cross": "firmalife:block/plant/butterfly_grass/base",
-    "overlay": "firmalife:block/plant/butterfly_grass/gold"
-  }
-}
