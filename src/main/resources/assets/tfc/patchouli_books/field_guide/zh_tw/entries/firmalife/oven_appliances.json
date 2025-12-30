@@ -10,7 +10,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/oven_hopper",
+      "recipe": "firmalife:crafting/clay_oven_hopper",
       "text": "The $(thing)Oven Hopper$() will input logs into any Bottom Oven that it is facing. It holds 16 logs (4 stacks of 4, like a log pile), and its inventory is fed by dropping items in the top. It can also be fed via automation from other mods."
     },
     {
@@ -74,5 +74,5 @@
     }
   ],
   "read_by_default": true,
-  "sortnum": 15
+  "sortnum": 16
 }

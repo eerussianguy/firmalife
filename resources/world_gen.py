@@ -154,8 +154,8 @@ def decorate_climate(min_temp: Optional[float] = None, max_temp: Optional[float]
         'type': 'tfc:climate',
         'min_temperature': min_temp,
         'max_temperature': max_temp,
-        'min_rainfall': min_rain,
-        'max_rainfall': max_rain,
+        'min_groundwater': min_rain,
+        'max_groundwater': max_rain,
         'min_forest': 3 if needs_forest else min_forest,
         'max_forest': max_forest,
         'fuzzy': fuzzy

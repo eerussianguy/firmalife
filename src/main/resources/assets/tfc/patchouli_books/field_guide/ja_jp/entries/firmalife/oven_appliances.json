@@ -10,7 +10,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/oven_hopper",
+      "recipe": "firmalife:crafting/clay_oven_hopper",
       "text": "$(thing)オーブンホッパー$()は、対面にあるオーブンかまどに原木を投入します。16本の原木（4つを4スタック）を収納し、インベントリへは上部にアイテムをドロップすることで供給できます。$(br)また、他のMODから自動投入することもできます。"
     },
     {
@@ -74,5 +74,5 @@
     }
   ],
   "read_by_default": true,
-  "sortnum": 15
+  "sortnum": 16
 }

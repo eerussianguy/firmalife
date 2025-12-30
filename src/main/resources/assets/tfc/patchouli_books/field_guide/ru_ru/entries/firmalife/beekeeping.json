@@ -6,52 +6,126 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(thing)Ульи$() — это место для содержания пчел. В ульях должны быть $(thing)Рамки для ульев$(), чтобы пчелы могли жить. Извлечение рамок из активного улья вызовет нападение пчел, если это не делается ночью или без $(thing)Кострища$() под активным ульем. Ульи могут использовать общие цветы. Польза от цветов уменьшается после 60 цветов."
+      "text": "$(thing)Bees$() are a wild insect that can be farmed as livestock. They are prized for their ability to produce honey, beeswax, and other products. All bees need to live in some form of nest. This section will teach you all you need to know for the care and keeping of bees."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "multiblock": {
+        "pattern": [
+          [
+            "X"
+          ],
+          [
+            "Y"
+          ],
+          [
+            "0"
+          ]
+        ],
+        "mapping": {
+          "X": "tfc:wood/log/oak[axis=z]",
+          "Y": "firmalife:wild_beehive[facing=north,honey=true]"
+        }
+      },
+      "name": "Wild Beehive",
+      "text": "Wild beehives spawn in forests between 5-30°C and 150-450mm of groundwater.",
+      "enable_visualize": false
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Bees, in general, are active above 14°C. A $(thing)Wild Beehive$() will always contain bees upon world generation, and will not lose the bees unless disturbed. If time has passed and the bees are active, the wild beehive will show that it is dripping with honey."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Breaking a wild beehive or the tree it is attached to will always cause bees to attack nearby players. This takes the form of a $(thing)Swarm$() effect. The bee swarm effect can be mitigated by wearing a full suit of $(thing)Bee Armor$() or by moving underwater. Wild beehives drop $(thing)Honey$(), $(thing)Beeswax$(), and the useful $(thing)Wild Honeycomb$() item."
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/beehive",
-      "recipe2": "firmalife:crafting/beehive_frame"
+      "recipe": "firmalife:crafting/skep",
+      "text": "The $(thing)Skep$() is the smallest man-made beehive."
     },
     {
       "type": "patchouli:text",
-      "text": "Ульи знают о площади в радиусе 5 блоков от них. Если вокруг улья находится не менее 10 цветов, есть шанс, что пустая рамка будет заполнена $(thing)Маткой$(). Это обозначено частицами пчел, летающими вокруг улья. Наличие 4 пустых рамок в улье значительно увеличивает вероятность заселения пчелами."
+      "text": "The most useful feature of the skep is that it can be picked up and moved by the player. However, the player can only carry one skep at a time without becoming $(thing)Overburdened$(). If a wild beehive within 15 blocks is $(thing)active$(), within a day it should start a $(thing)Swarm$(). A swarm is signified by a line of particles between two beehives."
     },
     {
       "type": "patchouli:text",
-      "text": "Если в улье есть две рамки с матками и пустая рамка, есть вероятность $(thing)Размножения$() двух колоний и появления новой матки в пустой рамке. Это приводит к передаче $(thing)Способностей$() каждого родителя потомству. Способности — это различные черты пчел, которые меняют их влияние на окружающий мир. Они находятся в диапазоне от 1 до 10, где 10 — максимум."
+      "text": "When a swarm is complete, the skep will now contain a $(thing)Queen$(). Holding a hoe and looking at the hive will show you this information. The Queen represents the existence of a bee colony, and she has a number of data points: her age, species, traits, as well as any diseases or infections the colony has."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "On their own, skeps are only moderately useful for maintaining bees. This is because skeps can only contain 1 piece of honey at a time. $(thing)Raw Honey$() can be added or removed from a skep with $(item)$(k:key.use)$(). Note that to avoid angering bees, you should harvest only when it is dark outside."
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/unjarring_raw_honey",
-      "text": "Пчелы также производят $(thing)Мёд$(). Использование $(item)$(k:key.use)$() с пустой банкой на улье, в котором визуально есть мёд, даёт вам $(thing)Банку мёда$(). Открытие банки мёда даёт вам $(thing)Сырой мёд$(), заменитель $(thing)Сахара$()."
+      "recipe": "firmalife:crafting/beehive_frame",
+      "recipe2": "firmalife:crafting/beehive"
     },
     {
       "type": "patchouli:text",
-      "text": "Нажатие $(item)$(k:key.use)$() на заполненную рамку в вашем инвентаре с $(thing)Ножом$() даёт вам $(thing)Пчелиный воск$(), который имеет множество применений. Однако это убивает матку внутри рамки, так что будьте осторожны!"
+      "text": "$(thing)Wooden Beehives$() are the main device used for beekeeping. They contain up to four $(thing)Frames$(). A frame can contain 1 piece of $(thing)Raw Honey$() in it. To get your bees into a Wooden Beehive, place your $(thing)Skep$() with a queen inside within 5 blocks of it, and make sure the beehive has at least one frame, and that it is warm enough. The swarm will follow soon after, and last for a day."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Beehives know about a 5 block square radius surrounding the hive. In order to produce honey, this radius must contain at least 10 flowers. The chance of producing honey scales up based on the amount of flowers, with a max of 60. Bee traits also play a role in the chance to make honey. Honey can only be deposited in an $(thing)Empty Beehive Frame$()."
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/treated_lumber",
-      "text": "Самое важное применение пчелиного воска — создание $(thing)Обработанной древесины$()."
+      "recipe": "firmalife:crafting/beeswax",
+      "text": "$(thing)Scraping$() a beehive frame (right clicking the item with a knife also works) makes $(thing)Beeswax$()."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/centrifuge",
+      "text": "The $(thing)Centrifuge$() is used to process $(thing)Scraped Beehive Frames$() into $(thing)Raw Honey$()."
     },
     {
       "type": "patchouli:text",
-      "text": "$(li)Пчёлы могут помочь удобрить сажальцы!$()$(li)Соскабливание рамки приносит в жертву матку. Будьте умны!$()$(li)Намокание предотвращает нападение пчел.$()",
-      "title": "Советы по пчеловодству"
+      "text": "The $(thing)Centrifuge$() can be operated via $(item)$(k:key.use)$() or via mechanical power from an axle above the block. $(item)$(k:key.use)$() to put Scraped Beehive Frames in. $(thing)Raw Honey$() will be spawned outside the Centrifuge upon completion. The leftover frames can be reused in a Beehive."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/sugared_beehive_frame",
+      "recipe2": "firmalife:crafting/filled_beehive_frame"
     },
     {
       "type": "patchouli:text",
-      "text": "$(li)$(thing)Выносливость$(): Позволяет пчёлам производить мёд при более низких температурах. Выносливость 10 позволяет до -16°C, а выносливость 1 — до 2°C.$()$(li)$(thing)Производительность$(): Улучшает скорость производства мёда.$()$(li)$(thing)Мутация$(): Увеличивает изменчивость признаков, передаваемых при размножении$().",
-      "title": "Список способностей"
+      "text": "Bees don't just produce honey for you, they produce it to survive! When bees have no frames available, or if it is too cold (read the hoe tooltip to see) they will consume honey every 12 days by default. When they are out of honey, they have a chance every day to $(thing)die$()."
     },
     {
       "type": "patchouli:text",
-      "text": "$(li)$(thing)Плодовитость$(): Увеличивает вероятность размножения.$()$(li)$(thing)Сродство к культурам$(): Вероятность распространения небольшого количества питательных веществ на культуры.$()$(li)$(thing)Восстановление природы$(): Приводит к появлению новых цветов и кувшинок вокруг улья.$()$(li)$(thing)Спокойствие$(): Уменьшает вероятность нападения пчел$()."
+      "text": "$(thing)Sugared Beehive Frames$() as well as manually-filled $(thing)Filled Beehive Frames$() can be manually added into hives to help sustain bees over winter. This is why skeps have trouble surviving over winter--they can only contain one piece of honey, and have no frames."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/insulating_beehive_frame",
+      "text": "Adding a $(thing)Insulating Beehive Frame$() adds 2°C of extra temperature resistance to a hive. Adding multiple has no further effect."
     },
     {
       "type": "patchouli:text",
-      "text": "Пчёлы с высокой способностью к мутации имеют шанс развития $(thing)Генетического заболевания$(). Больные пчёлы передают свою болезнь потомству и не производят мёд."
+      "text": "Colonies can still $(thing)Swarm$() from Wooden Beehives. The beneficial type of swarming involves $(thing)Splitting$() a hive. A hive that is at least 24 days old (by default), warm, full of honey, and free of $(thing)Genetic Diseases$() can split into two new colonies if a nearby hive is available. This also results in $(thing)Genetic Mutation$()."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Swarming can also be caused by a lack of food in the hive. If a hive sees another hive with honey, and lacks its own, it will in some cases try to swarm to that hive. Bees infected with the $(thing)Varroa$() parasite will also attempt to invade other hives, taking them over."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "If no wild bees are available, bees can also be attracted to Skeps via $(thing)Bee Bait$(). This takes the form of $(thing)Wild Honeycomb$() and $(thing)Aromatic Honeycomb$(). Add these to a $(thing)Skep$() with $(item)$(k:key.use)$() and surround the Skep with at least 30 flowers. There is a 1 / 8 chance daily to attract a bee in this case."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/aromatic_honeycomb",
+      "text": "The $(thing)Aromatic Honeycomb$() is an alternative to the Wild Honeycomb made from herbs."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/jarring_food/raw_honey",
+      "text": "Honey lasts forever if stored in a $(thing)Jar$()."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "This chapter covered the main aspects of beekeeping. For information on species, traits, genetic diseases, and parasitic infections, see the next chapter, $(l:firmalife/beekeeping_reference)Beekeeping Reference$()."
     }
   ],
   "read_by_default": true,

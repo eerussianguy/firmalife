@@ -353,10 +353,11 @@ public interface CraftingRecipes extends Recipes
             .input(Items.BRICK)
             .shapeless(new ItemStack(FLBlocks.TILES, 16));
         recipe()
-            .input(wroughtSheets)
-            .input(FLItems.BEESWAX)
-            .input(TFCTags.Items.WELDING_FLUX)
-            .shapeless(FLItems.OVEN_INSULATION);
+            .input('S', wroughtSheets)
+            .input('B', FLItems.BEESWAX)
+            .input('F', TFCTags.Items.WELDING_FLUX)
+            .pattern("BFB", "FSF", "BFB")
+            .shaped(FLItems.OVEN_INSULATION);
         recipe()
             .input(itemOf(FLFood.VANILLA_ICE_CREAM))
             .input(itemOf(FLFood.STRAWBERRY_ICE_CREAM))

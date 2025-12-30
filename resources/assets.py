@@ -371,7 +371,6 @@ def generate(rm: ResourceManager):
     for variant in ('gold', 'red', 'purple'):
         rm.block_model('plant/butterfly_grass_%s' % variant, parent='firmalife:block/tinted_cross_overlay', textures={'cross': 'firmalife:block/plant/butterfly_grass/base', 'overlay': 'firmalife:block/plant/butterfly_grass/%s' % variant})
     rm.blockstate('plant/butterfly_grass', variants={'': [{'model': 'firmalife:block/plant/butterfly_grass_%s' % variant, 'y': rot} for variant in ('gold', 'red', 'purple') for rot in (None, 90)]}, use_default_model=False).with_lang(lang('butterfly grass'))
-    simple_plant_data(rm, 'firmalife:plant/butterfly_grass')
     flower_pot_cross(rm, 'butterfly grass', 'firmalife:plant/potted/butterfly_grass', 'plant/flowerpot/butterfly_grass', 'firmalife:block/plant/butterfly_grass/base', tinted=True)
     rm.item_model('plant/butterfly_grass', 'firmalife:block/plant/butterfly_grass/base')
 
@@ -392,9 +391,8 @@ def generate(rm: ResourceManager):
     for herb in HERBS:
         for stage in ('0', '1'):
             rm.block_model('plant/%s_%s' % (herb, stage), parent='minecraft:block/cross', textures={'cross': 'firmalife:block/plant/%s/%s' % (herb, stage)})
-        # rm.blockstate('plant/%s' % herb, variants={'age=0': {'model': 'firmalife:block/plant/%s_0' % herb}, 'age=1': {'model': 'firmalife:block/plant/%s_1' % herb}}).with_lang(lang(herb))
-        rm.blockstate('plant/%s' % herb, variants=dict((f'age={i}', {'model': f'firmalife:block/plant/{herb}_{j}'}) for (i, j) in ((0, 0), (1, 1), (2, 1), (3, 1)))).with_lang(lang(herb))
-        simple_plant_data(rm, 'firmalife:plant/%s' % herb, straw=False)
+        rm.blockstate('plant/%s' % herb, variants={'age=0': {'model': 'firmalife:block/plant/%s_0' % herb}, 'age=1': {'model': 'firmalife:block/plant/%s_1' % herb}}).with_lang(lang(herb))
+        # rm.blockstate('plant/%s' % herb, variants=dict((f'age={i}', {'model': f'firmalife:block/plant/{herb}_{j}'}) for (i, j) in ((0, 0), (1, 1), (2, 1), (3, 1)))).with_lang(lang(herb))
         rm.item_model('plant/%s' % herb, 'firmalife:block/plant/%s/1' % herb)
         flower_pot_cross(rm, herb, 'firmalife:plant/potted/%s' % herb, 'plant/flowerpot/%s' % herb, 'firmalife:block/plant/%s/1' % herb)
 
@@ -540,10 +538,6 @@ def contained_fluid(rm: ResourceManager, name_parts: utils.ResourceIdentifier, b
 def flower_pot_cross(rm: ResourceManager, simple_name: str, name: str, model: str, texture: str, tinted: bool = False):
     rm.blockstate(name, model='firmalife:block/%s' % model).with_lang(lang('potted %s', simple_name))
     rm.block_model(model, parent='minecraft:block/tinted_flower_pot_cross' if tinted else 'minecraft:block/flower_pot_cross', textures={'plant': texture, 'dirt': 'tfc:block/dirt/entisol'})
-
-
-def simple_plant_data(rm: ResourceManager, p: str, bees: bool = True, straw: bool = True):
-    ...
 
 
 def item_model_property(rm: ResourceManager, name_parts: utils.ResourceIdentifier, overrides: utils.Json, data: Dict[str, Any]) -> ItemContext:

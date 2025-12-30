@@ -10,7 +10,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/oven_hopper",
+      "recipe": "firmalife:crafting/clay_oven_hopper",
       "text": "$(thing)烘箱料斗$() 可以将原木输入其所面对的任何底部烤炉。它能持有16个原木 (4组，每组4个),它的物品栏是通过在顶部向下丢物品来提供的. 它也能通过其他MOD实现自动化输入."
     },
     {
@@ -74,5 +74,5 @@
     }
   ],
   "read_by_default": true,
-  "sortnum": 15
+  "sortnum": 16
 }

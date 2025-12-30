@@ -132,7 +132,7 @@ public class WildBeehiveBlock extends HorizontalDirectionalBlock implements IFor
             }
             if (!warm)
                 return;
-            final BlockPos hivePos = FLHelpers.getPoint(level, pos, 15, FLPOIs.BEEHIVES);
+            final BlockPos hivePos = FLHelpers.getPoint(level, pos, 15, FLPOIs.BEEHIVES, (l, p) -> l.getBlockEntity(p) instanceof FLBeehiveBlockEntity hive && !hive.getBee().hasQueen());
             if (hivePos != null && level.getBlockEntity(hivePos) instanceof FLBeehiveBlockEntity hive)
             {
                 hive.linkSwarmFrom(pos);
@@ -168,7 +168,7 @@ public class WildBeehiveBlock extends HorizontalDirectionalBlock implements IFor
     @Override
     public void playerDestroy(Level level, Player player, BlockPos pos, BlockState state, @Nullable BlockEntity entity, ItemStack tool)
     {
-        if (state.getValue(BEES) && !BaseBeehiveBlock.hasFirepit(level, pos))
+        if (state.getValue(BEES))
         {
             BaseBeehiveBlock.attack(player);
         }
