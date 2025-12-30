@@ -1,0 +1,58 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "Beekeeping Reference",
+  "category": "tfc:firmalife",
+  "icon": "firmalife:textures/item/queen_bee.png",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "This chapter is a continuation of the $(l:firmalife/beekeeping)Beekeeping$() chapter.$(br)The queen bee of a hive has certain abilities. These are passed on and changed when the hive splits. New abilities can only be obtained from the wild, except for Calmness, which has a change to appear during a split in captivity."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(li)$(thing)Hardiness$(): Allows bees to produce honey at lower temperatures. Each hardiness grants an extra 2°C.$()$(li)$(thing)Production$(): Improves the speed of honey production.$()$(li)$(thing)Mutant$(): Increases variability in the traits passed during splitting swarms$().$(li)$(thing)Fertility$(): Increases likelihood of swarming.$()",
+      "title": "List of Abilities"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(li)$(thing)Crop Affinity$(): Likelihood of spreading a small amount of nutrients to nearby crops.$()$(li)$(thing)Nature Restoration$(): Causes new flowers and water plants to spawn around the hive.$()$(li)$(thing)Calmness$(): Decreases likelihood of bees attacking you$().$(li)$(thing)Infection Resistance$(): Decreases likelihood of developing genetic diseases and parasitic infections."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Bees with high Mutant ability have a chance of developing a $(thing)Genetic Disease$(). Bees with a genetic disease cannot reproduce."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Bees subject to improper conditions can develop $(thing)Parasitic Infections$(). These conditions do not have to do with their species and may spontaneously occur in wild bees. These conditions include: the hive touching any other block besides for the block below it; temperatures below -18 or above 27°C; rainfall below 50 or above 470mm."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(thing)Bee Species$() are found in different climates, and their conditions describe what you may get from a $(thing)Wild Beehive$() or an attracted wild swarm. Some species are rarer than others.",
+      "title": "Bee Species"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(li)$(thing)Western Honey Bee$(): Calmness, Production. 5-20°C, 100-400mm. Extremely common. Western bees also spawn when no other bee species is eligible to spawn.$()$(li)$(thing)Asian Honey Bee$(): Fertility, Nature Restoration. 10-30°C, 250-400mm. Common.$()$(li)$(thing)Giant Honey Bee$(): Fertility. 15-30°C, 300-450mm. Common.$()"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(li)$(thing)Dwarf Honey Bee$(): Fertility, Production. 20-30°C, 300-400mm. Common.$()$(li)$(thing)Black Dwarf Honey Bee$(): Mutant, Nature Restoration. 12-22°C, 150-350mm. Uncommon.$()$(li)$(thing)Koschevnikov's Honey Bee$(): Hardiness, Production, Nature Restoration. 12-16°C, 200-375mm. Very Rare.$()$(li)$(thing)Himalayan Giant Honey Bee$(): Hardiness, Mutant, Production. 10-19°C, 150-250mm, y>96. Rare.$()"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(li)$(thing)Philippine Honey Bee$(): Calmness, Crop Affinity. 15-20°C, 350-450mm. Very Rare.$()$(li)$(thing)Borneo Mountain Honey Bee$(): Hardiness, Infection Resistance. 13-22°C, 150-400mm, y>96. Common.$()$(li)$(thing)Indonesian Giant Honey Bee$(): Nature Restoration, Fertility, Infection Resistance. 16-20°C, 350-420mm. Uncommon.$()$(li)$(thing)Africanized Honey Bee$(): Hardiness. 10-25°C. 100-320mm. Common.$()"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/beekeeper_boots",
+      "recipe2": "firmalife:crafting/beekeeper_leggings"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/beekeeper_chestplate",
+      "recipe2": "firmalife:crafting/beekeeper_helmet"
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 11
+}
