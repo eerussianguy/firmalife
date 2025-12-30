@@ -9,6 +9,7 @@ import com.eerussianguy.firmalife.client.model.BeehiveBlockModel;
 import com.eerussianguy.firmalife.client.model.BonsaiPlanterBlockModel;
 import com.eerussianguy.firmalife.client.model.DynamicBlockModel;
 import com.eerussianguy.firmalife.client.model.FoodShelfBlockModel;
+import com.eerussianguy.firmalife.client.model.GreenhouseBlockModel;
 import com.eerussianguy.firmalife.client.model.HangerBlockModel;
 import com.eerussianguy.firmalife.client.model.HangingPlanterBlockModel;
 import com.eerussianguy.firmalife.client.model.HydroponicPlanterBlockModel;
@@ -20,6 +21,7 @@ import com.eerussianguy.firmalife.client.model.PeelModel;
 import com.eerussianguy.firmalife.client.model.QuadPlanterBlockModel;
 import com.eerussianguy.firmalife.client.model.TrellisPlanterBlockModel;
 import com.eerussianguy.firmalife.client.model.WineShelfBlockModel;
+import com.eerussianguy.firmalife.client.model.greenhouse.GreenhousePanelWallBlockModel;
 import com.eerussianguy.firmalife.client.render.BarrelPressBlockEntityRenderer;
 import com.eerussianguy.firmalife.client.render.CentrifugeBlockEntityRenderer;
 import com.eerussianguy.firmalife.client.render.CompostTumblerBlockEntityRenderer;
@@ -274,6 +276,7 @@ public class FLClientEvents
         register(event, "hanger", new InventoryBlockModel.Loader(HangerBlockModel::new));
         register(event, "wine_shelf", new InventoryBlockModel.Loader(WineShelfBlockModel::new));
         register(event, "beehive", new InventoryBlockModel.Loader(BeehiveBlockModel::new));
+        register(event, "greenhouse_panel_wall", new GreenhouseBlockModel.Loader(GreenhousePanelWallBlockModel::new));
     }
 
     private static void register(ModelEvent.RegisterGeometryLoaders event, String id, IGeometryLoader<?> loader)

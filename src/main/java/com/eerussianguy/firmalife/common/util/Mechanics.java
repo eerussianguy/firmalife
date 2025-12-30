@@ -1,10 +1,15 @@
 package com.eerussianguy.firmalife.common.util;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
-
+import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blockentities.ClimateStationBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.LargePlanterBlockEntity;
+import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.config.FLConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -13,17 +18,13 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
-
-import com.eerussianguy.firmalife.common.FLTags;
-import com.eerussianguy.firmalife.common.blockentities.LargePlanterBlockEntity;
-import com.eerussianguy.firmalife.common.blocks.FLBlocks;
+import org.jetbrains.annotations.Nullable;
+import vazkii.patchouli.api.TriPredicate;
 
 import net.dries007.tfc.common.blockentities.FarmlandBlockEntity;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.ICalendar;
-import org.jetbrains.annotations.Nullable;
-import vazkii.patchouli.api.TriPredicate;
 
 public final class Mechanics
 {
@@ -153,6 +154,7 @@ public final class Mechanics
                 return false;
             if (direction == Direction.UP && wallState.getBlock() instanceof SlabBlock)
                 return true;
+            // TODO needs a check for when panel walls create an interior space? (facing the opposite way or as a corner)
             return wallState.isFaceSturdy(level, wallPos, direction.getOpposite());
         };
         Set<BlockPos> filled = floodfill(level, pos, mutable, box, predicate, s -> !Helpers.isBlock(s, FLBlocks.CLIMATE_STATION.get()), false, lastSize, Helpers.DIRECTIONS);
@@ -167,7 +169,7 @@ public final class Mechanics
         return new GreenhouseInfo(greenhouse, filled);
     }
 
-    public record GreenhouseInfo(GreenhouseType type, Set<BlockPos> positions) { }
+    public record GreenhouseInfo(GreenhouseType type, Set<BlockPos> positions) {}
 
     public static final Predicate<BlockState> CELLAR = state -> Helpers.isBlock(state, FLTags.Blocks.CELLAR_INSULATION);
     private static final int UPDATE_INTERVAL = ICalendar.CALENDAR_TICKS_IN_DAY;

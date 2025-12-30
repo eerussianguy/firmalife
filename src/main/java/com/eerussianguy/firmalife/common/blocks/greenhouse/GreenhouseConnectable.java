@@ -52,6 +52,19 @@ public interface GreenhouseConnectable
                 case BOTH -> NONE;
             };
         }
+
+        public boolean contains(PostType other)
+        {
+            if (other == this)
+            {
+                return true;
+            }
+            if (this == BOTH || other == NONE)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 
     enum WallType implements StringRepresentable

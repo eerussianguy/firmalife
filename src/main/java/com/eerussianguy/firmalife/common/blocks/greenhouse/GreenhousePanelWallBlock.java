@@ -206,7 +206,7 @@ public class GreenhousePanelWallBlock extends BaseGreenhouseBlock implements IWe
         return extra != SideType.NONE ? Set.of(facing, extra.getDirection(facing)) : Set.of(facing);
     }
 
-    public Set<Direction> getWallStates2(BlockState state)
+    public static Set<Direction> getWallStates2(BlockState state)
     {
         if (state.getBlock() instanceof GreenhousePanelWallBlock wall)
         {
