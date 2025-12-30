@@ -430,14 +430,20 @@ def generate(rm: ResourceManager):
             '11': f'firmalife:block/wood/big_barrel/{wood}_2_top',
             '12': f'tfc:block/wood/log/{wood}',
         }
-        for i in range(0, 8):
+        for i in range(1, 8):
             rm.block_model('wood/big_barrel/%s_%s' % (wood, i), parent='firmalife:block/big_barrel_%s' % i, textures=tex)
+        rm.block_model('wood/big_barrel/%s_0_unsealed' % wood, parent='firmalife:block/big_barrel_0_unsealed', textures=tex)
+        rm.block_model('wood/big_barrel/%s_0_sealed' % wood, parent='firmalife:block/big_barrel_0_sealed', textures=tex)
         rm.block_model('wood/big_barrel/%s_item' % wood, parent='firmalife:block/big_barrel_item', textures=tex)
         rm.item_model('wood/keg/%s' % wood, parent='firmalife:block/wood/big_barrel/%s_item' % wood, no_textures=True)
-        block = rm.blockstate('wood/keg/%s' % wood, variants=dict(
+        block = rm.blockstate('wood/keg_sub/%s' % wood, variants=dict(
             ('barrel_part=%s,facing=%s' % (i, f), {'model': 'firmalife:block/wood/big_barrel/%s_%s' % (wood, i), 'y': y if y != 0 else None})
-            for f, y in (('east', 90), ('north', 0), ('south', 180), ('west', 270)) for i in range(0, 8)
+            for f, y in (('east', 90), ('north', 0), ('south', 180), ('west', 270)) for i in range(1, 8)
         )).with_lang(lang('%s keg' % wood))
+        rm.blockstate('wood/keg/%s' % wood, variants={
+            **four_rotations('firmalife:block/wood/big_barrel/%s_0_unsealed' % wood, (90, None, 180, 270), suffix=',sealed=false'),
+            **four_rotations('firmalife:block/wood/big_barrel/%s_0_sealed' % wood, (90, None, 180, 270), suffix=',sealed=true')
+        }).with_lang(lang('%s keg', wood))
 
         rm.blockstate('wood/stomping_barrel/%s' % wood).with_block_model({'0': 'tfc:block/wood/sheet/%s' % wood}, 'firmalife:block/stomping_barrel').with_lang(lang('%s stomping barrel', wood))
         rm.item_model('wood/stomping_barrel/%s' % wood, parent='firmalife:block/wood/stomping_barrel/%s' % wood, no_textures=True)

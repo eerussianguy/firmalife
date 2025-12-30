@@ -2,10 +2,11 @@ package com.eerussianguy.firmalife.common.blockentities;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blocks.FLStateProperties;
-import com.eerussianguy.firmalife.common.blocks.KegBlock;
+import com.eerussianguy.firmalife.common.blocks.KegCoreBlock;
 import com.eerussianguy.firmalife.common.container.KegContainer;
 import com.eerussianguy.firmalife.common.recipes.KegRecipe;
 import net.minecraft.core.BlockPos;
@@ -24,7 +25,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.common.util.INBTSerializable;
@@ -47,6 +47,7 @@ import net.dries007.tfc.common.capabilities.FluidTankCallback;
 import net.dries007.tfc.common.capabilities.InventoryFluidTank;
 import net.dries007.tfc.common.capabilities.InventoryItemHandler;
 import net.dries007.tfc.common.capabilities.PartialFluidHandler;
+import net.dries007.tfc.common.capabilities.PartialItemHandler;
 import net.dries007.tfc.common.capabilities.SidedHandler;
 import net.dries007.tfc.common.component.CachedMut;
 import net.dries007.tfc.common.component.size.IItemSize;
@@ -64,7 +65,7 @@ import net.dries007.tfc.util.calendar.CalendarTransaction;
 import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.ICalendarTickable;
 
-public class KegBlockEntity extends TickableInventoryBlockEntity<KegBlockEntity.BigBarrelInventory> implements BarrelInventoryCallback, IRecipeTimer, ICalendarTickable
+public class KegBlockEntity extends TickableInventoryBlockEntity<KegBlockEntity.KegInventory> implements BarrelInventoryCallback, IRecipeTimer, ICalendarTickable
 {
     public static void serverTick(Level level, BlockPos pos, BlockState state, KegBlockEntity barrel)
     {
@@ -93,8 +94,8 @@ public class KegBlockEntity extends TickableInventoryBlockEntity<KegBlockEntity.
         excess.addAll(leftover);
 
         final SealedBarrelRecipe recipe = barrel.getRecipe();
-        final boolean sealed = state.getValue(KegBlock.SEALED);
-        final Direction facing = state.getValue(KegBlock.FACING);
+        final boolean sealed = state.getValue(KegCoreBlock.SEALED);
+        final Direction facing = state.getValue(KegCoreBlock.FACING);
         if (recipe != null && sealed)
         {
             final int durationSealed = (int) (Calendars.SERVER.getTicks() - barrel.recipeTick);
@@ -164,7 +165,7 @@ public class KegBlockEntity extends TickableInventoryBlockEntity<KegBlockEntity.
         }
 
         barrel.tickPouring(level, pos, sealed, facing);
-        barrel.tickPouring(level, pos.relative(state.getValue(KegBlock.FACING).getClockWise()), sealed, facing);
+        barrel.tickPouring(level, pos.relative(state.getValue(KegCoreBlock.FACING).getClockWise()), sealed, facing);
     }
 
     public static final int SLOTS = 38;
@@ -185,12 +186,26 @@ public class KegBlockEntity extends TickableInventoryBlockEntity<KegBlockEntity.
 
     public KegBlockEntity(BlockPos pos, BlockState state)
     {
-        super(FLBlockEntities.KEG.get(), pos, state, BigBarrelInventory::new, FirmaLife.MOD_ID);
+        super(FLBlockEntities.KEG.get(), pos, state, KegInventory::new, FirmaLife.MOD_ID);
+
+        final Direction facing = state.getValue(KegCoreBlock.FACING);
+        final int[] slots = IntStream.rangeClosed(KegBlockEntity.SLOT_INPUT_START, KegBlockEntity.SLOT_INPUT_END).toArray();
+        sidedInventory
+            .on(new PartialItemHandler(inventory).insert(slots), d -> d != facing.getOpposite() && d != Direction.DOWN)
+            .on(new PartialItemHandler(inventory).extract(slots), d -> d == facing.getOpposite() || d == Direction.DOWN);
 
         sidedFluidInventory = new SidedHandler<>(inventory);
         sidedFluidInventory
-            .on(PartialFluidHandler::insertOnly, d -> d.getAxis().isHorizontal())
-            .on(PartialFluidHandler::extractOnly, d -> d.getAxis().isVertical());
+            .on(PartialFluidHandler::insertOnly, d -> d != facing.getOpposite() && d != Direction.DOWN)
+            .on(PartialFluidHandler::extractOnly, d -> d == facing.getOpposite() || d == Direction.DOWN);
+
+//        final Direction facing = state.getValue(KegCoreBlock.FACING);
+//        sidedInventory
+//            .on(new PartialItemHandler(inventory).extract(IntStream.rangeClosed(SLOT_INPUT_START, SLOT_INPUT_END).toArray()), d -> d == facing.getOpposite() || d == Direction.DOWN);
+//
+//        sidedFluidInventory = new SidedHandler<>(inventory);
+//        sidedFluidInventory
+//            .on(PartialFluidHandler::extractOnly, d -> d == facing.getOpposite() || d == Direction.DOWN);
     }
 
     @Nullable
@@ -244,7 +259,7 @@ public class KegBlockEntity extends TickableInventoryBlockEntity<KegBlockEntity.
         }
 
         @Nullable SealedBarrelRecipe recipe = getRecipe();
-        if (!getBlockState().getValue(KegBlock.SEALED) || recipe == null || recipe.isInfinite())
+        if (!getBlockState().getValue(KegCoreBlock.SEALED) || recipe == null || recipe.isInfinite())
         {
             return; // No simulation occurs if we were not sealed, or if we had no recipe, or if we had an infinite recipe.
         }
@@ -428,7 +443,7 @@ public class KegBlockEntity extends TickableInventoryBlockEntity<KegBlockEntity.
     @Override
     public boolean canModify()
     {
-        return !getBlockState().getValue(KegBlock.SEALED) && FLHelpers.hasPropertyAndValue(getBlockState(), FLStateProperties.BARREL_PART, 0);
+        return !getBlockState().getValue(KegCoreBlock.SEALED);
     }
 
     private void updateFluidIOSlots()
@@ -529,7 +544,7 @@ public class KegBlockEntity extends TickableInventoryBlockEntity<KegBlockEntity.
         return KegContainer.create(this, player.getInventory(), containerId);
     }
 
-    public static class BigBarrelInventory implements DelegateItemHandler, DelegateFluidHandler, NonEmptyInput, FluidTankCallback, BarrelInventory, INBTSerializable<CompoundTag>
+    public static class KegInventory implements DelegateItemHandler, DelegateFluidHandler, NonEmptyInput, FluidTankCallback, BarrelInventory, INBTSerializable<CompoundTag>
     {
         private final BarrelInventoryCallback callback;
         private final InventoryItemHandler inventory;
@@ -537,12 +552,12 @@ public class KegBlockEntity extends TickableInventoryBlockEntity<KegBlockEntity.
         private final InventoryFluidTank tank;
         private boolean mutable; // If the inventory is pretending to be mutable, despite the barrel being sealed and preventing extractions / insertions
 
-        BigBarrelInventory(InventoryBlockEntity<?> inventory)
+        KegInventory(InventoryBlockEntity<?> inventory)
         {
             this((BarrelInventoryCallback) inventory);
         }
 
-        BigBarrelInventory(BarrelInventoryCallback inventory)
+        KegInventory(BarrelInventoryCallback inventory)
         {
             this.callback = inventory;
             this.inventory = new InventoryItemHandler(inventory, SLOTS);

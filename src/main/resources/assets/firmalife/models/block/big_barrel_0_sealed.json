@@ -1,0 +1,48 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"parent": "block/block",
+	"textures": {
+		"5": "firmalife:block/wood/big_barrel/sequoia_2",
+		"6": "firmalife:block/wood/big_barrel/sequoia_2_side",
+		"7": "tfc:block/barrel_tap",
+		"9": "firmalife:block/wood/big_barrel/sequoia_0_top",
+		"12": "tfc:block/wood/log/sequoia",
+		"particle": "firmalife:block/wood/big_barrel/sequoia_3_side"
+	},
+	"elements": [
+		{
+			"from": [2, 2, -2],
+			"to": [16, 16, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"south": {"uv": [2, 0, 16, 14], "texture": "#5"},
+				"west": {"uv": [16, 0, 0, 14], "texture": "#6"},
+				"down": {"uv": [16, 2, 0, 16], "rotation": 270, "texture": "#9"}
+			}
+		},
+		{
+			"from": [4, 0, 10],
+			"to": [16, 2, 12],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 12, 2], "texture": "#12"},
+				"south": {"uv": [0, 0, 12, 2], "texture": "#12"},
+				"west": {"uv": [0, 0, 2, 2], "texture": "#12"},
+				"down": {"uv": [0, 0, 12, 2], "rotation": 180, "texture": "#12"}
+			}
+		},
+		{
+			"from": [14, 5, 14],
+			"to": [21, 9, 16],
+			"rotation": {"angle": 0, "axis": "z", "origin": [16, 8, 16]},
+			"faces": {
+				"east": {"uv": [0, 0, 2, 4], "texture": "#7"},
+				"south": {"uv": [0, 0, 7, 4], "texture": "#7"},
+				"west": {"uv": [0, 0, 2, 4], "texture": "#7"},
+				"up": {"uv": [0, 0, 7, 2], "rotation": 180, "texture": "#7"},
+				"down": {"uv": [0, 0, 7, 2], "rotation": 180, "texture": "#7"}
+			}
+		}
+	]
+}

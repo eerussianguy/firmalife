@@ -1,7 +1,7 @@
 package com.eerussianguy.firmalife.common.container;
 
 import com.eerussianguy.firmalife.common.blockentities.KegBlockEntity;
-import com.eerussianguy.firmalife.common.blocks.KegBlock;
+import com.eerussianguy.firmalife.common.blocks.KegCoreBlock;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -35,7 +35,7 @@ public class KegContainer extends BlockEntityContainer<KegBlockEntity> implement
     @Override
     public void clicked(int slot, int button, ClickType clickType, Player player)
     {
-        if (slot >= 0 && slot < KegBlockEntity.SLOTS && blockEntity.getBlockState().getValue(KegBlock.SEALED))
+        if (slot >= 0 && slot < KegBlockEntity.SLOTS && blockEntity.getBlockState().getValue(KegCoreBlock.SEALED))
         {
             return;
         }
@@ -48,7 +48,7 @@ public class KegContainer extends BlockEntityContainer<KegBlockEntity> implement
         final Level level = blockEntity.getLevel();
         if (level != null)
         {
-            KegBlock.toggleSeal(level, blockEntity.getBlockPos(), blockEntity.getBlockState());
+            KegCoreBlock.toggleSeal(level, blockEntity.getBlockPos(), blockEntity.getBlockState());
         }
     }
 
@@ -76,7 +76,7 @@ public class KegContainer extends BlockEntityContainer<KegBlockEntity> implement
     @Override
     protected boolean moveStack(ItemStack stack, int slotIndex)
     {
-        if (blockEntity.getBlockState().getValue(KegBlock.SEALED))
+        if (blockEntity.getBlockState().getValue(KegCoreBlock.SEALED))
         {
             return true;
         }

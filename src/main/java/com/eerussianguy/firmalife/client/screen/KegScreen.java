@@ -2,7 +2,7 @@ package com.eerussianguy.firmalife.client.screen;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.KegBlockEntity;
-import com.eerussianguy.firmalife.common.blocks.KegBlock;
+import com.eerussianguy.firmalife.common.blocks.KegCoreBlock;
 import com.eerussianguy.firmalife.common.container.KegContainer;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -16,7 +16,6 @@ import org.jetbrains.annotations.Nullable;
 import net.dries007.tfc.TerraFirmaCraft;
 import net.dries007.tfc.client.RenderHelpers;
 import net.dries007.tfc.client.screen.BlockEntityScreen;
-import net.dries007.tfc.common.blockentities.BarrelBlockEntity;
 import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.tooltip.Tooltips;
 
@@ -113,7 +112,7 @@ public class KegScreen extends BlockEntityScreen<KegBlockEntity, KegContainer>
 
     private boolean isSealed()
     {
-        return blockEntity.getBlockState().getValue(KegBlock.SEALED);
+        return blockEntity.getBlockState().getValue(KegCoreBlock.SEALED);
     }
 
 }

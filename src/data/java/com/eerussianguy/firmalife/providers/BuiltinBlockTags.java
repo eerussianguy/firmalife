@@ -210,7 +210,7 @@ public class BuiltinBlockTags extends TagsProvider<Block> implements Accessors
         tag(FOOD_SHELVES).add(FLBlocks.FOOD_SHELVES);
         tag(HANGERS).add(FLBlocks.HANGERS);
         tag(JARBNETS).add(FLBlocks.JARBNETS);
-        tag(KEGS).add(FLBlocks.KEGS);
+        tag(KEGS).add(FLBlocks.KEGS).add(FLBlocks.KEG_SUBS);
         tag(STOMPING_BARRELS).add(FLBlocks.STOMPING_BARRELS);
         tag(BARREL_PRESSES).add(FLBlocks.BARREL_PRESSES);
         tag(WINE_SHELVES).add(FLBlocks.WINE_SHELVES);

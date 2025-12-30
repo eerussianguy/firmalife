@@ -4,6 +4,7 @@ import java.util.function.Supplier;
 import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.common.blockentities.KegBlockEntity;
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
+import com.eerussianguy.firmalife.common.blockentities.KegSubBlockEntity;
 import com.eerussianguy.firmalife.common.blockentities.MixingBowlBlockEntity;
 import com.eerussianguy.firmalife.common.blockentities.StovetopPotBlockEntity;
 import com.eerussianguy.firmalife.common.blockentities.VatBlockEntity;
@@ -51,6 +52,8 @@ public final class FLComponents
         registerInventory(event, FLBlockEntities.CENTRIFUGE);
         registerInventory(event, FLBlockEntities.KEG);
         event.registerBlockEntity(BlockCapabilities.FLUID, FLBlockEntities.KEG.get(), KegBlockEntity::getSidedFluidInventory);
+        event.registerBlockEntity(BlockCapabilities.ITEM, FLBlockEntities.KEG_SUB.get(), KegSubBlockEntity::getSidedInventory);
+        event.registerBlockEntity(BlockCapabilities.FLUID, FLBlockEntities.KEG_SUB.get(), KegSubBlockEntity::getSidedFluidInventory);
         registerInventory(event, FLBlockEntities.BONSAI_PLANTER);
         registerInventory(event, FLBlockEntities.COMPOST_TUMBLER);
         registerInventory(event, FLBlockEntities.DRYING_MAT);

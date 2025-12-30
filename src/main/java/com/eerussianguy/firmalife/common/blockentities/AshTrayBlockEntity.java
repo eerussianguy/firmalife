@@ -1,7 +1,7 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
 import com.eerussianguy.firmalife.FirmaLife;
-import com.eerussianguy.firmalife.common.blocks.AshtrayBlock;
+import com.eerussianguy.firmalife.common.blocks.oven.AshtrayBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.Mth;

@@ -3,7 +3,7 @@ package com.eerussianguy.firmalife.common.blockentities;
 import java.util.ArrayList;
 import java.util.List;
 import com.eerussianguy.firmalife.common.FLHelpers;
-import com.eerussianguy.firmalife.common.blocks.VatBlock;
+import com.eerussianguy.firmalife.common.blocks.oven.VatBlock;
 import com.eerussianguy.firmalife.common.recipes.FLRecipeTypes;
 import com.eerussianguy.firmalife.common.recipes.VatRecipe;
 import net.minecraft.core.BlockPos;

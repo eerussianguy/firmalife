@@ -1,6 +1,6 @@
 package com.eerussianguy.firmalife.common.misc;
 
-import com.eerussianguy.firmalife.common.blocks.OvenBottomBlock;
+import com.eerussianguy.firmalife.common.blocks.oven.OvenBottomBlock;
 import com.eerussianguy.firmalife.common.util.FLAdvancements;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

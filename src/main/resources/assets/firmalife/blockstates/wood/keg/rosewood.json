@@ -1,124 +1,34 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "variants": {
-    "barrel_part=0,facing=east": {
-      "model": "firmalife:block/wood/big_barrel/rosewood_0",
+    "facing=east,sealed=false": {
+      "model": "firmalife:block/wood/big_barrel/rosewood_0_unsealed",
       "y": 90
     },
-    "barrel_part=1,facing=east": {
-      "model": "firmalife:block/wood/big_barrel/rosewood_1",
-      "y": 90
+    "facing=north,sealed=false": {
+      "model": "firmalife:block/wood/big_barrel/rosewood_0_unsealed"
     },
-    "barrel_part=2,facing=east": {
-      "model": "firmalife:block/wood/big_barrel/rosewood_2",
-      "y": 90
-    },
-    "barrel_part=3,facing=east": {
-      "model": "firmalife:block/wood/big_barrel/rosewood_3",
-      "y": 90
-    },
-    "barrel_part=4,facing=east": {
-      "model": "firmalife:block/wood/big_barrel/rosewood_4",
-      "y": 90
-    },
-    "barrel_part=5,facing=east": {
-      "model": "firmalife:block/wood/big_barrel/rosewood_5",
-      "y": 90
-    },
-    "barrel_part=6,facing=east": {
-      "model": "firmalife:block/wood/big_barrel/rosewood_6",
-      "y": 90
-    },
-    "barrel_part=7,facing=east": {
-      "model": "firmalife:block/wood/big_barrel/rosewood_7",
-      "y": 90
-    },
-    "barrel_part=0,facing=north": {
-      "model": "firmalife:block/wood/big_barrel/rosewood_0"
-    },
-    "barrel_part=1,facing=north": {
-      "model": "firmalife:block/wood/big_barrel/rosewood_1"
-    },
-    "barrel_part=2,facing=north": {
-      "model": "firmalife:block/wood/big_barrel/rosewood_2"
-    },
-    "barrel_part=3,facing=north": {
-      "model": "firmalife:block/wood/big_barrel/rosewood_3"
-    },
-    "barrel_part=4,facing=north": {
-      "model": "firmalife:block/wood/big_barrel/rosewood_4"
-    },
-    "barrel_part=5,facing=north": {
-      "model": "firmalife:block/wood/big_barrel/rosewood_5"
-    },
-    "barrel_part=6,facing=north": {
-      "model": "firmalife:block/wood/big_barrel/rosewood_6"
-    },
-    "barrel_part=7,facing=north": {
-      "model": "firmalife:block/wood/big_barrel/rosewood_7"
-    },
-    "barrel_part=0,facing=south": {
-      "model": "firmalife:block/wood/big_barrel/rosewood_0",
+    "facing=south,sealed=false": {
+      "model": "firmalife:block/wood/big_barrel/rosewood_0_unsealed",
       "y": 180
     },
-    "barrel_part=1,facing=south": {
-      "model": "firmalife:block/wood/big_barrel/rosewood_1",
-      "y": 180
-    },
-    "barrel_part=2,facing=south": {
-      "model": "firmalife:block/wood/big_barrel/rosewood_2",
-      "y": 180
-    },
-    "barrel_part=3,facing=south": {
-      "model": "firmalife:block/wood/big_barrel/rosewood_3",
-      "y": 180
-    },
-    "barrel_part=4,facing=south": {
-      "model": "firmalife:block/wood/big_barrel/rosewood_4",
-      "y": 180
-    },
-    "barrel_part=5,facing=south": {
-      "model": "firmalife:block/wood/big_barrel/rosewood_5",
-      "y": 180
-    },
-    "barrel_part=6,facing=south": {
-      "model": "firmalife:block/wood/big_barrel/rosewood_6",
-      "y": 180
-    },
-    "barrel_part=7,facing=south": {
-      "model": "firmalife:block/wood/big_barrel/rosewood_7",
-      "y": 180
-    },
-    "barrel_part=0,facing=west": {
-      "model": "firmalife:block/wood/big_barrel/rosewood_0",
+    "facing=west,sealed=false": {
+      "model": "firmalife:block/wood/big_barrel/rosewood_0_unsealed",
       "y": 270
     },
-    "barrel_part=1,facing=west": {
-      "model": "firmalife:block/wood/big_barrel/rosewood_1",
-      "y": 270
+    "facing=east,sealed=true": {
+      "model": "firmalife:block/wood/big_barrel/rosewood_0_sealed",
+      "y": 90
     },
-    "barrel_part=2,facing=west": {
-      "model": "firmalife:block/wood/big_barrel/rosewood_2",
-      "y": 270
+    "facing=north,sealed=true": {
+      "model": "firmalife:block/wood/big_barrel/rosewood_0_sealed"
     },
-    "barrel_part=3,facing=west": {
-      "model": "firmalife:block/wood/big_barrel/rosewood_3",
-      "y": 270
+    "facing=south,sealed=true": {
+      "model": "firmalife:block/wood/big_barrel/rosewood_0_sealed",
+      "y": 180
     },
-    "barrel_part=4,facing=west": {
-      "model": "firmalife:block/wood/big_barrel/rosewood_4",
-      "y": 270
-    },
-    "barrel_part=5,facing=west": {
-      "model": "firmalife:block/wood/big_barrel/rosewood_5",
-      "y": 270
-    },
-    "barrel_part=6,facing=west": {
-      "model": "firmalife:block/wood/big_barrel/rosewood_6",
-      "y": 270
-    },
-    "barrel_part=7,facing=west": {
-      "model": "firmalife:block/wood/big_barrel/rosewood_7",
+    "facing=west,sealed=true": {
+      "model": "firmalife:block/wood/big_barrel/rosewood_0_sealed",
       "y": 270
     }
   }

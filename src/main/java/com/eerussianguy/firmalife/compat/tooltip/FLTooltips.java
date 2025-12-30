@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.eerussianguy.firmalife.common.blocks.greenhouse.PumpingStationBlock;
+import com.eerussianguy.firmalife.common.blocks.oven.AbstractOvenBlock;
+import com.eerussianguy.firmalife.common.blocks.oven.ICure;
+import com.eerussianguy.firmalife.common.blocks.oven.OvenBottomBlock;
+import com.eerussianguy.firmalife.common.blocks.oven.OvenTopBlock;
+import com.eerussianguy.firmalife.common.blocks.oven.StovetopPotBlock;
+import com.eerussianguy.firmalife.common.blocks.oven.VatBlock;
 import com.eerussianguy.firmalife.common.blocks.plant.FLFruitTreeSaplingBlock;
 import com.eerussianguy.firmalife.common.capabilities.wine.WineType;
 import net.minecraft.network.chat.Component;
@@ -20,23 +26,16 @@ import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.config.FLConfig;
 import net.neoforged.neoforge.items.IItemHandler;
 
-import net.dries007.tfc.common.blockentities.BarrelBlockEntity;
-import net.dries007.tfc.common.blockentities.PotBlockEntity;
 import net.dries007.tfc.common.blockentities.TickCounterBlockEntity;
-import net.dries007.tfc.common.blocks.devices.BarrelBlock;
-import net.dries007.tfc.common.blocks.devices.FirepitBlock;
 import net.dries007.tfc.common.blocks.plant.fruit.FruitTreeSaplingBlock;
 import net.dries007.tfc.common.capabilities.BlockCapabilities;
 import net.dries007.tfc.common.component.food.FoodCapability;
 import net.dries007.tfc.common.component.food.FoodTrait;
 import net.dries007.tfc.common.component.food.IFood;
 import net.dries007.tfc.common.component.heat.HeatCapability;
-import net.dries007.tfc.common.items.Powder;
-import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.config.TFCConfig;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.calendar.Calendars;
-import net.dries007.tfc.util.calendar.ICalendar;
 import net.dries007.tfc.util.tooltip.BlockEntityTooltip;
 import net.dries007.tfc.util.tooltip.BlockEntityTooltips;
 import net.dries007.tfc.util.tooltip.EntityTooltip;
@@ -66,7 +65,8 @@ public final class FLTooltips
             register(r, "barrel_press", BARREL_PRESS, JarbnetBlock.class);
             register(r, "pumping_station", BlockEntityTooltips.ROTATING, PumpingStationBlock.class);
             register(r, "pot", POT, StovetopPotBlock.class);
-            register(r, "keg", KEG, KegBlock.class);
+            register(r, "keg", KEG, KegCoreBlock.class);
+            register(r, "keg_sub", KEG, KegSubBlock.class);
         }
 
         private static void register(RegisterCallback<BlockEntityTooltip, Block> r, String name, BlockEntityTooltip tooltip, Class<? extends Block> aClass)
@@ -75,12 +75,12 @@ public final class FLTooltips
         }
 
         public static final BlockEntityTooltip KEG = (level, state, pos, entity, tooltip) -> {
-            pos = KegBlock.findZeroPos(pos, state);
+            pos = KegSubBlock.findZeroPos(pos, state);
             state = level.getBlockState(pos);
             entity = level.getBlockEntity(pos);
-            if (state.getBlock() instanceof KegBlock && entity instanceof KegBlockEntity barrel)
+            if (state.getBlock() instanceof KegCoreBlock && entity instanceof KegBlockEntity barrel)
             {
-                if (state.getValue(KegBlock.SEALED))
+                if (state.getValue(KegCoreBlock.SEALED))
                 {
                     final long tickLeft = barrel.getRemainingTicks();
                     if (tickLeft > 0)

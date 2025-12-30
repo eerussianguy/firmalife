@@ -31,7 +31,7 @@ SIMPLE_BLOCKS: Dict[str, str] = {
     'rustic_bricks': 'minecraft:mineable/pickaxe',
 }
 COLORS = ('white', 'orange', 'magenta', 'light_blue', 'yellow', 'lime', 'pink', 'gray', 'light_gray', 'cyan', 'purple', 'blue', 'brown', 'green', 'red', 'black')
-BLOCK_ENTITIES = ('oven_bottom', 'oven_top', 'drying_mat', 'beehive', 'solar_drier', 'mixing_bowl', 'string', 'berry_bush', 'large_planter', 'bonsai_planter', 'trellis_planter', 'hanging_planter', 'quad_planter', 'climate_station', 'hydroponic_planter', 'vat', 'oven_hopper', 'ashtray', 'stovetop_grill', 'stovetop_pot', 'jarbnet', 'plate', 'keg', 'jarring_station', 'barrel_press', 'stomping_barrel', 'skep', 'centrifuge')
+BLOCK_ENTITIES = ('oven_bottom', 'oven_top', 'drying_mat', 'beehive', 'solar_drier', 'mixing_bowl', 'string', 'berry_bush', 'large_planter', 'bonsai_planter', 'trellis_planter', 'hanging_planter', 'quad_planter', 'climate_station', 'hydroponic_planter', 'vat', 'oven_hopper', 'ashtray', 'stovetop_grill', 'stovetop_pot', 'jarbnet', 'plate', 'keg', 'keg_sub', 'jarring_station', 'barrel_press', 'stomping_barrel', 'skep', 'centrifuge')
 EXTRA_FLUIDS = ('yeast_starter', 'coconut_milk', 'yak_milk', 'goat_milk', 'curdled_yak_milk', 'curdled_goat_milk', 'pina_colada', 'cream', 'chocolate', 'sugar_water', 'mead', 'soybean_oil')
 WINES = ('red', 'white', 'rose', 'sparkling', 'dessert')
 JARS = ('honey', 'compost', 'rotten_compost', 'guano')
@@ -313,7 +313,7 @@ DEFAULT_LANG = {
     'firmalife.enum.foodage.aged': 'Aged',
     'firmalife.enum.foodage.vintage': 'Vintage',
 
-    'firmalife.jadejade.food_age': 'Age: %s',
+    'firmalife.jade.food_age': 'Age: %s',
     'firmalife.jade.aging': 'Currently Aging',
     'firmalife.jade.not_aging': 'Not Aging',
     'firmalife.jade.slices': 'Slices: %s',
@@ -345,6 +345,7 @@ DEFAULT_LANG = {
     'config.jade.plugin_firmalife.barrel_press': 'Barrel Press',
     'config.jade.plugin_firmalife.pot': 'Stovetop Pot',
     'config.jade.plugin_firmalife.keg': 'Keg',
+    'config.jade.plugin_firmalife.keg_sub': 'Keg',
 
     'death.attack.firmalife.oven': '%1$s died by sticking their hand in a hot oven.',
     'death.attack.firmalife.oven.player': '%1$s climbed into an oven to escape %2$s.',

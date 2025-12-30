@@ -1,7 +1,7 @@
 package com.eerussianguy.firmalife.client.render;
 
 import com.eerussianguy.firmalife.common.blockentities.StovetopGrillBlockEntity;
-import com.eerussianguy.firmalife.common.blocks.StovetopGrillBlock;
+import com.eerussianguy.firmalife.common.blocks.oven.StovetopGrillBlock;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;

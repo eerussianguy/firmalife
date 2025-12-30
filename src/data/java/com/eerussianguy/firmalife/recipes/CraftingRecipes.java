@@ -7,7 +7,7 @@ import java.util.Optional;
 import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.blocks.Herb;
-import com.eerussianguy.firmalife.common.blocks.OvenType;
+import com.eerussianguy.firmalife.common.blocks.oven.OvenType;
 import com.eerussianguy.firmalife.common.blocks.greenhouse.Greenhouse;
 import com.eerussianguy.firmalife.common.items.FLFood;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;

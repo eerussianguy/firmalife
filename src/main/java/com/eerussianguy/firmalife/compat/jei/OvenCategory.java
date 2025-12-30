@@ -2,7 +2,7 @@ package com.eerussianguy.firmalife.compat.jei;
 
 import java.util.List;
 
-import com.eerussianguy.firmalife.common.blocks.OvenType;
+import com.eerussianguy.firmalife.common.blocks.oven.OvenType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
@@ -11,7 +11,6 @@ import net.minecraft.world.item.ItemStack;
 
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.recipes.OvenRecipe;
-import com.mojang.blaze3d.vertex.PoseStack;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.builder.IRecipeSlotBuilder;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;

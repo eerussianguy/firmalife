@@ -2,8 +2,8 @@ package com.eerussianguy.firmalife.common.blockentities;
 
 import java.util.List;
 import com.eerussianguy.firmalife.common.FLHelpers;
-import com.eerussianguy.firmalife.common.blocks.ICure;
-import com.eerussianguy.firmalife.common.blocks.OvenTopBlock;
+import com.eerussianguy.firmalife.common.blocks.oven.ICure;
+import com.eerussianguy.firmalife.common.blocks.oven.OvenTopBlock;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.common.recipes.WrappedHeatingRecipe;
 import net.minecraft.core.BlockPos;

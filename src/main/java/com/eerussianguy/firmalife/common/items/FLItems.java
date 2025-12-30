@@ -7,9 +7,7 @@ import java.util.function.Supplier;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
-import com.eerussianguy.firmalife.common.blocks.OvenType;
-import com.eerussianguy.firmalife.common.capabilities.FLComponents;
-import com.eerussianguy.firmalife.common.capabilities.bee.BeeComponent;
+import com.eerussianguy.firmalife.common.blocks.oven.OvenType;
 import com.eerussianguy.firmalife.common.capabilities.wine.WineType;
 import com.eerussianguy.firmalife.common.util.FLArmorMaterials;
 import net.minecraft.core.registries.Registries;

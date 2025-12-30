@@ -2,7 +2,7 @@ package com.eerussianguy.firmalife.client.render;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.VatBlockEntity;
-import com.eerussianguy.firmalife.common.blocks.VatBlock;
+import com.eerussianguy.firmalife.common.blocks.oven.VatBlock;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;

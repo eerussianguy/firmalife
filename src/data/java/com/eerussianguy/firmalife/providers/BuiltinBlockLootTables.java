@@ -11,7 +11,7 @@ import com.eerussianguy.firmalife.Accessors;
 import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blocks.FLStateProperties;
-import com.eerussianguy.firmalife.common.blocks.KegBlock;
+import com.eerussianguy.firmalife.common.blocks.KegCoreBlock;
 import com.eerussianguy.firmalife.common.blocks.CheeseWheelBlock;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.blocks.MixingBowlBlock;
@@ -338,19 +338,7 @@ public class BuiltinBlockLootTables extends BlockLootSubProvider implements Acce
             .add(FLItems.SPOON, MixingBowlBlock.SPOON, true)
             .create();
 
-        FLBlocks.KEGS.forEach((wood, keg) -> {
-            add(
-                keg.get(),
-                LootTable.lootTable()
-                    .withPool(
-                        lootPool()
-                            .add(
-                                lootTableItem(keg)
-                                    .when(hasProperty(keg.get(), KegBlock.BARREL_PART, 0))
-                            ).when(survivesExplosion())
-                    )
-            );
-        });
+        dropSelf(FLBlocks.KEGS);
 
         // -----------------------
 

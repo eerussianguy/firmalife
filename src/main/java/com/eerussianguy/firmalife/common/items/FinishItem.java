@@ -3,7 +3,7 @@ package com.eerussianguy.firmalife.common.items;
 import java.util.Map;
 import java.util.function.Supplier;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
-import com.eerussianguy.firmalife.common.blocks.OvenType;
+import com.eerussianguy.firmalife.common.blocks.oven.OvenType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionResult;

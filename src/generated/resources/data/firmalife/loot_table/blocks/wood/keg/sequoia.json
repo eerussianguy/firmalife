@@ -11,15 +11,6 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "conditions": [
-            {
-              "block": "firmalife:wood/keg/sequoia",
-              "condition": "minecraft:block_state_property",
-              "properties": {
-                "barrel_part": "0"
-              }
-            }
-          ],
           "name": "firmalife:wood/keg/sequoia"
         }
       ],

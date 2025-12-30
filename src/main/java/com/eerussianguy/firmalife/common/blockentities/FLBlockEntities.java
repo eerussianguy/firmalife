@@ -41,6 +41,7 @@ public class FLBlockEntities
     public static final Id<HangerBlockEntity> HANGER = register("hanger", HangerBlockEntity::new, FLBlocks.HANGERS.values().stream());
     public static final Id<JarbnetBlockEntity> JARBNET = register("jarbnet", JarbnetBlockEntity::new, FLBlocks.JARBNETS.values().stream());
     public static final Id<KegBlockEntity> KEG = register("keg", KegBlockEntity::new, FLBlocks.KEGS.values().stream());
+    public static final Id<KegSubBlockEntity> KEG_SUB = register("keg_sub", KegSubBlockEntity::new, FLBlocks.KEG_SUBS.values().stream());
     public static final Id<WineShelfBlockEntity> WINE_SHELF = register("wine_shelf", WineShelfBlockEntity::new, FLBlocks.WINE_SHELVES.values().stream());
     public static final Id<StompingBarrelBlockEntity> STOMPING_BARREL = register("stomping_barrel", StompingBarrelBlockEntity::new, FLBlocks.STOMPING_BARRELS.values().stream());
     public static final Id<BarrelPressBlockEntity> BARREL_PRESS = register("barrel_press", BarrelPressBlockEntity::new, FLBlocks.BARREL_PRESSES.values().stream());
