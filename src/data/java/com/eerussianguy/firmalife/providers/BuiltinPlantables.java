@@ -118,7 +118,7 @@ public class BuiltinPlantables extends DataManagerProvider<Plantable>
             plantable(name, FLBlocks.HERBS.get(herb).asItem(), QUAD, 0, 1, 0.8f, FLBlocks.HERBS.get(herb).asItem(), of(0.2f, 0.2f, 0.2f), textures, List.of());
         }
 
-        hanging("squash", TFCItems.CROP_SEEDS.get(Crop.SQUASH), food(Food.SQUASH), 0, of(Crop.SQUASH), 0.5f);
+        hanging("squash", TFCItems.CROP_SEEDS.get(Crop.SQUASH), food(Food.SQUASH), 15, of(Crop.SQUASH), 0.5f);
         hanging("pumpkin", TFCItems.CROP_SEEDS.get(Crop.PUMPKIN), TFCBlocks.PUMPKIN, 15, of(Crop.PUMPKIN), 0.5f);
         hanging("melon", TFCItems.CROP_SEEDS.get(Crop.MELON), TFCBlocks.MELON, 15, of(Crop.MELON), 0.5f);
         hanging("banana", TFCBlocks.BANANA_SAPLING, food(Food.BANANA), 15, of(0.2f, 0.2f, 0.2f), 0.08f);

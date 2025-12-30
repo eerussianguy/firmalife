@@ -35,11 +35,6 @@
       "type": "tfc:drying_recipe",
       "recipe": "firmalife:drying/food/tofu",
       "text": "豆腐需要用乾燥墊製作。"
-    },
-    {
-      "type": "tfc:drying_recipe",
-      "recipe": "firmalife:drying/spice/cinnamon",
-      "text": "肉桂需要用乾燥墊製作。"
     }
   ],
   "read_by_default": true,

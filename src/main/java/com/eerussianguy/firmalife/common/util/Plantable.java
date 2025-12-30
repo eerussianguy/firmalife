@@ -4,6 +4,7 @@ import java.util.List;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.ByteBufCodecs;
@@ -17,7 +18,9 @@ import net.minecraft.world.item.crafting.Ingredient;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blocks.greenhouse.PlanterType;
 
+import net.dries007.tfc.client.ClientHelpers;
 import net.dries007.tfc.common.component.food.FoodCapability;
+import net.dries007.tfc.common.items.PlantableInfo;
 import net.dries007.tfc.common.recipes.RecipeHelpers;
 import net.dries007.tfc.util.collections.IndirectHashCollection;
 import net.dries007.tfc.util.data.DataManager;
@@ -122,8 +125,42 @@ public record Plantable(Ingredient ingredient, PlanterType planter, int tier, in
         return textures.get(Mth.clamp((int) (growth * stages), 0, textures.size() - 1));
     }
 
-    public void addTooltipInfo(List<Component> tooltip)
+    public void addTooltipInfo(List<Component> tooltip, @Nullable PlantableInfo pi)
     {
         tooltip.add(Component.translatable("firmalife.tooltip.planter_usable", FLHelpers.translateEnum(planter)));
+
+        if (pi != null && pi.getNutrientsInfo() != null)
+            return;
+        if (!ClientHelpers.hasShiftDown())
+        {
+            if (pi == null)
+                tooltip.add(Component.translatable("tfc.tooltip.plantable.hold_shift").withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
+            return;
+        }
+        final float n = getNutrients().nitrogen, p = getNutrients().phosphorous, k = getNutrients().potassium;
+        boolean consumesNutrients = n > 0 || p > 0 || k > 0;
+        tooltip.add(Component.translatable("firmalife.tooltip.planter.nutrients").withStyle(ChatFormatting.GRAY));
+        tooltip.add(indent(Component.translatable("tfc.tooltip.fertilizer.nitrogen", formatNutrientAmount(n, consumesNutrients)), 1));
+        tooltip.add(indent(Component.translatable("tfc.tooltip.fertilizer.phosphorus", formatNutrientAmount(p, consumesNutrients)), 1));
+        tooltip.add(indent(Component.translatable("tfc.tooltip.fertilizer.potassium", formatNutrientAmount(k, consumesNutrients)), 1));
+    }
+
+    private static Component indent(Component component, int amount)
+    {
+        return Component.literal(" ".repeat(amount)).append(component);
+    }
+
+    private static String formatNutrientAmount(float value, boolean consumesNutrients)
+    {
+        if (value < 0)
+        {
+            if (consumesNutrients)
+            {
+                return String.format("+%.0f", Math.abs(value) * 100);
+            }
+            // Crops that restore nutrients restore 30% of actual value if they do not consume nutrients
+            return String.format("+%.0f", Math.abs(value) * 0.3 * 100);
+        }
+        return String.format("%.0f", value * 100);
     }
 }

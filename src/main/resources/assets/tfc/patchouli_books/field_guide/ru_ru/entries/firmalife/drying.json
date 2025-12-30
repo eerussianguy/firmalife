@@ -35,11 +35,6 @@
       "type": "tfc:drying_recipe",
       "recipe": "firmalife:drying/food/tofu",
       "text": "Тофу делается с помощью сушильного коврика."
-    },
-    {
-      "type": "tfc:drying_recipe",
-      "recipe": "firmalife:drying/spice/cinnamon",
-      "text": "Корица делается с помощью сушильного коврика."
     }
   ],
   "read_by_default": true,

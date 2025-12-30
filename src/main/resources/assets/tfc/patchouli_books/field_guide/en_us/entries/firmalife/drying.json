@@ -35,11 +35,6 @@
       "type": "tfc:drying_recipe",
       "recipe": "firmalife:drying/food/tofu",
       "text": "Tofu is made using a drying mat."
-    },
-    {
-      "type": "tfc:drying_recipe",
-      "recipe": "firmalife:drying/spice/cinnamon",
-      "text": "Cinnamon is made using a drying mat."
     }
   ],
   "read_by_default": true,

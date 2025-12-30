@@ -26,5 +26,6 @@
     "firmalife:block/crop/squash_2",
     "firmalife:block/crop/squash_3",
     "firmalife:block/crop/squash_4"
-  ]
+  ],
+  "tier": 15
 }

@@ -9,10 +9,12 @@ import com.eerussianguy.firmalife.common.capabilities.wine.WineComponent;
 import com.eerussianguy.firmalife.common.util.Plantable;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
+import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 
+import net.dries007.tfc.common.items.PlantableInfo;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.SelfTests;
 
@@ -24,6 +26,7 @@ public class FLClientForgeEvents
 
         bus.addListener(FLClientForgeEvents::onSelfTest);
         bus.addListener(FLClientForgeEvents::onTooltip);
+        bus.addListener(EventPriority.LOW, FLClientForgeEvents::onTooltipLater);
     }
 
     private static void onSelfTest(SelfTests.ClientSelfTestEvent event)
@@ -49,15 +52,21 @@ public class FLClientForgeEvents
             {
                 bee.addTooltipInfo(tooltip::add);
             }
-            final Plantable plantable = Plantable.get(stack);
-            if (plantable != null)
-            {
-                plantable.addTooltipInfo(text);
-            }
             if (Helpers.isItem(stack, FLTags.Items.BEEKEEPER_ARMOR))
             {
                 text.add(Component.translatable("firmalife.tooltip.beekeeper_armor"));
             }
+        }
+    }
+
+    private static void onTooltipLater(ItemTooltipEvent event)
+    {
+        final ItemStack stack = event.getItemStack();
+        final List<Component> text = event.getToolTip();
+        final Plantable plantable = Plantable.get(stack);
+        if (plantable != null)
+        {
+            plantable.addTooltipInfo(text, stack.getItem() instanceof PlantableInfo info ? info : null);
         }
     }
 }

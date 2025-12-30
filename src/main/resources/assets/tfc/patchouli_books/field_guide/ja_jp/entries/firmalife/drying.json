@@ -35,11 +35,6 @@
       "type": "tfc:drying_recipe",
       "recipe": "firmalife:drying/food/tofu",
       "text": "豆腐は乾燥マットを使って作られます。"
-    },
-    {
-      "type": "tfc:drying_recipe",
-      "recipe": "firmalife:drying/spice/cinnamon",
-      "text": "シナモンは乾燥マットを使って作られます。"
     }
   ],
   "read_by_default": true,

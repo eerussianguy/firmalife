@@ -767,6 +767,7 @@
   "firmalife.tooltip.food_trait.dirt_grown": "Dirt Grown",
   "firmalife.tooltip.food_trait.gravel_grown": "Gravel Grown",
   "firmalife.tooltip.planter_usable": "Plantable in a %s",
+  "firmalife.tooltip.planter.nutrients": "Nutrients (planter only):",
   "firmalife.tooltip.beekeeper_armor": "Protects from bees if full suit is worn",
   "firmalife.tooltip.knapping.rotten": "This item is rotten and cannot be knapped.",
   "firmalife.cellar.found": "Found a cellar of %s blocks",

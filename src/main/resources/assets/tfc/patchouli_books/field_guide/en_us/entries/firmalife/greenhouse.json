@@ -14,11 +14,11 @@
     },
     {
       "type": "patchouli:text",
-      "text": "$(thing)Greenhouse Types$() are families of greenhouse blocks that can be used interchangeably in a greenhouse. Most greenhouse blocks $(thing)age$(). For example, $(thing)Treated Wood$() greenhouse blocks become $(thing)Weathered Treated Wood$() blocks. Since both of those block types belong to the same greenhouse type, your greenhouse will continue to function."
+      "text": "$(thing)Greenhouse Types$() are families of greenhouse blocks that can be used interchangeably in a greenhouse. Most greenhouse blocks $(thing)age$(). For example, $(thing)Treated Wood$() greenhouse blocks become $(thing)Weathered Treated Wood$() blocks. Since both of those block types belong to the same greenhouse type, your greenhouse will continue to function. Stainless steel greenhouses do not age."
     },
     {
       "type": "patchouli:text",
-      "text": "These are the $(thing)Greenhouse Types$() available, with the block types they can age into:$(br)$(br)$(li)Treated Wood: Weathered $()$(li)Copper: Exposed, Weathered, Oxidized$()$(li)Iron: Rusted$() $(li)Stainless Steel (does not age)$()",
+      "text": "Upgrading your greenhouse type allows using more planter types. Each tier grants more planters. $(br)$(br)$(li)Treated Wood: Quad Planters. $()$(li)Copper: Large and Hydroponic Planters.$()$(li)Iron: Rusted, Trellis$() $(li)Stainless Steel (no further upgrade)$()",
       "title": "Greenhouse Types"
     },
     {
