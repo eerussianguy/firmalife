@@ -6,6 +6,7 @@ import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blocks.FLStateProperties;
 import com.eerussianguy.firmalife.common.blocks.IWeatherable;
+import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.BlockItem;
@@ -312,5 +313,33 @@ public class GreenhousePanelWallBlock extends BaseGreenhouseBlock implements IWe
     public boolean canConnectTo(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos)
     {
         return GreenhouseConnectable.hasConnectionAt(facingState, facingPos, level, facing.getOpposite());
+    }
+
+    public static @Nullable Pair<BlockPos, BlockState> scanMatchingWalls(Level level, BlockPos pos, Direction wallDirection, Direction scanDirection, Set<BlockPos> seen)
+    {
+        seen.add(pos.immutable());
+        BlockPos.MutableBlockPos currentPos = pos.mutable();
+        BlockState currentState = level.getBlockState(pos);
+        while (currentState.getBlock() instanceof GreenhousePanelWallBlock)
+        {
+            currentPos.move(scanDirection);
+            currentState = level.getBlockState(currentPos);
+            Set<Direction> currentWallStates = getWallStates2(currentState);
+            if (currentWallStates.contains(wallDirection))
+            {
+                seen.add(currentPos.immutable());
+                if (currentWallStates.size() > 1)
+                {
+                    return Pair.of(currentPos.immutable(), currentState);
+                }
+            }
+            else
+            {
+                // Block is either: not a wall, or is a wall not facing correctly
+                break;
+            }
+
+        }
+        return null;
     }
 }
