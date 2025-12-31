@@ -170,6 +170,9 @@ public class FLClientEvents
                 FLItems.FILLED_BEEHIVE_FRAME.get(), solid("block/filled_beehive_frame"),
                 FLItems.SUGARED_BEEHIVE_FRAME.get(), solid("block/sugared_beehive_frame")
             ));
+            PlacedItemBlockEntityRenderer.MODELS.putAll(Map.of(
+                FLItems.HONEYED_BEEHIVE_FRAME.get(), solid("block/filled_beehive_frame")
+            ));
             FLItems.FRUIT_PRESERVES.forEach((fruit, item) -> PlacedItemBlockEntityRenderer.MODELS.put(item.get(), translucent("block/jar/" + fruit.getSerializedName())));
             FLItems.UNSEALED_FRUIT_PRESERVES.forEach((fruit, item) -> PlacedItemBlockEntityRenderer.MODELS.put(item.get(), translucent("block/jar/" + fruit.getSerializedName() + "_unsealed")));
         });

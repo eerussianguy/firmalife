@@ -165,7 +165,7 @@ public class BuiltinItemTags extends TagsProvider<Item> implements Accessors
             itemOf(FLFood.DARK_CHOCOLATE).asItem(),
             itemOf(FLFood.WHITE_CHOCOLATE).asItem()
         );
-        tag(FLTags.Items.FILLED_BEEHIVE_FRAMES).add(FLItems.FILLED_BEEHIVE_FRAME, FLItems.SUGARED_BEEHIVE_FRAME);
+        tag(FLTags.Items.FILLED_BEEHIVE_FRAMES).add(FLItems.FILLED_BEEHIVE_FRAME, FLItems.SUGARED_BEEHIVE_FRAME, FLItems.HONEYED_BEEHIVE_FRAME);
         tag(FLTags.Items.BEEHIVE_FRAMES).addTag(FLTags.Items.FILLED_BEEHIVE_FRAMES).add(FLItems.SCRAPED_BEEHIVE_FRAME, FLItems.INSULATING_BEEHIVE_FRAME, FLItems.BEEHIVE_FRAME);
         tag(FLTags.Items.BEE_BAIT).add(FLItems.WILD_HONEYCOMB, FLItems.AROMATIC_HONEYCOMB);
         tag(TFCTags.Items.CAN_BE_SALTED).add(itemOf(FLFood.BUTTER).asItem());

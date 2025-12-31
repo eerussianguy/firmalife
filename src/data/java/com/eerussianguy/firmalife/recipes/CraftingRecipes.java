@@ -160,7 +160,7 @@ public interface CraftingRecipes extends Recipes
         recipe()
             .input(FLItems.BEEHIVE_FRAME)
             .input(itemOf(FLFood.RAW_HONEY))
-            .shapeless(FLItems.FILLED_BEEHIVE_FRAME);
+            .shapeless(FLItems.HONEYED_BEEHIVE_FRAME);
         recipe()
             .input(FLItems.BEEHIVE_FRAME)
             .input(Items.SUGAR)
@@ -170,6 +170,11 @@ public interface CraftingRecipes extends Recipes
             .input(FLItems.FILLED_BEEHIVE_FRAME)
             .damageInputs()
             .shapeless(FLItems.BEESWAX);
+        recipe()
+            .inputIsPrimary(TFCTags.Items.TOOLS_KNIFE)
+            .input(FLItems.HONEYED_BEEHIVE_FRAME)
+            .damageInputs()
+            .shapeless(itemOf(FLFood.RAW_HONEY));
         recipe()
             .inputIsPrimary(TFCTags.Items.TOOLS_KNIFE)
             .input(FLItems.SUGARED_BEEHIVE_FRAME)
@@ -564,7 +569,7 @@ public interface CraftingRecipes extends Recipes
         jarring(TFCItems.COMPOST, FLItems.COMPOST_JAR, 8);
         jarring(TFCItems.ROTTEN_COMPOST, FLItems.ROTTEN_COMPOST_JAR, 8);
         jarring(TFCBlocks.GROUNDCOVER.get(GroundcoverBlockType.GUANO), FLItems.GUANO_JAR, 8);
-        jarring(itemOf(FLFood.RAW_HONEY), FLItems.HONEY_JAR, 1);
+        jarring(itemOf(FLFood.RAW_HONEY), FLItems.HONEY_JAR, 8);
 
         FLItems.FRUIT_PRESERVES.forEach((food, item) ->
             recipe()

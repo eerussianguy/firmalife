@@ -9,8 +9,8 @@ issueTrackerURL = "https://github.com/eerussianguy/firmalife/issues"
     modId = "${modId}"
     version = "${modVersion}"
     displayName = "Firmalife"
-    credits = "EERussianguy, Indi, Peffern, Lumintorious"
-    authors = "EERussianguy, Indi, Peffern, Lumintorious"
+    credits = "EERussianguy, Charnuz, Dodo, Indi, Peffern, Lumintorious"
+    authors = "EERussianguy, Charnuz, Dodo, Indi, Peffern, Lumintorious"
     description = '''A cooking and farming addon for TFC.'''
 
 # Dependencies

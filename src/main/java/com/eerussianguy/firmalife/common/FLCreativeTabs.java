@@ -57,6 +57,7 @@ public final class FLCreativeTabs
         accept(out, FLItems.POTTERY_SHERD);
         accept(out, FLItems.BEEHIVE_FRAME);
         accept(out, FLItems.FILLED_BEEHIVE_FRAME);
+        accept(out, FLItems.HONEYED_BEEHIVE_FRAME);
         accept(out, FLItems.SUGARED_BEEHIVE_FRAME);
         accept(out, FLItems.SCRAPED_BEEHIVE_FRAME);
         accept(out, FLItems.INSULATING_BEEHIVE_FRAME);
