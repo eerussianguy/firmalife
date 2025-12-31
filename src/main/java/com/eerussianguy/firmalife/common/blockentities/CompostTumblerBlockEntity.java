@@ -45,7 +45,7 @@ public class CompostTumblerBlockEntity extends TickableInventoryBlockEntity<Item
     public static final int MIN_COMPOST = 16;
     public static final int SLOT_COMPOST = 0;
 
-    protected long lastUpdateTick = Integer.MIN_VALUE;
+    protected long lastUpdateTick = Calendars.SERVER.getTicks();
     private int green, brown, fish, bones, pottery, charcoal;
     private boolean rotten = false;
 
@@ -69,14 +69,14 @@ public class CompostTumblerBlockEntity extends TickableInventoryBlockEntity<Item
     public InteractionResult use(ItemStack stack, Player player, boolean client)
     {
         assert level != null;
-        if (isReady() && !isRotating())
+        if (isRotating())
+            return InteractionResult.FAIL;
+        if (!inventory.getStackInSlot(SLOT_COMPOST).isEmpty())
         {
             ItemHandlerHelper.giveItemToPlayer(player, inventory.extractItem(SLOT_COMPOST, 64, false));
             reset();
             return InteractionResult.sidedSuccess(level.isClientSide);
         }
-        if (!inventory.getStackInSlot(SLOT_COMPOST).isEmpty())
-            return InteractionResult.PASS;
         final int total = getTotal();
         if (total >= MAX_COMPOST || rotten)
         {
@@ -106,7 +106,10 @@ public class CompostTumblerBlockEntity extends TickableInventoryBlockEntity<Item
     public void checkReady()
     {
         if (!canWork())
+        {
+            resetCounter();
             return;
+        }
         final int total = getTotal();
         if (isReady())
         {
@@ -131,17 +134,8 @@ public class CompostTumblerBlockEntity extends TickableInventoryBlockEntity<Item
     public boolean canWork()
     {
         if (!isRotating() || !inventory.getStackInSlot(SLOT_COMPOST).isEmpty())
-        {
-            resetCounter();
             return false;
-        }
-        final int total = getTotal();
-        if (total < 16)
-        {
-            resetCounter();
-            return false;
-        }
-        return true;
+        return getTotal() >= 16;
     }
 
     public boolean isRotating()
@@ -190,7 +184,9 @@ public class CompostTumblerBlockEntity extends TickableInventoryBlockEntity<Item
 
     public boolean isReady()
     {
-        return (getTicksSinceUpdate() > getReadyTicks() && getTotal() >= MIN_COMPOST) || !inventory.getStackInSlot(SLOT_COMPOST).isEmpty();
+        if (level != null && level.isClientSide)
+            return !inventory.getStackInSlot(SLOT_COMPOST).isEmpty();
+        return getTicksSinceUpdate() > getReadyTicks() && getTotal() >= MIN_COMPOST;
     }
 
     public void reset()
@@ -198,6 +194,7 @@ public class CompostTumblerBlockEntity extends TickableInventoryBlockEntity<Item
         green = brown = fish = bones = pottery = charcoal = 0;
         rotten = false;
         resetCounter();
+        markForSync();
     }
 
     public void calculateRotten()
