@@ -1,5 +1,8 @@
 package com.eerussianguy.firmalife.common.blocks.greenhouse;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.function.Supplier;
 import com.eerussianguy.firmalife.common.FLHelpers;
@@ -341,5 +344,56 @@ public class GreenhousePanelWallBlock extends BaseGreenhouseBlock implements IWe
 
         }
         return null;
+    }
+
+    /**
+     * Locates the blocks on either side of a segment of panel walls, required to validate greenhouses.
+     */
+    public static class WallSegmentLocator
+    {
+        private final Map<BlockPos, Pair<Pair<BlockPos, BlockState>, Pair<BlockPos, BlockState>>> cache = new HashMap<>();
+
+        private Pair<BlockPos, BlockState> traceWall(Level level, BlockPos pos, Direction wallDirection, Direction scanDirection, Set<BlockPos> seen)
+        {
+            seen.add(pos.immutable());
+            BlockPos.MutableBlockPos currentPos = pos.mutable();
+            BlockState currentState = level.getBlockState(pos);
+            while (currentState.getBlock() instanceof GreenhousePanelWallBlock)
+            {
+                currentPos.move(scanDirection);
+                currentState = level.getBlockState(currentPos);
+                Set<Direction> currentWallStates = getWallStates2(currentState);
+                if (currentWallStates.contains(wallDirection))
+                {
+                    seen.add(currentPos.immutable());
+                    if (currentWallStates.size() > 1)
+                    {
+                        return Pair.of(currentPos.immutable(), currentState);
+                    }
+                }
+                else
+                {
+                    // Block is either: not a wall, or is a wall not facing correctly
+                    return Pair.of(currentPos.immutable(), currentState);
+                }
+
+            }
+            return Pair.of(currentPos.immutable(), currentState);
+        }
+
+        public Pair<Pair<BlockPos, BlockState>, Pair<BlockPos, BlockState>> scan(Level level, BlockPos pos, Direction wallDirection)
+        {
+            HashSet<BlockPos> seen = new HashSet<>();
+            var result = cache.computeIfAbsent(pos, p -> {
+                Pair<BlockPos, BlockState> left = traceWall(level, pos, wallDirection, wallDirection.getClockWise(), seen);
+                Pair<BlockPos, BlockState> right = traceWall(level, pos, wallDirection, wallDirection.getCounterClockWise(), seen);
+                return Pair.of(left, right);
+            });
+            for (BlockPos found : seen)
+            {
+                cache.put(found, result);
+            }
+            return result;
+        }
     }
 }

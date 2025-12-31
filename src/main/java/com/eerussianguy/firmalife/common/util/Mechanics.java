@@ -1,27 +1,21 @@
 package com.eerussianguy.firmalife.common.util;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.Map;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
-import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blockentities.ClimateStationBlockEntity;
 import com.eerussianguy.firmalife.common.blockentities.LargePlanterBlockEntity;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.blocks.greenhouse.GreenhousePanelWallBlock;
 import com.eerussianguy.firmalife.config.FLConfig;
-import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
@@ -152,7 +146,7 @@ public final class Mechanics
     private static GreenhouseInfo tryFindGreenhouseInfo(Level level, BlockPos pos, int lastSize, BlockPos.MutableBlockPos mutable, GreenhouseType greenhouse)
     {
         final BoundingBox box = new BoundingBox(pos).inflatedBy(15);
-        Map<BlockPos, Pair<@Nullable Pair<BlockPos, BlockState>, @Nullable Pair<BlockPos, BlockState>>> wallMap = new HashMap<>();
+        GreenhousePanelWallBlock.WallSegmentLocator panelSegmentLocator = new GreenhousePanelWallBlock.WallSegmentLocator();
         final TriPredicate<BlockState, BlockPos, Direction> predicate = (wallState, wallPos, direction) -> {
             if (Helpers.isBlock(wallState, FLTags.Blocks.ALWAYS_VALID_GREENHOUSE_WALL))
                 return true; // short circuit for stuff we know will pass (plus exempt doors)
@@ -162,60 +156,40 @@ public final class Mechanics
                 return false;
             if (direction == Direction.UP && wallState.getBlock() instanceof SlabBlock)
                 return true;
-            // TODO needs a check for when panel walls create an interior space? (facing the opposite way or as a corner)
             if (wallState.getBlock() instanceof GreenhousePanelWallBlock)
             {
-                Direction facing = wallState.getValue(GreenhousePanelWallBlock.FACING);
-                if (direction == facing.getOpposite())
+                Direction panelFacing = wallState.getValue(GreenhousePanelWallBlock.FACING);
+                if (direction == panelFacing.getOpposite())
                 {
                     return true;
                 }
-                Set<BlockPos> seen = new HashSet<>();
-                FirmaLife.LOGGER.info("{} cache {}", level, wallMap);
-
-                Pair<@Nullable Pair<BlockPos, BlockState>, @Nullable Pair<BlockPos, BlockState>> pair = wallMap.computeIfAbsent(wallPos.immutable(), p -> {
-                    FirmaLife.LOGGER.info("locate corners for blocks {}", p);
-                    @Nullable Pair<BlockPos, BlockState> left = GreenhousePanelWallBlock.scanMatchingWalls(level, p, facing, facing.getClockWise(), seen);
-                    @Nullable Pair<BlockPos, BlockState> right = GreenhousePanelWallBlock.scanMatchingWalls(level, p, facing, facing.getCounterClockWise(), seen);
-                    return new Pair<>(left, right);
-                });
-                FirmaLife.LOGGER.info("seen blocks {}", seen);
-                for (BlockPos seenPos : seen)
+                var wallSegment = panelSegmentLocator.scan(level, wallPos, panelFacing);
+                var left = wallSegment.getFirst().getSecond();
+                var right = wallSegment.getSecond().getSecond();
+                boolean leftMatches;
+                boolean rightMatches;
+                if (left.getBlock() instanceof GreenhousePanelWallBlock)
                 {
-                    wallMap.put(seenPos, pair);
-                }
-                FirmaLife.LOGGER.info("corners found for block {} = {} {}", wallPos, pair.getFirst(), pair.getSecond());
-                var first = pair.getFirst();
-                var second = pair.getSecond();
-                if (first != null)
-                {
-                    level.setBlock(first.getFirst().atY(100), Blocks.PURPLE_CONCRETE.defaultBlockState(), Block.UPDATE_ALL);
-                }
-                if (second != null)
-                {
-                    level.setBlock(second.getFirst().atY(100), Blocks.PURPLE_CONCRETE.defaultBlockState(), Block.UPDATE_ALL);
-                }
-                if (!(level.getBlockState(wallPos.below()).getBlock() instanceof GreenhousePanelWallBlock))
-                {
-                    var color = switch (direction)
-                    {
-                        case DOWN -> Blocks.BLACK_CONCRETE.defaultBlockState();
-                        case UP -> Blocks.BLACK_CONCRETE.defaultBlockState();
-                        case NORTH -> Blocks.RED_CONCRETE.defaultBlockState();
-                        case SOUTH -> Blocks.GREEN_CONCRETE.defaultBlockState();
-                        case WEST -> Blocks.BLUE_CONCRETE.defaultBlockState();
-                        case EAST -> Blocks.YELLOW_CONCRETE.defaultBlockState();
-                    };
-                    level.setBlock(wallPos.below(), color, Block.UPDATE_ALL);
-                }
-                if (GreenhousePanelWallBlock.getWallStates2(wallState).contains(direction))
-                {
-                    return true;
+                    Set<Direction> leftWalls = GreenhousePanelWallBlock.getWallStates2(left);
+                    leftMatches = leftWalls.contains(panelFacing) && leftWalls.size() == 2;
                 }
                 else
                 {
-                    FirmaLife.LOGGER.info("failed with state {} at {} from {}", wallState, wallPos, direction);
+                    //TODO this may require a more robust check to determine valid blocks at the end of wall segments
+                    // Could be any kind of block (doors, trapdoors, roof panels, etc.)
+                    leftMatches = Helpers.isBlock(left, FLTags.Blocks.ALWAYS_VALID_GREENHOUSE_WALL) || Helpers.isBlock(left, FLTags.Blocks.GREENHOUSE_PANEL_ROOFS);
                 }
+                if (right.getBlock() instanceof GreenhousePanelWallBlock)
+                {
+                    Set<Direction> rightWalls = GreenhousePanelWallBlock.getWallStates2(right);
+                    rightMatches = rightWalls.contains(panelFacing) && rightWalls.size() == 2;
+                }
+                else
+                {
+                    //TODO same as above
+                    rightMatches = Helpers.isBlock(right, FLTags.Blocks.ALWAYS_VALID_GREENHOUSE_WALL) || Helpers.isBlock(right, FLTags.Blocks.GREENHOUSE_PANEL_ROOFS);
+                }
+                return leftMatches && rightMatches;
             }
             return wallState.isFaceSturdy(level, wallPos, direction.getOpposite());
         };
