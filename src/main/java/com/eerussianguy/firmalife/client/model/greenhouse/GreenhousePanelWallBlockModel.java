@@ -97,7 +97,7 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
         TextureAtlasSprite postTexture = materialTexture.sprite();
         float width = 1f - (side ? 1 : 2) / 16f;
         float postStart = bottom ? 0 : (2 / 16f);
-        boolean topConnection = top == GreenhouseConnectable.PostType.RIGHT || top == GreenhouseConnectable.PostType.NONE;
+        boolean topConnection = !top.contains(GreenhouseConnectable.PostType.LEFT);
         float postEnd = topConnection ? 1 : (14 / 16f);
         float topOffset = 1 - (true ? 0 : 2) / 16f;
         float downOffset = (true ? 0 : 2) / 16f;
@@ -106,19 +106,19 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
         {
             RenderHelpers.renderTexturedCuboid(poseStack, buffer, postTexture, packedLight, packedOverlay, 14 / 16f, postStart, 0f, 1f, postEnd, 2 / 16f);
             RenderHelpers.renderTexturedCuboid(poseStack, buffer, postTexture, packedLight, packedOverlay, 14 / 16f, postStart, width, 1f, postEnd, 1);
-            // Extra wall bottom post
+            // Bottom post for the extra wall
             if (!bottom)
             {
                 RenderHelpers.renderTexturedCuboid(poseStack, buffer, postTexture, packedLight, packedOverlay, 14 / 16f, 0, 2 / 16f, 1f, 2 / 16f, 1);
             }
-            // Extra wall top post
-            if (top == GreenhouseConnectable.PostType.BOTH || top == GreenhouseConnectable.PostType.LEFT)
+            // Top Post for the extra wall
+            if (!topConnection)
             {
                 RenderHelpers.renderTexturedCuboid(poseStack, buffer, postTexture, packedLight, packedOverlay, 14 / 16f, 14 / 16f, 0, 1f, 1, 1);
             }
 
             // Glass panels connected to the corner post, and cannot have side connections
-            drawGlass(poseStack, buffer, packedLight, packedOverlay, false, top == GreenhouseConnectable.PostType.NONE || top == GreenhouseConnectable.PostType.LEFT, bottom, getXVertices(0.5f, topOffset, 1 / 16f, 14 / 16f, downOffset, 1 / 16f, 2 / 16f, topOffset, 0.5f, downOffset), normal);
+            drawGlass(poseStack, buffer, packedLight, packedOverlay, false, GreenhouseConnectable.PostType.LEFT.contains(top), bottom, getXVertices(0.5f, topOffset, 1 / 16f, 14 / 16f, downOffset, 1 / 16f, 2 / 16f, topOffset, 0.5f, downOffset), normal);
             drawGlass(poseStack, buffer, packedLight, packedOverlay, false, topConnection, bottom, getXVertices(15 / 16f, 0, 0, 15 / 16f, 1, 0.5f, 0.5f, 0, 1, 1), normal);
 
             // Glass panel in the extra wall not connected to the corner post
