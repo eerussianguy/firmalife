@@ -11,6 +11,7 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
+import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.client.model.geometry.IGeometryBakingContext;
 
@@ -124,15 +125,15 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
             }
 
             // Glass panels connected to the corner post, and cannot have side connections
-            drawGlass(poseStack, buffer, packedLight, packedOverlay, false, GreenhouseConnectable.PostType.LEFT.contains(top), bottom, getPlaneVertices(0.5f, topOffset, 1 / 16f, 14 / 16f, downOffset, 1 / 16f, 2 / 16f, topOffset, 0.5f, downOffset), normal);
-            drawGlass(poseStack, buffer, packedLight, packedOverlay, false, topConnection, bottom, getPlaneVertices(15 / 16f, 0, 0, 15 / 16f, 1, 0.5f, 0.5f, 0, 1, 1), normal);
+            drawGlass(poseStack, buffer, packedLight, packedOverlay, false, GreenhouseConnectable.PostType.LEFT.contains(top), bottom, getPlaneVertices(0.5f, downOffset, 1 / 16f, 14 / 16f, topOffset, 1 / 16f), normal);
+            drawGlass(poseStack, buffer, packedLight, packedOverlay, false, topConnection, bottom, getPlaneVertices(15 / 16f, 0, 2 / 16f, 15 / 16f, 1, 0.5f), normal);
 
             // Glass panel in the extra wall not connected to the corner post
-            drawGlass(poseStack, buffer, packedLight, packedOverlay, side, topConnection, bottom, getPlaneVertices(15 / 16f, 0, 0.5f, 15 / 16f, 1, 1, 0, 0, 0.5f, 1), normal);
+            drawGlass(poseStack, buffer, packedLight, packedOverlay, side, topConnection, bottom, getPlaneVertices(15 / 16f, 0, 0.5f, 15 / 16f, 1, width), normal);
         }
         else
         {
-            drawGlass(poseStack, buffer, packedLight, packedOverlay, side, topConnection, bottom, getPlaneVertices(0.5f, topOffset, 1 / 16f, width, downOffset, 1 / 16f, 1 - width, topOffset, 0.5f, downOffset), normal);
+            drawGlass(poseStack, buffer, packedLight, packedOverlay, side, topConnection, bottom, getPlaneVertices(0.5f, downOffset, 1 / 16f, width, topOffset, 1 / 16f), normal);
             drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, width, postStart, 0f, 1f, postEnd, 2 / 16f, normal);
         }
     }
@@ -164,21 +165,22 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
             }
 
             // Glass panels connected to the corner post, and cannot have side connections
-            drawGlass(poseStack, buffer, packedLight, packedOverlay, false, GreenhouseConnectable.PostType.RIGHT.contains(top), bottom, getPlaneVertices(2 / 16f, topOffset, 1 / 16f, 0.5f, downOffset, 1 / 16f, 0.5f, topOffset, 14 / 16f, downOffset), normal);
-            drawGlass(poseStack, buffer, packedLight, packedOverlay, false, topConnection, bottom, getPlaneVertices(1 / 16f, 0, 0.5f, 1 / 16f, 1, 0, 0f, 0, 0.5f, 1), normal);
+            drawGlass(poseStack, buffer, packedLight, packedOverlay, false, GreenhouseConnectable.PostType.RIGHT.contains(top), bottom, getPlaneVertices(2 / 16f, downOffset, 1 / 16f, 0.5f, topOffset, 1 / 16f), normal);
+            drawGlass(poseStack, buffer, packedLight, packedOverlay, false, topConnection, bottom, getPlaneVertices(1 / 16f, 0, 2 / 16f, 1 / 16f, 1, 0.5f), normal);
 
             // Glass panel in the extra wall not connected to the corner post
-            drawGlass(poseStack, buffer, packedLight, packedOverlay, side, topConnection, bottom, getPlaneVertices(1 / 16f, 0, 1, 1 / 16f, 1, 0.5f, 0.5f, 0, 1, 1), normal);
+            drawGlass(poseStack, buffer, packedLight, packedOverlay, side, topConnection, bottom, getPlaneVertices(1 / 16f, 0, 0.5f, 1 / 16f, 1, 1 - width), normal);
         }
         else
         {
             drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 0f, postStart, 0f, width, postEnd, 2 / 16f, normal);
-            drawGlass(poseStack, buffer, packedLight, packedOverlay, side, topConnection, bottom, getPlaneVertices(width, topOffset, 1 / 16f, 0.5f, downOffset, 1 / 16f, 0.5f, topOffset, 1f - width, downOffset), normal);
+            drawGlass(poseStack, buffer, packedLight, packedOverlay, side, topConnection, bottom, getPlaneVertices(width, downOffset, 1 / 16f, 0.5f, topOffset, 1 / 16f), normal);
         }
     }
 
     private void drawCube(PoseStack poseStack, VertexConsumer buffer, TextureAtlasSprite texture, int packedLight, int packedOverlay, float minX, float minY, float minZ, float maxX, float maxY, float maxZ, Vec3i normal)
     {
+        if (true) return;
         RenderHelpers.renderTexturedQuads(poseStack, buffer, texture, packedLight, packedOverlay, getXVertices(minX, minY, minZ, maxX, maxY, maxZ), 16, 16, normal.getX(), 0, normal.getZ(), true);
         RenderHelpers.renderTexturedQuads(poseStack, buffer, texture, packedLight, packedOverlay, getYVertices(minX, minY, minZ, maxX, maxY, maxZ), 16, 16, 0, 1, 0, true);
         RenderHelpers.renderTexturedQuads(poseStack, buffer, texture, packedLight, packedOverlay, getZVertices(minX, minY, minZ, maxX, maxY, maxZ), 16, 16, normal.getZ(), 0, normal.getX(), true);
@@ -237,19 +239,31 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
     /**
      * Modified version of {@link RenderHelpers#getDiagonalPlaneVertices(float, float, float, float, float, float, float, float, float, float)} that includes data for the normal
      */
-    private static float[][] getPlaneVertices(float minX, float minY, float minZ, float maxX, float maxY, float maxZ, float u0, float v0, float u1, float v1)
+    private static float[][] getPlaneVertices(float minX, float minY, float minZ, float maxX, float maxY, float maxZ)
     {
+        assert minX <= maxX : "x " + minX + " " + maxX;
+        assert minY <= maxY : "y " + minY + " " + maxY;
+        assert minZ <= maxZ : "z " + minZ + " " + maxZ;
+        float v0 = 1 - maxY;
+        float v1 = 1 - minY;
+        float u0 = maxX - minX > maxZ - minZ ? minX : minZ;
+        float u1 = u0 + Math.max(maxX - minX, maxZ - minZ);
         return new float[][] {
-            {minX, minY, minZ, u1, v1, 1.0F},
-            {maxX, minY, maxZ, u0, v1, 1.0F},
-            {maxX, maxY, maxZ, u0, v0, 1.0F},
-            {minX, maxY, minZ, u1, v0, 1.0F},
+            {minX, minY, minZ, u0, v1, 1.0F},
+            {maxX, minY, maxZ, u1, v1, 1.0F},
+            {maxX, maxY, maxZ, u1, v0, 1.0F},
+            {minX, maxY, minZ, u0, v0, 1.0F},
 
-            {maxX, minY, maxZ, u0, v1, -1.0F},
-            {minX, minY, minZ, u1, v1, -1.0F},
-            {minX, maxY, minZ, u1, v0, -1.0F},
-            {maxX, maxY, maxZ, u0, v0, -1.0F}
+            {maxX, minY, maxZ, 1 - u1, v1, -1.0F},
+            {minX, minY, minZ, 1 - u0, v1, -1.0F},
+            {minX, maxY, minZ, 1 - u0, v0, -1.0F},
+            {maxX, maxY, maxZ, 1 - u1, v0, -1.0F}
         };
+    }
+
+    private static float toPixelSize(float input, float pixelSize)
+    {
+        return pixelSize * (Mth.ceil(Mth.clamp(input, 0f, 1f) / pixelSize));
     }
 
     /**
@@ -257,15 +271,18 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
      */
     public static float[][] getXVertices(float minX, float minY, float minZ, float maxX, float maxY, float maxZ)
     {
+        assert minX < maxX : "x";
+        assert minY < maxY : "y";
+        assert minZ < maxZ : "z";
         float u0 = 1 - minZ;
         float u1 = 1 - maxZ;
         float v0 = 1 - minY;
         float v1 = 1 - maxY;
         return new float[][] {
-            {minX, minY, minZ, u0, v1, 1.0F},
-            {minX, minY, maxZ, u1, v1, 1.0F},
-            {minX, maxY, maxZ, u1, v0, 1.0F},
-            {minX, maxY, minZ, u0, v0, 1.0F},
+            {minX, minY, minZ, u0, v0, 1.0F},
+            {minX, minY, maxZ, u1, v0, 1.0F},
+            {minX, maxY, maxZ, u1, v1, 1.0F},
+            {minX, maxY, minZ, u0, v1, 1.0F},
             {maxX, minY, maxZ, u1, v0, -1.0F},
             {maxX, minY, minZ, u0, v0, -1.0F},
             {maxX, maxY, minZ, u0, v1, -1.0F},
@@ -278,15 +295,18 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
      */
     public static float[][] getYVertices(float minX, float minY, float minZ, float maxX, float maxY, float maxZ)
     {
+        assert minX < maxX : "x";
+        assert minY < maxY : "y";
+        assert minZ < maxZ : "z";
         float u0 = 1 - minZ;
         float u1 = 1 - maxZ;
         float v0 = 1 - minX;
         float v1 = 1 - maxX;
         return new float[][] {
-            {minX, maxY, minZ, u0, v1, 1.0F},
-            {minX, maxY, maxZ, u1, v1, 1.0F},
-            {maxX, maxY, maxZ, u1, v0, 1.0F},
-            {maxX, maxY, minZ, u0, v0, 1.0F},
+            {minX, maxY, minZ, u0, v0, 1.0F},
+            {minX, maxY, maxZ, u1, v0, 1.0F},
+            {maxX, maxY, maxZ, u1, v1, 1.0F},
+            {maxX, maxY, minZ, u0, v1, 1.0F},
             {minX, minY, maxZ, u1, v0, -1.0F},
             {minX, minY, minZ, u0, v0, -1.0F},
             {maxX, minY, minZ, u0, v1, -1.0F},
@@ -299,6 +319,9 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
      */
     public static float[][] getZVertices(float minX, float minY, float minZ, float maxX, float maxY, float maxZ)
     {
+        assert minX < maxX : "x";
+        assert minY < maxY : "y";
+        assert minZ < maxZ : "z";
         float u0 = 1 - maxX;
         float u1 = 1 - minX;
         float v0 = 1 - maxY;
@@ -308,10 +331,10 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
             {minX, minY, minZ, u1, v1, 1.0F},
             {minX, maxY, minZ, u1, v0, 1.0F},
             {maxX, maxY, minZ, u0, v0, 1.0F},
-            {minX, minY, maxZ, u1, v0, -1.0F},
-            {maxX, minY, maxZ, u0, v0, -1.0F},
-            {maxX, maxY, maxZ, u0, v1, -1.0F},
-            {minX, maxY, maxZ, u1, v1, -1.0F}
+            {minX, minY, maxZ, u1, v1, -1.0F},
+            {maxX, minY, maxZ, u0, v1, -1.0F},
+            {maxX, maxY, maxZ, u0, v0, -1.0F},
+            {minX, maxY, maxZ, u1, v0, -1.0F}
         };
     }
 
