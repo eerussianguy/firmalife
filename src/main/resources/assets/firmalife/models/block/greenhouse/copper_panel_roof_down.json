@@ -1,8 +1,0 @@
-{
-  "__comment__": "This file was automatically created by mcresources",
-  "parent": "firmalife:block/greenhouse/base/roof_panel_down",
-  "textures": {
-    "glass": "firmalife:block/greenhouse/copper_glass_down",
-    "steel": "firmalife:block/greenhouse/copper"
-  }
-}

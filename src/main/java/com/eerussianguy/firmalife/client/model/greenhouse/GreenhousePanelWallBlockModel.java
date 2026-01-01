@@ -60,6 +60,7 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
         GreenhouseConnectable.PostType up = state.getValue(GreenhousePanelWallBlock.UP);
         GreenhouseConnectable.SideType side = state.getValue(GreenhousePanelWallBlock.EXTRA_WALL);
 
+        //TODO issues with corner walls when the main face has an upwards connection
         float angle = switch (facing)
         {
             case SOUTH -> 180;

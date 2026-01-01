@@ -1,0 +1,15 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "loader": "firmalife:greenhouse_panel_wall",
+  "textures": {
+    "material": "firmalife:block/greenhouse/rusted_iron",
+    "glass_thin": "firmalife:block/greenhouse/glass_thin",
+    "glass_thin_both": "firmalife:block/greenhouse/glass_thin_both",
+    "glass_thin_up": "firmalife:block/greenhouse/glass_thin_up",
+    "glass_thin_down": "firmalife:block/greenhouse/glass_thin_down",
+    "glass_thick": "firmalife:block/greenhouse/glass_thick",
+    "glass_thick_both": "firmalife:block/greenhouse/glass_thick_both",
+    "glass_thick_up": "firmalife:block/greenhouse/glass_thick_up",
+    "glass_thick_down": "firmalife:block/greenhouse/glass_thick_down"
+  }
+}
