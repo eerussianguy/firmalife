@@ -238,7 +238,8 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
     }
 
     /**
-     * Modified version of {@link RenderHelpers#getDiagonalPlaneVertices(float, float, float, float, float, float, float, float, float, float)} that includes data for the normal
+     * Modified version of {@link RenderHelpers#getDiagonalPlaneVertices(float, float, float, float, float, float, float, float, float, float)}
+     * that includes data for the normal, and calculates UV based off of the position
      */
     private static float[][] getPlaneVertices(float minX, float minY, float minZ, float maxX, float maxY, float maxZ)
     {
@@ -268,7 +269,8 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
     }
 
     /**
-     * Modified version of {@link RenderHelpers#getXVertices(float, float, float, float, float, float)} with custom UV mapping
+     * Modified version of {@link RenderHelpers#getXVertices(float, float, float, float, float, float)}
+     * with UV mapping based off of position
      */
     public static float[][] getXVertices(float minX, float minY, float minZ, float maxX, float maxY, float maxZ)
     {
@@ -292,7 +294,8 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
     }
 
     /**
-     * Modified version of {@link RenderHelpers#getYVertices(float, float, float, float, float, float)} with custom UV mapping
+     * Modified version of {@link RenderHelpers#getYVertices(float, float, float, float, float, float)}
+     * with UV mapping based off of position
      */
     public static float[][] getYVertices(float minX, float minY, float minZ, float maxX, float maxY, float maxZ)
     {
@@ -316,7 +319,8 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
     }
 
     /**
-     * Modified version of {@link RenderHelpers#getZVertices(float, float, float, float, float, float)} with custom UV mapping
+     * Modified version of {@link RenderHelpers#getZVertices(float, float, float, float, float, float)}
+     * with UV mapping based off of position
      */
     public static float[][] getZVertices(float minX, float minY, float minZ, float maxX, float maxY, float maxZ)
     {
