@@ -31,6 +31,7 @@ val generateModMetadata = tasks.register<ProcessResources>("generateModMetadata"
         "modVersion" to modVersion,
         "minecraftVersionRange" to "[$minecraftVersion]",
         "neoForgeVersionRange" to "[$neoForgeVersion,)",
+        "tfcVersionRange" to "[$tfcVersion,)",
         "patchouliVersionRange" to "[$patchouliVersion,)",
         "jeiVersionRange" to "[$jeiVersion,)"
     )
