@@ -81,12 +81,12 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
         // Top
         if (up == GreenhouseConnectable.PostType.BOTH || up == side.toPost().opposite())
         {
-            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 0, 14 / 16f, 0f, 1, 1f, 2 / 16f, 0, 0, 1, 1, normal);
+            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 0, 14 / 16f, 0f, 1, 1f, 2 / 16f, normal);
         }
         // Bottom
         if (!down)
         {
-            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 0, 0, 0f, 1, 2 / 16f, 2 / 16f, 0, 0, 1, 1, normal);
+            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 0, 0, 0f, 1, 2 / 16f, 2 / 16f, normal);
         }
 
         poseStack.popPose();
@@ -105,17 +105,17 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
 
         if (corner)
         {
-            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 14 / 16f, postStart, 0f, 1f, postEnd, 2 / 16f, 0, 0, 1, 1, normal);
-            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 14 / 16f, postStart, width, 1f, postEnd, 1, 0, 0, 1, 1, normal);
+            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 14 / 16f, postStart, 0f, 1f, postEnd, 2 / 16f, normal);
+            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 14 / 16f, postStart, width, 1f, postEnd, 1, normal);
             // Bottom post for the extra wall
             if (!bottom)
             {
-                drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 14 / 16f, 0, 2 / 16f, 1f, 2 / 16f, 1, 0, 0, 1, 1, normal);
+                drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 14 / 16f, 0, 2 / 16f, 1f, 2 / 16f, 1, normal);
             }
             // Top Post for the extra wall
             if (!topConnection)
             {
-                drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 14 / 16f, 14 / 16f, 0, 1f, 1, 1, 0, 0, 1, 1, normal);
+                drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 14 / 16f, 14 / 16f, 2 / 16f, 1f, 1, 1, normal);
             }
 
             // Glass panels connected to the corner post, and cannot have side connections
@@ -128,7 +128,7 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
         else
         {
             drawGlass(poseStack, buffer, packedLight, packedOverlay, side, topConnection, bottom, getPlaneVertices(0.5f, topOffset, 1 / 16f, width, downOffset, 1 / 16f, 1 - width, topOffset, 0.5f, downOffset), normal);
-            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, width, postStart, 0f, 1f, postEnd, 2 / 16f, 0, 0, 1, 1, normal);
+            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, width, postStart, 0f, 1f, postEnd, 2 / 16f, normal);
         }
     }
 
@@ -143,17 +143,36 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
         float downOffset = (true ? 0 : 2) / 16f;
         if (corner)
         {
-            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 0f, postStart, 0f, 2 / 16f, postEnd, 2 / 16f, 0, 0, 1, 1, normal);
-            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 0f, postStart, 1 - width, 2 / 16f, postEnd, 1, 0, 0, 1, 1, normal);
+            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 0f, postStart, 0f, 2 / 16f, postEnd, 2 / 16f, normal);
+            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 0f, postStart, 1 - width, 2 / 16f, postEnd, 1, normal);
+
+            // Bottom post for the extra wall
+            if (!bottom)
+            {
+                drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 0, 0, 2 / 16f, 2 / 16f, 2 / 16f, 1, normal);
+            }
+
+            // Top Post for the extra wall
+            if (!topConnection)
+            {
+                drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 0, 14 / 16f, 2 / 16f, 2 / 16f, 1f, 1, normal);
+            }
+
+            // Glass panels connected to the corner post, and cannot have side connections
+            drawGlass(poseStack, buffer, packedLight, packedOverlay, false, GreenhouseConnectable.PostType.RIGHT.contains(top), bottom, getPlaneVertices(2 / 16f, topOffset, 1 / 16f, 0.5f, downOffset, 1 / 16f, 0.5f, topOffset, 14 / 16f, downOffset), normal);
+            drawGlass(poseStack, buffer, packedLight, packedOverlay, false, topConnection, bottom, getPlaneVertices(1 / 16f, 0, 0, 1 / 16f, 1, 0.5f, 0.5f, 0, 1, 1), normal);
+
+            // Glass panel in the extra wall not connected to the corner post
+            drawGlass(poseStack, buffer, packedLight, packedOverlay, side, topConnection, bottom, getPlaneVertices(1 / 16f, 0, 0.5f, 1 / 16f, 1, 1, 0, 0, 0.5f, 1), normal);
         }
         else
         {
-            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 0f, postStart, 0f, width, postEnd, 2 / 16f, 0, 0, 1, 1, normal);
+            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 0f, postStart, 0f, width, postEnd, 2 / 16f, normal);
             drawGlass(poseStack, buffer, packedLight, packedOverlay, side, topConnection, bottom, getPlaneVertices(width, topOffset, 1 / 16f, 0.5f, downOffset, 1 / 16f, 0.5f, topOffset, 1f - width, downOffset), normal);
         }
     }
 
-    private void drawCube(PoseStack poseStack, VertexConsumer buffer, TextureAtlasSprite texture, int packedLight, int packedOverlay, float minX, float minY, float minZ, float maxX, float maxY, float maxZ, float u0, float v0, float u1, float v1, Vec3i normal)
+    private void drawCube(PoseStack poseStack, VertexConsumer buffer, TextureAtlasSprite texture, int packedLight, int packedOverlay, float minX, float minY, float minZ, float maxX, float maxY, float maxZ, Vec3i normal)
     {
         RenderHelpers.renderTexturedQuads(poseStack, buffer, texture, packedLight, packedOverlay, getXVertices(minX, minY, minZ, maxX, maxY, maxZ), 16, 16, normal.getX(), 0, normal.getZ(), true);
         RenderHelpers.renderTexturedQuads(poseStack, buffer, texture, packedLight, packedOverlay, getYVertices(minX, minY, minZ, maxX, maxY, maxZ), 16, 16, 0, 1, 0, true);
