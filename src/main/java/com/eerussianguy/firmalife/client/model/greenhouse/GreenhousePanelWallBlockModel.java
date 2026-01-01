@@ -59,7 +59,6 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
         boolean down = state.getValue(GreenhousePanelWallBlock.DOWN);
         GreenhouseConnectable.PostType up = state.getValue(GreenhousePanelWallBlock.UP);
         GreenhouseConnectable.SideType side = state.getValue(GreenhousePanelWallBlock.EXTRA_WALL);
-        // TODO issue with corner when the extra wall is on the same side as the up connection
 
         float angle = switch (facing)
         {
@@ -112,7 +111,9 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
 
         if (corner)
         {
-            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 14 / 16f, postStart, 0f, 1f, postEnd, 2 / 16f, normal);
+            // Corner post
+            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 14 / 16f, postStart, 0f, 1f, 1f, 2 / 16f, normal);
+            // Extra wall post
             drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 14 / 16f, postStart, width, 1f, postEnd, 1, normal);
             // Bottom post for the extra wall
             if (!bottom)
@@ -151,7 +152,9 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
         float downOffset = (bottom ? 0 : 2) / 16f;
         if (corner)
         {
-            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 0f, postStart, 0f, 2 / 16f, postEnd, 2 / 16f, normal);
+            // Corner post
+            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 0f, postStart, 0f, 2 / 16f, 1, 2 / 16f, normal);
+            // Extra wall post
             drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 0f, postStart, 1 - width, 2 / 16f, postEnd, 1, normal);
 
             // Bottom post for the extra wall
