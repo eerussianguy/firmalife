@@ -9,10 +9,14 @@ import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blocks.FLStateProperties;
 import com.eerussianguy.firmalife.common.blocks.IWeatherable;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.datafixers.util.Pair;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -26,17 +30,20 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
+import net.dries007.tfc.client.IHighlightHandler;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.IForgeBlockExtension;
 import net.dries007.tfc.util.Helpers;
 
-public class GreenhousePanelWallBlock extends BaseGreenhouseBlock implements IWeatherable, IForgeBlockExtension, GreenhouseConnectable
+public class GreenhousePanelWallBlock extends BaseGreenhouseBlock implements IWeatherable, IForgeBlockExtension, GreenhouseConnectable, IHighlightHandler
 {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty LEFT = FLStateProperties.LEFT;
@@ -135,8 +142,37 @@ public class GreenhousePanelWallBlock extends BaseGreenhouseBlock implements IWe
         return withConnection(state, facing, facingState, level, currentPos, facingPos);
     }
 
+    @Override
+    public boolean drawHighlight(Level level, BlockPos blockPos, Player player, BlockHitResult blockHitResult, PoseStack poseStack, MultiBufferSource multiBufferSource, Vec3 vec3)
+    {
+        BlockState state = level.getBlockState(blockPos);
+        Direction facing = state.getValue(FACING);
+        SideType side = state.getValue(EXTRA_WALL);
+        Direction selectedFace = blockHitResult.getDirection();
+        Direction playerFacing = player.getDirection();
+        if (!itemMatchesThis(player.getMainHandItem()))
+        {
+            return false;
+        }
+        if (side == SideType.NONE && selectedFace == facing.getOpposite())
+        {
+            if (playerFacing == facing.getClockWise())
+            {
+                IHighlightHandler.drawBox(poseStack, RIGHT_SHAPES[facing.get2DDataValue()], multiBufferSource, blockPos, vec3, 1f, 0f, 0f, 1f);
+                return true;
+            }
+            else if (playerFacing == facing.getCounterClockWise())
+            {
+                IHighlightHandler.drawBox(poseStack, LEFT_SHAPES[facing.get2DDataValue()], multiBufferSource, blockPos, vec3, 1f, 0f, 0f, 1f);
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void fixPanelRoofs(LevelAccessor level, BlockPos pos)
     {
+        if (true) return;
         for (Direction dir : Direction.Plane.HORIZONTAL)
         {
             final BlockPos relativePos = pos.above().relative(dir);
@@ -146,6 +182,11 @@ public class GreenhousePanelWallBlock extends BaseGreenhouseBlock implements IWe
                 level.scheduleTick(relativePos, relativeState.getBlock(), 1);
             }
         }
+    }
+
+    private boolean itemMatchesThis(ItemStack stack)
+    {
+        return stack.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof GreenhousePanelWallBlock wall && wall == this;
     }
 
     @Override
@@ -176,7 +217,7 @@ public class GreenhousePanelWallBlock extends BaseGreenhouseBlock implements IWe
         {
             return false;
         }
-        if (context.getItemInHand().getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof GreenhousePanelWallBlock wall)
+        if (itemMatchesThis(context.getItemInHand()))
         {
             double y = context.getClickLocation().y;
             int blockY = context.getClickedPos().getY();
@@ -198,21 +239,14 @@ public class GreenhousePanelWallBlock extends BaseGreenhouseBlock implements IWe
             }
             // Require clicking on the up/down/opposite face to place the extra wall, so that you can still
             // use the sides of the block to place walls
-            return wall == this && (clickedFace == Direction.UP || clickedFace == Direction.DOWN || clickedFace == facing.getOpposite());
+            return clickedFace == Direction.UP || clickedFace == Direction.DOWN || clickedFace == facing.getOpposite();
         }
         return super.canBeReplaced(state, context);
     }
 
-    public Set<Direction> getWallStates(BlockState state)
+    public static Set<Direction> getWallStates(BlockState state)
     {
-        Direction facing = state.getValue(FACING);
-        SideType extra = state.getValue(EXTRA_WALL);
-        return extra != SideType.NONE ? Set.of(facing, extra.getDirection(facing)) : Set.of(facing);
-    }
-
-    public static Set<Direction> getWallStates2(BlockState state)
-    {
-        if (state.getBlock() instanceof GreenhousePanelWallBlock wall)
+        if (state.getBlock() instanceof GreenhousePanelWallBlock)
         {
             Direction facing = state.getValue(FACING);
             SideType extra = state.getValue(EXTRA_WALL);
@@ -235,14 +269,14 @@ public class GreenhousePanelWallBlock extends BaseGreenhouseBlock implements IWe
         {
             if (facingState.getBlock() instanceof GreenhousePanelWallBlock)
             {
-                Set<Direction> facingWallStates = getWallStates2(facingState);
+                Set<Direction> facingWallStates = getWallStates(facingState);
                 if (side == SideType.NONE)
                 {
                     return state.setValue(DOWN, facingWallStates.contains(currentFacing));
                 }
                 else
                 {
-                    return state.setValue(DOWN, facingWallStates.containsAll(getWallStates2(state)));
+                    return state.setValue(DOWN, facingWallStates.containsAll(getWallStates(state)));
                 }
             }
             return state.setValue(DOWN, false);
@@ -251,8 +285,8 @@ public class GreenhousePanelWallBlock extends BaseGreenhouseBlock implements IWe
         {
             return state.setValue(UP, getTopConnection(state, facingState));
         }
-        Direction right = getRightDirection(currentFacing, side);
-        Direction left = getLeftDirection(currentFacing, side);
+        Direction right = side == SideType.RIGHT ? currentFacing.getCounterClockWise() : currentFacing;
+        Direction left = side == SideType.LEFT ? currentFacing.getClockWise() : currentFacing;
         if (facing == left.getClockWise())
         {
             return state.setValue(LEFT, canConnectTo(state, facing, facingState, level, currentPos, facingPos));
@@ -262,16 +296,6 @@ public class GreenhousePanelWallBlock extends BaseGreenhouseBlock implements IWe
             return state.setValue(RIGHT, canConnectTo(state, facing, facingState, level, currentPos, facingPos));
         }
         return state;
-    }
-
-    private Direction getLeftDirection(Direction direction, SideType side)
-    {
-        return side == SideType.LEFT ? direction.getClockWise() : direction;
-    }
-
-    private Direction getRightDirection(Direction direction, SideType side)
-    {
-        return side == SideType.RIGHT ? direction.getCounterClockWise() : direction;
     }
 
     private PostType getTopConnection(BlockState state, BlockState facingState)
@@ -291,12 +315,26 @@ public class GreenhousePanelWallBlock extends BaseGreenhouseBlock implements IWe
             PostType extraPostType = (side.getDirection(currentFacing) == roofFacing ? side : SideType.NONE).toPost();
             return wallPostType.combine(extraPostType);
         }
-        return isSameFacingWall(state, facingState) ? PostType.NONE : PostType.BOTH;
-    }
-
-    private boolean isSameFacingWall(BlockState state, BlockState facingState)
-    {
-        return facingState.getBlock() instanceof GreenhousePanelWallBlock wall && getWallStates(state).containsAll(wall.getWallStates(facingState));
+        Set<Direction> facingWallStates = getWallStates(facingState);
+        boolean matchesMainWall = facingWallStates.contains(currentFacing);
+        if (side == SideType.NONE)
+        {
+            return matchesMainWall ? PostType.NONE : PostType.BOTH;
+        }
+        boolean matchesExtraWall = facingWallStates.contains(side.getDirection(currentFacing));
+        if (matchesMainWall && matchesExtraWall)
+        {
+            return PostType.NONE;
+        }
+        else if (matchesExtraWall)
+        {
+            return side.opposite().toPost();
+        }
+        else if (matchesMainWall)
+        {
+            return side.toPost();
+        }
+        return PostType.BOTH;
     }
 
     @Override
@@ -318,34 +356,6 @@ public class GreenhousePanelWallBlock extends BaseGreenhouseBlock implements IWe
         return GreenhouseConnectable.hasConnectionAt(facingState, facingPos, level, facing.getOpposite());
     }
 
-    public static @Nullable Pair<BlockPos, BlockState> scanMatchingWalls(Level level, BlockPos pos, Direction wallDirection, Direction scanDirection, Set<BlockPos> seen)
-    {
-        seen.add(pos.immutable());
-        BlockPos.MutableBlockPos currentPos = pos.mutable();
-        BlockState currentState = level.getBlockState(pos);
-        while (currentState.getBlock() instanceof GreenhousePanelWallBlock)
-        {
-            currentPos.move(scanDirection);
-            currentState = level.getBlockState(currentPos);
-            Set<Direction> currentWallStates = getWallStates2(currentState);
-            if (currentWallStates.contains(wallDirection))
-            {
-                seen.add(currentPos.immutable());
-                if (currentWallStates.size() > 1)
-                {
-                    return Pair.of(currentPos.immutable(), currentState);
-                }
-            }
-            else
-            {
-                // Block is either: not a wall, or is a wall not facing correctly
-                break;
-            }
-
-        }
-        return null;
-    }
-
     /**
      * Locates the blocks on either side of a segment of panel walls, required to validate greenhouses.
      */
@@ -362,7 +372,7 @@ public class GreenhousePanelWallBlock extends BaseGreenhouseBlock implements IWe
             {
                 currentPos.move(scanDirection);
                 currentState = level.getBlockState(currentPos);
-                Set<Direction> currentWallStates = getWallStates2(currentState);
+                Set<Direction> currentWallStates = getWallStates(currentState);
                 if (currentWallStates.contains(wallDirection))
                 {
                     seen.add(currentPos.immutable());

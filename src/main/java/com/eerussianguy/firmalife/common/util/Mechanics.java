@@ -170,7 +170,7 @@ public final class Mechanics
                 boolean rightMatches;
                 if (left.getBlock() instanceof GreenhousePanelWallBlock)
                 {
-                    Set<Direction> leftWalls = GreenhousePanelWallBlock.getWallStates2(left);
+                    Set<Direction> leftWalls = GreenhousePanelWallBlock.getWallStates(left);
                     leftMatches = leftWalls.contains(panelFacing) && leftWalls.size() == 2;
                 }
                 else
@@ -181,7 +181,7 @@ public final class Mechanics
                 }
                 if (right.getBlock() instanceof GreenhousePanelWallBlock)
                 {
-                    Set<Direction> rightWalls = GreenhousePanelWallBlock.getWallStates2(right);
+                    Set<Direction> rightWalls = GreenhousePanelWallBlock.getWallStates(right);
                     rightMatches = rightWalls.contains(panelFacing) && rightWalls.size() == 2;
                 }
                 else

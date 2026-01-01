@@ -135,8 +135,8 @@ public class GreenhousePanelRoofBlock extends TransparentBlock implements IWeath
         final BlockState upState = level.getBlockState(upPos);
 
         //below.getValue(GreenhousePanelWallBlock.FACING) == facing.getClockWise()
-        final boolean cw = below.getBlock() instanceof GreenhousePanelWallBlock wall && wall.getWallStates(below).contains(facing.getClockWise());
-        final boolean ccw = below.getBlock() instanceof GreenhousePanelWallBlock wall && wall.getWallStates(below).contains(facing.getCounterClockWise());
+        final boolean cw = GreenhousePanelWallBlock.getWallStates(below).contains(facing.getClockWise());
+        final boolean ccw = GreenhousePanelWallBlock.getWallStates(below).contains(facing.getCounterClockWise());
         final boolean up = isValidPanel(upState, facing);
         final boolean down = isValidPanel(downState, facing);
         final boolean left = !isValidPanel(level.getBlockState(pos.relative(facing.getClockWise())), facing);
