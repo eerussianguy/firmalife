@@ -275,8 +275,8 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
         assert minX < maxX : "x";
         assert minY < maxY : "y";
         assert minZ < maxZ : "z";
-        float u0 = 1 - minZ;
-        float u1 = 1 - maxZ;
+        float u0 = minZ;
+        float u1 = maxZ;
         float v0 = 1 - minY;
         float v1 = 1 - maxY;
         return new float[][] {
@@ -284,10 +284,10 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
             {minX, minY, maxZ, u1, v0, 1.0F},
             {minX, maxY, maxZ, u1, v1, 1.0F},
             {minX, maxY, minZ, u0, v1, 1.0F},
-            {maxX, minY, maxZ, u1, v0, -1.0F},
-            {maxX, minY, minZ, u0, v0, -1.0F},
-            {maxX, maxY, minZ, u0, v1, -1.0F},
-            {maxX, maxY, maxZ, u1, v1, -1.0F}
+            {maxX, minY, maxZ, 1 - u1, v0, -1.0F},
+            {maxX, minY, minZ, 1 - u0, v0, -1.0F},
+            {maxX, maxY, minZ, 1 - u0, v1, -1.0F},
+            {maxX, maxY, maxZ, 1 - u1, v1, -1.0F}
         };
     }
 
