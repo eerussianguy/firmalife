@@ -118,12 +118,12 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
             // Bottom post for the extra wall
             if (!bottom)
             {
-                drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 14 / 16f, 0, 2 / 16f, 1f, 2 / 16f, 1, normal);
+                drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 14 / 16f, 0f, 2 / 16f, 1f, 2 / 16f, 1f, normal);
             }
             // Top Post for the extra wall
             if (!topConnection)
             {
-                drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 14 / 16f, 14 / 16f, 2 / 16f, 1f, 1, 1, normal);
+                drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 14 / 16f, 14 / 16f, 2 / 16f, 1f, 1f, 1f, normal);
             }
 
             // Glass panels connected to the corner post, and cannot have side connections
@@ -160,13 +160,13 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
             // Bottom post for the extra wall
             if (!bottom)
             {
-                drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 0, 0, 2 / 16f, 2 / 16f, 2 / 16f, 1, normal);
+                drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 0f, 0f, 2 / 16f, 2 / 16f, 2 / 16f, 1f, normal);
             }
 
             // Top Post for the extra wall
             if (!topConnection)
             {
-                drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 0, 14 / 16f, 2 / 16f, 2 / 16f, 1f, 1, normal);
+                drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 0f, 14 / 16f, 2 / 16f, 2 / 16f, 1f, 1f, normal);
             }
 
             // Glass panels connected to the corner post, and cannot have side connections
