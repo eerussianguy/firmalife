@@ -43,6 +43,12 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
     }
 
     @Override
+    public TextureAtlasSprite getParticleIcon()
+    {
+        return materialTexture.sprite();
+    }
+
+    @Override
     protected void render(BlockState state, PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay)
     {
         TextureAtlasSprite postTexture = materialTexture.sprite();
@@ -52,16 +58,15 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
         boolean down = state.getValue(GreenhousePanelWallBlock.DOWN);
         GreenhouseConnectable.PostType up = state.getValue(GreenhousePanelWallBlock.UP);
         GreenhouseConnectable.SideType side = state.getValue(GreenhousePanelWallBlock.EXTRA_WALL);
+        // TODO issue with corner when the extra wall is on the same side as the up connection
 
         float angle = switch (facing)
         {
-            case NORTH -> 0;
             case SOUTH -> 180;
             case EAST -> 270;
             case WEST -> 90;
-            default -> throw new IllegalStateException("Unexpected value: " + facing);
+            default -> 0;
         };
-        //TODO normals are incorrect for RenderHelpers#renderTexturedCuboid calls for rotated models
         Vec3i normal = switch (facing)
         {
             case NORTH, SOUTH -> new Vec3i(1, 0, 0);
@@ -137,7 +142,7 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
         TextureAtlasSprite postTexture = materialTexture.sprite();
         float width = (side ? 1 : 2) / 16f;
         float postStart = bottom ? 0 : (2 / 16f);
-        boolean topConnection = top == GreenhouseConnectable.PostType.LEFT || top == GreenhouseConnectable.PostType.NONE;
+        boolean topConnection = !top.contains(GreenhouseConnectable.PostType.RIGHT);
         float postEnd = topConnection ? 1 : (14 / 16f);
         float topOffset = 1 - (true ? 0 : 2) / 16f;
         float downOffset = (true ? 0 : 2) / 16f;
@@ -160,10 +165,10 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
 
             // Glass panels connected to the corner post, and cannot have side connections
             drawGlass(poseStack, buffer, packedLight, packedOverlay, false, GreenhouseConnectable.PostType.RIGHT.contains(top), bottom, getPlaneVertices(2 / 16f, topOffset, 1 / 16f, 0.5f, downOffset, 1 / 16f, 0.5f, topOffset, 14 / 16f, downOffset), normal);
-            drawGlass(poseStack, buffer, packedLight, packedOverlay, false, topConnection, bottom, getPlaneVertices(1 / 16f, 0, 0, 1 / 16f, 1, 0.5f, 0.5f, 0, 1, 1), normal);
+            drawGlass(poseStack, buffer, packedLight, packedOverlay, false, topConnection, bottom, getPlaneVertices(1 / 16f, 0, 0.5f, 1 / 16f, 1, 0, 0f, 0, 0.5f, 1), normal);
 
             // Glass panel in the extra wall not connected to the corner post
-            drawGlass(poseStack, buffer, packedLight, packedOverlay, side, topConnection, bottom, getPlaneVertices(1 / 16f, 0, 0.5f, 1 / 16f, 1, 1, 0, 0, 0.5f, 1), normal);
+            drawGlass(poseStack, buffer, packedLight, packedOverlay, side, topConnection, bottom, getPlaneVertices(1 / 16f, 0, 1, 1 / 16f, 1, 0.5f, 0.5f, 0, 1, 1), normal);
         }
         else
         {
