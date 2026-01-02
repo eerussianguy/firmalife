@@ -17,8 +17,7 @@ import net.dries007.tfc.client.RenderHelpers;
 
 public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
 {
-    private static final float WIDTH = (float) Math.sqrt(2);
-    private static final float W2 = WIDTH / 2;
+    private final float WIDTH = ((float) Math.sqrt(2) / 16f);
     private final Material materialTexture;
     private final Material glassThinTexture;
     private final Material glassThinBothTexture;
@@ -52,6 +51,7 @@ public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
     @Override
     protected void render(BlockState state, PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay)
     {
+        //TODO Z & Y faces should have similar shading from normals
         Direction facing = state.getValue(GreenhousePanelRoofBlock.FACING);
         boolean bottom = state.getValue(GreenhousePanelRoofBlock.DOWN);
         boolean top = state.getValue(GreenhousePanelRoofBlock.UP);
@@ -81,66 +81,108 @@ public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
         poseStack.mulPose(Axis.YP.rotationDegrees(angle));
         poseStack.translate(-0.5f, 0, -0.5f);
 
-        RenderHelpers.renderTexturedQuads(poseStack, buffer, materialTexture.sprite(), packedLight, packedOverlay, getQuads(0f, 0f, 0f, rightOffset, 1f, 1f), 16, 16, 0, 0, 0, true);
-        RenderHelpers.renderTexturedQuads(poseStack, buffer, materialTexture.sprite(), packedLight, packedOverlay, getQuads(1 - leftOffset, 0f, 0f, 1f, 1f, 1f), 16, 16, 0, 0, 0, true);
+        drawCube(poseStack, buffer, materialTexture.sprite(), packedLight, packedOverlay, 0f, 0f, 0f, rightOffset, 1f, 1f, normal);
+        drawCube(poseStack, buffer, materialTexture.sprite(), packedLight, packedOverlay, 1 - leftOffset, 0f, 0f, 1f, 1f, 1f, normal);
 
         if (bottom)
         {
-            RenderHelpers.renderTexturedQuads(poseStack, buffer, materialTexture.sprite(), packedLight, packedOverlay, getQuads(rightOffset, 0f, 0f, 1 - leftOffset, 2 / 16f, 2 / 16f), 16, 16, 0, 0, 0, true);
+            drawCube(poseStack, buffer, materialTexture.sprite(), packedLight, packedOverlay, rightOffset, 0f, 0f, 1 - leftOffset, 2 / 16f, 2 / 16f, normal);
         }
         if (top)
         {
-            RenderHelpers.renderTexturedQuads(poseStack, buffer, materialTexture.sprite(), packedLight, packedOverlay, getQuads(rightOffset, 14 / 16f, 14 / 16f, 1 - leftOffset, 1f, 1f), 16, 16, 0, 0, 0, true);
+            drawCube(poseStack, buffer, materialTexture.sprite(), packedLight, packedOverlay, rightOffset, 14 / 16f, 14 / 16f, 1 - leftOffset, 1f, 1f, normal);
         }
 
-        RenderHelpers.renderTexturedQuads(poseStack, buffer, materialTexture.sprite(), packedLight, packedOverlay, getPlaneVertices(rightOffset, 0 - (WIDTH / 16f) / 2 + downOffset, (WIDTH / 16f) / 2 + downOffset, 1 - leftOffset, 1 - (WIDTH / 16f) / 2 - topOffset, 1 + (WIDTH / 16f) / 2 - topOffset), 16, 16, 0, 0, 0, true);
+        RenderHelpers.renderTexturedQuads(poseStack, buffer, materialTexture.sprite(), packedLight, packedOverlay, getPlaneVertices(rightOffset, 0 - WIDTH / 2 + downOffset, WIDTH / 2 + downOffset, 1 - leftOffset, 1 - WIDTH / 2 - topOffset, 1 + WIDTH / 2 - topOffset), 16, 16, 0, 0, 0, true);
 
         poseStack.popPose();
         poseStack.popPose();
     }
 
-    private float[][] getQuads(float minX, float minY, float minZ, float maxX, float maxY, float maxZ)
+    private void drawCube(PoseStack poseStack, VertexConsumer buffer, TextureAtlasSprite texture, int packedLight, int packedOverlay, float minX, float minY, float minZ, float maxX, float maxY, float maxZ, Vec3i normal)
     {
-        float p2minY = minY - (WIDTH / 16f);
-        float p2maxY = maxY - (WIDTH / 16f);
-        float p2minZ = minY + (WIDTH / 16f);
-        float p2maxZ = maxY + (WIDTH / 16f);
+
+        RenderHelpers.renderTexturedQuads(poseStack, buffer, texture, packedLight, packedOverlay, getXVertices(minX, minY, minZ, maxX, maxY, maxZ), 16, 16, normal.getX(), 0, normal.getZ(), true);
+        RenderHelpers.renderTexturedQuads(poseStack, buffer, texture, packedLight, packedOverlay, getYVertices(minX, minY, minZ, maxX, maxY, maxZ), 16, 16, 0, 1, 0, true);
+        RenderHelpers.renderTexturedQuads(poseStack, buffer, texture, packedLight, packedOverlay, getZVertices(minX, minY, minZ, maxX, maxY, maxZ), 16, 16, normal.getZ(), 0, normal.getX(), true);
+    }
+
+
+    //TODO rename to something more accurate
+    private float[][] getXVertices(float minX, float minY, float minZ, float maxX, float maxY, float maxZ)
+    {
+        float p2minY = minY - WIDTH;
+        float p2maxY = maxY - WIDTH;
+        float p2minZ = minY + WIDTH;
+        float p2maxZ = maxY + WIDTH;
+        float u0 = 1 - minX;
+        float u1 = 1 - maxX;
+        float v0 = 1 - maxY;
+        float v1 = 1 - minY;
         return new float[][] {
-            // Front face
-            {maxX, maxY, maxZ, 0, 0, 0},
-            {maxX, minY, minZ, 0, 1, 0},
-            {minX, minY, minZ, 1, 1, 0},
-            {minX, maxY, maxZ, 1, 0, 0},
-
-            // Back face
-            {minX, p2maxY, p2maxZ, 1, 0, 0},
-            {minX, p2minY, p2minZ, 1, 1, 0},
-            {maxX, p2minY, p2minZ, 0, 1, 0},
-            {maxX, p2maxY, p2maxZ, 0, 0, 0},
-
-            // Bottom ending face
-            {maxX, minY, minZ, 0, 0, 0},
-            {maxX, p2minY, p2minZ, 0, 1, 0},
-            {minX, p2minY, p2minZ, 1, 1, 0},
-            {minX, minY, minZ, 0, 0, 0},
-
-            // Top ending face
-            {minX, maxY, maxZ, 0, 0, 0},
-            {minX, p2maxY, p2maxZ, 0, 1, 0},
-            {maxX, p2maxY, p2maxZ, 1, 1, 0},
-            {maxX, maxY, maxZ, 1, 0, 0},
-
             // Left face
-            {maxX, maxY, maxZ, 0, 0, 0},
-            {maxX, p2maxY, p2maxZ, 1, 0, 0},
-            {maxX, p2minY, p2minZ, 1, 1, 0},
-            {maxX, minY, minZ, 0, 1, 0},
+            {maxX, maxY, maxZ, u0, v0, 1.0F},
+            {maxX, p2maxY, p2maxZ, u1, v0, 1.0F},
+            {maxX, p2minY, p2minZ, u1, v1, 1.0F},
+            {maxX, minY, minZ, u0, v1, 1.0F},
 
             // Right face
-            {minX, minY, minZ, 0, 1, 0},
-            {minX, p2minY, p2minZ, 1, 1, 0},
-            {minX, p2maxY, p2maxZ, 1, 0, 0},
-            {minX, maxY, maxZ, 0, 0, 0},
+            {minX, minY, minZ, u0, v1, -1.0F},
+            {minX, p2minY, p2minZ, u1, v1, -1.0F},
+            {minX, p2maxY, p2maxZ, u1, v0, -1.0F},
+            {minX, maxY, maxZ, u0, v0, -1.0F}
+        };
+    }
+
+    //TODO rename to something more accurate
+    private float[][] getYVertices(float minX, float minY, float minZ, float maxX, float maxY, float maxZ)
+    {
+        float p2minY = minY - WIDTH;
+        float p2maxY = maxY - WIDTH;
+        float p2minZ = minY + WIDTH;
+        float p2maxZ = maxY + WIDTH;
+        float u0 = 1 - minX;
+        float u1 = 1 - maxX;
+        float v0 = 1 - maxY;
+        float v1 = 1 - minY;
+        return new float[][] {
+            // Front face
+            {maxX, maxY, maxZ, u1, v0, 1.0F},
+            {maxX, minY, minZ, u1, v1, 1.0F},
+            {minX, minY, minZ, u0, v1, 1.0F},
+            {minX, maxY, maxZ, u0, v0, 1.0F},
+
+            // Back face
+            {minX, p2maxY, p2maxZ, u0, v0, -1.0F},
+            {minX, p2minY, p2minZ, u0, v1, -1.0F},
+            {maxX, p2minY, p2minZ, u1, v1, -1.0F},
+            {maxX, p2maxY, p2maxZ, u1, v0, -1.0F}
+        };
+    }
+
+    //TODO rename to something more accurate
+    private float[][] getZVertices(float minX, float minY, float minZ, float maxX, float maxY, float maxZ)
+    {
+        float p2minY = minY - WIDTH;
+        float p2maxY = maxY - WIDTH;
+        float p2minZ = minY + WIDTH;
+        float p2maxZ = maxY + WIDTH;
+        float u0 = 1 - minX;
+        float u1 = 1 - maxX;
+        float v0 = 0;
+        float v1 = 2 / 16f;
+        return new float[][] {
+            // Bottom ending face
+            {maxX, minY, minZ, u1, v0, -1.0F},
+            {maxX, p2minY, p2minZ, u1, v1, -1.0F},
+            {minX, p2minY, p2minZ, u0, v1, -1.0F},
+            {minX, minY, minZ, u0, v0, -1.0F},
+
+            // Top ending face
+            {minX, maxY, maxZ, u0, 1 - v0, 1.0F},
+            {minX, p2maxY, p2maxZ, u0, 1 - v1, 1.0F},
+            {maxX, p2maxY, p2maxZ, u1, 1 - v1, 1.0F},
+            {maxX, maxY, maxZ, u1, 1 - v0, 1.0F}
         };
     }
 
@@ -155,8 +197,7 @@ public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
             {minX, maxY, maxZ, 0, 1, 1.0F},
             {minX, minY, minZ, 1, 1, 1.0F},
             {maxX, minY, minZ, 1, 0, 1.0F},
-            {maxX, maxY, maxZ, 0, 0, 1.0F},
-
+            {maxX, maxY, maxZ, 0, 0, 1.0F}
         };
     }
 
