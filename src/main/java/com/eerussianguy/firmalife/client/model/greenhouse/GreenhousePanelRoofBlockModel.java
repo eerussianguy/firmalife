@@ -59,6 +59,8 @@ public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
         boolean left = state.getValue(GreenhousePanelRoofBlock.LEFT);
         float rightOffset = (right ? 1 : 2) / 16f;
         float leftOffset = (left ? 1 : 2) / 16f;
+        float downOffset = (bottom ? 2 : 0) / 16f;
+        float topOffset = (top ? 2 : 0) / 16f;
         float angle = switch (facing)
         {
             case SOUTH -> 180;
@@ -91,7 +93,7 @@ public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
             RenderHelpers.renderTexturedQuads(poseStack, buffer, materialTexture.sprite(), packedLight, packedOverlay, getQuads(rightOffset, 14 / 16f, 14 / 16f, 1 - leftOffset, 1f, 1f), 16, 16, 0, 0, 0, true);
         }
 
-        RenderHelpers.renderTexturedQuads(poseStack, buffer, materialTexture.sprite(), packedLight, packedOverlay, getPlaneVertices(rightOffset, -WIDTH / 16f, 0, 1 - leftOffset, 1 - (WIDTH / 16f), 1), 16, 16, 0, 0, 0, true);
+        RenderHelpers.renderTexturedQuads(poseStack, buffer, materialTexture.sprite(), packedLight, packedOverlay, getPlaneVertices(rightOffset, 0 - (WIDTH / 16f) / 2 + downOffset, (WIDTH / 16f) / 2 + downOffset, 1 - leftOffset, 1 - (WIDTH / 16f) / 2 - topOffset, 1 + (WIDTH / 16f) / 2 - topOffset), 16, 16, 0, 0, 0, true);
 
         poseStack.popPose();
         poseStack.popPose();
@@ -99,11 +101,10 @@ public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
 
     private float[][] getQuads(float minX, float minY, float minZ, float maxX, float maxY, float maxZ)
     {
-        float width = WIDTH;
-        float p2minY = minY - (width / 16f);
-        float p2maxY = maxY - (width / 16f);
-        float p2minZ = minY + (width / 16f);
-        float p2maxZ = maxY + (width / 16f);
+        float p2minY = minY - (WIDTH / 16f);
+        float p2maxY = maxY - (WIDTH / 16f);
+        float p2minZ = minY + (WIDTH / 16f);
+        float p2maxZ = maxY + (WIDTH / 16f);
         return new float[][] {
             // Front face
             {maxX, maxY, maxZ, 0, 0, 0},
