@@ -10,12 +10,14 @@ import java.util.function.Supplier;
 import com.eerussianguy.firmalife.Accessors;
 import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.common.FLHelpers;
-import com.eerussianguy.firmalife.common.blocks.FLStateProperties;
-import com.eerussianguy.firmalife.common.blocks.KegCoreBlock;
 import com.eerussianguy.firmalife.common.blocks.CheeseWheelBlock;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
+import com.eerussianguy.firmalife.common.blocks.FLStateProperties;
+import com.eerussianguy.firmalife.common.blocks.KegBlock;
 import com.eerussianguy.firmalife.common.blocks.MixingBowlBlock;
 import com.eerussianguy.firmalife.common.blocks.greenhouse.Greenhouse;
+import com.eerussianguy.firmalife.common.blocks.greenhouse.GreenhouseConnectable;
+import com.eerussianguy.firmalife.common.blocks.greenhouse.GreenhousePanelWallBlock;
 import com.eerussianguy.firmalife.common.blocks.plant.FLFruitBlocks;
 import com.eerussianguy.firmalife.common.capabilities.FLComponents;
 import com.eerussianguy.firmalife.common.items.FLFood;
@@ -101,6 +103,21 @@ public class BuiltinBlockLootTables extends BlockLootSubProvider implements Acce
                 if (type == Greenhouse.BlockType.DOOR)
                 {
                     add(block.get(), createDoorTable(block.get()));
+                }
+                else if (type == Greenhouse.BlockType.PANEL_WALL)
+                {
+
+                    add(
+                        block.get(),
+                        LootTable.lootTable().withPool(
+                            lootPool().add(
+                                    lootTableItem(block.get())
+                                        .apply(setCount(2).when(hasProperty(block.get(), GreenhousePanelWallBlock.EXTRA_WALL, GreenhouseConnectable.SideType.LEFT)))
+                                        .apply(setCount(2).when(hasProperty(block.get(), GreenhousePanelWallBlock.EXTRA_WALL, GreenhouseConnectable.SideType.RIGHT)))
+                                )
+                                .when(survivesExplosion())
+                        )
+                    );
                 }
                 else
                 {

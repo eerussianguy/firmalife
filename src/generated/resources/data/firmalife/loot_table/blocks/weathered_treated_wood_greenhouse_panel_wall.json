@@ -11,6 +11,36 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "firmalife:weathered_treated_wood_greenhouse_panel_wall",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "extra": "left"
+                  }
+                }
+              ],
+              "count": 2.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "firmalife:weathered_treated_wood_greenhouse_panel_wall",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "extra": "right"
+                  }
+                }
+              ],
+              "count": 2.0,
+              "function": "minecraft:set_count"
+            }
+          ],
           "name": "firmalife:weathered_treated_wood_greenhouse_panel_wall"
         }
       ],
