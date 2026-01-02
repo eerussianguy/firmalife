@@ -93,7 +93,11 @@ public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
             drawCube(poseStack, buffer, materialTexture.sprite(), packedLight, packedOverlay, rightOffset, 14 / 16f, 14 / 16f, 1 - leftOffset, 1f, 1f, normal);
         }
 
-        RenderHelpers.renderTexturedQuads(poseStack, buffer, materialTexture.sprite(), packedLight, packedOverlay, getPlaneVertices(rightOffset, 0 - WIDTH / 2 + downOffset, WIDTH / 2 + downOffset, 1 - leftOffset, 1 - WIDTH / 2 - topOffset, 1 + WIDTH / 2 - topOffset), 16, 16, 0, 0, 0, true);
+        TextureAtlasSprite leftGlass = selectGlassTexture(left, bottom, top);
+        RenderHelpers.renderTexturedQuads(poseStack, buffer, leftGlass, packedLight, packedOverlay, getPlaneVertices(0.5f, 0 - WIDTH / 2 + downOffset, WIDTH / 2 + downOffset, 1 - leftOffset, 1 - WIDTH / 2 - topOffset, 1 + WIDTH / 2 - topOffset, topOffset, 1 - downOffset), 16, 16, 0, 0, 0, false);
+
+        TextureAtlasSprite rightGlass = selectGlassTexture(right, bottom, top);
+        RenderHelpers.renderTexturedQuads(poseStack, buffer, rightGlass, packedLight, packedOverlay, getPlaneVertices(rightOffset, 0 - WIDTH / 2 + downOffset, WIDTH / 2 + downOffset, 0.5f, 1 - WIDTH / 2 - topOffset, 1 + WIDTH / 2 - topOffset, topOffset, 1 - downOffset), 16, 16, 0, 0, 0, false);
 
         poseStack.popPose();
         poseStack.popPose();
@@ -105,6 +109,51 @@ public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
         RenderHelpers.renderTexturedQuads(poseStack, buffer, texture, packedLight, packedOverlay, getXVertices(minX, minY, minZ, maxX, maxY, maxZ), 16, 16, normal.getX(), 0, normal.getZ(), true);
         RenderHelpers.renderTexturedQuads(poseStack, buffer, texture, packedLight, packedOverlay, getYVertices(minX, minY, minZ, maxX, maxY, maxZ), 16, 16, 0, 1, 0, true);
         RenderHelpers.renderTexturedQuads(poseStack, buffer, texture, packedLight, packedOverlay, getZVertices(minX, minY, minZ, maxX, maxY, maxZ), 16, 16, normal.getZ(), 0, normal.getX(), true);
+    }
+
+
+    private TextureAtlasSprite selectGlassTexture(boolean side, boolean bottom, boolean top)
+    {
+        Material material;
+        if (side)
+        {
+            if (bottom && top)
+            {
+                material = glassThinTexture;
+            }
+            else if (bottom)
+            {
+                material = glassThinDownTexture;
+            }
+            else if (top)
+            {
+                material = glassThinUpTexture;
+            }
+            else
+            {
+                material = glassThinBothTexture;
+            }
+        }
+        else
+        {
+            if (bottom && top)
+            {
+                material = glassThickTexture;
+            }
+            else if (bottom)
+            {
+                material = glassThickDownTexture;
+            }
+            else if (top)
+            {
+                material = glassThickUpTexture;
+            }
+            else
+            {
+                material = glassThickBothTexture;
+            }
+        }
+        return material.sprite();
     }
 
 
@@ -186,18 +235,20 @@ public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
         };
     }
 
-    private static float[][] getPlaneVertices(float minX, float minY, float minZ, float maxX, float maxY, float maxZ)
+    private static float[][] getPlaneVertices(float minX, float minY, float minZ, float maxX, float maxY, float maxZ, float v0, float v1)
     {
+        float u0 = 1 - minX;
+        float u1 = 1 - maxX;
         return new float[][] {
-            {maxX, maxY, maxZ, 0, 1, 1.0F},
-            {maxX, minY, minZ, 1, 1, 1.0F},
-            {minX, minY, minZ, 1, 0, 1.0F},
-            {minX, maxY, maxZ, 0, 0, 1.0F},
+            {maxX, maxY, maxZ, u1, v0, 1.0F},
+            {maxX, minY, minZ, u1, v1, 1.0F},
+            {minX, minY, minZ, u0, v1, 1.0F},
+            {minX, maxY, maxZ, u0, v0, 1.0F},
 
-            {minX, maxY, maxZ, 0, 1, 1.0F},
-            {minX, minY, minZ, 1, 1, 1.0F},
-            {maxX, minY, minZ, 1, 0, 1.0F},
-            {maxX, maxY, maxZ, 0, 0, 1.0F}
+            {minX, maxY, maxZ, u0, v0, 1.0F},
+            {minX, minY, minZ, u0, v1, 1.0F},
+            {maxX, minY, minZ, u1, v1, 1.0F},
+            {maxX, maxY, maxZ, u1, v0, 1.0F}
         };
     }
 
