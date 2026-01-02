@@ -7,7 +7,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.Property;
 
 public interface GreenhouseConnectable
 {
@@ -64,19 +63,6 @@ public interface GreenhouseConnectable
                 return true;
             }
             return false;
-        }
-    }
-
-    enum WallType implements StringRepresentable
-    {
-        THICK,
-        THIN,
-        NONE;
-
-        @Override
-        public String getSerializedName()
-        {
-            return name().toLowerCase(Locale.ROOT);
         }
     }
 
@@ -142,24 +128,6 @@ public interface GreenhouseConnectable
             state = withConnection(state, direction, level.getBlockState(targetPos), level, pos, targetPos);
         }
         return state;
-    }
-
-    static boolean isFacingSameDirection(Property<Direction> property, BlockState state, Direction facing)
-    {
-        if (state.hasProperty(property))
-        {
-            return state.getValue(property) == facing;
-        }
-        return false;
-    }
-
-    static Set<Direction> getConnections(BlockState state, BlockPos pos, LevelAccessor level)
-    {
-        if (state.getBlock() instanceof GreenhouseConnectable connectable)
-        {
-            return connectable.getConnectionFaces(state, pos, level);
-        }
-        return Set.of();
     }
 
     static boolean hasConnectionAt(BlockState state, BlockPos pos, LevelAccessor level, Direction direction)

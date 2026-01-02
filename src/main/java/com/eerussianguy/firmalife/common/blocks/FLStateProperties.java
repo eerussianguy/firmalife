@@ -1,6 +1,5 @@
 package com.eerussianguy.firmalife.common.blocks;
 
-import com.eerussianguy.firmalife.common.blocks.greenhouse.GreenhouseConnectable;
 import com.eerussianguy.firmalife.common.util.FoodAge;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
@@ -25,5 +24,4 @@ public class FLStateProperties
     public static final EnumProperty<FoodAge> AGE = EnumProperty.create("age", FoodAge.class);
     public static final BooleanProperty LEFT = BooleanProperty.create("left");
     public static final BooleanProperty RIGHT = BooleanProperty.create("right");
-    public static final EnumProperty<GreenhouseConnectable.WallType> A = EnumProperty.create("a", GreenhouseConnectable.WallType.class);
 }

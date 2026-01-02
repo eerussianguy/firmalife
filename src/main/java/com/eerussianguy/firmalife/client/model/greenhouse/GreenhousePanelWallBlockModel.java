@@ -11,7 +11,6 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
-import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.client.model.geometry.IGeometryBakingContext;
 
@@ -266,11 +265,6 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
             {minX, maxY, minZ, 1 - u0, v0, -1.0F},
             {maxX, maxY, maxZ, 1 - u1, v0, -1.0F}
         };
-    }
-
-    private static float toPixelSize(float input, float pixelSize)
-    {
-        return pixelSize * (Mth.ceil(Mth.clamp(input, 0f, 1f) / pixelSize));
     }
 
     /**
