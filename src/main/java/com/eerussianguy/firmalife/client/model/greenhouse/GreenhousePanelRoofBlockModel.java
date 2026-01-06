@@ -264,7 +264,7 @@ public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
         RenderHelpers.renderTexturedQuads(poseStack, buffer, texture, packedLight, packedOverlay, getXVertices(minX, minY, minZ, maxX, maxY, maxZ), 16, 16, normal.getX(), 0, normal.getZ(), true);
         //RenderHelpers.renderTexturedQuads(poseStack, buffer, texture, packedLight, packedOverlay, getYVertices(minX, minY, minZ, maxX, maxY, maxZ), 16, 16, 0, 1, 0, true);
         RenderHelpers.renderTexturedQuads(poseStack, buffer, texture, packedLight, packedOverlay, getZVertices(minX, minY, minZ, maxX, maxY, maxZ), 16, 16, normal.getZ(), 0, normal.getX(), true);
-        RenderHelpers.renderTexturedQuads(poseStack, buffer, glassCorner.sprite(), packedLight, packedOverlay, getGlassSideVertices(minX + (1 / 16f), minY - (2 / 16f), minZ - (1 / 16f), maxX - (2 / 16f), maxY - (2 / 16f), maxZ - (2 / 16f)), 16, 16, 0, 0, 0, false);
+        RenderHelpers.renderTexturedQuads(poseStack, buffer, glassCorner.sprite(), packedLight, packedOverlay, getGlassSideVertices(minX + (1 / 16f), minY, minZ - (1 / 16f), maxX - (2 / 16f), maxY - (2 / 16f), maxZ - (2 / 16f)), 16, 16, 0, 0, 0, false);
     }
 
     public static float[][] getXVertices(float minX, float minY, float minZ, float maxX, float maxY, float maxZ)
