@@ -323,10 +323,10 @@ public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
             {xPos, maxY - PIXEL_WIDTH, minZ, 1 - u0, v1 + PIXEL_WIDTH, -1.0F},
             {xPos, maxY, maxZ, 1 - u1, v1, -1.0F},
             // Diagonal edge
-            {xPos, -PIXEL_WIDTH * 2, PIXEL_WIDTH, u0, v0, -1.0F},
-            {xPos, minY, -8 / 16f, u0, v1, -1.0F},
-            {xPos, maxY - PIXEL_WIDTH * 2, minZ, u1, v1, -1.0F},
-            {xPos, maxY - PIXEL_WIDTH, minZ, u0, v1, -1.0F},
+            {xPos, maxY - PIXEL_WIDTH * 14, 0, 0, 0, -1.0F},
+            {xPos, maxY - PIXEL_WIDTH * 15, 0, 0, PIXEL_WIDTH, -1.0F},
+            {xPos, maxY - PIXEL_WIDTH * 2, maxZ - PIXEL_WIDTH, 1, PIXEL_WIDTH, -1.0F},
+            {xPos, maxY - PIXEL_WIDTH, maxZ - PIXEL_WIDTH, 1, 0, -1.0F},
         };
     }
 }
