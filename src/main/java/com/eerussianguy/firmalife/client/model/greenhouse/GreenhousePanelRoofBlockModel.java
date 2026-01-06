@@ -295,8 +295,8 @@ public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
         return new float[][] {
             {maxX, minY, minZ, u0, v1, 1.0F},
             {minX, minY, minZ, u1, v1, 1.0F},
-            {minX, maxY - (2 / 16f), minZ, u1, v0, 1.0F},
-            {maxX, maxY - (2 / 16f), minZ, u0, v0, 1.0F},
+            {minX, maxY - (2 / 16f), minZ, u1, v0 + (2 / 16f), 1.0F},
+            {maxX, maxY - (2 / 16f), minZ, u0, v0 + (2 / 16f), 1.0F},
             {minX, minY, maxZ, u1, v1, -1.0F},
             {maxX, minY, maxZ, u0, v1, -1.0F},
             {maxX, maxY, maxZ, u0, v0, -1.0F},
