@@ -15,6 +15,13 @@ issueTrackerURL = "https://github.com/eerussianguy/firmalife/issues"
 
 # Dependencies
 [[dependencies.firmalife]]
+    modId = "tfc"
+    type = "required"
+    versionRange = "${tfcVersionRange}"
+    ordering = "AFTER"
+    side = "BOTH"
+
+[[dependencies.firmalife]]
     modId = "patchouli"
     type = "required"
     versionRange = "${patchouliVersionRange}"
