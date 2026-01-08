@@ -20,6 +20,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -37,12 +38,17 @@ public class GreenhousePanelRoofBlock extends TransparentBlock implements IWeath
     ));
 
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    @Deprecated
     public static final BooleanProperty CW = FLStateProperties.CW;
+    @Deprecated
     public static final BooleanProperty CCW = FLStateProperties.CCW;
     public static final BooleanProperty UP = BlockStateProperties.UP;
     public static final BooleanProperty DOWN = BlockStateProperties.DOWN;
     public static final BooleanProperty LEFT = FLStateProperties.LEFT;
     public static final BooleanProperty RIGHT = FLStateProperties.RIGHT;
+    public static final BooleanProperty BACK = BooleanProperty.create("back");
+    public static final BooleanProperty BOTTOM = BlockStateProperties.BOTTOM;
+    public static final EnumProperty<SideType> EXTRA_WALL = EnumProperty.create("extra", SideType.class);
 
     private final ExtendedProperties properties;
     @Nullable private final Supplier<? extends Block> next;
@@ -62,6 +68,9 @@ public class GreenhousePanelRoofBlock extends TransparentBlock implements IWeath
                 .setValue(UP, true)
                 .setValue(LEFT, false)
                 .setValue(RIGHT, false)
+                .setValue(BACK, false)
+                .setValue(BOTTOM, false)
+                .setValue(EXTRA_WALL, SideType.NONE)
         );
     }
 
@@ -106,7 +115,7 @@ public class GreenhousePanelRoofBlock extends TransparentBlock implements IWeath
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
     {
-        super.createBlockStateDefinition(builder.add(FACING, CCW, CW, UP, DOWN, LEFT, RIGHT));
+        super.createBlockStateDefinition(builder.add(FACING, CCW, CW, UP, DOWN, LEFT, RIGHT, BACK, BOTTOM, EXTRA_WALL));
     }
 
     @Override
