@@ -1,8 +1,0 @@
-{
-  "__comment__": "This file was automatically created by mcresources",
-  "parent": "firmalife:block/greenhouse/base/multipart/panel_roof/panel_roof_up_thick_left",
-  "textures": {
-    "glass": "firmalife:block/greenhouse/glass_thick_up",
-    "material": "firmalife:block/greenhouse/treated_wood"
-  }
-}

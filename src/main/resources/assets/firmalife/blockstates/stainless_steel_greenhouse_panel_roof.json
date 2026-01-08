@@ -1,7 +1,7 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "variants" : {
-    "" : {
+  "variants": {
+    "": {
       "model": "firmalife:block/greenhouse/stainless_steel/panel_roof"
     }
   }
