@@ -13,7 +13,6 @@ import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blocks.CheeseWheelBlock;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.blocks.FLStateProperties;
-import com.eerussianguy.firmalife.common.blocks.KegBlock;
 import com.eerussianguy.firmalife.common.blocks.MixingBowlBlock;
 import com.eerussianguy.firmalife.common.blocks.greenhouse.Greenhouse;
 import com.eerussianguy.firmalife.common.blocks.greenhouse.GreenhouseConnectable;
@@ -335,7 +334,7 @@ public class BuiltinBlockLootTables extends BlockLootSubProvider implements Acce
                                 .when(survivesExplosion())
                                 .apply(setCount(1, 4))
                         )
-            ));
+                ));
             add(sapling.get(),
                 LootTable.lootTable().withPool(
                     lootPool()
@@ -346,7 +345,7 @@ public class BuiltinBlockLootTables extends BlockLootSubProvider implements Acce
                                 .apply(setCount(3).when(hasProperty(sapling.get(), TFCBlockStateProperties.SAPLINGS, 3)))
                                 .apply(setCount(4).when(hasProperty(sapling.get(), TFCBlockStateProperties.SAPLINGS, 4)))
                         )
-            ));
+                ));
         });
 
         //TODO replace this last one?
