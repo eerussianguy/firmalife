@@ -172,9 +172,9 @@ public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
 
     private float[][] getPanelSideVertices(float minX, float minY, float minZ, float maxX, float maxY, float maxZ, boolean back, boolean bottom)
     {
-        float p2minY = minY - WIDTH;
+        float p2minY = minY - (bottom ? 0 : WIDTH);
         float p2maxY = maxY - (back ? WIDTH * 2 : WIDTH);
-        float p2minZ = minY + WIDTH;
+        float p2minZ = minY + (bottom ? WIDTH * 2 : WIDTH);
         float p2maxZ = maxY + (back ? 0 : WIDTH);
         float u0 = 1 - minX;
         float u1 = 1 - maxX;
@@ -197,9 +197,9 @@ public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
 
     private float[][] getPanelTopVertices(float minX, float minY, float minZ, float maxX, float maxY, float maxZ, boolean back, boolean bottom)
     {
-        float p2minY = minY - WIDTH;
+        float p2minY = minY - (bottom ? 0 : WIDTH);
         float p2maxY = maxY - (back ? WIDTH * 2 : WIDTH);
-        float p2minZ = minY + WIDTH;
+        float p2minZ = minY + (bottom ? WIDTH * 2 : WIDTH);
         float p2maxZ = maxY + (back ? 0 : WIDTH);
         float u0 = 1 - minX;
         float u1 = 1 - maxX;
@@ -222,9 +222,9 @@ public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
 
     private float[][] getPanelEndVertices(float minX, float minY, float minZ, float maxX, float maxY, float maxZ, boolean back, boolean bottom)
     {
-        float p2minY = minY - WIDTH;
+        float p2minY = minY - (bottom ? 0 : WIDTH);
         float p2maxY = maxY - (back ? WIDTH * 2 : WIDTH);
-        float p2minZ = minY + WIDTH;
+        float p2minZ = minY + (bottom ? WIDTH * 2 : WIDTH);
         float p2maxZ = maxY + (back ? 0 : WIDTH);
         float u0 = 1 - minX;
         float u1 = 1 - maxX;
