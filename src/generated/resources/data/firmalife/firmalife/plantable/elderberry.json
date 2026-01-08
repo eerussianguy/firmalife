@@ -1,0 +1,28 @@
+{
+  "crop": {
+    "count": 1,
+    "id": "tfc:food/elderberry"
+  },
+  "extra_seed_chance": 0.08,
+  "ingredient": {
+    "item": "tfc:plant/elderberry_bush"
+  },
+  "nutrient": {
+    "nitrogen": 0.25,
+    "phosphorous": 0.25,
+    "potassium": 0.25
+  },
+  "planter": "trellis",
+  "seed": {
+    "count": 1,
+    "id": "tfc:plant/elderberry_bush"
+  },
+  "specials": [],
+  "textures": [
+    "tfc:block/berry_bush/elderberry_bush",
+    "tfc:block/berry_bush/dry_elderberry_bush",
+    "tfc:block/berry_bush/flowering_elderberry_bush",
+    "tfc:block/berry_bush/fruiting_elderberry_bush"
+  ],
+  "tier": 15
+}
