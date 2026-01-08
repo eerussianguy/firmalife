@@ -129,16 +129,8 @@ public class GreenhousePanelWallBlock extends BaseGreenhouseBlock implements IWe
     }
 
     @Override
-    public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving)
-    {
-        super.onRemove(state, level, pos, newState, isMoving);
-        fixPanelRoofs(level, pos);
-    }
-
-    @Override
     public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos)
     {
-        fixPanelRoofs(level, currentPos);
         return withConnection(state, facing, facingState, level, currentPos, facingPos);
     }
 
@@ -168,20 +160,6 @@ public class GreenhousePanelWallBlock extends BaseGreenhouseBlock implements IWe
             }
         }
         return false;
-    }
-
-    private void fixPanelRoofs(LevelAccessor level, BlockPos pos)
-    {
-        if (true) return;
-        for (Direction dir : Direction.Plane.HORIZONTAL)
-        {
-            final BlockPos relativePos = pos.above().relative(dir);
-            final BlockState relativeState = level.getBlockState(relativePos);
-            if (relativeState.getBlock() instanceof GreenhousePanelRoofBlock)
-            {
-                level.scheduleTick(relativePos, relativeState.getBlock(), 1);
-            }
-        }
     }
 
     private boolean itemMatchesThis(ItemStack stack)

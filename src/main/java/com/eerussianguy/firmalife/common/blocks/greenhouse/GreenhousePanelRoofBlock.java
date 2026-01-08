@@ -10,6 +10,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Mirror;
@@ -95,13 +96,13 @@ public class GreenhousePanelRoofBlock extends TransparentBlock implements IWeath
     @Override
     public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos pos, BlockPos facingPos)
     {
-        return update(level, pos, state);
+        return withConnection(state, facing, facingState, level, pos, facingPos);
     }
 
     @Override
     public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random)
     {
-        level.setBlockAndUpdate(pos, update(level, pos, state));
+        level.setBlockAndUpdate(pos, updateDiagonals(level, pos, state));
     }
 
     @Override
@@ -109,7 +110,17 @@ public class GreenhousePanelRoofBlock extends TransparentBlock implements IWeath
     public BlockState getStateForPlacement(BlockPlaceContext ctx)
     {
         final BlockState state = super.getStateForPlacement(ctx);
-        return state == null ? null : update(ctx.getLevel(), ctx.getClickedPos(), state.setValue(FACING, ctx.getHorizontalDirection().getOpposite()));
+        if (state == null)
+        {
+            return null;
+        }
+        else
+        {
+            Level level = ctx.getLevel();
+            BlockPos pos = ctx.getClickedPos();
+            Direction facing = ctx.getHorizontalDirection().getOpposite();
+            return updateConnections(updateDiagonals(level, pos, state.setValue(FACING, facing)), pos, level, facing.getOpposite(), facing.getClockWise(), facing.getCounterClockWise(), Direction.DOWN);
+        }
     }
 
     @Override
@@ -130,26 +141,19 @@ public class GreenhousePanelRoofBlock extends TransparentBlock implements IWeath
         return state.rotate(mirror.getRotation(state.getValue(FACING)));
     }
 
-    private BlockState update(LevelAccessor level, BlockPos pos, BlockState state)
+    private BlockState updateDiagonals(LevelAccessor level, BlockPos pos, BlockState state)
     {
         final Direction facing = state.getValue(FACING);
         final Direction oppositeFacing = facing.getOpposite();
+
         final BlockPos upPos = pos.relative(oppositeFacing, 1).above();
         final BlockPos downPos = pos.relative(facing, 1).below();
 
-        final BlockState below = level.getBlockState(pos.below());
-        final BlockState cws = level.getBlockState(pos.below().relative(oppositeFacing.getClockWise()));
-        final BlockState ccws = level.getBlockState(pos.below().relative(oppositeFacing.getCounterClockWise()));
         final BlockState downState = level.getBlockState(downPos);
         final BlockState upState = level.getBlockState(upPos);
 
-        //below.getValue(GreenhousePanelWallBlock.FACING) == facing.getClockWise()
-        final boolean cw = GreenhousePanelWallBlock.getWallStates(below).contains(facing.getClockWise());
-        final boolean ccw = GreenhousePanelWallBlock.getWallStates(below).contains(facing.getCounterClockWise());
         final boolean up = isValidPanel(upState, facing);
         final boolean down = isValidPanel(downState, facing);
-        final boolean left = !isValidPanel(level.getBlockState(pos.relative(facing.getClockWise())), facing);
-        final boolean right = !isValidPanel(level.getBlockState(pos.relative(facing.getCounterClockWise())), facing);
 
         if (!up)
         {
@@ -160,7 +164,7 @@ public class GreenhousePanelRoofBlock extends TransparentBlock implements IWeath
             level.scheduleTick(downPos, downState.getBlock(), 1);
         }
 
-        return state.setValue(CW, cw).setValue(CCW, ccw).setValue(UP, up).setValue(DOWN, down).setValue(LEFT, left).setValue(RIGHT, right);
+        return state.setValue(UP, up).setValue(DOWN, down);
     }
 
     private boolean isValidPanel(BlockState state, Direction facing)
@@ -171,7 +175,27 @@ public class GreenhousePanelRoofBlock extends TransparentBlock implements IWeath
     @Override
     public BlockState withConnection(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos)
     {
-        return null;
+        final Direction currentFacing = state.getValue(FACING);
+        final Direction oppositeFacing = currentFacing.getOpposite();
+        if (facing == oppositeFacing)
+        {
+            return state.setValue(BACK, facingState.getBlock() instanceof GreenhousePanelRoofBlock || facingState.isFaceSturdy(level, facingPos, oppositeFacing));
+        }
+        if (facing == Direction.DOWN)
+        {
+            final boolean cw = GreenhousePanelWallBlock.getWallStates(facingState).contains(currentFacing.getClockWise());
+            final boolean ccw = GreenhousePanelWallBlock.getWallStates(facingState).contains(currentFacing.getCounterClockWise());
+            return state.setValue(CW, cw).setValue(CCW, ccw).setValue(BOTTOM, facingState.isFaceSturdy(level, facingPos, Direction.UP));
+        }
+        if (facing == currentFacing.getClockWise())
+        {
+            return state.setValue(LEFT, !isValidPanel(level.getBlockState(facingPos), currentFacing));
+        }
+        if (facing == currentFacing.getCounterClockWise())
+        {
+            return state.setValue(RIGHT, !isValidPanel(level.getBlockState(facingPos), currentFacing));
+        }
+        return state;
     }
 
     @Override
