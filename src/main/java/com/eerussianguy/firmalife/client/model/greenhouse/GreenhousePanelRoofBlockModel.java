@@ -180,17 +180,18 @@ public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
         float u1 = 1 - maxX;
         float v0 = 1 - maxY;
         float v1 = 1 - minY;
+        float backVOffset = back ? WIDTH : 0;
         return new float[][] {
             // Left face
             {maxX, maxY, maxZ, u0, v0, 1.0F},
-            {maxX, p2maxY, p2maxZ, u1, v0, 1.0F},
+            {maxX, p2maxY, p2maxZ, u1, v0 + backVOffset, 1.0F},
             {maxX, p2minY, p2minZ, u1, v1, 1.0F},
             {maxX, minY, minZ, u0, v1, 1.0F},
 
             // Right face
             {minX, minY, minZ, u0, v1, -1.0F},
             {minX, p2minY, p2minZ, u1, v1, -1.0F},
-            {minX, p2maxY, p2maxZ, u1, v0, -1.0F},
+            {minX, p2maxY, p2maxZ, u1, v0 + backVOffset, -1.0F},
             {minX, maxY, maxZ, u0, v0, -1.0F}
         };
     }
@@ -205,6 +206,7 @@ public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
         float u1 = 1 - maxX;
         float v0 = 1 - maxY;
         float v1 = 1 - minY;
+        float backVOffset = back ? WIDTH : 0;
         return new float[][] {
             // Front face
             {maxX, maxY, maxZ, u1, v0, 1.0F},
@@ -213,10 +215,10 @@ public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
             {minX, maxY, maxZ, u0, v0, 1.0F},
 
             // Back face
-            {minX, p2maxY, p2maxZ, u0, v0, -1.0F},
+            {minX, p2maxY, p2maxZ, u0, v0 + backVOffset, -1.0F},
             {minX, p2minY, p2minZ, u0, v1, -1.0F},
             {maxX, p2minY, p2minZ, u1, v1, -1.0F},
-            {maxX, p2maxY, p2maxZ, u1, v0, -1.0F}
+            {maxX, p2maxY, p2maxZ, u1, v0 + backVOffset, -1.0F}
         };
     }
 
