@@ -32,7 +32,6 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -54,17 +53,15 @@ public class GreenhousePanelWallBlock extends BaseGreenhouseBlock implements IWe
 
     public static final VoxelShape[] SHAPES = Helpers.computeHorizontalShapes(d -> Helpers.rotateShape(d, 0, 0, 0, 16, 16, 2));
     public static final VoxelShape[] LEFT_SHAPES = Helpers.computeHorizontalShapes(dir ->
-        Shapes.join(
+        Shapes.or(
             SHAPES[dir.get2DDataValue()],
-            Helpers.rotateShape(dir, 14, 0, 0, 16, 16, 16),
-            BooleanOp.OR
+            Helpers.rotateShape(dir, 14, 0, 0, 16, 16, 16)
         )
     );
     public static final VoxelShape[] RIGHT_SHAPES = Helpers.computeHorizontalShapes(dir ->
-        Shapes.join(
+        Shapes.or(
             SHAPES[dir.get2DDataValue()],
-            Helpers.rotateShape(dir, 0, 0, 0, 2, 16, 16),
-            BooleanOp.OR
+            Helpers.rotateShape(dir, 0, 0, 0, 2, 16, 16)
         )
     );
 
