@@ -1,4 +1,4 @@
-21name: Test 1.21.x
+name: Test 1.21.x
 
 on:
   push:
