@@ -8,8 +8,8 @@
   },
   "nutrient": {
     "nitrogen": 0.2,
-    "phosphorous": 0.2,
-    "potassium": 0.2
+    "phosphorous": 0.25,
+    "potassium": 0.25
   },
   "planter": "hydroponic",
   "seed": {
