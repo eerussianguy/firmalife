@@ -11,8 +11,6 @@ public class FLConfig
 {
     public static final FLServerConfig SERVER = register(FLServerConfig::new, ConfigBuilder.ServerValue::new, "server");
 
-    public static void init() {}
-
     private static <C extends BaseConfig> C register(Function<ConfigBuilder, C> factory, ConfigBuilder.Factory value, String prefix)
     {
         final Pair<C, ModConfigSpec> pair = new ModConfigSpec.Builder()

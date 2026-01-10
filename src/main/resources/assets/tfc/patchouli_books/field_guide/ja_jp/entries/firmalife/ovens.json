@@ -125,12 +125,18 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/rustic_finish",
-      "recipe2": "firmalife:crafting/stone_finish"
+      "recipe": "firmalife:crafting/rustic_bricks",
+      "recipe2": "firmalife:crafting/rustic_finish"
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/tile_finish"
+      "recipe": "firmalife:crafting/stone_finish",
+      "recipe2": "firmalife:crafting/tile_brick"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/tile_bricks",
+      "recipe2": "firmalife:crafting/tile_finish"
     }
   ],
   "read_by_default": true,

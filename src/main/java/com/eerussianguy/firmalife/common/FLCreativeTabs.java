@@ -48,7 +48,6 @@ public final class FLCreativeTabs
         accept(out, FLItems.CHEESECLOTH);
         accept(out, FLItems.FRUIT_LEAF);
         accept(out, FLItems.ICE_SHAVINGS);
-        accept(out, FLItems.OVEN_INSULATION);
         accept(out, FLItems.PEEL);
         accept(out, FLItems.PIE_PAN);
         accept(out, FLItems.PINEAPPLE_YARN);
@@ -105,13 +104,16 @@ public final class FLCreativeTabs
             else if (type == OvenType.TILE)
             {
                 accept(out, FLBlocks.TILES);
-                accept(out, FLBlocks.TILE_DECOR);
+                accept(out, FLBlocks.TILE_BRICKS);
+                accept(out, FLBlocks.TILE_BRICK_DECOR);
             }
         }
         accept(out, FLBlocks.CLAY_OVEN_BOTTOM);
         accept(out, FLBlocks.CLAY_OVEN_TOP);
         accept(out, FLBlocks.CLAY_OVEN_CHIMNEY);
         accept(out, FLBlocks.CLAY_OVEN_HOPPER);
+        accept(out, FLItems.OVEN_INSULATION);
+        accept(out, FLItems.TILE_BRICK);
         accept(out, FLBlocks.ASHTRAY);
         accept(out, FLBlocks.DRYING_MAT);
         accept(out, FLBlocks.SOLAR_DRIER);
@@ -138,10 +140,10 @@ public final class FLCreativeTabs
         accept(out, FLBlocks.SEALED_BRICKS);
         accept(out, FLBlocks.CHISELED_SEALED_BRICKS);
         accept(out, FLBlocks.POLISHED_SEALED_BRICKS);
-        accept(out, FLBlocks.DARK_LADDER);
-        accept(out, FLBlocks.SEALED_DOOR);
-        accept(out, FLBlocks.SEALED_WALL);
-        accept(out, FLBlocks.SEALED_TRAPDOOR);
+        accept(out, FLBlocks.SEALED_BRICK_LADDER);
+        accept(out, FLBlocks.SEALED_BRICK_DOOR);
+        accept(out, FLBlocks.SEALED_BRICK_WALL);
+        accept(out, FLBlocks.SEALED_BRICK_TRAPDOOR);
         accept(out, FLItems.HOLLOW_SHELL);
         accept(out, FLItems.WINE_GLASS);
         accept(out, FLItems.TREATED_LUMBER);

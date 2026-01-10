@@ -25,12 +25,13 @@
     "firmalife:tile_countertop",
     "firmalife:stone_countertop",
     "firmalife:tiles",
-    "firmalife:tiles_slab",
-    "firmalife:tiles_stairs",
-    "firmalife:tiles_wall",
+    "firmalife:tile_bricks",
+    "firmalife:tile_brick_slab",
+    "firmalife:tile_brick_stairs",
+    "firmalife:tile_brick_wall",
     "firmalife:rustic_bricks",
-    "firmalife:rustic_bricks_slab",
-    "firmalife:rustic_bricks_stairs",
-    "firmalife:rustic_bricks_wall"
+    "firmalife:rustic_brick_slab",
+    "firmalife:rustic_brick_stairs",
+    "firmalife:rustic_brick_wall"
   ]
 }

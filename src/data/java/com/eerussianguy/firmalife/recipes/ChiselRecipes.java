@@ -27,7 +27,7 @@ public interface ChiselRecipes extends Recipes
         cleaningPairs.put(Greenhouse.OXIDIZED_COPPER, Greenhouse.COPPER);
         cleaningPairs.put(Greenhouse.WEATHERED_TREATED_WOOD, Greenhouse.TREATED_WOOD);
 
-        chiselSlabStairs(FLBlocks.TILES, FLBlocks.TILE_DECOR);
+        chiselSlabStairs(FLBlocks.TILES, FLBlocks.TILE_BRICK_DECOR);
         chiselSlabStairs(FLBlocks.RUSTIC_BRICKS, FLBlocks.RUSTIC_BRICK_DECOR);
 
         for (var entry : cleaningPairs.entrySet())

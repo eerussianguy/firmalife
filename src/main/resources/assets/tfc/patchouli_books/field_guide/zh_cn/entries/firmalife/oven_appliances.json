@@ -62,7 +62,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Using the Vat, Sugar Water can be made by adding sweetener to water. When the vat finishes, the fluid will change color. Clicking it with an $(thing)Empty Jar With Lid$() will fill it."
+      "text": "使用不锈钢锅，可以通过向水中添加甜味剂来制作$(thing)糖水$()。当锅内反应完成时，流体的颜色会改变。手持$(thing)带盖空罐$()点击它，即可将其装满。"
     },
     {
       "type": "patchouli:text",
@@ -70,7 +70,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Pots and Grills from TFC can be placed on top of a $(thing)Bottom Oven$(). These devices will get heat automatically from the bottom oven. These will work exactly like the regular pot and grill, except for how they receive heat from below."
+      "text": "群峦传说的陶锅和烤架可以放置在$(thing)烤炉底$()上方。这些设备会自动从下方的烤炉获取热量。除了接收热量的方式不同外，它们的工作方式与普通的陶锅和烤架完全一样。"
     }
   ],
   "read_by_default": true,

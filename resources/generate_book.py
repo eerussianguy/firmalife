@@ -112,7 +112,7 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False, rev
         entry('cellar', 'Cellars', 'firmalife:sealed_bricks', pages=(
             text('The $(thing)Cellar$() is a multiblock device controlled by a $(l:firmalife/climate_station)Climate Station$(). The Cellar multiblock\'s only requirement is that it be in an enclosed area surrounded by $(thing)Sealed Bricks$() or $(thing)Sealed Brick Doors$() on all sides. The Climate Station must be placed on the first level of the cellar, touching a wall.'),
             multiblock('An Example Cellar', 'This is just one of many cellars that you could make!', True, multiblock_id='firmalife:cellar'),
-            crafting('firmalife:crafting/sealed_bricks', 'firmalife:crafting/sealed_door'),
+            crafting('firmalife:crafting/sealed_bricks', 'firmalife:crafting/sealed_brick_door'),
             text('$(thing)Beeswax$() is obtained from $(l:firmalife/beekeeping)Beekeeping$().$(br)Cellars are used for $(l:firmalife/cheese#aging)Aging Cheese$().'),
             text('The cellar is used for food preservation, for example by using $(l:firmalife/food_shelves)Food Shelves$() and $(l:firmalife/hangers)Hangers$(). The cellar performs better in environments with cooler average temperatures for food preservation. Below 0 degrees, decay modifiers work slightly better. Below -12 degrees, they perform much better.'),
             empty_last_page()
@@ -188,7 +188,7 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False, rev
             crafting('firmalife:crafting/beeswax', text_contents='$(thing)Scraping$() a beehive frame (right clicking the item with a knife also works) makes $(thing)Beeswax$().'),
             crafting('firmalife:crafting/centrifuge', text_contents='The $(thing)Centrifuge$() is used to process $(thing)Scraped Beehive Frames$() into $(thing)Raw Honey$().'),
             text('The $(thing)Centrifuge$() can be operated via $(item)$(k:key.use)$() or via mechanical power from an axle above the block. $(item)$(k:key.use)$() to put Scraped Beehive Frames in. $(thing)Raw Honey$() will be spawned outside the Centrifuge upon completion. The leftover frames can be reused in a Beehive.'),
-            crafting('firmalife:crafting/sugared_beehive_frame', 'firmalife:crafting/filled_beehive_frame'),
+            crafting('firmalife:crafting/sugared_beehive_frame', 'firmalife:crafting/honeyed_beehive_frame'),
             text('Bees don\'t just produce honey for you, they produce it to survive! When bees have no frames available, or if it is too cold (read the hoe tooltip to see) they will consume honey every 12 days by default. When they are out of honey, they have a chance every day to $(thing)die$().'),
             text('$(thing)Sugared Beehive Frames$() as well as manually-filled $(thing)Filled Beehive Frames$() can be manually added into hives to help sustain bees over winter. This is why skeps have trouble surviving over winter--they can only contain one piece of honey, and have no frames.'),
             crafting('firmalife:crafting/insulating_beehive_frame', text_contents='Adding a $(thing)Insulating Beehive Frame$() adds 2°C of extra temperature resistance to a hive. Adding multiple has no further effect.'),
@@ -266,8 +266,10 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False, rev
             crafting('firmalife:crafting/oven_insulation', text_contents='Crafting oven insulation for your Top or Bottom Oven allows you to remove the need for insulating it with blocks. It does not remove the need for the chimney. Use $(item)$(k:key.use)$() to apply it.'),
             crafting('firmalife:crafting/brick_countertop', text_contents='Countertops are aesthetic blocks that count as oven insulation, and have an appearance that matches that of oven blocks. They are a nice aesthetic choice for your kitchen.'),
             text('Ovens also have $(thing)Finishes$() that can be used to change their appearance. These finishes are applied to the basic brick stage of the oven (or brick blocks themselves), and are cosmetic. Finishes can be mixed and matched. They are applied with $(item)$(k:key.use)$().'),
-            crafting('firmalife:crafting/rustic_finish', 'firmalife:crafting/stone_finish'),
-            crafting('firmalife:crafting/tile_finish')
+            crafting('firmalife:crafting/rustic_bricks', 'firmalife:crafting/rustic_finish'),
+            crafting('firmalife:crafting/stone_finish', 'firmalife:crafting/tile_brick'),
+            crafting('firmalife:crafting/tile_bricks', 'firmalife:crafting/tile_finish'),
+            empty_last_page()
         )),
         entry('oven_appliances', 'Oven Appliances', 'firmalife:vat', pages=(
             text('$(l:firmalife/ovens)Ovens$() have a number of devices that interact with them, that extend their functionality. This is because ovens are modular in nature.'),

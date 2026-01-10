@@ -1,4 +1,4 @@
-Welcome to Firmalife for 1.21.1. Thank you to our contributors @Charnuz and Dodo Many systems have seen changes in this version. Please read below for an incomplete changelog:
+Welcome to Firmalife v3.0.0 for 1.21.1. Thank you to our contributors @Charnuz and Dodo. Many systems have seen changes in this version. Please read below for an incomplete changelog:
 
 ### Bees
 
@@ -27,6 +27,9 @@ Welcome to Firmalife for 1.21.1. Thank you to our contributors @Charnuz and Dodo
 - Stovetop pots can now perform regular pot recipes instead of just soup recipes.
 - Added comparator functionality to ovens, in case for some reason you wanted that.
 - Added Jade info to Stovetop Pots.
+- Redid all oven textures.
+- Added Tile Bricks.
+- Reconfigured some oven finish recipes.
 
 ### Kegs
 
@@ -40,6 +43,9 @@ Welcome to Firmalife for 1.21.1. Thank you to our contributors @Charnuz and Dodo
 - Internally reworked the growth system and rates of the planter system. This will likely not feel very different to players.
 - Updated the overall look of greenhouses, especially panel greenhouses, to be cleaner.
 - Made greenhouse item tooltips more helpful.
+
+### Cellars
+- Renamed many sealed brick related blocks to be more consistent and easier to search up.
 
 ### Herbs, Spices, Food
 

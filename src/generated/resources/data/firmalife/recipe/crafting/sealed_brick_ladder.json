@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": {
+      "item": "firmalife:sealed_bricks"
+    }
+  },
+  "pattern": [
+    "X X",
+    "X X",
+    "X X"
+  ],
+  "result": {
+    "count": 16,
+    "id": "firmalife:sealed_brick_ladder"
+  }
+}

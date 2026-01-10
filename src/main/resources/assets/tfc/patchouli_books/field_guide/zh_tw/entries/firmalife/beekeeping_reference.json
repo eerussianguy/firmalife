@@ -1,46 +1,46 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "name": "Beekeeping Reference",
+  "name": "養蜂參考",
   "category": "tfc:firmalife",
   "icon": "firmalife:textures/item/queen_bee.png",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "This chapter is a continuation of the $(l:firmalife/beekeeping)Beekeeping$() chapter.$(br)The queen bee of a hive has certain abilities. These are passed on and changed when the hive splits. New abilities can only be obtained from the wild, except for Calmness, which has a change to appear during a split in captivity."
+      "text": "本章是$(l:firmalife/beekeeping)養蜂$()章節的延續。$(br)蜂箱的蜂王擁有某些性狀。這些性狀在蜂群分裂時會傳遞並可能改變。新的性狀通常只能從野生蜜蜂中獲得，除了「冷靜度」這一性狀，它在人工飼養下的分蜂過程中有一定幾率出現。"
     },
     {
       "type": "patchouli:text",
-      "text": "$(li)$(thing)Hardiness$(): Allows bees to produce honey at lower temperatures. Each hardiness grants an extra 2°C.$()$(li)$(thing)Production$(): Improves the speed of honey production.$()$(li)$(thing)Mutant$(): Increases variability in the traits passed during splitting swarms$().$(li)$(thing)Fertility$(): Increases likelihood of swarming.$()",
+      "text": "$(li)$(thing)耐寒性$(): 使蜜蜂能在更低的溫度下產蜜。每級耐寒性提供額外2°C的抗寒能力。$()$(li)$(thing)生產力$(): 提高蜂蜜的生產速度。$()$(li)$(thing)突變性$(): 增加分蜂時傳遞性狀的變異性。$()$(li)$(thing)生育力$(): 增加分蜂的可能性。$()",
       "title": "性狀列表"
     },
     {
       "type": "patchouli:text",
-      "text": "$(li)$(thing)Crop Affinity$(): Likelihood of spreading a small amount of nutrients to nearby crops.$()$(li)$(thing)Nature Restoration$(): Causes new flowers and water plants to spawn around the hive.$()$(li)$(thing)Calmness$(): Decreases likelihood of bees attacking you$().$(li)$(thing)Infection Resistance$(): Decreases likelihood of developing genetic diseases and parasitic infections."
+      "text": "$(li)$(thing)作物親和力$(): 有一定幾率向附近作物傳播少量營養。$()$(li)$(thing)自然親和力$(): 導致蜂箱周圍生成新的花卉和水生植物。$()$(li)$(thing)冷靜度$(): 降低蜜蜂攻擊你的可能性。$()$(li)$(thing)感染抗性$(): 降低患上基因病和寄生蟲感染的可能性。"
     },
     {
       "type": "patchouli:text",
-      "text": "Bees with high Mutant ability have a chance of developing a $(thing)Genetic Disease$(). Bees with a genetic disease cannot reproduce."
+      "text": "具有高$(thing)突變性$()性狀的蜜蜂有一定幾率患上$(thing)遺傳病$()。患有遺傳病的蜜蜂無法繁殖。"
     },
     {
       "type": "patchouli:text",
-      "text": "Bees subject to improper conditions can develop $(thing)Parasitic Infections$(). These conditions do not have to do with their species and may spontaneously occur in wild bees. These conditions include: the hive touching any other block besides for the block below it; temperatures below -18 or above 27°C; rainfall below 50 or above 470mm."
+      "text": "Bees subject to improper conditions can develop $(thing)Parasitic Infections$(). These conditions do not have to do with their species and may spontaneously occur in wild bees. These conditions include: the hive touching any other block besides for the block below it; temperatures below -18 or above 27°C; rainfall below 50 or above 470mm. Infected bees cannot make honey."
     },
     {
       "type": "patchouli:text",
-      "text": "$(thing)Bee Species$() are found in different climates, and their conditions describe what you may get from a $(thing)Wild Beehive$() or an attracted wild swarm. Some species are rarer than others.",
-      "title": "Bee Species"
+      "text": "$(thing)蜜蜂物種$()存在於不同的氣候中，它們的生成條件描述了從$(thing)野生蜂巢$()或吸引到的野生蜂群中可能得到什麼。有些物種比其他物種更稀有。",
+      "title": "蜜蜂物種"
     },
     {
       "type": "patchouli:text",
-      "text": "$(li)$(thing)Western Honey Bee$(): Calmness, Production. 5-20°C, 100-400mm. Extremely common. Western bees also spawn when no other bee species is eligible to spawn.$()$(li)$(thing)Asian Honey Bee$(): Fertility, Nature Restoration. 10-30°C, 250-400mm. Common.$()$(li)$(thing)Giant Honey Bee$(): Fertility. 15-30°C, 300-450mm. Common.$()"
+      "text": "$(li)$(thing)西方蜜蜂$(): 冷靜度，生產力。5-20°C，100-400毫米。極其常見。當沒有其他蜜蜂物種符合生成條件時，西方蜜蜂也會生成。$()$(li)$(thing)東方蜜蜂$(): 生育力，自然親和力。10-30°C，250-400毫米。常見。$()$(li)$(thing)大蜂$(): 生育力。15-30°C，300-450毫米。常見。$()"
     },
     {
       "type": "patchouli:text",
-      "text": "$(li)$(thing)Dwarf Honey Bee$(): Fertility, Production. 20-30°C, 300-400mm. Common.$()$(li)$(thing)Black Dwarf Honey Bee$(): Mutant, Nature Restoration. 12-22°C, 150-350mm. Uncommon.$()$(li)$(thing)Koschevnikov's Honey Bee$(): Hardiness, Production, Nature Restoration. 12-16°C, 200-375mm. Very Rare.$()$(li)$(thing)Himalayan Giant Honey Bee$(): Hardiness, Mutant, Production. 10-19°C, 150-250mm, y>96. Rare.$()"
+      "text": "$(li)$(thing)小蜜蜂$(): 生育力，生產力。20-30°C，300-400毫米。常見。$()$(li)$(thing)黑小蜜蜂$(): 突變性，自然親和力。12-22°C，150-350毫米。不常見。$()$(li)$(thing)柯氏蜜蜂$(): 耐寒性，生產力，自然親和力。12-16°C，200-375毫米。非常稀有。$()$(li)$(thing)喜馬拉雅大蜜蜂$(): 耐寒性，突變性，生產力。10-19°C，150-250毫米，y>96。稀有。$()"
     },
     {
       "type": "patchouli:text",
-      "text": "$(li)$(thing)Philippine Honey Bee$(): Calmness, Crop Affinity. 15-20°C, 350-450mm. Very Rare.$()$(li)$(thing)Borneo Mountain Honey Bee$(): Hardiness, Infection Resistance. 13-22°C, 150-400mm, y>96. Common.$()$(li)$(thing)Indonesian Giant Honey Bee$(): Nature Restoration, Fertility, Infection Resistance. 16-20°C, 350-420mm. Uncommon.$()$(li)$(thing)Africanized Honey Bee$(): Hardiness. 10-25°C. 100-320mm. Common.$()"
+      "text": "$(li)$(thing)菲律賓蜜蜂$(): 冷靜度，作物親和力。15-20°C，350-450毫米。非常稀有。$()$(li)$(thing)婆羅洲山蜜蜂$(): 耐寒性，感染抗性。13-22°C，150-400毫米，y>96。常見。$()$(li)$(thing)印度尼西亞大蜜蜂$(): 自然親和力，生育力，感染抗性。16-20°C，350-420毫米。不常見。$()$(li)$(thing)非洲化蜜蜂$(): 耐寒性。10-25°C，100-320毫米。常見。$()"
     },
     {
       "type": "patchouli:crafting",
