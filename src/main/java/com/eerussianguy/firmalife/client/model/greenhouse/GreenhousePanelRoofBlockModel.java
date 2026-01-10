@@ -57,18 +57,20 @@ public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
     {
         //TODO Z & Y faces should have similar shading from normals
         Direction facing = state.getValue(GreenhousePanelRoofBlock.FACING);
-        boolean down = state.getValue(GreenhousePanelRoofBlock.DOWN);
-        boolean up = state.getValue(GreenhousePanelRoofBlock.UP);
-        boolean right = state.getValue(GreenhousePanelRoofBlock.RIGHT);
-        boolean left = state.getValue(GreenhousePanelRoofBlock.LEFT);
+        GreenhouseConnectable.PostType diagonal = state.getValue(GreenhousePanelRoofBlock.DIAGONAL);
+        GreenhouseConnectable.PostType sides = state.getValue(GreenhousePanelRoofBlock.SIDES);
         GreenhouseConnectable.PostSize cw = state.getValue(GreenhousePanelRoofBlock.CW);
         GreenhouseConnectable.PostSize ccw = state.getValue(GreenhousePanelRoofBlock.CCW);
+        boolean right = sides.contains(GreenhouseConnectable.PostType.RIGHT);
+        boolean left = sides.contains(GreenhouseConnectable.PostType.LEFT);
+        boolean down = diagonal.contains(GreenhouseConnectable.PostType.RIGHT);
+        boolean up = diagonal.contains(GreenhouseConnectable.PostType.LEFT);
         boolean bottom = state.getValue(GreenhousePanelRoofBlock.BOTTOM);
         boolean back = state.getValue(GreenhousePanelRoofBlock.BACK);
         float rightOffset = (right ? 1 : 2) / 16f;
         float leftOffset = (left ? 1 : 2) / 16f;
-        float downOffset = (down ? 2 : 0) / 16f;
-        float upOffset = (up ? 2 : 0) / 16f;
+        float downOffset = (down ? 0 : 2) / 16f;
+        float upOffset = (up ? 0 : 2) / 16f;
         float angle = switch (facing)
         {
             case SOUTH -> 180;
@@ -92,11 +94,11 @@ public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
         drawPanelCube(poseStack, buffer, materialTexture.sprite(), packedLight, packedOverlay, 0f, 0f, 0f, rightOffset, 1f, 1f, normal, back, bottom);
         drawPanelCube(poseStack, buffer, materialTexture.sprite(), packedLight, packedOverlay, 1 - leftOffset, 0f, 0f, 1f, 1f, 1f, normal, back, bottom);
 
-        if (down)
+        if (!down)
         {
             drawPanelCube(poseStack, buffer, materialTexture.sprite(), packedLight, packedOverlay, rightOffset, 0f, 0f, 1 - leftOffset, PIXEL_WIDTH * 2, PIXEL_WIDTH * 2, normal, false, bottom);
         }
-        if (up)
+        if (!up)
         {
             drawPanelCube(poseStack, buffer, materialTexture.sprite(), packedLight, packedOverlay, rightOffset, PIXEL_WIDTH * 14, PIXEL_WIDTH * 14, 1 - leftOffset, 1f, 1f, normal, back, false);
         }
@@ -127,38 +129,38 @@ public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
         {
             if (bottom && top)
             {
-                material = glassThinTexture;
+                material = glassThinBothTexture;
             }
             else if (bottom)
             {
-                material = glassThinDownTexture;
+                material = glassThinUpTexture;
             }
             else if (top)
             {
-                material = glassThinUpTexture;
+                material = glassThinDownTexture;
             }
             else
             {
-                material = glassThinBothTexture;
+                material = glassThinTexture;
             }
         }
         else
         {
             if (bottom && top)
             {
-                material = glassThickTexture;
+                material = glassThickBothTexture;
             }
             else if (bottom)
             {
-                material = glassThickDownTexture;
+                material = glassThickUpTexture;
             }
             else if (top)
             {
-                material = glassThickUpTexture;
+                material = glassThickDownTexture;
             }
             else
             {
-                material = glassThickBothTexture;
+                material = glassThickTexture;
             }
         }
         return material.sprite();

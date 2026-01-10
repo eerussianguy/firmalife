@@ -41,6 +41,19 @@ public interface GreenhouseConnectable
             return BOTH;
         }
 
+        public PostType subtract(PostType other)
+        {
+            if (this == NONE || other == BOTH || this == other)
+            {
+                return NONE;
+            }
+            if (this == BOTH && other != NONE)
+            {
+                return other.opposite();
+            }
+            return this;
+        }
+
         public PostType opposite()
         {
             return switch (this)
@@ -63,6 +76,23 @@ public interface GreenhouseConnectable
                 return true;
             }
             return false;
+        }
+
+        public static PostType resolve(boolean left, boolean right)
+        {
+            if (left != right)
+            {
+                if (left)
+                {
+                    return LEFT;
+                }
+                return RIGHT;
+            }
+            if (left)
+            {
+                return BOTH;
+            }
+            return NONE;
         }
     }
 
