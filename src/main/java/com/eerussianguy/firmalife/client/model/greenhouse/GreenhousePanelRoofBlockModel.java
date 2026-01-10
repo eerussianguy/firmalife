@@ -18,7 +18,9 @@ import net.dries007.tfc.client.RenderHelpers;
 
 public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
 {
+    // The width of the panel on the diagonal
     private static final float WIDTH = ((float) Math.sqrt(2) / 16f);
+    // UV width of one pixel, for a 16x16 texture
     private static final float PIXEL_WIDTH = 1 / 16f;
     private final Material materialTexture;
     private final Material glassThinTexture;
@@ -56,29 +58,29 @@ public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
     protected void render(BlockState state, PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay)
     {
         //TODO Z & Y faces should have similar shading from normals
-        Direction facing = state.getValue(GreenhousePanelRoofBlock.FACING);
-        GreenhouseConnectable.PostType diagonal = state.getValue(GreenhousePanelRoofBlock.DIAGONAL);
-        GreenhouseConnectable.PostType sides = state.getValue(GreenhousePanelRoofBlock.SIDES);
-        GreenhouseConnectable.PostSize cw = state.getValue(GreenhousePanelRoofBlock.CW);
-        GreenhouseConnectable.PostSize ccw = state.getValue(GreenhousePanelRoofBlock.CCW);
-        boolean right = sides.contains(GreenhouseConnectable.PostType.RIGHT);
-        boolean left = sides.contains(GreenhouseConnectable.PostType.LEFT);
-        boolean down = diagonal.contains(GreenhouseConnectable.PostType.RIGHT);
-        boolean up = diagonal.contains(GreenhouseConnectable.PostType.LEFT);
-        boolean bottom = state.getValue(GreenhousePanelRoofBlock.BOTTOM);
-        boolean back = state.getValue(GreenhousePanelRoofBlock.BACK);
-        float rightOffset = (right ? 1 : 2) / 16f;
-        float leftOffset = (left ? 1 : 2) / 16f;
-        float downOffset = (down ? 0 : 2) / 16f;
-        float upOffset = (up ? 0 : 2) / 16f;
-        float angle = switch (facing)
+        final Direction facing = state.getValue(GreenhousePanelRoofBlock.FACING);
+        final GreenhouseConnectable.PostType diagonal = state.getValue(GreenhousePanelRoofBlock.DIAGONAL);
+        final GreenhouseConnectable.PostType sides = state.getValue(GreenhousePanelRoofBlock.SIDES);
+        final GreenhouseConnectable.PostSize cw = state.getValue(GreenhousePanelRoofBlock.CW);
+        final GreenhouseConnectable.PostSize ccw = state.getValue(GreenhousePanelRoofBlock.CCW);
+        final boolean right = sides.contains(GreenhouseConnectable.PostType.RIGHT);
+        final boolean left = sides.contains(GreenhouseConnectable.PostType.LEFT);
+        final boolean down = diagonal.contains(GreenhouseConnectable.PostType.RIGHT);
+        final boolean up = diagonal.contains(GreenhouseConnectable.PostType.LEFT);
+        final boolean bottom = state.getValue(GreenhousePanelRoofBlock.BOTTOM);
+        final boolean back = state.getValue(GreenhousePanelRoofBlock.BACK);
+        final float rightOffset = (right ? 1 : 2) / 16f;
+        final float leftOffset = (left ? 1 : 2) / 16f;
+        final float downOffset = (down ? 0 : 2) / 16f;
+        final float upOffset = (up ? 0 : 2) / 16f;
+        final float angle = switch (facing)
         {
             case SOUTH -> 180;
             case EAST -> 270;
             case WEST -> 90;
             default -> 0;
         };
-        Vec3i normal = switch (facing)
+        final Vec3i normal = switch (facing)
         {
             case NORTH, SOUTH -> new Vec3i(1, 0, 0);
             case EAST, WEST -> new Vec3i(0, 0, 1);
@@ -104,19 +106,19 @@ public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
         }
         if (cw != GreenhouseConnectable.PostSize.NONE)
         {
-            drawCube(poseStack, buffer, materialTexture.sprite(), packedLight, packedOverlay, PIXEL_WIDTH * 14, 0, PIXEL_WIDTH * (cw == GreenhouseConnectable.PostSize.THIN ? 15 : 14), 1f, 1 - 2 * WIDTH, 1f, normal);
+            drawSideWall(poseStack, buffer, materialTexture.sprite(), glassCorner.sprite(), packedLight, packedOverlay, PIXEL_WIDTH * 14, 0, PIXEL_WIDTH * (cw == GreenhouseConnectable.PostSize.THIN ? 15 : 14), 1f, 1 - 2 * WIDTH, 1f, normal);
         }
         if (ccw != GreenhouseConnectable.PostSize.NONE)
         {
-            drawCube(poseStack, buffer, materialTexture.sprite(), packedLight, packedOverlay, 0, 0, PIXEL_WIDTH * (ccw == GreenhouseConnectable.PostSize.THIN ? 15 : 14), PIXEL_WIDTH * 2, 1 - 2 * WIDTH, 1f, normal);
+            drawSideWall(poseStack, buffer, materialTexture.sprite(), glassCorner.sprite(), packedLight, packedOverlay, 0, 0, PIXEL_WIDTH * (ccw == GreenhouseConnectable.PostSize.THIN ? 15 : 14), PIXEL_WIDTH * 2, 1 - 2 * WIDTH, 1f, normal);
 
         }
 
         TextureAtlasSprite leftGlass = selectGlassTexture(left, down, up);
-        RenderHelpers.renderTexturedQuads(poseStack, buffer, leftGlass, packedLight, packedOverlay, getPlaneVertices(0.5f, 0 - WIDTH / 2 + downOffset, WIDTH / 2 + downOffset, 1 - leftOffset, 1 - WIDTH / 2 - upOffset, 1 + WIDTH / 2 - upOffset, upOffset, 1 - downOffset), 16, 16, 0, 0, 0, false);
+        RenderHelpers.renderTexturedQuads(poseStack, buffer, leftGlass, packedLight, packedOverlay, getGlassVertices(0.5f, 0 - WIDTH / 2 + downOffset, WIDTH / 2 + downOffset, 1 - leftOffset, 1 - WIDTH / 2 - upOffset, 1 + WIDTH / 2 - upOffset, upOffset, 1 - downOffset), 16, 16, 0, 0, 0, false);
 
         TextureAtlasSprite rightGlass = selectGlassTexture(right, down, up);
-        RenderHelpers.renderTexturedQuads(poseStack, buffer, rightGlass, packedLight, packedOverlay, getPlaneVertices(rightOffset, 0 - WIDTH / 2 + downOffset, WIDTH / 2 + downOffset, 0.5f, 1 - WIDTH / 2 - upOffset, 1 + WIDTH / 2 - upOffset, upOffset, 1 - downOffset), 16, 16, 0, 0, 0, false);
+        RenderHelpers.renderTexturedQuads(poseStack, buffer, rightGlass, packedLight, packedOverlay, getGlassVertices(rightOffset, 0 - WIDTH / 2 + downOffset, WIDTH / 2 + downOffset, 0.5f, 1 - WIDTH / 2 - upOffset, 1 + WIDTH / 2 - upOffset, upOffset, 1 - downOffset), 16, 16, 0, 0, 0, false);
 
         poseStack.popPose();
         poseStack.popPose();
@@ -166,14 +168,14 @@ public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
         return material.sprite();
     }
 
-    private void drawPanelCube(PoseStack poseStack, VertexConsumer buffer, TextureAtlasSprite texture, int packedLight, int packedOverlay, float minX, float minY, float minZ, float maxX, float maxY, float maxZ, Vec3i normal, boolean back, boolean bottom)
+    private static void drawPanelCube(PoseStack poseStack, VertexConsumer buffer, TextureAtlasSprite texture, int packedLight, int packedOverlay, float minX, float minY, float minZ, float maxX, float maxY, float maxZ, Vec3i normal, boolean back, boolean bottom)
     {
         RenderHelpers.renderTexturedQuads(poseStack, buffer, texture, packedLight, packedOverlay, getPanelSideVertices(minX, minY, minZ, maxX, maxY, maxZ, back, bottom), 16, 16, normal.getX(), 0, normal.getZ(), true);
         RenderHelpers.renderTexturedQuads(poseStack, buffer, texture, packedLight, packedOverlay, getPanelTopVertices(minX, minY, minZ, maxX, maxY, maxZ, back, bottom), 16, 16, 0, 1, 0, true);
         RenderHelpers.renderTexturedQuads(poseStack, buffer, texture, packedLight, packedOverlay, getPanelEndVertices(minX, minY, minZ, maxX, maxY, maxZ, back, bottom), 16, 16, normal.getZ(), 0, normal.getX(), true);
     }
 
-    private float[][] getPanelSideVertices(float minX, float minY, float minZ, float maxX, float maxY, float maxZ, boolean back, boolean bottom)
+    private static float[][] getPanelSideVertices(float minX, float minY, float minZ, float maxX, float maxY, float maxZ, boolean back, boolean bottom)
     {
         float p2minY = minY - (bottom ? 0 : WIDTH);
         float p2maxY = maxY - (back ? WIDTH * 2 : WIDTH);
@@ -200,7 +202,7 @@ public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
         };
     }
 
-    private float[][] getPanelTopVertices(float minX, float minY, float minZ, float maxX, float maxY, float maxZ, boolean back, boolean bottom)
+    private static float[][] getPanelTopVertices(float minX, float minY, float minZ, float maxX, float maxY, float maxZ, boolean back, boolean bottom)
     {
         float p2minY = minY - (bottom ? 0 : WIDTH);
         float p2maxY = maxY - (back ? WIDTH * 2 : WIDTH);
@@ -227,7 +229,7 @@ public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
         };
     }
 
-    private float[][] getPanelEndVertices(float minX, float minY, float minZ, float maxX, float maxY, float maxZ, boolean back, boolean bottom)
+    private static float[][] getPanelEndVertices(float minX, float minY, float minZ, float maxX, float maxY, float maxZ, boolean back, boolean bottom)
     {
         float p2minY = minY - (bottom ? 0 : WIDTH);
         float p2maxY = maxY - (back ? WIDTH * 2 : WIDTH);
@@ -252,7 +254,7 @@ public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
         };
     }
 
-    private static float[][] getPlaneVertices(float minX, float minY, float minZ, float maxX, float maxY, float maxZ, float v0, float v1)
+    private static float[][] getGlassVertices(float minX, float minY, float minZ, float maxX, float maxY, float maxZ, float v0, float v1)
     {
         float u0 = 1 - minX;
         float u1 = 1 - maxX;
@@ -269,16 +271,15 @@ public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
         };
     }
 
-    private void drawCube(PoseStack poseStack, VertexConsumer buffer, TextureAtlasSprite texture, int packedLight, int packedOverlay, float minX, float minY, float minZ, float maxX, float maxY, float maxZ, Vec3i normal)
+    private static void drawSideWall(PoseStack poseStack, VertexConsumer buffer, TextureAtlasSprite texture, TextureAtlasSprite glass, int packedLight, int packedOverlay, float minX, float minY, float minZ, float maxX, float maxY, float maxZ, Vec3i normal)
     {
-        RenderHelpers.renderTexturedQuads(poseStack, buffer, texture, packedLight, packedOverlay, getXVertices(minX, minY, minZ, maxX, maxY, maxZ), 16, 16, normal.getX(), 0, normal.getZ(), true);
-        //RenderHelpers.renderTexturedQuads(poseStack, buffer, texture, packedLight, packedOverlay, getYVertices(minX, minY, minZ, maxX, maxY, maxZ), 16, 16, 0, 1, 0, true);
-        RenderHelpers.renderTexturedQuads(poseStack, buffer, texture, packedLight, packedOverlay, getZVertices(minX, minY, minZ, maxX, maxY, maxZ), 16, 16, normal.getZ(), 0, normal.getX(), true);
+        RenderHelpers.renderTexturedQuads(poseStack, buffer, texture, packedLight, packedOverlay, getSideWallXVertices(minX, minY, minZ, maxX, maxY, maxZ), 16, 16, normal.getX(), 0, normal.getZ(), true);
+        RenderHelpers.renderTexturedQuads(poseStack, buffer, texture, packedLight, packedOverlay, getSideWallZVertices(minX, minY, minZ, maxX, maxY, maxZ), 16, 16, normal.getZ(), 0, normal.getX(), true);
         float postWidth = maxZ - minZ;
-        RenderHelpers.renderTexturedQuads(poseStack, buffer, glassCorner.sprite(), packedLight, packedOverlay, getGlassSideVertices(minX + PIXEL_WIDTH, minY, minZ - PIXEL_WIDTH, maxY - postWidth, minZ), 16, 16, 0, 0, 0, false);
+        RenderHelpers.renderTexturedQuads(poseStack, buffer, glass, packedLight, packedOverlay, getGlassSideVertices(minX + PIXEL_WIDTH, minY, minZ - PIXEL_WIDTH, maxY - postWidth, minZ), 16, 16, 0, 0, 0, false);
     }
 
-    public static float[][] getXVertices(float minX, float minY, float minZ, float maxX, float maxY, float maxZ)
+    public static float[][] getSideWallXVertices(float minX, float minY, float minZ, float maxX, float maxY, float maxZ)
     {
         float u0 = minZ;
         float u1 = maxZ;
@@ -298,7 +299,7 @@ public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
         };
     }
 
-    public static float[][] getZVertices(float minX, float minY, float minZ, float maxX, float maxY, float maxZ)
+    public static float[][] getSideWallZVertices(float minX, float minY, float minZ, float maxX, float maxY, float maxZ)
     {
         float u0 = 1 - maxX;
         float u1 = 1 - minX;
@@ -323,7 +324,6 @@ public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
         float u1 = PIXEL_WIDTH;
         float v0 = 1 - minY;
         float v1 = 1 - maxY;
-        float widthOffset = PIXEL_WIDTH * 2 - (1 - maxZ);
         return new float[][] {
             // Vertical edge
             {xPos, minY, minZ, u0, v0, 1.0F},
@@ -335,6 +335,7 @@ public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
             {xPos, minY, minZ, 1 - u0, v0, -1.0F},
             {xPos, maxY - PIXEL_WIDTH, minZ, 1 - u0, v1 + PIXEL_WIDTH, -1.0F},
             {xPos, maxY, maxZ, 1 - u1, v1, -1.0F},
+
             // Diagonal edge
             {xPos, -WIDTH, WIDTH, 0, 0, -1.0F},
             {xPos, -WIDTH - PIXEL_WIDTH, WIDTH, 0, PIXEL_WIDTH, -1.0F},
