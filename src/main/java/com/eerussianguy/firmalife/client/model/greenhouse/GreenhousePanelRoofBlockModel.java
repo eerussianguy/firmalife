@@ -272,7 +272,8 @@ public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
         RenderHelpers.renderTexturedQuads(poseStack, buffer, texture, packedLight, packedOverlay, getXVertices(minX, minY, minZ, maxX, maxY, maxZ), 16, 16, normal.getX(), 0, normal.getZ(), true);
         //RenderHelpers.renderTexturedQuads(poseStack, buffer, texture, packedLight, packedOverlay, getYVertices(minX, minY, minZ, maxX, maxY, maxZ), 16, 16, 0, 1, 0, true);
         RenderHelpers.renderTexturedQuads(poseStack, buffer, texture, packedLight, packedOverlay, getZVertices(minX, minY, minZ, maxX, maxY, maxZ), 16, 16, normal.getZ(), 0, normal.getX(), true);
-        RenderHelpers.renderTexturedQuads(poseStack, buffer, glassCorner.sprite(), packedLight, packedOverlay, getGlassSideVertices(minX + PIXEL_WIDTH, minY, minZ - PIXEL_WIDTH, maxX - PIXEL_WIDTH * 2, maxY - PIXEL_WIDTH * 2, maxZ - PIXEL_WIDTH * 2), 16, 16, 0, 0, 0, false);
+        float postWidth = maxZ - minZ;
+        RenderHelpers.renderTexturedQuads(poseStack, buffer, glassCorner.sprite(), packedLight, packedOverlay, getGlassSideVertices(minX + PIXEL_WIDTH, minY, minZ - PIXEL_WIDTH, maxY - postWidth, minZ), 16, 16, 0, 0, 0, false);
     }
 
     public static float[][] getXVertices(float minX, float minY, float minZ, float maxX, float maxY, float maxZ)
@@ -314,12 +315,13 @@ public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
         };
     }
 
-    public static float[][] getGlassSideVertices(float xPos, float minY, float minZ, float maxX, float maxY, float maxZ)
+    public static float[][] getGlassSideVertices(float xPos, float minY, float minZ, float maxY, float maxZ)
     {
         float u0 = 0;
         float u1 = PIXEL_WIDTH;
         float v0 = 1 - minY;
         float v1 = 1 - maxY;
+        float widthOffset = PIXEL_WIDTH * 2 - (1 - maxZ);
         return new float[][] {
             // Vertical edge
             {xPos, minY, minZ, u0, v0, 1.0F},
@@ -332,15 +334,15 @@ public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
             {xPos, maxY - PIXEL_WIDTH, minZ, 1 - u0, v1 + PIXEL_WIDTH, -1.0F},
             {xPos, maxY, maxZ, 1 - u1, v1, -1.0F},
             // Diagonal edge
-            {xPos, maxY - PIXEL_WIDTH * 14, 0, 0, 0, -1.0F},
-            {xPos, maxY - PIXEL_WIDTH * 15, 0, 0, PIXEL_WIDTH, -1.0F},
+            {xPos, -WIDTH, WIDTH, 0, 0, -1.0F},
+            {xPos, -WIDTH - PIXEL_WIDTH, WIDTH, 0, PIXEL_WIDTH, -1.0F},
             {xPos, maxY - PIXEL_WIDTH * 2, maxZ - PIXEL_WIDTH, 1, PIXEL_WIDTH, -1.0F},
             {xPos, maxY - PIXEL_WIDTH, maxZ - PIXEL_WIDTH, 1, 0, -1.0F},
 
             {xPos, maxY - PIXEL_WIDTH, maxZ - PIXEL_WIDTH, 1, 0, -1.0F},
             {xPos, maxY - PIXEL_WIDTH * 2, maxZ - PIXEL_WIDTH, 1, PIXEL_WIDTH, -1.0F},
-            {xPos, maxY - PIXEL_WIDTH * 15, 0, 0, PIXEL_WIDTH, -1.0F},
-            {xPos, maxY - PIXEL_WIDTH * 14, 0, 0, 0, -1.0F},
+            {xPos, -WIDTH - PIXEL_WIDTH, WIDTH, 0, PIXEL_WIDTH, -1.0F},
+            {xPos, -WIDTH, WIDTH, 0, 0, -1.0F},
         };
     }
 }
