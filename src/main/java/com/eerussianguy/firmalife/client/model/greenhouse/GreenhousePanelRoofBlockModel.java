@@ -58,6 +58,8 @@ public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
     protected void render(BlockState state, PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay)
     {
         //TODO Z & Y faces should have similar shading from normals
+        //TODO small zfighting in areas
+        //TODO class vertices on the extra walls don't always connect
         final Direction facing = state.getValue(GreenhousePanelRoofBlock.FACING);
         final GreenhouseConnectable.PostType diagonal = state.getValue(GreenhousePanelRoofBlock.DIAGONAL);
         final GreenhouseConnectable.PostType sides = state.getValue(GreenhousePanelRoofBlock.SIDES);
