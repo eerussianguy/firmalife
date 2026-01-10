@@ -39,10 +39,8 @@ public class GreenhousePanelRoofBlock extends TransparentBlock implements IWeath
     ));
 
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    @Deprecated
-    public static final BooleanProperty CW = FLStateProperties.CW;
-    @Deprecated
-    public static final BooleanProperty CCW = FLStateProperties.CCW;
+    public static final EnumProperty<PostSize> CW = EnumProperty.create("cw", PostSize.class);
+    public static final EnumProperty<PostSize> CCW = EnumProperty.create("ccw", PostSize.class);
     public static final BooleanProperty UP = BlockStateProperties.UP;
     public static final BooleanProperty DOWN = BlockStateProperties.DOWN;
     public static final BooleanProperty LEFT = FLStateProperties.LEFT;
@@ -63,8 +61,8 @@ public class GreenhousePanelRoofBlock extends TransparentBlock implements IWeath
             getStateDefinition()
                 .any()
                 .setValue(FACING, Direction.NORTH)
-                .setValue(CW, false)
-                .setValue(CCW, false)
+                .setValue(CW, PostSize.NONE)
+                .setValue(CCW, PostSize.NONE)
                 .setValue(DOWN, true)
                 .setValue(UP, true)
                 .setValue(LEFT, false)
@@ -183,8 +181,8 @@ public class GreenhousePanelRoofBlock extends TransparentBlock implements IWeath
         }
         if (facing == Direction.DOWN)
         {
-            final boolean cw = GreenhousePanelWallBlock.getWallStates(facingState).contains(currentFacing.getClockWise());
-            final boolean ccw = GreenhousePanelWallBlock.getWallStates(facingState).contains(currentFacing.getCounterClockWise());
+            final PostSize cw = getSideSize(facingState, currentFacing.getClockWise(), GreenhousePanelWallBlock.LEFT);
+            final PostSize ccw = getSideSize(facingState, currentFacing.getCounterClockWise(), GreenhousePanelWallBlock.RIGHT);
             return state.setValue(CW, cw).setValue(CCW, ccw).setValue(BOTTOM, facingState.isFaceSturdy(level, facingPos, Direction.UP));
         }
         if (facing == currentFacing.getClockWise())
@@ -196,6 +194,19 @@ public class GreenhousePanelRoofBlock extends TransparentBlock implements IWeath
             return state.setValue(RIGHT, !isValidPanel(level.getBlockState(facingPos), currentFacing));
         }
         return state;
+    }
+
+    private static PostSize getSideSize(BlockState state, Direction facing, BooleanProperty side)
+    {
+        if (GreenhousePanelWallBlock.getWallStates(state).contains(facing))
+        {
+            if (state.getValue(side))
+            {
+                return PostSize.THIN;
+            }
+            return PostSize.THICK;
+        }
+        return PostSize.NONE;
     }
 
     @Override

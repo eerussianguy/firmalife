@@ -111,6 +111,19 @@ public interface GreenhouseConnectable
         }
     }
 
+    enum PostSize implements StringRepresentable
+    {
+        NONE,
+        THIN,
+        THICK;
+
+        @Override
+        public String getSerializedName()
+        {
+            return name().toLowerCase(Locale.ROOT);
+        }
+    }
+
     default boolean canConnectTo(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos)
     {
         return false;

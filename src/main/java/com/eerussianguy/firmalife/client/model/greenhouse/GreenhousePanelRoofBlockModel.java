@@ -1,6 +1,7 @@
 package com.eerussianguy.firmalife.client.model.greenhouse;
 
 import com.eerussianguy.firmalife.client.model.GreenhouseBlockModel;
+import com.eerussianguy.firmalife.common.blocks.greenhouse.GreenhouseConnectable;
 import com.eerussianguy.firmalife.common.blocks.greenhouse.GreenhousePanelRoofBlock;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -60,8 +61,8 @@ public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
         boolean up = state.getValue(GreenhousePanelRoofBlock.UP);
         boolean right = state.getValue(GreenhousePanelRoofBlock.RIGHT);
         boolean left = state.getValue(GreenhousePanelRoofBlock.LEFT);
-        boolean cw = state.getValue(GreenhousePanelRoofBlock.CW);
-        boolean ccw = state.getValue(GreenhousePanelRoofBlock.CCW);
+        GreenhouseConnectable.PostSize cw = state.getValue(GreenhousePanelRoofBlock.CW);
+        GreenhouseConnectable.PostSize ccw = state.getValue(GreenhousePanelRoofBlock.CCW);
         boolean bottom = state.getValue(GreenhousePanelRoofBlock.BOTTOM);
         boolean back = state.getValue(GreenhousePanelRoofBlock.BACK);
         float rightOffset = (right ? 1 : 2) / 16f;
@@ -99,13 +100,13 @@ public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
         {
             drawPanelCube(poseStack, buffer, materialTexture.sprite(), packedLight, packedOverlay, rightOffset, PIXEL_WIDTH * 14, PIXEL_WIDTH * 14, 1 - leftOffset, 1f, 1f, normal, back, false);
         }
-        if (cw)
+        if (cw != GreenhouseConnectable.PostSize.NONE)
         {
-            drawCube(poseStack, buffer, materialTexture.sprite(), packedLight, packedOverlay, PIXEL_WIDTH * 14, 0, PIXEL_WIDTH * 14, 1f, 1 - 2 * WIDTH, 1f, normal);
+            drawCube(poseStack, buffer, materialTexture.sprite(), packedLight, packedOverlay, PIXEL_WIDTH * 14, 0, PIXEL_WIDTH * (cw == GreenhouseConnectable.PostSize.THIN ? 15 : 14), 1f, 1 - 2 * WIDTH, 1f, normal);
         }
-        if (ccw)
+        if (ccw != GreenhouseConnectable.PostSize.NONE)
         {
-            drawCube(poseStack, buffer, materialTexture.sprite(), packedLight, packedOverlay, 0, 0, PIXEL_WIDTH * 14, PIXEL_WIDTH * 2, 1 - 2 * WIDTH, 1f, normal);
+            drawCube(poseStack, buffer, materialTexture.sprite(), packedLight, packedOverlay, 0, 0, PIXEL_WIDTH * (ccw == GreenhouseConnectable.PostSize.THIN ? 15 : 14), PIXEL_WIDTH * 2, 1 - 2 * WIDTH, 1f, normal);
 
         }
 
@@ -280,15 +281,16 @@ public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
         float u1 = maxZ;
         float v0 = 1 - minY;
         float v1 = 1 - maxY;
+        float slopeOffset = maxZ - minZ;
         return new float[][] {
             {minX, minY, minZ, u0, v0, 1.0F},
             {minX, minY, maxZ, u1, v0, 1.0F},
             {minX, maxY, maxZ, u1, v1, 1.0F},
-            {minX, maxY - PIXEL_WIDTH * 2, minZ, u0, v1 + PIXEL_WIDTH * 2, 1.0F},
+            {minX, maxY - slopeOffset, minZ, u0, v1 + slopeOffset, 1.0F},
 
             {maxX, minY, maxZ, 1 - u1, v0, -1.0F},
             {maxX, minY, minZ, 1 - u0, v0, -1.0F},
-            {maxX, maxY - PIXEL_WIDTH * 2, minZ, 1 - u0, v1 + PIXEL_WIDTH * 2, -1.0F},
+            {maxX, maxY - slopeOffset, minZ, 1 - u0, v1 + slopeOffset, -1.0F},
             {maxX, maxY, maxZ, 1 - u1, v1, -1.0F}
         };
     }
@@ -299,11 +301,12 @@ public class GreenhousePanelRoofBlockModel extends GreenhouseBlockModel.Baked
         float u1 = 1 - minX;
         float v0 = 1 - maxY;
         float v1 = 1 - minY;
+        float slopeOffset = maxZ - minZ;
         return new float[][] {
             {maxX, minY, minZ, u0, v1, 1.0F},
             {minX, minY, minZ, u1, v1, 1.0F},
-            {minX, maxY - PIXEL_WIDTH * 2, minZ, u1, v0 + PIXEL_WIDTH * 2, 1.0F},
-            {maxX, maxY - PIXEL_WIDTH * 2, minZ, u0, v0 + PIXEL_WIDTH * 2, 1.0F},
+            {minX, maxY - slopeOffset, minZ, u1, v0 + slopeOffset, 1.0F},
+            {maxX, maxY - slopeOffset, minZ, u0, v0 + slopeOffset, 1.0F},
             {minX, minY, maxZ, u1, v1, -1.0F},
             {maxX, minY, maxZ, u0, v1, -1.0F},
             {maxX, maxY, maxZ, u0, v0, -1.0F},
