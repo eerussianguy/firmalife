@@ -61,7 +61,6 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
         final GreenhouseConnectable.DualSide up = state.getValue(GreenhousePanelWallBlock.UP);
         final GreenhouseConnectable.Side side = state.getValue(GreenhousePanelWallBlock.EXTRA_WALL);
 
-        //TODO issues with corner walls when the main face has an upwards connection
         //TODO breaking animation is incorrect
         final float angle = switch (facing)
         {
@@ -83,8 +82,8 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
         poseStack.mulPose(Axis.YP.rotationDegrees(angle));
         poseStack.translate(-0.5f, 0, -0.5f);
 
-        drawSide(poseStack, buffer, packedLight, packedOverlay, GreenhouseConnectable.DualSide.LEFT, left, up, down, side == GreenhouseConnectable.Side.LEFT, false, normal);
-        drawSide(poseStack, buffer, packedLight, packedOverlay, GreenhouseConnectable.DualSide.RIGHT, right, up, down, side == GreenhouseConnectable.Side.RIGHT, true, normal);
+        drawSide(poseStack, buffer, packedLight, packedOverlay, GreenhouseConnectable.DualSide.LEFT, side.dual(), left, up, down, normal);
+        drawSide(poseStack, buffer, packedLight, packedOverlay, GreenhouseConnectable.DualSide.RIGHT, side.dual(), right, up, down, normal);
 
         // Top
         if (up == GreenhouseConnectable.DualSide.NONE || up == side.dual())
@@ -101,58 +100,60 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
         poseStack.popPose();
     }
 
-    private void drawSide(PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay, GreenhouseConnectable.DualSide sideType, boolean side, GreenhouseConnectable.DualSide top, boolean bottom, boolean corner, boolean mirror, Vec3i normal)
+    private void drawSide(PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay, GreenhouseConnectable.DualSide direction, GreenhouseConnectable.DualSide extraSide, boolean sideConnected, GreenhouseConnectable.DualSide top, boolean bottom, Vec3i normal)
     {
+        final boolean mirror = direction == GreenhouseConnectable.DualSide.RIGHT;
+        final boolean isCorner = direction == extraSide;
         final TextureAtlasSprite postTexture = materialTexture.sprite();
-        final float width = side ? PIXEL_WIDTH : 0;
-        final float postStart = bottom ? 0 : (PIXEL_WIDTH * 2);
-        final boolean topConnection = top.contains(sideType.opposite());
-        final boolean topSideConnection = top.contains(sideType);
-        final float postEnd = topConnection ? 1 : (PIXEL_WIDTH * 14);
-        final float sidePostEnd = topSideConnection ? 1 : (PIXEL_WIDTH * 14);
-        final float topOffset = 1 - (topConnection ? 0 : 2 / 16f);
-        final float topSideOffset = 1 - (topSideConnection ? 0 : 2) / 16f;
-        final float downOffset = (bottom ? 0 : 2) / 16f;
+        final boolean topConnection = isCorner ? top.contains(direction.opposite()) : top.contains(direction);
 
-        float postWidth = PIXEL_WIDTH * 2;
-        final float widthStartOffset = side && !mirror ? PIXEL_WIDTH : 0;
-        final float widthEndOffset = side && mirror ? PIXEL_WIDTH : 0;
-
+        final float glassYMax = 1 - (topConnection ? 0 : PIXEL_WIDTH * 2);
+        final float glassYMin = (bottom ? 0 : PIXEL_WIDTH * 2);
         float glassStart = mirror ? PIXEL_WIDTH * 2 : 0.5f;
         float glassEnd = mirror ? 0.5f : PIXEL_WIDTH * 14;
-        float cornerPostStart = mirror ? 0 : PIXEL_WIDTH * 14;
-        float cornerPostEnd = mirror ? PIXEL_WIDTH * 2 : 1f;
 
-        if (corner)
+        float postWidth = PIXEL_WIDTH * 2;
+        float mainPostStart = mirror ? 0 : PIXEL_WIDTH * 14;
+        float mainPostEnd = mirror ? PIXEL_WIDTH * 2 : 1f;
+        final float postYMin = bottom ? 0 : (PIXEL_WIDTH * 2);
+        final float postYMax = topConnection ? 1 : (PIXEL_WIDTH * 14);
+
+        if (isCorner)
         {
+            final boolean topSideConnection = top.contains(direction);
+            final float topSideOffset = 1 - (topSideConnection ? 0 : PIXEL_WIDTH * 2);
+            final float sidePostEnd = topSideConnection ? 1 : (PIXEL_WIDTH * 14);
+            final float sidePostWidth = sideConnected ? PIXEL_WIDTH : 0;
             // Corner post
-            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, cornerPostStart, postStart, 0f, cornerPostEnd, 1f, PIXEL_WIDTH * 2, normal);
+            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, mainPostStart, postYMin, 0f, mainPostEnd, 1f, PIXEL_WIDTH * 2, normal);
             // Extra wall post
-            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, cornerPostStart, postStart, PIXEL_WIDTH * 14 + width, cornerPostEnd, sidePostEnd, 1, normal);
+            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, mainPostStart, postYMin, PIXEL_WIDTH * 14 + sidePostWidth, mainPostEnd, sidePostEnd, 1, normal);
             // Bottom post for the extra wall
             if (!bottom)
             {
-                drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, cornerPostStart, 0f, PIXEL_WIDTH * 2, cornerPostEnd, PIXEL_WIDTH * 2, 1f, normal);
+                drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, mainPostStart, 0f, PIXEL_WIDTH * 2, mainPostEnd, PIXEL_WIDTH * 2, 1f, normal);
             }
             // Top Post for the extra wall
             if (!topSideConnection)
             {
-                drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, cornerPostStart, PIXEL_WIDTH * 14, PIXEL_WIDTH * 2, cornerPostEnd, 1f, 1f, normal);
+                drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, mainPostStart, PIXEL_WIDTH * 14, PIXEL_WIDTH * 2, mainPostEnd, 1f, 1f, normal);
             }
 
             final float glassSidePos = PIXEL_WIDTH * (mirror ? 1 : 15);
 
             // Glass panels connected to the corner post, and cannot have side connections
-            drawGlass(poseStack, buffer, packedLight, packedOverlay, false, topConnection, bottom, getPlaneVertices(glassStart, downOffset, PIXEL_WIDTH, glassEnd, topOffset, PIXEL_WIDTH), normal);
-            drawGlass(poseStack, buffer, packedLight, packedOverlay, false, topSideConnection, bottom, getPlaneVertices(glassSidePos, downOffset, PIXEL_WIDTH * 2, glassSidePos, topSideOffset, 0.5f), normal);
+            drawGlass(poseStack, buffer, packedLight, packedOverlay, false, topConnection, bottom, getPlaneVertices(glassStart, glassYMin, PIXEL_WIDTH, glassEnd, glassYMax, PIXEL_WIDTH), normal);
+            drawGlass(poseStack, buffer, packedLight, packedOverlay, false, topSideConnection, bottom, getPlaneVertices(glassSidePos, glassYMin, PIXEL_WIDTH * 2, glassSidePos, topSideOffset, 0.5f), normal);
 
             // Glass panel in the extra wall not connected to the corner post
-            drawGlass(poseStack, buffer, packedLight, packedOverlay, side, topSideConnection, bottom, getPlaneVertices(glassSidePos, downOffset, 0.5f, glassSidePos, topSideOffset, PIXEL_WIDTH * 14 + width), normal);
+            drawGlass(poseStack, buffer, packedLight, packedOverlay, sideConnected, topSideConnection, bottom, getPlaneVertices(glassSidePos, glassYMin, 0.5f, glassSidePos, topSideOffset, PIXEL_WIDTH * 14 + sidePostWidth), normal);
         }
         else
         {
-            drawGlass(poseStack, buffer, packedLight, packedOverlay, side, topConnection, bottom, getPlaneVertices(glassStart - widthEndOffset, downOffset, PIXEL_WIDTH, glassEnd + widthStartOffset, topOffset, PIXEL_WIDTH), normal);
-            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, cornerPostStart + widthStartOffset, postStart, 0f, cornerPostEnd - widthEndOffset, postEnd, postWidth, normal);
+            final float widthStartOffset = sideConnected && !mirror ? PIXEL_WIDTH : 0;
+            final float widthEndOffset = sideConnected && mirror ? PIXEL_WIDTH : 0;
+            drawGlass(poseStack, buffer, packedLight, packedOverlay, sideConnected, topConnection, bottom, getPlaneVertices(glassStart - widthEndOffset, glassYMin, PIXEL_WIDTH, glassEnd + widthStartOffset, glassYMax, PIXEL_WIDTH), normal);
+            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, mainPostStart + widthStartOffset, postYMin, 0f, mainPostEnd - widthEndOffset, postYMax, postWidth, normal);
         }
     }
 
