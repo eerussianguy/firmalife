@@ -68,7 +68,7 @@ public class GreenhousePanelWallBlock extends BaseGreenhouseBlock implements IWe
     public GreenhousePanelWallBlock(ExtendedProperties properties, @Nullable Supplier<? extends Block> next)
     {
         super(properties, next);
-        registerDefaultState(getStateDefinition().any().setValue(UP, DualSide.BOTH).setValue(DOWN, false).setValue(LEFT, false).setValue(RIGHT, false).setValue(EXTRA_WALL, Side.NONE));
+        registerDefaultState(getStateDefinition().any().setValue(UP, DualSide.NONE).setValue(DOWN, false).setValue(LEFT, false).setValue(RIGHT, false).setValue(EXTRA_WALL, Side.NONE));
     }
 
     @Override
@@ -275,33 +275,33 @@ public class GreenhousePanelWallBlock extends BaseGreenhouseBlock implements IWe
             Direction roofFacing = facingState.getValue(FACING);
             if (side == Side.NONE)
             {
-                return currentFacing == roofFacing ? DualSide.BOTH : DualSide.NONE;
+                return currentFacing == roofFacing ? DualSide.NONE : DualSide.BOTH;
             }
 
-            DualSide wallPostType = (currentFacing == roofFacing ? side.opposite() : Side.NONE).dual();
-            DualSide extraPostType = (side.getDirection(currentFacing) == roofFacing ? side : Side.NONE).dual();
+            DualSide wallPostType = (currentFacing == roofFacing ? side : Side.NONE).dual();
+            DualSide extraPostType = (side.getDirection(currentFacing) == roofFacing ? side.opposite() : Side.NONE).dual();
             return wallPostType.combine(extraPostType);
         }
         final Set<Direction> facingWallStates = getWallStates(facingState);
         final boolean matchesMainWall = facingWallStates.contains(currentFacing);
         if (side == Side.NONE)
         {
-            return matchesMainWall ? DualSide.NONE : DualSide.BOTH;
+            return matchesMainWall ? DualSide.BOTH : DualSide.NONE;
         }
         final boolean matchesExtraWall = facingWallStates.contains(side.getDirection(currentFacing));
         if (matchesMainWall && matchesExtraWall)
         {
-            return DualSide.NONE;
+            return DualSide.BOTH;
         }
         else if (matchesExtraWall)
         {
-            return side.opposite().dual();
+            return side.dual();
         }
         else if (matchesMainWall)
         {
-            return side.dual();
+            return side.opposite().dual();
         }
-        return DualSide.BOTH;
+        return DualSide.NONE;
     }
 
     @Override
