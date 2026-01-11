@@ -18,6 +18,8 @@ import net.dries007.tfc.client.RenderHelpers;
 
 public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
 {
+    // UV width of one pixel, for a 16x16 texture
+    private static final float PIXEL_WIDTH = 1 / 16f;
     private final Material materialTexture;
     private final Material glassThinTexture;
     private final Material glassThinBothTexture;
@@ -87,12 +89,12 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
         // Top
         if (up == GreenhouseConnectable.PostType.BOTH || up == side.toPost().opposite())
         {
-            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 0, 14 / 16f, 0f, 1, 1f, 2 / 16f, normal);
+            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 0, PIXEL_WIDTH * 14, 0f, 1, 1f, PIXEL_WIDTH * 2, normal);
         }
         // Bottom
         if (!down)
         {
-            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 0, 0, 0f, 1, 2 / 16f, 2 / 16f, normal);
+            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 0, 0, 0f, 1, PIXEL_WIDTH * 2, PIXEL_WIDTH * 2, normal);
         }
 
         poseStack.popPose();
@@ -103,9 +105,9 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
     {
         TextureAtlasSprite postTexture = materialTexture.sprite();
         float width = 1f - (side ? 1 : 2) / 16f;
-        float postStart = bottom ? 0 : (2 / 16f);
+        float postStart = bottom ? 0 : (PIXEL_WIDTH * 2);
         boolean topConnection = !top.contains(GreenhouseConnectable.PostType.LEFT);
-        float postEnd = topConnection ? 1 : (14 / 16f);
+        float postEnd = topConnection ? 1 : (PIXEL_WIDTH * 14);
         float topOffset = 1 - (topConnection ? 0 : 2) / 16f;
         float topSideOffset = 1 - (!top.contains(GreenhouseConnectable.PostType.RIGHT) ? 0 : 2) / 16f;
         float downOffset = (bottom ? 0 : 2) / 16f;
@@ -113,31 +115,31 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
         if (corner)
         {
             // Corner post
-            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 14 / 16f, postStart, 0f, 1f, 1f, 2 / 16f, normal);
+            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, PIXEL_WIDTH * 14, postStart, 0f, 1f, 1f, PIXEL_WIDTH * 2, normal);
             // Extra wall post
-            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 14 / 16f, postStart, width, 1f, postEnd, 1, normal);
+            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, PIXEL_WIDTH * 14, postStart, width, 1f, postEnd, 1, normal);
             // Bottom post for the extra wall
             if (!bottom)
             {
-                drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 14 / 16f, 0f, 2 / 16f, 1f, 2 / 16f, 1f, normal);
+                drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, PIXEL_WIDTH * 14, 0f, PIXEL_WIDTH * 2, 1f, PIXEL_WIDTH * 2, 1f, normal);
             }
             // Top Post for the extra wall
             if (!topConnection)
             {
-                drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 14 / 16f, 14 / 16f, 2 / 16f, 1f, 1f, 1f, normal);
+                drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, PIXEL_WIDTH * 14, PIXEL_WIDTH * 14, PIXEL_WIDTH * 2, 1f, 1f, 1f, normal);
             }
 
             // Glass panels connected to the corner post, and cannot have side connections
-            drawGlass(poseStack, buffer, packedLight, packedOverlay, false, GreenhouseConnectable.PostType.LEFT.contains(top), bottom, getPlaneVertices(0.5f, downOffset, 1 / 16f, 14 / 16f, topOffset, 1 / 16f), normal);
-            drawGlass(poseStack, buffer, packedLight, packedOverlay, false, topConnection, bottom, getPlaneVertices(15 / 16f, downOffset, 2 / 16f, 15 / 16f, topSideOffset, 0.5f), normal);
+            drawGlass(poseStack, buffer, packedLight, packedOverlay, false, GreenhouseConnectable.PostType.LEFT.contains(top), bottom, getPlaneVertices(0.5f, downOffset, PIXEL_WIDTH, PIXEL_WIDTH * 14, topOffset, PIXEL_WIDTH), normal);
+            drawGlass(poseStack, buffer, packedLight, packedOverlay, false, topConnection, bottom, getPlaneVertices(PIXEL_WIDTH * 15, downOffset, PIXEL_WIDTH * 2, PIXEL_WIDTH * 15, topSideOffset, 0.5f), normal);
 
             // Glass panel in the extra wall not connected to the corner post
-            drawGlass(poseStack, buffer, packedLight, packedOverlay, side, topConnection, bottom, getPlaneVertices(15 / 16f, downOffset, 0.5f, 15 / 16f, topSideOffset, width), normal);
+            drawGlass(poseStack, buffer, packedLight, packedOverlay, side, topConnection, bottom, getPlaneVertices(PIXEL_WIDTH * 15, downOffset, 0.5f, PIXEL_WIDTH * 15, topSideOffset, width), normal);
         }
         else
         {
-            drawGlass(poseStack, buffer, packedLight, packedOverlay, side, topConnection, bottom, getPlaneVertices(0.5f, downOffset, 1 / 16f, width, topOffset, 1 / 16f), normal);
-            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, width, postStart, 0f, 1f, postEnd, 2 / 16f, normal);
+            drawGlass(poseStack, buffer, packedLight, packedOverlay, side, topConnection, bottom, getPlaneVertices(0.5f, downOffset, PIXEL_WIDTH, width, topOffset, PIXEL_WIDTH), normal);
+            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, width, postStart, 0f, 1f, postEnd, PIXEL_WIDTH * 2, normal);
         }
     }
 
@@ -145,42 +147,42 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
     {
         TextureAtlasSprite postTexture = materialTexture.sprite();
         float width = (side ? 1 : 2) / 16f;
-        float postStart = bottom ? 0 : (2 / 16f);
+        float postStart = bottom ? 0 : (PIXEL_WIDTH * 2);
         boolean topConnection = !top.contains(GreenhouseConnectable.PostType.RIGHT);
-        float postEnd = topConnection ? 1 : (14 / 16f);
+        float postEnd = topConnection ? 1 : (PIXEL_WIDTH * 14);
         float topOffset = 1 - (topConnection ? 0 : 2) / 16f;
         float topSideOffset = 1 - (!top.contains(GreenhouseConnectable.PostType.LEFT) ? 0 : 2) / 16f;
         float downOffset = (bottom ? 0 : 2) / 16f;
         if (corner)
         {
             // Corner post
-            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 0f, postStart, 0f, 2 / 16f, 1, 2 / 16f, normal);
+            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 0f, postStart, 0f, PIXEL_WIDTH * 2, 1, PIXEL_WIDTH * 2, normal);
             // Extra wall post
-            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 0f, postStart, 1 - width, 2 / 16f, postEnd, 1, normal);
+            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 0f, postStart, 1 - width, PIXEL_WIDTH * 2, postEnd, 1, normal);
 
             // Bottom post for the extra wall
             if (!bottom)
             {
-                drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 0f, 0f, 2 / 16f, 2 / 16f, 2 / 16f, 1f, normal);
+                drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 0f, 0f, PIXEL_WIDTH * 2, PIXEL_WIDTH * 2, PIXEL_WIDTH * 2, 1f, normal);
             }
 
             // Top Post for the extra wall
             if (!topConnection)
             {
-                drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 0f, 14 / 16f, 2 / 16f, 2 / 16f, 1f, 1f, normal);
+                drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 0f, PIXEL_WIDTH * 14, PIXEL_WIDTH * 2, PIXEL_WIDTH * 2, 1f, 1f, normal);
             }
 
             // Glass panels connected to the corner post, and cannot have side connections
-            drawGlass(poseStack, buffer, packedLight, packedOverlay, false, GreenhouseConnectable.PostType.RIGHT.contains(top), bottom, getPlaneVertices(2 / 16f, downOffset, 1 / 16f, 0.5f, topOffset, 1 / 16f), normal);
-            drawGlass(poseStack, buffer, packedLight, packedOverlay, false, topConnection, bottom, getPlaneVertices(1 / 16f, downOffset, 2 / 16f, 1 / 16f, topSideOffset, 0.5f), normal);
+            drawGlass(poseStack, buffer, packedLight, packedOverlay, false, GreenhouseConnectable.PostType.RIGHT.contains(top), bottom, getPlaneVertices(PIXEL_WIDTH * 2, downOffset, PIXEL_WIDTH, 0.5f, topOffset, PIXEL_WIDTH), normal);
+            drawGlass(poseStack, buffer, packedLight, packedOverlay, false, topConnection, bottom, getPlaneVertices(PIXEL_WIDTH, downOffset, PIXEL_WIDTH * 2, PIXEL_WIDTH, topSideOffset, 0.5f), normal);
 
             // Glass panel in the extra wall not connected to the corner post
-            drawGlass(poseStack, buffer, packedLight, packedOverlay, side, topConnection, bottom, getPlaneVertices(1 / 16f, downOffset, 0.5f, 1 / 16f, topSideOffset, 1 - width), normal);
+            drawGlass(poseStack, buffer, packedLight, packedOverlay, side, topConnection, bottom, getPlaneVertices(PIXEL_WIDTH, downOffset, 0.5f, PIXEL_WIDTH, topSideOffset, 1 - width), normal);
         }
         else
         {
-            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 0f, postStart, 0f, width, postEnd, 2 / 16f, normal);
-            drawGlass(poseStack, buffer, packedLight, packedOverlay, side, topConnection, bottom, getPlaneVertices(width, downOffset, 1 / 16f, 0.5f, topOffset, 1 / 16f), normal);
+            drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 0f, postStart, 0f, width, postEnd, PIXEL_WIDTH * 2, normal);
+            drawGlass(poseStack, buffer, packedLight, packedOverlay, side, topConnection, bottom, getPlaneVertices(width, downOffset, PIXEL_WIDTH, 0.5f, topOffset, PIXEL_WIDTH), normal);
         }
     }
 
