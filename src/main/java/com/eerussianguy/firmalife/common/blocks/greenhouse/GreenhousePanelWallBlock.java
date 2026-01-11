@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Supplier;
 import com.eerussianguy.firmalife.common.FLHelpers;
-import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blocks.FLStateProperties;
 import com.eerussianguy.firmalife.common.blocks.IWeatherable;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -222,11 +221,6 @@ public class GreenhousePanelWallBlock extends BaseGreenhouseBlock implements IWe
         return Set.of();
     }
 
-    public boolean connects(BlockState adjacent)
-    {
-        return Helpers.isBlock(adjacent, FLTags.Blocks.GREENHOUSE_PANEL_WALLS);
-    }
-
     @Override
     public BlockState withConnection(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos)
     {
@@ -268,38 +262,41 @@ public class GreenhousePanelWallBlock extends BaseGreenhouseBlock implements IWe
     private DualSide getTopConnection(BlockState state, BlockState facingState)
     {
         final Direction currentFacing = state.getValue(FACING);
-        final Side side = state.getValue(EXTRA_WALL);
+        final Side extraWall = state.getValue(EXTRA_WALL);
 
         if (facingState.getBlock() instanceof GreenhousePanelRoofBlock)
         {
             Direction roofFacing = facingState.getValue(FACING);
-            if (side == Side.NONE)
+            if (extraWall == Side.NONE)
             {
                 return currentFacing == roofFacing ? DualSide.NONE : DualSide.BOTH;
             }
 
-            DualSide wallPostType = (currentFacing == roofFacing ? side : Side.NONE).dual();
-            DualSide extraPostType = (side.getDirection(currentFacing) == roofFacing ? side.opposite() : Side.NONE).dual();
+            // The side of the wall that has the same facing as the roof should not have a connection
+            // The main wall and extra wall determine the connection type for the opposite
+            DualSide wallPostType = (currentFacing == roofFacing ? extraWall : Side.NONE).dual();
+            DualSide extraPostType = (extraWall.getDirection(currentFacing) == roofFacing ? extraWall.opposite() : Side.NONE).dual();
             return wallPostType.combine(extraPostType);
         }
+        // Check the top connection for both the base wall and the extra wall
         final Set<Direction> facingWallStates = getWallStates(facingState);
         final boolean matchesMainWall = facingWallStates.contains(currentFacing);
-        if (side == Side.NONE)
+        if (extraWall == Side.NONE)
         {
             return matchesMainWall ? DualSide.BOTH : DualSide.NONE;
         }
-        final boolean matchesExtraWall = facingWallStates.contains(side.getDirection(currentFacing));
+        final boolean matchesExtraWall = facingWallStates.contains(extraWall.getDirection(currentFacing));
         if (matchesMainWall && matchesExtraWall)
         {
             return DualSide.BOTH;
         }
         else if (matchesExtraWall)
         {
-            return side.dual();
+            return extraWall.dual();
         }
         else if (matchesMainWall)
         {
-            return side.opposite().dual();
+            return extraWall.opposite().dual();
         }
         return DualSide.NONE;
     }

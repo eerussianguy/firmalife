@@ -151,6 +151,8 @@ public interface GreenhouseConnectable
         }
     }
 
+    // might not be needed in the future
+    @Deprecated
     default boolean canConnectTo(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos)
     {
         return false;
@@ -158,6 +160,8 @@ public interface GreenhouseConnectable
 
     BlockState withConnection(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos);
 
+    // might not be needed in the future
+    @Deprecated
     Set<Direction> getConnectionFaces(BlockState state, BlockPos pos, LevelAccessor level);
 
     default BlockState updateConnections(BlockState state, BlockPos pos, LevelAccessor level, Direction... directions)
@@ -170,6 +174,8 @@ public interface GreenhouseConnectable
         return state;
     }
 
+    // might not be needed in the future
+    @Deprecated
     static boolean hasConnectionAt(BlockState state, BlockPos pos, LevelAccessor level, Direction direction)
     {
         if (state.getBlock() instanceof GreenhouseConnectable connectable)

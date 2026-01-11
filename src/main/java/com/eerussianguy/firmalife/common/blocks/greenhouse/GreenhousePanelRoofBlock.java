@@ -130,28 +130,48 @@ public class GreenhousePanelRoofBlock extends TransparentBlock implements IWeath
         return state.rotate(mirror.getRotation(state.getValue(FACING)));
     }
 
-    private BlockState updateDiagonals(LevelAccessor level, BlockPos pos, BlockState state)
+    @Override
+    protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston)
     {
         final Direction facing = state.getValue(FACING);
+        updateUpDiagonal(level, pos, facing);
+        updateDownDiagonal(level, pos, facing);
+        super.onRemove(state, level, pos, newState, movedByPiston);
+    }
+
+    private boolean updateUpDiagonal(LevelAccessor level, BlockPos pos, Direction facing)
+    {
         final Direction oppositeFacing = facing.getOpposite();
-
         final BlockPos upPos = pos.relative(oppositeFacing, 1).above();
-        final BlockPos downPos = pos.relative(facing, 1).below();
-
-        final BlockState downState = level.getBlockState(downPos);
         final BlockState upState = level.getBlockState(upPos);
+        final boolean matches = isValidPanel(upState, facing);
 
-        final boolean up = isValidPanel(upState, facing);
-        final boolean down = isValidPanel(downState, facing);
-
-        if (up)
+        if (matches)
         {
             level.scheduleTick(upPos, upState.getBlock(), 1);
         }
-        if (down)
+        return matches;
+    }
+
+    private boolean updateDownDiagonal(LevelAccessor level, BlockPos pos, Direction facing)
+    {
+        final BlockPos downPos = pos.relative(facing, 1).below();
+        final BlockState downState = level.getBlockState(downPos);
+        final boolean matches = isValidPanel(downState, facing);
+
+        if (matches)
         {
             level.scheduleTick(downPos, downState.getBlock(), 1);
         }
+        return matches;
+    }
+
+    private BlockState updateDiagonals(LevelAccessor level, BlockPos pos, BlockState state)
+    {
+        final Direction facing = state.getValue(FACING);
+
+        final boolean up = updateUpDiagonal(level, pos, facing);
+        final boolean down = updateDownDiagonal(level, pos, facing);
 
         return state.setValue(DIAGONAL, DualSide.resolve(up, down));
     }

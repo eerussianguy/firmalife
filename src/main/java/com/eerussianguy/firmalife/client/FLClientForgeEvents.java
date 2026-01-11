@@ -1,13 +1,15 @@
 package com.eerussianguy.firmalife.client;
 
 import java.util.List;
-
 import com.eerussianguy.firmalife.common.FLTags;
+import com.eerussianguy.firmalife.common.blocks.greenhouse.GreenhousePanelWallBlock;
 import com.eerussianguy.firmalife.common.capabilities.FLComponents;
 import com.eerussianguy.firmalife.common.capabilities.bee.BeeComponent;
 import com.eerussianguy.firmalife.common.capabilities.wine.WineComponent;
 import com.eerussianguy.firmalife.common.util.Plantable;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
@@ -55,6 +57,10 @@ public class FLClientForgeEvents
             if (Helpers.isItem(stack, FLTags.Items.BEEKEEPER_ARMOR))
             {
                 text.add(Component.translatable("firmalife.tooltip.beekeeper_armor"));
+            }
+            if (stack.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof GreenhousePanelWallBlock)
+            {
+                text.add(Component.translatable("firmalife.tooltip.greenhouse_panel_corner").withStyle(ChatFormatting.GRAY));
             }
         }
     }
