@@ -1,7 +1,7 @@
 {
   "values": [
-    "firmalife:rustic_bricks_wall",
-    "firmalife:tiles_wall",
-    "firmalife:sealed_wall"
+    "firmalife:rustic_brick_wall",
+    "firmalife:tile_brick_wall",
+    "firmalife:sealed_brick_wall"
   ]
 }

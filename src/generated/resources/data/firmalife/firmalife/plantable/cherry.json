@@ -8,9 +8,9 @@
     "item": "tfc:plant/cherry_sapling"
   },
   "nutrient": {
-    "nitrogen": 0.2,
-    "phosphorous": 0.2,
-    "potassium": 0.2
+    "nitrogen": 0.15,
+    "phosphorous": 0.3,
+    "potassium": 0.3
   },
   "planter": "bonsai",
   "seed": {

@@ -98,7 +98,7 @@ public interface CraftingRecipes extends Recipes
             .input('X', FLBlocks.SEALED_BRICKS)
             .input('Y', brassRods)
             .pattern("YX", "YX", "YX")
-            .shaped(FLBlocks.SEALED_DOOR);
+            .shaped(FLBlocks.SEALED_BRICK_DOOR);
         recipe()
             .input('X', Items.BRICK)
             .input('Y', TFCItems.COMPOST)
@@ -262,16 +262,16 @@ public interface CraftingRecipes extends Recipes
         recipe()
             .input('X', FLBlocks.SEALED_BRICKS)
             .pattern("X X", "X X", "X X")
-            .shaped(new ItemStack(FLBlocks.DARK_LADDER, 16));
+            .shaped(new ItemStack(FLBlocks.SEALED_BRICK_LADDER, 16));
         recipe()
             .input('X', FLBlocks.SEALED_BRICKS)
             .pattern("   ", "XXX", "XXX")
-            .shaped(new ItemStack(FLBlocks.SEALED_WALL, 6));
+            .shaped(new ItemStack(FLBlocks.SEALED_BRICK_WALL, 6));
         recipe()
             .input('Y', brassRods)
             .input('X', FLBlocks.SEALED_BRICKS)
             .pattern("YY", "XX", "XX")
-            .shaped(FLBlocks.SEALED_TRAPDOOR);
+            .shaped(FLBlocks.SEALED_BRICK_TRAPDOOR);
         recipe()
             .input('S', anyBronzeSheets)
             .input('R', Tags.Items.DUSTS_REDSTONE)
@@ -338,20 +338,29 @@ public interface CraftingRecipes extends Recipes
         recipe()
             .input(FLBlocks.TILES)
             .input(Items.BRICK)
-            .shapeless(new ItemStack(FLItems.FINISHES.get(OvenType.TILE), 16));
+            .shapeless(new ItemStack(FLItems.FINISHES.get(OvenType.TILE), 8));
         recipe()
             .input(FLBlocks.SEALED_BRICKS)
             .input(Items.BRICK)
-            .shapeless(new ItemStack(FLItems.FINISHES.get(OvenType.STONE), 16));
+            .shapeless(new ItemStack(FLItems.FINISHES.get(OvenType.STONE), 8));
         recipe()
             .input(FLBlocks.RUSTIC_BRICKS)
             .input(Items.BRICK)
-            .shapeless(new ItemStack(FLItems.FINISHES.get(OvenType.RUSTIC), 16));
+            .shapeless(new ItemStack(FLItems.FINISHES.get(OvenType.RUSTIC), 8));
         recipe()
             .input(Items.CLAY_BALL)
-            .input(Tags.Items.COBBLESTONES)
+            .input(TFCTags.Items.STONES_LOOSE)
             .input(Items.BRICK)
-            .shapeless(new ItemStack(FLBlocks.TILES, 16));
+            .shapeless(new ItemStack(FLItems.TILE_BRICK, 1));
+        recipe()
+            .input('X', FLItems.TILE_BRICK)
+            .pattern("XX", "XX")
+            .shaped(FLBlocks.TILES);
+        recipe()
+            .input('X', FLItems.TILE_BRICK)
+            .input('Y', TFCItems.MORTAR)
+            .pattern("XYX", "YXY", "XYX")
+            .shaped(FLBlocks.TILE_BRICKS);
         recipe()
             .input('S', wroughtSheets)
             .input('B', FLItems.BEESWAX)
@@ -436,7 +445,7 @@ public interface CraftingRecipes extends Recipes
             .damageInputs()
             .shapeless(FLItems.POTTERY_SHERD);
         decorationRecipe(FLBlocks.RUSTIC_BRICKS, FLBlocks.RUSTIC_BRICK_DECOR);
-        decorationRecipe(FLBlocks.TILES, FLBlocks.TILE_DECOR);
+        decorationRecipe(FLBlocks.TILE_BRICKS, FLBlocks.TILE_BRICK_DECOR);
 
         recipe()
             .input('L', TFCTags.Items.LUMBER)

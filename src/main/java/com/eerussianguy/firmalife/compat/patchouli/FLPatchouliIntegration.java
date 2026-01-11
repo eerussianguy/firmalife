@@ -38,7 +38,7 @@ public class FLPatchouliIntegration
 
     private static IMultiblock cellar(PatchouliAPI.IPatchouliAPI api)
     {
-        final Block door = FLBlocks.SEALED_DOOR.get();
+        final Block door = FLBlocks.SEALED_BRICK_DOOR.get();
         final IStateMatcher doorBottom = api.predicateMatcher(door.defaultBlockState().setValue(GreenhouseDoorBlock.HALF, DoubleBlockHalf.LOWER).setValue(DoorBlock.FACING, Direction.EAST), s -> Helpers.isBlock(s, door));
         final IStateMatcher doorTop = api.predicateMatcher(door.defaultBlockState().setValue(GreenhouseDoorBlock.HALF, DoubleBlockHalf.UPPER).setValue(DoorBlock.FACING, Direction.EAST), s -> Helpers.isBlock(s, door));
 

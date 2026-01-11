@@ -59,10 +59,10 @@ public class BuiltinBlockTags extends TagsProvider<Block> implements Accessors
             .addTag(OVEN_BLOCKS)
             .addTags(ALL_COPPER_GREENHOUSE, ALL_IRON_GREENHOUSE, STAINLESS_STEEL_GREENHOUSE, PLANTERS)
             .add2(FLBlocks.CHROMITE_ORES)
-            .add(FLBlocks.SEALED_BRICKS, FLBlocks.CHISELED_SEALED_BRICKS, FLBlocks.POLISHED_SEALED_BRICKS, FLBlocks.TILES, FLBlocks.RUSTIC_BRICKS, FLBlocks.SEALED_WALL, FLBlocks.SEALED_TRAPDOOR, FLBlocks.SEALED_DOOR, FLBlocks.DARK_LADDER)
+            .add(FLBlocks.SEALED_BRICKS, FLBlocks.CHISELED_SEALED_BRICKS, FLBlocks.POLISHED_SEALED_BRICKS, FLBlocks.TILES, FLBlocks.TILE_BRICKS, FLBlocks.RUSTIC_BRICKS, FLBlocks.SEALED_BRICK_WALL, FLBlocks.SEALED_BRICK_TRAPDOOR, FLBlocks.SEALED_BRICK_DOOR, FLBlocks.SEALED_BRICK_LADDER)
             .add(FLBlocks.PUMPING_STATION, FLBlocks.IRRIGATION_TANK, FLBlocks.SPRINKLER, FLBlocks.FLOOR_SPRINKLER, FLBlocks.COPPER_PIPE, FLBlocks.OXIDIZED_COPPER_PIPE, FLBlocks.COMPOST_TUMBLER)
             .addAll(FLBlocks.RUSTIC_BRICK_DECOR)
-            .addAll(FLBlocks.TILE_DECOR)
+            .addAll(FLBlocks.TILE_BRICK_DECOR)
             .add(FLBlocks.OVEN_COUNTERTOP)
             .add(FLBlocks.ASHTRAY, FLBlocks.JARRING_STATION, FLBlocks.PICKER, FLBlocks.SWEEPER, FLBlocks.VAT, FLBlocks.STOVETOP_GRILL, FLBlocks.STOVETOP_POT)
             .add2(FLBlocks.METALS)
@@ -88,15 +88,16 @@ public class BuiltinBlockTags extends TagsProvider<Block> implements Accessors
         tag(BlockTags.STAIRS).addEveryFL(b -> b instanceof StairBlock);
         tag(BlockTags.SLABS).addEveryFL(b -> b instanceof SlabBlock);
         tag(BlockTags.WALLS).addEveryFL(b -> b instanceof WallBlock);
-        tag(BlockTags.TRAPDOORS).add(FLBlocks.GREENHOUSE_BLOCKS, Greenhouse.BlockType.TRAPDOOR).add(FLBlocks.SEALED_TRAPDOOR);
-        tag(BlockTags.DOORS).add(FLBlocks.GREENHOUSE_BLOCKS, Greenhouse.BlockType.DOOR).add(FLBlocks.SEALED_DOOR);
+        tag(BlockTags.TRAPDOORS).add(FLBlocks.GREENHOUSE_BLOCKS, Greenhouse.BlockType.TRAPDOOR).add(FLBlocks.SEALED_BRICK_TRAPDOOR);
+        tag(BlockTags.DOORS).add(FLBlocks.GREENHOUSE_BLOCKS, Greenhouse.BlockType.DOOR).add(FLBlocks.SEALED_BRICK_DOOR);
         tag(BlockTags.REPLACEABLE).addEveryFL(e -> e.defaultBlockState().canBeReplaced());
         tag(BlockTags.LEAVES).add(FLBlocks.FRUIT_TREE_LEAVES);
         tag(BlockTags.FLOWER_POTS)
             .add(FLBlocks.POTTED_HERBS)
             .add(FLBlocks.FRUIT_TREE_POTTED_SAPLINGS);
 
-        tag(BlockTags.CLIMBABLE).add(FLBlocks.DARK_LADDER);
+        tag(BlockTags.CLIMBABLE).add(FLBlocks.SEALED_BRICK_LADDER);
+        tag(BlockTags.STONE_BRICKS).add(FLBlocks.TILE_BRICKS, FLBlocks.RUSTIC_BRICKS, FLBlocks.SEALED_BRICKS);
 
         tag(TFCTags.Blocks.THORNY_BUSHES).add(FLBlocks.STATIONARY_BUSHES.get(FLFruitBlocks.StationaryBush.PINEAPPLE));
         tag(TFCTags.Blocks.SINGLE_BLOCK_REPLACEABLE)
@@ -179,7 +180,7 @@ public class BuiltinBlockTags extends TagsProvider<Block> implements Accessors
             .add(FLBlocks.GREENHOUSE_BLOCKS.get(Greenhouse.TREATED_WOOD))
             .add(FLBlocks.GREENHOUSE_BLOCKS.get(Greenhouse.WEATHERED_TREATED_WOOD));
         tag(CELLAR_INSULATION)
-            .add(FLBlocks.SEALED_BRICKS, FLBlocks.CHISELED_SEALED_BRICKS, FLBlocks.POLISHED_SEALED_BRICKS, FLBlocks.SEALED_DOOR, FLBlocks.SEALED_TRAPDOOR, FLBlocks.SEALED_WALL);
+            .add(FLBlocks.SEALED_BRICKS, FLBlocks.CHISELED_SEALED_BRICKS, FLBlocks.POLISHED_SEALED_BRICKS, FLBlocks.SEALED_BRICK_DOOR, FLBlocks.SEALED_BRICK_TRAPDOOR, FLBlocks.SEALED_BRICK_WALL);
         tag(ALWAYS_VALID_GREENHOUSE_WALL)
             .addTags(BlockTags.DOORS, BlockTags.TRAPDOORS);
         tag(GRAPE_STRINGS).add(FLBlocks.GRAPE_STRING_RED, FLBlocks.GRAPE_STRING_WHITE);
@@ -200,9 +201,10 @@ public class BuiltinBlockTags extends TagsProvider<Block> implements Accessors
             .add(FLBlocks.CURED_OVEN_CHIMNEY)
             .add(FLBlocks.OVEN_COUNTERTOP)
             .add(FLBlocks.TILES)
-            .add(FLBlocks.TILE_DECOR.slab())
-            .add(FLBlocks.TILE_DECOR.stair())
-            .add(FLBlocks.TILE_DECOR.wall())
+            .add(FLBlocks.TILE_BRICKS)
+            .add(FLBlocks.TILE_BRICK_DECOR.slab())
+            .add(FLBlocks.TILE_BRICK_DECOR.stair())
+            .add(FLBlocks.TILE_BRICK_DECOR.wall())
             .add(FLBlocks.RUSTIC_BRICKS)
             .add(FLBlocks.RUSTIC_BRICK_DECOR.slab())
             .add(FLBlocks.RUSTIC_BRICK_DECOR.stair())

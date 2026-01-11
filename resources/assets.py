@@ -283,14 +283,14 @@ def generate(rm: ResourceManager):
     rm.blockstate('compost_tumbler', variants=four_rotations('firmalife:block/compost_tumbler', (90, None, 180, 270))).with_lang(lang('compost tumbler'))
     rm.item_model('compost_tumbler', parent='firmalife:block/compost_tumbler_inventory', no_textures=True)
 
-    block = rm.block('sealed').make_trapdoor().make_wall(texture='firmalife:block/sealed_bricks')
+    block = rm.block('sealed_brick').make_trapdoor().make_wall(texture='firmalife:block/sealed_bricks')
     make_door(block)
-    rm.block('sealed_trapdoor').with_lang(lang('sealed trapdoor'))
-    rm.block('sealed_wall').with_lang(lang('sealed wall'))
-    block = rm.block('firmalife:sealed_door').with_lang(lang('sealed door'))
+    rm.block('sealed_brick_trapdoor').with_lang(lang('sealed brick trapdoor'))
+    rm.block('sealed_brick_wall').with_lang(lang('sealed brick wall'))
+    block = rm.block('firmalife:sealed_brick_door').with_lang(lang('sealed brick door'))
 
-    rm.blockstate('dark_ladder', variants=four_rotations('firmalife:block/dark_ladder', (90, None, 180, 270))).with_block_model(textures={'texture': 'firmalife:block/dark_ladder', 'particle': 'firmalife:block/dark_ladder'}, parent='minecraft:block/ladder').with_lang(lang('dark ladder'))
-    rm.item_model('dark_ladder', 'firmalife:block/dark_ladder')
+    rm.blockstate('sealed_brick_ladder', variants=four_rotations('firmalife:block/sealed_brick_ladder', (90, None, 180, 270))).with_block_model(textures={'texture': 'firmalife:block/sealed_brick_ladder', 'particle': 'firmalife:block/sealed_brick_ladder'}, parent='minecraft:block/ladder').with_lang(lang('sealed brick ladder'))
+    rm.item_model('sealed_brick_ladder', 'firmalife:block/sealed_brick_ladder')
 
     rm.blockstate('reinforced_poured_glass').with_block_model({'all': 'firmalife:block/reinforced_glass'}, parent='tfc:block/template_poured_glass').with_lang(lang('reinforced poured glass'))
     rm.item_model('reinforced_poured_glass', 'firmalife:item/reinforced_glass')
@@ -363,10 +363,12 @@ def generate(rm: ResourceManager):
             rm.blockstate(name, variants=four_rotations('firmalife:block/%s' % name, (90, 0, 180, 270))).with_lang(lang('%s %s', carving, lang_part))
             rm.item_model('firmalife:%s' % name, parent='firmalife:block/%s' % name, no_textures=True)
 
-    for var in ('rustic_bricks', 'tiles'):
-        block = rm.block(var).make_slab().make_stairs().make_wall()
+    for var in ('rustic_brick', 'tile_brick'):
+        tex = 'firmalife:block/%ss' % var
+        block = rm.block(var).make_slab(bottom_texture=tex, top_texture=tex, side_texture=tex).make_stairs(bottom_texture=tex, top_texture=tex, side_texture=tex).make_wall(texture=tex)
+        rm.block_model(var, parent='firmalife:block/%ss' % var, no_textures=True)
         for extra in ('_slab', '_stairs', '_wall'):
-            rm.block('firmalife:%s%s' % (var, extra)).with_lang(lang('%s%s', var.replace('bricks', 'brick').replace('tiles', 'tile'), extra))
+            rm.block('firmalife:%s%s' % (var, extra)).with_lang(lang('%s%s', var, extra))
 
     lifecycle_to_model = {'healthy': '', 'dormant': 'dry_', 'fruiting': 'fruiting_', 'flowering': 'flowering_'}
     lifecycles = ('healthy', 'dormant', 'fruiting', 'flowering')

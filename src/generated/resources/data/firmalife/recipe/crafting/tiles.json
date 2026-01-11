@@ -1,19 +1,17 @@
 {
-  "type": "minecraft:crafting_shapeless",
+  "type": "minecraft:crafting_shaped",
   "category": "misc",
-  "ingredients": [
-    {
-      "item": "minecraft:clay_ball"
-    },
-    {
-      "tag": "c:cobblestones"
-    },
-    {
-      "item": "minecraft:brick"
+  "key": {
+    "X": {
+      "item": "firmalife:tile_brick"
     }
+  },
+  "pattern": [
+    "XX",
+    "XX"
   ],
   "result": {
-    "count": 16,
+    "count": 1,
     "id": "firmalife:tiles"
   }
 }

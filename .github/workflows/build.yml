@@ -1,4 +1,4 @@
-name: Build 1.20.x
+name: Build 1.21.x
 
 on:
   push:
@@ -14,10 +14,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Set up JDK 17
+      - name: Set up JDK 21
         uses: actions/setup-java@v3
         with:
-          java-version: '17'
+          java-version: '21'
           distribution: 'adopt'
       - name: Get Version
         id: version
@@ -64,7 +64,7 @@ jobs:
           github-prerelease: false
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-          name: Firmalife 1.20.1-${{ steps.version.outputs.result }}
+          name: Firmalife 1.21.1-${{ steps.version.outputs.result }}
           version: ${{ steps.version.outputs.result }}
           version-type: ${{ steps.version_type.outputs.result }}
           java: 17

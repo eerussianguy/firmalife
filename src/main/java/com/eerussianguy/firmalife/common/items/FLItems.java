@@ -66,6 +66,7 @@ public class FLItems
     public static final ItemId REINFORCED_GLASS = register("reinforced_glass");
     public static final ItemId RENNET = register("rennet");
     public static final ItemId SPOON = register("spoon");
+    public static final ItemId TILE_BRICK = register("tile_brick");
     public static final ItemId SPRINKLER = register("sprinkler", () -> new SprinklerItem(FLBlocks.SPRINKLER.get(), FLBlocks.FLOOR_SPRINKLER.get(), prop()));
     public static final ItemId STAINLESS_STEEL_JAR_LID = register("stainless_steel_jar_lid");
     public static final ItemId EMPTY_JAR_WITH_STAINLESS_STEEL_LID = register("empty_jar_with_stainless_steel_lid");

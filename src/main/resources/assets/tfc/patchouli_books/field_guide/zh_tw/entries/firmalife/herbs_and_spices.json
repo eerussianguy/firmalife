@@ -6,11 +6,11 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "In Firmalife, there are a number of small plants you can collect and grow on your own, some of which can be used for cooking. These are called herbs. These plants, once harvested, may be cultivated in a $(thing)Greenhouse$(), in which they consume 20 points of N, P, and K."
+      "text": "在 Firmalife 中，有許多小型植物可以收集並種植，其中一些可用於烹飪。它們被稱為草藥。這些植物一旦被收穫，就可以在$(thing)溫室$()中栽培，每株會消耗20點的氮、磷、鉀。"
     },
     {
       "type": "patchouli:text",
-      "text": "Open to the next page to see information on all herb spawning locations and what they can be used for."
+      "text": "翻開下一頁查看所有草藥的生成地點及其用途信息。"
     },
     {
       "type": "patchouli:multiblock",
@@ -28,13 +28,13 @@
         }
       },
       "name": "",
-      "text": "Basil spawns between 0-32°C and 100-500mm of groundwater.",
+      "text": "羅勒生成於降水量100-500毫米、溫度0-32°C的區域。",
       "enable_visualize": false
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/spice/basil_leaves",
-      "text": "Basil leaves, made from basil, are used in pizza."
+      "text": "羅勒葉由羅勒製成，用於製作披薩。"
     },
     {
       "type": "patchouli:multiblock",
@@ -52,13 +52,13 @@
         }
       },
       "name": "",
-      "text": "Bay Laurel spawns between 10-32°C and 100-300mm of groundwater.",
+      "text": "月桂生成於降水量100-300毫米、溫度10-32°C的區域。",
       "enable_visualize": false
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/spice/bay_leaves",
-      "text": "Bay laurel is chopped into bay leaves and used with cilantro to make flavorful rice in a pot."
+      "text": "月桂可以切碎成月桂葉，並與香菜一起在鍋中用於製作風味米飯。"
     },
     {
       "type": "patchouli:multiblock",
@@ -76,13 +76,13 @@
         }
       },
       "name": "",
-      "text": "Cardamom spawns between 17-24°C and 330-500mm of groundwater.",
+      "text": "豆蔻生成於降水量330-500毫米、溫度17-24°C的區域。",
       "enable_visualize": false
     },
     {
       "type": "tfc:quern_recipe",
       "recipe": "firmalife:quern/spice/ground_cardamom",
-      "text": "Ground Cardamom is made from grinding the cardamom plant, which is used to make Rice Pilaf."
+      "text": "豆蔻粉由豆蔻植株研磨而成，用於製作抓飯。"
     },
     {
       "type": "patchouli:multiblock",
@@ -100,13 +100,13 @@
         }
       },
       "name": "",
-      "text": "Cilantro spawns between 10-24°C and 90-300mm of groundwater.",
+      "text": "香菜生成於降水量90-300毫米、溫度10-24°C的區域。",
       "enable_visualize": false
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/spice/chopped_cilantro",
-      "text": "Cilantro can be chopped and used for salsa and used with bay leaves in a pot to make flavorful cooked rice."
+      "text": "香菜可以切碎後用於製作莎莎醬，也可以與月桂葉一起在鍋中用於製作風味米飯。"
     },
     {
       "type": "patchouli:multiblock",
@@ -124,13 +124,13 @@
         }
       },
       "name": "",
-      "text": "Cumin spawns between 16-27°C and 100-300mm of groundwater.",
+      "text": "孜然生成於降水量100-300毫米、溫度16-27°C的區域。",
       "enable_visualize": false
     },
     {
       "type": "tfc:quern_recipe",
       "recipe": "firmalife:quern/spice/ground_cumin",
-      "text": "Ground Cumin is made from grinding the cumin plant, which is used to make Carne Asada."
+      "text": "孜然粉由孜然植株研磨而成，用於製作墨西哥烤牛肉。"
     },
     {
       "type": "patchouli:multiblock",
@@ -148,13 +148,13 @@
         }
       },
       "name": "",
-      "text": "Oregano spawns between 20-27°C and 90-350mm of groundwater.",
+      "text": "牛至生成於降水量90-350毫米、溫度20-27°C的區域。",
       "enable_visualize": false
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/food/raw_lasagna",
-      "text": "Oregano is used for lasagna."
+      "text": "牛至用於製作千層麵。"
     },
     {
       "type": "patchouli:multiblock",
@@ -172,13 +172,13 @@
         }
       },
       "name": "",
-      "text": "Pimento spawns between 18-24°C and 200-400mm of groundwater.",
+      "text": "甜椒生成於降水量200-400毫米、溫度18-24°C的區域。",
       "enable_visualize": false
     },
     {
       "type": "tfc:quern_recipe",
       "recipe": "firmalife:quern/spice/allspice",
-      "text": "Allspice is made from grinding the pimento plant, which is used to make Spiced Flour for use in Pumpkin Pie."
+      "text": "多香果粉由甜椒植株研磨而成，用於製作南瓜餡餅的香料麵粉。"
     },
     {
       "type": "patchouli:multiblock",
@@ -196,13 +196,13 @@
         }
       },
       "name": "",
-      "text": "Vanilla spawns between 22-30°C and 350-500mm of groundwater.",
+      "text": "香草生成於降水量350-500毫米、溫度22-30°C的區域。",
       "enable_visualize": false
     },
     {
       "type": "tfc:drying_recipe",
       "recipe": "firmalife:drying/spice/vanilla",
-      "text": "Vanilla must be dried, and then can be made into ice cream."
+      "text": "香草必須經過乾燥，然後可以用來製作冰淇淋。"
     }
   ],
   "read_by_default": true,

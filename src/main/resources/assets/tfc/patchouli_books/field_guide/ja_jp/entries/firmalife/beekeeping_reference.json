@@ -23,7 +23,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Bees subject to improper conditions can develop $(thing)Parasitic Infections$(). These conditions do not have to do with their species and may spontaneously occur in wild bees. These conditions include: the hive touching any other block besides for the block below it; temperatures below -18 or above 27°C; rainfall below 50 or above 470mm."
+      "text": "Bees subject to improper conditions can develop $(thing)Parasitic Infections$(). These conditions do not have to do with their species and may spontaneously occur in wild bees. These conditions include: the hive touching any other block besides for the block below it; temperatures below -18 or above 27°C; rainfall below 50 or above 470mm. Infected bees cannot make honey."
     },
     {
       "type": "patchouli:text",

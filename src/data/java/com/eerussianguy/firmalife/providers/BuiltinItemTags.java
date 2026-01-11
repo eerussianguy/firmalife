@@ -86,6 +86,8 @@ public class BuiltinItemTags extends TagsProvider<Item> implements Accessors
             FLBlocks.CHEVRE_WHEEL.asItem(),
             FLBlocks.SHOSHA_WHEEL.asItem()
         );
+        tag(TFCTags.Items.MINECART_HOLDABLE)
+            .add(FLBlocks.SKEP.get().asItem());
         tag(TFCTags.Items.PLANTS)
             .add(FLBlocks.HERBS.values().stream().map(block -> block::asItem));
         tag(TFCTags.Items.JAM)

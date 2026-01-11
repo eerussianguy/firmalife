@@ -112,7 +112,7 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/oven_insulation",
-      "text": "Crafting oven insulation for your Top or Bottom Oven allows you to remove the need for insulating it with blocks. It does not remove the need for the chimney. Use $(item)$(k:key.use)$() to apply it."
+      "text": "为你的烤炉顶或烤炉底制作烤箱隔热层，可以让你不再需要用方块进行外部包裹。但这并不能免除烟囱的需求。使用$(item)$(k:key.use)$()来安装它。"
     },
     {
       "type": "patchouli:crafting",
@@ -125,12 +125,18 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/rustic_finish",
-      "recipe2": "firmalife:crafting/stone_finish"
+      "recipe": "firmalife:crafting/rustic_bricks",
+      "recipe2": "firmalife:crafting/rustic_finish"
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/tile_finish"
+      "recipe": "firmalife:crafting/stone_finish",
+      "recipe2": "firmalife:crafting/tile_brick"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/tile_bricks",
+      "recipe2": "firmalife:crafting/tile_finish"
     }
   ],
   "read_by_default": true,

@@ -18,7 +18,7 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/sealed_bricks",
-      "recipe2": "firmalife:crafting/sealed_door"
+      "recipe2": "firmalife:crafting/sealed_brick_door"
     },
     {
       "type": "patchouli:text",

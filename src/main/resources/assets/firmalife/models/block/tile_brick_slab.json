@@ -1,0 +1,9 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "block/slab",
+  "textures": {
+    "bottom": "firmalife:block/tile_bricks",
+    "top": "firmalife:block/tile_bricks",
+    "side": "firmalife:block/tile_bricks"
+  }
+}

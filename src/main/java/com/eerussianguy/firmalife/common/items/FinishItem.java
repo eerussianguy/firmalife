@@ -75,7 +75,7 @@ public class FinishItem extends Item
                 }
                 else
                 {
-                    level.setBlockAndUpdate(pos, FLBlocks.TILES.get().defaultBlockState());
+                    level.setBlockAndUpdate(pos, FLBlocks.TILE_BRICKS.get().defaultBlockState());
                 }
             }
             else

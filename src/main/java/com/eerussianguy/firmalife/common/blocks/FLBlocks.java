@@ -134,17 +134,18 @@ public class FLBlocks
 
     public static final Id<Block> RUSTIC_BRICKS = register("rustic_bricks", () -> new Block(Properties.of().sound(SoundType.STONE).strength(2.0f, 10).requiresCorrectToolForDrops()));
     public static final DecorationBlockHolder RUSTIC_BRICK_DECOR = registerDecorations(
-        "rustic_bricks",
+        "rustic_brick",
         () -> new SlabBlock(brickProperties()),
         () -> new StairBlock(RUSTIC_BRICKS.get().defaultBlockState(), brickProperties()),
         () -> new WallBlock(brickProperties()),
         new Item.Properties()
     );
     public static final Id<Block> TILES = register("tiles", () -> new Block(Properties.of().sound(SoundType.STONE).strength(2.0f, 10).requiresCorrectToolForDrops()));
-    public static final DecorationBlockHolder TILE_DECOR = registerDecorations(
-        "tiles",
+    public static final Id<Block> TILE_BRICKS = register("tile_bricks", () -> new Block(Properties.of().sound(SoundType.STONE).strength(2.0f, 10).requiresCorrectToolForDrops()));
+    public static final DecorationBlockHolder TILE_BRICK_DECOR = registerDecorations(
+        "tile_brick",
         () -> new SlabBlock(brickProperties()),
-        () -> new StairBlock(RUSTIC_BRICKS.get().defaultBlockState(), brickProperties()),
+        () -> new StairBlock(TILE_BRICKS.get().defaultBlockState(), brickProperties()),
         () -> new WallBlock(brickProperties()),
         new Item.Properties()
     );
@@ -186,10 +187,10 @@ public class FLBlocks
     public static final Id<Block> SEALED_BRICKS = register("sealed_bricks", () -> new Block(Properties.of().mapColor(MapColor.COLOR_BLACK).sound(SoundType.STONE).strength(2.0f, 10).requiresCorrectToolForDrops()));
     public static final Id<Block> POLISHED_SEALED_BRICKS = register("polished_sealed_bricks", () -> new Block(Properties.of().mapColor(MapColor.COLOR_BLACK).sound(SoundType.STONE).strength(2.0f, 10).requiresCorrectToolForDrops()));
     public static final Id<Block> CHISELED_SEALED_BRICKS = register("chiseled_sealed_bricks", () -> new Block(Properties.of().mapColor(MapColor.COLOR_BLACK).sound(SoundType.STONE).strength(2.0f, 10).requiresCorrectToolForDrops()));
-    public static final Id<Block> SEALED_DOOR = register("sealed_door", () -> new DoorBlock(BlockSetType.STONE, Properties.of().mapColor(MapColor.COLOR_BLACK).sound(SoundType.STONE).strength(2.0f, 10).requiresCorrectToolForDrops()));
-    public static final Id<Block> SEALED_TRAPDOOR = register("sealed_trapdoor", () -> new TrapDoorBlock(BlockSetType.STONE, Properties.of().mapColor(MapColor.COLOR_BLACK).sound(SoundType.STONE).strength(2.0f, 10).requiresCorrectToolForDrops()));
-    public static final Id<Block> SEALED_WALL = register("sealed_wall", () -> new WallBlock(Properties.of().mapColor(MapColor.COLOR_BLACK).sound(SoundType.STONE).strength(2.0f, 10).requiresCorrectToolForDrops()));
-    public static final Id<Block> DARK_LADDER = register("dark_ladder", () -> new FLLadderBlock(Properties.of().mapColor(MapColor.COLOR_BLACK).strength(0.4F).sound(SoundType.LADDER).noOcclusion()));
+    public static final Id<Block> SEALED_BRICK_DOOR = register("sealed_brick_door", () -> new DoorBlock(BlockSetType.STONE, Properties.of().mapColor(MapColor.COLOR_BLACK).sound(SoundType.STONE).strength(2.0f, 10).requiresCorrectToolForDrops()));
+    public static final Id<Block> SEALED_BRICK_TRAPDOOR = register("sealed_brick_trapdoor", () -> new TrapDoorBlock(BlockSetType.STONE, Properties.of().mapColor(MapColor.COLOR_BLACK).sound(SoundType.STONE).strength(2.0f, 10).requiresCorrectToolForDrops()));
+    public static final Id<Block> SEALED_BRICK_WALL = register("sealed_brick_wall", () -> new WallBlock(Properties.of().mapColor(MapColor.COLOR_BLACK).sound(SoundType.STONE).strength(2.0f, 10).requiresCorrectToolForDrops()));
+    public static final Id<Block> SEALED_BRICK_LADDER = register("sealed_brick_ladder", () -> new FLLadderBlock(Properties.of().mapColor(MapColor.COLOR_BLACK).strength(0.4F).sound(SoundType.LADDER).noOcclusion()));
 
     public static final Id<Block> HOLLOW_SHELL = registerNoItem("hollow_shell", () -> new GroundcoverBlock(ExtendedProperties.of().strength(0.05F, 0.0F).sound(SoundType.NETHER_WART).noCollission(), GroundcoverBlock.SMALL));
     public static final Id<Block> TREATED_WOOD = register("treated_wood", () -> new ExtendedBlock(ExtendedProperties.of().mapColor(MapColor.COLOR_BROWN).sound(SoundType.WOOL).strength(2f).flammableLikePlanks()));

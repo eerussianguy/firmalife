@@ -8,9 +8,9 @@
     "item": "tfc:plant/gooseberry_bush"
   },
   "nutrient": {
-    "nitrogen": 0.2,
-    "phosphorous": 0.2,
-    "potassium": 0.2
+    "nitrogen": 0.25,
+    "phosphorous": 0.25,
+    "potassium": 0.25
   },
   "planter": "trellis",
   "seed": {

@@ -8,9 +8,9 @@
     "item": "tfc:plant/snowberry_bush"
   },
   "nutrient": {
-    "nitrogen": 0.2,
-    "phosphorous": 0.2,
-    "potassium": 0.2
+    "nitrogen": 0.3,
+    "phosphorous": 0.3,
+    "potassium": 0.25
   },
   "planter": "trellis",
   "seed": {

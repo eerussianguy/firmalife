@@ -86,7 +86,7 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/sugared_beehive_frame",
-      "recipe2": "firmalife:crafting/filled_beehive_frame"
+      "recipe2": "firmalife:crafting/honeyed_beehive_frame"
     },
     {
       "type": "patchouli:text",
