@@ -10,8 +10,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public interface GreenhouseConnectable
 {
-    //TODO rename to DualPlaneType?
-    enum PostType implements StringRepresentable
+    enum DualSide implements StringRepresentable
     {
         NONE,
         LEFT,
@@ -24,7 +23,7 @@ public interface GreenhouseConnectable
             return name().toLowerCase(Locale.ROOT);
         }
 
-        public PostType combine(PostType other)
+        public DualSide combine(DualSide other)
         {
             if (this == NONE)
             {
@@ -41,7 +40,7 @@ public interface GreenhouseConnectable
             return BOTH;
         }
 
-        public PostType subtract(PostType other)
+        public DualSide subtract(DualSide other)
         {
             if (this == NONE || other == BOTH || this == other)
             {
@@ -54,7 +53,7 @@ public interface GreenhouseConnectable
             return this;
         }
 
-        public PostType opposite()
+        public DualSide opposite()
         {
             return switch (this)
             {
@@ -65,7 +64,7 @@ public interface GreenhouseConnectable
             };
         }
 
-        public boolean contains(PostType other)
+        public boolean contains(DualSide other)
         {
             if (other == this)
             {
@@ -78,7 +77,7 @@ public interface GreenhouseConnectable
             return false;
         }
 
-        public static PostType resolve(boolean left, boolean right)
+        public static DualSide resolve(boolean left, boolean right)
         {
             if (left != right)
             {
@@ -96,9 +95,7 @@ public interface GreenhouseConnectable
         }
     }
 
-    //TODO migrate to PostType and rename it?
-    @Deprecated
-    enum SideType implements StringRepresentable
+    enum Side implements StringRepresentable
     {
         LEFT,
         RIGHT,
@@ -120,7 +117,7 @@ public interface GreenhouseConnectable
             };
         }
 
-        public SideType opposite()
+        public Side opposite()
         {
             return switch (this)
             {
@@ -130,18 +127,18 @@ public interface GreenhouseConnectable
             };
         }
 
-        public PostType toPost()
+        public DualSide dual()
         {
             return switch (this)
             {
-                case LEFT -> PostType.LEFT;
-                case RIGHT -> PostType.RIGHT;
-                case NONE -> PostType.NONE;
+                case LEFT -> DualSide.LEFT;
+                case RIGHT -> DualSide.RIGHT;
+                case NONE -> DualSide.NONE;
             };
         }
     }
 
-    enum PostSize implements StringRepresentable
+    enum Size implements StringRepresentable
     {
         NONE,
         THIN,

@@ -38,12 +38,12 @@ public class GreenhousePanelRoofBlock extends TransparentBlock implements IWeath
     ));
 
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    public static final EnumProperty<PostSize> CW = EnumProperty.create("cw", PostSize.class);
-    public static final EnumProperty<PostSize> CCW = EnumProperty.create("ccw", PostSize.class);
+    public static final EnumProperty<Size> CW = EnumProperty.create("cw", Size.class);
+    public static final EnumProperty<Size> CCW = EnumProperty.create("ccw", Size.class);
     public static final BooleanProperty BACK = BooleanProperty.create("back");
     public static final BooleanProperty BOTTOM = BlockStateProperties.BOTTOM;
-    public static final EnumProperty<PostType> DIAGONAL = EnumProperty.create("diagonal", PostType.class);
-    public static final EnumProperty<PostType> SIDES = EnumProperty.create("sides", PostType.class);
+    public static final EnumProperty<DualSide> DIAGONAL = EnumProperty.create("diagonal", DualSide.class);
+    public static final EnumProperty<DualSide> SIDES = EnumProperty.create("sides", DualSide.class);
 
     private final ExtendedProperties properties;
     @Nullable private final Supplier<? extends Block> next;
@@ -57,8 +57,8 @@ public class GreenhousePanelRoofBlock extends TransparentBlock implements IWeath
             getStateDefinition()
                 .any()
                 .setValue(FACING, Direction.NORTH)
-                .setValue(CW, PostSize.NONE)
-                .setValue(CCW, PostSize.NONE)
+                .setValue(CW, Size.NONE)
+                .setValue(CCW, Size.NONE)
                 .setValue(BACK, false)
                 .setValue(BOTTOM, false)
         );
@@ -105,9 +105,9 @@ public class GreenhousePanelRoofBlock extends TransparentBlock implements IWeath
         }
         else
         {
-            Level level = ctx.getLevel();
-            BlockPos pos = ctx.getClickedPos();
-            Direction facing = ctx.getHorizontalDirection().getOpposite();
+            final Level level = ctx.getLevel();
+            final BlockPos pos = ctx.getClickedPos();
+            final Direction facing = ctx.getHorizontalDirection().getOpposite();
             return updateConnections(updateDiagonals(level, pos, state.setValue(FACING, facing)), pos, level, facing.getOpposite(), facing.getClockWise(), facing.getCounterClockWise(), Direction.DOWN);
         }
     }
@@ -153,7 +153,7 @@ public class GreenhousePanelRoofBlock extends TransparentBlock implements IWeath
             level.scheduleTick(downPos, downState.getBlock(), 1);
         }
 
-        return state.setValue(DIAGONAL, PostType.resolve(up, down));
+        return state.setValue(DIAGONAL, DualSide.resolve(up, down));
     }
 
     private static boolean isValidPanel(BlockState state, Direction facing)
@@ -172,40 +172,40 @@ public class GreenhousePanelRoofBlock extends TransparentBlock implements IWeath
         }
         if (facing == Direction.DOWN)
         {
-            final PostSize cw = getSideSize(facingState, currentFacing.getClockWise(), GreenhousePanelWallBlock.LEFT);
-            final PostSize ccw = getSideSize(facingState, currentFacing.getCounterClockWise(), GreenhousePanelWallBlock.RIGHT);
+            final Size cw = getSideSize(facingState, currentFacing.getClockWise(), GreenhousePanelWallBlock.LEFT);
+            final Size ccw = getSideSize(facingState, currentFacing.getCounterClockWise(), GreenhousePanelWallBlock.RIGHT);
             return state.setValue(CW, cw).setValue(CCW, ccw).setValue(BOTTOM, facingState.isFaceSturdy(level, facingPos, Direction.UP));
         }
-        boolean isValid = isValidPanel(level.getBlockState(facingPos), currentFacing);
-        PostType side = state.getValue(SIDES);
+        final boolean isValid = isValidPanel(level.getBlockState(facingPos), currentFacing);
+        final DualSide side = state.getValue(SIDES);
         if (facing == currentFacing.getClockWise())
         {
-            return state.setValue(SIDES, isValid ? side.combine(PostType.LEFT) : side.subtract(PostType.LEFT));
+            return state.setValue(SIDES, isValid ? side.combine(DualSide.LEFT) : side.subtract(DualSide.LEFT));
         }
         if (facing == currentFacing.getCounterClockWise())
         {
-            return state.setValue(SIDES, isValid ? side.combine(PostType.RIGHT) : side.subtract(PostType.RIGHT));
+            return state.setValue(SIDES, isValid ? side.combine(DualSide.RIGHT) : side.subtract(DualSide.RIGHT));
         }
         return state;
     }
 
-    private static PostSize getSideSize(BlockState state, Direction facing, BooleanProperty side)
+    private static Size getSideSize(BlockState state, Direction facing, BooleanProperty side)
     {
         if (GreenhousePanelWallBlock.getWallStates(state).contains(facing))
         {
             if (state.getValue(side))
             {
-                return PostSize.THIN;
+                return Size.THIN;
             }
-            return PostSize.THICK;
+            return Size.THICK;
         }
-        return PostSize.NONE;
+        return Size.NONE;
     }
 
     @Override
     public Set<Direction> getConnectionFaces(BlockState state, BlockPos pos, LevelAccessor level)
     {
-        Direction facing = state.getValue(FACING);
+        final Direction facing = state.getValue(FACING);
         return Set.of(facing.getOpposite(), Direction.DOWN, facing.getClockWise(), facing.getCounterClockWise());
     }
 }

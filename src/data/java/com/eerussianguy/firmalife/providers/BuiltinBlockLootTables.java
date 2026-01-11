@@ -111,8 +111,8 @@ public class BuiltinBlockLootTables extends BlockLootSubProvider implements Acce
                         LootTable.lootTable().withPool(
                             lootPool().add(
                                     lootTableItem(block.get())
-                                        .apply(setCount(2).when(hasProperty(block.get(), GreenhousePanelWallBlock.EXTRA_WALL, GreenhouseConnectable.SideType.LEFT)))
-                                        .apply(setCount(2).when(hasProperty(block.get(), GreenhousePanelWallBlock.EXTRA_WALL, GreenhouseConnectable.SideType.RIGHT)))
+                                        .apply(setCount(2).when(hasProperty(block.get(), GreenhousePanelWallBlock.EXTRA_WALL, GreenhouseConnectable.Side.LEFT)))
+                                        .apply(setCount(2).when(hasProperty(block.get(), GreenhousePanelWallBlock.EXTRA_WALL, GreenhouseConnectable.Side.RIGHT)))
                                 )
                                 .when(survivesExplosion())
                         )

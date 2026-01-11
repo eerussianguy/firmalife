@@ -39,7 +39,8 @@ import net.dries007.tfc.client.RenderHelpers;
 
 // TODO replacing this with a blockstate model loader if in a version that supports custom loaders is probably the best option
 // https://docs.neoforged.net/docs/1.21.5/resources/client/models/modelloaders/#block-state-definition-loaders
-// TODO rename
+// TODO rename if used for something other than greenhouse blocks
+// TODO this does not support side culling
 public class GreenhouseBlockModel implements IUnbakedGeometry<GreenhouseBlockModel>
 {
 

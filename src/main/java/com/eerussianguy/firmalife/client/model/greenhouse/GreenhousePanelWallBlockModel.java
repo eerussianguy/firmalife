@@ -53,24 +53,24 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
     @Override
     protected void render(BlockState state, PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay)
     {
-        TextureAtlasSprite postTexture = materialTexture.sprite();
-        Direction facing = state.getValue(GreenhousePanelWallBlock.FACING);
-        boolean left = state.getValue(GreenhousePanelWallBlock.LEFT);
-        boolean right = state.getValue(GreenhousePanelWallBlock.RIGHT);
-        boolean down = state.getValue(GreenhousePanelWallBlock.DOWN);
-        GreenhouseConnectable.PostType up = state.getValue(GreenhousePanelWallBlock.UP);
-        GreenhouseConnectable.SideType side = state.getValue(GreenhousePanelWallBlock.EXTRA_WALL);
+        final TextureAtlasSprite postTexture = materialTexture.sprite();
+        final Direction facing = state.getValue(GreenhousePanelWallBlock.FACING);
+        final boolean left = state.getValue(GreenhousePanelWallBlock.LEFT);
+        final boolean right = state.getValue(GreenhousePanelWallBlock.RIGHT);
+        final boolean down = state.getValue(GreenhousePanelWallBlock.DOWN);
+        final GreenhouseConnectable.DualSide up = state.getValue(GreenhousePanelWallBlock.UP);
+        final GreenhouseConnectable.Side side = state.getValue(GreenhousePanelWallBlock.EXTRA_WALL);
 
         //TODO issues with corner walls when the main face has an upwards connection
         //TODO breaking animation is incorrect
-        float angle = switch (facing)
+        final float angle = switch (facing)
         {
             case SOUTH -> 180;
             case EAST -> 270;
             case WEST -> 90;
             default -> 0;
         };
-        Vec3i normal = switch (facing)
+        final Vec3i normal = switch (facing)
         {
             case NORTH, SOUTH -> new Vec3i(1, 0, 0);
             case EAST, WEST -> new Vec3i(0, 0, 1);
@@ -83,11 +83,11 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
         poseStack.mulPose(Axis.YP.rotationDegrees(angle));
         poseStack.translate(-0.5f, 0, -0.5f);
 
-        drawLeft(poseStack, buffer, packedLight, packedOverlay, left, up, down, side == GreenhouseConnectable.SideType.LEFT, normal);
-        drawRight(poseStack, buffer, packedLight, packedOverlay, right, up, down, side == GreenhouseConnectable.SideType.RIGHT, normal);
+        drawLeft(poseStack, buffer, packedLight, packedOverlay, left, up, down, side == GreenhouseConnectable.Side.LEFT, normal);
+        drawRight(poseStack, buffer, packedLight, packedOverlay, right, up, down, side == GreenhouseConnectable.Side.RIGHT, normal);
 
         // Top
-        if (up == GreenhouseConnectable.PostType.BOTH || up == side.toPost().opposite())
+        if (up == GreenhouseConnectable.DualSide.BOTH || up == side.dual().opposite())
         {
             drawCube(poseStack, buffer, postTexture, packedLight, packedOverlay, 0, PIXEL_WIDTH * 14, 0f, 1, 1f, PIXEL_WIDTH * 2, normal);
         }
@@ -101,16 +101,16 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
         poseStack.popPose();
     }
 
-    private void drawLeft(PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay, boolean side, GreenhouseConnectable.PostType top, boolean bottom, boolean corner, Vec3i normal)
+    private void drawLeft(PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay, boolean side, GreenhouseConnectable.DualSide top, boolean bottom, boolean corner, Vec3i normal)
     {
-        TextureAtlasSprite postTexture = materialTexture.sprite();
-        float width = 1f - (side ? 1 : 2) / 16f;
-        float postStart = bottom ? 0 : (PIXEL_WIDTH * 2);
-        boolean topConnection = !top.contains(GreenhouseConnectable.PostType.LEFT);
-        float postEnd = topConnection ? 1 : (PIXEL_WIDTH * 14);
-        float topOffset = 1 - (topConnection ? 0 : 2) / 16f;
-        float topSideOffset = 1 - (!top.contains(GreenhouseConnectable.PostType.RIGHT) ? 0 : 2) / 16f;
-        float downOffset = (bottom ? 0 : 2) / 16f;
+        final TextureAtlasSprite postTexture = materialTexture.sprite();
+        final float width = 1f - (side ? 1 : 2) / 16f;
+        final float postStart = bottom ? 0 : (PIXEL_WIDTH * 2);
+        final boolean topConnection = !top.contains(GreenhouseConnectable.DualSide.LEFT);
+        final float postEnd = topConnection ? 1 : (PIXEL_WIDTH * 14);
+        final float topOffset = 1 - (topConnection ? 0 : 2) / 16f;
+        final float topSideOffset = 1 - (!top.contains(GreenhouseConnectable.DualSide.RIGHT) ? 0 : 2) / 16f;
+        final float downOffset = (bottom ? 0 : 2) / 16f;
 
         if (corner)
         {
@@ -130,7 +130,7 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
             }
 
             // Glass panels connected to the corner post, and cannot have side connections
-            drawGlass(poseStack, buffer, packedLight, packedOverlay, false, GreenhouseConnectable.PostType.LEFT.contains(top), bottom, getPlaneVertices(0.5f, downOffset, PIXEL_WIDTH, PIXEL_WIDTH * 14, topOffset, PIXEL_WIDTH), normal);
+            drawGlass(poseStack, buffer, packedLight, packedOverlay, false, GreenhouseConnectable.DualSide.LEFT.contains(top), bottom, getPlaneVertices(0.5f, downOffset, PIXEL_WIDTH, PIXEL_WIDTH * 14, topOffset, PIXEL_WIDTH), normal);
             drawGlass(poseStack, buffer, packedLight, packedOverlay, false, topConnection, bottom, getPlaneVertices(PIXEL_WIDTH * 15, downOffset, PIXEL_WIDTH * 2, PIXEL_WIDTH * 15, topSideOffset, 0.5f), normal);
 
             // Glass panel in the extra wall not connected to the corner post
@@ -143,16 +143,16 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
         }
     }
 
-    private void drawRight(PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay, boolean side, GreenhouseConnectable.PostType top, boolean bottom, boolean corner, Vec3i normal)
+    private void drawRight(PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay, boolean side, GreenhouseConnectable.DualSide top, boolean bottom, boolean corner, Vec3i normal)
     {
-        TextureAtlasSprite postTexture = materialTexture.sprite();
-        float width = (side ? 1 : 2) / 16f;
-        float postStart = bottom ? 0 : (PIXEL_WIDTH * 2);
-        boolean topConnection = !top.contains(GreenhouseConnectable.PostType.RIGHT);
-        float postEnd = topConnection ? 1 : (PIXEL_WIDTH * 14);
-        float topOffset = 1 - (topConnection ? 0 : 2) / 16f;
-        float topSideOffset = 1 - (!top.contains(GreenhouseConnectable.PostType.LEFT) ? 0 : 2) / 16f;
-        float downOffset = (bottom ? 0 : 2) / 16f;
+        final TextureAtlasSprite postTexture = materialTexture.sprite();
+        final float width = (side ? 1 : 2) / 16f;
+        final float postStart = bottom ? 0 : (PIXEL_WIDTH * 2);
+        final boolean topConnection = !top.contains(GreenhouseConnectable.DualSide.RIGHT);
+        final float postEnd = topConnection ? 1 : (PIXEL_WIDTH * 14);
+        final float topOffset = 1 - (topConnection ? 0 : 2) / 16f;
+        final float topSideOffset = 1 - (!top.contains(GreenhouseConnectable.DualSide.LEFT) ? 0 : 2) / 16f;
+        final float downOffset = (bottom ? 0 : 2) / 16f;
         if (corner)
         {
             // Corner post
@@ -173,7 +173,7 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
             }
 
             // Glass panels connected to the corner post, and cannot have side connections
-            drawGlass(poseStack, buffer, packedLight, packedOverlay, false, GreenhouseConnectable.PostType.RIGHT.contains(top), bottom, getPlaneVertices(PIXEL_WIDTH * 2, downOffset, PIXEL_WIDTH, 0.5f, topOffset, PIXEL_WIDTH), normal);
+            drawGlass(poseStack, buffer, packedLight, packedOverlay, false, GreenhouseConnectable.DualSide.RIGHT.contains(top), bottom, getPlaneVertices(PIXEL_WIDTH * 2, downOffset, PIXEL_WIDTH, 0.5f, topOffset, PIXEL_WIDTH), normal);
             drawGlass(poseStack, buffer, packedLight, packedOverlay, false, topConnection, bottom, getPlaneVertices(PIXEL_WIDTH, downOffset, PIXEL_WIDTH * 2, PIXEL_WIDTH, topSideOffset, 0.5f), normal);
 
             // Glass panel in the extra wall not connected to the corner post
@@ -252,10 +252,10 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
         assert minX <= maxX : "x " + minX + " " + maxX;
         assert minY <= maxY : "y " + minY + " " + maxY;
         assert minZ <= maxZ : "z " + minZ + " " + maxZ;
-        float v0 = 1 - maxY;
-        float v1 = 1 - minY;
-        float u0 = maxX - minX > maxZ - minZ ? minX : minZ;
-        float u1 = u0 + Math.max(maxX - minX, maxZ - minZ);
+        final float v0 = 1 - maxY;
+        final float v1 = 1 - minY;
+        final float u0 = maxX - minX > maxZ - minZ ? minX : minZ;
+        final float u1 = u0 + Math.max(maxX - minX, maxZ - minZ);
         return new float[][] {
             {minX, minY, minZ, u0, v1, 1.0F},
             {maxX, minY, maxZ, u1, v1, 1.0F},
@@ -278,10 +278,10 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
         assert minX < maxX : "x";
         assert minY < maxY : "y";
         assert minZ < maxZ : "z";
-        float u0 = minZ;
-        float u1 = maxZ;
-        float v0 = 1 - minY;
-        float v1 = 1 - maxY;
+        final float u0 = minZ;
+        final float u1 = maxZ;
+        final float v0 = 1 - minY;
+        final float v1 = 1 - maxY;
         return new float[][] {
             {minX, minY, minZ, u0, v0, 1.0F},
             {minX, minY, maxZ, u1, v0, 1.0F},
@@ -303,10 +303,10 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
         assert minX < maxX : "x";
         assert minY < maxY : "y";
         assert minZ < maxZ : "z";
-        float u0 = 1 - minZ;
-        float u1 = 1 - maxZ;
-        float v0 = 1 - minX;
-        float v1 = 1 - maxX;
+        final float u0 = 1 - minZ;
+        final float u1 = 1 - maxZ;
+        final float v0 = 1 - minX;
+        final float v1 = 1 - maxX;
         return new float[][] {
             {minX, maxY, minZ, u0, v0, 1.0F},
             {minX, maxY, maxZ, u1, v0, 1.0F},
@@ -328,10 +328,10 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
         assert minX < maxX : "x";
         assert minY < maxY : "y";
         assert minZ < maxZ : "z";
-        float u0 = 1 - maxX;
-        float u1 = 1 - minX;
-        float v0 = 1 - maxY;
-        float v1 = 1 - minY;
+        final float u0 = 1 - maxX;
+        final float u1 = 1 - minX;
+        final float v0 = 1 - maxY;
+        final float v1 = 1 - minY;
         return new float[][] {
             {maxX, minY, minZ, u0, v1, 1.0F},
             {minX, minY, minZ, u1, v1, 1.0F},
