@@ -111,7 +111,7 @@ public class GreenhousePanelWallBlock extends BaseGreenhouseBlock implements IWe
             final BlockState below = level.getBlockState(pos.below());
             if (below.getBlock() instanceof GreenhousePanelWallBlock)
             {
-                state = FLHelpers.copyProperties(state, below, LEFT, RIGHT);
+                state = FLHelpers.copyProperties(state, below, LEFT, RIGHT, FACING);
             }
             return state;
         }

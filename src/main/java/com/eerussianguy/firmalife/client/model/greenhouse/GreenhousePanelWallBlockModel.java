@@ -18,8 +18,13 @@ import net.dries007.tfc.client.RenderHelpers;
 
 public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
 {
+    public static final Vec3i XP = new Vec3i(1, 0, 0);
+    public static final Vec3i ZP = new Vec3i(0, 0, 1);
+    public static final Vec3i ZERO = new Vec3i(0, 0, 0);
+
     // UV width of one pixel, for a 16x16 texture
     private static final float PIXEL_WIDTH = 1 / 16f;
+
     private final Material materialTexture;
     private final Material glassThinTexture;
     private final Material glassThinBothTexture;
@@ -71,9 +76,9 @@ public class GreenhousePanelWallBlockModel extends GreenhouseBlockModel.Baked
         };
         final Vec3i normal = switch (facing)
         {
-            case NORTH, SOUTH -> new Vec3i(1, 0, 0);
-            case EAST, WEST -> new Vec3i(0, 0, 1);
-            default -> new Vec3i(0, 0, 0);
+            case NORTH, SOUTH -> XP;
+            case EAST, WEST -> ZP;
+            default -> ZERO;
         };
 
         poseStack.pushPose();

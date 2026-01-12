@@ -1,0 +1,21 @@
+{
+  "type": "tfc:alloy",
+  "contents": [
+    {
+      "fluid": "firmalife:metal/chromium",
+      "max": 0.3,
+      "min": 0.2
+    },
+    {
+      "fluid": "tfc:metal/nickel",
+      "max": 0.2,
+      "min": 0.1
+    },
+    {
+      "fluid": "tfc:metal/steel",
+      "max": 0.8,
+      "min": 0.6
+    }
+  ],
+  "result": "firmalife:metal/stainless_steel"
+}

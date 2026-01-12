@@ -9,7 +9,7 @@
       "item": "firmalife:copper_pipe"
     },
     "S": {
-      "tag": "c:sheets/any_bronze"
+      "tag": "tfc:sheets/any_bronze"
     }
   },
   "pattern": [

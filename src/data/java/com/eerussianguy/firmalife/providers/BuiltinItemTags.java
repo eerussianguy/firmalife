@@ -41,6 +41,8 @@ import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.items.Food;
 import net.dries007.tfc.common.items.TFCItems;
+import net.dries007.tfc.util.Helpers;
+import net.dries007.tfc.util.Metal;
 import net.dries007.tfc.util.registry.IdHolder;
 
 public class BuiltinItemTags extends TagsProvider<Item> implements Accessors
@@ -67,6 +69,11 @@ public class BuiltinItemTags extends TagsProvider<Item> implements Accessors
             itemOf(FLFood.TACO).asItem(),
             FLItems.STINKY_SOUP.get()
         );
+        var anyBronzeSheets = tagOf(Registries.ITEM, Helpers.identifier("sheets/any_bronze"));
+        tag(anyBronzeSheets)
+            .add(TFCItems.METAL_ITEMS.get(Metal.BRONZE).get(Metal.ItemType.SHEET))
+            .add(TFCItems.METAL_ITEMS.get(Metal.BISMUTH_BRONZE).get(Metal.ItemType.SHEET))
+            .add(TFCItems.METAL_ITEMS.get(Metal.BLACK_BRONZE).get(Metal.ItemType.SHEET));
         tag(TFCTags.Items.FLUID_ITEM_INGREDIENT_EMPTY_CONTAINERS).add(
             FLItems.HOLLOW_SHELL.asItem(),
             FLItems.WINE_GLASS.asItem()
@@ -173,7 +180,7 @@ public class BuiltinItemTags extends TagsProvider<Item> implements Accessors
         tag(TFCTags.Items.CAN_BE_SALTED).add(itemOf(FLFood.BUTTER).asItem());
         tag(TFCTags.Items.TOOL_RACK_TOOLS).add(FLItems.SPOON, FLItems.PEEL);
         tag(FLTags.Items.PUMPKIN_KNAPPING).add(TFCBlocks.PUMPKIN.asItem());
-        tag(TFCTags.Items.CLAY_KNAPPING).addTag(FLTags.Items.PUMPKIN_KNAPPING);
+        tag(TFCTags.Items.LEATHER_KNAPPING).add(FLItems.PINEAPPLE_LEATHER);
         tag(FLTags.Items.WASHABLE_FOODS)
             .add(FLItems.FILLED_PIE, FLItems.RAW_PUMPKIN_PIE, FLItems.STINKY_SOUP)
             .add(itemOf(FLFood.COOKED_PIE).asItem(), Items.PUMPKIN_PIE);

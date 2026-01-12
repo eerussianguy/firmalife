@@ -41,6 +41,7 @@ import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.common.recipes.ingredients.FluidContentIngredient;
 import net.dries007.tfc.common.recipes.outputs.MealModifier;
 import net.dries007.tfc.util.DataGenerationHelpers;
+import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.Metal;
 
 public interface CraftingRecipes extends Recipes
@@ -54,7 +55,7 @@ public interface CraftingRecipes extends Recipes
         var wroughtRods = commonTagOf(Registries.ITEM, "rods/wrought_iron");
         var stainlessSheets = commonTagOf(Registries.ITEM, "rods/stainless_steel");
         var wroughtSheets = commonTagOf(Registries.ITEM, "sheets/wrought_iron");
-        var anyBronzeSheets = commonTagOf(Registries.ITEM, "sheets/any_bronze");
+        var anyBronzeSheets = tagOf(Registries.ITEM, Helpers.identifier("sheets/any_bronze"));
 
         //Shaped
         recipe()
@@ -469,7 +470,7 @@ public interface CraftingRecipes extends Recipes
             .input(Items.PAPER)
             .input(FLItems.BEESWAX)
             .damageInputs()
-            .shapeless(FLItems.BOTTLE_LABEL);
+            .shapeless(FLItems.BOTTLE_LABEL, 16);
         recipe()
             .input(Items.LEATHER_HELMET)
             .input(TFCItems.BURLAP_CLOTH)

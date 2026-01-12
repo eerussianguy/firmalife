@@ -6,6 +6,7 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import com.eerussianguy.firmalife.common.FLHelpers;
+import com.eerussianguy.firmalife.recipes.AlloyRecipes;
 import com.eerussianguy.firmalife.recipes.AnvilRecipes;
 import com.eerussianguy.firmalife.recipes.BarrelRecipes;
 import com.eerussianguy.firmalife.recipes.CastingRecipes;
@@ -45,6 +46,7 @@ import net.dries007.tfc.common.recipes.outputs.ItemStackProvider;
 import net.dries007.tfc.util.Helpers;
 
 public class BuiltinRecipes extends RecipeProvider implements Recipes,
+    AlloyRecipes,
     AnvilRecipes,
     BarrelRecipes,
     CastingRecipes,
@@ -104,6 +106,7 @@ public class BuiltinRecipes extends RecipeProvider implements Recipes,
     public void buildRecipes(RecipeOutput output)
     {
         this.output = output;
+        alloyRecipes();
         anvilRecipes();
         barrelRecipes();
         castingRecipes();
