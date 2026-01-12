@@ -67,7 +67,7 @@ jobs:
           name: Firmalife 1.21.1-${{ steps.version.outputs.result }}
           version: ${{ steps.version.outputs.result }}
           version-type: ${{ steps.version_type.outputs.result }}
-          java: 17
+          java: 21
           loaders: |
             forge
             neoforge

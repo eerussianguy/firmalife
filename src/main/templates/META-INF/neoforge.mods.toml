@@ -20,6 +20,10 @@ issueTrackerURL = "https://github.com/eerussianguy/firmalife/issues"
     versionRange = "${tfcVersionRange}"
     ordering = "AFTER"
     side = "BOTH"
+    [dependencies.firmalife.mc-publish]
+        ignore=false
+        modrinth="terrafirmacraft"
+        curseforge="terrafirmacraft"
 
 [[dependencies.firmalife]]
     modId = "patchouli"
