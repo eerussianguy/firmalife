@@ -185,7 +185,7 @@ public class BaseBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBl
             {
                 tooltip.accept(Component.translatable("firmalife.beehive.honey" + (honey == 1 ? "_1" : ""), String.valueOf(honey)).withStyle(ChatFormatting.GOLD));
             }
-            final float temp = Climate.getTemperature(level, pos);
+            final float temp = Climate.getInstantTemperature(level, pos);
             final BeeComponent bee = hive.getBee();
             if (bee.hasQueen())
             {
@@ -194,7 +194,8 @@ public class BaseBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBl
                 final float minTemp = hive.getMinTemperature();
                 if (temp <= minTemp || hive.getAvailableFrames() == 0)
                 {
-                    tooltip.accept(Component.translatable("firmalife.beehive.bee_cold", minTemp, String.format("%.2f", temp)).withStyle(ChatFormatting.AQUA));
+                    if (temp <= minTemp)
+                        tooltip.accept(Component.translatable("firmalife.beehive.bee_cold", String.format("%.2f", temp), minTemp).withStyle(ChatFormatting.AQUA));
                     if (honey == 0)
                     {
                         tooltip.accept(Component.translatable("firmalife.beehive.starving"));

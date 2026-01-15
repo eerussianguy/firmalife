@@ -85,7 +85,7 @@ public class WildBeehiveBlock extends HorizontalDirectionalBlock implements IFor
 
     public static boolean isWarmEnough(Level level, BlockPos pos)
     {
-        return Climate.getTemperature(level, pos) > BeeAbility.getMinTemperature(0);
+        return Climate.getInstantTemperature(level, pos) > BeeAbility.getMinTemperature(0);
     }
 
     public static final VoxelShape SHAPE = Shapes.or(

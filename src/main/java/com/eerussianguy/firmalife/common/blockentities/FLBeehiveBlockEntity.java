@@ -167,7 +167,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
         {
             while (lastAreaTick < now)
             {
-                float temperature = Climate.getTemperature(level, worldPosition, calendar, calendar.getCalendarTickFromOffset(lastAreaTick - calendar.getTicks()));
+                float temperature = Climate.getInstantTemperature(level, worldPosition, calendar, calendar.getCalendarTickFromOffset(lastAreaTick - calendar.getTicks()));
                 updateTick(temperature, occluded, flowers);
                 lastAreaTick += UPDATE_INTERVAL;
             }
@@ -302,7 +302,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
         final int resistance = beeData.getAbility(BeeAbility.INFECTION_RESISTANCE);
         if (random.nextFloat() * 10f < resistance)
             return;
-        final float rain = Climate.get(level).getRainfall(level, worldPosition);
+        final float rain = Climate.get(level).getInstantRainfall(level, worldPosition);
         if (rain > 470 && random.nextInt(80) == 0)
         {
             beeData = BeeComponent.withDiseases(beeData, beeData.geneticDisease(), temp > 16 ? ParasiticInfection.STONEBROOD : ParasiticInfection.CHALKBROOD);
@@ -382,7 +382,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
     public boolean isWarmEnough()
     {
         assert level != null;
-        return isWarmEnough(Climate.getTemperature(level, worldPosition));
+        return isWarmEnough(Climate.getInstantTemperature(level, worldPosition));
     }
 
     public boolean isWarmEnough(float temperature)

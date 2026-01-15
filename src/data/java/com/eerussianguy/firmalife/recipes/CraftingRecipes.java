@@ -206,9 +206,8 @@ public interface CraftingRecipes extends Recipes
             .shaped(FLBlocks.CENTRIFUGE);
         recipe()
             .input('X', TFCItems.STRAW)
-            .input('Y', TFCBlocks.PLANTS.get(Plant.CATTAIL))
-            .input('Z', Tags.Items.RODS_WOODEN)
-            .pattern("XYX", "XZX", "XYX")
+            .input('Y', Tags.Items.RODS_WOODEN)
+            .pattern("XYX", "X X", "XYX")
             .shaped(FLBlocks.SKEP);
         recipe()
             .input('X', wroughtSheets)

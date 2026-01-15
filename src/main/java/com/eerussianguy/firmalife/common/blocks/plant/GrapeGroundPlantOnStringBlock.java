@@ -103,7 +103,7 @@ public class GrapeGroundPlantOnStringBlock extends GrapeStringBlock implements I
     @Override
     public void addHoeOverlayInfo(Level level, BlockPos pos, BlockState state, Consumer<Component> tooltip, boolean debug)
     {
-        tooltip.accept(FarmlandBlock.getTemperatureTooltip(level, pos, FLClimateRanges.GRAPES.get(), false));
+        tooltip.accept(FarmlandBlock.getInstantTemperatureTooltip(level, pos, FLClimateRanges.GRAPES.get(), false));
         if (level.getBlockEntity(pos) instanceof GrapePlantBlockEntity grape && TFCConfig.CLIENT.enableDebug.get())
         {
             tooltip.accept(Component.literal("[Debug] Growth: " + grape.getGrowth()));

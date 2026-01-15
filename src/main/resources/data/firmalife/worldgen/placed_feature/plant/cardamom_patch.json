@@ -15,9 +15,6 @@
       "max_temperature": 24,
       "min_groundwater": 330,
       "max_groundwater": 500
-    },
-    {
-      "type": "tfc:biome"
     }
   ]
 }

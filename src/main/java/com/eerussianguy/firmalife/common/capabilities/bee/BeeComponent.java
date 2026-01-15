@@ -53,7 +53,7 @@ public record BeeComponent(
 
     public static BeeComponent getWildBee(Level level, BlockPos pos)
     {
-        final BeeSpecies species = BeeSpecies.choose(Climate.getAverageTemperature(level, pos), Climate.getGroundwater(level, pos), pos, level.random);
+        final BeeSpecies species = BeeSpecies.choose(Climate.getAverageTemperature(level, pos), Climate.getAverageGroundwater(level, pos), pos, level.random);
         return new BeeComponent(new HashMap<>(species.getDefaults()), true, GeneticDisease.NONE, level.random.nextFloat() < 0.05f ? ParasiticInfection.VARROA : ParasiticInfection.NONE, species, 0).mutate(level.random);
     }
 

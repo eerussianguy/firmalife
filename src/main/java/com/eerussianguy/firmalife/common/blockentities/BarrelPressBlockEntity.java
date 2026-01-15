@@ -136,7 +136,7 @@ public class BarrelPressBlockEntity extends TickableInventoryBlockEntity<ItemSta
         final WineType wine = getWineType();
         if (wine == null)
             return;
-        final var climate = KoppenClimateClassification.classify(Climate.getAverageTemperature(level, worldPosition), Climate.getRainfall(level, worldPosition), Climate.getRainfallVariance(level, worldPosition), SolarCalculator.getInNorthernHemisphere(worldPosition, level));
+        final var climate = KoppenClimateClassification.classify(Climate.getAverageTemperature(level, worldPosition), Climate.getAverageRainfall(level, worldPosition), Climate.getRainfallVariance(level, worldPosition), SolarCalculator.getInNorthernHemisphere(worldPosition, level));
 
         final List<Holder<FoodTrait>> traits = new ArrayList<>();
         final IFood food = FoodCapability.get(grapes);

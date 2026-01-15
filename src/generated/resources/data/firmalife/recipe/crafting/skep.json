@@ -6,15 +6,12 @@
       "item": "tfc:straw"
     },
     "Y": {
-      "item": "tfc:plant/cattail"
-    },
-    "Z": {
       "tag": "c:rods/wooden"
     }
   },
   "pattern": [
     "XYX",
-    "XZX",
+    "X X",
     "XYX"
   ],
   "result": {

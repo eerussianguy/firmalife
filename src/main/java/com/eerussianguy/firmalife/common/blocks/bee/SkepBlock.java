@@ -62,16 +62,18 @@ public class SkepBlock extends BaseBeehiveBlock implements IItemSize
             {
                 ItemHandlerHelper.giveItemToPlayer(player, FLItems.FOODS.get(FLFood.RAW_HONEY).get().getDefaultInstance());
                 Helpers.playSound(level, pos, SoundEvents.BOTTLE_FILL);
-                level.setBlockAndUpdate(pos, state.cycle(HONEY));
+                level.setBlockAndUpdate(pos, state.setValue(HONEY, false));
             }
             return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
         else if (held.getItem() == FLItems.FOODS.get(FLFood.RAW_HONEY).get())
         {
+            held.shrink(1);
             Helpers.playSound(level, pos, SoundEvents.HONEY_BLOCK_PLACE);
-            level.setBlockAndUpdate(pos, state.cycle(HONEY));
+            level.setBlockAndUpdate(pos, state.setValue(HONEY, true));
+            return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
-        else if (level.getBlockEntity(pos) instanceof SkepBlockEntity skep && skep.isItemValid(0, held))
+        if (level.getBlockEntity(pos) instanceof SkepBlockEntity skep && skep.isItemValid(0, held))
         {
             return FLHelpers.insertOne(level, held, 0, skep.getInventory(), player);
         }

@@ -9,7 +9,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
 import net.dries007.tfc.common.blocks.ExtendedProperties;
-import net.dries007.tfc.common.blocks.plant.fruit.FruitTreeLeavesBlock;
 import net.dries007.tfc.common.blocks.plant.fruit.GrowingFruitTreeBranchBlock;
 import net.dries007.tfc.util.climate.Climate;
 import net.dries007.tfc.util.climate.ClimateRange;
@@ -28,7 +27,7 @@ public class FLGrowingFruitTreeBranchBlock extends GrowingFruitTreeBranchBlock
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand)
     {
         int hydration = getFruitBranchHydration(level, pos);
-        float temp = Climate.getTemperature(level, pos);
+        float temp = Climate.getAverageTemperature(level, pos);
         if (!this.climateRange.get().checkBoth(hydration, temp, false) && !(Boolean)state.getValue(NATURAL))
         {
             FLTickCounterBlockEntity.reset(level, pos);

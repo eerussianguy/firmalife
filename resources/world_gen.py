@@ -134,7 +134,7 @@ def generate(rm: ResourceManager):
 
     for berry, data in STILL_BUSHES.items():
         bush_block = 'firmalife:plant/%s_bush[lifecycle=healthy,stage=0]' % berry
-        configured_patch_feature(rm, ('plant', berry + '_bush'), patch_config(bush_block, 1, 4, 4, False), decorate_climate(data[2], data[3], data[0], data[1], min_forest=1), decorate_square(), decorate_chance(30), biome_check=False)
+        configured_patch_feature(rm, ('plant', berry + '_bush'), patch_config(bush_block, 1, 4, 4, False), decorate_climate(data[2], data[3], data[0], data[1], min_forest=1), decorate_square(), decorate_chance(30))
         placed_feature_tag(rm, 'tfc:feature/berry_bushes', 'firmalife:plant/%s_bush_patch' % berry)
 
 
@@ -166,7 +166,7 @@ def decorate_climate(min_temp: Optional[float] = None, max_temp: Optional[float]
 def patch_config(block: str, y_spread: int, xz_spread: int, tries: int = 64, water: Union[bool, Literal['salt']] = False, custom_feature: Optional[str] = None, custom_config: Json = None) -> PatchConfig:
     return PatchConfig(block, y_spread, xz_spread, tries, water == 'salt' or water == True, water == 'salt', custom_feature, custom_config)
 
-def configured_patch_feature(rm: ResourceManager, name_parts: ResourceIdentifier, patch: PatchConfig, *patch_decorators: Json, extra_singular_decorators: Optional[List[Json]] = None, biome_check: bool = True):
+def configured_patch_feature(rm: ResourceManager, name_parts: ResourceIdentifier, patch: PatchConfig, *patch_decorators: Json, extra_singular_decorators: Optional[List[Json]] = None):
     feature = 'minecraft:simple_block'
     config = {'to_place': {'type': 'minecraft:simple_state_provider', 'state': utils.block_state(patch.block)}}
     singular_decorators = []
@@ -194,8 +194,6 @@ def configured_patch_feature(rm: ResourceManager, name_parts: ResourceIdentifier
 
     if extra_singular_decorators is not None:
         singular_decorators += extra_singular_decorators
-    if biome_check:
-        patch_decorators = [*patch_decorators, decorate_biome()]
 
     res = utils.resource_location(rm.domain, name_parts)
     patch_feature = res.join() + '_patch'
@@ -216,9 +214,6 @@ def decorate_matching_blocks(*blocks: str) -> Json:
         'type': 'matching_blocks',
         'blocks': list(blocks)
     })
-
-def decorate_biome() -> Json:
-    return 'tfc:biome'
 
 def decorate_would_survive(block: str) -> Json:
     return decorate_block_predicate({

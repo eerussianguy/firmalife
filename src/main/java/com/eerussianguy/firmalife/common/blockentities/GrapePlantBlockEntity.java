@@ -81,7 +81,7 @@ public class GrapePlantBlockEntity extends TickableBlockEntity implements ICalen
         assert level != null;
 
         Lifecycle lifecycle = Lifecycle.DORMANT;
-        if (FLClimateRanges.GRAPES.get().checkTemperature(Climate.getTemperature(level, worldPosition), false) == ClimateRange.Result.VALID)
+        if (FLClimateRanges.GRAPES.get().checkTemperature(Climate.getInstantTemperature(level, worldPosition), false) == ClimateRange.Result.VALID)
         {
             growth += 0.125f + (level.random.nextFloat() * 0.05f);
             if (growth >= 1f)
@@ -216,7 +216,6 @@ public class GrapePlantBlockEntity extends TickableBlockEntity implements ICalen
     {
         assert level != null;
         final BlockPos.MutableBlockPos cursor = new BlockPos.MutableBlockPos();
-        final float temp = Climate.getTemperature(level, worldPosition);
 
         int dirtCount = 0;
         int grassCount = 0;
