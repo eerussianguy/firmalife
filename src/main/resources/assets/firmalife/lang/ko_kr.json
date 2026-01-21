@@ -793,6 +793,7 @@
   "firmalife.tooltip.planter.nutrients": "Nutrients (planter only):",
   "firmalife.tooltip.beekeeper_armor": "Protects from bees if full suit is worn",
   "firmalife.tooltip.knapping.rotten": "This item is rotten and cannot be knapped.",
+  "firmalife.tooltip.greenhouse_panel_corner": "Panels placed on the side of an existing panel create a corner panel",
   "firmalife.cellar.found": "%s 블록의 지하실을 찾았습니다",
   "firmalife.cellar.valid_block": "유효한 지하실에서",
   "firmalife.cellar.invalid_block": "잘못된 지하실",

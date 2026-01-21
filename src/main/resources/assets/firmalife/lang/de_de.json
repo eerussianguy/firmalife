@@ -795,6 +795,7 @@
   "firmalife.tooltip.planter.nutrients": "Nutrients (planter only):",
   "firmalife.tooltip.beekeeper_armor": "Schützt vor Bienen bei voller Montur",
   "firmalife.tooltip.knapping.rotten": "This item is rotten and cannot be knapped.",
+  "firmalife.tooltip.greenhouse_panel_corner": "Panels placed on the side of an existing panel create a corner panel",
   "firmalife.cellar.found": "Keller mit %s Blöcken gefunden.",
   "firmalife.cellar.valid_block": "In einem validen Keller",
   "firmalife.cellar.invalid_block": "Invalider Keller",

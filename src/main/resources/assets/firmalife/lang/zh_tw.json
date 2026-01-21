@@ -801,6 +801,7 @@
   "firmalife.tooltip.planter.nutrients": "營養（僅用於種植盆）：",
   "firmalife.tooltip.beekeeper_armor": "如果全套裝備可以使您免於蜜蜂攻擊",
   "firmalife.tooltip.knapping.rotten": "此物體已經腐爛，無法被雕刻。",
+  "firmalife.tooltip.greenhouse_panel_corner": "Panels placed on the side of an existing panel create a corner panel",
   "firmalife.cellar.found": "成功識別%s個方塊的地窖",
   "firmalife.cellar.valid_block": "§a有效的地窖",
   "firmalife.cellar.invalid_block": "§4無效的地窖",

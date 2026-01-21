@@ -794,6 +794,7 @@
   "firmalife.tooltip.planter.nutrients": "Nutrients (planter only):",
   "firmalife.tooltip.beekeeper_armor": "Захищає від бджіл за умови повного споряждення пасічника",
   "firmalife.tooltip.knapping.rotten": "Це згнило, неможливо обробити",
+  "firmalife.tooltip.greenhouse_panel_corner": "Panels placed on the side of an existing panel create a corner panel",
   "firmalife.cellar.found": "Виявлено льох розміром %s блока(блоків)",
   "firmalife.cellar.valid_block": "Дійсний блок льоху",
   "firmalife.cellar.invalid_block": "Блок не має відношення до льоху",

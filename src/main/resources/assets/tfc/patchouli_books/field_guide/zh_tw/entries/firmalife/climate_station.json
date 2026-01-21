@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(thing)氣象站$()是用於管理$(l:firmalife/greenhouse)溫室$()和$(l:firmalife/cellar)地窖$()的方塊。當其對應的多方塊結構正確建造時，其側面會顯示水流的紋理；當結構無效時，則會顯示冰霜紋理。氣象站必須放置在該多方塊結構的最底層，並緊貼牆面。如果它沒有貼牆，你可以手持目標多方塊結構的組成部分對其$(item)$(k:key.use)$()，以告知它需要檢測的結構類型。"
+      "text": "The $(thing)Climate Station$() is a block that manages the $(l:firmalife/greenhouse)Greenhouse$() and the $(l:firmalife/cellar)Cellar$(). When its corresponding multiblock is built correctly, it will show water on its sides. When it is invalid, it will show ice. The Climate Station must be placed on the first level of the multiblock, touching a part of the greenhouse structure. If it is not touching the structure, you may $(item)$(k:key.use)$() it with a block from that greenhouse type to tell it what to look for."
     },
     {
       "type": "tfc:multimultiblock",

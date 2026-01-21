@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(thing)空調機$()は、$(l:firmalife/greenhouse)温室$()と$(l:firmalife/cellar)貯蔵庫$()を管理するブロックです。その対応するマルチブロックが正しく構築されている場合、側面に水が表示され、無効な場合は氷が表示されます。空調機は、マルチブロックの床に設置し壁にも接触するように設置する必要があります。壁に接触させない場合、マルチブロックの一部となるブロックを持ち、$(item)$(k:key.use)$()を使用すると認識させられます。"
+      "text": "The $(thing)Climate Station$() is a block that manages the $(l:firmalife/greenhouse)Greenhouse$() and the $(l:firmalife/cellar)Cellar$(). When its corresponding multiblock is built correctly, it will show water on its sides. When it is invalid, it will show ice. The Climate Station must be placed on the first level of the multiblock, touching a part of the greenhouse structure. If it is not touching the structure, you may $(item)$(k:key.use)$() it with a block from that greenhouse type to tell it what to look for."
     },
     {
       "type": "tfc:multimultiblock",

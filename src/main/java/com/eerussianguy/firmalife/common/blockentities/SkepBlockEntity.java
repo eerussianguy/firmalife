@@ -75,7 +75,7 @@ public class SkepBlockEntity extends FLBeehiveBlockEntity
     @Override
     public boolean canSwarm(boolean occluded)
     {
-        return linkedHive == null && beeData.hasQueen() && isWarmEnough() && getHoney() == 1 && !getBee().hasGeneticDisease();
+        return linkedHive == null && beeData.hasQueen() && isWarmEnough() && !getBee().hasGeneticDisease();
     }
 
     /**

@@ -794,6 +794,7 @@
   "firmalife.tooltip.planter.nutrients": "Nutrients (planter only):",
   "firmalife.tooltip.beekeeper_armor": "養蜂家の防具をすべて着ると蜂から身を守れます。",
   "firmalife.tooltip.knapping.rotten": "このアイテムは腐っているため、加工出来ません。",
+  "firmalife.tooltip.greenhouse_panel_corner": "Panels placed on the side of an existing panel create a corner panel",
   "firmalife.cellar.found": "%sブロックの貯蔵庫を確認",
   "firmalife.cellar.valid_block": "有効な貯蔵庫",
   "firmalife.cellar.invalid_block": "無効な貯蔵庫",

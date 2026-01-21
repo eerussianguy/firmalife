@@ -794,6 +794,7 @@
   "firmalife.tooltip.planter.nutrients": "Nutrients (planter only):",
   "firmalife.tooltip.beekeeper_armor": "Защищает от пчел при ношении полного костюма.",
   "firmalife.tooltip.knapping.rotten": "Этот предмет сгнил и его нельзя сломать.",
+  "firmalife.tooltip.greenhouse_panel_corner": "Panels placed on the side of an existing panel create a corner panel",
   "firmalife.cellar.found": "Обнаружен погреб размером %s блока(блоков)",
   "firmalife.cellar.valid_block": "В действующем погребе",
   "firmalife.cellar.invalid_block": "Не в погребе",
