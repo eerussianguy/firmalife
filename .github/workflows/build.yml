@@ -69,7 +69,6 @@ jobs:
           version-type: ${{ steps.version_type.outputs.result }}
           java: 21
           loaders: |
-            forge
             neoforge
 
           changelog-file: CHANGELOG.md
