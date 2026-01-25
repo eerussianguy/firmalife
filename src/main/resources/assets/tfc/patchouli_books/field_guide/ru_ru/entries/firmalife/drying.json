@@ -24,7 +24,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Drying mats can be automated. Pushing a piston head against a drying mat will pop the item off. Dropping an item onto a drying mat will place it on the mat."
+      "text": "Сушильный коврики могут быть автоматизированы. При нажатии поршнем на сушильный коврик предмет выскочит. Если уронить предмет на сушильный коврик, он окажется на коврике."
     },
     {
       "type": "tfc:drying_recipe",
