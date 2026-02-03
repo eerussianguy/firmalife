@@ -15,7 +15,7 @@
     {
       "type": "patchouli:text",
       "anchor": "cocoa",
-      "text": "$(bold)$(l:the_world/climate#temperature)Температура$(): 20 - 35 °C$(br)$(bold)$(l:mechanics/hydration)Осадки$(): 220 - 400mm$(br2)Какао-деревья используются для изготовления $(l:firmalife/chocolate)шоколада$().",
+      "text": "$(bold)$(l:the_world/climate#temperature)Temperature$(): 20 - 35 °C$(br)$(bold)$(l:mechanics/hydration)Rainfall$(): 220 - 400mm$(br2)Cocoa trees are used to make $(l:firmalife/chocolate)Chocolate$(). They fruit in June.",
       "title": "Какао-дерево"
     },
     {
@@ -95,7 +95,7 @@
     {
       "type": "patchouli:text",
       "anchor": "fig",
-      "text": "$(bold)$(l:the_world/climate#temperature)Температура$(): 20 - 35 °C$(br)$(bold)$(l:mechanics/hydration)Осадки$(): 125 - 215mm$(br2)",
+      "text": "$(bold)$(l:the_world/climate#temperature)Temperature$(): 20 - 35 °C$(br)$(bold)$(l:mechanics/hydration)Rainfall$(): 125 - 215mm$(br2)They fruit in May.",
       "title": "Фиговое дерево"
     },
     {

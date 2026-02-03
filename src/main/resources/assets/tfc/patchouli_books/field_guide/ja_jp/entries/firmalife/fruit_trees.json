@@ -15,7 +15,7 @@
     {
       "type": "patchouli:text",
       "anchor": "cocoa",
-      "text": "$(bold)$(l:the_world/climate#temperature)気温$()：20 - 35 ℃$(br)$(bold)$(l:mechanics/hydration)降雨量$()：220 - 400 mm$(br2)カカオの木は$(l:tfc:firmalife/chocolate)チョコレート$()の原料になります。",
+      "text": "$(bold)$(l:the_world/climate#temperature)Temperature$(): 20 - 35 °C$(br)$(bold)$(l:mechanics/hydration)Rainfall$(): 220 - 400mm$(br2)Cocoa trees are used to make $(l:firmalife/chocolate)Chocolate$(). They fruit in June.",
       "title": "カカオの木"
     },
     {
@@ -95,7 +95,7 @@
     {
       "type": "patchouli:text",
       "anchor": "fig",
-      "text": "$(bold)$(l:the_world/climate#temperature)温度$()：20 - 35 ℃$(br)$(bold)$(l:mechanics/hydration)降雨量$()：125 - 215 mm$(br2)",
+      "text": "$(bold)$(l:the_world/climate#temperature)Temperature$(): 20 - 35 °C$(br)$(bold)$(l:mechanics/hydration)Rainfall$(): 125 - 215mm$(br2)They fruit in May.",
       "title": "イチジクの木"
     },
     {

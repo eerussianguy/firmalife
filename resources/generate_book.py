@@ -328,8 +328,8 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False, rev
         entry('fruit_trees', 'Firmalife Fruits', 'firmalife:plant/fig_sapling', pages=(
             text('Firmalife adds some fruiting plants on top of those added by TFC.'),
             text('To improve readability, entries start on the next page.'),
-            *detail_fruit_tree('cocoa', 'Cocoa trees are used to make $(l:firmalife/chocolate)Chocolate$().'),
-            *detail_fruit_tree('fig'),
+            *detail_fruit_tree('cocoa', 'Cocoa trees are used to make $(l:firmalife/chocolate)Chocolate$(). They fruit in June.'),
+            *detail_fruit_tree('fig', 'They fruit in May.'),
         )),
         entry('berry_bushes', 'Berry Bushes', 'firmalife:plant/pineapple_bush', pages=(
             text('Firmalife adds some berry bushes. For information on wild grape bushes, see $(l:firmalife/wine)winemaking$().'),

@@ -1,12 +1,11 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
+  "type": "tfc:advanced_shaped_crafting",
   "key": {
     "X": {
       "item": "firmalife:food/raw_honey"
     },
     "Y": {
-      "item": "tfc:empty_jar"
+      "item": "tfc:empty_jar_with_lid"
     }
   },
   "pattern": [
@@ -15,7 +14,15 @@
     "XXX"
   ],
   "result": {
-    "count": 1,
-    "id": "firmalife:jar/honey"
+    "modifiers": [
+      {
+        "type": "tfc:add_trait",
+        "trait": "tfc:canned"
+      }
+    ],
+    "stack": {
+      "count": 1,
+      "id": "firmalife:jar/honey"
+    }
   }
 }

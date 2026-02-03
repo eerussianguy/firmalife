@@ -70,6 +70,9 @@ public class BuiltinItemHeat extends DataManagerProvider<HeatDefinition> impleme
             add(itemOf(food), 1);
         }
 
+        add(FLItems.RAW_PIZZA, 1);
+        add(FLItems.RAW_PUMPKIN_PIE, 1);
+
 
         FLItems.METAL_ITEMS.forEach((metal, items) -> {
             add(metal, FLMetal.ItemType.INGOT);

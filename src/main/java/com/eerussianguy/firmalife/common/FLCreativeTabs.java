@@ -199,6 +199,7 @@ public final class FLCreativeTabs
             }
             accept(out, FLItems.FILLED_PIE);
             accept(out, FLItems.RAW_PIZZA);
+            accept(out, FLItems.RAW_PUMPKIN_PIE);
             accept(out, FLItems.STINKY_SOUP);
             accept(out, FLItems.NIGHTSHADE_BERRY);
             accept(out, FLBlocks.CHEDDAR_WHEEL);

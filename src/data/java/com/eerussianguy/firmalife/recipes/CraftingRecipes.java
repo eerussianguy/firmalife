@@ -34,6 +34,7 @@ import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.blocks.plant.Plant;
 import net.dries007.tfc.common.blocks.wood.Wood;
 import net.dries007.tfc.common.component.food.FoodData;
+import net.dries007.tfc.common.component.food.FoodTraits;
 import net.dries007.tfc.common.fluids.SimpleFluid;
 import net.dries007.tfc.common.items.Food;
 import net.dries007.tfc.common.items.Powder;
@@ -578,7 +579,13 @@ public interface CraftingRecipes extends Recipes
         jarring(TFCItems.COMPOST, FLItems.COMPOST_JAR, 8);
         jarring(TFCItems.ROTTEN_COMPOST, FLItems.ROTTEN_COMPOST_JAR, 8);
         jarring(TFCBlocks.GROUNDCOVER.get(GroundcoverBlockType.GUANO), FLItems.GUANO_JAR, 8);
-        jarring(itemOf(FLFood.RAW_HONEY), FLItems.HONEY_JAR, 8);
+        recipe("jarring_" + nameOf(itemOf(FLFood.RAW_HONEY)))
+            .input('X', itemOf(FLFood.RAW_HONEY))
+            .input('Y', TFCItems.EMPTY_JAR_WITH_LID)
+            .pattern("XXX", "XYX", "XXX")
+            .addTrait(FoodTraits.CANNED)
+            .shaped(FLItems.HONEY_JAR);
+        unjarring(FLItems.HONEY_JAR, itemOf(FLFood.RAW_HONEY), 8);
 
         FLItems.FRUIT_PRESERVES.forEach((food, item) ->
             recipe()
