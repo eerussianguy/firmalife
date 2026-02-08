@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "firmalife:reinforced_poured_glass"
+          "name": "firmalife:reinforced_glass"
         }
       ],
       "rolls": 1.0
