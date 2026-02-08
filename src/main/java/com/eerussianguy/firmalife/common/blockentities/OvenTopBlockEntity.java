@@ -241,7 +241,7 @@ public class OvenTopBlockEntity extends ApplianceBlockEntity<ApplianceBlockEntit
 
     public void extinguish()
     {
-        for (int i = SLOT_INPUT_START; i < SLOT_INPUT_END; i++)
+        for (int i = SLOT_INPUT_START; i <= SLOT_INPUT_END; i++)
         {
             cookTicks[i] = 0;
             cachedRecipes[i] = null;
