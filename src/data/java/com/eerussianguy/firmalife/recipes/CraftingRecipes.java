@@ -825,7 +825,7 @@ public interface CraftingRecipes extends Recipes
                 recipe(nameOf(itemOf(sandwich)) + "_" + nameOf(bread.getValue()) + "_" + pattern.replace(" ", "x").toLowerCase())
                     .input('K', TFCTags.Items.TOOLS_KNIFE)
                     .input('B', bread.getValue())
-                    .input('S', TFCTags.Items.USABLE_IN_JAM_SANDWICH)
+                    .input('S', TFCTags.Items.USABLE_IN_SANDWICH)
                     .pattern("KB ", pattern, " B ")
                     .damageInputs()
                     .addOutputModifier(meal)
