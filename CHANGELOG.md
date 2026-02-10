@@ -1,2 +1,3 @@
 ### Changes
-- Fix some long-standing desync issues with the compost tumbler that occurred only on servers.
+- Fix a bug where extinguishing of the oven does not fully reset it.
+- Complete Russian book translation.
