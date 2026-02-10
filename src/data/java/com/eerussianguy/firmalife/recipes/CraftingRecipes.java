@@ -19,6 +19,8 @@ import com.eerussianguy.firmalife.common.util.FLFruit;
 import com.eerussianguy.firmalife.common.util.FLMetal;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -760,7 +762,7 @@ public interface CraftingRecipes extends Recipes
             List.of(
                 new MealModifier.MealPortion(
                     Optional.of(Ingredient.of(itemOf(loaf))),
-                    0.5f,
+                    0.675f,
                     0.5f,
                     0.5f
                 ),
@@ -782,29 +784,53 @@ public interface CraftingRecipes extends Recipes
 
         for (var bread : breadVariants.entrySet())
         {
-            for (var pattern : List.of("JXX", "XJX", "XXJ"))
+            // 2 & 3 Ingredient Jam Sandwiches
+            for (var pattern : List.of("JSS", "SJS", "SSJ", "JS ", "SJ ", " JS", " SJ", "S J", "J S"))
             {
                 for (var jam : jamVariants.entrySet())
                 {
-                    recipe(nameOf(itemOf(jamSandwich)) + "_" + nameOf(bread.getValue()) + "_" + jam.getKey() + "_" + pattern.indexOf('J'))
+                    recipe(nameOf(itemOf(jamSandwich)) + "_" + nameOf(bread.getValue()) + "_" + jam.getKey() + "_" + pattern.replace(" ", "x").toLowerCase())
                         .input('K', TFCTags.Items.TOOLS_KNIFE)
                         .input('B', notRotten(bread.getValue()))
                         .input('J', jam.getValue())
-                        .input('X', TFCTags.Items.USABLE_IN_JAM_SANDWICH)
+                        .input('S', TFCTags.Items.USABLE_IN_JAM_SANDWICH)
                         .pattern("KB ", pattern, " B ")
                         .damageInputs()
                         .addOutputModifier(meal)
-                        .shaped(itemOf(jamSandwich), 2);
+                        .shaped(itemOf(jamSandwich), 1);
                 }
             }
-            recipe(nameOf(itemOf(sandwich)) + "_" + nameOf(bread.getValue()))
-                .input('K', TFCTags.Items.TOOLS_KNIFE)
-                .input('B', bread.getValue())
-                .input('X', TFCTags.Items.USABLE_IN_JAM_SANDWICH)
-                .pattern("KB ", "XXX", " B ")
-                .damageInputs()
-                .addOutputModifier(meal)
-                .shaped(itemOf(sandwich), 2);
+
+            // One Ingredient Jam Sandwiches
+            for (String pattern : List.of(" J ", "J  ", "  J"))
+            {
+
+                for (var jam : jamVariants.entrySet())
+                {
+                    recipe(nameOf(itemOf(jamSandwich)) + "_" + nameOf(bread.getValue()) + "_" + jam.getKey() + "_" + pattern.replace(" ", "x").toLowerCase())
+                        .input('K', TFCTags.Items.TOOLS_KNIFE)
+                        .input('B', notRotten(bread.getValue()))
+                        .input('J', jam.getValue())
+                        .pattern("KB ", pattern, " B ")
+                        .damageInputs()
+                        .addOutputModifier(meal)
+                        .shaped(itemOf(jamSandwich), 1);
+                }
+            }
+
+            // Normal Sandwiches
+            // Non-jam sandwiches
+            for (String pattern : List.of("SSS", "SS ", " SS", "S S", "S  ", " S ", "  S"))
+            {
+                recipe(nameOf(itemOf(sandwich)) + "_" + nameOf(bread.getValue()) + "_" + pattern.replace(" ", "x").toLowerCase())
+                    .input('K', TFCTags.Items.TOOLS_KNIFE)
+                    .input('B', bread.getValue())
+                    .input('S', TFCTags.Items.USABLE_IN_SANDWICH)
+                    .pattern("KB ", pattern, " B ")
+                    .damageInputs()
+                    .addOutputModifier(meal)
+                    .shaped(itemOf(sandwich), 1);
+            }
         }
     }
 

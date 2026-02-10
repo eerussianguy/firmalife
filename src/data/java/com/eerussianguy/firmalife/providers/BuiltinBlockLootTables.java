@@ -212,7 +212,7 @@ public class BuiltinBlockLootTables extends BlockLootSubProvider implements Acce
         dropSelf(FLBlocks.VAT);
         dropSelf(FLBlocks.JARRING_STATION);
         dropSelf(FLBlocks.PLATE);
-        dropSelf(FLBlocks.REINFORCED_POURED_GLASS);
+        dropOther(FLBlocks.REINFORCED_POURED_GLASS, FLItems.REINFORCED_GLASS);
         dropSelf(FLBlocks.PICKER);
         dropSelf(FLBlocks.SWEEPER);
         dropSelf(FLBlocks.LARGE_PLANTER);
