@@ -28,7 +28,7 @@ public enum BeeAbility implements StringRepresentable
 
     public static float getMinTemperature(int hardiness)
     {
-        return -2 * hardiness + 14;
+        return -2 * hardiness + 11;
     }
 
     public static int[] fresh()
