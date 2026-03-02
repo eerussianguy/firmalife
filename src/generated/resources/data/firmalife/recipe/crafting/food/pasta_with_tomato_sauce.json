@@ -51,6 +51,9 @@
             "water_modifier": 0.8
           }
         ]
+      },
+      {
+        "type": "firmalife:copy_bowl"
       }
     ],
     "stack": {

@@ -18,10 +18,7 @@ public enum AddPiePanModifier implements ItemStackModifier
     @Override
     public ItemStack apply(ItemStack stack, ItemStack input, Context context)
     {
-        ItemComponent bowl = stack.get(TFCComponents.BOWL);
-        if (bowl != null) {
-            stack.set(TFCComponents.BOWL, Bowl.of(new ItemStack(FLItems.PIE_PAN.get())));
-        }
+        stack.set(TFCComponents.BOWL, Bowl.of(new ItemStack(FLItems.PIE_PAN.get())));
         return stack;
     }
 

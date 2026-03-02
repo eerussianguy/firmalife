@@ -23,7 +23,7 @@ public interface BarrelRecipes extends Recipes
     default void barrelRecipes()
     {
         remove(
-            "barrel/curdled_milk", "barrel/cheese", "barrel/milk_vinegar"
+            "barrel/curdled_milk", "barrel/food/cheese", "barrel/milk_vinegar"
         );
         barrel()
             .input(hasTrait(TFCTags.Items.FRUITS, FLFoodTraits.DRIED))

@@ -58,7 +58,7 @@ public class MixingBowlRecipe implements ISimpleRecipe<MixingBowlBlockEntity.Mix
     @Override
     public boolean matches(MixingBowlBlockEntity.MixingBowlInventory inventory, Level level)
     {
-        if (fluidIngredient.map(fluid -> fluid.test(inventory.getFluidInTank(0))).orElse(false))
+        if (!fluidIngredient.map(fluid -> fluid.test(inventory.getFluidInTank(0))).orElse(true))
         {
             return false;
         }

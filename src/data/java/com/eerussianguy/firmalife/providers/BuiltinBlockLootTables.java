@@ -227,7 +227,7 @@ public class BuiltinBlockLootTables extends BlockLootSubProvider implements Acce
         add(FLBlocks.SEALED_BRICK_DOOR.get(), createDoorTable(FLBlocks.SEALED_BRICK_DOOR.get()));
         dropSelf(FLBlocks.SEALED_BRICK_TRAPDOOR);
         dropSelf(FLBlocks.SEALED_BRICK_WALL);
-        dropSelf(FLBlocks.HOLLOW_SHELL);
+        dropOther(FLBlocks.HOLLOW_SHELL, FLItems.HOLLOW_SHELL);
         dropSelf(FLBlocks.TREATED_WOOD);
         dropSelf(FLBlocks.PUMPING_STATION);
         dropSelf(FLBlocks.IRRIGATION_TANK);

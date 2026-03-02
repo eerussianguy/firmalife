@@ -14,13 +14,12 @@ import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.common.items.FLItems;
 import com.eerussianguy.firmalife.common.items.Spice;
 import com.eerussianguy.firmalife.common.recipes.data.AddPiePanModifier;
+import com.eerussianguy.firmalife.common.recipes.data.CopyBowlModifier;
 import com.eerussianguy.firmalife.common.util.ExtraFluid;
 import com.eerussianguy.firmalife.common.util.FLFruit;
 import com.eerussianguy.firmalife.common.util.FLMetal;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -33,7 +32,6 @@ import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blocks.DecorationBlockHolder;
 import net.dries007.tfc.common.blocks.GroundcoverBlockType;
 import net.dries007.tfc.common.blocks.TFCBlocks;
-import net.dries007.tfc.common.blocks.plant.Plant;
 import net.dries007.tfc.common.blocks.wood.Wood;
 import net.dries007.tfc.common.component.food.FoodData;
 import net.dries007.tfc.common.component.food.FoodTraits;
@@ -751,6 +749,7 @@ public interface CraftingRecipes extends Recipes
             .inputIsPrimary(notRotten(itemOf(FLFood.COOKED_PASTA)))
             .input(notRotten(itemOf(FLFood.TOMATO_SAUCE)))
             .addOutputModifier(burritoMod)
+            .addOutputModifier(CopyBowlModifier.INSTANCE)
             .shapeless(itemOf(FLFood.PASTA_WITH_TOMATO_SAUCE));
 
     }

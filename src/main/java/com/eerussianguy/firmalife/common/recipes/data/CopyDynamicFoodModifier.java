@@ -20,9 +20,10 @@ public enum CopyDynamicFoodModifier implements ItemStackModifier
     public ItemStack apply(ItemStack stack, ItemStack input, Context context)
     {
         IFood inputFood = FoodCapability.get(input);
-        ItemComponent inputBowl = stack.get(TFCComponents.BOWL);
+        ItemComponent inputBowl = input.get(TFCComponents.BOWL);
 
-        if (inputFood != null) {
+        if (inputFood != null)
+        {
             FoodCapability.setFoodForDynamicItemOnCreate(stack, inputFood.getData());
             FoodCapability.setCreationDate(stack, inputFood.getCreationDate());
         }
