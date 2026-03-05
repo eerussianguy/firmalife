@@ -299,6 +299,26 @@ DEFAULT_LANG = {
     'greenhouse.firmalife.iron': 'Iron',
     'greenhouse.firmalife.stainless_steel': 'Stainless Steel',
 
+    'tfc.recipe.barrel.firmalife.barrel_sealed.food.nixtamal': 'Nixtamal',
+    'tfc.recipe.barrel.firmalife.barrel_sealed.food.milk_curd': 'Milk Curd',
+    'tfc.recipe.barrel.firmalife.barrel_sealed.food.goat_curd': 'Goat Curd',
+    'tfc.recipe.barrel.firmalife.barrel_sealed.food.yak_curd': 'Yak Curd',
+    'tfc.recipe.barrel.firmalife.barrel_sealed.cheesecloth': 'Washing Cheesecloth',
+    'tfc.recipe.barrel.firmalife.barrel_sealed.cork': 'Cork',
+    'tfc.recipe.barrel.firmalife.barrel_sealed.curdled_goat_milk': 'Curdling Goat Milk',
+    'tfc.recipe.barrel.firmalife.barrel_sealed.curdled_milk': 'Curdling Milk',
+    'tfc.recipe.barrel.firmalife.barrel_sealed.curdled_yak_milk': 'Curdling Yak Milk',
+    'tfc.recipe.barrel.firmalife.barrel_sealed.feed_yeast': 'Feeding Yeast',
+    'tfc.recipe.barrel.firmalife.barrel_sealed.fermented_red_grapes': 'Fermenting Red Grapes',
+    'tfc.recipe.barrel.firmalife.barrel_sealed.fermented_white_grapes': 'Fermenting White Grapes',
+    'tfc.recipe.barrel.firmalife.barrel_sealed.feta_wheel': 'Feta',
+    'tfc.recipe.barrel.firmalife.barrel_sealed.gouda_wheel': 'Gouda',
+    'tfc.recipe.barrel.firmalife.barrel_sealed.mead': 'Fermenting Mead',
+    'tfc.recipe.barrel.firmalife.barrel_sealed.pina_colada': 'Pina Colada',
+    'tfc.recipe.barrel.firmalife.barrel_sealed.shosha_wheel': 'Shosha',
+    'tfc.recipe.barrel.firmalife.barrel_sealed.soybean_oil': 'Soybean Oil',
+    'tfc.recipe.barrel.firmalife.barrel_sealed.yeast_starter': 'Yeast Starter',
+
     'firmalife.bowl.spoon': 'The bowl is missing a spoon.',
     'firmalife.bowl.mixing': 'The bowl is currently mixing',
     'firmalife.bowl.no_recipe': 'The bowl has no recipe.',
@@ -366,6 +386,7 @@ DEFAULT_LANG = {
     'tfc.jei.vat': 'Vat',
     'tfc.jei.stomping': 'Stomping',
     'tfc.jei.bowl_pot': 'Bowl Pot',
+    'tfc.jei.centrifuge': 'Centrifuge',
 }
 
 def lang(key: str, *args) -> str:

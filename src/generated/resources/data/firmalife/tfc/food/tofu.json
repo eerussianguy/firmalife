@@ -4,6 +4,7 @@
   "ingredient": {
     "item": "firmalife:food/tofu"
   },
+  "protein": 1.0,
   "saturation": 0.75,
   "vegetables": 1.5,
   "water": 2.0

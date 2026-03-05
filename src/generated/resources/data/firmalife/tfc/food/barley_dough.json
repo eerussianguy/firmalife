@@ -1,5 +1,5 @@
 {
-  "decay_modifier": 2.0,
+  "decay_modifier": 3.0,
   "hunger": 4,
   "ingredient": {
     "item": "firmalife:food/barley_dough"

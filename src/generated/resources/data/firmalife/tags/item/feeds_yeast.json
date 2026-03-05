@@ -1,5 +1,6 @@
 {
   "values": [
-    "#c:foods/flour"
+    "#c:foods/flour",
+    "firmalife:food/masa_flour"
   ]
 }

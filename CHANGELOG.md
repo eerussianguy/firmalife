@@ -5,3 +5,9 @@
 - Fixed the vanilla TFC cheese recipe not being disabled.
 - Fix hollow shells unable to be picked up.
 - Fixed the pack format version.
+- Fix dough having too long of an expiry timer.
+- Fix tofu not having protein.
+- Fix a bad link in the field guide.
+- Allow masa flour to feed yeast.
+- Added missing localizations for sealed barrel recipes and other things.
+- Allow removing wood from a lit bottom oven.

@@ -45,12 +45,12 @@ public class BuiltinFoods extends DataManagerProvider<FoodDefinition> implements
         add(FLFood.COOKIE_DOUGH, FoodData.of(3f));
         add(FLFood.HARDTACK_DOUGH, FoodData.of(3f));
         add(FLFood.CHOCOLATE_CHIP_COOKIE_DOUGH, FoodData.of(3f));
-        add(FLFood.WHEAT_DOUGH, FoodData.of(2f));
-        add(FLFood.OAT_DOUGH, FoodData.of(2f));
-        add(FLFood.RYE_DOUGH, FoodData.of(2f));
-        add(FLFood.BARLEY_DOUGH, FoodData.of(2f));
-        add(FLFood.RICE_DOUGH, FoodData.of(2f));
-        add(FLFood.MAIZE_DOUGH, FoodData.of(2f));
+        add(FLFood.WHEAT_DOUGH, FoodData.of(3f));
+        add(FLFood.OAT_DOUGH, FoodData.of(3f));
+        add(FLFood.RYE_DOUGH, FoodData.of(3f));
+        add(FLFood.BARLEY_DOUGH, FoodData.of(3f));
+        add(FLFood.RICE_DOUGH, FoodData.of(3f));
+        add(FLFood.MAIZE_DOUGH, FoodData.of(3f));
         add(FLFood.BUTTER, FoodData.of(3f));
         add(FLFood.PIE_DOUGH, FoodData.of(3f));
         add(FLFood.PIZZA_DOUGH, FoodData.of(3f));
@@ -72,7 +72,7 @@ public class BuiltinFoods extends DataManagerProvider<FoodDefinition> implements
         add(FLFood.SOYBEAN_PASTE, FoodData.of(0.6f));
         add(FLFood.RAW_HONEY, FoodData.of(0.6f));
         add(FLFood.FLAVORFUL_COOKED_RICE, ofFood(2.5f, 5, 1).grain(1.7f));
-        add(FLFood.TOFU, new FoodData(4, 2f, 0.75f, 0, new float[] {0f, 0f, 1.5f, 0f, 0f}, 2f));
+        add(FLFood.TOFU, new FoodData(4, 2f, 0.75f, 0, new float[] {0f, 0f, 1.5f, 1f, 0f}, 2f));
         add(FLTags.Items.BREAD_SLICES, new FoodData(4, 0f, 1.5f, 0, new float[] {1f, 0f, 0f, 0f, 0f}, 0.75f), true);
         add(FLFood.TOAST, new FoodData(4, 0f, 1f, 0, new float[] {1f, 0f, 0f, 0f, 0f}, 1.5f));
         add(FLFood.TOAST_WITH_JAM, new FoodData(4, 1f, 2f, 0, new float[] {1f, 0f, 0f, 0f, 0.75f}, 2f));

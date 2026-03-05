@@ -80,7 +80,7 @@ public class OvenBottomBlock extends AbstractOvenBlock implements IBellowsConsum
             });
             return res1 == ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION ? ItemInteractionResult.SUCCESS : res1;
         }
-        else if (item.isEmpty() && !state.getValue(LIT))
+        else if (item.isEmpty())
         {
             return FLHelpers.consumeItemInventory(level, pos, FLBlockEntities.OVEN_BOTTOM, (oven, inv) -> {
                 for (int i = OvenBottomBlockEntity.SLOT_FUEL_MIN; i <= OvenBottomBlockEntity.SLOT_FUEL_MAX; i++)
@@ -90,7 +90,7 @@ public class OvenBottomBlock extends AbstractOvenBlock implements IBellowsConsum
                 return ItemInteractionResult.sidedSuccess(level.isClientSide);
             });
         }
-        else if (Helpers.isItem(item, FLItems.OVEN_INSULATION.get()) && insulated != null)
+        else if (Helpers.isItem(item, FLItems.OVEN_INSULATION.get()) && insulated != null && !state.getValue(LIT))
         {
             item.shrink(1);
             level.setBlockAndUpdate(pos, Helpers.copyProperties(insulated.get().defaultBlockState(), state));

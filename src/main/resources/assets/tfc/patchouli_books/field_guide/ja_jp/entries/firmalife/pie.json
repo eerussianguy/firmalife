@@ -10,7 +10,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "$(thing)Butter is the base of many such foods. Using a $(l:firmalife/mixing_bowl)Mixing Bowl$(), combine 1000 mB of $(thing)Cream$() with one item of $(thing)Salt$(). Cream is made by sealing 1000 mB of milk in a barrel with a $(l:mechanics/firmalife#cheesecloth)Cheesecloth$()."
+      "text": "$(thing)Butter is the base of many such foods. Using a $(l:firmalife/mixing_bowl)Mixing Bowl$(), combine 1000 mB of $(thing)Cream$() with one item of $(thing)Salt$(). Cream is made by sealing 1000 mB of milk in a barrel with a $(l:firmalife/cheese#cheesecloth)Cheesecloth$()."
     },
     {
       "type": "patchouli:text",
