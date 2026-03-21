@@ -3,6 +3,6 @@
   "ingredient": {
     "item": "firmalife:food/bacon"
   },
-  "saturation": 2.0,
-  "vegetables": 0.5
+  "protein": 0.5,
+  "saturation": 2.0
 }

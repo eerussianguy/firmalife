@@ -1,9 +1,9 @@
 {
+  "dairy": 3.0,
   "decay_modifier": 2.0,
   "hunger": 4,
   "ingredient": {
     "tag": "firmalife:foods/cheeses"
   },
-  "protein": 3.0,
   "saturation": 0.3
 }

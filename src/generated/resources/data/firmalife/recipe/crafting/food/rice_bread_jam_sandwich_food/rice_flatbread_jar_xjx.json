@@ -51,9 +51,14 @@
         },
         "portions": [
           {
-            "ingredient": {
-              "item": "tfc:food/rice_bread"
-            },
+            "ingredient": [
+              {
+                "item": "firmalife:food/rice_slice"
+              },
+              {
+                "item": "firmalife:food/rice_flatbread"
+              }
+            ],
             "nutrient_modifier": 0.675,
             "saturation_modifier": 0.5,
             "water_modifier": 0.5

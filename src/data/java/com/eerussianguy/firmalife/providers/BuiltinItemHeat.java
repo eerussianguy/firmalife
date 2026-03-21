@@ -65,7 +65,7 @@ public class BuiltinItemHeat extends DataManagerProvider<HeatDefinition> impleme
         addAndMelt(FLItems.CHROMIUM_ORES.get(Ore.Grade.NORMAL), FLMetal.CHROMIUM, 25);
         addAndMelt(FLItems.CHROMIUM_ORES.get(Ore.Grade.RICH), FLMetal.CHROMIUM, 35);
 
-        for (var food : List.of(FLFood.BACON, FLFood.MASA, FLFood.WHEAT_SLICE, FLFood.MAIZE_SLICE, FLFood.BARLEY_SLICE, FLFood.OAT_SLICE, FLFood.RICE_SLICE, FLFood.RYE_SLICE, FLFood.RAW_LASAGNA, FLFood.COOKIE_DOUGH))
+        for (var food : List.of(FLFood.BACON, FLFood.MASA, FLFood.WHEAT_SLICE, FLFood.MAIZE_SLICE, FLFood.BARLEY_SLICE, FLFood.OAT_SLICE, FLFood.RICE_SLICE, FLFood.RYE_SLICE, FLFood.RAW_LASAGNA, FLFood.COOKIE_DOUGH, FLFood.HARDTACK_DOUGH, FLFood.CORN_TORTILLA))
         {
             add(itemOf(food), 1);
         }

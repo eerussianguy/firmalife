@@ -1,6 +1,6 @@
 {
-  "dairy": 0.5,
   "decay_modifier": 0.5,
+  "fruit": 0.5,
   "hunger": 4,
   "ingredient": {
     "tag": "firmalife:foods/grapes"

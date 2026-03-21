@@ -1,0 +1,30 @@
+{
+  "type": "firmalife:vat",
+  "input_fluid": {
+    "amount": 500,
+    "fluid": "firmalife:sugar_water"
+  },
+  "input_item": {
+    "type": "tfc:and",
+    "children": [
+      {
+        "item": "tfc:food/pumpkin_chunks"
+      },
+      {
+        "type": "tfc:lacks_trait",
+        "trait": "firmalife:dried"
+      },
+      {
+        "type": "tfc:not_rotten"
+      }
+    ],
+    "count": 1
+  },
+  "jar_output": {
+    "count": 1,
+    "id": "tfc:jar/pumpkin_chunks"
+  },
+  "length": 600,
+  "output_texture": "tfc:block/jar/pumpkin_chunks",
+  "temperature": 300.0
+}

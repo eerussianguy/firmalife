@@ -1,11 +1,11 @@
 {
+  "dairy": 0.1,
   "decay_modifier": 2.0,
-  "fruit": 1.0,
   "grain": 1.0,
   "hunger": 4,
   "ingredient": {
     "item": "firmalife:food/garlic_bread"
   },
-  "protein": 0.1,
-  "saturation": 2.0
+  "saturation": 2.0,
+  "vegetables": 1.0
 }

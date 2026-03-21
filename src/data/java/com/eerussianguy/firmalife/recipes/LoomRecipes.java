@@ -14,7 +14,7 @@ public interface LoomRecipes extends Recipes
     default void loomRecipes()
     {
         loom(
-            SizedIngredient.of(FLItems.PINEAPPLE_FIBER, 16),
+            SizedIngredient.of(FLItems.PINEAPPLE_YARN, 16),
             FLItems.PINEAPPLE_LEATHER,
             16,
             FLHelpers.identifier("block/pineapple")

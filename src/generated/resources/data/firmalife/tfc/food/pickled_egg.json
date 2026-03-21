@@ -4,8 +4,8 @@
   "ingredient": {
     "item": "firmalife:food/pickled_egg"
   },
-  "protein": 0.25,
+  "protein": 1.5,
   "saturation": 0.3,
-  "vegetables": 1.5,
+  "vegetables": 0.25,
   "water": 10.0
 }

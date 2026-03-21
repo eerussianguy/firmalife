@@ -1,10 +1,10 @@
 {
+  "dairy": 0.75,
   "decay_modifier": 1.0,
   "hunger": 4,
   "ingredient": {
     "item": "firmalife:food/vanilla_ice_cream"
   },
-  "protein": 0.75,
   "saturation": 5.0,
   "water": 1.0
 }

@@ -506,7 +506,7 @@ public interface CraftingRecipes extends Recipes
         for (int i = 1; i < 9; i++)
         {
             recipe("masa_" + i)
-                .input(FluidContentIngredient.of(Fluids.WATER, 100))
+                .inputIsPrimary(FluidContentIngredient.of(Fluids.WATER, 100))
                 .input(notRotten(itemOf(FLFood.MASA_FLOUR)), i)
                 .copyOldestFood()
                 .shapeless(new ItemStack(itemOf(FLFood.MASA), i * 2));
@@ -610,12 +610,12 @@ public interface CraftingRecipes extends Recipes
         sliceBread(Food.MAIZE_BREAD, FLFood.MAIZE_SLICE);
         sliceBread(Food.OAT_BREAD, FLFood.OAT_SLICE);
 
-        sandwich(Food.WHEAT_BREAD, FLFood.WHEAT_FLATBREAD, Food.WHEAT_BREAD_SANDWICH, Food.WHEAT_BREAD_JAM_SANDWICH);
-        sandwich(Food.RYE_BREAD, FLFood.RYE_FLATBREAD, Food.RYE_BREAD_SANDWICH, Food.RYE_BREAD_JAM_SANDWICH);
-        sandwich(Food.BARLEY_BREAD, FLFood.BARLEY_FLATBREAD, Food.BARLEY_BREAD_SANDWICH, Food.BARLEY_BREAD_JAM_SANDWICH);
-        sandwich(Food.RICE_BREAD, FLFood.RICE_FLATBREAD, Food.RICE_BREAD_SANDWICH, Food.RICE_BREAD_JAM_SANDWICH);
-        sandwich(Food.MAIZE_BREAD, FLFood.MAIZE_FLATBREAD, Food.MAIZE_BREAD_SANDWICH, Food.MAIZE_BREAD_JAM_SANDWICH);
-        sandwich(Food.OAT_BREAD, FLFood.OAT_FLATBREAD, Food.OAT_BREAD_SANDWICH, Food.OAT_BREAD_JAM_SANDWICH);
+        sandwich(FLFood.WHEAT_SLICE, FLFood.WHEAT_FLATBREAD, Food.WHEAT_BREAD_SANDWICH, Food.WHEAT_BREAD_JAM_SANDWICH);
+        sandwich(FLFood.RYE_SLICE, FLFood.RYE_FLATBREAD, Food.RYE_BREAD_SANDWICH, Food.RYE_BREAD_JAM_SANDWICH);
+        sandwich(FLFood.BARLEY_SLICE, FLFood.BARLEY_FLATBREAD, Food.BARLEY_BREAD_SANDWICH, Food.BARLEY_BREAD_JAM_SANDWICH);
+        sandwich(FLFood.RICE_SLICE, FLFood.RICE_FLATBREAD, Food.RICE_BREAD_SANDWICH, Food.RICE_BREAD_JAM_SANDWICH);
+        sandwich(FLFood.MAIZE_SLICE, FLFood.MAIZE_FLATBREAD, Food.MAIZE_BREAD_SANDWICH, Food.MAIZE_BREAD_JAM_SANDWICH);
+        sandwich(FLFood.OAT_SLICE, FLFood.OAT_FLATBREAD, Food.OAT_BREAD_SANDWICH, Food.OAT_BREAD_JAM_SANDWICH);
 
         for (var metal : FLMetal.values())
         {
@@ -754,13 +754,13 @@ public interface CraftingRecipes extends Recipes
 
     }
 
-    private void sandwich(Food loaf, FLFood flatbread, Food sandwich, Food jamSandwich)
+    private void sandwich(FLFood slice, FLFood flatbread, Food sandwich, Food jamSandwich)
     {
         var meal = new MealModifier(
             FoodData.ofFood(4, 1, 0.5f, 4.5f),
             List.of(
                 new MealModifier.MealPortion(
-                    Optional.of(Ingredient.of(itemOf(loaf))),
+                    Optional.of(Ingredient.of(itemOf(slice), itemOf(flatbread))),
                     0.675f,
                     0.5f,
                     0.5f
@@ -774,7 +774,7 @@ public interface CraftingRecipes extends Recipes
             )
         );
         Map<String, ItemLike> breadVariants = new HashMap<>();
-//        breadVariants.put("bread", itemOf(loaf));
+        breadVariants.put("slice", itemOf(slice));
         breadVariants.put("flatbread", itemOf(flatbread));
 
         Map<String, Ingredient> jamVariants = new HashMap<>();
@@ -960,18 +960,4 @@ public interface CraftingRecipes extends Recipes
         });
     }
 
-    enum Grains
-    {
-        WHEAT(Food.WHEAT_GRAIN, Food.WHEAT_FLOUR, Food.WHEAT_DOUGH, Food.WHEAT_BREAD, FLFood.WHEAT_SLICE),
-        RYE(Food.WHEAT_GRAIN, Food.WHEAT_FLOUR, Food.WHEAT_DOUGH, Food.WHEAT_BREAD, FLFood.WHEAT_SLICE),
-        BARLEY(Food.WHEAT_GRAIN, Food.WHEAT_FLOUR, Food.WHEAT_DOUGH, Food.WHEAT_BREAD, FLFood.WHEAT_SLICE),
-        RICE(Food.WHEAT_GRAIN, Food.WHEAT_FLOUR, Food.WHEAT_DOUGH, Food.WHEAT_BREAD, FLFood.WHEAT_SLICE),
-        MAIZE(Food.WHEAT_GRAIN, Food.WHEAT_FLOUR, Food.WHEAT_DOUGH, Food.WHEAT_BREAD, FLFood.WHEAT_SLICE),
-        OAT(Food.WHEAT_GRAIN, Food.WHEAT_FLOUR, Food.WHEAT_DOUGH, Food.WHEAT_BREAD, FLFood.WHEAT_SLICE);
-
-        private Grains(Food grain, Food flour, Food dough, Food bread, FLFood breadSlice)
-        {
-
-        }
-    }
 }

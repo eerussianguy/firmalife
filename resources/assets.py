@@ -92,7 +92,7 @@ def generate(rm: ResourceManager):
         rm.item_model(('dried', fruit), 'firmalife:item/dried/dried_%s' % fruit)
         item_model_property(rm, 'firmalife:food/%s' % fruit, [{'predicate': {'firmalife:dry': 1}, 'model': 'firmalife:item/dried/%s' % fruit}], {'parent': 'firmalife:item/not_dried/%s' % fruit})
         rm.item('food/%s' % fruit).with_lang(lang(fruit))
-        rm.item_model(('food', fruit + '_jam'), 'firmalife:item/food/%s_jam' % fruit).with_lang(lang('%s jam', fruit))
+        rm.item_model(('food', fruit + '_jam'), 'firmalife:item/food/%s_jam' % fruit).with_lang(lang('jar of %s jam', fruit))
 
     for greenhouse in GREENHOUSES:
         greenhouse_slab(rm, greenhouse, 'firmalife:block/greenhouse/%s' % greenhouse, 'firmalife:block/greenhouse/%s_glass' % greenhouse)

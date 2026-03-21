@@ -4,6 +4,6 @@
   "ingredient": {
     "item": "firmalife:food/cooked_bacon"
   },
-  "saturation": 2.0,
-  "vegetables": 0.75
+  "protein": 0.75,
+  "saturation": 2.0
 }

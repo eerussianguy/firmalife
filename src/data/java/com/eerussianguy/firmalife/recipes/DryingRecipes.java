@@ -6,6 +6,7 @@ import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.common.items.FLItems;
 import com.eerussianguy.firmalife.common.items.Spice;
 import com.eerussianguy.firmalife.common.recipes.DryingRecipe;
+import com.eerussianguy.firmalife.common.util.FLFruit;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 
@@ -31,6 +32,7 @@ public interface DryingRecipes extends Recipes
         drying(itemOf(FLFood.MILK_CHOCOLATE_BLEND), itemOf(FLFood.MILK_CHOCOLATE));
         drying(itemOf(FLFood.WHITE_CHOCOLATE_BLEND), itemOf(FLFood.WHITE_CHOCOLATE));
         drying(itemOf(FLFood.DARK_CHOCOLATE_BLEND), itemOf(FLFood.DARK_CHOCOLATE));
+        drying(itemOf(FLFruit.PINEAPPLE), FLItems.PINEAPPLE_FIBER);
         for (var type : SoilBlockType.Variant.values())
         {
             drying(Ingredient.of(type.getBlock(SoilBlockType.MUD).get()), type.getBlock(SoilBlockType.DIRT).get());

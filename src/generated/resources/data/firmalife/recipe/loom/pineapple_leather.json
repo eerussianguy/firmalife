@@ -2,7 +2,7 @@
   "type": "tfc:loom",
   "ingredient": {
     "count": 16,
-    "item": "firmalife:pineapple_fiber"
+    "item": "firmalife:pineapple_yarn"
   },
   "result": {
     "count": 1,

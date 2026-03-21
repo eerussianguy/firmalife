@@ -54,9 +54,14 @@
         },
         "portions": [
           {
-            "ingredient": {
-              "item": "tfc:food/oat_bread"
-            },
+            "ingredient": [
+              {
+                "item": "firmalife:food/oat_slice"
+              },
+              {
+                "item": "firmalife:food/oat_flatbread"
+              }
+            ],
             "nutrient_modifier": 0.675,
             "saturation_modifier": 0.5,
             "water_modifier": 0.5

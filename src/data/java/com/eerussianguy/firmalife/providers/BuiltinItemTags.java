@@ -154,6 +154,7 @@ public class BuiltinItemTags extends TagsProvider<Item> implements Accessors
             TFCTags.Items.FRUITS,
             TFCTags.Items.COOKED_MEATS
         );
+        tag(TFCTags.Items.FRUITS).add(FLItems.FRUITS);
         tag(FLTags.Items.CHEESES).add(
             itemOf(FLFood.GOUDA).asItem(),
             itemOf(FLFood.CHEVRE).asItem(),

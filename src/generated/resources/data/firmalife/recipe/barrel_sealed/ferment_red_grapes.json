@@ -12,7 +12,7 @@
         "item": "firmalife:food/smashed_red_grapes"
       },
       {
-        "type": "tfc:has_trait",
+        "type": "tfc:lacks_trait",
         "trait": "firmalife:fermented"
       }
     ],

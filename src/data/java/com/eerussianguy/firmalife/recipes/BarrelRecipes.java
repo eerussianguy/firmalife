@@ -87,12 +87,12 @@ public interface BarrelRecipes extends Recipes
             .output(fluidOf(ExtraFluid.MEAD), 100)
             .sealed(72000);
         barrel("ferment_red_grapes")
-            .input(hasTrait(itemOf(FLFood.SMASHED_RED_GRAPES), FLFoodTraits.FERMENTED))
+            .input(lacksTrait(itemOf(FLFood.SMASHED_RED_GRAPES), FLFoodTraits.FERMENTED))
             .input(Fluids.WATER, 100)
             .output(ItemStackProvider.of(CopyInputModifier.INSTANCE, AddTraitModifier.of(FLFoodTraits.FERMENTED)))
             .sealed(120000);
         barrel("ferment_white_grapes")
-            .input(hasTrait(itemOf(FLFood.SMASHED_WHITE_GRAPES), FLFoodTraits.FERMENTED))
+            .input(lacksTrait(itemOf(FLFood.SMASHED_WHITE_GRAPES), FLFoodTraits.FERMENTED))
             .input(Fluids.WATER, 100)
             .output(ItemStackProvider.of(CopyInputModifier.INSTANCE, AddTraitModifier.of(FLFoodTraits.FERMENTED)))
             .sealed(120000);

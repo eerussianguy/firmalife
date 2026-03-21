@@ -64,6 +64,13 @@
       ]
     }
   ],
+  "primary_ingredient": {
+    "type": "tfc:fluid_content",
+    "fluid": {
+      "amount": 100,
+      "fluid": "minecraft:water"
+    }
+  },
   "result": {
     "modifiers": [
       {

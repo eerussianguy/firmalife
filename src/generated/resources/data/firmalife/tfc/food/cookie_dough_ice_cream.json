@@ -1,11 +1,11 @@
 {
+  "dairy": 1.0,
   "decay_modifier": 1.0,
   "grain": 0.5,
   "hunger": 4,
   "ingredient": {
     "item": "firmalife:food/cookie_dough_ice_cream"
   },
-  "protein": 1.0,
   "saturation": 5.0,
   "water": 1.0
 }

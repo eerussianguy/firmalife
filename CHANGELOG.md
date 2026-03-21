@@ -1,13 +1,11 @@
 ### Changes
-- Fix some dynamic foods unable to be heated.
-- Fix the mixing bowl's fluid check doing the opposite of intended.
-- Fix the bowl/pan of foods sometimes being lost in recipes.
-- Fixed the vanilla TFC cheese recipe not being disabled.
-- Fix hollow shells unable to be picked up.
-- Fixed the pack format version.
-- Fix dough having too long of an expiry timer.
-- Fix tofu not having protein.
-- Fix a bad link in the field guide.
-- Allow masa flour to feed yeast.
-- Added missing localizations for sealed barrel recipes and other things.
-- Allow removing wood from a lit bottom oven.
+- Fix a localization issue with jams.
+- Fix several foods having the wrong nutrition.
+- Fix bread recipes specific to firmalife not working.
+- Fix several foods not being cookable.
+- Fix grapes not being fermentable.
+- Added nutrition to cheese curds.
+- Fix firmalife fruits not being tagged as fruits.
+- Fix masa being uncraftable.
+- Fix TFC jams being uncraftable in the Vat.
+- Fix pineapple leather having the wrong recipe (also wrong in the field guide)

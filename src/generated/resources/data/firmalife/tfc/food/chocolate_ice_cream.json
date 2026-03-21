@@ -1,11 +1,11 @@
 {
+  "dairy": 0.5,
   "decay_modifier": 1.5,
   "grain": 0.25,
   "hunger": 4,
   "ingredient": {
     "item": "firmalife:food/chocolate_ice_cream"
   },
-  "protein": 0.5,
   "saturation": 5.0,
   "water": 1.0
 }

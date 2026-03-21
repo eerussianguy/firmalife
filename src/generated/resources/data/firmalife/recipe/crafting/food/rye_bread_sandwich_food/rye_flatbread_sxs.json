@@ -35,9 +35,14 @@
         },
         "portions": [
           {
-            "ingredient": {
-              "item": "tfc:food/rye_bread"
-            },
+            "ingredient": [
+              {
+                "item": "firmalife:food/rye_slice"
+              },
+              {
+                "item": "firmalife:food/rye_flatbread"
+              }
+            ],
             "nutrient_modifier": 0.675,
             "saturation_modifier": 0.5,
             "water_modifier": 0.5

@@ -1,0 +1,10 @@
+{
+  "type": "firmalife:drying",
+  "ingredient": {
+    "item": "firmalife:food/pineapple"
+  },
+  "result": {
+    "count": 1,
+    "id": "firmalife:pineapple_fiber"
+  }
+}

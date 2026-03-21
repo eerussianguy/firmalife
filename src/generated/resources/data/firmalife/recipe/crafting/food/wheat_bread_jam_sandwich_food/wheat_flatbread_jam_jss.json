@@ -54,9 +54,14 @@
         },
         "portions": [
           {
-            "ingredient": {
-              "item": "tfc:food/wheat_bread"
-            },
+            "ingredient": [
+              {
+                "item": "firmalife:food/wheat_slice"
+              },
+              {
+                "item": "firmalife:food/wheat_flatbread"
+              }
+            ],
             "nutrient_modifier": 0.675,
             "saturation_modifier": 0.5,
             "water_modifier": 0.5
