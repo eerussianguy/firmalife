@@ -200,6 +200,7 @@ public class BuiltinBlockLootTables extends BlockLootSubProvider implements Acce
         dropSelf(FLBlocks.COMPOST_TUMBLER);
         dropSelf(FLBlocks.CLIMATE_STATION);
         dropOther(FLBlocks.WOOL_STRING, TFCItems.WOOL_YARN);
+        dropOther(FLBlocks.PINEAPPLE_YARN, FLItems.PINEAPPLE_YARN);
         dropOther(FLBlocks.GRAPE_STRING, TFCItems.JUTE_FIBER);
         dropOther(FLBlocks.GRAPE_STRING_WHITE, TFCItems.JUTE_FIBER);
         dropOther(FLBlocks.GRAPE_STRING_RED, TFCItems.JUTE_FIBER);

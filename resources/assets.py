@@ -127,7 +127,12 @@ def generate(rm: ResourceManager):
     rm.blockstate('wool_string', variants={
         'axis=x': {'model': 'firmalife:block/wool_string'},
         'axis=z': {'model': 'firmalife:block/wool_string', 'y': 90}
-    }).with_block_model(parent='firmalife:block/string', textures={'string': 'minecraft:block/white_wool'}).with_lang(lang('wool string')).with_item_model()
+    }).with_block_model(parent='firmalife:block/string', textures={'string': 'minecraft:block/white_wool'}).with_lang(lang('wool string'))
+
+    rm.blockstate('pineapple_yarn', variants={
+        'axis=x': {'model': 'firmalife:block/pineapple_yarn'},
+        'axis=z': {'model': 'firmalife:block/pineapple_yarn', 'y': 90}
+    }).with_block_model(parent='firmalife:block/string', textures={'string': 'firmalife:block/pineapple'}).with_lang(lang('pineapple yarn'))
 
     rm.blockstate('grape_string', variants={
         'axis=x': {'model': 'firmalife:block/grape_trellis_string_center', 'y': 90},

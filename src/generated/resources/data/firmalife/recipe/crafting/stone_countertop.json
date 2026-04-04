@@ -2,7 +2,7 @@
   "type": "tfc:advanced_shapeless_crafting",
   "ingredients": [
     {
-      "item": "firmalife:sealed_bricks"
+      "item": "firmalife:chiseled_sealed_bricks"
     },
     {
       "tag": "c:tools/chisel"

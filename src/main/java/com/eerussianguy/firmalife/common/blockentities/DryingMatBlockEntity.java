@@ -76,6 +76,7 @@ public class DryingMatBlockEntity extends SimpleItemRecipeBlockEntity<DryingReci
 
     public void ejectItem(Direction d)
     {
+        assert level != null;
         ItemStack item = inventory.getStackInSlot(0);
         if (!item.isEmpty())
         {

@@ -83,8 +83,9 @@ public class StringBlock extends DeviceBlock
             ItemStack stack = string.readStack();
             if (!stack.isEmpty())
             {
-                IFood food = FoodCapability.get(stack);
-                if (food != null) {
+                final IFood food = FoodCapability.get(stack);
+                if (food != null)
+                {
                     List<FoodTrait> traits = food.getTraits();
                     if (traits.contains(FLFoodTraits.SMOKED.get()) || traits.contains(FLFoodTraits.RANCID_SMOKED.get()))
                     {

@@ -1,0 +1,12 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "variants": {
+    "axis=x": {
+      "model": "firmalife:block/pineapple_yarn"
+    },
+    "axis=z": {
+      "model": "firmalife:block/pineapple_yarn",
+      "y": 90
+    }
+  }
+}

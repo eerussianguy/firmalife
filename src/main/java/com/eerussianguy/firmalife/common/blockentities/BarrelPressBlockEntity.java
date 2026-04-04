@@ -22,6 +22,7 @@ import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.ItemInteractionResult;
@@ -143,11 +144,10 @@ public class BarrelPressBlockEntity extends TickableInventoryBlockEntity<ItemSta
         if (food != null)
         {
             food.getTraits().forEach(trait -> {
-                final Holder<FoodTrait> holder = FoodTraits.REGISTRY.createIntrusiveHolder(trait);
-                if (holder.is(FLTags.Traits.WINE))
-                {
-                    traits.add(holder);
-                }
+                FoodTraits.REGISTRY.getResourceKey(trait)
+                    .flatMap(FoodTraits.REGISTRY::getHolder)
+                    .filter(ref -> ref.is(FLTags.Traits.WINE))
+                    .ifPresent(traits::add);
             });
         }
         output = new WineOutput(wine, climate, servings, traits);

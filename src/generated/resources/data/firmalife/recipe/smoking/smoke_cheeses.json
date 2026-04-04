@@ -10,7 +10,7 @@
         "type": "tfc:not_rotten"
       },
       {
-        "type": "tfc:has_trait",
+        "type": "tfc:lacks_trait",
         "trait": "firmalife:smoked"
       }
     ]

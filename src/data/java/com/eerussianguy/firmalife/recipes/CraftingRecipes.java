@@ -437,7 +437,7 @@ public interface CraftingRecipes extends Recipes
             .damageInputs()
             .shapeless(new ItemStack(itemOf(FLFood.BACON), 4));
         recipe().useTool(TFCTags.Items.TOOLS_CHISEL, Blocks.BRICKS, FLBlocks.OVEN_COUNTERTOP.get(OvenType.BRICK));
-        recipe().useTool(TFCTags.Items.TOOLS_CHISEL, FLBlocks.SEALED_BRICKS, FLBlocks.OVEN_COUNTERTOP.get(OvenType.STONE));
+        recipe().useTool(TFCTags.Items.TOOLS_CHISEL, FLBlocks.CHISELED_SEALED_BRICKS, FLBlocks.OVEN_COUNTERTOP.get(OvenType.STONE));
         recipe().useTool(TFCTags.Items.TOOLS_CHISEL, FLBlocks.RUSTIC_BRICKS, FLBlocks.OVEN_COUNTERTOP.get(OvenType.RUSTIC));
         recipe().useTool(TFCTags.Items.TOOLS_CHISEL, FLBlocks.TILES, FLBlocks.OVEN_COUNTERTOP.get(OvenType.TILE));
         recipe()

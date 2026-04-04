@@ -34,7 +34,7 @@ public class FLBlockEntities
     public static final Id<CentrifugeBlockEntity> CENTRIFUGE = register("centrifuge", CentrifugeBlockEntity::new, FLBlocks.CENTRIFUGE);
     public static final Id<SkepBlockEntity> SKEP = register("skep", SkepBlockEntity::new, FLBlocks.SKEP);
     public static final Id<CompostTumblerBlockEntity> COMPOST_TUMBLER = register("compost_tumbler", CompostTumblerBlockEntity::new, FLBlocks.COMPOST_TUMBLER);
-    public static final Id<StringBlockEntity> STRING = register("string", StringBlockEntity::new, FLBlocks.WOOL_STRING);
+    public static final Id<StringBlockEntity> STRING = register("string", StringBlockEntity::new, Stream.of(FLBlocks.WOOL_STRING, FLBlocks.PINEAPPLE_YARN));
     public static final Id<MixingBowlBlockEntity> MIXING_BOWL = register("mixing_bowl", MixingBowlBlockEntity::new, FLBlocks.MIXING_BOWL);
     public static final Id<BerryBushBlockEntity> BERRY_BUSH = register("berry_bush", FLBerryBushBlockEntity::new, Stream.of(FLBlocks.FRUIT_TREE_LEAVES.values().stream(), FLBlocks.STATIONARY_BUSHES.values().stream()).flatMap(e -> e));
     public static final Id<FoodShelfBlockEntity> FOOD_SHELF = register("food_shelf", FoodShelfBlockEntity::new, FLBlocks.FOOD_SHELVES.values().stream());

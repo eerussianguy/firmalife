@@ -82,7 +82,7 @@ public class BuiltinBlockTags extends TagsProvider<Block> implements Accessors
             .addTag(CHEESE_WHEELS)
             .add(FLBlocks.CARVED_PUMPKINS)
             .add(FLBlocks.DRYING_MAT)
-            .add(FLBlocks.WOOL_STRING, FLBlocks.GRAPE_STRING, FLBlocks.GRAPE_STRING_PLANT_RED, FLBlocks.GRAPE_STRING_PLANT_WHITE, FLBlocks.GRAPE_STRING_RED, FLBlocks.GRAPE_STRING_WHITE, FLBlocks.GRAPE_FLUFF_RED, FLBlocks.GRAPE_FLUFF_WHITE, FLBlocks.WILD_BEEHIVE)
+            .add(FLBlocks.WOOL_STRING, FLBlocks.PINEAPPLE_YARN, FLBlocks.GRAPE_STRING, FLBlocks.GRAPE_STRING_PLANT_RED, FLBlocks.GRAPE_STRING_PLANT_WHITE, FLBlocks.GRAPE_STRING_RED, FLBlocks.GRAPE_STRING_WHITE, FLBlocks.GRAPE_FLUFF_RED, FLBlocks.GRAPE_FLUFF_WHITE, FLBlocks.WILD_BEEHIVE)
             .add(FLBlocks.WILD_RED_GRAPES, FLBlocks.WILD_WHITE_GRAPES)
             .add(FLBlocks.JACK_O_LANTERNS);
         tag(BlockTags.STAIRS).addEveryFL(b -> b instanceof StairBlock);

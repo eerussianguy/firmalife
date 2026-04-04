@@ -1,11 +1,16 @@
 package com.eerussianguy.firmalife.common.blocks;
 
+import com.eerussianguy.firmalife.common.FLHelpers;
+import com.eerussianguy.firmalife.common.blockentities.DryingMatBlockEntity;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.piston.PistonHeadBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -28,6 +33,31 @@ public class SolarDrierBlock extends BottomSupportedDeviceBlock
     public SolarDrierBlock(ExtendedProperties properties)
     {
         super(properties, InventoryRemoveBehavior.DROP, SHAPE);
+    }
+
+    @Override
+    public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos)
+    {
+        if (facingState.getBlock() instanceof PistonHeadBlock && facingState.getValue(PistonHeadBlock.FACING) == facing.getOpposite() && facing.getAxis().isHorizontal())
+        {
+            if (level.getBlockEntity(currentPos) instanceof DryingMatBlockEntity mat)
+            {
+                mat.ejectItem(facing.getOpposite());
+            }
+        }
+        return super.updateShape(state, facing, facingState, level, currentPos, facingPos);
+    }
+
+    @Override
+    protected boolean hasAnalogOutputSignal(BlockState state)
+    {
+        return true;
+    }
+
+    @Override
+    protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos)
+    {
+        return FLHelpers.getRedstoneSignalFromContainer(level, pos);
     }
 
     @Override

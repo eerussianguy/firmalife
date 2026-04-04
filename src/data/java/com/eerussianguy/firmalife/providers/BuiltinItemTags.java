@@ -141,6 +141,8 @@ public class BuiltinItemTags extends TagsProvider<Item> implements Accessors
             itemOf(FLFood.MAIZE_FLATBREAD).asItem(),
             itemOf(FLFood.OAT_FLATBREAD).asItem()
         );
+        tag(Tags.Items.STRINGS)
+            .add(FLItems.PINEAPPLE_YARN);
         tag(commonTagOf(Registries.ITEM, "foods/dough")).add(
             itemOf(FLFood.WHEAT_DOUGH).asItem(),
             itemOf(FLFood.RYE_DOUGH).asItem(),
@@ -189,7 +191,7 @@ public class BuiltinItemTags extends TagsProvider<Item> implements Accessors
         tag(FLTags.Items.CAN_BE_HUNG).addTag(TFCTags.Items.MEATS).add(itemOf(Food.GARLIC).asItem());
         tag(TFCTags.Items.COMPOST_GREENS_LOW).add(FLItems.FRUIT_LEAF);
         tag(TFCTags.Items.COMPOST_GREENS).add(FLItems.NIGHTSHADE_BERRY);
-        tag(FLTags.Items.COOKED_MEATS_AND_SUBSTITUTES).addTag(TFCTags.Items.COOKED_MEATS).add(itemOf(FLFood.TOFU).asItem());
+        tag(FLTags.Items.COOKED_MEATS_AND_SUBSTITUTES).addTag(TFCTags.Items.COOKED_MEATS).add(itemOf(FLFood.TOFU).asItem()).add(itemOf(FLFood.CARNE_ASADA).asItem());
         tag(Tags.Items.LEATHERS).add(FLItems.PINEAPPLE_LEATHER);
         tag(FLTags.Items.USABLE_IN_STOVETOP_SOUP).addTag(TFCTags.Items.USABLE_IN_SOUP);
         tag(FLTags.Items.BEEKEEPER_ARMOR).add(

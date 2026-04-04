@@ -7,6 +7,10 @@ import net.minecraft.world.item.crafting.Ingredient;
 
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.component.food.FoodTraits;
+import net.dries007.tfc.common.recipes.ingredients.AndIngredient;
+import net.dries007.tfc.common.recipes.ingredients.HasTraitIngredient;
+import net.dries007.tfc.common.recipes.ingredients.LacksTraitIngredient;
+import net.dries007.tfc.common.recipes.ingredients.NotRottenIngredient;
 import net.dries007.tfc.common.recipes.outputs.AddTraitModifier;
 import net.dries007.tfc.common.recipes.outputs.CopyInputModifier;
 import net.dries007.tfc.common.recipes.outputs.ItemStackProvider;
@@ -22,7 +26,7 @@ public interface SmokingRecipes extends Recipes
         );
         smoke(
             "smoke_cheeses",
-            notRottenWithTrait(Ingredient.of(FLTags.Items.CHEESES), FLFoodTraits.SMOKED),
+            AndIngredient.of(Ingredient.of(FLTags.Items.CHEESES), NotRottenIngredient.INSTANCE, LacksTraitIngredient.of(FLFoodTraits.SMOKED)),
             ItemStackProvider.of(CopyInputModifier.INSTANCE, AddTraitModifier.of(FLFoodTraits.SMOKED))
         );
     }

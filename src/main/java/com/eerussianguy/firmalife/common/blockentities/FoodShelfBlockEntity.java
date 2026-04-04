@@ -142,6 +142,8 @@ public class FoodShelfBlockEntity extends InventoryBlockEntity<ItemStackHandler>
             ItemStack remainder = Helpers.mergeInsertStack(inventory, 0, held);
             held.setCount(remainder.getCount());
 
+            FoodCapability.removeTrait(held, getFoodTrait());
+
             res = ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
         else if (held.isEmpty())

@@ -1,6 +1,7 @@
 {
   "values": [
     "#c:foods/cooked_meat",
-    "firmalife:food/tofu"
+    "firmalife:food/tofu",
+    "firmalife:food/carne_asada"
   ]
 }
