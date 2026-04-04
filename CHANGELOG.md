@@ -12,3 +12,4 @@ This version of Firmalife requires at least TFC v4.1.0.
 - Fix missing barrel recipe localization.
 - Fix a bug where items could be given cellar traits outside a cellar.
 - Removed recipes associated with pumpkin chunks jam.
+- Updated Chinese translation.
