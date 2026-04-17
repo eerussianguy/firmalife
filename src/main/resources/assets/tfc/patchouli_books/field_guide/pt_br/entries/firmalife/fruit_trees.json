@@ -95,7 +95,7 @@
     {
       "type": "patchouli:text",
       "anchor": "fig",
-      "text": "$(bold)$(l:the_world/climate#temperature)Temperatura$(): 20 - 35 °C$(br)$(bold)$(l:mechanics/hydration)Precipitação$(): 125 - 215mm$(br2)",
+      "text": "$(bold)$(l:the_world/climate#temperature)Temperatura$(): 20 - 35°C$(br)$(bold)$(l:mechanics/hydration)Precipitação$(): 125 - 215mm$(br2)",
       "title": "Figueira"
     },
     {

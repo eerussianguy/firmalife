@@ -12,13 +12,13 @@
       "type": "patchouli:spotlight",
       "item": "firmalife:plant/wild_red_grapes",
       "link_recipes": false,
-      "text": "As uvas tintas nascem entre 0 e 30°C e 125 a 500°C de chuva, ou quase toda a área habitável."
+      "text": "As uvas tintas nascem entre 0 e 30°C e 125 a 500mm de chuva, ou quase toda a área habitável."
     },
     {
       "type": "patchouli:spotlight",
       "item": "firmalife:plant/wild_white_grapes",
       "link_recipes": false,
-      "text": "As uvas brancas nascem entre 0 e 30°C e 125 a 500°C de chuva, ou quase toda a área habitável."
+      "text": "As uvas brancas nascem entre 0 e 30°C e 125 a 500mm de chuva, ou quase toda a área habitável."
     },
     {
       "type": "patchouli:crafting",

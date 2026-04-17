@@ -22,7 +22,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "$(thing)Cera de Abelha$() é obtida da $(l:firmalife/beekeeping)Apicultura$().$(br)Adegas são usadas para $(l:firmalife/cheese#aging)Maturação de Queijo$()."
+      "text": "$(thing)Cera de Abelha$() é obtida da $(l:firmalife/beekeeping)Apicultura$().$(br)Adegas são usadas na $(l:firmalife/cheese#aging)Maturação de Queijo$()."
     },
     {
       "type": "patchouli:text",

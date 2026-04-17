@@ -12,13 +12,13 @@
       "type": "patchouli:spotlight",
       "item": "firmalife:food/nightshade_berry",
       "link_recipes": false,
-      "text": "A primeira é a beladona. A beladona é uma fruta venenosa. Quando adicionada à sopa, produz uma sopa venenosa chamada $(thing)Sopa Fedorenta$(). Ela é encontrada entre 200-400 mm de chuva e temperaturas de 7-24 °C nas florestas."
+      "text": "A primeira é a beladona. A beladona é uma fruta venenosa. Quando adicionada à sopa, produz uma sopa venenosa chamada $(thing)Sopa Fedorenta$(). Ela é encontrada entre 200-400mm de chuva e temperaturas de 7-24°C nas florestas."
     },
     {
       "type": "patchouli:spotlight",
       "item": "firmalife:food/pineapple",
       "link_recipes": false,
-      "text": "Os arbustos de abacaxi são encontrados em florestas com 250 a 500 mm de chuva e temperaturas entre 20 e 32 °C. Abacaxis são como qualquer outra fruta, exceto pelo fato de poderem ser transformados em $(thing)Couro de Abacaxi$()."
+      "text": "Os arbustos de abacaxi são encontrados em florestas com 250 a 500mm de chuva e temperaturas entre 20 e 32°C. Abacaxis são como qualquer outra fruta, exceto pelo fato de poderem ser transformados em $(thing)Couro de Abacaxi$()."
     },
     {
       "type": "patchouli:crafting",

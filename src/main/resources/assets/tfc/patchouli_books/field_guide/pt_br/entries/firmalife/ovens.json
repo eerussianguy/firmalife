@@ -21,7 +21,7 @@
     {
       "type": "tfc:knapping_recipe",
       "recipe": "firmalife:clay_knapping/oven_chimney",
-      "text": "A receita para a chaminé de forno."
+      "text": "The recipe for the oven chimney."
     },
     {
       "type": "patchouli:crafting",
