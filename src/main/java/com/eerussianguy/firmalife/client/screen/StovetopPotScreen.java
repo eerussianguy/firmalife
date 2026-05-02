@@ -82,11 +82,9 @@ public class StovetopPotScreen extends BlockEntityScreen<StovetopPotBlockEntity,
     {
         super.renderTooltip(graphics, mouseX, mouseY);
 
-        final int left = getGuiLeft(), top = getGuiTop();
-        if (mouseX >= left + 54 && mouseY >= top + 48 && mouseX < left + 86 && mouseY < top + 74)
+        if (RenderHelpers.isInside(mouseX, mouseY, getGuiLeft() + 121, getGuiTop() + 30, 162 - 121, 58 - 30))
         {
-            final IFluidHandler fluidHandler = Helpers.getCapability(BlockCapabilities.FLUID, blockEntity);
-            final FluidStack fluid = fluidHandler != null ? fluidHandler.getFluidInTank(0) : FluidStack.EMPTY;
+            final FluidStack fluid = blockEntity.getInventory().getFluidInTank(0);
             if (!fluid.isEmpty())
             {
                 graphics.renderTooltip(font, Tooltips.fluidUnitsAndCapacityOf(fluid, FluidHelpers.BUCKET_VOLUME), mouseX, mouseY);

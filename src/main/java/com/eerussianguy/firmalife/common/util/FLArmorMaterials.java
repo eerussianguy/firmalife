@@ -3,6 +3,7 @@ package com.eerussianguy.firmalife.common.util;
 import java.util.EnumMap;
 import java.util.List;
 import com.eerussianguy.firmalife.FirmaLife;
+import com.eerussianguy.firmalife.common.FLHelpers;
 import net.minecraft.Util;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
@@ -41,7 +42,7 @@ public final class FLArmorMaterials
             enchantability,
             equipSound,
             () -> Ingredient.EMPTY,
-            List.of(new ArmorMaterial.Layer(Helpers.identifier(name))),
+            List.of(new ArmorMaterial.Layer(FLHelpers.identifier(name))),
             toughness,
             knockbackResistance
         )), feetDamage, legDamage, chestDamage, headDamage);
