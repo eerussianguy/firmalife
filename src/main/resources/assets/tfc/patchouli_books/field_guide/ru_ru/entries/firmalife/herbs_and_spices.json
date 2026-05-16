@@ -6,11 +6,11 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "In Firmalife, there are a number of small plants you can collect and grow on your own, some of which can be used for cooking. These are called herbs. These plants, once harvested, may be cultivated in a $(thing)Greenhouse$(), in which they consume 20 points of N, P, and K."
+      "text": "В Firmalife есть ряд небольших растений, которые вы можете собирать и выращивать самостоятельно, некоторые из которых можно использовать для приготовления пищи. Они называются травами. Эти растения, после сбора, можно выращивать в $(thing)Теплице$(), где они потребляют по 20 единиц азота, фосфора и калия."
     },
     {
       "type": "patchouli:text",
-      "text": "Open to the next page to see information on all herb spawning locations and what they can be used for."
+      "text": "Откройте следующую страницу, чтобы увидеть информацию о всех местах появления трав и их применении."
     },
     {
       "type": "patchouli:multiblock",
@@ -28,13 +28,13 @@
         }
       },
       "name": "",
-      "text": "Basil spawns between 0-32°C and 100-500mm of groundwater.",
+      "text": "Базилик появляется при температуре 0–32 °С и уровне грунтовых вод 100–500 мм.",
       "enable_visualize": false
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/spice/basil_leaves",
-      "text": "Basil leaves, made from basil, are used in pizza."
+      "text": "Листья базилика, получаемые из базилика, используются в пицце."
     },
     {
       "type": "patchouli:multiblock",
@@ -52,13 +52,13 @@
         }
       },
       "name": "",
-      "text": "Bay Laurel spawns between 10-32°C and 100-300mm of groundwater.",
+      "text": "Лавр благородный появляется при температуре 10–32 °С и уровне грунтовых вод 100–300 мм.",
       "enable_visualize": false
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/spice/bay_leaves",
-      "text": "Bay laurel is chopped into bay leaves and used with cilantro to make flavorful rice in a pot."
+      "text": "Лавр благородный нарезается на лавровые листья и используется с кинзой для приготовления ароматного риса в горшке."
     },
     {
       "type": "patchouli:multiblock",
@@ -76,13 +76,13 @@
         }
       },
       "name": "",
-      "text": "Cardamom spawns between 17-24°C and 330-500mm of groundwater.",
+      "text": "Кардамон появляется при температуре 17–24 °С и уровне грунтовых вод 330–500 мм.",
       "enable_visualize": false
     },
     {
       "type": "tfc:quern_recipe",
       "recipe": "firmalife:quern/spice/ground_cardamom",
-      "text": "Ground Cardamom is made from grinding the cardamom plant, which is used to make Rice Pilaf."
+      "text": "Молотый кардамон получается из измельчения растения кардамона и используется для приготовления рисового плова."
     },
     {
       "type": "patchouli:multiblock",
@@ -100,13 +100,13 @@
         }
       },
       "name": "",
-      "text": "Cilantro spawns between 10-24°C and 90-300mm of groundwater.",
+      "text": "Кинза появляется при температуре 10–24 °С и уровне грунтовых вод 90–300 мм.",
       "enable_visualize": false
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/spice/chopped_cilantro",
-      "text": "Cilantro can be chopped and used for salsa and used with bay leaves in a pot to make flavorful cooked rice."
+      "text": "Кинзу можно нарезать и использовать для сальсы, а также с лавровыми листьями в горшке для приготовления ароматного варёного риса."
     },
     {
       "type": "patchouli:multiblock",
@@ -124,13 +124,13 @@
         }
       },
       "name": "",
-      "text": "Cumin spawns between 16-27°C and 100-300mm of groundwater.",
+      "text": "Тмин появляется при температуре 16–27 °С и уровне грунтовых вод 100–300 мм.",
       "enable_visualize": false
     },
     {
       "type": "tfc:quern_recipe",
       "recipe": "firmalife:quern/spice/ground_cumin",
-      "text": "Ground Cumin is made from grinding the cumin plant, which is used to make Carne Asada."
+      "text": "Молотый тмин получается из измельчения растения тмина и используется для приготовления карне асада."
     },
     {
       "type": "patchouli:multiblock",
@@ -148,13 +148,13 @@
         }
       },
       "name": "",
-      "text": "Oregano spawns between 20-27°C and 90-350mm of groundwater.",
+      "text": "Орегано появляется при температуре 20–27 °С и уровне грунтовых вод 90–350 мм.",
       "enable_visualize": false
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/food/raw_lasagna",
-      "text": "Oregano is used for lasagna."
+      "text": "Орегано используется для лазаньи."
     },
     {
       "type": "patchouli:multiblock",
@@ -172,13 +172,13 @@
         }
       },
       "name": "",
-      "text": "Pimento spawns between 18-24°C and 200-400mm of groundwater.",
+      "text": "Пименто появляется при температуре 18–24 °С и уровне грунтовых вод 200–400 мм.",
       "enable_visualize": false
     },
     {
       "type": "tfc:quern_recipe",
       "recipe": "firmalife:quern/spice/allspice",
-      "text": "Allspice is made from grinding the pimento plant, which is used to make Spiced Flour for use in Pumpkin Pie."
+      "text": "Душистый перец получается из измельчения растения пименто и используется для приготовления пряной муки для тыквенного пирога."
     },
     {
       "type": "patchouli:multiblock",
@@ -196,13 +196,13 @@
         }
       },
       "name": "",
-      "text": "Vanilla spawns between 22-30°C and 350-500mm of groundwater.",
+      "text": "Ваниль появляется при температуре 22–30 °С и уровне грунтовых вод 350–500 мм.",
       "enable_visualize": false
     },
     {
       "type": "tfc:drying_recipe",
       "recipe": "firmalife:drying/spice/vanilla",
-      "text": "Vanilla must be dried, and then can be made into ice cream."
+      "text": "Ваниль необходимо высушить, после чего из неё можно сделать мороженое."
     }
   ],
   "read_by_default": true,

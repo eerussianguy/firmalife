@@ -14,7 +14,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "$(thing)Greenhouse Types$() are families of greenhouse blocks that can be used interchangeably in a greenhouse. Most greenhouse blocks $(thing)age$(). For example, $(thing)Treated Wood$() greenhouse blocks become $(thing)Weathered Treated Wood$() blocks. Since both of those block types belong to the same greenhouse type, your greenhouse will continue to function. Stainless steel greenhouses do not age."
+      "text": "$(thing)Типы теплиц$() — это семейства блоков теплиц, которые можно использовать взаимозаменяемо в теплице. Большинство блоков теплицы $(thing)стареют$(). Например, блоки теплицы из $(thing)обработанной древесины$() становятся блоками из $(thing)выветренной обработанной древесины$(). Поскольку оба этих типа блоков принадлежат к одному типу теплицы, ваша теплица продолжит функционировать. Теплицы из нержавеющей стали не стареют."
     },
     {
       "type": "patchouli:text",

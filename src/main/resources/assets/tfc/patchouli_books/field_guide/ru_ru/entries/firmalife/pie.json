@@ -19,7 +19,7 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/spice/allspice",
-      "text": "Spiced flour is used in the creation of pumpkin pie. $(l:firmalife/herbs_and_spices)Pimento$() is an herb found in warm, moderately wet climates."
+      "text": "Пряная мука используется при приготовлении тыквенного пирога. $(l:firmalife/herbs_and_spices)Пименто$() — это трава, встречающаяся в тёплом, умеренно влажном климате."
     },
     {
       "type": "patchouli:crafting",
