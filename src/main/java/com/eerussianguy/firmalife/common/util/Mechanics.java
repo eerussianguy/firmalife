@@ -151,7 +151,7 @@ public final class Mechanics
             if (Helpers.isBlock(wallState, FLTags.Blocks.ALWAYS_VALID_GREENHOUSE_WALL))
                 return true; // short circuit for stuff we know will pass (plus exempt doors)
             if (direction == Direction.DOWN)
-                return !wallState.isAir();
+                return !wallState.isAir() && !Helpers.isBlock(wallState, FLTags.Blocks.PLANTERS);
             if (!greenhouse.ingredient().test(wallState))
                 return false;
             if (direction == Direction.UP && wallState.getBlock() instanceof SlabBlock)

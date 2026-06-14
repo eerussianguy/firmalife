@@ -44,7 +44,7 @@ public class BaseBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBl
 {
     public static boolean shouldAnger(Level level, BlockPos pos)
     {
-        if (level.getBrightness(LightLayer.SKY, pos) < 2)
+        if (level.getBrightness(LightLayer.SKY, pos.above()) < 2)
         {
             return false;
         }
@@ -109,7 +109,7 @@ public class BaseBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBl
             );
             if (res.consumesAction())
             {
-                if (BaseBeehiveBlock.shouldAnger(level, pos) && !player.isCreative())
+                if (!level.isClientSide && BaseBeehiveBlock.shouldAnger(level, pos) && !player.isCreative())
                     attack(player);
                 Helpers.playSound(level, pos, SoundEvents.BAMBOO_WOOD_BREAK);
                 return res;

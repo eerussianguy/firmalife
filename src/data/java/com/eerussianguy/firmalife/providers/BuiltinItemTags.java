@@ -165,6 +165,7 @@ public class BuiltinItemTags extends TagsProvider<Item> implements Accessors
             itemOf(FLFood.RAJYA_METOK).asItem(),
             itemOf(FLFood.CHEDDAR).asItem()
         );
+        tag(TFCTags.Items.DAIRY).addTag(FLTags.Items.CHEESES);
         tag(FLTags.Items.SMOKING_FUEL).addTag(ItemTags.LOGS);
         tag(FLTags.Items.OVEN_FUEL).addTag(ItemTags.LOGS).add(TFCItems.STICK_BUNDLE);
         tag(FLTags.Items.CHOCOLATE_BLENDS).add(
@@ -192,6 +193,8 @@ public class BuiltinItemTags extends TagsProvider<Item> implements Accessors
         tag(TFCTags.Items.COMPOST_GREENS_LOW).add(FLItems.FRUIT_LEAF);
         tag(TFCTags.Items.COMPOST_GREENS).add(FLItems.NIGHTSHADE_BERRY);
         tag(FLTags.Items.COOKED_MEATS_AND_SUBSTITUTES).addTag(TFCTags.Items.COOKED_MEATS).add(itemOf(FLFood.TOFU).asItem()).add(itemOf(FLFood.CARNE_ASADA).asItem());
+        tag(TFCTags.Items.COOKED_MEATS).add(FLItems.FOODS.get(FLFood.COOKED_BACON));
+        tag(TFCTags.Items.RAW_MEATS).add(FLItems.FOODS.get(FLFood.BACON));
         tag(Tags.Items.LEATHERS).add(FLItems.PINEAPPLE_LEATHER);
         tag(FLTags.Items.USABLE_IN_STOVETOP_SOUP).addTag(TFCTags.Items.USABLE_IN_SOUP);
         tag(FLTags.Items.BEEKEEPER_ARMOR).add(
