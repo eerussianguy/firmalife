@@ -53,7 +53,7 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
     }
 
     @Override
-    public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand)
+    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand)
     {
         if (!level.isClientSide && level.getBlockEntity(pos) instanceof LargePlanterBlockEntity planter && state.getBlock() == this)
         {
