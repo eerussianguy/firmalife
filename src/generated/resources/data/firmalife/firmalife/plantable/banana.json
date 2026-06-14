@@ -1,7 +1,7 @@
 {
   "crop": {
     "count": 1,
-    "id": "tfc:plant/banana_sapling"
+    "id": "tfc:food/banana"
   },
   "extra_seed_chance": 0.08,
   "ingredient": {

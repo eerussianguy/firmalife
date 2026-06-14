@@ -210,7 +210,7 @@ public class BuiltinPlantables extends DataManagerProvider<Plantable>
 
     private void hanging(String name, ItemLike seed, ItemLike crop, int tier, Plantable.NutrientList nut, float seedChance)
     {
-        plantable(name, seed, HANGING, tier, 4, seedChance, seed, nut, forEach(FirmaLife.MOD_ID, "block/crop/" + name, "_0", "_1", "_2", "_3", "_4"), List.of(FLHelpers.identifier("block/crop/" + name + "_fruit")));
+        plantable(name, seed, HANGING, tier, 4, seedChance, crop, nut, forEach(FirmaLife.MOD_ID, "block/crop/" + name, "_0", "_1", "_2", "_3", "_4"), List.of(FLHelpers.identifier("block/crop/" + name + "_fruit")));
     }
 
     private void plantable(String name, ItemLike seed, PlanterType planter, int tier, int stages, float extraSeedChance, ItemLike output, Plantable.NutrientList nut, List<ResourceLocation> textures, List<ResourceLocation> specials)

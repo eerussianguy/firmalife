@@ -1,7 +1,7 @@
 {
   "crop": {
     "count": 1,
-    "id": "tfc:seeds/melon"
+    "id": "tfc:melon"
   },
   "ingredient": {
     "item": "tfc:seeds/melon"
