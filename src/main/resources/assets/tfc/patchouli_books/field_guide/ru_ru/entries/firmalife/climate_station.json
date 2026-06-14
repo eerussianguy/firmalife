@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The $(thing)Climate Station$() is a block that manages the $(l:firmalife/greenhouse)Greenhouse$() and the $(l:firmalife/cellar)Cellar$(). When its corresponding multiblock is built correctly, it will show water on its sides. When it is invalid, it will show ice. The Climate Station must be placed on the first level of the multiblock, touching a part of the greenhouse structure. If it is not touching the structure, you may $(item)$(k:key.use)$() it with a block from that greenhouse type to tell it what to look for."
+      "text": "$(thing)Климатическая станция$() — это блок, который управляет $(l:firmalife/greenhouse)теплицей$() и $(l:firmalife/cellar)погребом$(). Когда соответствующий многоблочный комплекс построен правильно, на его сторонах отображается вода. Когда он недействителен, отображается лёд. Климатическая станция должна быть размещена на первом уровне многоблочного комплекса, касаясь части конструкции теплицы. Если она не касается конструкции, вы можете $(item)$(k:key.use)$() её блоком этого типа теплицы, чтобы указать, что искать."
     },
     {
       "type": "tfc:multimultiblock",
@@ -43,7 +43,7 @@
     {
       "type": "patchouli:text",
       "text": "Климатическая станция в рабочем и нерабочем состоянии.",
-      "title": "Climate Station Tips"
+      "title": "Советы по климатической станции"
     },
     {
       "type": "patchouli:crafting",
@@ -52,7 +52,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Климатическая станция создается так."
+      "text": "Климатическая станция создаётся так."
     }
   ],
   "read_by_default": true,

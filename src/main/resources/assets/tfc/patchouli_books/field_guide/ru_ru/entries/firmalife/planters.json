@@ -62,21 +62,22 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/hydroponic_planter",
-      "text": "$(thing)Hydroponic Planters$() grow rice and cranberry bushes. They work the same as a quad planter, except that they do not need to be watered."
+      "text": "$(thing)Гидропонные лотки$() выращивают рис и клюквенные кусты. Они работают так же, как небольшие лотки, за исключением того, что их не нужно поливать."
     },
     {
       "type": "patchouli:text",
-      "text": "Hydroponic Planters must instead, have a $(li)$(l:firmalife/irrigation)Sprinkler Pipe$() below them that is supplying water. Without the pipe they will not grow. There is no hard limit to how many hydroponic planters may be fed by one station."
+      "text": "Вместо этого гидропонные лотки должны иметь $(li)$(l:firmalife/irrigation)трубу спринклера$() под собой, подающую воду. Без трубы они не будут расти. Нет жёсткого ограничения на количество гидропонных лотков, которые могут питаться от одной станции."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/sweeper",
-      "text": "$(thing)Sweepers$() are used to harvest planters other than Quad and Hydroponic planters. They must be connected to a rotating $(thing)Axle$() on their bottom face."
+      "text": "$(thing)Сборщики$() используются для сбора урожая с лотков, кроме небольших и гидропонных. Они должны быть подключены к вращающейся $(thing)оси$() на своей нижней грани."
+
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/picker",
-      "text": "$(thing)Pickers$() can be powered via redstone signal from above. They extend down to pick the crops from Quad and Hydroponic planters."
+      "text": "$(thing)Сборщики$() могут получать питание через редстоун-сигнал сверху. Они опускаются вниз, чтобы собирать урожай с небольшие и гидропонных лотков."
     }
   ],
   "read_by_default": true,

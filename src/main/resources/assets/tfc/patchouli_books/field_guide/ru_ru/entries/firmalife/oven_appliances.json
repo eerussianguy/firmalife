@@ -30,7 +30,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Vats should be placed on the block above a $(thing)Bottom Oven$(). If the vat would overflow on completion of the recipe, it will not boil, so be sure not to overfill it -- especially with recipes that produce more fluid than they consume! Vats can be opened and closed with $(thing)Redstone$()."
+      "text": "Чаны следует размещать на блоке над $(thing)Нижней частью печи$(). Если чан переполнится при завершении рецепта, он не будет кипеть, поэтому не переполняйте его — особенно рецептами, которые производят больше жидкости, чем потребляют! Чаны можно открывать и закрывать с помощью $(thing)Редстоуна$()."
     },
     {
       "type": "patchouli:multiblock",
@@ -62,7 +62,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Using the Vat, Sugar Water can be made by adding sweetener to water. When the vat finishes, the fluid will change color. Clicking it with an $(thing)Empty Jar With Lid$() will fill it."
+      "text": "С помощью чана можно приготовить сахарную воду, добавив подсластитель в воду. Когда чан завершит работу, жидкость изменит цвет. Щелчок по нему $(thing)Пустой банкой с крышкой$() заполнит её."
     },
     {
       "type": "patchouli:text",
@@ -70,7 +70,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Pots and Grills from TFC can be placed on top of a $(thing)Bottom Oven$(). These devices will get heat automatically from the bottom oven. These will work exactly like the regular pot and grill, except for how they receive heat from below."
+      "text": "Горшки и грили из TFC можно размещать поверх $(thing)Нижней части печи$(). Эти устройства будут автоматически получать тепло от нижней части печи. Они будут работать точно так же, как обычные горшок и гриль, за исключением способа получения тепла снизу."
     }
   ],
   "read_by_default": true,

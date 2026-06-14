@@ -86,21 +86,21 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The leftmost slot can contain up to 16 grapes. Four grape items are needed for a bottle of wine. The four central slots are for mixing the grapes with other ingredients, but this is optional. Using only red or white grapes yields red or white wine. Adding at least one red grape to white wine makes Rose. Adding sugar to white wine makes dessert wine. Adding tirage mixture (yeast and sweetener in a barrel) makes sparkling wine."
+      "text": "Самый левый слот может содержать до 16 виноградин. Для бутылки вина нужно четыре виноградины. Четыре центральных слота предназначены для смешивания винограда с другими ингредиентами, но это необязательно. Использование только красного или белого винограда даёт красное или белое вино. Добавление хотя бы одной красной виноградины к белому вину делает розовое. Добавление сахара к белому вину делает десертное вино. Добавление тиражной смеси (дрожжи и подсластитель в бочке) делает игристое вино."
     },
     {
       "type": "tfc:glassworking_recipe",
       "recipe": "firmalife:glassworking/empty_olivine_wine_bottle",
-      "text": "Wine must be bottled in a proper wine bottle, made of non-silica glass."
+      "text": "Вино должно быть разлито в надлежащую винную бутылку, изготовленную из несиликатного стекла."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/bottle_label",
-      "text": "$(thing)Bottle labels$() can be renamed in a scribing station, and will add their name to the wine's tooltip."
+      "text": "$(thing)Этикетки бутылок$() можно переименовать в станции для письма, и они добавят своё имя в подсказку вина."
     },
     {
       "type": "patchouli:text",
-      "text": "Wine must be provided with a $(thing)Cork$(), made by soaking $(thing)Treated Lumber$() in $(thing)Limewater$() for a day. When all is complete, use the bottle slot to fill the wine, or by pressing $(item)$(k:key.use)$() with a bottle in hand."
+      "text": "Вино должно быть обеспечено $(thing)пробкой$(), изготовленной путем замачивания $(thing)обработанной древесины$() в $(thing)известковой воде$() на день. Когда всё готово, используйте слот бутылки для наполнения вином или нажмите $(item)$(k:key.use)$() с бутылкой в руке."
     }
   ],
   "read_by_default": true,
