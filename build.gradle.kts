@@ -153,8 +153,8 @@ dependencies {
     "dataImplementation"("vazkii.patchouli:Patchouli:$patchouliVersion")
 
     // TFC
-    implementation(group = "curse.maven", name = "terrafirmacraft-302973", version = "7875771")
-    "dataImplementation"(group = "curse.maven", name = "terrafirmacraft-302973", version = "7875771")
+    implementation(group = "curse.maven", name = "terrafirmacraft-302973", version = "8309510")
+    "dataImplementation"(group = "curse.maven", name = "terrafirmacraft-302973", version = "8309510")
 
     // Jade / The One Probe
     implementation(group = "curse.maven", name = "jade-324717", version = "6853386")

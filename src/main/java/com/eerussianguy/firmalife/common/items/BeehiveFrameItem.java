@@ -31,7 +31,7 @@ public class BeehiveFrameItem extends Item
     @Override
     public boolean overrideOtherStackedOnMe(ItemStack stack, ItemStack other, Slot slot, ClickAction action, Player player, SlotAccess carried)
     {
-        if (action == ClickAction.SECONDARY && Helpers.isItem(other, TFCTags.Items.TOOLS_KNIFE))
+        if (action == ClickAction.SECONDARY && Helpers.isItem(other, TFCTags.Items.TOOLS_KNIFE) && !slot.isFake())
         {
             slot.set(stack.getCraftingRemainingItem().copy());
             ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(drop.get()));
