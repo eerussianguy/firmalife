@@ -4,7 +4,11 @@ import com.eerussianguy.firmalife.common.blocks.OvenTopBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -100,11 +104,36 @@ public class OvenTopBlockEntity extends ApplianceBlockEntity<ApplianceBlockEntit
                             // Convert input
                             final ItemStackInventory inventory = new ItemStackInventory(inputStack);
                             final ItemStack outputItem = recipe.assemble(inventory, level.registryAccess());
+                            // Calculate slot positions for particles.
+                            final double slotX = pos.getX() + (slot % 2 == 0 ? 0.75F : 0.25F);
+                            final double slotY = pos.getY() + 0.25F;
+                            final double slotZ = pos.getZ() + (slot < 2 ? 0.75F : 0.25F);
 
-                            // Output transformations
-                            outputItem.getCapability(HeatCapability.CAPABILITY).ifPresent(outputCap -> outputCap.setTemperature(oven.temperature));
-                            FoodCapability.applyTrait(outputItem, FLFoodTraits.OVEN_BAKED);
-                            FoodCapability.setCreationDate(outputItem, FoodCapability.getRoundedCreationDate());
+                            // Handle item burning (no outputs).
+                            if (outputItem.isEmpty()) {
+                                if (level instanceof ServerLevel server) {
+
+                                    server.sendParticles(ParticleTypes.LARGE_SMOKE, slotX, slotY, slotZ, 3, 0.1F, 0.1F, 0.1F, 0.01F);
+                                    server.sendParticles(ParticleTypes.SMOKE, slotX, slotY, slotZ, 7, 0.1F, 0.1F, 0.1F, 0.01F);
+
+                                    level.playSound(null, pos, SoundEvents.FIRECHARGE_USE, SoundSource.BLOCKS, 0.8F, 2F);
+                                    Helpers.playSound(level, pos, SoundEvents.GENERIC_EXTINGUISH_FIRE);
+                                }
+                            }
+                            // Handle successful output.
+                            else
+                            {
+                                if (level instanceof ServerLevel server) {
+
+                                    server.sendParticles(ParticleTypes.WAX_ON, slotX, slotY, slotZ, 3, 0.2F, 0.2F, 0.2F, 0.5F);
+
+                                    level.playSound(null, pos, SoundEvents.GENERIC_EXTINGUISH_FIRE, SoundSource.BLOCKS, 0.4F, 2F);
+                                }
+                                // Output transformations
+                                outputItem.getCapability(HeatCapability.CAPABILITY).ifPresent(outputCap -> outputCap.setTemperature(oven.temperature));
+                                FoodCapability.applyTrait(outputItem, FLFoodTraits.OVEN_BAKED);
+                                FoodCapability.setCreationDate(outputItem, FoodCapability.getRoundedCreationDate());
+                            }
 
                             // Add output to oven
                             oven.inventory.setStackInSlot(slot, outputItem);
