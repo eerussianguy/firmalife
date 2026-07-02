@@ -2,10 +2,37 @@ package com.eerussianguy.firmalife.compat.tooltip;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import com.eerussianguy.firmalife.common.FLHelpers;
+import com.eerussianguy.firmalife.common.blockentities.BarrelPressBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.CompostTumblerBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.DryingMatBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.FoodShelfBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.JarbnetBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.OvenLike;
+import com.eerussianguy.firmalife.common.blockentities.OvenTopBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.StovetopPotBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.StringBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.VatBlockEntity;
+import com.eerussianguy.firmalife.common.blocks.AbstractOvenBlock;
+import com.eerussianguy.firmalife.common.blocks.CheeseWheelBlock;
+import com.eerussianguy.firmalife.common.blocks.CompostTumblerBlock;
+import com.eerussianguy.firmalife.common.blocks.DryingMatBlock;
+import com.eerussianguy.firmalife.common.blocks.FoodShelfBlock;
+import com.eerussianguy.firmalife.common.blocks.HangerBlock;
+import com.eerussianguy.firmalife.common.blocks.ICure;
+import com.eerussianguy.firmalife.common.blocks.JarbnetBlock;
+import com.eerussianguy.firmalife.common.blocks.OvenBottomBlock;
+import com.eerussianguy.firmalife.common.blocks.OvenTopBlock;
+import com.eerussianguy.firmalife.common.blocks.SolarDrierBlock;
+import com.eerussianguy.firmalife.common.blocks.StovetopPotBlock;
+import com.eerussianguy.firmalife.common.blocks.StringBlock;
+import com.eerussianguy.firmalife.common.blocks.VatBlock;
 import com.eerussianguy.firmalife.common.blocks.greenhouse.PumpingStationBlock;
 import com.eerussianguy.firmalife.common.blocks.plant.FLFruitTreeSaplingBlock;
 import com.eerussianguy.firmalife.common.capabilities.wine.WineType;
+import com.eerussianguy.firmalife.common.items.FLFoodTraits;
+import com.eerussianguy.firmalife.common.recipes.WrappedHeatingRecipe;
+import com.eerussianguy.firmalife.config.FLConfig;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -14,12 +41,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 
-import com.eerussianguy.firmalife.common.FLHelpers;
-import com.eerussianguy.firmalife.common.blockentities.*;
-import com.eerussianguy.firmalife.common.blocks.*;
-import com.eerussianguy.firmalife.common.items.FLFoodTraits;
-import com.eerussianguy.firmalife.config.FLConfig;
-
 import net.dries007.tfc.common.blockentities.TickCounterBlockEntity;
 import net.dries007.tfc.common.blocks.plant.fruit.FruitTreeSaplingBlock;
 import net.dries007.tfc.common.capabilities.Capabilities;
@@ -27,6 +48,7 @@ import net.dries007.tfc.common.capabilities.food.FoodCapability;
 import net.dries007.tfc.common.capabilities.food.FoodTrait;
 import net.dries007.tfc.common.capabilities.food.IFood;
 import net.dries007.tfc.common.capabilities.heat.HeatCapability;
+import net.dries007.tfc.common.recipes.inventory.ItemStackInventory;
 import net.dries007.tfc.compat.jade.common.BlockEntityTooltip;
 import net.dries007.tfc.compat.jade.common.BlockEntityTooltips;
 import net.dries007.tfc.compat.jade.common.EntityTooltip;
@@ -242,14 +264,22 @@ public final class FLTooltips
                                 {
                                     final float temp = HeatCapability.getTemperature(stack);
                                     final Component tempComponent = TFCConfig.CLIENT.heatTooltipStyle.get().formatColored(temp);
+                                    final MutableComponent line;
                                     if (temp > 0 && tempComponent != null)
                                     {
-                                        tooltip.accept(Component.translatable("firmalife.jade.cook_left_temp", stack.getHoverName(), delta(level, ticksLeft), tempComponent));
+                                        line = Component.translatable("firmalife.jade.cook_left_temp", stack.getHoverName(), delta(level, ticksLeft), tempComponent);
                                     }
                                     else
                                     {
-                                        tooltip.accept(Component.translatable("firmalife.jade.cook_left", stack.getHoverName(), delta(level, ticksLeft)));
+                                        line = Component.translatable("firmalife.jade.cook_left", stack.getHoverName(), delta(level, ticksLeft));
                                     }
+                                    final WrappedHeatingRecipe recipe = WrappedHeatingRecipe.getRecipe(stack);
+                                    // Add "- Danger!!" tooltip if near recipe temp and there is no output (Item Burning).
+                                    if (recipe != null && temp > recipe.temperature() * 0.9f && recipe.assemble(new ItemStackInventory(stack), level.registryAccess()).isEmpty())
+                                    {
+                                        line.append(Component.translatable("tfc.tooltip.danger").withStyle(ChatFormatting.WHITE));
+                                    }
+                                    tooltip.accept(line);
                                 }
 
                             }

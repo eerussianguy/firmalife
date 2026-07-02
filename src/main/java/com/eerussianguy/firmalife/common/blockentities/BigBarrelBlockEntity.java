@@ -80,7 +80,10 @@ public class BigBarrelBlockEntity extends InventoryBlockEntity<BigBarrelBlockEnt
     public void setAndUpdateSlots(int slot)
     {
         super.setAndUpdateSlots(slot);
-        if (slot == SLOT_FLUID_CONTAINER_IN)
+        // Also react to the output slot so that removing a filled container triggers the next one in an input stack
+        // to be filled. This is safe alongside the assignment order in updateFluidIOSlots(): during that transfer the
+        // output slot is only ever set to a non-empty stack, so the guard there blocks re-entry until it is cleared.
+        if (slot == SLOT_FLUID_CONTAINER_IN || slot == SLOT_FLUID_CONTAINER_OUT)
         {
             updateFluidIOSlots();
         }
@@ -89,7 +92,7 @@ public class BigBarrelBlockEntity extends InventoryBlockEntity<BigBarrelBlockEnt
     @Override
     public void fluidTankChanged()
     {
-        setChanged();
+        markForSync();
     }
 
     private void updateFluidIOSlots()
@@ -99,17 +102,21 @@ public class BigBarrelBlockEntity extends InventoryBlockEntity<BigBarrelBlockEnt
         if (!input.isEmpty() && inventory.getStackInSlot(SLOT_FLUID_CONTAINER_OUT).isEmpty())
         {
             FluidHelpers.transferBetweenBlockEntityAndItem(input, this, level, worldPosition, (newOriginalStack, newContainerStack) -> {
+                // Note: the output slot must be assigned *before* the input slot. updateFluidIOSlots() is invoked
+                // synchronously from setAndUpdateSlots() when the input slot changes, so if the input slot were set
+                // first, the still-empty output slot would let it re-enter and transfer again for each item in a
+                // stack, draining the tank once per item while only ever keeping a single container. See issue #262.
                 if (newContainerStack.isEmpty())
                 {
                     // No new container was produced, so shove the first stack in the output, and clear the input
-                    inventory.setStackInSlot(SLOT_FLUID_CONTAINER_IN, ItemStack.EMPTY);
                     inventory.setStackInSlot(SLOT_FLUID_CONTAINER_OUT, newOriginalStack);
+                    inventory.setStackInSlot(SLOT_FLUID_CONTAINER_IN, ItemStack.EMPTY);
                 }
                 else
                 {
                     // We produced a new container - this will be the 'filled', so we need to shove *that* in the output
-                    inventory.setStackInSlot(SLOT_FLUID_CONTAINER_IN, newOriginalStack);
                     inventory.setStackInSlot(SLOT_FLUID_CONTAINER_OUT, newContainerStack);
+                    inventory.setStackInSlot(SLOT_FLUID_CONTAINER_IN, newOriginalStack);
                 }
             });
         }
@@ -135,6 +142,7 @@ public class BigBarrelBlockEntity extends InventoryBlockEntity<BigBarrelBlockEnt
 
     public static class BigBarrelInventory implements EmptyInventory, DelegateItemHandler, INBTSerializable<CompoundTag>, DelegateFluidHandler, FluidTankCallback
     {
+        private final BarrelInventoryCallback callback;
         private final InventoryItemHandler inventory;
         private final InventoryFluidTank tank;
 
@@ -143,10 +151,17 @@ public class BigBarrelBlockEntity extends InventoryBlockEntity<BigBarrelBlockEnt
             this((BarrelInventoryCallback) inventory);
         }
 
-        BigBarrelInventory(BarrelInventoryCallback inventory)
+        BigBarrelInventory(BarrelInventoryCallback callback)
         {
-            this.inventory = new InventoryItemHandler(inventory, SLOTS);
+            this.callback = callback;
+            this.inventory = new InventoryItemHandler(callback, SLOTS);
             tank = new InventoryFluidTank(CAPACITY, stack -> Helpers.isFluid(stack.getFluid(), TFCTags.Fluids.USABLE_IN_BARREL), this);
+        }
+
+        @Override
+        public void fluidTankChanged()
+        {
+            callback.fluidTankChanged();
         }
 
         @Override
