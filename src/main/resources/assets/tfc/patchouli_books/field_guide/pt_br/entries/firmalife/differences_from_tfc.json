@@ -15,7 +15,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "$(l:firmalife/bread)Pão$() é feito através de um processo mais complexo que requer fermento e um adoçante. A receita tradicional de pão do TFC produz pão achatado, que é pior em termos nutricionais.",
+      "text": "$(l:firmalife/bread)Pão$() é feito através de um processo mais complexo que requer fermento e um adoçante. A receita tradicional de pão do TFC produz pão ázimo, que é pior em termos nutricionais.",
       "title": "Fabricação de Pão"
     },
     {

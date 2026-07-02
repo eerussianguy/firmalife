@@ -16,7 +16,7 @@
       "type": "patchouli:crafting",
       "anchor": "cheesecloth",
       "recipe": "firmalife:crafting/cheesecloth",
-      "text": "O leite coalhado deve ser convertido em $(thing)Coalhada$() selando-o em um barril com $(thing)Pano de Queijo$(). O pano de queijo não é reutilizável."
+      "text": "O leite coalhado deve ser convertido em $(thing)Coalhada$() selando-o em um barril com $(thing)Pano de Queijo$(). O Pano de Queijo não é reutilizável."
     },
     {
       "type": "patchouli:crafting",

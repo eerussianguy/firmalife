@@ -12,13 +12,13 @@
       "type": "patchouli:spotlight",
       "item": "firmalife:food/nightshade_berry",
       "link_recipes": false,
-      "text": "First is nightshade. Nightshade is a poisonous berry. When put into soup, it makes poisonous $(thing)Stinky Soup$(). It is found between 200-400mm of rain and 7-24 C temperature in forests. It bears fruit in the month of $(thing)August$(), flowering the month prior."
+      "text": "A primeira é a beladona. A beladona é uma fruta venenosa. Quando adicionada à sopa, produz uma sopa venenosa chamada $(thing)Sopa Fedorenta$(). Ela é encontrada entre 200-400mm de chuva e temperaturas de 7-24°C nas florestas."
     },
     {
       "type": "patchouli:spotlight",
       "item": "firmalife:food/pineapple",
       "link_recipes": false,
-      "text": "Pineapple bushes are found 250-500mm of rainfall and 20-32 C temperature in forests. They bear fruit in the month of $(thing)September$(), flowering the two months prior. Pineapples are like any other fruit, except that they can be made into $(thing)Pineapple Leather$()."
+      "text": "Os arbustos de abacaxi são encontrados em florestas com 250 a 500mm de chuva e temperaturas entre 20 e 32°C. Abacaxis são como qualquer outra fruta, exceto pelo fato de poderem ser transformados em $(thing)Couro de Abacaxi$()."
     },
     {
       "type": "patchouli:crafting",
