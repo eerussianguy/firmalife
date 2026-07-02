@@ -291,8 +291,8 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False, rev
         )),
         entry('berry_bushes', 'Berry Bushes', 'firmalife:plant/pineapple_bush', pages=(
             text('Firmalife adds some berry bushes. For information on wild grape bushes, see $(l:firmalife/wine)winemaking$().'),
-            item_spotlight('firmalife:food/nightshade_berry', text_contents='First is nightshade. Nightshade is a poisonous berry. When put into soup, it makes poisonous $(thing)Stinky Soup$(). It is found between 200-400mm of rain and 7-24 C temperature in forests.'),
-            item_spotlight('firmalife:food/pineapple', text_contents='Pineapple bushes are found 250-500mm of rainfall and 20-32 C temperature in forests. Pineapples are like any other fruit, except that they can be made into $(thing)Pineapple Leather$().'),
+            item_spotlight('firmalife:food/nightshade_berry', text_contents='First is nightshade. Nightshade is a poisonous berry. When put into soup, it makes poisonous $(thing)Stinky Soup$(). It is found between 200-400mm of rain and 7-24 C temperature in forests. It bears fruit in the month of $(thing)August$(), flowering the month prior.'),
+            item_spotlight('firmalife:food/pineapple', text_contents='Pineapple bushes are found 250-500mm of rainfall and 20-32 C temperature in forests. They bear fruit in the month of $(thing)September$(), flowering the two months prior. Pineapples are like any other fruit, except that they can be made into $(thing)Pineapple Leather$().'),
             crafting('firmalife:crafting/pineapple_fiber', text_contents='Pineapples that have been $(l:firmalife/drying)Dried$() can be crafted into pineapple fiber.'),
             crafting('firmalife:crafting/pineapple_yarn', text_contents='Pineapple yarn is made by crafting a $(thing)Spindle$() with the fiber.'),
             loom_recipe('firmalife:loom/pineapple_leather', text_content='Finally, pineapple leather can be me woven in a $(l:tfc:mechanics/weaving)Loom$(). It is a plant substitute for regular leather than can be used for knapping, crafting, and other uses!')

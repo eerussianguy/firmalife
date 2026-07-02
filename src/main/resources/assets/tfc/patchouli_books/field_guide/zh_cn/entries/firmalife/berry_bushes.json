@@ -12,13 +12,13 @@
       "type": "patchouli:spotlight",
       "item": "firmalife:food/nightshade_berry",
       "link_recipes": false,
-      "text": "首先是龙葵。龙葵是一种有毒浆果。放入汤中可制成带毒性的$(thing)恶臭毒汤$()。它生成于年降雨量200-400毫米、气温7-24℃的森林地带。"
+      "text": "First is nightshade. Nightshade is a poisonous berry. When put into soup, it makes poisonous $(thing)Stinky Soup$(). It is found between 200-400mm of rain and 7-24 C temperature in forests. It bears fruit in the month of $(thing)August$(), flowering the month prior."
     },
     {
       "type": "patchouli:spotlight",
       "item": "firmalife:food/pineapple",
       "link_recipes": false,
-      "text": "菠萝灌木丛能在降雨量介于250-500mm之间与温度介于20-32摄氏度区间内的森林中找到。菠萝特性基本与其他水果一致，除了它们能被制作成 $(thing)菠萝布$()。"
+      "text": "Pineapple bushes are found 250-500mm of rainfall and 20-32 C temperature in forests. They bear fruit in the month of $(thing)September$(), flowering the two months prior. Pineapples are like any other fruit, except that they can be made into $(thing)Pineapple Leather$()."
     },
     {
       "type": "patchouli:crafting",
