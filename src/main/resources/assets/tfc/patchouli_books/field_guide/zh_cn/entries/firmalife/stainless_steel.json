@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(thing)不锈钢$()和$(thing)铬$()是Firmalife模组添加的$(thing)钢级$()金属。它们用于建造$(l:firmalife/greenhouse)不锈钢温室$()。"
+      "text": "$(thing)不锈钢$()和$(thing)铬$()是群峦生活模组添加的$(thing)钢级$()金属。它们用于建造$(l:firmalife/greenhouse)不锈钢温室$()。"
     },
     {
       "type": "patchouli:spotlight",

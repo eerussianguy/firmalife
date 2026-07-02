@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "在 Firmalife 中制作$(thing)奶酪$()比在原版群峦中稍复杂一些。新增了两种奶：$(thing)牦牛奶$()和$(thing)山羊奶$()。它们分别通过挤取$(l:mechanics/animal_husbandry#yak)牦牛$()和$(l:mechanics/animal_husbandry#goat)山羊$()获得。挤取$(l:mechanics/animal_husbandry#cow)奶牛$()获得的仍是原来的奶。"
+      "text": "在群峦生活模组中制作$(thing)奶酪$()比在原版群峦中稍复杂一些。新增了两种奶：$(thing)牦牛奶$()和$(thing)山羊奶$()。它们分别通过挤取$(l:mechanics/animal_husbandry#yak)牦牛$()和$(l:mechanics/animal_husbandry#goat)山羊$()获得。挤取$(l:mechanics/animal_husbandry#cow)奶牛$()获得的仍是原来的奶。"
     },
     {
       "type": "patchouli:text",

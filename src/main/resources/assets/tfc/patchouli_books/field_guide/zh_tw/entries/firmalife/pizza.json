@@ -12,7 +12,7 @@
       "type": "patchouli:crafting",
       "anchor": "shredded_cheese",
       "recipe": "firmalife:crafting/food/shredded_cheese",
-      "text": "首先你需要一些奶酪絲。"
+      "text": "首先你需要一些乳酪絲。"
     },
     {
       "type": "patchouli:text",
@@ -22,7 +22,7 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/pizza_with_ingredients_2",
-      "text": "披薩由1-3份蔬菜、熟肉或水果，一份奶酪絲和一份番茄醬製作而成。"
+      "text": "披薩由1-3份蔬菜、熟肉或水果，一份乳酪絲和一份番茄醬製作而成。"
     }
   ],
   "read_by_default": true,

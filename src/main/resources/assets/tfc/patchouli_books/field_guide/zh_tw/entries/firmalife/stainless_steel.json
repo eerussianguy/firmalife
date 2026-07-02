@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(thing)不鏽鋼$()和$(thing)鉻$()是Firmalife模組添加的$(thing)鋼級$()金屬。它們用於建造$(l:firmalife/greenhouse)不鏽鋼溫室$()。"
+      "text": "$(thing)不鏽鋼$()和$(thing)鉻$()是群巒生活模組新增的$(thing)鋼級$()金屬。它們用於建造$(l:firmalife/greenhouse)不鏽鋼溫室$()。"
     },
     {
       "type": "patchouli:spotlight",

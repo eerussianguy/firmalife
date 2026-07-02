@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The $(thing)Climate Station$() is a block that manages the $(l:firmalife/greenhouse)Greenhouse$() and the $(l:firmalife/cellar)Cellar$(). When its corresponding multiblock is built correctly, it will show water on its sides. When it is invalid, it will show ice. The Climate Station must be placed on the first level of the multiblock, touching a part of the greenhouse structure. If it is not touching the structure, you may $(item)$(k:key.use)$() it with a block from that greenhouse type to tell it what to look for."
+      "text": "$(thing)氣象站$()是用於管理$(l:firmalife/greenhouse)溫室$()和$(l:firmalife/cellar)地窖$()的方塊。當其對應的多方塊結構正確建造時，其側面會顯示水流的紋理；當結構無效時，則會顯示冰霜紋理。氣象站必須放置在該多方塊結構的最底層，並緊貼溫室結構的一部分。如果它沒有緊貼結構，你可以手持該溫室型別的方塊對其$(item)$(k:key.use)$()，以告知它需要檢測的結構型別。"
     },
     {
       "type": "tfc:multimultiblock",
@@ -42,7 +42,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "$(li)它會定期自動更新，或在被放置/破壞時更新。$()$(li)當氣象站更新時，它會告知多方塊結構內的所有方塊可以開始運作。例如，它讓$(l:firmalife/cheese)奶酪$()開始熟成。$()$(li)按下$(item)$(k:key.use)$()可以強制更新氣象站及整個多方塊結構內所有方塊的狀態。",
+      "text": "$(li)它會定期自動更新，或在被放置/破壞時更新。$()$(li)當氣象站更新時，它會告知多方塊結構內的所有方塊可以開始運作。例如，它讓$(l:firmalife/cheese#cheesecloth)乳酪$()開始熟成。$()$(li)按下$(item)$(k:key.use)$()可以強制更新氣象站及整個多方塊結構內所有方塊的狀態。",
       "title": "氣象站使用技巧"
     },
     {
@@ -52,7 +52,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "關於溫室建造的說明：溫室的最大尺寸為以氣象站為中心的31x31x31區域，即向每個方向延伸15格。將氣象站置於溫室中心，可以充分利用最大尺寸範圍。你也可以通過在內部使用牆壁和多個氣象站將溫室細分為多個區域，從而建造更大的溫室。"
+      "text": "關於溫室建造的說明：溫室的最大尺寸為以氣象站為中心的31x31x31區域，即向每個方向延伸15格。將氣象站置於溫室中心，可以充分利用最大尺寸範圍。你也可以透過在內部使用牆壁和多個氣象站將溫室細分為多個區域，從而建造更大的溫室。"
     }
   ],
   "read_by_default": true,

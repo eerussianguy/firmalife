@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "在 Firmalife 中，有许多小型植物可以收集并种植，其中一些可用于烹饪。它们被称为草药。这些植物一旦被收获，就可以在$(thing)温室$()中栽培，每株会消耗20点的氮、磷、钾。"
+      "text": "在群峦生活模组中，有许多小型植物可供采集和种植，其中一些可用于烹饪。这些被称为草药。这些植物收获后，可以在$(thing)温室$()中栽培，它们会消耗20点氮、磷、钾。"
     },
     {
       "type": "patchouli:text",
@@ -28,13 +28,13 @@
         }
       },
       "name": "",
-      "text": "罗勒生成于降水量100-500毫米、温度0-32°C的区域。",
+      "text": "罗勒生成在温度0-32°C、地下水量100-500mm的区域。",
       "enable_visualize": false
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/spice/basil_leaves",
-      "text": "罗勒叶由罗勒制成，用于制作披萨。"
+      "text": "由罗勒制成的罗勒叶，用于披萨。"
     },
     {
       "type": "patchouli:multiblock",
@@ -52,7 +52,7 @@
         }
       },
       "name": "",
-      "text": "月桂生成于降水量100-300毫米、温度10-32°C的区域。",
+      "text": "月桂生成在温度10-32°C、地下水量100-300mm的区域。",
       "enable_visualize": false
     },
     {
@@ -76,7 +76,7 @@
         }
       },
       "name": "",
-      "text": "豆蔻生成于降水量330-500毫米、温度17-24°C的区域。",
+      "text": "豆蔻生成在温度17-24°C、地下水量330-500mm的区域。",
       "enable_visualize": false
     },
     {
@@ -100,7 +100,7 @@
         }
       },
       "name": "",
-      "text": "香菜生成于降水量90-300毫米、温度10-24°C的区域。",
+      "text": "香菜生成在温度10-24°C、地下水量90-300mm的区域。",
       "enable_visualize": false
     },
     {
@@ -124,7 +124,7 @@
         }
       },
       "name": "",
-      "text": "孜然生成于降水量100-300毫米、温度16-27°C的区域。",
+      "text": "孜然生成在温度16-27°C、地下水量100-300mm的区域。",
       "enable_visualize": false
     },
     {
@@ -148,7 +148,7 @@
         }
       },
       "name": "",
-      "text": "牛至生成于降水量90-350毫米、温度20-27°C的区域。",
+      "text": "牛至生成在温度20-27°C、地下水量90-350mm的区域。",
       "enable_visualize": false
     },
     {
@@ -172,7 +172,7 @@
         }
       },
       "name": "",
-      "text": "甜椒生成于降水量200-400毫米、温度18-24°C的区域。",
+      "text": "多香果生成在温度18-24°C、地下水量200-400mm的区域。",
       "enable_visualize": false
     },
     {
@@ -196,13 +196,13 @@
         }
       },
       "name": "",
-      "text": "香草生成于降水量350-500毫米、温度22-30°C的区域。",
+      "text": "香草生成在温度22-30°C、地下水量350-500mm的区域。",
       "enable_visualize": false
     },
     {
       "type": "tfc:drying_recipe",
       "recipe": "firmalife:drying/spice/vanilla",
-      "text": "香草必须经过干燥，然后可以用来制作冰淇淋。"
+      "text": "香草需要经过干燥，然后可以用来制作冰淇淋。"
     }
   ],
   "read_by_default": true,

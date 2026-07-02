@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "鉴于 Firmalife 对施肥有更高的需求，这里提供了更多获取$(l:mechanics/fertilizers)肥料$()的途径。"
+      "text": "鉴于群峦生活模组对施肥有更高的需求，这里提供了更多获取$(l:mechanics/fertilizers)肥料$()的途径。"
     },
     {
       "type": "patchouli:text",

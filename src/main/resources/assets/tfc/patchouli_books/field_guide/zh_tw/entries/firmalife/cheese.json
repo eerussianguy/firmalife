@@ -1,12 +1,12 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "name": "奶酪",
+  "name": "乳酪",
   "category": "tfc:firmalife",
   "icon": "firmalife:textures/item/food/gouda.png",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "在 Firmalife 中製作$(thing)奶酪$()比在原版群巒中稍複雜一些。新增了兩種奶：$(thing)犛牛奶$()和$(thing)山羊奶$()。它們分別通過擠取$(l:mechanics/animal_husbandry#yak)犛牛$()和$(l:mechanics/animal_husbandry#goat)山羊$()獲得。擠取$(l:mechanics/animal_husbandry#cow)奶牛$()獲得的仍是原來的奶。"
+      "text": "在群巒生活模組中製作$(thing)乳酪$()比在原版群巒中稍複雜一些。新增了兩種奶：$(thing)犛牛奶$()和$(thing)山羊奶$()。它們分別透過擠取$(l:mechanics/animal_husbandry#yak)犛牛$()和$(l:mechanics/animal_husbandry#goat)山羊$()獲得。擠取$(l:mechanics/animal_husbandry#cow)奶牛$()獲得的仍是原來的奶。"
     },
     {
       "type": "patchouli:text",
@@ -16,7 +16,7 @@
       "type": "patchouli:crafting",
       "anchor": "cheesecloth",
       "recipe": "firmalife:crafting/cheesecloth",
-      "text": "凝固後的奶和$(thing)奶酪布$()一起密封在大桶中就可以製成$(thing)凝乳$()。奶酪布是不能重複使用的。"
+      "text": "凝固後的奶和$(thing)乳酪布$()一起密封在大桶中就可以製成$(thing)凝乳$()。乳酪布是不能重複使用的。"
     },
     {
       "type": "patchouli:crafting",
@@ -30,12 +30,12 @@
     },
     {
       "type": "patchouli:text",
-      "text": "你的另一個選擇是製作$(thing)鮮奶酪$()。這些是通過將凝乳密封在一桶$(thing)鹽水$()中製成的。你可以用$(thing)犛牛奶凝乳$()製作$(thing)喜馬拉雅奶酪$()，用$(thing)山羊奶凝乳$()製作$(thing)希臘菲達奶酪$()，以及用$(thing)牛奶凝乳$()製作$(thing)荷蘭高達奶酪$()。"
+      "text": "你的另一個選擇是製作$(thing)鮮乳酪$()。這些是透過將凝乳密封在一桶$(thing)鹽水$()中製成的。你可以用$(thing)犛牛奶凝乳$()製作$(thing)喜馬拉雅乳酪$()，用$(thing)山羊奶凝乳$()製作$(thing)希臘菲達乳酪$()，以及用$(thing)牛奶凝乳$()製作$(thing)荷蘭高達乳酪$()。"
     },
     {
       "type": "patchouli:text",
       "anchor": "aging",
-      "text": "奶酪輪是方塊，應放置起來以利於保存。為了提高其品質和保質期，奶酪輪應在$(l:firmalife/cellar)地窖$()中進行$(thing)熟化$()。為了從奶酪輪上獲得可食用的奶酪，應手持$(thing)刀$()點擊$(item)$(k:key.use)$()將其切片。如果直接破壞奶酪塊，將丟失熟成效果！"
+      "text": "乳酪輪是方塊，應放置起來以利於儲存。為了提高其品質和保質期，乳酪輪應在$(l:firmalife/cellar)地窖$()中進行$(thing)熟化$()。為了從乳酪輪上獲得可食用的乳酪，應手持$(thing)刀$()點選$(item)$(k:key.use)$()將其切片。如果直接破壞乳酪塊，將丟失熟成效果！"
     },
     {
       "type": "tfc:multimultiblock",

@@ -25,7 +25,7 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/food/burrito",
-      "text": "$(thing)墨西哥捲餅$()需用熟肉、$(l:firmalife/pizza#shredded_cheese)奶酪絲$()、$(l:firmalife/pizza#tomato_sauce)番茄醬$()、蔬菜與莎莎醬共同製作。"
+      "text": "$(thing)墨西哥捲餅$()需用熟肉、$(l:firmalife/pizza#shredded_cheese)乳酪絲$()、$(l:firmalife/pizza#tomato_sauce)番茄醬$()、蔬菜與莎莎醬共同製作。"
     },
     {
       "type": "patchouli:crafting",

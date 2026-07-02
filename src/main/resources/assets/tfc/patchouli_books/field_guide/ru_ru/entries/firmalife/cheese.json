@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Изготовление $(thing)сыра$() в Firmalife немного сложнее, чем в ванильном TFC. Есть два новых вида молока: $(thing)молоко яка$() и $(thing)козье молоко$(). Их получают, доя  $(l:mechanics/animal_husbandry#yak)яка$() и $(l:mechanics/animal_husbandry#goat)козу$() соответственно. Дойка $(l:mechanics/animal_husbandry#cow)коровы$() по-прежнему дает старый вид молока."
+      "text": "Изготовление $(thing)сыра$() в Firmalife немного сложнее, чем в ванильном TFC. Есть два новых вида молока: $(thing)молоко яка$() и $(thing)козье молоко$(). Их получают, доя $(l:mechanics/animal_husbandry#yak)яка$() и $(l:mechanics/animal_husbandry#goat)козу$() соответственно. Дойка $(l:mechanics/animal_husbandry#cow)коровы$() по-прежнему дает старый вид молока."
     },
     {
       "type": "patchouli:text",

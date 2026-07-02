@@ -7,7 +7,7 @@
     {
       "type": "patchouli:text",
       "anchor": "planters",
-      "text": "$(thing)種植盆$()用於在$(l:firmalife/greenhouse)溫室$()內種植$(thing)作物$()。要查看種植盆的狀態，你可以手持一把$(thing)鋤$()觀察它。種植盆中的作物會消耗$(l:mechanics/fertilizers)營養$()，其方式類似於$(l:mechanics/crops)作物$()。種植盆應放置在有效的溫室內，並由一個$(l:firmalife/climate_station)氣象站$()激活。種植盆需要至少一些陽光才能工作。"
+      "text": "$(thing)種植盆$()用於在$(l:firmalife/greenhouse)溫室$()內種植$(thing)作物$()。要檢視種植盆的狀態，你可以手持一把$(thing)鋤$()觀察它。種植盆中的作物會消耗$(l:mechanics/fertilizers)營養$()，其方式類似於$(l:mechanics/crops)作物$()。種植盆應放置在有效的溫室內，並由一個$(l:firmalife/climate_station)氣象站$()啟用。種植盆需要至少一些陽光才能工作。"
     },
     {
       "type": "patchouli:crafting",
@@ -57,7 +57,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "格子種植架具有$(thing)繁殖$()漿果叢的特性。如果一個種植架放置在另一個之上，並且下方的架子上長有成熟的漿果叢，則上方的架子有可能繁殖出新的漿果叢。格子種植架可以種植除$(thing)蔓越莓$()外的任何漿果叢，但需要$(thing)鐵$()或更高級的溫室才能運作。這些漿果叢偏好氮元素。"
+      "text": "格子種植架具有$(thing)繁殖$()漿果叢的特性。如果一個種植架放置在另一個之上，並且下方的架子上長有成熟的漿果叢，則上方的架子有可能繁殖出新的漿果叢。格子種植架可以種植除$(thing)蔓越莓$()外的任何漿果叢，但需要$(thing)鐵$()或更高階的溫室才能運作。這些漿果叢偏好氮元素。"
     },
     {
       "type": "patchouli:crafting",
@@ -71,12 +71,12 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/sweeper",
-      "text": "$(thing)清掃器$()用於收割四槽種植盆和水培種植盆以外的種植盆。其底部必須連接一個旋轉的$(thing)傳動軸$()。"
+      "text": "$(thing)清掃器$()用於收割四槽種植盆和水培種植盆以外的種植盆。其底部必須連線一個旋轉的$(thing)傳動軸$()。"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/picker",
-      "text": "$(thing)採摘器$()可通過上方的紅石信號激活。它會向下延伸，以採集四槽種植盆和水培種植盆中的作物。"
+      "text": "$(thing)採摘器$()可透過上方的紅石訊號啟用。它會向下延伸，以採集四槽種植盆和水培種植盆中的作物。"
     }
   ],
   "read_by_default": true,

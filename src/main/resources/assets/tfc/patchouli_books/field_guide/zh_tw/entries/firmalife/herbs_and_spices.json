@@ -6,11 +6,11 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "在 Firmalife 中，有許多小型植物可以收集並種植，其中一些可用於烹飪。它們被稱為草藥。這些植物一旦被收穫，就可以在$(thing)溫室$()中栽培，每株會消耗20點的氮、磷、鉀。"
+      "text": "在群巒生活模組中，有許多小型植物可供採集和種植，其中一些可用於烹飪。這些被稱為草藥。這些植物收穫後，可以在$(thing)溫室$()中栽培，它們會消耗20點氮、磷、鉀。"
     },
     {
       "type": "patchouli:text",
-      "text": "翻開下一頁查看所有草藥的生成地點及其用途信息。"
+      "text": "翻開下一頁檢視所有草藥的生成地點及其用途資訊。"
     },
     {
       "type": "patchouli:multiblock",
@@ -28,13 +28,13 @@
         }
       },
       "name": "",
-      "text": "羅勒生成於降水量100-500毫米、溫度0-32°C的區域。",
+      "text": "羅勒生成在溫度0-32°C、地下水量100-500mm的區域。",
       "enable_visualize": false
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/spice/basil_leaves",
-      "text": "羅勒葉由羅勒製成，用於製作披薩。"
+      "text": "由羅勒製成的羅勒葉，用於披薩。"
     },
     {
       "type": "patchouli:multiblock",
@@ -52,7 +52,7 @@
         }
       },
       "name": "",
-      "text": "月桂生成於降水量100-300毫米、溫度10-32°C的區域。",
+      "text": "月桂生成在溫度10-32°C、地下水量100-300mm的區域。",
       "enable_visualize": false
     },
     {
@@ -76,7 +76,7 @@
         }
       },
       "name": "",
-      "text": "豆蔻生成於降水量330-500毫米、溫度17-24°C的區域。",
+      "text": "豆蔻生成在溫度17-24°C、地下水量330-500mm的區域。",
       "enable_visualize": false
     },
     {
@@ -100,7 +100,7 @@
         }
       },
       "name": "",
-      "text": "香菜生成於降水量90-300毫米、溫度10-24°C的區域。",
+      "text": "香菜生成在溫度10-24°C、地下水量90-300mm的區域。",
       "enable_visualize": false
     },
     {
@@ -124,7 +124,7 @@
         }
       },
       "name": "",
-      "text": "孜然生成於降水量100-300毫米、溫度16-27°C的區域。",
+      "text": "孜然生成在溫度16-27°C、地下水量100-300mm的區域。",
       "enable_visualize": false
     },
     {
@@ -148,7 +148,7 @@
         }
       },
       "name": "",
-      "text": "牛至生成於降水量90-350毫米、溫度20-27°C的區域。",
+      "text": "牛至生成在溫度20-27°C、地下水量90-350mm的區域。",
       "enable_visualize": false
     },
     {
@@ -172,7 +172,7 @@
         }
       },
       "name": "",
-      "text": "甜椒生成於降水量200-400毫米、溫度18-24°C的區域。",
+      "text": "多香果生成在溫度18-24°C、地下水量200-400mm的區域。",
       "enable_visualize": false
     },
     {
@@ -196,13 +196,13 @@
         }
       },
       "name": "",
-      "text": "香草生成於降水量350-500毫米、溫度22-30°C的區域。",
+      "text": "香草生成在溫度22-30°C、地下水量350-500mm的區域。",
       "enable_visualize": false
     },
     {
       "type": "tfc:drying_recipe",
       "recipe": "firmalife:drying/spice/vanilla",
-      "text": "香草必須經過乾燥，然後可以用來製作冰淇淋。"
+      "text": "香草需要經過乾燥，然後可以用來製作冰淇淋。"
     }
   ],
   "read_by_default": true,

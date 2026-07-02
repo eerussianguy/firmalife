@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(thing)釀酒$()是一門將葡萄轉化為酒精的科學。這其中包含花費時間收集資源、將資源合成為原料，以及$(thing)享用$()最終產品的時間。請注意，Firmalife 中的葡萄酒（就其本身而言）除了群巒傳說常規的酒精用途外，並無特殊作用。你應該只在想要獲得$(thing)樂趣$()時才去釀造它。"
+      "text": "$(thing)釀酒$()是一門將葡萄轉化為酒精的科學。這其中包含花費時間收集資源、將資源合成為原料，以及$(thing)享用$()最終產品的時間。請注意，群巒生活模組中的葡萄酒（就其本身而言）除了群巒傳說常規的酒精用途外，並無特殊作用。你應該只在想要獲得$(thing)樂趣$()時才去釀造它。"
     },
     {
       "type": "patchouli:spotlight",
@@ -27,7 +27,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "要搭建一個葡萄架，先將兩根柱子上下疊放。向左或向右移動兩格，重複此操作。然後，手持$(thing)黃麻纖維$()對著其中一根頂部或底部柱子的側面$(item)$(k:key.use)$()，以便在柱子之間拉線。葡萄架可以水平連接，形成成排的葡萄。"
+      "text": "要搭建一個葡萄架，先將兩根柱子上下疊放。向左或向右移動兩格，重複此操作。然後，手持$(thing)黃麻纖維$()對著其中一根頂部或底部柱子的側面$(item)$(k:key.use)$()，以便在柱子之間拉線。葡萄架可以水平連線，形成成排的葡萄。"
     },
     {
       "type": "tfc:multimultiblock",
@@ -91,12 +91,12 @@
     {
       "type": "tfc:glassworking_recipe",
       "recipe": "firmalife:glassworking/empty_olivine_wine_bottle",
-      "text": "葡萄酒必須裝入由非硅酸鹽玻璃製成的專用酒瓶中。"
+      "text": "葡萄酒必須裝入由非矽酸鹽玻璃製成的專用酒瓶中。"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/bottle_label",
-      "text": "$(thing)瓶子標籤$()可在抄寫臺中重命名，其名稱將添加到葡萄酒的物品提示信息中。"
+      "text": "$(thing)瓶子標籤$()可在抄寫臺中重新命名，其名稱將新增到葡萄酒的物品提示資訊中。"
     },
     {
       "type": "patchouli:text",

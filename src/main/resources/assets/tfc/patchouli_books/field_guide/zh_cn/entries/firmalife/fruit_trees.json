@@ -1,12 +1,12 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "name": "Firmalife中的水果",
+  "name": "群峦生活模组中的水果",
   "category": "tfc:firmalife",
   "icon": "firmalife:plant/fig_sapling",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Firmalife在群峦传说原有的基础上新增了一些结果植物。"
+      "text": "群峦生活模组在群峦传说原有的基础上新增了一些结果植物。"
     },
     {
       "type": "patchouli:text",
@@ -15,7 +15,7 @@
     {
       "type": "patchouli:text",
       "anchor": "cocoa",
-      "text": "$(bold)$(l:the_world/climate#temperature)Temperature$(): 20 - 35 °C$(br)$(bold)$(l:mechanics/hydration)Rainfall$(): 220 - 400mm$(br2)Cocoa trees are used to make $(l:firmalife/chocolate)Chocolate$(). They fruit in June.",
+      "text": "$(bold)$(l:the_world/climate#temperature)温度$(): 20 - 35 °C$(br)$(bold)$(l:mechanics/hydration)降雨量$(): 220 - 400mm$(br2)可可树的果实用于制作$(l:firmalife/chocolate)巧克力$().它们在六月结果。",
       "title": "可可树"
     },
     {
@@ -95,7 +95,7 @@
     {
       "type": "patchouli:text",
       "anchor": "fig",
-      "text": "$(bold)$(l:the_world/climate#temperature)Temperature$(): 20 - 35 °C$(br)$(bold)$(l:mechanics/hydration)Rainfall$(): 125 - 215mm$(br2)They fruit in May.",
+      "text": "$(bold)$(l:the_world/climate#temperature)温度$(): 20 - 35 °C$(br)$(bold)$(l:mechanics/hydration)降雨量$(): 125 - 215mm$(br2)它们在五月结果。",
       "title": "无花果树"
     },
     {

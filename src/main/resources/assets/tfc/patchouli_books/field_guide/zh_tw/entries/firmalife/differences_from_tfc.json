@@ -6,12 +6,12 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Firmalife 模組對群巒傳說原版中的一些運作機制進行了改動。本章旨在幫助你瞭解那些差異較大的方面。"
+      "text": "群巒生活模組對群巒傳說原版中的一些運作機制進行了改動。本章旨在幫助你瞭解那些差異較大的方面。"
     },
     {
       "type": "patchouli:text",
-      "text": "$(l:firmalife/cheese)奶酪$()的製作流程更為複雜。它能被作為方塊放置，也可以選擇在$(l:firmalife/cellar)地窖$()中進行熟化。",
-      "title": "奶酪的熟化"
+      "text": "$(l:firmalife/cheese)乳酪$()的製作流程更為複雜。它能被作為方塊放置，也可以選擇在$(l:firmalife/cellar)地窖$()中進行熟化。",
+      "title": "乳酪的熟化"
     },
     {
       "type": "patchouli:text",
@@ -20,7 +20,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Firmalife 更強調糖的使用。雖然仍然可以從甘蔗中獲取糖，但請考慮使用蜂蜜（來自蜜蜂）或用甜菜製糖！",
+      "text": "群巒生活模組更強調糖的使用。雖然仍然可以從甘蔗中獲取糖，但請考慮使用蜂蜜（來自蜜蜂）或用甜菜製糖！",
       "title": "甜味劑"
     }
   ],

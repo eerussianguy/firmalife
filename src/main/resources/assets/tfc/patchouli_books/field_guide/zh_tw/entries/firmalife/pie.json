@@ -6,11 +6,11 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Firmalife 允許製作各式各樣的美味烘焙食品。本章將為你提供所需的一切知識，讓你開始為早餐、午餐和晚餐享用美味而富有創意的餐點。"
+      "text": "群巒生活模組允許製作各式各樣的美味烘焙食品。本章將為你提供所需的一切知識，讓你開始為早餐、午餐和晚餐享用美味而富有創意的餐點。"
     },
     {
       "type": "patchouli:text",
-      "text": "$(thing)黃油$()是許多這類食品的基礎。使用一個$(l:firmalife/mixing_bowl)攪拌碗$()，將1000 mB的$(thing)奶油$()與一份$(thing)鹽$()混合。奶油是通過將1000 mB牛奶與一塊$(l:mechanics/firmalife#cheesecloth)奶酪布$()一同密封在桶中製成的。"
+      "text": "$(thing)黃油$()是許多這類食品的基礎。使用一個$(l:firmalife/mixing_bowl)攪拌碗$()，將1000 mB的$(thing)奶油$()與一份$(thing)鹽$()混合。奶油是透過將1000 mB牛奶與一塊$(l:firmalife/cheese#cheesecloth)乳酪布$()一同密封在桶中製成的。"
     },
     {
       "type": "patchouli:text",
@@ -19,7 +19,7 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/spice/allspice",
-      "text": "Spiced flour is used in the creation of pumpkin pie. $(l:firmalife/herbs_and_spices)Pimento$() is an herb found in warm, moderately wet climates."
+      "text": "香料麵粉用於製作南瓜派。$(l:firmalife/herbs_and_spices)多香果$()是一種生長在溫暖、溼度適中的氣候中的草藥。"
     },
     {
       "type": "patchouli:crafting",

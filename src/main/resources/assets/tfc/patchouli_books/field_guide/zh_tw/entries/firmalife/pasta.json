@@ -1,6 +1,6 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "name": "意大利麵",
+  "name": "義大利麵",
   "category": "tfc:firmalife",
   "icon": "firmalife:textures/item/food/cooked_pasta.png",
   "pages": [
@@ -15,7 +15,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "製作完成的意大利麵需要在水中煮熟。無論是哪種麵條，都必須用$(thing)碗$()點擊鍋才能取出。"
+      "text": "製作完成的義大利麵需要在水中煮熟。無論是哪種麵條，都必須用$(thing)碗$()點選鍋才能取出。"
     },
     {
       "type": "patchouli:crafting",

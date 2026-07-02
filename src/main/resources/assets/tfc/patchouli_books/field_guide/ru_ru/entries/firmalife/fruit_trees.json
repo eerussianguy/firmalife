@@ -95,7 +95,7 @@
     {
       "type": "patchouli:text",
       "anchor": "fig",
-      "text": "$(bold)$(l:the_world/climate#temperature)Температура$(): 20 - 35 °C$(br)$(bold)$(l:mechanics/hydration)Осадки$(): 125 - 215 мм$(br2)Они плодоносят в мае.",
+      "text": "$(bold)$(l:the_world/climate#temperature)Температура$(): 20 - 35 °С$(br)$(bold)$(l:mechanics/hydration)Осадки$(): 125 - 215 мм$(br2)Они плодоносят в мае.",
       "title": "Фиговое дерево"
     },
     {
