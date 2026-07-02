@@ -18,6 +18,7 @@ import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.*;
 import com.eerussianguy.firmalife.common.blocks.*;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
+import com.eerussianguy.firmalife.common.recipes.WrappedHeatingRecipe;
 import com.eerussianguy.firmalife.config.FLConfig;
 
 import net.dries007.tfc.common.blockentities.TickCounterBlockEntity;
@@ -27,6 +28,7 @@ import net.dries007.tfc.common.capabilities.food.FoodCapability;
 import net.dries007.tfc.common.capabilities.food.FoodTrait;
 import net.dries007.tfc.common.capabilities.food.IFood;
 import net.dries007.tfc.common.capabilities.heat.HeatCapability;
+import net.dries007.tfc.common.recipes.inventory.ItemStackInventory;
 import net.dries007.tfc.compat.jade.common.BlockEntityTooltip;
 import net.dries007.tfc.compat.jade.common.BlockEntityTooltips;
 import net.dries007.tfc.compat.jade.common.EntityTooltip;
@@ -242,14 +244,22 @@ public final class FLTooltips
                                 {
                                     final float temp = HeatCapability.getTemperature(stack);
                                     final Component tempComponent = TFCConfig.CLIENT.heatTooltipStyle.get().formatColored(temp);
+                                    final MutableComponent line;
                                     if (temp > 0 && tempComponent != null)
                                     {
-                                        tooltip.accept(Component.translatable("firmalife.jade.cook_left_temp", stack.getHoverName(), delta(level, ticksLeft), tempComponent));
+                                        line = Component.translatable("firmalife.jade.cook_left_temp", stack.getHoverName(), delta(level, ticksLeft), tempComponent);
                                     }
                                     else
                                     {
-                                        tooltip.accept(Component.translatable("firmalife.jade.cook_left", stack.getHoverName(), delta(level, ticksLeft)));
+                                        line = Component.translatable("firmalife.jade.cook_left", stack.getHoverName(), delta(level, ticksLeft));
                                     }
+                                    final WrappedHeatingRecipe recipe = WrappedHeatingRecipe.getRecipe(stack);
+                                    // Add "- Danger!!" tooltip if near recipe temp and there is no output (Item Burning).
+                                    if (recipe != null && temp > recipe.temperature() * 0.9f && recipe.assemble(new ItemStackInventory(stack), level.registryAccess()).isEmpty())
+                                    {
+                                        line.append(Component.translatable("tfc.tooltip.danger").withStyle(ChatFormatting.WHITE));
+                                    }
+                                    tooltip.accept(line);
                                 }
 
                             }
