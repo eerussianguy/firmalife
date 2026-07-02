@@ -12,6 +12,8 @@ import com.eerussianguy.firmalife.common.blocks.oven.StovetopPotBlock;
 import com.eerussianguy.firmalife.common.blocks.oven.VatBlock;
 import com.eerussianguy.firmalife.common.blocks.plant.FLFruitTreeSaplingBlock;
 import com.eerussianguy.firmalife.common.capabilities.wine.WineType;
+import com.eerussianguy.firmalife.common.recipes.WrappedHeatingRecipe;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.Entity;
@@ -287,14 +289,22 @@ public final class FLTooltips
                             {
                                 final float temp = HeatCapability.getTemperature(stack);
                                 final Component tempComponent = TFCConfig.CLIENT.heatTooltipStyle.get().formatColored(temp);
+                                final MutableComponent line;
                                 if (temp > 0 && tempComponent != null)
                                 {
-                                    tooltip.accept(Component.translatable("firmalife.jade.cook_left_temp", stack.getHoverName(), delta(level, ticksLeft), tempComponent));
+                                    line = Component.translatable("firmalife.jade.cook_left_temp", stack.getHoverName(), delta(level, ticksLeft), tempComponent);
                                 }
                                 else
                                 {
-                                    tooltip.accept(Component.translatable("firmalife.jade.cook_left", stack.getHoverName(), delta(level, ticksLeft)));
+                                    line = Component.translatable("firmalife.jade.cook_left", stack.getHoverName(), delta(level, ticksLeft));
                                 }
+                                final WrappedHeatingRecipe recipe = WrappedHeatingRecipe.getRecipe(stack);
+                                // Add "- Danger!!" tooltip if near recipe temp and there is no output (Item Burning).
+                                if (recipe != null && temp > recipe.temperature() * 0.9f && recipe.assemble(stack).isEmpty())
+                                {
+                                    line.append(Component.translatable("tfc.tooltip.danger").withStyle(ChatFormatting.WHITE));
+                                }
+                                tooltip.accept(line);
                             }
 
                         }
