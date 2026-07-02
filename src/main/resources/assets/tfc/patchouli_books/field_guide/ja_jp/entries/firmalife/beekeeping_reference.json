@@ -32,7 +32,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "$(li)$(thing)Western Honey Bee$(): Calmness, Production. 5-20°C, 100-400mm. Extremely common. Western bees also spawn when no other bee species is eligible to spawn.$()$(li)$(thing)Asian Honey Bee$(): Fertility, Nature Restoration. 10-30°C, 250-400mm. Common.$()$(li)$(thing)Giant Honey Bee$(): Fertility. 15-30°C, 300-450mm. Common.$()"
+      "text": "$(li)$(thing)Western Honey Bee$(): Calmness, Production, Hardiness. 5-20°C, 100-400mm. Extremely common. Western bees also spawn when no other bee species is eligible to spawn.$()$(li)$(thing)Asian Honey Bee$(): Fertility, Nature Restoration. 10-30°C, 250-400mm. Common.$()$(li)$(thing)Giant Honey Bee$(): Fertility. 15-30°C, 300-450mm. Common.$()"
     },
     {
       "type": "patchouli:text",

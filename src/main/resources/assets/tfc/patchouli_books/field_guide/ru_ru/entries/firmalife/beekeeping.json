@@ -33,7 +33,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Пчёлы, как правило, активны при температуре выше 11 °C. $(thing)Дикий улей$() всегда содержит пчёл при генерации мира и не теряет их, если его не потревожить. Если прошло время и пчёлы активны, дикий улей будет показывать, что с него капает мёд."
+      "text": "Bees, in general, are active above 7°C, though hardier species tolerate colder temperatures. A $(thing)Wild Beehive$() will always contain bees upon world generation, and will not lose the bees unless disturbed. If time has passed and the bees are active, the wild beehive will show that it is dripping with honey."
     },
     {
       "type": "patchouli:text",

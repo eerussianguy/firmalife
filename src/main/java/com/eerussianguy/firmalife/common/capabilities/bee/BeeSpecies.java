@@ -15,7 +15,7 @@ import net.dries007.tfc.network.StreamCodecs;
 
 public enum BeeSpecies implements StringRepresentable
 {
-    WESTERN(Map.of(BeeAbility.CALMNESS, 4, BeeAbility.PRODUCTION, 3), 5f, 20f, 100f, 400f, 15, false),
+    WESTERN(Map.of(BeeAbility.CALMNESS, 4, BeeAbility.PRODUCTION, 3, BeeAbility.HARDINESS, 1), 5f, 20f, 100f, 400f, 15, false),
     ASIAN(Map.of(BeeAbility.FERTILITY, 3, BeeAbility.NATURE_RESTORATION, 1), 10f, 30f, 250f, 400f, 10, false),
     GIANT(Map.of(BeeAbility.FERTILITY, 1), 15f, 30f, 300f, 450f, 10, false),
     DWARF(Map.of(BeeAbility.FERTILITY, 5, BeeAbility.PRODUCTION, 2), 20f, 30f, 300f, 400f, 10, false),
