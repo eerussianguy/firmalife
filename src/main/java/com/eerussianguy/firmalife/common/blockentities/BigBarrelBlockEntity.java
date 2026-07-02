@@ -92,7 +92,7 @@ public class BigBarrelBlockEntity extends InventoryBlockEntity<BigBarrelBlockEnt
     @Override
     public void fluidTankChanged()
     {
-        setChanged();
+        markForSync();
     }
 
     private void updateFluidIOSlots()
@@ -142,6 +142,7 @@ public class BigBarrelBlockEntity extends InventoryBlockEntity<BigBarrelBlockEnt
 
     public static class BigBarrelInventory implements EmptyInventory, DelegateItemHandler, INBTSerializable<CompoundTag>, DelegateFluidHandler, FluidTankCallback
     {
+        private final BarrelInventoryCallback callback;
         private final InventoryItemHandler inventory;
         private final InventoryFluidTank tank;
 
@@ -150,10 +151,17 @@ public class BigBarrelBlockEntity extends InventoryBlockEntity<BigBarrelBlockEnt
             this((BarrelInventoryCallback) inventory);
         }
 
-        BigBarrelInventory(BarrelInventoryCallback inventory)
+        BigBarrelInventory(BarrelInventoryCallback callback)
         {
-            this.inventory = new InventoryItemHandler(inventory, SLOTS);
+            this.callback = callback;
+            this.inventory = new InventoryItemHandler(callback, SLOTS);
             tank = new InventoryFluidTank(CAPACITY, stack -> Helpers.isFluid(stack.getFluid(), TFCTags.Fluids.USABLE_IN_BARREL), this);
+        }
+
+        @Override
+        public void fluidTankChanged()
+        {
+            callback.fluidTankChanged();
         }
 
         @Override
