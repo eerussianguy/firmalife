@@ -1,6 +1,10 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
+import com.eerussianguy.firmalife.common.FLHelpers;
+import com.eerussianguy.firmalife.common.blocks.ICure;
 import com.eerussianguy.firmalife.common.blocks.OvenTopBlock;
+import com.eerussianguy.firmalife.common.items.FLFoodTraits;
+import com.eerussianguy.firmalife.common.recipes.WrappedHeatingRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
@@ -13,10 +17,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
-import com.eerussianguy.firmalife.common.FLHelpers;
-import com.eerussianguy.firmalife.common.blocks.ICure;
-import com.eerussianguy.firmalife.common.items.FLFoodTraits;
-import com.eerussianguy.firmalife.common.recipes.WrappedHeatingRecipe;
 import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
 import net.dries007.tfc.common.capabilities.PartialItemHandler;
 import net.dries007.tfc.common.capabilities.food.FoodCapability;
@@ -110,8 +110,10 @@ public class OvenTopBlockEntity extends ApplianceBlockEntity<ApplianceBlockEntit
                             final double slotZ = pos.getZ() + (slot < 2 ? 0.75F : 0.25F);
 
                             // Handle item burning (no outputs).
-                            if (outputItem.isEmpty()) {
-                                if (level instanceof ServerLevel server) {
+                            if (outputItem.isEmpty())
+                            {
+                                if (level instanceof ServerLevel server)
+                                {
 
                                     server.sendParticles(ParticleTypes.LARGE_SMOKE, slotX, slotY, slotZ, 3, 0.1F, 0.1F, 0.1F, 0.01F);
                                     server.sendParticles(ParticleTypes.SMOKE, slotX, slotY, slotZ, 7, 0.1F, 0.1F, 0.1F, 0.01F);
@@ -123,7 +125,8 @@ public class OvenTopBlockEntity extends ApplianceBlockEntity<ApplianceBlockEntit
                             // Handle successful output.
                             else
                             {
-                                if (level instanceof ServerLevel server) {
+                                if (level instanceof ServerLevel server)
+                                {
 
                                     server.sendParticles(ParticleTypes.WAX_ON, slotX, slotY, slotZ, 3, 0.2F, 0.2F, 0.2F, 0.5F);
 
