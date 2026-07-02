@@ -21,7 +21,7 @@
     {
       "type": "tfc:knapping_recipe",
       "recipe": "firmalife:clay_knapping/oven_chimney",
-      "text": "Рецепт для дымохода печи."
+      "text": "The recipe for the oven chimney."
     },
     {
       "type": "patchouli:crafting",

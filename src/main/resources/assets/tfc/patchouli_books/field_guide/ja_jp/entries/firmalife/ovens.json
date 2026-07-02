@@ -21,7 +21,7 @@
     {
       "type": "tfc:knapping_recipe",
       "recipe": "firmalife:clay_knapping/oven_chimney",
-      "text": "オーブンの煙突のレシピ"
+      "text": "The recipe for the oven chimney."
     },
     {
       "type": "patchouli:crafting",
