@@ -130,8 +130,7 @@ public class OvenTopBlockEntity extends ApplianceBlockEntity<ApplianceBlockEntit
 
                                     level.playSound(null, pos, SoundEvents.GENERIC_EXTINGUISH_FIRE, SoundSource.BLOCKS, 0.4F, 2F);
                                 }
-                                // Output transformations
-                                HeatCapability.setTemperature(outputItem, oven.temperature);
+                                HeatCapability.setTemperature(outputItem, targetTemp);
                                 FoodCapability.applyTrait(outputItem, FLFoodTraits.OVEN_BAKED);
                                 FoodCapability.setCreationDate(outputItem, FoodCapability.getRoundedCreationDate());
                             }
