@@ -3,6 +3,7 @@ package com.eerussianguy.firmalife.compat.tooltip;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.eerussianguy.firmalife.common.blocks.greenhouse.ClimateStationBlock;
 import com.eerussianguy.firmalife.common.blocks.greenhouse.PumpingStationBlock;
 import com.eerussianguy.firmalife.common.blocks.oven.AbstractOvenBlock;
 import com.eerussianguy.firmalife.common.blocks.oven.ICure;
@@ -62,6 +63,7 @@ public final class FLTooltips
             register(r, "hanger", SHELF_OR_HANGER, HangerBlock.class);
             register(r, "vat", VAT, VatBlock.class);
             register(r, "tumbler", TUMBLER, CompostTumblerBlock.class);
+            register(r, "climate_station", CLIMATE_STATION, ClimateStationBlock.class);
             register(r, "fruit_tree_sapling", FRUIT_TREE_SAPLING, FLFruitTreeSaplingBlock.class);
             register(r, "jarbnet", JARBNET, JarbnetBlock.class);
             register(r, "barrel_press", BARREL_PRESS, JarbnetBlock.class);
@@ -106,11 +108,11 @@ public final class FLTooltips
 
                 if (pot.shouldRenderAsBoiling())
                 {
-                    tooltip.accept(Component.translatable("tfc.tooltip.pot_boiling"));
+                    tooltip.accept(Component.translatable("tfc.tooltip.pot_boiling").withStyle(ChatFormatting.GOLD));
                 }
                 else if (pot.getOutput() != null && !pot.getOutput().isEmpty())
                 {
-                    tooltip.accept(Component.translatable("tfc.tooltip.pot_finished"));
+                    tooltip.accept(Component.translatable("tfc.tooltip.pot_finished").withStyle(ChatFormatting.GREEN));
 
                     final BlockEntityTooltip tt = pot.getOutput().getTooltip();
                     if (tt != null)
@@ -126,11 +128,11 @@ public final class FLTooltips
             {
                 if (vat.isBoiling())
                 {
-                    tooltip.accept(Component.translatable("firmalife.jade.boiling"));
+                    tooltip.accept(Component.translatable("firmalife.jade.boiling").withStyle(ChatFormatting.GOLD));
                 }
                 else if (!vat.hasOutput() && !state.getValue(VatBlock.SEALED))
                 {
-                    tooltip.accept(Component.translatable("firmalife.jade.close_lid"));
+                    tooltip.accept(Component.translatable("firmalife.jade.close_lid").withStyle(ChatFormatting.GRAY));
                 }
                 if (vat.hasOutput())
                 {
@@ -145,7 +147,7 @@ public final class FLTooltips
             {
                 if (tumbler.canWork())
                 {
-                    timeLeft(level, tooltip, tumbler.getReadyTicks() - tumbler.getTicksSinceUpdate(), Component.translatable("firmalife.tumbler.almost_ready"));
+                    timeLeft(level, tooltip, tumbler.getReadyTicks() - tumbler.getTicksSinceUpdate(), Component.translatable("firmalife.tumbler.almost_ready").withStyle(ChatFormatting.YELLOW));
                 }
                 for (CompostTumblerBlockEntity.AdditionType type : CompostTumblerBlockEntity.AdditionType.VALUES)
                 {
@@ -154,22 +156,65 @@ public final class FLTooltips
                         final float pct = tumbler.getPercentage(type);
                         if (pct > 0f)
                         {
-                            tooltip.accept(Component.translatable("firmalife.tumbler.component_pct", FLHelpers.translateEnum(type), String.format("%.2f", pct)));
+                            tooltip.accept(Component.translatable("firmalife.tumbler.component_pct", FLHelpers.translateEnum(type), Math.round(pct * 100) + "%").withStyle(compostColor(type)));
                         }
                     }
                 }
                 if (tumbler.isReady())
                 {
-                    if (tumbler.isRotten())
-                    {
-                        tooltip.accept(Component.translatable("firmalife.tumbler.rotten"));
-                    }
-                    else
-                    {
-                        tooltip.accept(Component.translatable("firmalife.tumbler.ready"));
-                    }
+                    tooltip.accept(tumbler.isRotten()
+                        ? Component.translatable("firmalife.tumbler.rotten").withStyle(ChatFormatting.RED)
+                        : Component.translatable("firmalife.tumbler.ready").withStyle(ChatFormatting.GREEN));
                 }
-                tooltip.accept(Component.translatable("firmalife.tumbler.total", tumbler.getTotal()));
+                final int total = tumbler.getTotal();
+                tooltip.accept(Component.translatable("firmalife.tumbler.total", total).withStyle(total >= 16 ? ChatFormatting.GREEN : ChatFormatting.GRAY));
+            }
+        };
+
+        private static ChatFormatting compostColor(CompostTumblerBlockEntity.AdditionType type)
+        {
+            return switch (type)
+            {
+                case GREEN -> ChatFormatting.GREEN;
+                case BROWN -> ChatFormatting.GOLD;
+                case FISH -> ChatFormatting.AQUA;
+                case BONE -> ChatFormatting.WHITE;
+                case POTTERY -> ChatFormatting.RED;
+                case CHARCOAL -> ChatFormatting.DARK_GRAY;
+                default -> ChatFormatting.GRAY;
+            };
+        }
+
+        public static final BlockEntityTooltip CLIMATE_STATION = (level, state, pos, entity, tooltip) -> {
+            if (entity instanceof ClimateStationBlockEntity station)
+            {
+                final boolean active = state.hasProperty(ClimateStationBlock.STASIS) && state.getValue(ClimateStationBlock.STASIS);
+                tooltip.accept(Component.translatable("firmalife.climate_station." + (active ? "active" : "inactive")).withStyle(active ? ChatFormatting.GREEN : ChatFormatting.RED));
+                if (active)
+                {
+                    if (station.getSize() > 0)
+                    {
+                        final var greenhouse = station.getStructureType();
+                        if (greenhouse != null)
+                        {
+                            tooltip.accept(Component.translatable("firmalife.climate_station.structure_greenhouse", greenhouse.getTitle(), station.getSize()).withStyle(ChatFormatting.AQUA));
+                        }
+                        else
+                        {
+                            tooltip.accept(Component.translatable("firmalife.climate_station.structure_cellar", station.getSize()).withStyle(ChatFormatting.AQUA));
+                        }
+                    }
+
+                }
+                else if (station.getFavoriteType() != null)
+                {
+                    tooltip.accept(Component.translatable("firmalife.greenhouse.expects", station.getFavoriteType().getTitle()).withStyle(ChatFormatting.GRAY));
+                }
+                else if (station.favoriteIsCellar())
+                {
+                    tooltip.accept(Component.translatable("firmalife.cellar.expects").withStyle(ChatFormatting.GRAY));
+                }
+                tooltip.accept(Component.translatable("firmalife.climate_station.click_me").withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
             }
         };
 
@@ -186,7 +231,8 @@ public final class FLTooltips
         public static final BlockEntityTooltip STRING = (level, state, pos, entity, tooltip) -> {
             if (state.getBlock() instanceof StringBlock block && entity instanceof StringBlockEntity mat)
             {
-                tooltip.accept(Component.translatable("firmalife.jade." + (StringBlock.findFirepit(level, pos) != null ? "has_firepit" : "no_firepit")));
+                final boolean hasFirepit = StringBlock.findFirepit(level, pos) != null;
+                tooltip.accept(Component.translatable("firmalife.jade." + (hasFirepit ? "has_firepit" : "no_firepit")).withStyle(hasFirepit ? ChatFormatting.GREEN : ChatFormatting.RED));
                 final ItemStack item = mat.viewStack();
                 if (!item.isEmpty())
                 {
@@ -222,11 +268,11 @@ public final class FLTooltips
             {
                 if (state.getValue(CheeseWheelBlock.AGING))
                 {
-                    tooltip.accept(Component.translatable("firmalife.jade.aging"));
+                    tooltip.accept(Component.translatable("firmalife.jade.aging").withStyle(ChatFormatting.GREEN));
                 }
                 else
                 {
-                    tooltip.accept(Component.translatable("firmalife.jade.not_aging"));
+                    tooltip.accept(Component.translatable("firmalife.jade.not_aging").withStyle(ChatFormatting.GRAY));
                 }
                 tooltip.accept(Component.translatable("firmalife.jade.slices", state.getValue(CheeseWheelBlock.COUNT)));
                 tooltip.accept(Component.translatable("firmalife.jade.food_age", FLHelpers.translateEnum(state.getValue(CheeseWheelBlock.AGE))));
@@ -263,13 +309,13 @@ public final class FLTooltips
                 heat(tooltip, oven.getTemperature());
                 if (oven.getTemperature() > 100 && oven instanceof OvenTopBlockEntity)
                 {
-                    tooltip.accept(Component.translatable("firmalife.jade.needs_peel"));
+                    tooltip.accept(Component.translatable("firmalife.jade.needs_peel").withStyle(ChatFormatting.YELLOW));
                 }
                 if (state.getBlock() instanceof ICure cure && !cure.isCured())
                 {
                     if (oven.getTemperature() < FLConfig.SERVER.ovenCureTemperature.get())
                     {
-                        tooltip.accept(Component.translatable("firmalife.jade.cannot_cure"));
+                        tooltip.accept(Component.translatable("firmalife.jade.cannot_cure").withStyle(ChatFormatting.RED));
                     }
                     else
                     {
@@ -314,11 +360,11 @@ public final class FLTooltips
             }
             if (state.getBlock() instanceof AbstractOvenBlock block && !block.isInsulated(level, pos, state))
             {
-                tooltip.accept(Component.translatable("firmalife.jade.not_insulated"));
+                tooltip.accept(Component.translatable("firmalife.jade.not_insulated").withStyle(ChatFormatting.RED));
             }
             if (!state.getValue(AbstractOvenBlock.HAS_CHIMNEY))
             {
-                tooltip.accept(Component.translatable("firmalife.jade.no_chimney"));
+                tooltip.accept(Component.translatable("firmalife.jade.no_chimney").withStyle(ChatFormatting.RED));
             }
         };
 

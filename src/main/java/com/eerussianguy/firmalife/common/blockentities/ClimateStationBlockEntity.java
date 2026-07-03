@@ -22,6 +22,8 @@ public class ClimateStationBlockEntity extends TFCBlockEntity
     private ClimateType type = ClimateType.GREENHOUSE;
     @Nullable private GreenhouseType favoriteGreenhouseType = null;
     private boolean favoriteIsCellar = false;
+    private int size = 0;
+    @Nullable private GreenhouseType structureType = null;
 
     public ClimateStationBlockEntity(BlockPos pos, BlockState state)
     {
@@ -46,6 +48,8 @@ public class ClimateStationBlockEntity extends TFCBlockEntity
             favoriteGreenhouseType = GreenhouseType.MANAGER.get(FLHelpers.res(nbt.getString("favoriteType")));
         }
         favoriteIsCellar = nbt.getBoolean("favoriteIsCellar");
+        size = nbt.getInt("size");
+        structureType = nbt.contains("structureType") ? GreenhouseType.MANAGER.get(FLHelpers.res(nbt.getString("structureType"))) : null;
     }
 
     @Override
@@ -64,6 +68,9 @@ public class ClimateStationBlockEntity extends TFCBlockEntity
         if (favoriteGreenhouseType != null)
             nbt.putString("favoriteType", Objects.requireNonNull(GreenhouseType.MANAGER.getId(favoriteGreenhouseType)).toString());
         nbt.putBoolean("favoriteIsCellar", favoriteIsCellar);
+        nbt.putInt("size", size);
+        if (structureType != null)
+            nbt.putString("structureType", Objects.requireNonNull(GreenhouseType.MANAGER.getId(structureType)).toString());
     }
 
     public void updateValidity(boolean valid, int tier)
@@ -81,6 +88,27 @@ public class ClimateStationBlockEntity extends TFCBlockEntity
     public void setType(ClimateType cellar)
     {
         type = cellar;
+    }
+
+    public void setStructureInfo(@Nullable GreenhouseType structureType, int size)
+    {
+        if (this.structureType != structureType || this.size != size)
+        {
+            this.structureType = structureType;
+            this.size = size;
+            markForSync();
+        }
+    }
+
+    public int getSize()
+    {
+        return size;
+    }
+
+    @Nullable
+    public GreenhouseType getStructureType()
+    {
+        return structureType;
     }
 
     public void setPositions(Set<BlockPos> positions)

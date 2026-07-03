@@ -40,7 +40,7 @@ public class OvenTopBlock extends AbstractOvenBlock
 {
     public static final VoxelShape[] SHAPES = Helpers.computeHorizontalShapes(d -> Shapes.join(
         Shapes.block(),
-        Helpers.rotateShape(d, 2, 0, 0, 14, 11, 15),
+        Helpers.rotateShape(d, 2, 1, 0, 14, 11, 15),
         BooleanOp.ONLY_FIRST
     ));
 

@@ -8,6 +8,7 @@ import com.eerussianguy.firmalife.common.items.FLFood;
 import com.eerussianguy.firmalife.common.items.FLItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
@@ -62,6 +63,7 @@ public class SkepBlock extends BaseBeehiveBlock implements IItemSize
             {
                 ItemHandlerHelper.giveItemToPlayer(player, FLItems.FOODS.get(FLFood.RAW_HONEY).get().getDefaultInstance());
                 Helpers.playSound(level, pos, SoundEvents.BOTTLE_FILL);
+                FLHelpers.spawnParticlesInBlock(level, pos, 6, ParticleTypes.FALLING_HONEY);
                 level.setBlockAndUpdate(pos, state.setValue(HONEY, false));
             }
             return ItemInteractionResult.sidedSuccess(level.isClientSide);

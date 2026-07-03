@@ -9,6 +9,8 @@ import com.eerussianguy.firmalife.common.items.FLItems;
 import com.eerussianguy.firmalife.common.util.FoodAge;
 import com.eerussianguy.firmalife.config.FLConfig;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ItemParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
@@ -97,11 +99,11 @@ public class CheeseWheelBlock extends BottomSupportedDeviceBlock implements Clim
         }
         if (Helpers.isItem(held, FLItems.BLUE_MOLD.get()) && this != FLBlocks.BLUE_WHEEL.get() && state.getValue(AGE) == FoodAge.FRESH)
         {
-            // Inoculating a fresh wheel with blue mold turns it into a blue cheese wheel, which then develops veining as it cellar-ages.
             level.setBlockAndUpdate(pos, Helpers.copyProperties(FLBlocks.BLUE_WHEEL.get().defaultBlockState(), state));
             if (!player.isCreative())
                 held.shrink(1);
             Helpers.playPlaceSound(player, level, pos, FLBlocks.BLUE_WHEEL.get().defaultBlockState());
+            FLHelpers.spawnParticlesInBlock(level, pos, 8, ParticleTypes.SPORE_BLOSSOM_AIR);
             FLHelpers.resetCounter(level, pos);
             return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
@@ -112,6 +114,7 @@ public class CheeseWheelBlock extends BottomSupportedDeviceBlock implements Clim
             FoodCapability.applyTrait(drop, state.getValue(AGE).getTrait());
             FoodCapability.setCreationDate(drop, FoodCapability.getRoundedCreationDate());
             ItemHandlerHelper.giveItemToPlayer(player, drop);
+            FLHelpers.spawnParticlesInBlock(level, pos, 4, new ItemParticleOption(ParticleTypes.ITEM, drop));
             FLHelpers.resetCounter(level, pos);
             if (count - 1 == 0)
             {

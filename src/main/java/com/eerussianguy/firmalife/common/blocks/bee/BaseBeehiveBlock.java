@@ -20,6 +20,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -106,7 +107,6 @@ public class BaseBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBl
         else if (Helpers.isItem(held, FLItems.BLUE_MOLD.get()) && level.getBlockEntity(pos, FLBlockEntities.BEEHIVE.get())
             .map(hive -> hive.getBee().hasParasiticInfection() && hive.getBee().parasiticInfection() != ParasiticInfection.VARROA).orElse(false))
         {
-            // Blue mold is Penicillium — treating a hive with it cures bacterial/fungal brood infections (but not the varroa mite).
             if (!level.isClientSide)
             {
                 level.getBlockEntity(pos, FLBlockEntities.BEEHIVE.get()).ifPresent(hive -> {
@@ -118,6 +118,8 @@ public class BaseBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBl
             if (!player.isCreative())
                 held.shrink(1);
             Helpers.playSound(level, pos, SoundEvents.BEEHIVE_DRIP);
+            FLHelpers.spawnParticlesOnBlockFaces(level, pos, ParticleTypes.HAPPY_VILLAGER, UniformInt.of(3, 5));
+            FLHelpers.spawnParticlesOnBlockFaces(level, pos, ParticleTypes.SPORE_BLOSSOM_AIR, UniformInt.of(1, 2));
             return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
         else if (held.isEmpty())
@@ -130,6 +132,7 @@ public class BaseBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBl
                 if (!level.isClientSide && BaseBeehiveBlock.shouldAnger(level, pos) && !player.isCreative())
                     attack(player);
                 Helpers.playSound(level, pos, SoundEvents.BAMBOO_WOOD_BREAK);
+                FLHelpers.spawnParticlesOnBlockFaces(level, pos, ParticleTypes.FALLING_HONEY, UniformInt.of(1, 2));
                 return res;
             }
         }

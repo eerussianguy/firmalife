@@ -4,6 +4,7 @@ import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.CentrifugeBlockEntity;
 import com.eerussianguy.firmalife.common.blocks.FourWayDeviceBlock;
 import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -44,11 +45,17 @@ public class CentrifugeBlock extends FourWayDeviceBlock
                     Helpers.playSound(level, pos, TFCSounds.QUERN_DRAG.get());
                     return ItemInteractionResult.sidedSuccess(level.isClientSide);
                 }
-                return FLHelpers.takeOneAny(level, 0, CentrifugeBlockEntity.SLOTS - 1, cent.getInventory(), player);
+                final var res = FLHelpers.takeOneAny(level, 0, CentrifugeBlockEntity.SLOTS - 1, cent.getInventory(), player);
+                if (res.consumesAction())
+                    Helpers.playSound(level, pos, SoundEvents.ITEM_FRAME_REMOVE_ITEM);
+                return res;
             }
             else if (cent.isItemValid(0, stack))
             {
-                return FLHelpers.insertOneAny(level, stack, 0, CentrifugeBlockEntity.SLOTS - 1, cent.getInventory(), player);
+                final var res = FLHelpers.insertOneAny(level, stack, 0, CentrifugeBlockEntity.SLOTS - 1, cent.getInventory(), player);
+                if (res.consumesAction())
+                    Helpers.playSound(level, pos, SoundEvents.ITEM_FRAME_ADD_ITEM);
+                return res;
             }
         }
 

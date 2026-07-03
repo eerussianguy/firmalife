@@ -7,9 +7,12 @@ import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.recipes.StompingRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.particles.ItemParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -52,6 +55,10 @@ public class StompingBarrelBlockEntity extends InventoryBlockEntity<ItemStackHan
             stomps += 1;
             level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
             Helpers.playSound(level, worldPosition, recipe.getSound());
+            if (level instanceof ServerLevel server)
+            {
+                server.sendParticles(new ItemParticleOption(ParticleTypes.ITEM, current), worldPosition.getX() + 0.5, worldPosition.getY() + 0.5, worldPosition.getZ() + 0.5, 6, 0.28, 0.05, 0.28, 0.0);
+            }
 
             if (stomps > 16)
             {

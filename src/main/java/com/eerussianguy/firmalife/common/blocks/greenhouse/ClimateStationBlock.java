@@ -32,6 +32,7 @@ import org.jetbrains.annotations.Nullable;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.devices.DeviceBlock;
 import net.dries007.tfc.common.blocks.soil.HoeOverlayBlock;
+import net.dries007.tfc.util.Helpers;
 
 import static com.eerussianguy.firmalife.FirmaLife.*;
 
@@ -39,7 +40,10 @@ public class ClimateStationBlock extends DeviceBlock implements HoeOverlayBlock
 {
     private static void denyAll(Level level, BlockPos pos)
     {
-        level.getBlockEntity(pos, FLBlockEntities.CLIMATE_STATION.get()).ifPresent(station -> station.updateValidity(false, 0));
+        level.getBlockEntity(pos, FLBlockEntities.CLIMATE_STATION.get()).ifPresent(station -> {
+            station.updateValidity(false, 0);
+            station.setStructureInfo(null, 0);
+        });
     }
 
     @Nullable
@@ -53,6 +57,7 @@ public class ClimateStationBlock extends DeviceBlock implements HoeOverlayBlock
                 station.setPositions(positions);
                 station.updateValidity(true, info.type().tier());
                 station.setType(ClimateType.GREENHOUSE);
+                station.setStructureInfo(info.type(), positions.size());
             });
             updateState(level, pos, state, true);
             return Either.left(info);
@@ -66,6 +71,7 @@ public class ClimateStationBlock extends DeviceBlock implements HoeOverlayBlock
                     station.setPositions(cellarPositions);
                     station.updateValidity(true, 0);
                     station.setType(ClimateType.CELLAR);
+                    station.setStructureInfo(null, cellarPositions.size());
                 });
                 updateState(level, pos, state, true);
                 return Either.right(cellarPositions);
@@ -128,10 +134,7 @@ public class ClimateStationBlock extends DeviceBlock implements HoeOverlayBlock
     @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random)
     {
-        if (random.nextInt(4) == 0)
-        {
-            super.randomTick(state, level, pos, random); // causes a block tick
-        }
+        check(level, pos, state);
     }
 
     @Override
@@ -150,7 +153,8 @@ public class ClimateStationBlock extends DeviceBlock implements HoeOverlayBlock
     @Override
     public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving)
     {
-        denyAll(level, pos);
+        if (!Helpers.isBlock(state, newState.getBlock()))
+            denyAll(level, pos);
         super.onRemove(state, level, pos, newState, isMoving);
     }
 

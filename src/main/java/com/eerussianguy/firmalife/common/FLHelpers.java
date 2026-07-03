@@ -24,14 +24,17 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
+import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
+import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.ai.village.poi.PoiManager;
@@ -259,6 +262,18 @@ public class FLHelpers
         ItemStack merged = FoodCapability.mergeItemStacks(existing, remainder);
         remainder.grow(inventory.insertItem(slot, merged, false).getCount());
         return remainder;
+    }
+
+    public static void spawnParticlesOnBlockFaces(Level level, BlockPos pos, ParticleOptions particle, IntProvider count)
+    {
+        if (level.isClientSide)
+            ParticleUtils.spawnParticlesOnBlockFaces(level, pos, particle, count);
+    }
+
+    public static void spawnParticlesInBlock(Level level, BlockPos pos, int count, ParticleOptions particle)
+    {
+        if (level.isClientSide)
+            ParticleUtils.spawnParticleInBlock(level, pos, count, particle);
     }
 
     public static int getRedstoneSignalFromContainer(Level level, BlockPos pos)

@@ -5,6 +5,7 @@ import com.eerussianguy.firmalife.common.blockentities.DryingMatBlockEntity;
 import com.eerussianguy.firmalife.common.blockentities.SimpleItemRecipeBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -38,6 +39,7 @@ public class DryingMatBlock extends BottomSupportedDeviceBlock
                     {
                         mat.markForSync();
                         mat.start();
+                        Helpers.playSound(level, pos, SoundEvents.ITEM_FRAME_ADD_ITEM);
                     }
                     return res;
                 }
@@ -45,7 +47,10 @@ public class DryingMatBlock extends BottomSupportedDeviceBlock
                 {
                     mat.markForSync();
                     FLHelpers.roundCreationDate(inv.getStackInSlot(0));
-                    return FLHelpers.takeOne(level, 0, inv, player);
+                    final ItemInteractionResult res = FLHelpers.takeOne(level, 0, inv, player);
+                    if (res.consumesAction())
+                        Helpers.playSound(level, pos, SoundEvents.ITEM_FRAME_REMOVE_ITEM);
+                    return res;
                 }
             }
             mat.markForSync();

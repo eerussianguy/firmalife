@@ -10,8 +10,11 @@ import com.eerussianguy.firmalife.common.util.Mechanics;
 import com.eerussianguy.firmalife.common.util.Plantable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ItemParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
@@ -37,7 +40,6 @@ import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.crop.CropHelpers;
 import net.dries007.tfc.common.blocks.devices.DeviceBlock;
 import net.dries007.tfc.common.blocks.soil.HoeOverlayBlock;
-import net.dries007.tfc.common.capabilities.BlockCapabilities;
 import net.dries007.tfc.util.Helpers;
 
 public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
@@ -222,6 +224,13 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
                 crop.setCount(crop.getCount() + 1);
 
             onExtract.accept(crop);
+
+            if (level instanceof ServerLevel server)
+            {
+                final BlockPos pp = planter.getBlockPos();
+                server.sendParticles(new ItemParticleOption(ParticleTypes.ITEM, crop), pp.getX() + 0.5, pp.getY() + 0.6, pp.getZ() + 0.5, 6, 0.25, 0.1, 0.25, 0.0);
+                Helpers.playSound(server, pp, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES);
+            }
 
             planter.setGrowth(slot, planter.resetGrowthTo());
             planter.setYield(slot, 0);

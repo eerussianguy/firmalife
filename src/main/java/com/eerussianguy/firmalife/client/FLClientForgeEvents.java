@@ -58,10 +58,6 @@ public class FLClientForgeEvents
             {
                 text.add(Component.translatable("firmalife.tooltip.beekeeper_armor"));
             }
-            if (stack.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof GreenhousePanelWallBlock)
-            {
-                text.add(Component.translatable("firmalife.tooltip.greenhouse_panel_corner").withStyle(ChatFormatting.GRAY));
-            }
         }
     }
 

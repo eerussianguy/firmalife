@@ -48,17 +48,24 @@ public class MixingBowlBlock extends BottomSupportedDeviceBlock
                 }
                 else if (held.isEmpty() && player.isShiftKeyDown())
                 {
-                    return FLHelpers.takeOneAny(level, 0, MixingBowlBlockEntity.SLOTS - 1, bowl.getInventory(), player);
+                    final var res = FLHelpers.takeOneAny(level, 0, MixingBowlBlockEntity.SLOTS - 1, bowl.getInventory(), player);
+                    if (res.consumesAction())
+                        Helpers.playSound(level, pos, SoundEvents.ITEM_FRAME_REMOVE_ITEM);
+                    return res;
                 }
                 else if (Helpers.isItem(held, FLItems.SPOON.get()))
                 {
                     if (!player.isCreative()) held.shrink(1);
                     level.setBlockAndUpdate(pos, state.setValue(SPOON, true));
+                    Helpers.playSound(level, pos, SoundEvents.WOOD_PLACE);
                     return ItemInteractionResult.sidedSuccess(level.isClientSide);
                 }
                 else if (!player.isShiftKeyDown() && !held.isEmpty())
                 {
-                    return FLHelpers.insertOneAny(level, held, 0, MixingBowlBlockEntity.SLOTS - 1, bowl.getInventory(), player);
+                    final var res = FLHelpers.insertOneAny(level, held, 0, MixingBowlBlockEntity.SLOTS - 1, bowl.getInventory(), player);
+                    if (res.consumesAction())
+                        Helpers.playSound(level, pos, SoundEvents.ITEM_FRAME_ADD_ITEM);
+                    return res;
                 }
                 else if (bowl.startMixing(player))
                 {

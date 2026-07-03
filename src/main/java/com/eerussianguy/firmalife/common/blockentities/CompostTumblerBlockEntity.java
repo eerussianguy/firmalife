@@ -8,6 +8,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionResult;
@@ -76,6 +77,7 @@ public class CompostTumblerBlockEntity extends TickableInventoryBlockEntity<Item
         {
             ItemHandlerHelper.giveItemToPlayer(player, inventory.extractItem(SLOT_COMPOST, 64, false));
             reset();
+            Helpers.playSound(level, worldPosition, SoundEvents.COMPOSTER_EMPTY);
             return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
         final int total = getTotal();
@@ -101,6 +103,7 @@ public class CompostTumblerBlockEntity extends TickableInventoryBlockEntity<Item
             stack.shrink(1);
         markForSync();
         resetCounter();
+        Helpers.playSound(level, worldPosition, SoundEvents.COMPOSTER_FILL_SUCCESS);
         return ItemInteractionResult.sidedSuccess(client);
     }
 
@@ -128,6 +131,7 @@ public class CompostTumblerBlockEntity extends TickableInventoryBlockEntity<Item
             }
             inventory.setStackInSlot(SLOT_COMPOST, result);
             reset();
+            Helpers.playSound(level, worldPosition, SoundEvents.COMPOSTER_READY);
             markForSync();
         }
     }

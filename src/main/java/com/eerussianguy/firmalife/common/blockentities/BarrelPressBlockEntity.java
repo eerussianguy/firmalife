@@ -122,6 +122,7 @@ public class BarrelPressBlockEntity extends TickableInventoryBlockEntity<ItemSta
         {
             didAction = false;
             lastPushed = level.getGameTime();
+            Helpers.playSound(level, worldPosition, SoundEvents.PISTON_EXTEND);
             markForSync();
             return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
@@ -157,6 +158,7 @@ public class BarrelPressBlockEntity extends TickableInventoryBlockEntity<ItemSta
             inventory.setStackInSlot(i, ItemStack.EMPTY);
         }
 
+        Helpers.playSound(level, worldPosition, SoundEvents.SLIME_SQUISH);
         markForSync();
     }
 

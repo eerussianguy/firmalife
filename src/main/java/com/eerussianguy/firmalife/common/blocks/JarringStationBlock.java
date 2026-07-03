@@ -4,6 +4,7 @@ import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import com.eerussianguy.firmalife.common.blockentities.JarringStationBlockEntity;
 import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -35,18 +36,23 @@ public class JarringStationBlock extends FourWayDeviceBlock
             final ItemStack item = player.getItemInHand(hand);
             if (item.isEmpty())
             {
-                return FLHelpers.takeOneAny(level, 0, JarringStationBlockEntity.SLOTS - 1, inv, player);
+                final var res = FLHelpers.takeOneAny(level, 0, JarringStationBlockEntity.SLOTS - 1, inv, player);
+                if (res.consumesAction())
+                    Helpers.playSound(level, pos, SoundEvents.ITEM_FRAME_REMOVE_ITEM);
+                return res;
             }
             else if (Helpers.isItem(item, TFCTags.Items.EMPTY_JARS))
             {
-                return FLHelpers.insertOneAny(level, item, 0, JarringStationBlockEntity.SLOTS - 1, inv, player);
+                final var res = FLHelpers.insertOneAny(level, item, 0, JarringStationBlockEntity.SLOTS - 1, inv, player);
+                if (res.consumesAction())
+                    Helpers.playSound(level, pos, SoundEvents.ITEM_FRAME_ADD_ITEM);
+                return res;
             }
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         });
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context)
     {
         return SHAPE;
