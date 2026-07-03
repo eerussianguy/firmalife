@@ -3,10 +3,26 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "firmalife:food/vanilla_ice_cream"
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "firmalife:food/vanilla_ice_cream"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
     },
     {
-      "item": "firmalife:food/chocolate_chip_cookie_dough"
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "firmalife:food/chocolate_chip_cookie_dough"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
     }
   ],
   "result": {

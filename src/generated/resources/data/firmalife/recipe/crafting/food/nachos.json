@@ -3,16 +3,48 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "firmalife:food/tortilla_chips"
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "firmalife:food/tortilla_chips"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
     },
     {
-      "item": "firmalife:food/salsa"
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "firmalife:food/salsa"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
     },
     {
-      "item": "firmalife:food/shredded_cheese"
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "firmalife:food/shredded_cheese"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
     },
     {
-      "tag": "firmalife:foods/cooked_meats_and_substitutes"
+      "type": "tfc:and",
+      "children": [
+        {
+          "tag": "firmalife:foods/cooked_meats_and_substitutes"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
     }
   ],
   "result": {

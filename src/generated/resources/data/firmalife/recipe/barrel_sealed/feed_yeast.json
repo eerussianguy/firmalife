@@ -6,8 +6,16 @@
     "fluid": "firmalife:yeast_starter"
   },
   "input_item": {
-    "count": 1,
-    "tag": "firmalife:feeds_yeast"
+    "type": "tfc:and",
+    "children": [
+      {
+        "tag": "firmalife:feeds_yeast"
+      },
+      {
+        "type": "tfc:not_rotten"
+      }
+    ],
+    "count": 1
   },
   "output_fluid": {
     "amount": 600,

@@ -27,7 +27,15 @@
       "tag": "c:tools/knife"
     },
     "S": {
-      "tag": "tfc:usable_in_jam_sandwich"
+      "type": "tfc:and",
+      "children": [
+        {
+          "tag": "tfc:usable_in_jam_sandwich"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
     }
   },
   "pattern": [

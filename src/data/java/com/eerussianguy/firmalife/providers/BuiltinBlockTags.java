@@ -216,7 +216,7 @@ public class BuiltinBlockTags extends TagsProvider<Block> implements Accessors
         tag(STOMPING_BARRELS).add(FLBlocks.STOMPING_BARRELS);
         tag(BARREL_PRESSES).add(FLBlocks.BARREL_PRESSES);
         tag(WINE_SHELVES).add(FLBlocks.WINE_SHELVES);
-        tag(CHEESE_WHEELS).add(FLBlocks.CHEDDAR_WHEEL, FLBlocks.CHEVRE_WHEEL, FLBlocks.FETA_WHEEL, FLBlocks.GOUDA_WHEEL, FLBlocks.RAJYA_METOK_WHEEL, FLBlocks.SHOSHA_WHEEL);
+        tag(CHEESE_WHEELS).add(FLBlocks.CHEDDAR_WHEEL, FLBlocks.CHEVRE_WHEEL, FLBlocks.FETA_WHEEL, FLBlocks.GOUDA_WHEEL, FLBlocks.RAJYA_METOK_WHEEL, FLBlocks.SHOSHA_WHEEL, FLBlocks.BLUE_WHEEL);
         tag(CHIMNEYS).add(FLBlocks.CURED_OVEN_CHIMNEY).add(FLBlocks.CLAY_OVEN_CHIMNEY);
         tag(HERBS).add(FLBlocks.HERBS);
 

@@ -6,8 +6,16 @@
     "fluid": "tfc:salt_water"
   },
   "input_item": {
-    "count": 3,
-    "item": "firmalife:food/goat_curd"
+    "type": "tfc:and",
+    "children": [
+      {
+        "item": "firmalife:food/goat_curd"
+      },
+      {
+        "type": "tfc:not_rotten"
+      }
+    ],
+    "count": 3
   },
   "output_item": {
     "count": 1,

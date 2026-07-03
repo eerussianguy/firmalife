@@ -3,13 +3,29 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "tfc:food/tomato"
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "tfc:food/tomato"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
     },
     {
       "item": "tfc:powder/salt"
     },
     {
-      "item": "tfc:food/garlic"
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "tfc:food/garlic"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
     }
   ],
   "result": {

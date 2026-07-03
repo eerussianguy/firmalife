@@ -2,13 +2,29 @@
   "type": "tfc:advanced_shaped_crafting",
   "key": {
     "B": {
-      "item": "firmalife:food/rice_flatbread"
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "firmalife:food/rice_flatbread"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
     },
     "K": {
       "tag": "c:tools/knife"
     },
     "S": {
-      "tag": "tfc:usable_in_sandwich"
+      "type": "tfc:and",
+      "children": [
+        {
+          "tag": "tfc:usable_in_sandwich"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
     }
   },
   "pattern": [

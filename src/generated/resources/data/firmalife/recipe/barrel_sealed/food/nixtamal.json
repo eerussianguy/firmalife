@@ -6,8 +6,16 @@
     "fluid": "minecraft:water"
   },
   "input_item": {
-    "count": 1,
-    "item": "firmalife:food/cured_maize"
+    "type": "tfc:and",
+    "children": [
+      {
+        "item": "firmalife:food/cured_maize"
+      },
+      {
+        "type": "tfc:not_rotten"
+      }
+    ],
+    "count": 1
   },
   "output_item": {
     "count": 1,

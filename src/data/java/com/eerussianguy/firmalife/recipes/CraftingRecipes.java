@@ -161,7 +161,7 @@ public interface CraftingRecipes extends Recipes
             .shapeless(FLItems.INSULATING_BEEHIVE_FRAME);
         recipe()
             .input(FLItems.BEEHIVE_FRAME)
-            .input(itemOf(FLFood.RAW_HONEY))
+            .input(notRotten(itemOf(FLFood.RAW_HONEY)))
             .shapeless(FLItems.HONEYED_BEEHIVE_FRAME);
         recipe()
             .input(FLItems.BEEHIVE_FRAME)
@@ -219,19 +219,25 @@ public interface CraftingRecipes extends Recipes
             .shaped(FLBlocks.COMPOST_TUMBLER);
         recipe()
             .input('X', itemOf(Powder.SALT))
-            .input('Y', itemOf(FLFood.YAK_CURD))
+            .input('Y', notRotten(itemOf(FLFood.YAK_CURD)))
             .pattern("XXX", "YYY", "XXX")
             .shaped(FLBlocks.RAJYA_METOK_WHEEL);
         recipe()
             .input('X', itemOf(Powder.SALT))
-            .input('Y', itemOf(FLFood.GOAT_CURD))
+            .input('Y', notRotten(itemOf(FLFood.GOAT_CURD)))
             .pattern("XXX", "YYY", "XXX")
             .shaped(FLBlocks.CHEVRE_WHEEL);
         recipe()
             .input('X', itemOf(Powder.SALT))
-            .input('Y', itemOf(FLFood.MILK_CURD))
+            .input('Y', notRotten(itemOf(FLFood.MILK_CURD)))
             .pattern("XXX", "YYY", "XXX")
             .shaped(FLBlocks.CHEDDAR_WHEEL);
+        recipe()
+            .input('X', itemOf(Powder.SALT))
+            .input('Y', notRotten(itemOf(FLFood.MILK_CURD)))
+            .input('M', FLItems.BLUE_MOLD)
+            .pattern("XMX", "YYY", "XXX")
+            .shaped(FLBlocks.BLUE_WHEEL);
         recipe()
             .input('X', TFCTags.Items.HIGH_QUALITY_CLOTH)
             .pattern("XX")
@@ -248,9 +254,9 @@ public interface CraftingRecipes extends Recipes
             .pattern("XX", "XX")
             .shaped(FLBlocks.TREATED_WOOD);
         recipe()
-            .input('X', itemOf(FLFood.RAW_EGG_NOODLES))
-            .input('Y', itemOf(FLFood.TOMATO_SAUCE))
-            .input('Z', FLTags.Items.COOKED_MEATS_AND_SUBSTITUTES)
+            .input('X', notRotten(itemOf(FLFood.RAW_EGG_NOODLES)))
+            .input('Y', notRotten(itemOf(FLFood.TOMATO_SAUCE)))
+            .input('Z', notRotten(FLTags.Items.COOKED_MEATS_AND_SUBSTITUTES))
             .input('Q', itemOf(Herb.OREGANO))
             .pattern("XQ", "YZ", "XQ")
             .shaped(itemOf(FLFood.RAW_LASAGNA));
@@ -310,31 +316,31 @@ public interface CraftingRecipes extends Recipes
             .input(Items.CLAY_BALL)
             .input(itemOf(Powder.WOOD_ASH))
             .input(itemOf(Powder.SALT))
-            .input(itemOf(Food.BOILED_EGG))
+            .input(notRotten(itemOf(Food.BOILED_EGG)))
             .shapeless(itemOf(FLFood.PICKLED_EGG));
         recipe()
-            .input(itemOf(FLFood.TOAST))
-            .input(itemOf(FLFood.BUTTER))
-            .input(itemOf(Food.GARLIC))
+            .input(notRotten(itemOf(FLFood.TOAST)))
+            .input(notRotten(itemOf(FLFood.BUTTER)))
+            .input(notRotten(itemOf(Food.GARLIC)))
             .shapeless(itemOf(FLFood.GARLIC_BREAD));
         recipe()
-            .input(itemOf(FLFood.TORTILLA_CHIPS))
-            .input(itemOf(FLFood.SALSA))
-            .input(itemOf(FLFood.SHREDDED_CHEESE))
-            .input(FLTags.Items.COOKED_MEATS_AND_SUBSTITUTES)
+            .input(notRotten(itemOf(FLFood.TORTILLA_CHIPS)))
+            .input(notRotten(itemOf(FLFood.SALSA)))
+            .input(notRotten(itemOf(FLFood.SHREDDED_CHEESE)))
+            .input(notRotten(FLTags.Items.COOKED_MEATS_AND_SUBSTITUTES))
             .shapeless(itemOf(FLFood.NACHOS));
         recipe()
-            .input(itemOf(FLFood.TOAST))
-            .input(TFCTags.Items.PRESERVES)
+            .input(notRotten(itemOf(FLFood.TOAST)))
+            .input(notRotten(TFCTags.Items.PRESERVES))
             .shapeless(itemOf(FLFood.TOAST_WITH_JAM));
         recipe()
-            .input(itemOf(FLFood.TOAST))
-            .input(itemOf(FLFood.BUTTER))
+            .input(notRotten(itemOf(FLFood.TOAST)))
+            .input(notRotten(itemOf(FLFood.BUTTER)))
             .shapeless(itemOf(FLFood.TOAST_WITH_BUTTER));
         recipe()
-            .input(itemOf(Food.TOMATO))
+            .input(notRotten(itemOf(Food.TOMATO)))
             .input(itemOf(Powder.SALT))
-            .input(itemOf(Food.GARLIC))
+            .input(notRotten(itemOf(Food.GARLIC)))
             .shapeless(new ItemStack(itemOf(FLFood.TOMATO_SAUCE_MIX), 5));
         recipe()
             .input(FLBlocks.TILES)
@@ -369,17 +375,17 @@ public interface CraftingRecipes extends Recipes
             .pattern("BFB", "FSF", "BFB")
             .shaped(FLItems.OVEN_INSULATION);
         recipe()
-            .input(itemOf(FLFood.VANILLA_ICE_CREAM))
-            .input(itemOf(FLFood.STRAWBERRY_ICE_CREAM))
-            .input(itemOf(FLFood.CHOCOLATE_ICE_CREAM))
-            .input(itemOf(FLFruit.PINEAPPLE))
-            .input(itemOf(Food.CHERRY))
-            .input(itemOf(Food.BANANA))
-            .input(itemOf(Food.BANANA))
+            .input(notRotten(itemOf(FLFood.VANILLA_ICE_CREAM)))
+            .input(notRotten(itemOf(FLFood.STRAWBERRY_ICE_CREAM)))
+            .input(notRotten(itemOf(FLFood.CHOCOLATE_ICE_CREAM)))
+            .input(notRotten(itemOf(FLFruit.PINEAPPLE)))
+            .input(notRotten(itemOf(Food.CHERRY)))
+            .input(notRotten(itemOf(Food.BANANA)))
+            .input(notRotten(itemOf(Food.BANANA)))
             .shapeless(itemOf(FLFood.BANANA_SPLIT));
         recipe()
-            .input(itemOf(FLFood.VANILLA_ICE_CREAM))
-            .input(itemOf(FLFood.CHOCOLATE_CHIP_COOKIE_DOUGH))
+            .input(notRotten(itemOf(FLFood.VANILLA_ICE_CREAM)))
+            .input(notRotten(itemOf(FLFood.CHOCOLATE_CHIP_COOKIE_DOUGH)))
             .shapeless(itemOf(FLFood.COOKIE_DOUGH_ICE_CREAM));
         recipe()
             .input(FLItems.TREATED_LUMBER)
@@ -580,7 +586,7 @@ public interface CraftingRecipes extends Recipes
         jarring(TFCItems.ROTTEN_COMPOST, FLItems.ROTTEN_COMPOST_JAR, 8);
         jarring(TFCBlocks.GROUNDCOVER.get(GroundcoverBlockType.GUANO), FLItems.GUANO_JAR, 8);
         recipe("jarring_" + nameOf(itemOf(FLFood.RAW_HONEY)))
-            .input('X', itemOf(FLFood.RAW_HONEY))
+            .input('X', notRotten(itemOf(FLFood.RAW_HONEY)))
             .input('Y', TFCItems.EMPTY_JAR_WITH_LID)
             .pattern("XXX", "XYX", "XXX")
             .addTrait(FoodTraits.CANNED)
@@ -665,13 +671,13 @@ public interface CraftingRecipes extends Recipes
         );
         recipe()
             .inputIsPrimary(notRotten(itemOf(FLFood.PIE_DOUGH)))
-            .input(TFCTags.Items.PRESERVES)
+            .input(notRotten(TFCTags.Items.PRESERVES))
             .input(FLTags.Items.PIE_PANS)
             .addOutputModifier(pieMod)
             .addOutputModifier(AddPiePanModifier.INSTANCE)
             .shapeless(FLItems.FILLED_PIE);
         recipe()
-            .input(TFCTags.Items.FLOUR)
+            .input(notRotten(TFCTags.Items.FLOUR))
             .input(itemOf(Spice.ALLSPICE))
             .shapeless(itemOf(FLFood.SPICED_FLOUR));
         recipe()
@@ -792,7 +798,7 @@ public interface CraftingRecipes extends Recipes
                         .input('K', TFCTags.Items.TOOLS_KNIFE)
                         .input('B', notRotten(bread.getValue()))
                         .input('J', jam.getValue())
-                        .input('S', TFCTags.Items.USABLE_IN_JAM_SANDWICH)
+                        .input('S', notRotten(TFCTags.Items.USABLE_IN_JAM_SANDWICH))
                         .pattern("KB ", pattern, " B ")
                         .damageInputs()
                         .addOutputModifier(meal)
@@ -823,8 +829,8 @@ public interface CraftingRecipes extends Recipes
             {
                 recipe(nameOf(itemOf(sandwich)) + "_" + nameOf(bread.getValue()) + "_" + pattern.replace(" ", "x").toLowerCase())
                     .input('K', TFCTags.Items.TOOLS_KNIFE)
-                    .input('B', bread.getValue())
-                    .input('S', TFCTags.Items.USABLE_IN_SANDWICH)
+                    .input('B', notRotten(bread.getValue()))
+                    .input('S', notRotten(TFCTags.Items.USABLE_IN_SANDWICH))
                     .pattern("KB ", pattern, " B ")
                     .damageInputs()
                     .addOutputModifier(meal)
@@ -837,7 +843,7 @@ public interface CraftingRecipes extends Recipes
     {
         recipe()
             .inputIsPrimary(TFCTags.Items.TOOLS_KNIFE)
-            .input(itemOf(bread))
+            .input(notRotten(itemOf(bread)))
             .damageInputs()
             .shapeless(new ItemStack(itemOf(slicedBread), 2));
     }

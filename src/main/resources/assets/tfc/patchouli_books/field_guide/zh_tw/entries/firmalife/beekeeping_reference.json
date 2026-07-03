@@ -27,6 +27,14 @@
     },
     {
       "type": "patchouli:text",
+      "text": "Using $(thing)Blue Mold$() (from $(l:firmalife/cheese)cheesemaking$()) on a hive cures brood infections. It works on all parasitic infections except $(thing)Varroa$(), which must be escaped by swarming."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Refer to the next pages for information on bee species."
+    },
+    {
+      "type": "patchouli:text",
       "text": "$(thing)蜜蜂物種$()存在於不同的氣候中，它們的生成條件描述了從$(thing)野生蜂巢$()或吸引到的野生蜂群中可能得到什麼。有些物種比其他物種更稀有。",
       "title": "蜜蜂物種"
     },

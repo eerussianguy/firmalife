@@ -9,6 +9,7 @@ import com.eerussianguy.firmalife.common.blocks.FLStateProperties;
 import com.eerussianguy.firmalife.common.blocks.FourWayDeviceBlock;
 import com.eerussianguy.firmalife.common.capabilities.bee.BeeAbility;
 import com.eerussianguy.firmalife.common.capabilities.bee.BeeComponent;
+import com.eerussianguy.firmalife.common.capabilities.bee.ParasiticInfection;
 import com.eerussianguy.firmalife.common.items.FLItems;
 import com.eerussianguy.firmalife.common.misc.FLEffects;
 import net.minecraft.ChatFormatting;
@@ -101,6 +102,23 @@ public class BaseBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBl
                 Helpers.playSound(level, pos, SoundEvents.BAMBOO_WOOD_PLACE);
                 return res;
             }
+        }
+        else if (Helpers.isItem(held, FLItems.BLUE_MOLD.get()) && level.getBlockEntity(pos, FLBlockEntities.BEEHIVE.get())
+            .map(hive -> hive.getBee().hasParasiticInfection() && hive.getBee().parasiticInfection() != ParasiticInfection.VARROA).orElse(false))
+        {
+            // Blue mold is Penicillium — treating a hive with it cures bacterial/fungal brood infections (but not the varroa mite).
+            if (!level.isClientSide)
+            {
+                level.getBlockEntity(pos, FLBlockEntities.BEEHIVE.get()).ifPresent(hive -> {
+                    final BeeComponent bee = hive.getBee();
+                    hive.setBeeData(BeeComponent.withDiseases(bee, bee.geneticDisease(), ParasiticInfection.NONE));
+                    hive.markForSync();
+                });
+            }
+            if (!player.isCreative())
+                held.shrink(1);
+            Helpers.playSound(level, pos, SoundEvents.BEEHIVE_DRIP);
+            return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
         else if (held.isEmpty())
         {

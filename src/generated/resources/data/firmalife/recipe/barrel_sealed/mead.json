@@ -6,8 +6,16 @@
     "fluid": "minecraft:water"
   },
   "input_item": {
-    "count": 1,
-    "item": "firmalife:food/raw_honey"
+    "type": "tfc:and",
+    "children": [
+      {
+        "item": "firmalife:food/raw_honey"
+      },
+      {
+        "type": "tfc:not_rotten"
+      }
+    ],
+    "count": 1
   },
   "output_fluid": {
     "amount": 100,

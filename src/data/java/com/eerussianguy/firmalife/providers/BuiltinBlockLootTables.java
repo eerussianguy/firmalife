@@ -263,6 +263,7 @@ public class BuiltinBlockLootTables extends BlockLootSubProvider implements Acce
         cheeseWheel(FLBlocks.GOUDA_WHEEL, itemOf(FLFood.GOUDA));
         cheeseWheel(FLBlocks.FETA_WHEEL, itemOf(FLFood.FETA));
         cheeseWheel(FLBlocks.SHOSHA_WHEEL, itemOf(FLFood.SHOSHA));
+        cheeseWheel(FLBlocks.BLUE_WHEEL, itemOf(FLFood.BLUE_CHEESE));
 
         Map<FLFruitBlocks.Tree, ItemLike> fruitTrees = new HashMap<>();
         fruitTrees.put(FLFruitBlocks.Tree.COCOA, itemOf(FLFood.COCOA_BEANS));

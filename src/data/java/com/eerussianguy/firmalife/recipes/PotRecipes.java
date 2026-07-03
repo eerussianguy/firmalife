@@ -149,7 +149,7 @@ public interface PotRecipes extends Recipes
         final ItemLike output = itemOf(FLFood.FLAVORFUL_COOKED_RICE);
         for (int n = 1; n <= 3; n++)
         {
-            final List<Ingredient> ingredients = new ArrayList<>(Collections.nCopies(n, Ingredient.of(itemOf(Food.RICE_GRAIN))));
+            final List<Ingredient> ingredients = new ArrayList<>(Collections.nCopies(n, notRotten(itemOf(Food.RICE_GRAIN))));
             ingredients.add(Ingredient.of(itemOf(Spice.BAY_LEAVES)));
             ingredients.add(Ingredient.of(itemOf(Spice.CHOPPED_CILANTRO)));
             add(nameOf(output) + "_" + n, new SimplePotRecipe(new PotRecipe(

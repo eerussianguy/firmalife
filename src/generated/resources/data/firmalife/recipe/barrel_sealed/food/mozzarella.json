@@ -1,0 +1,16 @@
+{
+  "type": "tfc:barrel_sealed",
+  "duration": 1000,
+  "input_fluid": {
+    "amount": 1000,
+    "fluid": "tfc:milk_vinegar"
+  },
+  "input_item": {
+    "count": 1,
+    "item": "firmalife:cheesecloth"
+  },
+  "output_item": {
+    "count": 1,
+    "id": "firmalife:food/mozzarella"
+  }
+}

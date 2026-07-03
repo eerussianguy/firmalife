@@ -19,7 +19,7 @@ public class FLBlockEntities
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, FirmaLife.MOD_ID);
 
     public static final Id<FLTickCounterBlockEntity> TICK_COUNTER = register("tick_counter", FLTickCounterBlockEntity::new, Stream.of(
-        Stream.of(FLBlocks.CHEDDAR_WHEEL, FLBlocks.CHEVRE_WHEEL, FLBlocks.FETA_WHEEL, FLBlocks.SHOSHA_WHEEL, FLBlocks.RAJYA_METOK_WHEEL, FLBlocks.GOUDA_WHEEL),
+        Stream.of(FLBlocks.CHEDDAR_WHEEL, FLBlocks.CHEVRE_WHEEL, FLBlocks.FETA_WHEEL, FLBlocks.SHOSHA_WHEEL, FLBlocks.RAJYA_METOK_WHEEL, FLBlocks.GOUDA_WHEEL, FLBlocks.BLUE_WHEEL),
         FLBlocks.JACK_O_LANTERNS.values().stream(),
         FLBlocks.FRUIT_TREE_SAPLINGS.values().stream(),
         FLBlocks.FRUIT_TREE_GROWING_BRANCHES.values().stream()

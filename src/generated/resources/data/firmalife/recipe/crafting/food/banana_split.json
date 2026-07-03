@@ -3,25 +3,81 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "firmalife:food/vanilla_ice_cream"
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "firmalife:food/vanilla_ice_cream"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
     },
     {
-      "item": "firmalife:food/strawberry_ice_cream"
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "firmalife:food/strawberry_ice_cream"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
     },
     {
-      "item": "firmalife:food/chocolate_ice_cream"
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "firmalife:food/chocolate_ice_cream"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
     },
     {
-      "item": "firmalife:food/pineapple"
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "firmalife:food/pineapple"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
     },
     {
-      "item": "tfc:food/cherry"
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "tfc:food/cherry"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
     },
     {
-      "item": "tfc:food/banana"
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "tfc:food/banana"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
     },
     {
-      "item": "tfc:food/banana"
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "tfc:food/banana"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
     }
   ],
   "result": {

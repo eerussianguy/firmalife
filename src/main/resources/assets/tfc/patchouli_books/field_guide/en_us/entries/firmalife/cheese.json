@@ -81,6 +81,23 @@
           }
         }
       ]
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Making curds leaves $(thing)Whey$() behind in the barrel. Seal the whey with a $(thing)Cheesecloth$() to make $(thing)Ricotta$()."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(thing)Mozzarella$() is made without rennet. Pour $(thing)Vinegar$() into a barrel of milk to curdle it into $(thing)Milk Vinegar$(), then seal that with a $(thing)Cheesecloth$()."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(thing)Blue Cheese$() needs $(thing)Blue Mold$(). Culture it by sealing $(thing)rotten bread$() and water in a barrel, which yields four mold."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "firmalife:crafting/blue_wheel",
+      "text": "Make $(thing)Blue Cheese$() by crafting $(thing)Milk Curd$() with $(thing)Salt$() and $(thing)Blue Mold$(), or by $(item)$(k:key.use)$() Blue Mold on any fresh cheese wheel."
     }
   ],
   "read_by_default": true,

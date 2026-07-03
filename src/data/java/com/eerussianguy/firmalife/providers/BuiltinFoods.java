@@ -38,6 +38,8 @@ public class BuiltinFoods extends DataManagerProvider<FoodDefinition> implements
         add(FLFood.YAK_CURD, FoodData.of(3f).dairy(0.2f));
         add(FLFood.GOAT_CURD, FoodData.of(3f).dairy(0.2f));
         add(FLFood.MILK_CURD, FoodData.of(3f).dairy(0.2f));
+        add(FLFood.RICOTTA, ofFood(0.3f, 0f, 2f).dairy(1.5f));
+        add(FLFood.MOZZARELLA, ofFood(0.3f, 0f, 2f).dairy(2f));
         add(FLFood.DARK_CHOCOLATE_BLEND, FoodData.of(3f));
         add(FLFood.MILK_CHOCOLATE_BLEND, FoodData.of(3f));
         add(FLFood.WHITE_CHOCOLATE_BLEND, FoodData.of(3f));
@@ -82,7 +84,7 @@ public class BuiltinFoods extends DataManagerProvider<FoodDefinition> implements
         add(FLFood.GARLIC_BREAD, ofFood(2f, 0f, 2f).grain(1f).vegetables(1f).dairy(0.1f));
         add(FLFood.COOKED_LASAGNA, ofFood(2f, 1f, 3f).grain(1f).vegetables(1f).dairy(1f));
         add(FLTags.Items.FLATBREADS, ofFood(1f, 0f, 0.75f).grain(0.5f), true);
-        add(FLTags.Items.CHEESES, ofFood(0.3f, 0f, 2f).dairy(3f), true);
+        add(FLTags.Items.AGED_CHEESES, ofFood(0.3f, 0f, 2f).dairy(3f), true);
         add(FLFood.SHREDDED_CHEESE, ofFood(0.3f, 0f, 2f).dairy(0.75f));
         add(FLFood.PICKLED_EGG, ofFood(0.3f, 10f, 2f).vegetables(0.25f).protein(1.5f));
         add(FLTags.Items.CHOCOLATE, ofFood(0.3f, 0f, 1f).grain(0.5f).dairy(0.5f), true);

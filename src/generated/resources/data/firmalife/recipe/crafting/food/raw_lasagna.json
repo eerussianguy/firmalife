@@ -6,13 +6,37 @@
       "item": "firmalife:plant/oregano"
     },
     "X": {
-      "item": "firmalife:food/raw_egg_noodles"
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "firmalife:food/raw_egg_noodles"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
     },
     "Y": {
-      "item": "firmalife:food/tomato_sauce"
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "firmalife:food/tomato_sauce"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
     },
     "Z": {
-      "tag": "firmalife:foods/cooked_meats_and_substitutes"
+      "type": "tfc:and",
+      "children": [
+        {
+          "tag": "firmalife:foods/cooked_meats_and_substitutes"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
     }
   },
   "pattern": [

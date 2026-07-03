@@ -2,7 +2,15 @@
   "type": "tfc:advanced_shaped_crafting",
   "key": {
     "X": {
-      "item": "firmalife:food/raw_honey"
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "firmalife:food/raw_honey"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
     },
     "Y": {
       "item": "tfc:empty_jar_with_lid"

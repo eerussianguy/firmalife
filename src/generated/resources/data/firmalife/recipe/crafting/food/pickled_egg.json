@@ -12,7 +12,15 @@
       "item": "tfc:powder/salt"
     },
     {
-      "item": "tfc:food/boiled_egg"
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "tfc:food/boiled_egg"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
     }
   ],
   "result": {

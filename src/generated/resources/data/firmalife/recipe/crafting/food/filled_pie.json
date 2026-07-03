@@ -13,7 +13,15 @@
       ]
     },
     {
-      "tag": "tfc:foods/preserves"
+      "type": "tfc:and",
+      "children": [
+        {
+          "tag": "tfc:foods/preserves"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
     },
     {
       "tag": "firmalife:pie_pans"

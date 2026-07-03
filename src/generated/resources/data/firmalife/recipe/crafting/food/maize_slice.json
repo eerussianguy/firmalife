@@ -5,7 +5,15 @@
       "tag": "c:tools/knife"
     },
     {
-      "item": "tfc:food/maize_bread"
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "tfc:food/maize_bread"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
     }
   ],
   "primary_ingredient": {

@@ -7,13 +7,37 @@
   },
   "ingredients": [
     {
-      "item": "tfc:food/rice_grain"
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "tfc:food/rice_grain"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
     },
     {
-      "item": "tfc:food/rice_grain"
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "tfc:food/rice_grain"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
     },
     {
-      "item": "tfc:food/rice_grain"
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "tfc:food/rice_grain"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
     },
     {
       "item": "firmalife:spice/bay_leaves"

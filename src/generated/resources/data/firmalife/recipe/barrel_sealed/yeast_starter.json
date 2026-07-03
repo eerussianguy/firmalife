@@ -12,6 +12,9 @@
         "tag": "c:foods/fruit"
       },
       {
+        "type": "tfc:not_rotten"
+      },
+      {
         "type": "tfc:has_trait",
         "trait": "firmalife:dried"
       }

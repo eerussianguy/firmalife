@@ -52,6 +52,7 @@ public class FLItems
     public static final ItemId HONEYED_BEEHIVE_FRAME = register("honeyed_beehive_frame", () -> new BeehiveFrameItem(prop().craftRemainder(BEEHIVE_FRAME.get()), FLItems.FOODS.get(FLFood.RAW_HONEY)));
     public static final ItemId SUGARED_BEEHIVE_FRAME = register("sugared_beehive_frame", () -> new BeehiveFrameItem(prop().craftRemainder(BEEHIVE_FRAME.get()), () -> Items.SUGAR));
     public static final ItemId CHEESECLOTH = register("cheesecloth");
+    public static final ItemId BLUE_MOLD = register("blue_mold");
     public static final ItemId FRUIT_LEAF = register("fruit_leaf");
     public static final ItemId HOLLOW_SHELL = register("hollow_shell",  () -> new HollowShellItem(prop(), FLConfig.SERVER.hollowShellCapacity, FLTags.Fluids.USABLE_IN_HOLLOW_SHELL, false, false));
     public static final ItemId WINE_GLASS = register("wine_glass",  () -> new WineGlassItem(prop(), FLConfig.SERVER.wineGlassCapacity, FLTags.Fluids.USABLE_IN_WINE_GLASS));

@@ -82,6 +82,7 @@ public class FirmaLife
 
         bus.addListener(this::setup);
         bus.addListener(FLComponents::register);
+        bus.addListener(FLCreativeTabs::setAllTabContentAsNonDecaying);
 
         FLEvents.init(bus);
         FLForgeEvents.init();

@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "M": {
+      "item": "firmalife:blue_mold"
+    },
+    "X": {
+      "item": "tfc:powder/salt"
+    },
+    "Y": {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "firmalife:food/milk_curd"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    }
+  },
+  "pattern": [
+    "XMX",
+    "YYY",
+    "XXX"
+  ],
+  "result": {
+    "count": 1,
+    "id": "firmalife:blue_wheel"
+  }
+}

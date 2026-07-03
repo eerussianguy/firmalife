@@ -17,6 +17,7 @@ public enum ExtraFluid implements StringRepresentable
     SUGAR_WATER(0xFF99EEFF),
     MEAD(0xFFc79f28),
     SOYBEAN_OIL(0xFFdbc99a),
+    WHEY(0xFFe8e4b0),
     ;
 
     private final String id;

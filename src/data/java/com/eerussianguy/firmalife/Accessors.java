@@ -61,6 +61,7 @@ import net.dries007.tfc.common.recipes.ingredients.AndIngredient;
 import net.dries007.tfc.common.recipes.ingredients.HasTraitIngredient;
 import net.dries007.tfc.common.recipes.ingredients.LacksTraitIngredient;
 import net.dries007.tfc.common.recipes.ingredients.NotRottenIngredient;
+import net.dries007.tfc.common.recipes.ingredients.RottenIngredient;
 import net.dries007.tfc.common.recipes.outputs.CopyFoodModifier;
 import net.dries007.tfc.common.recipes.outputs.ItemStackProvider;
 import net.dries007.tfc.util.Helpers;
@@ -314,6 +315,11 @@ public interface Accessors
     default Ingredient notRotten(ItemLike food)
     {
         return AndIngredient.of(Ingredient.of(food), NotRottenIngredient.INSTANCE);
+    }
+
+    default Ingredient rotten(TagKey<Item> food)
+    {
+        return AndIngredient.of(Ingredient.of(food), RottenIngredient.INSTANCE);
     }
 
     default Ingredient hasTrait(ItemLike food, Holder<FoodTrait> trait)

@@ -176,6 +176,7 @@ public class FLBlocks
     public static final Id<Block> GOUDA_WHEEL = register("gouda_wheel", () -> new CheeseWheelBlock(wheelProperties(), FLItems.FOODS.get(FLFood.GOUDA)));
     public static final Id<Block> FETA_WHEEL = register("feta_wheel", () -> new CheeseWheelBlock(wheelProperties(), FLItems.FOODS.get(FLFood.FETA)));
     public static final Id<Block> SHOSHA_WHEEL = register("shosha_wheel", () -> new CheeseWheelBlock(wheelProperties(), FLItems.FOODS.get(FLFood.SHOSHA)));
+    public static final Id<Block> BLUE_WHEEL = register("blue_wheel", () -> new CheeseWheelBlock(wheelProperties(), FLItems.FOODS.get(FLFood.BLUE_CHEESE)));
 
     public static final Id<Block> CLIMATE_STATION = register("climate_station", () -> new ClimateStationBlock(ExtendedProperties.of().strength(3.0f).sound(SoundType.WOOD).randomTicks().blockEntity(FLBlockEntities.CLIMATE_STATION).flammable(60, 30)));
     public static final Id<Block> LARGE_PLANTER = register("large_planter", () -> new LargePlanterBlock(ExtendedProperties.of().sound(SoundType.STONE).strength(1f).randomTicks().blockEntity(FLBlockEntities.LARGE_PLANTER).serverTicks(LargePlanterBlockEntity::serverTick)));

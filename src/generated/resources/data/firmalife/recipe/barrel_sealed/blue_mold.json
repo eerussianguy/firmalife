@@ -1,0 +1,24 @@
+{
+  "type": "tfc:barrel_sealed",
+  "duration": 24000,
+  "input_fluid": {
+    "amount": 100,
+    "fluid": "minecraft:water"
+  },
+  "input_item": {
+    "type": "tfc:and",
+    "children": [
+      {
+        "tag": "c:foods/bread"
+      },
+      {
+        "type": "tfc:rotten"
+      }
+    ],
+    "count": 1
+  },
+  "output_item": {
+    "count": 4,
+    "id": "firmalife:blue_mold"
+  }
+}

@@ -61,6 +61,16 @@
           }
         ]
       }
+    },
+    "blue_cheese": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "firmalife:food/blue_cheese"
+          }
+        ]
+      }
     }
   },
   "display": {
@@ -97,6 +107,9 @@
     ],
     [
       "shosha"
+    ],
+    [
+      "blue_cheese"
     ]
   ]
 }

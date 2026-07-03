@@ -9,6 +9,10 @@
     "count": 1,
     "item": "firmalife:cheesecloth"
   },
+  "output_fluid": {
+    "amount": 1000,
+    "id": "firmalife:whey"
+  },
   "output_item": {
     "count": 1,
     "id": "firmalife:food/milk_curd"

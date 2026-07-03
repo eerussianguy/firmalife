@@ -3,10 +3,26 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "firmalife:food/toast"
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "firmalife:food/toast"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
     },
     {
-      "tag": "tfc:foods/preserves"
+      "type": "tfc:and",
+      "children": [
+        {
+          "tag": "tfc:foods/preserves"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
     }
   ],
   "result": {

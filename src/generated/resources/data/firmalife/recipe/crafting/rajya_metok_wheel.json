@@ -6,7 +6,15 @@
       "item": "tfc:powder/salt"
     },
     "Y": {
-      "item": "firmalife:food/yak_curd"
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "firmalife:food/yak_curd"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
     }
   },
   "pattern": [

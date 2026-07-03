@@ -91,7 +91,8 @@ public class BuiltinItemTags extends TagsProvider<Item> implements Accessors
             FLBlocks.GOUDA_WHEEL.asItem(),
             FLBlocks.FETA_WHEEL.asItem(),
             FLBlocks.CHEVRE_WHEEL.asItem(),
-            FLBlocks.SHOSHA_WHEEL.asItem()
+            FLBlocks.SHOSHA_WHEEL.asItem(),
+            FLBlocks.BLUE_WHEEL.asItem()
         );
         tag(TFCTags.Items.MINECART_HOLDABLE)
             .add(FLBlocks.SKEP.get().asItem());
@@ -157,13 +158,18 @@ public class BuiltinItemTags extends TagsProvider<Item> implements Accessors
             TFCTags.Items.COOKED_MEATS
         );
         tag(TFCTags.Items.FRUITS).add(FLItems.FRUITS);
-        tag(FLTags.Items.CHEESES).add(
+        tag(FLTags.Items.AGED_CHEESES).add(
             itemOf(FLFood.GOUDA).asItem(),
             itemOf(FLFood.CHEVRE).asItem(),
             itemOf(FLFood.SHOSHA).asItem(),
             itemOf(FLFood.FETA).asItem(),
             itemOf(FLFood.RAJYA_METOK).asItem(),
-            itemOf(FLFood.CHEDDAR).asItem()
+            itemOf(FLFood.CHEDDAR).asItem(),
+            itemOf(FLFood.BLUE_CHEESE).asItem()
+        );
+        tag(FLTags.Items.CHEESES).addTag(FLTags.Items.AGED_CHEESES).add(
+            itemOf(FLFood.RICOTTA).asItem(),
+            itemOf(FLFood.MOZZARELLA).asItem()
         );
         tag(TFCTags.Items.DAIRY).addTag(FLTags.Items.CHEESES);
         tag(FLTags.Items.SMOKING_FUEL).addTag(ItemTags.LOGS);
@@ -191,7 +197,7 @@ public class BuiltinItemTags extends TagsProvider<Item> implements Accessors
         tag(FLTags.Items.PIE_PANS).add(FLItems.PIE_PAN);
         tag(FLTags.Items.CAN_BE_HUNG).addTag(TFCTags.Items.MEATS).add(itemOf(Food.GARLIC).asItem());
         tag(TFCTags.Items.COMPOST_GREENS_LOW).add(FLItems.FRUIT_LEAF);
-        tag(TFCTags.Items.COMPOST_GREENS).add(FLItems.NIGHTSHADE_BERRY);
+        tag(TFCTags.Items.COMPOST_GREENS).add(FLItems.NIGHTSHADE_BERRY).add(FLItems.BLUE_MOLD);
         tag(FLTags.Items.COOKED_MEATS_AND_SUBSTITUTES).addTag(TFCTags.Items.COOKED_MEATS).add(itemOf(FLFood.TOFU).asItem()).add(itemOf(FLFood.CARNE_ASADA).asItem());
         tag(TFCTags.Items.COOKED_MEATS).add(FLItems.FOODS.get(FLFood.COOKED_BACON));
         tag(TFCTags.Items.RAW_MEATS).add(FLItems.FOODS.get(FLFood.BACON));

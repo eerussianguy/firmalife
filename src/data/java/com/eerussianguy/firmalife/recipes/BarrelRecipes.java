@@ -26,17 +26,17 @@ public interface BarrelRecipes extends Recipes
             "barrel/curdled_milk", "barrel/food/cheese", "barrel/milk_vinegar"
         );
         barrel()
-            .input(hasTrait(TFCTags.Items.FRUITS, FLFoodTraits.DRIED))
+            .input(notRottenWithTrait(TFCTags.Items.FRUITS, FLFoodTraits.DRIED))
             .input(Fluids.WATER, 100)
             .output(fluidOf(ExtraFluid.YEAST_STARTER), 100)
             .sealed(72000);
         barrel("feed_yeast")
-            .input(FLTags.Items.FEEDS_YEAST)
+            .input(notRotten(FLTags.Items.FEEDS_YEAST))
             .input(fluidOf(ExtraFluid.YEAST_STARTER), 100)
             .output(fluidOf(ExtraFluid.YEAST_STARTER), 600)
             .sealed(12000);
         barrel()
-            .input(itemOf(FLFood.FROTHY_COCONUT))
+            .input(notRotten(itemOf(FLFood.FROTHY_COCONUT)))
             .input(fluidOf(SimpleFluid.RUM), 1000)
             .output(fluidOf(ExtraFluid.PINA_COLADA), 1000)
             .sealed(1000);
@@ -59,17 +59,39 @@ public interface BarrelRecipes extends Recipes
             .input(FLItems.CHEESECLOTH)
             .input(fluidOf(SimpleFluid.CURDLED_MILK), 1000)
             .output(itemOf(FLFood.MILK_CURD))
+            .output(fluidOf(ExtraFluid.WHEY), 1000)
             .sealed(1000);
         barrel()
             .input(FLItems.CHEESECLOTH)
             .input(fluidOf(ExtraFluid.CURDLED_GOAT_MILK), 1000)
             .output(itemOf(FLFood.GOAT_CURD))
+            .output(fluidOf(ExtraFluid.WHEY), 1000)
             .sealed(1000);
         barrel()
             .input(FLItems.CHEESECLOTH)
             .input(fluidOf(ExtraFluid.CURDLED_YAK_MILK), 1000)
             .output(itemOf(FLFood.YAK_CURD))
+            .output(fluidOf(ExtraFluid.WHEY), 1000)
             .sealed(1000);
+        barrel()
+            .input(FLItems.CHEESECLOTH)
+            .input(fluidOf(ExtraFluid.WHEY), 1000)
+            .output(itemOf(FLFood.RICOTTA))
+            .sealed(1000);
+        barrel()
+            .input(FLTags.Fluids.MILKS, 9)
+            .output(fluidOf(SimpleFluid.MILK_VINEGAR), 10)
+            .instantOnAdd(fluidOf(SimpleFluid.VINEGAR));
+        barrel()
+            .input(FLItems.CHEESECLOTH)
+            .input(fluidOf(SimpleFluid.MILK_VINEGAR), 1000)
+            .output(itemOf(FLFood.MOZZARELLA))
+            .sealed(1000);
+        barrel()
+            .input(rotten(TFCTags.Items.BREAD))
+            .input(Fluids.WATER, 100)
+            .output(ItemStackProvider.of(FLItems.BLUE_MOLD, 4))
+            .sealed(24000);
         barrel()
             .input(FLItems.CHEESECLOTH)
             .input(FLTags.Fluids.MILKS, 1000)
@@ -77,22 +99,22 @@ public interface BarrelRecipes extends Recipes
             .output(fluidOf(ExtraFluid.CREAM), 1000)
             .sealed(1000);
         barrel()
-            .input(itemOf(FLFood.CURED_MAIZE))
+            .input(notRotten(itemOf(FLFood.CURED_MAIZE)))
             .input(Fluids.WATER, 100)
             .output(itemOf(FLFood.NIXTAMAL))
             .sealed(1000);
         barrel()
-            .input(FLItems.FOODS.get(FLFood.RAW_HONEY))
+            .input(notRotten(FLItems.FOODS.get(FLFood.RAW_HONEY)))
             .input(Fluids.WATER, 100)
             .output(fluidOf(ExtraFluid.MEAD), 100)
             .sealed(72000);
         barrel("ferment_red_grapes")
-            .input(lacksTrait(itemOf(FLFood.SMASHED_RED_GRAPES), FLFoodTraits.FERMENTED))
+            .input(notRottenWithoutTrait(itemOf(FLFood.SMASHED_RED_GRAPES), FLFoodTraits.FERMENTED))
             .input(Fluids.WATER, 100)
             .output(ItemStackProvider.of(CopyInputModifier.INSTANCE, AddTraitModifier.of(FLFoodTraits.FERMENTED)))
             .sealed(120000);
         barrel("ferment_white_grapes")
-            .input(lacksTrait(itemOf(FLFood.SMASHED_WHITE_GRAPES), FLFoodTraits.FERMENTED))
+            .input(notRottenWithoutTrait(itemOf(FLFood.SMASHED_WHITE_GRAPES), FLFoodTraits.FERMENTED))
             .input(Fluids.WATER, 100)
             .output(ItemStackProvider.of(CopyInputModifier.INSTANCE, AddTraitModifier.of(FLFoodTraits.FERMENTED)))
             .sealed(120000);
@@ -102,22 +124,22 @@ public interface BarrelRecipes extends Recipes
             .output(ItemStackProvider.of(FLItems.CORK, 8))
             .sealed(24000);
         barrel()
-            .input(itemOf(FLFood.SOYBEAN_PASTE))
+            .input(notRotten(itemOf(FLFood.SOYBEAN_PASTE)))
             .input(Fluids.WATER, 100)
             .output(fluidOf(ExtraFluid.SOYBEAN_OIL), 250)
             .sealed(24000);
         barrel()
-            .input(sized(itemOf(FLFood.YAK_CURD), 3))
+            .input(sized(notRotten(itemOf(FLFood.YAK_CURD)), 3))
             .input(TFCFluids.SALT_WATER.getSource(), 750)
             .output(FLBlocks.SHOSHA_WHEEL)
             .sealed(16000);
         barrel()
-            .input(sized(itemOf(FLFood.GOAT_CURD), 3))
+            .input(sized(notRotten(itemOf(FLFood.GOAT_CURD)), 3))
             .input(TFCFluids.SALT_WATER.getSource(), 750)
             .output(FLBlocks.FETA_WHEEL)
             .sealed(16000);
         barrel()
-            .input(sized(itemOf(FLFood.MILK_CURD), 3))
+            .input(sized(notRotten(itemOf(FLFood.MILK_CURD)), 3))
             .input(TFCFluids.SALT_WATER.getSource(), 750)
             .output(FLBlocks.GOUDA_WHEEL)
             .sealed(16000);

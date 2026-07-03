@@ -6,8 +6,16 @@
     "fluid": "tfc:rum"
   },
   "input_item": {
-    "count": 1,
-    "item": "firmalife:food/frothy_coconut"
+    "type": "tfc:and",
+    "children": [
+      {
+        "item": "firmalife:food/frothy_coconut"
+      },
+      {
+        "type": "tfc:not_rotten"
+      }
+    ],
+    "count": 1
   },
   "output_fluid": {
     "amount": 1000,

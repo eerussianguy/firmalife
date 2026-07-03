@@ -10,11 +10,11 @@ class Wood(NamedTuple):
     temp: float
     duration: int
 
-SIMPLE_ITEMS = ('fruit_leaf', 'beeswax', 'pineapple_fiber', 'pineapple_leather', 'pineapple_yarn', 'rennet', 'watering_can', 'treated_lumber', 'cheesecloth', 'spoon',
+SIMPLE_ITEMS = ('fruit_leaf', 'beeswax', 'pineapple_fiber', 'pineapple_leather', 'pineapple_yarn', 'rennet', 'watering_can', 'treated_lumber', 'cheesecloth', 'blue_mold', 'spoon',
                 'pie_pan', 'rustic_finish', 'stone_finish', 'tile_finish', 'oven_insulation', 'ice_shavings', 'beekeeper_helmet', 'beekeeper_chestplate', 'beekeeper_leggings', 'beekeeper_boots', 'reinforced_glass', 'pottery_sherd',
                 'hematitic_wine_bottle', 'olivine_wine_bottle', 'volcanic_wine_bottle', 'empty_hematitic_wine_bottle', 'empty_olivine_wine_bottle', 'empty_volcanic_wine_bottle', 'cork', 'bottle_label', 'barrel_stave', 'stainless_steel_jar_lid',
                 'empty_jar_with_stainless_steel_lid', 'tirage_mixture', 'filled_beehive_frame', 'honeyed_beehive_frame', 'beehive_frame', 'sugared_beehive_frame', 'scraped_beehive_frame', 'insulating_beehive_frame', 'wild_honeycomb', 'aromatic_honeycomb', 'tile_brick')
-SIMPLE_FOODS = ('frothy_coconut', 'white_chocolate_blend', 'dark_chocolate_blend', 'milk_chocolate_blend', 'tofu', 'soy_mixture', 'yak_curd', 'goat_curd', 'milk_curd', 'cheddar', 'chevre', 'rajya_metok', 'gouda', 'feta', 'shosha', 'butter',
+SIMPLE_FOODS = ('frothy_coconut', 'white_chocolate_blend', 'dark_chocolate_blend', 'milk_chocolate_blend', 'tofu', 'soy_mixture', 'yak_curd', 'goat_curd', 'milk_curd', 'ricotta', 'mozzarella', 'cheddar', 'chevre', 'rajya_metok', 'gouda', 'feta', 'shosha', 'blue_cheese', 'butter',
                 'pie_dough', 'filled_pie', 'cooked_pie', 'pizza_dough', 'raw_pizza', 'cooked_pizza', 'shredded_cheese', 'pickled_egg', 'pumpkin_pie_dough', 'raw_pumpkin_pie', 'cooked_pumpkin_pie', 'cocoa_beans', 'roasted_cocoa_beans',
                 'cocoa_butter', 'cocoa_powder', 'toast', 'dark_chocolate', 'milk_chocolate', 'white_chocolate', 'garlic_bread', 'cured_maize', 'nixtamal', 'masa', 'masa_flour', 'corn_tortilla', 'taco_shell', 'burrito', 'taco', 'salsa',
                 'tomato_sauce', 'nightshade_berry', 'stinky_soup', 'toast_with_jam', 'toast_with_butter', 'bacon', 'cooked_bacon', 'tomato_sauce_mix', 'vanilla_ice_cream', 'strawberry_ice_cream', 'chocolate_ice_cream', 'banana_split',
@@ -33,10 +33,10 @@ SIMPLE_BLOCKS: Dict[str, str] = {
 }
 COLORS = ('white', 'orange', 'magenta', 'light_blue', 'yellow', 'lime', 'pink', 'gray', 'light_gray', 'cyan', 'purple', 'blue', 'brown', 'green', 'red', 'black')
 BLOCK_ENTITIES = ('oven_bottom', 'oven_top', 'drying_mat', 'beehive', 'solar_drier', 'mixing_bowl', 'string', 'berry_bush', 'large_planter', 'bonsai_planter', 'trellis_planter', 'hanging_planter', 'quad_planter', 'climate_station', 'hydroponic_planter', 'vat', 'oven_hopper', 'ashtray', 'stovetop_grill', 'stovetop_pot', 'jarbnet', 'plate', 'keg', 'keg_sub', 'jarring_station', 'barrel_press', 'stomping_barrel', 'skep', 'centrifuge')
-EXTRA_FLUIDS = ('yeast_starter', 'coconut_milk', 'yak_milk', 'goat_milk', 'curdled_yak_milk', 'curdled_goat_milk', 'pina_colada', 'cream', 'chocolate', 'sugar_water', 'mead', 'soybean_oil')
+EXTRA_FLUIDS = ('yeast_starter', 'coconut_milk', 'yak_milk', 'goat_milk', 'curdled_yak_milk', 'curdled_goat_milk', 'pina_colada', 'cream', 'chocolate', 'sugar_water', 'mead', 'soybean_oil', 'whey')
 WINES = ('red', 'white', 'rose', 'sparkling', 'dessert')
 JARS = ('honey', 'compost', 'rotten_compost', 'guano')
-CHEESE_WHEELS = ('rajya_metok', 'cheddar', 'gouda', 'feta', 'chevre', 'shosha')
+CHEESE_WHEELS = ('rajya_metok', 'cheddar', 'gouda', 'feta', 'chevre', 'shosha', 'blue')
 FL_FRUITS = ('fig', 'pineapple', 'red_grapes', 'white_grapes')
 DEFAULT_FORGE_ORE_TAGS: Tuple[str, ...] = ('coal', 'diamond', 'emerald', 'gold', 'iron', 'lapis', 'netherite_scrap', 'quartz', 'redstone')
 STILL_BUSHES = {
@@ -303,6 +303,9 @@ DEFAULT_LANG = {
     'tfc.recipe.barrel.firmalife.barrel_sealed.food.milk_curd': 'Milk Curd',
     'tfc.recipe.barrel.firmalife.barrel_sealed.food.goat_curd': 'Goat Curd',
     'tfc.recipe.barrel.firmalife.barrel_sealed.food.yak_curd': 'Yak Curd',
+    'tfc.recipe.barrel.firmalife.barrel_sealed.food.ricotta': 'Ricotta',
+    'tfc.recipe.barrel.firmalife.barrel_sealed.food.mozzarella': 'Mozzarella',
+    'tfc.recipe.barrel.firmalife.barrel_sealed.blue_mold': 'Culturing Blue Mold',
     'tfc.recipe.barrel.firmalife.barrel_sealed.cheesecloth': 'Washing Cheesecloth',
     'tfc.recipe.barrel.firmalife.barrel_sealed.cork': 'Cork',
     'tfc.recipe.barrel.firmalife.barrel_sealed.curdled_goat_milk': 'Curdling Goat Milk',

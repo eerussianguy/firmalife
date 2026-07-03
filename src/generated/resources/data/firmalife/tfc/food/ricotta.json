@@ -1,9 +1,9 @@
 {
-  "dairy": 3.0,
+  "dairy": 1.5,
   "decay_modifier": 2.0,
   "hunger": 4,
   "ingredient": {
-    "tag": "firmalife:foods/cheeses"
+    "item": "firmalife:food/ricotta"
   },
   "saturation": 0.3
 }

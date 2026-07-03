@@ -30,6 +30,7 @@ import net.dries007.tfc.common.blocks.DecorationBlockHolder;
 import net.dries007.tfc.common.blocks.rock.Ore;
 import net.dries007.tfc.common.blocks.rock.Rock;
 import net.dries007.tfc.common.blocks.wood.Wood;
+import net.dries007.tfc.common.component.food.FoodCapability;
 import net.dries007.tfc.util.Metal;
 
 @SuppressWarnings("unused")
@@ -39,8 +40,16 @@ public final class FLCreativeTabs
 
     public static final TFCCreativeTabs.Id FIRMALIFE = register("firmalife", () -> new ItemStack(FLBlocks.CURED_OVEN_TOP.get(OvenType.BRICK).get()),  FLCreativeTabs::fillFirmalifeTab);
 
+    public static void setAllTabContentAsNonDecaying(BuildCreativeModeTabContentsEvent event)
+    {
+        FoodCapability.setTransientNonDecaying(event.getTab().getIconItem());
+        event.getParentEntries().forEach(FoodCapability::setTransientNonDecaying);
+        event.getSearchEntries().forEach(FoodCapability::setTransientNonDecaying);
+    }
+
     public static void fillFirmalifeTab(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output out)
     {
+        accept(out, FLItems.BLUE_MOLD);
         accept(out, FLItems.HONEY_JAR);
         accept(out, FLItems.COMPOST_JAR);
         accept(out, FLItems.ROTTEN_COMPOST_JAR);
@@ -208,6 +217,7 @@ public final class FLCreativeTabs
             accept(out, FLBlocks.GOUDA_WHEEL);
             accept(out, FLBlocks.FETA_WHEEL);
             accept(out, FLBlocks.SHOSHA_WHEEL);
+            accept(out, FLBlocks.BLUE_WHEEL);
         }
         else if (out.getTab() == TFCCreativeTabs.METAL.tab().get())
         {

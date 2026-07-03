@@ -6,7 +6,15 @@
       "item": "firmalife:beehive_frame"
     },
     {
-      "item": "firmalife:food/raw_honey"
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "firmalife:food/raw_honey"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
     }
   ],
   "result": {

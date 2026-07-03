@@ -1,0 +1,121 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "multipart": [
+    {
+      "when": {
+        "rack": true
+      },
+      "apply": {
+        "model": "tfc:block/barrel_rack"
+      }
+    },
+    {
+      "when": {
+        "age": "fresh",
+        "count": 1
+      },
+      "apply": {
+        "model": "firmalife:block/cheese/blue_fresh_1"
+      }
+    },
+    {
+      "when": {
+        "age": "fresh",
+        "count": 2
+      },
+      "apply": {
+        "model": "firmalife:block/cheese/blue_fresh_2"
+      }
+    },
+    {
+      "when": {
+        "age": "fresh",
+        "count": 3
+      },
+      "apply": {
+        "model": "firmalife:block/cheese/blue_fresh_3"
+      }
+    },
+    {
+      "when": {
+        "age": "fresh",
+        "count": 4
+      },
+      "apply": {
+        "model": "firmalife:block/cheese/blue_fresh_4"
+      }
+    },
+    {
+      "when": {
+        "age": "aged",
+        "count": 1
+      },
+      "apply": {
+        "model": "firmalife:block/cheese/blue_aged_1"
+      }
+    },
+    {
+      "when": {
+        "age": "aged",
+        "count": 2
+      },
+      "apply": {
+        "model": "firmalife:block/cheese/blue_aged_2"
+      }
+    },
+    {
+      "when": {
+        "age": "aged",
+        "count": 3
+      },
+      "apply": {
+        "model": "firmalife:block/cheese/blue_aged_3"
+      }
+    },
+    {
+      "when": {
+        "age": "aged",
+        "count": 4
+      },
+      "apply": {
+        "model": "firmalife:block/cheese/blue_aged_4"
+      }
+    },
+    {
+      "when": {
+        "age": "vintage",
+        "count": 1
+      },
+      "apply": {
+        "model": "firmalife:block/cheese/blue_vintage_1"
+      }
+    },
+    {
+      "when": {
+        "age": "vintage",
+        "count": 2
+      },
+      "apply": {
+        "model": "firmalife:block/cheese/blue_vintage_2"
+      }
+    },
+    {
+      "when": {
+        "age": "vintage",
+        "count": 3
+      },
+      "apply": {
+        "model": "firmalife:block/cheese/blue_vintage_3"
+      }
+    },
+    {
+      "when": {
+        "age": "vintage",
+        "count": 4
+      },
+      "apply": {
+        "model": "firmalife:block/cheese/blue_vintage_4"
+      }
+    }
+  ]
+}

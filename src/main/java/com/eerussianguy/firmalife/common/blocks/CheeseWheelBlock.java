@@ -5,6 +5,7 @@ import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.ClimateReceiver;
 import com.eerussianguy.firmalife.common.blockentities.ClimateType;
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
+import com.eerussianguy.firmalife.common.items.FLItems;
 import com.eerussianguy.firmalife.common.util.FoodAge;
 import com.eerussianguy.firmalife.config.FLConfig;
 import net.minecraft.core.BlockPos;
@@ -92,6 +93,16 @@ public class CheeseWheelBlock extends BottomSupportedDeviceBlock implements Clim
                 held.shrink(1);
             level.setBlockAndUpdate(pos, state.setValue(RACK, true));
             Helpers.playPlaceSound(player, level, pos, TFCBlocks.BARREL_RACK.get().defaultBlockState());
+            return ItemInteractionResult.sidedSuccess(level.isClientSide);
+        }
+        if (Helpers.isItem(held, FLItems.BLUE_MOLD.get()) && this != FLBlocks.BLUE_WHEEL.get() && state.getValue(AGE) == FoodAge.FRESH)
+        {
+            // Inoculating a fresh wheel with blue mold turns it into a blue cheese wheel, which then develops veining as it cellar-ages.
+            level.setBlockAndUpdate(pos, Helpers.copyProperties(FLBlocks.BLUE_WHEEL.get().defaultBlockState(), state));
+            if (!player.isCreative())
+                held.shrink(1);
+            Helpers.playPlaceSound(player, level, pos, FLBlocks.BLUE_WHEEL.get().defaultBlockState());
+            FLHelpers.resetCounter(level, pos);
             return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
         if (Helpers.isItem(held, TFCTags.Items.TOOLS_KNIFE))

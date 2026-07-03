@@ -83,6 +83,7 @@ public class FLTags
         public static final TagKey<Item> CAN_BE_PRESSED_LIKE_GRAPES = create("can_be_pressed_like_grapes");
         public static final TagKey<Item> COOKED_MEATS_AND_SUBSTITUTES = create("foods/cooked_meats_and_substitutes");
         public static final TagKey<Item> CHEESES = create("foods/cheeses");
+        public static final TagKey<Item> AGED_CHEESES = create("foods/aged_cheeses");
         public static final TagKey<Item> RAW_EGGS = create("foods/raw_eggs");
         public static final TagKey<Item> FEEDS_YEAST = create("feeds_yeast");
         public static final TagKey<Item> WASHABLE_FOODS = create("foods/washable");

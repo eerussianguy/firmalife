@@ -1,0 +1,9 @@
+{
+  "dairy": 2.0,
+  "decay_modifier": 2.0,
+  "hunger": 4,
+  "ingredient": {
+    "item": "firmalife:food/mozzarella"
+  },
+  "saturation": 0.3
+}
