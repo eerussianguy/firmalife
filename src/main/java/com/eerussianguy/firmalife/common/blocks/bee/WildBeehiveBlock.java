@@ -203,8 +203,8 @@ public class WildBeehiveBlock extends HorizontalDirectionalBlock implements IFor
         if (!level.isClientSide && projectile.mayInteract(level, pos) && projectile.mayBreak(level))
         {
             level.destroyBlock(pos, true, projectile);
-            angerAllNearby(state, level, pos);
         }
+        angerAllNearby(state, level, pos);
     }
 
     @Override
