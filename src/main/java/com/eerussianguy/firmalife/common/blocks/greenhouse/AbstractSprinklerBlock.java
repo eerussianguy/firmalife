@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import com.eerussianguy.firmalife.common.blockentities.ClimateReceiver;
 import com.eerussianguy.firmalife.common.blockentities.SprinklerBlockEntity;
 import com.eerussianguy.firmalife.common.blocks.FLStateProperties;
 import com.eerussianguy.firmalife.common.misc.FLParticles;
@@ -14,6 +15,8 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -21,6 +24,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.Nullable;
 
 import net.dries007.tfc.client.particle.FluidParticleOption;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
@@ -46,6 +50,17 @@ public class AbstractSprinklerBlock extends DeviceBlock implements HoeOverlayBlo
         this.dy = dy;
         this.particleOffset = particleOffset;
         registerDefaultState(getStateDefinition().any().setValue(STASIS, false));
+    }
+
+    @Override
+    public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack)
+    {
+        super.setPlacedBy(level, pos, state, placer, stack);
+        final ClimateReceiver receiver = ClimateReceiver.get(level, pos);
+        if (receiver != null)
+        {
+            receiver.findClimateStation(level, pos);
+        }
     }
 
     @Override

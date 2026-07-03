@@ -3,13 +3,12 @@ package com.eerussianguy.firmalife.common.blocks.greenhouse;
 import java.util.function.Consumer;
 import com.eerussianguy.firmalife.client.FLClientHelpers;
 import com.eerussianguy.firmalife.common.FLHelpers;
-import com.eerussianguy.firmalife.common.blockentities.ClimateType;
+import com.eerussianguy.firmalife.common.blockentities.ClimateReceiver;
 import com.eerussianguy.firmalife.common.blockentities.LargePlanterBlockEntity;
 import com.eerussianguy.firmalife.common.blocks.FLStateProperties;
 import com.eerussianguy.firmalife.common.util.Mechanics;
 import com.eerussianguy.firmalife.common.util.Plantable;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
@@ -123,14 +122,11 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
     @Override
     public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack)
     {
-        super.setPlacedBy(level, pos, state, placer, stack); // basically a convenience thing when you place next to another planter
-        for (Direction d : Helpers.DIRECTIONS)
+        super.setPlacedBy(level, pos, state, placer, stack);
+        final ClimateReceiver receiver = ClimateReceiver.get(level, pos);
+        if (receiver != null)
         {
-            final BlockPos rel = pos.relative(d);
-            if (level.getBlockEntity(rel) instanceof LargePlanterBlockEntity planter && planter.checkValid())
-            {
-                planter.setValid(level, rel, true, planter.getTier(), ClimateType.GREENHOUSE);
-            }
+            receiver.findClimateStation(level, pos);
         }
     }
 

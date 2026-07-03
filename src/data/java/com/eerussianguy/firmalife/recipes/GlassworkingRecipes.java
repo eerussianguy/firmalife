@@ -63,7 +63,7 @@ public interface GlassworkingRecipes extends Recipes
                 GlassOperation.SAW
             ),
             TFCItems.SILICA_GLASS_BATCH,
-            new ItemStack(FLItems.WINE_GLASS, 2)
+            new ItemStack(FLItems.WINE_GLASS, 6)
         );
     }
 

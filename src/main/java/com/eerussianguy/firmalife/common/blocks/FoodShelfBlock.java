@@ -1,9 +1,11 @@
 package com.eerussianguy.firmalife.common.blocks;
 
+import com.eerussianguy.firmalife.common.blockentities.ClimateReceiver;
 import com.eerussianguy.firmalife.common.blockentities.FLBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
@@ -12,6 +14,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.Nullable;
 
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 
@@ -25,6 +28,17 @@ public class FoodShelfBlock extends FourWayDeviceBlock
     public FoodShelfBlock(ExtendedProperties properties)
     {
         super(properties, InventoryRemoveBehavior.DROP);
+    }
+
+    @Override
+    public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack)
+    {
+        super.setPlacedBy(level, pos, state, placer, stack);
+        final ClimateReceiver receiver = ClimateReceiver.get(level, pos);
+        if (receiver != null)
+        {
+            receiver.findClimateStation(level, pos);
+        }
     }
 
     @Override

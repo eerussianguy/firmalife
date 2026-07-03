@@ -192,6 +192,7 @@ public class CheeseWheelBlock extends BottomSupportedDeviceBlock implements Clim
     {
         super.setPlacedBy(level, pos, state, placer, stack);
         FLHelpers.resetCounter(level, pos);
+        findClimateStation(level, pos);
     }
 
     @Override

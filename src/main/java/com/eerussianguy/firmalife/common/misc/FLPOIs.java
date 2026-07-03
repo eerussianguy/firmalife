@@ -21,6 +21,12 @@ public final class FLPOIs
         0, 1
     ));
 
+    public static final DeferredHolder<PoiType, PoiType> CLIMATE_STATIONS = TYPES.register("climate_stations", () -> new PoiType(ImmutableSet.<BlockState>builder()
+        .addAll(states(FLBlocks.CLIMATE_STATION.get()))
+        .build(),
+        0, 1
+    ));
+
     private static Iterable<BlockState> states(Block block)
     {
         return block.getStateDefinition().getPossibleStates();

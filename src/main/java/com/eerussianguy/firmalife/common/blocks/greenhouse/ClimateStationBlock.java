@@ -47,7 +47,7 @@ public class ClimateStationBlock extends DeviceBlock implements HoeOverlayBlock
     }
 
     @Nullable
-    private static Either<Mechanics.GreenhouseInfo, Set<BlockPos>> check(Level level, BlockPos pos, BlockState state)
+    public static Either<Mechanics.GreenhouseInfo, Set<BlockPos>> check(Level level, BlockPos pos, BlockState state)
     {
         final Mechanics.GreenhouseInfo info = Mechanics.getGreenhouse(level, pos, state);
         if (info != null)
