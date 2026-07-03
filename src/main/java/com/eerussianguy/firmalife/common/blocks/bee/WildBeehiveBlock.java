@@ -1,5 +1,6 @@
 package com.eerussianguy.firmalife.common.blocks.bee;
 
+import java.util.List;
 import java.util.function.Consumer;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blockentities.FLBeehiveBlockEntity;
@@ -17,6 +18,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -31,6 +33,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -86,6 +89,13 @@ public class WildBeehiveBlock extends HorizontalDirectionalBlock implements IFor
     public static boolean isWarmEnough(Level level, BlockPos pos)
     {
         return Climate.getInstantTemperature(level, pos) > BeeAbility.getMinTemperature(0);
+    }
+
+    public static void angerAllNearby(BlockState state, LevelAccessor level, BlockPos pos)
+    {
+        List<Player> list = level.getNearbyPlayers(TARGETING, null, new AABB(pos).inflate(15f));
+        if (state.getValue(BEES))
+            list.forEach(BaseBeehiveBlock::attack);
     }
 
     public static final VoxelShape SHAPE = Shapes.or(
@@ -146,8 +156,7 @@ public class WildBeehiveBlock extends HorizontalDirectionalBlock implements IFor
     {
         if (direction == Direction.UP && !canHangOn(neighborState))
         {
-            if (state.getValue(BEES))
-                level.getNearbyPlayers(TARGETING, null, new AABB(pos).inflate(15f)).forEach(BaseBeehiveBlock::attack);
+            angerAllNearby(state, level, pos);
             return Blocks.AIR.defaultBlockState();
         }
         return state;
@@ -184,6 +193,17 @@ public class WildBeehiveBlock extends HorizontalDirectionalBlock implements IFor
             {
                 WildBeehiveBlock.honeyDripParticle(level, pos, state);
             }
+        }
+    }
+
+    @Override
+    protected void onProjectileHit(Level level, BlockState state, BlockHitResult hit, Projectile projectile)
+    {
+        final BlockPos pos = hit.getBlockPos();
+        if (!level.isClientSide && projectile.mayInteract(level, pos) && projectile.mayBreak(level))
+        {
+            level.destroyBlock(pos, true, projectile);
+            angerAllNearby(state, level, pos);
         }
     }
 
