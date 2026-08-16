@@ -246,8 +246,6 @@ public final class Mechanics
             {
                 // Nutrients are consumed first, since they are independent of growth or health.
                 // As long as the crop exists it consumes nutrients.
-                // Nutrients are consumed first, since they are independent of growth or health.
-                // As long as the crop exists it consumes nutrients.
 
                 // Nutrients required for 100% yield multiplier
                 // Negative values are nutrients restored to soil
@@ -283,16 +281,16 @@ public final class Mechanics
                     );
 
                     // Won't consume a nutrient beyond the amount required by the crop
-                    final float maxNToConsume = nForGrowth - planter.getNAbsorbed();
-                    final float maxPToConsume = pForGrowth - planter.getPAbsorbed();
-                    final float maxKToConsume = kForGrowth - planter.getKAbsorbed();
+                    final float maxNToConsume = nForGrowth - planter.getNAbsorbed(slot);
+                    final float maxPToConsume = pForGrowth - planter.getPAbsorbed(slot);
+                    final float maxKToConsume = kForGrowth - planter.getKAbsorbed(slot);
 
                     final float nConsumed = planter.consumeNutrients(Math.min(nRequired, maxNToConsume), FarmlandBlockEntity.NutrientType.NITROGEN);
                     final float pConsumed = planter.consumeNutrients(Math.min(pRequired, maxPToConsume), FarmlandBlockEntity.NutrientType.PHOSPHOROUS);
                     final float kConsumed = planter.consumeNutrients(Math.min(kRequired, maxKToConsume), FarmlandBlockEntity.NutrientType.POTASSIUM);
 
                     // Adds new nutrients back to the crop
-                    planter.addNutrients(nConsumed, pConsumed, kConsumed);
+                    planter.addNutrients(slot, nConsumed, pConsumed, kConsumed);
 
                     nutrientsConsumed += nConsumed + pConsumed + kConsumed;
                 }

@@ -230,6 +230,7 @@ public class LargePlanterBlock extends DeviceBlock implements HoeOverlayBlock
 
             planter.setGrowth(slot, planter.resetGrowthTo());
             planter.setYield(slot, 0);
+            planter.resetAbsorbed(slot); // The crop starts over, so its nutrient uptake does too
             return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;

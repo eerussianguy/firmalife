@@ -20,6 +20,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.Nullable;
 
+import net.dries007.tfc.common.blockentities.CropBlockEntity;
 import net.dries007.tfc.common.blockentities.FarmlandBlockEntity;
 import net.dries007.tfc.common.blockentities.IFarmland;
 import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
@@ -40,7 +41,12 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     private Plantable cachedPlant;
     private float growth, yield;
 
-    private float nAbsorbed, pAbsorbed, kAbsorbed, water;
+    /** The nutrient content of the planter itself, as {@link IFarmland}. */
+    private float nContent, pContent, kContent;
+    /** How much of each nutrient the crop growing in that slot has taken up so far, like {@link CropBlockEntity} */
+    private final float[] nAbsorbed, pAbsorbed, kAbsorbed;
+
+    private float water;
     private long lastUpdateTick;
     private long lastGrowthTick;
     protected boolean climateValid;
@@ -60,7 +66,10 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
         yield = 0;
         water = 0;
         tier = 0;
-        nAbsorbed = pAbsorbed = kAbsorbed = 0;
+        nContent = pContent = kContent = 0;
+        nAbsorbed = new float[slots()];
+        pAbsorbed = new float[slots()];
+        kAbsorbed = new float[slots()];
         lastUpdateTick = Integer.MIN_VALUE;
         lastGrowthTick = Calendars.SERVER.getTicks();
     }
@@ -133,6 +142,12 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
         lastGrowthTick = nbt.getLong("lastGrowthTick");
         climateValid = nbt.getBoolean("climateValid");
         loadNutrientsWithoutSync(nbt);
+        for (int slot = 0; slot < nAbsorbed.length; slot++)
+        {
+            nAbsorbed[slot] = readAbsorbed(nbt, "nAbsorbed" + slot);
+            pAbsorbed[slot] = readAbsorbed(nbt, "pAbsorbed" + slot);
+            kAbsorbed[slot] = readAbsorbed(nbt, "kAbsorbed" + slot);
+        }
         water = nbt.getFloat("water");
         tier = nbt.getInt("tier");
 
@@ -143,6 +158,13 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     protected void loadUnique(CompoundTag nbt)
     {
         growth = nbt.getFloat("growth");
+        yield = nbt.getFloat("yield");
+    }
+
+    // todo 26.1: remove
+    private static float readAbsorbed(CompoundTag nbt, String key)
+    {
+        return nbt.contains(key, CompoundTag.TAG_FLOAT) ? nbt.getFloat(key) : 0f;
     }
 
     @Override
@@ -153,6 +175,12 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
         nbt.putLong("lastGrowthTick", lastGrowthTick);
         nbt.putBoolean("climateValid", climateValid);
         saveNutrients(nbt);
+        for (int slot = 0; slot < nAbsorbed.length; slot++)
+        {
+            nbt.putFloat("nAbsorbed" + slot, nAbsorbed[slot]);
+            nbt.putFloat("pAbsorbed" + slot, pAbsorbed[slot]);
+            nbt.putFloat("kAbsorbed" + slot, kAbsorbed[slot]);
+        }
         nbt.putFloat("water", water);
         nbt.putInt("tier", tier);
 
@@ -162,6 +190,7 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     protected void saveUnique(CompoundTag nbt)
     {
         nbt.putFloat("growth", growth);
+        nbt.putFloat("yield", yield);
     }
 
     public void updateCache()
@@ -269,22 +298,16 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     {
         return switch (type)
         {
-            case NITROGEN -> nAbsorbed;
-            case PHOSPHOROUS -> pAbsorbed;
-            case POTASSIUM -> kAbsorbed;
+            case NITROGEN -> nContent;
+            case PHOSPHOROUS -> pContent;
+            case POTASSIUM -> kContent;
         };
     }
 
     @Override
     public void setNutrient(FarmlandBlockEntity.NutrientType type, float amount)
     {
-        amount = Mth.clamp(amount, 0f, 1f);
-        switch (type)
-        {
-            case NITROGEN -> nAbsorbed = amount;
-            case POTASSIUM -> kAbsorbed = amount;
-            case PHOSPHOROUS -> pAbsorbed = amount;
-        }
+        setNutrientWithoutSync(type, amount);
         markForSync();
     }
 
@@ -294,32 +317,42 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
         amount = Mth.clamp(amount, 0f, 1f);
         switch (type)
         {
-            case NITROGEN -> nAbsorbed = amount;
-            case POTASSIUM -> kAbsorbed = amount;
-            case PHOSPHOROUS -> pAbsorbed = amount;
+            case NITROGEN -> nContent = amount;
+            case POTASSIUM -> kContent = amount;
+            case PHOSPHOROUS -> pContent = amount;
         }
     }
 
-    public float getNAbsorbed()
+    public float getNAbsorbed(int slot)
     {
-        return nAbsorbed;
+        return nAbsorbed[slot];
     }
 
-    public float getPAbsorbed()
+    public float getPAbsorbed(int slot)
     {
-        return pAbsorbed;
+        return pAbsorbed[slot];
     }
 
-    public float getKAbsorbed()
+    public float getKAbsorbed(int slot)
     {
-        return kAbsorbed;
+        return kAbsorbed[slot];
     }
 
-    public void addNutrients(float n, float p, float k)
+    /**
+     * Records nutrients taken up out of the planter by the crop in {@code slot}. This is <strong>not</strong> the same as
+     * {@link #setNutrient}, which is the planter's own nutrient content - the amount recorded here is what was removed from it.
+     */
+    public void addNutrients(int slot, float n, float p, float k)
     {
-        this.nAbsorbed += n;
-        this.pAbsorbed += p;
-        this.kAbsorbed += k;
+        nAbsorbed[slot] += n;
+        pAbsorbed[slot] += p;
+        kAbsorbed[slot] += k;
+        markForSync();
+    }
+
+    public void resetAbsorbed(int slot)
+    {
+        nAbsorbed[slot] = pAbsorbed[slot] = kAbsorbed[slot] = 0;
         markForSync();
     }
 
@@ -350,7 +383,12 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     @Override
     public void setAndUpdateSlots(int slot)
     {
+        final Plantable previous = slot >= 0 && slot < slots() ? getPlantable(slot) : null;
         updateCache();
+        if (slot >= 0 && slot < slots() && previous != getPlantable(slot))
+        {
+            resetAbsorbed(slot); // A different crop is in the slot now, so it has taken up nothing yet
+        }
     }
 
     @Override

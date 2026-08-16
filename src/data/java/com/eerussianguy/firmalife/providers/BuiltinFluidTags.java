@@ -6,6 +6,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.stream.Stream;
 import com.eerussianguy.firmalife.Accessors;
 import com.eerussianguy.firmalife.FirmaLife;
+import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blocks.FLFluids;
 import com.eerussianguy.firmalife.common.util.ExtraFluid;
 import net.minecraft.core.HolderLookup;
@@ -66,7 +67,7 @@ public class BuiltinFluidTags extends TagsProvider<Fluid> implements Accessors
         ).addTag(WINE);
         tag(TFCTags.Fluids.DRINKABLES).add(
             FLFluids.EXTRA_FLUIDS.get(ExtraFluid.CHOCOLATE).getSource()
-        );
+        ).addTag(MILKS);
         tag(TFCTags.Fluids.INGREDIENTS).add(FLFluids.EXTRA_FLUIDS);
         tag(TFCTags.Fluids.MOLTEN_METALS).add(FLFluids.METALS);
         FLFluids.METALS.forEach((metal, fluid) -> {
