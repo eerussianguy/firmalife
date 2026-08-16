@@ -28,7 +28,7 @@ public class FLGrowingFruitTreeBranchBlock extends GrowingFruitTreeBranchBlock
     {
         int hydration = getFruitBranchHydration(level, pos);
         float temp = Climate.getAverageTemperature(level, pos);
-        if (!this.climateRange.get().checkBoth(hydration, temp, false) && !(Boolean)state.getValue(NATURAL))
+        if (!this.climateRange.get().checkBoth(hydration, temp, false) && !state.getValue(NATURAL))
         {
             FLTickingPlantBlockEntity.reset(level, pos);
         }

@@ -109,7 +109,7 @@ public class BuiltinBlockTags extends TagsProvider<Block> implements Accessors
             .add(FLBlocks.SMALL_CHROMITE);
         tag(TFCTags.Blocks.PROSPECTABLE)
             .add2(FLBlocks.CHROMITE_ORES);
-        tag(TFCTags.Blocks.FRUIT_TREE_BRANCH).add(FLBlocks.FRUIT_TREE_BRANCHES);
+        tag(TFCTags.Blocks.FRUIT_TREE_BRANCH).add(FLBlocks.FRUIT_TREE_BRANCHES).add(FLBlocks.FRUIT_TREE_GROWING_BRANCHES);
         tag(TFCTags.Blocks.FRUIT_TREE_LEAVES).add(FLBlocks.FRUIT_TREE_LEAVES);
         tag(TFCTags.Blocks.FRUIT_TREE_SAPLING).add(FLBlocks.FRUIT_TREE_SAPLINGS);
 
