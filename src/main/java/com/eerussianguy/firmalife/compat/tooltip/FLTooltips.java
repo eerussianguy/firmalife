@@ -2,7 +2,29 @@ package com.eerussianguy.firmalife.compat.tooltip;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import com.eerussianguy.firmalife.common.FLHelpers;
+import com.eerussianguy.firmalife.common.blockentities.BarrelPressBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.ClimateStationBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.CompostTumblerBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.DryingMatBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.FoodShelfBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.JarbnetBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.KegBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.OvenLike;
+import com.eerussianguy.firmalife.common.blockentities.OvenTopBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.StovetopPotBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.StringBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.VatBlockEntity;
+import com.eerussianguy.firmalife.common.blocks.CheeseWheelBlock;
+import com.eerussianguy.firmalife.common.blocks.CompostTumblerBlock;
+import com.eerussianguy.firmalife.common.blocks.DryingMatBlock;
+import com.eerussianguy.firmalife.common.blocks.FoodShelfBlock;
+import com.eerussianguy.firmalife.common.blocks.HangerBlock;
+import com.eerussianguy.firmalife.common.blocks.JarbnetBlock;
+import com.eerussianguy.firmalife.common.blocks.KegCoreBlock;
+import com.eerussianguy.firmalife.common.blocks.KegSubBlock;
+import com.eerussianguy.firmalife.common.blocks.SolarDrierBlock;
+import com.eerussianguy.firmalife.common.blocks.StringBlock;
 import com.eerussianguy.firmalife.common.blocks.greenhouse.ClimateStationBlock;
 import com.eerussianguy.firmalife.common.blocks.greenhouse.PumpingStationBlock;
 import com.eerussianguy.firmalife.common.blocks.oven.AbstractOvenBlock;
@@ -13,7 +35,9 @@ import com.eerussianguy.firmalife.common.blocks.oven.StovetopPotBlock;
 import com.eerussianguy.firmalife.common.blocks.oven.VatBlock;
 import com.eerussianguy.firmalife.common.blocks.plant.FLFruitTreeSaplingBlock;
 import com.eerussianguy.firmalife.common.capabilities.wine.WineType;
+import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.common.recipes.WrappedHeatingRecipe;
+import com.eerussianguy.firmalife.config.FLConfig;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -21,12 +45,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-
-import com.eerussianguy.firmalife.common.FLHelpers;
-import com.eerussianguy.firmalife.common.blockentities.*;
-import com.eerussianguy.firmalife.common.blocks.*;
-import com.eerussianguy.firmalife.common.items.FLFoodTraits;
-import com.eerussianguy.firmalife.config.FLConfig;
 import net.neoforged.neoforge.items.IItemHandler;
 
 import net.dries007.tfc.common.blockentities.TickCounterBlockEntity;
@@ -291,10 +309,12 @@ public final class FLTooltips
                     tooltip.accept(Component.translatable("firmalife.cellar.invalid_block"));
                 }
                 IItemHandler inventory = Helpers.getCapability(BlockCapabilities.ITEM, shelf);
-                if(inventory != null) {
+                if (inventory != null)
+                {
                     ItemStack stack = inventory.getStackInSlot(0);
                     IFood food = FoodCapability.get(stack);
-                    if (food != null) {
+                    if (food != null)
+                    {
                         List<Component> foodTooltip = new ArrayList<>();
                         food.addTooltipInfo(stack, foodTooltip::add);
                         foodTooltip.forEach(tooltip);

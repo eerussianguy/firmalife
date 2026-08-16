@@ -444,7 +444,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
             return Integer.MAX_VALUE;
         if (bee.hasParasiticInfection())
             return Integer.MAX_VALUE;
-        final float geneticChance = (10 - bee.getAbility(BeeAbility.PRODUCTION)) / 10f * 0.7f;
+        final float geneticChance = bee.getAbility(BeeAbility.PRODUCTION) / 10f * 0.7f;
         final float flowersChance = Mth.clamp(Mth.sqrt(flowers / 60f), 0f, 0.3f);
         return Mth.ceil(4f / (geneticChance + flowersChance));
     }
@@ -625,7 +625,7 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
     public void onSlotTake(Player player, int slot, ItemStack stack)
     {
         assert level != null;
-        if (BaseBeehiveBlock.shouldAnger(level, worldPosition))
+        if (BaseBeehiveBlock.shouldAnger(level, worldPosition, this))
         {
             BaseBeehiveBlock.attack(player);
         }

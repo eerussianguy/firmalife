@@ -36,24 +36,35 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
+import net.dries007.tfc.client.overworld.SolarCalculator;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.devices.FirepitBlock;
 import net.dries007.tfc.common.blocks.soil.HoeOverlayBlock;
 import net.dries007.tfc.util.Helpers;
+import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.climate.Climate;
 
 public class BaseBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBlock
 {
+
     public static boolean shouldAnger(Level level, BlockPos pos)
     {
-        if (level.getBrightness(LightLayer.SKY, pos.above()) < 2)
-        {
+        return shouldAnger(level, pos, level.getBlockEntity(pos));
+    }
+
+    public static boolean shouldAnger(Level level, BlockPos pos, @Nullable BlockEntity blockEntity)
+    {
+        final int time = SolarCalculator.getSunBasedDayTime(pos.getZ(), Climate.get(level).hemisphereScale(), Calendars.get(level).getCalendarFractionOfYear(), Calendars.get(level).getCalendarFractionOfDay());
+        if (time > 12000)
             return false;
-        }
         if (hasFirepit(level, pos)) return false;
-        return level.getBlockEntity(pos, FLBlockEntities.BEEHIVE.get()).map(hive -> {
+        if (blockEntity instanceof FLBeehiveBlockEntity hive)
+        {
+            if (!hive.getBee().hasQueen())
+                return false;
             return level.random.nextFloat() > hive.getBee().getAbility(BeeAbility.CALMNESS) / 10f;
-        }).orElse(false);
+        }
+        return false;
     }
 
     public static boolean hasFirepit(Level level, BlockPos pos)
@@ -157,7 +168,7 @@ public class BaseBeehiveBlock extends FourWayDeviceBlock implements HoeOverlayBl
     @Override
     public void playerDestroy(Level level, Player player, BlockPos pos, BlockState state, @Nullable BlockEntity entity, ItemStack tool)
     {
-        if (BaseBeehiveBlock.shouldAnger(level, pos))
+        if (BaseBeehiveBlock.shouldAnger(level, pos, entity))
         {
             attack(player);
         }
