@@ -213,15 +213,17 @@ public class KegRecipe
 
             // Output items
             // All output items, and then remaining input items, get inserted into the output overflow
-            final ItemStack outputItem = recipe.getOutputItem().getSingleStack(stacks.getFirst());
+            // The recipe may have no item input at all (i.e. milk -> curdled milk), in which case there is no input stack to modify
+            final ItemStack firstStack = stacks.isEmpty() ? ItemStack.EMPTY : stacks.getFirst();
+            final ItemStack outputItem = recipe.getOutputItem().getSingleStack(firstStack);
             if (!outputItem.isEmpty())
             {
                 Helpers.consumeInStackSizeIncrements(outputItem, multiplier * outputItem.getCount(), inventory::insertItemWithOverflow);
             }
             int remainingItemCount = accumulatedCount - multiplier * recipe.getInputItem().count();
-            while (remainingItemCount > 0)
+            while (remainingItemCount > 0 && !firstStack.isEmpty())
             {
-                final ItemStack remain = stacks.getFirst().copy();
+                final ItemStack remain = firstStack.copy();
                 remain.setCount(Math.min(remain.getMaxStackSize(), remainingItemCount));
                 remainingItemCount -= remain.getCount();
                 inventory.insertItemWithOverflow(remain);
@@ -270,7 +272,7 @@ public class KegRecipe
         if (onUnseal == null)
             return;
         inventory.whileMutable(() -> {
-            for (int i = KegBlockEntity.SLOT_INPUT_START; i < KegBlockEntity.SLOT_INPUT_END; i++)
+            for (int i = KegBlockEntity.SLOT_INPUT_START; i <= KegBlockEntity.SLOT_INPUT_END; i++)
             {
                 if (recipe.getInputItem().test(inventory.getStackInSlot(i)))
                 {

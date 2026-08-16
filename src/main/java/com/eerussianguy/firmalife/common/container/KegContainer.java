@@ -88,9 +88,12 @@ public class KegContainer extends BlockEntityContainer<KegBlockEntity> implement
 
         return switch (typeOf(slotIndex))
         {
+            // N.B. the end index here *must* be the end of the keg's own slots. `stack` is the same object as the
+            // clicked slot's contents, so if the player inventory is included in the range, the stack gets merged
+            // into itself and duplicates.
             case MAIN_INVENTORY, HOTBAR -> containerSlot
                 ? !moveItemStackTo(stack, KegBlockEntity.SLOT_FLUID_CONTAINER_IN, KegBlockEntity.SLOT_FLUID_CONTAINER_IN + 1, false)
-                : !moveItemStackTo(stack, KegBlockEntity.SLOT_INPUT_START, slots.size(), false);
+                : !moveItemStackTo(stack, KegBlockEntity.SLOT_INPUT_START, KegBlockEntity.SLOT_INPUT_END + 1, false);
             case CONTAINER -> !moveItemStackTo(stack, containerSlots, slots.size(), false);
         };
     }

@@ -79,19 +79,25 @@ public class KegBlockEntity extends TickableInventoryBlockEntity<KegBlockEntity.
             barrel.updateFluidIOSlots();
         }
 
-        // If the barrel contains excess stacks, and the main slot is empty, populate the main slot from the excess
+        // If the barrel contains excess stacks, try and move them back into the inventory. Anything that doesn't fit
+        // stays in the excess - note that the excess must be *replaced*, not appended to, as the stacks we just
+        // inserted have already been consumed.
         final List<ItemStack> excess = barrel.inventory.excess;
-        final List<ItemStack> leftover = new ArrayList<>();
         if (!excess.isEmpty())
         {
-            for (ItemStack stack : excess)
-            {
-                final ItemStack left = Helpers.insertSlots(barrel.inventory, stack, SLOT_INPUT_START, SLOT_INPUT_END + 1);
-                if (!left.isEmpty())
-                    leftover.add(left);
-            }
+            final List<ItemStack> leftover = new ArrayList<>();
+            barrel.inventory.whileMutable(() -> {
+                for (ItemStack stack : excess)
+                {
+                    final ItemStack left = Helpers.insertSlots(barrel.inventory, stack, SLOT_INPUT_START, SLOT_INPUT_END + 1);
+                    if (!left.isEmpty())
+                        leftover.add(left);
+                }
+            });
+            excess.clear();
+            excess.addAll(leftover);
+            barrel.markForSync();
         }
-        excess.addAll(leftover);
 
         final SealedBarrelRecipe recipe = barrel.getRecipe();
         final boolean sealed = state.getValue(KegCoreBlock.SEALED);
