@@ -1,7 +1,7 @@
 package com.eerussianguy.firmalife.common.blocks.plant;
 
 import java.util.function.Supplier;
-import com.eerussianguy.firmalife.common.blockentities.FLTickCounterBlockEntity;
+import com.eerussianguy.firmalife.common.blockentities.FLTickingPlantBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.LivingEntity;
@@ -14,7 +14,6 @@ import net.minecraft.world.ticks.TickPriority;
 import org.jetbrains.annotations.Nullable;
 
 import net.dries007.tfc.common.TFCTags;
-import net.dries007.tfc.common.blockentities.TickCounterBlockEntity;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.TFCBlockStateProperties;
 import net.dries007.tfc.common.blocks.plant.fruit.FruitTreeSaplingBlock;
@@ -32,7 +31,14 @@ public class FLFruitTreeSaplingBlock extends FruitTreeSaplingBlock
     @Override
     public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack)
     {
-        FLTickCounterBlockEntity.reset(level, pos);
+        // Same as the parent, but against our own block entity type, as the parent's static helpers only resolve TFC's
+        final BlockPos downPos = pos.below();
+        final BlockState downState = level.getBlockState(downPos);
+        if (Helpers.isBlock(downState, TFCTags.Blocks.FRUIT_TREE_BRANCH))
+        {
+            FLTickingPlantBlockEntity.setStemPos(level, pos, findBaseOfTree(level, downPos, downState));
+        }
+        FLTickingPlantBlockEntity.reset(level, pos);
         super.setPlacedBy(level, pos, state, placer, stack);
     }
 
@@ -43,8 +49,13 @@ public class FLFruitTreeSaplingBlock extends FruitTreeSaplingBlock
         int internalSapling = onBranch ? 3 : state.getValue(TFCBlockStateProperties.SAPLINGS);
         if (internalSapling == 1 && random.nextBoolean()) internalSapling += 1;
         level.setBlockAndUpdate(pos, block.get().defaultBlockState().setValue(PipeBlock.DOWN, true).setValue(TFCBlockStateProperties.SAPLINGS, internalSapling).setValue(TFCBlockStateProperties.STAGE_3, onBranch ? 1 : 0));
-        FLTickCounterBlockEntity.reset(level, pos);
-        TickCounterBlockEntity.addTicks(level, pos, ticksToAdd);
-        level.scheduleTick(pos, this.block.get(), 20, TickPriority.NORMAL);
+        // The following carries over time since planting the sapling block to the growth of the tree
+        if (level.getBlockEntity(pos) instanceof FLTickingPlantBlockEntity branch)
+        {
+            branch.resetCounter();
+            branch.increaseCounter(ticksToAdd);
+            branch.setStemPos(stemPos);
+        }
+        level.scheduleTick(pos, block.get(), 20, TickPriority.NORMAL);
     }
 }

@@ -47,8 +47,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.items.IItemHandler;
 
-import net.dries007.tfc.common.blockentities.TickCounterBlockEntity;
-import net.dries007.tfc.common.blocks.plant.fruit.FruitTreeSaplingBlock;
 import net.dries007.tfc.common.capabilities.BlockCapabilities;
 import net.dries007.tfc.common.component.food.FoodCapability;
 import net.dries007.tfc.common.component.food.FoodTrait;
@@ -82,7 +80,6 @@ public final class FLTooltips
             register(r, "vat", VAT, VatBlock.class);
             register(r, "tumbler", TUMBLER, CompostTumblerBlock.class);
             register(r, "climate_station", CLIMATE_STATION, ClimateStationBlock.class);
-            register(r, "fruit_tree_sapling", FRUIT_TREE_SAPLING, FLFruitTreeSaplingBlock.class);
             register(r, "jarbnet", JARBNET, JarbnetBlock.class);
             register(r, "barrel_press", BARREL_PRESS, JarbnetBlock.class);
             register(r, "pumping_station", BlockEntityTooltips.ROTATING, PumpingStationBlock.class);
@@ -385,13 +382,6 @@ public final class FLTooltips
             if (!state.getValue(AbstractOvenBlock.HAS_CHIMNEY))
             {
                 tooltip.accept(Component.translatable("firmalife.jade.no_chimney").withStyle(ChatFormatting.RED));
-            }
-        };
-
-        public static final BlockEntityTooltip FRUIT_TREE_SAPLING = (level, state, pos, entity, tooltip) -> {
-            if (entity instanceof TickCounterBlockEntity counter && state.getBlock() instanceof FruitTreeSaplingBlock sapling)
-            {
-                timeLeft(level, tooltip, sapling.getTicksToGrow() - counter.getTicksSinceUpdate(), Component.translatable("tfc.jade.ready_to_grow"));
             }
         };
 

@@ -359,7 +359,6 @@ DEFAULT_LANG = {
     'firmalife.jade.has_firepit': 'Has an eligible firepit',
     'firmalife.jade.no_firepit': 'No eligible firepit detected',
 
-    'config.jade.plugin_firmalife.fruit_tree_sapling': 'Fruit Tree Sapling',
     'config.jade.plugin_firmalife.drying_mat': 'Drying Mat',
     'config.jade.plugin_firmalife.solar_drier': 'Solar Drier',
     'config.jade.plugin_firmalife.string': 'String',

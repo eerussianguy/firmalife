@@ -50,7 +50,7 @@ public class FLFruitTreeFeature extends Feature<BlockStateConfiguration>
             int saplings = Mth.nextInt(rand, 2, 4);
             BlockState branch = config.state.getBlock().defaultBlockState().setValue(GrowingFruitTreeBranchBlock.SAPLINGS, saplings);
             setBlock(level, mutablePos, branch);
-            level.getBlockEntity(mutablePos, FLBlockEntities.TICK_COUNTER.get()).ifPresent(entity -> entity.increaseCounter(ICalendar.CALENDAR_TICKS_IN_DAY * 300));
+            level.getBlockEntity(mutablePos, FLBlockEntities.TICKING_PLANT.get()).ifPresent(entity -> entity.increaseCounter(ICalendar.CALENDAR_TICKS_IN_DAY * 300));
             level.scheduleTick(mutablePos, branch.getBlock(), 1);
             return true;
         }

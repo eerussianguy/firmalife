@@ -20,7 +20,10 @@ public class FLBlockEntities
 
     public static final Id<FLTickCounterBlockEntity> TICK_COUNTER = register("tick_counter", FLTickCounterBlockEntity::new, Stream.of(
         Stream.of(FLBlocks.CHEDDAR_WHEEL, FLBlocks.CHEVRE_WHEEL, FLBlocks.FETA_WHEEL, FLBlocks.SHOSHA_WHEEL, FLBlocks.RAJYA_METOK_WHEEL, FLBlocks.GOUDA_WHEEL, FLBlocks.BLUE_WHEEL),
-        FLBlocks.JACK_O_LANTERNS.values().stream(),
+        FLBlocks.JACK_O_LANTERNS.values().stream()
+    ).flatMap(e -> e));
+
+    public static final Id<FLTickingPlantBlockEntity> TICKING_PLANT = register("ticking_plant", FLTickingPlantBlockEntity::new, Stream.of(
         FLBlocks.FRUIT_TREE_SAPLINGS.values().stream(),
         FLBlocks.FRUIT_TREE_GROWING_BRANCHES.values().stream()
     ).flatMap(e -> e));

@@ -45,7 +45,7 @@ public final class FLFruitBlocks
 
         public Block createSapling()
         {
-            return new FLFruitTreeSaplingBlock(ExtendedProperties.of().noCollission().randomTicks().strength(0).sound(SoundType.GRASS).blockEntity(FLBlockEntities.TICK_COUNTER).flammableLikeLeaves(), FLBlocks.FRUIT_TREE_GROWING_BRANCHES.get(this), 8 * ICalendar.CALENDAR_TICKS_IN_DAY, FLClimateRanges.FRUIT_TREES.get(this), stages);
+            return new FLFruitTreeSaplingBlock(ExtendedProperties.of().noCollission().randomTicks().strength(0).sound(SoundType.GRASS).blockEntity(FLBlockEntities.TICKING_PLANT).flammableLikeLeaves(), FLBlocks.FRUIT_TREE_GROWING_BRANCHES.get(this), 8 * ICalendar.CALENDAR_TICKS_IN_DAY, FLClimateRanges.FRUIT_TREES.get(this), stages);
         }
 
         public Block createPottedSapling()
@@ -65,7 +65,7 @@ public final class FLFruitBlocks
 
         public Block createGrowingBranch()
         {
-            return new FLGrowingFruitTreeBranchBlock(ExtendedProperties.of().mapColor(MapColor.WOOD).sound(SoundType.SCAFFOLDING).randomTicks().strength(1.0f).blockEntity(FLBlockEntities.TICK_COUNTER).flammableLikeLogs(), FLBlocks.FRUIT_TREE_BRANCHES.get(this), FLBlocks.FRUIT_TREE_LEAVES.get(this), FLClimateRanges.FRUIT_TREES.get(this));
+            return new FLGrowingFruitTreeBranchBlock(ExtendedProperties.of().mapColor(MapColor.WOOD).sound(SoundType.SCAFFOLDING).randomTicks().strength(1.0f).blockEntity(FLBlockEntities.TICKING_PLANT).flammableLikeLogs(), FLBlocks.FRUIT_TREE_BRANCHES.get(this), FLBlocks.FRUIT_TREE_LEAVES.get(this), FLClimateRanges.FRUIT_TREES.get(this));
         }
     }
 
