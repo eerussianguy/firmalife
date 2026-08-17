@@ -80,10 +80,10 @@ public class BigBarrelBlockEntity extends InventoryBlockEntity<BigBarrelBlockEnt
     public void setAndUpdateSlots(int slot)
     {
         super.setAndUpdateSlots(slot);
-        // Also react to the output slot so that removing a filled container triggers the next one in an input stack
-        // to be filled. This is safe alongside the assignment order in updateFluidIOSlots(): during that transfer the
-        // output slot is only ever set to a non-empty stack, so the guard there blocks re-entry until it is cleared.
-        if (slot == SLOT_FLUID_CONTAINER_IN || slot == SLOT_FLUID_CONTAINER_OUT)
+        // this one is a little confusing
+        // basically this needs to be server only because syncs happen later
+        // otherwise we risk the client will enter here too and sync too early thus writing an empty stack (visually)
+        if (level != null && !level.isClientSide && (slot == SLOT_FLUID_CONTAINER_IN || slot == SLOT_FLUID_CONTAINER_OUT))
         {
             updateFluidIOSlots();
         }
@@ -101,7 +101,7 @@ public class BigBarrelBlockEntity extends InventoryBlockEntity<BigBarrelBlockEnt
         final ItemStack input = inventory.getStackInSlot(SLOT_FLUID_CONTAINER_IN);
         if (!input.isEmpty() && inventory.getStackInSlot(SLOT_FLUID_CONTAINER_OUT).isEmpty())
         {
-            FluidHelpers.transferBetweenBlockEntityAndItem(input, this, level, worldPosition, (newOriginalStack, newContainerStack) -> {
+            final boolean transferred = FluidHelpers.transferBetweenBlockEntityAndItem(input, this, level, worldPosition, (newOriginalStack, newContainerStack) -> {
                 // Note: the output slot must be assigned *before* the input slot. updateFluidIOSlots() is invoked
                 // synchronously from setAndUpdateSlots() when the input slot changes, so if the input slot were set
                 // first, the still-empty output slot would let it re-enter and transfer again for each item in a
@@ -119,6 +119,10 @@ public class BigBarrelBlockEntity extends InventoryBlockEntity<BigBarrelBlockEnt
                     inventory.setStackInSlot(SLOT_FLUID_CONTAINER_IN, newOriginalStack);
                 }
             });
+            if (transferred)
+            {
+                markForSync();
+            }
         }
     }
 
