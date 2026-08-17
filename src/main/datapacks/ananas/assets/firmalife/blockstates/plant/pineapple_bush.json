@@ -1,0 +1,53 @@
+{
+	"comments": "To use the alternate models for versions higher than 1.21.11, replace the pineapple_bush json file with this one.",
+	"variants": {
+    "lifecycle=healthy,stage=0": [
+		{ "model": "firmalife:block/plant/1.21.11_model/pineapple_bush_0_1.21.11", "weight": 10 },
+		{ "model": "firmalife:block/plant/1.21.11_model/pineapple_bush_0_1_1.21.11", "weight": 5 }
+	],
+    "lifecycle=healthy,stage=1": [
+		{ "model": "firmalife:block/plant/1.21.11_model/pineapple_bush_1_1.21.11", "weight": 10 },
+		{ "model": "firmalife:block/plant/1.21.11_model/pineapple_bush_1_1_1.21.11", "weight": 5 }
+	],
+    "lifecycle=healthy,stage=2": [
+	{ "model": "firmalife:block/plant/1.21.11_model/pineapple_bush_2_1.21.11", "weight": 10 },
+	{ "model": "firmalife:block/plant/1.21.11_model/pineapple_bush_2_1_1.21.11", "weight": 5 }
+	],
+    "lifecycle=dormant,stage=0": [
+	{ "model": "firmalife:block/plant/1.21.11_model/dry_pineapple_bush_0_1.21.11", "weight": 10 },
+	{ "model": "firmalife:block/plant/1.21.11_model/dry_pineapple_bush_0_1_1.21.11", "weight": 5 }
+	],
+    "lifecycle=dormant,stage=1": [
+	{ "model": "firmalife:block/plant/1.21.11_model/dry_pineapple_bush_1_1.21.11", "weight": 10 },
+	{ "model": "firmalife:block/plant/1.21.11_model/dry_pineapple_bush_1_1_1.21.11", "weight": 5 }
+	],
+    "lifecycle=dormant,stage=2": [
+	{ "model": "firmalife:block/plant/1.21.11_model/dry_pineapple_bush_2_1.21.11", "weight": 10 },
+	{ "model": "firmalife:block/plant/1.21.11_model/dry_pineapple_bush_2_1_1.21.11", "weight": 5 }
+	],
+    "lifecycle=fruiting,stage=0": [
+      { "model": "firmalife:block/plant/1.21.11_model/fruiting_pineapple_bush_0_1.21.11", "weight": 10 },
+      { "model": "firmalife:block/plant/1.21.11_model/fruiting_pineapple_bush_0_1_1.21.11", "weight": 5 }
+	],
+    "lifecycle=fruiting,stage=1": [
+      { "model": "firmalife:block/plant/1.21.11_model/fruiting_pineapple_bush_1_1.21.11", "weight": 10 },
+      { "model": "firmalife:block/plant/1.21.11_model/fruiting_pineapple_bush_1_1_1.21.11", "weight": 5 }
+	],
+    "lifecycle=fruiting,stage=2": [
+      { "model": "firmalife:block/plant/1.21.11_model/fruiting_pineapple_bush_2_1.21.11", "weight": 10 },
+      { "model": "firmalife:block/plant/1.21.11_model/fruiting_pineapple_bush_2_1_1.21.11", "weight": 5 }
+	],
+    "lifecycle=flowering,stage=0": [
+      { "model": "firmalife:block/plant/1.21.11_model/flowering_pineapple_bush_0_1.21.11", "weight": 10 },
+      { "model": "firmalife:block/plant/1.21.11_model/flowering_pineapple_bush_0_1_1.21.11", "weight": 5 }
+	],
+    "lifecycle=flowering,stage=1": [
+      { "model": "firmalife:block/plant/1.21.11_model/flowering_pineapple_bush_1_1.21.11", "weight": 10 },
+      { "model": "firmalife:block/plant/1.21.11_model/flowering_pineapple_bush_1_1_1.21.11", "weight": 5 }
+    ],
+    "lifecycle=flowering,stage=2": [
+      { "model": "firmalife:block/plant/1.21.11_model/flowering_pineapple_bush_2_1.21.11", "weight": 10 },
+      { "model": "firmalife:block/plant/1.21.11_model/flowering_pineapple_bush_2_1_1.21.11", "weight": 5 }
+    ]
+	}
+}
