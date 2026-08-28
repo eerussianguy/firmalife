@@ -1,6 +1,5 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
-import java.util.Set;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blocks.bee.SkepBlock;
@@ -61,11 +60,11 @@ public class SkepBlockEntity extends FLBeehiveBlockEntity
     }
 
     @Override
-    public void updateTick(float temperature, boolean occluded, Set<Flower> flowers)
+    public void updateTick(float temperature, boolean occluded, AreaScan scan)
     {
-        super.updateTick(temperature, occluded, flowers);
+        super.updateTick(temperature, occluded, scan);
         assert level != null;
-        if (hasBait(flowers.size()) && level.random.nextInt(8) == 0)
+        if (hasBait(scan.flowers().size()) && level.random.nextInt(8) == 0)
         {
             beeData = BeeComponent.getWildBee(level, worldPosition);
             inventory.setStackInSlot(0, ItemStack.EMPTY);

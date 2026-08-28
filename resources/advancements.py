@@ -21,7 +21,7 @@ def generate(rm: ResourceManager):
     story.advancement('big_greenhouse', icon('firmalife:stainless_steel_greenhouse_wall'), 'Food for Days', 'Activate a stainless steel greenhouse of more than 200 blocks.', 'greenhouse', generic('firmalife:big_stainless_greenhouse', None), frame='goal')
     story.advancement('sprinkler', icon('firmalife:sprinkler'), 'Sprinkler', 'Craft a Sprinkler.', 'greenhouse', inventory_changed('firmalife:sprinkler'))
     story.advancement('planters', icon('firmalife:large_planter'), 'Planter City', 'Craft every kind of greenhouse planter.', 'greenhouse', multiple(*[inventory_changed('firmalife:%s_planter' % p, name=p) for p in PLANTERS]), requirements=[[p] for p in PLANTERS], frame='goal')
-    story.advancement('hive', icon('firmalife:beehive'), 'So they just move in on their own?', 'Craft a beehive.', 'root', inventory_changed('firmalife:beehive'))
+    story.advancement('hive', icon('firmalife:beehive'), 'Honey Machine', 'Craft a beehive.', 'root', inventory_changed('firmalife:beehive'))
     story.advancement('wax', icon('firmalife:beeswax'), 'Does this hurt the bee?', 'Get some beeswax from a hive.', 'hive', inventory_changed('firmalife:beeswax'))
     story.advancement('jars', icon('tfc:empty_jar_with_lid'), 'minecraft.jar', 'Craft an empty jar.', 'hive', inventory_changed('tfc:empty_jar_with_lid'))
     story.advancement('jarbnet', icon('firmalife:wood/jarbnet/palm'), 'Cupholder', 'Craft a jarbnet.', 'jars', inventory_changed('#firmalife:jarbnets'))

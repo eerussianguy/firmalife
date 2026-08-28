@@ -61,9 +61,9 @@
             ]
           ],
           "mapping": {
-            "0": "firmalife:brick_oven_top[facing=north]",
-            "T": "firmalife:brick_oven_top[facing=north]",
-            "B": "firmalife:brick_oven_bottom[facing=north]",
+            "0": "firmalife:brick_oven_top[facing=west]",
+            "T": "firmalife:brick_oven_top[facing=west]",
+            "B": "firmalife:brick_oven_bottom[facing=west]",
             "W": "minecraft:bricks",
             "C": "firmalife:brick_oven_chimney"
           }
@@ -88,9 +88,9 @@
             ]
           ],
           "mapping": {
-            "0": "firmalife:clay_oven_top[facing=north]",
-            "T": "firmalife:clay_oven_top[facing=north]",
-            "B": "firmalife:clay_oven_bottom[facing=north]",
+            "0": "firmalife:clay_oven_top[facing=west]",
+            "T": "firmalife:clay_oven_top[facing=west]",
+            "B": "firmalife:clay_oven_bottom[facing=west]",
             "W": "minecraft:bricks",
             "C": "firmalife:clay_oven_chimney"
           }

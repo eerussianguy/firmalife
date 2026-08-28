@@ -77,7 +77,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "To use a stomping barrel, $(item)$(k:key.use)$() with fresh grapes. Then, jump up and down on the barrel 16 times. $(item)$(k:key.use)$() with an empty hand to retrieve the items.$(br2)Then, seal the grapes in a barrel for 5 days to $(thing)ferment$() them."
+      "text": "To use a stomping barrel, $(item)$(k:key.use)$() with fresh grapes. Then, jump up and down on the barrel 16 times. $(item)$(k:key.use)$() with an empty hand to retrieve the items.$(br2)Then, seal the grapes in a barrel of water for 5 days to $(thing)ferment$() them."
     },
     {
       "type": "patchouli:crafting",

@@ -3,12 +3,12 @@ package com.eerussianguy.firmalife.common.blockentities;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.util.GreenhouseType;
 import com.eerussianguy.firmalife.common.util.Mechanics;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
@@ -20,10 +20,10 @@ public class ClimateStationBlockEntity extends TFCBlockEntity
 {
     private Set<BlockPos> positions;
     private ClimateType type = ClimateType.GREENHOUSE;
-    @Nullable private GreenhouseType favoriteGreenhouseType = null;
+    @Nullable private ResourceLocation favoriteGreenhouseType = null;
     private boolean favoriteIsCellar = false;
     private int size = 0;
-    @Nullable private GreenhouseType structureType = null;
+    @Nullable private ResourceLocation structureType = null;
 
     public ClimateStationBlockEntity(BlockPos pos, BlockState state)
     {
@@ -43,13 +43,10 @@ public class ClimateStationBlockEntity extends TFCBlockEntity
         {
             positions.add(BlockPos.of(pos));
         }
-        if (nbt.contains("favoriteType"))
-        {
-            favoriteGreenhouseType = GreenhouseType.MANAGER.get(FLHelpers.res(nbt.getString("favoriteType")));
-        }
+        favoriteGreenhouseType = nbt.contains("favoriteType") ? ResourceLocation.tryParse(nbt.getString("favoriteType")) : null;
         favoriteIsCellar = nbt.getBoolean("favoriteIsCellar");
         size = nbt.getInt("size");
-        structureType = nbt.contains("structureType") ? GreenhouseType.MANAGER.get(FLHelpers.res(nbt.getString("structureType"))) : null;
+        structureType = nbt.contains("structureType") ? ResourceLocation.tryParse(nbt.getString("structureType")) : null;
     }
 
     @Override
@@ -66,11 +63,11 @@ public class ClimateStationBlockEntity extends TFCBlockEntity
         }
         nbt.putLongArray("positions", array);
         if (favoriteGreenhouseType != null)
-            nbt.putString("favoriteType", Objects.requireNonNull(GreenhouseType.MANAGER.getId(favoriteGreenhouseType)).toString());
+            nbt.putString("favoriteType", favoriteGreenhouseType.toString());
         nbt.putBoolean("favoriteIsCellar", favoriteIsCellar);
         nbt.putInt("size", size);
         if (structureType != null)
-            nbt.putString("structureType", Objects.requireNonNull(GreenhouseType.MANAGER.getId(structureType)).toString());
+            nbt.putString("structureType", structureType.toString());
     }
 
     public void updateValidity(boolean valid, int tier)
@@ -92,9 +89,10 @@ public class ClimateStationBlockEntity extends TFCBlockEntity
 
     public void setStructureInfo(@Nullable GreenhouseType structureType, int size)
     {
-        if (this.structureType != structureType || this.size != size)
+        final ResourceLocation id = structureType == null ? null : GreenhouseType.MANAGER.getId(structureType);
+        if (!Objects.equals(this.structureType, id) || this.size != size)
         {
-            this.structureType = structureType;
+            this.structureType = id;
             this.size = size;
             markForSync();
         }
@@ -108,7 +106,7 @@ public class ClimateStationBlockEntity extends TFCBlockEntity
     @Nullable
     public GreenhouseType getStructureType()
     {
-        return structureType;
+        return structureType == null ? null : GreenhouseType.MANAGER.get(structureType);
     }
 
     public void setPositions(Set<BlockPos> positions)
@@ -138,8 +136,12 @@ public class ClimateStationBlockEntity extends TFCBlockEntity
 
     public void setFavorite(GreenhouseType type)
     {
-        favoriteGreenhouseType = type;
-        favoriteIsCellar = false;
+        final ResourceLocation id = GreenhouseType.MANAGER.getId(type);
+        if (id != null)
+        {
+            favoriteGreenhouseType = id;
+            favoriteIsCellar = false;
+        }
     }
 
     public void setFavoriteIsCellar()
@@ -151,7 +153,7 @@ public class ClimateStationBlockEntity extends TFCBlockEntity
     @Nullable
     public GreenhouseType getFavoriteType()
     {
-        return favoriteGreenhouseType;
+        return favoriteGreenhouseType == null ? null : GreenhouseType.MANAGER.get(favoriteGreenhouseType);
     }
 
     public boolean favoriteIsCellar()

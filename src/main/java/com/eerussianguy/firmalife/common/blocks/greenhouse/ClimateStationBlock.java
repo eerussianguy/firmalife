@@ -1,6 +1,5 @@
 package com.eerussianguy.firmalife.common.blocks.greenhouse;
 
-import java.util.Objects;
 import java.util.Set;
 import java.util.function.Consumer;
 import com.eerussianguy.firmalife.common.blockentities.ClimateStationBlockEntity;
@@ -13,6 +12,7 @@ import com.eerussianguy.firmalife.common.util.Mechanics;
 import com.mojang.datafixers.util.Either;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
@@ -36,7 +36,7 @@ import net.dries007.tfc.util.Helpers;
 
 import static com.eerussianguy.firmalife.FirmaLife.*;
 
-public class ClimateStationBlock extends DeviceBlock implements HoeOverlayBlock
+public class ClimateStationBlock extends DeviceBlock
 {
     private static void denyAll(Level level, BlockPos pos)
     {
@@ -114,7 +114,8 @@ public class ClimateStationBlock extends DeviceBlock implements HoeOverlayBlock
         else
         {
             either.ifLeft(info -> {
-                if (info.positions().size() > 200 && player instanceof ServerPlayer server && Objects.requireNonNull(GreenhouseType.MANAGER.getId(info.type())).toString().contains("stainless_steel"))
+                final ResourceLocation typeId = GreenhouseType.MANAGER.getId(info.type());
+                if (info.positions().size() > 200 && player instanceof ServerPlayer server && typeId != null && typeId.toString().contains("stainless_steel"))
                 {
                     FLAdvancements.BIG_STAINLESS_GREENHOUSE.trigger(server);
                 }
@@ -164,19 +165,4 @@ public class ClimateStationBlock extends DeviceBlock implements HoeOverlayBlock
         builder.add(STASIS);
     }
 
-    @Override
-    public void addHoeOverlayInfo(Level level, BlockPos pos, BlockState state, Consumer<Component> tooltip, boolean debug)
-    {
-        if (level.getBlockEntity(pos) instanceof ClimateStationBlockEntity station)
-        {
-            if (station.getFavoriteType() != null)
-            {
-                tooltip.accept(Component.translatable("firmalife.greenhouse.expects", station.getFavoriteType().getTitle()));
-            }
-            else if (station.favoriteIsCellar())
-            {
-                tooltip.accept(Component.translatable("firmalife.cellar.expects"));
-            }
-        }
-    }
 }
