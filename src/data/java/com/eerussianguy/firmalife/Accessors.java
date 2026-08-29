@@ -307,6 +307,12 @@ public interface Accessors
         return AndIngredient.of(Ingredient.of(food), NotRottenIngredient.INSTANCE);
     }
 
+    default Ingredient notRotten(FLFood food)
+    {
+        return AndIngredient.of(Ingredient.of(FLItems.FOODS.get(food)), NotRottenIngredient.INSTANCE);
+    }
+
+
     default Ingredient notRotten(Ingredient food)
     {
         return AndIngredient.of(food, NotRottenIngredient.INSTANCE);

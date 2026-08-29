@@ -114,7 +114,7 @@ public interface PotRecipes extends Recipes
         );
         pot(
             List.of(
-                Ingredient.of(TFCTags.Items.SWEETENERS),
+                notRotten(TFCTags.Items.SWEETENERS),
                 notRotten(FLTags.Items.CHOCOLATE)
             ),
             SizedFluidIngredient.of(FLTags.Fluids.MILKS, 1000),
@@ -167,7 +167,7 @@ public interface PotRecipes extends Recipes
         {
             var inputs = Helpers.immutableAdd(
                 Collections.nCopies(i, notRotten(TFCTags.Items.USABLE_IN_SOUP)),
-                Ingredient.of(FLItems.NIGHTSHADE_BERRY)
+                notRotten(FLItems.NIGHTSHADE_BERRY)
             );
             add("stinky_" + i,
                 new StinkySoupRecipe(
@@ -232,7 +232,7 @@ public interface PotRecipes extends Recipes
         {
             var inputs = Helpers.immutableAdd(
                 Collections.nCopies(i, notRottenWithoutTrait(Ingredient.of(itemOf(fruit)), FLFoodTraits.DRIED)),
-                Ingredient.of(TFCTags.Items.SWEETENERS)
+                notRotten(TFCTags.Items.SWEETENERS)
             );
             add("jam_" + name + "_" + i,
                 new JamPotRecipe(

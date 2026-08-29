@@ -5,8 +5,16 @@
     "fluid": "minecraft:water"
   },
   "input_item": {
-    "count": 1,
-    "tag": "tfc:foods/sweeteners"
+    "type": "tfc:and",
+    "children": [
+      {
+        "tag": "tfc:foods/sweeteners"
+      },
+      {
+        "type": "tfc:not_rotten"
+      }
+    ],
+    "count": 1
   },
   "length": 600,
   "output_fluid": {

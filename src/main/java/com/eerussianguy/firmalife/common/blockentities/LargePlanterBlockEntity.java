@@ -83,7 +83,10 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     @Override
     public boolean isItemValid(int slot, ItemStack stack)
     {
-        return Plantable.get(stack) != null;
+        final Plantable plant = Plantable.get(stack);
+        return plant != null
+            && getBlockState().getBlock() instanceof LargePlanterBlock planter
+            && plant.planter() == planter.getPlanterType();
     }
 
     @Override

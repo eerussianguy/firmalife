@@ -26,13 +26,13 @@ public interface DryingRecipes extends Recipes
             notRottenWithoutTrait(TFCTags.Items.FRUITS, FLFoodTraits.DRIED),
             ItemStackProvider.of(CopyInputModifier.INSTANCE, AddTraitModifier.of(FLFoodTraits.DRIED))
         );
-        dryingCopyFood(itemOf(FLFood.SOY_MIXTURE), itemOf(FLFood.TOFU));
+        dryingCopyFood(notRotten(FLFood.SOY_MIXTURE), itemOf(FLFood.TOFU));
         drying(itemOf(Herb.VANILLA), itemOf(Spice.VANILLA));
         dryingCopyFood(notRotten(itemOf(Food.SOYBEAN)), itemOf(FLFood.DEHYDRATED_SOYBEANS));
-        drying(itemOf(FLFood.MILK_CHOCOLATE_BLEND), itemOf(FLFood.MILK_CHOCOLATE));
-        drying(itemOf(FLFood.WHITE_CHOCOLATE_BLEND), itemOf(FLFood.WHITE_CHOCOLATE));
-        drying(itemOf(FLFood.DARK_CHOCOLATE_BLEND), itemOf(FLFood.DARK_CHOCOLATE));
-        drying(itemOf(FLFruit.PINEAPPLE), FLItems.PINEAPPLE_FIBER);
+        drying(notRotten(FLFood.MILK_CHOCOLATE_BLEND), itemOf(FLFood.MILK_CHOCOLATE));
+        drying(notRotten(FLFood.WHITE_CHOCOLATE_BLEND), itemOf(FLFood.WHITE_CHOCOLATE));
+        drying(notRotten(FLFood.DARK_CHOCOLATE_BLEND), itemOf(FLFood.DARK_CHOCOLATE));
+        drying(notRotten(itemOf(FLFruit.PINEAPPLE)), FLItems.PINEAPPLE_FIBER);
         for (var type : SoilBlockType.Variant.values())
         {
             drying(Ingredient.of(type.getBlock(SoilBlockType.MUD).get()), type.getBlock(SoilBlockType.DIRT).get());

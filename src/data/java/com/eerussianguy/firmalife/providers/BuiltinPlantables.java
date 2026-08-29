@@ -71,7 +71,7 @@ public class BuiltinPlantables extends DataManagerProvider<Plantable>
         simple(Crop.RED_BELL_PEPPER, LARGE, food(Food.RED_BELL_PEPPER), 6, 10, false);
         simple(Crop.YELLOW_BELL_PEPPER, LARGE, food(Food.YELLOW_BELL_PEPPER), 6, 10, false);
 
-        plantable("cranberry", TFCBlocks.CRANBERRY_BUSH.asItem(), HYDROPONIC, 10, 3, 0.5f, food(Food.CRANBERRY), of(0.2f, 0.25f, 0.25f), cropTextures(FirmaLife.MOD_ID, "cranberry", 4), List.of());
+        plantable("cranberry", TFCBlocks.CRANBERRY_BUSH.asItem(), HYDROPONIC, 10, 3, 0.5f, food(Food.CRANBERRY), of(0.2f, 0.25f, 0.25f), cropTextures(FirmaLife.MOD_ID, "cranberry", 3), List.of());
 
         plantable("red_grapes", FLItems.RED_GRAPE_SEEDS, TRELLIS, 15, 0, 0.5f, food(FLFruit.RED_GRAPES), of(0.25f, 0.25f, 0.25f), forEach(FirmaLife.MOD_ID, "block/crop/grape", "_leaves", "_leaves_dead", "_leaves_flowering", "_leaves_red"), List.of());
         plantable("white_grapes", FLItems.WHITE_GRAPE_SEEDS, TRELLIS, 15, 0, 0.5f, food(FLFruit.WHITE_GRAPES), of(0.25f, 0.25f, 0.25f), forEach(FirmaLife.MOD_ID, "block/crop/grape", "_leaves", "_leaves_dead", "_leaves_flowering", "_leaves_white"), List.of());

@@ -166,6 +166,11 @@ dependencies {
     // Data
     "dataImplementation"(sourceSets["main"].output)
 
+    // Test
+    // Use JUnit at runtime, plus depend on data to allow us to mock certain data without having to load a server
+    testImplementation(sourceSets["data"].output)
+    testImplementation("org.junit.jupiter:junit-jupiter:5.10.3")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.10.3")
 }
 
 abstract class MinifyJsonTask : DefaultTask() {
@@ -217,6 +222,17 @@ if (modIsInCI) {
 
 
 tasks {
+    test {
+        useJUnitPlatform()
+        testLogging {
+            events("failed", "standardError")
+            exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+            showCauses = true
+            showExceptions = true
+            showStackTraces = true
+        }
+    }
+
     jar {
         manifest {
             attributes["Implementation-Version"] = project.version

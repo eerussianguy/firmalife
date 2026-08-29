@@ -630,6 +630,7 @@ public interface CraftingRecipes extends Recipes
                 .input('W', ItemTags.PLANKS)
                 .input('H', TFCTags.Items.TOOLS_HAMMER)
                 .pattern(" SH", "SWS", " S ")
+                .damageInputs()
                 .shaped(FLBlocks.METALS.get(metal).get(Metal.BlockType.BLOCK));
         }
 
@@ -853,7 +854,7 @@ public interface CraftingRecipes extends Recipes
         recipe()
             .input(notRotten(itemOf(flour)))
             .input(FluidContentIngredient.of(fluidOf(ExtraFluid.YEAST_STARTER), 100))
-            .input(TFCTags.Items.SWEETENERS)
+            .input(notRotten(TFCTags.Items.SWEETENERS))
             .shapeless(new ItemStack(itemOf(dough), 4));
     }
 

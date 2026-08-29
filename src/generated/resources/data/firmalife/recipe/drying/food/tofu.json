@@ -1,7 +1,15 @@
 {
   "type": "firmalife:drying",
   "ingredient": {
-    "item": "firmalife:food/soy_mixture"
+    "type": "tfc:and",
+    "children": [
+      {
+        "item": "firmalife:food/soy_mixture"
+      },
+      {
+        "type": "tfc:not_rotten"
+      }
+    ]
   },
   "result": {
     "modifiers": [

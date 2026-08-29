@@ -5,8 +5,16 @@
     "fluid": "firmalife:yeast_starter"
   },
   "input_item": {
-    "count": 1,
-    "tag": "tfc:foods/sweeteners"
+    "type": "tfc:and",
+    "children": [
+      {
+        "tag": "tfc:foods/sweeteners"
+      },
+      {
+        "type": "tfc:not_rotten"
+      }
+    ],
+    "count": 1
   },
   "output_item": {
     "count": 1,

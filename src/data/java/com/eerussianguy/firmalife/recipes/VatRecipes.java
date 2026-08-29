@@ -86,7 +86,7 @@ public interface VatRecipes extends Recipes
             ItemStackProvider.of(itemOf(FLFood.TOMATO_SAUCE))
         );
         vat(
-            sized(TFCTags.Items.SWEETENERS),
+            sized(notRotten(TFCTags.Items.SWEETENERS)),
             sized(Fluids.WATER, 1000),
             new FluidStack(fluidOf(ExtraFluid.SUGAR_WATER), 500)
         );

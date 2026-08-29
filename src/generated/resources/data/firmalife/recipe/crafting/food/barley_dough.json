@@ -21,7 +21,15 @@
       }
     },
     {
-      "tag": "tfc:foods/sweeteners"
+      "type": "tfc:and",
+      "children": [
+        {
+          "tag": "tfc:foods/sweeteners"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
     }
   ],
   "result": {

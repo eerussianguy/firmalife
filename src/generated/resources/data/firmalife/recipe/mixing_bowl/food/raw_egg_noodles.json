@@ -20,7 +20,15 @@
       "item": "tfc:powder/salt"
     },
     {
-      "item": "minecraft:egg"
+      "type": "tfc:and",
+      "children": [
+        {
+          "tag": "firmalife:foods/raw_eggs"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
     }
   ],
   "result_item": {

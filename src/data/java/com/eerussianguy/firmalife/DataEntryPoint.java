@@ -20,9 +20,11 @@ import com.eerussianguy.firmalife.providers.BuiltinEntityTypeTags;
 import com.eerussianguy.firmalife.providers.BuiltinFluidHeats;
 import com.eerussianguy.firmalife.providers.BuiltinFluidTags;
 import com.eerussianguy.firmalife.providers.BuiltinFoods;
+import com.eerussianguy.firmalife.providers.BuiltinGreenhouseTypes;
 import com.eerussianguy.firmalife.providers.BuiltinItemHeat;
 import com.eerussianguy.firmalife.providers.BuiltinItemSizes;
 import com.eerussianguy.firmalife.providers.BuiltinItemTags;
+import com.eerussianguy.firmalife.providers.BuiltinKnappingTypes;
 import com.eerussianguy.firmalife.providers.BuiltinLootModifiers;
 import com.eerussianguy.firmalife.providers.BuiltinPlantables;
 import com.eerussianguy.firmalife.providers.BuiltinRecipes;
@@ -115,28 +117,8 @@ public class DataEntryPoint
                 add("chocolate", new Drinkable(FluidIngredient.of(FLFluids.EXTRA_FLUIDS.get(ExtraFluid.CHOCOLATE).getSource()), 0, false, FoodData.ofDrink(10, 0), List.of()));
             }
         });
-        add(event, new DataManagerProvider<GreenhouseType>(GreenhouseType.MANAGER, output, lookup, MOD_ID)
-        {
-            @Override
-            protected void addData(HolderLookup.Provider provider)
-            {
-                add("treated_wood", new GreenhouseType(BlockIngredient.of(FLTags.Blocks.ALL_TREATED_WOOD_GREENHOUSE), 5, Component.translatable("greenhouse.firmalife.treated_wood")));
-                add("copper", new GreenhouseType(BlockIngredient.of(FLTags.Blocks.ALL_COPPER_GREENHOUSE), 10, Component.translatable("greenhouse.firmalife.copper")));
-                add("iron", new GreenhouseType(BlockIngredient.of(FLTags.Blocks.ALL_IRON_GREENHOUSE), 15, Component.translatable("greenhouse.firmalife.iron")));
-                add("stainless_steel", new GreenhouseType(BlockIngredient.of(FLTags.Blocks.STAINLESS_STEEL_GREENHOUSE), 20, Component.translatable("greenhouse.firmalife.stainless_steel")));
-            }
-        });
-        add(event, new DataManagerProvider<KnappingType>(KnappingType.MANAGER, output, lookup, TerraFirmaCraft.MOD_ID)
-        {
-            @Override
-            protected void addData(HolderLookup.Provider provider)
-            {
-                add(PUMPKIN, new KnappingType(
-                    new SizedIngredient(AndIngredient.of(Ingredient.of(FLTags.Items.PUMPKIN_KNAPPING), NotRottenIngredient.INSTANCE), 1),
-                    1, TFCSounds.KNAP_LEATHER.holder(), false, false, false, TFCBlocks.PUMPKIN.asItem().getDefaultInstance()
-                ));
-            }
-        });
+        add(event, new BuiltinGreenhouseTypes(output, lookup));
+        add(event, new BuiltinKnappingTypes(output, lookup));
 
         var fluidHeat = add(event, new BuiltinFluidHeats(output, lookup)).output();
         var itemHeat = add(event, new BuiltinItemHeat(output, lookup, fluidHeat));

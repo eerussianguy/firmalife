@@ -51,7 +51,15 @@
       ]
     },
     {
-      "item": "firmalife:food/nightshade_berry"
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "firmalife:food/nightshade_berry"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
     }
   ],
   "temperature": 300.0

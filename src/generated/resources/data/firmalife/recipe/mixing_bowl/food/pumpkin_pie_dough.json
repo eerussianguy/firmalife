@@ -6,7 +6,15 @@
   },
   "item_ingredients": [
     {
-      "tag": "firmalife:foods/raw_eggs"
+      "type": "tfc:and",
+      "children": [
+        {
+          "tag": "firmalife:foods/raw_eggs"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
     },
     {
       "type": "tfc:and",
@@ -42,7 +50,15 @@
       ]
     },
     {
-      "tag": "tfc:foods/sweeteners"
+      "type": "tfc:and",
+      "children": [
+        {
+          "tag": "tfc:foods/sweeteners"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
     }
   ],
   "result_item": {
