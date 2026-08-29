@@ -140,7 +140,7 @@ neoForge {
 dependencies {
     // EMI
     compileOnly("dev.emi:emi-neoforge:${emiVersion}:api")
-    //runtimeOnly("dev.emi:emi-neoforge:${emiVersion}")
+//    runtimeOnly("dev.emi:emi-neoforge:${emiVersion}")
 
     // JEI
     compileOnly("mezz.jei:jei-${minecraftVersion}-common-api:${jeiVersion}")

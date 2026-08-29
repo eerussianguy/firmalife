@@ -3,10 +3,8 @@ package com.eerussianguy.firmalife.compat.jei;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.Container;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
@@ -29,9 +27,7 @@ import mezz.jei.api.registration.IRecipeRegistration;
 
 import net.dries007.tfc.TerraFirmaCraft;
 import net.dries007.tfc.client.ClientHelpers;
-import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.items.TFCItems;
-import net.dries007.tfc.common.recipes.KnappingRecipe;
 import net.dries007.tfc.common.recipes.PotRecipe;
 import net.dries007.tfc.common.recipes.TFCRecipeTypes;
 
@@ -50,7 +46,6 @@ public class FLJEIPlugin implements IModPlugin
     public static final RecipeType<RecipeHolder<PressRecipe>> PRESS = type("press", PressRecipe.class);
     public static final RecipeType<RecipeHolder<CentrifugeRecipe>> CENTRIFUGE = type("centrifuge", CentrifugeRecipe.class);
     public static final RecipeType<RecipeHolder<MixingBowlRecipe>> MIXING_BOWL = type("mixing_bowl", MixingBowlRecipe.class);
-    public static final RecipeType<RecipeHolder<KnappingRecipe>> PUMPKIN_KNAPPING = type("pumpkin_knapping", KnappingRecipe.class);
     public static final RecipeType<RecipeHolder<OvenRecipe>> OVEN = type("oven", OvenRecipe.class);
     public static final RecipeType<RecipeHolder<VatRecipe>> VAT = type("vat", VatRecipe.class);
     public static final RecipeType<RecipeHolder<PotRecipe>> BOWL_POT = type("bowl_pot", PotRecipe.class);
@@ -90,6 +85,7 @@ public class FLJEIPlugin implements IModPlugin
         r.addRecipes(OVEN, recipes(FLRecipeTypes.OVEN));
         r.addRecipes(VAT, recipes(FLRecipeTypes.VAT));
         r.addRecipes(BOWL_POT, recipes(TFCRecipeTypes.POT, recipe -> recipe.getSerializer() == FLRecipeSerializers.BOWL_POT.get()));
+        r.addRecipes(STINKY_SOUP, recipes(TFCRecipeTypes.POT, recipe -> recipe.getSerializer() == FLRecipeSerializers.STINKY_SOUP.get()));
     }
 
     @Override
@@ -100,7 +96,6 @@ public class FLJEIPlugin implements IModPlugin
         cat(r, TFCItems.WOOL_YARN.get(), SMOKING);
         cat(r, FLBlocks.MIXING_BOWL, MIXING_BOWL);
         cat(r, FLItems.SPOON.get(), MIXING_BOWL);
-        cat(r, TFCBlocks.PUMPKIN, PUMPKIN_KNAPPING);
         FLBlocks.CURED_OVEN_TOP.values().forEach(oven -> cat(r, oven, OVEN));
         cat(r, FLBlocks.VAT, VAT);
         cat(r, FLBlocks.CENTRIFUGE, CENTRIFUGE);

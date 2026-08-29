@@ -1,0 +1,15 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "fluid": [
+    "firmalife:usable_in_hollow_shell",
+    "firmalife:usable_in_mixing_bowl",
+    "firmalife:usable_in_vat",
+    "firmalife:usable_in_wine_glass"
+  ],
+  "item": [
+    "firmalife:can_be_hung",
+    "firmalife:feeds_yeast",
+    "firmalife:foods/dynamic_foods",
+    "firmalife:usable_on_oven"
+  ]
+}

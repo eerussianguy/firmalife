@@ -395,6 +395,18 @@ DEFAULT_LANG = {
     'tfc.jei.stomping': 'Stomping',
     'tfc.jei.bowl_pot': 'Bowl Pot',
     'tfc.jei.centrifuge': 'Centrifuge',
+    'tfc.jei.press': 'Pressing',
+    'tfc.jei.stinky_soup': 'Stinky Soup',
+
+    'emi.category.firmalife.drying': 'Drying',
+    'emi.category.firmalife.smoking': 'Smoking',
+    'emi.category.firmalife.stomping': 'Stomping',
+    'emi.category.firmalife.press': 'Pressing',
+    'emi.category.firmalife.centrifuge': 'Centrifuge',
+    'emi.category.firmalife.mixing_bowl': 'Mixing Bowl',
+    'emi.category.firmalife.oven': 'Oven',
+    'emi.category.firmalife.vat': 'Vat',
+    'emi.category.tfc.pumpkin_knapping': 'Pumpkin Knapping',
 }
 
 def lang(key: str, *args) -> str:

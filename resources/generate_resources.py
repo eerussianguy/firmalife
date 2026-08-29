@@ -11,6 +11,7 @@ import assets
 import metal_stuff
 import world_gen
 import advancements
+import emi_integration
 
 
 class ModificationLoggingResourceManager(ResourceManager):
@@ -52,6 +53,7 @@ def generate_all(rm: ResourceManager):
     metal_stuff.generate(rm)
     world_gen.generate(rm)
     advancements.generate(rm)
+    emi_integration.generate(rm)
 
     rm.flush()
 
