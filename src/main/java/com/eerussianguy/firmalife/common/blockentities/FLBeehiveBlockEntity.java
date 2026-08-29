@@ -139,7 +139,6 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
         linkedHiveTick = nbt.getLong("linkedHiveTick");
         linkedHive = nbt.contains("linkedHive", CompoundTag.TAG_LONG) ? BlockPos.of(nbt.getLong("linkedHive")) : null;
         beeData = BeeComponent.CODEC.parse(NbtOps.INSTANCE, nbt.getCompound("queen")).getOrThrow();
-        beeData = beeData.withTrait(BeeAbility.CROP_AFFINITY, 4);
 
         requestModelDataUpdate();
     }
