@@ -1,0 +1,232 @@
+{
+	"format_version": "1.21.11",
+	"credit": "Made with Blockbench",
+	"parent": "block/block",
+	"textures": {
+		"0": "block/berry_bush/pineapple_leaves",
+		"1": "block/berry_bush/pineapple_bush_leaves_and_fruit",
+		"particle": "block/berry_bush/pineapple_bush"
+	},
+	"elements": [
+		{
+			"from": [2, 2, 1],
+			"to": [14, 8, 1],
+			"rotation": {"angle": -45, "axis": "x", "origin": [8, 10, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 10], "texture": "#0"},
+				"south": {"uv": [16, 0, 0, 10], "texture": "#0"}
+			}
+		},
+		{
+			"from": [1, 2, 2],
+			"to": [1, 8, 14],
+			"rotation": {"angle": 45, "axis": "z", "origin": [8, 10, 8]},
+			"faces": {
+				"east": {"uv": [16, 0, 0, 10], "texture": "#0"},
+				"west": {"uv": [0, 0, 16, 10], "texture": "#0"}
+			}
+		},
+		{
+			"from": [2, 7, 9],
+			"to": [14, 7, 15],
+			"rotation": {"angle": -45, "axis": "x", "origin": [8, 0, 17]},
+			"faces": {
+				"up": {"uv": [0, 0, 16, 10], "rotation": 180, "texture": "#0"},
+				"down": {"uv": [16, 0, 0, 10], "texture": "#0"}
+			}
+		},
+		{
+			"from": [10, 7, 2],
+			"to": [16, 7, 14],
+			"rotation": {"angle": 45, "axis": "z", "origin": [18, 0, 8]},
+			"faces": {
+				"up": {"uv": [0, 0, 16, 10], "rotation": 90, "texture": "#0"},
+				"down": {"uv": [16, 0, 0, 10], "rotation": 90, "texture": "#0"}
+			}
+		},
+		{
+			"from": [5, 5, 1],
+			"to": [11, 10, 1],
+			"rotation": {"angle": -45, "axis": "x", "origin": [8, 13, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 10], "texture": "#0"},
+				"south": {"uv": [16, 0, 0, 10], "texture": "#0"}
+			}
+		},
+		{
+			"from": [1, 5, 5],
+			"to": [1, 10, 11],
+			"rotation": {"angle": 45, "axis": "z", "origin": [8, 13, 8]},
+			"faces": {
+				"east": {"uv": [16, 0, 0, 10], "texture": "#0"},
+				"west": {"uv": [0, 0, 16, 10], "texture": "#0"}
+			}
+		},
+		{
+			"from": [5, 10, 9],
+			"to": [11, 10, 14],
+			"rotation": {"angle": -45, "axis": "x", "origin": [8, 3, 17]},
+			"faces": {
+				"up": {"uv": [0, 0, 16, 10], "rotation": 180, "texture": "#0"},
+				"down": {"uv": [16, 0, 0, 10], "texture": "#0"}
+			}
+		},
+		{
+			"from": [10, 10, 5],
+			"to": [15, 10, 11],
+			"rotation": {"angle": 45, "axis": "z", "origin": [18, 3, 8]},
+			"faces": {
+				"up": {"uv": [0, 0, 16, 10], "rotation": 90, "texture": "#0"},
+				"down": {"uv": [16, 0, 0, 10], "rotation": 90, "texture": "#0"}
+			}
+		},
+		{
+			"from": [6.5, 7.5, 7.5],
+			"to": [9.5, 7.5, 10.5],
+			"rotation": {"angle": -45, "axis": "x", "origin": [8, 7.5, 10]},
+			"faces": {
+				"up": {"uv": [6, 2, 9, 8], "rotation": 180, "texture": "#0"},
+				"down": {"uv": [9, 2, 6, 8], "texture": "#0"}
+			}
+		},
+		{
+			"from": [6.25, 5, 6.5],
+			"to": [6.25, 8, 9.5],
+			"rotation": {"angle": 45, "axis": "z", "origin": [6.25, 7.5, 8]},
+			"faces": {
+				"east": {"uv": [9, 3, 6, 8], "texture": "#0"},
+				"west": {"uv": [6, 3, 9, 8], "texture": "#0"}
+			}
+		},
+		{
+			"from": [6.5, 5, 6.25],
+			"to": [9.5, 8, 6.25],
+			"rotation": {"angle": -45, "axis": "x", "origin": [8, 7.5, 6.25]},
+			"faces": {
+				"north": {"uv": [11, 0, 16, 7], "texture": "#0"},
+				"south": {"uv": [9, 3, 6, 8], "texture": "#0"}
+			}
+		},
+		{
+			"from": [7, 7.5, 6.5],
+			"to": [10, 7.5, 9.5],
+			"rotation": {"angle": 45, "axis": "z", "origin": [9.5, 7.5, 8]},
+			"faces": {
+				"up": {"uv": [6, 3, 9, 8], "rotation": 90, "texture": "#0"},
+				"down": {"uv": [9, 3, 6, 8], "rotation": 90, "texture": "#0"}
+			}
+		},
+		{
+			"from": [8, 5.75, 6.5],
+			"to": [8, 9.75, 9.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 5.75, 8]},
+			"faces": {
+				"east": {"uv": [3, 1, 6, 5], "texture": "#1"},
+				"west": {"uv": [3, 1, 6, 5], "texture": "#1"}
+			}
+		},
+		{
+			"from": [6.5, 5.75, 8],
+			"to": [9.5, 9.75, 8],
+			"rotation": {"angle": 0, "axis": "z", "origin": [8, 5.75, 8]},
+			"faces": {
+				"north": {"uv": [3, 1, 6, 5], "texture": "#1"},
+				"south": {"uv": [3, 1, 6, 5], "texture": "#1"}
+			}
+		},
+		{
+			"name": "stem",
+			"from": [8, 0, 7],
+			"to": [8, 4, 9],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [2, 0, 2, 10], "texture": "#1"},
+				"east": {"uv": [0, 6, 2, 16], "texture": "#1"},
+				"south": {"uv": [0, 0, 0, 10], "texture": "#1"},
+				"west": {"uv": [0, 6, 2, 16], "texture": "#1"},
+				"up": {"uv": [0, 0, 0, 2], "texture": "#1"},
+				"down": {"uv": [0, 0, 0, 2], "texture": "#1"}
+			}
+		},
+		{
+			"name": "stem",
+			"from": [7, 0, 8],
+			"to": [9, 4, 8],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7, 0, 9]},
+			"faces": {
+				"north": {"uv": [0, 6, 2, 16], "texture": "#1"},
+				"east": {"uv": [2, 0, 2, 10], "texture": "#1"},
+				"south": {"uv": [0, 6, 2, 16], "texture": "#1"},
+				"west": {"uv": [0, 0, 0, 10], "texture": "#1"},
+				"up": {"uv": [0, 0, 2, 0], "texture": "#1"},
+				"down": {"uv": [0, 2, 2, 2], "texture": "#1"}
+			}
+		},
+		{
+			"name": "flower",
+			"from": [7, 3, 7],
+			"to": [9, 6, 9],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8.5, 3, 8.5]},
+			"faces": {
+				"north": {"uv": [3, 11, 5, 14], "texture": "#1"},
+				"east": {"uv": [3, 11, 5, 14], "texture": "#1"},
+				"south": {"uv": [3, 11, 5, 14], "texture": "#1"},
+				"west": {"uv": [3, 11, 5, 14], "texture": "#1"},
+				"up": {"uv": [4, 10, 2, 8], "texture": "#1"},
+				"down": {"uv": [4, 8, 2, 10], "texture": "#1"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "Bush",
+			"origin": [8, 10, 8],
+			"scope": 0,
+			"color": 0,
+			"children": [
+				{
+					"name": "Leaf",
+					"origin": [18, 0, 8],
+					"scope": 0,
+					"color": 0,
+					"children": []
+				},
+				{
+					"name": "Leaf",
+					"origin": [18, 0, 8],
+					"scope": 0,
+					"color": 0,
+					"children": []
+				},
+				{
+					"name": "Leaf",
+					"origin": [18, 0, 8],
+					"scope": 0,
+					"color": 0,
+					"children": []
+				},
+				0,
+				1,
+				2,
+				3
+			]
+		},
+		{
+			"name": "Crown",
+			"origin": [8, 10, 8],
+			"scope": 0,
+			"color": 0,
+			"children": [4, 5, 6, 7]
+		},
+		{
+			"name": "pineappleFrond",
+			"origin": [8, 0, 17],
+			"scope": 0,
+			"color": 0,
+			"children": [8, 9, 10, 11, 12, 13]
+		},
+		14,
+		15,
+		16
+	]
+}
