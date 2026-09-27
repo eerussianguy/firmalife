@@ -295,6 +295,11 @@ public interface CraftingRecipes extends Recipes
             .input('L', FluidContentIngredient.of(fluidOf(SimpleFluid.TANNIN), 1000))
             .pattern("BBB", "BLB", "BBB")
             .shaped(new ItemStack(FLBlocks.RUSTIC_BRICKS, 8));
+        recipe()
+            .input(Tags.Items.RODS_WOODEN)
+            .input(notRotten(Ingredient.of(itemOf(Food.GREEN_APPLE), itemOf(Food.RED_APPLE))))
+            .input(FluidContentIngredient.of(fluidOf(ExtraFluid.CARAMEL), 100))
+            .shapeless(itemOf(FLFood.CARAMEL_APPLE));
 
         //Shapeless
         recipe()

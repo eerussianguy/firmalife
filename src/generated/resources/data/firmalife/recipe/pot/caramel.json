@@ -1,0 +1,27 @@
+{
+  "type": "tfc:pot",
+  "duration": 1000,
+  "fluid_ingredient": {
+    "amount": 1000,
+    "fluid": "firmalife:sugar_water"
+  },
+  "fluid_output": {
+    "amount": 1000,
+    "id": "firmalife:caramel"
+  },
+  "ingredients": [
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "firmalife:food/butter"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    }
+  ],
+  "temperature": 300.0,
+  "uses_all_fluid": false
+}

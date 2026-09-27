@@ -74,6 +74,8 @@ public class BuiltinFoods extends DataManagerProvider<FoodDefinition> implements
         add(FLFood.SOYBEAN_PASTE, FoodData.of(0.6f));
         add(FLFood.RAW_HONEY, FoodData.of(0.6f));
         add(FLFood.FLAVORFUL_COOKED_RICE, ofFood(2.5f, 5, 1).grain(1.7f));
+        add(FLFood.ROASTED_PUMPKIN_SEEDS, ofFood(2.5f, 0, 1).vegetables(0.25f).grain(0.25f));
+        add(FLFood.CARAMEL_APPLE, ofFood(2f, 1, 1).fruit(0.9f));
         add(FLFood.TOFU, ofFood(0.75f, 2f, 2f).vegetables(1.5f).protein(1f));
         add(FLTags.Items.BREAD_SLICES, ofFood(1.5f, 0f, 0.75f).grain(1f), true);
         add(FLFood.TOAST, ofFood(1f, 0f, 1.5f).grain(1f));

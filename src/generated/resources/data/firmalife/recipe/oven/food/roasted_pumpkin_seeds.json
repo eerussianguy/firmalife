@@ -1,0 +1,20 @@
+{
+  "type": "firmalife:oven",
+  "duration": 1000,
+  "ingredient": {
+    "type": "tfc:and",
+    "children": [
+      {
+        "item": "tfc:seeds/pumpkin"
+      },
+      {
+        "type": "tfc:not_rotten"
+      }
+    ]
+  },
+  "result": {
+    "count": 1,
+    "id": "firmalife:food/roasted_pumpkin_seeds"
+  },
+  "temperature": 400.0
+}

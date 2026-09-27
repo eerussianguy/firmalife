@@ -100,7 +100,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "葡萄酒需配備一個$(thing)軟木塞$()，其製作方法是將$(thing)防腐木材$()在$(thing)石灰水$()中浸泡一天。一切就緒後，使用酒瓶槽位灌裝葡萄酒，或手持酒瓶$(item)$(k:key.use)$()進行灌裝。"
+      "text": "Wine must be provided with a $(thing)Cork$(), made by soaking $(l:mechanics/greenhouse#treated_lumber)Treated Lumber$() in $(thing)Limewater$() for a day. When all is complete, use the bottle slot to fill the wine, or by pressing $(item)$(k:key.use)$() with a bottle in hand."
     }
   ],
   "read_by_default": true,

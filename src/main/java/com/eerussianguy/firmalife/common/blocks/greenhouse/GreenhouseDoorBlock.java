@@ -39,6 +39,12 @@ public class GreenhouseDoorBlock extends DoorBlock implements IWeatherable, IFor
     }
 
     @Override
+    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand)
+    {
+        onRandomTick(state, level, pos, rand);
+    }
+
+    @Override
     public void onRandomTick(BlockState lower, ServerLevel level, BlockPos pos, RandomSource rand)
     {
         Supplier<? extends Block> next = getNext();

@@ -32,7 +32,7 @@ public class GreenhouseSlabBlock extends GlassSlabBlock implements IWeatherable
     }
 
     @Override
-    public void onRandomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand)
+    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand)
     {
         IWeatherable.super.onRandomTick(state, level, pos, rand);
     }

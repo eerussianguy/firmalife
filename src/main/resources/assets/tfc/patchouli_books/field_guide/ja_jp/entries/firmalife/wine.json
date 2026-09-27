@@ -100,7 +100,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "ワインには$(thing)コルク$()が必要です。$(br2)$(thing)加工木材$()を$(thing)石灰水$()に1日浸けることで作成できます。$(br2)すべてが完了したら、ボトルスロットを使用してワインを詰めるか、ボトルを手に持って$(item)$(k:key.use)$()を押して詰めてください。"
+      "text": "Wine must be provided with a $(thing)Cork$(), made by soaking $(l:mechanics/greenhouse#treated_lumber)Treated Lumber$() in $(thing)Limewater$() for a day. When all is complete, use the bottle slot to fill the wine, or by pressing $(item)$(k:key.use)$() with a bottle in hand."
     }
   ],
   "read_by_default": true,

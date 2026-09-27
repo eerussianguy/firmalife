@@ -100,7 +100,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Wine must be provided with a $(thing)Cork$(), made by soaking $(thing)Treated Lumber$() in $(thing)Limewater$() for a day. When all is complete, use the bottle slot to fill the wine, or by pressing $(item)$(k:key.use)$() with a bottle in hand."
+      "text": "Wine must be provided with a $(thing)Cork$(), made by soaking $(l:mechanics/greenhouse#treated_lumber)Treated Lumber$() in $(thing)Limewater$() for a day. When all is complete, use the bottle slot to fill the wine, or by pressing $(item)$(k:key.use)$() with a bottle in hand."
     }
   ],
   "read_by_default": true,

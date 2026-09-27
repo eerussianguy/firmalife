@@ -9,7 +9,9 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 
+import net.dries007.tfc.common.blocks.crop.Crop;
 import net.dries007.tfc.common.items.Food;
+import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.common.recipes.outputs.ItemStackProvider;
 
 public interface OvenRecipes extends Recipes
@@ -49,6 +51,12 @@ public interface OvenRecipes extends Recipes
         cook(
             notRotten(itemOf(FLFood.COCOA_BEANS)),
             itemOf(FLFood.ROASTED_COCOA_BEANS),
+            400,
+            1000
+        );
+        cook(
+            notRotten(TFCItems.CROP_SEEDS.get(Crop.PUMPKIN)),
+            itemOf(FLFood.ROASTED_PUMPKIN_SEEDS),
             400,
             1000
         );

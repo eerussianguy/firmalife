@@ -17,6 +17,12 @@
       "text": "屬於同一種$(thing)溫室型別$()的建築方塊可以互相替換使用。大多數溫室方塊會隨時間$(thing)老化$()。例如，$(thing)防腐木$()材質的溫室方塊會變成$(thing)風化的防腐木$()方塊。由於這兩種方塊型別屬於同一溫室型別，你的溫室將繼續正常運作。不鏽鋼溫室則不會老化。"
     },
     {
+      "type": "patchouli:crafting",
+      "anchor": "treated_lumber",
+      "recipe": "firmalife:crafting/treated_lumber",
+      "text": "$(thing)Treated Lumber$() can be made with $(l:firmalife/beekeeping#beeswax)Beeswax$() and $(thing)Lumber$()."
+    },
+    {
       "type": "patchouli:text",
       "text": "升級溫室型別可讓你使用更多種類的種植盆。每個等級都會解鎖更多的種植盆型別。$(br)$(br)$(li)防腐木：四槽種植盆。$()$(li)銅：大型種植盆和水培種植盆。$()$(li)鐵：格子種植架$() $(li)不鏽鋼（最高等級）$()",
       "title": "溫室型別"

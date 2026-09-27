@@ -1,0 +1,10 @@
+{
+  "decay_modifier": 1.0,
+  "grain": 0.25,
+  "hunger": 4,
+  "ingredient": {
+    "item": "firmalife:food/roasted_pumpkin_seeds"
+  },
+  "saturation": 2.5,
+  "vegetables": 0.25
+}

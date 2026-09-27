@@ -117,6 +117,8 @@ public class DataEntryPoint
             protected void addData(HolderLookup.Provider provider)
             {
                 add("chocolate", new Drinkable(FluidIngredient.of(FLFluids.EXTRA_FLUIDS.get(ExtraFluid.CHOCOLATE).getSource()), 0, false, FoodData.ofDrink(10, 0), List.of()));
+                add("yak_milk", new Drinkable(FluidIngredient.of(FLFluids.EXTRA_FLUIDS.get(ExtraFluid.YAK_MILK).getSource()), 0, false, FoodData.ofDrink(10, 0), List.of()));
+                add("goat_milk", new Drinkable(FluidIngredient.of(FLFluids.EXTRA_FLUIDS.get(ExtraFluid.GOAT_MILK).getSource()), 0, false, FoodData.ofDrink(10, 0), List.of()));
             }
         });
         add(event, new BuiltinGreenhouseTypes(output, lookup));

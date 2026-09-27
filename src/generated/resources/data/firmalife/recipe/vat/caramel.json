@@ -1,0 +1,25 @@
+{
+  "type": "firmalife:vat",
+  "input_fluid": {
+    "amount": 1000,
+    "fluid": "firmalife:sugar_water"
+  },
+  "input_item": {
+    "type": "tfc:and",
+    "children": [
+      {
+        "item": "firmalife:food/butter"
+      },
+      {
+        "type": "tfc:not_rotten"
+      }
+    ],
+    "count": 1
+  },
+  "length": 600,
+  "output_fluid": {
+    "amount": 1000,
+    "id": "firmalife:caramel"
+  },
+  "temperature": 300.0
+}

@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:rods/wooden"
+    },
+    {
+      "type": "tfc:and",
+      "children": [
+        [
+          {
+            "item": "tfc:food/green_apple"
+          },
+          {
+            "item": "tfc:food/red_apple"
+          }
+        ],
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    },
+    {
+      "type": "tfc:fluid_content",
+      "fluid": {
+        "amount": 100,
+        "fluid": "firmalife:caramel"
+      }
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "firmalife:food/caramel_apple"
+  }
+}

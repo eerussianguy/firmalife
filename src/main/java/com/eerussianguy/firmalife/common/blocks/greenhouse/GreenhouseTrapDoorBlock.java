@@ -4,6 +4,8 @@ import java.util.function.Supplier;
 import com.eerussianguy.firmalife.common.blocks.IWeatherable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.TrapDoorBlock;
@@ -60,6 +62,12 @@ public class GreenhouseTrapDoorBlock extends TrapDoorBlock implements IWeatherab
     public boolean isRandomlyTicking(BlockState pState)
     {
         return hasNext();
+    }
+
+    @Override
+    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand)
+    {
+        onRandomTick(state, level, pos, rand);
     }
 
     @Override

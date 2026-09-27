@@ -214,19 +214,39 @@ public class KegRecipe
             // Output items
             // All output items, and then remaining input items, get inserted into the output overflow
             // The recipe may have no item input at all (i.e. milk -> curdled milk), in which case there is no input stack to modify
-            final ItemStack firstStack = stacks.isEmpty() ? ItemStack.EMPTY : stacks.getFirst();
-            final ItemStack outputItem = recipe.getOutputItem().getSingleStack(firstStack);
-            if (!outputItem.isEmpty())
+            if (stacks.isEmpty())
             {
-                Helpers.consumeInStackSizeIncrements(outputItem, multiplier * outputItem.getCount(), inventory::insertItemWithOverflow);
+                final ItemStack outputItem = recipe.getOutputItem().getSingleStack(ItemStack.EMPTY);
+                if (!outputItem.isEmpty())
+                {
+                    Helpers.consumeInStackSizeIncrements(outputItem, multiplier * outputItem.getCount(), inventory::insertItemWithOverflow);
+                }
             }
-            int remainingItemCount = accumulatedCount - multiplier * recipe.getInputItem().count();
-            while (remainingItemCount > 0 && !firstStack.isEmpty())
+            else
             {
-                final ItemStack remain = firstStack.copy();
-                remain.setCount(Math.min(remain.getMaxStackSize(), remainingItemCount));
-                remainingItemCount -= remain.getCount();
-                inventory.insertItemWithOverflow(remain);
+                // Each input stack is converted individually, as the ingredient may match different items (i.e. brining any food)
+                final int inputCount = recipe.getInputItem().count();
+                int remainingMultiplier = multiplier;
+                multiplier = 0;
+                for (ItemStack stack : stacks)
+                {
+                    final int stackMultiplier = Math.min(remainingMultiplier, stack.getCount() / inputCount);
+                    remainingMultiplier -= stackMultiplier;
+                    multiplier += stackMultiplier;
+                    if (stackMultiplier > 0)
+                    {
+                        final ItemStack outputItem = recipe.getOutputItem().getSingleStack(stack);
+                        if (!outputItem.isEmpty())
+                        {
+                            Helpers.consumeInStackSizeIncrements(outputItem, stackMultiplier * outputItem.getCount(), inventory::insertItemWithOverflow);
+                        }
+                    }
+                    final int remainingItemCount = stack.getCount() - stackMultiplier * inputCount;
+                    if (remainingItemCount > 0)
+                    {
+                        inventory.insertItemWithOverflow(stack.copyWithCount(remainingItemCount));
+                    }
+                }
             }
 
             // Output fluid

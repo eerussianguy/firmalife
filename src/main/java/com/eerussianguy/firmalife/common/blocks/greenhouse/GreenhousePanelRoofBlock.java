@@ -65,6 +65,18 @@ public class GreenhousePanelRoofBlock extends TransparentBlock implements IWeath
     }
 
     @Override
+    public boolean isRandomlyTicking(BlockState state)
+    {
+        return hasNext();
+    }
+
+    @Override
+    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand)
+    {
+        onRandomTick(state, level, pos, rand);
+    }
+
+    @Override
     public @Nullable Supplier<? extends Block> getNext()
     {
         return next;

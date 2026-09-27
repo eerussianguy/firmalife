@@ -17,6 +17,12 @@
       "text": "属于同一种$(thing)温室类型$()的建筑方块可以互相替换使用。大多数温室方块会随时间$(thing)老化$()。例如，$(thing)防腐木$()材质的温室方块会变成$(thing)风化的防腐木$()方块。由于这两种方块类型属于同一温室类型，你的温室将继续正常运作。不锈钢温室则不会老化。"
     },
     {
+      "type": "patchouli:crafting",
+      "anchor": "treated_lumber",
+      "recipe": "firmalife:crafting/treated_lumber",
+      "text": "$(thing)Treated Lumber$() can be made with $(l:firmalife/beekeeping#beeswax)Beeswax$() and $(thing)Lumber$()."
+    },
+    {
       "type": "patchouli:text",
       "text": "升级温室类型可让你使用更多种类的种植盆。每个等级都会解锁更多的种植盆类型。$(br)$(br)$(li)防腐木：四槽种植盆。$()$(li)铜：大型种植盆和水培种植盆。$()$(li)铁：格子种植架$() $(li)不锈钢（最高等级）$()",
       "title": "温室类型"

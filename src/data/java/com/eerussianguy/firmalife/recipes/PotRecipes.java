@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.FLTags;
+import com.eerussianguy.firmalife.common.blocks.FLFluids;
 import com.eerussianguy.firmalife.common.items.FLFood;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.common.items.FLItems;
@@ -120,6 +121,14 @@ public interface PotRecipes extends Recipes
             SizedFluidIngredient.of(FLTags.Fluids.MILKS, 1000),
             new FluidStack(fluidOf(ExtraFluid.CHOCOLATE), 1000),
             2000,
+            300
+        );
+
+        pot(
+            List.of(notRotten(itemOf(FLFood.BUTTER))),
+            SizedFluidIngredient.of(fluidOf(ExtraFluid.SUGAR_WATER), 1000),
+            new FluidStack(fluidOf(ExtraFluid.CARAMEL), 1000),
+            1000,
             300
         );
 
@@ -263,17 +272,17 @@ public interface PotRecipes extends Recipes
         }
     }
 
-    private void pot(List<Ingredient> input, SizedFluidIngredient fluidInput, List<ItemLike> output, int duration, int time)
+    private void pot(List<Ingredient> input, SizedFluidIngredient fluidInput, List<ItemLike> output, int duration, int temperature)
     {
-        pot(input, fluidInput, FluidStack.EMPTY, output.stream().map(ItemStackProvider::of).toList(), duration, time);
+        pot(input, fluidInput, FluidStack.EMPTY, output.stream().map(ItemStackProvider::of).toList(), duration, temperature);
     }
 
-    private void pot(List<Ingredient> input, SizedFluidIngredient fluidInput, FluidStack output, int duration, int time)
+    private void pot(List<Ingredient> input, SizedFluidIngredient fluidInput, FluidStack output, int duration, int temperature)
     {
-        pot(input, fluidInput, output, List.of(), duration, time);
+        pot(input, fluidInput, output, List.of(), duration, temperature);
     }
 
-    private void pot(List<Ingredient> input, SizedFluidIngredient fluidInput, FluidStack fluidOutput, List<ItemStackProvider> output, int duration, int time)
+    private void pot(List<Ingredient> input, SizedFluidIngredient fluidInput, FluidStack fluidOutput, List<ItemStackProvider> output, int duration, int temperature)
     {
         String name;
         if (output.isEmpty())
@@ -289,7 +298,7 @@ public interface PotRecipes extends Recipes
                 input,
                 fluidInput,
                 duration,
-                time
+                temperature
             ),
             fluidOutput,
             output,

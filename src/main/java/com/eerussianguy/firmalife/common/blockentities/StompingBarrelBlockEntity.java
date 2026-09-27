@@ -67,7 +67,7 @@ public class StompingBarrelBlockEntity extends InventoryBlockEntity<ItemStackHan
                 final ItemStack newStack = recipe.assemble(current);
                 newStack.setCount(newStack.getCount() * current.getCount());
                 for (FoodTrait trait : traits)
-                    FoodCapability.applyTrait(newStack, FoodTraits.REGISTRY.createIntrusiveHolder(trait));
+                    FoodCapability.applyTrait(newStack, FoodTraits.REGISTRY.wrapAsHolder(trait));
                 if (newStack.getCount() > MAX_GRAPES)
                 {
                     Helpers.spawnItem(level, worldPosition, newStack.split(newStack.getCount() - MAX_GRAPES));

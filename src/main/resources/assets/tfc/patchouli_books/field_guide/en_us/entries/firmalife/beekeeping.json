@@ -71,6 +71,7 @@
     },
     {
       "type": "patchouli:crafting",
+      "anchor": "beeswax",
       "recipe": "firmalife:crafting/beeswax",
       "text": "$(thing)Scraping$() a beehive frame (right clicking the item with a knife also works) makes $(thing)Beeswax$()."
     },

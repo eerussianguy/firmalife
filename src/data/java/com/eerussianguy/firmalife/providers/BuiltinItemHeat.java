@@ -23,10 +23,12 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 
 import net.dries007.tfc.TerraFirmaCraft;
+import net.dries007.tfc.common.blocks.crop.Crop;
 import net.dries007.tfc.common.blocks.rock.Ore;
 import net.dries007.tfc.common.component.heat.HeatCapability;
 import net.dries007.tfc.common.component.heat.HeatDefinition;
 import net.dries007.tfc.common.fluids.TFCFluids;
+import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.Metal;
 import net.dries007.tfc.util.data.FluidHeat;
@@ -70,6 +72,7 @@ public class BuiltinItemHeat extends DataManagerProvider<HeatDefinition> impleme
             add(itemOf(food), 1);
         }
 
+        add(TFCItems.CROP_SEEDS.get(Crop.PUMPKIN), 1);
         add(FLItems.RAW_PIZZA, 1);
         add(FLItems.RAW_PUMPKIN_PIE, 1);
         add(FLItems.FILLED_PIE, 1);

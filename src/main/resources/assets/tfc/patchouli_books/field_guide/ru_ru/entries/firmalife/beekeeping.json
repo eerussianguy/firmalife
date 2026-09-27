@@ -71,6 +71,7 @@
     },
     {
       "type": "patchouli:crafting",
+      "anchor": "beeswax",
       "recipe": "firmalife:crafting/beeswax",
       "text": "$(thing)Соскабливание$() рамки улья (также работает правый клик по предмету ножом) даёт $(thing)Пчелиный воск$()."
     },

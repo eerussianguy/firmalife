@@ -90,6 +90,11 @@ public interface VatRecipes extends Recipes
             sized(Fluids.WATER, 1000),
             new FluidStack(fluidOf(ExtraFluid.SUGAR_WATER), 500)
         );
+        vat(
+            sized(notRotten(itemOf(FLFood.BUTTER))),
+            sized(fluidOf(ExtraFluid.SUGAR_WATER), 1000),
+            new FluidStack(fluidOf(ExtraFluid.CARAMEL), 1000)
+        );
 
         for (var fruit : FLFruit.values())
         {

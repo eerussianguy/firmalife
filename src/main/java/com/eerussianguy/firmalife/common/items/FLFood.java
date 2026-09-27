@@ -104,6 +104,8 @@ public enum FLFood
     RAW_HONEY,
     SPICED_FLOUR,
     FLAVORFUL_COOKED_RICE,
+    ROASTED_PUMPKIN_SEEDS,
+    CARAMEL_APPLE,
     ;
 
     private final boolean fast;

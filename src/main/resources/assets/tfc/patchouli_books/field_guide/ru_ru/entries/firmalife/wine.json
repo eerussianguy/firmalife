@@ -100,7 +100,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Вино должно быть обеспечено $(thing)пробкой$(), изготовленной путем замачивания $(thing)обработанной древесины$() в $(thing)известковой воде$() на день. Когда всё готово, используйте слот бутылки для наполнения вином или нажмите $(item)$(k:key.use)$() с бутылкой в руке."
+      "text": "Wine must be provided with a $(thing)Cork$(), made by soaking $(l:mechanics/greenhouse#treated_lumber)Treated Lumber$() in $(thing)Limewater$() for a day. When all is complete, use the bottle slot to fill the wine, or by pressing $(item)$(k:key.use)$() with a bottle in hand."
     }
   ],
   "read_by_default": true,

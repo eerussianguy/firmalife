@@ -16,7 +16,7 @@ public enum CopyBowlModifier implements ItemStackModifier
     @Override
     public ItemStack apply(ItemStack stack, ItemStack input, Context context)
     {
-        ItemComponent inputBowl = stack.get(TFCComponents.BOWL);
+        ItemComponent inputBowl = input.get(TFCComponents.BOWL);
 
         if (inputBowl != null)
         {

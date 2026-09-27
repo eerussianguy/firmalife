@@ -71,6 +71,7 @@
     },
     {
       "type": "patchouli:crafting",
+      "anchor": "beeswax",
       "recipe": "firmalife:crafting/beeswax",
       "text": "$(thing)刮取$()巢脾（手持刀右擊它也行）可以獲得$(thing)蜂蠟$()。"
     },
