@@ -28,7 +28,7 @@
         }
       },
       "name": "",
-      "text": "Basil spawns between 0-32°C and 100-500mm of groundwater.",
+      "text": "Basil spawns between $(cfg:temperature:0)-$(cfg:temperature:32) and 100-500mm of groundwater.",
       "enable_visualize": false
     },
     {
@@ -52,7 +52,7 @@
         }
       },
       "name": "",
-      "text": "Bay Laurel spawns between 10-32°C and 100-300mm of groundwater.",
+      "text": "Bay Laurel spawns between $(cfg:temperature:10)-$(cfg:temperature:32) and 100-300mm of groundwater.",
       "enable_visualize": false
     },
     {
@@ -76,7 +76,7 @@
         }
       },
       "name": "",
-      "text": "Cardamom spawns between 17-24°C and 330-500mm of groundwater.",
+      "text": "Cardamom spawns between $(cfg:temperature:17)-$(cfg:temperature:24) and 330-500mm of groundwater.",
       "enable_visualize": false
     },
     {
@@ -100,7 +100,7 @@
         }
       },
       "name": "",
-      "text": "Cilantro spawns between 10-24°C and 90-300mm of groundwater.",
+      "text": "Cilantro spawns between $(cfg:temperature:10)-$(cfg:temperature:24) and 90-300mm of groundwater.",
       "enable_visualize": false
     },
     {
@@ -124,7 +124,7 @@
         }
       },
       "name": "",
-      "text": "Cumin spawns between 16-27°C and 100-300mm of groundwater.",
+      "text": "Cumin spawns between $(cfg:temperature:16)-$(cfg:temperature:27) and 100-300mm of groundwater.",
       "enable_visualize": false
     },
     {
@@ -148,7 +148,7 @@
         }
       },
       "name": "",
-      "text": "Oregano spawns between 20-27°C and 90-350mm of groundwater.",
+      "text": "Oregano spawns between $(cfg:temperature:20)-$(cfg:temperature:27) and 90-350mm of groundwater.",
       "enable_visualize": false
     },
     {
@@ -172,7 +172,7 @@
         }
       },
       "name": "",
-      "text": "Pimento spawns between 18-24°C and 200-400mm of groundwater.",
+      "text": "Pimento spawns between $(cfg:temperature:18)-$(cfg:temperature:24) and 200-400mm of groundwater.",
       "enable_visualize": false
     },
     {
@@ -196,7 +196,7 @@
         }
       },
       "name": "",
-      "text": "Vanilla spawns between 22-30°C and 350-500mm of groundwater.",
+      "text": "Vanilla spawns between $(cfg:temperature:22)-$(cfg:temperature:30) and 350-500mm of groundwater.",
       "enable_visualize": false
     },
     {

@@ -26,7 +26,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Погреб используется для консервации продуктов, например, с помощью $(l:firmalife/food_shelves)полок для продуктов$() и $(l:firmalife/hangers)вешалок$(). Погреб работает лучше в среде с более низкими средними температурами для сохранения продуктов. Ниже 0 градусов модификаторы порчи работают немного лучше. Ниже -12 градусов они работают намного лучше."
+      "text": "The cellar is used for food preservation, for example by using $(l:firmalife/food_shelves)Food Shelves$() and $(l:firmalife/hangers)Hangers$(). The cellar performs better in environments with cooler average temperatures for food preservation. Below $(flcfg:cellarLevel2Temperature), decay modifiers work slightly better. Below $(flcfg:cellarLevel3Temperature), they perform much better."
     }
   ],
   "read_by_default": true,

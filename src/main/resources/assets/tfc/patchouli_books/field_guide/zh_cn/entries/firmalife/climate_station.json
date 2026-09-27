@@ -52,7 +52,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "关于温室建造的说明：温室的最大尺寸为以气象站为中心的31x31x31区域，即向每个方向延伸15格。将气象站置于温室中心，可以充分利用最大尺寸范围。你也可以通过在内部使用墙壁和多个气象站将温室细分为多个区域，从而建造更大的温室。"
+      "text": "A note about greenhouse construction: The largest greenhouse is $(flcfg:greenhouseSize)x$(flcfg:greenhouseSize)x$(flcfg:greenhouseSize), centered on the climate station, or $(flcfg:greenhouseRadius) blocks in each direction. Centering the climate station in the greenhouse will allow you to take advantage of the full size range. You can also internally subdivide a greenhouse into multiple by using walls and multiple climate stations to make it larger."
     }
   ],
   "read_by_default": true,

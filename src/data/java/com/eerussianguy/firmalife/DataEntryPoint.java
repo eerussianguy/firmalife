@@ -18,6 +18,7 @@ import com.eerussianguy.firmalife.providers.BuiltinClimateRanges;
 import com.eerussianguy.firmalife.providers.BuiltinDamageTypes;
 import com.eerussianguy.firmalife.providers.BuiltinEntityTypeTags;
 import com.eerussianguy.firmalife.providers.BuiltinFluidHeats;
+import com.eerussianguy.firmalife.providers.BuiltinFieldGuideConfig;
 import com.eerussianguy.firmalife.providers.BuiltinFluidTags;
 import com.eerussianguy.firmalife.providers.BuiltinFoods;
 import com.eerussianguy.firmalife.providers.BuiltinGreenhouseTypes;
@@ -96,7 +97,8 @@ public class DataEntryPoint
         });
 
         add(event, new BuiltinLootModifiers(output, lookup));
-        add(event, new BuiltinClimateRanges(output, lookup));
+        final var climateRanges = add(event, new BuiltinClimateRanges(output, lookup)).output();
+        add(event, new BuiltinFieldGuideConfig(output, climateRanges));
         add(event, new BuiltinPlantables(output, lookup));
         add(event, new BuiltinFoods(output, lookup));
         add(event, new BuiltinItemSizes(output, lookup));

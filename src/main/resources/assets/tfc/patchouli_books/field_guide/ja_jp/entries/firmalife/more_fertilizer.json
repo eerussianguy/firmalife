@@ -32,7 +32,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "堆肥が完成するまでの時間は、特定の添加物の量を調節することで長くなったり短くなったりします。$(br2)コンポスターに32個入っていれば、3個の堆肥ができます。$(br)少なくとも24個あれば、2個の堆肥ができます。16個なら、1個の堆肥ができます。$(br)それ以下だと堆肥はできません。"
+      "text": "Favorable amounts of certain additions can extend or shorten the length of time it takes for the compost to complete. Play around with it and see what happens. On its own, a batch of compost takes $(flcfg:compostTumblerTicks).$(br)If 32 units are in the composter, 3 compost will be produced. If at least 24, 2 compost will be made. If 16 or more, 1 will be made. Below that, and there will be no compost."
     }
   ],
   "read_by_default": true,

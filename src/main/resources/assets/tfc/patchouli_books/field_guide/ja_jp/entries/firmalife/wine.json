@@ -12,13 +12,13 @@
       "type": "patchouli:spotlight",
       "item": "firmalife:plant/wild_red_grapes",
       "link_recipes": false,
-      "text": "赤ブドウは$(br)気温 0 - 30 ℃$(br)降水量 125 - 500 mm$(br)の範囲、つまりほぼすべての居住可能地域で見つかります。"
+      "text": "Red grapes spawn from $(cfg:temperature:0) to $(cfg:temperature:30), and 125-500 rainfall, or almost the entire habitable area."
     },
     {
       "type": "patchouli:spotlight",
       "item": "firmalife:plant/wild_white_grapes",
       "link_recipes": false,
-      "text": "白ブドウは$(br)気温 0 - 30 ℃$(br)降水量 125 - 500 mm$(br)の範囲、つまりほぼすべての居住可能地域で見つかります。"
+      "text": "White grapes spawn from $(cfg:temperature:0) to $(cfg:temperature:30), and 125-500 rainfall, or almost the entire habitable area."
     },
     {
       "type": "patchouli:crafting",
@@ -68,7 +68,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "気候条件が満たされていれば、ブドウは数か月かけて棚を覆うように成長します。7月には実をつけ、その前の月には花を咲かせます。ブドウは収穫可能で、温室内の棚でも栽培できます。"
+      "text": "Provided the climate requirements are satisfied ($(bold)$(l:core_mechanics/climate#temperature)Temperature$(): $(flcfg:climate.grapes.temperature), $(bold)$(l:food/hydration)Hydration$(): $(flcfg:climate.grapes.hydration)%), the grape will grow up and over the trellis over the course of a few months. It will fruit in the month of July, flowering the month prior. Grapes can the be harvested. Grapes can also be grown in greenhouses on trellises."
     },
     {
       "type": "patchouli:crafting",

@@ -23,7 +23,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Пчёлы, подверженные неподходящим условиям, могут развить $(thing)паразитарные инфекции$(). Эти условия не связаны с их видом и могут спонтанно возникать у диких пчёл. К таким условиям относятся: соприкосновение улья с любым другим блоком, кроме блока под ним; температура ниже -18 или выше 27 °С; осадки ниже 50 или выше 470 мм. Заражённые пчёлы не могут производить мёд."
+      "text": "Bees subject to improper conditions can develop $(thing)Parasitic Infections$(). These conditions do not have to do with their species and may spontaneously occur in wild bees. These conditions include: the hive touching any other block besides for the block below it; temperatures below $(cfg:temperature:-18) or above $(cfg:temperature:27); rainfall below 50 or above 470mm. Infected bees cannot make honey."
     },
     {
       "type": "patchouli:text",
@@ -40,15 +40,15 @@
     },
     {
       "type": "patchouli:text",
-      "text": "$(li)$(thing)Западная медоносная пчела$(): Спокойствие, Производительность. 5–20 °С, 100–400 мм. Очень распространена. Западные пчёлы также появляются, когда ни один другой вид не может появиться.$()$(li)$(thing)Азиатская медоносная пчела$(): Плодовитость, Восстановление природы. 10–30 °С, 250–400 мм. Распространена.$()$(li)$(thing)Гигантская медоносная пчела$(): Плодовитость. 15–30 °С, 300–450 мм. Распространена.$()"
+      "text": "$(li)$(thing)Western Honey Bee$(): Calmness, Production, Hardiness. $(cfg:temperature:5)-$(cfg:temperature:20), 100-400mm. Extremely common. Western bees also spawn when no other bee species is eligible to spawn.$()$(li)$(thing)Asian Honey Bee$(): Fertility, Nature Restoration. $(cfg:temperature:10)-$(cfg:temperature:30), 250-400mm. Common.$()$(li)$(thing)Giant Honey Bee$(): Fertility. $(cfg:temperature:15)-$(cfg:temperature:30), 300-450mm. Common.$()"
     },
     {
       "type": "patchouli:text",
-      "text": "$(li)$(thing)Карликовая медоносная пчела$(): Плодовитость, Производительность. 20–30 °С, 300–400 мм. Распространена.$()$(li)$(thing)Чёрная карликовая медоносная пчела$(): Мутант, Восстановление природы. 12–22 °С, 150–350 мм. Необычна.$()$(li)$(thing)Медоносная пчела Кожевникова$(): Выносливость, Производительность, Восстановление природы. 12–16 °С, 200–375 мм. Очень редка.$()$(li)$(thing)Гималайская гигантская медоносная пчела$(): Выносливость, Мутант, Производительность. 10–19 °С, 150–250 мм, y>96. Редка.$()"
+      "text": "$(li)$(thing)Dwarf Honey Bee$(): Fertility, Production. $(cfg:temperature:20)-$(cfg:temperature:30), 300-400mm. Common.$()$(li)$(thing)Black Dwarf Honey Bee$(): Mutant, Nature Restoration. $(cfg:temperature:12)-$(cfg:temperature:22), 150-350mm. Uncommon.$()$(li)$(thing)Koschevnikov's Honey Bee$(): Hardiness, Production, Nature Restoration. $(cfg:temperature:12)-$(cfg:temperature:16), 200-375mm. Very Rare.$()$(li)$(thing)Himalayan Giant Honey Bee$(): Hardiness, Mutant, Production. $(cfg:temperature:10)-$(cfg:temperature:19), 150-250mm, y>96. Rare.$()"
     },
     {
       "type": "patchouli:text",
-      "text": "$(li)$(thing)Филиппинская медоносная пчела$(): Спокойствие, Сродство к культурам. 15–20 °С, 350–450 мм. Очень редка.$()$(li)$(thing)Борнейская горная медоносная пчела$(): Выносливость, Устойчивость к инфекциям. 13–22 °С, 150–400 мм, y>96. Распространена.$()$(li)$(thing)Индонезийская гигантская медоносная пчела$(): Восстановление природы, Плодовитость, Устойчивость к инфекциям. 16–20 °С, 350–420 мм. Необычна.$()$(li)$(thing)Африканизированная медоносная пчела$(): Выносливость. 10–25 °С. 100–320 мм. Распространена.$()"
+      "text": "$(li)$(thing)Philippine Honey Bee$(): Calmness, Crop Affinity. $(cfg:temperature:15)-$(cfg:temperature:20), 350-450mm. Very Rare.$()$(li)$(thing)Borneo Mountain Honey Bee$(): Hardiness, Infection Resistance. $(cfg:temperature:13)-$(cfg:temperature:22), 150-400mm, y>96. Common.$()$(li)$(thing)Indonesian Giant Honey Bee$(): Nature Restoration, Fertility, Infection Resistance. $(cfg:temperature:16)-$(cfg:temperature:20), 350-420mm. Uncommon.$()$(li)$(thing)Africanized Honey Bee$(): Hardiness. $(cfg:temperature:10)-$(cfg:temperature:25). 100-320mm. Common.$()"
     },
     {
       "type": "patchouli:crafting",

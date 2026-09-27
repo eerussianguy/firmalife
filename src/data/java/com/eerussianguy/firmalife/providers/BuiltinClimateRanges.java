@@ -25,8 +25,8 @@ public class BuiltinClimateRanges extends DataManagerProvider<ClimateRange>
         add(FLClimateRanges.FRUIT_TREES, FLFruitBlocks.Tree.COCOA, b -> b.hydration(44, 80).temperature(20, 35));
         add(FLClimateRanges.FRUIT_TREES, FLFruitBlocks.Tree.FIG, b -> b.hydration(25, 43).temperature(20, 35));
         add(FLClimateRanges.GRAPES, new ClimateRange.Builder().hydration(0, 100).temperature(0, 50).build());
-        add(FLClimateRanges.STATIONARY_BUSHES, FLFruitBlocks.StationaryBush.PINEAPPLE, b -> b.hydration(40, 80).temperature(7, 24));
-        add(FLClimateRanges.STATIONARY_BUSHES, FLFruitBlocks.StationaryBush.NIGHTSHADE, b -> b.hydration(50, 100).temperature(20, 32));
+        add(FLClimateRanges.STATIONARY_BUSHES, FLFruitBlocks.StationaryBush.PINEAPPLE, b -> b.hydration(40, 80).temperature(20, 32));
+        add(FLClimateRanges.STATIONARY_BUSHES, FLFruitBlocks.StationaryBush.NIGHTSHADE, b -> b.hydration(50, 100).temperature(7, 24));
     }
 
     private <T> void add(Map<T, DataManager.Reference<ClimateRange>> map, T value, UnaryOperator<ClimateRange.Builder> builder)

@@ -1,0 +1,242 @@
+{
+  "beeUseHoneyDays": {
+    "translate": "tfc.tooltip.time_delta_days",
+    "with": [
+      "12"
+    ]
+  },
+  "cellarLevel2Temperature": {
+    "translate": "tfc.tooltip.temperature_celsius",
+    "with": [
+      "0"
+    ]
+  },
+  "cellarLevel3Temperature": {
+    "translate": "tfc.tooltip.temperature_celsius",
+    "with": [
+      "-12"
+    ]
+  },
+  "cellarRadius": "15",
+  "cellarSize": "31",
+  "cheeseAgedDays": {
+    "translate": "tfc.tooltip.time_delta_days",
+    "with": [
+      "28"
+    ]
+  },
+  "cheeseVintageDays": {
+    "translate": "tfc.tooltip.time_delta_days",
+    "with": [
+      "112"
+    ]
+  },
+  "climate.cocoa.hydration": {
+    "translate": "tfc.field_guide.range",
+    "with": [
+      44,
+      80
+    ]
+  },
+  "climate.cocoa.temperature": {
+    "translate": "tfc.field_guide.range",
+    "with": [
+      {
+        "translate": "tfc.tooltip.temperature_celsius",
+        "with": [
+          "20"
+        ]
+      },
+      {
+        "translate": "tfc.tooltip.temperature_celsius",
+        "with": [
+          "35"
+        ]
+      }
+    ]
+  },
+  "climate.fig.hydration": {
+    "translate": "tfc.field_guide.range",
+    "with": [
+      25,
+      43
+    ]
+  },
+  "climate.fig.temperature": {
+    "translate": "tfc.field_guide.range",
+    "with": [
+      {
+        "translate": "tfc.tooltip.temperature_celsius",
+        "with": [
+          "20"
+        ]
+      },
+      {
+        "translate": "tfc.tooltip.temperature_celsius",
+        "with": [
+          "35"
+        ]
+      }
+    ]
+  },
+  "climate.grapes.hydration": {
+    "translate": "tfc.field_guide.range",
+    "with": [
+      0,
+      100
+    ]
+  },
+  "climate.grapes.temperature": {
+    "translate": "tfc.field_guide.range",
+    "with": [
+      {
+        "translate": "tfc.tooltip.temperature_celsius",
+        "with": [
+          "0"
+        ]
+      },
+      {
+        "translate": "tfc.tooltip.temperature_celsius",
+        "with": [
+          "50"
+        ]
+      }
+    ]
+  },
+  "climate.nightshade.hydration": {
+    "translate": "tfc.field_guide.range",
+    "with": [
+      50,
+      100
+    ]
+  },
+  "climate.nightshade.temperature": {
+    "translate": "tfc.field_guide.range",
+    "with": [
+      {
+        "translate": "tfc.tooltip.temperature_celsius",
+        "with": [
+          "7"
+        ]
+      },
+      {
+        "translate": "tfc.tooltip.temperature_celsius",
+        "with": [
+          "24"
+        ]
+      }
+    ]
+  },
+  "climate.pineapple.hydration": {
+    "translate": "tfc.field_guide.range",
+    "with": [
+      40,
+      80
+    ]
+  },
+  "climate.pineapple.temperature": {
+    "translate": "tfc.field_guide.range",
+    "with": [
+      {
+        "translate": "tfc.tooltip.temperature_celsius",
+        "with": [
+          "20"
+        ]
+      },
+      {
+        "translate": "tfc.tooltip.temperature_celsius",
+        "with": [
+          "32"
+        ]
+      }
+    ]
+  },
+  "compostTumblerTicks": {
+    "translate": "tfc.tooltip.time_delta_days",
+    "with": [
+      3
+    ]
+  },
+  "dryingTicks": {
+    "translate": "tfc.field_guide.hours",
+    "with": [
+      10
+    ]
+  },
+  "greenhouseGrowthModifier": "1",
+  "greenhouseNutrientDays": {
+    "translate": "tfc.tooltip.time_delta_days",
+    "with": [
+      "8"
+    ]
+  },
+  "greenhouseRadius": "15",
+  "greenhouseSize": "31",
+  "greenhouseWaterDays": {
+    "translate": "tfc.tooltip.time_delta_days",
+    "with": [
+      "14"
+    ]
+  },
+  "hollowShellCapacity": {
+    "translate": "tfc.tooltip.fluid_units",
+    "with": [
+      100
+    ]
+  },
+  "ovenAshChance": "50%",
+  "ovenCureHeat": {
+    "color": "dark_red",
+    "translate": "tfc.enum.heat.dark_red"
+  },
+  "ovenCureTemperature": {
+    "translate": "tfc.tooltip.temperature_celsius",
+    "with": [
+      "600"
+    ]
+  },
+  "ovenCureTicks": {
+    "translate": "tfc.field_guide.hours",
+    "with": [
+      2
+    ]
+  },
+  "smokingFirepitRange": "6",
+  "smokingTicks": {
+    "translate": "tfc.field_guide.hours",
+    "with": [
+      7
+    ]
+  },
+  "solarDrierSpeedup": "12",
+  "solarDryingTicks": {
+    "translate": "tfc.field_guide.hours",
+    "with": [
+      1
+    ]
+  },
+  "trait.aged": "90%",
+  "trait.bee_pollinated": "80%",
+  "trait.dirt_grown": "90%",
+  "trait.dried": "50%",
+  "trait.fermented": "25%",
+  "trait.fresh": "110%",
+  "trait.gravel_grown": "80%",
+  "trait.hung": "35%",
+  "trait.hung_2": "30%",
+  "trait.hung_3": "25%",
+  "trait.oven_baked": "90%",
+  "trait.rancid_smoked": "200%",
+  "trait.shelved": "40%",
+  "trait.shelved_2": "35%",
+  "trait.shelved_3": "25%",
+  "trait.slope_grown": "80%",
+  "trait.smoked": "70%",
+  "trait.vintage": "60%",
+  "wineGlassCapacity": {
+    "translate": "tfc.tooltip.fluid_units",
+    "with": [
+      250
+    ]
+  }
+}

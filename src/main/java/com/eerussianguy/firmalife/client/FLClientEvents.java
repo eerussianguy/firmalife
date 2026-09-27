@@ -58,6 +58,7 @@ import com.eerussianguy.firmalife.common.items.WineBottleItem;
 import com.eerussianguy.firmalife.common.misc.FLParticles;
 import com.eerussianguy.firmalife.common.misc.SprinklerParticle;
 import com.eerussianguy.firmalife.common.util.FLFruit;
+import com.eerussianguy.firmalife.compat.patchouli.FLConfigTextFunction;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.item.ItemColor;
@@ -152,6 +153,8 @@ public class FLClientEvents
         ItemBlockRenderTypes.setRenderLayer(FLBlocks.REINFORCED_POURED_GLASS.get(), translucent);
 
         event.enqueueWork(() -> {
+            FLConfigTextFunction.register();
+
             TFCItems.FOOD.forEach((food, item) -> {
                 if (FLItems.TFC_FRUITS.contains(food))
                 {

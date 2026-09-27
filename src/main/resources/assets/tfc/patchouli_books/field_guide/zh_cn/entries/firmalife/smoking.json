@@ -37,11 +37,11 @@
     },
     {
       "type": "patchouli:text",
-      "text": "要开始熏制，首先将物品放到篝火上方的线上。篝火必须在线正下方四格范围内。在熏制过程中，线会产生一些烟雾。需要特别注意，篝火必须要使用$(thing)原木$()作为燃料。如果使用诸如$(thing)泥炭$()之类的燃料，会立刻让你的食物获得$(thing)恶心$()效果！"
+      "text": "To start the smoking process, add the item to the string above a firepit. The firepit must be within $(flcfg:smokingFirepitRange) blocks, directly underneath the string. The string should begin to generate some smoke if it is working. It is important to note that the firepit must only be burned with $(thing)Logs$(). Using something like $(thing)Peat$() will instantly give your food the $(thing)Disgusting$() trait!"
     },
     {
       "type": "patchouli:text",
-      "text": "熏制过程需要游戏内的8小时。熏制愉快！"
+      "text": "The smoking process takes $(flcfg:smokingTicks). Happy smoking!"
     }
   ],
   "read_by_default": true,

@@ -37,11 +37,11 @@
     },
     {
       "type": "patchouli:text",
-      "text": "To start the smoking process, add the item to the string above a firepit. The firepit must be within four blocks, directly underneath the string. The string should begin to generate some smoke if it is working. It is important to note that the firepit must only be burned with $(thing)Logs$(). Using something like $(thing)Peat$() will instantly give your food the $(thing)Disgusting$() trait!"
+      "text": "To start the smoking process, add the item to the string above a firepit. The firepit must be within $(flcfg:smokingFirepitRange) blocks, directly underneath the string. The string should begin to generate some smoke if it is working. It is important to note that the firepit must only be burned with $(thing)Logs$(). Using something like $(thing)Peat$() will instantly give your food the $(thing)Disgusting$() trait!"
     },
     {
       "type": "patchouli:text",
-      "text": "The smoking process takes 8 in-game hours. Happy smoking!"
+      "text": "The smoking process takes $(flcfg:smokingTicks). Happy smoking!"
     }
   ],
   "read_by_default": true,

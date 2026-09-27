@@ -35,7 +35,7 @@
     {
       "type": "patchouli:text",
       "anchor": "aging",
-      "text": "チーズホイールは、長持ちさせるためにワールドに設置するブロックです。$(br)品質と保存期間を向上させるため、チーズホイールは$(l:tfc:firmalife/cellar)貯蔵庫$()で$(thing)熟成$()させる必要があります。$(br)チーズホイールから食用チーズを得るには、ナイフを持ちチーズホイールに$(item)$(k:key.use)$()をして切り取ります。$(br)ブロックを壊してしまうと、熟成が失われてしまうので注意してください！"
+      "text": "Cheese wheels are blocks that should be placed in order to help them last. To improve their quality and shelf life, cheese wheels should be $(thing)Aged$() in a $(l:firmalife/cellar)Cellar$(). In order to obtain edible cheese from a cheese wheel, it should be sliced off the wheel by clicking $(item)$(k:key.use)$() with a $(thing)Knife$(). If the block is simply broken, the aging is lost!$(br2)A full wheel becomes $(thing)Aged$() after $(flcfg:cheeseAgedDays) in a cellar, and $(thing)Vintage$() after $(flcfg:cheeseVintageDays)."
     },
     {
       "type": "tfc:multimultiblock",

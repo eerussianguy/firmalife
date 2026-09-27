@@ -28,7 +28,7 @@
         }
       },
       "name": "",
-      "text": "羅勒生成在溫度0-32°C、地下水量100-500mm的區域。",
+      "text": "Basil spawns between $(cfg:temperature:0)-$(cfg:temperature:32) and 100-500mm of groundwater.",
       "enable_visualize": false
     },
     {
@@ -52,7 +52,7 @@
         }
       },
       "name": "",
-      "text": "月桂生成在溫度10-32°C、地下水量100-300mm的區域。",
+      "text": "Bay Laurel spawns between $(cfg:temperature:10)-$(cfg:temperature:32) and 100-300mm of groundwater.",
       "enable_visualize": false
     },
     {
@@ -76,7 +76,7 @@
         }
       },
       "name": "",
-      "text": "豆蔻生成在溫度17-24°C、地下水量330-500mm的區域。",
+      "text": "Cardamom spawns between $(cfg:temperature:17)-$(cfg:temperature:24) and 330-500mm of groundwater.",
       "enable_visualize": false
     },
     {
@@ -100,7 +100,7 @@
         }
       },
       "name": "",
-      "text": "香菜生成在溫度10-24°C、地下水量90-300mm的區域。",
+      "text": "Cilantro spawns between $(cfg:temperature:10)-$(cfg:temperature:24) and 90-300mm of groundwater.",
       "enable_visualize": false
     },
     {
@@ -124,7 +124,7 @@
         }
       },
       "name": "",
-      "text": "孜然生成在溫度16-27°C、地下水量100-300mm的區域。",
+      "text": "Cumin spawns between $(cfg:temperature:16)-$(cfg:temperature:27) and 100-300mm of groundwater.",
       "enable_visualize": false
     },
     {
@@ -148,7 +148,7 @@
         }
       },
       "name": "",
-      "text": "牛至生成在溫度20-27°C、地下水量90-350mm的區域。",
+      "text": "Oregano spawns between $(cfg:temperature:20)-$(cfg:temperature:27) and 90-350mm of groundwater.",
       "enable_visualize": false
     },
     {
@@ -172,7 +172,7 @@
         }
       },
       "name": "",
-      "text": "多香果生成在溫度18-24°C、地下水量200-400mm的區域。",
+      "text": "Pimento spawns between $(cfg:temperature:18)-$(cfg:temperature:24) and 200-400mm of groundwater.",
       "enable_visualize": false
     },
     {
@@ -196,7 +196,7 @@
         }
       },
       "name": "",
-      "text": "香草生成在溫度22-30°C、地下水量350-500mm的區域。",
+      "text": "Vanilla spawns between $(cfg:temperature:22)-$(cfg:temperature:30) and 350-500mm of groundwater.",
       "enable_visualize": false
     },
     {

@@ -20,7 +20,7 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/solar_drier",
-      "text": "太陽光乾燥機の機能は乾燥マットと同じですが、速度が12倍になります。"
+      "text": "The solar drier functions the same as the drying mat, but $(flcfg:solarDrierSpeedup)x as fast, taking only $(flcfg:solarDryingTicks)."
     },
     {
       "type": "patchouli:text",

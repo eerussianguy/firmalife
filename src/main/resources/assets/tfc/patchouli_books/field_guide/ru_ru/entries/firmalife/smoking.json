@@ -37,11 +37,11 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Чтобы начать процесс копчения, добавьте предмет на верёвку над костром. Костёр должен находиться в пределах четырёх блоков, прямо под верёвкой. Если всё работает, верёвка начнёт выделять дым. Важно отметить, что костёр должен быть разведён только с помощью $(thing)поленьев$(). Использование чего-то вроде $(thing)торфа$() мгновенно придаст вашей еде признак $(thing)отвратительности$()!"
+      "text": "To start the smoking process, add the item to the string above a firepit. The firepit must be within $(flcfg:smokingFirepitRange) blocks, directly underneath the string. The string should begin to generate some smoke if it is working. It is important to note that the firepit must only be burned with $(thing)Logs$(). Using something like $(thing)Peat$() will instantly give your food the $(thing)Disgusting$() trait!"
     },
     {
       "type": "patchouli:text",
-      "text": "Процесс копчения занимает 8 игровых часов. Счастливого копчения!"
+      "text": "The smoking process takes $(flcfg:smokingTicks). Happy smoking!"
     }
   ],
   "read_by_default": true,

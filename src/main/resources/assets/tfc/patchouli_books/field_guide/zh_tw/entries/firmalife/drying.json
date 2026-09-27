@@ -20,7 +20,7 @@
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/solar_drier",
-      "text": "太陽能幹燥器的功能與乾燥墊相同，但速度是乾燥墊的12倍。"
+      "text": "The solar drier functions the same as the drying mat, but $(flcfg:solarDrierSpeedup)x as fast, taking only $(flcfg:solarDryingTicks)."
     },
     {
       "type": "patchouli:text",

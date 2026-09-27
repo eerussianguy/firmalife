@@ -17,6 +17,14 @@ TABLE_PAGE_SMALL = 'table_small'
 TABLE_KEYS = {'strings': '#strings', 'columns': '#columns', 'first_column_width': '#first_column_width', 'column_width': '#column_width', 'row_height': '#row_height', 'left_buffer': '#left_buffer', 'top_buffer': '#top_buffer', 'title': '#title', 'legend': '#legend', 'draw_background': '#draw_background'}
 
 
+# Top level categories of the TFC field guide, which this book links into but cannot validate
+TFC_CATEGORIES = ('core_mechanics/', 'crafting/', 'food/', 'getting_started/', 'mechanics/', 'metalworking/', 'the_world/')
+
+
+def is_tfc_link(target: str) -> bool:
+    return target.startswith(TFC_CATEGORIES) or target.startswith('tfc:')
+
+
 class Component(NamedTuple):
     type: str
     x: int
@@ -226,7 +234,7 @@ class Book:
                             target, anchor = key.split('#')
                         else:
                             target, anchor = key, None
-                        assert (target in link_targets or 'mechanics' in target or 'the_world' in target), 'Link target \'%s\' not found for link \'%s\'\n  at page: %s\n  at entry: \'%s\'' % (target, key, p, e.entry_id)
+                        assert (target in link_targets or is_tfc_link(target)), 'Link target \'%s\' not found for link \'%s\'\n  at page: %s\n  at entry: \'%s\'' % (target, key, p, e.entry_id)
                         if anchor is not None and target in link_targets:
                             assert anchor in link_targets[target], 'Link anchor \'%s\' not found for link \'%s\'\n  at page: %s\n  at entry: \'%s\'' % (anchor, key, p, e.entry_id)
 

@@ -26,7 +26,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "貯蔵庫は食品保存のために使用され、例えば$(l:tfc:firmalife/food_shelves)食品棚$()や$(l:tfc:firmalife/hangers)吊るし棚$()を使います。$(br2)貯蔵庫は食品保存のために平均気温が低い環境でより良い性能を発揮します。$(br2)0度以下では鮮度を保つ効果が少し上がります。$(br2)-12度以下では、鮮度を保つ効果はより良い力を発揮します。"
+      "text": "The cellar is used for food preservation, for example by using $(l:firmalife/food_shelves)Food Shelves$() and $(l:firmalife/hangers)Hangers$(). The cellar performs better in environments with cooler average temperatures for food preservation. Below $(flcfg:cellarLevel2Temperature), decay modifiers work slightly better. Below $(flcfg:cellarLevel3Temperature), they perform much better."
     }
   ],
   "read_by_default": true,

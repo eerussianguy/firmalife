@@ -28,7 +28,7 @@
         }
       },
       "name": "",
-      "text": "Базилик появляется при температуре 0–32 °С и уровне грунтовых вод 100–500 мм.",
+      "text": "Basil spawns between $(cfg:temperature:0)-$(cfg:temperature:32) and 100-500mm of groundwater.",
       "enable_visualize": false
     },
     {
@@ -52,7 +52,7 @@
         }
       },
       "name": "",
-      "text": "Лавр благородный появляется при температуре 10–32 °С и уровне грунтовых вод 100–300 мм.",
+      "text": "Bay Laurel spawns between $(cfg:temperature:10)-$(cfg:temperature:32) and 100-300mm of groundwater.",
       "enable_visualize": false
     },
     {
@@ -76,7 +76,7 @@
         }
       },
       "name": "",
-      "text": "Кардамон появляется при температуре 17–24 °С и уровне грунтовых вод 330–500 мм.",
+      "text": "Cardamom spawns between $(cfg:temperature:17)-$(cfg:temperature:24) and 330-500mm of groundwater.",
       "enable_visualize": false
     },
     {
@@ -100,7 +100,7 @@
         }
       },
       "name": "",
-      "text": "Кинза появляется при температуре 10–24 °С и уровне грунтовых вод 90–300 мм.",
+      "text": "Cilantro spawns between $(cfg:temperature:10)-$(cfg:temperature:24) and 90-300mm of groundwater.",
       "enable_visualize": false
     },
     {
@@ -124,7 +124,7 @@
         }
       },
       "name": "",
-      "text": "Тмин появляется при температуре 16–27 °С и уровне грунтовых вод 100–300 мм.",
+      "text": "Cumin spawns between $(cfg:temperature:16)-$(cfg:temperature:27) and 100-300mm of groundwater.",
       "enable_visualize": false
     },
     {
@@ -148,7 +148,7 @@
         }
       },
       "name": "",
-      "text": "Орегано появляется при температуре 20–27 °С и уровне грунтовых вод 90–350 мм.",
+      "text": "Oregano spawns between $(cfg:temperature:20)-$(cfg:temperature:27) and 90-350mm of groundwater.",
       "enable_visualize": false
     },
     {
@@ -172,7 +172,7 @@
         }
       },
       "name": "",
-      "text": "Пименто появляется при температуре 18–24 °С и уровне грунтовых вод 200–400 мм.",
+      "text": "Pimento spawns between $(cfg:temperature:18)-$(cfg:temperature:24) and 200-400mm of groundwater.",
       "enable_visualize": false
     },
     {
@@ -196,7 +196,7 @@
         }
       },
       "name": "",
-      "text": "Ваниль появляется при температуре 22–30 °С и уровне грунтовых вод 350–500 мм.",
+      "text": "Vanilla spawns between $(cfg:temperature:22)-$(cfg:temperature:30) and 350-500mm of groundwater.",
       "enable_visualize": false
     },
     {

@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(thing)烤炉$()是一种能大量烹饪食物并延长其保质期的绝佳方式。烤炉烘烤的食物腐败速度仅为普通食物的90%。烤炉是一种多方块结构，由$(thing)烤炉底$()、$(thing)烤炉顶$()以及可选的$(thing)烤炉烟囱$()组成。这些方块最初是黏土状态，必须通过将其温度提升到一定程度并保持足够长的时间来$(thing)硬化$()。$(br) $(l:firmalife/oven_appliances)烤炉配件$()可以扩展烤炉的功能。"
+      "text": "$(thing)Ovens$() are a great way of cooking lots of food in a way that improves their shelf life. Oven-baked food decays at $(flcfg:trait.oven_baked) of the rate of regular food. Ovens are a multiblock structure consisting of a $(thing)Bottom Oven$(), $(thing)Top Oven$(), and optionally $(thing)Chimneys$(). These blocks start off as clay, and must be $(thing)Cured$() by raising their temperature to a certain amount for long enough.$(br)$(l:firmalife/oven_appliances)Oven Appliances$() extend oven functionality."
     },
     {
       "type": "tfc:knapping_recipe",
@@ -107,7 +107,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "硬化烤炉方块很简单，但需要耐心。只需正常地点燃你的烤炉底，然后等待就可以了。如果一个烤炉方块在超过600度的温度下保持约80秒，它就会硬化自身及其周围的任何烤炉方块。硬化效果会一直向上传导到烟囱。"
+      "text": "Curing Oven blocks is easy, but requires patience. Simply start running your Bottom Oven as you would normally, and then wait. If an oven block is above $(flcfg:ovenCureTemperature) for about $(flcfg:ovenCureTicks), it will cure itself and any oven blocks around it. The curing effect will pass all the way up chimneys nearby."
     },
     {
       "type": "patchouli:crafting",

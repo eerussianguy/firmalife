@@ -35,7 +35,7 @@
     {
       "type": "patchouli:text",
       "anchor": "aging",
-      "text": "乳酪輪是方塊，應放置起來以利於儲存。為了提高其品質和保質期，乳酪輪應在$(l:firmalife/cellar)地窖$()中進行$(thing)熟化$()。為了從乳酪輪上獲得可食用的乳酪，應手持$(thing)刀$()點選$(item)$(k:key.use)$()將其切片。如果直接破壞乳酪塊，將丟失熟成效果！"
+      "text": "Cheese wheels are blocks that should be placed in order to help them last. To improve their quality and shelf life, cheese wheels should be $(thing)Aged$() in a $(l:firmalife/cellar)Cellar$(). In order to obtain edible cheese from a cheese wheel, it should be sliced off the wheel by clicking $(item)$(k:key.use)$() with a $(thing)Knife$(). If the block is simply broken, the aging is lost!$(br2)A full wheel becomes $(thing)Aged$() after $(flcfg:cheeseAgedDays) in a cellar, and $(thing)Vintage$() after $(flcfg:cheeseVintageDays)."
     },
     {
       "type": "tfc:multimultiblock",

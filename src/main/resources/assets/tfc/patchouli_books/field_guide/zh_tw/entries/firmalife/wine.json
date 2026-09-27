@@ -12,13 +12,13 @@
       "type": "patchouli:spotlight",
       "item": "firmalife:plant/wild_red_grapes",
       "link_recipes": false,
-      "text": "紅葡萄生成於0-30°C、125-500降雨量的區域，幾乎覆蓋了整個宜居區。"
+      "text": "Red grapes spawn from $(cfg:temperature:0) to $(cfg:temperature:30), and 125-500 rainfall, or almost the entire habitable area."
     },
     {
       "type": "patchouli:spotlight",
       "item": "firmalife:plant/wild_white_grapes",
       "link_recipes": false,
-      "text": "白葡萄生成於0-30°C、125-500降雨量的區域，幾乎覆蓋了整個宜居區。"
+      "text": "White grapes spawn from $(cfg:temperature:0) to $(cfg:temperature:30), and 125-500 rainfall, or almost the entire habitable area."
     },
     {
       "type": "patchouli:crafting",
@@ -68,7 +68,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "只要氣候條件滿足，葡萄藤將在幾個月的時間內沿著葡萄架向上並蔓延生長。它會在七月結果，並在前一個月開花。此後便可收穫葡萄。葡萄也可以在溫室內的葡萄架上種植。"
+      "text": "Provided the climate requirements are satisfied ($(bold)$(l:core_mechanics/climate#temperature)Temperature$(): $(flcfg:climate.grapes.temperature), $(bold)$(l:food/hydration)Hydration$(): $(flcfg:climate.grapes.hydration)%), the grape will grow up and over the trellis over the course of a few months. It will fruit in the month of July, flowering the month prior. Grapes can the be harvested. Grapes can also be grown in greenhouses on trellises."
     },
     {
       "type": "patchouli:crafting",

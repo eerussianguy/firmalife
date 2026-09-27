@@ -15,7 +15,7 @@
     {
       "type": "patchouli:text",
       "anchor": "cocoa",
-      "text": "$(bold)$(l:the_world/climate#temperature)Temperature$(): 20 - 35 °C$(br)$(bold)$(l:mechanics/hydration)Rainfall$(): 220 - 400mm$(br2)Cocoa trees are used to make $(l:firmalife/chocolate)Chocolate$(). They fruit in June.",
+      "text": "Can be found in regions with:$(br)$(bold)$(l:core_mechanics/climate#temperature)Temperature$(): $(cfg:temperature:20) - $(cfg:temperature:35)$(br)$(bold)$(l:core_mechanics/climate#rainfall)Rainfall$(): 220 - 400mm$(br2)Conditions required for growth:$(br)$(bold)$(l:core_mechanics/climate#temperature)Temperature$(): $(flcfg:climate.cocoa.temperature)$(br)$(bold)$(l:food/hydration)Hydration$(): $(flcfg:climate.cocoa.hydration)%$(br2)Cocoa trees are used to make $(l:firmalife/chocolate)Chocolate$(). They fruit in June.",
       "title": "カカオの木"
     },
     {
@@ -95,7 +95,7 @@
     {
       "type": "patchouli:text",
       "anchor": "fig",
-      "text": "$(bold)$(l:the_world/climate#temperature)Temperature$(): 20 - 35 °C$(br)$(bold)$(l:mechanics/hydration)Rainfall$(): 125 - 215mm$(br2)They fruit in May.",
+      "text": "Can be found in regions with:$(br)$(bold)$(l:core_mechanics/climate#temperature)Temperature$(): $(cfg:temperature:20) - $(cfg:temperature:35)$(br)$(bold)$(l:core_mechanics/climate#rainfall)Rainfall$(): 125 - 215mm$(br2)Conditions required for growth:$(br)$(bold)$(l:core_mechanics/climate#temperature)Temperature$(): $(flcfg:climate.fig.temperature)$(br)$(bold)$(l:food/hydration)Hydration$(): $(flcfg:climate.fig.hydration)%$(br2)They fruit in May.",
       "title": "イチジクの木"
     },
     {

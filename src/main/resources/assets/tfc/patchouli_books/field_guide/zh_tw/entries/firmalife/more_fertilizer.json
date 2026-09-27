@@ -32,7 +32,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "適當新增某些原料可以延長或縮短堆肥完成所需的時間。多加嘗試，看看會發生什麼。$(br)如果堆肥桶中有32個單位，將產出3份堆肥。如果至少有24個單位，將產出2份堆肥。如果有16個或更多單位，將產出1份堆肥。低於16則不會產生堆肥。"
+      "text": "Favorable amounts of certain additions can extend or shorten the length of time it takes for the compost to complete. Play around with it and see what happens. On its own, a batch of compost takes $(flcfg:compostTumblerTicks).$(br)If 32 units are in the composter, 3 compost will be produced. If at least 24, 2 compost will be made. If 16 or more, 1 will be made. Below that, and there will be no compost."
     }
   ],
   "read_by_default": true,

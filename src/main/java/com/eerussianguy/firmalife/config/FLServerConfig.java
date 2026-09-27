@@ -59,7 +59,7 @@ public class FLServerConfig extends BaseConfig
         enableBeeAttack = builder.comment("If true, bees can swarm and hurt the player if provoked.").define("enableBeeAttack", true);
         beeUseHoneyDays = builder.comment("The amount of 24000 tick periods it takes for bees that cannot produce honey to use up 1 item of available honey.").define("beeUseHoneyDays", 12);
         hollowShellCapacity = builder.comment("The capacity in mB of the hollow shell. Default 100").define("hollowShellCapacity", 100, 1, Integer.MAX_VALUE);
-        wineGlassCapacity = builder.comment("The capacity in mB of the wine glass. Default 250").define("hollowShellCapacity", 250, 1, Integer.MAX_VALUE);
+        wineGlassCapacity = builder.comment("The capacity in mB of the wine glass. Default 250").define("wineGlassCapacity", 250, 1, Integer.MAX_VALUE);
         cellarLevel2Temperature = builder.comment("The average temperature below which stronger decay modifiers apply to cellar blocks.").define("cellarLevel2Temperature", 0d, -Double.MAX_VALUE, Double.MAX_VALUE);
         cellarLevel3Temperature = builder.comment("The average temperature below which even stronger decay modifiers apply to cellar blocks.").define("cellarLevel3Temperature", -12d, -Double.MAX_VALUE, Double.MAX_VALUE);
         greenhouseGrowthModifier = builder.comment("Modifier applied to the growth time of every crop in a greenhouse. The modifier multiplies the ticks it takes to grow, so larger values cause longer growth times. For example, a value of 2 doubles the growth time.").define("greenhouseGrowthModifier", 1, 0.001, 1000);

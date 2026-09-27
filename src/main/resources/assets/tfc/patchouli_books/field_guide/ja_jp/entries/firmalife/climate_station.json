@@ -52,7 +52,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "温室の建設についての注意事項: 最大の温室は31x31x31であり、空調機を中心とし、各方向に15ブロック広がる形となります。温室の中心に空調機を配置することで、最大サイズを活用することができます。また、壁と複数の空調機を使用することで、温室を内部で区切り、複数に分割することでより大きくすることも可能です。"
+      "text": "A note about greenhouse construction: The largest greenhouse is $(flcfg:greenhouseSize)x$(flcfg:greenhouseSize)x$(flcfg:greenhouseSize), centered on the climate station, or $(flcfg:greenhouseRadius) blocks in each direction. Centering the climate station in the greenhouse will allow you to take advantage of the full size range. You can also internally subdivide a greenhouse into multiple by using walls and multiple climate stations to make it larger."
     }
   ],
   "read_by_default": true,

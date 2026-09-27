@@ -16,7 +16,7 @@ val parchmentMinecraftVersion: String = "1.21.1"
 val emiVersion: String = "1.1.22+1.21.1"
 val jeiVersion: String = "19.25.0.321"
 val patchouliVersion: String = "1.21.1-92-NEOFORGE"
-val tfcVersion: String = "4.2.8"
+val tfcVersion: String = "4.2.10"
 
 val modId: String = "firmalife"
 val modVersion: String = System.getenv("VERSION") ?: "0.0.0-indev"
@@ -153,8 +153,8 @@ dependencies {
     "dataImplementation"("vazkii.patchouli:Patchouli:$patchouliVersion")
 
     // TFC
-    implementation(group = "curse.maven", name = "terrafirmacraft-302973", version = "8666972")
-    "dataImplementation"(group = "curse.maven", name = "terrafirmacraft-302973", version = "8666972")
+    implementation(group = "curse.maven", name = "terrafirmacraft-302973", version = "8831715")
+    "dataImplementation"(group = "curse.maven", name = "terrafirmacraft-302973", version = "8831715")
 
     // Jade / The One Probe
     implementation(group = "curse.maven", name = "jade-324717", version = "6853386")

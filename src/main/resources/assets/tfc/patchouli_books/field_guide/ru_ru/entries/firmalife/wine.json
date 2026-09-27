@@ -12,13 +12,13 @@
       "type": "patchouli:spotlight",
       "item": "firmalife:plant/wild_red_grapes",
       "link_recipes": false,
-      "text": "Красный виноград произрастает при температуре 0-30°C и количестве осадков 125-500, то есть почти на всей обитаемой территории."
+      "text": "Red grapes spawn from $(cfg:temperature:0) to $(cfg:temperature:30), and 125-500 rainfall, or almost the entire habitable area."
     },
     {
       "type": "patchouli:spotlight",
       "item": "firmalife:plant/wild_white_grapes",
       "link_recipes": false,
-      "text": "Белый виноград произрастает при температуре 0-30°C и количестве осадков 125-500, то есть почти на всей обитаемой территории."
+      "text": "White grapes spawn from $(cfg:temperature:0) to $(cfg:temperature:30), and 125-500 rainfall, or almost the entire habitable area."
     },
     {
       "type": "patchouli:crafting",
@@ -68,7 +68,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "При соблюдении климатических требований виноград будет расти и оплетать шпалеру в течение нескольких месяцев. Он будет плодоносить в июле, цветя в предыдущем месяце. Затем виноград можно собирать. Виноград также можно выращивать в теплицах на шпалерах."
+      "text": "Provided the climate requirements are satisfied ($(bold)$(l:core_mechanics/climate#temperature)Temperature$(): $(flcfg:climate.grapes.temperature), $(bold)$(l:food/hydration)Hydration$(): $(flcfg:climate.grapes.hydration)%), the grape will grow up and over the trellis over the course of a few months. It will fruit in the month of July, flowering the month prior. Grapes can the be harvested. Grapes can also be grown in greenhouses on trellises."
     },
     {
       "type": "patchouli:crafting",

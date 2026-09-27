@@ -37,11 +37,11 @@
     },
     {
       "type": "patchouli:text",
-      "text": "燻製を始めるには、焚き火の上の紐にアイテムを吊るします。$(br)焚き火からは4ブロック以内、紐の下にアイテムが吊るされている必要があります。$(br)紐が機能していれば、煙が発生します。$(br)原木を使って燃えている焚き火のみが機能するので注意してください。$(br)泥炭のようなものを使うと、すぐに食べ物に気持ち悪さを与える特徴がつきます！"
+      "text": "To start the smoking process, add the item to the string above a firepit. The firepit must be within $(flcfg:smokingFirepitRange) blocks, directly underneath the string. The string should begin to generate some smoke if it is working. It is important to note that the firepit must only be burned with $(thing)Logs$(). Using something like $(thing)Peat$() will instantly give your food the $(thing)Disgusting$() trait!"
     },
     {
       "type": "patchouli:text",
-      "text": "燻製にはゲーム内で8時間かかります。$(br2)素敵な燻製！"
+      "text": "The smoking process takes $(flcfg:smokingTicks). Happy smoking!"
     }
   ],
   "read_by_default": true,

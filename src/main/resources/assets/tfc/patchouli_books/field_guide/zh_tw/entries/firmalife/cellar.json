@@ -26,7 +26,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "地窖可用於儲存食物，例如配合$(l:firmalife/food_shelves)食物架$()和$(l:firmalife/hangers)懸掛架$()使用。在平均溫度較低的環境中，地窖的食物儲存效果更好。在0度以下，防腐效果稍佳；在-12度以下，效果則顯著提升。"
+      "text": "The cellar is used for food preservation, for example by using $(l:firmalife/food_shelves)Food Shelves$() and $(l:firmalife/hangers)Hangers$(). The cellar performs better in environments with cooler average temperatures for food preservation. Below $(flcfg:cellarLevel2Temperature), decay modifiers work slightly better. Below $(flcfg:cellarLevel3Temperature), they perform much better."
     }
   ],
   "read_by_default": true,
