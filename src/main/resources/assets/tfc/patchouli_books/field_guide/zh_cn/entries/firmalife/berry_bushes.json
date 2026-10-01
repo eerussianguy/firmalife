@@ -12,13 +12,13 @@
       "type": "patchouli:spotlight",
       "item": "firmalife:food/nightshade_berry",
       "link_recipes": false,
-      "text": "First is nightshade. Nightshade is a poisonous berry. When put into soup, it makes poisonous $(thing)Stinky Soup$(). It is found between 200-400mm of rain and 7-24 C temperature in forests. It bears fruit in the month of $(thing)August$(), flowering the month prior."
+      "text": "首先是颠茄，这是一种有毒浆果。放入汤中会制成有毒的$(thing)臭汤$()。颠茄生长在森林中，要求降雨量为200～400毫米、温度为7～24°C。它在$(thing)八月$()结果，前一个月开花。"
     },
     {
       "type": "patchouli:spotlight",
       "item": "firmalife:food/pineapple",
       "link_recipes": false,
-      "text": "Pineapple bushes are found 250-500mm of rainfall and 20-32 C temperature in forests. They bear fruit in the month of $(thing)September$(), flowering the two months prior. Pineapples are like any other fruit, except that they can be made into $(thing)Pineapple Leather$()."
+      "text": "菠萝丛生长在森林中，要求降雨量为250～500毫米、温度为20～32°C。它在$(thing)九月$()结果，前两个月开花。菠萝与其他水果类似，但还可以制成$(thing)菠萝皮革$()。"
     },
     {
       "type": "patchouli:crafting",
