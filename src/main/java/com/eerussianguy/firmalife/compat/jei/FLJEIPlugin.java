@@ -15,8 +15,10 @@ import net.minecraft.world.level.block.Block;
 import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
+import com.eerussianguy.firmalife.common.blocks.greenhouse.PlanterType;
 import com.eerussianguy.firmalife.common.items.FLItems;
 import com.eerussianguy.firmalife.common.recipes.*;
+import com.eerussianguy.firmalife.common.util.Plantable;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.helpers.IGuiHelper;
@@ -50,6 +52,7 @@ public class FLJEIPlugin implements IModPlugin
     public static final RecipeType<RecipeHolder<VatRecipe>> VAT = type("vat", VatRecipe.class);
     public static final RecipeType<RecipeHolder<PotRecipe>> BOWL_POT = type("bowl_pot", PotRecipe.class);
     public static final RecipeType<RecipeHolder<PotRecipe>> STINKY_SOUP = type("stinky_soup", PotRecipe.class);
+    public static final RecipeType<Plantable> GREENHOUSE_PLANTABLE = RecipeType.create(FirmaLife.MOD_ID, "greenhouse_plantable", Plantable.class);
 
     @Override
     public ResourceLocation getPluginUid()
@@ -71,6 +74,7 @@ public class FLJEIPlugin implements IModPlugin
         r.addRecipeCategories(new VatCategory(VAT, gui));
         r.addRecipeCategories(new StinkySoupCategory(STINKY_SOUP, gui));
         r.addRecipeCategories(new BowlPotCategory(BOWL_POT, gui));
+        r.addRecipeCategories(new GreenhousePlantableCategory(GREENHOUSE_PLANTABLE, gui));
     }
 
     @Override
@@ -86,6 +90,7 @@ public class FLJEIPlugin implements IModPlugin
         r.addRecipes(VAT, recipes(FLRecipeTypes.VAT));
         r.addRecipes(BOWL_POT, recipes(TFCRecipeTypes.POT, recipe -> recipe.getSerializer() == FLRecipeSerializers.BOWL_POT.get()));
         r.addRecipes(STINKY_SOUP, recipes(TFCRecipeTypes.POT, recipe -> recipe.getSerializer() == FLRecipeSerializers.STINKY_SOUP.get()));
+        r.addRecipes(GREENHOUSE_PLANTABLE, Plantable.MANAGER.getValues().stream().toList());
     }
 
     @Override
@@ -103,6 +108,10 @@ public class FLJEIPlugin implements IModPlugin
         cat(r, TFCItems.POT.get(), STINKY_SOUP);
         FLBlocks.STOMPING_BARRELS.values().forEach(barrel -> cat(r, barrel, STOMPING));
         FLBlocks.BARREL_PRESSES.values().forEach(barrel -> cat(r, barrel, PRESS));
+        for (PlanterType planter : PlanterType.values())
+        {
+            cat(r, planter.resolvePlanterBlock().asItem(), GREENHOUSE_PLANTABLE);
+        }
     }
 
     private static void cat(IRecipeCatalystRegistration r, Supplier<? extends Block> supplier, RecipeType<?> type)

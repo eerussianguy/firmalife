@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
 import com.eerussianguy.firmalife.common.FLHelpers;
+
 import net.dries007.tfc.common.recipes.ingredients.BlockIngredient;
 import net.dries007.tfc.util.collections.IndirectHashCollection;
 import net.dries007.tfc.util.data.DataManager;
@@ -52,5 +53,21 @@ public record GreenhouseType(BlockIngredient ingredient, int tier, Component tra
     public Component getTitle()
     {
         return translationKey;
+    }
+
+    public static Component getGreenhouseNameByTier(int tier)
+    {
+        for (GreenhouseType type : GreenhouseType.MANAGER.getValues())
+        {
+            if (type.tier() == tier)
+            {
+                return type.getTitle();
+            }
+        }
+        if (tier == 0)
+        {
+            return Component.translatable("firmalife.tooltip.any");
+        }
+        return Component.literal(String.valueOf(tier));
     }
 }

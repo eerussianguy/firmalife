@@ -24,6 +24,7 @@ import net.minecraft.world.level.ItemLike;
 import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
+import com.eerussianguy.firmalife.common.blocks.greenhouse.PlanterType;
 import com.eerussianguy.firmalife.common.blocks.oven.OvenType;
 import com.eerussianguy.firmalife.common.items.FLItems;
 import com.eerussianguy.firmalife.common.recipes.BowlPotRecipe;
@@ -98,9 +99,9 @@ public final class FLEmiPlugin implements EmiPlugin
         {
             registry.addWorkstation(OVEN, EmiStack.of(oven.get()));
         }
-        for (Plantable plantable : Plantable.MANAGER.getValues())
+        for (PlanterType planter : PlanterType.values())
         {
-            registry.addWorkstation(GREENHOUSE_PLANTABLE, EmiStack.of(GreenhousePlantableRecipe.resolvePlanterBlock(plantable.planter())));
+            registry.addWorkstation(GREENHOUSE_PLANTABLE, EmiStack.of(planter.resolvePlanterBlock()));
         }
 
         // Kegs run the same recipes as a TFC barrel, and pot recipes below are added to TFC's pot category

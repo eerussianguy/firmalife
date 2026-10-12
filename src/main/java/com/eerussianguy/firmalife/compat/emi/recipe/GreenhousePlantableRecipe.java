@@ -170,16 +170,7 @@ public class GreenhousePlantableRecipe implements EmiRecipe
      */
     public static Block resolvePlanterBlock(PlanterType type)
     {
-        var planterBlock = switch (type)
-        {
-            case QUAD -> FLBlocks.QUAD_PLANTER;
-            case LARGE -> FLBlocks.LARGE_PLANTER;
-            case HANGING -> FLBlocks.HANGING_PLANTER;
-            case TRELLIS -> FLBlocks.TRELLIS_PLANTER;
-            case BONSAI -> FLBlocks.BONSAI_PLANTER;
-            case HYDROPONIC -> FLBlocks.HYDROPONIC_PLANTER;
-        };
-        return planterBlock.get();
+        return type.resolvePlanterBlock();
     }
 
     /**
@@ -190,18 +181,7 @@ public class GreenhousePlantableRecipe implements EmiRecipe
      */
     public static Component getGreenhouseNameByTier(int tier)
     {
-        for (GreenhouseType type : GreenhouseType.MANAGER.getValues())
-        {
-            if (type.tier() == tier)
-            {
-                return type.getTitle();
-            }
-        }
-        if (tier == 0)
-        {
-            return Component.translatable("firmalife.tooltip.any");
-        }
-        return Component.literal(String.valueOf(tier));
+        return GreenhouseType.getGreenhouseNameByTier(tier);
     }
 
     /**
