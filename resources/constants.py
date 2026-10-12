@@ -202,6 +202,8 @@ DEFAULT_LANG = {
     'firmalife.tooltip.beekeeper_armor': 'Protects from bees if full suit is worn',
     'firmalife.tooltip.knapping.rotten': 'This item is rotten and cannot be knapped.',
     'firmalife.tooltip.greenhouse_panel_corner': 'Panels placed on the side of an existing panel create a corner panel',
+    'firmalife.tooltip.minimum_tier': 'Min. Tier: %s',
+    'firmalife.tooltip.any': 'Any',
     'firmalife.cellar.found': 'Found a cellar of %s blocks',
     'firmalife.cellar.valid_block': '§aIn a valid cellar',
     'firmalife.cellar.invalid_block': '§4Invalid cellar',
@@ -407,6 +409,7 @@ DEFAULT_LANG = {
     'emi.category.firmalife.oven': 'Oven',
     'emi.category.firmalife.vat': 'Vat',
     'emi.category.tfc.pumpkin_knapping': 'Pumpkin Knapping',
+    'emi.category.firmalife.greenhouse_plantable': 'Greenhouse Plantable',
 }
 
 def lang(key: str, *args) -> str:

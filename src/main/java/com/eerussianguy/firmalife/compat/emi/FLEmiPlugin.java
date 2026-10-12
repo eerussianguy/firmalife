@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.function.BiFunction;
 import java.util.function.Supplier;
+import com.eerussianguy.firmalife.common.util.Plantable;
 import dev.emi.emi.api.EmiEntrypoint;
 import dev.emi.emi.api.EmiPlugin;
 import dev.emi.emi.api.EmiRegistry;
@@ -34,6 +35,8 @@ import com.eerussianguy.firmalife.compat.emi.recipe.EmiMixingBowlRecipe;
 import com.eerussianguy.firmalife.compat.emi.recipe.EmiOvenRecipe;
 import com.eerussianguy.firmalife.compat.emi.recipe.EmiStinkySoupRecipe;
 import com.eerussianguy.firmalife.compat.emi.recipe.EmiVatRecipe;
+import com.eerussianguy.firmalife.compat.emi.recipe.GreenhousePlantableRecipe;
+
 import net.dries007.tfc.common.blocks.wood.Wood;
 import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.common.recipes.PotRecipe;
@@ -54,6 +57,7 @@ public final class FLEmiPlugin implements EmiPlugin
     public static final EmiRecipeCategory MIXING_BOWL = createCategory("mixing_bowl", FLBlocks.MIXING_BOWL.get());
     public static final EmiRecipeCategory OVEN = createCategory("oven", FLBlocks.CURED_OVEN_TOP.get(OvenType.BRICK).get());
     public static final EmiRecipeCategory VAT = createCategory("vat", FLBlocks.VAT.get());
+    public static final EmiRecipeCategory GREENHOUSE_PLANTABLE = createCategory("greenhouse_plantable", FLBlocks.LARGE_PLANTER.get());
 
     private static EmiRecipeCategory createCategory(String name, ItemLike item)
     {
@@ -94,6 +98,10 @@ public final class FLEmiPlugin implements EmiPlugin
         {
             registry.addWorkstation(OVEN, EmiStack.of(oven.get()));
         }
+        for (Plantable plantable : Plantable.MANAGER.getValues())
+        {
+            registry.addWorkstation(GREENHOUSE_PLANTABLE, EmiStack.of(GreenhousePlantableRecipe.resolvePlanterBlock(plantable.planter())));
+        }
 
         // Kegs run the same recipes as a TFC barrel, and pot recipes below are added to TFC's pot category
         registry.addWorkstation(EmiIntegration.BARREL, EmiIngredient.of(FLTags.Items.KEGS));
@@ -121,6 +129,11 @@ public final class FLEmiPlugin implements EmiPlugin
             {
                 registry.addRecipe(new EmiStinkySoupRecipe(entry.id(), stinky));
             }
+        }
+
+        for (Plantable plantable : Plantable.MANAGER.getValues())
+        {
+            registry.addRecipe(new GreenhousePlantableRecipe(plantable));
         }
     }
 

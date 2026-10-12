@@ -183,7 +183,7 @@ public record Plantable(Ingredient ingredient, PlanterType planter, int tier, in
         return Component.literal(" ".repeat(amount)).append(component);
     }
 
-    private static String formatNutrientAmount(float value, boolean consumesNutrients)
+    public static String formatNutrientAmount(float value, boolean consumesNutrients)
     {
         if (value < 0)
         {
