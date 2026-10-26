@@ -78,13 +78,14 @@ public class SprinklerBlockEntity extends TFCBlockEntity implements FluidTankCal
                     final Fluid fluid = cap.getFluidInTank(0).getFluid();
                     if (fluid != Fluids.EMPTY && Helpers.isFluid(fluid, TFCTags.Fluids.ANY_FRESH_WATER))
                     {
-                        if (drain)
+                        if (!drain)
                         {
-                            final FluidStack drained = cap.drain(1, IFluidHandler.FluidAction.EXECUTE);
-                            if (!drained.isEmpty())
-                            {
-                                return drained.getFluid();
-                            }
+                            return fluid;
+                        }
+                        final FluidStack drained = cap.drain(1, IFluidHandler.FluidAction.EXECUTE);
+                        if (!drained.isEmpty())
+                        {
+                            return drained.getFluid();
                         }
                     }
                 }
