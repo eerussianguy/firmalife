@@ -26,4 +26,4 @@ jobs:
       with:
         arguments: build
       env:
-        VERSION: indev-test
+        VERSION: 0.0.0-test

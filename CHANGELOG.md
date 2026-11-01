@@ -1,5 +1,6 @@
 ### Changes
 - Added a chapter with information on how to grow all greenhouse crops.
+- Updated to latest TFC (fixes all manner of recent crashes)
 
 ### Fixes
 - Fix ashtrays not filling properly
@@ -15,4 +16,4 @@
 - Fixed logic bug with sprinklers.
 - Fixed smoking with bad fuels not applying the "Rancid Smoked" trait.
 - Fixed an issue with trellis planters not resetting growth properly.
-- 
+a
