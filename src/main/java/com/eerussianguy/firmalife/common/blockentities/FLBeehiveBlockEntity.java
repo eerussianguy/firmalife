@@ -564,16 +564,12 @@ public class FLBeehiveBlockEntity extends TickableInventoryBlockEntity<ItemStack
     {
         assert level != null;
         final boolean bees = hasBees();
-        final BlockState state = level.getBlockState(worldPosition);
-        if (bees != state.getValue(WoodenBeehiveBlock.BEES))
-        {
-            level.setBlockAndUpdate(worldPosition, state.setValue(WoodenBeehiveBlock.BEES, bees));
-            markForSync();
-        }
         final boolean hasHoney = getHoney() > 0;
-        if (hasHoney != state.getValue(WoodenBeehiveBlock.HONEY))
+        final BlockState state = level.getBlockState(worldPosition);
+        final BlockState newState = state.setValue(WoodenBeehiveBlock.BEES, bees).setValue(WoodenBeehiveBlock.HONEY, hasHoney);
+        if (newState != state)
         {
-            level.setBlockAndUpdate(worldPosition, state.setValue(WoodenBeehiveBlock.HONEY, hasHoney));
+            level.setBlockAndUpdate(worldPosition, newState);
             markForSync();
         }
         if (linkedHive != null && level.isAreaLoaded(linkedHive, 1))

@@ -8,7 +8,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Fluid;
 import org.jetbrains.annotations.Nullable;
 
 public class HydroponicPlanterBlockEntity extends QuadPlanterBlockEntity
@@ -17,10 +16,9 @@ public class HydroponicPlanterBlockEntity extends QuadPlanterBlockEntity
     {
         planter.checkForCalendarUpdate();
         planter.checkForLastTickSync();
-        if (level.getGameTime() % (80 + (pos.getZ() % 4)) == 0 && planter.isClimateValid())
+        if (level.getGameTime() % (80 + (pos.getZ() % 4)) == 0)
         {
-            final Fluid fluid = SprinklerBlockEntity.searchForFluid(level, pos, Direction.DOWN, false);
-            final boolean valid = fluid != null;
+            final boolean valid = planter.isClimateValid() && SprinklerBlockEntity.searchForFluid(level, pos, Direction.DOWN, false) != null;
             if (valid != planter.hasPipe)
             {
                 planter.hasPipe = valid;
@@ -54,7 +52,7 @@ public class HydroponicPlanterBlockEntity extends QuadPlanterBlockEntity
     @Nullable
     public Component getInvalidReason()
     {
-        if (!hasPipe())
+        if (isClimateValid() && !hasPipe())
         {
             return Component.translatable("firmalife.greenhouse.needs_pipe");
         }

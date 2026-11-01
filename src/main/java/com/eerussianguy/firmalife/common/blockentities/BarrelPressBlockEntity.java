@@ -306,8 +306,7 @@ public class BarrelPressBlockEntity extends TickableInventoryBlockEntity<ItemSta
         super.loadAdditional(tag, access);
         this.lastPushed = tag.getLong("pushed");
         this.didAction = tag.getBoolean("didAction");
-        if (tag.contains("output", Tag.TAG_COMPOUND))
-            output = WineOutput.of(tag.getCompound("output"));
+        output = tag.contains("output", Tag.TAG_COMPOUND) ? WineOutput.of(tag.getCompound("output")) : null;
 
         needsSlotUpdate = true;
     }

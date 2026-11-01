@@ -47,7 +47,7 @@ public class AshTrayBlockEntity extends InventoryBlockEntity<ItemStackHandler>
     {
         assert level != null;
         final BlockState current = level.getBlockState(getBlockPos());
-        final int stage = Mth.clamp(Mth.ceil(inventory.getStackInSlot(0).getCount() * 10f / 16f), 0, 5);
+        final int stage = Mth.clamp(Mth.ceil(inventory.getStackInSlot(0).getCount() * 10f / 16f), 0, 10);
         if (current.hasProperty(AshtrayBlock.STAGE) && current.getValue(AshtrayBlock.STAGE) != stage)
         {
             level.setBlockAndUpdate(getBlockPos(), current.setValue(AshtrayBlock.STAGE, stage));

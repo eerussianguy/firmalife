@@ -30,7 +30,13 @@ import org.jetbrains.annotations.Nullable;
 
 public record Plantable(Ingredient ingredient, PlanterType planter, int tier, int stages, float extraSeedChance, ItemStack seed, ItemStack crop, NutrientList nutrient, List<ResourceLocation> textures, List<ResourceLocation> specials)
 {
-    public record NutrientList(float nitrogen, float phosphorous, float potassium) {}
+    public record NutrientList(float nitrogen, float phosphorous, float potassium)
+    {
+        public boolean consumesAny()
+        {
+            return nitrogen > 0 || phosphorous > 0 || potassium > 0;
+        }
+    }
 
     public static final Codec<NutrientList> NUTRIENT_LIST_CODEC = RecordCodecBuilder.create(i -> i.group(
         Codec.FLOAT.fieldOf("nitrogen").forGetter(c -> c.nitrogen),
@@ -48,9 +54,9 @@ public record Plantable(Ingredient ingredient, PlanterType planter, int tier, in
     public static final Codec<Plantable> CODEC = RecordCodecBuilder.create(i -> i.group(
         Ingredient.CODEC_NONEMPTY.fieldOf("ingredient").forGetter(c -> c.ingredient),
         PlanterType.CODEC.fieldOf("planter").forGetter(c -> c.planter),
-        Codecs.POSITIVE_INT.optionalFieldOf("tier", 0).forGetter(c -> c.tier),
-        Codecs.POSITIVE_INT.optionalFieldOf("stages", 0).forGetter(c -> c.stages),
-        Codecs.POSITIVE_FLOAT.optionalFieldOf("extra_seed_chance", 0.5f).forGetter(c -> c.extraSeedChance),
+        Codec.INT.optionalFieldOf("tier", 0).forGetter(c -> c.tier),
+        Codec.INT.optionalFieldOf("stages", 0).forGetter(c -> c.stages),
+        Codec.FLOAT.optionalFieldOf("extra_seed_chance", 0.5f).forGetter(c -> c.extraSeedChance),
         ItemStack.CODEC.fieldOf("seed").forGetter(c -> c.seed),
         ItemStack.CODEC.fieldOf("crop").forGetter(c -> c.crop),
         NUTRIENT_LIST_CODEC.fieldOf("nutrient").forGetter(c -> c.nutrient),
@@ -161,7 +167,7 @@ public record Plantable(Ingredient ingredient, PlanterType planter, int tier, in
         final float k = fl.potassium;
         if (showN || showP || showK)
         {
-            final boolean consumesNutrients = n > 0 || p > 0 || k > 0;
+            final boolean consumesNutrients = fl.consumesAny();
             tooltip.add(Component.translatable("firmalife.tooltip.planter.nutrients").withStyle(ChatFormatting.GRAY));
             if (showN)
                 tooltip.add(indent(Component.translatable("tfc.tooltip.fertilizer.nitrogen", formatNutrientAmount(n, consumesNutrients)), 1));
@@ -183,7 +189,7 @@ public record Plantable(Ingredient ingredient, PlanterType planter, int tier, in
         return Component.literal(" ".repeat(amount)).append(component);
     }
 
-    private static String formatNutrientAmount(float value, boolean consumesNutrients)
+    public static String formatNutrientAmount(float value, boolean consumesNutrients)
     {
         if (value < 0)
         {

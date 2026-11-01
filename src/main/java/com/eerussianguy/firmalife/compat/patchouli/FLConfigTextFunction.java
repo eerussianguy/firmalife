@@ -6,17 +6,19 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Supplier;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextColor;
 import org.jetbrains.annotations.Nullable;
-import vazkii.patchouli.api.PatchouliAPI;
 
+import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.blocks.plant.FLFruitBlocks;
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.common.util.FLClimateRanges;
+import com.eerussianguy.firmalife.common.util.Plantable;
 import com.eerussianguy.firmalife.config.FLConfig;
 import net.dries007.tfc.common.component.heat.Heat;
+import net.dries007.tfc.compat.patchouli.ConfigTextFunction;
+import net.dries007.tfc.config.ClimateTemperatureDisplayStyle;
+import net.dries007.tfc.config.ItemTemperatureDisplayStyle;
 import net.dries007.tfc.config.TFCConfig;
-import net.dries007.tfc.config.TemperatureDisplayStyle;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.ICalendar;
@@ -27,14 +29,15 @@ import net.dries007.tfc.util.tooltip.Tooltips;
 /**
  * Registers the {@code $(flcfg:<name>)} field guide text function, which substitutes a value derived from the
  * Firmalife server config, or from a {@link ClimateRange}, into book text. This is the Firmalife equivalent of TFC's
- * {@code $(cfg:<name>)}, which cannot be extended by other mods.
+ * {@code $(cfg:<name>)}, and is registered through TFC so that it also works in places like table cells.
  * <p>
  * {@link #VALUES} is the set of names the book is allowed to reference. Any name used in {@code generate_book.py}
- * must appear here.
+ * must appear here, except for {@code plantable.<id>.<field>}, which is resolved from synced data, see {@link #plantable}.
  */
 public final class FLConfigTextFunction
 {
     public static final String NAME = "flcfg";
+    private static final String PLANTABLE_PREFIX = "plantable.";
 
     private static final Map<String, Supplier<Component>> VALUES = buildValues();
 
@@ -103,28 +106,46 @@ public final class FLConfigTextFunction
 
     public static void register()
     {
-        PatchouliAPI.get().registerFunction(NAME, (param, style) -> {
-            final Component component = unknownOr(resolve(param), param);
-            // The book renders text, not components, so any color the value carries has to be moved onto the span
-            final TextColor color = component.getStyle().getColor();
-            if (color != null)
-            {
-                style.modifyStyle(s -> s.withColor(color));
-            }
-            return component.getString();
-        });
+        ConfigTextFunction.register(NAME, FLConfigTextFunction::resolve);
     }
 
     @Nullable
     private static Component resolve(String param)
     {
         final Supplier<Component> value = VALUES.get(param);
-        return value != null ? value.get() : null;
+        if (value != null)
+        {
+            return value.get();
+        }
+        return param.startsWith(PLANTABLE_PREFIX) ? plantable(param.substring(PLANTABLE_PREFIX.length())) : null;
     }
 
-    private static Component unknownOr(@Nullable Component value, String param)
+    @Nullable
+    private static Component plantable(String param)
     {
-        return value != null ? value : Component.literal("[UNKNOWN CONFIG: " + param + "]");
+        final int dot = param.lastIndexOf('.');
+        if (dot == -1)
+        {
+            return null;
+        }
+        final Plantable plant = Plantable.MANAGER.get(FLHelpers.identifier(param.substring(0, dot)));
+        if (plant == null)
+        {
+            return null;
+        }
+        final Plantable.NutrientList nutrients = plant.nutrient();
+        return switch (param.substring(dot + 1))
+        {
+            case "n" -> nutrient(nutrients.nitrogen(), nutrients);
+            case "p" -> nutrient(nutrients.phosphorous(), nutrients);
+            case "k" -> nutrient(nutrients.potassium(), nutrients);
+            default -> null;
+        };
+    }
+
+    private static Component nutrient(float value, Plantable.NutrientList nutrients)
+    {
+        return Component.literal(Plantable.formatNutrientAmount(value, nutrients.consumesAny()));
     }
 
     /**
@@ -144,9 +165,6 @@ public final class FLConfigTextFunction
             : Component.translatable("tfc.field_guide.hours", Math.round((double) calendarTicks / ICalendar.CALENDAR_TICKS_IN_HOUR));
     }
 
-    /**
-     * For config values which are already a count of calendar days, rather than a duration in ticks
-     */
     private static Component days(double calendarDays)
     {
         return Component.translatable("tfc.tooltip.time_delta_days", number(calendarDays));
@@ -158,24 +176,17 @@ public final class FLConfigTextFunction
         return heat == null ? Component.empty() : Helpers.translateEnum(heat).withStyle(heat.getColor());
     }
 
-    /**
-     * The heat of an item, which is never negative
-     */
     private static Component temperature(int degrees)
     {
-        final TemperatureDisplayStyle style = TFCConfig.CLIENT.heatTooltipStyle.get();
-        final Component formatted = (style == TemperatureDisplayStyle.COLOR ? TemperatureDisplayStyle.CELSIUS : style).format(degrees);
+        final ItemTemperatureDisplayStyle style = TFCConfig.CLIENT.heatTooltipStyle.get();
+        final Component formatted = (style == ItemTemperatureDisplayStyle.COLOR ? ItemTemperatureDisplayStyle.CELSIUS : style).format(degrees);
         return formatted == null ? count(degrees) : formatted;
     }
 
-    /**
-     * Climate temperatures, unlike the heat of an item, are frequently negative, so they use {@code formatRange},
-     * which does not treat that as absent.
-     */
     private static Component climateTemperature(float value)
     {
         final Component formatted = TFCConfig.CLIENT.climateTooltipStyle.get().formatRange(value);
-        return formatted != null ? formatted : Objects.requireNonNull(TemperatureDisplayStyle.CELSIUS.formatRange(value));
+        return formatted != null ? formatted : Objects.requireNonNull(ClimateTemperatureDisplayStyle.CELSIUS.formatRange(value));
     }
 
     private static Component range(Object min, Object max)
@@ -193,17 +204,11 @@ public final class FLConfigTextFunction
         return Component.literal(number(factor));
     }
 
-    /**
-     * Food trait modifiers and chances are stored as a fraction, but the book talks about them as a percentage
-     */
     private static Component percent(double fraction)
     {
         return Component.literal(number(100 * fraction) + "%");
     }
 
-    /**
-     * Format without a trailing {@code .0}, as most of these values are configured as whole numbers
-     */
     private static String number(double value)
     {
         return value == Math.rint(value)

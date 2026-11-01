@@ -34,12 +34,10 @@ public class VatBlockEntity extends BoilingBlockEntity<VatBlockEntity.VatInvento
     public static void serverTick(Level level, BlockPos pos, BlockState state, VatBlockEntity vat)
     {
         vat.checkForLastTickSync();
-        vat.checkForCalendarUpdate();
 
         if (vat.needsRecipeUpdate)
-        {
             vat.updateCachedRecipe();
-        }
+        vat.checkForCalendarUpdate();
 
         final List<ItemStack> excess = vat.inventory.excess;
         if (!excess.isEmpty() && vat.inventory.getStackInSlot(0).isEmpty())
@@ -117,6 +115,10 @@ public class VatBlockEntity extends BoilingBlockEntity<VatBlockEntity.VatInvento
             {
                 boilingTicks = cachedRecipe.getDuration();
                 handleCooking();
+            }
+            else
+            {
+                boilingTicks += (int) ticks;
             }
         }
     }

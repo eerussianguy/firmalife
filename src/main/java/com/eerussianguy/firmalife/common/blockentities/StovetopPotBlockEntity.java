@@ -38,12 +38,10 @@ public class StovetopPotBlockEntity extends BoilingBlockEntity<StovetopPotBlockE
     public static void serverTick(Level level, BlockPos pos, BlockState state, StovetopPotBlockEntity pot)
     {
         pot.checkForLastTickSync();
-        pot.checkForCalendarUpdate();
 
         if (pot.needsRecipeUpdate)
-        {
             pot.updateCachedRecipe();
-        }
+        pot.checkForCalendarUpdate();
 
         pot.tickTemperature();
         pot.handleCooking();
@@ -85,6 +83,7 @@ public class StovetopPotBlockEntity extends BoilingBlockEntity<StovetopPotBlockE
             .getRecipeFor(TFCRecipeTypes.POT.get(), inventory, level)
             .map(RecipeHolder::value)
             .orElse(null);
+        needsRecipeUpdate = false;
     }
 
     @Override

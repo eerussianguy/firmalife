@@ -88,7 +88,7 @@ public class CompostTumblerBlockEntity extends TickableInventoryBlockEntity<Item
         final Compost compost = getCompost(stack);
         if (compost.isEmpty())
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-        final int toAdd = Math.min(MAX_COMPOST - compost.amount, compost.amount);
+        final int toAdd = Math.min(MAX_COMPOST - total, compost.amount);
         switch (compost.type)
         {
             case BROWN -> brown += toAdd;
@@ -242,7 +242,7 @@ public class CompostTumblerBlockEntity extends TickableInventoryBlockEntity<Item
 
         if (readyTicks > (originalReadyTicks * 3))
         {
-            readyTicks = originalReadyTicks;
+            readyTicks = originalReadyTicks * 3;
         }
 
         return readyTicks;

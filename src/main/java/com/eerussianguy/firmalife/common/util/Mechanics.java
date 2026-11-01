@@ -111,19 +111,14 @@ public final class Mechanics
     @Nullable
     private static Set<BlockPos> tryFindCellarInfo(Level level, BlockPos pos, int lastSize, BlockPos.MutableBlockPos mutable)
     {
-        final BoundingBox box = new BoundingBox(pos).inflatedBy(15);
+        final BoundingBox box = new BoundingBox(pos).inflatedBy(FLConfig.SERVER.greenhouseRadius.get());
         final Set<BlockPos> filled = floodfill(level, pos, mutable, box, (s, p, dir) -> CELLAR.test(s), s -> !Helpers.isBlock(s, FLBlocks.CLIMATE_STATION.get()), false, lastSize, Helpers.DIRECTIONS);
         return filled.isEmpty() ? null : filled;
     }
 
-    @Nullable
-    public static GreenhouseInfo getGreenhouse(Level level, BlockPos pos, BlockState state)
-    {
-        return getGreenhouse(level, pos, state, -1);
-    }
 
     @Nullable
-    public static GreenhouseInfo getGreenhouse(Level level, BlockPos pos, BlockState state, int lastSize)
+    public static GreenhouseInfo getGreenhouse(Level level, BlockPos pos, BlockState state)
     {
         final BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
         for (Direction d : Helpers.DIRECTIONS)
@@ -132,20 +127,20 @@ public final class Mechanics
             final GreenhouseType greenhouse = GreenhouseType.get(level.getBlockState(mutable));
             if (greenhouse != null)
             {
-                return tryFindGreenhouseInfo(level, pos, lastSize, mutable, greenhouse);
+                return tryFindGreenhouseInfo(level, pos, mutable, greenhouse);
             }
         }
         if (level.getBlockEntity(pos) instanceof ClimateStationBlockEntity station && station.getFavoriteType() != null)
         {
-            return tryFindGreenhouseInfo(level, pos, lastSize, mutable, station.getFavoriteType());
+            return tryFindGreenhouseInfo(level, pos, mutable, station.getFavoriteType());
         }
         return null;
     }
 
     @Nullable
-    private static GreenhouseInfo tryFindGreenhouseInfo(Level level, BlockPos pos, int lastSize, BlockPos.MutableBlockPos mutable, GreenhouseType greenhouse)
+    private static GreenhouseInfo tryFindGreenhouseInfo(Level level, BlockPos pos, BlockPos.MutableBlockPos mutable, GreenhouseType greenhouse)
     {
-        final BoundingBox box = new BoundingBox(pos).inflatedBy(15);
+        final BoundingBox box = new BoundingBox(pos).inflatedBy(FLConfig.SERVER.greenhouseRadius.get());
         GreenhousePanelWallBlock.WallSegmentLocator panelSegmentLocator = new GreenhousePanelWallBlock.WallSegmentLocator();
         final TriPredicate<BlockState, BlockPos, Direction> predicate = (wallState, wallPos, direction) -> {
             if (Helpers.isBlock(wallState, FLTags.Blocks.ALWAYS_VALID_GREENHOUSE_WALL))
@@ -193,7 +188,7 @@ public final class Mechanics
             }
             return wallState.isFaceSturdy(level, wallPos, direction.getOpposite());
         };
-        Set<BlockPos> filled = floodfill(level, pos, mutable, box, predicate, s -> !Helpers.isBlock(s, FLBlocks.CLIMATE_STATION.get()), false, lastSize, Helpers.DIRECTIONS);
+        Set<BlockPos> filled = floodfill(level, pos, mutable, box, predicate, s -> !Helpers.isBlock(s, FLBlocks.CLIMATE_STATION.get()), false, 120, Helpers.DIRECTIONS);
         if (filled.isEmpty())
         {
             return null;
@@ -238,12 +233,14 @@ public final class Mechanics
         final ICalendar calendar = Calendars.get(level);
         final long tickDelta = toTick - fromTick;
         final boolean growing = planter.checkValid();
+        boolean anyPlanted = false;
 
         for (int slot = 0; slot < planter.slots(); slot++)
         {
             Plantable plant = planter.getPlantable(slot);
             if (plant != null)
             {
+                anyPlanted = true;
                 // Nutrients are consumed first, since they are independent of growth or health.
                 // As long as the crop exists it consumes nutrients.
 
@@ -350,11 +347,13 @@ public final class Mechanics
             {
                 planter.setGrowth(slot, 0);
                 planter.setYield(slot, 0);
-                planter.setLastGrowthTick(calendar.getTicks());
-                return false;
             }
         }
         planter.setLastGrowthTick(calendar.getTicks());
+        if (!anyPlanted)
+        {
+            return false;
+        }
         planter.afterGrowthTickStep(growing);
         return true;
     }

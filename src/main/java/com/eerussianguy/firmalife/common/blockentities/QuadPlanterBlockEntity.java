@@ -1,11 +1,9 @@
 package com.eerussianguy.firmalife.common.blockentities;
 
 import com.eerussianguy.firmalife.FirmaLife;
-import com.eerussianguy.firmalife.common.FLHelpers;
 import com.eerussianguy.firmalife.common.util.Plantable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -76,6 +74,7 @@ public class QuadPlanterBlockEntity extends LargePlanterBlockEntity
     @Override
     public void setGrowth(int slot, float growth)
     {
+        if (growth > 0.99f) growth = 1f;
         this.growth[slot] = growth;
         markForSync();
     }

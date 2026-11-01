@@ -21,7 +21,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "大型种植盆可以种植$(thing)绿豆$()、$(thing)西红柿$()、$(thing)甘蔗$()、$(thing)黄麻$()和$(thing)谷物$()。但如果要种植谷物，你需要一个$(thing)铜$()或更高等级的温室。"
+      "text": "Large Planters grow $(l:firmalife/greenhouse_crops#large)larger crops$(), such as $(thing)Grains$(), $(thing)Tomatoes$(), and $(thing)Jute$()."
     },
     {
       "type": "patchouli:crafting",
@@ -30,7 +30,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "四槽种植盆可以种植$(thing)甜菜$()、$(thing)卷心菜$()、$(thing)胡萝卜$()、$(thing)大蒜$()、$(thing)洋葱$()、$(thing)马铃薯$()和$(thing)大豆$()。这些农作物都可以在任意等级的温室中种植。"
+      "text": "Quad Planters grow $(l:firmalife/greenhouse_crops#quad)smaller crops$(), such as $(thing)Beets$(), $(thing)Carrots$(), and $(thing)Potatoes$(), as well as $(l:firmalife/herbs_and_spices)Herbs$()."
     },
     {
       "type": "patchouli:crafting",
@@ -39,7 +39,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "盆栽种植盆可以种植除$(thing)香蕉$()外的任何果树，而香蕉需要$(thing)悬挂种植盆$()。它们都会消耗氮作为主要的营养，并且需要$(thing)铁$()或更高等级的温室才能种植。"
+      "text": "Bonsai Planters can grow any $(l:firmalife/greenhouse_crops#bonsai)fruit tree$() type, except $(thing)Bananas$(), which need a $(thing)Hanging Planter$()."
     },
     {
       "type": "patchouli:crafting",
@@ -48,7 +48,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "悬挂种植盆可以用种子种植$(thing)西葫芦$()，以及用树苗种植$(thing)香蕉$()。西葫芦可以在任意等级的温室种植，但香蕉需要$(thing)铁$()或更高等级的温室。悬挂种植盆必须被挂在一个实心方块的下方。"
+      "text": "Hanging Planters grow $(l:firmalife/greenhouse_crops#hanging)vining crops$() like $(thing)Squash$() from their seeds, and $(thing)Bananas$() from their saplings. Hanging planters need to anchor to a solid block above them."
     },
     {
       "type": "patchouli:crafting",
@@ -57,12 +57,12 @@
     },
     {
       "type": "patchouli:text",
-      "text": "格子种植架具有$(thing)繁殖$()浆果丛的特性。如果一个种植架放置在另一个之上，并且下方的架子上长有成熟的浆果丛，则上方的架子有可能繁殖出新的浆果丛。格子种植架可以种植除$(thing)蔓越莓$()外的任何浆果丛，但需要$(thing)铁$()或更高级的温室才能运作。这些浆果丛偏好氮元素。"
+      "text": "Trellis Planters have the unique property of $(thing)propagating$() berry bushes. If a trellis planter is placed on top of another, and the one below has a mature berry bush, it has a chance to grow upwards into the next one. Trellis planters can grow $(l:firmalife/greenhouse_crops#trellis)Grapes and berry bushes$(), except $(thing)Cranberries$()."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/hydroponic_planter",
-      "text": "$(thing)水培种植盆$()用于种植水稻和蔓越莓。其运作方式与四格种植盆相同，只是无需浇水。"
+      "text": "$(thing)Hydroponic Planters$() grow $(l:firmalife/greenhouse_crops#hydroponic)rice and cranberry bushes$(). They work the same as a quad planter, except that they do not need to be watered."
     },
     {
       "type": "patchouli:text",

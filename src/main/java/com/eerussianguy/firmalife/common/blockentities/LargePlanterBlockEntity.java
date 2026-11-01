@@ -281,6 +281,7 @@ public class LargePlanterBlockEntity extends TickableInventoryBlockEntity<ItemSt
     public void setYield(int slot, float yield)
     {
         this.yield = yield;
+        markForSync();
     }
 
     public void setGrowth(int slot, float growth)

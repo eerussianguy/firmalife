@@ -21,7 +21,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Large Planters can grow $(thing)Green Beans$(), $(thing)Tomatoes$(), $(thing)Sugarcane$(), $(thing)Jute$(), and $(thing)Grains$(). However, to grow Grains, you need a $(thing)Copper$() or better Greenhouse."
+      "text": "Large Planters grow $(l:firmalife/greenhouse_crops#large)larger crops$(), such as $(thing)Grains$(), $(thing)Tomatoes$(), and $(thing)Jute$()."
     },
     {
       "type": "patchouli:crafting",
@@ -30,7 +30,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Quad Planters can grow $(thing)Beets$(), $(thing)Cabbage$(), $(thing)Carrots$(), $(thing)Garlic$(), $(thing)Onions$(), $(thing)Potatoes$(), and $(thing)Soybeans$(). These crops can be grown in any greenhouse type."
+      "text": "Quad Planters grow $(l:firmalife/greenhouse_crops#quad)smaller crops$(), such as $(thing)Beets$(), $(thing)Carrots$(), and $(thing)Potatoes$(), as well as $(l:firmalife/herbs_and_spices)Herbs$()."
     },
     {
       "type": "patchouli:crafting",
@@ -39,7 +39,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Bonsai Planters can grow any fruit tree type, except $(thing)Bananas$(), which need a $(thing)Hanging Planter$(). They all consume Nitrogen as their main nutrient. They need an $(thing)Iron$() or better greenhouse to grow."
+      "text": "Bonsai Planters can grow any $(l:firmalife/greenhouse_crops#bonsai)fruit tree$() type, except $(thing)Bananas$(), which need a $(thing)Hanging Planter$()."
     },
     {
       "type": "patchouli:crafting",
@@ -48,7 +48,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Hanging Planters grow $(thing)Squash$(), from their seeds, and $(thing)Bananas$(), from their saplings. Squash can be grown in any greenhouse, but Bananas require an $(thing)Iron$() or better greenhouse to grow. Hanging planters need to anchor to a solid block above them."
+      "text": "Hanging Planters grow $(l:firmalife/greenhouse_crops#hanging)vining crops$() like $(thing)Squash$() from their seeds, and $(thing)Bananas$() from their saplings. Hanging planters need to anchor to a solid block above them."
     },
     {
       "type": "patchouli:crafting",
@@ -57,12 +57,12 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Trellis Planters have the unique property of $(thing)propagating$() berry bushes. If a trellis planter is placed on top of another, and the one below has a mature berry bush, it has a chance to grow upwards into the next one. Trellis planters can grow any berry bush except $(thing)Cranberries$(), but require an $(thing)Iron$() or better greenhouse to work. Bushes prefer Nitrogen."
+      "text": "Trellis Planters have the unique property of $(thing)propagating$() berry bushes. If a trellis planter is placed on top of another, and the one below has a mature berry bush, it has a chance to grow upwards into the next one. Trellis planters can grow $(l:firmalife/greenhouse_crops#trellis)Grapes and berry bushes$(), except $(thing)Cranberries$()."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/hydroponic_planter",
-      "text": "$(thing)Hydroponic Planters$() grow rice and cranberry bushes. They work the same as a quad planter, except that they do not need to be watered."
+      "text": "$(thing)Hydroponic Planters$() grow $(l:firmalife/greenhouse_crops#hydroponic)rice and cranberry bushes$(). They work the same as a quad planter, except that they do not need to be watered."
     },
     {
       "type": "patchouli:text",

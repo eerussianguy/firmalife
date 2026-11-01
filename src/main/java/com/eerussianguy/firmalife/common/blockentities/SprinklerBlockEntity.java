@@ -37,10 +37,9 @@ public class SprinklerBlockEntity extends TFCBlockEntity implements FluidTankCal
 {
     public static void serverTick(Level level, BlockPos pos, BlockState state, SprinklerBlockEntity sprinkler)
     {
-        if (level.getGameTime() % (80 + (pos.getZ() % 4)) == 0 && sprinkler.valid && state.getBlock() instanceof AbstractSprinklerBlock block)
+        if (level.getGameTime() % (80 + (pos.getZ() % 4)) == 0 && state.getBlock() instanceof AbstractSprinklerBlock block)
         {
-            final Fluid fluid = searchForFluid(level, pos, block instanceof SprinklerBlock ? Direction.UP : Direction.DOWN, true);
-            final boolean valid = fluid != null;
+            final boolean valid = sprinkler.valid && searchForFluid(level, pos, block instanceof SprinklerBlock ? Direction.UP : Direction.DOWN, true) != null;
             if (valid)
             {
                 for (BlockPos waterPos : block.getPathMaker().apply(pos))
@@ -54,7 +53,7 @@ public class SprinklerBlockEntity extends TFCBlockEntity implements FluidTankCal
             }
             if (state.getValue(AbstractSprinklerBlock.STASIS) != valid)
             {
-                level.setBlockAndUpdate(pos, state.cycle(AbstractSprinklerBlock.STASIS));
+                level.setBlockAndUpdate(pos, state.setValue(AbstractSprinklerBlock.STASIS, valid));
             }
         }
     }

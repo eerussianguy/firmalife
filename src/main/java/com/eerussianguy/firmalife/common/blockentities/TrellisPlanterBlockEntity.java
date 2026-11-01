@@ -38,7 +38,7 @@ public class TrellisPlanterBlockEntity extends LargePlanterBlockEntity
                     if (inv.getStackInSlot(0).isEmpty() && inv.isItemValid(0, inside))
                     {
                         ItemStack leftover = inv.insertItem(0, inside.copy(), false);
-                        if (!leftover.isEmpty())
+                        if (leftover.isEmpty())
                         {
                             planter.setGrowth(0, 0);
                             planter.setYield(0, 0);

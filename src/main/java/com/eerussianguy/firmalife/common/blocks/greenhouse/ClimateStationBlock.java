@@ -54,9 +54,8 @@ public class ClimateStationBlock extends DeviceBlock
         {
             final Set<BlockPos> positions = info.positions();
             level.getBlockEntity(pos, FLBlockEntities.CLIMATE_STATION.get()).ifPresent(station -> {
-                station.setPositions(positions);
+                station.setPositions(positions, ClimateType.GREENHOUSE);
                 station.updateValidity(true, info.type().tier());
-                station.setType(ClimateType.GREENHOUSE);
                 station.setStructureInfo(info.type(), positions.size());
             });
             updateState(level, pos, state, true);
@@ -68,9 +67,8 @@ public class ClimateStationBlock extends DeviceBlock
             if (cellarPositions != null)
             {
                 level.getBlockEntity(pos, FLBlockEntities.CLIMATE_STATION.get()).ifPresent(station -> {
-                    station.setPositions(cellarPositions);
+                    station.setPositions(cellarPositions, ClimateType.CELLAR);
                     station.updateValidity(true, 0);
-                    station.setType(ClimateType.CELLAR);
                     station.setStructureInfo(null, cellarPositions.size());
                 });
                 updateState(level, pos, state, true);

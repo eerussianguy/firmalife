@@ -1,5 +1,7 @@
+import math
+
 import format_lang
-from constants import FRUITS
+from constants import FRUITS, TFC_FRUIT_TREES
 from patchouli import *
 from argparse import ArgumentParser
 from typing import Optional
@@ -165,19 +167,29 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False, rev
             text('$(thing)Planters$() are used to grow crops inside a $(l:firmalife/greenhouse)Greenhouse$(). To see the status of a planter, you can look at it while holding a $(thing)Hoe$(). Crops in planters consume $(l:mechanics/fertilizers)Nutrients$() in a similar way to $(l:mechanics/crops)Crops$(). Planters should be placed inside a valid Greenhouse and activated with a $(l:firmalife/climate_station)Climate Station$(). Planters need at least some natural sunlight to work.').anchor('planters'),
             crafting('firmalife:crafting/watering_can', text_contents='Planters must be $(thing)Watered$() to grow. This is done with a $(thing)Watering Can$(), crafted from a $(thing)Wooden Bucket$(), a container of $(thing)Water$() and $(thing)Lumber$(). Press $(item)$(k:key.use)$() with it to water nearby planters. Refill it by pressing $(item)$(k:key.use)$() on a water source.'),
             crafting('firmalife:crafting/large_planter', text_contents='$(thing)Large Planters$() are the most simple kind of planter. They grow a single crop from seed, and are harvested with $(item)$(k:key.use)$() when mature.'),
-            text('Large Planters can grow $(thing)Green Beans$(), $(thing)Tomatoes$(), $(thing)Sugarcane$(), $(thing)Jute$(), and $(thing)Grains$(). However, to grow Grains, you need a $(thing)Copper$() or better Greenhouse.'),
+            text('Large Planters grow $(l:firmalife/greenhouse_crops#large)larger crops$(), such as $(thing)Grains$(), $(thing)Tomatoes$(), and $(thing)Jute$().'),
             crafting('firmalife:crafting/quad_planter', text_contents='$(thing)Quad Planters$() grow four individual crops at once. These crops all draw from the same nutrient pool, and can be harvested individually with $(item)$(k:key.use)$() when mature.'),
-            text('Quad Planters can grow $(thing)Beets$(), $(thing)Cabbage$(), $(thing)Carrots$(), $(thing)Garlic$(), $(thing)Onions$(), $(thing)Potatoes$(), and $(thing)Soybeans$(). These crops can be grown in any greenhouse type.'),
+            text('Quad Planters grow $(l:firmalife/greenhouse_crops#quad)smaller crops$(), such as $(thing)Beets$(), $(thing)Carrots$(), and $(thing)Potatoes$(), as well as $(l:firmalife/herbs_and_spices)Herbs$().'),
             crafting('firmalife:crafting/bonsai_planter', text_contents='$(thing)Bonsai Planters$() grow small fruit trees from their saplings. The fruit can be picked with $(item)$(k:key.use)$().'),
-            text('Bonsai Planters can grow any fruit tree type, except $(thing)Bananas$(), which need a $(thing)Hanging Planter$(). They all consume Nitrogen as their main nutrient. They need an $(thing)Iron$() or better greenhouse to grow.'),
+            text('Bonsai Planters can grow any $(l:firmalife/greenhouse_crops#bonsai)fruit tree$() type, except $(thing)Bananas$(), which need a $(thing)Hanging Planter$().'),
             crafting('firmalife:crafting/hanging_planter', text_contents='$(thing)Hanging Planters$() grow crops upside down. When mature, they can be harvested with $(item)$(k:key.use)$().'),
-            text('Hanging Planters grow $(thing)Squash$(), from their seeds, and $(thing)Bananas$(), from their saplings. Squash can be grown in any greenhouse, but Bananas require an $(thing)Iron$() or better greenhouse to grow. Hanging planters need to anchor to a solid block above them.'),
+            text('Hanging Planters grow $(l:firmalife/greenhouse_crops#hanging)vining crops$() like $(thing)Squash$() from their seeds, and $(thing)Bananas$() from their saplings. Hanging planters need to anchor to a solid block above them.'),
             crafting('firmalife:crafting/trellis_planter', text_contents='$(thing)Trellis Planters$() grow berry bushes. Berries can be picked with $(item)$(k:key.use)$().'),
-            text('Trellis Planters have the unique property of $(thing)propagating$() berry bushes. If a trellis planter is placed on top of another, and the one below has a mature berry bush, it has a chance to grow upwards into the next one. Trellis planters can grow any berry bush except $(thing)Cranberries$(), but require an $(thing)Iron$() or better greenhouse to work. Bushes prefer Nitrogen.'),
-            crafting('firmalife:crafting/hydroponic_planter', text_contents='$(thing)Hydroponic Planters$() grow rice and cranberry bushes. They work the same as a quad planter, except that they do not need to be watered.'),
+            text('Trellis Planters have the unique property of $(thing)propagating$() berry bushes. If a trellis planter is placed on top of another, and the one below has a mature berry bush, it has a chance to grow upwards into the next one. Trellis planters can grow $(l:firmalife/greenhouse_crops#trellis)Grapes and berry bushes$(), except $(thing)Cranberries$().'),
+            crafting('firmalife:crafting/hydroponic_planter', text_contents='$(thing)Hydroponic Planters$() grow $(l:firmalife/greenhouse_crops#hydroponic)rice and cranberry bushes$(). They work the same as a quad planter, except that they do not need to be watered.'),
             text('Hydroponic Planters must instead, have a $(li)$(l:firmalife/irrigation)Sprinkler Pipe$() below them that is supplying water. Without the pipe they will not grow. There is no hard limit to how many hydroponic planters may be fed by one station.'),
             crafting('firmalife:crafting/sweeper', text_contents='$(thing)Sweepers$() are used to harvest planters other than Quad and Hydroponic planters. They must be connected to a rotating $(thing)Axle$() on their bottom face.'),
             crafting('firmalife:crafting/picker', text_contents='$(thing)Pickers$() can be powered via redstone signal from above. They extend down to pick the crops from Quad and Hydroponic planters.')
+        )),
+        entry('greenhouse_crops', 'Greenhouse Crops', 'tfc:food/cranberry', pages=(
+            text('Each kind of $(l:firmalife/planters)Planter$() can only grow certain plants, and some plants need higher tier $(l:firmalife/greenhouse)Greenhouses$() to grow.'),
+            text('$(thing)N / P / K$() is how much $(l:mechanics/fertilizers)Nitrogen, Phosphorus, and Potassium$() the plant consumes from its planter as it grows.$(br2)$(thing)Greenhouse$() is the cheapest greenhouse the plant will grow in. Any better greenhouse works too.$(br2)All $(l:firmalife/herbs_and_spices)Herbs$() share the same requirements, so they are listed together.'),
+            *plantable_tables('quad', 'Treated Wood', 'beet', 'cabbage', 'carrot', 'garlic', 'potato', 'onion', 'soybean', 'cassava', 'lentil', 'peanut', 'canola', 'radish', 'alfalfa', ('basil', 'Herbs')),
+            *plantable_tables('large', 'Copper', 'maize', 'barley', 'oat', 'rye', 'wheat', 'jute', 'papyrus', 'green_bean', 'tomato', 'sugarcane', 'red_bell_pepper', 'yellow_bell_pepper'),
+            *plantable_tables('hydroponic', 'Copper', 'rice', 'cranberry'),
+            *plantable_tables('trellis', 'Iron', 'red_grapes', 'white_grapes', 'snowberry', 'bunchberry', 'gooseberry', 'wintergreen_berry', 'cloudberry', 'strawberry', 'pineapple', 'nightshade', 'blackberry', 'raspberry', 'elderberry', 'blueberry'),
+            *plantable_tables('bonsai', 'Iron', *TFC_FRUIT_TREES, 'cocoa', 'fig'),
+            *plantable_tables('hanging', 'Iron', 'squash', 'pumpkin', 'melon', 'banana'),
         )),
         entry('beekeeping', 'Beekeeping', 'firmalife:beehive', pages=(
             text('$(thing)Bees$() are a wild insect that can be farmed as livestock. They are prized for their ability to produce honey, beeswax, and other products. All bees need to live in some form of nest. This section will teach you all you need to know for the care and keeping of bees.'),
@@ -341,8 +353,8 @@ def make_book(rm: ResourceManager, i18n: I18n, local_instance: bool = False, rev
         )),
         entry('berry_bushes', 'Berry Bushes', 'firmalife:plant/pineapple_bush', pages=(
             text('Firmalife adds some berry bushes. For information on wild grape bushes, see $(l:firmalife/wine)winemaking$().'),
-            item_spotlight('firmalife:food/nightshade_berry', text_contents='First is nightshade. Nightshade is a poisonous berry. When put into soup, it makes poisonous $(thing)Stinky Soup$(). It is found between 200-400mm of rain and temperatures of $(cfg:temperature:7) to $(cfg:temperature:24) in forests. It bears fruit in the month of $(thing)August$(), flowering the month prior.$(br2)Conditions required for growth:$(br)$(bold)$(l:core_mechanics/climate#temperature)Temperature$(): $(flcfg:climate.nightshade.temperature)$(br)$(bold)$(l:food/hydration)Hydration$(): $(flcfg:climate.nightshade.hydration)%'),
-            item_spotlight('firmalife:food/pineapple', text_contents='Pineapple bushes are found 250-500mm of rainfall and temperatures of $(cfg:temperature:20) to $(cfg:temperature:32) in forests. They bear fruit in the month of $(thing)September$(), flowering the two months prior.$(br2)Conditions required for growth:$(br)$(bold)$(l:core_mechanics/climate#temperature)Temperature$(): $(flcfg:climate.pineapple.temperature)$(br)$(bold)$(l:food/hydration)Hydration$(): $(flcfg:climate.pineapple.hydration)% Pineapples are like any other fruit, except that they can be made into $(thing)Pineapple Leather$().'),
+            item_spotlight('firmalife:food/nightshade_berry', text_contents='Nightshade is a poisonous berry. When put into soup, it makes poisonous $(thing)Stinky Soup$(). It is found between 200-400mm of rain and temperatures of $(cfg:temperature:7) to $(cfg:temperature:24) in forests. It bears fruit in the month of $(thing)August$(), flowering the month prior.$(br2)Growth Conditions:$(br)$(bold)$(l:core_mechanics/climate#temperature)Temperature$(): $(flcfg:climate.nightshade.temperature)$(br)$(bold)$(l:food/hydration)Hydration$(): $(flcfg:climate.nightshade.hydration)%'),
+            item_spotlight('firmalife:food/pineapple', text_contents='Pineapple bushes are found 250-500mm of rainfall and temperatures of $(cfg:temperature:20) to $(cfg:temperature:32) in forests. They bear fruit in $(thing)September$(), flowering for two months prior.$(br2)Growth Conditions:$(br)$(bold)$(l:core_mechanics/climate#temperature)Temperature$(): $(flcfg:climate.pineapple.temperature)$(br)$(bold)$(l:food/hydration)Hydration$(): $(flcfg:climate.pineapple.hydration)% Pineapples can be made into $(thing)Pineapple Leather$().'),
             crafting('firmalife:crafting/pineapple_fiber', text_contents='Pineapples that have been $(l:firmalife/drying)Dried$() can be crafted into pineapple fiber.'),
             crafting('firmalife:crafting/pineapple_yarn', text_contents='Pineapple yarn is made by crafting a $(thing)Spindle$() with the fiber.'),
             loom_recipe('firmalife:loom/pineapple_leather', text_content='Finally, pineapple yarn can be me woven in a $(l:tfc:mechanics/weaving)Loom$(). It is a plant substitute for regular leather than can be used for knapping, crafting, and other uses!')
@@ -425,6 +437,23 @@ def smoking_recipe(recipe: str, text_content: str) -> Page:
 def alloy_recipe(title: str, ingot: str, *components: Tuple[str, int, int], text_content: str) -> Page:
     recipe = ''.join(['$(li)%d - %d %% : $(thing)%s$()' % (lo, hi, alloy) for (alloy, lo, hi) in components])
     return item_spotlight(ingot, title, False, '$(br)$(bold)Requirements:$()$(br)' + recipe + '$(br2)' + text_content)
+
+PLANTABLE_TABLE_ROWS = 12
+
+def plantable_tables(planter: str, greenhouse: str, *plants: str | Tuple[str, str]) -> Tuple[Page, ...]:
+    rows = sorted(plantable_row(plant, greenhouse) for plant in plants)
+    count = math.ceil(len(rows) / PLANTABLE_TABLE_ROWS)
+    title = '%s Planter' % planter.title()
+    tables = tuple(plantable_table(title if count == 1 else '%s (%d/%d)' % (title, i + 1, count), rows[i * PLANTABLE_TABLE_ROWS:(i + 1) * PLANTABLE_TABLE_ROWS]) for i in range(count))
+    return tables[0].anchor(planter), *tables[1:]
+
+def plantable_row(plant: str | Tuple[str, str], greenhouse: str) -> List[str]:
+    plant_id, name = plant if isinstance(plant, tuple) else (plant, plant.replace('_', ' ').title())
+    return [name, ' / '.join('$(flcfg:plantable.%s.%s)' % (plant_id, n) for n in 'npk'), greenhouse]
+
+def plantable_table(title: str, rows: List[List[str]]) -> Page:
+    header = [{'text': h, 'bold': True} for h in ('Plant', 'N / P / K', 'Greenhouse')]
+    return table(header + [cell for row in rows for cell in row], '', title, {}, [], 2, 80, 70, 10, 2, 12, draw_background=False)
 
 def custom_component(x: int, y: int, class_name: str, data: JsonObject) -> Component:
     return Component('patchouli:custom', x, y, {'class': 'com.eerussianguy.firmalife.compat.patchouli.' + class_name, **data})

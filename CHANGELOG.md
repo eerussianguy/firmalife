@@ -1,18 +1,18 @@
 ### Changes
-- Added Caramel
-- Added Caramel Apples
-- Added Roasted Pumpkin Seeds
-- Added EMI support
-- Added support for dynamic field guide config values
-- Added a field guide page for treated lumber.
+- Added a chapter with information on how to grow all greenhouse crops.
 
 ### Fixes
-- Fix Yak Milk and Goat Milk not being drinkable
-- Fixed a crash when finishing a Stomping Barrel recipe with ingredients that had food traits.
-- Fixed brining (and other recipes) not processing correctly in the keg.
-- Fixed recipes with bowls not giving the bowl back when eaten.
-- Fixed Greenhouse blocks never weathering (maybe? lol)
-- Fixed Vat recipes sometimes changing the output amount of later crafts
-- Chocolate Chip Cookie Dough can now be baked in an Oven.
-- Fixed hydroponic Cranberry textures.
-- Many recipes no longer accept rotten ingredients
+- Fix ashtrays not filling properly
+- Fix barrel presses not storing output properly
+- Fix some edge cases with changing climate station sizes/types not resetting planters.
+- Fix a math bug with the compost tumbler.
+- Fix an issue with the beehive showing incorrect blockstates in some edge cases.
+- Hydroponic planters only perform searches for pumps when they are in a valid greenhouse (saves performance/makes visual output a lil more consistent)
+- Fix a sync issue with large planters.
+- Fix several block entities not storing recipes on time catchups properly.
+- Fix an issue where quad planters malfunctioned when not full of crops.
+- Fixed an issue where planters might reach 99% growth and have trouble reaching 100%.
+- Fixed logic bug with sprinklers.
+- Fixed smoking with bad fuels not applying the "Rancid Smoked" trait.
+- Fixed an issue with trellis planters not resetting growth properly.
+- 

@@ -299,11 +299,12 @@ public class KegBlockEntity extends TickableInventoryBlockEntity<KegBlockEntity.
                 return;
             }
 
-            knownRecipe.onSealed(inventory); // We're in a sequential recipe, so apply sealed affects to the new recipe
+            KegRecipe.onSealed(knownRecipe, inventory); // We're in a sequential recipe, so apply sealed affects to the new recipe
             if (knownRecipe.isInfinite())
             {
                 return; // No more simulation can occur
             }
+            recipe = knownRecipe;
             lastKnownTick += recipe.getDuration();
         }
     }

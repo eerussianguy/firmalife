@@ -45,7 +45,7 @@ public class StringBlockEntity extends SimpleItemRecipeBlockEntity<SmokingRecipe
                     final ItemStack item = inv.getStackInSlot(i);
                     if (!item.isEmpty() && !Helpers.isItem(item, FLTags.Items.SMOKING_FUEL))
                     {
-                        FoodCapability.applyTrait(item, FLFoodTraits.RANCID_SMOKED);
+                        FoodCapability.applyTrait(string.inventory.getStackInSlot(0), FLFoodTraits.RANCID_SMOKED);
                         string.resetCounter();
                     }
                 }

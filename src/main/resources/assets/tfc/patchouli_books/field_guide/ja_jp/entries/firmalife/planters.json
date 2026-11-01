@@ -21,7 +21,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "大型プランターでは、$(thing)サヤインゲン$()、$(thing)トマト$()、$(thing)サトウキビ$()、$(thing)ジュート$()、$(thing)穀類$()を栽培できます。$(br2)ただし、穀類を栽培するには、$(thing)銅$()製以上の温室が必要です。"
+      "text": "Large Planters grow $(l:firmalife/greenhouse_crops#large)larger crops$(), such as $(thing)Grains$(), $(thing)Tomatoes$(), and $(thing)Jute$()."
     },
     {
       "type": "patchouli:crafting",
@@ -30,7 +30,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "4種のプランターは、$(thing)ビーツ$()、$(thing)キャベツ$()、$(thing)ニンジン$()、$(thing)ニンニク$()、$(thing)タマネギ$()、$(thing)ジャガイモ$()、$(thing)大豆$()を栽培できます。$(br2)これらの作物は、どの温室タイプでも栽培できます。"
+      "text": "Quad Planters grow $(l:firmalife/greenhouse_crops#quad)smaller crops$(), such as $(thing)Beets$(), $(thing)Carrots$(), and $(thing)Potatoes$(), as well as $(l:firmalife/herbs_and_spices)Herbs$()."
     },
     {
       "type": "patchouli:crafting",
@@ -39,7 +39,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "果樹用プランターは、様々な種類のの果樹を育てることができますが、$(thing)バナナ$()については$(thing)吊り下げプランター$()が必要です。$(br2)いずれも窒素を主栄養分として消費します。$(br2)栽培には$(thing)鉄$()かそれ以上の温室が必要です。"
+      "text": "Bonsai Planters can grow any $(l:firmalife/greenhouse_crops#bonsai)fruit tree$() type, except $(thing)Bananas$(), which need a $(thing)Hanging Planter$()."
     },
     {
       "type": "patchouli:crafting",
@@ -48,7 +48,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "吊り下げプランターは、$(thing)カボチャ$()は種から、$(thing)バナナ$()は苗木から育てられます。$(br2)カボチャはどんな温室でも育ちますが、バナナは$(thing)鉄$()製以上の温室でないと育ちません。$(br2)吊り下げプランターは、平らな面に固定する必要があります。"
+      "text": "Hanging Planters grow $(l:firmalife/greenhouse_crops#hanging)vining crops$() like $(thing)Squash$() from their seeds, and $(thing)Bananas$() from their saplings. Hanging planters need to anchor to a solid block above them."
     },
     {
       "type": "patchouli:crafting",
@@ -57,12 +57,12 @@
     },
     {
       "type": "patchouli:text",
-      "text": "支柱プランターには、ベリーの茂みを$(thing)繁殖させる$()ユニークな性質があります。$(br)支柱プランターが縦に置かれ、下のプランターに成熟したベリーの茂みがあればベリーが上のプランターへと成長するチャンスがあります。$(br2)支柱プランターは、$(thing)クランベリー$()以外のどんなベリーの茂みも育てることができますが、作業には$(thing)鉄$()かそれ以上の温室が必要です。$(br2)茂みは窒素を栄養とします。"
+      "text": "Trellis Planters have the unique property of $(thing)propagating$() berry bushes. If a trellis planter is placed on top of another, and the one below has a mature berry bush, it has a chance to grow upwards into the next one. Trellis planters can grow $(l:firmalife/greenhouse_crops#trellis)Grapes and berry bushes$(), except $(thing)Cranberries$()."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "firmalife:crafting/hydroponic_planter",
-      "text": "$(thing)Hydroponic Planters$() grow rice and cranberry bushes. They work the same as a quad planter, except that they do not need to be watered."
+      "text": "$(thing)Hydroponic Planters$() grow $(l:firmalife/greenhouse_crops#hydroponic)rice and cranberry bushes$(). They work the same as a quad planter, except that they do not need to be watered."
     },
     {
       "type": "patchouli:text",

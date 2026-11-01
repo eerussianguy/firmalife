@@ -82,10 +82,6 @@ public class ClimateStationBlockEntity extends TFCBlockEntity
         });
     }
 
-    public void setType(ClimateType cellar)
-    {
-        type = cellar;
-    }
 
     public void setStructureInfo(@Nullable GreenhouseType structureType, int size)
     {
@@ -109,9 +105,23 @@ public class ClimateStationBlockEntity extends TFCBlockEntity
         return structureType == null ? null : GreenhouseType.MANAGER.get(structureType);
     }
 
-    public void setPositions(Set<BlockPos> positions)
+    public void setPositions(Set<BlockPos> positions, ClimateType type)
     {
+        assert level != null;
+        for (BlockPos pos : this.positions)
+        {
+            if (type != this.type || !positions.contains(pos))
+            {
+                final ClimateReceiver receiver = ClimateReceiver.get(level, pos);
+                if (receiver != null)
+                {
+                    receiver.setValid(level, pos, false, 0, this.type);
+                }
+            }
+        }
         this.positions = positions;
+        this.type = type;
+        setChanged();
     }
 
     public boolean setFavorite(ItemStack held)
