@@ -8,7 +8,7 @@
   },
   "display": {
     "icon": {
-      "id": "firmalife:sealed_door"
+      "id": "firmalife:sealed_brick_door"
     },
     "title": {
       "translate": "firmalife.advancements.story.big_cellar.title"

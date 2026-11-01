@@ -2,12 +2,12 @@
   "__comment__": "This file was automatically created by mcresources",
   "parent": "firmalife:story/climate_station",
   "criteria": {
-    "cellar_insulation": {
+    "sealed_bricks": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "items": "#firmalife:cellar_insulation"
+            "items": "firmalife:sealed_bricks"
           }
         ]
       }
@@ -31,7 +31,7 @@
   },
   "requirements": [
     [
-      "cellar_insulation"
+      "sealed_bricks"
     ]
   ]
 }

@@ -30,6 +30,10 @@ public class FLInteractionManager
                 final BlockPos pos = context.getClickedPos();
                 final BlockState state = level.getBlockState(pos);
                 state.getBlock().setPlacedBy(level, pos, state, context.getPlayer(), context.getItemInHand());
+                if (context.getPlayer() instanceof ServerPlayer server)
+                {
+                    FLAdvancements.PLACE_STRING.trigger(server);
+                }
                 return super.postPlacement(context);
             }
         });
@@ -42,6 +46,10 @@ public class FLInteractionManager
                 final BlockPos pos = context.getClickedPos();
                 final BlockState state = level.getBlockState(pos);
                 state.getBlock().setPlacedBy(level, pos, state, context.getPlayer(), context.getItemInHand());
+                if (context.getPlayer() instanceof ServerPlayer server)
+                {
+                    FLAdvancements.PLACE_STRING.trigger(server);
+                }
                 return super.postPlacement(context);
             }
         });

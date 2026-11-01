@@ -57,7 +57,7 @@ public class BowlPotRecipe extends PotRecipe
     @Override
     public ItemStack getResultItem(HolderLookup.Provider access)
     {
-        return itemOutput;
+        return itemOutput.copy();
     }
 
     @Override

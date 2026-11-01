@@ -564,7 +564,7 @@ public class KegBlockEntity extends TickableInventoryBlockEntity<KegBlockEntity.
             this((BarrelInventoryCallback) inventory);
         }
 
-        KegInventory(BarrelInventoryCallback inventory)
+        public KegInventory(BarrelInventoryCallback inventory)
         {
             this.callback = inventory;
             this.inventory = new InventoryItemHandler(inventory, SLOTS);

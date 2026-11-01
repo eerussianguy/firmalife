@@ -2,12 +2,12 @@
   "__comment__": "This file was automatically created by mcresources",
   "parent": "firmalife:story/cellar",
   "criteria": {
-    "food_shelves": {
+    "shelves": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "items": "#firmalife:food_shelves"
+            "items": "#firmalife:shelves"
           }
         ]
       }
@@ -31,7 +31,7 @@
   },
   "requirements": [
     [
-      "food_shelves"
+      "shelves"
     ]
   ]
 }

@@ -15,11 +15,11 @@ public enum EmptyPanModifier implements ItemStackModifier
     @Override
     public ItemStack apply(ItemStack stack, ItemStack input, Context context)
     {
-        ItemComponent bowl = stack.get(TFCComponents.BOWL);
+        ItemComponent bowl = input.get(TFCComponents.BOWL);
         // Reasonable default for display in i.e. JEI for soups obtained directly from the creative menu.
         // Prevents them from displaying empty. Works as long as the bowl handler itself doesn't ever have an empty bowl (it shouldn't)
         if (bowl != null && !bowl.stack().isEmpty()) {
-            return bowl.stack();
+            return bowl.stack().copy();
         }
         return new ItemStack(FLItems.PIE_PAN.get());
     }

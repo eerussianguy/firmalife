@@ -61,7 +61,7 @@ public class KegRecipe
 
         return recipe.getInputItem().ingredient().isEmpty()
             || recipe.getOutputFluid().isEmpty()
-            || inventory.getFluidInTank(0).getAmount() / recipe.getInputFluid().amount() < input / recipe.getInputItem().count();
+            || inventory.getFluidInTank(0).getAmount() / recipe.getInputFluid().amount() <= input / recipe.getInputItem().count();
     }
 
     public static boolean matches(SealedBarrelRecipe recipe, BarrelInventory inventory)
@@ -178,7 +178,9 @@ public class KegRecipe
             int accumulatedCount = 0;
             for (int i = KegBlockEntity.SLOT_INPUT_START; i <= KegBlockEntity.SLOT_INPUT_END; i++)
             {
-                if (recipe.getInputItem().ingredient().test(inventory.getStackInSlot(i)))
+                // An empty ingredient matches empty slots, which would otherwise count as inputs of zero items
+                final ItemStack slotStack = inventory.getStackInSlot(i);
+                if (!slotStack.isEmpty() && recipe.getInputItem().ingredient().test(slotStack))
                 {
                     final ItemStack stack = Helpers.removeStack(inventory, i);
                     accumulatedCount += stack.getCount();

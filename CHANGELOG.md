@@ -1,5 +1,6 @@
 ### Changes
 - Added a chapter with information on how to grow all greenhouse crops.
+- Extended tofu spoilage time.
 - Updated to latest TFC (fixes all manner of recent crashes)
 
 ### Fixes
@@ -16,4 +17,7 @@
 - Fixed logic bug with sprinklers.
 - Fixed smoking with bad fuels not applying the "Rancid Smoked" trait.
 - Fixed an issue with trellis planters not resetting growth properly.
-a
+- Fixed several broken or unobtainable advancements.
+- Fix issues with bowl/vat recipes not working more than once in some cases.
+- Tweaked more keg logic.
+- Fixed logic issues with vats.

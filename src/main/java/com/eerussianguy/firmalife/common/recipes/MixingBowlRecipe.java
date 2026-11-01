@@ -25,7 +25,7 @@ import net.dries007.tfc.util.Helpers;
 public class MixingBowlRecipe implements ISimpleRecipe<MixingBowlBlockEntity.MixingBowlInventory>
 {
     public static final MapCodec<MixingBowlRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-        Ingredient.CODEC.listOf().fieldOf("item_ingredients").forGetter(c -> c.itemIngredients),
+        Ingredient.CODEC.listOf(0, MixingBowlBlockEntity.SLOTS).fieldOf("item_ingredients").forGetter(c -> c.itemIngredients),
         //TODO cant serialize SizedFluidIngredients that use FluidIngredient.empty(), and cant use FluidStack.EMPTY for SizedFluidIngredient
         // Can this be done without just using null?
         SizedFluidIngredient.FLAT_CODEC.optionalFieldOf("fluid_ingredients").forGetter(c -> c.fluidIngredient),
@@ -34,7 +34,7 @@ public class MixingBowlRecipe implements ISimpleRecipe<MixingBowlBlockEntity.Mix
     ).apply(instance, MixingBowlRecipe::new));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, MixingBowlRecipe> STREAM_CODEC = StreamCodec.composite(
-        Ingredient.CONTENTS_STREAM_CODEC.apply(ByteBufCodecs.list(5)), c -> c.itemIngredients,
+        Ingredient.CONTENTS_STREAM_CODEC.apply(ByteBufCodecs.list(MixingBowlBlockEntity.SLOTS)), c -> c.itemIngredients,
         ByteBufCodecs.optional(SizedFluidIngredient.STREAM_CODEC), c -> c.fluidIngredient,
         ItemStack.OPTIONAL_STREAM_CODEC, c -> c.resultItem,
         FluidStack.OPTIONAL_STREAM_CODEC, c -> c.resultFluid,

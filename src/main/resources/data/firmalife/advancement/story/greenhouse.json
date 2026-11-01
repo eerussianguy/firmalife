@@ -2,12 +2,92 @@
   "__comment__": "This file was automatically created by mcresources",
   "parent": "firmalife:story/climate_station",
   "criteria": {
-    "greenhouse": {
+    "rusted_iron": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "items": "#firmalife:greenhouse"
+            "items": "#firmalife:greenhouse/rusted_iron"
+          }
+        ]
+      }
+    },
+    "iron": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "#firmalife:greenhouse/iron"
+          }
+        ]
+      }
+    },
+    "oxidized_copper": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "#firmalife:greenhouse/oxidized_copper"
+          }
+        ]
+      }
+    },
+    "weathered_copper": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "#firmalife:greenhouse/weathered_copper"
+          }
+        ]
+      }
+    },
+    "exposed_copper": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "#firmalife:greenhouse/exposed_copper"
+          }
+        ]
+      }
+    },
+    "copper": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "#firmalife:greenhouse/copper"
+          }
+        ]
+      }
+    },
+    "weathered_treated_wood": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "#firmalife:greenhouse/weathered_treated_wood"
+          }
+        ]
+      }
+    },
+    "treated_wood": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "#firmalife:greenhouse/treated_wood"
+          }
+        ]
+      }
+    },
+    "stainless_steel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "#firmalife:greenhouse/stainless_steel"
           }
         ]
       }
@@ -31,7 +111,15 @@
   },
   "requirements": [
     [
-      "greenhouse"
+      "rusted_iron",
+      "iron",
+      "oxidized_copper",
+      "weathered_copper",
+      "exposed_copper",
+      "copper",
+      "weathered_treated_wood",
+      "treated_wood",
+      "stainless_steel"
     ]
   ]
 }

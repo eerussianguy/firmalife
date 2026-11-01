@@ -16,6 +16,7 @@ public final class FLAdvancements
     public static final Id BIG_STAINLESS_GREENHOUSE = registerGeneric("big_stainless_greenhouse");
     public static final Id STOVETOP_POT = registerGeneric("stovetop_pot");
     public static final Id STOVETOP_GRILL = registerGeneric("stovetop_grill");
+    public static final Id PLACE_STRING = registerGeneric("place_string");
 
     public static Id registerGeneric(String name)
     {

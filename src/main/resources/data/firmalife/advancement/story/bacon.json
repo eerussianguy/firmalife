@@ -2,12 +2,12 @@
   "__comment__": "This file was automatically created by mcresources",
   "parent": "firmalife:story/root",
   "criteria": {
-    "food/bacon": {
+    "food/cooked_bacon": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "items": "firmalife:food/bacon"
+            "items": "firmalife:food/cooked_bacon"
           }
         ]
       }
@@ -31,7 +31,7 @@
   },
   "requirements": [
     [
-      "food/bacon"
+      "food/cooked_bacon"
     ]
   ]
 }

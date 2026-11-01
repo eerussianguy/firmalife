@@ -144,7 +144,7 @@ public class VatRecipe implements ISimpleRecipe<VatBlockEntity.VatInventory>
             outputFluid.setAmount(Math.min(VatBlockEntity.CAPACITY, amount));
             inventory.fill(outputFluid, IFluidHandler.FluidAction.EXECUTE);
         }
-        final ItemStack jar = jarOutput.orElse(ItemStack.EMPTY);
+        final ItemStack jar = jarOutput.map(ItemStack::copy).orElse(ItemStack.EMPTY);
         if (!jar.isEmpty())
         {
             jar.setCount(jar.getCount() * multiplier);
@@ -166,7 +166,7 @@ public class VatRecipe implements ISimpleRecipe<VatBlockEntity.VatInventory>
     @Override
     public ItemStack assemble(VatBlockEntity.VatInventory vatInventory, HolderLookup.Provider provider)
     {
-        return null;
+        return ItemStack.EMPTY;
     }
 
     @Override

@@ -2,12 +2,12 @@
   "__comment__": "This file was automatically created by mcresources",
   "parent": "firmalife:story/rennet",
   "criteria": {
-    "cheese_wheels": {
+    "foods/cheese_wheels": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "items": "#firmalife:cheese_wheels"
+            "items": "#firmalife:foods/cheese_wheels"
           }
         ]
       }
@@ -31,7 +31,7 @@
   },
   "requirements": [
     [
-      "cheese_wheels"
+      "foods/cheese_wheels"
     ]
   ]
 }

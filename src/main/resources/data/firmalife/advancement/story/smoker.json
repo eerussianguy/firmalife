@@ -2,16 +2,8 @@
   "__comment__": "This file was automatically created by mcresources",
   "parent": "firmalife:story/root",
   "criteria": {
-    "block_placed_condition": {
-      "trigger": "minecraft:placed_block",
-      "conditions": {
-        "location": [
-          {
-            "block": "firmalife:wool_string",
-            "condition": "minecraft:block_state_property"
-          }
-        ]
-      }
+    "special_condition": {
+      "trigger": "firmalife:place_string"
     }
   },
   "display": {
@@ -32,7 +24,7 @@
   },
   "requirements": [
     [
-      "block_placed_condition"
+      "special_condition"
     ]
   ]
 }
