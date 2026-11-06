@@ -10,7 +10,6 @@ import com.eerussianguy.firmalife.common.FLTags;
 import com.eerussianguy.firmalife.common.blockentities.ClimateStationBlockEntity;
 import com.eerussianguy.firmalife.common.blockentities.LargePlanterBlockEntity;
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
-import com.eerussianguy.firmalife.common.blocks.greenhouse.GreenhousePanelWallBlock;
 import com.eerussianguy.firmalife.config.FLConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -141,10 +140,11 @@ public final class Mechanics
     private static GreenhouseInfo tryFindGreenhouseInfo(Level level, BlockPos pos, BlockPos.MutableBlockPos mutable, GreenhouseType greenhouse)
     {
         final BoundingBox box = new BoundingBox(pos).inflatedBy(FLConfig.SERVER.greenhouseRadius.get());
-        // Panel walls only block movement across the faces their panels are on, so the space within a panel wall block can be inside or outside
+        // Partial blocks (panels, stairs, slabs) can be entered through an open face, so the face being exited also has to be checked
         final TriPredicate<BlockState, BlockPos, Direction> predicate = (wallState, wallPos, direction) -> {
-            final BlockState fromState = level.getBlockState(wallPos.relative(direction.getOpposite()));
-            if (fromState.getBlock() instanceof GreenhousePanelWallBlock && greenhouse.ingredient().test(fromState) && GreenhousePanelWallBlock.getWallStates(fromState).contains(direction))
+            final BlockPos fromPos = wallPos.relative(direction.getOpposite());
+            final BlockState fromState = level.getBlockState(fromPos);
+            if (greenhouse.ingredient().test(fromState) && fromState.isFaceSturdy(level, fromPos, direction))
                 return true;
             if (Helpers.isBlock(wallState, FLTags.Blocks.ALWAYS_VALID_GREENHOUSE_WALL))
                 return true; // short circuit for stuff we know will pass (plus exempt doors)
@@ -154,8 +154,6 @@ public final class Mechanics
                 return false;
             if (direction == Direction.UP && wallState.getBlock() instanceof SlabBlock)
                 return true;
-            if (wallState.getBlock() instanceof GreenhousePanelWallBlock)
-                return GreenhousePanelWallBlock.getWallStates(wallState).contains(direction.getOpposite());
             return wallState.isFaceSturdy(level, wallPos, direction.getOpposite());
         };
         Set<BlockPos> filled = floodfill(level, pos, mutable, box, predicate, s -> !Helpers.isBlock(s, FLBlocks.CLIMATE_STATION.get()), false, 120, Helpers.DIRECTIONS);
