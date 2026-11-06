@@ -20,7 +20,6 @@ import org.jetbrains.annotations.Nullable;
 import net.dries007.tfc.common.blocks.DirectionPropertyBlock;
 import net.dries007.tfc.common.blocks.ExtendedBlock;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
-import net.dries007.tfc.common.fluids.FluidHelpers;
 import net.dries007.tfc.util.Helpers;
 
 public class SprinklerPipeBlock extends ExtendedBlock implements DirectionPropertyBlock
@@ -68,10 +67,8 @@ public class SprinklerPipeBlock extends ExtendedBlock implements DirectionProper
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos currentPos, BlockPos neighborPos)
     {
-        FluidHelpers.tickFluid(level, currentPos, state);
         return updateConnectedSides(level, currentPos, state, null);
     }
 
@@ -98,14 +95,12 @@ public class SprinklerPipeBlock extends ExtendedBlock implements DirectionProper
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public BlockState rotate(BlockState state, Rotation rotation)
     {
         return DirectionPropertyBlock.rotate(state, rotation);
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public BlockState mirror(BlockState state, Mirror mirror)
     {
         return DirectionPropertyBlock.mirror(state, mirror);

@@ -37,7 +37,7 @@ public class SprinklerBlockEntity extends TFCBlockEntity implements FluidTankCal
 {
     public static void serverTick(Level level, BlockPos pos, BlockState state, SprinklerBlockEntity sprinkler)
     {
-        if (level.getGameTime() % (80 + (pos.getZ() % 4)) == 0 && state.getBlock() instanceof AbstractSprinklerBlock block)
+        if ((level.getGameTime() + pos.getZ()) % 80 == 0 && state.getBlock() instanceof AbstractSprinklerBlock block)
         {
             final boolean valid = sprinkler.valid && searchForFluid(level, pos, block instanceof SprinklerBlock ? Direction.UP : Direction.DOWN, true) != null;
             if (valid)
@@ -81,7 +81,7 @@ public class SprinklerBlockEntity extends TFCBlockEntity implements FluidTankCal
                         {
                             return fluid;
                         }
-                        final FluidStack drained = cap.drain(1, IFluidHandler.FluidAction.EXECUTE);
+                        final FluidStack drained = cap.drain(new FluidStack(fluid, 1), IFluidHandler.FluidAction.EXECUTE);
                         if (!drained.isEmpty())
                         {
                             return drained.getFluid();
@@ -98,11 +98,12 @@ public class SprinklerBlockEntity extends TFCBlockEntity implements FluidTankCal
         final BlockPos pipePos = start.relative(pipeDirection);
         final BlockState pipeState = level.getBlockState(pipePos);
 
-        if (!isPipe(pipeState))
+        if (!isPipe(pipeState) || !isPipeInDirection(pipeState, pipeDirection.getOpposite()))
         {
             return null;
         }
 
+        seen.add(pipePos);
         enqueueConnections(cursor, level, new Path(pipeState, pipePos, 1), seen, queue);
 
         while (!queue.isEmpty())
@@ -127,9 +128,8 @@ public class SprinklerBlockEntity extends TFCBlockEntity implements FluidTankCal
             if (!seen.contains(cursor))
             {
                 final BlockState stateAdj = level.getBlockState(cursor);
-                // If there are two adjacent pipes, we know they connect as per expected behavior, and so don't have to check the property
-                // well that's not quite true, since we have the second kind of pipe we have a special case where if they're both pipes they must be the same kind of pipe.
-                if (isPipe(stateAdj) && !(prev.state.getBlock() instanceof SprinklerPipeBlock && stateAdj.getBlock() instanceof SprinklerPipeBlock && stateAdj.getBlock() != prev.state.getBlock()))
+                // Adjacent pipes must face each other (ports only connect along their axis), and two pipes must be the same kind of pipe
+                if (isPipe(stateAdj) && isPipeInDirection(prev.state, direction) && isPipeInDirection(stateAdj, direction.getOpposite()) && !(prev.state.getBlock() instanceof SprinklerPipeBlock && stateAdj.getBlock() instanceof SprinklerPipeBlock && stateAdj.getBlock() != prev.state.getBlock()))
                 {
                     if (prev.cost < MAX_COST)
                     {
@@ -147,7 +147,7 @@ public class SprinklerBlockEntity extends TFCBlockEntity implements FluidTankCal
                 )
                 {
                     // Then we can pull from this fluid
-                    return stateAdj.getFluidState().getType();
+                    return Fluids.WATER;
                 }
             }
         }
