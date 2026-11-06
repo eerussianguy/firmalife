@@ -141,8 +141,11 @@ public final class Mechanics
     private static GreenhouseInfo tryFindGreenhouseInfo(Level level, BlockPos pos, BlockPos.MutableBlockPos mutable, GreenhouseType greenhouse)
     {
         final BoundingBox box = new BoundingBox(pos).inflatedBy(FLConfig.SERVER.greenhouseRadius.get());
-        GreenhousePanelWallBlock.WallSegmentLocator panelSegmentLocator = new GreenhousePanelWallBlock.WallSegmentLocator();
+        // Panel walls only block movement across the faces their panels are on, so the space within a panel wall block can be inside or outside
         final TriPredicate<BlockState, BlockPos, Direction> predicate = (wallState, wallPos, direction) -> {
+            final BlockState fromState = level.getBlockState(wallPos.relative(direction.getOpposite()));
+            if (fromState.getBlock() instanceof GreenhousePanelWallBlock && greenhouse.ingredient().test(fromState) && GreenhousePanelWallBlock.getWallStates(fromState).contains(direction))
+                return true;
             if (Helpers.isBlock(wallState, FLTags.Blocks.ALWAYS_VALID_GREENHOUSE_WALL))
                 return true; // short circuit for stuff we know will pass (plus exempt doors)
             if (direction == Direction.DOWN)
@@ -152,40 +155,7 @@ public final class Mechanics
             if (direction == Direction.UP && wallState.getBlock() instanceof SlabBlock)
                 return true;
             if (wallState.getBlock() instanceof GreenhousePanelWallBlock)
-            {
-                Direction panelFacing = wallState.getValue(GreenhousePanelWallBlock.FACING);
-                if (direction == panelFacing.getOpposite())
-                {
-                    return true;
-                }
-                var wallSegment = panelSegmentLocator.scan(level, wallPos, panelFacing);
-                var left = wallSegment.getFirst().getSecond();
-                var right = wallSegment.getSecond().getSecond();
-                boolean leftMatches;
-                boolean rightMatches;
-                if (left.getBlock() instanceof GreenhousePanelWallBlock)
-                {
-                    Set<Direction> leftWalls = GreenhousePanelWallBlock.getWallStates(left);
-                    leftMatches = leftWalls.contains(panelFacing) && leftWalls.size() == 2;
-                }
-                else
-                {
-                    //TODO this may require a more robust check to determine valid blocks at the end of wall segments
-                    // Could be any kind of block (doors, trapdoors, roof panels, etc.)
-                    leftMatches = Helpers.isBlock(left, FLTags.Blocks.ALWAYS_VALID_GREENHOUSE_WALL) || Helpers.isBlock(left, FLTags.Blocks.GREENHOUSE_PANEL_ROOFS);
-                }
-                if (right.getBlock() instanceof GreenhousePanelWallBlock)
-                {
-                    Set<Direction> rightWalls = GreenhousePanelWallBlock.getWallStates(right);
-                    rightMatches = rightWalls.contains(panelFacing) && rightWalls.size() == 2;
-                }
-                else
-                {
-                    //TODO same as above
-                    rightMatches = Helpers.isBlock(right, FLTags.Blocks.ALWAYS_VALID_GREENHOUSE_WALL) || Helpers.isBlock(right, FLTags.Blocks.GREENHOUSE_PANEL_ROOFS);
-                }
-                return leftMatches && rightMatches;
-            }
+                return GreenhousePanelWallBlock.getWallStates(wallState).contains(direction.getOpposite());
             return wallState.isFaceSturdy(level, wallPos, direction.getOpposite());
         };
         Set<BlockPos> filled = floodfill(level, pos, mutable, box, predicate, s -> !Helpers.isBlock(s, FLBlocks.CLIMATE_STATION.get()), false, 120, Helpers.DIRECTIONS);
