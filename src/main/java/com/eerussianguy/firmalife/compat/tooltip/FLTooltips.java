@@ -234,7 +234,7 @@ public final class FLTooltips
         };
 
         public static final BlockEntityTooltip DRYING_MAT = (level, state, pos, entity, tooltip) -> {
-            if (state.getBlock() instanceof DryingMatBlock block && entity instanceof DryingMatBlockEntity mat && !mat.viewStack().isEmpty())
+            if (entity instanceof DryingMatBlockEntity mat && !mat.viewStack().isEmpty())
             {
                 if (mat.getCachedRecipe() != null && mat.getTicksLeft() > 0)
                 {
