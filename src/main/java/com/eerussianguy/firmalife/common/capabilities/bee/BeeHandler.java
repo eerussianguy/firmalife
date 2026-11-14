@@ -56,6 +56,7 @@ public class BeeHandler implements IBee, ICapabilitySerializable<CompoundTag>
     public void setGeneticDisease(int geneticDisease)
     {
         this.geneticDisease = geneticDisease;
+        save();
     }
 
     @Override
@@ -68,6 +69,7 @@ public class BeeHandler implements IBee, ICapabilitySerializable<CompoundTag>
     public void setParasiticInfection(int parasiticInfection)
     {
         this.parasiticInfection = parasiticInfection;
+        save();
     }
 
     @Override
