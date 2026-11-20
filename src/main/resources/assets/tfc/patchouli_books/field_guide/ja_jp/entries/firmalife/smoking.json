@@ -1,49 +1,48 @@
 {
-  "__comment__": "This file was automatically created by mcresources",
-  "name": "燻製",
-  "category": "tfc:firmalife",
-  "icon": "tfc:textures/item/food/venison.png",
-  "pages": [
-    {
-      "type": "patchouli:text",
-      "text": "$(thing)燻製$()にしたいアイテムを吊るすには羊毛の糸を使います。$(br2)$(item)$(k:key.use)$()でアイテムが吊るせます。"
-    },
-    {
-      "type": "patchouli:multiblock",
-      "multiblock": {
-        "pattern": [
-          [
-            "X"
-          ],
-          [
-            "Y"
-          ],
-          [
-            "0"
-          ]
-        ],
-        "mapping": {
-          "X": "firmalife:wool_string",
-          "Y": "tfc:firepit[lit=true]"
+    "name": "燻製",
+    "category": "tfc:firmalife",
+    "icon": "tfc:textures/item/food/venison.png",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "$(thing)燻製$()にしたいアイテムを吊るすには羊毛の糸を使います。$(br2)$(item)$(k:key.use)$()でアイテムが吊るせます。"
+        },
+        {
+            "type": "patchouli:multiblock",
+            "multiblock": {
+                "pattern": [
+                    [
+                        "X"
+                    ],
+                    [
+                        "Y"
+                    ],
+                    [
+                        "0"
+                    ]
+                ],
+                "mapping": {
+                    "X": "firmalife:wool_string",
+                    "Y": "tfc:firepit[lit=true]"
+                }
+            },
+            "name": "燻製",
+            "text": "焚き火の上に糸を張ります。",
+            "enable_visualize": false
+        },
+        {
+            "type": "patchouli:text",
+            "text": "燻製は$(thing)肉$()や$(l:mechanics/dairy)チーズ$()の保存のために行われます。$(br2)肉を燻製にするには、まず$(thing)塩水$()の入った樽に肉を入れて密閉し、$(thing)塩漬け$()にする必要があります。$(br2)チーズにはその必要はありません。"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "燻製を始めるには、焚き火の上の紐にアイテムを吊るします。焚き火は、紐の真下から$(flcfg:smokingFirepitRange)ブロック以内にある必要があります。紐が正しく機能していれば、煙が発生します。焚き火台の燃料には$(thing)原木$()だけを使ってください。$(thing)泥炭$()のようなものを使うと食べ物に$(thing)臭い燻製$()という特徴がつきます！"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "燻製は$(flcfg:smokingTicks)かかります。燻製をお楽しみください！"
         }
-      },
-      "name": "燻製",
-      "text": "焚き火の上に糸を張ります。",
-      "enable_visualize": false
-    },
-    {
-      "type": "patchouli:text",
-      "text": "燻製は$(thing)肉$()や$(l:mechanics/dairy)チーズ$()の保存のために行われます。$(br2)肉を燻製にするには、まず$(thing)塩水$()の入った樽に肉を入れて密閉し、$(thing)塩漬け$()にする必要があります。$(br2)チーズにはその必要はありません。"
-    },
-    {
-      "type": "patchouli:text",
-      "text": "To start the smoking process, add the item to the string above a firepit. The firepit must be within $(flcfg:smokingFirepitRange) blocks, directly underneath the string. The string should begin to generate some smoke if it is working. It is important to note that the firepit must only be burned with $(thing)Logs$(). Using something like $(thing)Peat$() will instantly give your food the $(thing)Disgusting$() trait!"
-    },
-    {
-      "type": "patchouli:text",
-      "text": "The smoking process takes $(flcfg:smokingTicks). Happy smoking!"
-    }
-  ],
-  "read_by_default": true,
-  "sortnum": 15
+    ],
+    "read_by_default": true,
+    "sortnum": 15
 }

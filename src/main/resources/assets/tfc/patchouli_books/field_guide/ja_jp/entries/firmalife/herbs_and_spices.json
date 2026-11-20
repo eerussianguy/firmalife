@@ -1,210 +1,209 @@
 {
-  "__comment__": "This file was automatically created by mcresources",
-  "name": "ハーブとスパイス",
-  "category": "tfc:firmalife",
-  "icon": "firmalife:spice/basil_leaves",
-  "pages": [
-    {
-      "type": "patchouli:text",
-      "text": "In Firmalife, there are a number of small plants you can collect and grow on your own, some of which can be used for cooking. These are called herbs. These plants, once harvested, may be cultivated in a $(thing)Greenhouse$(), in which they consume 20 points of N, P, and K."
-    },
-    {
-      "type": "patchouli:text",
-      "text": "Open to the next page to see information on all herb spawning locations and what they can be used for."
-    },
-    {
-      "type": "patchouli:multiblock",
-      "multiblock": {
-        "pattern": [
-          [
-            "X"
-          ],
-          [
-            "0"
-          ]
-        ],
-        "mapping": {
-          "X": "firmalife:plant/basil"
+    "name": "ハーブとスパイス",
+    "category": "tfc:firmalife",
+    "icon": "firmalife:spice/basil_leaves",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "Firmalifeには、自分で採取して育てることができる小さな植物が数多くあり、中には料理に使えるものもあります。これらはハーブと呼ばれます。ハーブは、一度収穫すると$(thing)温室$()栽培することができ、その際、N、P、Kを各20ポイント消費します。"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "次のページを開くと、ハーブが生える場所と使い道に関する情報を確認できます。"
+        },
+        {
+            "type": "patchouli:multiblock",
+            "multiblock": {
+                "pattern": [
+                    [
+                        "X"
+                    ],
+                    [
+                        "0"
+                    ]
+                ],
+                "mapping": {
+                    "X": "firmalife:plant/basil"
+                }
+            },
+            "name": "",
+            "text": "バジルは$(cfg:temperature:0)-$(cfg:temperature:32)の範囲かつ地下水量が100-500mmの場所に生えます。",
+            "enable_visualize": false
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "firmalife:crafting/spice/basil_leaves",
+            "text": "バジルの葉はピザに使えます。"
+        },
+        {
+            "type": "patchouli:multiblock",
+            "multiblock": {
+                "pattern": [
+                    [
+                        "X"
+                    ],
+                    [
+                        "0"
+                    ]
+                ],
+                "mapping": {
+                    "X": "firmalife:plant/bay_laurel"
+                }
+            },
+            "name": "",
+            "text": "ローリエは$(cfg:temperature:10)-$(cfg:temperature:32)の範囲かつ地下水量が100-300mmの場所に生えます。",
+            "enable_visualize": false
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "firmalife:crafting/spice/bay_leaves",
+            "text": "ローリエは細かく刻んで葉の状態にし、コリアンダーと一緒に使って、鍋で風味豊かな炊き込みご飯を作ることができます。"
+        },
+        {
+            "type": "patchouli:multiblock",
+            "multiblock": {
+                "pattern": [
+                    [
+                        "X"
+                    ],
+                    [
+                        "0"
+                    ]
+                ],
+                "mapping": {
+                    "X": "firmalife:plant/cardamom"
+                }
+            },
+            "name": "",
+            "text": "カルダモンは$(cfg:temperature:17)-$(cfg:temperature:24)の範囲かつ地下水量が330-500mmの場所に生えます。",
+            "enable_visualize": false
+        },
+        {
+            "type": "tfc:quern_recipe",
+            "recipe": "firmalife:quern/spice/ground_cardamom",
+            "text": "カルダモンパウダーは、カルダモンを挽いて作ります。ピラフを作る時に使います。"
+        },
+        {
+            "type": "patchouli:multiblock",
+            "multiblock": {
+                "pattern": [
+                    [
+                        "X"
+                    ],
+                    [
+                        "0"
+                    ]
+                ],
+                "mapping": {
+                    "X": "firmalife:plant/cilantro"
+                }
+            },
+            "name": "",
+            "text": "コリアンダーは$(cfg:temperature:10)-$(cfg:temperature:24)の範囲かつ地下水量が90-300mmの場所に生えます。",
+            "enable_visualize": false
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "firmalife:crafting/spice/chopped_cilantro",
+            "text": "コリアンダーは刻んでサルサに使ったり、ローリエと一緒に鍋で風味豊かな炊き込みご飯を作ったりできます。"
+        },
+        {
+            "type": "patchouli:multiblock",
+            "multiblock": {
+                "pattern": [
+                    [
+                        "X"
+                    ],
+                    [
+                        "0"
+                    ]
+                ],
+                "mapping": {
+                    "X": "firmalife:plant/cumin"
+                }
+            },
+            "name": "",
+            "text": "クミンは$(cfg:temperature:16)-$(cfg:temperature:27)の範囲かつ地下水量が100-300mmの場所に生えます。",
+            "enable_visualize": false
+        },
+        {
+            "type": "tfc:quern_recipe",
+            "recipe": "firmalife:quern/spice/ground_cumin",
+            "text": "クミンパウダーは、クミンを挽いて作ります。カルネ・アサーダを作る時に使います。"
+        },
+        {
+            "type": "patchouli:multiblock",
+            "multiblock": {
+                "pattern": [
+                    [
+                        "X"
+                    ],
+                    [
+                        "0"
+                    ]
+                ],
+                "mapping": {
+                    "X": "firmalife:plant/oregano"
+                }
+            },
+            "name": "",
+            "text": "オレガノは$(cfg:temperature:20)-$(cfg:temperature:27)の範囲かつ地下水量が90-350mmの場所に生えます。",
+            "enable_visualize": false
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "firmalife:crafting/food/raw_lasagna",
+            "text": "オレガノはラザニアに使います。"
+        },
+        {
+            "type": "patchouli:multiblock",
+            "multiblock": {
+                "pattern": [
+                    [
+                        "X"
+                    ],
+                    [
+                        "0"
+                    ]
+                ],
+                "mapping": {
+                    "X": "firmalife:plant/pimento"
+                }
+            },
+            "name": "",
+            "text": "ピメントは$(cfg:temperature:18)-$(cfg:temperature:24)の範囲かつ地下水量が200-400mmの場所に生えます。",
+            "enable_visualize": false
+        },
+        {
+            "type": "tfc:quern_recipe",
+            "recipe": "firmalife:quern/spice/allspice",
+            "text": "オールスパイスは、ピメントを挽いて作ります。パンプキンパイに使うスパイス入りの小麦粉を作る時に使います。"
+        },
+        {
+            "type": "patchouli:multiblock",
+            "multiblock": {
+                "pattern": [
+                    [
+                        "X"
+                    ],
+                    [
+                        "0"
+                    ]
+                ],
+                "mapping": {
+                    "X": "firmalife:plant/vanilla"
+                }
+            },
+            "name": "",
+            "text": "バニラは$(cfg:temperature:22)-$(cfg:temperature:30)の範囲かつ地下水量が350-500mmの場所に生えます。",
+            "enable_visualize": false
+        },
+        {
+            "type": "tfc:drying_recipe",
+            "recipe": "firmalife:drying/spice/vanilla",
+            "text": "乾燥させたバニラはアイスクリーム作りに使うことができます。"
         }
-      },
-      "name": "",
-      "text": "Basil spawns between $(cfg:temperature:0)-$(cfg:temperature:32) and 100-500mm of groundwater.",
-      "enable_visualize": false
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/spice/basil_leaves",
-      "text": "Basil leaves, made from basil, are used in pizza."
-    },
-    {
-      "type": "patchouli:multiblock",
-      "multiblock": {
-        "pattern": [
-          [
-            "X"
-          ],
-          [
-            "0"
-          ]
-        ],
-        "mapping": {
-          "X": "firmalife:plant/bay_laurel"
-        }
-      },
-      "name": "",
-      "text": "Bay Laurel spawns between $(cfg:temperature:10)-$(cfg:temperature:32) and 100-300mm of groundwater.",
-      "enable_visualize": false
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/spice/bay_leaves",
-      "text": "Bay laurel is chopped into bay leaves and used with cilantro to make flavorful rice in a pot."
-    },
-    {
-      "type": "patchouli:multiblock",
-      "multiblock": {
-        "pattern": [
-          [
-            "X"
-          ],
-          [
-            "0"
-          ]
-        ],
-        "mapping": {
-          "X": "firmalife:plant/cardamom"
-        }
-      },
-      "name": "",
-      "text": "Cardamom spawns between $(cfg:temperature:17)-$(cfg:temperature:24) and 330-500mm of groundwater.",
-      "enable_visualize": false
-    },
-    {
-      "type": "tfc:quern_recipe",
-      "recipe": "firmalife:quern/spice/ground_cardamom",
-      "text": "Ground Cardamom is made from grinding the cardamom plant, which is used to make Rice Pilaf."
-    },
-    {
-      "type": "patchouli:multiblock",
-      "multiblock": {
-        "pattern": [
-          [
-            "X"
-          ],
-          [
-            "0"
-          ]
-        ],
-        "mapping": {
-          "X": "firmalife:plant/cilantro"
-        }
-      },
-      "name": "",
-      "text": "Cilantro spawns between $(cfg:temperature:10)-$(cfg:temperature:24) and 90-300mm of groundwater.",
-      "enable_visualize": false
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/spice/chopped_cilantro",
-      "text": "Cilantro can be chopped and used for salsa and used with bay leaves in a pot to make flavorful cooked rice."
-    },
-    {
-      "type": "patchouli:multiblock",
-      "multiblock": {
-        "pattern": [
-          [
-            "X"
-          ],
-          [
-            "0"
-          ]
-        ],
-        "mapping": {
-          "X": "firmalife:plant/cumin"
-        }
-      },
-      "name": "",
-      "text": "Cumin spawns between $(cfg:temperature:16)-$(cfg:temperature:27) and 100-300mm of groundwater.",
-      "enable_visualize": false
-    },
-    {
-      "type": "tfc:quern_recipe",
-      "recipe": "firmalife:quern/spice/ground_cumin",
-      "text": "Ground Cumin is made from grinding the cumin plant, which is used to make Carne Asada."
-    },
-    {
-      "type": "patchouli:multiblock",
-      "multiblock": {
-        "pattern": [
-          [
-            "X"
-          ],
-          [
-            "0"
-          ]
-        ],
-        "mapping": {
-          "X": "firmalife:plant/oregano"
-        }
-      },
-      "name": "",
-      "text": "Oregano spawns between $(cfg:temperature:20)-$(cfg:temperature:27) and 90-350mm of groundwater.",
-      "enable_visualize": false
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/food/raw_lasagna",
-      "text": "Oregano is used for lasagna."
-    },
-    {
-      "type": "patchouli:multiblock",
-      "multiblock": {
-        "pattern": [
-          [
-            "X"
-          ],
-          [
-            "0"
-          ]
-        ],
-        "mapping": {
-          "X": "firmalife:plant/pimento"
-        }
-      },
-      "name": "",
-      "text": "Pimento spawns between $(cfg:temperature:18)-$(cfg:temperature:24) and 200-400mm of groundwater.",
-      "enable_visualize": false
-    },
-    {
-      "type": "tfc:quern_recipe",
-      "recipe": "firmalife:quern/spice/allspice",
-      "text": "Allspice is made from grinding the pimento plant, which is used to make Spiced Flour for use in Pumpkin Pie."
-    },
-    {
-      "type": "patchouli:multiblock",
-      "multiblock": {
-        "pattern": [
-          [
-            "X"
-          ],
-          [
-            "0"
-          ]
-        ],
-        "mapping": {
-          "X": "firmalife:plant/vanilla"
-        }
-      },
-      "name": "",
-      "text": "Vanilla spawns between $(cfg:temperature:22)-$(cfg:temperature:30) and 350-500mm of groundwater.",
-      "enable_visualize": false
-    },
-    {
-      "type": "tfc:drying_recipe",
-      "recipe": "firmalife:drying/spice/vanilla",
-      "text": "Vanilla must be dried, and then can be made into ice cream."
-    }
-  ],
-  "read_by_default": true,
-  "sortnum": 21
+    ],
+    "read_by_default": true,
+    "sortnum": 21
 }

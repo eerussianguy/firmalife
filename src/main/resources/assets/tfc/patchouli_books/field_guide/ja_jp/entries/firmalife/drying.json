@@ -1,42 +1,41 @@
 {
-  "__comment__": "This file was automatically created by mcresources",
-  "name": "乾燥",
-  "category": "tfc:firmalife",
-  "icon": "firmalife:drying_mat",
-  "pages": [
-    {
-      "type": "patchouli:text",
-      "text": "$(thing)乾燥マット$()はアイテムを乾燥させるために使います。$(br2)果樹の葉を壊して得られる$(thing)果樹の葉$()を使用して作成できます。"
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/drying_mat",
-      "text": "乾燥マットのレシピ。"
-    },
-    {
-      "type": "patchouli:text",
-      "text": "乾燥マットの使い方は、天日干しにしたいものを持ち$(item)$(k:key.use)$()で配置します。$(br2)半日もすれば乾きますが、雨が降った場合は乾燥工程をやり直す必要があります。"
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/solar_drier",
-      "text": "The solar drier functions the same as the drying mat, but $(flcfg:solarDrierSpeedup)x as fast, taking only $(flcfg:solarDryingTicks)."
-    },
-    {
-      "type": "patchouli:text",
-      "text": "Drying mats can be automated. Pushing a piston head against a drying mat will pop the item off. Dropping an item onto a drying mat will place it on the mat."
-    },
-    {
-      "type": "tfc:drying_recipe",
-      "recipe": "firmalife:drying/dry_fruits",
-      "text": "果物を乾燥させるのは、乾燥マットの一般的な使い方です。$(br2)乾燥させた果物は鮮度が長持ちし、さまざまなレシピに使用されます。"
-    },
-    {
-      "type": "tfc:drying_recipe",
-      "recipe": "firmalife:drying/food/tofu",
-      "text": "豆腐は乾燥マットを使って作られます。"
-    }
-  ],
-  "read_by_default": true,
-  "sortnum": 14
+    "name": "乾燥",
+    "category": "tfc:firmalife",
+    "icon": "firmalife:drying_mat",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "$(thing)乾燥マット$()はアイテムを乾燥させるために使います。$(br2)果樹の葉を壊して得られる$(thing)果樹の葉$()を使用して作成できます。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "firmalife:crafting/drying_mat",
+            "text": "乾燥マットのレシピ。"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "乾燥マットの使い方は、天日干しにしたいものを持ち$(item)$(k:key.use)$()で配置します。$(br2)半日もすれば乾きますが、雨が降った場合は乾燥工程をやり直す必要があります。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "firmalife:crafting/solar_drier",
+            "text": "太陽光乾燥機は乾燥マットと同じように機能しますが、$(flcfg:solarDrierSpeedup)倍の速さで、わずか$(flcfg:solarDryingTicks)で乾燥が終わります。"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "乾燥マットは自動化することができます。$(br2)ピストンの頭を乾燥マットに押し当てると、乾燥マットに置かれたアイテムがドロップします。アイテムを乾燥マットの上に落とすと、そこにアイテムが配置されます。"
+        },
+        {
+            "type": "tfc:drying_recipe",
+            "recipe": "firmalife:drying/dry_fruits",
+            "text": "果物を乾燥させるのは、乾燥マットの一般的な使い方です。$(br2)乾燥させた果物は鮮度が長持ちし、さまざまなレシピに使用されます。"
+        },
+        {
+            "type": "tfc:drying_recipe",
+            "recipe": "firmalife:drying/food/tofu",
+            "text": "豆腐は乾燥マットを使って作られます。"
+        }
+    ],
+    "read_by_default": true,
+    "sortnum": 14
 }

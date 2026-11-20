@@ -1,37 +1,36 @@
 {
-  "__comment__": "This file was automatically created by mcresources",
-  "name": "Pie",
-  "category": "tfc:firmalife",
-  "icon": "firmalife:textures/item/food/cooked_pie.png",
-  "pages": [
-    {
-      "type": "patchouli:text",
-      "text": "Firmalife allows the creation of a variety of delectable baked goods. This chapter will give you all you need to start eating delicious and creative meals for breakfast, lunch, and dinner."
-    },
-    {
-      "type": "patchouli:text",
-      "text": "$(thing)Butter is the base of many such foods. Using a $(l:firmalife/mixing_bowl)Mixing Bowl$(), combine 1000 mB of $(thing)Cream$() with one item of $(thing)Salt$(). Cream is made by sealing 1000 mB of milk in a barrel with a $(l:firmalife/cheese#cheesecloth)Cheesecloth$()."
-    },
-    {
-      "type": "patchouli:text",
-      "text": "One useful meal is the $(thing)Pie$(). In your mixing bowl, combine butter, flower, and a sweetener (sugar, honey) to make $(thing)Pie Dough$(). To directly make $(thing)Pumpkin Pie$(), mix in an egg, two pumpkin chunks, and sweetener. Craft it with a $(thing)Pie Pan$() and bake it in an $(l:firmalife/ovens)Oven$() to complete the recipe."
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/spice/allspice",
-      "text": "Spiced flour is used in the creation of pumpkin pie. $(l:firmalife/herbs_and_spices)Pimento$() is an herb found in warm, moderately wet climates."
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/food/raw_pumpkin_pie",
-      "text": "$(thing)Pie Pans$() can be smithed in an Anvil from $(thing)Cast Iron$()."
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/food/filled_pie",
-      "text": "Pie Dough, Preserves, and a Pie Pan will net you a $(thing)Filled Pie$(), which can then be finished in the oven for a delicious pie."
-    }
-  ],
-  "read_by_default": true,
-  "sortnum": 27
+    "name": "パイ",
+    "category": "tfc:firmalife",
+    "icon": "firmalife:textures/item/food/cooked_pie.png",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "Firmalifeでは、様々な種類の美味しい焼き菓子を作ることができます。$(br)この章では、朝昼夕の3食にピッタリの美味しくて創造的な料理を作るために必要な知識のすべてを紹介します。"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "$(thing)バター$()は、これから作る料理の基本となる食材です。$(l:firmalife/mixing_bowl)ミキシングボウル$()で1000mBの$(thing)クリーム$()と1個の$(thing)塩$()を混ぜ合わせます。$(br)クリームは、1000mBの牛乳を$(l:firmalife/cheese#cheesecloth)チーズクロス$()と一緒に樽で密封して作られます。"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "特におすすめの一品は$(thing)パイ$()です。ミキシングボウルでバターと小麦粉と甘味料(砂糖または蜂蜜)を混ぜ合わせて$(thing)パイ生地$()を作ります。$(br2)$(thing)パンプキンパイ$()を作る場合、ペポカボチャの塊2個、卵1個、小麦粉、甘味料を加えて混ぜ合わせます。パイ生地と$(thing)パイ皿$()をクラフトしたあと、$(l:firmalife/ovens)オーブン$()で焼き上げれば完成です。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "firmalife:crafting/spice/allspice",
+            "text": "パンプキンパイを作る時は、スパイス入りの小麦粉を使います。$(l:firmalife/herbs_and_spices)ピメント$()は暖かくて雨が適度に降る地域にあるハーブです。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "firmalife:crafting/food/raw_pumpkin_pie",
+            "text": "$(thing)パイ皿$()は$(thing)鋳鉄のプレート$()を金床で鍛冶することで作られます。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "firmalife:crafting/food/filled_pie",
+            "text": "パイ生地、ジャム、パイ皿でクラフトすると$(thing)皿に入れたパイ生地$()になります。これをオーブンで焼き上げれば、美味しいパイの出来上がりです。"
+        }
+    ],
+    "read_by_default": true,
+    "sortnum": 27
 }

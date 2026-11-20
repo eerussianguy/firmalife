@@ -1,178 +1,177 @@
 {
-  "__comment__": "This file was automatically created by mcresources",
-  "name": "Firmalife フルーツ",
-  "category": "tfc:firmalife",
-  "icon": "firmalife:plant/fig_sapling",
-  "pages": [
-    {
-      "type": "patchouli:text",
-      "text": "Firmalifeは、TFCで追加されたものに加えて、果樹も追加しています。"
-    },
-    {
-      "type": "patchouli:text",
-      "text": "読みやすくするため、項目は次のページから始まります。"
-    },
-    {
-      "type": "patchouli:text",
-      "anchor": "cocoa",
-      "text": "Can be found in regions with:$(br)$(bold)$(l:core_mechanics/climate#temperature)Temperature$(): $(cfg:temperature:20) - $(cfg:temperature:35)$(br)$(bold)$(l:core_mechanics/climate#rainfall)Rainfall$(): 220 - 400mm$(br2)Conditions required for growth:$(br)$(bold)$(l:core_mechanics/climate#temperature)Temperature$(): $(flcfg:climate.cocoa.temperature)$(br)$(bold)$(l:food/hydration)Hydration$(): $(flcfg:climate.cocoa.hydration)%$(br2)Cocoa trees are used to make $(l:firmalife/chocolate)Chocolate$(). They fruit in June.",
-      "title": "カカオの木"
-    },
-    {
-      "type": "tfc:multimultiblock",
-      "text": "カカオの木の成長",
-      "multiblocks": [
+    "name": "Firmalife フルーツ",
+    "category": "tfc:firmalife",
+    "icon": "firmalife:plant/fig_sapling",
+    "pages": [
         {
-          "pattern": [
-            [
-              "X"
-            ],
-            [
-              "Y"
-            ],
-            [
-              "0"
-            ]
-          ],
-          "mapping": {
-            "X": "firmalife:plant/cocoa_leaves[lifecycle=dormant]",
-            "Y": "firmalife:plant/cocoa_branch[up=true,down=true]"
-          }
+            "type": "patchouli:text",
+            "text": "Firmalifeは、TFCで追加されたものに加えて、果樹も追加しています。"
         },
         {
-          "pattern": [
-            [
-              "X"
-            ],
-            [
-              "Y"
-            ],
-            [
-              "0"
-            ]
-          ],
-          "mapping": {
-            "X": "firmalife:plant/cocoa_leaves[lifecycle=healthy]",
-            "Y": "firmalife:plant/cocoa_branch[up=true,down=true]"
-          }
+            "type": "patchouli:text",
+            "text": "読みやすくするため、項目は次のページから始まります。"
         },
         {
-          "pattern": [
-            [
-              "X"
-            ],
-            [
-              "Y"
-            ],
-            [
-              "0"
-            ]
-          ],
-          "mapping": {
-            "X": "firmalife:plant/cocoa_leaves[lifecycle=flowering]",
-            "Y": "firmalife:plant/cocoa_branch[up=true,down=true]"
-          }
+            "type": "patchouli:text",
+            "anchor": "cocoa",
+            "text": "以下の条件を満たす地域に自生します:$(br)$(bold)$(l:core_mechanics/climate#temperature)気温$(): $(cfg:temperature:20) - $(cfg:temperature:35)$(br)$(bold)$(l:core_mechanics/climate#rainfall)降水量$(): 220 - 400mm$(br2)生育に必要な条件:$(br)$(bold)$(l:core_mechanics/climate#temperature)気温$(): $(flcfg:climate.cocoa.temperature)$(br)$(bold)$(l:food/hydration)水分量$(): $(flcfg:climate.cocoa.hydration)%$(br2)カカオの木は$(l:firmalife/chocolate)チョコレート$()の原料になります。6月に実をつけます。",
+            "title": "カカオの木"
         },
         {
-          "pattern": [
-            [
-              "X"
-            ],
-            [
-              "Y"
-            ],
-            [
-              "0"
+            "type": "tfc:multimultiblock",
+            "text": "カカオの木の成長",
+            "multiblocks": [
+                {
+                    "pattern": [
+                        [
+                            "X"
+                        ],
+                        [
+                            "Y"
+                        ],
+                        [
+                            "0"
+                        ]
+                    ],
+                    "mapping": {
+                        "X": "firmalife:plant/cocoa_leaves[lifecycle=dormant]",
+                        "Y": "firmalife:plant/cocoa_branch[up=true,down=true]"
+                    }
+                },
+                {
+                    "pattern": [
+                        [
+                            "X"
+                        ],
+                        [
+                            "Y"
+                        ],
+                        [
+                            "0"
+                        ]
+                    ],
+                    "mapping": {
+                        "X": "firmalife:plant/cocoa_leaves[lifecycle=healthy]",
+                        "Y": "firmalife:plant/cocoa_branch[up=true,down=true]"
+                    }
+                },
+                {
+                    "pattern": [
+                        [
+                            "X"
+                        ],
+                        [
+                            "Y"
+                        ],
+                        [
+                            "0"
+                        ]
+                    ],
+                    "mapping": {
+                        "X": "firmalife:plant/cocoa_leaves[lifecycle=flowering]",
+                        "Y": "firmalife:plant/cocoa_branch[up=true,down=true]"
+                    }
+                },
+                {
+                    "pattern": [
+                        [
+                            "X"
+                        ],
+                        [
+                            "Y"
+                        ],
+                        [
+                            "0"
+                        ]
+                    ],
+                    "mapping": {
+                        "X": "firmalife:plant/cocoa_leaves[lifecycle=fruiting]",
+                        "Y": "firmalife:plant/cocoa_branch[up=true,down=true]"
+                    }
+                }
             ]
-          ],
-          "mapping": {
-            "X": "firmalife:plant/cocoa_leaves[lifecycle=fruiting]",
-            "Y": "firmalife:plant/cocoa_branch[up=true,down=true]"
-          }
+        },
+        {
+            "type": "patchouli:text",
+            "anchor": "fig",
+            "text": "以下の条件を満たす地域に自生します:$(br)$(bold)$(l:core_mechanics/climate#temperature)気温$(): $(cfg:temperature:20) - $(cfg:temperature:35)$(br)$(bold)$(l:core_mechanics/climate#rainfall)降水量$(): 125 - 215mm$(br2)生育に必要な条件:$(br)$(bold)$(l:core_mechanics/climate#temperature)気温$(): $(flcfg:climate.fig.temperature)$(br)$(bold)$(l:food/hydration)水分量$(): $(flcfg:climate.fig.hydration)%$(br2)5月に実をつけます。",
+            "title": "イチジクの木"
+        },
+        {
+            "type": "tfc:multimultiblock",
+            "text": "イチジクの木の成長",
+            "multiblocks": [
+                {
+                    "pattern": [
+                        [
+                            "X"
+                        ],
+                        [
+                            "Y"
+                        ],
+                        [
+                            "0"
+                        ]
+                    ],
+                    "mapping": {
+                        "X": "firmalife:plant/fig_leaves[lifecycle=dormant]",
+                        "Y": "firmalife:plant/fig_branch[up=true,down=true]"
+                    }
+                },
+                {
+                    "pattern": [
+                        [
+                            "X"
+                        ],
+                        [
+                            "Y"
+                        ],
+                        [
+                            "0"
+                        ]
+                    ],
+                    "mapping": {
+                        "X": "firmalife:plant/fig_leaves[lifecycle=healthy]",
+                        "Y": "firmalife:plant/fig_branch[up=true,down=true]"
+                    }
+                },
+                {
+                    "pattern": [
+                        [
+                            "X"
+                        ],
+                        [
+                            "Y"
+                        ],
+                        [
+                            "0"
+                        ]
+                    ],
+                    "mapping": {
+                        "X": "firmalife:plant/fig_leaves[lifecycle=flowering]",
+                        "Y": "firmalife:plant/fig_branch[up=true,down=true]"
+                    }
+                },
+                {
+                    "pattern": [
+                        [
+                            "X"
+                        ],
+                        [
+                            "Y"
+                        ],
+                        [
+                            "0"
+                        ]
+                    ],
+                    "mapping": {
+                        "X": "firmalife:plant/fig_leaves[lifecycle=fruiting]",
+                        "Y": "firmalife:plant/fig_branch[up=true,down=true]"
+                    }
+                }
+            ]
         }
-      ]
-    },
-    {
-      "type": "patchouli:text",
-      "anchor": "fig",
-      "text": "Can be found in regions with:$(br)$(bold)$(l:core_mechanics/climate#temperature)Temperature$(): $(cfg:temperature:20) - $(cfg:temperature:35)$(br)$(bold)$(l:core_mechanics/climate#rainfall)Rainfall$(): 125 - 215mm$(br2)Conditions required for growth:$(br)$(bold)$(l:core_mechanics/climate#temperature)Temperature$(): $(flcfg:climate.fig.temperature)$(br)$(bold)$(l:food/hydration)Hydration$(): $(flcfg:climate.fig.hydration)%$(br2)They fruit in May.",
-      "title": "イチジクの木"
-    },
-    {
-      "type": "tfc:multimultiblock",
-      "text": "イチジクの木の成長",
-      "multiblocks": [
-        {
-          "pattern": [
-            [
-              "X"
-            ],
-            [
-              "Y"
-            ],
-            [
-              "0"
-            ]
-          ],
-          "mapping": {
-            "X": "firmalife:plant/fig_leaves[lifecycle=dormant]",
-            "Y": "firmalife:plant/fig_branch[up=true,down=true]"
-          }
-        },
-        {
-          "pattern": [
-            [
-              "X"
-            ],
-            [
-              "Y"
-            ],
-            [
-              "0"
-            ]
-          ],
-          "mapping": {
-            "X": "firmalife:plant/fig_leaves[lifecycle=healthy]",
-            "Y": "firmalife:plant/fig_branch[up=true,down=true]"
-          }
-        },
-        {
-          "pattern": [
-            [
-              "X"
-            ],
-            [
-              "Y"
-            ],
-            [
-              "0"
-            ]
-          ],
-          "mapping": {
-            "X": "firmalife:plant/fig_leaves[lifecycle=flowering]",
-            "Y": "firmalife:plant/fig_branch[up=true,down=true]"
-          }
-        },
-        {
-          "pattern": [
-            [
-              "X"
-            ],
-            [
-              "Y"
-            ],
-            [
-              "0"
-            ]
-          ],
-          "mapping": {
-            "X": "firmalife:plant/fig_leaves[lifecycle=fruiting]",
-            "Y": "firmalife:plant/fig_branch[up=true,down=true]"
-          }
-        }
-      ]
-    }
-  ],
-  "read_by_default": true,
-  "sortnum": 22
+    ],
+    "read_by_default": true,
+    "sortnum": 22
 }

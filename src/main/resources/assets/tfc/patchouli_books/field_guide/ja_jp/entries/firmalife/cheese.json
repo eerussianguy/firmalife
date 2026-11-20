@@ -1,105 +1,104 @@
 {
-  "__comment__": "This file was automatically created by mcresources",
-  "name": "チーズ",
-  "category": "tfc:firmalife",
-  "icon": "firmalife:textures/item/food/gouda.png",
-  "pages": [
-    {
-      "type": "patchouli:text",
-      "text": "Firmalifeでの$(thing)チーズ$()作りは、バニラのTFCよりも少し複雑です。$(br2)追加されたミルクは2種類あり、$(thing)ヤクミルク$()と$(thing)ヤギミルク$()です。$(br2)これらはそれぞれ$(l:mechanics/animal_husbandry#yak)ヤク$()と$(l:mechanics/animal_husbandry#goat)ヤギ$()から搾乳されます。$(br2)$(l:mechanics/animal_husbandry#cow)牛$()からも、今まで通り牛乳がとれます。"
-    },
-    {
-      "type": "patchouli:text",
-      "text": "いつものように、まず牛乳を$(thing)凝乳$()させる必要があります。$(br)牛乳を凝乳させるには$(thing)レンネット$()を使用します。$(br2)$(thing)レンネット$()は反芻動物の胃から取れます。$(br)$(l:mechanics/animal_husbandry#yak)ヤク$()、$(l:mechanics/animal_husbandry#cow)ウシ$()、$(l:mechanics/animal_husbandry#sheep)ヒツジ$()、$(l:mechanics/animal_husbandry#goat)ヤギ$()、$(l:mechanics/animal_husbandry#musk_ox)ジャコウウシ$()などがこれにあたります。$(br2)牛乳を凝乳させるには、牛乳とレンネットを一緒に$(l:mechanics/barrels)樽$()に密封して4時間保管します。"
-    },
-    {
-      "type": "patchouli:crafting",
-      "anchor": "cheesecloth",
-      "recipe": "firmalife:crafting/cheesecloth",
-      "text": "凝乳した牛乳は、$(thing)チーズクロス$()と一緒に樽に密封することで$(thing)カード$()に変える必要があります。$(br2)残念ながら、チーズクロスは再利用できません。"
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/cheddar_wheel",
-      "text": "これで$(thing)ドライチーズ$()を作る準備が整いました。$(br2)$(thing)ヤクの凝乳$()から$(thing)ラジャメトック$()、$(br)$(thing)ヤギの凝乳$()から$(thing)シェーブル$()、$(br)$(thing)牛乳の凝乳$()から$(thing)チェダー$()$(br)を作ることができます。"
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/chevre_wheel",
-      "recipe2": "firmalife:crafting/rajya_metok_wheel"
-    },
-    {
-      "type": "patchouli:text",
-      "text": "もうひとつの選択肢は、$(thing)ウェットチーズ$()が作れます。$(br2)凝乳を$(thing)塩水$()の樽に密封して作られます。$(br2)$(thing)ヤクの凝乳$()から$(thing)ショーシャ$()、$(br)$(thing)ヤギの凝乳$()から$(thing)フェタ$()、$(br)$(thing)牛乳の凝乳$()から$(thing)ゴーダ$()$(br2)を作ることができます。"
-    },
-    {
-      "type": "patchouli:text",
-      "anchor": "aging",
-      "text": "Cheese wheels are blocks that should be placed in order to help them last. To improve their quality and shelf life, cheese wheels should be $(thing)Aged$() in a $(l:firmalife/cellar)Cellar$(). In order to obtain edible cheese from a cheese wheel, it should be sliced off the wheel by clicking $(item)$(k:key.use)$() with a $(thing)Knife$(). If the block is simply broken, the aging is lost!$(br2)A full wheel becomes $(thing)Aged$() after $(flcfg:cheeseAgedDays) in a cellar, and $(thing)Vintage$() after $(flcfg:cheeseVintageDays)."
-    },
-    {
-      "type": "tfc:multimultiblock",
-      "text": "ゴーダの熟成段階： $(thing)新鮮$()、$(thing)少し熟成$()、$(thing)完全な熟成$()",
-      "multiblocks": [
+    "name": "チーズ",
+    "category": "tfc:firmalife",
+    "icon": "firmalife:textures/item/food/gouda.png",
+    "pages": [
         {
-          "pattern": [
-            [
-              "X"
-            ],
-            [
-              "0"
-            ]
-          ],
-          "mapping": {
-            "X": "firmalife:gouda_wheel[age=fresh]"
-          }
+            "type": "patchouli:text",
+            "text": "Firmalifeでの$(thing)チーズ$()作りは、バニラのTFCよりも少し複雑です。$(br2)追加されたミルクは2種類あり、$(thing)ヤクミルク$()と$(thing)ヤギミルク$()です。$(br2)これらはそれぞれ$(l:mechanics/animal_husbandry#yak)ヤク$()と$(l:mechanics/animal_husbandry#goat)ヤギ$()から搾乳されます。$(br2)$(l:mechanics/animal_husbandry#cow)牛$()からも、今まで通り牛乳がとれます。"
         },
         {
-          "pattern": [
-            [
-              "X"
-            ],
-            [
-              "0"
-            ]
-          ],
-          "mapping": {
-            "X": "firmalife:gouda_wheel[age=aged]"
-          }
+            "type": "patchouli:text",
+            "text": "いつものように、まず牛乳を$(thing)凝乳$()させる必要があります。$(br)牛乳を凝乳させるには$(thing)レンネット$()を使用します。$(br2)$(thing)レンネット$()は反芻動物の胃から取れます。$(br)$(l:mechanics/animal_husbandry#yak)ヤク$()、$(l:mechanics/animal_husbandry#cow)ウシ$()、$(l:mechanics/animal_husbandry#sheep)ヒツジ$()、$(l:mechanics/animal_husbandry#goat)ヤギ$()、$(l:mechanics/animal_husbandry#musk_ox)ジャコウウシ$()などがこれにあたります。$(br2)牛乳を凝乳させるには、牛乳とレンネットを一緒に$(l:mechanics/barrels)樽$()に密封して4時間保管します。"
         },
         {
-          "pattern": [
-            [
-              "X"
-            ],
-            [
-              "0"
+            "type": "patchouli:crafting",
+            "anchor": "cheesecloth",
+            "recipe": "firmalife:crafting/cheesecloth",
+            "text": "凝乳した牛乳は、$(thing)チーズクロス$()と一緒に樽に密封することで$(thing)カード$()に変える必要があります。$(br2)残念ながら、チーズクロスは再利用できません。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "firmalife:crafting/cheddar_wheel",
+            "text": "これで$(thing)ドライチーズ$()を作る準備が整いました。$(br2)$(thing)ヤクの凝乳$()から$(thing)ラジャメトック$()、$(br)$(thing)ヤギの凝乳$()から$(thing)シェーブル$()、$(br)$(thing)牛乳の凝乳$()から$(thing)チェダー$()$(br)を作ることができます。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "firmalife:crafting/chevre_wheel",
+            "recipe2": "firmalife:crafting/rajya_metok_wheel"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "もうひとつの選択肢は、$(thing)ウェットチーズ$()が作れます。$(br2)凝乳を$(thing)塩水$()の樽に密封して作られます。$(br2)$(thing)ヤクの凝乳$()から$(thing)ショーシャ$()、$(br)$(thing)ヤギの凝乳$()から$(thing)フェタ$()、$(br)$(thing)牛乳の凝乳$()から$(thing)ゴーダ$()$(br2)を作ることができます。"
+        },
+        {
+            "type": "patchouli:text",
+            "anchor": "aging",
+            "text": "チーズホイールは適切な場所に配置すべきブロックです。$(br)品質と保存期間を向上させるため、チーズホイールは$(l:tfc:firmalife/cellar)貯蔵庫$()で$(thing)熟成$()させる必要があります。$(br)チーズホイールから食用可能なチーズを得るには、ナイフを持ちチーズホイールに$(item)$(k:key.use)$()をして切り出します。$(br)単にブロックを壊してしまうと、熟成効果は失われてしまうので注意してください！切り出していないチーズホイールは、貯蔵庫で$(flcfg:cheeseAgedDays)経過すると$(thing)少し熟成$()した状態になり、$(flcfg:cheeseVintageDays)経過すると$(thing)完全に熟成$()した状態になります。"
+        },
+        {
+            "type": "tfc:multimultiblock",
+            "text": "ゴーダの熟成段階： $(thing)新鮮$()、$(thing)少し熟成$()、$(thing)完全な熟成$()",
+            "multiblocks": [
+                {
+                    "pattern": [
+                        [
+                            "X"
+                        ],
+                        [
+                            "0"
+                        ]
+                    ],
+                    "mapping": {
+                        "X": "firmalife:gouda_wheel[age=fresh]"
+                    }
+                },
+                {
+                    "pattern": [
+                        [
+                            "X"
+                        ],
+                        [
+                            "0"
+                        ]
+                    ],
+                    "mapping": {
+                        "X": "firmalife:gouda_wheel[age=aged]"
+                    }
+                },
+                {
+                    "pattern": [
+                        [
+                            "X"
+                        ],
+                        [
+                            "0"
+                        ]
+                    ],
+                    "mapping": {
+                        "X": "firmalife:gouda_wheel[age=vintage]"
+                    }
+                }
             ]
-          ],
-          "mapping": {
-            "X": "firmalife:gouda_wheel[age=vintage]"
-          }
+        },
+        {
+            "type": "patchouli:text",
+            "text": "カードを作ると、樽の中に$(thing)乳清$()が残ります。 その乳清を$(thing)チーズクロス$()で漉すと$(thing)リコッタ$()を作れます。"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "$(thing)モッツァレラ$()はレンネットを使わずに作ります。 牛乳の入った樽に$(thing)酢$()を注いで$(thing)ミルクビネガー$()として凝固させ、それを$(thing)チーズクロス$()と一緒に密閉します。"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "$(thing)ブルーチーズ$()には$(thing)青カビ$()が必要です。 $(thing)腐ったパン$()と水を樽に密閉すると、カビを4つ得られます。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "firmalife:crafting/blue_wheel",
+            "text": "$(thing)塩$()と$(thing)青カビ$()と$(thing)ミルクカード$()をクラフトするか、新鮮なチーズホイールに$(item)$(k:key.use)$()で青カビ$()を施すことで、$(thing)ブルーチーズ$()を作成できます。"
         }
-      ]
-    },
-    {
-      "type": "patchouli:text",
-      "text": "Making curds leaves $(thing)Whey$() behind in the barrel. Seal the whey with a $(thing)Cheesecloth$() to make $(thing)Ricotta$()."
-    },
-    {
-      "type": "patchouli:text",
-      "text": "$(thing)Mozzarella$() is made without rennet. Pour $(thing)Vinegar$() into a barrel of milk to curdle it into $(thing)Milk Vinegar$(), then seal that with a $(thing)Cheesecloth$()."
-    },
-    {
-      "type": "patchouli:text",
-      "text": "$(thing)Blue Cheese$() needs $(thing)Blue Mold$(). Culture it by sealing $(thing)rotten bread$() and water in a barrel, which yields four mold."
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/blue_wheel",
-      "text": "Make $(thing)Blue Cheese$() by crafting $(thing)Milk Curd$() with $(thing)Salt$() and $(thing)Blue Mold$(), or by $(item)$(k:key.use)$() Blue Mold on any fresh cheese wheel."
-    }
-  ],
-  "read_by_default": true,
-  "sortnum": 1
+    ],
+    "read_by_default": true,
+    "sortnum": 1
 }

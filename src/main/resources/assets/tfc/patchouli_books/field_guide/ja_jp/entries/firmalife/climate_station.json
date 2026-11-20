@@ -1,60 +1,59 @@
 {
-  "__comment__": "This file was automatically created by mcresources",
-  "name": "空調機",
-  "category": "tfc:firmalife",
-  "icon": "firmalife:climate_station",
-  "pages": [
-    {
-      "type": "patchouli:text",
-      "text": "The $(thing)Climate Station$() is a block that manages the $(l:firmalife/greenhouse)Greenhouse$() and the $(l:firmalife/cellar)Cellar$(). When its corresponding multiblock is built correctly, it will show water on its sides. When it is invalid, it will show ice. The Climate Station must be placed on the first level of the multiblock, touching a part of the greenhouse structure. If it is not touching the structure, you may $(item)$(k:key.use)$() it with a block from that greenhouse type to tell it what to look for."
-    },
-    {
-      "type": "tfc:multimultiblock",
-      "text": "空調機の有効な状態と無効な状態。",
-      "multiblocks": [
+    "name": "空調機",
+    "category": "tfc:firmalife",
+    "icon": "firmalife:climate_station",
+    "pages": [
         {
-          "pattern": [
-            [
-              "X"
-            ],
-            [
-              "0"
-            ]
-          ],
-          "mapping": {
-            "X": "firmalife:climate_station[stasis=true]"
-          }
+            "type": "patchouli:text",
+            "text": "$(thing)空調機$()は、$(l:firmalife/greenhouse)温室$()と$(l:firmalife/cellar)貯蔵庫$()を管理するブロックです。その対応するマルチブロックが正しく構築されている場合、側面に水が表示され、無効な場合は氷が表示されます。空調機は、マルチブロックの床に設置し壁にも接触するように設置する必要があります。壁に接触させない場合、マルチブロックの一部となるブロックを持ち、$(item)$(k:key.use)$()を使用すると認識させられます。"
         },
         {
-          "pattern": [
-            [
-              "X"
-            ],
-            [
-              "0"
+            "type": "tfc:multimultiblock",
+            "text": "空調機の有効な状態と無効な状態。",
+            "multiblocks": [
+                {
+                    "pattern": [
+                        [
+                            "X"
+                        ],
+                        [
+                            "0"
+                        ]
+                    ],
+                    "mapping": {
+                        "X": "firmalife:climate_station[stasis=true]"
+                    }
+                },
+                {
+                    "pattern": [
+                        [
+                            "X"
+                        ],
+                        [
+                            "0"
+                        ]
+                    ],
+                    "mapping": {
+                        "X": "firmalife:climate_station[stasis=false]"
+                    }
+                }
             ]
-          ],
-          "mapping": {
-            "X": "firmalife:climate_station[stasis=false]"
-          }
+        },
+        {
+            "type": "patchouli:text",
+            "text": "$(li)定期的に更新されるか、あるいは配置されたり壊れたりしたときに更新されます。$()$(li)空調機が更新されると、マルチブロック内のすべてのブロックに、それらが動作可能であることを伝えます。例えば、$(l:tfc:firmalife/cheese)チーズ$()の熟成が始まります。$()$(li)$(item)$(k:key.use)$()を押すと、空調機とマルチブロック内のブロックが強制的に更新されます。",
+            "title": "空調機について"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "firmalife:crafting/climate_station",
+            "text": "空調機はこのように作成できます。"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "温室の建設についての注意事項: 温室の最大サイズは、空調機を中心として$(flcfg:greenhouseSize)x$(flcfg:greenhouseSize)x$(flcfg:greenhouseSize)ブロック、または各方向に$(flcfg:greenhouseRadius)のサイズとなります。温室の中心に空調機を配置することで、最大サイズを活用することができます。また、壁と複数の空調機を使用することで、温室を内部で区切り、複数に分割することでより大きくすることも可能です。"
         }
-      ]
-    },
-    {
-      "type": "patchouli:text",
-      "text": "$(li)定期的に更新されるか、あるいは配置されたり壊れたりしたときに更新されます。$()$(li)空調機が更新されると、マルチブロック内のすべてのブロックに、それらが動作可能であることを伝えます。例えば、$(l:tfc:firmalife/cheese)チーズ$()の熟成が始まります。$()$(li)$(item)$(k:key.use)$()を押すと、空調機とマルチブロック内のブロックが強制的に更新されます。",
-      "title": "空調機について"
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/climate_station",
-      "text": "空調機はこのように作成できます。"
-    },
-    {
-      "type": "patchouli:text",
-      "text": "A note about greenhouse construction: The largest greenhouse is $(flcfg:greenhouseSize)x$(flcfg:greenhouseSize)x$(flcfg:greenhouseSize), centered on the climate station, or $(flcfg:greenhouseRadius) blocks in each direction. Centering the climate station in the greenhouse will allow you to take advantage of the full size range. You can also internally subdivide a greenhouse into multiple by using walls and multiple climate stations to make it larger."
-    }
-  ],
-  "read_by_default": true,
-  "sortnum": 2
+    ],
+    "read_by_default": true,
+    "sortnum": 2
 }

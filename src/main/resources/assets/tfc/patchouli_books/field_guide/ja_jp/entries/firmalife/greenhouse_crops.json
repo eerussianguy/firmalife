@@ -1,776 +1,775 @@
 {
-  "__comment__": "This file was automatically created by mcresources",
-  "name": "Greenhouse Crops",
-  "category": "tfc:firmalife",
-  "icon": "tfc:textures/item/food/cranberry.png",
-  "pages": [
-    {
-      "type": "patchouli:text",
-      "text": "Each kind of $(l:firmalife/planters)Planter$() can only grow certain plants, and some plants need higher tier $(l:firmalife/greenhouse)Greenhouses$() to grow."
-    },
-    {
-      "type": "patchouli:text",
-      "text": "$(thing)N / P / K$() is how much $(l:mechanics/fertilizers)Nitrogen, Phosphorus, and Potassium$() the plant consumes from its planter as it grows.$(br2)$(thing)Greenhouse$() is the cheapest greenhouse the plant will grow in. Any better greenhouse works too.$(br2)All $(l:firmalife/herbs_and_spices)Herbs$() share the same requirements, so they are listed together."
-    },
-    {
-      "type": "tfc:table",
-      "anchor": "quad",
-      "strings": [
+    "name": "温室と作物",
+    "category": "tfc:firmalife",
+    "icon": "tfc:textures/item/food/cranberry.png",
+    "pages": [
         {
-          "text": "Plant",
-          "bold": true
+            "type": "patchouli:text",
+            "text": "各種類の$(l:firmalife/planters)プランター$()で育てられる作物は限られています。上位Tierの$(l:firmalife/greenhouse)温室$()を必要とする作物もあります。"
         },
         {
-          "text": "N / P / K",
-          "bold": true
+            "type": "patchouli:text",
+            "text": "$(thing)N / P / K$()は、作物が成長する過程でプランターの土壌から吸収する$(l:mechanics/fertilizers)窒素, リン, カリウム$()の量です。$(br2)$(thing)温室$()は、作物の栽培に要求される温室のTierです。より高いTierの温室でも問題ありません。$(br2)全ての$(l:firmalife/herbs_and_spices)ハーブ$()は必要条件が同一であるため、まとめて記載されています。"
         },
         {
-          "text": "Greenhouse",
-          "bold": true
+            "type": "tfc:table",
+            "anchor": "quad",
+            "strings": [
+                {
+                    "text": "植物",
+                    "bold": true
+                },
+                {
+                    "text": "N / P / K",
+                    "bold": true
+                },
+                {
+                    "text": "温室",
+                    "bold": true
+                },
+                {
+                    "text": "アルファルファ"
+                },
+                {
+                    "text": "$(flcfg:plantable.alfalfa.n) / $(flcfg:plantable.alfalfa.p) / $(flcfg:plantable.alfalfa.k)"
+                },
+                {
+                    "text": "加工木材"
+                },
+                {
+                    "text": "ビーツ"
+                },
+                {
+                    "text": "$(flcfg:plantable.beet.n) / $(flcfg:plantable.beet.p) / $(flcfg:plantable.beet.k)"
+                },
+                {
+                    "text": "加工木材"
+                },
+                {
+                    "text": "キャベツ"
+                },
+                {
+                    "text": "$(flcfg:plantable.cabbage.n) / $(flcfg:plantable.cabbage.p) / $(flcfg:plantable.cabbage.k)"
+                },
+                {
+                    "text": "加工木材"
+                },
+                {
+                    "text": "キャノーラ"
+                },
+                {
+                    "text": "$(flcfg:plantable.canola.n) / $(flcfg:plantable.canola.p) / $(flcfg:plantable.canola.k)"
+                },
+                {
+                    "text": "加工木材"
+                },
+                {
+                    "text": "ニンジン"
+                },
+                {
+                    "text": "$(flcfg:plantable.carrot.n) / $(flcfg:plantable.carrot.p) / $(flcfg:plantable.carrot.k)"
+                },
+                {
+                    "text": "加工木材"
+                },
+                {
+                    "text": "キャッサバ"
+                },
+                {
+                    "text": "$(flcfg:plantable.cassava.n) / $(flcfg:plantable.cassava.p) / $(flcfg:plantable.cassava.k)"
+                },
+                {
+                    "text": "加工木材"
+                },
+                {
+                    "text": "ニンニク"
+                },
+                {
+                    "text": "$(flcfg:plantable.garlic.n) / $(flcfg:plantable.garlic.p) / $(flcfg:plantable.garlic.k)"
+                },
+                {
+                    "text": "加工木材"
+                },
+                {
+                    "text": "ハーブ"
+                },
+                {
+                    "text": "$(flcfg:plantable.basil.n) / $(flcfg:plantable.basil.p) / $(flcfg:plantable.basil.k)"
+                },
+                {
+                    "text": "加工木材"
+                },
+                {
+                    "text": "レンズ豆"
+                },
+                {
+                    "text": "$(flcfg:plantable.lentil.n) / $(flcfg:plantable.lentil.p) / $(flcfg:plantable.lentil.k)"
+                },
+                {
+                    "text": "加工木材"
+                },
+                {
+                    "text": "タマネギ"
+                },
+                {
+                    "text": "$(flcfg:plantable.onion.n) / $(flcfg:plantable.onion.p) / $(flcfg:plantable.onion.k)"
+                },
+                {
+                    "text": "加工木材"
+                },
+                {
+                    "text": "ピーナッツ"
+                },
+                {
+                    "text": "$(flcfg:plantable.peanut.n) / $(flcfg:plantable.peanut.p) / $(flcfg:plantable.peanut.k)"
+                },
+                {
+                    "text": "加工木材"
+                },
+                {
+                    "text": "ジャガイモ"
+                },
+                {
+                    "text": "$(flcfg:plantable.potato.n) / $(flcfg:plantable.potato.p) / $(flcfg:plantable.potato.k)"
+                },
+                {
+                    "text": "加工木材"
+                }
+            ],
+            "text": "",
+            "title": "4種のプランター(1/2)",
+            "legend": [],
+            "columns": 2,
+            "first_column_width": 80,
+            "column_width": 70,
+            "row_height": 10,
+            "left_buffer": 2,
+            "top_buffer": 12,
+            "draw_background": false
         },
         {
-          "text": "Alfalfa"
+            "type": "patchouli:empty",
+            "draw_filler": false
         },
         {
-          "text": "$(flcfg:plantable.alfalfa.n) / $(flcfg:plantable.alfalfa.p) / $(flcfg:plantable.alfalfa.k)"
+            "type": "tfc:table",
+            "strings": [
+                {
+                    "text": "植物",
+                    "bold": true
+                },
+                {
+                    "text": "N / P / K",
+                    "bold": true
+                },
+                {
+                    "text": "温室",
+                    "bold": true
+                },
+                {
+                    "text": "ラディッシュ"
+                },
+                {
+                    "text": "$(flcfg:plantable.radish.n) / $(flcfg:plantable.radish.p) / $(flcfg:plantable.radish.k)"
+                },
+                {
+                    "text": "加工木材"
+                },
+                {
+                    "text": "大豆"
+                },
+                {
+                    "text": "$(flcfg:plantable.soybean.n) / $(flcfg:plantable.soybean.p) / $(flcfg:plantable.soybean.k)"
+                },
+                {
+                    "text": "加工木材"
+                }
+            ],
+            "text": "",
+            "title": "4種のプランター(2/2)",
+            "legend": [],
+            "columns": 2,
+            "first_column_width": 80,
+            "column_width": 70,
+            "row_height": 10,
+            "left_buffer": 2,
+            "top_buffer": 12,
+            "draw_background": false
         },
         {
-          "text": "Treated Wood"
+            "type": "patchouli:empty",
+            "draw_filler": false
         },
         {
-          "text": "Beet"
+            "type": "tfc:table",
+            "anchor": "large",
+            "strings": [
+                {
+                    "text": "植物",
+                    "bold": true
+                },
+                {
+                    "text": "N / P / K",
+                    "bold": true
+                },
+                {
+                    "text": "温室",
+                    "bold": true
+                },
+                {
+                    "text": "大麦"
+                },
+                {
+                    "text": "$(flcfg:plantable.barley.n) / $(flcfg:plantable.barley.p) / $(flcfg:plantable.barley.k)"
+                },
+                {
+                    "text": "銅"
+                },
+                {
+                    "text": "サヤインゲン"
+                },
+                {
+                    "text": "$(flcfg:plantable.green_bean.n) / $(flcfg:plantable.green_bean.p) / $(flcfg:plantable.green_bean.k)"
+                },
+                {
+                    "text": "銅"
+                },
+                {
+                    "text": "ジュート"
+                },
+                {
+                    "text": "$(flcfg:plantable.jute.n) / $(flcfg:plantable.jute.p) / $(flcfg:plantable.jute.k)"
+                },
+                {
+                    "text": "銅"
+                },
+                {
+                    "text": "トウモロコシ"
+                },
+                {
+                    "text": "$(flcfg:plantable.maize.n) / $(flcfg:plantable.maize.p) / $(flcfg:plantable.maize.k)"
+                },
+                {
+                    "text": "銅"
+                },
+                {
+                    "text": "オーツ麦"
+                },
+                {
+                    "text": "$(flcfg:plantable.oat.n) / $(flcfg:plantable.oat.p) / $(flcfg:plantable.oat.k)"
+                },
+                {
+                    "text": "銅"
+                },
+                {
+                    "text": "カミガヤツリ"
+                },
+                {
+                    "text": "$(flcfg:plantable.papyrus.n) / $(flcfg:plantable.papyrus.p) / $(flcfg:plantable.papyrus.k)"
+                },
+                {
+                    "text": "銅"
+                },
+                {
+                    "text": "赤ピーマン"
+                },
+                {
+                    "text": "$(flcfg:plantable.red_bell_pepper.n) / $(flcfg:plantable.red_bell_pepper.p) / $(flcfg:plantable.red_bell_pepper.k)"
+                },
+                {
+                    "text": "銅"
+                },
+                {
+                    "text": "ライ麦"
+                },
+                {
+                    "text": "$(flcfg:plantable.rye.n) / $(flcfg:plantable.rye.p) / $(flcfg:plantable.rye.k)"
+                },
+                {
+                    "text": "銅"
+                },
+                {
+                    "text": "サトウキビ"
+                },
+                {
+                    "text": "$(flcfg:plantable.sugarcane.n) / $(flcfg:plantable.sugarcane.p) / $(flcfg:plantable.sugarcane.k)"
+                },
+                {
+                    "text": "銅"
+                },
+                {
+                    "text": "トマト"
+                },
+                {
+                    "text": "$(flcfg:plantable.tomato.n) / $(flcfg:plantable.tomato.p) / $(flcfg:plantable.tomato.k)"
+                },
+                {
+                    "text": "銅"
+                },
+                {
+                    "text": "小麦"
+                },
+                {
+                    "text": "$(flcfg:plantable.wheat.n) / $(flcfg:plantable.wheat.p) / $(flcfg:plantable.wheat.k)"
+                },
+                {
+                    "text": "銅"
+                },
+                {
+                    "text": "黄ピーマン"
+                },
+                {
+                    "text": "$(flcfg:plantable.yellow_bell_pepper.n) / $(flcfg:plantable.yellow_bell_pepper.p) / $(flcfg:plantable.yellow_bell_pepper.k)"
+                },
+                {
+                    "text": "銅"
+                }
+            ],
+            "text": "",
+            "title": "大型プランター",
+            "legend": [],
+            "columns": 2,
+            "first_column_width": 80,
+            "column_width": 70,
+            "row_height": 10,
+            "left_buffer": 2,
+            "top_buffer": 12,
+            "draw_background": false
         },
         {
-          "text": "$(flcfg:plantable.beet.n) / $(flcfg:plantable.beet.p) / $(flcfg:plantable.beet.k)"
+            "type": "patchouli:empty",
+            "draw_filler": false
         },
         {
-          "text": "Treated Wood"
+            "type": "tfc:table",
+            "anchor": "hydroponic",
+            "strings": [
+                {
+                    "text": "植物",
+                    "bold": true
+                },
+                {
+                    "text": "N / P / K",
+                    "bold": true
+                },
+                {
+                    "text": "温室",
+                    "bold": true
+                },
+                {
+                    "text": "クランベリー"
+                },
+                {
+                    "text": "$(flcfg:plantable.cranberry.n) / $(flcfg:plantable.cranberry.p) / $(flcfg:plantable.cranberry.k)"
+                },
+                {
+                    "text": "銅"
+                },
+                {
+                    "text": "稲"
+                },
+                {
+                    "text": "$(flcfg:plantable.rice.n) / $(flcfg:plantable.rice.p) / $(flcfg:plantable.rice.k)"
+                },
+                {
+                    "text": "銅"
+                }
+            ],
+            "text": "",
+            "title": "水耕栽培プランター",
+            "legend": [],
+            "columns": 2,
+            "first_column_width": 80,
+            "column_width": 70,
+            "row_height": 10,
+            "left_buffer": 2,
+            "top_buffer": 12,
+            "draw_background": false
         },
         {
-          "text": "Cabbage"
+            "type": "patchouli:empty",
+            "draw_filler": false
         },
         {
-          "text": "$(flcfg:plantable.cabbage.n) / $(flcfg:plantable.cabbage.p) / $(flcfg:plantable.cabbage.k)"
+            "type": "tfc:table",
+            "anchor": "trellis",
+            "strings": [
+                {
+                    "text": "植物",
+                    "bold": true
+                },
+                {
+                    "text": "N / P / K",
+                    "bold": true
+                },
+                {
+                    "text": "温室",
+                    "bold": true
+                },
+                {
+                    "text": "ブラックベリー"
+                },
+                {
+                    "text": "$(flcfg:plantable.blackberry.n) / $(flcfg:plantable.blackberry.p) / $(flcfg:plantable.blackberry.k)"
+                },
+                {
+                    "text": "鉄"
+                },
+                {
+                    "text": "ブルーベリー"
+                },
+                {
+                    "text": "$(flcfg:plantable.blueberry.n) / $(flcfg:plantable.blueberry.p) / $(flcfg:plantable.blueberry.k)"
+                },
+                {
+                    "text": "鉄"
+                },
+                {
+                    "text": "バンチベリー"
+                },
+                {
+                    "text": "$(flcfg:plantable.bunchberry.n) / $(flcfg:plantable.bunchberry.p) / $(flcfg:plantable.bunchberry.k)"
+                },
+                {
+                    "text": "鉄"
+                },
+                {
+                    "text": "ホロムイイチゴ"
+                },
+                {
+                    "text": "$(flcfg:plantable.cloudberry.n) / $(flcfg:plantable.cloudberry.p) / $(flcfg:plantable.cloudberry.k)"
+                },
+                {
+                    "text": "鉄"
+                },
+                {
+                    "text": "エルダーベリー"
+                },
+                {
+                    "text": "$(flcfg:plantable.elderberry.n) / $(flcfg:plantable.elderberry.p) / $(flcfg:plantable.elderberry.k)"
+                },
+                {
+                    "text": "鉄"
+                },
+                {
+                    "text": "グーズベリー"
+                },
+                {
+                    "text": "$(flcfg:plantable.gooseberry.n) / $(flcfg:plantable.gooseberry.p) / $(flcfg:plantable.gooseberry.k)"
+                },
+                {
+                    "text": "鉄"
+                },
+                {
+                    "text": "イヌホウズキ"
+                },
+                {
+                    "text": "$(flcfg:plantable.nightshade.n) / $(flcfg:plantable.nightshade.p) / $(flcfg:plantable.nightshade.k)"
+                },
+                {
+                    "text": "鉄"
+                },
+                {
+                    "text": "パイナップル"
+                },
+                {
+                    "text": "$(flcfg:plantable.pineapple.n) / $(flcfg:plantable.pineapple.p) / $(flcfg:plantable.pineapple.k)"
+                },
+                {
+                    "text": "鉄"
+                },
+                {
+                    "text": "ラズベリー"
+                },
+                {
+                    "text": "$(flcfg:plantable.raspberry.n) / $(flcfg:plantable.raspberry.p) / $(flcfg:plantable.raspberry.k)"
+                },
+                {
+                    "text": "鉄"
+                },
+                {
+                    "text": "赤ブドウ"
+                },
+                {
+                    "text": "$(flcfg:plantable.red_grapes.n) / $(flcfg:plantable.red_grapes.p) / $(flcfg:plantable.red_grapes.k)"
+                },
+                {
+                    "text": "鉄"
+                },
+                {
+                    "text": "スノーベリー"
+                },
+                {
+                    "text": "$(flcfg:plantable.snowberry.n) / $(flcfg:plantable.snowberry.p) / $(flcfg:plantable.snowberry.k)"
+                },
+                {
+                    "text": "鉄"
+                },
+                {
+                    "text": "イチゴ"
+                },
+                {
+                    "text": "$(flcfg:plantable.strawberry.n) / $(flcfg:plantable.strawberry.p) / $(flcfg:plantable.strawberry.k)"
+                },
+                {
+                    "text": "鉄"
+                }
+            ],
+            "text": "",
+            "title": "支柱プランター(1/2)",
+            "legend": [],
+            "columns": 2,
+            "first_column_width": 80,
+            "column_width": 70,
+            "row_height": 10,
+            "left_buffer": 2,
+            "top_buffer": 12,
+            "draw_background": false
         },
         {
-          "text": "Treated Wood"
+            "type": "patchouli:empty",
+            "draw_filler": false
         },
         {
-          "text": "Canola"
+            "type": "tfc:table",
+            "strings": [
+                {
+                    "text": "植物",
+                    "bold": true
+                },
+                {
+                    "text": "N / P / K",
+                    "bold": true
+                },
+                {
+                    "text": "温室",
+                    "bold": true
+                },
+                {
+                    "text": "白いブドウ"
+                },
+                {
+                    "text": "$(flcfg:plantable.white_grapes.n) / $(flcfg:plantable.white_grapes.p) / $(flcfg:plantable.white_grapes.k)"
+                },
+                {
+                    "text": "鉄"
+                },
+                {
+                    "text": "ｳｨﾝﾀｰｸﾞﾘｰﾝﾍﾞﾘｰ"
+                },
+                {
+                    "text": "$(flcfg:plantable.wintergreen_berry.n) / $(flcfg:plantable.wintergreen_berry.p) / $(flcfg:plantable.wintergreen_berry.k)"
+                },
+                {
+                    "text": "鉄"
+                }
+            ],
+            "text": "",
+            "title": "支柱プランター(2/2)",
+            "legend": [],
+            "columns": 2,
+            "first_column_width": 80,
+            "column_width": 70,
+            "row_height": 10,
+            "left_buffer": 2,
+            "top_buffer": 12,
+            "draw_background": false
         },
         {
-          "text": "$(flcfg:plantable.canola.n) / $(flcfg:plantable.canola.p) / $(flcfg:plantable.canola.k)"
+            "type": "patchouli:empty",
+            "draw_filler": false
         },
         {
-          "text": "Treated Wood"
+            "type": "tfc:table",
+            "anchor": "bonsai",
+            "strings": [
+                {
+                    "text": "植物",
+                    "bold": true
+                },
+                {
+                    "text": "N / P / K",
+                    "bold": true
+                },
+                {
+                    "text": "温室",
+                    "bold": true
+                },
+                {
+                    "text": "サクランボ"
+                },
+                {
+                    "text": "$(flcfg:plantable.cherry.n) / $(flcfg:plantable.cherry.p) / $(flcfg:plantable.cherry.k)"
+                },
+                {
+                    "text": "鉄"
+                },
+                {
+                    "text": "カカオ"
+                },
+                {
+                    "text": "$(flcfg:plantable.cocoa.n) / $(flcfg:plantable.cocoa.p) / $(flcfg:plantable.cocoa.k)"
+                },
+                {
+                    "text": "鉄"
+                },
+                {
+                    "text": "イチジク"
+                },
+                {
+                    "text": "$(flcfg:plantable.fig.n) / $(flcfg:plantable.fig.p) / $(flcfg:plantable.fig.k)"
+                },
+                {
+                    "text": "鉄"
+                },
+                {
+                    "text": "青リンゴ"
+                },
+                {
+                    "text": "$(flcfg:plantable.green_apple.n) / $(flcfg:plantable.green_apple.p) / $(flcfg:plantable.green_apple.k)"
+                },
+                {
+                    "text": "鉄"
+                },
+                {
+                    "text": "レモン"
+                },
+                {
+                    "text": "$(flcfg:plantable.lemon.n) / $(flcfg:plantable.lemon.p) / $(flcfg:plantable.lemon.k)"
+                },
+                {
+                    "text": "鉄"
+                },
+                {
+                    "text": "オリーブ"
+                },
+                {
+                    "text": "$(flcfg:plantable.olive.n) / $(flcfg:plantable.olive.p) / $(flcfg:plantable.olive.k)"
+                },
+                {
+                    "text": "鉄"
+                },
+                {
+                    "text": "オレンジ"
+                },
+                {
+                    "text": "$(flcfg:plantable.orange.n) / $(flcfg:plantable.orange.p) / $(flcfg:plantable.orange.k)"
+                },
+                {
+                    "text": "鉄"
+                },
+                {
+                    "text": "モモ"
+                },
+                {
+                    "text": "$(flcfg:plantable.peach.n) / $(flcfg:plantable.peach.p) / $(flcfg:plantable.peach.k)"
+                },
+                {
+                    "text": "鉄"
+                },
+                {
+                    "text": "プラム"
+                },
+                {
+                    "text": "$(flcfg:plantable.plum.n) / $(flcfg:plantable.plum.p) / $(flcfg:plantable.plum.k)"
+                },
+                {
+                    "text": "鉄"
+                },
+                {
+                    "text": "赤リンゴ"
+                },
+                {
+                    "text": "$(flcfg:plantable.red_apple.n) / $(flcfg:plantable.red_apple.p) / $(flcfg:plantable.red_apple.k)"
+                },
+                {
+                    "text": "鉄"
+                }
+            ],
+            "text": "",
+            "title": "果樹用プランター",
+            "legend": [],
+            "columns": 2,
+            "first_column_width": 80,
+            "column_width": 70,
+            "row_height": 10,
+            "left_buffer": 2,
+            "top_buffer": 12,
+            "draw_background": false
         },
         {
-          "text": "Carrot"
+            "type": "patchouli:empty",
+            "draw_filler": false
         },
         {
-          "text": "$(flcfg:plantable.carrot.n) / $(flcfg:plantable.carrot.p) / $(flcfg:plantable.carrot.k)"
+            "type": "tfc:table",
+            "anchor": "hanging",
+            "strings": [
+                {
+                    "text": "植物",
+                    "bold": true
+                },
+                {
+                    "text": "N / P / K",
+                    "bold": true
+                },
+                {
+                    "text": "温室",
+                    "bold": true
+                },
+                {
+                    "text": "バナナ"
+                },
+                {
+                    "text": "$(flcfg:plantable.banana.n) / $(flcfg:plantable.banana.p) / $(flcfg:plantable.banana.k)"
+                },
+                {
+                    "text": "鉄"
+                },
+                {
+                    "text": "スイカ"
+                },
+                {
+                    "text": "$(flcfg:plantable.melon.n) / $(flcfg:plantable.melon.p) / $(flcfg:plantable.melon.k)"
+                },
+                {
+                    "text": "鉄"
+                },
+                {
+                    "text": "ペポカボチャ"
+                },
+                {
+                    "text": "$(flcfg:plantable.pumpkin.n) / $(flcfg:plantable.pumpkin.p) / $(flcfg:plantable.pumpkin.k)"
+                },
+                {
+                    "text": "鉄"
+                },
+                {
+                    "text": "カボチャ"
+                },
+                {
+                    "text": "$(flcfg:plantable.squash.n) / $(flcfg:plantable.squash.p) / $(flcfg:plantable.squash.k)"
+                },
+                {
+                    "text": "鉄"
+                }
+            ],
+            "text": "",
+            "title": "吊り下げプランター",
+            "legend": [],
+            "columns": 2,
+            "first_column_width": 80,
+            "column_width": 70,
+            "row_height": 10,
+            "left_buffer": 2,
+            "top_buffer": 12,
+            "draw_background": false
         },
         {
-          "text": "Treated Wood"
-        },
-        {
-          "text": "Cassava"
-        },
-        {
-          "text": "$(flcfg:plantable.cassava.n) / $(flcfg:plantable.cassava.p) / $(flcfg:plantable.cassava.k)"
-        },
-        {
-          "text": "Treated Wood"
-        },
-        {
-          "text": "Garlic"
-        },
-        {
-          "text": "$(flcfg:plantable.garlic.n) / $(flcfg:plantable.garlic.p) / $(flcfg:plantable.garlic.k)"
-        },
-        {
-          "text": "Treated Wood"
-        },
-        {
-          "text": "Herbs"
-        },
-        {
-          "text": "$(flcfg:plantable.basil.n) / $(flcfg:plantable.basil.p) / $(flcfg:plantable.basil.k)"
-        },
-        {
-          "text": "Treated Wood"
-        },
-        {
-          "text": "Lentil"
-        },
-        {
-          "text": "$(flcfg:plantable.lentil.n) / $(flcfg:plantable.lentil.p) / $(flcfg:plantable.lentil.k)"
-        },
-        {
-          "text": "Treated Wood"
-        },
-        {
-          "text": "Onion"
-        },
-        {
-          "text": "$(flcfg:plantable.onion.n) / $(flcfg:plantable.onion.p) / $(flcfg:plantable.onion.k)"
-        },
-        {
-          "text": "Treated Wood"
-        },
-        {
-          "text": "Peanut"
-        },
-        {
-          "text": "$(flcfg:plantable.peanut.n) / $(flcfg:plantable.peanut.p) / $(flcfg:plantable.peanut.k)"
-        },
-        {
-          "text": "Treated Wood"
-        },
-        {
-          "text": "Potato"
-        },
-        {
-          "text": "$(flcfg:plantable.potato.n) / $(flcfg:plantable.potato.p) / $(flcfg:plantable.potato.k)"
-        },
-        {
-          "text": "Treated Wood"
+            "type": "patchouli:empty",
+            "draw_filler": false
         }
-      ],
-      "text": "",
-      "title": "Quad Planter (1/2)",
-      "legend": [],
-      "columns": 2,
-      "first_column_width": 80,
-      "column_width": 70,
-      "row_height": 10,
-      "left_buffer": 2,
-      "top_buffer": 12,
-      "draw_background": false
-    },
-    {
-      "type": "patchouli:empty",
-      "draw_filler": false
-    },
-    {
-      "type": "tfc:table",
-      "strings": [
-        {
-          "text": "Plant",
-          "bold": true
-        },
-        {
-          "text": "N / P / K",
-          "bold": true
-        },
-        {
-          "text": "Greenhouse",
-          "bold": true
-        },
-        {
-          "text": "Radish"
-        },
-        {
-          "text": "$(flcfg:plantable.radish.n) / $(flcfg:plantable.radish.p) / $(flcfg:plantable.radish.k)"
-        },
-        {
-          "text": "Treated Wood"
-        },
-        {
-          "text": "Soybean"
-        },
-        {
-          "text": "$(flcfg:plantable.soybean.n) / $(flcfg:plantable.soybean.p) / $(flcfg:plantable.soybean.k)"
-        },
-        {
-          "text": "Treated Wood"
-        }
-      ],
-      "text": "",
-      "title": "Quad Planter (2/2)",
-      "legend": [],
-      "columns": 2,
-      "first_column_width": 80,
-      "column_width": 70,
-      "row_height": 10,
-      "left_buffer": 2,
-      "top_buffer": 12,
-      "draw_background": false
-    },
-    {
-      "type": "patchouli:empty",
-      "draw_filler": false
-    },
-    {
-      "type": "tfc:table",
-      "anchor": "large",
-      "strings": [
-        {
-          "text": "Plant",
-          "bold": true
-        },
-        {
-          "text": "N / P / K",
-          "bold": true
-        },
-        {
-          "text": "Greenhouse",
-          "bold": true
-        },
-        {
-          "text": "Barley"
-        },
-        {
-          "text": "$(flcfg:plantable.barley.n) / $(flcfg:plantable.barley.p) / $(flcfg:plantable.barley.k)"
-        },
-        {
-          "text": "Copper"
-        },
-        {
-          "text": "Green Bean"
-        },
-        {
-          "text": "$(flcfg:plantable.green_bean.n) / $(flcfg:plantable.green_bean.p) / $(flcfg:plantable.green_bean.k)"
-        },
-        {
-          "text": "Copper"
-        },
-        {
-          "text": "Jute"
-        },
-        {
-          "text": "$(flcfg:plantable.jute.n) / $(flcfg:plantable.jute.p) / $(flcfg:plantable.jute.k)"
-        },
-        {
-          "text": "Copper"
-        },
-        {
-          "text": "Maize"
-        },
-        {
-          "text": "$(flcfg:plantable.maize.n) / $(flcfg:plantable.maize.p) / $(flcfg:plantable.maize.k)"
-        },
-        {
-          "text": "Copper"
-        },
-        {
-          "text": "Oat"
-        },
-        {
-          "text": "$(flcfg:plantable.oat.n) / $(flcfg:plantable.oat.p) / $(flcfg:plantable.oat.k)"
-        },
-        {
-          "text": "Copper"
-        },
-        {
-          "text": "Papyrus"
-        },
-        {
-          "text": "$(flcfg:plantable.papyrus.n) / $(flcfg:plantable.papyrus.p) / $(flcfg:plantable.papyrus.k)"
-        },
-        {
-          "text": "Copper"
-        },
-        {
-          "text": "Red Bell Pepper"
-        },
-        {
-          "text": "$(flcfg:plantable.red_bell_pepper.n) / $(flcfg:plantable.red_bell_pepper.p) / $(flcfg:plantable.red_bell_pepper.k)"
-        },
-        {
-          "text": "Copper"
-        },
-        {
-          "text": "Rye"
-        },
-        {
-          "text": "$(flcfg:plantable.rye.n) / $(flcfg:plantable.rye.p) / $(flcfg:plantable.rye.k)"
-        },
-        {
-          "text": "Copper"
-        },
-        {
-          "text": "Sugarcane"
-        },
-        {
-          "text": "$(flcfg:plantable.sugarcane.n) / $(flcfg:plantable.sugarcane.p) / $(flcfg:plantable.sugarcane.k)"
-        },
-        {
-          "text": "Copper"
-        },
-        {
-          "text": "Tomato"
-        },
-        {
-          "text": "$(flcfg:plantable.tomato.n) / $(flcfg:plantable.tomato.p) / $(flcfg:plantable.tomato.k)"
-        },
-        {
-          "text": "Copper"
-        },
-        {
-          "text": "Wheat"
-        },
-        {
-          "text": "$(flcfg:plantable.wheat.n) / $(flcfg:plantable.wheat.p) / $(flcfg:plantable.wheat.k)"
-        },
-        {
-          "text": "Copper"
-        },
-        {
-          "text": "Yellow Bell Pepper"
-        },
-        {
-          "text": "$(flcfg:plantable.yellow_bell_pepper.n) / $(flcfg:plantable.yellow_bell_pepper.p) / $(flcfg:plantable.yellow_bell_pepper.k)"
-        },
-        {
-          "text": "Copper"
-        }
-      ],
-      "text": "",
-      "title": "Large Planter",
-      "legend": [],
-      "columns": 2,
-      "first_column_width": 80,
-      "column_width": 70,
-      "row_height": 10,
-      "left_buffer": 2,
-      "top_buffer": 12,
-      "draw_background": false
-    },
-    {
-      "type": "patchouli:empty",
-      "draw_filler": false
-    },
-    {
-      "type": "tfc:table",
-      "anchor": "hydroponic",
-      "strings": [
-        {
-          "text": "Plant",
-          "bold": true
-        },
-        {
-          "text": "N / P / K",
-          "bold": true
-        },
-        {
-          "text": "Greenhouse",
-          "bold": true
-        },
-        {
-          "text": "Cranberry"
-        },
-        {
-          "text": "$(flcfg:plantable.cranberry.n) / $(flcfg:plantable.cranberry.p) / $(flcfg:plantable.cranberry.k)"
-        },
-        {
-          "text": "Copper"
-        },
-        {
-          "text": "Rice"
-        },
-        {
-          "text": "$(flcfg:plantable.rice.n) / $(flcfg:plantable.rice.p) / $(flcfg:plantable.rice.k)"
-        },
-        {
-          "text": "Copper"
-        }
-      ],
-      "text": "",
-      "title": "Hydroponic Planter",
-      "legend": [],
-      "columns": 2,
-      "first_column_width": 80,
-      "column_width": 70,
-      "row_height": 10,
-      "left_buffer": 2,
-      "top_buffer": 12,
-      "draw_background": false
-    },
-    {
-      "type": "patchouli:empty",
-      "draw_filler": false
-    },
-    {
-      "type": "tfc:table",
-      "anchor": "trellis",
-      "strings": [
-        {
-          "text": "Plant",
-          "bold": true
-        },
-        {
-          "text": "N / P / K",
-          "bold": true
-        },
-        {
-          "text": "Greenhouse",
-          "bold": true
-        },
-        {
-          "text": "Blackberry"
-        },
-        {
-          "text": "$(flcfg:plantable.blackberry.n) / $(flcfg:plantable.blackberry.p) / $(flcfg:plantable.blackberry.k)"
-        },
-        {
-          "text": "Iron"
-        },
-        {
-          "text": "Blueberry"
-        },
-        {
-          "text": "$(flcfg:plantable.blueberry.n) / $(flcfg:plantable.blueberry.p) / $(flcfg:plantable.blueberry.k)"
-        },
-        {
-          "text": "Iron"
-        },
-        {
-          "text": "Bunchberry"
-        },
-        {
-          "text": "$(flcfg:plantable.bunchberry.n) / $(flcfg:plantable.bunchberry.p) / $(flcfg:plantable.bunchberry.k)"
-        },
-        {
-          "text": "Iron"
-        },
-        {
-          "text": "Cloudberry"
-        },
-        {
-          "text": "$(flcfg:plantable.cloudberry.n) / $(flcfg:plantable.cloudberry.p) / $(flcfg:plantable.cloudberry.k)"
-        },
-        {
-          "text": "Iron"
-        },
-        {
-          "text": "Elderberry"
-        },
-        {
-          "text": "$(flcfg:plantable.elderberry.n) / $(flcfg:plantable.elderberry.p) / $(flcfg:plantable.elderberry.k)"
-        },
-        {
-          "text": "Iron"
-        },
-        {
-          "text": "Gooseberry"
-        },
-        {
-          "text": "$(flcfg:plantable.gooseberry.n) / $(flcfg:plantable.gooseberry.p) / $(flcfg:plantable.gooseberry.k)"
-        },
-        {
-          "text": "Iron"
-        },
-        {
-          "text": "Nightshade"
-        },
-        {
-          "text": "$(flcfg:plantable.nightshade.n) / $(flcfg:plantable.nightshade.p) / $(flcfg:plantable.nightshade.k)"
-        },
-        {
-          "text": "Iron"
-        },
-        {
-          "text": "Pineapple"
-        },
-        {
-          "text": "$(flcfg:plantable.pineapple.n) / $(flcfg:plantable.pineapple.p) / $(flcfg:plantable.pineapple.k)"
-        },
-        {
-          "text": "Iron"
-        },
-        {
-          "text": "Raspberry"
-        },
-        {
-          "text": "$(flcfg:plantable.raspberry.n) / $(flcfg:plantable.raspberry.p) / $(flcfg:plantable.raspberry.k)"
-        },
-        {
-          "text": "Iron"
-        },
-        {
-          "text": "Red Grapes"
-        },
-        {
-          "text": "$(flcfg:plantable.red_grapes.n) / $(flcfg:plantable.red_grapes.p) / $(flcfg:plantable.red_grapes.k)"
-        },
-        {
-          "text": "Iron"
-        },
-        {
-          "text": "Snowberry"
-        },
-        {
-          "text": "$(flcfg:plantable.snowberry.n) / $(flcfg:plantable.snowberry.p) / $(flcfg:plantable.snowberry.k)"
-        },
-        {
-          "text": "Iron"
-        },
-        {
-          "text": "Strawberry"
-        },
-        {
-          "text": "$(flcfg:plantable.strawberry.n) / $(flcfg:plantable.strawberry.p) / $(flcfg:plantable.strawberry.k)"
-        },
-        {
-          "text": "Iron"
-        }
-      ],
-      "text": "",
-      "title": "Trellis Planter (1/2)",
-      "legend": [],
-      "columns": 2,
-      "first_column_width": 80,
-      "column_width": 70,
-      "row_height": 10,
-      "left_buffer": 2,
-      "top_buffer": 12,
-      "draw_background": false
-    },
-    {
-      "type": "patchouli:empty",
-      "draw_filler": false
-    },
-    {
-      "type": "tfc:table",
-      "strings": [
-        {
-          "text": "Plant",
-          "bold": true
-        },
-        {
-          "text": "N / P / K",
-          "bold": true
-        },
-        {
-          "text": "Greenhouse",
-          "bold": true
-        },
-        {
-          "text": "White Grapes"
-        },
-        {
-          "text": "$(flcfg:plantable.white_grapes.n) / $(flcfg:plantable.white_grapes.p) / $(flcfg:plantable.white_grapes.k)"
-        },
-        {
-          "text": "Iron"
-        },
-        {
-          "text": "Wintergreen Berry"
-        },
-        {
-          "text": "$(flcfg:plantable.wintergreen_berry.n) / $(flcfg:plantable.wintergreen_berry.p) / $(flcfg:plantable.wintergreen_berry.k)"
-        },
-        {
-          "text": "Iron"
-        }
-      ],
-      "text": "",
-      "title": "Trellis Planter (2/2)",
-      "legend": [],
-      "columns": 2,
-      "first_column_width": 80,
-      "column_width": 70,
-      "row_height": 10,
-      "left_buffer": 2,
-      "top_buffer": 12,
-      "draw_background": false
-    },
-    {
-      "type": "patchouli:empty",
-      "draw_filler": false
-    },
-    {
-      "type": "tfc:table",
-      "anchor": "bonsai",
-      "strings": [
-        {
-          "text": "Plant",
-          "bold": true
-        },
-        {
-          "text": "N / P / K",
-          "bold": true
-        },
-        {
-          "text": "Greenhouse",
-          "bold": true
-        },
-        {
-          "text": "Cherry"
-        },
-        {
-          "text": "$(flcfg:plantable.cherry.n) / $(flcfg:plantable.cherry.p) / $(flcfg:plantable.cherry.k)"
-        },
-        {
-          "text": "Iron"
-        },
-        {
-          "text": "Cocoa"
-        },
-        {
-          "text": "$(flcfg:plantable.cocoa.n) / $(flcfg:plantable.cocoa.p) / $(flcfg:plantable.cocoa.k)"
-        },
-        {
-          "text": "Iron"
-        },
-        {
-          "text": "Fig"
-        },
-        {
-          "text": "$(flcfg:plantable.fig.n) / $(flcfg:plantable.fig.p) / $(flcfg:plantable.fig.k)"
-        },
-        {
-          "text": "Iron"
-        },
-        {
-          "text": "Green Apple"
-        },
-        {
-          "text": "$(flcfg:plantable.green_apple.n) / $(flcfg:plantable.green_apple.p) / $(flcfg:plantable.green_apple.k)"
-        },
-        {
-          "text": "Iron"
-        },
-        {
-          "text": "Lemon"
-        },
-        {
-          "text": "$(flcfg:plantable.lemon.n) / $(flcfg:plantable.lemon.p) / $(flcfg:plantable.lemon.k)"
-        },
-        {
-          "text": "Iron"
-        },
-        {
-          "text": "Olive"
-        },
-        {
-          "text": "$(flcfg:plantable.olive.n) / $(flcfg:plantable.olive.p) / $(flcfg:plantable.olive.k)"
-        },
-        {
-          "text": "Iron"
-        },
-        {
-          "text": "Orange"
-        },
-        {
-          "text": "$(flcfg:plantable.orange.n) / $(flcfg:plantable.orange.p) / $(flcfg:plantable.orange.k)"
-        },
-        {
-          "text": "Iron"
-        },
-        {
-          "text": "Peach"
-        },
-        {
-          "text": "$(flcfg:plantable.peach.n) / $(flcfg:plantable.peach.p) / $(flcfg:plantable.peach.k)"
-        },
-        {
-          "text": "Iron"
-        },
-        {
-          "text": "Plum"
-        },
-        {
-          "text": "$(flcfg:plantable.plum.n) / $(flcfg:plantable.plum.p) / $(flcfg:plantable.plum.k)"
-        },
-        {
-          "text": "Iron"
-        },
-        {
-          "text": "Red Apple"
-        },
-        {
-          "text": "$(flcfg:plantable.red_apple.n) / $(flcfg:plantable.red_apple.p) / $(flcfg:plantable.red_apple.k)"
-        },
-        {
-          "text": "Iron"
-        }
-      ],
-      "text": "",
-      "title": "Bonsai Planter",
-      "legend": [],
-      "columns": 2,
-      "first_column_width": 80,
-      "column_width": 70,
-      "row_height": 10,
-      "left_buffer": 2,
-      "top_buffer": 12,
-      "draw_background": false
-    },
-    {
-      "type": "patchouli:empty",
-      "draw_filler": false
-    },
-    {
-      "type": "tfc:table",
-      "anchor": "hanging",
-      "strings": [
-        {
-          "text": "Plant",
-          "bold": true
-        },
-        {
-          "text": "N / P / K",
-          "bold": true
-        },
-        {
-          "text": "Greenhouse",
-          "bold": true
-        },
-        {
-          "text": "Banana"
-        },
-        {
-          "text": "$(flcfg:plantable.banana.n) / $(flcfg:plantable.banana.p) / $(flcfg:plantable.banana.k)"
-        },
-        {
-          "text": "Iron"
-        },
-        {
-          "text": "Melon"
-        },
-        {
-          "text": "$(flcfg:plantable.melon.n) / $(flcfg:plantable.melon.p) / $(flcfg:plantable.melon.k)"
-        },
-        {
-          "text": "Iron"
-        },
-        {
-          "text": "Pumpkin"
-        },
-        {
-          "text": "$(flcfg:plantable.pumpkin.n) / $(flcfg:plantable.pumpkin.p) / $(flcfg:plantable.pumpkin.k)"
-        },
-        {
-          "text": "Iron"
-        },
-        {
-          "text": "Squash"
-        },
-        {
-          "text": "$(flcfg:plantable.squash.n) / $(flcfg:plantable.squash.p) / $(flcfg:plantable.squash.k)"
-        },
-        {
-          "text": "Iron"
-        }
-      ],
-      "text": "",
-      "title": "Hanging Planter",
-      "legend": [],
-      "columns": 2,
-      "first_column_width": 80,
-      "column_width": 70,
-      "row_height": 10,
-      "left_buffer": 2,
-      "top_buffer": 12,
-      "draw_background": false
-    },
-    {
-      "type": "patchouli:empty",
-      "draw_filler": false
-    }
-  ],
-  "read_by_default": true,
-  "sortnum": 10
+    ],
+    "read_by_default": true,
+    "sortnum": 10
 }

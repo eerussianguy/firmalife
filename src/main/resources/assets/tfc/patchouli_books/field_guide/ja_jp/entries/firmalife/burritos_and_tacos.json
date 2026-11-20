@@ -1,38 +1,37 @@
 {
-  "__comment__": "This file was automatically created by mcresources",
-  "name": "Burritos and Tacos",
-  "category": "tfc:firmalife",
-  "icon": "firmalife:textures/item/food/burrito.png",
-  "pages": [
-    {
-      "type": "patchouli:text",
-      "text": "The journey of making a $(thing)Tortilla$() is a long process, but rewarding. Start with $(thing)Maize Grain$(). Boil it in a pot of $(thing)Limewater$(), and seal it in a barrel of water to make $(thing)Nixtamal$(). Then crush it in a $(thing)Quern$() to make $(thing)Masa Flour$()."
-    },
-    {
-      "type": "patchouli:text",
-      "text": "Crafting the Masa Flour with a bucket of water makes $(thing)Masa$(), the dough of a tortilla. This can be heated to make a $(thing)Corn Tortilla$(). Baking a Tortilla in an oven makes a $(thing)Taco Shell$()."
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/food/tortilla_chips",
-      "recipe2": "firmalife:crafting/food/nachos"
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/food/salsa",
-      "text": "A tomato, cilantro, salt, and a knife will yield you $(thing)Salsa$()."
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/food/burrito",
-      "text": "The $(thing)Burrito$() is made from cooked meat, $(l:firmalife/pizza#shredded_cheese)Shredded Cheese$(), $(l:firmalife/pizza#tomato_sauce)Tomato Sauce$(), a vegetable, and Salsa."
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/food/taco",
-      "text": "The $(thing)Taco$() is made from the same ingredients, except with a $(thing)Taco Shell$()."
-    }
-  ],
-  "read_by_default": true,
-  "sortnum": 30
+    "name": "ブリトーとタコス",
+    "category": "tfc:firmalife",
+    "icon": "firmalife:textures/item/food/burrito.png",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "$(thing)トルティーヤ$()を作る工程は長く複雑ですが、その分やりがいもあります。$(br2)まずは、$(thing)トウモロコシの粒$()を$(thing)石灰水$()を入れた鍋で煮たあと、真水と一緒に樽で密封して$(thing)ホミニー$()を作ります。次に、$(thing)石臼$()で粉砕して$(thing)マサ粉$()にします。"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "水入りバケツを使ってマサ粉を練ると、$(thing)マサ$()と呼ばれるトルティーヤ生地ができます。これを加熱すると$(thing)コーントルティーヤ$()になります。オーブンでトルティーヤを焼いたら$(thing)タコスの皮$()の完成です。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "firmalife:crafting/food/tortilla_chips",
+            "recipe2": "firmalife:crafting/food/nachos"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "firmalife:crafting/food/salsa",
+            "text": "トマト、コリアンダー、塩をナイフでクラフトすると$(thing)サルサ$()を作れます。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "firmalife:crafting/food/burrito",
+            "text": "$(thing)ブリトー$()は、調理済みの肉、$(l:firmalife/pizza#shredded_cheese)シュレッドチーズ$()、$(l:firmalife/pizza#tomato_sauce)トマトソース$()、野菜、サルサで作れます。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "firmalife:crafting/food/taco",
+            "text": "$(thing)タコス$()はブリトーと同じ材料で作れますが、トルティーヤではなく$(thing)タコスの皮を$()を使います。"
+        }
+    ],
+    "read_by_default": true,
+    "sortnum": 30
 }
