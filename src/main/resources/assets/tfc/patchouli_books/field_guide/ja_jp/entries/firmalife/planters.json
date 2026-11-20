@@ -1,84 +1,83 @@
 {
-  "__comment__": "This file was automatically created by mcresources",
-  "name": "プランター",
-  "category": "tfc:firmalife",
-  "icon": "firmalife:large_planter",
-  "pages": [
-    {
-      "type": "patchouli:text",
-      "anchor": "planters",
-      "text": "$(thing)プランター$()は$(l:tfc:firmalife/greenhouse)温室$()内で作物を栽培するために使用します。$(br)プランター内の作物は地面に植えた$(l:mechanics/crops)作物$()と同様に$(l:mechanics/fertilizers)養分$()を消費し、$(thing)クワ$()を持つと状態を確認できます。$(br)プランターは有効な温室内に置き、$(l:tfc:firmalife/climate_station)空調機$()で活性化させます。$(br)プランターが機能するには、少なくとも自然光が必要です。"
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/watering_can",
-      "text": "プランターの作物が育つには$(thing)水$()が必要です。水やりは、$(thing)木のバケツ$()、$(thing)水$()の入った容器、$(thing)板$()から作られる$(thing)ジョウロ$()を使います。$(item)$(k:key.use)$()を押すと、近くのプランターに水をあげられます。水源で$(item)$(k:key.use)$()を押すと水を補充できます。"
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/large_planter",
-      "text": "$(thing)大型プランター$()は最もシンプルなプランターです。$(br2)種から1つの作物を育て、成熟したら$(item)$(k:key.use)$()で収穫できます。"
-    },
-    {
-      "type": "patchouli:text",
-      "text": "Large Planters grow $(l:firmalife/greenhouse_crops#large)larger crops$(), such as $(thing)Grains$(), $(thing)Tomatoes$(), and $(thing)Jute$()."
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/quad_planter",
-      "text": "$(thing)4種のプランター$()は一度に4つの作物を栽培できます。$(br2)これらの作物はすべて同じ栄養プールを利用し、成熟したら$(item)$(k:key.use)$()で個別に収穫できます。"
-    },
-    {
-      "type": "patchouli:text",
-      "text": "Quad Planters grow $(l:firmalife/greenhouse_crops#quad)smaller crops$(), such as $(thing)Beets$(), $(thing)Carrots$(), and $(thing)Potatoes$(), as well as $(l:firmalife/herbs_and_spices)Herbs$()."
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/bonsai_planter",
-      "text": "$(thing)果樹用プランター$()は、苗木から小さな果樹を育てられます。$(br2)果実は$(item)$(k:key.use)$()で収穫できます。"
-    },
-    {
-      "type": "patchouli:text",
-      "text": "Bonsai Planters can grow any $(l:firmalife/greenhouse_crops#bonsai)fruit tree$() type, except $(thing)Bananas$(), which need a $(thing)Hanging Planter$()."
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/hanging_planter",
-      "text": "$(thing)吊り下げプランター$()は作物を逆さまに育てられます。$(br2)成熟したら、$(item)$(k:key.use)$()で収穫できます。"
-    },
-    {
-      "type": "patchouli:text",
-      "text": "Hanging Planters grow $(l:firmalife/greenhouse_crops#hanging)vining crops$() like $(thing)Squash$() from their seeds, and $(thing)Bananas$() from their saplings. Hanging planters need to anchor to a solid block above them."
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/trellis_planter",
-      "text": "$(thing)支柱プランター$()はベリーを育てられます。$(br)$(item)$(k:key.use)$()でベリーを収穫できます。"
-    },
-    {
-      "type": "patchouli:text",
-      "text": "Trellis Planters have the unique property of $(thing)propagating$() berry bushes. If a trellis planter is placed on top of another, and the one below has a mature berry bush, it has a chance to grow upwards into the next one. Trellis planters can grow $(l:firmalife/greenhouse_crops#trellis)Grapes and berry bushes$(), except $(thing)Cranberries$()."
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/hydroponic_planter",
-      "text": "$(thing)Hydroponic Planters$() grow $(l:firmalife/greenhouse_crops#hydroponic)rice and cranberry bushes$(). They work the same as a quad planter, except that they do not need to be watered."
-    },
-    {
-      "type": "patchouli:text",
-      "text": "Hydroponic Planters must instead, have a $(li)$(l:firmalife/irrigation)Sprinkler Pipe$() below them that is supplying water. Without the pipe they will not grow. There is no hard limit to how many hydroponic planters may be fed by one station."
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/sweeper",
-      "text": "$(thing)Sweepers$() are used to harvest planters other than Quad and Hydroponic planters. They must be connected to a rotating $(thing)Axle$() on their bottom face."
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/picker",
-      "text": "$(thing)Pickers$() can be powered via redstone signal from above. They extend down to pick the crops from Quad and Hydroponic planters."
-    }
-  ],
-  "read_by_default": true,
-  "sortnum": 9
+    "name": "プランター",
+    "category": "tfc:firmalife",
+    "icon": "firmalife:large_planter",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "anchor": "planters",
+            "text": "$(thing)プランター$()は$(l:tfc:firmalife/greenhouse)温室$()内で作物を栽培するために使用します。$(br)プランター内の作物は地面に植えた$(l:mechanics/crops)作物$()と同様に$(l:mechanics/fertilizers)栄養素$()を消費し、$(thing)クワ$()を持つと状態を確認できます。$(br)プランターは有効な温室内に置き、$(l:tfc:firmalife/climate_station)空調機$()で活性化させます。$(br)プランターが機能するには、少なくとも自然光が必要です。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "firmalife:crafting/watering_can",
+            "text": "プランターの作物が育つには$(thing)水$()が必要です。水やりは、$(thing)木のバケツ$()、$(thing)水$()の入った容器、$(thing)板$()から作られる$(thing)ジョウロ$()を使います。$(item)$(k:key.use)$()を押すと、近くのプランターに水をあげられます。水源で$(item)$(k:key.use)$()を押すと水を補充できます。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "firmalife:crafting/large_planter",
+            "text": "$(thing)大型プランター$()は最もシンプルなプランターです。$(br2)種から1つの作物を育て、成熟したら$(item)$(k:key.use)$()で収穫できます。"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "大型プランターは$(l:firmalife/greenhouse_crops#large)大きな作物$()を育てられます。$(thing)穀物$()、$(thing)トマト$()、$(thing)ジュート$()などです。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "firmalife:crafting/quad_planter",
+            "text": "$(thing)4種のプランター$()は一度に4つの作物を栽培できます。$(br2)これらの作物はすべて同じ栄養プールを利用し、成熟したら$(item)$(k:key.use)$()で個別に収穫できます。"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "4種のプランターは$(l:firmalife/greenhouse_crops#quad)小さい作物$()を育てられます。例えば、$(thing)ビーツ$()、$(thing)ニンジン$()、$(thing)ジャガイモ$()や$(l:firmalife/herbs_and_spices)ハーブ$()などです。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "firmalife:crafting/bonsai_planter",
+            "text": "$(thing)果樹用プランター$()は、苗木から小さな果樹を育てられます。$(br2)果実は$(item)$(k:key.use)$()で収穫できます。"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "果樹用プランターはバナナ以外の$(l:firmalife/greenhouse_crops#bonsai)果樹$()を育てられます。$(thing)バナナ$()は$(thing)吊り下げプランター$()で育てる必要があります。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "firmalife:crafting/hanging_planter",
+            "text": "$(thing)吊り下げプランター$()は作物を逆さまに育てられます。$(br2)成熟したら、$(item)$(k:key.use)$()で収穫できます。"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "吊り下げプランターは$(l:firmalife/greenhouse_crops#hanging)つる性の作物$()を育てられます。$(thing)カボチャ$()や$(thing)バナナ$()は種から、または苗木から育てられます。吊り下げプランターは、上部の固体ブロックに固定する必要があります。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "firmalife:crafting/trellis_planter",
+            "text": "$(thing)支柱プランター$()はベリーを育てられます。$(br)$(item)$(k:key.use)$()でベリーを収穫できます。"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "支柱プランターには、ベリーの茂みを$(thing)繁殖させる$()ユニークな性質があります。$(br)支柱プランターが縦に置かれ、下のプランターに成熟したベリーの茂みがあればベリーが上のプランターへと成長するチャンスがあります。$(br2)支柱プランターは、$(thing)クランベリー$()以外のどんなベリーの茂みも育てることができます。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "firmalife:crafting/hydroponic_planter",
+            "text": "$(thing)水耕栽培プランター$()は、$(l:firmalife/greenhouse_crops#hydroponic)稲とクランベリーの茂み$()を育てられます。4種のプランターと同様の機能を持ちますが、水やりの必要はありません。"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "水耕栽培プランターは、下部に$(li)$(l:firmalife/irrigation)スプリンクラー用パイプ$()を接続する必要があります。このパイプから水が供給されるため、パイプが無いと作物は成長しません。1つのポンプステーションから供給できる水耕プランターの数に制限はありません。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "firmalife:crafting/sweeper",
+            "text": "$(thing)収穫機$()は、4種のプランターや水耕プランター以外のプランターから作物を収穫するために使用します。底面に$(thing)軸$()を接続する必要があります。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "firmalife:crafting/picker",
+            "text": "$(thing)摘み取り機$()は、上部からのレッドストーン信号によって動力を供給できます。動力を供給すると下方向に伸びていき、4種のプランターや水耕プランターから作物を収穫します。"
+        }
+    ],
+    "read_by_default": true,
+    "sortnum": 9
 }

@@ -1,54 +1,54 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "name": "Beekeeping Reference",
+  "name": "養蜂リファレンス",
   "category": "tfc:firmalife",
   "icon": "firmalife:textures/item/queen_bee.png",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "This chapter is a continuation of the $(l:firmalife/beekeeping)Beekeeping$() chapter.$(br)The queen bee of a hive has certain abilities. These are passed on and changed when the hive splits. New abilities can only be obtained from the wild, except for Calmness, which has a change to appear during a split in captivity."
+      "text": "本章は$(l:firmalife/beekeeping)養蜂$()の続きです。$(br)女王蜂は特定のアビリティを持っています。これらのアビリティは、分蜂される際に継承され、変化していきます。新しいアビリティは野生からのみ獲得できますが、「落ち着き」だけは例外で、飼育下でも分蜂時に出現する可能性があります。"
     },
     {
       "type": "patchouli:text",
-      "text": "$(li)$(thing)Hardiness$(): Allows bees to produce honey at lower temperatures. Each hardiness grants an extra 2°C.$()$(li)$(thing)Production$(): Improves the speed of honey production.$()$(li)$(thing)Mutant$(): Increases variability in the traits passed during splitting swarms$().$(li)$(thing)Fertility$(): Increases likelihood of swarming.$()",
-      "title": "アビリティ一覧"
+      "text": "$(li)$(thing)耐寒性$(): より低い温度でもハチミツを生産できるようになります。 耐寒性1つにつき2°C耐えられるようになります。$()$(li)$(thing)蜂蜜生産$(): ハチミツの生産速度が向上します。$()$(li)$(thing)突然変異$(): 分蜂時に受け継がれる形質の多様性を高めます。$().$(li)$(thing)繁殖能力$(): 分蜂の可能性を高めます。$()",
+      "title": "アビリティ"
     },
     {
       "type": "patchouli:text",
-      "text": "$(li)$(thing)Crop Affinity$(): Likelihood of spreading a small amount of nutrients to nearby crops.$()$(li)$(thing)Nature Restoration$(): Causes new flowers and water plants to spawn around the hive.$()$(li)$(thing)Calmness$(): Decreases likelihood of bees attacking you$().$(li)$(thing)Infection Resistance$(): Decreases likelihood of developing genetic diseases and parasitic infections."
+      "text": "$(li)$(thing)作物親和$(): 少量の養分を周囲の作物に広めます。$()$(li)$(thing)自然回復$(): 巣の周囲に新しい花を咲かせ、植物に水を与えます。$()$(li)$(thing)落ち着き$(): ハチに攻撃される確率を下げます。$().$(li)$(thing)感染抵抗性$(): 遺伝性疾患や寄生虫感染の確率を下げます。"
     },
     {
       "type": "patchouli:text",
-      "text": "Bees with high Mutant ability have a chance of developing a $(thing)Genetic Disease$(). Bees with a genetic disease cannot reproduce."
+      "text": "突然変異アビリティが高いハチは$(thing)遺伝性疾患$()を発症する可能性があります。遺伝性疾患を発症したハチは繫殖できません。"
     },
     {
       "type": "patchouli:text",
-      "text": "Bees subject to improper conditions can develop $(thing)Parasitic Infections$(). These conditions do not have to do with their species and may spontaneously occur in wild bees. These conditions include: the hive touching any other block besides for the block below it; temperatures below $(cfg:temperature:-18) or above $(cfg:temperature:27); rainfall below 50 or above 470mm. Infected bees cannot make honey."
+      "text": "不適切な環境にさらされたミツバチは、$(thing)寄生虫感染$()を発症することがあります。こうした状況は、種とは関係なく野生のミツバチにおいても自然発生することがあります。具体的には、巣が直下以外のブロックに接している場合や、温度が$(cfg:temperature:-18)未満または$(cfg:temperature:27)を超える場合、あるいは降水量が50mm未満または470mmを超える場合などが挙げられます。感染したミツバチはハチミツを作ることができません。"
     },
     {
       "type": "patchouli:text",
-      "text": "Using $(thing)Blue Mold$() (from $(l:firmalife/cheese)cheesemaking$()) on a hive cures brood infections. It works on all parasitic infections except $(thing)Varroa$(), which must be escaped by swarming."
+      "text": "巣箱に$(thing)青カビ$() ($(l:firmalife/cheese)チーズ$()由来)を使用すると、幼虫段階での感染症を治療できます。$(thing)ミツバチヘギイタダニ$()を除く全ての寄生虫感染症に有効です。なお、$(thing)ミツバチヘギイタダニ$()については、分蜂によって回避する必要があります。"
     },
     {
       "type": "patchouli:text",
-      "text": "Refer to the next pages for information on bee species."
+      "text": "ハチの種類については、次ページ以降をご覧ください。"
     },
     {
       "type": "patchouli:text",
-      "text": "$(thing)Bee Species$() are found in different climates, and their conditions describe what you may get from a $(thing)Wild Beehive$() or an attracted wild swarm. Some species are rarer than others.",
-      "title": "Bee Species"
+      "text": "ミツバチは様々な気候に生息しており、その環境条件によって$(thing)種$()が異なり、種によって$(thing)野生の蜂の巣$()や誘引された野生の分蜂から何が得られるかが決まります。種によっては、他よりも希少なものもあります。",
+      "title": "ミツバチの種類"
     },
     {
       "type": "patchouli:text",
-      "text": "$(li)$(thing)Western Honey Bee$(): Calmness, Production, Hardiness. $(cfg:temperature:5)-$(cfg:temperature:20), 100-400mm. Extremely common. Western bees also spawn when no other bee species is eligible to spawn.$()$(li)$(thing)Asian Honey Bee$(): Fertility, Nature Restoration. $(cfg:temperature:10)-$(cfg:temperature:30), 250-400mm. Common.$()$(li)$(thing)Giant Honey Bee$(): Fertility. $(cfg:temperature:15)-$(cfg:temperature:30), 300-450mm. Common.$()"
+      "text": "$(li)$(thing)セイヨウミツバチ$(): 落ち着き, 蜂蜜生産, 耐寒性. $(cfg:temperature:5)-$(cfg:temperature:20), 100-400mm. 極めて一般的. セイヨウミツバチは、他のどのハチの種もスポーンできない場合にもスポーンします。$()$(li)$(thing)トウヨウミツバチ$(): 繁殖能力, 自然回復. $(cfg:temperature:10)-$(cfg:temperature:30), 250-400mm. 一般的.$()$(li)$(thing)オオミツバチ$(): 繁殖能力. $(cfg:temperature:15)-$(cfg:temperature:30), 300-450mm. 一般的.$()"
     },
     {
       "type": "patchouli:text",
-      "text": "$(li)$(thing)Dwarf Honey Bee$(): Fertility, Production. $(cfg:temperature:20)-$(cfg:temperature:30), 300-400mm. Common.$()$(li)$(thing)Black Dwarf Honey Bee$(): Mutant, Nature Restoration. $(cfg:temperature:12)-$(cfg:temperature:22), 150-350mm. Uncommon.$()$(li)$(thing)Koschevnikov's Honey Bee$(): Hardiness, Production, Nature Restoration. $(cfg:temperature:12)-$(cfg:temperature:16), 200-375mm. Very Rare.$()$(li)$(thing)Himalayan Giant Honey Bee$(): Hardiness, Mutant, Production. $(cfg:temperature:10)-$(cfg:temperature:19), 150-250mm, y>96. Rare.$()"
+      "text": "$(li)$(thing)コミツバチ$(): 繁殖能力, 蜂蜜生産. $(cfg:temperature:20)-$(cfg:temperature:30), 300-400mm. 一般的.$()$(li)$(thing)クロコミツバチ$(): 突然変異, 自然回復. $(cfg:temperature:12)-$(cfg:temperature:22), 150-350mm. やや珍しい.$()$(li)$(thing)サバミツバチ$(): 耐寒性, 蜂蜜生産, 自然回復. $(cfg:temperature:12)-$(cfg:temperature:16), 200-375mm. とても珍しい.$()$(li)$(thing)ヒマラヤオオミツバチ$(): 耐寒性, 突然変異, 蜂蜜生産. $(cfg:temperature:10)-$(cfg:temperature:19), 150-250mm, y>96. 珍しい.$()"
     },
     {
       "type": "patchouli:text",
-      "text": "$(li)$(thing)Philippine Honey Bee$(): Calmness, Crop Affinity. $(cfg:temperature:15)-$(cfg:temperature:20), 350-450mm. Very Rare.$()$(li)$(thing)Borneo Mountain Honey Bee$(): Hardiness, Infection Resistance. $(cfg:temperature:13)-$(cfg:temperature:22), 150-400mm, y>96. Common.$()$(li)$(thing)Indonesian Giant Honey Bee$(): Nature Restoration, Fertility, Infection Resistance. $(cfg:temperature:16)-$(cfg:temperature:20), 350-420mm. Uncommon.$()$(li)$(thing)Africanized Honey Bee$(): Hardiness. $(cfg:temperature:10)-$(cfg:temperature:25). 100-320mm. Common.$()"
+      "text": "$(li)$(thing)クロオビミツバチ$(): 落ち着き, 作物親和. $(cfg:temperature:15)-$(cfg:temperature:20), 350-450mm. とても珍しい.$()$(li)$(thing)ボルネオミツバチ$(): 耐寒性, 感染抵抗性. $(cfg:temperature:13)-$(cfg:temperature:22), 150-400mm, y>96. 一般的.$()$(li)$(thing)インドネシアオオミツバチ$(): 自然回復, 繁殖能力, 感染抵抗性. $(cfg:temperature:16)-$(cfg:temperature:20), 350-420mm. やや珍しい.$()$(li)$(thing)アフリカナイズドミツバチ$(): 耐寒性. $(cfg:temperature:10)-$(cfg:temperature:25). 100-320mm. 一般的.$()"
     },
     {
       "type": "patchouli:crafting",

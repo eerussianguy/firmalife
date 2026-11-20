@@ -1,41 +1,40 @@
 {
-  "__comment__": "This file was automatically created by mcresources",
-  "name": "ベリーの茂み",
-  "category": "tfc:firmalife",
-  "icon": "firmalife:plant/pineapple_bush",
-  "pages": [
-    {
-      "type": "patchouli:text",
-      "text": "Firmalife adds some berry bushes. For information on wild grape bushes, see $(l:firmalife/wine)winemaking$()."
-    },
-    {
-      "type": "patchouli:spotlight",
-      "item": "firmalife:food/nightshade_berry",
-      "link_recipes": false,
-      "text": "Nightshade is a poisonous berry. When put into soup, it makes poisonous $(thing)Stinky Soup$(). It is found between 200-400mm of rain and temperatures of $(cfg:temperature:7) to $(cfg:temperature:24) in forests. It bears fruit in the month of $(thing)August$(), flowering the month prior.$(br2)Growth Conditions:$(br)$(bold)$(l:core_mechanics/climate#temperature)Temperature$(): $(flcfg:climate.nightshade.temperature)$(br)$(bold)$(l:food/hydration)Hydration$(): $(flcfg:climate.nightshade.hydration)%"
-    },
-    {
-      "type": "patchouli:spotlight",
-      "item": "firmalife:food/pineapple",
-      "link_recipes": false,
-      "text": "Pineapple bushes are found 250-500mm of rainfall and temperatures of $(cfg:temperature:20) to $(cfg:temperature:32) in forests. They bear fruit in $(thing)September$(), flowering for two months prior.$(br2)Growth Conditions:$(br)$(bold)$(l:core_mechanics/climate#temperature)Temperature$(): $(flcfg:climate.pineapple.temperature)$(br)$(bold)$(l:food/hydration)Hydration$(): $(flcfg:climate.pineapple.hydration)% Pineapples can be made into $(thing)Pineapple Leather$()."
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/pineapple_fiber",
-      "text": "$(l:tfc:firmalife/drying)乾燥$()させたパイナップルは人工繊維に加工できます。"
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "firmalife:crafting/pineapple_yarn",
-      "text": "人工織り糸は、$(thing)紡錘$()によって作れます。"
-    },
-    {
-      "type": "tfc:loom_recipe",
-      "recipe": "firmalife:loom/pineapple_leather",
-      "text": "最後に、人工皮革は$(l:tfc:mechanics/weaving)織機$()で編むことができます。$(br2)人工皮革は、通常のレザーの代用品であり、革の加工やクラフト、その他の用途に使用できます！"
-    }
-  ],
-  "read_by_default": true,
-  "sortnum": 23
+    "name": "ベリーの茂み",
+    "category": "tfc:firmalife",
+    "icon": "firmalife:plant/pineapple_bush",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "Firmalifeでは、いくつかのベリー類の低木を追加しています。$(br2)野生のブドウの低木に関する情報は、$(l:firmalife/wine)ワイン作り$()を参照してください。"
+        },
+        {
+            "type": "patchouli:spotlight",
+            "item": "firmalife:food/nightshade_berry",
+            "link_recipes": false,
+            "text": "イヌホウズキは毒のあるベリーです。 スープに入れると、毒のある$(thing)臭いスープ$()になります。 降水量200-400mm、気温$(cfg:temperature:7)から$(cfg:temperature:24)の森林に自生します。 $(thing)8月$()に実を結び、その前の月に開花します。$(br2)生育条件:$(br)$(bold)$(l:core_mechanics/climate#temperature)気温$(): $(flcfg:climate.nightshade.temperature)$(br)$(bold)$(l:food/hydration)水分量$(): $(flcfg:climate.nightshade.hydration)%"
+        },
+        {
+            "type": "patchouli:spotlight",
+            "item": "firmalife:food/pineapple",
+            "link_recipes": false,
+            "text": "パイナップルの茂みは、降水量250～500mm、気温$(cfg:temperature:20)から$(cfg:temperature:32)の森林に自生します。 $(thing)9月$()に実を結び、その前の2か月間にわたって開花します。$(br2)生育条件:$(br)$(bold)$(l:core_mechanics/climate#temperature)気温$(): $(flcfg:climate.pineapple.temperature)$(br)$(bold)$(l:food/hydration)水分量$(): $(flcfg:climate.pineapple.hydration)% パイナップルは$(thing)人工皮革$()に加工できます。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "firmalife:crafting/pineapple_fiber",
+            "text": "$(l:tfc:firmalife/drying)乾燥$()させたパイナップルは人工繊維に加工できます。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "firmalife:crafting/pineapple_yarn",
+            "text": "人工織り糸は、$(thing)紡錘$()によって作れます。"
+        },
+        {
+            "type": "tfc:loom_recipe",
+            "recipe": "firmalife:loom/pineapple_leather",
+            "text": "最後に、人工皮革は$(l:tfc:mechanics/weaving)織機$()で編むことができます。$(br2)人工皮革は、通常のレザーの代用品であり、革の加工やクラフト、その他の用途に使用できます！"
+        }
+    ],
+    "read_by_default": true,
+    "sortnum": 23
 }
